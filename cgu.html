@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Conditions générales d'utilisation (CGU) — Lincisif</title>
+  <meta name="theme-color" content="#0B1C23" />
+  <meta name="description" content="CGU de Lincisif : objet, accès, compte & réservation, bon usage, propriété intellectuelle, contenus tiers, responsabilité, données personnelles, droit applicable, modifications." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="Baleine.webp" />
+
+  <style>
+    :root{
+      --space:#061317; --star:#F9FBFF; --muted:rgba(249,251,255,.86);
+      --glass:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
+      --shadow:0 12px 36px rgba(0,0,0,.35); --maxw:900px;
+      --radius-2:14px; --radius-3:22px; --ink:#0B1C23;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0; color:var(--star); background:var(--space); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; line-height:1.7; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; font-size:.95rem}
+    body{margin:0; color:var(--star); background:var(--space); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; line-height:1.7; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+    a{color:inherit; text-decoration:none}
+    :focus-visible{outline:2px solid #fff; outline-offset:2px}
+
+    /* Fond identique aux autres pages */
+    #bgCanvas{position:fixed; inset:0; z-index:-2; display:block; background:#061317}
+    #bgCanvas::after{content:""; position:absolute; inset:auto 0 0 0; height:18vh; pointer-events:none; background:linear-gradient(to bottom, rgba(6,19,23,0), rgba(6,19,23,.9) 70%, rgba(6,19,23,1))}
+
+    /* Header compact (même forme que Mentions légales) */
+    .nav-wrap{position:sticky; top:10px; z-index:50; display:flex; justify-content:center; padding:0 12px}
+    .navbar{ width:min(1100px,92vw); display:flex; align-items:center; gap:12px; padding:12px 14px; background:var(--glass); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.16); border-radius:var(--radius-3); box-shadow:var(--shadow) }
+    .brand{font-family:"Space Grotesk",Inter,sans-serif; font-weight:700; letter-spacing:.2px; padding:8px 10px; border-radius:10px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18)}
+    .links{margin-left:auto; display:flex; gap:10px; list-style:none; padding:0; margin:0}
+    .chip{display:inline-flex; align-items:center; padding:10px 12px; border-radius:12px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); font-weight:800; font-size:.95rem}
+    .chip:hover{background:rgba(255,255,255,.12)}
+
+    /* Layout & Carte */
+    main{padding:clamp(72px,9vw,110px) 0 40px}
+    .container{width:min(var(--maxw),92vw); margin-inline:auto}
+    .title{font:700 clamp(24px,3.6vw,38px)/1.08 "Space Grotesk",Inter,sans-serif; margin:0 0 6px; text-shadow:0 5px 26px rgba(0,0,0,.45)}
+    .subtitle{margin:0 0 14px; color:rgba(249,251,255,.9); font-size:clamp(.92rem,1.6vw,1.02rem)}
+    .legal-card{ background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.82)); border:1px solid rgba(255,255,255,.78); box-shadow:0 12px 36px rgba(0,0,0,.38); color:var(--ink); border-radius:var(--radius-3); padding:18px 18px 6px }
+    .legal-card section{padding:6px 0 14px}
+    .legal-card h2{font:800 1.04rem/1.2 Inter,system-ui; margin:10px 0 6px; letter-spacing:.2px; color:#0B1C23}
+    .legal-card p{margin:0 0 10px}
+    .legal-card ul{margin:8px 0 10px 20px}
+    .legal-card li{margin:4px 0}
+    .muted{color:rgba(11,28,35,.75)}
+
+    /* Corps légal directement sur fond (transparent) */
+    .legal section{padding:6px 0 12px}
+    .legal h2{font:800 .98rem/1.2 Inter,system-ui; margin:8px 0 6px; letter-spacing:.2px; color:var(--star)}
+    .legal p{margin:0 0 8px}
+    .legal ul{margin:8px 0 10px 20px}
+    .legal li{margin:4px 0}
+
+    footer{border-top:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); padding:18px 0 28px; color:rgba(249,251,255,.84)}
+    .footgrid{display:grid; gap:10px; grid-template-columns:1fr auto; align-items:center; width:min(1100px,92vw); margin:0 auto}
+    .footlinks{display:flex; gap:12px; flex-wrap:wrap}
+    .footlinks a{display:inline-flex; align-items:center; padding:8px 10px; border-radius:10px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); font-weight:700}
+  </style>
+</head>
+<body>
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+  <header class="nav-wrap" role="banner">
+    <nav class="navbar" aria-label="Navigation principale">
+      <a class="brand" href="index.html#top">Lincisif</a>
+      <ul class="links" role="list">
+        <li><a class="chip" href="index.html#mes-formations">Formations</a></li>
+        <li><a class="chip" href="droit.html">Droit L1-M2</a></li>
+        <li><a class="chip" href="philosophie.html">Philosophie</a></li>
+        <li><a class="chip" href="developpement.html">Développement personnel</a></li>
+        <li><a class="chip" href="index.html#contact">Réserver un cours</a></li>
+        <li><a class="chip" href="index.html#about">À propos</a></li>
+        <li><a class="chip" href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="container">
+      <h1 class="title">Conditions générales d'utilisation (CGU)</h1>
+      <p class="subtitle">Règles d’accès et d’usage du site Lincisif et de ses contenus.</p>
+
+      <article class="legal" aria-labelledby="cgu-objet">
+        <section>
+          <h2 id="cgu-objet">1) Objet</h2>
+          <p>Les présentes conditions régissent l’accès au site et l’utilisation des contenus pédagogiques (textes, supports, vidéos), ainsi que la prise de contact pour des cours particuliers.</p>
+        </section>
+
+        <section>
+          <h2 id="cgu-acces">2) Accès au site</h2>
+          <p>Service accessible 24/7 sauf interruption pour maintenance ou cas de force majeure. L’éditeur n’est pas responsable des indisponibilités indépendantes de sa volonté.</p>
+        </section>
+
+        <section>
+          <h2 id="cgu-compte">3) Compte & réservation</h2>
+          <p>Si le site propose un espace utilisateur ou un agenda, vous vous engagez à fournir des informations exactes et à mettre à jour vos coordonnées. Toute réservation peut nécessiter une confirmation par e‑mail.</p>
+        </section>
+
+        <section>
+          <h2 id="cgu-usage">4) Bon usage</h2>
+          <p>Interdits : extraction massive, revente de contenus, actes de contournement technique, intrusion, usage contraire aux lois ou à l’ordre public.</p>
+        </section>
+
+        <section>
+          <h2 id="cgu-ppi">5) Propriété intellectuelle</h2>
+          <p>Les contenus du site restent la propriété de l’éditeur. Licence d’usage strictement personnelle, non exclusive et non transférable. Aucune cession de droits n’est consentie.</p>
+        </section>
+
+        <section>
+          <h2 id="cgu-tiers">6) Contenus tiers & liens</h2>
+          <p>Les liens externes sont fournis à titre de service. L’éditeur ne garantit ni l’exactitude, ni la disponibilité des ressources tierces.</p>
+        </section>
+
+        <section>
+          <h2 id="cgu-resp">7) Responsabilité</h2>
+          <p>Les contenus pédagogiques n’équivalent pas à un conseil juridique personnalisé. L’éditeur ne répond pas des dommages indirects (perte de chance, données, bénéfices).</p>
+        </section>
+
+        <section>
+          <h2 id="cgu-rgpd">8) Données personnelles</h2>
+          <p>L’utilisation du site implique l’acceptation de la <a href="confidentialite.html">Politique de confidentialité</a> (voir rubrique dédiée).</p>
+        </section>
+
+        <section>
+          <h2 id="cgu-droit">9) Droit applicable – différends – médiation</h2>
+          <p>Droit français. En cas de litige avec un consommateur, possibilité de médiation gratuite conformément à l’art. L612‑1 du Code de la consommation.</p>
+        </section>
+
+        <section>
+          <h2 id="cgu-modifs">10) Modification des CGU</h2>
+          <p>L’éditeur peut modifier les présentes à tout moment ; la version applicable est celle en ligne au jour de la visite.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footgrid">
+      <div>© 2025 Lincisif. Tous droits réservés.</div>
+      <nav class="footlinks" aria-label="Liens légaux et sociaux">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Confidentialité</a>
+        <a href="cgu.html">CGU</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Fond image : même cadrage (aucun zoom, aucun changement visuel)
+    (function(){
+      var cvs = document.getElementById('bgCanvas');
+      var ctx = cvs.getContext('2d');
+      var img = new Image(); img.decoding = 'async'; img.src = 'Baleine.webp';
+      var anchorX = 1.0, anchorY = 0.5; // arrière-plan cadré à droite
+      function draw(){
+        if(!img.naturalWidth) return;
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        var W = cvs.width  = Math.floor(innerWidth  * dpr);
+        var H = cvs.height = Math.floor(innerHeight * dpr);
+        cvs.style.width  = innerWidth + 'px';
+        cvs.style.height = innerHeight + 'px';
+        var iw = img.naturalWidth, ih = img.naturalHeight;
+        var scale = Math.max(W/iw, H/ih);
+        var vw = iw * scale, vh = ih * scale;
+        var maxX = Math.max(0, vw - W), maxY = Math.max(0, vh - H);
+        var sx = Math.round(maxX * anchorX), sy = Math.round(maxY * anchorY);
+        ctx.clearRect(0,0,W,H);
+        ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(img, -sx, -sy, vw, vh);
+        ctx.fillStyle = 'rgba(6,19,23,0.14)';
+        ctx.fillRect(0,0,W,H);
+      }
+      function onResize(){ draw(); }
+      img.onload = draw; addEventListener('resize', onResize, {passive:true}); addEventListener('orientationchange', onResize, {passive:true}); document.addEventListener('visibilitychange', function(){ if(!document.hidden) draw(); });
+    })();
+  </script>
+</body>
+</html>

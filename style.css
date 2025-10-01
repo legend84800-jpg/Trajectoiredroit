@@ -1,0 +1,263 @@
+/* =========================================================
+   LINCISIF — style.css (GLOBAL)
+   Refonte unifiée, accessible et performante
+   - Une seule image d’arrière-plan sur le site : Baleine.webp
+   - Effets cosmiques 100% CSS + canvas étoiles (géré par script.js)
+   - Design cohérent avec toutes les pages (index, philosophie, etc.)
+   - Commentaires inline sur les zones complexes
+   ========================================================= */
+
+/* -------------------- 1) Design tokens -------------------- */
+:root{
+  /* Couleurs de base */
+  --space:#061317;           /* fond général (quasi noir bleuté) */
+  --ink:#0B1C23;             /* encrage / sections basses */
+
+  /* Accents (nébuleuses) */
+  --cyan:#10E7E7;
+  --teal:#11B4B0;
+  --violet:#7C61FF;
+  --magenta:#E150A6;
+  --gold:#F6C36A;
+
+  /* Texte & UI */
+  --star:#F9FBFF;            /* texte principal (blanc froid) */
+  --muted: rgba(249,251,255,.80);
+
+  /* Verre dépoli + ombres douces */
+  --glass: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06));
+  --shadow-glass: 0 8px 30px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.15);
+  --shadow-soft: 0 10px 30px rgba(0,0,0,.18);
+
+  /* Rayons & largeur */
+  --radius-2:14px;
+  --radius-3:22px;
+  --maxw:1120px;
+
+  /* Typo (fallback inclus) */
+  --font-title:"Space Grotesk", Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+  --font-body:Inter, Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+}
+
+/* -------------------- 2) Reset & base -------------------- */
+*,*::before,*::after{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0; color:var(--star); background:var(--space);
+  font-family:var(--font-body); line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden; scroll-behavior:smooth;
+}
+img{ max-width:100%; height:auto; display:block; }
+a{ color:inherit; text-decoration:none; }
+:focus-visible{ outline:2px solid var(--cyan); outline-offset:2px; }
+
+/* Accessibilité : lien d’évitement (caché hors focus) */
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.sr-only-focusable:focus{ position:static; width:auto; height:auto; margin:0; overflow:visible; clip:auto; white-space:normal; padding:.5rem .75rem; border-radius:.5rem; background:#0b2530; }
+
+/* -------------------- 3) Décor global (cosmos) -------------------- */
+/* Champ d’étoiles : le rendu est fait en JS dans #starfield */
+#starfield{ position:fixed; inset:0; z-index:-2; pointer-events:none; background:transparent; }
+
+/* Halo cosmique léger sous le contenu (aucune image externe) */
+.cosmic-halo{
+  position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.42;
+  background:
+    radial-gradient(40% 40% at 25% 35%, rgba(16,231,231,.15), transparent 70%),
+    radial-gradient(38% 38% at 75% 50%, rgba(124,97,255,.12), transparent 70%);
+}
+
+/* Arrière-plan nébuleux générique (utilisé par .bg-nebula) */
+.bg-nebula{
+  /* Empilage : dégradés radiaux + léger dégradé linéaire */
+  background:
+    radial-gradient(1200px 700px at 12% 18%, rgba(124,97,255,.28), transparent 60%),
+    radial-gradient(1000px 620px at 78% 22%, rgba(16,231,231,.30), transparent 66%),
+    radial-gradient(1100px 740px at 28% 84%, rgba(17,180,176,.26), transparent 64%),
+    radial-gradient(800px 550px at 88% 75%, rgba(246,195,106,.18), transparent 70%),
+    linear-gradient(#061117, var(--space));
+  background-attachment:fixed;      /* parallax léger (géré côté JS) */
+  will-change:background-position;  /* hint de performance */
+}
+@supports (color: oklab(0.5 0 0)){
+  /* Option : colorimétrie plus fine si supportée par le navigateur */
+  .bg-nebula{
+    background:
+      radial-gradient(1200px 700px at 12% 18%, color-mix(in oklab, var(--violet) 30%, transparent), transparent 60%),
+      radial-gradient(1000px 620px at 78% 22%, color-mix(in oklab, var(--cyan) 38%, transparent), transparent 66%),
+      radial-gradient(1100px 740px at 28% 84%, color-mix(in oklab, var(--teal) 32%, transparent), transparent 64%),
+      radial-gradient(800px 550px at 88% 75%, color-mix(in oklab, var(--gold) 20%, transparent), transparent 70%),
+      linear-gradient(#061117, var(--space));
+  }
+}
+
+/* IMPORTANT : élimine tout reliquat d’anciens assets (ex. Platon) */
+.platon-layer{ display:none !important; }
+
+/* -------------------- 4) Layout & sections -------------------- */
+.container{ width:min(var(--maxw), 92vw); margin-inline:auto; }
+section{ padding: clamp(32px, 6.5vw, 72px) 0; }
+.section-title{
+  font-family:var(--font-title);
+  font-size:clamp(24px, 3.6vw, 36px);
+  letter-spacing:-.01em; margin:0 0 10px;
+}
+.muted{ color:var(--muted); }
+
+/* -------------------- 5) Navigation -------------------- */
+.nav-wrap{ position:sticky; top:8px; z-index:50; display:flex; justify-content:center; padding-inline:12px; }
+.navbar{
+  width:min(var(--maxw), 92vw);
+  display:flex; align-items:center; gap:18px; padding:10px 14px;
+  border-radius:var(--radius-3);
+  background:var(--glass);
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  box-shadow:var(--shadow-glass);
+  border:1px solid rgba(255,255,255,.12);
+}
+.brand{
+  font-family:var(--font-title); font-weight:700; letter-spacing:.2px;
+  padding:8px 10px; border-radius:10px; background:rgba(255,255,255,.06);
+}
+.links{ margin-left:auto; display:flex; gap:14px; align-items:center; list-style:none; padding:0; margin:0; font-size:.95rem; }
+.links a{ padding:8px 10px; border-radius:10px; transition: background .25s ease, color .25s ease, transform .25s ease; }
+.links a:hover{ background:rgba(255,255,255,.10); transform:translateY(-1px); }
+.links .cta-nav{ color:#061317; background:var(--star); font-weight:700; border-radius:12px; padding:9px 12px; }
+.links .sep{ width:1px; height:20px; background:rgba(255,255,255,.18); margin-inline:6px; border-radius:1px; }
+@media (max-width:760px){ .links .hide-sm{ display:none; } .brand{ font-size:1rem; } }
+
+/* -------------------- 6) HERO (image unique : Baleine.webp) -------------------- */
+/* Le hero peut combiner .bg-nebula pour l’ambiance + .hero-baleine pour l’image */
+.hero{ position:relative; overflow:hidden; padding-top:clamp(64px,8vw,92px); padding-bottom:clamp(40px,8vw,72px); color:var(--star); }
+.hero .inner{ display:grid; gap:28px; align-items:center; grid-template-columns:1.15fr .85fr; }
+@media (max-width:920px){ .hero .inner{ grid-template-columns:1fr; } }
+
+/* Image d’arrière-plan : une seule pour tout le site */
+.hero-baleine{
+  /* Empilement : voile(s) + image. On force la lisibilité avec des dégradés en tête. */
+  background:
+    linear-gradient(180deg, rgba(6,19,23,0.45) 0%, rgba(6,19,23,0.65) 55%, rgba(6,19,23,0.85) 100%),
+    radial-gradient(1200px 700px at 20% 20%, rgba(124,97,255,.18), transparent 60%),
+    url('Baleine.webp') center / cover no-repeat fixed; /* UNIQUE image du site */
+  background-blend-mode: multiply, screen, normal;
+  min-height: clamp(520px, 70vh, 760px);
+}
+.hero-baleine::before{
+  /* Scrim additionnel pour renforcer le contraste des textes en haut à gauche */
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: radial-gradient(65% 50% at 30% 30%, rgba(6,19,23,.20), transparent 60%);
+}
+.tagline{ font-family:var(--font-title); font-size:clamp(28px, 4.8vw, 54px); line-height:1.08; letter-spacing:-.02em; margin:0 0 14px; text-shadow:0 5px 30px rgba(0,0,0,.45); max-width:22ch; }
+.subtitle{ color:rgba(249,251,255,.87); font-size:clamp(1rem, 2.1vw, 1.15rem); margin:0 0 20px; max-width:48ch; }
+
+/* Illustration cosmique CSS-only (aucune image externe) */
+.hero-art{ position:relative; min-height:320px; }
+.cosmic-swirls, .cosmic-swirls::before, .cosmic-swirls::after{
+  content:""; position:absolute; inset:0; border-radius:50%; opacity:.75; mix-blend-mode:screen; filter:blur(6px) saturate(110%);
+  background:
+    radial-gradient(45% 60% at 60% 40%, rgba(16,231,231,.25), transparent 65%),
+    radial-gradient(50% 50% at 40% 60%, rgba(124,97,255,.20), transparent 70%),
+    conic-gradient(from 180deg at 50% 50%, rgba(17,180,176,.18), transparent 25%, rgba(17,180,176,.18), transparent 50%, rgba(124,97,255,.18), transparent 75%, rgba(16,231,231,.18) 100%);
+}
+@media (prefers-reduced-motion:no-preference){
+  /* Animations très légères pour éviter la fatigue visuelle */
+  .cosmic-swirls{ animation:swirlA 24s ease-in-out infinite; }
+  .cosmic-swirls::before{ animation:swirlB 28s ease-in-out infinite; }
+  .cosmic-swirls::after{ animation:swirlC 32s ease-in-out infinite; }
+  @keyframes swirlA{ 0%,100%{ transform:translate(0,0) rotate(0) scale(1.02);} 50%{ transform:translate(6px,-8px) rotate(6deg) scale(1.06);} }
+  @keyframes swirlB{ 0%,100%{ transform:translate(-6px,2px) rotate(0) scale(1);} 50%{ transform:translate(0,-6px) rotate(-7deg) scale(1.04);} }
+  @keyframes swirlC{ 0%,100%{ transform:translate(4px,0) rotate(0) scale(1.01);} 50%{ transform:translate(-6px,6px) rotate(9deg) scale(1.05);} }
+}
+
+/* Vague de séparation bas de hero */
+.wave{ display:block; width:100%; height:auto; margin-top:clamp(28px,6vw,50px); }
+
+/* -------------------- 7) Boutons / CTA -------------------- */
+.cta,.button{ /* .button pour rétro-compatibilité */
+  position:relative; display:inline-block; padding:.9rem 1.15rem; border-radius:14px;
+  color:#061317; background:var(--star); font-weight:700; transform:translateZ(0); transition:transform .25s ease;
+}
+.cta:hover,.button:hover{ transform:translateY(-1px); }
+
+/* Halo dynamique piloté par JS via --px / --py (voir script.js) */
+.cta::after,.button::after{
+  content:""; position:absolute; inset:-2px; border-radius:16px; pointer-events:none; filter:blur(8px); opacity:0; transition:opacity .35s ease;
+  /* Utilise des gradients centrés sur la position du pointeur si dispo */
+  background:
+    radial-gradient(180px 120px at var(--px, 120%) var(--py, 120%), var(--cyan), transparent 60%),
+    radial-gradient(220px 160px at calc(var(--px,120%) - 40px) calc(var(--py,120%) - 30px), var(--violet), transparent 70%),
+    radial-gradient(240px 180px at calc(var(--px,120%) + 30px) calc(var(--py,120%) + 20px), var(--magenta), transparent 65%);
+}
+.cta:hover::after,.button:hover::after{ opacity:.55; }
+
+/* Variante secondaire (verre dépoli) */
+.cta-secondary{ color:var(--star); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); backdrop-filter:blur(8px); }
+
+/* -------------------- 8) Grilles / cartes -------------------- */
+.grid-3{ display:grid; gap:16px; grid-template-columns:repeat(3, 1fr); }
+@media (max-width:920px){ .grid-3{ grid-template-columns:1fr; } }
+@media (min-width:921px) and (max-width:1200px){ .grid-3{ grid-template-columns:repeat(2, 1fr); } }
+
+.card{
+  border-radius:var(--radius-3);
+  background:var(--glass);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:var(--shadow-soft);
+  padding:18px 18px 16px;
+  transition:transform .2s ease, box-shadow .3s ease, background .3s ease;
+}
+.card:hover{ transform:translateY(-3px); box-shadow:0 14px 44px rgba(0,0,0,.28); background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08)); }
+.card h3{ margin:6px 0 6px; font-size:1.15rem; font-weight:700; letter-spacing:.2px; font-family:var(--font-title); }
+.card p{ margin:0 0 10px; color:rgba(249,251,255,.87); }
+.card a{ display:inline-block; margin-top:6px; font-weight:600; color:var(--star); text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(249,251,255,.55); }
+
+/* Variantes locales utiles (philosophie.html) */
+.grid-notions{ display:grid; gap:14px; grid-template-columns:repeat(3, 1fr); }
+@media (max-width:960px){ .grid-notions{ grid-template-columns:1fr; } }
+.hint{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); padding:14px 16px; border-radius:14px; }
+
+/* -------------------- 9) Étapes / Méthodes -------------------- */
+.steps{ display:grid; gap:12px; grid-template-columns:repeat(4,1fr); }
+@media (max-width:980px){ .steps{ grid-template-columns:1fr; } }
+.step{ padding:16px; border-radius:var(--radius-2); background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10); }
+.step strong{ display:block; font-family:var(--font-title); margin-bottom:6px; }
+
+/* -------------------- 10) Accordéons / FAQ -------------------- */
+.faq{ display:grid; gap:12px; }
+.details, details{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10); border-radius:12px; padding:12px 14px; }
+summary{ cursor:pointer; font-weight:700; font-family:var(--font-title); }
+
+/* -------------------- 11) Contact / Formulaire -------------------- */
+.contact-grid{ display:grid; gap:16px; grid-template-columns:.9fr 1.1fr; align-items:start; }
+@media (max-width:980px){ .contact-grid{ grid-template-columns:1fr; } }
+form{ display:grid; gap:10px; background:var(--glass); border:1px solid rgba(255,255,255,.12); padding:16px; border-radius:var(--radius-3); box-shadow:var(--shadow-soft); }
+label{ font-weight:600; display:block; margin-bottom:4px; }
+input,textarea{ width:100%; padding:12px; border-radius:12px; background:rgba(255,255,255,.06); color:var(--star); border:1px solid rgba(255,255,255,.14); }
+textarea{ resize:vertical; min-height:140px; }
+.submit{ justify-self:start; }
+
+/* -------------------- 12) Animations d’apparition -------------------- */
+.reveal{ opacity:0; transform:translateY(12px); }
+.reveal.in{ opacity:1; transform:translateY(0); transition:opacity .6s ease, transform .6s ease; }
+
+/* -------------------- 13) Footer -------------------- */
+footer{ border-top:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); padding:18px 0 28px; color:rgba(249,251,255,.84); text-align:center; }
+.footgrid{ display:grid; gap:10px; grid-template-columns:1fr auto; align-items:center; width:min(var(--maxw), 92vw); margin:0 auto; }
+.footlinks{ display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end; }
+
+/* -------------------- 14) Vieux styles (compat léger) -------------------- */
+/* Raccord avec d’anciens gabarits éventuellement présents */
+.hero-content h1{ font-size:clamp(2rem, 6vw, 3.2rem); margin-bottom:1rem; font-family:var(--font-title); }
+.hero-content p{ font-size:clamp(1rem, 2.4vw, 1.25rem); }
+
+/* Anciennes classes utiles */
+.courses{ margin-left:1.5rem; list-style:disc; }
+.note{ font-style:italic; margin-top:1rem; color:var(--muted); }
+
+/* -------------------- 15) Réduction de mouvement -------------------- */
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none !important; transition:none !important; }
+  .bg-nebula{ background-attachment:scroll; }
+}

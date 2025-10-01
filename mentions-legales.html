@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mentions légales — Lincisif</title>
+  <meta name="theme-color" content="#0B1C23" />
+  <meta name="description" content="Mentions légales du site Lincisif : éditeur, hébergeur, propriété intellectuelle, responsabilités, liens externes, signalement de contenu." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="Baleine.webp" />
+
+  <style>
+    :root{
+      --space:#061317; --star:#F9FBFF; --muted:rgba(249,251,255,.86);
+      --glass:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
+      --shadow:0 12px 36px rgba(0,0,0,.35); --maxw:900px;
+      --radius-3:22px; --ink:#0B1C23;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; color:var(--star); background:var(--space); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; line-height:1.7; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; font-size:0.98rem}
+    a{color:inherit; text-decoration:none}
+    :focus-visible{outline:2px solid #fff; outline-offset:2px}
+
+    /* Fond identique aux autres pages (aucun zoom/altération) */
+    #bgCanvas{position:fixed; inset:0; z-index:-2; display:block; background:#061317}
+    #bgCanvas::after{content:""; position:absolute; inset:auto 0 0 0; height:18vh; pointer-events:none; background:linear-gradient(to bottom, rgba(6,19,23,0), rgba(6,19,23,.9) 70%, rgba(6,19,23,1))}
+
+    /* Header compact */
+    .nav-wrap{position:sticky; top:10px; z-index:50; display:flex; justify-content:center; padding:0 12px}
+    .navbar{ width:min(1100px,92vw); display:flex; align-items:center; gap:12px; padding:12px 14px; background:var(--glass); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.16); border-radius:var(--radius-3); box-shadow:var(--shadow) }
+    .brand{font-family:"Space Grotesk",Inter,sans-serif; font-weight:700; letter-spacing:.2px; padding:8px 10px; border-radius:10px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18)}
+    .links{margin-left:auto; display:flex; gap:10px; list-style:none; padding:0; margin:0}
+    .chip{display:inline-flex; align-items:center; padding:8px 10px; border-radius:12px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); font-weight:800; font-size:.95rem}
+    .chip:hover{background:rgba(255,255,255,.12)}
+
+    /* Layout (sans carte/bloc) */
+    main{padding:clamp(64px,8vw,96px) 0 36px}
+    .container{width:min(var(--maxw),92vw); margin-inline:auto}
+    .title{font:700 clamp(24px,3.4vw,36px)/1.08 "Space Grotesk",Inter,sans-serif; margin:0 0 6px; text-shadow:0 5px 26px rgba(0,0,0,.45)}
+    .subtitle{margin:0 0 16px; color:rgba(249,251,255,.9); font-size:clamp(.95rem,1.6vw,1.05rem)}
+
+    /* Corps légal directement sur fond (transparent) */
+    .legal section{padding:6px 0 12px}
+    .legal h2{font:800 .98rem/1.2 Inter,system-ui; margin:8px 0 6px; letter-spacing:.2px; color:var(--star)}
+    .legal p{margin:0 0 8px}
+    .legal ul{margin:8px 0 10px 20px}
+    .legal li{margin:4px 0}
+    .muted{color:rgba(249,251,255,.78)}
+
+    footer{border-top:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); padding:16px 0 26px; color:rgba(249,251,255,.84)}
+    .footgrid{display:grid; gap:8px; grid-template-columns:1fr auto; align-items:center; width:min(1100px,92vw); margin:0 auto}
+    .footlinks{display:flex; gap:10px; flex-wrap:wrap}
+    .footlinks a{display:inline-flex; align-items:center; padding:6px 8px; border-radius:10px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); font-weight:700; font-size:.92rem}
+  </style>
+</head>
+<body>
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+  <header class="nav-wrap" role="banner">
+    <nav class="navbar" aria-label="Navigation principale">
+      <a class="brand" href="index.html#top">Lincisif</a>
+      <ul class="links" role="list">
+        <li><a class="chip" href="index.html#mes-formations">Formations</a></li>
+        <li><a class="chip" href="droit.html">Droit L1-M2</a></li>
+        <li><a class="chip" href="philosophie.html">Philosophie</a></li>
+        <li><a class="chip" href="developpement.html">Développement personnel</a></li>
+        <li><a class="chip" href="index.html#contact">Réserver un cours</a></li>
+        <li><a class="chip" href="index.html#about">À propos</a></li>
+        <li><a class="chip" href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="container">
+      <h1 class="title">Mentions légales</h1>
+      <p class="subtitle">Informations légales conformément à la législation française.</p>
+
+      <article class="legal" aria-labelledby="ml-editeur">
+        <section>
+          <h2 id="ml-editeur">1) Éditeur du site</h2>
+          <p><strong>Nom / qualité :</strong> Julien Fénelon, entrepreneur individuel (activité libérale non réglementée).</p>
+          <p><strong>SIREN :</strong> 929&nbsp;549&nbsp;582.</p>
+          <p><strong>Adresse professionnelle :</strong> 15 Route de Saint-Georges, 12100 Saint-Georges-de-Luzençon, France.</p>
+          <p><strong>Courriel :</strong> <a href="mailto:julien.prof1@gmail.com">julien.prof1@gmail.com</a></p>
+          <p><strong>Directeur de la publication :</strong> Julien Fénelon.</p>
+          <p><strong>TVA :</strong> non applicable – article 293 B du CGI (micro-entreprise).</p>
+        </section>
+
+        <section>
+          <h2 id="ml-hebergeur">2) Hébergeur</h2>
+          <p class="muted">À compléter (obligatoire LCEN) : <em>Nom de l’hébergeur – Adresse – Téléphone</em>.</p>
+        </section>
+
+        <section>
+          <h2 id="ml-ppi">3) Propriété intellectuelle</h2>
+          <p>L’ensemble des contenus (textes, cours, exercices, logos, charte graphique, vidéos, PDF, etc.) est protégé par le droit d’auteur. Toute reproduction, adaptation, traduction ou diffusion, totale ou partielle, sans autorisation écrite préalable, est interdite. Les courtes citations sont admises sous réserve de mention claire de la source.</p>
+        </section>
+
+        <section>
+          <h2 id="ml-resp">4) Responsabilités</h2>
+          <p>Les informations pédagogiques sont fournies «&nbsp;en l’état&nbsp;», à titre éducatif. Elles ne constituent ni consultation juridique, ni promesse de résultat académique. L’éditeur ne saurait être tenu responsable des indisponibilités temporaires du site, ni des contenus des sites tiers vers lesquels il pointe.</p>
+        </section>
+
+        <section>
+          <h2 id="ml-liens">5) Liens externes</h2>
+          <p>La présence de liens sortants ne vaut pas validation du contenu visé. L’éditeur décline toute responsabilité quant à ces ressources.</p>
+        </section>
+
+        <section>
+          <h2 id="ml-signal">6) Signalement de contenu illicite</h2>
+          <p>Pour signaler un contenu manifestement illicite, écris à <a href="mailto:julien.prof1@gmail.com">julien.prof1@gmail.com</a> en précisant l’URL, la date, une description précise et la justification légale du signalement.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footgrid">
+      <div>© 2025 Lincisif. Tous droits réservés.</div>
+      <nav class="footlinks" aria-label="Liens légaux et sociaux">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="#">Confidentialité</a>
+        <a href="#">CGU</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Fond image : même cadrage (aucun zoom, aucun changement visuel)
+    (function(){
+      var cvs = document.getElementById('bgCanvas');
+      var ctx = cvs.getContext('2d');
+      var img = new Image(); img.decoding = 'async'; img.src = 'Baleine.webp';
+      var anchorX = 1.0, anchorY = 0.5; // arrière-plan cadré à droite
+      function draw(){
+        if(!img.naturalWidth) return;
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        var W = cvs.width  = Math.floor(innerWidth  * dpr);
+        var H = cvs.height = Math.floor(innerHeight * dpr);
+        cvs.style.width  = innerWidth + 'px';
+        cvs.style.height = innerHeight + 'px';
+        var iw = img.naturalWidth, ih = img.naturalHeight;
+        var scale = Math.max(W/iw, H/ih);
+        var vw = iw * scale, vh = ih * scale;
+        var maxX = Math.max(0, vw - W), maxY = Math.max(0, vh - H);
+        var sx = Math.round(maxX * anchorX), sy = Math.round(maxY * anchorY);
+        ctx.clearRect(0,0,W,H);
+        ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(img, -sx, -sy, vw, vh);
+        ctx.fillStyle = 'rgba(6,19,23,0.14)';
+        ctx.fillRect(0,0,W,H);
+      }
+      function onResize(){ draw(); }
+      img.onload = draw; addEventListener('resize', onResize, {passive:true}); addEventListener('orientationchange', onResize, {passive:true}); document.addEventListener('visibilitychange', function(){ if(!document.hidden) draw(); });
+    })();
+  </script>
+</body>
+</html>
