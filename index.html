@@ -3,274 +3,232 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lincisif — Savoir incisif, résultats mesurables</title>
-  <meta name="theme-color" content="#0B1C23" />
-  <meta name="description" content="Cours et formations en droit (L1→M2), philosophie et développement personnel. Méthode claire, exigeante, orientée résultats." />
+  <title>TrajectoireDroit — Cours particuliers & formations en droit L1–M2</title>
+  <meta name="theme-color" content="#061317" />
+  <meta name="description" content="Cours particuliers one-on-one et formations vidéo en droit, de L1 à M2. Méthode claire, résultats mesurables. Ancien major de promotion." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="Baleine.webp" />
 
   <style>
     :root{
-      --space:#061317; --star:#F9FBFF; --muted:rgba(249,251,255,.86);
-      --glass:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
-      --shadow:0 12px 36px rgba(0,0,0,.35); --maxw:1120px;
-      --radius-3:22px; --accent-green:#2FEA8A;
-      /* Couleurs blocs formations */
-      --c-droit:#2AB3A5; --c-droit-ink:#111111;
-      --c-philo:#4DD38C; --c-philo-ink:#111111;
-      --c-dev:#5AE2D1; --c-dev-ink:#0F1B29;
+      --space:#061317; --star:#F9FBFF; --muted:rgba(249,251,255,.88);
+      --glass:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.10));
+      --shadow:0 12px 36px rgba(0,0,0,.38); --maxw:1120px;
+      --radius-3:22px; --ink:#0B1C23;
+      --green:#2FEA8A; --teal:#2AB3A5;
     }
-    *,*::before,*::after{box-sizing:border-box} html,body{height:100%}
-    body{ margin:0; color:var(--star); background:var(--space); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden }
-    a{color:inherit; text-decoration:none} img{max-width:100%; display:block}
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; color:var(--star); background:var(--space); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; line-height:1.65; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden}
+    a{color:inherit; text-decoration:none}
+    :focus-visible{outline:2px solid #fff; outline-offset:2px}
 
-    /* Canvas de fond (inchangé) */
-    #bgCanvas{position:fixed; inset:0; z-index:-2; display:block; background:#061317}
-    #bgCanvas::after{content:""; position:absolute; inset:auto 0 0 0; height:18vh; pointer-events:none; background:linear-gradient(to bottom, rgba(6,19,23,0), rgba(6,19,23,.9) 70%, rgba(6,19,23,1))}
+    /* ===== FOND ===== */
+    .site-bg{position:fixed; inset:0; z-index:-2; background:radial-gradient(ellipse 80% 55% at 50% 30%, rgba(8,32,52,.78) 0%, rgba(6,19,23,1) 62%), url('assets/bg.svg') center 22%/88% auto no-repeat; background-color:#061317}
 
-    /* Layout */
-    .container{width:min(var(--maxw),92vw); margin-inline:auto}
-    section{padding:clamp(32px,6.5vw,72px) 0}
-    .hero{padding-top:clamp(54px,6vw,92px); padding-bottom:clamp(24px,4.5vw,48px)}
-    .tagline{font-family:"Space Grotesk",Inter,sans-serif; font-weight:700; letter-spacing:-.02em; font-size:clamp(28px,4.6vw,56px); line-height:1.08; margin:0 0 12px; text-shadow:0 5px 30px rgba(0,0,0,.45)}
-    .subtitle{color:rgba(249,251,255,.92); font-size:clamp(1.08rem,2.3vw,1.35rem); margin:0 0 18px}
-    /* Texte important (about + contact) */
-    .muted{color:var(--muted); font-size:clamp(1.02rem,2.1vw,1.24rem)}
-    #about .muted u strong{font-size:clamp(1.06rem,2.4vw,1.35rem)}
-
-    /* NAV — items en blocs, taille égale, sans trous */
+    /* ===== NAVBAR ===== */
     .nav-wrap{position:sticky; top:10px; z-index:50; display:flex; justify-content:center; padding:0 12px}
-    .navbar{ width:min(var(--maxw),92vw); display:flex; align-items:center; gap:10px; padding:14px 16px; background:var(--glass); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.16); border-radius:var(--radius-3); box-shadow:var(--shadow) }
-    .brand{font-family:"Space Grotesk",Inter,sans-serif; font-weight:800; letter-spacing:.2px; padding:12px 16px; border-radius:12px; background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.22); font-size:clamp(1.06rem,1.5vw,1.20rem)}
-    .links{margin-left:auto; flex:1; display:grid; grid-auto-flow:column; grid-auto-columns:minmax(max-content,1fr); gap:8px; align-items:center; list-style:none; padding:0; margin:0; white-space:nowrap; overflow:hidden; justify-content:stretch}
-    .links > li{display:flex}
-    /* Légère augmentation uniquement pour les titres de navigation */
-    .links a{display:inline-flex; align-items:center; justify-content:center; padding:14px 16px; border-radius:12px; font-weight:800; font-size:clamp(1.10rem,1.65vw,1.26rem)}
-    .chip{background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.22)}
+    .navbar{width:min(var(--maxw),92vw); display:grid; grid-template-columns:1fr 3fr; gap:8px; align-items:stretch; padding:14px 16px; background:var(--glass); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,.18); border-radius:var(--radius-3); box-shadow:var(--shadow)}
+    .brand{font-family:"Space Grotesk",Inter,sans-serif; font-weight:800; letter-spacing:.2px; padding:12px 16px; border-radius:12px; background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.22); font-size:clamp(1rem,1.4vw,1.18rem); display:flex; align-items:center; justify-content:center}
+    .nav-links{display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:8px; align-items:stretch; list-style:none; padding:0; margin:0}
+    .nav-links>li{display:flex}
+    .chip{display:flex; align-items:center; justify-content:center; width:100%; padding:12px 16px; border-radius:12px; background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.20); font-weight:700; font-size:clamp(1rem,1.5vw,1.18rem)}
     .chip:hover{background:rgba(255,255,255,.16)}
-    /* Égaliser Lincisif avec les autres chips */
-    .brand.chip{display:inline-flex; align-items:center; justify-content:center}
 
-    /* Cartes Formations (couleurs) */
-    .section-title{font:700 clamp(22px,3.2vw,34px)/1.15 "Space Grotesk",Inter,sans-serif; margin:0 0 10px}
-    .section-title.big{font-size:clamp(28px,3.8vw,40px)}
-    .grid-3{display:grid; gap:16px; grid-template-columns:repeat(3,1fr)}
-    @media (max-width:920px){.grid-3{grid-template-columns:1fr}}
-    .card{ display:block; border-radius:var(--radius-3); padding:18px 18px 16px; box-shadow:0 12px 36px rgba(0,0,0,.38); transition:transform .2s ease, box-shadow .3s ease; border:1px solid transparent }
-    .card:hover{transform:translateY(-3px); box-shadow:0 16px 54px rgba(0,0,0,.44)}
-    .card h3{margin:6px 0 6px; font:700 1.22rem/1.25 "Space Grotesk",Inter,sans-serif}
-    .card p{margin:0 0 10px}
-    .card-cta{display:inline-block; font-weight:800; text-decoration:underline; text-underline-offset:3px}
-    .card.droit{background:var(--c-droit); color:var(--c-droit-ink)}
-    .card.droit .card-cta{color:var(--c-droit-ink)}
-    .card.philo{background:var(--c-philo); color:var(--c-philo-ink)}
-    .card.philo .card-cta{color:var(--c-philo-ink)}
-    .card.dev{background:var(--c-dev); color:var(--c-dev-ink)}
-    .card.dev .card-cta{color:var(--c-dev-ink)}
+    /* ===== LAYOUT ===== */
+    .container{width:min(var(--maxw),92vw); margin-inline:auto}
+    section{padding:clamp(28px,5.5vw,60px) 0}
+    .section-title{font:700 clamp(22px,3.2vw,34px)/1.15 "Space Grotesk",Inter,sans-serif; margin:0 0 12px}
+    .section-title.big{font-size:clamp(26px,3.8vw,42px)}
 
-    /* Témoignages — (5,0) noir, étoiles vertes, texte noir */
-    .testi{padding-top:0}
-    .testi .section-title{margin-bottom:14px}
+    /* ===== HERO ===== */
+    .hero{padding-top:clamp(60px,8vw,100px); padding-bottom:clamp(24px,4.5vw,48px)}
+    .tagline{font-family:"Space Grotesk",Inter,sans-serif; font-weight:700; letter-spacing:-.022em; font-size:clamp(30px,5vw,60px); line-height:1.07; margin:0 0 14px; text-shadow:0 5px 30px rgba(0,0,0,.45); max-width:820px}
+    .subtitle{color:var(--muted); font-size:clamp(1.08rem,2.3vw,1.35rem); margin:0 0 28px; max-width:640px}
+    .hero-ctas{display:flex; gap:12px; flex-wrap:wrap}
+    .btn-primary{display:inline-flex; align-items:center; padding:.95rem 1.5rem; border-radius:14px; background:#F9FBFF; color:#061317; font-weight:900; font-size:1.02rem}
+    .btn-primary:hover{background:#e8edf2}
+    .btn-outline{display:inline-flex; align-items:center; padding:.95rem 1.5rem; border-radius:14px; background:rgba(255,255,255,.10); color:var(--star); font-weight:700; font-size:1.02rem; border:1px solid rgba(255,255,255,.28)}
+    .btn-outline:hover{background:rgba(255,255,255,.16)}
+
+    /* ===== CARTES PRODUITS ===== */
+    #offres{padding-top:clamp(16px,3.5vw,28px)}
+    .grid-2{display:grid; gap:16px; grid-template-columns:1fr 1fr}
+    @media(max-width:820px){.grid-2{grid-template-columns:1fr}}
+    .pcard{display:block; border-radius:var(--radius-3); padding:22px 22px 20px; box-shadow:0 14px 40px rgba(0,0,0,.40); transition:transform .2s ease, box-shadow .3s ease; border:1px solid transparent}
+    .pcard:hover{transform:translateY(-4px); box-shadow:0 20px 56px rgba(0,0,0,.46)}
+    .pcard-teal{background:var(--teal); color:var(--ink)}
+    .pcard-green{background:var(--green); color:var(--ink)}
+    .pcard-label{display:inline-block; margin-bottom:10px; padding:4px 12px; border-radius:999px; background:rgba(0,0,0,.12); font-weight:700; font-size:.80rem; letter-spacing:.04em; text-transform:uppercase}
+    .pcard h3{margin:0 0 8px; font:700 clamp(1.18rem,2.2vw,1.44rem)/1.18 "Space Grotesk",Inter,sans-serif}
+    .pcard p{margin:0 0 14px; font-size:.98rem; opacity:.82}
+    .pcard-cta{display:inline-block; font-weight:900; font-size:1rem; text-decoration:underline; text-underline-offset:3px}
+
+    /* ===== TÉMOIGNAGES ===== */
+    .testi-head{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:16px}
+    .rating-badge{display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.20); padding:7px 12px; border-radius:999px; font-size:.95rem}
+    .stars-green{color:var(--green); letter-spacing:.1em}
     .shots-track{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px}
-    .shots-track::-webkit-scrollbar{height:8px}
-    .shots-track::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18); border-radius:8px}
-    .testi-card{flex:0 0 auto; width:min(420px,86vw); border-radius:var(--radius-3); background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.82)); border:1px solid rgba(255,255,255,.78); box-shadow:0 12px 36px rgba(0,0,0,.38); scroll-snap-align:start; overflow:hidden}
-    .testi-caption{padding:12px 14px; color:#0B1C23; font-size:1rem}
-    .name{font-weight:600; color:#0B1C23}
-    .stars, .review-stars{ color:var(--accent-green); letter-spacing:1px; }
-    .review-note{ color:#0B1C23; font-weight:600; margin-right:6px }
-    .title-note{ color:#FFFFFF; font-weight:900; margin-right:6px }
-    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .shots-track::-webkit-scrollbar{height:6px}
+    .shots-track::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18); border-radius:6px}
+    .testi-card{flex:0 0 auto; width:min(420px,86vw); border-radius:var(--radius-3); background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(255,255,255,.82)); border:1px solid rgba(255,255,255,.78); box-shadow:0 12px 36px rgba(0,0,0,.38); scroll-snap-align:start; overflow:hidden}
+    .testi-caption{padding:14px 16px; color:var(--ink); font-size:.97rem; line-height:1.6}
+    .testi-name{font-weight:700; color:var(--ink)}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
 
-    /* Contact */
-    .contact-grid{display:grid; gap:16px; grid-template-columns:.9fr 1.1fr; align-items:start}
-    @media (max-width:980px){.contact-grid{grid-template-columns:1fr}}
-    form{ display:grid; gap:10px; background:linear-gradient(180deg, rgba(255,255,255,.52), rgba(255,255,255,.30)); border:1px solid rgba(255,255,255,.42); padding:16px; border-radius:var(--radius-3); box-shadow:0 12px 36px rgba(0,0,0,.36) }
-    label{font-weight:700; color:#0B1C23}
-    input,textarea{width:100%; padding:12px; border-radius:12px; background:rgba(255,255,255,.92); color:#0B1C23; border:1px solid rgba(11,28,35,.20)}
-    textarea{min-height:140px; resize:vertical}
-    .cta{display:inline-block; padding:.9rem 1.15rem; border-radius:14px; color:#061317; background:#F9FBFF; font-weight:900}
+    /* ===== À PROPOS ===== */
+    .about-grid{display:grid; gap:20px; grid-template-columns:1fr 1fr; align-items:start}
+    @media(max-width:820px){.about-grid{grid-template-columns:1fr}}
+    .stat-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .stat{background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.06)); border:1px solid rgba(255,255,255,.18); border-radius:16px; padding:14px 18px; flex:1; min-width:130px}
+    .stat-val{font:700 clamp(1.5rem,2.8vw,2.2rem)/1 "Space Grotesk",Inter,sans-serif; color:var(--green); margin-bottom:4px}
+    .stat-lbl{font-size:.88rem; color:var(--muted)}
 
-    /* Footer */
-    footer{border-top:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); padding:18px 0 28px; color:rgba(249,251,255,.84)}
+    /* ===== FOOTER ===== */
+    footer{border-top:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02)); padding:18px 0 28px; color:rgba(249,251,255,.84)}
     .footgrid{display:grid; gap:10px; grid-template-columns:1fr auto; align-items:center; width:min(var(--maxw),92vw); margin:0 auto}
     .footlinks{display:flex; gap:12px; flex-wrap:wrap}
-    .footlinks a{font-size:.62rem; padding:0; background:transparent; border:0; font-weight:500; text-decoration:none}
-    .footlinks a:hover{text-decoration:underline}
-    /* Rapprocher le hero et la section “Mes formations” */
-  #mes-formations{padding-top:clamp(16px,4vw,32px)}
-  #mes-formations .section-title{margin-bottom:8px}
-  .grid-3{gap:14px}
-</style>
+    .footlinks a{font-size:.75rem; font-weight:500; opacity:.8}
+    .footlinks a:hover{opacity:1; text-decoration:underline}
+  </style>
 </head>
 <body>
-  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+  <div class="site-bg" aria-hidden="true"></div>
 
   <header class="nav-wrap" role="banner">
-    <nav class="navbar container" aria-label="Navigation principale">
-      <a class="brand chip" href="#top">Lincisif</a>
-      <ul class="links" role="list">
-        <li><a class="chip" href="droit.html">Droit L1-M2</a></li>
-        <li><a class="chip" href="philosophie.html">Philosophie</a></li>
-        <li><a class="chip" href="developpement.html">Développement personnel</a></li>
-        <li><a class="chip" href="#contact">Réserver un cours</a></li>
+    <nav class="navbar" aria-label="Navigation principale">
+      <a class="brand" href="index.html">TrajectoireDroit</a>
+      <ul class="nav-links" role="list">
+        <li><a class="chip" href="cours-particuliers.html">Cours particuliers</a></li>
+        <li><a class="chip" href="formations.html">Formations</a></li>
         <li><a class="chip" href="#about">À propos</a></li>
       </ul>
     </nav>
   </header>
 
   <main id="top">
+
+    <!-- ===== HERO ===== -->
     <section class="hero container" aria-label="Introduction">
-      <div class="copy">
-        <h1 class="tagline">Être dans le top 10 de ta promotion n’a jamais été aussi facile.</h1>
-        <p class="subtitle">Un suivi structuré, une explication claire, des résultats scolaires excellents.</p>
+      <h1 class="tagline">Passez dans le top 10&nbsp;%<br>de votre promotion en droit.</h1>
+      <p class="subtitle">Cours particuliers one-on-one ou formations vidéo — méthode claire, exigeante, et orientée résultats de L1 à M2.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="cours-particuliers.html">Réserver un cours particulier →</a>
+        <a class="btn-outline" href="formations.html">Voir les formations</a>
       </div>
     </section>
 
-    <section id="mes-formations" class="container" aria-labelledby="formations-title">
-      <h2 id="formations-title" class="section-title big">Mes formations</h2>
-      <div class="grid-3">
-        <a class="card droit" href="droit.html">
-          <h3>Les formations Droit</h3>
-          <p>Méthodologie, conseils pour finir major de promotion, entraînement ciblé.</p>
-          <span class="card-cta">Découvrir le programme →</span>
+    <!-- ===== 2 OFFRES ===== -->
+    <section id="offres" class="container" aria-labelledby="offres-title">
+      <h2 id="offres-title" class="section-title big">Comment je peux vous aider</h2>
+      <div class="grid-2">
+        <a class="pcard pcard-teal" href="cours-particuliers.html">
+          <span class="pcard-label">One-on-one</span>
+          <h3>Cours particuliers</h3>
+          <p>Un suivi personnalisé taillé pour vous : votre fac, vos matières, vos partiels. Diagnostic, méthode, entraînements corrigés, et disponibilité entre les séances.</p>
+          <span class="pcard-cta">Réserver une séance →</span>
         </a>
-        <a class="card philo" href="philosophie.html">
-          <h3>Les formations Philosophie</h3>
-          <p>Dissertation, commentaire de texte, conseils perso, les 17 thèmes, les repères.</p>
-          <span class="card-cta">Découvrir les thèmes →</span>
-        </a>
-        <a class="card dev" href="developpement.html">
-          <h3>Les formations Développement personnel</h3>
-          <p>Comment appliquer la philosophie dans sa vie afin d’être plus libre et plus heureux.</p>
-          <span class="card-cta">Voir les formations →</span>
+        <a class="pcard pcard-green" href="formations.html">
+          <span class="pcard-label">À votre rythme</span>
+          <h3>Formations vidéo</h3>
+          <p>Commentaire d'arrêt, cas pratique, dissertation — des formations complètes sur les exercices qui comptent le plus à l'examen. Disponibles en accès libre.</p>
+          <span class="pcard-cta">Voir les formations →</span>
         </a>
       </div>
     </section>
 
-    <section id="temoignages" class="container testi" aria-labelledby="temoignages-title">
-      <h2 id="temoignages-title" class="section-title big">Témoignages <span class="title-note">5,0</span> <span class="stars" aria-label="5 étoiles">★★★★★</span> <span class="count">(149 évaluations)</span></h2>
-      <div class="shots-track" aria-label="Carrousel horizontal de témoignages">
-        <figure class="testi-card">
-          <figcaption class="testi-caption">
-            <span class="name">Céline</span> <span class="review-note">(5,0)</span> <span class="review-stars" aria-hidden="true">★★★★★</span><span class="sr-only">5 étoiles</span><br>
-            Parfait ! Plus qu'un professeur, un véritable coach d'excellence ! Il ne se contente pas d'enseigner le droit : il le rend clair, vivant et captivant, même dans ses aspects les plus complexes. Son dévouement dépasse largement le cadre académique. Il motive, guide et pousse à donner le meilleur de nous‑mêmes, non seulement pour réussir les examens, mais pour s'élever intellectuellement et personnellement. Un immense merci pour cet impact inestimable !
-          </figcaption>
-        </figure>
-        <figure class="testi-card">
-          <figcaption class="testi-caption">
-            <span class="name">Raphaël</span> <span class="review-note">(5,0)</span> <span class="review-stars" aria-hidden="true">★★★★★</span><span class="sr-only">5 étoiles</span><br>
-            Parfait ! Que des qualités !! On ne peut pas rêver mieux pour comprendre de manière aisée la méthodologie et, chose rare : beaucoup d'entraînements proposés et corrigés ensemble point par point. La séance est véritablement très profitable et rentable. Sans parler d’une pédagogie excellente pour quelqu’un de si jeune, comme quoi…
-          </figcaption>
-        </figure>
-        <figure class="testi-card">
-          <figcaption class="testi-caption">
-            <span class="name">Laila</span> <span class="review-note">(5,0)</span> <span class="review-stars" aria-hidden="true">★★★★★</span><span class="sr-only">5 étoiles</span><br>
-            Parfait ! Excellent professeur. Julien suit mon fils Amaël, qui est en 1<sup>re</sup> année de droit, depuis près de 4 mois à raison de 3 heures par semaine. Je suis très satisfaite des cours de Julien et de son suivi. Julien est patient, pédagogue et il a une parfaite connaissance des attendus à l'Université. Julien agit comme un véritable coach car il sait rassurer ses élèves et dédramatiser. J'ajoute que je suis avocate à Paris (23 années de barreau) et mon mari Directeur Juridique (et Avocat aux barreaux de Paris et NYC) : nous sommes donc très aptes à juger des capacités réelles d'un professeur de droit; nous recommandons Julien aux parents et aux étudiants qui veulent réussir.
-          </figcaption>
-        </figure>
-        <figure class="testi-card">
-          <figcaption class="testi-caption">
-            <span class="name">Marion</span> <span class="review-note">(5,0)</span> <span class="review-stars" aria-hidden="true">★★★★★</span><span class="sr-only">5 étoiles</span><br>
-            « Parfait ! Julien est un professeur très pédagogue et attentif. Il explique très clairement, répond aux questions et sait donner de bons conseils. Ses cours sont bien structurés et il apporte une vraie aide pour la préparation des partiels et des travaux. Je recommande !! »
-          </figcaption>
-        </figure>
-        <figure class="testi-card">
-          <figcaption class="testi-caption">
-            <span class="name">Haïfa</span> <span class="review-note">(5,0)</span> <span class="review-stars" aria-hidden="true">★★★★★</span><span class="sr-only">5 étoiles</span><br>
-            « Parfait ! Très à l’écoute et répond à toutes les questions en prenant le temps de citer plusieurs exemples. Les notions sont plus claires après le cours. »
-          </figcaption>
-        </figure>
-        <figure class="testi-card">
-          <figcaption class="testi-caption">
-            <span class="name">Naomi</span> <span class="review-note">(5,0)</span> <span class="review-stars" aria-hidden="true">★★★★★</span><span class="sr-only">5 étoiles</span><br>
-            « Parfait ! Je recommande fortement, Julien m’a beaucoup aidée à m’améliorer dans cette matière et aussi en général. Il m’a donné des conseils sérieux, m’a aidée à réaliser ma fiche de TD ; j’ai pu bien comprendre le travail qui était demandé. Il a également été présent après les heures de travail en répondant à d’éventuelles questions et en corrigeant mon devoir final. »
-          </figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section id="about" class="container">
-      <h2 class="section-title">À propos</h2>
-      <p class="muted">Ancien major de promotion à deux reprises. Actuellement professeur de philosophie et de droit à temps complet. J’ai donné plus de 2 900 heures de cours particuliers à plus de 300 élèves différents. Parmi les élèves que j’ai eus, de nombreux ont terminé dans les dix premiers de leur promotion et trois d’entre eux ont été majors de promotion.<br><u><strong>Objectif : augmentation minimale de 3 points sur ta moyenne.</strong></u></p>
-    </section>
-
-    <section id="contact" class="container">
-      <h2 class="section-title">Contact</h2>
-      <div class="contact-grid">
-        <div>
-          <p class="muted">Dis-moi quelle est ta situation (élève de droit, de philosophie, ou adulte qui veut apprendre davantage sur lui-même et le monde), réponse sous 24h ouvrées.</p>
+    <!-- ===== TÉMOIGNAGES ===== -->
+    <section id="temoignages" class="container" aria-labelledby="testi-title">
+      <div class="testi-head">
+        <h2 id="testi-title" class="section-title big" style="margin:0">Témoignages</h2>
+        <div class="rating-badge" aria-label="Note moyenne 5 sur 5 basée sur 149 évaluations">
+          <strong>5,0</strong>
+          <span class="stars-green" aria-hidden="true">★★★★★</span>
+          <span>(149 évaluations)</span>
         </div>
-        <form aria-label="Formulaire de contact" method="POST" action="#">
-          <label for="name">Nom</label>
-          <input id="name" name="name" type="text" autocomplete="name" required placeholder="Votre nom">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email" required placeholder="vous@exemple.com">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required placeholder="Décrivez votre besoin…"></textarea>
-          <button class="cta" type="submit">Envoyer</button>
-        </form>
+      </div>
+      <div class="shots-track" aria-label="Carrousel de témoignages">
+        <figure class="testi-card">
+          <figcaption class="testi-caption">
+            <span class="testi-name">Céline</span> <span class="stars-green" aria-hidden="true">★★★★★</span><span class="sr-only">5 étoiles</span><br>
+            Plus qu'un professeur, un véritable coach d'excellence. Il ne se contente pas d'enseigner le droit : il le rend clair, vivant et captivant. Son dévouement dépasse largement le cadre académique. Un immense merci pour cet impact inestimable.
+          </figcaption>
+        </figure>
+        <figure class="testi-card">
+          <figcaption class="testi-caption">
+            <span class="testi-name">Raphaël</span> <span class="stars-green" aria-hidden="true">★★★★★</span><span class="sr-only">5 étoiles</span><br>
+            Que des qualités ! On ne peut pas rêver mieux pour comprendre la méthodologie — beaucoup d'entraînements proposés et corrigés ensemble point par point. La séance est véritablement très profitable. Une pédagogie excellente.
+          </figcaption>
+        </figure>
+        <figure class="testi-card">
+          <figcaption class="testi-caption">
+            <span class="testi-name">Laila</span> <span class="stars-green" aria-hidden="true">★★★★★</span><span class="sr-only">5 étoiles</span><br>
+            Julien suit mon fils en 1<sup>re</sup> année de droit depuis 4 mois. Patient, pédagogue et parfaite connaissance des attendus à l'université. Je suis avocate à Paris (23 ans de barreau) et mon mari est directeur juridique — nous recommandons Julien sans réserve.
+          </figcaption>
+        </figure>
+        <figure class="testi-card">
+          <figcaption class="testi-caption">
+            <span class="testi-name">Marion</span> <span class="stars-green" aria-hidden="true">★★★★★</span><span class="sr-only">5 étoiles</span><br>
+            Julien est un professeur très pédagogue et attentif. Il explique très clairement, répond aux questions et sait donner de bons conseils. Ses cours sont bien structurés et il apporte une vraie aide pour la préparation des partiels. Je recommande !
+          </figcaption>
+        </figure>
+        <figure class="testi-card">
+          <figcaption class="testi-caption">
+            <span class="testi-name">Haïfa</span> <span class="stars-green" aria-hidden="true">★★★★★</span><span class="sr-only">5 étoiles</span><br>
+            Très à l'écoute et répond à toutes les questions en prenant le temps de citer plusieurs exemples. Les notions sont bien plus claires après le cours.
+          </figcaption>
+        </figure>
+        <figure class="testi-card">
+          <figcaption class="testi-caption">
+            <span class="testi-name">Naomi</span> <span class="stars-green" aria-hidden="true">★★★★★</span><span class="sr-only">5 étoiles</span><br>
+            Julien m'a beaucoup aidée à m'améliorer. Il m'a donné des conseils sérieux, aidée à réaliser ma fiche de TD, et a été présent après les heures de travail pour corriger mon devoir final. Fortement recommandé.
+          </figcaption>
+        </figure>
       </div>
     </section>
+
+    <!-- ===== À PROPOS ===== -->
+    <section id="about" class="container" aria-labelledby="about-title">
+      <h2 id="about-title" class="section-title big">À propos</h2>
+      <div class="about-grid">
+        <div>
+          <p style="color:var(--muted); font-size:clamp(1.02rem,2.1vw,1.24rem); margin:0 0 6px">Ancien major de promotion à deux reprises. Professeur de droit à temps complet. Plus de 2&nbsp;900&nbsp;heures de cours particuliers données à plus de 300 étudiants.</p>
+          <p style="color:var(--muted); font-size:clamp(1.02rem,2.1vw,1.24rem); margin:0">Parmi mes élèves, de nombreux ont terminé dans les dix premiers de leur promotion. Trois d'entre eux ont été majors.</p>
+          <div class="stat-row">
+            <div class="stat">
+              <div class="stat-val">2 900+</div>
+              <div class="stat-lbl">heures de cours</div>
+            </div>
+            <div class="stat">
+              <div class="stat-val">300+</div>
+              <div class="stat-lbl">étudiants suivis</div>
+            </div>
+            <div class="stat">
+              <div class="stat-val">5,0 ★</div>
+              <div class="stat-lbl">note moyenne</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p style="color:var(--muted); font-size:clamp(1rem,1.9vw,1.18rem); margin:0 0 16px">Objectif affiché dès la première séance&nbsp;: <strong style="color:var(--star)">une augmentation minimale de 3 points sur votre moyenne.</strong></p>
+          <a class="btn-primary" href="cours-particuliers.html" style="font-size:.98rem;">Prendre contact →</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer role="contentinfo">
-    <div class="container footgrid">
-      <div>© 2025 Lincisif. Tous droits réservés.</div>
-      <nav class="footlinks" aria-label="Liens légaux et sociaux">
+    <div class="footgrid">
+      <div>© 2026 TrajectoireDroit. Tous droits réservés.</div>
+      <nav class="footlinks" aria-label="Liens légaux">
         <a href="mentions-legales.html">Mentions légales</a>
         <a href="confidentialite.html">Confidentialité</a>
         <a href="cgu.html">CGU</a>
       </nav>
     </div>
   </footer>
-
-  <script>
-    // Fond image (aucun zoom, position conservée)
-    (function(){
-      var cvs = document.getElementById('bgCanvas');
-      var ctx = cvs.getContext('2d');
-      var img = new Image(); img.decoding = 'async'; img.src = 'Baleine.webp';
-      var anchorX = 1.0, anchorY = 0.5; // cadrage à droite, inchangé
-      function draw(){
-        if(!img.naturalWidth) return;
-        var dpr = Math.min(window.devicePixelRatio || 1, 2);
-        var W = cvs.width  = Math.floor(innerWidth  * dpr);
-        var H = cvs.height = Math.floor(innerHeight * dpr);
-        cvs.style.width  = innerWidth + 'px';
-        cvs.style.height = innerHeight + 'px';
-        var iw = img.naturalWidth, ih = img.naturalHeight;
-        var scale = Math.max(W/iw, H/ih);
-        var vw = iw * scale, vh = ih * scale;
-        var maxX = Math.max(0, vw - W), maxY = Math.max(0, vh - H);
-        var sx = Math.round(maxX * anchorX), sy = Math.round(maxY * anchorY);
-        ctx.clearRect(0,0,W,H);
-        ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-        ctx.drawImage(img, -sx, -sy, vw, vh);
-        ctx.fillStyle = 'rgba(6,19,23,0.14)';
-        ctx.fillRect(0,0,W,H);
-      }
-      function onResize(){ draw(); }
-      img.onload = draw; addEventListener('resize', onResize, {passive:true}); addEventListener('orientationchange', onResize, {passive:true}); document.addEventListener('visibilitychange', function(){ if(!document.hidden) draw(); });
-    })();
-
-    // Mini-toast soumission formulaire (démo)
-    (function(){
-      var form = document.querySelector("form[aria-label='Formulaire de contact']"); if(!form) return;
-      form.addEventListener('submit', function(e){
-        var action = (form.getAttribute('action')||'').trim(); if(action && action !== '#') return; e.preventDefault();
-        var name = (document.getElementById('name') && document.getElementById('name').value)||'Merci';
-        var t = document.createElement('div'); t.textContent = name+", ton message a bien été envoyé ✨";
-        Object.assign(t.style,{position:'fixed',left:'50%',bottom:'24px',transform:'translateX(-50%)',background:'rgba(10,19,38,.92)',color:'#fff',padding:'12px 16px',borderRadius:'12px',border:'1px solid rgba(255,255,255,.18)',boxShadow:'0 10px 30px rgba(0,0,0,.28)',zIndex:'1000',opacity:'0',transition:'opacity .25s ease, transform .25s ease'});
-        document.body.appendChild(t);
-        requestAnimationFrame(function(){ t.style.opacity='1'; t.style.transform='translateX(-50%) translateY(-6px)'; });
-        setTimeout(function(){ t.style.opacity='0'; t.style.transform='translateX(-50%)'; setTimeout(function(){ t.remove(); }, 260); }, 2200);
-        try{ form.reset(); }catch(_){ }
-      });
-    })();
-  </script>
 </body>
 </html>

@@ -1,47 +1,257 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lincisif - Formations</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Formations vidéo en droit L1–M2 — TrajectoireDroit</title>
+  <meta name="theme-color" content="#061317" />
+  <meta name="description" content="Formations vidéo en droit de L1 à M2 : commentaire d'arrêt, cas pratique, dissertation. Méthode claire, résultats mesurables." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --space:#061317; --star:#F9FBFF; --muted:rgba(249,251,255,.88);
+      --glass:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.10));
+      --shadow:0 12px 36px rgba(0,0,0,.38); --maxw:1120px;
+      --radius-3:22px; --ink:#0B1C23;
+      --green:#2FEA8A; --teal:#2AB3A5;
+      --card-bg:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.84));
+      --card-bd:rgba(255,255,255,.78);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; color:var(--star); background:var(--space); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; line-height:1.65; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; height:auto; display:block}
+    :focus-visible{outline:2px solid #fff; outline-offset:2px}
+
+    .site-bg{position:fixed; inset:0; z-index:-2; background:radial-gradient(ellipse 80% 55% at 50% 30%, rgba(8,32,52,.78) 0%, rgba(6,19,23,1) 62%), url('assets/bg.svg') center 22%/88% auto no-repeat; background-color:#061317}
+
+    /* ===== NAVBAR ===== */
+    .nav-wrap{position:sticky; top:10px; z-index:50; display:flex; justify-content:center; padding:0 12px}
+    .navbar{width:min(var(--maxw),92vw); display:grid; grid-template-columns:1fr 3fr; gap:8px; align-items:stretch; padding:14px 16px; background:var(--glass); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,.18); border-radius:var(--radius-3); box-shadow:var(--shadow)}
+    .brand{font-family:"Space Grotesk",Inter,sans-serif; font-weight:800; letter-spacing:.2px; padding:12px 16px; border-radius:12px; background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.22); font-size:clamp(1rem,1.4vw,1.18rem); display:flex; align-items:center; justify-content:center}
+    .nav-links{display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:8px; align-items:stretch; list-style:none; padding:0; margin:0}
+    .nav-links>li{display:flex}
+    .chip{display:flex; align-items:center; justify-content:center; width:100%; padding:12px 16px; border-radius:12px; background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.20); font-weight:700; font-size:clamp(1rem,1.5vw,1.18rem)}
+    .chip:hover{background:rgba(255,255,255,.16)}
+    .chip[aria-current="page"]{background:rgba(255,255,255,.18); border-color:rgba(255,255,255,.32)}
+
+    /* ===== LAYOUT ===== */
+    .container{width:min(var(--maxw),92vw); margin-inline:auto}
+    section{padding:clamp(26px,5vw,56px) 0}
+    .section-title{font:700 clamp(22px,3.2vw,34px)/1.15 "Space Grotesk",Inter,sans-serif; margin:0 0 12px}
+    .section-title.big{font-size:clamp(26px,3.8vw,40px)}
+
+    /* ===== HERO ===== */
+    .hero{padding-top:clamp(52px,7vw,88px); padding-bottom:clamp(16px,3.5vw,32px)}
+    .tagline{font-family:"Space Grotesk",Inter,sans-serif; font-weight:700; letter-spacing:-.02em; font-size:clamp(26px,4.2vw,50px); line-height:1.09; margin:0 0 12px; text-shadow:0 5px 28px rgba(0,0,0,.45)}
+    .subtitle{color:var(--muted); font-size:clamp(1.05rem,2.2vw,1.28rem); margin:0}
+
+    /* ===== GRILLE VIDÉOS ===== */
+    .videos{display:grid; gap:16px; grid-template-columns:repeat(3,1fr)}
+    @media(max-width:980px){.videos{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.videos{grid-template-columns:1fr}}
+    .vcard{border-radius:var(--radius-3); overflow:hidden; background:var(--card-bg); border:1px solid var(--card-bd); box-shadow:0 14px 36px rgba(0,0,0,.24); color:var(--ink)}
+    .vmedia{display:block; width:100%; aspect-ratio:16/9; background:#0d1f2b; object-fit:cover}
+    .vbody{padding:14px 16px}
+    .vtitle{margin:0 0 6px; font:700 1.06rem/1.25 "Space Grotesk",Inter,sans-serif}
+    .vmeta{margin:0; color:rgba(11,28,35,.70); font-size:.94rem}
+    .vbadge{display:inline-block; margin-bottom:8px; padding:3px 10px; border-radius:999px; background:rgba(42,179,165,.18); color:var(--teal); font-weight:700; font-size:.82rem; border:1px solid rgba(42,179,165,.28)}
+
+    /* ===== PARCOURS ACCORDÉON ===== */
+    .segments{display:grid; gap:10px}
+    details{background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,255,255,.84)); border:1px solid rgba(255,255,255,.78); border-radius:var(--radius-3); padding:14px 16px; color:var(--ink)}
+    details[open]{box-shadow:0 8px 28px rgba(0,0,0,.18)}
+    summary{cursor:pointer; font-weight:700; font-size:1.05rem; list-style:none; display:flex; justify-content:space-between; align-items:center}
+    summary::after{content:"＋"; font-weight:700; font-size:1.1rem; color:var(--teal)}
+    details[open] summary::after{content:"－"}
+    details p{margin:10px 0 0; font-size:.97rem; color:rgba(11,28,35,.80)}
+
+    /* ===== TÉMOIGNAGES ===== */
+    .stars-green{color:var(--green)}
+    .testi-grid{display:grid; gap:14px; grid-template-columns:repeat(3,1fr)}
+    @media(max-width:900px){.testi-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:580px){.testi-grid{grid-template-columns:1fr}}
+    .testi{background:var(--card-bg); border:1px solid var(--card-bd); border-radius:var(--radius-3); padding:16px; box-shadow:0 12px 32px rgba(0,0,0,.20); color:var(--ink)}
+    .testi strong{display:block; margin-bottom:6px}
+    .testi p{margin:0; font-size:.97rem; color:rgba(11,28,35,.82)}
+
+    /* ===== PS NOTE ===== */
+    .ps-note{margin-top:14px; font-weight:700; font-size:clamp(1rem,2vw,1.18rem); background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.08)); border:1px solid rgba(255,255,255,.28); padding:14px 16px; border-radius:16px}
+
+    /* ===== CTA BAS DE PAGE ===== */
+    .cta-bottom{text-align:center; padding:clamp(20px,4vw,44px) 0}
+    .btn-primary{display:inline-block; padding:1rem 1.8rem; border-radius:14px; background:#F9FBFF; color:#061317; font-weight:900; font-size:1.05rem}
+    .btn-primary:hover{background:#e8edf2}
+
+    /* ===== FOOTER ===== */
+    footer{border-top:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02)); padding:18px 0 28px; color:rgba(249,251,255,.84)}
+    .footgrid{display:grid; gap:10px; grid-template-columns:1fr auto; align-items:center; width:min(var(--maxw),92vw); margin:0 auto}
+    .footlinks{display:flex; gap:12px; flex-wrap:wrap}
+    .footlinks a{font-size:.75rem; font-weight:500; opacity:.8}
+    .footlinks a:hover{opacity:1; text-decoration:underline}
+
+    .fade-in{opacity:0; transform:translateY(18px); transition:opacity .5s ease, transform .5s ease}
+    .fade-in.appear{opacity:1; transform:translateY(0)}
+  </style>
 </head>
 <body>
-  <header class="sub-hero">
-    <nav class="navbar">
-      <div class="logo">Lincisif</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="nouveautes.html">Nouveautés</a></li>
-        <li><a href="formations.html" class="active">Formations</a></li>
-        <li><a href="a-propos.html">À propos</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="droit.html">Droit L1-M2</a></li>
-        <li><a href="philosophie.html">Philosophie</a></li>
-        <li><a href="developpement.html">Développement personnel</a></li>
+  <div class="site-bg" aria-hidden="true"></div>
+
+  <header class="nav-wrap" role="banner">
+    <nav class="navbar" aria-label="Navigation principale">
+      <a class="brand" href="index.html">TrajectoireDroit</a>
+      <ul class="nav-links" role="list">
+        <li><a class="chip" href="cours-particuliers.html">Cours particuliers</a></li>
+        <li><a class="chip" href="formations.html" aria-current="page">Formations</a></li>
+        <li><a class="chip" href="index.html#about">À propos</a></li>
       </ul>
     </nav>
-    <h1>Formations</h1>
   </header>
 
-  <main class="content">
-    <section class="fade-in">
-      <p>Choisissez votre domaine pour découvrir les formations disponibles.</p>
-      <ul class="courses">
-        <li><a href="droit.html">Droit L1-M2</a></li>
-        <li><a href="philosophie.html">Philosophie</a></li>
-        <li><a href="developpement.html">Développement personnel</a></li>
-      </ul>
+  <main id="top">
+
+    <!-- Hero -->
+    <section class="hero container" aria-label="Formations vidéo en droit">
+      <h1 class="tagline">Les formations<br>TrajectoireDroit</h1>
+      <p class="subtitle">Des formations vidéo complètes sur les exercices clés du droit — de L1 à M2.<br>Chaque formation est construite pour vous faire gagner des points, pas pour remplir des heures.</p>
     </section>
+
+    <!-- Formations vidéo -->
+    <section class="container fade-in" aria-labelledby="videos-title">
+      <h2 id="videos-title" class="section-title big">Formations vidéo</h2>
+      <div class="videos" role="list">
+
+        <article class="vcard" role="listitem">
+          <video class="vmedia" controls preload="metadata"
+            poster="assets/vignettes/commentaire-arret.webp"
+            aria-label="Formation ultra-complète : le commentaire d'arrêt">
+            <source src="videos/commentaire-arret.mp4" type="video/mp4" />
+            Votre navigateur ne supporte pas la vidéo HTML5.
+          </video>
+          <div class="vbody">
+            <span class="vbadge">L1 → M2</span>
+            <h3 class="vtitle">Le commentaire d'arrêt</h3>
+            <p class="vmeta">Structure, analyse juridique, rédaction. Méthode complète avec corrections types.</p>
+          </div>
+        </article>
+
+        <article class="vcard" role="listitem">
+          <video class="vmedia" controls preload="metadata"
+            poster="assets/vignettes/cas-pratique.webp"
+            aria-label="Formation ultra-complète : le cas pratique">
+            <source src="videos/cas-pratique.mp4" type="video/mp4" />
+            Votre navigateur ne supporte pas la vidéo HTML5.
+          </video>
+          <div class="vbody">
+            <span class="vbadge">L1 → M2</span>
+            <h3 class="vtitle">Le cas pratique</h3>
+            <p class="vmeta">Identification des problèmes juridiques, qualification, syllogisme. Pas à pas opérationnel.</p>
+          </div>
+        </article>
+
+        <article class="vcard" role="listitem">
+          <video class="vmedia" controls preload="metadata"
+            poster="assets/vignettes/dissertation.webp"
+            aria-label="Formation ultra-complète : la dissertation et le commentaire de texte">
+            <source src="videos/dissertation.mp4" type="video/mp4" />
+            Votre navigateur ne supporte pas la vidéo HTML5.
+          </video>
+          <div class="vbody">
+            <span class="vbadge">L1 → M2</span>
+            <h3 class="vtitle">La dissertation & le commentaire de texte</h3>
+            <p class="vmeta">Problématisation, plan dialectique, rédaction efficace sous contrainte de temps.</p>
+          </div>
+        </article>
+
+      </div>
+      <p class="ps-note">PS&nbsp;: Chaque formation me prend énormément de temps car je veux m'appliquer. De nouvelles formations arrivent bientôt.</p>
+    </section>
+
+    <!-- Parcours par niveau -->
+    <section class="container fade-in" aria-labelledby="parcours-title">
+      <h2 id="parcours-title" class="section-title big">Parcours par niveau</h2>
+      <div class="segments">
+        <details>
+          <summary>Licence 1 (L1)</summary>
+          <p>Introduction au droit, droit civil (personnes, famille, biens), droit constitutionnel, institutions judiciaires. Contenu en cours de construction.</p>
+        </details>
+        <details>
+          <summary>Licence 2 (L2)</summary>
+          <p>Droit des obligations, droit pénal général, droit administratif, droit international public. Contenu en cours de construction.</p>
+        </details>
+        <details>
+          <summary>Licence 3 (L3)</summary>
+          <p>Droit des contrats spéciaux, procédure civile, droit des sociétés, droit du travail. Contenu en cours de construction.</p>
+        </details>
+        <details>
+          <summary>Master 1 (M1)</summary>
+          <p>Approfondissement selon votre spécialité (droit privé, droit public, droit des affaires…). Contenu en cours de construction.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section class="container fade-in" id="temoignages" aria-labelledby="testi-title">
+      <h2 id="testi-title" class="section-title big">
+        Témoignages&nbsp;
+        <span style="font-weight:900; color:#fff;">5,0</span>&nbsp;<span class="stars-green" aria-hidden="true">★★★★★</span>
+        <span style="font-size:clamp(14px,2vw,18px); font-weight:400; color:var(--muted);">(36 évaluations)</span>
+      </h2>
+      <div class="testi-grid">
+        <blockquote class="testi" cite="#">
+          <strong>Cloé — L2 Droit <span class="stars-green" aria-hidden="true">★★★★★</span></strong>
+          <p>« Parfait ! Un professeur de qualité avec une pédagogie limpide et captivante, c'est vraiment le genre de prof qu'il faudrait en TD pour réussir ses études de droit. »</p>
+        </blockquote>
+        <blockquote class="testi" cite="#">
+          <strong>Mohamed — L1 Droit <span class="stars-green" aria-hidden="true">★★★★★</span></strong>
+          <p>Julien est un professeur de droit qui allie rigueur académique et bienveillance. Ses cours sont clairs, structurés et enrichis d'exemples concrets qui rendent le droit accessible. C'est un véritable plaisir d'apprendre avec lui.</p>
+        </blockquote>
+        <blockquote class="testi" cite="#">
+          <strong>Aurélie <span class="stars-green" aria-hidden="true">★★★★★</span></strong>
+          <p>« Parfait ! Julien est un excellent professeur pour mon fils en 3e année de droit à Lyon 3. Grâce à lui, il a d'excellentes notes et aime encore plus le droit. Merci Julien ! »</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- CTA bas de page -->
+    <div class="cta-bottom container">
+      <a class="btn-primary" href="cours-particuliers.html">Réserver un cours particulier →</a>
+    </div>
+
   </main>
 
-  <footer>
-    <p>&copy; 2024 Lincisif. Tous droits réservés.</p>
+  <footer role="contentinfo">
+    <div class="footgrid">
+      <div>© 2026 TrajectoireDroit. Tous droits réservés.</div>
+      <nav class="footlinks" aria-label="Liens légaux">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Confidentialité</a>
+        <a href="cgu.html">CGU</a>
+      </nav>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    (function(){
+      var els = Array.prototype.slice.call(document.querySelectorAll('.fade-in'));
+      if(!('IntersectionObserver' in window)){ els.forEach(function(e){ e.classList.add('appear'); }); return; }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(it){ if(it.isIntersecting){ it.target.classList.add('appear'); io.unobserve(it.target); }});
+      },{threshold:.10});
+      els.forEach(function(e){ io.observe(e); });
+    })();
+
+    (function(){
+      var vids = Array.prototype.slice.call(document.querySelectorAll('.vmedia'));
+      vids.forEach(function(v){
+        v.addEventListener('play', function(){ vids.forEach(function(o){ if(o!==v) o.pause(); }); });
+      });
+    })();
+  </script>
 </body>
 </html>

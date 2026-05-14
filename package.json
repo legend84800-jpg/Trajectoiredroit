@@ -1,9 +1,0 @@
-{
-  "name": "monacademie-template",
-  "version": "1.0.0",
-  "description": "Plateforme éducative pour le droit, la philosophie et le développement personnel",
-  "private": true,
-  "scripts": {
-    "test": "echo 'No tests specified'"
-  }
-}

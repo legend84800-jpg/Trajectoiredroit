@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700">
+  <defs>
+    <radialGradient id="glow" cx="450" cy="280" r="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1a4a6e" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#061317" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="700" fill="#061317"/>
+  <ellipse cx="450" cy="280" rx="360" ry="250" fill="url(#glow)"/>
+
+  <!-- Pole -->
+  <rect x="447" y="68" width="6" height="510" rx="3" fill="#ffffff" opacity="0.07"/>
+  <!-- Top cap -->
+  <circle cx="450" cy="65" r="11" fill="none" stroke="#ffffff" stroke-width="2.5" opacity="0.07"/>
+  <!-- Horizontal beam -->
+  <rect x="148" y="160" width="604" height="6" rx="3" fill="#ffffff" opacity="0.08"/>
+  <!-- Pivot circle -->
+  <circle cx="450" cy="163" r="9" fill="#ffffff" opacity="0.10"/>
+
+  <!-- Left rod -->
+  <rect x="146" y="166" width="5" height="165" rx="2.5" fill="#ffffff" opacity="0.07"/>
+  <!-- Right rod (slightly longer → dish lower) -->
+  <rect x="749" y="166" width="5" height="180" rx="2.5" fill="#ffffff" opacity="0.07"/>
+
+  <!-- Left dish -->
+  <path d="M68 331 Q149 366 230 331" fill="none" stroke="#ffffff" stroke-width="4" stroke-opacity="0.07" stroke-linecap="round"/>
+  <!-- Right dish (lower) -->
+  <path d="M671 346 Q752 381 833 346" fill="none" stroke="#ffffff" stroke-width="4" stroke-opacity="0.07" stroke-linecap="round"/>
+
+  <!-- Base -->
+  <rect x="345" y="574" width="210" height="7" rx="3.5" fill="#ffffff" opacity="0.06"/>
+  <rect x="384" y="542" width="132" height="34" rx="5" fill="#ffffff" opacity="0.04"/>
+
+  <!-- Subtle legal-text lines left -->
+  <rect x="44"  y="474" width="148" height="2.5" rx="1" fill="#ffffff" opacity="0.04"/>
+  <rect x="44"  y="486" width="108" height="2.5" rx="1" fill="#ffffff" opacity="0.03"/>
+  <rect x="44"  y="498" width="128" height="2.5" rx="1" fill="#ffffff" opacity="0.04"/>
+  <rect x="44"  y="510" width="88"  height="2.5" rx="1" fill="#ffffff" opacity="0.03"/>
+
+  <!-- Subtle legal-text lines right -->
+  <rect x="708" y="474" width="148" height="2.5" rx="1" fill="#ffffff" opacity="0.04"/>
+  <rect x="728" y="486" width="108" height="2.5" rx="1" fill="#ffffff" opacity="0.03"/>
+  <rect x="708" y="498" width="128" height="2.5" rx="1" fill="#ffffff" opacity="0.04"/>
+  <rect x="728" y="510" width="88"  height="2.5" rx="1" fill="#ffffff" opacity="0.03"/>
+</svg>
