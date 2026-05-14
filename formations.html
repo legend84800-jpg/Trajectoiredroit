@@ -60,6 +60,11 @@
     /* ===== PS NOTE ===== */
     .ps-note { margin-top: 14px; font-weight: 700; font-size: clamp(1rem,2vw,1.18rem); background: linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.08)); border: 1px solid rgba(255,255,255,.28); padding: 14px 16px; border-radius: 16px }
 
+    /* ===== FORMATION PAYHIP FEATURED ===== */
+    .payhip-featured { display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: center; background: linear-gradient(135deg,rgba(42,179,165,.18),rgba(47,234,138,.10)); border: 1px solid rgba(42,179,165,.40); border-radius: var(--radius-3); padding: 28px 32px }
+    .payhip-featured-img { width: 100%; border-radius: 14px; object-fit: cover; aspect-ratio: 1/1 }
+    @media(max-width:760px){ .payhip-featured { grid-template-columns: 1fr } .payhip-featured-img { max-width: 240px } }
+
     /* ===== CTA BAS DE PAGE ===== */
     .cta-bottom { text-align: center; padding: clamp(20px,4vw,44px) 0 }
   </style>
@@ -86,9 +91,29 @@
       <p class="subtitle">Des formations vidéo complètes sur les exercices clés du droit — de L1 à M2.<br>Chaque formation est construite pour vous faire gagner des points, pas pour remplir des heures.</p>
     </section>
 
-    <!-- Formations vidéo -->
+    <!-- Formation premium Payhip -->
+    <section class="container fade-in" aria-labelledby="premium-title">
+      <h2 id="premium-title" class="section-title big">Formation disponible maintenant</h2>
+      <div class="payhip-featured">
+        <img src="https://payhip.com/cdn-cgi/image/format=auto/https://pe56d.s3.amazonaws.com/o_1jd89n6s31ect18p18bagg9rmiu.png" alt="Formation ULTRA complète — fiche d'arrêt" class="payhip-featured-img" onerror="this.src='assets/vignettes/commentaire-arret.webp'" />
+        <div class="payhip-featured-body">
+          <span class="vbadge" style="margin-bottom:10px; display:inline-block;">L1 → M2 · Disponible maintenant</span>
+          <h3 style="font:700 clamp(1.2rem,2.5vw,1.6rem)/1.2 'Space Grotesk',Inter,sans-serif; margin:0 0 10px; color:var(--star);">Formation ULTRA complète pour maîtriser la fiche d'arrêt</h3>
+          <ul style="margin:0 0 18px; padding-left:18px; color:var(--muted); font-size:.97rem; line-height:1.8;">
+            <li>5 modules vidéo — de la lecture de l'arrêt à la rédaction</li>
+            <li>Applications concrètes sur arrêts de rejet et de cassation</li>
+            <li>Garantie +3 points sur vos notes</li>
+          </ul>
+          <a href="https://payhip.com/b/qioTk" class="payhip-buy-button btn-primary" data-theme="none" style="display:inline-flex; align-items:center; gap:8px; font-size:1rem; padding:.95rem 1.8rem;">
+            Accéder à la formation →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formations vidéo gratuites -->
     <section class="container fade-in" aria-labelledby="videos-title">
-      <h2 id="videos-title" class="section-title big">Formations vidéo</h2>
+      <h2 id="videos-title" class="section-title big">Formations vidéo gratuites</h2>
       <div class="videos" role="list">
 
         <article class="vcard" role="listitem">
@@ -221,5 +246,6 @@
       });
     })();
   </script>
+  <script src="https://payhip.com/payhip.js" type="text/javascript"></script>
 </body>
 </html>
