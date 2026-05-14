@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" width="280" height="64">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#1E3A8A"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="64" height="64" rx="14" fill="url(#lg)"/>
+  <text x="32" y="42" font-family="Inter, system-ui, sans-serif" font-size="24" font-weight="700" text-anchor="middle" fill="#FFFFFF" letter-spacing="-1">TD</text>
+  <text x="78" y="40" font-family="Space Grotesk, Inter, sans-serif" font-size="22" font-weight="700" fill="#0F172A" letter-spacing="-0.5">TrajectoireDroit</text>
+</svg>

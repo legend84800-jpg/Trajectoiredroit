@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/partials/
+
+Sitemap: https://trajectoiredroit.com/sitemap.xml

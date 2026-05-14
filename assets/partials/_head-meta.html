@@ -1,0 +1,58 @@
+<!-- =========================================================
+     PARTIAL : _head-meta.html
+     Bloc <head> standardisé à coller dans chaque page.
+     Remplacer {{TITLE}}, {{DESCRIPTION}}, {{URL}}, {{OG_IMAGE}} avant utilisation.
+     ========================================================= -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2563EB">
+<title>{{TITLE}} — TrajectoireDroit</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<link rel="canonical" href="{{URL}}">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{TITLE}} — TrajectoireDroit">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:image" content="{{OG_IMAGE}}">
+<meta property="og:url" content="{{URL}}">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="TrajectoireDroit">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{TITLE}} — TrajectoireDroit">
+<meta name="twitter:description" content="{{DESCRIPTION}}">
+<meta name="twitter:image" content="{{OG_IMAGE}}">
+
+<!-- Favicons -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/favicon.svg">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- CSS -->
+<link rel="stylesheet" href="assets/style.css">
+
+<!-- JSON-LD Organization (commun à toutes les pages) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "TrajectoireDroit",
+  "url": "https://trajectoiredroit.com",
+  "logo": "https://trajectoiredroit.com/assets/logo.svg",
+  "description": "Plateforme de cours en ligne de droit et philosophie. Vidéos, fiches d'arrêt, cartes mentales, cours particuliers.",
+  "sameAs": [
+    "https://www.instagram.com/trajectoiredroit",
+    "https://www.tiktok.com/@trajectoiredroit",
+    "https://www.youtube.com/@trajectoiredroit"
+  ]
+}
+</script>
+
+<!-- Plausible Analytics (à activer une fois le compte créé) -->
+<!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->

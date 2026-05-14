@@ -1,184 +1,134 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Conditions générales d'utilisation (CGU) — TrajectoireDroit</title>
-  <meta name="theme-color" content="#0B1C23" />
-  <meta name="description" content="CGU de Lincisif : objet, accès, compte & réservation, bon usage, propriété intellectuelle, contenus tiers, responsabilité, données personnelles, droit applicable, modifications." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2563EB">
+  <title>Conditions générales — TrajectoireDroit</title>
+  <meta name="description" content="Conditions générales de vente et d'utilisation de TrajectoireDroit : achats, abonnement, droit de rétractation, garantie satisfait ou remboursé.">
+  <link rel="canonical" href="https://trajectoiredroit.com/cgu.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="Baleine.webp" />
-
-  <style>
-    :root{
-      --space:#061317; --star:#F9FBFF; --muted:rgba(249,251,255,.86);
-      --glass:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
-      --shadow:0 12px 36px rgba(0,0,0,.35); --maxw:900px;
-      --radius-2:14px; --radius-3:22px; --ink:#0B1C23;
-    }
-    *,*::before,*::after{box-sizing:border-box}
-    html,body{margin:0; color:var(--star); background:var(--space); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; line-height:1.7; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; font-size:.95rem}
-    body{margin:0; color:var(--star); background:var(--space); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; line-height:1.7; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
-    a{color:inherit; text-decoration:none}
-    :focus-visible{outline:2px solid #fff; outline-offset:2px}
-
-    /* Fond identique aux autres pages */
-    #bgCanvas{position:fixed; inset:0; z-index:-2; display:block; background:#061317}
-    #bgCanvas::after{content:""; position:absolute; inset:auto 0 0 0; height:18vh; pointer-events:none; background:linear-gradient(to bottom, rgba(6,19,23,0), rgba(6,19,23,.9) 70%, rgba(6,19,23,1))}
-
-    /* Header compact (même forme que Mentions légales) */
-    .nav-wrap{position:sticky; top:10px; z-index:50; display:flex; justify-content:center; padding:0 12px}
-    .navbar{ width:min(1100px,92vw); display:flex; align-items:center; gap:12px; padding:12px 14px; background:var(--glass); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.16); border-radius:var(--radius-3); box-shadow:var(--shadow) }
-    .brand{font-family:"Space Grotesk",Inter,sans-serif; font-weight:700; letter-spacing:.2px; padding:8px 10px; border-radius:10px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18)}
-    .links{margin-left:auto; display:flex; gap:10px; list-style:none; padding:0; margin:0}
-    .chip{display:inline-flex; align-items:center; padding:10px 12px; border-radius:12px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); font-weight:800; font-size:.95rem}
-    .chip:hover{background:rgba(255,255,255,.12)}
-
-    /* Layout & Carte */
-    main{padding:clamp(72px,9vw,110px) 0 40px}
-    .container{width:min(var(--maxw),92vw); margin-inline:auto}
-    .title{font:700 clamp(24px,3.6vw,38px)/1.08 "Space Grotesk",Inter,sans-serif; margin:0 0 6px; text-shadow:0 5px 26px rgba(0,0,0,.45)}
-    .subtitle{margin:0 0 14px; color:rgba(249,251,255,.9); font-size:clamp(.92rem,1.6vw,1.02rem)}
-    .legal-card{ background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.82)); border:1px solid rgba(255,255,255,.78); box-shadow:0 12px 36px rgba(0,0,0,.38); color:var(--ink); border-radius:var(--radius-3); padding:18px 18px 6px }
-    .legal-card section{padding:6px 0 14px}
-    .legal-card h2{font:800 1.04rem/1.2 Inter,system-ui; margin:10px 0 6px; letter-spacing:.2px; color:#0B1C23}
-    .legal-card p{margin:0 0 10px}
-    .legal-card ul{margin:8px 0 10px 20px}
-    .legal-card li{margin:4px 0}
-    .muted{color:rgba(11,28,35,.75)}
-
-    /* Corps légal directement sur fond (transparent) */
-    .legal section{padding:6px 0 12px}
-    .legal h2{font:800 .98rem/1.2 Inter,system-ui; margin:8px 0 6px; letter-spacing:.2px; color:var(--star)}
-    .legal p{margin:0 0 8px}
-    .legal ul{margin:8px 0 10px 20px}
-    .legal li{margin:4px 0}
-
-    footer{border-top:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); padding:18px 0 28px; color:rgba(249,251,255,.84)}
-    .footgrid{display:grid; gap:10px; grid-template-columns:1fr auto; align-items:center; width:min(1100px,92vw); margin:0 auto}
-    .footlinks{display:flex; gap:12px; flex-wrap:wrap}
-    .footlinks a{display:inline-flex; align-items:center; padding:8px 10px; border-radius:10px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); font-weight:700}
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
 </head>
 <body>
-  <canvas id="bgCanvas" aria-hidden="true"></canvas>
 
-  <header class="nav-wrap" role="banner">
-    <nav class="navbar" aria-label="Navigation principale">
-      <a class="brand" href="index.html#top">Lincisif</a>
-      <ul class="links" role="list">
-        <li><a class="chip" href="index.html#mes-formations">Formations</a></li>
-        <li><a class="chip" href="droit.html">Droit L1-M2</a></li>
-        <li><a class="chip" href="philosophie.html">Philosophie</a></li>
-        <li><a class="chip" href="developpement.html">Développement personnel</a></li>
-        <li><a class="chip" href="index.html#contact">Réserver un cours</a></li>
-        <li><a class="chip" href="index.html#about">À propos</a></li>
-        <li><a class="chip" href="index.html#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main id="top">
-    <div class="container">
-      <h1 class="title">Conditions générales d'utilisation (CGU)</h1>
-      <p class="subtitle">Règles d’accès et d’usage du site Lincisif et de ses contenus.</p>
-
-      <article class="legal" aria-labelledby="cgu-objet">
-        <section>
-          <h2 id="cgu-objet">1) Objet</h2>
-          <p>Les présentes conditions régissent l’accès au site et l’utilisation des contenus pédagogiques (textes, supports, vidéos), ainsi que la prise de contact pour des cours particuliers.</p>
-        </section>
-
-        <section>
-          <h2 id="cgu-acces">2) Accès au site</h2>
-          <p>Service accessible 24/7 sauf interruption pour maintenance ou cas de force majeure. L’éditeur n’est pas responsable des indisponibilités indépendantes de sa volonté.</p>
-        </section>
-
-        <section>
-          <h2 id="cgu-compte">3) Compte & réservation</h2>
-          <p>Si le site propose un espace utilisateur ou un agenda, vous vous engagez à fournir des informations exactes et à mettre à jour vos coordonnées. Toute réservation peut nécessiter une confirmation par e‑mail.</p>
-        </section>
-
-        <section>
-          <h2 id="cgu-usage">4) Bon usage</h2>
-          <p>Interdits : extraction massive, revente de contenus, actes de contournement technique, intrusion, usage contraire aux lois ou à l’ordre public.</p>
-        </section>
-
-        <section>
-          <h2 id="cgu-ppi">5) Propriété intellectuelle</h2>
-          <p>Les contenus du site restent la propriété de l’éditeur. Licence d’usage strictement personnelle, non exclusive et non transférable. Aucune cession de droits n’est consentie.</p>
-        </section>
-
-        <section>
-          <h2 id="cgu-tiers">6) Contenus tiers & liens</h2>
-          <p>Les liens externes sont fournis à titre de service. L’éditeur ne garantit ni l’exactitude, ni la disponibilité des ressources tierces.</p>
-        </section>
-
-        <section>
-          <h2 id="cgu-resp">7) Responsabilité</h2>
-          <p>Les contenus pédagogiques n’équivalent pas à un conseil juridique personnalisé. L’éditeur ne répond pas des dommages indirects (perte de chance, données, bénéfices).</p>
-        </section>
-
-        <section>
-          <h2 id="cgu-rgpd">8) Données personnelles</h2>
-          <p>L’utilisation du site implique l’acceptation de la <a href="confidentialite.html">Politique de confidentialité</a> (voir rubrique dédiée).</p>
-        </section>
-
-        <section>
-          <h2 id="cgu-droit">9) Droit applicable – différends – médiation</h2>
-          <p>Droit français. En cas de litige avec un consommateur, possibilité de médiation gratuite conformément à l’art. L612‑1 du Code de la consommation.</p>
-        </section>
-
-        <section>
-          <h2 id="cgu-modifs">10) Modification des CGU</h2>
-          <p>L’éditeur peut modifier les présentes à tout moment ; la version applicable est celle en ligne au jour de la visite.</p>
-        </section>
-      </article>
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="index.html"><span class="logo__mark">TD</span><span>TrajectoireDroit</span></a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <a href="formations.html">Formations</a>
+        <a href="abonnement.html">Abonnement</a>
+        <a href="fiche-arrets.html">Fiches d'arrêt</a>
+        <a href="cartes-mentales.html">Cartes mentales</a>
+        <a href="cours-particuliers.html">Cours particuliers</a>
+        <a href="a-propos.html">À propos</a>
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--ghost btn--sm" href="cours-particuliers.html">Connexion</a>
+        <a class="btn btn--primary btn--sm" href="abonnement.html">Essai gratuit 7 j</a>
+        <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
+      </div>
     </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <a href="formations.html">Formations</a><a href="abonnement.html">Abonnement</a>
+    <a href="fiche-arrets.html">Fiches d'arrêt</a><a href="cartes-mentales.html">Cartes mentales</a>
+    <a href="cours-particuliers.html">Cours particuliers</a><a href="a-propos.html">À propos</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+
+  <main>
+    <section class="section" style="padding-top:48px">
+      <div class="container container--narrow">
+        <span class="eyebrow">Conditions générales</span>
+        <h1 class="h1" style="margin-top:12px">CGV / CGU</h1>
+        <p class="lead">Conditions générales de vente et d'utilisation.</p>
+
+        <article class="stack-lg" style="margin-top:40px">
+          <section>
+            <h2 class="h3">1. Objet</h2>
+            <p>Les présentes conditions générales régissent l'utilisation du site TrajectoireDroit et la vente des formations, fiches, cartes mentales, abonnements et cours particuliers proposés par <strong>Julien Fénelon, entrepreneur individuel</strong> (SIREN 929 549 582).</p>
+          </section>
+
+          <section>
+            <h2 class="h3">2. Produits &amp; services</h2>
+            <p>TrajectoireDroit propose : (a) des formations vidéo à l'unité ; (b) un abonnement mensuel/semestriel/annuel donnant accès à l'ensemble des ressources ; (c) des packs thématiques ; (d) des fiches d'arrêt et cartes mentales en téléchargement ; (e) des cours particuliers en visioconférence.</p>
+          </section>
+
+          <section>
+            <h2 class="h3">3. Prix &amp; paiement</h2>
+            <p>Les prix sont indiqués en euros, TTC. TVA non applicable, article 293 B du CGI (micro-entreprise). Paiement sécurisé par Stripe et Payhip. Le paiement vaut acceptation des présentes conditions.</p>
+          </section>
+
+          <section>
+            <h2 class="h3">4. Accès aux contenus numériques</h2>
+            <p>Après paiement validé, l'accès au contenu est immédiat. Les formations à l'unité sont accessibles à vie. L'abonnement donne accès aux ressources pendant la durée d'abonnement. Tu reconnais expressément renoncer à ton droit de rétractation de 14 jours pour les contenus numériques dont l'exécution commence dès la confirmation de la commande (art. L221-28 13° du Code de la consommation).</p>
+          </section>
+
+          <section>
+            <h2 class="h3">5. Garantie « satisfait ou remboursé » 30 jours</h2>
+            <p>Au-delà du droit de rétractation, TrajectoireDroit accorde volontairement une garantie commerciale de remboursement intégral sous 30 jours pour tout produit ou abonnement, sur simple demande à <a href="mailto:julien.prof1@gmail.com">julien.prof1@gmail.com</a>. Aucune justification n'est demandée.</p>
+          </section>
+
+          <section>
+            <h2 class="h3">6. Abonnement &amp; résiliation</h2>
+            <p>L'abonnement est sans engagement et résiliable à tout moment depuis l'espace abonné, en 1 clic. L'accès continue jusqu'à la fin de la période en cours. Aucun remboursement au prorata.</p>
+          </section>
+
+          <section>
+            <h2 class="h3">7. Cours particuliers</h2>
+            <p>Les séances de cours particuliers sont organisées en visioconférence. Les tarifs sont indiqués sur la page dédiée. Annulation gratuite jusqu'à 24 h avant la séance (reportée). En-deçà, la séance est due.</p>
+          </section>
+
+          <section>
+            <h2 class="h3">8. Propriété intellectuelle</h2>
+            <p>Tous les contenus restent la propriété exclusive de Julien Fénelon. L'achat confère un droit d'usage personnel et non transférable. Toute reproduction, diffusion ou revente est interdite et constitue une contrefaçon.</p>
+          </section>
+
+          <section>
+            <h2 class="h3">9. Responsabilité</h2>
+            <p>TrajectoireDroit fournit des contenus pédagogiques à titre éducatif. Aucun résultat académique n'est garanti. La responsabilité de l'éditeur est limitée au montant payé par l'utilisateur pour le produit concerné.</p>
+          </section>
+
+          <section>
+            <h2 class="h3">10. Droit applicable &amp; litiges</h2>
+            <p>Les présentes CGU sont régies par le droit français. En cas de litige, une solution amiable sera recherchée en priorité. À défaut, les tribunaux français seront compétents. Conformément à l'article L612-1 du Code de la consommation, tu peux recourir gratuitement au médiateur de la consommation : <a href="https://www.economie.gouv.fr/mediation-conso" target="_blank" rel="noopener">economie.gouv.fr/mediation-conso</a>.</p>
+          </section>
+
+          <p class="text-muted" style="font-size:.85rem; margin-top:24px">Dernière mise à jour : mai 2026.</p>
+        </article>
+      </div>
+    </section>
   </main>
 
-  <footer role="contentinfo">
-    <div class="footgrid">
-      <div>© 2025 Lincisif. Tous droits réservés.</div>
-      <nav class="footlinks" aria-label="Liens légaux et sociaux">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="confidentialite.html">Confidentialité</a>
-        <a href="cgu.html">CGU</a>
-      </nav>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" style="color:#fff"><span class="logo__mark">TD</span><span>TrajectoireDroit</span></a>
+          <p>La méthode #1 pour réussir vos études de droit. Vidéos, fiches d'arrêt et cartes mentales — éprouvées par 420+ étudiants.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)">🎓 Site personnel de Julien, diplômé d'un Master II de droit pénal — Université Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+        </div>
+        <div><h4>Produits</h4><a href="formations.html">Formations vidéo</a><a href="abonnement.html">Abonnement illimité</a><a href="fiche-arrets.html">Fiches d'arrêt</a><a href="cartes-mentales.html">Cartes mentales</a><a href="cours-particuliers.html">Cours particuliers</a></div>
+        <div><h4>Ressources</h4><a href="temoignages.html">Témoignages</a><a href="faq.html">FAQ</a><a href="a-propos.html">À propos</a></div>
+        <div><h4>Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <form action="https://formspree.io/f/mojrovgb" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
     </div>
   </footer>
 
-  <script>
-    // Fond image : même cadrage (aucun zoom, aucun changement visuel)
-    (function(){
-      var cvs = document.getElementById('bgCanvas');
-      var ctx = cvs.getContext('2d');
-      var img = new Image(); img.decoding = 'async'; img.src = 'Baleine.webp';
-      var anchorX = 1.0, anchorY = 0.5; // arrière-plan cadré à droite
-      function draw(){
-        if(!img.naturalWidth) return;
-        var dpr = Math.min(window.devicePixelRatio || 1, 2);
-        var W = cvs.width  = Math.floor(innerWidth  * dpr);
-        var H = cvs.height = Math.floor(innerHeight * dpr);
-        cvs.style.width  = innerWidth + 'px';
-        cvs.style.height = innerHeight + 'px';
-        var iw = img.naturalWidth, ih = img.naturalHeight;
-        var scale = Math.max(W/iw, H/ih);
-        var vw = iw * scale, vh = ih * scale;
-        var maxX = Math.max(0, vw - W), maxY = Math.max(0, vh - H);
-        var sx = Math.round(maxX * anchorX), sy = Math.round(maxY * anchorY);
-        ctx.clearRect(0,0,W,H);
-        ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-        ctx.drawImage(img, -sx, -sy, vw, vh);
-        ctx.fillStyle = 'rgba(6,19,23,0.14)';
-        ctx.fillRect(0,0,W,H);
-      }
-      function onResize(){ draw(); }
-      img.onload = draw; addEventListener('resize', onResize, {passive:true}); addEventListener('orientationchange', onResize, {passive:true}); document.addEventListener('visibilitychange', function(){ if(!document.hidden) draw(); });
-    })();
-  </script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
