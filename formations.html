@@ -1,251 +1,399 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Formations vidéo en droit L1–M2 — TrajectoireDroit</title>
-  <meta name="theme-color" content="#061317" />
-  <meta name="description" content="Formations vidéo en droit de L1 à M2 : commentaire d'arrêt, cas pratique, dissertation. Méthode claire, résultats mesurables." />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Formations vidéo en droit L1–M2 — TrajectoireDroit" />
-  <meta property="og:description" content="Des formations vidéo complètes sur les exercices clés du droit — de L1 à M2. Commentaire d'arrêt, cas pratique, dissertation." />
-  <meta property="og:locale" content="fr_FR" />
-  <meta name="twitter:card" content="summary" />
-
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2563EB">
+  <title>Formations vidéo de droit (L1 → M2) — TrajectoireDroit</title>
+  <meta name="description" content="Catalogue des formations vidéo de droit. Commentaire d'arrêt, cas pratique, dissertation, méthodologie. Bestsellers, packs et abonnement illimité.">
+  <link rel="canonical" href="https://trajectoiredroit.com/formations.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Formations vidéo — TrajectoireDroit">
+  <meta property="og:description" content="Catalogue complet de formations vidéo de droit, classées par niveau et matière.">
+  <meta property="og:url" content="https://trajectoiredroit.com/formations.html">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css" />
-
-  <style>
-    :root { --card-bg: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.84)); --card-bd: rgba(255,255,255,.78) }
-
-    /* ===== HERO ===== */
-    .hero { padding-top: clamp(52px,7vw,88px); padding-bottom: clamp(16px,3.5vw,32px) }
-    .tagline { font-family: "Space Grotesk",Inter,sans-serif; font-weight: 700; letter-spacing: -.02em; font-size: clamp(26px,4.2vw,50px); line-height: 1.09; margin: 0 0 12px; text-shadow: 0 5px 28px rgba(0,0,0,.45) }
-    .subtitle { color: var(--muted); font-size: clamp(1.05rem,2.2vw,1.28rem); margin: 0 }
-
-    /* ===== GRILLE VIDÉOS ===== */
-    .videos { display: grid; gap: 16px; grid-template-columns: repeat(3,1fr) }
-    @media(max-width:980px){ .videos { grid-template-columns: 1fr 1fr } }
-    @media(max-width:600px){ .videos { grid-template-columns: 1fr } }
-    .vcard { border-radius: var(--radius-3); overflow: hidden; background: var(--card-bg); border: 1px solid var(--card-bd); box-shadow: 0 14px 36px rgba(0,0,0,.24); color: var(--ink) }
-    .vmedia { display: block; width: 100%; aspect-ratio: 16/9; background: #0d1f2b; object-fit: cover }
-    .vbody { padding: 14px 16px }
-    .vtitle { margin: 0 0 6px; font: 700 1.06rem/1.25 "Space Grotesk",Inter,sans-serif }
-    .vmeta { margin: 0; color: rgba(11,28,35,.70); font-size: .94rem }
-    .vbadge { display: inline-block; margin-bottom: 8px; padding: 3px 10px; border-radius: 999px; background: rgba(42,179,165,.18); color: var(--teal); font-weight: 700; font-size: .82rem; border: 1px solid rgba(42,179,165,.28) }
-
-    /* ===== PARCOURS ACCORDÉON ===== */
-    .segments { display: grid; gap: 10px }
-    details { background: var(--card-bg); border: 1px solid var(--card-bd); border-radius: var(--radius-3); padding: 14px 16px; color: var(--ink) }
-    details[open] { box-shadow: 0 8px 28px rgba(0,0,0,.18) }
-    summary { cursor: pointer; font-weight: 700; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between; align-items: center }
-    summary::after { content: "＋"; font-weight: 700; font-size: 1.1rem; color: var(--teal) }
-    details[open] summary::after { content: "－" }
-    details p { margin: 10px 0 0; font-size: .97rem; color: rgba(11,28,35,.80) }
-    details a { color: var(--teal); font-weight: 700 }
-
-    /* ===== TÉMOIGNAGES ===== */
-    .stars-green { color: var(--green) }
-    .testi-grid { display: grid; gap: 14px; grid-template-columns: repeat(3,1fr) }
-    @media(max-width:900px){ .testi-grid { grid-template-columns: 1fr 1fr } }
-    @media(max-width:580px){ .testi-grid { grid-template-columns: 1fr } }
-    .testi { background: var(--card-bg); border: 1px solid var(--card-bd); border-radius: var(--radius-3); padding: 16px; box-shadow: 0 12px 32px rgba(0,0,0,.20); color: var(--ink) }
-    .testi strong { display: block; margin-bottom: 6px }
-    .testi p { margin: 0; font-size: .97rem; color: rgba(11,28,35,.82) }
-
-    /* ===== PS NOTE ===== */
-    .ps-note { margin-top: 14px; font-weight: 700; font-size: clamp(1rem,2vw,1.18rem); background: linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.08)); border: 1px solid rgba(255,255,255,.28); padding: 14px 16px; border-radius: 16px }
-
-    /* ===== FORMATION PAYHIP FEATURED ===== */
-    .payhip-featured { display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: center; background: linear-gradient(135deg,rgba(42,179,165,.18),rgba(47,234,138,.10)); border: 1px solid rgba(42,179,165,.40); border-radius: var(--radius-3); padding: 28px 32px }
-    .payhip-featured-img { width: 100%; border-radius: 14px; object-fit: cover; aspect-ratio: 1/1 }
-    @media(max-width:760px){ .payhip-featured { grid-template-columns: 1fr } .payhip-featured-img { max-width: 240px } }
-
-    /* ===== CTA BAS DE PAGE ===== */
-    .cta-bottom { text-align: center; padding: clamp(20px,4vw,44px) 0 }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <div class="site-bg" aria-hidden="true"></div>
 
-  <header class="nav-wrap" role="banner">
-    <nav class="navbar" aria-label="Navigation principale">
-      <a class="brand" href="index.html">TrajectoireDroit</a>
-      <ul class="nav-links" role="list">
-        <li><a class="chip" href="cours-particuliers.html">Cours particuliers</a></li>
-        <li><a class="chip" href="formations.html" aria-current="page">Formations</a></li>
-        <li><a class="chip" href="index.html#about">À propos</a></li>
-      </ul>
-    </nav>
+  <!-- HEADER (copie depuis index) -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="index.html" aria-label="TrajectoireDroit — Accueil">
+        <span class="logo__mark">TD</span>
+        <span>TrajectoireDroit</span>
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <a href="formations.html" aria-current="page">Formations</a>
+        <a href="abonnement.html">Abonnement</a>
+        <a href="fiche-arrets.html">Fiches d'arrêt</a>
+        <a href="cartes-mentales.html">Cartes mentales</a>
+        <a href="cours-particuliers.html">Cours particuliers</a>
+        <a href="a-propos.html">À propos</a>
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--ghost btn--sm" href="cours-particuliers.html">Connexion</a>
+        <a class="btn btn--primary btn--sm" href="abonnement.html">Essai gratuit 7 j</a>
+        <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
+      </div>
+    </div>
   </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <a href="formations.html">Formations</a>
+    <a href="abonnement.html">Abonnement</a>
+    <a href="fiche-arrets.html">Fiches d'arrêt</a>
+    <a href="cartes-mentales.html">Cartes mentales</a>
+    <a href="bundles.html">Packs &amp; Bundles</a>
+    <a href="cours-particuliers.html">Cours particuliers</a>
+    <a href="temoignages.html">Témoignages</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="faq.html">FAQ</a>
+    <div style="margin-top:24px; display:flex; gap:12px; flex-direction:column">
+      <a class="btn btn--outline btn--full" href="cours-particuliers.html">Connexion</a>
+      <a class="btn btn--primary btn--full" href="abonnement.html">Essai gratuit 7 j</a>
+    </div>
+  </nav>
 
-  <main id="top">
+  <main>
 
-    <!-- Hero -->
-    <section class="hero container" aria-label="Formations vidéo en droit">
-      <h1 class="tagline">Les formations<br>TrajectoireDroit</h1>
-      <p class="subtitle">Des formations vidéo complètes sur les exercices clés du droit — de L1 à M2.<br>Chaque formation est construite pour vous faire gagner des points, pas pour remplir des heures.</p>
+    <!-- HERO compact -->
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow text-center">
+        <span class="eyebrow">Catalogue complet</span>
+        <h1 class="h1" style="margin-top:12px">Toutes les formations vidéo · L1 → M2</h1>
+        <p class="lead">Commentaire d'arrêt, cas pratique, dissertation, méthodologie… Choisis ta matière et ton niveau.</p>
+      </div>
     </section>
 
-    <!-- Formation premium Payhip -->
-    <section class="container fade-in" aria-labelledby="premium-title">
-      <h2 id="premium-title" class="section-title big">Formation disponible maintenant</h2>
-      <div class="payhip-featured">
-        <img src="https://payhip.com/cdn-cgi/image/format=auto/https://pe56d.s3.amazonaws.com/o_1jd89n6s31ect18p18bagg9rmiu.png" alt="Formation ULTRA complète — fiche d'arrêt" class="payhip-featured-img" onerror="this.src='assets/vignettes/commentaire-arret.webp'" />
-        <div class="payhip-featured-body">
-          <span class="vbadge" style="margin-bottom:10px; display:inline-block;">L1 → M2 · Disponible maintenant</span>
-          <h3 style="font:700 clamp(1.2rem,2.5vw,1.6rem)/1.2 'Space Grotesk',Inter,sans-serif; margin:0 0 10px; color:var(--star);">Formation ULTRA complète pour maîtriser la fiche d'arrêt</h3>
-          <ul style="margin:0 0 18px; padding-left:18px; color:var(--muted); font-size:.97rem; line-height:1.8;">
-            <li>5 modules vidéo — de la lecture de l'arrêt à la rédaction</li>
-            <li>Applications concrètes sur arrêts de rejet et de cassation</li>
-            <li>Garantie +3 points sur vos notes</li>
-          </ul>
-          <a href="https://payhip.com/b/qioTk" class="payhip-buy-button btn-primary" data-theme="none" style="display:inline-flex; align-items:center; gap:8px; font-size:1rem; padding:.95rem 1.8rem;">
-            Accéder à la formation →
-          </a>
+    <!-- BANNIÈRE PROMO ABONNEMENT -->
+    <section class="section--sm">
+      <div class="container">
+        <div class="promo-banner">
+          <div>
+            <h3>💎 Pourquoi acheter à l'unité ?</h3>
+            <p>Avec l'abonnement à 19 €/mois, tu accèdes à <strong>toutes</strong> les formations + fiches + cartes mentales. Rentable dès la 2ᵉ achat.</p>
+          </div>
+          <a class="btn btn--primary btn--lg" href="abonnement.html">Voir l'abonnement →</a>
         </div>
       </div>
     </section>
 
-    <!-- Formations vidéo gratuites -->
-    <section class="container fade-in" aria-labelledby="videos-title">
-      <h2 id="videos-title" class="section-title big">Formations vidéo gratuites</h2>
-      <div class="videos" role="list">
-
-        <article class="vcard" role="listitem">
-          <video class="vmedia" controls preload="metadata"
-            poster="assets/vignettes/commentaire-arret.webp"
-            aria-label="Formation ultra-complète : le commentaire d'arrêt">
-            <source src="videos/commentaire-arret.mp4" type="video/mp4" />
-            Votre navigateur ne supporte pas la vidéo HTML5.
-          </video>
-          <div class="vbody">
-            <span class="vbadge">L1 → M2</span>
-            <h3 class="vtitle">Le commentaire d'arrêt</h3>
-            <p class="vmeta">Structure, analyse juridique, rédaction. Méthode complète avec corrections types.</p>
-          </div>
-        </article>
-
-        <article class="vcard" role="listitem">
-          <video class="vmedia" controls preload="metadata"
-            poster="assets/vignettes/cas-pratique.webp"
-            aria-label="Formation ultra-complète : le cas pratique">
-            <source src="videos/cas-pratique.mp4" type="video/mp4" />
-            Votre navigateur ne supporte pas la vidéo HTML5.
-          </video>
-          <div class="vbody">
-            <span class="vbadge">L1 → M2</span>
-            <h3 class="vtitle">Le cas pratique</h3>
-            <p class="vmeta">Identification des problèmes juridiques, qualification, syllogisme. Pas à pas opérationnel.</p>
-          </div>
-        </article>
-
-        <article class="vcard" role="listitem">
-          <video class="vmedia" controls preload="metadata"
-            poster="assets/vignettes/dissertation.webp"
-            aria-label="Formation ultra-complète : la dissertation et le commentaire de texte">
-            <source src="videos/dissertation.mp4" type="video/mp4" />
-            Votre navigateur ne supporte pas la vidéo HTML5.
-          </video>
-          <div class="vbody">
-            <span class="vbadge">L1 → M2</span>
-            <h3 class="vtitle">La dissertation & le commentaire de texte</h3>
-            <p class="vmeta">Problématisation, plan dialectique, rédaction efficace sous contrainte de temps.</p>
-          </div>
-        </article>
-
+    <!-- FILTRES -->
+    <div class="filters" data-filters>
+      <div class="container">
+        <div class="filters__row">
+          <strong style="margin-right:8px; font-size:.9rem">Niveau :</strong>
+          <button class="filter-chip active" data-group="niveau" data-value="tous">Tous</button>
+          <button class="filter-chip" data-group="niveau" data-value="L1">L1</button>
+          <button class="filter-chip" data-group="niveau" data-value="L2">L2</button>
+          <button class="filter-chip" data-group="niveau" data-value="L3">L3</button>
+          <button class="filter-chip" data-group="niveau" data-value="M1">M1</button>
+          <button class="filter-chip" data-group="niveau" data-value="M2">M2</button>
+        </div>
+        <div class="filters__row" style="margin-top:10px">
+          <strong style="margin-right:8px; font-size:.9rem">Matière :</strong>
+          <button class="filter-chip active" data-group="matiere" data-value="tous">Toutes</button>
+          <button class="filter-chip" data-group="matiere" data-value="methodo">Méthodologie</button>
+          <button class="filter-chip" data-group="matiere" data-value="civil">Civil</button>
+          <button class="filter-chip" data-group="matiere" data-value="penal">Pénal</button>
+          <button class="filter-chip" data-group="matiere" data-value="admin">Admin</button>
+          <button class="filter-chip" data-group="matiere" data-value="constit">Constit</button>
+          <button class="filter-chip" data-group="matiere" data-value="philo">Philo</button>
+        </div>
       </div>
-      <p class="ps-note">PS&nbsp;: Chaque formation me prend énormément de temps car je veux m'appliquer. De nouvelles formations arrivent bientôt.</p>
-    </section>
-
-    <!-- Parcours par niveau -->
-    <section class="container fade-in" aria-labelledby="parcours-title">
-      <h2 id="parcours-title" class="section-title big">Parcours par niveau</h2>
-      <div class="segments">
-        <details>
-          <summary>Licence 1 (L1)</summary>
-          <p>Introduction au droit, droit civil, droit constitutionnel. <a href="cours-particuliers.html">Réservez un cours particulier</a> pour un suivi dès maintenant, en attendant la formation dédiée.</p>
-        </details>
-        <details>
-          <summary>Licence 2 (L2)</summary>
-          <p>Droit des obligations, droit pénal, droit administratif. <a href="cours-particuliers.html">Réservez un cours particulier</a> pour un suivi personnalisé sur vos matières.</p>
-        </details>
-        <details>
-          <summary>Licence 3 (L3)</summary>
-          <p>Droit des contrats spéciaux, procédure civile, droit des sociétés. <a href="cours-particuliers.html">Réservez un cours particulier</a> pour avancer dès maintenant.</p>
-        </details>
-        <details>
-          <summary>Master 1 (M1)</summary>
-          <p>Approfondissement selon votre spécialité. <a href="cours-particuliers.html">Réservez un cours particulier</a> pour un accompagnement sur mesure en M1.</p>
-        </details>
-      </div>
-    </section>
-
-    <!-- Témoignages -->
-    <section class="container fade-in" id="temoignages" aria-labelledby="testi-title">
-      <h2 id="testi-title" class="section-title big">
-        Témoignages&nbsp;
-        <span style="font-weight:900; color:#fff;">5,0</span>&nbsp;<span class="stars-green" aria-hidden="true">★★★★★</span>
-        <span style="font-size:clamp(14px,2vw,18px); font-weight:400; color:var(--muted);">(149 évaluations)</span>
-      </h2>
-      <div class="testi-grid">
-        <blockquote class="testi" cite="#">
-          <strong>Cloé — L2 Droit <span class="stars-green" aria-hidden="true">★★★★★</span></strong>
-          <p>« Parfait ! Un professeur de qualité avec une pédagogie limpide et captivante, c'est vraiment le genre de prof qu'il faudrait en TD pour réussir ses études de droit. »</p>
-        </blockquote>
-        <blockquote class="testi" cite="#">
-          <strong>Mohamed — L1 Droit <span class="stars-green" aria-hidden="true">★★★★★</span></strong>
-          <p>Julien est un professeur de droit qui allie rigueur académique et bienveillance. Ses cours sont clairs, structurés et enrichis d'exemples concrets qui rendent le droit accessible. C'est un véritable plaisir d'apprendre avec lui.</p>
-        </blockquote>
-        <blockquote class="testi" cite="#">
-          <strong>Aurélie <span class="stars-green" aria-hidden="true">★★★★★</span></strong>
-          <p>« Parfait ! Julien est un excellent professeur pour mon fils en 3e année de droit à Lyon 3. Grâce à lui, il a d'excellentes notes et aime encore plus le droit. Merci Julien ! »</p>
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- CTA bas de page -->
-    <div class="cta-bottom container fade-in">
-      <a class="btn-primary" href="cours-particuliers.html">Réserver un cours particulier →</a>
     </div>
+
+    <!-- GRID CATALOGUE -->
+    <section class="section">
+      <div class="container">
+        <div class="grid-3" data-filter-grid>
+
+          <article class="card card--product fade-in" data-niveau="L1,L2,L3,M1,M2" data-matiere="methodo">
+            <div class="product__thumb" style="background:linear-gradient(135deg,#DBEAFE,#EFF6FF)">
+              <span class="badge badge--bestseller">★ Bestseller</span>
+            </div>
+            <div class="product__body">
+              <h3 class="product__title">Le commentaire d'arrêt</h3>
+              <div class="product__meta"><span>L1 → M2</span><span>·</span><span>2 h 30</span><span>·</span><span class="badge--rating">4.9</span></div>
+              <p style="font-size:.92rem; color:var(--body); margin:0">La méthode complète : analyse, plan, problématique, rédaction. Avec 3 exemples corrigés.</p>
+              <div><span class="product__price-old">39 €</span><span class="product__price">29 €</span></div>
+              <a class="btn btn--primary btn--full product__cta" href="produit-template.html">Voir le détail</a>
+            </div>
+          </article>
+
+          <article class="card card--product fade-in" data-niveau="L1,L2,L3" data-matiere="methodo">
+            <div class="product__thumb" style="background:linear-gradient(135deg,#D1FAE5,#ECFDF5)">
+              <span class="badge badge--new">Nouveau</span>
+            </div>
+            <div class="product__body">
+              <h3 class="product__title">Le cas pratique</h3>
+              <div class="product__meta"><span>L1 → L3</span><span>·</span><span>3 h</span><span>·</span><span class="badge--rating">4.8</span></div>
+              <p style="font-size:.92rem; color:var(--body); margin:0">Qualification juridique, syllogisme, application au cas. Avec corrigés-types.</p>
+              <div><span class="product__price">29 €</span></div>
+              <a class="btn btn--primary btn--full product__cta" href="produit-template.html">Voir le détail</a>
+            </div>
+          </article>
+
+          <article class="card card--product fade-in" data-niveau="L1,L2,L3,M1" data-matiere="methodo,philo">
+            <div class="product__thumb" style="background:linear-gradient(135deg,#FEF3C7,#FFFBEB)">
+              <span class="badge badge--bestseller">★ Bestseller</span>
+            </div>
+            <div class="product__body">
+              <h3 class="product__title">Dissertation &amp; commentaire de texte</h3>
+              <div class="product__meta"><span>L1 → M1</span><span>·</span><span>2 h</span><span>·</span><span class="badge--rating">4.9</span></div>
+              <p style="font-size:.92rem; color:var(--body); margin:0">Structurer une dissertation en droit ou en philo. Plans-types et accroches.</p>
+              <div><span class="product__price">29 €</span></div>
+              <a class="btn btn--primary btn--full product__cta" href="produit-template.html">Voir le détail</a>
+            </div>
+          </article>
+
+          <article class="card card--product fade-in" data-niveau="L1,L2" data-matiere="civil">
+            <div class="product__thumb" style="background:linear-gradient(135deg,#FCE7F3,#FDF2F8)"></div>
+            <div class="product__body">
+              <h3 class="product__title">Droit civil L1 — Personnes &amp; famille</h3>
+              <div class="product__meta"><span>L1</span><span>·</span><span>4 h</span><span>·</span><span class="badge--rating">4.7</span></div>
+              <p style="font-size:.92rem; color:var(--body); margin:0">Tout le programme de personnes : majeurs protégés, état civil, mariage, divorce.</p>
+              <div><span class="product__price">39 €</span></div>
+              <a class="btn btn--primary btn--full product__cta" href="produit-template.html">Voir le détail</a>
+            </div>
+          </article>
+
+          <article class="card card--product fade-in" data-niveau="L2" data-matiere="civil">
+            <div class="product__thumb" style="background:linear-gradient(135deg,#E0E7FF,#EEF2FF)"></div>
+            <div class="product__body">
+              <h3 class="product__title">Droit civil L2 — Obligations</h3>
+              <div class="product__meta"><span>L2</span><span>·</span><span>6 h</span><span>·</span><span class="badge--rating">4.9</span></div>
+              <p style="font-size:.92rem; color:var(--body); margin:0">Contrats, responsabilité civile, quasi-contrats. 20+ arrêts clés expliqués.</p>
+              <div><span class="product__price">49 €</span></div>
+              <a class="btn btn--primary btn--full product__cta" href="produit-template.html">Voir le détail</a>
+            </div>
+          </article>
+
+          <article class="card card--product fade-in" data-niveau="L1,L2" data-matiere="penal">
+            <div class="product__thumb" style="background:linear-gradient(135deg,#FEE2E2,#FEF2F2)"></div>
+            <div class="product__body">
+              <h3 class="product__title">Droit pénal général</h3>
+              <div class="product__meta"><span>L1 → L2</span><span>·</span><span>5 h</span><span>·</span><span class="badge--rating">4.8</span></div>
+              <p style="font-size:.92rem; color:var(--body); margin:0">Élément légal, matériel, moral. Infraction, complicité, sanctions. Arrêts majeurs.</p>
+              <div><span class="product__price">39 €</span></div>
+              <a class="btn btn--primary btn--full product__cta" href="produit-template.html">Voir le détail</a>
+            </div>
+          </article>
+
+          <article class="card card--product fade-in" data-niveau="L2,L3" data-matiere="admin">
+            <div class="product__thumb" style="background:linear-gradient(135deg,#DBEAFE,#EFF6FF)"></div>
+            <div class="product__body">
+              <h3 class="product__title">Droit administratif</h3>
+              <div class="product__meta"><span>L2 → L3</span><span>·</span><span>5 h</span><span>·</span><span class="badge--rating">4.7</span></div>
+              <p style="font-size:.92rem; color:var(--body); margin:0">Acte administratif, service public, responsabilité, contentieux. Blanco à Czabaj.</p>
+              <div><span class="product__price">39 €</span></div>
+              <a class="btn btn--primary btn--full product__cta" href="produit-template.html">Voir le détail</a>
+            </div>
+          </article>
+
+          <article class="card card--product fade-in" data-niveau="L1" data-matiere="constit">
+            <div class="product__thumb" style="background:linear-gradient(135deg,#FEF3C7,#FFFBEB)"></div>
+            <div class="product__body">
+              <h3 class="product__title">Droit constitutionnel L1</h3>
+              <div class="product__meta"><span>L1</span><span>·</span><span>4 h</span><span>·</span><span class="badge--rating">4.6</span></div>
+              <p style="font-size:.92rem; color:var(--body); margin:0">Théorie de l'État, Constitutions, Ve République, institutions. Cours et fiches.</p>
+              <div><span class="product__price">35 €</span></div>
+              <a class="btn btn--primary btn--full product__cta" href="produit-template.html">Voir le détail</a>
+            </div>
+          </article>
+
+          <article class="card card--product fade-in" data-niveau="L1,M1" data-matiere="philo">
+            <div class="product__thumb" style="background:linear-gradient(135deg,#F3E8FF,#FAF5FF)"></div>
+            <div class="product__body">
+              <h3 class="product__title">Philosophie — La méthode complète</h3>
+              <div class="product__meta"><span>L1 / Master</span><span>·</span><span>3 h</span><span>·</span><span class="badge--rating">4.8</span></div>
+              <p style="font-size:.92rem; color:var(--body); margin:0">Dissertation, explication de texte, accroches, plans-types. Pour étudiants et bacheliers.</p>
+              <div><span class="product__price">29 €</span></div>
+              <a class="btn btn--primary btn--full product__cta" href="produit-template.html">Voir le détail</a>
+            </div>
+          </article>
+
+          <article class="card card--product fade-in" data-niveau="L3,M1" data-matiere="civil">
+            <div class="product__thumb" style="background:linear-gradient(135deg,#CCFBF1,#F0FDFA)"></div>
+            <div class="product__body">
+              <h3 class="product__title">Droit des biens — L3</h3>
+              <div class="product__meta"><span>L3</span><span>·</span><span>4 h</span><span>·</span><span class="badge--rating">4.7</span></div>
+              <p style="font-size:.92rem; color:var(--body); margin:0">Propriété, démembrements, possession, indivision. Arrêts et cas pratiques.</p>
+              <div><span class="product__price">39 €</span></div>
+              <a class="btn btn--primary btn--full product__cta" href="produit-template.html">Voir le détail</a>
+            </div>
+          </article>
+
+          <article class="card card--product fade-in" data-niveau="M1,M2" data-matiere="civil">
+            <div class="product__thumb" style="background:linear-gradient(135deg,#E0E7FF,#EEF2FF)"></div>
+            <div class="product__body">
+              <h3 class="product__title">Droit des contrats spéciaux — M1</h3>
+              <div class="product__meta"><span>M1 → M2</span><span>·</span><span>5 h</span><span>·</span><span class="badge--rating">4.8</span></div>
+              <p style="font-size:.92rem; color:var(--body); margin:0">Vente, bail, prêt, mandat. Tous les contrats du Code civil étudiés.</p>
+              <div><span class="product__price">49 €</span></div>
+              <a class="btn btn--primary btn--full product__cta" href="produit-template.html">Voir le détail</a>
+            </div>
+          </article>
+
+          <article class="card card--product fade-in" data-niveau="L1,L2,L3,M1,M2" data-matiere="methodo">
+            <div class="product__thumb" style="background:linear-gradient(135deg,#FCE7F3,#FDF2F8)">
+              <span class="badge badge--popular">Pack</span>
+            </div>
+            <div class="product__body">
+              <h3 class="product__title">Pack Méthodologie L1 complet</h3>
+              <div class="product__meta"><span>L1</span><span>·</span><span>8 h</span><span>·</span><span class="badge--rating">5.0</span></div>
+              <p style="font-size:.92rem; color:var(--body); margin:0">Com d'arrêt + cas pratique + dissertation + fiche méthode. Économisez 28 €.</p>
+              <div><span class="product__price-old">87 €</span><span class="product__price">69 €</span></div>
+              <a class="btn btn--primary btn--full product__cta" href="bundles.html">Voir le pack</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TU HÉSITES ? -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="container--narrow text-center" style="margin-bottom:40px">
+          <span class="eyebrow">Tu hésites ?</span>
+          <h2 class="h2" style="margin-top:12px">Quelle est la meilleure option pour toi ?</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card fade-in">
+            <h3>🛒 Acheter à l'unité</h3>
+            <p>Idéal si tu veux <strong>UNE matière précise</strong> ou que tu testes la méthode pour la première fois.</p>
+            <ul style="list-style:none; padding:0; margin:16px 0; display:flex; flex-direction:column; gap:8px">
+              <li>✓ Accès à vie au cours acheté</li>
+              <li>✓ Mises à jour 12 mois incluses</li>
+              <li>✓ De 29 € à 49 € selon la matière</li>
+            </ul>
+            <a class="btn btn--outline btn--full" href="#">Voir le catalogue</a>
+          </div>
+          <div class="card card--featured fade-in fade-in--delay-1" style="position:relative">
+            <h3>💎 Abonnement illimité</h3>
+            <p>Idéal si tu veux <strong>réussir TOUTE ton année</strong>. Rentable dès la 2ᵉ formation.</p>
+            <ul style="list-style:none; padding:0; margin:16px 0; display:flex; flex-direction:column; gap:8px">
+              <li>✓ Toutes les formations + fiches + cartes</li>
+              <li>✓ Mises à jour permanentes</li>
+              <li>✓ 7 jours d'essai gratuit, annulable en 1 clic</li>
+              <li>✓ 19 €/mois ou 149 €/an (-35 %)</li>
+            </ul>
+            <a class="btn btn--primary btn--full" href="abonnement.html">Voir l'abonnement →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GARANTIE -->
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="guarantee-block fade-in">
+          <div class="guarantee-block__icon">🛡️</div>
+          <div>
+            <h3>Garantie satisfait ou remboursé · 30 jours</h3>
+            <p>Tu testes la formation. Si elle ne te plaît pas, je te rembourse intégralement, sans question.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ FORMATIONS -->
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <div class="text-center" style="margin-bottom:40px">
+          <span class="eyebrow">FAQ formations</span>
+          <h2 class="h2" style="margin-top:12px">Questions fréquentes</h2>
+        </div>
+        <div class="accordion">
+          <details class="accordion__item">
+            <summary>Combien de temps ai-je accès à la formation ?</summary>
+            <div class="accordion__body">À vie pour les achats à l'unité. Pendant la durée de l'abonnement pour l'abonnement.</div>
+          </details>
+          <details class="accordion__item">
+            <summary>Les formations sont-elles à jour avec la jurisprudence récente ?</summary>
+            <div class="accordion__body">Oui. Mise à jour annuelle minimum. En cas de revirement de jurisprudence majeur, un module additionnel est ajouté gratuitement.</div>
+          </details>
+          <details class="accordion__item">
+            <summary>Puis-je télécharger les vidéos pour les voir hors ligne ?</summary>
+            <div class="accordion__body">Les fiches PDF et cartes mentales sont téléchargeables. Les vidéos sont en streaming protégé (anti-piratage), accessibles depuis n'importe quel appareil connecté.</div>
+          </details>
+          <details class="accordion__item">
+            <summary>Comment se passe le paiement ?</summary>
+            <div class="accordion__body">Paiement sécurisé par carte bancaire (Stripe et Payhip). Possibilité de paiement en 3× sans frais sur les packs.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section section--dark">
+      <div class="container container--narrow text-center">
+        <h2 class="h2" style="color:#fff">Pas encore décidé ?</h2>
+        <p class="lead" style="color:rgba(255,255,255,.85); max-width:540px; margin:16px auto 32px">Démarre par un essai gratuit de 7 jours sur l'abonnement. Sans carte bancaire requise.</p>
+        <a class="btn btn--primary btn--lg" href="abonnement.html">Démarrer mon essai gratuit →</a>
+      </div>
+    </section>
 
   </main>
 
-  <footer role="contentinfo">
-    <div class="footgrid">
-      <div class="foot-left">
-        <span class="foot-copy">© 2026 TrajectoireDroit.</span>
-        <a class="foot-cta" href="cours-particuliers.html">Réserver un cours →</a>
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" style="color:#fff"><span class="logo__mark">TD</span><span>TrajectoireDroit</span></a>
+          <p>La méthode #1 pour réussir vos études de droit.</p>
+          <div class="footer-socials" style="margin-top:16px">
+            <a href="https://instagram.com/trajectoiredroit" aria-label="Instagram">📷</a>
+            <a href="https://tiktok.com/@trajectoiredroit" aria-label="TikTok">🎵</a>
+            <a href="https://youtube.com/@trajectoiredroit" aria-label="YouTube">▶</a>
+            <a href="https://linkedin.com/company/trajectoiredroit" aria-label="LinkedIn">in</a>
+          </div>
+        </div>
+        <div>
+          <h4>Produits</h4>
+          <a href="formations.html">Formations vidéo</a>
+          <a href="abonnement.html">Abonnement illimité</a>
+          <a href="fiche-arrets.html">Fiches d'arrêt</a>
+          <a href="cartes-mentales.html">Cartes mentales</a>
+          <a href="bundles.html">Packs &amp; Bundles</a>
+          <a href="cours-particuliers.html">Cours particuliers</a>
+        </div>
+        <div>
+          <h4>Ressources</h4>
+          <a href="temoignages.html">Témoignages</a>
+          <a href="faq.html">FAQ</a>
+          <a href="a-propos.html">À propos</a>
+        </div>
+        <div>
+          <h4>Légal</h4>
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgu.html">CGV / CGU</a>
+          <a href="confidentialite.html">Confidentialité</a>
+          <a href="mailto:contact@trajectoiredroit.com">Contact</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Fiche méthode gratuite chaque semaine.</p>
+          <form action="https://formspree.io/f/mojrovgb" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Newsletter (footer formations)">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
       </div>
-      <nav class="footlinks" aria-label="Liens légaux">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="confidentialite.html">Confidentialité</a>
-        <a href="cgu.html">CGU</a>
-      </nav>
+      <div class="footer-bottom">
+        <div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div>
+        <div>Conçu pour les étudiants en droit</div>
+      </div>
     </div>
   </footer>
 
-  <script>
-    (function () {
-      var els = Array.prototype.slice.call(document.querySelectorAll('.fade-in'));
-      if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('appear'); }); return; }
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (it) { if (it.isIntersecting) { it.target.classList.add('appear'); io.unobserve(it.target); } });
-      }, { threshold: .10 });
-      els.forEach(function (e) { io.observe(e); });
-    })();
-
-    (function () {
-      var vids = Array.prototype.slice.call(document.querySelectorAll('.vmedia'));
-      vids.forEach(function (v) {
-        v.addEventListener('play', function () { vids.forEach(function (o) { if (o !== v) o.pause(); }); });
-      });
-    })();
-  </script>
-  <script src="https://payhip.com/payhip.js" type="text/javascript"></script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>

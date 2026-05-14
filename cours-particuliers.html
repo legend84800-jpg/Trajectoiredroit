@@ -1,272 +1,416 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cours particuliers en droit — TrajectoireDroit</title>
-  <meta name="theme-color" content="#061317" />
-  <meta name="description" content="Cours particuliers one-on-one en droit, de L1 à M2. Suivi personnalisé, méthode exigeante, résultats concrets. Réservez votre première séance." />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Cours particuliers en droit — TrajectoireDroit" />
-  <meta property="og:description" content="Cours particuliers one-on-one en droit, de L1 à M2. Méthode exigeante, résultats concrets. +3 points sur votre moyenne garanti." />
-  <meta property="og:locale" content="fr_FR" />
-  <meta name="twitter:card" content="summary" />
-
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2563EB">
+  <title>Cours particuliers de droit en visio · 89 €/h — TrajectoireDroit</title>
+  <meta name="description" content="Cours particuliers de droit en visio avec Julien, ancien major × 2. Méthode personnalisée, préparation aux partiels. 89 €/h. 1ʳᵉ séance offerte si non concluante.">
+  <link rel="canonical" href="https://trajectoiredroit.com/cours-particuliers.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Cours particuliers de droit — TrajectoireDroit">
+  <meta property="og:description" content="Cours particuliers en visio avec Julien, ancien major × 2. 89 €/h.">
+  <meta property="og:url" content="https://trajectoiredroit.com/cours-particuliers.html">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css" />
-
-  <style>
-    /* ===== HERO ===== */
-    .hero { padding-top: clamp(52px,7vw,88px); padding-bottom: clamp(20px,4vw,40px) }
-    .tagline { font-family: "Space Grotesk",Inter,sans-serif; font-weight: 700; letter-spacing: -.02em; font-size: clamp(26px,4.2vw,50px); line-height: 1.09; margin: 0 0 12px; text-shadow: 0 5px 28px rgba(0,0,0,.45) }
-    .subtitle { color: var(--muted); font-size: clamp(1.05rem,2.2vw,1.30rem); margin: 0 0 22px }
-
-    /* ===== ÉTAPES ===== */
-    .steps { display: grid; gap: 14px; grid-template-columns: repeat(3,1fr) }
-    @media(max-width:860px){ .steps { grid-template-columns: 1fr } }
-    .step { background: linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.07)); border: 1px solid rgba(255,255,255,.18); border-radius: var(--radius-3); padding: 20px 18px; box-shadow: var(--shadow) }
-    .step-num { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: var(--teal); color: #061317; font-weight: 900; font-size: 1.1rem; margin-bottom: 10px }
-    .step h3 { margin: 0 0 6px; font: 700 1.12rem/1.2 "Space Grotesk",Inter,sans-serif }
-    .step p { margin: 0; color: var(--muted); font-size: .97rem }
-
-    /* ===== INCLUS ===== */
-    .inclus-grid { display: grid; gap: 10px; grid-template-columns: repeat(2,1fr) }
-    @media(max-width:640px){ .inclus-grid { grid-template-columns: 1fr } }
-    .inclus-item { display: flex; align-items: flex-start; gap: 10px; background: linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.05)); border: 1px solid rgba(255,255,255,.14); border-radius: 16px; padding: 14px 16px }
-    .inclus-icon { flex-shrink: 0; width: 32px; height: 32px; border-radius: 10px; background: rgba(42,179,165,.18); display: flex; align-items: center; justify-content: center; font-size: 1rem }
-    .inclus-item p { margin: 0; font-size: .97rem; color: var(--muted) }
-    .inclus-item strong { display: block; color: var(--star); margin-bottom: 2px; font-size: 1rem }
-
-    /* ===== TARIF ===== */
-    .tarif-card { background: linear-gradient(180deg,rgba(42,179,165,.22),rgba(42,179,165,.10)); border: 1px solid rgba(42,179,165,.40); border-radius: var(--radius-3); padding: 22px 24px; max-width: 500px }
-    .tarif-price { font: 700 clamp(28px,4vw,42px)/1 "Space Grotesk",Inter,sans-serif; color: var(--green); margin: 0 0 6px }
-    .tarif-price span { font-size: 1.1rem; font-weight: 600; color: var(--muted) }
-    .tarif-card p { margin: 8px 0 0; color: var(--muted); font-size: .97rem }
-
-    /* ===== FORMULAIRE ===== */
-    .contact-grid { display: grid; gap: 20px; grid-template-columns: .9fr 1.1fr; align-items: start }
-    @media(max-width:900px){ .contact-grid { grid-template-columns: 1fr } }
-    form.form-card { display: grid; gap: 12px; background: linear-gradient(180deg,rgba(255,255,255,.54),rgba(255,255,255,.32)); border: 1px solid rgba(255,255,255,.44); padding: 18px; border-radius: var(--radius-3); box-shadow: 0 14px 40px rgba(0,0,0,.38) }
-    form.form-card label { font-weight: 700; color: var(--ink) }
-    form.form-card input, form.form-card select, form.form-card textarea { width: 100%; padding: 12px; border-radius: 12px; background: rgba(255,255,255,.94); color: var(--ink); border: 1px solid rgba(11,28,35,.18); font-family: inherit; font-size: 1rem }
-    form.form-card textarea { min-height: 130px; resize: vertical }
-    form.form-card .btn-primary { width: 100%; font-size: 1rem; padding: 1rem 1.4rem }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <div class="site-bg" aria-hidden="true"></div>
 
-  <header class="nav-wrap" role="banner">
-    <nav class="navbar" aria-label="Navigation principale">
-      <a class="brand" href="index.html">TrajectoireDroit</a>
-      <ul class="nav-links" role="list">
-        <li><a class="chip" href="cours-particuliers.html" aria-current="page">Cours particuliers</a></li>
-        <li><a class="chip" href="formations.html">Formations</a></li>
-        <li><a class="chip" href="index.html#about">À propos</a></li>
-      </ul>
-    </nav>
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="index.html"><span class="logo__mark">TD</span><span>TrajectoireDroit</span></a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <a href="formations.html">Formations</a>
+        <a href="abonnement.html">Abonnement</a>
+        <a href="fiche-arrets.html">Fiches d'arrêt</a>
+        <a href="cartes-mentales.html">Cartes mentales</a>
+        <a href="cours-particuliers.html" aria-current="page">Cours particuliers</a>
+        <a href="a-propos.html">À propos</a>
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--ghost btn--sm" href="cours-particuliers.html">Connexion</a>
+        <a class="btn btn--primary btn--sm" href="#reserver">Réserver une séance</a>
+        <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
+      </div>
+    </div>
   </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <a href="formations.html">Formations</a>
+    <a href="abonnement.html">Abonnement</a>
+    <a href="fiche-arrets.html">Fiches d'arrêt</a>
+    <a href="cartes-mentales.html">Cartes mentales</a>
+    <a href="bundles.html">Packs &amp; Bundles</a>
+    <a href="cours-particuliers.html">Cours particuliers</a>
+    <a href="temoignages.html">Témoignages</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
 
-  <main id="top">
+  <main>
 
-    <!-- Hero -->
-    <section class="hero container" aria-label="Cours particuliers one-on-one">
-      <h1 class="tagline">Un suivi one-on-one<br>taillé pour votre réussite.</h1>
-      <p class="subtitle">Chaque séance est préparée pour vous, votre niveau, votre fac, vos partiels.<br>Objectif : minimum +3 points sur votre moyenne.</p>
-    </section>
-
-    <!-- Comment ça marche -->
-    <section class="container fade-in" aria-labelledby="steps-title">
-      <h2 id="steps-title" class="section-title">Comment ça marche</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <h3>Vous envoyez un message</h3>
-          <p>Décrivez votre situation, votre niveau, et vos objectifs. Réponse sous 24&nbsp;h.</p>
+    <!-- HERO -->
+    <section class="section">
+      <div class="container container--narrow text-center">
+        <span class="eyebrow">Cours particuliers en visio</span>
+        <h1 class="h1 text-balance" style="margin-top:16px">Un suivi one-to-one taillé pour ta réussite.</h1>
+        <p class="lead">Chaque séance est préparée selon ton niveau et tes lacunes. Méthode, exercices corrigés, suivi entre les séances. <strong>1ʳᵉ séance offerte</strong> si non concluante.</p>
+        <div class="hero__cta flex flex--center" style="margin-top:24px">
+          <a class="btn btn--primary btn--lg" href="#reserver">Réserver ma 1ʳᵉ séance →</a>
+          <a class="btn btn--outline btn--lg" href="#tarifs">Voir les tarifs</a>
         </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <h3>On définit un plan ensemble</h3>
-          <p>Diagnostic de vos lacunes, objectif clair, rythme adapté. Rien de générique.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <h3>Les résultats arrivent</h3>
-          <p>Méthode, entraînements corrigés, préparation aux partiels. Résultats mesurables.</p>
+        <div class="hero__trust" style="justify-content:center; margin-top:24px">
+          <span>👨‍🏫 Avec Julien, ancien major × 2</span>
+          <span>★ 5/5 sur 149 avis</span>
+          <span>🎓 300+ étudiants formés</span>
         </div>
       </div>
     </section>
 
-    <!-- Ce qui est inclus -->
-    <section class="container fade-in" aria-labelledby="inclus-title">
-      <h2 id="inclus-title" class="section-title">Ce qui est inclus</h2>
-      <div class="inclus-grid">
-        <div class="inclus-item">
-          <div class="inclus-icon">⚖️</div>
-          <div>
-            <strong>Méthodologie droit</strong>
-            <p>Commentaire d'arrêt, cas pratique, dissertation, note de synthèse — selon votre niveau.</p>
-          </div>
+    <!-- POUR QUI -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="container--narrow text-center" style="margin-bottom:48px">
+          <span class="eyebrow">Pour qui</span>
+          <h2 class="h2" style="margin-top:12px">C'est fait pour toi si…</h2>
         </div>
-        <div class="inclus-item">
-          <div class="inclus-icon">📋</div>
-          <div>
-            <strong>Entraînements corrigés</strong>
-            <p>Exercices ciblés, corrections point par point, feedback direct sur vos copies.</p>
+        <div class="grid-4">
+          <div class="card card--feature fade-in">
+            <div class="feature__icon">😰</div>
+            <h3>L1 perdue</h3>
+            <p>Tu as l'impression de subir tes cours et tu ne sais pas par où commencer. Tu vises au moins 12/20.</p>
           </div>
-        </div>
-        <div class="inclus-item">
-          <div class="inclus-icon">🎯</div>
-          <div>
-            <strong>Préparation aux partiels</strong>
-            <p>Stratégie d'examen, sujets types, gestion du temps, conseils pour les jurys.</p>
+          <div class="card card--feature fade-in fade-in--delay-1">
+            <div class="feature__icon">📚</div>
+            <h3>L2 méthode</h3>
+            <p>Tu travailles mais les notes ne suivent pas. Le souci, c'est la méthode, pas la connaissance.</p>
           </div>
-        </div>
-        <div class="inclus-item">
-          <div class="inclus-icon">💬</div>
-          <div>
-            <strong>Suivi entre les séances</strong>
-            <p>Questions par message, relecture de copies, disponibilité pour débloquer les urgences.</p>
+          <div class="card card--feature fade-in fade-in--delay-2">
+            <div class="feature__icon">🎯</div>
+            <h3>L3 prépa M1</h3>
+            <p>Tu veux décrocher une mention pour intégrer le master de ton choix. Préparation stratégique.</p>
           </div>
-        </div>
-        <div class="inclus-item">
-          <div class="inclus-icon">📚</div>
-          <div>
-            <strong>Toutes les matières L1–M2</strong>
-            <p>Droit civil, droit pénal, droit constitutionnel, droit des affaires, droit public, et plus.</p>
-          </div>
-        </div>
-        <div class="inclus-item">
-          <div class="inclus-icon">📈</div>
-          <div>
-            <strong>Progression mesurable</strong>
-            <p>Objectif chiffré dès la première séance — +3 points sur votre moyenne au minimum.</p>
+          <div class="card card--feature fade-in fade-in--delay-3">
+            <div class="feature__icon">🏆</div>
+            <h3>M1/M2 grand oral</h3>
+            <p>Préparation au grand oral, mémoire, présentation publique. Coaching méthode + posture.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Tarif -->
-    <section class="container fade-in" aria-labelledby="tarif-title">
-      <h2 id="tarif-title" class="section-title">Tarif</h2>
-      <div class="tarif-card">
-        <p class="tarif-price">À partir de 89&nbsp;€ <span>/ heure</span></p>
-        <p>Tarif adapté selon votre situation. Première prise de contact gratuite et sans engagement. Contactez-moi pour obtenir un devis personnalisé.</p>
+    <!-- COMMENT ÇA MARCHE -->
+    <section class="section">
+      <div class="container">
+        <div class="container--narrow text-center" style="margin-bottom:48px">
+          <span class="eyebrow">Déroulé d'une séance</span>
+          <h2 class="h2" style="margin-top:12px">Une méthode personnalisée, pas un cours générique</h2>
+        </div>
+        <div class="steps">
+          <div class="step fade-in">
+            <div class="step__num">1</div>
+            <h3>Diagnostic avant séance</h3>
+            <p>Tu m'envoies tes derniers TD/copies. Je repère les blocages méthodologiques précis.</p>
+          </div>
+          <div class="step fade-in fade-in--delay-1">
+            <div class="step__num">2</div>
+            <h3>Séance en visio (1h)</h3>
+            <p>Méthodologie, correction d'exercices, questions/réponses. Tu réponds, je guide, on construit ensemble.</p>
+          </div>
+          <div class="step fade-in fade-in--delay-2">
+            <div class="step__num">3</div>
+            <h3>Suivi entre séances</h3>
+            <p>Messagerie illimitée pour tes questions. Réponse en moins de 48h, souvent dans la journée.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Formulaire de réservation -->
-    <section id="contact" class="container fade-in" aria-labelledby="contact-title">
-      <h2 id="contact-title" class="section-title">Réserver une séance</h2>
-      <div class="contact-grid">
-        <div>
-          <p style="color:var(--muted); font-size:clamp(1rem,2vw,1.18rem);">Dites-moi où vous en êtes — niveau, matière(s), objectif immédiat. Je vous réponds sous 24&nbsp;h ouvrées et on définit ensemble comment avancer.</p>
-          <p style="color:var(--muted); font-size:.95rem; margin-top:12px;">Plus de 2&nbsp;900&nbsp;heures de cours données. Plus de 300&nbsp;élèves. Note moyenne&nbsp;: 5,0&nbsp;★★★★★.</p>
+    <!-- TARIFS -->
+    <section class="section section--alt" id="tarifs">
+      <div class="container">
+        <div class="container--narrow text-center" style="margin-bottom:48px">
+          <span class="eyebrow">Tarifs</span>
+          <h2 class="h2" style="margin-top:12px">Choisis ton rythme</h2>
+          <p class="lead">Engagement uniquement sur ce que tu commandes. Pas de mensualités, pas de surprise.</p>
         </div>
-        <div>
-          <div data-fs-success style="display:none; padding:16px; border-radius:14px; background:rgba(47,234,138,.15); border:1px solid rgba(47,234,138,.35); color:var(--star); font-weight:600; margin-bottom:12px;">
-            ✅ Message envoyé ! Je vous réponds sous 24h ouvrées.
+        <div class="pricing-grid">
+
+          <article class="card card--pricing fade-in">
+            <div>
+              <div class="pricing__name">1 séance</div>
+              <div style="display:flex; align-items:baseline; gap:6px; margin-top:8px">
+                <span class="pricing__price">89 €</span>
+                <span class="pricing__period">/heure</span>
+              </div>
+              <p style="font-size:.9rem; color:var(--muted); margin-top:6px">Idéal pour tester</p>
+            </div>
+            <ul class="pricing__list">
+              <li>1 séance visio de 60 min</li>
+              <li>Diagnostic personnalisé</li>
+              <li>Méthodologie + correction</li>
+              <li>Messagerie 1 semaine</li>
+              <li>1ʳᵉ séance offerte si non concluante</li>
+            </ul>
+            <a class="btn btn--outline btn--full" href="#reserver">Réserver</a>
+          </article>
+
+          <article class="card card--pricing card--featured fade-in fade-in--delay-1">
+            <div>
+              <div class="pricing__name">Pack 5 séances <span class="badge badge--success" style="margin-left:6px">-10 %</span></div>
+              <div style="display:flex; align-items:baseline; gap:6px; margin-top:8px">
+                <span class="pricing__price">400 €</span>
+                <span class="pricing__period">/ 5h</span>
+              </div>
+              <p style="font-size:.9rem; color:var(--blue-700); font-weight:600; margin-top:6px">80 €/heure · économise 45 €</p>
+            </div>
+            <ul class="pricing__list">
+              <li>5 séances visio de 60 min</li>
+              <li>Plan personnalisé sur 5 séances</li>
+              <li>Méthodologie + corrections approfondies</li>
+              <li>Messagerie illimitée pendant la durée</li>
+              <li>Suivi des progrès chiffré</li>
+              <li>Disponible jusqu'à 6 mois</li>
+            </ul>
+            <a class="btn btn--primary btn--full" href="#reserver">Réserver le pack →</a>
+          </article>
+
+          <article class="card card--pricing fade-in fade-in--delay-2">
+            <div>
+              <div class="pricing__name">Pack 10 séances <span class="badge badge--success" style="margin-left:6px">-15 %</span></div>
+              <div style="display:flex; align-items:baseline; gap:6px; margin-top:8px">
+                <span class="pricing__price">757 €</span>
+                <span class="pricing__period">/ 10h</span>
+              </div>
+              <p style="font-size:.9rem; color:var(--success); font-weight:600; margin-top:6px">75,70 €/h · économise 133 €</p>
+            </div>
+            <ul class="pricing__list">
+              <li>10 séances visio de 60 min</li>
+              <li>Accompagnement sur un semestre complet</li>
+              <li>Préparation aux partiels incluse</li>
+              <li>Messagerie illimitée 6 mois</li>
+              <li>Bilan final + plan d'action</li>
+              <li>Disponible jusqu'à 12 mois</li>
+            </ul>
+            <a class="btn btn--outline btn--full" href="#reserver">Réserver le pack</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TÉMOIGNAGES -->
+    <section class="section">
+      <div class="container">
+        <div class="container--narrow text-center" style="margin-bottom:48px">
+          <span class="eyebrow">Avis des étudiants</span>
+          <h2 class="h2" style="margin-top:12px">Ce qu'ils en disent</h2>
+        </div>
+        <div class="grid-3">
+          <div class="card card--testi fade-in">
+            <div class="testi__rating">★★★★★</div>
+            <blockquote>« 4 séances avec Julien et je suis passée de 10 à 16 en commentaire d'arrêt. Il adapte vraiment à chacun. »</blockquote>
+            <div class="testi__author">
+              <div class="testi__avatar">L</div>
+              <div>
+                <div class="testi__name">Léa M.</div>
+                <div class="testi__role">L1 — Université de Cergy</div>
+              </div>
+            </div>
           </div>
-          <div data-fs-error style="display:none; padding:12px 16px; border-radius:12px; background:rgba(255,80,80,.12); border:1px solid rgba(255,80,80,.30); color:var(--star); margin-bottom:12px;"></div>
+          <div class="card card--testi fade-in fade-in--delay-1">
+            <div class="testi__rating">★★★★★</div>
+            <blockquote>« Le pack 10h m'a sauvé l'année. Avec son suivi, j'ai validé ma L2 avec mention. Investissement rentabilisé. »</blockquote>
+            <div class="testi__author">
+              <div class="testi__avatar">P</div>
+              <div>
+                <div class="testi__name">Pierre L.</div>
+                <div class="testi__role">L2 → L3 — Paris 1</div>
+              </div>
+            </div>
+          </div>
+          <div class="card card--testi fade-in fade-in--delay-2">
+            <div class="testi__rating">★★★★★</div>
+            <blockquote>« Visio super fluide, pédagogie au top. Pas le genre de prof qui te récite son cours, il te fait réfléchir. »</blockquote>
+            <div class="testi__author">
+              <div class="testi__avatar">S</div>
+              <div>
+                <div class="testi__name">Sofia D.</div>
+                <div class="testi__role">L3 — Lyon 3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <form id="contact-form" class="form-card" aria-label="Formulaire de réservation — Cours particuliers">
+    <!-- FORMULAIRE DE RÉSERVATION -->
+    <section class="section section--blue" id="reserver">
+      <div class="container container--narrow">
+        <div class="text-center" style="margin-bottom:32px">
+          <span class="eyebrow">Réserver une séance</span>
+          <h2 class="h2" style="margin-top:12px">Réserve ta 1ʳᵉ séance gratuite si non concluante</h2>
+          <p class="lead">Remplis le formulaire ci-dessous. Je te recontacte sous 24 h pour caler une date.</p>
+        </div>
 
-            <label for="name">Nom</label>
-            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Votre nom" />
+        <form id="contactForm" class="form card" action="https://formspree.io/f/mojrovgb" method="POST" novalidate>
+          <div class="grid-2" style="gap:16px">
+            <div class="form__row">
+              <label class="form__label" for="nom">Prénom &amp; nom</label>
+              <input class="form__input" type="text" id="nom" name="nom" required>
+            </div>
+            <div class="form__row">
+              <label class="form__label" for="email">Email</label>
+              <input class="form__input" type="email" id="email" name="email" required>
+            </div>
+          </div>
 
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required placeholder="vous@exemple.com" />
+          <div class="grid-2" style="gap:16px">
+            <div class="form__row">
+              <label class="form__label" for="niveau">Niveau d'études</label>
+              <select class="form__select" id="niveau" name="niveau" required>
+                <option value="">— Sélectionner —</option>
+                <option>L1</option><option>L2</option><option>L3</option>
+                <option>M1</option><option>M2</option>
+                <option>Capacité en droit</option>
+                <option>Bac (philo)</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="form__row">
+              <label class="form__label" for="formule">Formule envisagée</label>
+              <select class="form__select" id="formule" name="formule">
+                <option>1 séance d'essai (89 €)</option>
+                <option>Pack 5 séances (400 €)</option>
+                <option>Pack 10 séances (757 €)</option>
+                <option>Je ne sais pas encore</option>
+              </select>
+            </div>
+          </div>
 
-            <label for="niveau">Niveau actuel</label>
-            <select id="niveau" name="niveau" required>
-              <option value="" disabled selected>Sélectionnez votre niveau</option>
-              <option>Licence 1 (L1)</option>
-              <option>Licence 2 (L2)</option>
-              <option>Licence 3 (L3)</option>
-              <option>Master 1 (M1)</option>
-              <option>Master 2 (M2)</option>
-              <option>Autre</option>
-            </select>
+          <div class="form__row">
+            <label class="form__label" for="message">Ton objectif / contexte</label>
+            <textarea class="form__textarea" id="message" name="message" placeholder="Ex : Je suis en L1 à Assas, j'ai eu 8/20 en TD de droit civil, j'aimerais progresser sur le commentaire d'arrêt avant les partiels de janvier."></textarea>
+          </div>
 
-            <label for="message">Votre situation et vos objectifs</label>
-            <textarea id="message" name="message" required placeholder="Ex : je suis en L2, j'ai du mal avec le commentaire d'arrêt en droit civil, partiels dans 6 semaines…"></textarea>
+          <input type="hidden" name="_subject" value="Nouvelle demande de cours particulier">
+          <input type="hidden" name="_format" value="plain">
 
-            <button id="submit-btn" class="btn-primary" type="submit">Envoyer ma demande</button>
-          </form>
+          <button class="btn btn--primary btn--lg btn--full" type="submit">Envoyer ma demande</button>
+          <p class="form__hint text-center">📩 Réponse en moins de 24 h · sans engagement</p>
+
+          <div class="form__success" id="formSuccess" hidden>✅ Merci ! Je te recontacte sous 24 h.</div>
+          <div class="form__error" id="formError" hidden>❌ Une erreur est survenue. Réessaie ou écris-moi directement à <a href="mailto:contact@trajectoiredroit.com">contact@trajectoiredroit.com</a>.</div>
+        </form>
+      </div>
+    </section>
+
+    <!-- GARANTIE -->
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="guarantee-block fade-in">
+          <div class="guarantee-block__icon">🛡️</div>
+          <div>
+            <h3>1ʳᵉ séance offerte si non concluante</h3>
+            <p>Si après ta 1ʳᵉ séance tu estimes que ça ne te correspond pas, elle est offerte. Aucune question, aucune justification.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <div class="text-center" style="margin-bottom:40px">
+          <span class="eyebrow">FAQ cours particuliers</span>
+          <h2 class="h2" style="margin-top:12px">Questions fréquentes</h2>
+        </div>
+        <div class="accordion">
+          <details class="accordion__item">
+            <summary>Comment se passent les séances en visio ?</summary>
+            <div class="accordion__body">Via Zoom ou Google Meet, au choix. Je t'envoie le lien la veille. Tu auras besoin d'un ordi avec micro/caméra et d'une connexion internet correcte.</div>
+          </details>
+          <details class="accordion__item">
+            <summary>Quels horaires sont disponibles ?</summary>
+            <div class="accordion__body">Soirées (18h-22h) et week-ends principalement. Je m'adapte à tes contraintes étudiantes. Tu proposes des créneaux, je te confirme.</div>
+          </details>
+          <details class="accordion__item">
+            <summary>Quelles matières peux-tu enseigner ?</summary>
+            <div class="accordion__body">Toute la licence de droit (civil, pénal, admin, constit, contrats spéciaux, biens, obligations…) et la philosophie (bac + master). Méthodologie tous niveaux.</div>
+          </details>
+          <details class="accordion__item">
+            <summary>Comment se passe le paiement ?</summary>
+            <div class="accordion__body">Virement bancaire ou carte (lien Stripe envoyé après notre échange). Paiement avant la séance. Les packs sont payables en 2× ou 3× sans frais sur demande.</div>
+          </details>
+          <details class="accordion__item">
+            <summary>Que se passe-t-il si je dois annuler ?</summary>
+            <div class="accordion__body">Annulation jusqu'à 24 h avant la séance sans frais (reportée). En dessous, la séance est due. Pour les packs, la durée de validité (6 ou 12 mois) couvre largement les imprévus.</div>
+          </details>
         </div>
       </div>
     </section>
 
   </main>
 
-  <footer role="contentinfo">
-    <div class="footgrid">
-      <div class="foot-left">
-        <span class="foot-copy">© 2026 TrajectoireDroit.</span>
-        <a class="foot-cta" href="#contact">Réserver un cours →</a>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" style="color:#fff"><span class="logo__mark">TD</span><span>TrajectoireDroit</span></a>
+          <p>La méthode #1 pour réussir vos études de droit.</p>
+        </div>
+        <div>
+          <h4>Produits</h4>
+          <a href="formations.html">Formations vidéo</a>
+          <a href="abonnement.html">Abonnement illimité</a>
+          <a href="fiche-arrets.html">Fiches d'arrêt</a>
+          <a href="cartes-mentales.html">Cartes mentales</a>
+          <a href="cours-particuliers.html">Cours particuliers</a>
+        </div>
+        <div>
+          <h4>Ressources</h4>
+          <a href="temoignages.html">Témoignages</a>
+          <a href="faq.html">FAQ</a>
+          <a href="a-propos.html">À propos</a>
+        </div>
+        <div>
+          <h4>Légal</h4>
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgu.html">CGV / CGU</a>
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <form action="https://formspree.io/f/mojrovgb" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
       </div>
-      <nav class="footlinks" aria-label="Liens légaux">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="confidentialite.html">Confidentialité</a>
-        <a href="cgu.html">CGU</a>
-      </nav>
+      <div class="footer-bottom">
+        <div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div>
+      </div>
     </div>
   </footer>
 
+  <script src="assets/js/main.js" defer></script>
   <script>
-    (function () {
-      var els = Array.prototype.slice.call(document.querySelectorAll('.fade-in'));
-      if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('appear'); }); return; }
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (it) { if (it.isIntersecting) { it.target.classList.add('appear'); io.unobserve(it.target); } });
-      }, { threshold: .10 });
-      els.forEach(function (e) { io.observe(e); });
-    })();
-  </script>
-
-  <script>
-    var form = document.getElementById('contact-form');
-    var btn = document.getElementById('submit-btn');
-    var successBox = document.querySelector('[data-fs-success]');
-    var errorBox = document.querySelector('[data-fs-error]');
-
-    form.addEventListener('submit', function(e) {
+    // AJAX Formspree submit pour rester sur la page
+    var f = document.getElementById('contactForm');
+    if (f) f.addEventListener('submit', function(e) {
       e.preventDefault();
-      btn.disabled = true;
-      btn.textContent = 'Envoi en cours…';
-
-      var data = new FormData(form);
-
-      fetch('https://formspree.io/f/mojrovgb', {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      })
-      .then(function(res) { return res.json().then(function(json) { return { ok: res.ok, json: json }; }); })
-      .then(function(result) {
-        if (result.ok) {
-          successBox.style.display = 'block';
-          errorBox.style.display = 'none';
-          form.reset();
-          form.style.display = 'none';
-        } else {
-          var msg = (result.json.errors || []).map(function(e) { return e.message; }).join(', ') || 'Une erreur est survenue. Réessayez.';
-          errorBox.textContent = msg;
-          errorBox.style.display = 'block';
-          btn.disabled = false;
-          btn.textContent = 'Envoyer ma demande';
-        }
-      })
-      .catch(function() {
-        errorBox.textContent = 'Erreur réseau. Vérifiez votre connexion et réessayez.';
-        errorBox.style.display = 'block';
-        btn.disabled = false;
-        btn.textContent = 'Envoyer ma demande';
-      });
+      var ok = document.getElementById('formSuccess'); var ko = document.getElementById('formError');
+      ok.hidden = true; ko.hidden = true;
+      fetch(f.action, { method: 'POST', body: new FormData(f), headers: { 'Accept': 'application/json' } })
+        .then(function(r) {
+          if (r.ok) { f.reset(); ok.hidden = false; ok.scrollIntoView({behavior:'smooth', block:'center'}); }
+          else { ko.hidden = false; }
+        }).catch(function() { ko.hidden = false; });
     });
   </script>
 </body>

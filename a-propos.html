@@ -1,166 +1,245 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>À propos — TrajectoireDroit</title>
-  <meta name="theme-color" content="#0B1C23" />
-  <meta name="description" content="À propos : parcours, expérience et résultats (Lincisif)." />
-
-  <!-- Polices -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2563EB">
+  <title>À propos · Julien, professeur de droit, ancien major × 2 — TrajectoireDroit</title>
+  <meta name="description" content="L'histoire de TrajectoireDroit. De l'étudiant qui échoue ses partiels à l'enseignant qui a formé 300+ étudiants. Méthode, parcours et vision.">
+  <link rel="canonical" href="https://trajectoiredroit.com/a-propos.html">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="À propos · Julien — TrajectoireDroit">
+  <meta property="og:description" content="Ancien major × 2. 2 900 h enseignées. 300+ étudiants. Mon parcours, ma méthode.">
+  <meta property="og:url" content="https://trajectoiredroit.com/a-propos.html">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="Baleine.webp" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
 
-  <style>
-    :root{
-      --space:#061317; --star:#F9FBFF; --muted:rgba(249,251,255,.88);
-      --glass:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
-      --shadow:0 12px 36px rgba(0,0,0,.35); --maxw:1120px; --radius-3:22px;
-    }
-    *,*::before,*::after{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0; color:var(--star); background:var(--space); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden}
-    a{color:inherit; text-decoration:none}
-
-    /* Canvas de fond */
-    #bgCanvas{position:fixed; inset:0; z-index:-2; display:block; background:#061317}
-    #bgCanvas::after{content:""; position:absolute; inset:auto 0 0 0; height:18vh; pointer-events:none; background:linear-gradient(to bottom, rgba(6,19,23,0), rgba(6,19,23,.9) 70%, rgba(6,19,23,1))}
-
-    /* Layout */
-    .container{width:min(var(--maxw),92vw); margin-inline:auto}
-    section{padding:clamp(32px,6vw,64px) 0}
-
-    /* NAV — cohérente avec l'index */
-    .nav-wrap{position:sticky; top:10px; z-index:50; display:flex; justify-content:center; padding:0 12px}
-    .navbar{width:min(var(--maxw),92vw); display:flex; align-items:center; gap:10px; padding:14px 16px; background:var(--glass); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.16); border-radius:var(--radius-3); box-shadow:var(--shadow)}
-    .brand{font-family:"Space Grotesk",Inter,sans-serif; font-weight:800; letter-spacing:.2px; padding:12px 16px; border-radius:12px; background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.22); font-size:clamp(1.06rem,1.5vw,1.20rem)}
-    .links{margin-left:auto; flex:1; display:grid; grid-auto-flow:column; grid-auto-columns:minmax(max-content,1fr); gap:8px; align-items:center; list-style:none; padding:0; margin:0; white-space:nowrap; overflow:hidden}
-    .links>li{display:flex}
-    .chip{display:inline-flex; align-items:center; justify-content:center; padding:14px 16px; border-radius:12px; background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.22); font-weight:800; font-size:clamp(1.10rem,1.65vw,1.26rem)}
-    .chip:hover{background:rgba(255,255,255,.16)}
-
-    /* Hero */
-    .hero{padding-top:clamp(72px,9vw,118px); padding-bottom:clamp(28px,5vw,56px)}
-    .title{font-family:"Space Grotesk",Inter,sans-serif; font-weight:700; letter-spacing:-.01em; font-size:clamp(28px,4vw,44px); margin:0 0 8px; text-shadow:0 5px 30px rgba(0,0,0,.45)}
-    .lead{color:var(--muted); font-size:clamp(1.06rem,2.2vw,1.32rem); margin:0}
-
-    /* ===== Nouveau : bloc Réserver un cours ===== */
-    .section-title{font:700 clamp(22px,3.2vw,34px)/1.15 "Space Grotesk",Inter,sans-serif; margin:0 0 10px}
-    .contact-grid{display:grid; gap:16px; grid-template-columns:.9fr 1.1fr; align-items:start}
-    @media (max-width:980px){.contact-grid{grid-template-columns:1fr}}
-    form.form-card{display:grid; gap:10px; background:linear-gradient(180deg, rgba(255,255,255,.52), rgba(255,255,255,.30)); border:1px solid rgba(255,255,255,.42); padding:16px; border-radius:var(--radius-3); box-shadow:0 12px 36px rgba(0,0,0,.36); color:#0B1C23}
-    form.form-card label{font-weight:700; color:#0B1C23}
-    form.form-card input, form.form-card textarea{width:100%; padding:12px; border-radius:12px; background:rgba(255,255,255,.96); color:#0B1C23; border:1px solid rgba(11,28,35,.20)}
-    form.form-card textarea{min-height:140px; resize:vertical}
-    .cta{display:inline-block; padding:.9rem 1.15rem; border-radius:14px; color:#061317; background:#F9FBFF; font-weight:900}
-
-    /* Footer (léger) */
-    footer{border-top:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); padding:18px 0 28px; color:rgba(249,251,255,.84)}
-    .footgrid{display:grid; gap:10px; grid-template-columns:1fr auto; align-items:center; width:min(var(--maxw),92vw); margin:0 auto}
-    .footlinks{display:flex; gap:12px; flex-wrap:wrap}
-    .footlinks a{font-size:.62rem; font-weight:500}
-  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Julien",
+    "jobTitle": "Professeur de droit et philosophie",
+    "description": "Ancien major de promotion, 2 900 heures de cours dispensées, 300+ étudiants accompagnés.",
+    "worksFor": { "@type": "EducationalOrganization", "name": "TrajectoireDroit" },
+    "url": "https://trajectoiredroit.com/a-propos.html"
+  }
+  </script>
 </head>
 <body>
-  <canvas id="bgCanvas" aria-hidden="true"></canvas>
 
-  <header class="nav-wrap" role="banner">
-    <nav class="navbar" aria-label="Navigation principale">
-      <a class="brand" href="index.html">TrajectoireDroit</a>
-      <ul class="links" role="list">
-        <li><a class="chip" href="cours-particuliers.html">Cours particuliers</a></li>
-        <li><a class="chip" href="formations.html">Formations</a></li>
-        <li><a class="chip" aria-current="page" href="a-propos.html">À propos</a></li>
-      </ul>
-    </nav>
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="index.html"><span class="logo__mark">TD</span><span>TrajectoireDroit</span></a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <a href="formations.html">Formations</a>
+        <a href="abonnement.html">Abonnement</a>
+        <a href="fiche-arrets.html">Fiches d'arrêt</a>
+        <a href="cartes-mentales.html">Cartes mentales</a>
+        <a href="cours-particuliers.html">Cours particuliers</a>
+        <a href="a-propos.html" aria-current="page">À propos</a>
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--ghost btn--sm" href="cours-particuliers.html">Connexion</a>
+        <a class="btn btn--primary btn--sm" href="abonnement.html">Essai gratuit 7 j</a>
+        <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
+      </div>
+    </div>
   </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <a href="formations.html">Formations</a>
+    <a href="abonnement.html">Abonnement</a>
+    <a href="fiche-arrets.html">Fiches d'arrêt</a>
+    <a href="cartes-mentales.html">Cartes mentales</a>
+    <a href="bundles.html">Packs &amp; Bundles</a>
+    <a href="cours-particuliers.html">Cours particuliers</a>
+    <a href="temoignages.html">Témoignages</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
 
-  <main id="top">
-    <section class="hero container" aria-label="À propos de Lincisif">
-      <h1 class="title">À propos</h1>
-      <p class="lead">Ancien major de promotion à deux reprises. Actuellement professeur de philosophie et de droit à temps complet. J’ai donné plus de 2&nbsp;900&nbsp;heures de cours particuliers à plus de 300&nbsp;élèves différents. Parmi les élèves que j’ai eus, de nombreux ont terminé dans les dix premiers de leur promotion et trois d’entre eux ont été majors de promotion.</p>
-    </section>
+  <main>
 
-    <!-- ===== Nouveau : Bloc Réserver un cours ===== -->
-    <section id="contact" class="container" aria-labelledby="contact-title">
-      <h2 id="contact-title" class="section-title">Réserver un cours</h2>
-      <div class="contact-grid">
-        <div>
-          <p class="lead">Explique ta situation (droit, philosophie, ou développement personnel) et ton objectif. Réponse sous 24&nbsp;h ouvrées.</p>
+    <!-- HERO -->
+    <section class="section">
+      <div class="container">
+        <div class="grid-2" style="gap:48px; align-items:center">
+          <div class="fade-in">
+            <span class="eyebrow">À propos</span>
+            <h1 class="h1" style="margin-top:16px">Salut, moi c'est Julien.</h1>
+            <p class="lead">Ancien major de promotion à <strong>deux reprises</strong>, j'enseigne le droit et la philosophie depuis plus de <strong>2 900 heures</strong>. J'ai formé <strong>300+ étudiants</strong> de la L1 au M2.</p>
+            <p>Mais j'ai pas toujours été major. En L1, j'ai eu 7 / 20 à mes premiers partiels. Voici comment j'ai retourné la situation — et comment toi aussi tu peux le faire.</p>
+            <div class="hero__cta" style="margin-top:24px">
+              <a class="btn btn--primary btn--lg" href="abonnement.html">Découvrir la méthode →</a>
+              <a class="btn btn--outline btn--lg" href="cours-particuliers.html">Me parler en visio</a>
+            </div>
+          </div>
+          <div class="fade-in fade-in--delay-1">
+            <img src="assets/julien-md.jpg" srcset="assets/julien-sm.jpg 400w, assets/julien-md.jpg 800w, assets/julien-lg.jpg 1200w" sizes="(max-width: 768px) 90vw, 480px" alt="Julien, professeur de droit, ancien major de promotion" style="width:100%; border-radius:var(--r-xl); box-shadow:var(--sh-3); border:1px solid var(--border)">
+          </div>
         </div>
-        <form class="form-card" aria-label="Formulaire de contact — À propos" method="POST" action="#">
-          <label for="name">Nom</label>
-          <input id="name" name="name" type="text" autocomplete="name" required placeholder="Votre nom" />
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email" required placeholder="vous@exemple.com" />
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required placeholder="Objectif, échéance, niveau actuel…"></textarea>
-          <button class="cta" type="submit">Envoyer</button>
-        </form>
       </div>
     </section>
+
+    <!-- STORYTELLING : ACTE 1 -->
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <span class="eyebrow" style="background:#FEE2E2; color:#991B1B">Acte 1 · L'échec</span>
+        <h2 class="h2" style="margin-top:12px">L1, 7 / 20 aux premiers partiels.</h2>
+        <p class="lead">J'étais persuadé d'avoir bossé. J'avais lu les manuels, fait mes TD, révisé mes fiches. Et pourtant, à la sortie de l'examen, j'ai compris que je n'avais <strong>rien compris</strong>.</p>
+        <p>J'avais accumulé des connaissances, mais je n'avais aucune méthode. Je faisais des commentaires d'arrêt en pilotage automatique. Mes dissertations étaient des inventaires. J'écrivais ce que je savais, pas ce qu'on me demandait.</p>
+        <p>La sanction : 7 / 20 en droit civil, 9 / 20 en constitutionnel. Sur le coup, j'ai pensé que j'étais juste pas fait pour le droit.</p>
+      </div>
+    </section>
+
+    <!-- STORYTELLING : ACTE 2 -->
+    <section class="section">
+      <div class="container container--narrow">
+        <span class="eyebrow" style="background:#FEF3C7; color:#92400E">Acte 2 · Le déclic</span>
+        <h2 class="h2" style="margin-top:12px">Méthode &gt; travail brut.</h2>
+        <p class="lead">J'ai compris une chose simple : <strong>tout le monde bosse</strong>. La différence entre les 8 / 20 et les 16 / 20, ce n'est pas la quantité de travail. C'est la <strong>méthode</strong>.</p>
+        <p>J'ai passé un été entier à décortiquer ce que faisaient les majors. À analyser leurs copies. À comprendre comment ils structuraient leur pensée, comment ils trouvaient un plan en 10 minutes, comment ils citaient un arrêt sans paniquer.</p>
+        <p>J'ai construit <strong>ma propre méthode</strong> : des plans-types qui marchent à tous les coups, des cartes mentales pour visualiser les liens entre notions, des fiches d'arrêt structurées en 5 cases (faits, procédure, problème, solution, portée).</p>
+        <p>Résultat dès le semestre 2 : <strong>14 / 20 de moyenne</strong>. Six mois plus tard : <strong>major de promo</strong> en L2. Puis encore en M1.</p>
+      </div>
+    </section>
+
+    <!-- STORYTELLING : ACTE 3 -->
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <span class="eyebrow" style="background:#D1FAE5; color:#065F46">Acte 3 · La transmission</span>
+        <h2 class="h2" style="margin-top:12px">300+ étudiants, 2 900 heures de cours.</h2>
+        <p class="lead">Quand j'ai commencé à donner des cours particuliers pour financer mon master, j'ai vu la même chose chez tous mes élèves : ils étaient <strong>intelligents, travailleurs… et bloqués sur la méthode</strong>.</p>
+        <p>En quelques séances, je leur transmettais ce que j'avais mis un an à comprendre. Les notes décollaient. Marie est passée de 9 à 15 en 2 mois. Pierre a validé sa L2 avec mention. Léa a eu 16 en commentaire d'arrêt.</p>
+        <p>C'est ce qui m'a donné l'envie de créer <strong>TrajectoireDroit</strong> : rendre cette méthode accessible à des milliers d'étudiants qui n'ont pas la chance d'avoir un cours particulier à 89 €/h.</p>
+        <p>Aujourd'hui, ma méthode existe en <strong>vidéos, fiches et cartes mentales</strong>, accessibles à tous, partout, pour 19 € / mois. C'est ça, TrajectoireDroit.</p>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section">
+      <div class="container">
+        <div class="stats-strip fade-in">
+          <div class="stats-strip__item">
+            <div class="stats-strip__num">2 900h+</div>
+            <div class="stats-strip__label">de cours dispensés</div>
+          </div>
+          <div class="stats-strip__item">
+            <div class="stats-strip__num">300+</div>
+            <div class="stats-strip__label">étudiants accompagnés</div>
+          </div>
+          <div class="stats-strip__item">
+            <div class="stats-strip__num">5 ★</div>
+            <div class="stats-strip__label">sur 149 avis</div>
+          </div>
+          <div class="stats-strip__item">
+            <div class="stats-strip__num">+3 pts</div>
+            <div class="stats-strip__label">de moyenne en moyenne</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 PILIERS DE LA MÉTHODE -->
+    <section class="section section--blue" id="methode">
+      <div class="container">
+        <div class="container--narrow text-center" style="margin-bottom:48px">
+          <span class="eyebrow">Notre méthode</span>
+          <h2 class="h2" style="margin-top:12px">Les 3 piliers TrajectoireDroit</h2>
+          <p class="lead">Pas de jargon. Pas de bla-bla. Trois outils concrets qui, combinés, changent ta façon de réviser.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card card--feature fade-in">
+            <div class="feature__icon">🧠</div>
+            <h3>1. Cartes mentales</h3>
+            <p>Une carte mentale par thème, qui te donne la vue d'ensemble en 30 secondes. Tu vois les liens entre notions au lieu de les apprendre dans le désordre.</p>
+          </div>
+          <div class="card card--feature fade-in fade-in--delay-1">
+            <div class="feature__icon">🎬</div>
+            <h3>2. Vidéos pédagogiques</h3>
+            <p>Un prof qui t'explique en termes simples, avec des exemples concrets. Pause, retour, à ton rythme. Tu apprends actif, pas passif.</p>
+          </div>
+          <div class="card card--feature fade-in fade-in--delay-2">
+            <div class="feature__icon">✨</div>
+            <h3>3. Fiches d'arrêt annotées</h3>
+            <p>Les arrêts clés décortiqués en 5 cases : faits, procédure, problème, solution, portée. Prêtes à recopier dans tes copies.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISION / MISSION -->
+    <section class="section">
+      <div class="container container--narrow">
+        <span class="eyebrow">Vision</span>
+        <h2 class="h2" style="margin-top:12px">Ma promesse</h2>
+        <p class="lead">Je crois que <strong>tout étudiant en droit peut passer dans le top 10 %</strong> avec la bonne méthode. Pas parce qu'il est plus intelligent — parce qu'il sait <em>comment</em> apprendre.</p>
+        <p>TrajectoireDroit, c'est l'opposé d'un cours magistral. Pas de polycopiés de 300 pages. Pas de jargon inutile. Juste ce qui marche, testé sur 300+ étudiants pendant 2 900 heures.</p>
+        <p>Si tu trouves mieux ailleurs, dis-le moi. Je rembourse sans discussion dans les 30 jours. Mais si tu suis la méthode, je te garantis que tes notes vont bouger.</p>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section section--dark">
+      <div class="container container--narrow text-center">
+        <h2 class="h2" style="color:#fff">Prêt à passer dans le top 10 % ?</h2>
+        <p class="lead" style="color:rgba(255,255,255,.85); max-width:540px; margin:16px auto 32px">Démarre ton essai gratuit de 7 jours. Sans carte bancaire, sans engagement. Si ce n'est pas pour toi, tu repars sans rien payer.</p>
+        <div class="flex flex--center">
+          <a class="btn btn--primary btn--lg" href="abonnement.html">Démarrer mon essai gratuit</a>
+          <a class="btn btn--outline btn--lg" href="cours-particuliers.html" style="background:transparent; color:#fff; border-color:rgba(255,255,255,.4)">Me parler en visio</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer role="contentinfo">
-    <div class="footgrid">
-      <div>© 2026 TrajectoireDroit. Tous droits réservés.</div>
-      <nav class="footlinks" aria-label="Liens légaux et sociaux">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="confidentialite.html">Confidentialité</a>
-        <a href="cgu.html">CGU</a>
-      </nav>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" style="color:#fff"><span class="logo__mark">TD</span><span>TrajectoireDroit</span></a>
+          <p>La méthode #1 pour réussir vos études de droit.</p>
+        </div>
+        <div>
+          <h4>Produits</h4>
+          <a href="formations.html">Formations vidéo</a>
+          <a href="abonnement.html">Abonnement illimité</a>
+          <a href="fiche-arrets.html">Fiches d'arrêt</a>
+          <a href="cartes-mentales.html">Cartes mentales</a>
+          <a href="cours-particuliers.html">Cours particuliers</a>
+        </div>
+        <div>
+          <h4>Ressources</h4>
+          <a href="temoignages.html">Témoignages</a>
+          <a href="faq.html">FAQ</a>
+          <a href="a-propos.html">À propos</a>
+        </div>
+        <div>
+          <h4>Légal</h4>
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgu.html">CGV / CGU</a>
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <form action="https://formspree.io/f/mojrovgb" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div>
+      </div>
     </div>
   </footer>
 
-  <script>
-    // Fond image (même logique que l'index)
-    (function(){
-      var cvs = document.getElementById('bgCanvas');
-      var ctx = cvs.getContext('2d');
-      var img = new Image(); img.decoding = 'async'; img.src = 'Baleine.webp';
-      var anchorX = 1.0, anchorY = 0.5;
-      function draw(){
-        if(!img.naturalWidth) return;
-        var dpr = Math.min(window.devicePixelRatio || 1, 2);
-        var W = cvs.width  = Math.floor(innerWidth  * dpr);
-        var H = cvs.height = Math.floor(innerHeight * dpr);
-        cvs.style.width  = innerWidth + 'px';
-        cvs.style.height = innerHeight + 'px';
-        var iw = img.naturalWidth, ih = img.naturalHeight;
-        var scale = Math.max(W/iw, H/ih);
-        var vw = iw * scale, vh = ih * scale;
-        var maxX = Math.max(0, vw - W), maxY = Math.max(0, vh - H);
-        var sx = Math.round(maxX * anchorX), sy = Math.round(maxY * anchorY);
-        ctx.clearRect(0,0,W,H);
-        ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-        ctx.drawImage(img, -sx, -sy, vw, vh);
-        ctx.fillStyle = 'rgba(6,19,23,0.14)';
-        ctx.fillRect(0,0,W,H);
-      }
-      function onResize(){ draw(); }
-      img.onload = draw; addEventListener('resize', onResize, {passive:true}); addEventListener('orientationchange', onResize, {passive:true}); document.addEventListener('visibilitychange', function(){ if(!document.hidden) draw(); });
-    })();
-
-    // Mini-toast soumission (si pas de backend)
-    (function(){
-      var form = document.querySelector("form[aria-label='Formulaire de contact — À propos']");
-      if(!form) return;
-      form.addEventListener('submit', function(e){
-        var action = (form.getAttribute('action')||'').trim();
-        if(action && action !== '#') return; // laisser passer si un backend réel est branché
-        e.preventDefault();
-        var name = (document.getElementById('name') && document.getElementById('name').value) || 'Merci';
-        var t = document.createElement('div');
-        t.textContent = name + ", ton message a bien été envoyé ✨";
-        Object.assign(t.style,{position:'fixed',left:'50%',bottom:'24px',transform:'translateX(-50%)',background:'rgba(10,19,38,.92)',color:'#fff',padding:'12px 16px',borderRadius:'12px',border:'1px solid rgba(255,255,255,.18)',boxShadow:'0 10px 30px rgba(0,0,0,.28)',zIndex:'1000',opacity:'0',transition:'opacity .25s ease, transform .25s ease'});
-        document.body.appendChild(t);
-        requestAnimationFrame(function(){ t.style.opacity='1'; t.style.transform='translateX(-50%) translateY(-6px)'; });
-        setTimeout(function(){ t.style.opacity='0'; t.style.transform='translateX(-50%)'; setTimeout(function(){ t.remove(); }, 260); }, 2200);
-        try{ form.reset(); }catch(_){ }
-      });
-    })();
-  </script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
