@@ -173,15 +173,13 @@
           </div>
           <div data-fs-error style="display:none; padding:12px 16px; border-radius:12px; background:rgba(255,80,80,.12); border:1px solid rgba(255,80,80,.30); color:var(--star); margin-bottom:12px;"></div>
 
-          <form id="contact-form" class="form-card" aria-label="Formulaire de réservation — Cours particuliers" method="POST" action="https://formspree.io/f/mojrovgb">
+          <form id="contact-form" class="form-card" aria-label="Formulaire de réservation — Cours particuliers">
 
             <label for="name">Nom</label>
-            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Votre nom" data-fs-field />
-            <span data-fs-error="name" style="color:#ff6b6b; font-size:.88rem; margin-top:-6px;"></span>
+            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Votre nom" />
 
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required placeholder="vous@exemple.com" data-fs-field />
-            <span data-fs-error="email" style="color:#ff6b6b; font-size:.88rem; margin-top:-6px;"></span>
+            <input id="email" name="email" type="email" autocomplete="email" required placeholder="vous@exemple.com" />
 
             <label for="niveau">Niveau actuel</label>
             <select id="niveau" name="niveau" required>
@@ -195,10 +193,9 @@
             </select>
 
             <label for="message">Votre situation et vos objectifs</label>
-            <textarea id="message" name="message" required placeholder="Ex : je suis en L2, j'ai du mal avec le commentaire d'arrêt en droit civil, partiels dans 6 semaines…" data-fs-field></textarea>
-            <span data-fs-error="message" style="color:#ff6b6b; font-size:.88rem; margin-top:-6px;"></span>
+            <textarea id="message" name="message" required placeholder="Ex : je suis en L2, j'ai du mal avec le commentaire d'arrêt en droit civil, partiels dans 6 semaines…"></textarea>
 
-            <button class="btn-primary" type="submit" data-fs-submit-btn>Envoyer ma demande</button>
+            <button id="submit-btn" class="btn-primary" type="submit">Envoyer ma demande</button>
           </form>
         </div>
       </div>
@@ -232,9 +229,45 @@
   </script>
 
   <script>
-    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-    formspree('initForm', { formElement: '#contact-form', formId: 'mojrovgb' });
+    var form = document.getElementById('contact-form');
+    var btn = document.getElementById('submit-btn');
+    var successBox = document.querySelector('[data-fs-success]');
+    var errorBox = document.querySelector('[data-fs-error]');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Envoi en cours…';
+
+      var data = new FormData(form);
+
+      fetch('https://formspree.io/f/mojrovgb', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(res) { return res.json().then(function(json) { return { ok: res.ok, json: json }; }); })
+      .then(function(result) {
+        if (result.ok) {
+          successBox.style.display = 'block';
+          errorBox.style.display = 'none';
+          form.reset();
+          form.style.display = 'none';
+        } else {
+          var msg = (result.json.errors || []).map(function(e) { return e.message; }).join(', ') || 'Une erreur est survenue. Réessayez.';
+          errorBox.textContent = msg;
+          errorBox.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Envoyer ma demande';
+        }
+      })
+      .catch(function() {
+        errorBox.textContent = 'Erreur réseau. Vérifiez votre connexion et réessayez.';
+        errorBox.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Envoyer ma demande';
+      });
+    });
   </script>
-  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
