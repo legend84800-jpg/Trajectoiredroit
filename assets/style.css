@@ -114,8 +114,8 @@ p:last-child { margin-bottom: 0 }
 /* ===== 4. LAYOUT ===== */
 .container { width: min(var(--maxw), 92vw); margin-inline: auto }
 .container--narrow { width: min(var(--maxw-narrow), 92vw); margin-inline: auto }
-.section { padding: clamp(48px, 8vw, 96px) 0; position: relative }
-.section--sm { padding: clamp(32px, 5vw, 56px) 0 }
+.section { padding: clamp(32px, 5vw, 64px) 0; position: relative }
+.section--sm { padding: clamp(20px, 3vw, 36px) 0 }
 .section--alt { background: var(--slate-50); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border) }
 .section--blue { background: var(--blue-50); border-top: 1px solid var(--blue-100); border-bottom: 1px solid var(--blue-100) }
 .section--dark { background: var(--ink); color: var(--white) }
@@ -376,7 +376,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 
 /* ===== 10. HERO ===== */
 .hero {
-  padding: clamp(48px, 8vw, 96px) 0 clamp(48px, 8vw, 96px);
+  padding: clamp(32px, 5vw, 64px) 0 clamp(32px, 5vw, 56px);
   position: relative; overflow: hidden;
 }
 .hero::before {
