@@ -1,32 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" role="img" aria-label="TrajectoireDroit — La nouvelle école du droit">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 130" role="img" aria-label="TrajectoireDroit — La nouvelle école du droit">
   <defs>
-    <linearGradient id="tjdGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#2A2A2A"/>
-      <stop offset="0.5" stop-color="#0F1A35"/>
-      <stop offset="1" stop-color="#1A2851"/>
+    <linearGradient id="metalGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4A4A4A"/>
+      <stop offset="0.3" stop-color="#1A1A1A"/>
+      <stop offset="0.7" stop-color="#0F0F0F"/>
+      <stop offset="1" stop-color="#2A2A2A"/>
     </linearGradient>
-    <linearGradient id="tjdBlueAccent" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#1E40AF"/>
-      <stop offset="1" stop-color="#1A2851"/>
+    <linearGradient id="metalHighlight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5A5A5A" stop-opacity="0.7"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
     </linearGradient>
+    <linearGradient id="blueAccent" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3B5BD9"/>
+      <stop offset="0.5" stop-color="#1E3A8A"/>
+      <stop offset="1" stop-color="#0A1A4A"/>
+    </linearGradient>
+    <filter id="logoShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.3"/>
+    </filter>
   </defs>
 
-  <!-- Monogramme TJD stylisé -->
-  <g font-family="'Times New Roman', Georgia, serif" font-weight="700">
-    <!-- T -->
-    <text x="0" y="92" font-size="118" fill="url(#tjdGrad)" letter-spacing="-6">T</text>
-    <!-- J (chevauché) -->
-    <text x="48" y="100" font-size="118" fill="url(#tjdGrad)" letter-spacing="-6">J</text>
-    <!-- D (chevauché, plus grand) -->
-    <text x="92" y="92" font-size="118" fill="url(#tjdGrad)" letter-spacing="-6">D</text>
+  <!-- Monogramme TJD : T, J, D imbriqués en serif épais avec effet 3D métallique -->
+  <g filter="url(#logoShadow)" font-family="Georgia, 'Times New Roman', serif" font-weight="700">
+    <!-- T (gauche) -->
+    <text x="5" y="100" font-size="135" fill="url(#metalGrad)" letter-spacing="-8">T</text>
+    <text x="5" y="100" font-size="135" fill="url(#metalHighlight)" letter-spacing="-8">T</text>
+    <!-- J (centre, chevauché avec T) -->
+    <text x="58" y="115" font-size="135" fill="url(#metalGrad)" letter-spacing="-8">J</text>
+    <text x="58" y="115" font-size="135" fill="url(#metalHighlight)" letter-spacing="-8">J</text>
+    <!-- D (droite, plus grand) -->
+    <text x="105" y="100" font-size="135" fill="url(#metalGrad)" letter-spacing="-8">D</text>
+    <text x="105" y="100" font-size="135" fill="url(#metalHighlight)" letter-spacing="-8">D</text>
   </g>
 
-  <!-- Accent bleu marine entre J et D (clin d'œil au vrai logo) -->
-  <path d="M 110 60 Q 130 68 145 90 Q 130 80 110 95 Z" fill="url(#tjdBlueAccent)" opacity="0.9"/>
+  <!-- Accent bleu cobalt courbé entre J et D (clin d'œil au vrai logo) -->
+  <path d="M 118 70 Q 138 85 152 110 Q 138 95 118 100 Q 118 85 118 70 Z" fill="url(#blueAccent)" opacity="0.92"/>
+  <path d="M 120 78 Q 135 90 148 105" stroke="#5478E0" stroke-width="1.5" fill="none" opacity="0.6"/>
 
-  <!-- Texte "TrajectoireDroit" -->
-  <g font-family="'Times New Roman', Georgia, serif" font-weight="500">
-    <text x="200" y="78" font-size="48" fill="#1A1A1A" letter-spacing="-0.5">Trajectoire</text>
-    <text x="402" y="78" font-size="48" fill="#1A2851" letter-spacing="-0.5">Droit</text>
+  <!-- Texte "TrajectoireDroit" en serif élégant -->
+  <g font-family="Georgia, 'Times New Roman', serif" font-weight="500">
+    <text x="225" y="83" font-size="52" fill="#1A1A1A" letter-spacing="-0.8">Trajectoire</text>
+    <text x="450" y="83" font-size="52" fill="#1E3A8A" letter-spacing="-0.8">Droit</text>
   </g>
 </svg>

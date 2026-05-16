@@ -1,19 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 120" role="img" aria-label="TJD">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 130" role="img" aria-label="TJD">
   <defs>
-    <linearGradient id="markGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#2A2A2A"/>
-      <stop offset="0.5" stop-color="#0F1A35"/>
-      <stop offset="1" stop-color="#1A2851"/>
+    <linearGradient id="markGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4A4A4A"/>
+      <stop offset="0.3" stop-color="#1A1A1A"/>
+      <stop offset="0.7" stop-color="#0F0F0F"/>
+      <stop offset="1" stop-color="#2A2A2A"/>
     </linearGradient>
-    <linearGradient id="markBlue" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#1E40AF"/>
-      <stop offset="1" stop-color="#1A2851"/>
+    <linearGradient id="markBlueAcc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3B5BD9"/>
+      <stop offset="0.5" stop-color="#1E3A8A"/>
+      <stop offset="1" stop-color="#0A1A4A"/>
     </linearGradient>
+    <filter id="markShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.3"/>
+    </filter>
   </defs>
-  <g font-family="'Times New Roman', Georgia, serif" font-weight="700">
-    <text x="0" y="92" font-size="118" fill="url(#markGrad)" letter-spacing="-6">T</text>
-    <text x="48" y="100" font-size="118" fill="url(#markGrad)" letter-spacing="-6">J</text>
-    <text x="92" y="92" font-size="118" fill="url(#markGrad)" letter-spacing="-6">D</text>
+  <g filter="url(#markShadow)" font-family="Georgia, 'Times New Roman', serif" font-weight="700">
+    <text x="5" y="100" font-size="135" fill="url(#markGrad)" letter-spacing="-8">T</text>
+    <text x="58" y="115" font-size="135" fill="url(#markGrad)" letter-spacing="-8">J</text>
+    <text x="105" y="100" font-size="135" fill="url(#markGrad)" letter-spacing="-8">D</text>
   </g>
-  <path d="M 110 60 Q 130 68 145 90 Q 130 80 110 95 Z" fill="url(#markBlue)" opacity="0.9"/>
+  <path d="M 118 70 Q 138 85 152 110 Q 138 95 118 100 Q 118 85 118 70 Z" fill="url(#markBlueAcc)" opacity="0.92"/>
 </svg>

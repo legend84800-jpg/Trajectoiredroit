@@ -270,12 +270,29 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   height: var(--header-h);
 }
 .logo {
-  font-family: var(--font-display); font-weight: 700;
-  color: var(--navy); display: inline-flex; align-items: center; gap: 10px;
-  letter-spacing: -.02em;
+  display: inline-flex; flex-direction: column; align-items: flex-start;
+  gap: 1px;
   text-decoration: none;
+  color: var(--navy);
 }
-.logo:hover { color: var(--navy-deep); }
+.logo:hover { opacity: .85; }
+.logo__img {
+  display: block;
+  height: 38px;
+  width: auto;
+  max-width: 100%;
+}
+.logo__slogan-only {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: .68rem;
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: .04em;
+  font-style: italic;
+  padding-left: 4px;
+  white-space: nowrap;
+}
+/* Legacy fallback : si on revient au span TJD pour une raison */
 .logo__mark {
   min-width: 38px; height: 38px; padding: 0 6px;
   background: linear-gradient(135deg, var(--navy), var(--navy-deep));
@@ -284,37 +301,11 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   color: var(--white); font-weight: 700; font-size: .82rem;
   letter-spacing: .04em;
   box-shadow: 0 2px 6px rgba(26,40,81,.25);
-  position: relative;
 }
-/* fine barre bleu marine = clin d'œil au logo officiel */
-.logo__mark::after {
-  content: ""; position: absolute; left: 50%; bottom: 4px;
-  width: 60%; height: 1px; background: var(--blue-500); opacity: .7;
-  transform: translateX(-50%);
-}
-.logo__wrap {
-  display: inline-flex; flex-direction: column;
-  line-height: 1.1;
-}
-.logo__name {
-  font-size: 1.05rem;
-  color: var(--navy);
-  font-weight: 700;
-  letter-spacing: -.02em;
-}
-.logo__slogan {
-  font-family: var(--font-body);
-  font-size: .68rem;
-  color: var(--accent);
-  font-weight: 500;
-  letter-spacing: .02em;
-  font-style: italic;
-  margin-top: 1px;
-}
-/* Mobile : on garde uniquement le monogramme + nom court, on cache le slogan */
+/* Mobile : logo plus petit, slogan caché */
 @media (max-width: 540px) {
-  .logo__slogan { display: none; }
-  .logo__name { font-size: .98rem; }
+  .logo__img { height: 30px; }
+  .logo__slogan-only { display: none; }
 }
 .primary-nav { display: flex; gap: var(--sp-5); flex: 1; justify-content: center; flex-wrap: nowrap }
 .primary-nav a {
