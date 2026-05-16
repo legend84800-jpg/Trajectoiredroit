@@ -1,10 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#2563EB"/>
+    <linearGradient id="fgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4A4A4A"/>
+      <stop offset="0.5" stop-color="#1A1A1A"/>
+      <stop offset="1" stop-color="#0F0F0F"/>
+    </linearGradient>
+    <linearGradient id="fgBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3B5BD9"/>
       <stop offset="1" stop-color="#1E3A8A"/>
     </linearGradient>
   </defs>
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#g)"/>
-  <text x="32" y="42" font-family="Inter, system-ui, sans-serif" font-size="24" font-weight="700" text-anchor="middle" fill="#FFFFFF" letter-spacing="-1">TD</text>
+  <rect x="0" y="0" width="64" height="64" rx="12" fill="#FBF8EE"/>
+  <g font-family="Georgia, 'Times New Roman', serif" font-weight="700">
+    <text x="4" y="46" font-size="48" fill="url(#fgGrad)" letter-spacing="-4">T</text>
+    <text x="22" y="50" font-size="48" fill="url(#fgGrad)" letter-spacing="-4">J</text>
+    <text x="38" y="46" font-size="48" fill="url(#fgGrad)" letter-spacing="-4">D</text>
+  </g>
+  <path d="M 44 26 Q 50 32 54 44 Q 50 38 44 40 Z" fill="url(#fgBlue)" opacity="0.92"/>
 </svg>

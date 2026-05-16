@@ -37,6 +37,8 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main">Aller au contenu principal</a>
+
   <!-- ===== URGENCY BANNER ===== -->
   <div class="urgency-banner" id="urgencyBanner" data-deadline="2026-06-30T23:59:59">
     <strong>🎁 Offre de lancement</strong> — 20 % sur l'abonnement avec le code
@@ -88,7 +90,7 @@
         <div class="hero__grid">
           <div class="fade-in">
             <span class="eyebrow eyebrow--gold">⭐ #1 Professeur de droit sur Superprof · 5/5 sur 149 avis</span>
-            <h1 class="h1 text-balance" style="margin-top:16px">Passe dans le <span style="color:var(--accent)">top 15 %</span> de ta promo de droit, sans sacrifier ta vie.</h1>
+            <h1 class="h1 text-balance" style="margin-top:16px">Passe dans le <span class="highlight-anim" style="color:var(--accent)">top 15 %</span> de ta promo de droit, sans sacrifier ta vie.</h1>
             <p class="lead">La méthode complète : cours détaillés, fiches d'arrêt, cartes mentales et exos corrigés. <strong>420+ étudiants accompagnés</strong>, <strong>94 % valident leur année</strong>.</p>
 
             <div class="hero__cta">
@@ -119,43 +121,69 @@
             <p class="hero__trust-line">✅ Sans carte bancaire · Annulable en 1 clic · Garantie 30 jours satisfait ou remboursé</p>
           </div>
 
-          <div class="hero__visual hero__mockup fade-in fade-in--delay-1" aria-hidden="true">
-            <div class="mockup-player">
-              <div class="mockup-player__bar">
-                <span class="mockup-dot" style="background:#FF5F57"></span>
-                <span class="mockup-dot" style="background:#FEBC2E"></span>
-                <span class="mockup-dot" style="background:#28C840"></span>
-                <span class="mockup-player__url">trajectoiredroit.com</span>
+          <div class="hero__visual hero__edu-illu fade-in fade-in--delay-1" aria-hidden="true">
+            <!-- Mini-diagramme éducatif : Pyramide de Kelsen interactive (clin d'œil au cours de droit constit) -->
+            <div class="edu-illu">
+              <div class="edu-illu__badge">📚 Aperçu cours · Droit constit L1</div>
+              <svg class="edu-illu__pyramid" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pyramide des normes de Kelsen">
+                <!-- Triangle sommet : Constitution -->
+                <polygon points="160,30 200,80 120,80" fill="#1A2851"/>
+                <text x="160" y="68" text-anchor="middle" fill="#fff" font-family="Georgia, serif" font-size="12" font-weight="700">Constitution</text>
+                <!-- Étage 2 : Traités -->
+                <polygon points="120,80 200,80 220,130 100,130" fill="#3B5BD9"/>
+                <text x="160" y="113" text-anchor="middle" fill="#fff" font-family="Georgia, serif" font-size="11">Traités internationaux</text>
+                <!-- Étage 3 : Lois -->
+                <polygon points="100,130 220,130 240,180 80,180" fill="#C9A961"/>
+                <text x="160" y="163" text-anchor="middle" fill="#fff" font-family="Georgia, serif" font-size="11">Lois &amp; règlements</text>
+                <!-- Étage 4 : Actes individuels -->
+                <polygon points="80,180 240,180 260,230 60,230" fill="#E5D5A5"/>
+                <text x="160" y="213" text-anchor="middle" fill="#1A2851" font-family="Georgia, serif" font-size="11">Actes individuels</text>
+                <!-- Flèche hiérarchique -->
+                <line x1="40" y1="220" x2="40" y2="50" stroke="#8B1538" stroke-width="2" stroke-linecap="round" marker-end="url(#arrowhead)"/>
+                <defs>
+                  <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="5" refY="4" orient="auto">
+                    <polygon points="0 0, 10 4, 0 8" fill="#8B1538"/>
+                  </marker>
+                </defs>
+                <text x="20" y="135" fill="#8B1538" font-family="Georgia, serif" font-size="10" font-style="italic" transform="rotate(-90 20 135)">Hiérarchie</text>
+              </svg>
+              <div class="edu-illu__caption">
+                <strong>Pyramide de Kelsen</strong> — l'un des concepts clés du cours n°1
+                <span class="edu-illu__caption-sub">Schéma extrait de la fiche officielle TJD</span>
               </div>
-              <div class="mockup-player__screen">
-                <div class="mockup-player__playbtn">▶</div>
-                <div class="mockup-player__title">Le commentaire d'arrêt — Méthode complète</div>
-                <div class="mockup-player__progress"><span></span></div>
-                <div class="mockup-player__meta">
-                  <span>⏱ 2 h 30</span>
-                  <span>L1 → M2</span>
-                  <span>★ 4.9</span>
+            </div>
+
+            <!-- Mini-cards flottantes : aperçus matières -->
+            <div class="edu-cards">
+              <div class="edu-card edu-card--blue">
+                <div class="edu-card__icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </div>
+                <div>
+                  <div class="edu-card__title">Fiche d'arrêt</div>
+                  <div class="edu-card__sub">5 cases</div>
+                </div>
+              </div>
+              <div class="edu-card edu-card--violet">
+                <div class="edu-card__icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><circle cx="5" cy="19" r="2"/><path d="M12 9V7M12 15v2M9 12H7M15 12h2"/></svg>
+                </div>
+                <div>
+                  <div class="edu-card__title">Carte mentale</div>
+                  <div class="edu-card__sub">Vue d'ensemble</div>
+                </div>
+              </div>
+              <div class="edu-card edu-card--emerald">
+                <div class="edu-card__icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                  <div class="edu-card__title">QCM gratuit</div>
+                  <div class="edu-card__sub">Auto-éval</div>
                 </div>
               </div>
             </div>
-            <div class="mockup-cards">
-              <div class="mockup-card mockup-card--blue">
-                <div class="mockup-card__icon">📹</div>
-                <div class="mockup-card__title">Cas pratique</div>
-                <div class="mockup-card__sub">3 h · L1-L3</div>
-              </div>
-              <div class="mockup-card mockup-card--green">
-                <div class="mockup-card__icon">🧠</div>
-                <div class="mockup-card__title">Carte mentale civil</div>
-                <div class="mockup-card__sub">PDF · L1</div>
-              </div>
-              <div class="mockup-card mockup-card--yellow">
-                <div class="mockup-card__icon">✨</div>
-                <div class="mockup-card__title">Dissertation</div>
-                <div class="mockup-card__sub">2 h · L1-M1</div>
-              </div>
-            </div>
-            <div class="mockup-badge">🏆 +3 pts en moyenne</div>
+            <div class="edu-badge">🏆 +3 pts de moyenne</div>
           </div>
         </div>
 
