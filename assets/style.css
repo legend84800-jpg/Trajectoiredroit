@@ -1095,6 +1095,35 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   .closing-guarantee { flex-direction: column; text-align: center; }
 }
 
+/* ===== 24h. BLOC "TU PRÉFÈRES ACHETER À L'UNITÉ ?" ===== */
+.unit-alt-block {
+  margin-top: var(--sp-10);
+  padding: var(--sp-8) var(--sp-6);
+  background: var(--slate-50);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  text-align: center;
+}
+.unit-alt-block__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 8px;
+}
+.unit-alt-block__sub {
+  color: var(--body);
+  font-size: 1rem;
+  margin: 0 auto var(--sp-5);
+  max-width: 540px;
+}
+.unit-alt-block__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
 /* ===== 24g. STICKY CTA MOBILE (F10) ===== */
 .sticky-cta-bar {
   display: none;
