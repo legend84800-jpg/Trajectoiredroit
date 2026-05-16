@@ -78,19 +78,46 @@
     }
   }
 
-  // ----- 5. Exit-intent modal (desktop only, 1× par session) -----
+  // ----- 5. Exit-intent modal (desktop only, 1× par session, après engagement) -----
+  // Conditions cumulées avant déclenchement :
+  //   - desktop (>= 768px)
+  //   - pas déjà vu cette session
+  //   - >= 30 secondes sur la page
+  //   - >= 25% scrollé (preuve d'engagement)
+  //   - souris quitte par le haut OU 60 secondes sans interaction
   var modal = document.getElementById('exitModal');
   if (modal && window.matchMedia('(min-width: 768px)').matches && !sessionStorage.getItem('exitShown')) {
     var triggered = false;
-    var trigger = function (e) {
+    var pageLoadedAt = Date.now();
+    var minTimeMs = 30000;   // 30 s minimum
+    var minScroll = 0.25;    // 25 % de la page
+
+    function hasEngaged() {
+      var elapsed = Date.now() - pageLoadedAt;
+      if (elapsed < minTimeMs) return false;
+      var scrollRatio = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      return scrollRatio >= minScroll;
+    }
+
+    function fireModal() {
       if (triggered) return;
-      if (e.clientY <= 0) {
-        triggered = true;
-        modal.classList.add('open');
-        sessionStorage.setItem('exitShown', '1');
-      }
-    };
-    document.addEventListener('mouseleave', trigger);
+      triggered = true;
+      modal.classList.add('open');
+      sessionStorage.setItem('exitShown', '1');
+    }
+
+    function onMouseLeave(e) {
+      if (e.clientY <= 0 && hasEngaged()) fireModal();
+    }
+
+    document.addEventListener('mouseleave', onMouseLeave);
+
+    // Fallback : si l'utilisateur reste 60 sec sans bouger la souris vers le haut,
+    // on déclenche quand même (en page de défilement par exemple)
+    setTimeout(function () {
+      if (!triggered && hasEngaged()) fireModal();
+    }, 60000);
+
     modal.addEventListener('click', function (e) {
       if (e.target === modal || e.target.hasAttribute('data-close-modal')) {
         modal.classList.remove('open');
@@ -99,6 +126,41 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') modal.classList.remove('open');
     });
+  }
+
+  // ----- 8. Compteurs animés (count-up) -----
+  if ('IntersectionObserver' in window) {
+    var counterIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        var target = parseFloat(el.getAttribute('data-count-to'));
+        if (isNaN(target)) return;
+        var suffix = el.getAttribute('data-count-suffix') || '';
+        var prefix = el.getAttribute('data-count-prefix') || '';
+        var duration = 1400;
+        var start = 0;
+        var startTime = null;
+        function tick(ts) {
+          if (!startTime) startTime = ts;
+          var p = Math.min(1, (ts - startTime) / duration);
+          // ease-out cubic
+          var eased = 1 - Math.pow(1 - p, 3);
+          var v = start + (target - start) * eased;
+          // formatage : entier si target est entier, sinon 1 décimale
+          var displayed = Number.isInteger(target) ? Math.round(v) : v.toFixed(1);
+          // séparateur milliers à la française
+          if (Number.isInteger(target) && target >= 1000) {
+            displayed = String(displayed).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+          }
+          el.textContent = prefix + displayed + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        counterIo.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('[data-count-to]').forEach(function (el) { counterIo.observe(el); });
   }
 
   // ----- 6. Filtres catalogue (chips) -----
