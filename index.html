@@ -288,36 +288,7 @@
     </section>
 
     <!-- ============================================================
-         4. CALCULATRICE INTERACTIVE — remontée (F3)
-         ============================================================ -->
-    <section class="section section--blue">
-      <div class="container container--narrow text-center">
-        <span class="eyebrow">Combien tu vas économiser</span>
-        <h2 class="h2" style="margin-top:12px">Calcule ton gain de temps</h2>
-        <p class="lead">Combien d'arrêts clés dois-tu réviser ce semestre ?</p>
-
-        <div class="card" data-calc style="margin-top:24px; text-align:left">
-          <label for="arretsSlider" style="display:block; font-weight:600; margin-bottom:12px">Nombre d'arrêts à réviser : <strong data-calc-count style="color:var(--blue-700)">15</strong></label>
-          <input id="arretsSlider" type="range" min="5" max="50" value="15" step="1" style="width:100%; accent-color:var(--blue-600)" oninput="document.querySelector('[data-calc-count]').textContent=this.value">
-          <div class="grid-2" style="margin-top:24px; gap:16px">
-            <div style="background:var(--blue-50); padding:20px; border-radius:12px; text-align:center">
-              <div style="font-size:.85rem; color:var(--body); margin-bottom:4px">Temps économisé</div>
-              <div data-calc-hours style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--blue-700)">22 h</div>
-              <div style="font-size:.85rem; color:var(--muted)">vs lecture du manuel</div>
-            </div>
-            <div style="background:var(--success-bg); padding:20px; border-radius:12px; text-align:center">
-              <div style="font-size:.85rem; color:#065F46; margin-bottom:4px">Valeur équivalente</div>
-              <div data-calc-money style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:#065F46">90 €</div>
-              <div style="font-size:.85rem; color:#065F46">en cours particuliers</div>
-            </div>
-          </div>
-        </div>
-        <p class="text-muted" style="font-size:.88rem; margin-top:16px">1 arrêt = 1 h 30 économisée vs lecture passive (estimation médiane).</p>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         5. PRICING SUR LA HOME + PRODUITS (fusion F4 + F5)
+         4. PRICING SUR LA HOME + PRODUITS (fusion F4 + F5) — REMONTÉ AVANT CALCULATRICE
          ============================================================ -->
     <section class="section">
       <div class="container">
@@ -392,6 +363,35 @@
           <a class="btn btn--ghost" href="formations.html">Voir le catalogue à l'unité →</a>
           <a class="btn btn--ghost" href="cours-particuliers.html">Cours particuliers (89 €/h) →</a>
         </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. CALCULATRICE INTERACTIVE — placée après le pricing
+         ============================================================ -->
+    <section class="section section--blue">
+      <div class="container container--narrow text-center">
+        <span class="eyebrow">Combien tu vas économiser</span>
+        <h2 class="h2" style="margin-top:12px">Calcule ton gain de temps</h2>
+        <p class="lead">Combien d'arrêts clés dois-tu réviser ce semestre ?</p>
+
+        <div class="card" data-calc style="margin-top:24px; text-align:left">
+          <label for="arretsSlider" style="display:block; font-weight:600; margin-bottom:12px">Nombre d'arrêts à réviser : <strong data-calc-count style="color:var(--blue-700)">15</strong></label>
+          <input id="arretsSlider" type="range" min="5" max="50" value="15" step="1" style="width:100%; accent-color:var(--blue-600)" oninput="document.querySelector('[data-calc-count]').textContent=this.value">
+          <div class="grid-2" style="margin-top:24px; gap:16px">
+            <div style="background:var(--blue-50); padding:20px; border-radius:12px; text-align:center">
+              <div style="font-size:.85rem; color:var(--body); margin-bottom:4px">Temps économisé</div>
+              <div data-calc-hours style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--blue-700)">22 h</div>
+              <div style="font-size:.85rem; color:var(--muted)">vs lecture du manuel</div>
+            </div>
+            <div style="background:var(--success-bg); padding:20px; border-radius:12px; text-align:center">
+              <div style="font-size:.85rem; color:#065F46; margin-bottom:4px">Valeur équivalente</div>
+              <div data-calc-money style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:#065F46">90 €</div>
+              <div style="font-size:.85rem; color:#065F46">en cours particuliers</div>
+            </div>
+          </div>
+        </div>
+        <p class="text-muted" style="font-size:.88rem; margin-top:16px">1 arrêt = 1 h 30 économisée vs lecture passive (estimation médiane).</p>
       </div>
     </section>
 
@@ -617,7 +617,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="logo" href="index.html" style="color:#fff">
-            <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38" style="filter:invert(1) brightness(2)">
+            <img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38">
           </a>
           <p style="margin-top:14px">La nouvelle école du droit. Vidéos, fiches d'arrêt et cartes mentales — éprouvées par 420+ étudiants.</p>
           <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)">🎓 Site personnel de Julien, diplômé d'un Master II de droit pénal — Université Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>

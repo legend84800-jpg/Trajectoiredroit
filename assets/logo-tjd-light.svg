@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 130" role="img" aria-label="TrajectoireDroit — La nouvelle école du droit">
+  <defs>
+    <linearGradient id="metalLightGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F5F5F5"/>
+      <stop offset="0.5" stop-color="#E0E0E0"/>
+      <stop offset="1" stop-color="#BFBFBF"/>
+    </linearGradient>
+    <linearGradient id="blueAccentLight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7B9BFF"/>
+      <stop offset="1" stop-color="#3B5BD9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Monogramme TJD en blanc/argenté pour fond sombre -->
+  <g font-family="Georgia, 'Times New Roman', serif" font-weight="700">
+    <text x="5" y="100" font-size="135" fill="url(#metalLightGrad)" letter-spacing="-8">T</text>
+    <text x="58" y="115" font-size="135" fill="url(#metalLightGrad)" letter-spacing="-8">J</text>
+    <text x="105" y="100" font-size="135" fill="url(#metalLightGrad)" letter-spacing="-8">D</text>
+  </g>
+
+  <!-- Accent bleu clair -->
+  <path d="M 118 70 Q 138 85 152 110 Q 138 95 118 100 Q 118 85 118 70 Z" fill="url(#blueAccentLight)" opacity="0.92"/>
+
+  <!-- Texte "Trajectoire" + "Droit" en blanc et bleu clair -->
+  <text x="225" y="83" font-family="Georgia, 'Times New Roman', serif" font-weight="500" font-size="52" letter-spacing="-0.3">
+    <tspan fill="#FFFFFF">Trajectoire</tspan><tspan dx="6" fill="#7B9BFF">Droit</tspan>
+  </text>
+</svg>
