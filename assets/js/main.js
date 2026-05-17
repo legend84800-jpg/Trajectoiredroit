@@ -128,6 +128,51 @@
     });
   }
 
+  // ----- 7b. Mega-menu / dropdown accessibilité -----
+  var navItems = document.querySelectorAll('.primary-nav .has-dropdown');
+  navItems.forEach(function (item) {
+    var link = item.querySelector('.nav-item__link');
+    if (!link) return;
+    // Click sur chevron ou link → toggle open (utile tablette touch)
+    link.addEventListener('click', function (e) {
+      // Si écran tactile (pas de hover capable), on toggle au lieu de naviguer immédiatement
+      var hasHover = window.matchMedia('(hover: hover)').matches;
+      if (!hasHover && !item.classList.contains('open')) {
+        e.preventDefault();
+        // ferme les autres
+        navItems.forEach(function (other) {
+          if (other !== item) other.classList.remove('open');
+          var otherLink = other.querySelector('.nav-item__link');
+          if (otherLink) otherLink.setAttribute('aria-expanded', 'false');
+        });
+        item.classList.add('open');
+        link.setAttribute('aria-expanded', 'true');
+      }
+    });
+    // Sur desktop : sync aria-expanded au hover
+    item.addEventListener('mouseenter', function () { link.setAttribute('aria-expanded', 'true'); });
+    item.addEventListener('mouseleave', function () { link.setAttribute('aria-expanded', 'false'); item.classList.remove('open'); });
+  });
+  // Click extérieur ferme tous les dropdowns
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.has-dropdown')) return;
+    navItems.forEach(function (item) {
+      item.classList.remove('open');
+      var link = item.querySelector('.nav-item__link');
+      if (link) link.setAttribute('aria-expanded', 'false');
+    });
+  });
+  // Escape ferme tous les dropdowns
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      navItems.forEach(function (item) {
+        item.classList.remove('open');
+        var link = item.querySelector('.nav-item__link');
+        if (link) link.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
   // ----- 8. Compteurs animés (count-up) -----
   if ('IntersectionObserver' in window) {
     var counterIo = new IntersectionObserver(function (entries) {
