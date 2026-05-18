@@ -1689,10 +1689,15 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .pain-gain-table {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  gap: var(--sp-6);
+  grid-template-rows: auto repeat(7, auto);
+  column-gap: var(--sp-6);
+  row-gap: 12px;
   align-items: stretch;
 }
 .pain-gain-col {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: 1 / span 8;
   background: var(--white);
   border-radius: var(--r-lg);
   padding: var(--sp-6);
@@ -1705,18 +1710,16 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.15rem;
-  margin-bottom: var(--sp-4);
+  margin-bottom: var(--sp-2);
   text-align: center;
 }
 .pain-gain-col--pain .pain-gain-col__title { color: #991B1B; }
 .pain-gain-col--gain .pain-gain-col__title { color: #065F46; }
 .pain-gain-col ul {
+  display: contents;
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
 }
 .pain-gain-col li {
   font-size: .95rem;
@@ -1737,6 +1740,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   font-weight: 700;
 }
 .pain-gain-arrow {
+  grid-row: 1 / -1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1745,8 +1749,21 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   font-weight: 300;
 }
 @media (max-width: 900px) {
-  .pain-gain-table { grid-template-columns: 1fr; }
-  .pain-gain-arrow { transform: rotate(90deg); padding: 8px 0; }
+  .pain-gain-table {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    row-gap: var(--sp-3);
+  }
+  .pain-gain-col {
+    display: block;
+    grid-row: auto;
+  }
+  .pain-gain-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .pain-gain-arrow { grid-row: auto; transform: rotate(90deg); padding: 8px 0; }
 }
 
 /* ===== 24e. ACCORDION SOMBRE (clôture FAQ) ===== */
