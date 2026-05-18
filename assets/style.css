@@ -1233,6 +1233,95 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .promo-banner h3 { color: var(--white); margin: 0 0 4px }
 .promo-banner p { color: rgba(255,255,255,.85); margin: 0 }
 
+/* ===== 24-fiche. HERO FICHE PREVIEW (vrai produit dans le hero) ===== */
+.hero__fiche {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  aspect-ratio: auto !important;
+  padding: 0 !important;
+  position: relative;
+}
+.fiche-preview {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  padding: 16px;
+  box-shadow: 0 24px 60px rgba(15, 26, 53, .22), 0 0 0 1px rgba(15, 26, 53, .06);
+  border-top: 5px solid var(--navy);
+  position: relative;
+  overflow: hidden;
+  transition: transform .35s cubic-bezier(.22,.61,.36,1);
+}
+.fiche-preview:hover { transform: translateY(-4px); }
+.fiche-preview__badge {
+  position: absolute;
+  top: 14px; right: 14px;
+  background: var(--navy);
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  font-family: var(--font-body);
+  z-index: 2;
+}
+.fiche-preview__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-md);
+  margin-top: 8px;
+}
+.fiche-preview__fallback {
+  display: none; /* affiché si onerror sur l'image */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3/4;
+  background: linear-gradient(180deg, #FDFCF7, #FBF8EE);
+  border-radius: var(--r-md);
+  border: 2px dashed var(--gold-line);
+  padding: 32px;
+  text-align: center;
+  gap: 10px;
+}
+.fiche-preview__fallback-title {
+  font-family: Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--navy);
+  font-weight: 700;
+}
+.fiche-preview__fallback-sub {
+  font-size: .82rem;
+  color: var(--muted);
+  font-family: monospace;
+  background: var(--white);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+.fiche-preview__caption {
+  text-align: center;
+  margin-top: 14px;
+  padding: 10px 8px;
+  border-top: 1px solid var(--border);
+  font-family: Georgia, serif;
+  font-size: .92rem;
+  color: var(--ink);
+}
+.fiche-preview__caption strong {
+  display: block;
+  color: var(--navy);
+  font-weight: 700;
+}
+.fiche-preview__caption-sub {
+  display: block;
+  font-size: .75rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
 /* ===== 24-edu. HERO ÉDUCATIF (style Brilliant/Khan Academy) ===== */
 .hero__edu-illu {
   position: relative;
