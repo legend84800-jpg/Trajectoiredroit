@@ -707,7 +707,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 
 /* ===== 10. HERO ===== */
 .hero {
-  padding: clamp(32px, 5vw, 64px) 0 clamp(32px, 5vw, 56px);
+  padding: clamp(12px, 2vw, 24px) 0 clamp(32px, 5vw, 56px);
   position: relative; overflow: hidden;
 }
 .hero::before {
