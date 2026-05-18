@@ -1447,7 +1447,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 @media (max-width: 600px) {
   .edu-cards { flex-direction: column; }
   .edu-card { width: 100%; }
-  .edu-badge { right: 12px; font-size: .78rem; padding: 6px 12px; }
+  .edu-badge { top: 10px; left: 10px; font-size: .78rem; padding: 6px 12px; }
 }
 
 /* ===== 24-pre. HERO IMPACT v2 (stats résultats intégrées + logos univ sous) ===== */
