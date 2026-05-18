@@ -1881,6 +1881,95 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   .abo-step__arrow { transform: rotate(90deg); margin: 0 auto; }
 }
 
+/* ===== 24k. CARTE DE CHOIX (à l'unité ou en illimité) ===== */
+.card--choice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-8) var(--sp-6);
+  position: relative;
+  transition: transform .3s cubic-bezier(.22,.61,.36,1), box-shadow .3s ease;
+  border: 2px solid var(--border);
+}
+.card--choice:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sh-3);
+  border-color: var(--blue-200);
+}
+.card--choice.card--featured {
+  border-color: var(--blue-600);
+  border-width: 2.5px;
+  box-shadow: 0 12px 32px rgba(37,99,235,.18);
+}
+.card--choice.card--featured:hover {
+  border-color: var(--blue-700);
+  box-shadow: 0 16px 40px rgba(37,99,235,.25);
+  transform: translateY(-6px);
+}
+.card--choice__ribbon {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, var(--blue-600), var(--blue-900));
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: var(--r-pill);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(37,99,235,.35);
+}
+.card--choice__icon {
+  font-size: 2.4rem;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.card--choice h3 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0;
+}
+.card--choice > p {
+  font-size: 1.05rem;
+  color: var(--body);
+  line-height: 1.5;
+  margin: 0;
+}
+.card--choice__list {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card--choice__list li {
+  padding-left: 26px;
+  position: relative;
+  font-size: .95rem;
+  color: var(--body);
+  line-height: 1.45;
+}
+.card--choice__list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0; top: 0;
+  width: 18px; height: 18px;
+  background: var(--emerald-bg);
+  color: var(--emerald);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: .82rem;
+}
+.card--choice .btn {
+  margin-top: auto;
+}
+
 /* ===== 24h. BLOC "TU PRÉFÈRES ACHETER À L'UNITÉ ?" ===== */
 .unit-alt-block {
   margin-top: var(--sp-10);
