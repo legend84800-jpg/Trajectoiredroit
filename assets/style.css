@@ -1430,17 +1430,18 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 
 .edu-badge {
   position: absolute;
-  bottom: -14px;
-  right: 16px;
-  background: var(--amber);
-  color: #78350F;
-  padding: 8px 16px;
+  top: 14px;
+  left: 14px;
+  background: linear-gradient(135deg, var(--emerald), #059669);
+  color: #FFFFFF;
+  padding: 9px 16px;
   border-radius: var(--r-pill);
   font-weight: 700;
-  font-size: .82rem;
-  box-shadow: 0 8px 20px rgba(245, 158, 11, .4);
-  z-index: 2;
+  font-size: .85rem;
+  box-shadow: 0 6px 18px rgba(16, 185, 129, .45), 0 0 0 2px rgba(255,255,255,.9);
+  z-index: 3;
   animation: floatBadge 4s ease-in-out infinite;
+  white-space: nowrap;
 }
 
 @media (max-width: 600px) {
