@@ -388,7 +388,7 @@
             <ul class="card--choice__list">
               <li>Achat unique, accès à vie</li>
               <li>Idéal pour une matière précise</li>
-              <li>Dès 19 € la matière</li>
+              <li>Mises à jour incluses chaque année</li>
             </ul>
             <a class="btn btn--outline btn--lg btn--full" href="formations.html">Voir le catalogue à l'unité →</a>
           </article>
@@ -412,14 +412,14 @@
     </section>
 
     <!-- ============================================================
-         4. PRICING SUR LA HOME + PRODUITS (fusion F4 + F5) — REMONTÉ AVANT CALCULATRICE
+         4. PRICING SUR LA HOME + PRODUITS (fusion F4 + F5)
          ============================================================ -->
     <section class="section">
       <div class="container">
         <div class="container--narrow text-center" style="margin-bottom:32px">
           <span class="eyebrow">Tarifs</span>
-          <h2 class="h2" style="margin-top:12px">Choisis ta formule</h2>
-          <p class="lead">Tous les plans incluent les 5 étapes du parcours et la garantie 30 jours.</p>
+          <h2 class="h2" style="margin-top:12px">Choisis ta formule d'accès illimité</h2>
+          <p class="lead">Tous les plans incluent les 5 étapes, sur toutes les matières, sans limite. Garantie 30 jours.</p>
         </div>
 
         <div class="pricing-grid">
@@ -434,10 +434,10 @@
               <p style="font-size:.9rem; color:var(--muted); margin-top:6px">Sans engagement</p>
             </div>
             <ul class="pricing__list">
-              <li>Accès illimité à toutes les vidéos</li>
-              <li>Toutes les fiches d'arrêt</li>
-              <li>Toutes les cartes mentales</li>
-              <li>Annulable en 1 clic</li>
+              <li>Accès illimité aux 5 étapes</li>
+              <li>Toutes les matières débloquées</li>
+              <li>Sans engagement, annulable en 1 clic</li>
+              <li>Idéal avant un partiel ou un rattrapage</li>
             </ul>
             <a class="btn btn--outline btn--full" href="abonnement.html">Démarrer l'essai gratuit</a>
           </article>
@@ -445,6 +445,7 @@
           <article class="card card--pricing card--featured fade-in fade-in--delay-1">
             <div>
               <div class="pricing__name">Semestriel</div>
+              <p style="font-size:.85rem; color:var(--blue-700); font-weight:600; font-style:italic; margin-top:4px">Pour réussir un semestre.</p>
               <div style="display:flex; align-items:baseline; gap:6px; margin-top:8px">
                 <span class="pricing__price">89 €</span>
                 <span class="pricing__period">/6 mois</span>
@@ -463,6 +464,7 @@
           <article class="card card--pricing fade-in fade-in--delay-2">
             <div>
               <div class="pricing__name">Annuel <span class="badge badge--success" style="margin-left:6px">-35 %</span></div>
+              <p style="font-size:.85rem; color:var(--success); font-weight:600; font-style:italic; margin-top:4px">Pour viser la mention.</p>
               <div style="display:flex; align-items:baseline; gap:6px; margin-top:8px">
                 <span class="pricing__price">149 €</span>
                 <span class="pricing__period">/an</span>
@@ -471,7 +473,8 @@
             </div>
             <ul class="pricing__list">
               <li>Tout le semestriel</li>
-              <li>Idéal pour <strong>réussir toute ton année</strong></li>
+              <li>Accès complet toute l'année universitaire</li>
+              <li>Semestre 1 + Semestre 2</li>
               <li>Économies <strong>79 €</strong> vs mensuel</li>
               <li>Le meilleur rapport qualité/prix</li>
             </ul>
@@ -486,54 +489,26 @@
     </section>
 
     <!-- ============================================================
-         5. CALCULATRICE INTERACTIVE — placée après le pricing
-         ============================================================ -->
-    <section class="section section--blue">
-      <div class="container container--narrow text-center">
-        <span class="eyebrow">Combien tu vas économiser</span>
-        <h2 class="h2" style="margin-top:12px">Calcule ton gain de temps</h2>
-        <p class="lead">Combien d'arrêts clés dois-tu réviser ce semestre ?</p>
-
-        <div class="card" data-calc style="margin-top:24px; text-align:left">
-          <label for="arretsSlider" style="display:block; font-weight:600; margin-bottom:12px">Nombre d'arrêts à réviser : <strong data-calc-count style="color:var(--blue-700)">15</strong></label>
-          <input id="arretsSlider" type="range" min="5" max="50" value="15" step="1" style="width:100%; accent-color:var(--blue-600)" oninput="document.querySelector('[data-calc-count]').textContent=this.value">
-          <div class="grid-2" style="margin-top:24px; gap:16px">
-            <div style="background:var(--blue-50); padding:20px; border-radius:12px; text-align:center">
-              <div style="font-size:.85rem; color:var(--body); margin-bottom:4px">Temps économisé</div>
-              <div data-calc-hours style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--blue-700)">22 h</div>
-              <div style="font-size:.85rem; color:var(--muted)">vs lecture du manuel</div>
-            </div>
-            <div style="background:var(--success-bg); padding:20px; border-radius:12px; text-align:center">
-              <div style="font-size:.85rem; color:#065F46; margin-bottom:4px">Valeur équivalente</div>
-              <div data-calc-money style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:#065F46">90 €</div>
-              <div style="font-size:.85rem; color:#065F46">en cours particuliers</div>
-            </div>
-          </div>
-        </div>
-        <p class="text-muted" style="font-size:.88rem; margin-top:16px">1 arrêt = 1 h 30 économisée vs lecture passive (estimation médiane).</p>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         6. AVANT/APRÈS + TÉMOIGNAGES (fusion F15)
+         5. AVANT/APRÈS + TÉMOIGNAGES (fusion F15)
          ============================================================ -->
     <section class="section section--alt">
       <div class="container">
         <div class="container--narrow text-center" style="margin-bottom:32px">
-          <span class="eyebrow">La transformation</span>
-          <h2 class="h2" style="margin-top:12px">Avant TrajectoireDroit · Après TrajectoireDroit</h2>
+          <span class="eyebrow">Ce qui change</span>
+          <h2 class="h2" style="margin-top:12px">À quoi ton année ressemble. Avant et après.</h2>
         </div>
 
         <div class="pain-gain-table">
           <div class="pain-gain-col pain-gain-col--pain">
             <div class="pain-gain-col__title">😩 Sans TrajectoireDroit</div>
             <ul>
-              <li>40 h passives à lire un poly de 400 pages</li>
-              <li>Tu paniques devant un arrêt incompréhensible</li>
-              <li>2 h pour trouver un plan de dissertation</li>
-              <li>Ton prof survole la méthode</li>
-              <li>Tu rachètes 6 manuels que tu n'ouvres pas</li>
-              <li>Stress max la veille des partiels</li>
+              <li>40 h passives à lire des cours flous de 130 pages</li>
+              <li>Tu paniques devant un arrêt difficile</li>
+              <li>Tu ne comprends rien à la méthode des exercices de droit car le chargé de TD lui-même ne la comprend pas</li>
+              <li>250 € de manuels Dalloz indigestes que tu n'ouvres pas</li>
+              <li>Tu détestes ouvrir tes cours</li>
+              <li>Tu passes ton année en partiel avec la boule au ventre</li>
+              <li>Tu as l'impression que ta licence te bouffe ta vie</li>
             </ul>
           </div>
           <div class="pain-gain-arrow" aria-hidden="true">→</div>
@@ -541,11 +516,12 @@
             <div class="pain-gain-col__title">🚀 Avec TrajectoireDroit</div>
             <ul>
               <li>3 h actives sur les fiches synthétisées</li>
-              <li>Arrêts décortiqués en 5 cases : prêts à coller dans tes copies</li>
-              <li>Plan trouvé en 10 min grâce aux plan-types</li>
-              <li>La méthode complète, expliquée comme à un cours particulier</li>
-              <li>19 €/mois pour TOUT (vs 250 € de manuels)</li>
-              <li>Tu entres serein, pas paniqué</li>
+              <li>Tu dépasses les 15/20 avec la méthode du commentaire décortiqué</li>
+              <li>Tu accèdes aux méthodes les plus claires et complètes en vidéo, enrichies chaque semaine</li>
+              <li>19 €/mois, accès complet à toutes les matières et méthodes, à jour</li>
+              <li>Tu commences à prendre du plaisir à comprendre</li>
+              <li>Tu entres en partiel en sachant exactement quoi faire</li>
+              <li>Tu améliores tes notes et ta vie sociale</li>
             </ul>
           </div>
         </div>
@@ -594,7 +570,7 @@
     </section>
 
     <!-- ============================================================
-         7. COMPARAISON vs ALTERNATIVES (F6)
+         6. COMPARAISON vs ALTERNATIVES (F6)
          ============================================================ -->
     <section class="section">
       <div class="container">
@@ -671,7 +647,7 @@
     </section>
 
     <!-- ============================================================
-         8. CLÔTURE — Garantie + FAQ courte + CTA + Newsletter (F11)
+         7. CLÔTURE — Garantie + FAQ courte + CTA + Newsletter (F11)
          ============================================================ -->
     <section class="section section--dark">
       <div class="container container--narrow">
