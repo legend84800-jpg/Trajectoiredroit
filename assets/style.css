@@ -1241,6 +1241,10 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   aspect-ratio: auto !important;
   padding: 0 !important;
   position: relative;
+  margin-top: 64px; /* la fiche reste à sa position normale, seul le texte est collé au header */
+}
+@media (max-width: 980px) {
+  .hero__fiche { margin-top: 0; }
 }
 .fiche-preview {
   background: var(--white);
