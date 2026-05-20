@@ -21,31 +21,6 @@
     <div class="site-header__inner container">
       <a class="logo" href="index.html" aria-label="TrajectoireDroit — La nouvelle école du droit"><img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38"></a>
       <nav class="primary-nav" aria-label="Navigation principale">
-
-        <!-- Item : Abonnement (dropdown simple) -->
-        <div class="nav-item has-dropdown">
-          <a href="abonnement.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
-            Abonnement
-            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <div class="dropdown dropdown--simple" role="menu">
-            <a class="dropdown__item" href="abonnement.html#pricing" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--blue">📅</span>
-              <span><strong>Mensuel</strong><small>19 €/mois · sans engagement</small></span>
-            </a>
-            <a class="dropdown__item dropdown__item--featured" href="abonnement.html#pricing" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--violet">⭐</span>
-              <span><strong>Semestriel <em>· populaire</em></strong><small>89 €/6 mois · économise 25 €</small></span>
-            </a>
-            <a class="dropdown__item" href="abonnement.html#pricing" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--emerald">🏆</span>
-              <span><strong>Annuel</strong><small>149 €/an · économise 79 €</small></span>
-            </a>
-            <div class="dropdown__divider"></div>
-            <a class="dropdown__cta" href="abonnement.html">Comparer toutes les formules →</a>
-          </div>
-        </div>
-
         <!-- Item : Cours & Fiches (mega-menu 3 colonnes) -->
         <div class="nav-item has-dropdown has-megamenu">
           <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false" aria-current="page">
@@ -73,25 +48,6 @@
                 </ul>
                 <a class="megamenu__col-link" href="formations.html">Voir tout le catalogue →</a>
               </div>
-              <!-- Colonne 2 : Fiches d'arrêt -->
-              <div class="megamenu__col">
-                <div class="megamenu__col-head">
-                  <span class="megamenu__col-icon megamenu__col-icon--violet">✨</span>
-                  <div>
-                    <div class="megamenu__col-title">Fiches synthèse</div>
-                    <div class="megamenu__col-sub">500+ arrêts décortiqués</div>
-                  </div>
-                </div>
-                <ul class="megamenu__list" role="none">
-                  <li><a href="fiche-arrets.html" role="menuitem">Pack 50 arrêts · Civil L1-L2</a></li>
-                  <li><a href="fiche-arrets.html" role="menuitem">Pack 30 arrêts · Pénal</a></li>
-                  <li><a href="fiche-arrets.html" role="menuitem">Pack 40 arrêts · Admin</a></li>
-                  <li><a href="fiche-arrets.html" role="menuitem">Pack QPC &amp; constit</a></li>
-                  <li><a href="fiche-arrets.html" role="menuitem">Pack 60 arrêts · Obligations</a></li>
-                  <li><a href="fiche-arrets.html" role="menuitem"><strong>Méga-pack 500 arrêts</strong></a></li>
-                </ul>
-                <a class="megamenu__col-link" href="fiche-arrets.html">Voir toutes les fiches →</a>
-              </div>
               <!-- Colonne 3 : Cartes mentales -->
               <div class="megamenu__col">
                 <div class="megamenu__col-head">
@@ -110,17 +66,6 @@
                   <li><a href="cartes-mentales.html" role="menuitem"><strong>Méga-pack 80 cartes</strong></a></li>
                 </ul>
                 <a class="megamenu__col-link" href="cartes-mentales.html">Voir toutes les cartes →</a>
-              </div>
-            </div>
-            <!-- Footer mega-menu avec CTA bundles -->
-            <div class="megamenu__footer">
-              <div>
-                <strong>Tu veux tout d'un coup ?</strong>
-                <span>L'abonnement inclut cours + fiches + cartes mentales pour 19 €/mois.</span>
-              </div>
-              <div style="display:flex; gap:8px; flex-wrap:wrap">
-                <a class="btn btn--outline btn--sm" href="bundles.html">Packs &amp; Bundles</a>
-                <a class="btn btn--primary btn--sm" href="abonnement.html">Essai gratuit 7 j →</a>
               </div>
             </div>
           </div>
@@ -180,15 +125,15 @@
 
       </nav>
       <div class="site-header__cta">
-                <a class="btn btn--primary btn--sm" href="abonnement.html">Essai gratuit 7 j</a>
+                <a class="btn btn--primary btn--sm" href="formations.html">Voir le catalogue</a>
         <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
       </div>
     </div>
   </header>
   <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
-    <a href="formations.html">Formations</a><a href="abonnement.html">Abonnement</a>
-    <a href="fiche-arrets.html">Fiches d'arrêt</a><a href="cartes-mentales.html">Cartes mentales</a>
-    <a href="bundles.html">Packs &amp; Bundles</a><a href="cours-particuliers.html">Cours particuliers</a>
+    <a href="formations.html">Formations</a>
+    <a href="cartes-mentales.html">Cartes mentales</a>
+    <a href="cours-particuliers.html">Cours particuliers</a>
     <a href="temoignages.html">Témoignages</a><a href="a-propos.html">À propos</a>
     <a href="faq.html">FAQ</a>
   </nav>
@@ -307,7 +252,7 @@
       <div class="container container--narrow text-center">
         <h2 class="h2">💎 Inclus dans l'abonnement</h2>
         <p class="lead">Les 80+ cartes mentales sont incluses dans l'abonnement à 19 €/mois. Plus rentable si tu en veux 2 ou plus.</p>
-        <a class="btn btn--primary btn--lg" href="abonnement.html">Démarrer mon essai gratuit →</a>
+        <a class="btn btn--primary btn--lg" href="formations.html">Voir le catalogue →</a>
       </div>
     </section>
   </main>
@@ -320,7 +265,7 @@
           <p>La méthode #1 pour réussir vos études de droit. Vidéos, fiches d'arrêt et cartes mentales — éprouvées par 2100+ étudiants.</p>
           <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)">🎓 Site personnel de Julien, diplômé d'un Master II de droit pénal — Université Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
         </div>
-        <div><h4>Produits</h4><a href="formations.html">Formations vidéo</a><a href="abonnement.html">Abonnement illimité</a><a href="fiche-arrets.html">Fiches d'arrêt</a><a href="cartes-mentales.html">Cartes mentales</a><a href="cours-particuliers.html">Cours particuliers</a></div>
+        <div><h4>Produits</h4><a href="formations.html">Formations vidéo</a><a href="cartes-mentales.html">Cartes mentales</a><a href="cours-particuliers.html">Cours particuliers</a></div>
         <div><h4>Ressources</h4><a href="temoignages.html">Témoignages</a><a href="faq.html">FAQ</a><a href="a-propos.html">À propos</a></div>
         <div><h4>Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
         <div>
