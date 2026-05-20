@@ -1010,6 +1010,9 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .site-footer a:hover { color: var(--white) }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1.4fr; gap: var(--sp-8) }
 .footer-brand p { color: rgba(255,255,255,.65); font-size: .92rem; margin-top: var(--sp-3) }
+.footer-legal-mini h4 { font-size: .78rem; color: rgba(255,255,255,.5); margin-bottom: var(--sp-2); letter-spacing: .06em }
+.footer-legal-mini a { font-size: .8rem; color: rgba(255,255,255,.45); padding: 2px 0 }
+.footer-legal-mini a:hover { color: rgba(255,255,255,.75) }
 .footer-bottom {
   margin-top: var(--sp-10); padding-top: var(--sp-5);
   border-top: 1px solid rgba(255,255,255,.12);
