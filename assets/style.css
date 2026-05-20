@@ -518,7 +518,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
   box-shadow: 0 24px 60px rgba(15, 26, 53, .2), 0 0 0 1px rgba(0,0,0,.04);
-  width: min(900px, 92vw);
+  width: min(640px, 92vw);
   padding: 24px;
   opacity: 0;
   visibility: hidden;
@@ -552,7 +552,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 }
 .megamenu__cols {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
 .megamenu__col {
