@@ -1,2 +1,27 @@
+# ─── Secrets (CRITIQUE — ne JAMAIS commiter de clé API) ──
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets/
+
+# ─── macOS ──────────────────────────────────
 .DS_Store
+._*
+
+# ─── Editeurs ───────────────────────────────
+.vscode/
+.idea/
 *.code-workspace
+*.swp
+
+# ─── Logs ───────────────────────────────────
+*.log
+npm-debug.log*
+
+# ─── Build / Dépendances ────────────────────
+node_modules/
+dist/
+build/
+.cache/
