@@ -224,6 +224,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 
 /* Card produit (avec illustrations vectorielles) */
 .card--product { padding: 0; overflow: hidden; display: flex; flex-direction: column }
+.card--product[hidden] { display: none !important } /* filtres : masquer réellement */
 .card--product .product__thumb {
   aspect-ratio: 16/9; background: var(--slate-100);
   position: relative; overflow: hidden;
