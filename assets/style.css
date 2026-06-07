@@ -233,13 +233,15 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .card--product .product__thumb img { width: 100%; height: 100%; object-fit: cover }
 .card--product .product__thumb .badge { position: absolute; top: 12px; left: 12px; z-index: 2 }
 /* Illustration vectorielle au centre du thumbnail */
-.card--product .product__thumb::after {
+.card--product .product__thumb:not(.has-cover)::after {
   content: "📚";
   font-size: 3.5rem;
   opacity: .15;
   position: absolute;
   z-index: 1;
 }
+/* Carte avec vraie couverture : pas d'emoji de fond */
+.card--product .product__thumb.has-cover::after { content: none; }
 .card--product:hover .product__thumb::after {
   opacity: .25;
   transform: scale(1.1);
