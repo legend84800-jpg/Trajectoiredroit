@@ -19,53 +19,55 @@
 
   <header class="site-header" role="banner">
     <div class="site-header__inner container">
-      <a class="logo" href="index.html" aria-label="TrajectoireDroit — La nouvelle école du droit"><img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+      <a class="logo" href="index.html" aria-label="TrajectoireDroit — La nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
       <nav class="primary-nav" aria-label="Navigation principale">
-        <!-- Item : Cours & Fiches (mega-menu 3 colonnes) -->
+        <!-- Item : Cours complets (mega-menu 2 colonnes) -->
         <div class="nav-item has-dropdown has-megamenu">
           <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
-            Cours &amp; Fiches
+            Cours complets
             <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <div class="megamenu" role="menu">
             <div class="megamenu__cols">
-              <!-- Colonne 1 : Cours complets -->
+              <!-- Colonne 1 : Cours complets droit -->
               <div class="megamenu__col">
                 <div class="megamenu__col-head">
                   <span class="megamenu__col-icon megamenu__col-icon--blue">📚</span>
                   <div>
-                    <div class="megamenu__col-title">Cours complets</div>
-                    <div class="megamenu__col-sub">Toute la matière, expliquée</div>
+                    <div class="megamenu__col-title">Cours complets · Droit</div>
+                    <div class="megamenu__col-sub">Toute la matière, fiche par fiche</div>
                   </div>
                 </div>
                 <ul class="megamenu__list" role="none">
-                  <li><a href="formations.html" role="menuitem">Méthodologie générale</a></li>
-                  <li><a href="formations.html" role="menuitem">Droit civil L1 → M2</a></li>
-                  <li><a href="formations.html" role="menuitem">Droit pénal</a></li>
-                  <li><a href="formations.html" role="menuitem">Droit administratif</a></li>
-                  <li><a href="formations.html" role="menuitem">Droit constitutionnel</a></li>
-                  <li><a href="formations.html" role="menuitem">Philosophie</a></li>
+                  <li><a href="formations.html" role="menuitem">Droit constitutionnel L1</a></li>
+                  <li><a href="formations.html" role="menuitem">Introduction au droit L1</a></li>
+                  <li><a href="formations.html" role="menuitem">Droit des personnes L1</a></li>
+                  <li><a href="formations.html" role="menuitem">Droit des contrats L2</a></li>
+                  <li><a href="formations.html" role="menuitem">Droit administratif L2</a></li>
+                  <li><a href="formations.html" role="menuitem">Droit pénal L2</a></li>
                 </ul>
-                <a class="megamenu__col-link" href="formations.html">Voir tout le catalogue →</a>
+                <a class="megamenu__col-link" href="formations.html">Voir toutes les matières →</a>
               </div>
-              <!-- Colonne 3 : Cartes mentales -->
+              <!-- Colonne 2 : Majeures préparées -->
               <div class="megamenu__col">
                 <div class="megamenu__col-head">
-                  <span class="megamenu__col-icon megamenu__col-icon--emerald">🧠</span>
+                  <span class="megamenu__col-icon megamenu__col-icon--emerald">⚡</span>
                   <div>
-                    <div class="megamenu__col-title">Cartes mentales</div>
-                    <div class="megamenu__col-sub">Visualise les liens</div>
+                    <div class="megamenu__col-title">Majeures préparées</div>
+                    <div class="megamenu__col-sub">Les règles de droit prêtes pour l'examen</div>
                   </div>
                 </div>
                 <ul class="megamenu__list" role="none">
-                  <li><a href="cartes-mentales.html" role="menuitem">Pack 20 cartes · Civil L1</a></li>
-                  <li><a href="cartes-mentales.html" role="menuitem">Pack 15 cartes · Pénal</a></li>
-                  <li><a href="cartes-mentales.html" role="menuitem">Pack 12 cartes · Constit</a></li>
-                  <li><a href="cartes-mentales.html" role="menuitem">Pack 18 cartes · Admin</a></li>
-                  <li><a href="cartes-mentales.html" role="menuitem">Pack 10 cartes · Philo</a></li>
-                  <li><a href="cartes-mentales.html" role="menuitem"><strong>Méga-pack 80 cartes</strong></a></li>
+                  <li><a href="formations.html#majeures" role="menuitem">Droit des contrats</a></li>
+                  <li><a href="formations.html#majeures" role="menuitem">Droit administratif</a></li>
+                  <li><a href="formations.html#majeures" role="menuitem">Droit pénal</a></li>
+                  <li><a href="formations.html#majeures" role="menuitem">Droit de la famille</a></li>
+                  <li><a href="formations.html#majeures" role="menuitem">Droit des obligations</a></li>
+                  <li><a href="formations.html#majeures" role="menuitem">Droit des personnes</a></li>
                 </ul>
-                <a class="megamenu__col-link" href="cartes-mentales.html">Voir toutes les cartes →</a>
+                <a class="megamenu__col-link" href="formations.html#majeures">Voir toutes les majeures →</a>
               </div>
             </div>
           </div>
@@ -79,16 +81,17 @@
           </a>
           <div class="dropdown dropdown--simple" role="menu">
             <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--blue">🎯</span>
-              <span><strong>1 séance</strong><small>89 €/h · idéal pour tester</small></span>
-            </a>
-            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--violet">⭐</span>
-              <span><strong>Pack 5 séances <em>· -10 %</em></strong><small>400 € · 80 €/h</small></span>
+              <span class="dropdown__icon dropdown__icon--blue">⚖️</span>
+              <span><strong>Droit</strong><small>L1 → M2 · toutes matières</small></span>
             </a>
             <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--emerald">🏆</span>
-              <span><strong>Pack 10 séances <em>· -15 %</em></strong><small>757 € · 75,70 €/h</small></span>
+              <span class="dropdown__icon dropdown__icon--violet">🧠</span>
+              <span><strong>Philosophie</strong><small>Lycée · Terminale · Prépa</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald">⭐</span>
+              <span><strong>Pack 5 séances <em>· -10 %</em></strong><small>400 € · 80 €/h</small></span>
             </a>
             <div class="dropdown__divider"></div>
             <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
@@ -97,7 +100,7 @@
 
         <!-- Item : À propos (dropdown simple) -->
         <div class="nav-item has-dropdown">
-          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false" aria-current="page">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
             À propos
             <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -125,17 +128,21 @@
 
       </nav>
       <div class="site-header__cta">
-                <a class="btn btn--primary btn--sm" href="formations.html">Voir le catalogue</a>
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les cours</a>
         <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
       </div>
     </div>
   </header>
   <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
-    <a href="formations.html">Formations</a>
-    <a href="cartes-mentales.html">Cartes mentales</a>
+    <a href="formations.html">Cours complets</a>
+    <a href="formations.html#majeures">Majeures préparées</a>
     <a href="cours-particuliers.html">Cours particuliers</a>
-    <a href="temoignages.html">Témoignages</a><a href="a-propos.html">À propos</a>
+    <a href="temoignages.html">Témoignages</a>
+    <a href="a-propos.html">À propos</a>
     <a href="faq.html">FAQ</a>
+    <div style="margin-top:24px; display:flex; gap:12px; flex-direction:column">
+      <a class="btn btn--primary btn--full" href="formations.html">Voir les cours</a>
+    </div>
   </nav>
 
   <main>
