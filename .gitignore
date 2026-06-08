@@ -25,3 +25,8 @@ node_modules/
 dist/
 build/
 .cache/
+
+# ─── Config Impeccable (skill design, local uniquement) ──
+PRODUCT.md
+DESIGN.md
+.impeccable/
