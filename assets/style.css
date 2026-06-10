@@ -720,7 +720,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   z-index: -1;
 }
 .hero__grid {
-  display: grid; grid-template-columns: 1.1fr .9fr; gap: var(--sp-12); align-items: center;
+  display: grid; grid-template-columns: 1fr 1.05fr; gap: var(--sp-12); align-items: center;
 }
 /* Colonne texte alignée en haut (au header), la fiche reste centrée verticalement */
 .hero__grid > .fade-in:not(.hero__visual) {
