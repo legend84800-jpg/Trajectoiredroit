@@ -1285,6 +1285,8 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   border-radius: var(--r-md);
   margin-top: 8px;
 }
+/* L'aperçu de fiche doit s'afficher en entier, sans rognage (annule le object-fit:cover de .hero__visual img) */
+.hero__visual .fiche-preview__img { height: auto; object-fit: contain; }
 .fiche-preview__fallback {
   display: none; /* affiché si onerror sur l'image */
   flex-direction: column;
