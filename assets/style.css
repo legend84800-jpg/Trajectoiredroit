@@ -1283,15 +1283,15 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   overflow: hidden;
   aspect-ratio: 1 / 1;        /* cadre l'apercu sur le haut de la fiche : titre, texte et schema */
 }
-.fiche-preview__img {
-  display: block;
+.fiche-preview__img { display: block; border-radius: 0; }
+/* zoom sur le haut de la fiche : on force les dimensions ici pour battre .hero__visual img et le reset max-width:100% */
+.hero__visual .fiche-preview__img {
   width: 112%;                /* leger zoom pour mieux lire le contenu */
   height: auto;
+  max-width: none;
   margin-left: -6%;           /* recentre le zoom horizontalement */
-  border-radius: 0;
+  object-fit: contain;
 }
-/* on montre le haut de la fiche en plus grand, le pied de page est rogne par le viewport */
-.hero__visual .fiche-preview__img { object-fit: contain; }
 .fiche-preview__fallback {
   display: none; /* affiché si onerror sur l'image */
   flex-direction: column;
