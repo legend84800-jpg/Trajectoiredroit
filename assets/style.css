@@ -1207,10 +1207,8 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 
 /* ===== 23. FILTER CHIPS ===== */
 .filters {
-  position: sticky; top: var(--header-h); z-index: 30;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  position: static; z-index: 30;
+  background: var(--white);
   padding: var(--sp-3) 0;
   border-bottom: 1px solid var(--border);
 }
@@ -1279,15 +1277,21 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   font-family: var(--font-body);
   z-index: 2;
 }
+.fiche-preview__viewport {
+  margin-top: 8px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;        /* cadre l'apercu sur le haut de la fiche : titre, texte et schema */
+}
 .fiche-preview__img {
   display: block;
-  width: 100%;
+  width: 112%;                /* leger zoom pour mieux lire le contenu */
   height: auto;
-  border-radius: var(--r-md);
-  margin-top: 8px;
+  margin-left: -6%;           /* recentre le zoom horizontalement */
+  border-radius: 0;
 }
-/* L'aperçu de fiche doit s'afficher en entier, sans rognage (annule le object-fit:cover de .hero__visual img) */
-.hero__visual .fiche-preview__img { height: auto; object-fit: contain; }
+/* on montre le haut de la fiche en plus grand, le pied de page est rogne par le viewport */
+.hero__visual .fiche-preview__img { object-fit: contain; }
 .fiche-preview__fallback {
   display: none; /* affiché si onerror sur l'image */
   flex-direction: column;
