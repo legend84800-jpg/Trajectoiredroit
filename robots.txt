@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /assets/partials/
+Disallow: /brouillons/
 
 Sitemap: https://trajectoiredroit.com/sitemap.xml
