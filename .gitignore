@@ -30,3 +30,6 @@ build/
 PRODUCT.md
 DESIGN.md
 .impeccable/
+
+# Serveur de preview local (chemin machine, non versionné)
+preview-server.js
