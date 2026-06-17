@@ -15,7 +15,7 @@ Tu peux ajouter, retirer ou réordonner les lignes quand tu veux, depuis ton Mac
 
 ---
 
-- [ ] type:arret | matiere:droit administratif L2 | sujet:l'arrêt Nicolo (CE 1989) et le contrôle de la loi face au traité par le juge administratif
+- [x] type:arret | matiere:droit administratif L2 | sujet:l'arrêt Nicolo (CE 1989) et le contrôle de la loi face au traité par le juge administratif
 - [ ] type:arret | matiere:droit administratif L2 | sujet:l'arrêt Dame Lamotte (CE 1950) et le recours pour excès de pouvoir comme principe général du droit
 - [ ] type:notion | matiere:droit administratif L2 | sujet:la notion de service public, ses critères et l'enjeu de la qualification
 - [ ] type:arret | matiere:droit constitutionnel L1 | sujet:la décision Liberté d'association (CC, 16 juillet 1971) et la valeur constitutionnelle du préambule
