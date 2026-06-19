@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1A2851">
+  <title>Stage de méthode en droit, en direct (5 séances) · TrajectoireDroit</title>
+  <meta name="description" content="Un stage de méthode en droit, en direct. Cinq séances pour maîtriser la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation. Session de fin septembre, places limitées.">
+  <link rel="canonical" href="https://trajectoiredroit.com/stage-methode.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Stage de méthode en droit, en direct · TrajectoireDroit">
+  <meta property="og:description" content="Cinq séances en direct pour maîtriser les quatre exercices du droit : fiche d'arrêt, commentaire d'arrêt, cas pratique, dissertation. Session de fin septembre, 40 places.">
+  <meta property="og:url" content="https://trajectoiredroit.com/stage-methode.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Course",
+        "name": "Stage de méthode en droit, en direct",
+        "description": "Un stage de méthode juridique en direct, en cinq séances. La fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, repris un par un avec un professeur de droit.",
+        "inLanguage": "fr-FR",
+        "provider": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com"
+        },
+        "hasCourseInstance": {
+          "@type": "CourseInstance",
+          "courseMode": "online",
+          "courseWorkload": "PT10H",
+          "instructor": {
+            "@type": "Person",
+            "name": "Julien",
+            "jobTitle": "Professeur de droit",
+            "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+            "url": "https://trajectoiredroit.com/a-propos.html"
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "149",
+          "priceCurrency": "EUR",
+          "category": "Stage de révision",
+          "availability": "https://schema.org/LimitedAvailability",
+          "url": "https://trajectoiredroit.com/stage-methode.html"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://trajectoiredroit.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Stage de méthode", "item": "https://trajectoiredroit.com/stage-methode.html" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Le stage est en ligne ou en présentiel ?", "acceptedAnswer": { "@type": "Answer", "text": "En ligne, en visio, en direct. Tu suis depuis chez toi, où que tu sois, et tu poses tes questions pendant la séance." } },
+          { "@type": "Question", "name": "C'est pour quel niveau ?", "acceptedAnswer": { "@type": "Answer", "text": "De la L1 au M1. La méthode des exercices est la même tout au long de la licence, donc le stage te sert quelle que soit ton année." } },
+          { "@type": "Question", "name": "Et si je rate une séance ?", "acceptedAnswer": { "@type": "Answer", "text": "Tu as le replay de chaque séance. Tu la rattrapes quand tu veux et tu gardes l'accès pour réviser avant tes partiels." } },
+          { "@type": "Question", "name": "Et si le stage n'a pas lieu ?", "acceptedAnswer": { "@type": "Answer", "text": "Tu es remboursé en entier. C'est une pré-vente pour la session de fin septembre. Si le groupe ne se remplit pas, je te rends ton argent sans discuter." } },
+          { "@type": "Question", "name": "Faut-il déjà avoir des bases solides ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. On part de la méthode depuis le début, depuis la lecture d'un arrêt. Que tu débutes ou que tu veuilles corriger ce qui ne va pas dans ta méthode, tu suis sans problème." } }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF');
+  </script>
+
+  <style>
+    /* ===== Stage de méthode : styles locaux (sur la charte TJD) ===== */
+    .stage-hero { padding: clamp(40px, 6vw, 80px) 0 clamp(28px, 4vw, 48px); position: relative; overflow: hidden; }
+    .stage-hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background: radial-gradient(ellipse 55% 45% at 82% 12%, var(--blue-50), transparent 62%),
+                  radial-gradient(ellipse 42% 34% at 2% 88%, var(--gold-bg), transparent 60%);
+    }
+    .stage-hero__grid { display: grid; grid-template-columns: 1.04fr .96fr; gap: clamp(28px, 4vw, 56px); align-items: center; }
+    @media (max-width: 980px) { .stage-hero__grid { grid-template-columns: 1fr; gap: 32px; } }
+
+    /* Le "pass" du stage : objet désirable dans le hero */
+    .pass {
+      position: relative;
+      background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+      border-radius: var(--r-xl);
+      padding: 26px 26px 22px;
+      color: #fff;
+      box-shadow: 0 28px 60px rgba(15,26,53,.30), 0 0 0 1px rgba(201,169,97,.20);
+      overflow: hidden;
+    }
+    .pass::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--gold-line), var(--accent-soft), var(--gold-line)); }
+    .pass__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+    .pass__live { display: inline-flex; align-items: center; gap: 7px; font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-line); }
+    .pass__live i { width: 8px; height: 8px; border-radius: 50%; background: #ff5470; box-shadow: 0 0 0 0 rgba(255,84,112,.6); animation: passPulse 1.8s infinite; display: inline-block; }
+    @keyframes passPulse { 0% { box-shadow: 0 0 0 0 rgba(255,84,112,.55) } 70% { box-shadow: 0 0 0 8px rgba(255,84,112,0) } 100% { box-shadow: 0 0 0 0 rgba(255,84,112,0) } }
+    .pass__seal { font-size: .72rem; color: rgba(255,255,255,.62); font-family: var(--font-body); text-align: right; }
+    .pass__title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; line-height: 1.15; color: #fff; margin: 0 0 4px; }
+    .pass__sub { font-size: .9rem; color: rgba(255,255,255,.74); margin: 0 0 18px; }
+    .pass__list { list-style: none; padding: 0; margin: 0 0 18px; display: flex; flex-direction: column; }
+    .pass__list li { display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-top: 1px solid rgba(255,255,255,.12); font-size: .92rem; }
+    .pass__list li:first-child { border-top: 0; }
+    .pass__n { font-family: var(--font-display); font-weight: 700; color: var(--gold-line); font-size: .92rem; min-width: 16px; }
+    .pass__list span.ex { color: #fff; font-weight: 600; }
+    .pass__foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; border-top: 1px dashed rgba(255,255,255,.22); }
+    .pass__foot .k { font-size: .72rem; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: .05em; display: block; margin-bottom: 2px; }
+    .pass__foot .v { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: #fff; }
+    .pass__foot .v em { font-style: normal; color: var(--gold-line); }
+
+    /* Programme : timeline numérotée (vraie séquence 1 → 5) */
+    .seances { display: flex; flex-direction: column; gap: 14px; counter-reset: seance; }
+    .seance { display: grid; grid-template-columns: 52px 1fr; gap: 18px; align-items: start; background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 20px 22px; box-shadow: var(--sh-1); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .seance:hover { transform: translateY(-2px); box-shadow: var(--sh-2); border-color: var(--blue-200); }
+    .seance__num { width: 44px; height: 44px; border-radius: var(--r-pill); background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
+    .seance--double .seance__num { background: var(--accent); }
+    .seance__tag { font-size: .76rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .seance h3 { font-size: 1.18rem; margin: 0 0 6px; }
+    .seance p { margin: 0; color: var(--body); font-size: .96rem; line-height: 1.6; }
+    .seance__link { display: inline-block; margin-top: 8px; font-size: .85rem; font-weight: 600; color: var(--blue-700); }
+    .seance__link:hover { color: var(--blue-900); text-decoration: underline; }
+    @media (max-width: 540px) { .seance { grid-template-columns: 1fr; gap: 10px; } .seance__num { width: 38px; height: 38px; font-size: 1rem; } }
+
+    /* Ce que tu sais faire : liste à coches premium */
+    .skills-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; }
+    @media (max-width: 720px) { .skills-list { grid-template-columns: 1fr; } }
+    .skills-list li { display: flex; gap: 12px; align-items: flex-start; color: var(--ink); font-size: 1.02rem; line-height: 1.5; }
+    .skills-list li::before { content: "✓"; flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--blue-50); color: var(--blue-700); font-weight: 700; display: inline-flex; align-items: center; justify-content: center; font-size: .9rem; margin-top: 1px; }
+
+    /* Format : grille de points */
+    .format-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    @media (max-width: 820px) { .format-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 540px) { .format-grid { grid-template-columns: 1fr; } }
+    .format-item { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 22px; }
+    .format-item__ic { font-size: 1.5rem; margin-bottom: 10px; display: block; }
+    .format-item h3 { font-size: 1.05rem; margin: 0 0 6px; }
+    .format-item p { margin: 0; font-size: .92rem; color: var(--body); }
+
+    /* Bloc prof */
+    .prof { display: grid; grid-template-columns: 200px 1fr; gap: 32px; align-items: center; background: var(--white); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 28px; box-shadow: var(--sh-2); }
+    .prof__photo { width: 100%; aspect-ratio: 1/1; border-radius: var(--r-lg); object-fit: cover; box-shadow: var(--sh-2); }
+    @media (max-width: 680px) { .prof { grid-template-columns: 1fr; text-align: center; gap: 20px; } .prof__photo { max-width: 180px; margin: 0 auto; } }
+
+    /* Carte offre */
+    .offer-card { max-width: 560px; margin: 0 auto; background: var(--white); border: 2px solid var(--navy); border-radius: var(--r-xl); padding: clamp(24px, 4vw, 40px); box-shadow: 0 24px 60px rgba(15,26,53,.16); position: relative; }
+    .offer-card__price { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    .offer-card__amount { font-family: var(--font-display); font-size: 3.2rem; font-weight: 700; line-height: 1; color: var(--navy); }
+    .offer-card__per { color: var(--body); font-size: .95rem; }
+    .offer-card__per strong { color: var(--ink); }
+    .offer-list { list-style: none; padding: 0; margin: 22px 0; display: flex; flex-direction: column; gap: 12px; }
+    .offer-list li { display: flex; gap: 12px; align-items: flex-start; color: var(--body); font-size: .98rem; line-height: 1.5; }
+    .offer-list li::before { content: "✓"; color: var(--success); font-weight: 700; flex-shrink: 0; }
+    .offer-scarcity { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-bg); border: 1px solid var(--gold-line); color: #7a5a12; font-weight: 600; font-size: .9rem; padding: 8px 14px; border-radius: var(--r-pill); margin-bottom: 18px; }
+    .offer-note { font-size: .88rem; color: var(--body); margin-top: 16px; line-height: 1.55; }
+  </style>
+</head>
+<body class="has-sticky-cta">
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="index.html" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <div class="nav-item has-dropdown">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            Fiches détaillées
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="formations.html#cours-l1" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue">📘</span>
+              <span><strong>Licence 1</strong><small>Constit, intro droit, personnes, famille</small></span>
+            </a>
+            <a class="dropdown__item" href="formations.html#cours-l2" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald">📗</span>
+              <span><strong>Licence 2</strong><small>Contrats, DA, pénal, biens, obligations</small></span>
+            </a>
+            <a class="dropdown__item" href="formations.html#cours-l3" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--amber">📙</span>
+              <span><strong>Licence 3</strong><small>Commercial, contrats spéciaux, PP</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="formations.html">Voir toutes les matières →</a>
+          </div>
+        </div>
+
+        <div class="nav-item has-dropdown">
+          <a href="formations.html#majeures" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            Majeures préparées
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="formations.html#majeures" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue">📘</span>
+              <span><strong>Licence 1</strong><small>Personnes, famille</small></span>
+            </a>
+            <a class="dropdown__item" href="formations.html#majeures" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald">📗</span>
+              <span><strong>Licence 2</strong><small>Contrats, DA, pénal, obligations, biens</small></span>
+            </a>
+            <a class="dropdown__item" href="formations.html#majeures" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--amber">📙</span>
+              <span><strong>Licence 3</strong><small>Commercial, contrats spéciaux, PP</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="formations.html#majeures">Voir toutes les majeures →</a>
+          </div>
+        </div>
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue">⚖️</span>
+              <span><strong>Droit</strong><small>L1 → M2 · toutes matières</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="stage-methode.html" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald">🎯</span>
+              <span><strong>Stage de méthode <em>· en direct</em></strong><small>5 séances · session de fin septembre</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="blog.html" class="nav-item__link">Blog</a>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue">👨‍🏫</span>
+              <span><strong>Qui suis-je</strong><small>Julien, Master II Assas</small></span>
+            </a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--violet">🧭</span>
+              <span><strong>Notre méthode</strong><small>3 piliers : vidéo + carte + fiche</small></span>
+            </a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald">⭐</span>
+              <span><strong>Témoignages</strong><small>149 avis 5/5 vérifiés</small></span>
+            </a>
+            <a class="dropdown__item" href="faq.html" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--amber">❓</span>
+              <span><strong>FAQ</strong><small>Toutes vos questions</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:contact@trajectoiredroit.com">Nous contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="#reserver">Réserver ma place</a>
+        <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <a href="formations.html#cours-l1">Fiches détaillées · L1</a>
+    <a href="formations.html#cours-l2">Fiches détaillées · L2</a>
+    <a href="formations.html#cours-l3">Fiches détaillées · L3</a>
+    <a href="formations.html#majeures">Majeures préparées</a>
+    <a href="stage-methode.html">Stage de méthode · en direct</a>
+    <a href="cours-particuliers.html">Cours particuliers</a>
+    <a href="blog.html">Blog</a>
+    <a href="temoignages.html">Témoignages</a>
+    <a href="a-propos.html">À propos</a>
+    <div style="margin-top:24px; display:flex; gap:12px; flex-direction:column">
+      <a class="btn btn--primary btn--full" href="#reserver">Réserver ma place · 149 €</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="stage-hero">
+      <div class="container">
+        <div class="stage-hero__grid">
+          <div class="fade-in">
+            <span class="eyebrow">Stage en direct · Session de fin septembre</span>
+            <h1 class="h1" style="margin-top:14px">Cinq séances <span class="highlight-anim">en direct</span> pour enfin maîtriser la méthode en droit.</h1>
+            <p class="lead">La fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation. On reprend chaque exercice ensemble, en direct, jusqu'à ce que tu saches exactement quoi écrire et dans quel ordre. C'est la méthode qui te fait gagner des points, même quand tu connais déjà ton cours.</p>
+            <div class="hero__cta" style="margin-top:26px">
+              <a class="btn btn--primary btn--lg" href="#reserver">Réserver ma place · 149 €</a>
+              <a class="btn btn--outline btn--lg" href="#programme">Voir le programme</a>
+            </div>
+            <div class="hero__trust" style="margin-top:24px">
+              <span>5 séances en direct</span>
+              <span>·</span>
+              <span>10 h avec moi</span>
+              <span>·</span>
+              <span>40 places</span>
+              <span>·</span>
+              <span>Replay inclus</span>
+            </div>
+          </div>
+
+          <div class="fade-in fade-in--delay-1">
+            <div class="pass" role="img" aria-label="Programme du stage de méthode : cinq séances en direct pour la session de fin septembre">
+              <div class="pass__top">
+                <span class="pass__live"><i></i> En direct</span>
+                <span class="pass__seal">TrajectoireDroit<br>Session fin septembre</span>
+              </div>
+              <p class="pass__title">Le stage de méthode</p>
+              <p class="pass__sub">Cinq séances pour traiter les quatre exercices du droit.</p>
+              <ul class="pass__list">
+                <li><span class="pass__n">1</span><span>Les fondations et la <span class="ex">fiche d'arrêt</span></span></li>
+                <li><span class="pass__n">2</span><span>Le <span class="ex">commentaire d'arrêt</span>, la méthode</span></li>
+                <li><span class="pass__n">3</span><span>Le <span class="ex">commentaire d'arrêt</span>, en pratique</span></li>
+                <li><span class="pass__n">4</span><span>Le <span class="ex">cas pratique</span> en syllogisme</span></li>
+                <li><span class="pass__n">5</span><span>La <span class="ex">dissertation</span> juridique</span></li>
+              </ul>
+              <div class="pass__foot">
+                <div><span class="k">Durée</span><span class="v">10 h en direct</span></div>
+                <div style="text-align:right"><span class="k">Tarif</span><span class="v"><em>149 €</em></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LE PROBLÈME -->
+    <section class="section">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:14px">Tu connais ton cours, et tu perds quand même des points.</h2>
+        <p style="color:var(--body); line-height:1.75; font-size:1.05rem">Tu peux connaître ton cours parfaitement et quand même bloquer le jour de l'examen. Le correcteur attend un commentaire d'arrêt construit, un cas pratique en syllogisme, une dissertation avec une vraie problématique. Si ta méthode n'est pas solide, ton cours reste dans ta tête et ne se transforme pas en points sur la copie.</p>
+        <p style="color:var(--body); line-height:1.75; font-size:1.05rem">C'est là que beaucoup d'étudiants laissent filer une note qu'ils méritaient. Le stage règle exactement ça. On travaille la méthode des quatre exercices, en direct, sur de vrais sujets, jusqu'à ce qu'elle devienne un réflexe.</p>
+      </div>
+    </section>
+
+    <!-- CE QUE TU SAURAS FAIRE -->
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">À la fin des cinq séances, tu sais faire.</h2>
+        <p class="lead" style="margin-bottom:28px">La même méthode te sert dans toutes les matières, de la L1 au master. Une fois que tu la tiens, elle ne te quitte plus.</p>
+        <ul class="skills-list">
+          <li>Lire un arrêt et le ficher en quelques minutes, sans rien rater d'important.</li>
+          <li>Construire un commentaire d'arrêt qui colle vraiment à la décision.</li>
+          <li>Dérouler un cas pratique en syllogisme, de la règle de droit à la solution.</li>
+          <li>Bâtir une dissertation avec une problématique et un plan qui tiennent.</li>
+          <li>Trouver le bon plan au brouillon au lieu de te lancer dans le vide.</li>
+          <li>Gérer ton temps le jour de l'examen et rendre une copie finie.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- LE PROGRAMME -->
+    <section class="section" id="programme">
+      <div class="container container--narrow">
+        <div class="text-center" style="margin-bottom:32px">
+          <span class="eyebrow">Le programme</span>
+          <h2 class="h2" style="margin-top:12px">Cinq séances, les quatre exercices du droit.</h2>
+          <p class="lead">On avance dans l'ordre logique. On pose le socle, puis on prend chaque exercice l'un après l'autre, avec un vrai sujet travaillé en direct à chaque fois.</p>
+        </div>
+        <div class="seances">
+
+          <article class="seance fade-in">
+            <div class="seance__num">1</div>
+            <div>
+              <div class="seance__tag">Séance 1 · environ 2 h</div>
+              <h3>Les fondations et la fiche d'arrêt</h3>
+              <p>On pose la méthode de travail, comment lire une décision de justice, repérer ce qui compte et la ficher vite et bien. La fiche d'arrêt est le socle, on s'en sert dans tous les autres exercices.</p>
+              <a class="seance__link" href="methode-fiche-arret.html">Voir la méthode de la fiche d'arrêt →</a>
+            </div>
+          </article>
+
+          <article class="seance seance--double fade-in">
+            <div class="seance__num">2</div>
+            <div>
+              <div class="seance__tag">Séance 2 · environ 2 h</div>
+              <h3>Le commentaire d'arrêt, la méthode</h3>
+              <p>L'exercice le plus dur, et celui qui rapporte le plus quand on le tient. On voit comment lire la décision, dégager le problème de droit et construire un plan qui épouse l'arrêt au lieu de réciter le cours.</p>
+              <a class="seance__link" href="methode-commentaire-arret.html">Voir la méthode du commentaire d'arrêt →</a>
+            </div>
+          </article>
+
+          <article class="seance seance--double fade-in">
+            <div class="seance__num">3</div>
+            <div>
+              <div class="seance__tag">Séance 3 · environ 2 h</div>
+              <h3>Le commentaire d'arrêt, en pratique</h3>
+              <p>On prend un arrêt ensemble et on le traite en entier, du chapeau d'introduction jusqu'aux sous-parties. Tu vois exactement comment je m'y prends, puis tu refais le même travail sur un autre arrêt.</p>
+            </div>
+          </article>
+
+          <article class="seance fade-in">
+            <div class="seance__num">4</div>
+            <div>
+              <div class="seance__tag">Séance 4 · environ 2 h</div>
+              <h3>Le cas pratique</h3>
+              <p>Le raisonnement en syllogisme, de la majeure à la conclusion. On qualifie les faits, on pose la règle de droit, on l'applique, et on rédige une solution claire. Le tout sur un cas corrigé en direct, étape par étape.</p>
+              <a class="seance__link" href="methode-cas-pratique.html">Voir la méthode du cas pratique →</a>
+            </div>
+          </article>
+
+          <article class="seance fade-in">
+            <div class="seance__num">5</div>
+            <div>
+              <div class="seance__tag">Séance 5 · environ 2 h</div>
+              <h3>La dissertation juridique</h3>
+              <p>Trouver la problématique après le plan, bâtir un plan en deux parties et deux sous-parties, et rédiger l'introduction qui pèse un tiers de la copie. La partie que le correcteur lit en premier, celle où tu fais la différence.</p>
+              <a class="seance__link" href="methode-dissertation-juridique.html">Voir la méthode de la dissertation →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMENT ÇA SE PASSE -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:32px">
+          <span class="eyebrow">Le format</span>
+          <h2 class="h2" style="margin-top:12px">Comment se passe le stage.</h2>
+        </div>
+        <div class="format-grid">
+          <div class="format-item fade-in">
+            <span class="format-item__ic">🎥</span>
+            <h3>En direct, en visio</h3>
+            <p>Tu suis depuis chez toi, où que tu sois. Tu poses tes questions et j'y réponds sur le moment, on n'avance pas tant qu'un point n'est pas clair.</p>
+          </div>
+          <div class="format-item fade-in fade-in--delay-1">
+            <span class="format-item__ic">👥</span>
+            <h3>En petit groupe</h3>
+            <p>40 places, pas une de plus. Assez de monde pour des échanges riches, assez peu pour que chacun puisse intervenir.</p>
+          </div>
+          <div class="format-item fade-in fade-in--delay-2">
+            <span class="format-item__ic">↺</span>
+            <h3>Le replay inclus</h3>
+            <p>Tu rates une séance ou tu veux la revoir avant un partiel, tu as l'enregistrement de chacune des cinq séances.</p>
+          </div>
+          <div class="format-item fade-in">
+            <span class="format-item__ic">📄</span>
+            <h3>Un support pour chaque exercice</h3>
+            <p>Un PDF dédié par exercice, avec la méthode pas à pas et les pièges à éviter, que tu gardes pour réviser.</p>
+          </div>
+          <div class="format-item fade-in fade-in--delay-1">
+            <span class="format-item__ic">✍️</span>
+            <h3>De vrais sujets corrigés</h3>
+            <p>On travaille sur des sujets d'annales, corrigés ensemble en direct. De la méthode appliquée, pas seulement de la théorie.</p>
+          </div>
+          <div class="format-item fade-in fade-in--delay-2">
+            <span class="format-item__ic">💬</span>
+            <h3>Tes questions jusqu'au partiel</h3>
+            <p>Un espace pour poser tes questions reste ouvert après le stage, jusqu'à tes examens. Tu n'es pas lâché à la fin de la séance 5.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LE PROF -->
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="prof fade-in">
+          <img class="prof__photo" src="assets/julien.jpg" alt="Julien, professeur de droit, anime le stage de méthode" loading="lazy">
+          <div>
+            <span class="eyebrow">C'est moi qui anime, en personne</span>
+            <h2 class="h2" style="margin:12px 0 10px; font-size:clamp(1.4rem,2.4vw,1.9rem)">Julien, prof de droit.</h2>
+            <p style="color:var(--body); line-height:1.7">Diplômé d'un Master II de droit pénal à Panthéon-Assas, major puis vice-major de promo, premier prof de droit sur Superprof. J'ai accompagné plus de <strong>620 étudiants en cours particulier</strong>, et la méthode de ce stage est celle que je leur transmets un par un. La différence, ici on la travaille en groupe, en direct, et pour bien moins cher qu'une heure en tête à tête.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREUVE SOCIALE -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="stats-strip fade-in" style="margin-bottom:36px">
+          <div class="stats-strip__item"><div class="stats-strip__num">620+</div><div class="stats-strip__label">élèves accompagnés</div></div>
+          <div class="stats-strip__item"><div class="stats-strip__num">4 500 h</div><div class="stats-strip__label">de cours donnés</div></div>
+          <div class="stats-strip__item"><div class="stats-strip__num">149</div><div class="stats-strip__label">avis 5/5 vérifiés</div></div>
+          <div class="stats-strip__item"><div class="stats-strip__num">#1</div><div class="stats-strip__label">prof de droit sur Superprof</div></div>
+        </div>
+        <div class="grid-3">
+          <div class="card card--testi fade-in">
+            <div class="testi__rating">★★★★★</div>
+            <blockquote>« Un professeur à l'écoute et très pédagogue ! Les cours sont agréables, les méthodes efficaces et claires. »</blockquote>
+            <div class="testi__author"><div class="testi__avatar">L</div><div><div class="testi__name">Léa</div><div class="testi__role">L1 · Assas</div></div></div>
+          </div>
+          <div class="card card--testi fade-in fade-in--delay-1">
+            <div class="testi__rating">★★★★★</div>
+            <blockquote>« Professeur à l'écoute des attentes de son élève, pédagogue et méthodique. Je recommande ! »</blockquote>
+            <div class="testi__author"><div class="testi__avatar">L</div><div><div class="testi__name">Laetitia</div><div class="testi__role">L3 · Assas</div></div></div>
+          </div>
+          <div class="card card--testi fade-in fade-in--delay-2">
+            <div class="testi__rating">★★★★★</div>
+            <blockquote>« Julien travaille sur les faiblesses de l'élève. Pédagogue, il donne plein de conseils. »</blockquote>
+            <div class="testi__author"><div class="testi__avatar">A</div><div><div class="testi__name">Aude</div><div class="testi__role">L3 · Lyon III</div></div></div>
+          </div>
+        </div>
+        <p class="text-center" style="margin-top:24px"><a href="temoignages.html" style="font-weight:600; color:var(--blue-700)">Lire les 149 avis d'élèves →</a></p>
+      </div>
+    </section>
+
+    <!-- OFFRE / RÉSERVATION -->
+    <section class="section" id="reserver">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:32px">
+          <span class="eyebrow">Pré-vente · Session de fin septembre</span>
+          <h2 class="h2" style="margin-top:12px">Réserve ta place pour la session de fin septembre.</h2>
+          <p class="lead">Tu réserves aujourd'hui, le calendrier précis des cinq séances t'arrive par email juste après. Les places partent dans l'ordre des inscriptions.</p>
+        </div>
+
+        <div class="offer-card fade-in">
+          <div class="offer-scarcity">🎟️ 40 places pour cette session</div>
+          <div class="offer-card__price">
+            <span class="offer-card__amount">149 €</span>
+            <span class="offer-card__per">10 heures de cours en direct, soit <strong>15 € l'heure</strong>.<br>Une heure de cours particulier avec moi, c'est 89 €.</span>
+          </div>
+          <ul class="offer-list">
+            <li>Les 5 séances en direct, environ 10 h au total</li>
+            <li>La fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation</li>
+            <li>Un support PDF pour chaque exercice</li>
+            <li>De vrais sujets d'annales corrigés ensemble</li>
+            <li>Le replay de toutes les séances</li>
+            <li>Un espace questions ouvert jusqu'à tes partiels</li>
+          </ul>
+          <a class="btn btn--primary btn--lg btn--full" href="https://2587742610597.gumroad.com/l/stagemethode?wanted=true" target="_blank" rel="noopener">Réserver ma place · 149 €</a>
+          <p class="offer-note">Paiement sécurisé, en euros. C'est une pré-vente, donc si le stage n'a pas lieu, tu es remboursé en entier.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--alt" id="faq">
+      <div class="container container--narrow">
+        <h2 class="h2 text-center" style="margin-bottom:32px">Tes questions sur le stage</h2>
+        <div class="accordion">
+          <details class="accordion__item" open><summary>Le stage est en ligne ou en présentiel ?</summary><div class="accordion__body">En ligne, en visio, en direct. Tu suis depuis chez toi, où que tu sois, et tu poses tes questions pendant la séance. Tu reçois le lien de connexion par email après ton inscription.</div></details>
+          <details class="accordion__item"><summary>C'est pour quel niveau ?</summary><div class="accordion__body">De la L1 au M1. La méthode des exercices est la même tout au long de la licence, donc le stage te sert quelle que soit ton année. On part de la méthode depuis le début, tu n'as pas besoin d'avoir déjà des bases solides.</div></details>
+          <details class="accordion__item"><summary>Et si je rate une séance ?</summary><div class="accordion__body">Tu as le replay de chaque séance. Tu la rattrapes quand tu veux et tu gardes l'accès pour réviser avant tes partiels.</div></details>
+          <details class="accordion__item"><summary>Comment je reçois le calendrier et le lien ?</summary><div class="accordion__body">Par email, après ton inscription. Tu reçois le calendrier précis des cinq séances de fin septembre, le lien de connexion et les supports.</div></details>
+          <details class="accordion__item"><summary>Et si le stage n'a pas lieu ?</summary><div class="accordion__body">Tu es remboursé en entier. C'est une pré-vente pour la session de fin septembre. Si le groupe ne se remplit pas, je te rends ton argent sans discuter.</div></details>
+        </div>
+        <p style="margin-top:28px; color:var(--body); text-align:center">Tu veux d'abord voir comment je travaille ? Lis les méthodes du <a href="methode-cas-pratique.html">cas pratique</a>, du <a href="methode-commentaire-arret.html">commentaire d'arrêt</a> et de la <a href="methode-dissertation-juridique.html">dissertation</a>.</p>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section section--dark">
+      <div class="container container--narrow text-center">
+        <h2 class="h2" style="color:#fff">Fin septembre, on travaille ta méthode en direct.</h2>
+        <p class="lead" style="color:rgba(255,255,255,.85); max-width:580px; margin:16px auto 32px">Cinq séances pour transformer ton cours en points le jour de l'examen. 40 places pour cette session, dans l'ordre des inscriptions.</p>
+        <a class="btn btn--primary btn--lg" href="#reserver">Réserver ma place · 149 €</a>
+        <p style="margin-top:18px"><a href="formations.html" style="color:rgba(255,255,255,.8)">Voir aussi les fiches détaillées →</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La méthode #1 pour réussir tes études de droit. Fiches détaillées, majeures préparées et cours particuliers. Éprouvés par 2500+ étudiants.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)">🎓 Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+        </div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches détaillées</a><a href="stage-methode.html">Stage de méthode</a><a href="cours-particuliers.html">Cours particuliers</a></div>
+        <div><h4>Ressources</h4><a href="temoignages.html">Témoignages</a><a href="faq.html">FAQ</a><a href="a-propos.html">À propos</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <form action="https://formspree.io/f/mojrovgb" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- STICKY CTA MOBILE -->
+  <div class="sticky-cta">
+    <div class="sticky-cta__price">149 € <small>· 5 séances en direct</small></div>
+    <a class="btn btn--primary" href="https://2587742610597.gumroad.com/l/stagemethode?wanted=true" target="_blank" rel="noopener">Réserver ma place</a>
+  </div>
+
+  <!-- EXIT-INTENT MODAL -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois ma <strong>fiche méthode « 10 tips pour apprendre le droit efficacement »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://formspree.io/f/mojrovgb" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (fiche 10 tips droit)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir ma fiche gratuite →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
