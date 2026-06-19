@@ -16,7 +16,7 @@ Tu peux ajouter, retirer ou réordonner les lignes quand tu veux, depuis ton Mac
 ---
 
 - [x] type:arret | matiere:droit administratif L2 | sujet:l'arrêt Nicolo (CE 1989) et le contrôle de la loi face au traité par le juge administratif
-- [ ] type:arret | matiere:droit administratif L2 | sujet:l'arrêt Dame Lamotte (CE 1950) et le recours pour excès de pouvoir comme principe général du droit
+- [x] type:arret | matiere:droit administratif L2 | sujet:l'arrêt Dame Lamotte (CE 1950) et le recours pour excès de pouvoir comme principe général du droit
 - [ ] type:arret | matiere:droit administratif L2 | sujet:l'arrêt Benjamin (CE, 19 mai 1933) et le contrôle du juge sur les mesures de police qui limitent une liberté
 - [ ] type:arret | matiere:droit administratif L2 | sujet:l'arrêt Bac d'Eloka (TC, 22 janvier 1921) et la naissance du service public industriel et commercial
 - [ ] type:arret | matiere:droit administratif L2 | sujet:l'arrêt Cadot (CE, 13 décembre 1889) et la fin de la théorie du ministre-juge
