@@ -324,6 +324,7 @@
               <h3 class="product__title">Droit administratif</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 109 p.</span></div>
               <p style="font-size:.92rem; color:var(--body); margin:0">Acte administratif, service public, police administrative. Tout le premier semestre compilé et expliqué.</p>
+              <button type="button" class="apercu-link" data-apercu='["assets/apercus/da-l2-s1-1.jpg","assets/apercus/da-l2-s1-2.jpg"]' data-apercu-title="Droit administratif · L2 Semestre 1" data-apercu-price="14,99 €" data-apercu-cta="https://2587742610597.gumroad.com/l/vcnnf?wanted=true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
               <div><span class="product__price">14,99 €</span></div>
               <a class="btn btn--primary btn--full product__cta" href="https://2587742610597.gumroad.com/l/vcnnf?wanted=true" target="_blank" rel="noopener">Acheter · 14,99 €</a>
             </div>
@@ -884,6 +885,64 @@
       <p class="text-muted" style="font-size:.82rem; margin-top:14px">3 minutes · sans inscription</p>
     </div>
   </div>
+
+  <!-- ===== APERÇU PRODUIT (visionneuse d'extraits) ===== -->
+  <style>
+    .apercu-link{display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--navy);font-family:var(--font-body);font-size:.9rem;font-weight:600;cursor:pointer;padding:2px 0;margin:0 0 6px;text-decoration:underline;text-underline-offset:3px}
+    .apercu-link:hover{color:var(--accent)}
+    .apercu-link svg{flex:none}
+    .apercu-backdrop{position:fixed;inset:0;background:rgba(15,26,53,.72);z-index:1000;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 16px}
+    .apercu-backdrop.open{display:flex}
+    .apercu-panel{background:#fff;border-radius:var(--r-xl);max-width:680px;width:100%;box-shadow:var(--sh-3);margin:auto;overflow:hidden}
+    .apercu-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:20px 24px;border-bottom:1px solid var(--border)}
+    .apercu-head h3{font-family:var(--font-display);color:var(--navy);font-size:1.2rem;margin:0}
+    .apercu-head p{color:var(--muted);font-size:.85rem;margin:4px 0 0}
+    .apercu-close{background:none;border:none;font-size:1.4rem;line-height:1;color:var(--muted);cursor:pointer}
+    .apercu-imgs{padding:18px 24px;display:flex;flex-direction:column;gap:16px;max-height:60vh;overflow-y:auto;background:var(--slate-50)}
+    .apercu-imgs img{width:100%;border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--sh-1)}
+    .apercu-foot{padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--border)}
+    .apercu-foot .price{font-family:var(--font-display);font-weight:800;color:var(--navy);font-size:1.3rem}
+  </style>
+  <div class="apercu-backdrop" id="apercuModal" role="dialog" aria-modal="true" aria-labelledby="apercuTitle">
+    <div class="apercu-panel">
+      <div class="apercu-head">
+        <div><h3 id="apercuTitle"></h3><p>Extraits réels de la fiche détaillée</p></div>
+        <button class="apercu-close" data-apercu-close aria-label="Fermer">✕</button>
+      </div>
+      <div class="apercu-imgs" id="apercuImgs"></div>
+      <div class="apercu-foot">
+        <span class="price" id="apercuPrice"></span>
+        <a class="btn btn--primary" id="apercuCta" href="#" target="_blank" rel="noopener">Acheter la fiche</a>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var modal=document.getElementById('apercuModal');
+    if(!modal) return;
+    var imgsBox=document.getElementById('apercuImgs');
+    function open(btn){
+      var imgs;
+      try{ imgs=JSON.parse(btn.getAttribute('data-apercu')||'[]'); }catch(e){ imgs=[]; }
+      document.getElementById('apercuTitle').textContent=btn.getAttribute('data-apercu-title')||'Aperçu';
+      var price=btn.getAttribute('data-apercu-price')||'';
+      document.getElementById('apercuPrice').textContent=price;
+      var cta=document.getElementById('apercuCta');
+      cta.href=btn.getAttribute('data-apercu-cta')||'#';
+      cta.textContent=price?('Acheter · '+price):'Acheter la fiche';
+      imgsBox.innerHTML='';
+      imgs.forEach(function(src){var im=document.createElement('img');im.src=src;im.loading='lazy';im.alt='Extrait de la fiche';imgsBox.appendChild(im);});
+      imgsBox.scrollTop=0;
+      modal.classList.add('open');
+      document.body.style.overflow='hidden';
+      if(window.gtag) gtag('event','apercu_open',{matiere:btn.getAttribute('data-apercu-title')||''});
+    }
+    function close(){modal.classList.remove('open');document.body.style.overflow='';}
+    document.querySelectorAll('[data-apercu]').forEach(function(b){b.addEventListener('click',function(){open(b);});});
+    modal.addEventListener('click',function(e){if(e.target===modal||e.target.hasAttribute('data-apercu-close'))close();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  })();
+  </script>
 
   <script src="assets/js/main.js" defer></script>
   <script>
