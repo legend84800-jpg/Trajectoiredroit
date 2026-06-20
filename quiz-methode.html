@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1A2851">
+  <title>Quiz : teste ta méthode en droit (cas pratique, dissertation, commentaire)</title>
+  <meta name="description" content="10 questions, 3 minutes. Découvre sur quels exercices de droit ta méthode te fait perdre des points, et reçois ton plan pour les récupérer.">
+  <link rel="canonical" href="https://trajectoiredroit.com/quiz-methode.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Teste ta méthode en droit · le quiz qui montre où tu perds des points">
+  <meta property="og:description" content="En 10 questions, tu vois sur quel exercice ta méthode te coûte des points, et tu repars avec ton plan pour les récupérer.">
+  <meta property="og:url" content="https://trajectoiredroit.com/quiz-methode.html">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF');
+  </script>
+
+  <style>
+    /* ===== Quiz méthode (scopé) ===== */
+    .quiz-wrap{max-width:720px;margin:0 auto}
+    .quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-xl);box-shadow:var(--sh-2);padding:32px 28px}
+    @media(min-width:640px){.quiz-card{padding:40px 44px}}
+    .quiz-progress{height:8px;background:var(--slate-100);border-radius:var(--r-pill);overflow:hidden;margin-bottom:8px}
+    .quiz-progress__bar{height:100%;width:0;background:var(--navy);border-radius:var(--r-pill);transition:width .3s ease}
+    .quiz-progress__label{font-size:.82rem;color:var(--muted);font-weight:600;margin-bottom:24px;display:flex;justify-content:space-between}
+    .quiz-exo{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+    .quiz-q{font-family:var(--font-display);font-size:1.4rem;line-height:1.3;color:var(--navy);font-weight:700;margin:0 0 24px}
+    .quiz-opts{display:flex;flex-direction:column;gap:12px}
+    .quiz-opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--border-strong);border-radius:var(--r-md);padding:16px 18px;font-family:var(--font-body);font-size:1rem;line-height:1.4;color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s,box-shadow .15s}
+    .quiz-opt:hover{border-color:var(--navy);background:var(--blue-50)}
+    .quiz-opt:focus-visible{outline:none;box-shadow:var(--sh-glow)}
+    .quiz-back{margin-top:22px;background:none;border:none;color:var(--muted);font-size:.9rem;font-weight:600;cursor:pointer;padding:4px}
+    .quiz-back:hover{color:var(--navy)}
+    .quiz-back[hidden]{display:none}
+    /* résultat */
+    .quiz-score{text-align:center;margin-bottom:28px}
+    .quiz-score__num{font-family:var(--font-display);font-size:3.4rem;font-weight:800;color:var(--navy);line-height:1}
+    .quiz-score__num small{font-size:1.4rem;color:var(--muted);font-weight:600}
+    .quiz-score__tag{display:inline-block;margin-top:14px;padding:6px 16px;border-radius:var(--r-pill);font-weight:700;font-size:.92rem}
+    .tag-low{background:var(--rose-bg);color:var(--accent)}
+    .tag-mid{background:var(--amber-bg);color:#92600A}
+    .tag-high{background:var(--emerald-bg);color:#047857}
+    .quiz-result__title{font-family:var(--font-display);font-size:1.5rem;color:var(--navy);font-weight:700;text-align:center;margin:0 0 12px}
+    .quiz-result__lead{color:var(--body);text-align:center;margin:0 auto 28px;max-width:540px}
+    .quiz-todo{background:var(--slate-50);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 24px;margin-bottom:28px}
+    .quiz-todo h3{font-size:1.05rem;color:var(--navy);margin:0 0 14px}
+    .quiz-todo ul{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+    .quiz-todo li{display:flex;gap:10px;align-items:flex-start;font-size:.96rem;color:var(--body);line-height:1.45}
+    .quiz-todo li::before{content:"→";color:var(--accent);font-weight:800;flex:none}
+    .quiz-cta{text-align:center}
+    .quiz-cta__row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+    .quiz-capture{margin-top:32px;border-top:1px dashed var(--border-strong);padding-top:28px}
+    .quiz-capture h3{font-family:var(--font-display);font-size:1.25rem;color:var(--navy);text-align:center;margin:0 0 8px}
+    .quiz-capture p{text-align:center;color:var(--body);margin:0 auto 18px;max-width:480px}
+    .quiz-capture form{display:flex;gap:8px;flex-direction:column;max-width:420px;margin:0 auto}
+    .quiz-fineprint{font-size:.82rem;color:var(--muted);text-align:center;margin-top:12px}
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="index.html" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <div class="nav-item has-dropdown">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            Fiches détaillées
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="formations.html#cours-l1" role="menuitem"><span class="dropdown__icon dropdown__icon--blue">📘</span><span><strong>Licence 1</strong><small>Constit, intro droit, personnes, famille</small></span></a>
+            <a class="dropdown__item" href="formations.html#cours-l2" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald">📗</span><span><strong>Licence 2</strong><small>Contrats, DA, pénal, biens, obligations</small></span></a>
+            <a class="dropdown__item" href="formations.html#cours-l3" role="menuitem"><span class="dropdown__icon dropdown__icon--amber">📙</span><span><strong>Licence 3</strong><small>Commercial, contrats spéciaux, PP</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="formations.html">Voir toutes les matières →</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="formations.html#majeures" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            Majeures préparées
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="formations.html#majeures" role="menuitem"><span class="dropdown__icon dropdown__icon--blue">📘</span><span><strong>Licence 1</strong><small>Personnes, famille</small></span></a>
+            <a class="dropdown__item" href="formations.html#majeures" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald">📗</span><span><strong>Licence 2</strong><small>Contrats, DA, pénal, obligations, biens</small></span></a>
+            <a class="dropdown__item" href="formations.html#majeures" role="menuitem"><span class="dropdown__icon dropdown__icon--amber">📙</span><span><strong>Licence 3</strong><small>Commercial, contrats spéciaux, PP</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="formations.html#majeures">Voir toutes les majeures →</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--blue">⚖️</span><span><strong>Droit</strong><small>L1 → M2 · toutes matières</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald">⭐</span><span><strong>Pack 5 séances <em>· -10 %</em></strong><small>400 € · 80 €/h</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="blog.html" class="nav-item__link">Blog</a></div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue">👨‍🏫</span><span><strong>Qui suis-je</strong><small>Julien, Master II Assas</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet">🧭</span><span><strong>Notre méthode</strong><small>3 piliers : vidéo + carte + fiche</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald">⭐</span><span><strong>Témoignages</strong><small>149 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber">❓</span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:contact@trajectoiredroit.com">Nous contacter →</a>
+          </div>
+        </div>
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <a href="formations.html#cours-l1">Fiches détaillées · L1</a>
+    <a href="formations.html#cours-l2">Fiches détaillées · L2</a>
+    <a href="formations.html#cours-l3">Fiches détaillées · L3</a>
+    <a href="formations.html#majeures">Majeures préparées</a>
+    <a href="cours-particuliers.html">Cours particuliers</a>
+    <a href="blog.html">Blog</a>
+    <a href="temoignages.html">Témoignages</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="faq.html">FAQ</a>
+    <div style="margin-top:24px; display:flex; gap:12px; flex-direction:column">
+      <a class="btn btn--primary btn--full" href="formations.html">Voir les fiches</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="section">
+      <div class="container">
+
+        <!-- ÉCRAN 1 : INTRO -->
+        <div class="quiz-wrap" id="screen-intro">
+          <div class="text-center" style="margin-bottom:28px">
+            <span class="eyebrow eyebrow--gold">⭐ Quiz gratuit · 3 minutes · sans inscription</span>
+            <h1 class="h1 text-balance" style="margin-top:14px">Teste ta méthode en droit</h1>
+            <p class="lead" style="max-width:600px;margin:16px auto 0">La plupart des étudiants connaissent leur cours et perdent quand même des points sur la méthode des exercices. En 10 questions, tu vois sur quel exercice ta méthode te coûte des points, que ce soit le cas pratique, la dissertation, le commentaire d'arrêt ou la fiche d'arrêt. Tu repars avec un plan clair pour les récupérer.</p>
+          </div>
+          <div class="quiz-card text-center">
+            <div class="grid-3" style="gap:16px;margin-bottom:24px;text-align:left">
+              <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">10</div><div style="font-size:.88rem;color:var(--body)">questions sur les 4 exercices</div></div>
+              <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">3 min</div><div style="font-size:.88rem;color:var(--body)">pour avoir ton diagnostic</div></div>
+              <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">+3 pts</div><div style="font-size:.88rem;color:var(--body)">de moyenne en moyenne avec la méthode</div></div>
+            </div>
+            <button class="btn btn--primary btn--lg" id="startBtn">Commencer le quiz →</button>
+            <p style="font-size:.84rem;color:var(--muted);margin:14px 0 0">Construit par Julien, major de promo à Assas, à partir de sa méthode des exercices.</p>
+          </div>
+        </div>
+
+        <!-- ÉCRAN 2 : QUESTIONS -->
+        <div class="quiz-wrap" id="screen-quiz" hidden>
+          <div class="quiz-card">
+            <div class="quiz-progress"><div class="quiz-progress__bar" id="progressBar"></div></div>
+            <div class="quiz-progress__label"><span id="progressText">Question 1 sur 10</span><span id="exoLabel"></span></div>
+            <p class="quiz-q" id="questionText"></p>
+            <div class="quiz-opts" id="optionsBox"></div>
+            <button class="quiz-back" id="backBtn" hidden>← Revenir à la question précédente</button>
+          </div>
+        </div>
+
+        <!-- ÉCRAN 3 : RÉSULTAT -->
+        <div class="quiz-wrap" id="screen-result" hidden>
+          <div class="quiz-card">
+            <div class="quiz-score">
+              <div class="quiz-score__num"><span id="scoreNum">0</span><small> / 30</small></div>
+              <div class="quiz-score__tag" id="scoreTag"></div>
+            </div>
+            <h2 class="quiz-result__title" id="resultTitle"></h2>
+            <p class="quiz-result__lead" id="resultLead"></p>
+
+            <div class="quiz-todo" id="todoBox">
+              <h3>Les points à récupérer en priorité</h3>
+              <ul id="todoList"></ul>
+            </div>
+
+            <div class="quiz-cta">
+              <div id="ctaMain"></div>
+            </div>
+
+            <div class="quiz-capture">
+              <h3>Reçois ton plan méthode complet</h3>
+              <p>Je t'envoie par email le détail des quatre méthodes, exercice par exercice, avec les étapes dans l'ordre et les erreurs qui coûtent le plus de points. De quoi transformer ce score en points sur ta prochaine copie.</p>
+              <form action="https://formspree.io/f/mojrovgb" method="POST">
+                <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+                <input type="hidden" name="_subject" value="Quiz méthode · nouveau lead">
+                <input type="hidden" name="score" id="hiddenScore" value="">
+                <input type="hidden" name="profil" id="hiddenProfil" value="">
+                <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+                <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon plan méthode →</button>
+              </form>
+              <p class="quiz-fineprint">Désinscription en 1 clic · Aucune carte bancaire</p>
+            </div>
+          </div>
+          <p class="text-center" style="margin-top:18px"><button class="quiz-back" id="restartBtn" style="color:var(--muted)">↻ Refaire le quiz</button></p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches détaillées, majeures préparées et cours particuliers. Éprouvés par 2500+ étudiants.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)">🎓 Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+        </div>
+        <div>
+          <h4>Produits</h4>
+          <a href="formations.html">Fiches détaillées</a>
+          <a href="formations.html#majeures">Majeures préparées</a>
+          <a href="cours-particuliers.html">Cours particuliers</a>
+        </div>
+        <div>
+          <h4>Ressources</h4>
+          <a href="quiz-methode.html">Quiz de méthode</a>
+          <a href="temoignages.html">Témoignages</a>
+          <a href="faq.html">FAQ</a>
+          <a href="a-propos.html">À propos</a>
+        </div>
+        <div>
+          <h4>Légal</h4>
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgu.html">CGV / CGU</a>
+          <a href="confidentialite.html">Confidentialité</a>
+          <a href="mailto:contact@trajectoiredroit.com">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div>
+        <div>Conçu pour les étudiants en droit</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+  <script>
+  (function(){
+    var QUESTIONS = [
+      { exo:"Le jour J", q:"Tu reçois ton sujet le jour de l'examen. Qu'est-ce que tu fais dans les premières minutes ?",
+        tip:"Passe au moins la moitié de ton temps au brouillon. Lis le sujet plusieurs fois et schématise les faits avant de rédiger.",
+        opts:[
+          {t:"Je commence à rédiger tout de suite pour ne pas perdre de temps.",p:0},
+          {t:"Je lis une fois et je note deux ou trois idées.",p:1},
+          {t:"Je lis le sujet plusieurs fois et je fais un schéma au brouillon avant d'écrire.",p:3},
+          {t:"Je relis mon cours en vitesse.",p:0}
+        ]},
+      { exo:"Cas pratique", q:"Devant un cas pratique, par quoi commence ton raisonnement ?",
+        tip:"Qualifie d'abord chaque fait, donne-lui son nom juridique. C'est ce qui te dit quelle règle appliquer.",
+        opts:[
+          {t:"J'écris la règle de droit que je connais sur le thème.",p:1},
+          {t:"Je donne ma conclusion tout de suite, je détaille après.",p:0},
+          {t:"Je qualifie d'abord chaque fait, je lui donne son nom juridique.",p:3},
+          {t:"Je cherche un cas qui ressemble dans mon cours.",p:0}
+        ]},
+      { exo:"Cas pratique", q:"Dans ton cas pratique, quelle partie est la plus développée ?",
+        tip:"Ta mineure doit être plus développée que ta majeure, deux à trois fois plus. C'est dans l'application aux faits que se trouvent les points.",
+        opts:[
+          {t:"La majeure, là où j'expose la règle et le cours.",p:0},
+          {t:"La mineure, là où j'applique la règle aux faits.",p:3},
+          {t:"Les deux à peu près pareil.",p:1},
+          {t:"La conclusion.",p:0}
+        ]},
+      { exo:"Commentaire d'arrêt", q:"Quand tu commentes un arrêt, tu fais surtout quoi ?",
+        tip:"Pour chaque passage de l'arrêt, montre ce que fait la Cour, puis commente-le avec tes connaissances. Redire l'arrêt avec tes mots ne rapporte rien.",
+        opts:[
+          {t:"Je redis l'arrêt avec mes mots pour montrer que je l'ai compris.",p:0},
+          {t:"Je récite la leçon générale sur le thème de l'arrêt.",p:1},
+          {t:"Je montre ce que fait la Cour, par exemple qu'elle pose un principe ou qu'elle limite une règle, puis je commente avec mes connaissances.",p:3},
+          {t:"Je donne mon avis personnel sur la décision.",p:0}
+        ]},
+      { exo:"Commentaire d'arrêt", q:"Comment tu trouves le problème de droit d'un arrêt ?",
+        tip:"Pars de la solution de la Cour et retourne-la en question. C'est la façon la plus sûre de tomber juste.",
+        opts:[
+          {t:"Je recopie la question que se posaient les parties.",p:1},
+          {t:"Je pars de la solution de la Cour et je la retourne en question.",p:3},
+          {t:"Je pose une question large sur le thème.",p:0},
+          {t:"Honnêtement, je saute souvent cette étape.",p:0}
+        ]},
+      { exo:"Dissertation", q:"Dans quel ordre tu construis ta dissertation ?",
+        tip:"Classe d'abord tes idées en grands blocs, tire-en ton plan, et formule la problématique une fois le plan trouvé.",
+        opts:[
+          {t:"Je trouve d'abord la problématique, puis je cherche un plan qui y répond.",p:1},
+          {t:"Je classe mes idées en grands blocs, j'en tire le plan, et je formule la problématique à la fin.",p:3},
+          {t:"Je prends un plan type, une partie sur la loi, une partie sur la jurisprudence.",p:0},
+          {t:"Je rédige au fil de l'eau, le plan se fait tout seul.",p:0}
+        ]},
+      { exo:"Dissertation", q:"Quelle place prend ton introduction de dissertation ?",
+        tip:"Soigne ton introduction, elle fait un tiers de la copie et se rédige avant le corps.",
+        opts:[
+          {t:"Quelques lignes, j'entre vite dans le sujet.",p:0},
+          {t:"Environ un tiers de la copie, et je la rédige avant le corps.",p:3},
+          {t:"Je la fais à la fin s'il me reste du temps.",p:0},
+          {t:"Une demi-page, sans vraiment travailler le plan.",p:1}
+        ]},
+      { exo:"Les titres", q:"Tes titres de parties ressemblent à quoi ?",
+        tip:"Donne des titres courts et sans verbe conjugué, où on retrouve le sujet ou l'arrêt rien qu'en les lisant.",
+        opts:[
+          {t:"Ils contiennent un verbe, du genre « L'arrêt applique la loi ».",p:0},
+          {t:"Ils sont courts et sans verbe, et on retrouve le sujet rien qu'en les lisant.",p:3},
+          {t:"Des titres passe-partout, « I. La loi », « II. La jurisprudence ».",p:0},
+          {t:"Je n'y fais pas vraiment attention.",p:0}
+        ]},
+      { exo:"Fiche d'arrêt", q:"Devant un arrêt, tu sais dire tout de suite si c'est un rejet ou une cassation ?",
+        tip:"Repère tout de suite si l'arrêt casse ou rejette. Regarde le visa et la formule finale, « casse et annule » ou « rejette ».",
+        opts:[
+          {t:"Pas vraiment, je confonds souvent les deux.",p:0},
+          {t:"Oui, je regarde le visa et la fin de l'arrêt, « casse et annule » ou « rejette ».",p:3},
+          {t:"Je devine d'après le contexte.",p:1},
+          {t:"Je ne regarde pas ce point.",p:0}
+        ]},
+      { exo:"Avant le partiel", q:"Avant un partiel avec cas pratique, qu'est-ce que tu prépares ?",
+        tip:"Prépare tes majeures condition par condition et tes fiches d'arrêt avant le partiel. Le jour J, tu n'as plus qu'à les appliquer.",
+        opts:[
+          {t:"Je relis tout mon cours en entier.",p:1},
+          {t:"Je prépare mes majeures condition par condition et mes fiches d'arrêt à l'avance, prêtes à appliquer.",p:3},
+          {t:"Je révise surtout la veille au soir.",p:0},
+          {t:"Je fais des annales, mais sans corriger ma méthode.",p:1}
+        ]}
+    ];
+
+    var PROFILS = {
+      low:{ tag:"Ta méthode te coûte des points", cls:"tag-low", profil:"faible",
+        title:"Ta méthode te coûte des points que ton travail mérite",
+        lead:"Tu connais sûrement ton cours, mais la méthode des exercices te fait perdre des points en copie. C'est une bonne nouvelle, parce que la méthode s'apprend vite et rapporte gros. C'est exactement ce qu'on reprend dans le stage de méthode, les quatre exercices en direct, jusqu'à ce que tu saches quoi écrire et dans quel ordre.",
+        cta:'<a class="btn btn--primary btn--lg" href="stage-methode.html">Voir le stage de méthode · 149 €</a><div class="quiz-cta__row"><a class="btn btn--outline" href="formations.html#majeures">Commencer par les majeures préparées</a></div>' },
+      mid:{ tag:"Tu as les bases, il te manque des réflexes", cls:"tag-mid", profil:"intermédiaire",
+        title:"Tu as les bases, il te manque des réflexes",
+        lead:"Tu as déjà les bons réflexes sur plusieurs exercices et il t'en manque encore sur d'autres. En verrouillant les deux ou trois points qui te coûtent des points, tu passes assez vite au-dessus de 13. Tes majeures préparées et les pages méthode sont faites pour ça.",
+        cta:'<a class="btn btn--primary btn--lg" href="formations.html#majeures">Voir les majeures préparées</a><div class="quiz-cta__row"><a class="btn btn--outline" href="stage-methode.html">Ou le stage de méthode complet</a></div>' },
+      high:{ tag:"Ta méthode est solide", cls:"tag-high", profil:"solide",
+        title:"Ta méthode est solide",
+        lead:"Ta méthode tient la route, tu sais comment aborder chaque exercice. Maintenant tu dois rendre tout ça automatique le jour du partiel, quand le stress fait oublier les bons réflexes. Les majeures préparées et les fiches détaillées te font gagner les derniers points, ceux qui font la différence entre 13 et 16.",
+        cta:'<a class="btn btn--primary btn--lg" href="formations.html">Voir les fiches détaillées</a><div class="quiz-cta__row"><a class="btn btn--outline" href="formations.html#majeures">Et les majeures préparées</a></div>' }
+    };
+
+    var idx = 0, answers = new Array(QUESTIONS.length).fill(null);
+    var elIntro = document.getElementById('screen-intro');
+    var elQuiz = document.getElementById('screen-quiz');
+    var elResult = document.getElementById('screen-result');
+
+    function show(el){ [elIntro,elQuiz,elResult].forEach(function(s){ s.hidden = (s!==el); }); window.scrollTo({top:0,behavior:'smooth'}); }
+
+    function render(){
+      var Q = QUESTIONS[idx];
+      document.getElementById('exoLabel').textContent = Q.exo;
+      document.getElementById('questionText').textContent = Q.q;
+      document.getElementById('progressText').textContent = 'Question ' + (idx+1) + ' sur ' + QUESTIONS.length;
+      document.getElementById('progressBar').style.width = ((idx)/QUESTIONS.length*100) + '%';
+      var box = document.getElementById('optionsBox');
+      box.innerHTML = '';
+      Q.opts.forEach(function(o, i){
+        var b = document.createElement('button');
+        b.className = 'quiz-opt';
+        b.type = 'button';
+        b.textContent = o.t;
+        b.addEventListener('click', function(){ answers[idx] = i; next(); });
+        box.appendChild(b);
+      });
+      document.getElementById('backBtn').hidden = (idx === 0);
+    }
+
+    function next(){
+      if (idx < QUESTIONS.length - 1){ idx++; render(); }
+      else { finish(); }
+    }
+
+    function finish(){
+      var score = 0;
+      answers.forEach(function(a, i){ if (a !== null) score += QUESTIONS[i].opts[a].p; });
+      var prof = score <= 14 ? PROFILS.low : (score <= 23 ? PROFILS.mid : PROFILS.high);
+      document.getElementById('scoreNum').textContent = score;
+      var tagEl = document.getElementById('scoreTag');
+      tagEl.textContent = prof.tag; tagEl.className = 'quiz-score__tag ' + prof.cls;
+      document.getElementById('resultTitle').textContent = prof.title;
+      document.getElementById('resultLead').textContent = prof.lead;
+      document.getElementById('ctaMain').innerHTML = prof.cta;
+      document.getElementById('hiddenScore').value = score + '/30';
+      document.getElementById('hiddenProfil').value = prof.profil;
+      // points à récupérer : les questions où la réponse n'est pas la meilleure (3 pts)
+      var todo = document.getElementById('todoList'); todo.innerHTML = '';
+      var count = 0;
+      answers.forEach(function(a, i){
+        if (count >= 4) return;
+        if (a === null || QUESTIONS[i].opts[a].p < 3){
+          var li = document.createElement('li');
+          li.textContent = QUESTIONS[i].tip;
+          todo.appendChild(li); count++;
+        }
+      });
+      document.getElementById('todoBox').style.display = count ? '' : 'none';
+      document.getElementById('progressBar').style.width = '100%';
+      if (window.gtag) gtag('event', 'quiz_complete', { score: score, profil: prof.profil });
+      show(elResult);
+    }
+
+    document.getElementById('startBtn').addEventListener('click', function(){ idx=0; answers.fill(null); render(); show(elQuiz); });
+    document.getElementById('backBtn').addEventListener('click', function(){ if (idx>0){ idx--; render(); } });
+    document.getElementById('restartBtn').addEventListener('click', function(){ idx=0; answers.fill(null); show(elIntro); });
+  })();
+  </script>
+</body>
+</html>
