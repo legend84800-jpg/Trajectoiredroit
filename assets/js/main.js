@@ -251,4 +251,36 @@
     }
   }
 
+  // ----- 9. Newsletter : inscription envoyée vers Brevo (remplace Formspree) -----
+  // Intercepte les formulaires dont l'action pointe vers Brevo (sibforms.com),
+  // envoie l'email à la liste « Leads fiche gratuite », puis renvoie vers merci.html.
+  // Garde le design existant : aucun markup n'est imposé, on lit juste le champ email.
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    if (!form || !form.action || form.action.indexOf('sibforms.com') === -1) return;
+    e.preventDefault();
+    var emailInput = form.querySelector('input[type="email"], input[name="email"], input[name="EMAIL"]');
+    var email = emailInput ? emailInput.value.trim() : '';
+    if (!email) { if (emailInput) emailInput.focus(); return; }
+    var btn = form.querySelector('button[type="submit"], button:not([type])');
+    if (btn) { btn.dataset.label = btn.innerHTML; btn.disabled = true; btn.innerHTML = 'Inscription…'; }
+    var fd = new FormData();
+    fd.append('EMAIL', email);
+    fd.append('email_address_check', '');
+    fd.append('locale', 'fr');
+    fd.append('html_type', 'simple');
+    var url = form.action.split('?')[0] + '?isAjax=1';
+    fetch(url, { method: 'POST', body: fd, mode: 'cors' })
+      .then(function (r) { return r.json().catch(function () { return { success: true }; }); })
+      .then(function (data) {
+        if (data && data.success === false) {
+          if (btn) { btn.disabled = false; btn.innerHTML = btn.dataset.label || 'S’inscrire'; }
+          alert(data.message || 'Une erreur est survenue, réessaie dans un instant.');
+          return;
+        }
+        window.location.href = '/merci.html';
+      })
+      .catch(function () { window.location.href = '/merci.html'; });
+  }, true);
+
 })();
