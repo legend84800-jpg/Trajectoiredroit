@@ -163,6 +163,8 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 }
 @media (max-width: 600px) {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr }
+  /* Sur téléphone, les méta des cartes produit passent à la ligne au lieu de déborder */
+  .card--product .product__meta { flex-wrap: wrap; gap: 4px 10px }
 }
 
 /* ===== 5. BOUTONS ===== */
@@ -264,6 +266,8 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .card--pricing .pricing__list li { display: flex; gap: 10px; align-items: flex-start; color: var(--body); font-size: .95rem }
 .card--pricing .pricing__list li::before { content: "✓"; color: var(--success); font-weight: 700; flex-shrink: 0 }
 .card--featured { border-color: var(--blue-600); border-width: 2px; box-shadow: var(--sh-3); transform: translateY(-8px) }
+/* Carte produit mise en avant : sans vignette, on laisse le badge "LE PLUS POPULAIRE" dépasser (sinon overflow:hidden le coupe) */
+.card--product.card--featured { overflow: visible }
 .card--featured::before {
   content: "LE PLUS POPULAIRE";
   position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
@@ -661,13 +665,13 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 }
 
 /* Mobile : on cache les dropdowns desktop (la nav mobile prend le relais via burger) */
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   .dropdown, .megamenu { display: none; }
 }
 .site-header__cta { display: flex; gap: var(--sp-3); align-items: center }
 .burger { display: none; background: transparent; border: 0; padding: 8px; font-size: 1.4rem; color: var(--ink) }
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   .primary-nav { display: none }
   .burger { display: inline-flex }
   .site-header__cta .btn--ghost { display: none }
