@@ -2666,3 +2666,8 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   .post-feature__media{min-height:200px}
   .toc ol{columns:1}
 }
+
+/* Stage en direct : lien nav mis en avant (ajout 2026-06) */
+.nav-item__link--stage{color:var(--accent);font-weight:700}
+.nav-item__link--stage:hover{color:var(--accent);opacity:.85}
+.mobile-nav__stage{color:var(--accent);font-weight:700}
