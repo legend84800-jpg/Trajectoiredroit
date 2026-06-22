@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2563EB">
+  <title>Générateur de fiche d'arrêt en ligne, gratuit | TrajectoireDroit</title>
+  <meta name="description" content="Colle le texte d'un arrêt et reçois une fiche d'arrêt structurée en 7 rubriques, rédigée selon la méthode d'un professeur de droit. Premier essai gratuit, sans inscription.">
+  <link rel="canonical" href="https://trajectoiredroit.com/outil-fiche-arret.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Générateur de fiche d'arrêt en ligne, gratuit">
+  <meta property="og:description" content="Colle un arrêt, reçois une fiche structurée en 7 rubriques, par la méthode d'un prof de droit.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/cours-contrats-hero.jpg">
+  <meta property="og:url" content="https://trajectoiredroit.com/outil-fiche-arret.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Générateur de fiche d'arrêt",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "url": "https://trajectoiredroit.com/outil-fiche-arret.html",
+        "description": "Outil qui transforme le texte d'un arrêt en fiche d'arrêt structurée selon la méthode de TrajectoireDroit.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "publisher": { "@type": "EducationalOrganization", "name": "TrajectoireDroit", "url": "https://trajectoiredroit.com" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://trajectoiredroit.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Générateur de fiche d'arrêt", "item": "https://trajectoiredroit.com/outil-fiche-arret.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF');
+  </script>
+
+  <style>
+    .tool-hero{padding:54px 0 22px;text-align:center}
+    .tool-hero h1{font-family:"Spectral",Georgia,serif;font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.12;margin:0 0 14px}
+    .tool-hero .lead{max-width:640px;margin:0 auto;color:#475569;font-size:1.08rem}
+    .tool-hero__badge{display:inline-block;background:#EFF4FF;color:#2563EB;font-weight:700;font-size:.82rem;padding:6px 14px;border-radius:999px;margin-bottom:16px}
+
+    .tool-wrap{max-width:760px;margin:0 auto}
+    .tool-box{background:#fff;border:1px solid #E2E8F0;border-radius:18px;box-shadow:0 12px 40px rgba(15,23,42,.07);padding:22px}
+    .tool-box label{display:block;font-weight:700;margin-bottom:8px;color:#0F172A}
+    #arretInput{width:100%;min-height:200px;resize:vertical;border:1px solid #CBD5E1;border-radius:12px;padding:14px;font-family:inherit;font-size:.98rem;line-height:1.55;color:#0F172A}
+    #arretInput:focus{outline:none;border-color:#2563EB;box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+    .tool-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;flex-wrap:wrap}
+    .tool-counter{font-size:.86rem;color:#64748B}
+    .tool-counter strong{color:#2563EB}
+    .tool-hint{font-size:.82rem;color:#94A3B8;margin-top:10px}
+    .tool-error{display:none;margin-top:14px;background:#FEF2F2;border:1px solid #FECACA;color:#B91C1C;padding:12px 14px;border-radius:10px;font-size:.92rem}
+
+    /* Zone résultat */
+    #resultZone{margin-top:26px}
+    .fa-loading{display:none;text-align:center;padding:40px 0;color:#64748B}
+    .fa-loading .spin{width:34px;height:34px;border:3px solid #DBEAFE;border-top-color:#2563EB;border-radius:50%;margin:0 auto 14px;animation:faspin .8s linear infinite}
+    @keyframes faspin{to{transform:rotate(360deg)}}
+
+    .fa{background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:30px 30px 26px;box-shadow:0 10px 36px rgba(15,23,42,.06)}
+    .fa__head{border-bottom:2px solid #2563EB;padding-bottom:14px;margin-bottom:20px}
+    .fa__head h2{font-family:"Spectral",Georgia,serif;font-size:1.5rem;margin:0 0 4px;color:#0F172A}
+    .fa__meta{margin:0;color:#64748B;font-size:.9rem}
+    .fa__rub{margin-bottom:18px}
+    .fa__rub h3{font-family:"Hanken Grotesk",sans-serif;font-size:1.02rem;color:#2563EB;margin:0 0 6px;text-transform:uppercase;letter-spacing:.02em}
+    .fa__rub p{margin:0;color:#1E293B;line-height:1.62}
+    .fa mark{background:#FEF3C7;padding:1px 4px;border-radius:4px}
+    .fa strong{color:#0F172A}
+
+    .fa-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+    .fa-cta{margin-top:26px;background:linear-gradient(135deg,#2563EB,#1D4ED8);color:#fff;border-radius:16px;padding:26px;text-align:center}
+    .fa-cta h3{font-family:"Spectral",serif;color:#fff;margin:0 0 8px;font-size:1.3rem}
+    .fa-cta p{color:rgba(255,255,255,.9);margin:0 0 16px}
+    .fa-cta .btn{background:#fff;color:#1D4ED8}
+
+    .tool-trust{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin:30px auto 0;color:#64748B;font-size:.9rem}
+    .tool-trust span{display:inline-flex;align-items:center;gap:7px}
+  </style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="index.html" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <div class="nav-item has-dropdown">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            Fiches détaillées
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="formations.html#cours-l1" role="menuitem"><span class="dropdown__icon dropdown__icon--blue">📘</span><span><strong>Licence 1</strong><small>Constit, intro droit, personnes, famille</small></span></a>
+            <a class="dropdown__item" href="formations.html#cours-l2" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald">📗</span><span><strong>Licence 2</strong><small>Contrats, DA, pénal, biens, obligations</small></span></a>
+            <a class="dropdown__item" href="formations.html#cours-l3" role="menuitem"><span class="dropdown__icon dropdown__icon--amber">📙</span><span><strong>Licence 3</strong><small>Commercial, contrats spéciaux, PP</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="formations.html">Voir toutes les matières →</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="formations.html#majeures" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            Majeures préparées
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="formations.html#majeures" role="menuitem"><span class="dropdown__icon dropdown__icon--blue">📘</span><span><strong>Licence 1</strong><small>Personnes, famille</small></span></a>
+            <a class="dropdown__item" href="formations.html#majeures" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald">📗</span><span><strong>Licence 2</strong><small>Contrats, DA, pénal, obligations, biens</small></span></a>
+            <a class="dropdown__item" href="formations.html#majeures" role="menuitem"><span class="dropdown__icon dropdown__icon--amber">📙</span><span><strong>Licence 3</strong><small>Commercial, contrats spéciaux, PP</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="formations.html#majeures">Voir toutes les majeures →</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--blue">⚖️</span><span><strong>Droit</strong><small>L1 → M2 · toutes matières</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald">⭐</span><span><strong>Pack 5 séances <em>· -10 %</em></strong><small>400 € · 80 €/h</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="blog.html" class="nav-item__link">Blog</a></div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue">👨‍🏫</span><span><strong>Qui suis-je</strong><small>Julien, Master II Assas</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet">🧭</span><span><strong>Notre méthode</strong><small>3 piliers : vidéo + carte + fiche</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald">⭐</span><span><strong>Témoignages</strong><small>149 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber">❓</span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:contact@trajectoiredroit.com">Nous contacter →</a>
+          </div>
+        </div>
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-hero">
+      <div class="container">
+        <span class="tool-hero__badge">Outil gratuit · par un prof de droit</span>
+        <h1>Génère ta fiche d'arrêt en quelques secondes</h1>
+        <p class="lead">Colle le texte d'un arrêt et tu reçois une fiche structurée en sept rubriques, rédigée selon ma méthode. Tu pars de la décision brute, tu repars avec une fiche claire, prête à réviser.</p>
+      </div>
+    </section>
+
+    <section class="section section--sm">
+      <div class="container">
+        <div class="tool-wrap">
+          <div class="tool-box">
+            <label for="arretInput">Colle ici le texte complet de l'arrêt</label>
+            <textarea id="arretInput" placeholder="Colle le texte de la décision (Cour de cassation, Conseil d'État, cour d'appel…). Plus le texte est complet, plus la fiche est précise."></textarea>
+            <div class="tool-row">
+              <span class="tool-counter" id="toolCounter"></span>
+              <button class="btn btn--primary btn--lg" id="genBtn">Générer ma fiche →</button>
+            </div>
+            <p class="tool-hint">Tes données ne sont pas conservées. La fiche est un point de départ : relis toujours la décision et vérifie chaque rubrique.</p>
+            <div class="tool-error" id="toolError"></div>
+          </div>
+
+          <div id="resultZone">
+            <div class="fa-loading" id="faLoading">
+              <div class="spin"></div>
+              Je lis l'arrêt et je rédige ta fiche…
+            </div>
+            <div id="faResult"></div>
+          </div>
+
+          <div class="tool-trust">
+            <span>✅ Premier essai sans inscription</span>
+            <span>⚖️ Méthode d'un Master II d'Assas</span>
+            <span>📄 Les 7 rubriques attendues</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container" style="max-width:760px">
+        <h2 style="font-family:Spectral,serif;text-align:center;margin-bottom:8px">Pour aller plus loin que la fiche</h2>
+        <p style="text-align:center;color:#64748B;margin-bottom:26px">La fiche t'aide à comprendre une décision. Pour réviser toute une matière sans rien oublier, mes supports font le travail à ta place.</p>
+        <div style="display:grid;gap:14px">
+          <a class="card" href="fiche-arrets.html" style="display:block;padding:18px 20px;text-decoration:none;border:1px solid #E2E8F0;border-radius:14px"><strong style="color:#2563EB">La méthode complète de la fiche d'arrêt →</strong><br><span style="color:#64748B">Les 7 rubriques expliquées pas à pas, avec des exemples rédigés.</span></a>
+          <a class="card" href="methode-commentaire-arret.html" style="display:block;padding:18px 20px;text-decoration:none;border:1px solid #E2E8F0;border-radius:14px"><strong style="color:#2563EB">Passer de la fiche au commentaire d'arrêt →</strong><br><span style="color:#64748B">La fiche prépare le commentaire. Voici comment construire l'analyse derrière.</span></a>
+          <a class="card" href="formations.html" style="display:block;padding:18px 20px;text-decoration:none;border:1px solid #E2E8F0;border-radius:14px"><strong style="color:#2563EB">Les fiches détaillées par matière →</strong><br><span style="color:#64748B">Tout le cours déjà fiché, arrêts importants compris, pour réviser vite avant le partiel.</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La méthode #1 pour réussir tes études de droit. Fiches détaillées, majeures préparées et cours particuliers. Éprouvés par 2500+ étudiants.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)">🎓 Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+        </div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches détaillées</a><a href="cours-particuliers.html">Cours particuliers</a></div>
+        <div><h4>Ressources</h4><a href="temoignages.html">Témoignages</a><a href="faq.html">FAQ</a><a href="a-propos.html">À propos</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- Modale email : capture après le premier essai -->
+  <div class="modal-backdrop" id="emailModal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-email aria-label="Fermer">✕</button>
+      <h2 id="emailModalTitle" style="margin-top:16px">Continue avec trois fiches offertes</h2>
+      <p class="lead" style="margin-bottom:22px">Laisse ton email et je débloque trois fiches d'arrêt de plus, tout de suite. Tu reçois aussi mes meilleures méthodes pour réussir tes partiels.</p>
+      <form id="emailForm" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" id="emailInput" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <button class="btn btn--primary btn--lg btn--full" type="submit" id="emailSubmit">Débloquer mes fiches →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic. Aucune carte bancaire.</p>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js" defer></script>
+  <script>
+  (function(){
+    var ESSAI_LIBRE = 1;        // fiches sans email
+    var TOTAL_GRATUIT = 4;      // 1 libre + 3 après email
+    var KEY_COUNT = "tjd_fa_count";
+    var KEY_EMAIL = "tjd_fa_email";
+
+    var input = document.getElementById("arretInput");
+    var genBtn = document.getElementById("genBtn");
+    var counter = document.getElementById("toolCounter");
+    var errorBox = document.getElementById("toolError");
+    var loading = document.getElementById("faLoading");
+    var result = document.getElementById("faResult");
+    var emailModal = document.getElementById("emailModal");
+    var emailForm = document.getElementById("emailForm");
+    var emailInput = document.getElementById("emailInput");
+    var emailSubmit = document.getElementById("emailSubmit");
+
+    function getCount(){ return parseInt(localStorage.getItem(KEY_COUNT) || "0", 10); }
+    function hasEmail(){ return localStorage.getItem(KEY_EMAIL) === "1"; }
+
+    function majCompteur(){
+      var c = getCount();
+      var restant = TOTAL_GRATUIT - c;
+      if (c < ESSAI_LIBRE){ counter.innerHTML = "Ton <strong>premier essai</strong> est gratuit, sans inscription."; }
+      else if (restant > 0){ counter.innerHTML = "Il te reste <strong>" + restant + "</strong> fiche" + (restant>1?"s":"") + " offerte" + (restant>1?"s":"") + "."; }
+      else { counter.innerHTML = "Tu as utilisé tes fiches offertes."; }
+    }
+
+    function montrerErreur(msg){ errorBox.textContent = msg; errorBox.style.display = "block"; }
+    function cacherErreur(){ errorBox.style.display = "none"; }
+
+    function ouvrirEmail(){ emailModal.classList.add("is-open"); emailModal.style.display = "flex"; }
+    function fermerEmail(){ emailModal.classList.remove("is-open"); emailModal.style.display = "none"; }
+
+    function ctaAbonnement(){
+      result.innerHTML =
+        '<div class="fa-cta">' +
+        '<h3>Tu as utilisé tes fiches offertes</h3>' +
+        '<p>Pour des fiches d\'arrêt déjà rédigées par mes soins sur les grands arrêts de ton programme, et tout le cours fiché, regarde mes packs par matière.</p>' +
+        '<a class="btn btn--lg" href="formations.html">Voir les packs de fiches →</a>' +
+        '</div>';
+    }
+
+    async function genererFiche(){
+      cacherErreur();
+      var arret = input.value.trim();
+      if (arret.length < 200){ montrerErreur("Colle le texte complet de l'arrêt. Le texte actuel est trop court."); return; }
+
+      var c = getCount();
+      if (c >= TOTAL_GRATUIT){ ctaAbonnement(); return; }
+      if (c >= ESSAI_LIBRE && !hasEmail()){ ouvrirEmail(); return; }
+
+      genBtn.disabled = true;
+      result.innerHTML = "";
+      loading.style.display = "block";
+
+      try {
+        var rep = await fetch("/api/generer-fiche-arret", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ arret: arret })
+        });
+        var data = await rep.json();
+        loading.style.display = "none";
+        if (!rep.ok){ montrerErreur(data.erreur || "La génération a échoué. Réessaie."); genBtn.disabled = false; return; }
+
+        result.innerHTML = data.html +
+          '<div class="fa-actions">' +
+          '<button class="btn btn--outline btn--sm" id="copyBtn">Copier la fiche</button>' +
+          '<a class="btn btn--ghost btn--sm" href="fiche-arrets.html">Voir la méthode détaillée</a>' +
+          '</div>';
+        localStorage.setItem(KEY_COUNT, String(c + 1));
+        majCompteur();
+        brancherCopie();
+        result.scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch (e){
+        loading.style.display = "none";
+        montrerErreur("La génération a échoué. Vérifie ta connexion et réessaie.");
+      }
+      genBtn.disabled = false;
+    }
+
+    function brancherCopie(){
+      var btn = document.getElementById("copyBtn");
+      if (!btn) return;
+      btn.addEventListener("click", function(){
+        var fiche = result.querySelector(".fa");
+        if (!fiche) return;
+        var txt = fiche.innerText;
+        navigator.clipboard.writeText(txt).then(function(){ btn.textContent = "Copié ✓"; setTimeout(function(){ btn.textContent = "Copier la fiche"; }, 2000); });
+      });
+    }
+
+    genBtn.addEventListener("click", genererFiche);
+
+    emailForm.addEventListener("submit", async function(e){
+      e.preventDefault();
+      var email = emailInput.value.trim();
+      if (!email){ return; }
+      emailSubmit.disabled = true;
+      try {
+        await fetch("/api/inscrire-email", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ email: email })
+        });
+      } catch (e){ /* on débloque même si l'inscription échoue */ }
+      localStorage.setItem(KEY_EMAIL, "1");
+      emailSubmit.disabled = false;
+      fermerEmail();
+      genererFiche();
+    });
+
+    document.querySelectorAll("[data-close-email]").forEach(function(b){ b.addEventListener("click", fermerEmail); });
+    emailModal.addEventListener("click", function(e){ if (e.target === emailModal) fermerEmail(); });
+
+    majCompteur();
+  })();
+  </script>
+</body>
+</html>
