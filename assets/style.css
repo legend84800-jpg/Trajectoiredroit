@@ -365,6 +365,9 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 @media (max-width: 540px) {
   .logo__img { height: 30px; }
   .logo__slogan-only { display: none; }
+  /* Boutons sur petit écran : un libellé long passe à la ligne au lieu de pousser la page et de créer un débordement horizontal (constaté à 360px et en dessous) */
+  .btn { max-width: 100%; white-space: normal; text-align: center; }
+  .btn--lg { padding: 14px 20px; font-size: 1rem; }
 }
 .primary-nav { display: flex; gap: var(--sp-5); flex: 1; justify-content: center; flex-wrap: nowrap; align-items: center }
 .primary-nav .nav-item { position: relative }
