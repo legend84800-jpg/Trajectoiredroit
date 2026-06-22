@@ -21,7 +21,8 @@ EXEMPLES CORRIGÉS ET NOTIONS (gratuit, format copie) :
 cas-pratique-dol-reticence-dolosive-corrige.html, cas-pratique-legitime-defense-corrige.html, cas-pratique-responsabilite-sans-faute-corrige.html, commentaire-arret-blieck-1991-corrige.html, commentaire-arret-odievre-2003-corrige.html, commentaire-arret-uber-2020-corrige.html, dissertation-fonctions-responsabilite-civile-corrige.html, dissertation-separation-des-pouvoirs-corrige.html, arret-blanco-explique.html, arret-benjamin-explique.html, arret-nicolo-explique.html, arret-dame-lamotte-explique.html, arret-bac-eloka-explique.html, la-cause-en-droit.html, les-vices-du-consentement.html
 
 PRODUITS ET SERVICES :
-formations.html — la boutique, tous les cours, fiches et corrigés PDF de la licence à télécharger
+formations.html — fiches détaillées PDF (cours complet par matière, de la L1 à la L3, 14,99 €)
+majeures-preparees.html — majeures préparées PDF (la règle de droit condition par condition, pour les cas pratiques, 12,99 €)
 cours-particuliers.html — cours particuliers de droit en visio avec Julien, 89 €/h
 stage-methode.html — stage de méthode en direct, 5 séances
 produit-template.html — formation vidéo sur le commentaire d'arrêt
