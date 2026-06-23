@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#2563EB">
-  <title>Générateur de fiche d'arrêt en ligne, gratuit | TrajectoireDroit</title>
-  <meta name="description" content="Colle le texte d'un arrêt et reçois une fiche d'arrêt structurée en 7 rubriques, rédigée selon la méthode d'un professeur de droit. Premier essai gratuit, sans inscription.">
+  <title>Outils de méthode en droit gratuits | Fiche d'arrêt, commentaire, cas pratique, dissertation | TrajectoireDroit</title>
+  <meta name="description" content="Génère une fiche d'arrêt, un plan de commentaire d'arrêt, un corrigé de cas pratique ou un plan de dissertation juridique. Outils gratuits basés sur la méthode d'un professeur de droit.">
   <link rel="canonical" href="https://trajectoiredroit.com/outil-fiche-arret.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Générateur de fiche d'arrêt en ligne, gratuit">
-  <meta property="og:description" content="Colle un arrêt, reçois une fiche structurée en 7 rubriques, par la méthode d'un prof de droit.">
+  <meta property="og:title" content="Outils de méthode en droit gratuits | TrajectoireDroit">
+  <meta property="og:description" content="Fiche d'arrêt, commentaire, cas pratique, dissertation : génère ton exercice en quelques secondes, par la méthode d'un prof de droit.">
   <meta property="og:image" content="https://trajectoiredroit.com/assets/cours-contrats-hero.jpg">
   <meta property="og:url" content="https://trajectoiredroit.com/outil-fiche-arret.html">
   <meta property="og:locale" content="fr_FR">
@@ -21,11 +21,11 @@
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "Générateur de fiche d'arrêt",
+        "name": "Outils de méthode en droit",
         "applicationCategory": "EducationalApplication",
         "operatingSystem": "Web",
         "url": "https://trajectoiredroit.com/outil-fiche-arret.html",
-        "description": "Outil qui transforme le texte d'un arrêt en fiche d'arrêt structurée selon la méthode de TrajectoireDroit.",
+        "description": "Outils qui génèrent des fiches d'arrêt, plans de commentaire, corrigés de cas pratique et plans de dissertation selon la méthode de TrajectoireDroit.",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
         "publisher": { "@type": "EducationalOrganization", "name": "TrajectoireDroit", "url": "https://trajectoiredroit.com" }
       },
@@ -33,7 +33,7 @@
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://trajectoiredroit.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Générateur de fiche d'arrêt", "item": "https://trajectoiredroit.com/outil-fiche-arret.html" }
+          { "@type": "ListItem", "position": 2, "name": "Outils de méthode", "item": "https://trajectoiredroit.com/outil-fiche-arret.html" }
         ]
       }
     ]
@@ -53,28 +53,52 @@
   </script>
 
   <style>
+    /* ---- Hero ---- */
     .tool-hero{padding:54px 0 22px;text-align:center}
     .tool-hero h1{font-family:"Spectral",Georgia,serif;font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.12;margin:0 0 14px}
     .tool-hero .lead{max-width:640px;margin:0 auto;color:#475569;font-size:1.08rem}
     .tool-hero__badge{display:inline-block;background:#EFF4FF;color:#2563EB;font-weight:700;font-size:.82rem;padding:6px 14px;border-radius:999px;margin-bottom:16px}
 
+    /* ---- Layout ---- */
     .tool-wrap{max-width:760px;margin:0 auto}
+
+    /* ---- Onglets ---- */
+    .tool-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+    .tool-tab{background:#F1F5F9;border:1px solid #E2E8F0;border-radius:10px;padding:10px 18px;font-family:"Hanken Grotesk",sans-serif;font-size:.92rem;font-weight:600;cursor:pointer;color:#475569;transition:background .15s,color .15s,border-color .15s}
+    .tool-tab:hover{background:#EFF4FF;color:#2563EB;border-color:#BFDBFE}
+    .tool-tab.is-active{background:#2563EB;color:#fff;border-color:#2563EB}
+
+    /* ---- Box de saisie ---- */
     .tool-box{background:#fff;border:1px solid #E2E8F0;border-radius:18px;box-shadow:0 12px 40px rgba(15,23,42,.07);padding:22px}
     .tool-box label{display:block;font-weight:700;margin-bottom:8px;color:#0F172A}
-    #arretInput{width:100%;min-height:200px;resize:vertical;border:1px solid #CBD5E1;border-radius:12px;padding:14px;font-family:inherit;font-size:.98rem;line-height:1.55;color:#0F172A}
-    #arretInput:focus{outline:none;border-color:#2563EB;box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+    #toolInput{width:100%;min-height:200px;resize:vertical;border:1px solid #CBD5E1;border-radius:12px;padding:14px;font-family:inherit;font-size:.98rem;line-height:1.55;color:#0F172A}
+    #toolInput:focus{outline:none;border-color:#2563EB;box-shadow:0 0 0 3px rgba(37,99,235,.15)}
     .tool-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;flex-wrap:wrap}
     .tool-counter{font-size:.86rem;color:#64748B}
     .tool-counter strong{color:#2563EB}
     .tool-hint{font-size:.82rem;color:#94A3B8;margin-top:10px}
     .tool-error{display:none;margin-top:14px;background:#FEF2F2;border:1px solid #FECACA;color:#B91C1C;padding:12px 14px;border-radius:10px;font-size:.92rem}
 
-    /* Zone résultat */
+    /* ---- Zone résultat ---- */
     #resultZone{margin-top:26px}
-    .fa-loading{display:none;text-align:center;padding:40px 0;color:#64748B}
-    .fa-loading .spin{width:34px;height:34px;border:3px solid #DBEAFE;border-top-color:#2563EB;border-radius:50%;margin:0 auto 14px;animation:faspin .8s linear infinite}
+    .tool-loading{display:none;text-align:center;padding:40px 0;color:#64748B}
+    .tool-loading .spin{width:34px;height:34px;border:3px solid #DBEAFE;border-top-color:#2563EB;border-radius:50%;margin:0 auto 14px;animation:faspin .8s linear infinite}
     @keyframes faspin{to{transform:rotate(360deg)}}
+    .fa-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
 
+    /* ---- CTA abonnement ---- */
+    .fa-cta{margin-top:26px;background:linear-gradient(135deg,#2563EB,#1D4ED8);color:#fff;border-radius:16px;padding:26px;text-align:center}
+    .fa-cta h3{font-family:"Spectral",serif;color:#fff;margin:0 0 8px;font-size:1.3rem}
+    .fa-cta p{color:rgba(255,255,255,.9);margin:0 0 16px}
+    .fa-cta .btn{background:#fff;color:#1D4ED8}
+
+    /* ---- Trust ---- */
+    .tool-trust{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin:30px auto 0;color:#64748B;font-size:.9rem}
+    .tool-trust span{display:inline-flex;align-items:center;gap:7px}
+
+    /* ======================================================
+       FICHE D'ARRÊT (.fa) — couleur bleue
+    ====================================================== */
     .fa{background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:30px 30px 26px;box-shadow:0 10px 36px rgba(15,23,42,.06)}
     .fa__head{border-bottom:2px solid #2563EB;padding-bottom:14px;margin-bottom:20px}
     .fa__head h2{font-family:"Spectral",Georgia,serif;font-size:1.5rem;margin:0 0 4px;color:#0F172A}
@@ -85,14 +109,65 @@
     .fa mark{background:#FEF3C7;padding:1px 4px;border-radius:4px}
     .fa strong{color:#0F172A}
 
-    .fa-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
-    .fa-cta{margin-top:26px;background:linear-gradient(135deg,#2563EB,#1D4ED8);color:#fff;border-radius:16px;padding:26px;text-align:center}
-    .fa-cta h3{font-family:"Spectral",serif;color:#fff;margin:0 0 8px;font-size:1.3rem}
-    .fa-cta p{color:rgba(255,255,255,.9);margin:0 0 16px}
-    .fa-cta .btn{background:#fff;color:#1D4ED8}
+    /* ======================================================
+       COMMENTAIRE D'ARRÊT (.ca) — couleur violette
+    ====================================================== */
+    .ca{background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:30px 30px 26px;box-shadow:0 10px 36px rgba(15,23,42,.06)}
+    .ca__head{border-bottom:2px solid #7C3AED;padding-bottom:14px;margin-bottom:20px}
+    .ca__head h2{font-family:"Spectral",Georgia,serif;font-size:1.5rem;margin:0 0 4px;color:#0F172A}
+    .ca__meta{margin:0;color:#64748B;font-size:.9rem}
+    .ca__rub{margin-bottom:22px}
+    .ca__rub h3{font-family:"Hanken Grotesk",sans-serif;font-size:1.02rem;color:#7C3AED;margin:0 0 10px;text-transform:uppercase;letter-spacing:.02em}
+    .ca__rub p{margin:0 0 8px;color:#1E293B;line-height:1.65}
+    .ca__plan{display:grid;gap:20px}
+    .ca__partie h4{font-family:"Spectral",serif;font-size:1.1rem;color:#0F172A;margin:0 0 10px;padding:8px 14px;background:#F5F3FF;border-left:3px solid #7C3AED;border-radius:0 8px 8px 0}
+    .ca__sp{margin:0 0 14px 0;padding-left:14px;border-left:2px solid #DDD6FE}
+    .ca__sp h5{font-size:.95rem;color:#6D28D9;margin:0 0 6px;font-weight:700}
+    .ca__sp ul{margin:4px 0 0 18px;color:#1E293B;line-height:1.7;padding:0}
+    .ca__sp li{margin-bottom:4px}
+    .ca strong{color:#0F172A}
 
-    .tool-trust{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin:30px auto 0;color:#64748B;font-size:.9rem}
-    .tool-trust span{display:inline-flex;align-items:center;gap:7px}
+    /* ======================================================
+       CAS PRATIQUE (.cp) — couleur verte
+    ====================================================== */
+    .cp{background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:30px 30px 26px;box-shadow:0 10px 36px rgba(15,23,42,.06)}
+    .cp__head{border-bottom:2px solid #059669;padding-bottom:14px;margin-bottom:20px}
+    .cp__head h2{font-family:"Spectral",Georgia,serif;font-size:1.5rem;margin:0 0 4px;color:#0F172A}
+    .cp__meta{margin:0;color:#64748B;font-size:.9rem}
+    .cp__intro{margin-bottom:18px;padding:12px 16px;background:#F0FDF4;border-radius:10px}
+    .cp__intro p{margin:0;color:#1E293B;line-height:1.62;font-style:italic}
+    .cp__probleme{margin-bottom:28px;padding-bottom:22px;border-bottom:1px dashed #D1FAE5}
+    .cp__probleme:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+    .cp__probleme h3{font-family:"Hanken Grotesk",sans-serif;font-size:1.05rem;color:#059669;margin:0 0 12px;padding:8px 14px;background:#ECFDF5;border-left:3px solid #059669;border-radius:0 8px 8px 0}
+    .cp__faits{background:#F8FAFC;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:.92rem;color:#475569;line-height:1.6}
+    .cp__syl{display:grid;gap:10px}
+    .cp__maj,.cp__min,.cp__conc{border-radius:10px;padding:14px 16px}
+    .cp__maj{background:#EFF6FF;border:1px solid #BFDBFE}
+    .cp__min{background:#FEFCE8;border:1px solid #FDE68A}
+    .cp__conc{background:#F0FDF4;border:1px solid #A7F3D0}
+    .cp__maj h4{margin:0 0 8px;font-size:.88rem;text-transform:uppercase;letter-spacing:.06em;color:#1D4ED8;font-weight:700}
+    .cp__min h4{margin:0 0 8px;font-size:.88rem;text-transform:uppercase;letter-spacing:.06em;color:#92400E;font-weight:700}
+    .cp__conc h4{margin:0 0 8px;font-size:.88rem;text-transform:uppercase;letter-spacing:.06em;color:#065F46;font-weight:700}
+    .cp__maj p,.cp__min p,.cp__conc p{margin:0;color:#1E293B;line-height:1.65}
+    .cp strong{color:#0F172A}
+
+    /* ======================================================
+       DISSERTATION (.dis) — couleur rouge bordeaux
+    ====================================================== */
+    .dis{background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:30px 30px 26px;box-shadow:0 10px 36px rgba(15,23,42,.06)}
+    .dis__head{border-bottom:2px solid #B91C1C;padding-bottom:14px;margin-bottom:20px}
+    .dis__head h2{font-family:"Spectral",Georgia,serif;font-size:1.5rem;margin:0 0 4px;color:#0F172A}
+    .dis__meta{margin:0;color:#64748B;font-size:.9rem}
+    .dis__rub{margin-bottom:22px}
+    .dis__rub h3{font-family:"Hanken Grotesk",sans-serif;font-size:1.02rem;color:#B91C1C;margin:0 0 10px;text-transform:uppercase;letter-spacing:.02em}
+    .dis__rub p{margin:0 0 8px;color:#1E293B;line-height:1.65}
+    .dis__plan{display:grid;gap:20px}
+    .dis__partie h4{font-family:"Spectral",serif;font-size:1.1rem;color:#0F172A;margin:0 0 10px;padding:8px 14px;background:#FEF2F2;border-left:3px solid #B91C1C;border-radius:0 8px 8px 0}
+    .dis__sp{margin:0 0 14px 0;padding-left:14px;border-left:2px solid #FECACA}
+    .dis__sp h5{font-size:.95rem;color:#991B1B;margin:0 0 6px;font-weight:700}
+    .dis__sp ul{margin:4px 0 0 18px;color:#1E293B;line-height:1.7;padding:0}
+    .dis__sp li{margin-bottom:4px}
+    .dis strong{color:#0F172A}
   </style>
 </head>
 <body>
@@ -103,7 +178,6 @@
         <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
       </a>
       <nav class="primary-nav" aria-label="Navigation principale">
-        <!-- Item : Fiches (fiches détaillées + majeures préparées) -->
         <div class="nav-item has-dropdown">
           <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
             📚 Fiches
@@ -161,35 +235,47 @@
   <main>
     <section class="tool-hero">
       <div class="container">
-        <span class="tool-hero__badge">Outil gratuit · par un prof de droit</span>
-        <h1>Génère ta fiche d'arrêt en quelques secondes</h1>
-        <p class="lead">Colle le texte d'un arrêt et tu reçois une fiche structurée en sept rubriques, rédigée selon ma méthode. Tu pars de la décision brute, tu repars avec une fiche claire, prête à réviser.</p>
+        <span class="tool-hero__badge">Outils gratuits · par un prof de droit</span>
+        <h1>Génère tes exercices de droit en quelques secondes</h1>
+        <p class="lead">Choisis l'exercice, colle ton texte ou ton sujet, et reçois un corrigé structuré selon la méthode. Fiche d'arrêt, commentaire, cas pratique ou dissertation : premier essai gratuit, sans inscription.</p>
       </div>
     </section>
 
     <section class="section section--sm">
       <div class="container">
         <div class="tool-wrap">
+
+          <!-- Onglets -->
+          <div class="tool-tabs" role="tablist" aria-label="Choisir l'exercice">
+            <button class="tool-tab is-active" data-tool="fa" role="tab" aria-selected="true">📄 Fiche d'arrêt</button>
+            <button class="tool-tab" data-tool="ca" role="tab" aria-selected="false">💬 Commentaire</button>
+            <button class="tool-tab" data-tool="cp" role="tab" aria-selected="false">⚖️ Cas pratique</button>
+            <button class="tool-tab" data-tool="dis" role="tab" aria-selected="false">📝 Dissertation</button>
+          </div>
+
+          <!-- Saisie -->
           <div class="tool-box">
-            <label for="arretInput">Colle ici le texte complet de l'arrêt</label>
-            <textarea id="arretInput" placeholder="Colle le texte de la décision (Cour de cassation, Conseil d'État, cour d'appel…). Plus le texte est complet, plus la fiche est précise."></textarea>
+            <label id="toolLabel" for="toolInput">Colle ici le texte complet de l'arrêt</label>
+            <textarea id="toolInput" placeholder="Colle le texte de la décision (Cour de cassation, Conseil d'État, cour d'appel…). Plus le texte est complet, plus la fiche est précise."></textarea>
             <div class="tool-row">
               <span class="tool-counter" id="toolCounter"></span>
               <button class="btn btn--primary btn--lg" id="genBtn">Générer ma fiche →</button>
             </div>
-            <p class="tool-hint">Tes données ne sont pas conservées. La fiche est un point de départ : relis toujours la décision et vérifie chaque rubrique.</p>
+            <p class="tool-hint">Tes données ne sont pas conservées. Le résultat est un point de départ : vérifie toujours les articles et arrêts cités.</p>
             <div class="tool-error" id="toolError"></div>
           </div>
 
+          <!-- Résultat -->
           <div id="resultZone">
-            <div class="fa-loading" id="faLoading">
+            <div class="tool-loading" id="toolLoading">
               <div class="spin"></div>
-              Je lis l'arrêt et je rédige ta fiche…
+              <span id="loadingMsg">Je génère le résultat…</span>
             </div>
-            <div id="faResult"></div>
+            <div id="toolResult"></div>
           </div>
 
-          <div class="tool-trust">
+          <!-- Trust badges -->
+          <div class="tool-trust" id="toolTrust">
             <span>✅ Premier essai sans inscription</span>
             <span>⚖️ Méthode d'un Master II d'Assas</span>
             <span>📄 Les 7 rubriques attendues</span>
@@ -200,12 +286,12 @@
 
     <section class="section section--alt">
       <div class="container" style="max-width:760px">
-        <h2 style="font-family:Spectral,serif;text-align:center;margin-bottom:8px">Pour aller plus loin que la fiche</h2>
-        <p style="text-align:center;color:#64748B;margin-bottom:26px">La fiche t'aide à comprendre une décision. Pour réviser toute une matière sans rien oublier, mes supports font le travail à ta place.</p>
+        <h2 style="font-family:Spectral,serif;text-align:center;margin-bottom:8px">Pour aller plus loin</h2>
+        <p style="text-align:center;color:#64748B;margin-bottom:26px">Ces outils t'aident à construire un exercice. Pour réviser toute une matière, mes fiches font le travail à ta place.</p>
         <div style="display:grid;gap:14px">
           <a class="card" href="fiche-arrets.html" style="display:block;padding:18px 20px;text-decoration:none;border:1px solid #E2E8F0;border-radius:14px"><strong style="color:#2563EB">La méthode complète de la fiche d'arrêt →</strong><br><span style="color:#64748B">Les 7 rubriques expliquées pas à pas, avec des exemples rédigés.</span></a>
-          <a class="card" href="methode-commentaire-arret.html" style="display:block;padding:18px 20px;text-decoration:none;border:1px solid #E2E8F0;border-radius:14px"><strong style="color:#2563EB">Passer de la fiche au commentaire d'arrêt →</strong><br><span style="color:#64748B">La fiche prépare le commentaire. Voici comment construire l'analyse derrière.</span></a>
-          <a class="card" href="formations.html" style="display:block;padding:18px 20px;text-decoration:none;border:1px solid #E2E8F0;border-radius:14px"><strong style="color:#2563EB">Les fiches détaillées par matière →</strong><br><span style="color:#64748B">Tout le cours déjà fiché, arrêts importants compris, pour réviser vite avant le partiel.</span></a>
+          <a class="card" href="methode-commentaire-arret.html" style="display:block;padding:18px 20px;text-decoration:none;border:1px solid #E2E8F0;border-radius:14px"><strong style="color:#7C3AED">Passer de la fiche au commentaire d'arrêt →</strong><br><span style="color:#64748B">La fiche prépare le commentaire. Voici comment construire l'analyse derrière.</span></a>
+          <a class="card" href="formations.html" style="display:block;padding:18px 20px;text-decoration:none;border:1px solid #E2E8F0;border-radius:14px"><strong style="color:#059669">Les fiches détaillées par matière →</strong><br><span style="color:#64748B">Tout le cours déjà fiché, arrêts importants compris, pour réviser vite avant le partiel.</span></a>
         </div>
       </div>
     </section>
@@ -234,15 +320,15 @@
     </div>
   </footer>
 
-  <!-- Modale email : capture après le premier essai -->
+  <!-- Modale email -->
   <div class="modal-backdrop" id="emailModal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
     <div class="modal">
       <button class="modal__close" data-close-email aria-label="Fermer">✕</button>
-      <h2 id="emailModalTitle" style="margin-top:16px">Continue avec trois fiches offertes</h2>
-      <p class="lead" style="margin-bottom:22px">Laisse ton email et je débloque trois fiches d'arrêt de plus, tout de suite. Tu reçois aussi mes meilleures méthodes pour réussir tes partiels.</p>
+      <h2 id="emailModalTitle" style="margin-top:16px">Continue avec trois essais offerts</h2>
+      <p class="lead" style="margin-bottom:22px">Laisse ton email et je débloque trois essais supplémentaires sur tous les outils. Tu reçois aussi mes meilleures méthodes pour réussir tes partiels.</p>
       <form id="emailForm" style="display:flex; gap:8px; flex-direction:column">
         <input type="email" id="emailInput" required placeholder="ton@email.com" class="form__input" aria-label="Email">
-        <button class="btn btn--primary btn--lg btn--full" type="submit" id="emailSubmit">Débloquer mes fiches →</button>
+        <button class="btn btn--primary btn--lg btn--full" type="submit" id="emailSubmit">Débloquer mes essais →</button>
       </form>
       <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic. Aucune carte bancaire.</p>
     </div>
@@ -251,21 +337,85 @@
   <script src="assets/js/main.js" defer></script>
   <script>
   (function(){
-    var ESSAI_LIBRE = 1;        // fiches sans email
-    var TOTAL_GRATUIT = 4;      // 1 libre + 3 après email
+    var ESSAI_LIBRE  = 1;
+    var TOTAL_GRATUIT = 4;
     var KEY_COUNT = "tjd_fa_count";
     var KEY_EMAIL = "tjd_fa_email";
 
-    var input = document.getElementById("arretInput");
-    var genBtn = document.getElementById("genBtn");
-    var counter = document.getElementById("toolCounter");
-    var errorBox = document.getElementById("toolError");
-    var loading = document.getElementById("faLoading");
-    var result = document.getElementById("faResult");
+    var OUTILS = {
+      fa: {
+        label:       "Colle ici le texte complet de l'arrêt",
+        placeholder: "Colle le texte de la décision (Cour de cassation, Conseil d'État, cour d'appel…). Plus le texte est complet, plus la fiche est précise.",
+        api:         "/api/generer-fiche-arret",
+        champ:       "arret",
+        loading:     "Je lis l'arrêt et je rédige ta fiche…",
+        minChars:    200,
+        erreurCourt: "Colle le texte complet de l'arrêt. Le texte est trop court.",
+        erreurCode:  "ERREUR_PAS_UN_ARRET",
+        erreurMsg:   "Ce texte ne ressemble pas à un arrêt. Colle le texte complet d'une décision de justice.",
+        trust:       ["✅ Premier essai sans inscription", "⚖️ Méthode d'un Master II d'Assas", "📄 Les 7 rubriques attendues"],
+        btn:         "Générer ma fiche →",
+        actions:     '<a class="btn btn--ghost btn--sm" href="fiche-arrets.html">Voir la méthode complète</a>'
+      },
+      ca: {
+        label:       "Colle ici le texte complet de l'arrêt à commenter",
+        placeholder: "Colle le texte de l'arrêt. L'outil génère une introduction rédigée et un plan argumenté en deux parties, deux sous-parties.",
+        api:         "/api/generer-commentaire-arret",
+        champ:       "arret",
+        loading:     "Je lis l'arrêt et je construis le plan du commentaire…",
+        minChars:    200,
+        erreurCourt: "Colle le texte complet de l'arrêt à commenter.",
+        erreurCode:  "ERREUR_PAS_UN_ARRET",
+        erreurMsg:   "Ce texte ne ressemble pas à un arrêt. Colle le texte complet d'une décision de justice.",
+        trust:       ["✅ Introduction rédigée en 7 étapes", "⚖️ Plan I.A/B II.A/B argumenté", "📌 Pistes par sous-partie"],
+        btn:         "Générer le plan →",
+        actions:     '<a class="btn btn--ghost btn--sm" href="methode-commentaire-arret.html">Voir la méthode</a>'
+      },
+      cp: {
+        label:       "Colle ici l'énoncé du cas pratique",
+        placeholder: "Colle l'énoncé complet. L'outil identifie chaque problème de droit et rédige le syllogisme : Majeure, Mineure, Conclusion.",
+        api:         "/api/generer-cas-pratique",
+        champ:       "enonce",
+        loading:     "J'identifie les problèmes de droit et je construis les syllogismes…",
+        minChars:    50,
+        erreurCourt: "L'énoncé est trop court. Colle le texte complet du cas pratique.",
+        erreurCode:  "ERREUR_PAS_UN_ENONCE",
+        erreurMsg:   "Ce texte ne ressemble pas à un énoncé de cas pratique.",
+        trust:       ["✅ Syllogisme Majeure / Mineure / Conclusion", "⚖️ Articles et jurisprudence", "📌 Condition par condition"],
+        btn:         "Corriger le cas pratique →",
+        actions:     '<a class="btn btn--ghost btn--sm" href="methode-cas-pratique.html">Voir la méthode</a>'
+      },
+      dis: {
+        label:       "Entre le sujet de dissertation",
+        placeholder: "Ex : « La liberté contractuelle » ou « Le juge et la loi ».",
+        api:         "/api/generer-dissertation",
+        champ:       "sujet",
+        loading:     "J'analyse le sujet et je construis le plan…",
+        minChars:    5,
+        erreurCourt: "Entre un sujet de dissertation.",
+        erreurCode:  "ERREUR_PAS_UN_SUJET",
+        erreurMsg:   "Ce texte n'est pas exploitable comme sujet de dissertation.",
+        trust:       ["✅ Analyse du sujet", "📌 Problématique + plan I.A/B II.A/B", "✍️ Introduction rédigée"],
+        btn:         "Générer le plan →",
+        actions:     '<a class="btn btn--ghost btn--sm" href="methode-dissertation.html">Voir la méthode</a>'
+      }
+    };
+
+    var outilActif = "fa";
+
+    var inputEl    = document.getElementById("toolInput");
+    var labelEl    = document.getElementById("toolLabel");
+    var genBtn     = document.getElementById("genBtn");
+    var counter    = document.getElementById("toolCounter");
+    var errorBox   = document.getElementById("toolError");
+    var loading    = document.getElementById("toolLoading");
+    var loadingMsg = document.getElementById("loadingMsg");
+    var result     = document.getElementById("toolResult");
+    var trustZone  = document.getElementById("toolTrust");
     var emailModal = document.getElementById("emailModal");
-    var emailForm = document.getElementById("emailForm");
+    var emailForm  = document.getElementById("emailForm");
     var emailInput = document.getElementById("emailInput");
-    var emailSubmit = document.getElementById("emailSubmit");
+    var emailSubmit= document.getElementById("emailSubmit");
 
     function getCount(){ return parseInt(localStorage.getItem(KEY_COUNT) || "0", 10); }
     function hasEmail(){ return localStorage.getItem(KEY_EMAIL) === "1"; }
@@ -273,9 +423,31 @@
     function majCompteur(){
       var c = getCount();
       var restant = TOTAL_GRATUIT - c;
-      if (c < ESSAI_LIBRE){ counter.innerHTML = "Ton <strong>premier essai</strong> est gratuit, sans inscription."; }
-      else if (restant > 0){ counter.innerHTML = "Il te reste <strong>" + restant + "</strong> fiche" + (restant>1?"s":"") + " offerte" + (restant>1?"s":"") + "."; }
-      else { counter.innerHTML = "Tu as utilisé tes fiches offertes."; }
+      if (c < ESSAI_LIBRE){
+        counter.innerHTML = "Ton <strong>premier essai</strong> est gratuit, sans inscription.";
+      } else if (restant > 0){
+        counter.innerHTML = "Il te reste <strong>" + restant + "</strong> essai" + (restant > 1 ? "s" : "") + " offert" + (restant > 1 ? "s" : "") + ".";
+      } else {
+        counter.innerHTML = "Tu as utilisé tes essais offerts.";
+      }
+    }
+
+    function changerOutil(id){
+      outilActif = id;
+      var o = OUTILS[id];
+      labelEl.textContent = o.label;
+      inputEl.placeholder = o.placeholder;
+      genBtn.textContent  = o.btn;
+      result.innerHTML    = "";
+      loading.style.display = "none";
+      cacherErreur();
+      trustZone.innerHTML = o.trust.map(function(t){ return "<span>" + t + "</span>"; }).join("");
+      document.querySelectorAll(".tool-tab").forEach(function(t){
+        var actif = t.dataset.tool === id;
+        t.classList.toggle("is-active", actif);
+        t.setAttribute("aria-selected", actif ? "true" : "false");
+      });
+      majCompteur();
     }
 
     function montrerErreur(msg){ errorBox.textContent = msg; errorBox.style.display = "block"; }
@@ -287,16 +459,17 @@
     function ctaAbonnement(){
       result.innerHTML =
         '<div class="fa-cta">' +
-        '<h3>Tu as utilisé tes fiches offertes</h3>' +
-        '<p>Pour des fiches d\'arrêt déjà rédigées par mes soins sur les grands arrêts de ton programme, et tout le cours fiché, regarde mes packs par matière.</p>' +
+        '<h3>Tu as utilisé tes essais offerts</h3>' +
+        '<p>Pour des fiches d\'arrêt, commentaires et cas pratiques déjà rédigés sur les grands thèmes de ton programme, regarde mes packs par matière.</p>' +
         '<a class="btn btn--lg" href="formations.html">Voir les packs de fiches →</a>' +
         '</div>';
     }
 
-    async function genererFiche(){
+    async function generer(){
       cacherErreur();
-      var arret = input.value.trim();
-      if (arret.length < 200){ montrerErreur("Colle le texte complet de l'arrêt. Le texte actuel est trop court."); return; }
+      var o = OUTILS[outilActif];
+      var texte = inputEl.value.trim();
+      if (texte.length < o.minChars){ montrerErreur(o.erreurCourt); return; }
 
       var c = getCount();
       if (c >= TOTAL_GRATUIT){ ctaAbonnement(); return; }
@@ -304,13 +477,17 @@
 
       genBtn.disabled = true;
       result.innerHTML = "";
+      loadingMsg.textContent = o.loading;
       loading.style.display = "block";
 
+      var body = {};
+      body[o.champ] = texte;
+
       try {
-        var rep = await fetch("/api/generer-fiche-arret", {
+        var rep = await fetch(o.api, {
           method: "POST",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify({ arret: arret })
+          body: JSON.stringify(body)
         });
         var data = await rep.json();
         loading.style.display = "none";
@@ -318,8 +495,8 @@
 
         result.innerHTML = data.html +
           '<div class="fa-actions">' +
-          '<button class="btn btn--outline btn--sm" id="copyBtn">Copier la fiche</button>' +
-          '<a class="btn btn--ghost btn--sm" href="fiche-arrets.html">Voir la méthode détaillée</a>' +
+          '<button class="btn btn--outline btn--sm" id="copyBtn">Copier</button>' +
+          o.actions +
           '</div>';
         localStorage.setItem(KEY_COUNT, String(c + 1));
         majCompteur();
@@ -336,14 +513,20 @@
       var btn = document.getElementById("copyBtn");
       if (!btn) return;
       btn.addEventListener("click", function(){
-        var fiche = result.querySelector(".fa");
-        if (!fiche) return;
-        var txt = fiche.innerText;
-        navigator.clipboard.writeText(txt).then(function(){ btn.textContent = "Copié ✓"; setTimeout(function(){ btn.textContent = "Copier la fiche"; }, 2000); });
+        var el = result.querySelector("article");
+        if (!el) return;
+        navigator.clipboard.writeText(el.innerText).then(function(){
+          btn.textContent = "Copié ✓";
+          setTimeout(function(){ btn.textContent = "Copier"; }, 2000);
+        });
       });
     }
 
-    genBtn.addEventListener("click", genererFiche);
+    document.querySelectorAll(".tool-tab").forEach(function(t){
+      t.addEventListener("click", function(){ changerOutil(t.dataset.tool); });
+    });
+
+    genBtn.addEventListener("click", generer);
 
     emailForm.addEventListener("submit", async function(e){
       e.preventDefault();
@@ -356,17 +539,17 @@
           headers: { "content-type": "application/json" },
           body: JSON.stringify({ email: email })
         });
-      } catch (e){ /* on débloque même si l'inscription échoue */ }
+      } catch (e){}
       localStorage.setItem(KEY_EMAIL, "1");
       emailSubmit.disabled = false;
       fermerEmail();
-      genererFiche();
+      generer();
     });
 
     document.querySelectorAll("[data-close-email]").forEach(function(b){ b.addEventListener("click", fermerEmail); });
     emailModal.addEventListener("click", function(e){ if (e.target === emailModal) fermerEmail(); });
 
-    majCompteur();
+    changerOutil("fa");
   })();
   </script>
   <script src="assets/js/chatbot.js" defer></script>
