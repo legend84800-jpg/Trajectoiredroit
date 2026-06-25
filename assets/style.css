@@ -12,8 +12,8 @@
   /* Identité TrajectoireDroit (palette des fiches officielles) */
   --navy:#1A2851;      /* bleu marine profond — titres principaux */
   --navy-deep:#0F1A35; /* version plus sombre — header sombre, footer */
-  --accent:#8B1538;    /* bordeaux/grenat — sous-titres, accents éditoriaux */
-  --accent-soft:#B23A5C; /* version hover/clair */
+  --accent:#8A6A1C;    /* or sombre — sous-titres, accents éditoriaux */
+  --accent-soft:#AD8325; /* version hover/clair */
   --gold-line:#C9A961; /* or/sable — filets décoratifs */
   --gold-bg:#FBF8EE;   /* fond chamois pour encadrés type "Citation" */
   --highlight:#FFF59D; /* surlignage jaune fluo type concept-clé */
@@ -296,7 +296,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .card--testi:nth-child(odd) .testi__avatar { background: linear-gradient(135deg, var(--blue-500), var(--blue-700)); }
 .card--testi:nth-child(even) .testi__avatar { background: linear-gradient(135deg, var(--accent-soft), var(--accent)); }
 .card--testi:nth-child(3n) .testi__avatar { background: linear-gradient(135deg, var(--blue-500), var(--navy-deep)); }
-.card--testi:nth-child(4n) .testi__avatar { background: linear-gradient(135deg, var(--accent), #6E0F2C); }
+.card--testi:nth-child(4n) .testi__avatar { background: linear-gradient(135deg, var(--accent), #5C4510); }
 .card--testi:nth-child(5n) .testi__avatar { background: linear-gradient(135deg, var(--navy), var(--navy-deep)); }
 .card--testi:nth-child(6n) .testi__avatar { background: linear-gradient(135deg, var(--accent-soft), var(--accent)); }
 .card--testi .testi__name { font-weight: 600; font-size: .95rem; color: var(--ink) }
