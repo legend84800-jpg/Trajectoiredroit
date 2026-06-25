@@ -487,7 +487,7 @@
         <div class="text-center" style="margin-bottom:32px">
           <span class="eyebrow">18, 19 et 20 août 2026</span>
           <h2 class="h2" style="margin-top:12px">Réserve ta place pour le stage du 18 au 20 août.</h2>
-          <p class="lead">Tu réserves aujourd'hui, le lien Google Meet et le programme des trois séances t'arrivent par email juste après. Les places partent dans l'ordre des inscriptions.</p>
+          <p class="lead">Remplis le formulaire ci-dessous. Je te recontacte sous 24 h pour confirmer ta place et t'envoyer le lien Google Meet.</p>
         </div>
 
         <div class="offer-card fade-in">
@@ -504,8 +504,38 @@
             <li>Le replay de toutes les séances</li>
             <li>Les cadeaux de chaque séance (fiches de citations, corrigés rédigés, majeures préparées)</li>
           </ul>
-          <a class="btn btn--primary btn--lg btn--full" href="mailto:contact@trajectoiredroit.com?subject=Réservation%20stage%20de%20méthode%20·%2018-20%20août%202026&amp;body=Bonjour%20Julien%2C%0A%0AJe%20souhaite%20réserver%20une%20place%20pour%20le%20stage%20de%20méthode%20des%2018%2C%2019%20et%2020%20août%202026%20(149%20€).%0A%0AMon%20prénom%20%3A%20%0AMon%20année%20d%27études%20(L1%2FL2%2FL3%2FM1)%20%3A%20%0A%0AMerci">Réserver ma place · 19 €/h · 149 € au total</a>
-          <p class="offer-note">Tu envoies un email, je te réponds sous 24 h pour confirmer ta place et t'envoyer le lien Google Meet.</p>
+          <form id="stageForm" class="form" action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" novalidate style="margin-top:4px">
+            <div class="grid-2" style="gap:16px">
+              <div class="form__row">
+                <label class="form__label" for="stage_nom">Prénom &amp; nom</label>
+                <input class="form__input" type="text" id="stage_nom" name="nom" required>
+              </div>
+              <div class="form__row">
+                <label class="form__label" for="stage_email">Email</label>
+                <input class="form__input" type="email" id="stage_email" name="email" required>
+              </div>
+            </div>
+            <div class="form__row">
+              <label class="form__label" for="stage_niveau">Niveau d'études</label>
+              <select class="form__select" id="stage_niveau" name="niveau" required>
+                <option value="">Sélectionner</option>
+                <option>L1</option><option>L2</option><option>L3</option>
+                <option>M1</option><option>M2</option>
+                <option>Capacité en droit</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="form__row">
+              <label class="form__label" for="stage_message">Message (facultatif)</label>
+              <textarea class="form__textarea" id="stage_message" name="message" placeholder="Ex : Intéressé L1, j'ai eu 7/20 en droit civil et j'aimerais progresser sur le commentaire d'arrêt avant les partiels."></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="Nouvelle inscription stage de méthode · 18-20 août 2026">
+            <input type="hidden" name="_format" value="plain">
+            <button class="btn btn--primary btn--lg btn--full" type="submit">Réserver ma place · 19 €/h · 149 € au total</button>
+            <p class="form__hint text-center">Réponse sous 24 h · sans engagement</p>
+            <div class="form__success" id="stageFormSuccess" hidden>Merci ! Je te recontacte sous 24 h pour confirmer ta place.</div>
+            <div class="form__error" id="stageFormError" hidden>Une erreur est survenue. Réessaie ou écris-moi directement à <a href="mailto:contact@trajectoiredroit.com">contact@trajectoiredroit.com</a>.</div>
+          </form>
         </div>
       </div>
     </section>
@@ -563,7 +593,7 @@
   <!-- STICKY CTA MOBILE -->
   <div class="sticky-cta">
     <div class="sticky-cta__price">149 € <small>· 3 séances en direct</small></div>
-    <a class="btn btn--primary" href="mailto:contact@trajectoiredroit.com?subject=Réservation%20stage%20de%20méthode%20·%2018-20%20août%202026&amp;body=Bonjour%20Julien%2C%0A%0AJe%20souhaite%20réserver%20une%20place%20pour%20le%20stage%20de%20méthode%20des%2018%2C%2019%20et%2020%20août%202026%20(149%20€).%0A%0AMon%20prénom%20%3A%20%0AMon%20année%20d%27études%20(L1%2FL2%2FL3%2FM1)%20%3A%20%0A%0AMerci">Réserver ma place</a>
+    <a class="btn btn--primary" href="#reserver">Réserver ma place</a>
   </div>
 
   <!-- EXIT-INTENT MODAL -->
@@ -584,5 +614,19 @@
 
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/chatbot.js" defer></script>
+  <script>
+    var sf = document.getElementById('stageForm');
+    if (sf) sf.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var ok = document.getElementById('stageFormSuccess');
+      var ko = document.getElementById('stageFormError');
+      ok.hidden = true; ko.hidden = true;
+      fetch(sf.action, { method: 'POST', body: new FormData(sf), headers: { 'Accept': 'application/json' } })
+        .then(function(r) {
+          if (r.ok) { sf.reset(); ok.hidden = false; ok.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+          else { ko.hidden = false; }
+        }).catch(function() { ko.hidden = false; });
+    });
+  </script>
 </body>
 </html>
