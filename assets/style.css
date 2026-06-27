@@ -2985,3 +2985,21 @@ html[data-theme="dark"] .hero__unis-list span:hover { color: #E2ECF8; }
 
 /* Hover nav spécifique (sélecteur à haute spécificité, doit être explicite) */
 html[data-theme="dark"] .primary-nav a:not(.nav-item__link):not(.dropdown__item):not(.dropdown__cta):not(.megamenu__col-link):not(.megamenu__list a):not(.btn):hover { color: #E2ECF8; }
+
+/* 30. Éléments avec fond --blue-600/--navy (quasi-noir sur fond sombre) → bleu royal visible */
+html[data-theme="dark"] .btn--primary {
+  background: #2E6DB4;
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(46,109,180,.45);
+}
+html[data-theme="dark"] .btn--primary:hover {
+  background: #3A7DC5;
+  color: #fff;
+  box-shadow: 0 6px 22px rgba(58,125,197,.55);
+}
+html[data-theme="dark"] .step__num { background: #2E6DB4; color: #fff; }
+html[data-theme="dark"] .badge--popular { background: #2E6DB4; color: #fff; }
+html[data-theme="dark"] .card--featured::before { background: #2E6DB4; color: #fff; }
+html[data-theme="dark"] .abo-step--blue .abo-step__num { background: #2E6DB4; }
+html[data-theme="dark"] .filter-chip.active { background: #2E6DB4; border-color: #2E6DB4; color: #fff; }
