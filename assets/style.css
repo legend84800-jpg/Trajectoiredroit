@@ -2670,4 +2670,254 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 /* Stage en direct : lien nav mis en avant (ajout 2026-06) */
 .nav-item__link--stage{color:var(--accent);font-weight:700}
 .nav-item__link--stage:hover{color:var(--accent);opacity:.85}
+
+/* ============================================================
+   DARK MODE
+   Activation : data-theme="dark" sur <html>
+   Initialisation : script inline dans <head> (anti-flash)
+   ============================================================ */
+
+/* 1. Variables overridées */
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --white:       #1C2D44;
+  --slate-50:    #0F1A2E;
+  --slate-100:   #162033;
+  --slate-200:   #1A2740;
+
+  --ink:         #E2ECF8;
+  --body:        #8FA8CC;
+  --muted:       #4F6680;
+
+  --border:         rgba(255,255,255,0.09);
+  --border-strong:  rgba(255,255,255,0.16);
+
+  --blue-50:     #122030;
+  --blue-100:    rgba(94,139,218,0.18);
+  --blue-200:    rgba(94,139,218,0.28);
+
+  --accent:      #D4A85A;
+  --gold-bg:     rgba(201,169,97,0.12);
+}
+
+/* 2. Fond de page */
+html[data-theme="dark"] body { background: #0F1A2E; }
+
+/* 3. Header */
+html[data-theme="dark"] .site-header {
+  background: rgba(15,26,46,0.96);
+  border-bottom-color: rgba(255,255,255,0.1);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,.35);
+}
+
+/* 4. Logo */
+html[data-theme="dark"] .logo { color: #E2ECF8; }
+html[data-theme="dark"] .logo__mark {
+  background: var(--navy);
+  color: var(--gold-line);
+}
+
+/* 5. Nav principale */
+html[data-theme="dark"] .primary-nav a { color: #B8CCE8; }
+html[data-theme="dark"] .primary-nav a:hover { color: #E2ECF8; }
+html[data-theme="dark"] .nav-item__link { color: #B8CCE8; }
+html[data-theme="dark"] .nav-item__link:hover { color: #E2ECF8; }
+
+/* 6. Titres (sélecteurs qui avaient color:var(--navy)) */
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4 { color: #E2ECF8; }
+
+html[data-theme="dark"] .dropdown__item strong { color: #D4E0F0; }
+html[data-theme="dark"] .megamenu__col-title   { color: #D4E0F0; }
+html[data-theme="dark"] .megamenu__footer strong { color: #D4E0F0; }
+html[data-theme="dark"] .fiche-preview__fallback-title { color: #D4E0F0; }
+html[data-theme="dark"] .fiche-preview__caption strong { color: #D4E0F0; }
+html[data-theme="dark"] .edu-illu__caption strong { color: #D4E0F0; }
+html[data-theme="dark"] .superprof-proof__count { color: #D4E0F0; }
+html[data-theme="dark"] .hero__unis-list span:hover { color: #E2ECF8; }
+html[data-theme="dark"] .demo-screen__top { color: #D4E0F0; border-bottom-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .demo-screen__title { color: #D4E0F0; }
+html[data-theme="dark"] .demo-screen__excerpt { color: #8FA8CC; }
+html[data-theme="dark"] .abo-step strong { color: #D4E0F0; }
+html[data-theme="dark"] .card--choice h3 { color: #D4E0F0; }
+html[data-theme="dark"] .unit-alt-block__title { color: #D4E0F0; }
+html[data-theme="dark"] .sticky-cta-bar__text strong { color: #D4E0F0; }
+html[data-theme="dark"] .video-testi__title { color: #D4E0F0; }
+html[data-theme="dark"] .blog-hero__title { color: #E2ECF8; }
+html[data-theme="dark"] .post-feature__title { color: #D4E0F0; }
+html[data-theme="dark"] .post-card__title { color: #D4E0F0; }
+html[data-theme="dark"] .article-hero__title { color: #E2ECF8; }
+html[data-theme="dark"] .article-author__name { color: #D4E0F0; }
+html[data-theme="dark"] .toc a { color: #B8CCE8; }
+html[data-theme="dark"] .prose h2 { color: #E2ECF8; }
+html[data-theme="dark"] .prose h3 { color: #D4E0F0; }
+html[data-theme="dark"] .author-box__name { color: #D4E0F0; }
+html[data-theme="dark"] .citation-box blockquote { color: #D4E0F0; }
+html[data-theme="dark"] .key-callout p { color: #B8CCE8; }
+
+/* 7. Dropdowns et megamenus */
+html[data-theme="dark"] .dropdown,
+html[data-theme="dark"] .megamenu {
+  background: #192840;
+  border-color: rgba(255,255,255,0.1);
+  box-shadow: 0 20px 56px rgba(0,0,0,.55);
+}
+html[data-theme="dark"] .dropdown__item { color: #B8CCE8; }
+html[data-theme="dark"] .dropdown__item em { color: #4F6680; }
+html[data-theme="dark"] .dropdown__item:hover { background: rgba(255,255,255,0.06); }
+html[data-theme="dark"] .megamenu__col-item:hover { background: rgba(255,255,255,0.05); }
+html[data-theme="dark"] .megamenu__footer { background: rgba(255,255,255,0.04); border-top-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .megamenu__footer span { color: #4F6680; }
+html[data-theme="dark"] .megamenu__col-icon { opacity: .9; }
+
+/* 8. Menu mobile */
+html[data-theme="dark"] .mobile-nav {
+  background: #152234;
+  border-top-color: rgba(255,255,255,0.1);
+}
+html[data-theme="dark"] .mobile-nav a { color: #B8CCE8; }
+html[data-theme="dark"] .mobile-nav a:hover { color: #E2ECF8; background: rgba(255,255,255,0.05); }
+
+/* 9. Cartes blog et article (background:#fff en dur) */
+html[data-theme="dark"] .post-feature,
+html[data-theme="dark"] .post-card { background: #1A2840; border-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .post-feature:hover { box-shadow: 0 32px 64px -20px rgba(0,0,0,.6); }
+html[data-theme="dark"] .post-card:hover { border-color: rgba(94,139,218,0.35); box-shadow: 0 24px 48px -20px rgba(0,0,0,.5); }
+html[data-theme="dark"] .post-card__badge { background: rgba(255,255,255,0.1); color: #D4E0F0; }
+html[data-theme="dark"] .post-card__excerpt,
+html[data-theme="dark"] .post-feature__excerpt { color: #8FA8CC; }
+html[data-theme="dark"] .post-card__link { color: #7BA5E8; }
+html[data-theme="dark"] .author-box { background: #1A2840; border-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .author-box__role { color: var(--accent); }
+html[data-theme="dark"] .author-box__bio { color: #8FA8CC; }
+
+/* 10. Sticky CTA bar */
+html[data-theme="dark"] .sticky-cta-bar {
+  background: #1A2840;
+  border-top-color: rgba(255,255,255,0.1);
+  box-shadow: 0 -4px 24px rgba(0,0,0,.3);
+}
+html[data-theme="dark"] .sticky-cta-bar__text small { color: #4F6680; }
+
+/* 11. Filtres chips */
+html[data-theme="dark"] .filter-chip {
+  background: #1A2840;
+  border-color: rgba(255,255,255,0.12);
+  color: #B8CCE8;
+}
+html[data-theme="dark"] .filter-chip.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+html[data-theme="dark"] .filter-chip:hover:not(.active) { background: #243450; color: #E2ECF8; }
+
+/* 12. Section bleue légère */
+html[data-theme="dark"] .section--blue { background: #122030; }
+
+/* 13. Formulaires */
+html[data-theme="dark"] .form__input,
+html[data-theme="dark"] input[type=email]:not([style]),
+html[data-theme="dark"] input[type=text],
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+  background: #1A2840;
+  border-color: rgba(255,255,255,0.15);
+  color: #E2ECF8;
+}
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder { color: #4F6680; }
+
+/* 14. TOC */
+html[data-theme="dark"] .toc { background: #122030; border-color: rgba(94,139,218,0.22); }
+html[data-theme="dark"] .toc__title { color: var(--accent); }
+
+/* 15. Citation box et key callout */
+html[data-theme="dark"] .citation-box { background: rgba(201,169,97,0.1); }
+html[data-theme="dark"] .citation-box__label { color: var(--accent); }
+html[data-theme="dark"] .key-callout { background: #122030; border-color: rgba(94,139,218,0.22); }
+html[data-theme="dark"] .key-callout__label { color: #7BA5E8; }
+
+/* 16. Prose */
+html[data-theme="dark"] .prose > p { color: #8FA8CC; }
+html[data-theme="dark"] .prose a { color: #7BA5E8; }
+html[data-theme="dark"] .prose strong { color: #E2ECF8; }
+html[data-theme="dark"] .prose ul,
+html[data-theme="dark"] .prose ol { color: #8FA8CC; }
+html[data-theme="dark"] .article-hero { background: linear-gradient(180deg, #0F1A2E 0%, #0F1A2E 100%); }
+html[data-theme="dark"] .article-breadcrumb { color: #4F6680; }
+html[data-theme="dark"] .article-breadcrumb a { color: #7BA5E8; }
+html[data-theme="dark"] .article-author { border-top-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .article-author__role { color: #4F6680; }
+
+/* 17. Urgency banner */
+html[data-theme="dark"] .urgency-banner { background: #0C1F3A; border-bottom-color: rgba(201,169,97,0.3); }
+
+/* 18. Exit modal */
+html[data-theme="dark"] .exit-modal__inner,
+html[data-theme="dark"] .modal-inner,
+html[data-theme="dark"] [class*="modal__inner"] { background: #1A2840; }
+
+/* 19. Blog hero */
+html[data-theme="dark"] .blog-hero { background: linear-gradient(180deg, #0F1A2E 0%, #0F1A2E 100%); }
+html[data-theme="dark"] .blog-hero__lead { color: #8FA8CC; }
+
+/* 20. Post méta */
+html[data-theme="dark"] .post-meta { color: #4F6680; }
+html[data-theme="dark"] .post-meta__dot { background: rgba(255,255,255,0.15); }
+
+/* 21. Demo screen */
+html[data-theme="dark"] .demo-screen {
+  background: #1E2D44;
+  border-color: rgba(255,255,255,0.1);
+  box-shadow: 0 12px 40px rgba(0,0,0,.4);
+}
+
+/* 22. Superprof proof widget */
+html[data-theme="dark"] .superprof-proof { background: #1A2840; border-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .superprof-proof__text { color: #8FA8CC; }
+html[data-theme="dark"] .superprof-proof__detail { color: #4F6680; }
+
+/* 23. Card choice (tarifs) */
+html[data-theme="dark"] .card--choice { background: #1A2840; border-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .card--choice > p { color: #8FA8CC; }
+
+/* 24. Fiche preview */
+html[data-theme="dark"] .fiche-preview { background: #1A2840; border-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .fiche-preview__caption { color: #8FA8CC; border-top-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .fiche-preview__fallback { border-color: rgba(201,169,97,0.35); }
+
+/* 25. Témoignages */
+html[data-theme="dark"] .testimonial-card { background: #1A2840; border-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .testimonial-card__body { color: #8FA8CC; }
+html[data-theme="dark"] .testimonial-card__name { color: #D4E0F0; }
+html[data-theme="dark"] .testimonial-card__role { color: #4F6680; }
+
+/* 26. Unités et blocs alternatifs */
+html[data-theme="dark"] .unit-alt-block { background: #1A2840; border-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .unit-alt-block__sub { color: #8FA8CC; }
+
+/* 27. Inline email capture (déjà sombre par gradient navy) */
+
+/* 28. Bouton toggle thème */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .18s, border-color .18s, color .18s, transform .18s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { background: var(--slate-100); transform: scale(1.08); }
+html[data-theme="dark"] .theme-toggle { color: #E2ECF8; border-color: rgba(255,255,255,0.22); }
+html[data-theme="dark"] .theme-toggle:hover { background: rgba(255,255,255,0.08); }
 .mobile-nav__stage{color:var(--accent);font-weight:700}
