@@ -2808,11 +2808,6 @@ html[data-theme="dark"] .filter-chip {
   border-color: rgba(255,255,255,0.12);
   color: #B8CCE8;
 }
-html[data-theme="dark"] .filter-chip.active {
-  background: var(--navy);
-  border-color: var(--navy);
-  color: #fff;
-}
 html[data-theme="dark"] .filter-chip:hover:not(.active) { background: #243450; color: #E2ECF8; }
 
 /* 12. Section bleue légère */
@@ -2891,10 +2886,10 @@ html[data-theme="dark"] .fiche-preview__caption { color: #8FA8CC; border-top-col
 html[data-theme="dark"] .fiche-preview__fallback { border-color: rgba(201,169,97,0.35); }
 
 /* 25. Témoignages */
-html[data-theme="dark"] .testimonial-card { background: #1A2840; border-color: rgba(255,255,255,0.1); }
-html[data-theme="dark"] .testimonial-card__body { color: #8FA8CC; }
-html[data-theme="dark"] .testimonial-card__name { color: #D4E0F0; }
-html[data-theme="dark"] .testimonial-card__role { color: #4F6680; }
+html[data-theme="dark"] .card--testi { background: #1A2840; border-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .card--testi blockquote { color: #8FA8CC; }
+html[data-theme="dark"] .testi__name { color: #D4E0F0; }
+html[data-theme="dark"] .testi__role { color: #4F6680; }
 
 /* 26. Unités et blocs alternatifs */
 html[data-theme="dark"] .unit-alt-block { background: #1A2840; border-color: rgba(255,255,255,0.1); }
@@ -3003,3 +2998,138 @@ html[data-theme="dark"] .badge--popular { background: #2E6DB4; color: #fff; }
 html[data-theme="dark"] .card--featured::before { background: #2E6DB4; color: #fff; }
 html[data-theme="dark"] .abo-step--blue .abo-step__num { background: #2E6DB4; }
 html[data-theme="dark"] .filter-chip.active { background: #2E6DB4; border-color: #2E6DB4; color: #fff; }
+
+/* 31. Corrections globales dark mode — audit complet du 2026-06-27 */
+
+/* A1. Eyebrow générique (fond et texte) */
+html[data-theme="dark"] .eyebrow {
+  color: #7BA5E8;
+  background: rgba(94,139,218,0.1);
+}
+
+/* A2/A3. Boutons outline (fond var(--white) et texte var(--blue-700) tous deux invisibles) */
+html[data-theme="dark"] .btn--outline {
+  background: transparent;
+  color: #7BA5E8;
+  border-color: rgba(94,139,218,0.45);
+}
+html[data-theme="dark"] .btn--outline:hover {
+  background: rgba(94,139,218,0.1);
+  color: #E2ECF8;
+  border-color: rgba(94,139,218,0.7);
+}
+
+/* A4. Bouton secondary hover (fond #1F2937 quasi-noir sur #0F1A2E) */
+html[data-theme="dark"] .btn--secondary:hover {
+  background: #243350;
+  color: #fff;
+}
+
+/* A5. Icônes edu-card blue (fond var(--blue-50) = #EBF2FF, texte var(--blue-700) = #14213F) */
+html[data-theme="dark"] .edu-card--blue .edu-card__icon-wrap {
+  background: rgba(94,139,218,0.15);
+  color: #7BA5E8;
+}
+html[data-theme="dark"] .edu-card--violet .edu-card__icon-wrap {
+  background: rgba(124,58,237,0.15);
+  color: #A78BFA;
+}
+html[data-theme="dark"] .edu-card { background: #1A2840; border-color: rgba(255,255,255,0.08); }
+html[data-theme="dark"] .edu-card__title { color: #D4E0F0; }
+html[data-theme="dark"] .edu-card__sub { color: #4F6680; }
+
+/* A8. Indicateur de page active dans la nav (::after barre bleue navy invisible) */
+html[data-theme="dark"] .primary-nav .nav-item__link[aria-current="page"]::after {
+  background: #7BA5E8;
+}
+
+/* B1/B2. Fonds pain/gain hardcodés blancs (#FEF2F2 / #F0FDF4 sur fond sombre) */
+html[data-theme="dark"] .pain-gain-col--pain {
+  background: rgba(239,68,68,0.08);
+  border-color: rgba(239,68,68,0.2);
+}
+html[data-theme="dark"] .pain-gain-col--gain {
+  background: rgba(16,185,129,0.08);
+  border-color: rgba(16,185,129,0.2);
+}
+
+/* B3. Illustration éducative (fond --blue-50 = #EBF2FF hardcodé) */
+html[data-theme="dark"] .edu-illu {
+  background: #1A2840;
+  border-color: rgba(201,169,97,0.25);
+}
+
+/* B4. Aperçu fiche fallback (fond --blue-50 hardcodé) */
+html[data-theme="dark"] .fiche-preview__fallback {
+  background: #1A2740;
+}
+
+/* B5. Bloc garantie (fond vert pâle hardcodé) */
+html[data-theme="dark"] .guarantee-block {
+  background: rgba(16,185,129,0.08);
+  border-color: rgba(16,185,129,0.3);
+}
+
+/* B6/B7. Icônes mockup-card (fonds --blue-50, --success-bg, --warn-bg hardcodés) */
+html[data-theme="dark"] .mockup-card {
+  background: #1A2840;
+  border-color: rgba(255,255,255,0.08);
+}
+html[data-theme="dark"] .mockup-card--blue .mockup-card__icon {
+  background: rgba(94,139,218,0.15);
+  color: #7BA5E8;
+}
+html[data-theme="dark"] .mockup-card--green .mockup-card__icon {
+  background: rgba(16,185,129,0.12);
+  color: #34D399;
+}
+html[data-theme="dark"] .mockup-card--yellow .mockup-card__icon {
+  background: rgba(245,158,11,0.12);
+  color: #FBBF24;
+}
+html[data-theme="dark"] .mockup-card__title { color: #D4E0F0; }
+
+/* C1. Badge bestseller (fond --warn = jaune pâle, texte #78350F quasi-noir) */
+html[data-theme="dark"] .badge--bestseller {
+  background: rgba(245,158,11,0.2);
+  color: #FBBF24;
+}
+
+/* C2/C3. Badges new et success (fond --success-bg = vert pâle, texte #065F46 quasi-noir) */
+html[data-theme="dark"] .badge--new,
+html[data-theme="dark"] .badge--success {
+  background: rgba(16,185,129,0.15);
+  color: #34D399;
+}
+
+/* C4. Badge warn (fond --warn-bg = amber pâle, texte #78350F quasi-noir) */
+html[data-theme="dark"] .badge--warn {
+  background: rgba(245,158,11,0.15);
+  color: #FBBF24;
+}
+
+/* D1. Promo banner (fond navy = quasi-noir sur quasi-noir) */
+html[data-theme="dark"] .promo-banner {
+  background: linear-gradient(135deg, #2E6DB4, #1A4A8C);
+}
+
+/* D2. Ruban featured (fond navy invisible) */
+html[data-theme="dark"] .card--choice__ribbon {
+  background: linear-gradient(90deg, #2E6DB4, #1E5A9A);
+}
+
+/* D3. Card featured (bordure navy invisible) */
+html[data-theme="dark"] .card--choice.card--featured {
+  border-color: rgba(94,139,218,0.55);
+}
+
+/* F1. Bandes de couleur des étapes parcours (blue-500/blue-700/navy quasi-noirs) */
+html[data-theme="dark"] .parcours__step::before {
+  background: linear-gradient(90deg, rgba(94,139,218,0.35), rgba(94,139,218,0.18));
+}
+html[data-theme="dark"] .parcours__step:nth-child(1)::before {
+  background: linear-gradient(90deg, #3B5EA6, #2E6DB4);
+}
+html[data-theme="dark"] .parcours__step:nth-child(3)::before {
+  background: linear-gradient(90deg, #3B5EA6, #2E6DB4);
+}

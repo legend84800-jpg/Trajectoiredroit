@@ -23,6 +23,16 @@
     localStorage.setItem(THEME_KEY, theme);
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute('content', theme === 'dark' ? '#0F1A2E' : '#1A2851');
+    // Swap logo header : logo-tjd.svg (fond clair) ↔ logo-tjd-light.svg (fond sombre)
+    var headerLogo = document.querySelector('.site-header .logo__img');
+    if (headerLogo) {
+      var src = headerLogo.getAttribute('src') || '';
+      if (theme === 'dark' && src.indexOf('logo-tjd-light.svg') === -1) {
+        headerLogo.setAttribute('src', src.replace('logo-tjd.svg', 'logo-tjd-light.svg'));
+      } else if (theme !== 'dark') {
+        headerLogo.setAttribute('src', src.replace('logo-tjd-light.svg', 'logo-tjd.svg'));
+      }
+    }
   }
 
   function setIcon(btn) {
@@ -37,12 +47,21 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     var btn = document.getElementById('themeToggle');
-    if (!btn) return;
-    setIcon(btn);
-    btn.addEventListener('click', function () {
-      applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+    if (btn) {
       setIcon(btn);
-    });
+      btn.addEventListener('click', function () {
+        applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+        setIcon(btn);
+      });
+    }
+    // Synchronise le logo header avec le thème initial (lu depuis localStorage par l'anti-flash script)
+    var headerLogo = document.querySelector('.site-header .logo__img');
+    if (headerLogo && currentTheme() === 'dark') {
+      var src = headerLogo.getAttribute('src') || '';
+      if (src.indexOf('logo-tjd-light.svg') === -1) {
+        headerLogo.setAttribute('src', src.replace('logo-tjd.svg', 'logo-tjd-light.svg'));
+      }
+    }
   });
 })();
 
