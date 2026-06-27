@@ -2921,3 +2921,67 @@ html[data-theme="dark"] .unit-alt-block__sub { color: #8FA8CC; }
 html[data-theme="dark"] .theme-toggle { color: #E2ECF8; border-color: rgba(255,255,255,0.22); }
 html[data-theme="dark"] .theme-toggle:hover { background: rgba(255,255,255,0.08); }
 .mobile-nav__stage{color:var(--accent);font-weight:700}
+
+/* 29. Corrections textes invisibles en dark mode
+   —— couleurs en dur non overridées et variables --blue-600/700/navy utilisées comme texte —— */
+
+/* a:hover global (#14213F sur fond sombre) */
+html[data-theme="dark"] a:hover { color: #7BA5E8; }
+
+/* Lien actif nav et CTA secondaire hero */
+html[data-theme="dark"] .primary-nav .nav-item__link[aria-current="page"] { color: #7BA5E8; }
+html[data-theme="dark"] .hero__cta-secondary { color: #7BA5E8; }
+
+/* Dropdown CTA et liens megamenu */
+html[data-theme="dark"] .dropdown__cta { color: #7BA5E8; }
+html[data-theme="dark"] .megamenu__col-link { color: #7BA5E8; }
+html[data-theme="dark"] .megamenu__list a:hover { background: rgba(255,255,255,0.06); color: #E2ECF8; }
+
+/* Icône feature card et accordion (--blue-600 = #1A2851 sur fond sombre) */
+html[data-theme="dark"] .card--feature .feature__icon { color: #7BA5E8; background: rgba(94,139,218,0.15); }
+html[data-theme="dark"] .accordion__item summary::after { color: #7BA5E8; background: rgba(94,139,218,0.15); }
+html[data-theme="dark"] .accordion__item[open] summary::after { color: #fff; background: #3B5EA6; }
+
+/* Curseur clignotant hero */
+html[data-theme="dark"] .cursor-pulse::after { color: #7BA5E8; }
+
+/* Chiffres stats strip (--blue-700 = #14213F) */
+html[data-theme="dark"] .stats-strip__num { color: #7BA5E8; }
+
+/* Filtre chips hover */
+html[data-theme="dark"] .filter-chip:hover { color: #E2ECF8; border-color: rgba(94,139,218,0.4); background: rgba(94,139,218,0.1); }
+
+/* demo-screen : fond overridé en #1E2D44 mais color en dur #1A1A1A */
+html[data-theme="dark"] .demo-screen { color: #D4E0F0; }
+html[data-theme="dark"] .demo-screen__callout { color: #8FA8CC; background: rgba(201,169,97,0.1); border-left-color: var(--accent); }
+
+/* Garantie : texte vert sombre #065F46 sur fond sombre */
+html[data-theme="dark"] .guarantee-block h3,
+html[data-theme="dark"] .guarantee-block p { color: #34D399; }
+
+/* Eyebrow gold : texte brun sombre #78350F */
+html[data-theme="dark"] .eyebrow--gold { color: #D4A85A; }
+
+/* Pain / gain : rouge et vert sombres */
+html[data-theme="dark"] .pain-gain-col--pain .pain-gain-col__title { color: #FCA5A5; }
+html[data-theme="dark"] .pain-gain-col--gain .pain-gain-col__title { color: #6EE7B7; }
+html[data-theme="dark"] .pain-gain-col--pain li::before { color: #F87171; }
+html[data-theme="dark"] .pain-gain-col--gain li::before { color: #34D399; }
+
+/* Parcours timeline (--blue-700 et --blue-500 quasi-noirs sur fond sombre) */
+html[data-theme="dark"] .parcours__step { background: #1A2840; border-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .parcours__num { color: #7BA5E8; }
+html[data-theme="dark"] .parcours__step:nth-child(1) .parcours__icon-svg { color: #7BA5E8; }
+html[data-theme="dark"] .parcours__link { color: #7BA5E8; }
+html[data-theme="dark"] .parcours__link:hover { color: #E2ECF8; }
+html[data-theme="dark"] .parcours__arrow { color: rgba(94,139,218,0.5); }
+html[data-theme="dark"] .parcours__cta { background: rgba(94,139,218,0.08); border-color: rgba(94,139,218,0.2); }
+html[data-theme="dark"] .parcours__cta-text strong { color: #7BA5E8; }
+
+/* Autres icônes et flèches avec --blue-600 en couleur texte */
+html[data-theme="dark"] .feature__icon { color: #7BA5E8; background: rgba(94,139,218,0.12); }
+html[data-theme="dark"] .pain-gain-arrow { color: rgba(94,139,218,0.5); }
+html[data-theme="dark"] .hero__unis-list span:hover { color: #E2ECF8; }
+
+/* Hover nav spécifique (sélecteur à haute spécificité, doit être explicite) */
+html[data-theme="dark"] .primary-nav a:not(.nav-item__link):not(.dropdown__item):not(.dropdown__cta):not(.megamenu__col-link):not(.megamenu__list a):not(.btn):hover { color: #E2ECF8; }
