@@ -3309,3 +3309,12 @@ html[data-theme="dark"] .btn--secondary {
   background: #243350;
   color: #E2ECF8;
 }
+
+/* Footer : même cause (background:var(--ink) = blanc en dark mode) */
+html[data-theme="dark"] .site-footer {
+  background: #0F172A;
+}
+html[data-theme="dark"] .site-footer h4,
+html[data-theme="dark"] .site-footer a:hover {
+  color: #E2ECF8;
+}
