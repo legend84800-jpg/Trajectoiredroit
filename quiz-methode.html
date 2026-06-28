@@ -267,56 +267,56 @@
   <script>
   (function(){
     var QUESTIONS = [
-      { exo:"Le jour J", q:"Tu reçois ton sujet le jour de l'examen. Qu'est-ce que tu fais dans les premières minutes ?",
-        tip:"Passe au moins la moitié de ton temps au brouillon. Lis le sujet plusieurs fois et schématise les faits avant de rédiger.",
+      { exo:"Le jour J", q:"Tu reçois ton sujet. Qu'est-ce que tu fais avant d'écrire la première ligne ?",
+        tip:"Au moins la moitié du temps passe au brouillon. Pour un commentaire d'arrêt, tu lis l'arrêt deux ou trois fois, tu fais sa fiche au brouillon, puis tu listes toutes tes connaissances en lien avec la décision. Pour un cas pratique, tu qualifies d'abord chaque fait avant de chercher la règle. Rédiger tout de suite, c'est avancer dans la mauvaise direction.",
         opts:[
           {t:"Je commence à rédiger tout de suite pour ne pas perdre de temps.",p:0},
-          {t:"Je lis une fois et je note deux ou trois idées.",p:1},
-          {t:"Je lis le sujet plusieurs fois et je fais un schéma au brouillon avant d'écrire.",p:3},
-          {t:"Je relis mon cours en vitesse.",p:0}
+          {t:"Je lis le sujet une fois et je note deux ou trois idées.",p:1},
+          {t:"Je lis le sujet plusieurs fois et je fais un travail complet au brouillon avant d'écrire.",p:3},
+          {t:"Je relis mon cours en vitesse pour retrouver ce que je sais.",p:0}
         ]},
       { exo:"Cas pratique", q:"Devant un cas pratique, par quoi commence ton raisonnement ?",
-        tip:"Qualifie d'abord chaque fait, donne-lui son nom juridique. C'est ce qui te dit quelle règle appliquer.",
+        tip:"Tu qualifies d'abord chaque fait : tu lui donnes son nom juridique. Cette qualification te dit quelle règle chercher. Sans qualification, tu risques d'appliquer la mauvaise règle à des faits que tu n'as pas bien lus.",
         opts:[
           {t:"J'écris la règle de droit que je connais sur le thème.",p:1},
-          {t:"Je donne ma conclusion tout de suite, je détaille après.",p:0},
+          {t:"Je donne ma conclusion tout de suite et je détaille après.",p:0},
           {t:"Je qualifie d'abord chaque fait, je lui donne son nom juridique.",p:3},
-          {t:"Je cherche un cas qui ressemble dans mon cours.",p:0}
+          {t:"Je cherche un cas similaire dans mon cours.",p:0}
         ]},
       { exo:"Cas pratique", q:"Dans ton cas pratique, quelle partie est la plus développée ?",
-        tip:"Ta mineure doit être plus développée que ta majeure, deux à trois fois plus. C'est dans l'application aux faits que se trouvent les points.",
+        tip:"Ta mineure doit être deux à trois fois plus longue que ta majeure. C'est dans l'application aux faits que se trouvent les points : tu montres condition par condition, avec la citation exacte des faits, si la règle s'applique ou non. Une majeure longue et une mineure courte, c'est souvent un 8 sur 20.",
         opts:[
           {t:"La majeure, là où j'expose la règle et le cours.",p:0},
           {t:"La mineure, là où j'applique la règle aux faits.",p:3},
           {t:"Les deux à peu près pareil.",p:1},
           {t:"La conclusion.",p:0}
         ]},
-      { exo:"Commentaire d'arrêt", q:"Quand tu commentes un arrêt, tu fais surtout quoi ?",
-        tip:"Pour chaque passage de l'arrêt, montre ce que fait la Cour, puis commente-le avec tes connaissances. Redire l'arrêt avec tes mots ne rapporte rien.",
+      { exo:"Commentaire d'arrêt", q:"Ton commentaire d'arrêt analyse la décision sous trois angles. Lesquels, dans le bon ordre ?",
+        tip:"Sens, valeur, portée : ce sont les trois piliers qui dirigent tout le commentaire. Le sens, c'est expliquer le raisonnement du juge, la façon dont il a interprété la règle pour trancher. La valeur, c'est juger la décision : la solution est-elle solide juridiquement, ou critiquable ? La portée, c'est mesurer l'influence de l'arrêt sur le droit en le situant par rapport à la jurisprudence d'avant et d'après.",
         opts:[
-          {t:"Je redis l'arrêt avec mes mots pour montrer que je l'ai compris.",p:0},
-          {t:"Je récite la leçon générale sur le thème de l'arrêt.",p:1},
-          {t:"Je montre ce que fait la Cour, par exemple qu'elle pose un principe ou qu'elle limite une règle, puis je commente avec mes connaissances.",p:3},
-          {t:"Je donne mon avis personnel sur la décision.",p:0}
+          {t:"Le contexte historique de l'arrêt, les positions des parties et les conséquences pratiques.",p:0},
+          {t:"L'exposé des faits, la procédure et la solution de la Cour.",p:1},
+          {t:"Le sens du raisonnement du juge, la valeur de la solution et la portée de l'arrêt sur le droit.",p:3},
+          {t:"La conformité à la loi, la logique du raisonnement et l'utilité pour les parties.",p:0}
         ]},
-      { exo:"Commentaire d'arrêt", q:"Comment tu trouves le problème de droit d'un arrêt ?",
-        tip:"Pars de la solution de la Cour et retourne-la en question. C'est la façon la plus sûre de tomber juste.",
+      { exo:"Commentaire d'arrêt", q:"Deux erreurs détruisent presque toutes les copies de commentaire d'arrêt. Lesquelles ?",
+        tip:"La paraphrase consiste à redire l'arrêt avec d'autres mots : ça ne rapporte aucun point, parce que le correcteur a l'arrêt sous les yeux. La dissertation déguisée consiste à utiliser l'arrêt comme prétexte pour réciter une leçon générale en oubliant la décision. Le correcteur veut que tu expliques le raisonnement du juge et que tu le juges, rattaché à l'arrêt à chaque étape.",
         opts:[
-          {t:"Je recopie la question que se posaient les parties.",p:1},
-          {t:"Je pars de la solution de la Cour et je la retourne en question.",p:3},
-          {t:"Je pose une question large sur le thème.",p:0},
-          {t:"Honnêtement, je saute souvent cette étape.",p:0}
+          {t:"Ajouter une conclusion inutile et citer trop de passages de l'arrêt.",p:1},
+          {t:"Manquer de connaissances juridiques et écrire des phrases trop courtes.",p:0},
+          {t:"Paraphraser l'arrêt (redire la décision avec d'autres mots) et glisser vers la dissertation (réciter son cours sans rattacher à l'arrêt).",p:3},
+          {t:"Se tromper de juridiction dans l'introduction et mal formuler les faits.",p:0}
         ]},
       { exo:"Dissertation", q:"Dans quel ordre tu construis ta dissertation ?",
-        tip:"Classe d'abord tes idées en grands blocs, tire-en ton plan, et formule la problématique une fois le plan trouvé.",
+        tip:"Tu classes d'abord tes idées en grands blocs, tu tires ton plan de ces blocs, puis tu formules ta problématique une fois le plan trouvé. La problématique découle du plan, elle n'en est pas le point de départ. Si tu la formules en premier, tu risques de forcer ton plan pour la respecter au lieu de le construire librement.",
         opts:[
           {t:"Je trouve d'abord la problématique, puis je cherche un plan qui y répond.",p:1},
-          {t:"Je classe mes idées en grands blocs, j'en tire le plan, et je formule la problématique à la fin.",p:3},
-          {t:"Je prends un plan type, une partie sur la loi, une partie sur la jurisprudence.",p:0},
+          {t:"Je classe mes idées en grands blocs, j'en tire le plan, et je formule la problématique une fois le plan trouvé.",p:3},
+          {t:"Je prends un plan type : une partie sur la loi, une partie sur la jurisprudence.",p:0},
           {t:"Je rédige au fil de l'eau, le plan se fait tout seul.",p:0}
         ]},
       { exo:"Dissertation", q:"Quelle place prend ton introduction de dissertation ?",
-        tip:"Soigne ton introduction, elle fait un tiers de la copie et se rédige avant le corps.",
+        tip:"L'introduction fait environ un tiers de la copie et tu la rédiges avant le corps du devoir. Elle pose le sujet, en délimite le sens, expose les enjeux, formule la problématique et annonce le plan. Le correcteur commence à situer ta note dès la fin de ton introduction.",
         opts:[
           {t:"Quelques lignes, j'entre vite dans le sujet.",p:0},
           {t:"Environ un tiers de la copie, et je la rédige avant le corps.",p:3},
@@ -324,26 +324,26 @@
           {t:"Une demi-page, sans vraiment travailler le plan.",p:1}
         ]},
       { exo:"Les titres", q:"Tes titres de parties ressemblent à quoi ?",
-        tip:"Donne des titres courts et sans verbe conjugué, où on retrouve le sujet ou l'arrêt rien qu'en les lisant.",
+        tip:"Un bon titre est court, sans verbe conjugué, et qualifié : on retrouve l'arrêt ou le sujet rien qu'en le lisant. « L'application de la loi » ne dit rien. « L'extension du champ d'application du principe » dit précisément de quoi tu traites dans la partie.",
         opts:[
-          {t:"Ils contiennent un verbe, du genre « L'arrêt applique la loi ».",p:0},
-          {t:"Ils sont courts et sans verbe, et on retrouve le sujet rien qu'en les lisant.",p:3},
-          {t:"Des titres passe-partout, « I. La loi », « II. La jurisprudence ».",p:0},
+          {t:"Ils contiennent un verbe, du genre « L'arrêt applique la règle ».",p:0},
+          {t:"Ils sont courts, sans verbe conjugué, et qualifiés sur le sujet traité.",p:3},
+          {t:"Des titres passe-partout : « I. La loi », « II. La jurisprudence ».",p:0},
           {t:"Je n'y fais pas vraiment attention.",p:0}
         ]},
-      { exo:"Fiche d'arrêt", q:"Devant un arrêt, tu sais dire tout de suite si c'est un rejet ou une cassation ?",
-        tip:"Repère tout de suite si l'arrêt casse ou rejette. Regarde le visa et la formule finale, « casse et annule » ou « rejette ».",
+      { exo:"Fiche d'arrêt", q:"Comment tu identifies tout de suite si un arrêt est un rejet ou une cassation ?",
+        tip:"Tu repères le visa en tête de l'arrêt (les textes sur lesquels se fonde la Cour) et la formule finale. Une cassation se termine par « casse et annule » ou « casse et renvoie ». Un rejet se termine par « rejette le pourvoi ». Cette distinction change toute ton introduction de commentaire.",
         opts:[
-          {t:"Pas vraiment, je confonds souvent les deux.",p:0},
-          {t:"Oui, je regarde le visa et la fin de l'arrêt, « casse et annule » ou « rejette ».",p:3},
-          {t:"Je devine d'après le contexte.",p:1},
+          {t:"Je confonds souvent les deux, je devine d'après le contexte.",p:0},
+          {t:"Je regarde le visa et la formule finale : « casse et annule » ou « rejette le pourvoi ».",p:3},
+          {t:"Je lis le résumé au début si l'arrêt en a un.",p:1},
           {t:"Je ne regarde pas ce point.",p:0}
         ]},
       { exo:"Avant le partiel", q:"Avant un partiel avec cas pratique, qu'est-ce que tu prépares ?",
-        tip:"Prépare tes majeures condition par condition et tes fiches d'arrêt avant le partiel. Le jour J, tu n'as plus qu'à les appliquer.",
+        tip:"Tu prépares tes majeures condition par condition : tu notes la règle, puis chaque condition une à une, avec les arrêts qui y correspondent. Et tu prépares tes fiches d'arrêt à l'avance pour les grands arrêts de la matière. Le jour J, tu n'as plus qu'à les appliquer, sans avoir à reconstruire la règle sous le stress.",
         opts:[
           {t:"Je relis tout mon cours en entier.",p:1},
-          {t:"Je prépare mes majeures condition par condition et mes fiches d'arrêt à l'avance, prêtes à appliquer.",p:3},
+          {t:"Je prépare mes majeures condition par condition et mes fiches d'arrêt à l'avance.",p:3},
           {t:"Je révise surtout la veille au soir.",p:0},
           {t:"Je fais des annales, mais sans corriger ma méthode.",p:1}
         ]}
