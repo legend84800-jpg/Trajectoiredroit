@@ -3289,3 +3289,23 @@ html[data-theme="dark"] .cp__conc h4 { color: #34D399; }
 html[data-theme="dark"] .cp__maj p,
 html[data-theme="dark"] .cp__min p,
 html[data-theme="dark"] .cp__conc p { color: var(--body); }
+
+/* 34. section--dark : --ink passe à #E2ECF8 (quasi blanc) en dark mode,
+   ce qui rend la section blanche au lieu de sombre.
+   On fixe le fond à sa valeur d'origine et on remet les textes clairs. */
+html[data-theme="dark"] .section--dark {
+  background: #0F172A;
+  color: rgba(255,255,255,.84);
+}
+html[data-theme="dark"] .section--dark h1,
+html[data-theme="dark"] .section--dark h2,
+html[data-theme="dark"] .section--dark h3 {
+  color: #E2ECF8;
+}
+html[data-theme="dark"] .section--dark p {
+  color: rgba(255,255,255,.84);
+}
+html[data-theme="dark"] .btn--secondary {
+  background: #243350;
+  color: #E2ECF8;
+}
