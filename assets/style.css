@@ -2697,6 +2697,14 @@ html[data-theme="dark"] {
   --blue-100:    rgba(94,139,218,0.18);
   --blue-200:    rgba(94,139,218,0.28);
 
+  /* Variables de couleur sombres converties en clairs pour dark mode
+     Couvre automatiquement tous les style="" inline qui utilisent ces variables */
+  --navy:        #7BA5E8;
+  --blue-600:    #7BA5E8;
+  --blue-700:    #7BA5E8;
+  --blue-900:    #5A87CC;
+  --blue-500:    #7BA5E8;
+
   --accent:      #D4A85A;
   --gold-bg:     rgba(201,169,97,0.12);
 }
@@ -3133,3 +3141,47 @@ html[data-theme="dark"] .parcours__step:nth-child(1)::before {
 html[data-theme="dark"] .parcours__step:nth-child(3)::before {
   background: linear-gradient(90deg, #3B5EA6, #2E6DB4);
 }
+
+/* 32. Corrections suite audit 2026-06-28 */
+
+/* Gradient inline-capture : var(--navy/blue-700) devenant bleus clairs → forcer fond sombre */
+html[data-theme="dark"] .inline-capture {
+  background: linear-gradient(135deg, #1A3A6E 0%, #0F2A52 100%);
+}
+
+/* Icônes megamenu emerald (fond var(--emerald-bg) non redéfini) */
+html[data-theme="dark"] .dropdown__icon--emerald,
+html[data-theme="dark"] .megamenu__col-icon--emerald {
+  background: rgba(16,185,129,0.15);
+  color: #34D399;
+}
+
+/* Icône edu-card emerald */
+html[data-theme="dark"] .edu-card--emerald .edu-card__icon-wrap {
+  background: rgba(16,185,129,0.15);
+  color: #34D399;
+}
+
+/* Feature icons nth-child : spécificité plus haute que la règle générale dark mode */
+html[data-theme="dark"] .grid-3 > .card--feature:nth-child(3) .feature__icon,
+html[data-theme="dark"] .grid-4 > .card--feature:nth-child(3) .feature__icon {
+  background: rgba(16,185,129,0.12);
+  color: #34D399;
+}
+html[data-theme="dark"] .grid-4 > .card--feature:nth-child(4) .feature__icon {
+  background: rgba(245,158,11,0.12);
+  color: #FBBF24;
+}
+
+/* Auteur : nom avec color:var(--navy) (désormais corrigé via variable, mais règle explicite en sécurité) */
+html[data-theme="dark"] .author-box__name { color: #E2ECF8; }
+
+/* Eyebrows à fond hardcodé amber et green (utilisés dans a-propos.html) */
+.eyebrow--amber { background: #FEF3C7; color: #92400E; }
+.eyebrow--green { background: #D1FAE5; color: #065F46; }
+html[data-theme="dark"] .eyebrow--amber { background: rgba(245,158,11,0.15); color: #FBBF24; }
+html[data-theme="dark"] .eyebrow--green { background: rgba(16,185,129,0.15); color: #34D399; }
+
+/* Bouton fond blanc (utilisé dans formations.html) */
+.btn--white { background: #fff; color: var(--navy); }
+html[data-theme="dark"] .btn--white { background: #E2ECF8; color: #1A2840; }
