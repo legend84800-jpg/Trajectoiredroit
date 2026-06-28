@@ -2707,6 +2707,11 @@ html[data-theme="dark"] {
 
   --accent:      #D4A85A;
   --gold-bg:     rgba(201,169,97,0.12);
+
+  /* Fonds de badges/tags : restaient clairs (rose, jaune, vert) sur fond sombre */
+  --rose-bg:     rgba(244,63,94,0.15);
+  --amber-bg:    rgba(245,158,11,0.15);
+  --emerald-bg:  rgba(16,185,129,0.15);
 }
 
 /* 2. Fond de page */
@@ -3185,3 +3190,102 @@ html[data-theme="dark"] .eyebrow--green { background: rgba(16,185,129,0.15); col
 /* Bouton fond blanc (utilisé dans formations.html) */
 .btn--white { background: #fff; color: var(--navy); }
 html[data-theme="dark"] .btn--white { background: #E2ECF8; color: #1A2840; }
+
+/* ============================================================
+   33. Pages à styles inline hardcodés : corrections dark mode
+   ============================================================ */
+
+/* --- quiz-methode.html --- */
+html[data-theme="dark"] .quiz-card { background: var(--white); }
+html[data-theme="dark"] .quiz-opt  { background: var(--slate-100); }
+html[data-theme="dark"] .tag-mid   { color: #FBBF24; }
+html[data-theme="dark"] .tag-high  { color: #34D399; }
+
+/* --- formations.html : aperçu panneau --- */
+html[data-theme="dark"] .apercu-panel { background: var(--white); }
+
+/* --- contravention-delit-crime.html : en-tête de table navy/blanc invisibles sur fond sombre --- */
+html[data-theme="dark"] #tableau thead tr { background: #2A4080 !important; }
+
+/* --- outil-fiche-arret.html : styles hardcodés dans <style> local --- */
+html[data-theme="dark"] .tool-hero .lead  { color: var(--body); }
+html[data-theme="dark"] .tool-hero__badge { background: var(--blue-100); color: #7BA5E8; }
+
+html[data-theme="dark"] .tool-tab {
+  background: var(--slate-100); border-color: var(--border); color: var(--body);
+}
+html[data-theme="dark"] .tool-tab:hover {
+  background: var(--blue-100); color: #7BA5E8; border-color: var(--blue-200);
+}
+
+html[data-theme="dark"] .tool-box {
+  background: var(--white); border-color: var(--border);
+}
+html[data-theme="dark"] .tool-box label { color: var(--ink); }
+
+html[data-theme="dark"] #toolInput {
+  background: var(--slate-100); border-color: var(--border); color: var(--ink);
+}
+
+/* Résultats générés : cartes .fa .ca .cp .dis */
+html[data-theme="dark"] .fa,
+html[data-theme="dark"] .ca,
+html[data-theme="dark"] .cp,
+html[data-theme="dark"] .dis {
+  background: var(--white); border-color: var(--border);
+}
+html[data-theme="dark"] .fa__head h2,
+html[data-theme="dark"] .ca__head h2,
+html[data-theme="dark"] .cp__head h2,
+html[data-theme="dark"] .dis__head h2 { color: var(--ink); }
+
+html[data-theme="dark"] .fa__meta,
+html[data-theme="dark"] .ca__meta,
+html[data-theme="dark"] .cp__meta,
+html[data-theme="dark"] .dis__meta { color: var(--muted); }
+
+html[data-theme="dark"] .fa__rub p,
+html[data-theme="dark"] .ca__rub p,
+html[data-theme="dark"] .dis__rub p { color: var(--body); }
+
+html[data-theme="dark"] .fa strong,
+html[data-theme="dark"] .ca strong,
+html[data-theme="dark"] .cp strong,
+html[data-theme="dark"] .dis strong { color: var(--ink); }
+
+/* Commentaire d'arrêt : bloc de plan */
+html[data-theme="dark"] .ca__partie h4 {
+  background: rgba(124,58,237,0.12); color: var(--ink);
+}
+html[data-theme="dark"] .ca__sp ul { color: var(--body); }
+html[data-theme="dark"] .ca__sp h5 { color: #A78BFA; }
+
+/* Dissertation : bloc de plan */
+html[data-theme="dark"] .dis__partie h4 {
+  background: rgba(185,28,28,0.12); color: var(--ink);
+}
+html[data-theme="dark"] .dis__sp ul { color: var(--body); }
+html[data-theme="dark"] .dis__sp h5 { color: #F87171; }
+
+/* Cas pratique : blocs syllogisme */
+html[data-theme="dark"] .cp__faits  { background: var(--slate-200); color: var(--body); }
+html[data-theme="dark"] .cp__intro  { background: rgba(16,185,129,0.08); }
+html[data-theme="dark"] .cp__intro p { color: var(--body); }
+html[data-theme="dark"] .cp__probleme h3 {
+  background: rgba(16,185,129,0.12); color: #34D399;
+}
+html[data-theme="dark"] .cp__maj {
+  background: rgba(37,99,235,0.1); border-color: rgba(37,99,235,0.25);
+}
+html[data-theme="dark"] .cp__min {
+  background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.25);
+}
+html[data-theme="dark"] .cp__conc {
+  background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.25);
+}
+html[data-theme="dark"] .cp__maj h4 { color: #7BA5E8; }
+html[data-theme="dark"] .cp__min h4 { color: #FBBF24; }
+html[data-theme="dark"] .cp__conc h4 { color: #34D399; }
+html[data-theme="dark"] .cp__maj p,
+html[data-theme="dark"] .cp__min p,
+html[data-theme="dark"] .cp__conc p { color: var(--body); }
