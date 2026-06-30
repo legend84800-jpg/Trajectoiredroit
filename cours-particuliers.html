@@ -408,7 +408,7 @@
           <p class="lead">Remplis le formulaire ci-dessous. Je te recontacte sous 24 h pour caler une date.</p>
         </div>
 
-        <form id="contactForm" class="form card" action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" novalidate>
+        <form id="contactForm" class="form card" action="/api/contact-cours" method="POST" novalidate>
           <div class="grid-2" style="gap:16px">
             <div class="form__row">
               <label class="form__label" for="nom">Prénom &amp; nom</label>
@@ -552,13 +552,18 @@
 
   <script src="assets/js/main.js" defer></script>
   <script>
-    // AJAX Formspree submit pour rester sur la page
     var f = document.getElementById('contactForm');
     if (f) f.addEventListener('submit', function(e) {
       e.preventDefault();
       var ok = document.getElementById('formSuccess'); var ko = document.getElementById('formError');
       ok.hidden = true; ko.hidden = true;
-      fetch(f.action, { method: 'POST', body: new FormData(f), headers: { 'Accept': 'application/json' } })
+      var data = {};
+      new FormData(f).forEach(function(v, k) { data[k] = v; });
+      fetch('/api/contact-cours', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+      })
         .then(function(r) {
           if (r.ok) { f.reset(); ok.hidden = false; ok.scrollIntoView({behavior:'smooth', block:'center'}); }
           else { ko.hidden = false; }
