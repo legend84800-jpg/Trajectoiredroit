@@ -246,7 +246,7 @@
               <span><strong>FAQ</strong><small>Toutes vos questions</small></span>
             </a>
             <div class="dropdown__divider"></div>
-            <a class="dropdown__cta" href="mailto:contact@trajectoiredroit.com">Nous contacter →</a>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Nous contacter →</a>
           </div>
         </div>
 
@@ -508,7 +508,7 @@
             <li>Le replay de toutes les séances</li>
             <li>Les cadeaux de chaque séance (fiches de citations, corrigés rédigés, majeures préparées)</li>
           </ul>
-          <form id="stageForm" class="form" action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" novalidate style="margin-top:4px">
+          <form id="stageForm" class="form" action="/api/contact-stage" method="POST" novalidate style="margin-top:4px">
             <div class="grid-2" style="gap:16px">
               <div class="form__row">
                 <label class="form__label" for="stage_nom">Prénom &amp; nom</label>
@@ -518,6 +518,10 @@
                 <label class="form__label" for="stage_email">Email</label>
                 <input class="form__input" type="email" id="stage_email" name="email" required>
               </div>
+            </div>
+            <div class="form__row">
+              <label class="form__label" for="stage_whatsapp">Numéro WhatsApp <span style="font-weight:400; color:var(--muted)">(facultatif · pour te répondre plus vite)</span></label>
+              <input class="form__input" type="tel" id="stage_whatsapp" name="whatsapp" placeholder="Ex : +33 6 12 34 56 78">
             </div>
             <div class="form__row">
               <label class="form__label" for="stage_niveau">Niveau d'études</label>
@@ -538,7 +542,7 @@
             <button class="btn btn--primary btn--lg btn--full" type="submit">Réserver ma place · 19 €/h · 149 € au total</button>
             <p class="form__hint text-center">Réponse sous 24 h · sans engagement</p>
             <div class="form__success" id="stageFormSuccess" hidden>Merci ! Je te recontacte sous 24 h pour confirmer ta place.</div>
-            <div class="form__error" id="stageFormError" hidden>Une erreur est survenue. Réessaie ou écris-moi directement à <a href="mailto:contact@trajectoiredroit.com">contact@trajectoiredroit.com</a>.</div>
+            <div class="form__error" id="stageFormError" hidden>Une erreur est survenue. Réessaie ou écris-moi directement à <a href="mailto:julien.prof1@gmail.com">julien.prof1@gmail.com</a>.</div>
           </form>
         </div>
       </div>
@@ -625,7 +629,13 @@
       var ok = document.getElementById('stageFormSuccess');
       var ko = document.getElementById('stageFormError');
       ok.hidden = true; ko.hidden = true;
-      fetch(sf.action, { method: 'POST', body: new FormData(sf), headers: { 'Accept': 'application/json' } })
+      var data = {};
+      new FormData(sf).forEach(function(v, k) { data[k] = v; });
+      fetch('/api/contact-stage', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+      })
         .then(function(r) {
           if (r.ok) { sf.reset(); ok.hidden = false; ok.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
           else { ko.hidden = false; }

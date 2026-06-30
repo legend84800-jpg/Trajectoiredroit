@@ -1,5 +1,5 @@
-// Endpoint serverless Vercel — reçoit les demandes de cours particulier et
-// envoie un email transactionnel à Julien via l'API Brevo.
+// Endpoint serverless Vercel — reçoit les demandes d'inscription au stage
+// et envoie un email transactionnel à Julien via l'API Brevo.
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -14,24 +14,22 @@ export default async function handler(req, res) {
   const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body || {};
   const nom      = String(body.nom      || '').trim() || '(non renseigné)';
   const email    = String(body.email    || '').trim();
-  const whatsapp = String(body.whatsapp || '').trim() || '(non renseigné)';
   const niveau   = String(body.niveau   || '').trim() || '(non renseigné)';
-  const formule  = String(body.formule  || '').trim() || '(non renseignée)';
+  const whatsapp = String(body.whatsapp || '').trim() || '(non renseigné)';
   const message  = String(body.message  || '').trim() || '(aucun message)';
 
   const emailPayload = {
     sender:  { name: 'TrajectoireDroit', email: 'julien.prof1@gmail.com' },
     to:      [{ email: 'julien.prof1@gmail.com', name: 'Julien' }],
-    replyTo: { email: email || 'contact@trajectoiredroit.com', name: nom },
-    subject: `Nouvelle demande de cours — ${nom}`,
+    replyTo: { email: email || 'julien.prof1@gmail.com', name: nom },
+    subject: `Nouvelle inscription stage — ${nom}`,
     htmlContent: `
-      <h2>Nouvelle demande de cours particulier</h2>
+      <h2>Nouvelle demande d'inscription au stage</h2>
       <table style="border-collapse:collapse; width:100%; max-width:600px">
         <tr><td style="padding:8px 12px; font-weight:bold; background:#f4f4f4">Nom</td><td style="padding:8px 12px">${nom}</td></tr>
         <tr><td style="padding:8px 12px; font-weight:bold; background:#f4f4f4">Email</td><td style="padding:8px 12px"><a href="mailto:${email}">${email}</a></td></tr>
         <tr><td style="padding:8px 12px; font-weight:bold; background:#f4f4f4">WhatsApp</td><td style="padding:8px 12px">${whatsapp}</td></tr>
         <tr><td style="padding:8px 12px; font-weight:bold; background:#f4f4f4">Niveau</td><td style="padding:8px 12px">${niveau}</td></tr>
-        <tr><td style="padding:8px 12px; font-weight:bold; background:#f4f4f4">Formule</td><td style="padding:8px 12px">${formule}</td></tr>
         <tr><td style="padding:8px 12px; font-weight:bold; background:#f4f4f4; vertical-align:top">Message</td><td style="padding:8px 12px">${message.replace(/\n/g, '<br>')}</td></tr>
       </table>
     `,
@@ -56,7 +54,7 @@ export default async function handler(req, res) {
     console.error('Brevo SMTP error:', brevoRes.status, detail);
     return res.status(502).json({ error: 'Envoi impossible pour le moment.' });
   } catch (err) {
-    console.error('contact-cours handler error:', err);
+    console.error('contact-stage handler error:', err);
     return res.status(500).json({ error: 'Erreur serveur.' });
   }
 }
