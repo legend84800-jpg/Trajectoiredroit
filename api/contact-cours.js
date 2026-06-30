@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   const message = String(body.message || '').trim() || '(aucun message)';
 
   const emailPayload = {
-    sender:  { name: 'TrajectoireDroit', email: 'contact@trajectoiredroit.com' },
+    sender:  { name: 'TrajectoireDroit', email: 'julien.prof1@gmail.com' },
     to:      [{ email: 'julien.prof1@gmail.com', name: 'Julien' }],
     replyTo: { email: email || 'contact@trajectoiredroit.com', name: nom },
     subject: `Nouvelle demande de cours — ${nom}`,
