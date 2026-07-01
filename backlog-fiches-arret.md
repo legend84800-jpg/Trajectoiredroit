@@ -14,7 +14,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 
 ## Droit administratif L2
 
-- [ ] matiere:droit administratif L2 | arret:CE, 1978, GISTI | theme:la valeur juridique des principes généraux du droit appliqués aux étrangers
+- [x] matiere:droit administratif L2 | arret:CE, 1978, GISTI | theme:la valeur juridique des principes généraux du droit appliqués aux étrangers
 - [ ] matiere:droit administratif L2 | arret:CE, 1954, Barel | theme:l'égalité d'accès à la fonction publique et le contrôle du juge sur les motifs
 - [ ] matiere:droit administratif L2 | arret:CE, 1971, Ville Nouvelle Est | theme:le contrôle du bilan coût-avantages dans l'expropriation
 - [ ] matiere:droit administratif L2 | arret:CE, 2006, Société KPMG | theme:le principe de sécurité juridique en droit administratif
@@ -26,6 +26,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 - [ ] matiere:droit constitutionnel L1 | arret:CC, 1975, IVG | theme:le refus du Conseil de contrôler la conformité d'une loi aux traités
 - [ ] matiere:droit constitutionnel L1 | arret:CC, 1962, Loi référendaire | theme:le refus de contrôler une loi adoptée par référendum
 - [ ] matiere:droit constitutionnel L1 | arret:CE, 1998, Sarran et Levacher | theme:la suprématie de la Constitution sur les traités dans l'ordre interne
+- [ ] matiere:droit constitutionnel L1 | arret:CJCE, 1964, Costa contre ENEL | theme:la primauté du droit communautaire sur le droit national des Etats membres
 
 ## Droit des obligations L2
 
