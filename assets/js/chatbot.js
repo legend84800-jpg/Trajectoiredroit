@@ -26,7 +26,7 @@
     transition:transform .2s ease,box-shadow .2s ease,opacity .3s ease}
   .tjd-fab.tjd-fab--visible{opacity:1;pointer-events:auto}
   .tjd-fab:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 30px rgba(15,26,53,.4)}
-  @media(max-width:768px){.tjd-fab.tjd-fab--raised{bottom:92px}}
+  .tjd-fab.tjd-fab--raised{bottom:92px}
   .tjd-fab svg{width:28px;height:28px}
   .tjd-fab__dot{position:absolute;top:6px;right:6px;width:12px;height:12px;border-radius:50%;background:#C9A961;border:2px solid #1A2851}
   .tjd-panel{position:fixed;right:20px;bottom:20px;z-index:9999;width:380px;max-width:calc(100vw - 32px);height:560px;
@@ -190,8 +190,16 @@
     fab.innerHTML =
       '<span class="tjd-fab__dot"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>';
     fab.addEventListener("click", function () { toggle(true); });
-    // Décale le bouton au-dessus de la barre d'achat sticky mobile quand elle existe sur la page
-    if (document.querySelector(".sticky-cta-bar")) fab.classList.add("tjd-fab--raised");
+    // Décale le bouton au-dessus de la barre d'achat sticky quand elle est réellement affichée
+    // (barre visible seulement en mobile sur certaines pages, à l'année sur les pages matière)
+    var stickyBar = document.querySelector(".sticky-cta-bar");
+    if (stickyBar) {
+      var syncFabOffset = function () {
+        fab.classList.toggle("tjd-fab--raised", getComputedStyle(stickyBar).display !== "none");
+      };
+      syncFabOffset();
+      window.addEventListener("resize", syncFabOffset);
+    }
     // Apparition différée : laisse la page respirer avant de proposer le chat
     setTimeout(function () { fab.classList.add("tjd-fab--visible"); }, 2500);
 

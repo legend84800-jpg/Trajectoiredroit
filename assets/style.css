@@ -2113,6 +2113,9 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   font-size: .75rem;
   color: var(--muted);
 }
+/* Variante toujours visible (desktop compris) : pages matière longues, prix/CTA visibles pendant la lecture */
+.sticky-cta-bar--always { display: flex; }
+body:has(.sticky-cta-bar--always) { padding-bottom: 80px; }
 @media (max-width: 768px) {
   .sticky-cta-bar { display: flex; }
   body { padding-bottom: 80px; }
