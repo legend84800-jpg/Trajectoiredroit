@@ -3,6 +3,20 @@
    Initialisations communes à toutes les pages.
    ========================================================= */
 
+/* ----- SKIP LINK (accessibilité clavier) -----
+   Injecté en JS car le site n'a pas de gabarit HTML partagé : chaque
+   page reçoit le lien sans qu'il faille éditer 75 fichiers un par un. */
+(function () {
+  var main = document.querySelector('main');
+  if (!main) return;
+  if (!main.id) main.id = 'main-content';
+  var skip = document.createElement('a');
+  skip.className = 'skip-link';
+  skip.href = '#' + main.id;
+  skip.textContent = 'Aller au contenu';
+  document.body.insertBefore(skip, document.body.firstChild);
+})();
+
 /* ----- DARK MODE -----
    Le script anti-flash dans <head> applique déjà le thème au plus tôt.
    Ce bloc gère le bouton toggle une fois le DOM prêt.                   */

@@ -32,12 +32,12 @@
   /* Texte */
   --ink:#0F172A;       /* (legacy) noir slate */
   --body:#475569;      /* paragraphes */
-  --muted:#94A3B8;     /* secondaire */
+  --muted:#5B6B84;     /* secondaire, contraste AA 5,4:1 sur blanc */
 
   /* Accents fonctionnels */
   --warn:#F59E0B;   --warn-bg:#FEF3C7;
   --success:#10B981; --success-bg:#D1FAE5;
-  --gold:#FACC15;
+  --gold:#946F16;      /* étoiles de notation, contraste AA 4,6:1 sur blanc */
   --danger:#EF4444;
   --pink-bg:#FCE7F3;
 
@@ -2689,6 +2689,7 @@ html[data-theme="dark"] {
   --ink:         #E2ECF8;
   --body:        #8FA8CC;
   --muted:       #4F6680;
+  --gold:        #FACC15;   /* étoiles, contraste AA 9,6:1 sur les fonds sombres */
 
   --border:         rgba(255,255,255,0.09);
   --border-strong:  rgba(255,255,255,0.16);
