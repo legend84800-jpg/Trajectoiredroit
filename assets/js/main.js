@@ -17,6 +17,174 @@
   document.body.insertBefore(skip, document.body.firstChild);
 })();
 
+/* ----- RECHERCHE SITE-WIDE -----
+   Index statique (pas de backend de recherche), injecté sur toutes les pages
+   via main.js pour ne pas éditer 75 fichiers. Bouton loupe dans le header,
+   recherche instantanée par titre/mots-clés. */
+(function () {
+  var INDEX = [
+    { t: 'Accueil', u: 'index.html', c: 'Page' },
+    { t: 'Catalogue des fiches détaillées, L1 L2 L3', u: 'formations.html', c: 'Produit' },
+    { t: 'Majeures préparées', u: 'majeures-preparees.html', c: 'Produit' },
+    { t: 'Cours particuliers de droit en visio', u: 'cours-particuliers.html', c: 'Produit' },
+    { t: 'Stage de méthode en direct', u: 'stage-methode.html', c: 'Produit' },
+    { t: 'Introduction au droit L1', u: 'introduction-au-droit-l1.html', c: 'Matière' },
+    { t: 'Droit constitutionnel L1', u: 'droit-constitutionnel-l1.html', c: 'Matière' },
+    { t: 'Droit des personnes L1', u: 'droit-des-personnes-l1.html', c: 'Matière' },
+    { t: 'Droit de la famille L1', u: 'droit-de-la-famille-l1.html', c: 'Matière' },
+    { t: 'Droit pénal général L1', u: 'droit-penal-general-l1.html', c: 'Matière' },
+    { t: 'Histoire du droit L1', u: 'histoire-du-droit-l1.html', c: 'Matière' },
+    { t: 'Histoire des institutions L1', u: 'histoire-des-institutions-l1.html', c: 'Matière' },
+    { t: 'Relations internationales L1', u: 'relations-internationales-l1.html', c: 'Matière' },
+    { t: 'Droit administratif L2', u: 'droit-administratif-l2.html', c: 'Matière' },
+    { t: 'Droit des contrats L2', u: 'droit-des-contrats-l2.html', c: 'Matière' },
+    { t: 'Droit des obligations L2', u: 'droit-des-obligations-l2.html', c: 'Matière' },
+    { t: 'Droit des biens L2', u: 'droit-des-biens-l2.html', c: 'Matière' },
+    { t: 'Droit pénal L2', u: 'droit-penal-l2.html', c: 'Matière' },
+    { t: 'Droit commercial L3', u: 'droit-commercial-l3.html', c: 'Matière' },
+    { t: 'Droit des sociétés L3', u: 'droit-des-societes-l3.html', c: 'Matière' },
+    { t: 'Droit du travail L3', u: 'droit-du-travail-l3.html', c: 'Matière' },
+    { t: 'Contrats spéciaux L3', u: 'contrats-speciaux-l3.html', c: 'Matière' },
+    { t: 'Procédure pénale L3', u: 'procedure-penale-l3.html', c: 'Matière' },
+    { t: 'Méthode du cas pratique', u: 'methode-cas-pratique.html', c: 'Méthode' },
+    { t: "Méthode du commentaire d'arrêt", u: 'methode-commentaire-arret.html', c: 'Méthode' },
+    { t: 'Méthode de la dissertation juridique', u: 'methode-dissertation-juridique.html', c: 'Méthode' },
+    { t: "Méthode de la fiche d'arrêt", u: 'methode-fiche-arret.html', c: 'Méthode' },
+    { t: 'Correcteur IA gratuit (fiche, commentaire, cas pratique, dissert)', u: 'outil-fiche-arret.html', c: 'Outil gratuit' },
+    { t: 'Quiz : teste ta méthode', u: 'quiz-methode.html', c: 'Outil gratuit' },
+    { t: 'Arrêt Blanco expliqué', u: 'arret-blanco-explique.html', c: 'Arrêt expliqué' },
+    { t: 'Arrêt Benjamin expliqué', u: 'arret-benjamin-explique.html', c: 'Arrêt expliqué' },
+    { t: 'Arrêt Cadot expliqué', u: 'arret-cadot-explique.html', c: 'Arrêt expliqué' },
+    { t: 'Arrêt Dame Lamotte expliqué', u: 'arret-dame-lamotte-explique.html', c: 'Arrêt expliqué' },
+    { t: "Arrêt Bac d'Eloka expliqué", u: 'arret-bac-eloka-explique.html', c: 'Arrêt expliqué' },
+    { t: 'Arrêt GISTI 1978 expliqué', u: 'arret-gisti-1978-explique.html', c: 'Arrêt expliqué' },
+    { t: 'Arrêt Nicolo expliqué', u: 'arret-nicolo-explique.html', c: 'Arrêt expliqué' },
+    { t: 'Arrêt Nikon expliqué', u: 'arret-nikon.html', c: 'Arrêt expliqué' },
+    { t: "Commentaire d'arrêt corrigé : Blieck (1991)", u: 'commentaire-arret-blieck-1991-corrige.html', c: 'Corrigé' },
+    { t: "Commentaire d'arrêt corrigé : Clément-Bayard", u: 'commentaire-arret-clement-bayard-corrige.html', c: 'Corrigé' },
+    { t: "Commentaire d'arrêt corrigé : Odièvre (2003)", u: 'commentaire-arret-odievre-2003-corrige.html', c: 'Corrigé' },
+    { t: "Commentaire d'arrêt corrigé : Uber (2020)", u: 'commentaire-arret-uber-2020-corrige.html', c: 'Corrigé' },
+    { t: 'Dissertation corrigée : droit et morale', u: 'dissertation-droit-et-morale-corrige.html', c: 'Corrigé' },
+    { t: 'Dissertation corrigée : fonctions de la responsabilité civile', u: 'dissertation-fonctions-responsabilite-civile-corrige.html', c: 'Corrigé' },
+    { t: 'Dissertation corrigée : la séparation des pouvoirs', u: 'dissertation-separation-des-pouvoirs-corrige.html', c: 'Corrigé' },
+    { t: 'Cas pratique corrigé : droit civil L1, la loi dans le temps', u: 'cas-pratique-corrige-droit-civil-l1.html', c: 'Corrigé' },
+    { t: 'Cas pratique corrigé : dol et réticence dolosive', u: 'cas-pratique-dol-reticence-dolosive-corrige.html', c: 'Corrigé' },
+    { t: 'Cas pratique corrigé : la légitime défense', u: 'cas-pratique-legitime-defense-corrige.html', c: 'Corrigé' },
+    { t: 'Cas pratique corrigé : responsabilité sans faute', u: 'cas-pratique-responsabilite-sans-faute-corrige.html', c: 'Corrigé' },
+    { t: 'Annales corrigées de droit civil L1', u: 'annales-corrigees-droit-civil-l1.html', c: 'Corrigé' },
+    { t: "Galop d'essai en droit, méthode et exemple corrigé", u: 'galop-d-essai-droit.html', c: 'Corrigé' },
+    { t: 'La clause pénale, article 1231-5', u: 'clause-penale-contrat-article-1231-5.html', c: 'Notion' },
+    { t: 'Comment réviser le droit administratif L2', u: 'comment-reviser-le-droit-administratif-l2.html', c: 'Notion' },
+    { t: 'Différence contravention, délit et crime', u: 'contravention-delit-crime.html', c: 'Notion' },
+    { t: 'La force majeure, article 1218', u: 'force-majeure-contrat-article-1218.html', c: 'Notion' },
+    { t: 'La cause en droit des contrats', u: 'la-cause-en-droit.html', c: 'Notion' },
+    { t: 'La faute civile en droit des obligations', u: 'la-faute-civile-droit-des-obligations.html', c: 'Notion' },
+    { t: 'La hiérarchie des normes, la pyramide de Kelsen', u: 'la-hierarchie-des-normes.html', c: 'Notion' },
+    { t: 'Les vices du consentement : erreur, dol, violence', u: 'les-vices-du-consentement.html', c: 'Notion' },
+    { t: 'La notion de service public', u: 'notion-service-public-droit-administratif.html', c: 'Notion' },
+    { t: 'Obligation de moyen ou de résultat', u: 'obligation-de-moyen-et-de-resultat.html', c: 'Notion' },
+    { t: "Le recours pour excès de pouvoir", u: 'recours-exces-de-pouvoir-droit-administratif.html', c: 'Notion' },
+    { t: 'Responsabilité civile L2', u: 'responsabilite-civile-l2.html', c: 'Notion' },
+    { t: 'Fiche de révision droit administratif L2', u: 'fiche-revision-droit-administratif-l2.html', c: 'Notion' },
+    { t: "Méthode de la fiche d'arrêt (exemples rédigés)", u: 'fiche-arrets.html', c: 'Méthode' },
+    { t: 'Témoignages, 149 avis 5/5', u: 'temoignages.html', c: 'Page' },
+    { t: 'FAQ', u: 'faq.html', c: 'Page' },
+    { t: 'À propos de Julien', u: 'a-propos.html', c: 'Page' },
+    { t: 'Le blog du droit', u: 'blog.html', c: 'Page' }
+  ];
+
+  function normalize(s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  }
+
+  function buildUI() {
+    var trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'search-trigger';
+    trigger.setAttribute('aria-label', 'Rechercher sur le site');
+    trigger.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+
+    var host = document.querySelector('.site-header__cta');
+    if (host) host.insertBefore(trigger, host.firstChild);
+
+    var overlay = document.createElement('div');
+    overlay.className = 'search-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Recherche');
+    overlay.innerHTML =
+      '<div class="search-panel">' +
+      '<div class="search-panel__head">' +
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+      '<input type="text" class="search-panel__input" placeholder="Une matière, un arrêt, une méthode…" aria-label="Rechercher">' +
+      '<button type="button" class="search-panel__close" aria-label="Fermer">✕</button>' +
+      '</div>' +
+      '<div class="search-panel__results" id="searchResults"></div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+
+    var input = overlay.querySelector('.search-panel__input');
+    var results = overlay.querySelector('#searchResults');
+    var closeBtn = overlay.querySelector('.search-panel__close');
+
+    function render(items, query) {
+      if (!query) { results.innerHTML = ''; return; }
+      if (!items.length) {
+        results.innerHTML = '<p class="search-panel__empty">Rien ne correspond à « ' + query.replace(/</g, '&lt;') + ' ». Essaie le nom d’une matière ou d’un arrêt.</p>';
+        return;
+      }
+      results.innerHTML = items.slice(0, 12).map(function (item) {
+        return '<a class="search-result" href="' + item.u + '">' +
+          '<span class="search-result__cat">' + item.c + '</span>' +
+          '<span class="search-result__title">' + item.t + '</span>' +
+          '</a>';
+      }).join('');
+    }
+
+    function search(query) {
+      var q = normalize(query);
+      if (!q) return [];
+      return INDEX.filter(function (item) { return normalize(item.t).indexOf(q) !== -1 || normalize(item.c).indexOf(q) !== -1; });
+    }
+
+    function open() {
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      input.value = '';
+      results.innerHTML = '';
+      setTimeout(function () { input.focus(); }, 50);
+    }
+    function close() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    trigger.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+      if ((e.key === '/' || (e.key === 'k' && (e.metaKey || e.ctrlKey))) && !overlay.classList.contains('open') && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        open();
+      }
+    });
+    input.addEventListener('input', function () { render(search(input.value), input.value); });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        var first = results.querySelector('.search-result');
+        if (first) window.location.href = first.getAttribute('href');
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildUI);
+  } else {
+    buildUI();
+  }
+})();
+
 /* ----- DARK MODE -----
    Le script anti-flash dans <head> applique déjà le thème au plus tôt.
    Ce bloc gère le bouton toggle une fois le DOM prêt.                   */
