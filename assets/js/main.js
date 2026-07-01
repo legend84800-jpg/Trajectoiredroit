@@ -60,6 +60,7 @@
     { t: 'Arrêt GISTI 1978 expliqué', u: 'arret-gisti-1978-explique.html', c: 'Arrêt expliqué' },
     { t: 'Arrêt Nicolo expliqué', u: 'arret-nicolo-explique.html', c: 'Arrêt expliqué' },
     { t: 'Arrêt Nikon expliqué', u: 'arret-nikon.html', c: 'Arrêt expliqué' },
+    { t: "Bibliothèque des arrêts expliqués", u: 'arrets-expliques.html', c: 'Page' },
     { t: "Commentaire d'arrêt corrigé : Blieck (1991)", u: 'commentaire-arret-blieck-1991-corrige.html', c: 'Corrigé' },
     { t: "Commentaire d'arrêt corrigé : Clément-Bayard", u: 'commentaire-arret-clement-bayard-corrige.html', c: 'Corrigé' },
     { t: "Commentaire d'arrêt corrigé : Odièvre (2003)", u: 'commentaire-arret-odievre-2003-corrige.html', c: 'Corrigé' },
