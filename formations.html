@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="fr">
 <head>
+  <!-- tjd-consent-default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied' });
+  </script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#2563EB">
@@ -956,6 +963,15 @@
   })();
   </script>
 
+  <!-- ===== STICKY CTA MOBILE ===== -->
+  <div class="sticky-cta-bar" id="stickyCta" aria-hidden="true">
+    <div class="sticky-cta-bar__text">
+      <strong>Dès 14,99 €</strong>
+      <small>Achat unique · accès à vie</small>
+    </div>
+    <a class="btn btn--primary" href="#a-l-unite">Voir les fiches →</a>
+  </div>
+
   <script src="assets/js/main.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -968,5 +984,6 @@
     });
   </script>
   <script src="assets/js/chatbot.js" defer></script>
+  <script src="assets/js/cookie-consent.js" defer></script>
 </body>
 </html>

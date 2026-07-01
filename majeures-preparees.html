@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="fr">
 <head>
+  <!-- tjd-consent-default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied' });
+  </script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#2563EB">
@@ -190,7 +197,7 @@
     </section>
 
     <!-- GRILLE PRODUITS -->
-    <section class="section" style="padding-top:16px">
+    <section class="section" id="grille-majeures" style="padding-top:16px">
       <div class="container">
         <div class="grid-3">
 
@@ -465,5 +472,16 @@
   });
 })();
 </script>
+
+  <!-- ===== STICKY CTA MOBILE ===== -->
+  <div class="sticky-cta-bar" id="stickyCta" aria-hidden="true">
+    <div class="sticky-cta-bar__text">
+      <strong>Dès 12,99 €</strong>
+      <small>Majeure prête à l'emploi · accès immédiat</small>
+    </div>
+    <a class="btn btn--primary" href="#grille-majeures">Voir les majeures →</a>
+  </div>
+
+  <script src="assets/js/cookie-consent.js" defer></script>
 </body>
 </html>
