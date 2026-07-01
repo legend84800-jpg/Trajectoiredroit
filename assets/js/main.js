@@ -25,6 +25,7 @@
   var INDEX = [
     { t: 'Accueil', u: 'index.html', c: 'Page' },
     { t: 'Catalogue des fiches détaillées, L1 L2 L3', u: 'formations.html', c: 'Produit' },
+    { t: 'Meilleures ventes', u: 'top-ventes.html', c: 'Produit' },
     { t: 'Majeures préparées', u: 'majeures-preparees.html', c: 'Produit' },
     { t: 'Cours particuliers de droit en visio', u: 'cours-particuliers.html', c: 'Produit' },
     { t: 'Stage de méthode en direct', u: 'stage-methode.html', c: 'Produit' },
