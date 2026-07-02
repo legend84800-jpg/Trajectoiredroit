@@ -74,6 +74,8 @@ const PRODUITS = {
   "fiche-arret-contrats-speciaux-l3": { nom: "Fiches d'arrêt Contrats spéciaux L3", prix: 999, blobs: [`${BLOB}/fiche-arret-contrats-speciaux-l3.pdf`] },
 
   // Citations – 4,99 €
+  "citations-biens-l2": { nom: "Fiche de citations Droit des biens L2", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/citations-biens-l2.pdf"] },
+  "citations-hist-institutions-l1": { nom: "Fiche de citations Histoire des institutions L1", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/citations-hist-institutions-l1.pdf"] },
   "citations-libertes-fondamentales": { nom: "Fiche de citations Libertés fondamentales", prix: 499, blobs: [`${BLOB}/citations-libertes-fondamentales.pdf`] },
   "citations-ue": { nom: "Fiche de citations Droit de l'Union européenne", prix: 499, blobs: [`${BLOB}/citations-ue.pdf`] },
   "citations-rgo-l3": { nom: "Fiche de citations Régime général de l'obligation L3", prix: 499, blobs: [`${BLOB}/citations-rgo-l3.pdf`] },
