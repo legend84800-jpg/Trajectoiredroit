@@ -24,6 +24,7 @@ const PRODUITS = {
   "fiche-contrats-speciaux-l3": { nom: "Fiches Contrats spéciaux L3",                prix: 1499, blobs: [`${BLOB}/fiche-contrats-speciaux-l3.pdf`] },
   "fiche-travail-l3-s1":        { nom: "Fiches Droit du travail L3 S1",              prix: 1499, blobs: [`${BLOB}/fiche-travail-l3-s1.pdf`] },
   "fiche-procedure-penale-l3":  { nom: "Fiches Procédure pénale L3",                 prix: 1499, blobs: [`${BLOB}/fiche-procedure-penale-l3.pdf`] },
+  "fiche-relations-internationales-l1": { nom: "Fiches Relations internationales L1", prix: 1499, blobs: [`${BLOB}/fiche-relations-internationales-l1.pdf`] },
 
   // Majeures préparées – 12,99 €
   "maj-intro-droit-l1":     { nom: "Majeures préparées Introduction au droit L1",    prix: 1299, blobs: [`${BLOB}/maj-intro-droit-l1.pdf`] },
