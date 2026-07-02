@@ -1,5 +1,6 @@
 // Webhook Stripe : reçoit checkout.session.completed,
 // génère des tokens de téléchargement HMAC et envoie l'email Brevo.
+// Trace aussi les codes ambassadeurs utilisés dans les logs Vercel.
 
 const crypto = require("crypto");
 const PRODUITS = require("./_produits");
@@ -54,12 +55,30 @@ function construireLiensEmail(produitId, produit, secret, origin) {
   });
 }
 
-async function envoyerEmail(email, produit, liens, brevoKey) {
+// Récupère le code textuel d'un promotion code Stripe (ex: "LYON3JULIE")
+async function recupererCodePromo(promotionCodeId, stripeKey) {
+  try {
+    const resp = await fetch(`https://api.stripe.com/v1/promotion_codes/${promotionCodeId}`, {
+      headers: { Authorization: `Bearer ${stripeKey}` },
+    });
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    return data.code || null;
+  } catch {
+    return null;
+  }
+}
+
+async function envoyerEmail(email, produit, liens, brevoKey, codeAmbassadeur) {
   const boutons = liens.map(l =>
     `<a href="${l.url}" style="display:inline-block;margin:8px 0;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;font-family:sans-serif;font-size:14px;">
       Télécharger ${l.nom}
     </a><br>`
   ).join("\n");
+
+  const ligneCodePromo = codeAmbassadeur
+    ? `<p style="font-size:13px;color:#555;margin:0 0 16px;">Réduction appliquée avec le code <strong>${codeAmbassadeur}</strong>.</p>`
+    : "";
 
   const html = `
 <!DOCTYPE html>
@@ -77,6 +96,7 @@ async function envoyerEmail(email, produit, liens, brevoKey) {
           <p style="font-size:15px;color:#333;margin:0 0 8px;">
             Merci pour ton achat : <strong>${produit.nom}</strong>.
           </p>
+          ${ligneCodePromo}
           <p style="font-size:15px;color:#333;margin:0 0 24px;">
             Clique sur le bouton ci-dessous pour télécharger ton PDF. Le lien est valable 48 heures.
           </p>
@@ -126,6 +146,7 @@ module.exports = async (req, res) => {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   const brevoKey = process.env.BREVO_API_KEY;
   const downloadSecret = process.env.DOWNLOAD_SECRET;
+  const stripeKey = process.env.STRIPE_SECRET_KEY;
   const origin = "https://trajectoiredroit.com";
 
   if (!webhookSecret || !brevoKey || !downloadSecret) {
@@ -165,11 +186,32 @@ module.exports = async (req, res) => {
     return;
   }
 
+  // Détecter un code ambassadeur utilisé
+  let codeAmbassadeur = null;
+  const discounts = session.discounts || [];
+  if (discounts.length > 0 && stripeKey) {
+    const promotionCodeId =
+      typeof discounts[0].promotion_code === "string"
+        ? discounts[0].promotion_code
+        : discounts[0].promotion_code?.id || null;
+    if (promotionCodeId) {
+      codeAmbassadeur = await recupererCodePromo(promotionCodeId, stripeKey);
+    }
+  }
+
+  const montantEuros = session.amount_total != null ? (session.amount_total / 100).toFixed(2) : "?";
+
+  if (codeAmbassadeur) {
+    console.log(`[AMBASSADEUR] code=${codeAmbassadeur} produit=${produitId} montant=${montantEuros}€ session=${session.id}`);
+  } else {
+    console.log(`[VENTE] produit=${produitId} montant=${montantEuros}€ session=${session.id}`);
+  }
+
   const liens = construireLiensEmail(produitId, produit, downloadSecret, origin);
 
   try {
-    await envoyerEmail(email, produit, liens, brevoKey);
-    console.log(`Email envoyé à ${email} pour ${produitId}`);
+    await envoyerEmail(email, produit, liens, brevoKey, codeAmbassadeur);
+    console.log(`Email envoyé à ${email} pour ${produitId}${codeAmbassadeur ? " (code " + codeAmbassadeur + ")" : ""}`);
   } catch (e) {
     console.error("Erreur envoi email:", e.message);
   }

@@ -34,6 +34,7 @@ module.exports = async (req, res) => {
     "line_items[0][price_data][product_data][name]": produit.nom,
     "line_items[0][quantity]": "1",
     mode: "payment",
+    allow_promotion_codes: "true",
     success_url: `${origin}/merci-achat.html?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/formations.html`,
     "metadata[produitId]": produitId,
