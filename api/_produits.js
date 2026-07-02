@@ -170,6 +170,45 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-personnes-l1-qcm.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-personnes-l1-anki.apkg"] },
 
+  // Commentaires d'arrêt – 14,99 €
+  "commentaire-arret-travail-l3-s1": { nom: "Commentaires d'arrêt Droit du travail L3 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-travail-l3-s1.pdf"] },
+  "commentaire-arret-societes-l3-s1": { nom: "Commentaires d'arrêt Droit des sociétés L3 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-societes-l3-s1.pdf"] },
+  "commentaire-arret-contrats-speciaux-l3": { nom: "Commentaires d'arrêt Contrats spéciaux L3", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-contrats-speciaux-l3.pdf"] },
+  "commentaire-arret-penal-l2-s1": { nom: "Commentaires d'arrêt Droit pénal L2 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-penal-l2-s1.pdf"] },
+  "commentaire-arret-obligations-l2-s2": { nom: "Commentaires d'arrêt Droit des obligations L2 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-obligations-l2-s2.pdf"] },
+  "commentaire-arret-contrats-l2-s1": { nom: "Commentaires d'arrêt Droit des contrats L2 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-contrats-l2-s1.pdf"] },
+  "commentaire-arret-biens-l2": { nom: "Commentaires d'arrêt Droit des biens L2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-biens-l2.pdf"] },
+  "commentaire-arret-da-l2-s2": { nom: "Commentaires d'arrêt Droit administratif L2 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-da-l2-s2.pdf"] },
+  "commentaire-arret-da-l2-s1": { nom: "Commentaires d'arrêt Droit administratif L2 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-da-l2-s1.pdf"] },
+  "commentaire-arret-famille-l1-s2": { nom: "Commentaires d'arrêt Droit de la famille L1 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-famille-l1-s2.pdf"] },
+  "commentaire-arret-personnes-l1": { nom: "Commentaires d'arrêt Droit des personnes L1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-personnes-l1.pdf"] },
+
+  // Cas pratiques corrigés – 14,99 €
+  "cas-pratique-procedure-penale-l3": { nom: "Cas pratiques corrigés Procédure pénale L3", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-procedure-penale-l3.pdf"] },
+  "cas-pratique-travail-l3": { nom: "Cas pratiques corrigés Droit du travail L3", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-travail-l3.pdf"] },
+  "cas-pratique-societes-l3": { nom: "Cas pratiques corrigés Droit des sociétés L3", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-societes-l3.pdf"] },
+  "cas-pratique-contrats-speciaux-l3": { nom: "Cas pratiques corrigés Contrats spéciaux L3", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-contrats-speciaux-l3.pdf"] },
+  "cas-pratique-commercial-l3-s2": { nom: "Cas pratiques corrigés Droit commercial L3 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-commercial-l3-s2.pdf"] },
+  "cas-pratique-commercial-l3-s1": { nom: "Cas pratiques corrigés Droit commercial L3 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-commercial-l3-s1.pdf"] },
+  "cas-pratique-biens-l2": { nom: "Cas pratiques corrigés Droit des biens L2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-biens-l2.pdf"] },
+  "cas-pratique-obligations-l2-s2": { nom: "Cas pratiques corrigés Droit des obligations L2 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-obligations-l2-s2.pdf"] },
+  "cas-pratique-da-l2-s2": { nom: "Cas pratiques corrigés Droit administratif L2 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-da-l2-s2.pdf"] },
+  "cas-pratique-penal-l2-s1": { nom: "Cas pratiques corrigés Droit pénal L2 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-penal-l2-s1.pdf"] },
+  "cas-pratique-contrats-l2-s1": { nom: "Cas pratiques corrigés Droit des contrats L2 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-contrats-l2-s1.pdf"] },
+  "cas-pratique-da-l2-s1": { nom: "Cas pratiques corrigés Droit administratif L2 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-da-l2-s1.pdf"] },
+  "cas-pratique-penal-general-l1": { nom: "Cas pratiques corrigés Droit pénal général L1 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-penal-general-l1.pdf"] },
+  "cas-pratique-famille-l1-s2": { nom: "Cas pratiques corrigés Droit de la famille L1 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-famille-l1-s2.pdf"] },
+  "cas-pratique-personnes-l1": { nom: "Cas pratiques corrigés Droit des personnes L1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-personnes-l1.pdf"] },
+  "cas-pratique-intro-droit-l1": { nom: "Cas pratiques corrigés Introduction au droit L1 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-intro-droit-l1.pdf"] },
+
+  // Dissertations corrigées – 14,99 €
+  "dissertation-obligations-l2-s2": { nom: "Dissertations corrigées Droit des obligations L2 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/dissertation-obligations-l2-s2.pdf"] },
+  "dissertation-hist-institutions-l1": { nom: "Dissertations corrigées Histoire des institutions L1 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/dissertation-hist-institutions-l1.pdf"] },
+  "dissertation-constit-l1-s2": { nom: "Dissertations corrigées Droit constitutionnel L1 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/dissertation-constit-l1-s2.pdf"] },
+  "dissertation-constit-l1-s1": { nom: "Dissertations corrigées Droit constitutionnel L1 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/dissertation-constit-l1-s1.pdf"] },
+  "dissertation-hist-droit-l1": { nom: "Dissertations corrigées Histoire du droit L1 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/dissertation-hist-droit-l1.pdf"] },
+  "dissertation-intro-droit-l1": { nom: "Dissertations corrigées Introduction au droit L1 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/dissertation-intro-droit-l1.pdf"] },
+
   // Packs
   "pack-l1": {
     nom: "Pack Fiches L1 intégral (8 matières)",
