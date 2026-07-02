@@ -33,3 +33,5 @@ DESIGN.md
 
 # Serveur de preview local (chemin machine, non versionné)
 preview-server.js
+.vercel
+.env*
