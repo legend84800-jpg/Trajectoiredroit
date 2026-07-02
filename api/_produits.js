@@ -92,6 +92,28 @@ const PRODUITS = {
   "citations-constit-l1-s2": { nom: "Fiche de citations Droit constitutionnel L1 S2", prix: 499, blobs: [`${BLOB}/citations-constit-l1-s2.pdf`] },
   "citations-constit-l1-s1": { nom: "Fiche de citations Droit constitutionnel L1 S1", prix: 499, blobs: [`${BLOB}/citations-constit-l1-s1.pdf`] },
 
+  // Fiches ultra-complètes – 19,99 €
+  "fiche-uc-travail-l3-s1": { nom: "Fiches ultra-complètes Droit du travail L3 S1", prix: 1999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-uc-travail-l3-s1.pdf"] },
+  "fiche-uc-societes-l3-s1": { nom: "Fiches ultra-complètes Droit des sociétés L3 S1", prix: 1999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-uc-societes-l3-s1.pdf"] },
+  "fiche-uc-commercial-l3-s1": { nom: "Fiches ultra-complètes Droit commercial L3 S1", prix: 1999, blobs: [`${BLOB}/fiche-uc-commercial-l3-s1.pdf`] },
+  "fiche-uc-procedure-penale-l3": { nom: "Fiches ultra-complètes Procédure pénale L3", prix: 1999, blobs: [`${BLOB}/fiche-uc-procedure-penale-l3.pdf`] },
+  "fiche-uc-contrats-speciaux-l3": { nom: "Fiches ultra-complètes Contrats spéciaux L3", prix: 1999, blobs: [`${BLOB}/fiche-uc-contrats-speciaux-l3.pdf`] },
+  "fiche-uc-obligations-l2-s2": { nom: "Fiches ultra-complètes Droit des obligations L2 S2", prix: 1999, blobs: [`${BLOB}/fiche-uc-obligations-l2-s2.pdf`] },
+  "fiche-uc-da-l2-s2": { nom: "Fiches ultra-complètes Droit administratif L2 S2", prix: 1999, blobs: [`${BLOB}/fiche-uc-da-l2-s2.pdf`] },
+  "fiche-uc-penal-l2-s1": { nom: "Fiches ultra-complètes Droit pénal L2 S1", prix: 1999, blobs: [`${BLOB}/fiche-uc-penal-l2-s1.pdf`] },
+  "fiche-uc-contrats-l2-s1": { nom: "Fiches ultra-complètes Droit des contrats L2 S1", prix: 1999, blobs: [`${BLOB}/fiche-uc-contrats-l2-s1.pdf`] },
+  "fiche-uc-da-l2-s1": { nom: "Fiches ultra-complètes Droit administratif L2 S1", prix: 1999, blobs: [`${BLOB}/fiche-uc-da-l2-s1.pdf`] },
+  "fiche-uc-biens-l2": { nom: "Fiches ultra-complètes Droit des biens L2", prix: 1999, blobs: [`${BLOB}/fiche-uc-biens-l2.pdf`] },
+  "fiche-uc-hist-institutions-l1": { nom: "Fiches ultra-complètes Histoire des institutions L1 S2", prix: 1999, blobs: [`${BLOB}/fiche-uc-hist-institutions-l1.pdf`] },
+  "fiche-uc-famille-l1-s2": { nom: "Fiches ultra-complètes Droit de la famille L1 S2", prix: 1999, blobs: [`${BLOB}/fiche-uc-famille-l1-s2.pdf`] },
+  "fiche-uc-penal-general-l1": { nom: "Fiches ultra-complètes Droit pénal général L1 S2", prix: 1999, blobs: [`${BLOB}/fiche-uc-penal-general-l1.pdf`] },
+  "fiche-uc-constit-l1-s2": { nom: "Fiches ultra-complètes Droit constitutionnel L1 S2", prix: 1999, blobs: [`${BLOB}/fiche-uc-constit-l1-s2.pdf`] },
+  "fiche-uc-intro-droit-l1": { nom: "Fiches ultra-complètes Introduction au droit L1 S1", prix: 1999, blobs: [`${BLOB}/fiche-uc-intro-droit-l1.pdf`] },
+  "fiche-uc-hist-droit-l1": { nom: "Fiches ultra-complètes Histoire du droit L1 S1", prix: 1999, blobs: [`${BLOB}/fiche-uc-hist-droit-l1.pdf`] },
+  "fiche-uc-constit-l1-s1": { nom: "Fiches ultra-complètes Droit constitutionnel L1 S1", prix: 1999, blobs: [`${BLOB}/fiche-uc-constit-l1-s1.pdf`] },
+  "fiche-uc-relations-internationales-l1": { nom: "Fiches ultra-complètes Relations internationales L1", prix: 1999, blobs: [`${BLOB}/fiche-uc-relations-internationales-l1.pdf`] },
+  "fiche-uc-personnes-l1": { nom: "Fiches ultra-complètes Droit des personnes L1", prix: 1999, blobs: [`${BLOB}/fiche-uc-personnes-l1.pdf`] },
+
   // Packs
   "pack-l1": {
     nom: "Pack Fiches L1 intégral (8 matières)",
