@@ -23,7 +23,7 @@ Tu peux ajouter, retirer ou réordonner les lignes quand tu veux, depuis ton Mac
 - [x] type:notion | matiere:droit administratif L2 | sujet:la notion de service public, ses critères et l'enjeu de la qualification
 - [x] type:notion | matiere:droit administratif L2 | sujet:le recours pour excès de pouvoir, ses conditions et ses cas d'ouverture
 - [x] type:notion | matiere:droit administratif L2 | sujet:la responsabilité de l'administration sans faute, du risque à la rupture d'égalité devant les charges publiques
-- [ ] type:arret | matiere:droit constitutionnel L1 | sujet:la décision Liberté d'association (CC, 16 juillet 1971) et la valeur constitutionnelle du préambule
+- [x] type:arret | matiere:droit constitutionnel L1 | sujet:la décision Liberté d'association (CC, 16 juillet 1971) et la valeur constitutionnelle du préambule
 - [ ] type:arret | matiere:droit constitutionnel L1 | sujet:la décision IVG (CC, 15 janvier 1975) et le refus du Conseil de contrôler la loi face aux traités
 - [ ] type:notion | matiere:droit constitutionnel L1 | sujet:le bloc de constitutionnalité, ce que le Conseil constitutionnel protège vraiment
 - [ ] type:notion | matiere:droit constitutionnel L1 | sujet:la question prioritaire de constitutionnalité, à quoi elle sert et comment elle fonctionne
