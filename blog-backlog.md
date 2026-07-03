@@ -5,10 +5,10 @@ Quand le backlog est vide, elle pioche seule dans Search Console les requêtes o
 
 **Format d'une ligne :**
 ```
-- [ ] type:actu|arret|notion | matiere:Matière Niveau | sujet:le sujet précis
+- [ ] type:actu|arret|notion|comment-reviser | matiere:Matière Niveau | sujet:le sujet précis
 ```
-- `type` : `actu` (actualité juridique), `arret` (grand arrêt), `notion` (notion clé). Pas de méthode, c'est déjà couvert ailleurs.
-- Coche `- [x]` quand l'article est publié (la routine le fait elle-même).
+- `type` : `actu` (actualité juridique), `arret` (grand arrêt), `notion` (notion clé), `comment-reviser` (page pilier « Comment réviser [matière] ? », rare, pas deux fois d'affilée). Pas de méthode (cas pratique, commentaire, dissertation), c'est déjà couvert ailleurs.
+- Coche `- [x]` quand l'article ou la page est publiée (la routine le fait elle-même).
 - Priorité quand plusieurs sujets se valent : actualité d'abord, grands arrêts ensuite, notions en dernier.
 
 Tu peux ajouter, retirer ou réordonner les lignes quand tu veux, depuis ton Mac comme depuis le VPS.
@@ -46,3 +46,8 @@ Tu peux ajouter, retirer ou réordonner les lignes quand tu veux, depuis ton Mac
 - [ ] type:arret | matiere:droit civil L1 | sujet:l'arrêt Perruche (Cass. ass. plén., 17 novembre 2000) et le préjudice de l'enfant né handicapé
 - [ ] type:notion | matiere:droit des personnes L1 | sujet:la personnalité juridique, son début à la naissance et sa fin à la mort
 - [ ] type:notion | matiere:droit de la famille L1 | sujet:l'autorité parentale, ses titulaires et son exercice
+- [x] type:comment-reviser | matiere:droit administratif L2 | sujet:comment réviser le droit administratif L2 (publié le 30/06/2026)
+- [x] type:comment-reviser | matiere:droit des obligations L2 | sujet:comment réviser le droit des obligations L2 (publié le 03/07/2026)
+- [ ] type:comment-reviser | matiere:introduction au droit L1 | sujet:comment réviser l'introduction au droit L1
+- [ ] type:comment-reviser | matiere:droit constitutionnel L1 | sujet:comment réviser le droit constitutionnel L1
+- [ ] type:comment-reviser | matiere:droit pénal général L1 | sujet:comment réviser le droit pénal général L1

@@ -346,13 +346,21 @@
             <h3 style="margin-top:0">Semestre 1 · 109 p.</h3>
             <p style="color:var(--body); font-size:.95rem">Acte administratif, service public, police administrative, organisation administrative.</p>
             <p style="font-family:var(--font-display); font-size:1.6rem; font-weight:700; margin:6px 0">14,99 €</p>
-            <button type="button" class="btn btn--primary btn--full" data-tjd-produit="fiche-da-l2-s1">Voir la fiche S1 →</button>
+            <label style="display:flex; gap:8px; align-items:flex-start; font-size:.83rem; color:var(--body); text-align:left; margin:0 0 12px; cursor:pointer">
+              <input type="checkbox" id="bump-da-s1" style="margin-top:3px">
+              <span>Ajouter aussi le <strong>Semestre 2</strong> (+14,99 €), un seul paiement</span>
+            </label>
+            <button type="button" class="btn btn--primary btn--full" data-tjd-produit="fiche-da-l2-s1" data-tjd-bump="fiche-da-l2-s2" data-tjd-bump-checkbox="bump-da-s1">Voir la fiche S1 →</button>
           </div>
           <div class="card">
             <h3 style="margin-top:0">Semestre 2 · 126 p.</h3>
             <p style="color:var(--body); font-size:.95rem">Responsabilité administrative, contentieux, contrats administratifs.</p>
             <p style="font-family:var(--font-display); font-size:1.6rem; font-weight:700; margin:6px 0">14,99 €</p>
-            <button type="button" class="btn btn--primary btn--full" data-tjd-produit="fiche-da-l2-s2">Voir la fiche S2 →</button>
+            <label style="display:flex; gap:8px; align-items:flex-start; font-size:.83rem; color:var(--body); text-align:left; margin:0 0 12px; cursor:pointer">
+              <input type="checkbox" id="bump-da-s2" style="margin-top:3px">
+              <span>Ajouter aussi le <strong>Semestre 1</strong> (+14,99 €), un seul paiement</span>
+            </label>
+            <button type="button" class="btn btn--primary btn--full" data-tjd-produit="fiche-da-l2-s2" data-tjd-bump="fiche-da-l2-s1" data-tjd-bump-checkbox="bump-da-s2">Voir la fiche S2 →</button>
           </div>
         </div>
         <p style="font-size:.92rem; color:var(--body)">Tu prends toute la L2 ? Le <a href="formations.html">pack Licence 2</a> réunit le droit administratif, le civil et le pénal à prix réduit.</p>

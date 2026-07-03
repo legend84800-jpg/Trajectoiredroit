@@ -69,7 +69,9 @@ async function recupererCodePromo(promotionCodeId, stripeKey) {
   }
 }
 
-async function envoyerEmail(email, produit, liens, brevoKey, codeAmbassadeur) {
+async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
+  const nomsAchetes = produits.map(p => p.nom).join(" + ");
+
   const boutons = liens.map(l =>
     `<a href="${l.url}" style="display:inline-block;margin:8px 0;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;font-family:sans-serif;font-size:14px;">
       Télécharger ${l.nom}
@@ -94,15 +96,15 @@ async function envoyerEmail(email, produit, liens, brevoKey, codeAmbassadeur) {
         <tr><td style="padding:32px;">
           <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 16px;">Ton achat est confirmé !</p>
           <p style="font-size:15px;color:#333;margin:0 0 8px;">
-            Merci pour ton achat : <strong>${produit.nom}</strong>.
+            Merci pour ton achat : <strong>${nomsAchetes}</strong>.
           </p>
           ${ligneCodePromo}
           <p style="font-size:15px;color:#333;margin:0 0 24px;">
-            Clique sur le bouton ci-dessous pour télécharger ton PDF. Le lien est valable 48 heures.
+            Clique sur les boutons ci-dessous pour télécharger tes PDF. Les liens sont valables 48 heures.
           </p>
           ${boutons}
           <p style="font-size:13px;color:#777;margin:24px 0 0;">
-            Si le lien expire, réponds à cet email et je te l'envoie de nouveau.
+            Si un lien expire, réponds à cet email et je te l'envoie de nouveau.
           </p>
         </td></tr>
         <tr><td style="background:#f0f0f0;padding:16px 32px;">
@@ -114,12 +116,12 @@ async function envoyerEmail(email, produit, liens, brevoKey, codeAmbassadeur) {
 </body>
 </html>`;
 
-  const texte = `Ton achat est confirmé : ${produit.nom}.\n\nTélécharge ton PDF ici :\n${liens.map(l => l.url).join("\n")}\n\nLien valable 48 heures.`;
+  const texte = `Ton achat est confirmé : ${nomsAchetes}.\n\nTélécharge tes PDF ici :\n${liens.map(l => l.url).join("\n")}\n\nLiens valables 48 heures.`;
 
   const payload = {
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
     to: [{ email }],
-    subject: `Ton achat : ${produit.nom}`,
+    subject: `Ton achat : ${nomsAchetes}`,
     htmlContent: html,
     textContent: texte,
   };
@@ -170,18 +172,22 @@ module.exports = async (req, res) => {
   }
 
   const session = evt.data.object;
-  const produitId = session.metadata && session.metadata.produitId;
+  const produitIdsRaw = session.metadata && session.metadata.produitIds;
   const email = session.customer_details && session.customer_details.email;
 
-  if (!produitId || !email) {
-    console.error("produitId ou email manquant dans la session:", JSON.stringify(session));
+  if (!produitIdsRaw || !email) {
+    console.error("produitIds ou email manquant dans la session:", JSON.stringify(session));
     res.status(200).json({ recu: true });
     return;
   }
 
-  const produit = PRODUITS[produitId];
-  if (!produit) {
-    console.error("produitId inconnu:", produitId);
+  const produitIds = produitIdsRaw.split(",").map(s => s.trim()).filter(Boolean);
+  const produitsAchetes = produitIds
+    .map(id => ({ id, produit: PRODUITS[id] }))
+    .filter(p => p.produit);
+
+  if (!produitsAchetes.length) {
+    console.error("Aucun produitId connu dans la session:", produitIdsRaw);
     res.status(200).json({ recu: true });
     return;
   }
@@ -201,17 +207,21 @@ module.exports = async (req, res) => {
 
   const montantEuros = session.amount_total != null ? (session.amount_total / 100).toFixed(2) : "?";
 
+  const libelleProduits = produitIds.join("+");
   if (codeAmbassadeur) {
-    console.log(`[AMBASSADEUR] code=${codeAmbassadeur} produit=${produitId} montant=${montantEuros}€ session=${session.id}`);
+    console.log(`[AMBASSADEUR] code=${codeAmbassadeur} produits=${libelleProduits} montant=${montantEuros}€ session=${session.id}`);
   } else {
-    console.log(`[VENTE] produit=${produitId} montant=${montantEuros}€ session=${session.id}`);
+    console.log(`[VENTE] produits=${libelleProduits} montant=${montantEuros}€ session=${session.id}`);
   }
 
-  const liens = construireLiensEmail(produitId, produit, downloadSecret, origin);
+  let liens = [];
+  produitsAchetes.forEach(({ id, produit }) => {
+    liens = liens.concat(construireLiensEmail(id, produit, downloadSecret, origin));
+  });
 
   try {
-    await envoyerEmail(email, produit, liens, brevoKey, codeAmbassadeur);
-    console.log(`Email envoyé à ${email} pour ${produitId}${codeAmbassadeur ? " (code " + codeAmbassadeur + ")" : ""}`);
+    await envoyerEmail(email, produitsAchetes.map(p => p.produit), liens, brevoKey, codeAmbassadeur);
+    console.log(`Email envoyé à ${email} pour ${libelleProduits}${codeAmbassadeur ? " (code " + codeAmbassadeur + ")" : ""}`);
   } catch (e) {
     console.error("Erreur envoi email:", e.message);
   }
