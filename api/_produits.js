@@ -121,6 +121,8 @@ const PRODUITS = {
   "fiche-uc-constit-l1-s1": { nom: "Fiches ultra-complètes Droit constitutionnel L1 S1", prix: 1999, blobs: [`${BLOB}/fiche-uc-constit-l1-s1.pdf`] },
   "fiche-uc-relations-internationales-l1": { nom: "Fiches ultra-complètes Relations internationales L1", prix: 1999, blobs: [`${BLOB}/fiche-uc-relations-internationales-l1.pdf`] },
   "fiche-uc-personnes-l1": { nom: "Fiches ultra-complètes Droit des personnes L1", prix: 1999, blobs: [`${BLOB}/fiche-uc-personnes-l1.pdf`] },
+  "fiche-uc-finances-publiques-l2-s1": { nom: "Fiches ultra-complètes Finances publiques L2 S1", prix: 1999, blobs: [`${BLOB}/fiche-uc-finances-publiques-l2-s1.pdf`] },
+  "fiche-uc-philo-droit-l2-s1": { nom: "Fiches ultra-complètes Philosophie du droit L2 S1", prix: 1999, blobs: [`${BLOB}/fiche-uc-philo-droit-l2-s1.pdf`] },
 
   // Flashcards + QCM + Anki – 9,99 €
   "flashcards-qcm-travail-l3-s1": { nom: "Flashcards + QCM Droit du travail L3 S1", prix: 999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-travail-l3-s1-flashcards.pdf",
