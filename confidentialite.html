@@ -30,6 +30,20 @@
     gtag('js', new Date());
     gtag('config', 'G-SGBDDYMHMF');
   </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
 </head>
 <body>
 
@@ -197,7 +211,7 @@
 
           <section>
             <h2 class="h3">5. Durée de conservation</h2>
-            <p>Données de compte et achats : <strong>5 ans</strong> après la dernière interaction. Données de facturation : <strong>10 ans</strong> (obligation comptable). Données de navigation et publicitaires (Google Analytics, pixel Meta) : conservées selon la durée fixée par ces outils, puis supprimées automatiquement.</p>
+            <p>Données de compte et achats : <strong>5 ans</strong> après la dernière interaction. Données de facturation : <strong>10 ans</strong> (obligation comptable). Données de navigation via Matomo : <strong>13 mois</strong>, puis suppression automatique. Données de navigation et publicitaires (Google Analytics, pixel Meta) : conservées selon la durée fixée par ces outils, puis supprimées automatiquement.</p>
           </section>
 
           <section>
@@ -207,6 +221,7 @@
               <li><strong>Vercel</strong> (hébergement), États-Unis, conforme au Data Privacy Framework.</li>
               <li><strong>Stripe</strong> (paiements), conforme PCI-DSS niveau 1.</li>
               <li><strong>Brevo</strong> (newsletter), France.</li>
+              <li><strong>Matomo</strong> (mesure d'audience), hébergé sur notre propre serveur en France, aucune donnée transmise à un tiers.</li>
               <li><strong>Google Analytics</strong> (mesure d'audience), Irlande / États-Unis, conforme au Data Privacy Framework.</li>
               <li><strong>Meta</strong> (pixel publicitaire pour le retargeting), Irlande / États-Unis, conforme au Data Privacy Framework.</li>
               <li><strong>Formspree</strong> (formulaire de contact), États-Unis, conforme au Data Privacy Framework.</li>
@@ -222,6 +237,7 @@
           <section>
             <h2 class="h3">8. Cookies</h2>
             <p>Le site utilise des cookies de mesure d'audience (Google Analytics) et un pixel de suivi publicitaire (Meta), pour comprendre ce qui aide vraiment tes révisions et pour te proposer des publicités pertinentes. Une bannière te demande ton accord dès ta première visite. Tant que tu n'as pas accepté, aucun de ces outils ne se déclenche. Tu peux changer d'avis à tout moment en effaçant les cookies de ton navigateur pour ce site.</p>
+            <p>Le site utilise aussi Matomo, un outil de mesure d'audience hébergé sur notre propre serveur et non chez Google. Il ne pose aucun cookie sur ton navigateur et ne transmet aucune donnée à un tiers, ce qui lui permet de fonctionner sans ton accord, conformément aux règles de la CNIL (l'autorité qui protège les données personnelles en France) pour ce type d'outil. Cet outil nous sert uniquement à savoir combien de personnes visitent le site et quelles pages elles lisent, sans jamais savoir qui tu es.</p>
           </section>
 
           <p class="text-muted" style="font-size:.85rem; margin-top:24px">Dernière mise à jour : juillet 2026.</p>
