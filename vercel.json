@@ -4,8 +4,5 @@
     "api/generer-commentaire-arret.js": { "maxDuration": 60 },
     "api/generer-cas-pratique.js":      { "maxDuration": 60 },
     "api/generer-dissertation.js":      { "maxDuration": 60 }
-  },
-  "redirects": [
-    { "source": "/fiches-ultra-completes.html", "destination": "/cours-fiches.html", "permanent": true }
-  ]
+  }
 }
