@@ -72,6 +72,12 @@ const PRODUITS = {
   "fiche-arret-famille": { nom: "Fiches d'arrêt Droit de la famille", prix: 999, blobs: [`${BLOB}/fiche-arret-famille.pdf`] },
   "fiche-arret-administratif": { nom: "Fiches d'arrêt Droit administratif", prix: 999, blobs: [`${BLOB}/fiche-arret-administratif.pdf`] },
   "fiche-arret-contrats-speciaux-l3": { nom: "Fiches d'arrêt Contrats spéciaux L3", prix: 999, blobs: [`${BLOB}/fiche-arret-contrats-speciaux-l3.pdf`] },
+  "fiche-arret-constit-l1-s1": { nom: "Fiches d'arrêt Droit constitutionnel L1 S1", prix: 999, blobs: [`${BLOB}/fiche-arret-constit-l1-s1.pdf`] },
+  "fiche-arret-constit-l1-s2": { nom: "Fiches d'arrêt Droit constitutionnel L1 S2", prix: 999, blobs: [`${BLOB}/fiche-arret-constit-l1-s2.pdf`] },
+  "fiche-arret-intro-droit-l1": { nom: "Fiches d'arrêt Introduction au droit L1", prix: 999, blobs: [`${BLOB}/fiche-arret-intro-droit-l1.pdf`] },
+  "fiche-arret-relations-internationales-l1": { nom: "Fiches d'arrêt Relations internationales L1", prix: 999, blobs: [`${BLOB}/fiche-arret-relations-internationales-l1.pdf`] },
+  "fiche-arret-commercial-l3-s1": { nom: "Fiches d'arrêt Droit commercial L3", prix: 999, blobs: [`${BLOB}/fiche-arret-commercial-l3-s1.pdf`] },
+  "fiche-arret-travail-l3-s1": { nom: "Fiches d'arrêt Droit du travail L3", prix: 999, blobs: [`${BLOB}/fiche-arret-travail-l3-s1.pdf`] },
 
   // Citations – 4,99 €
   "citations-biens-l2": { nom: "Fiche de citations Droit des biens L2", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/citations-biens-l2.pdf"] },
