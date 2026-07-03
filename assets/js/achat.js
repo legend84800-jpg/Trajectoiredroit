@@ -7,12 +7,19 @@
     if (!btnEl) return;
     var idx = produitId + '-' + Array.from(document.querySelectorAll('[data-tjd-produit="' + produitId + '"]')).indexOf(btnEl);
     TEXTES_ORIGINAUX[idx] = TEXTES_ORIGINAUX[idx] || btnEl.textContent.trim();
+
+    // Order bump : si le bouton référence une checkbox cochée, on ajoute ce produit à la même session.
+    var bumpId = btnEl.getAttribute('data-tjd-bump');
+    var bumpCheckboxId = btnEl.getAttribute('data-tjd-bump-checkbox');
+    var bumpCheckbox = bumpCheckboxId ? document.getElementById(bumpCheckboxId) : null;
+    var bumpActif = !!(bumpId && bumpCheckbox && bumpCheckbox.checked);
+
     btnEl.disabled = true;
     btnEl.textContent = 'Chargement…';
     fetch('/api/create-checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ produitId: produitId })
+      body: JSON.stringify(bumpActif ? { produitId: produitId, bumpId: bumpId } : { produitId: produitId })
     })
       .then(function (r) { return r.json(); })
       .then(function (d) {

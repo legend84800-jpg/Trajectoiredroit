@@ -72,7 +72,9 @@
           "price": "14.99",
           "priceCurrency": "EUR",
           "availability": "https://schema.org/InStock",
-          "url": "https://trajectoiredroit.com/histoire-du-droit-l1.html"
+          "url": "https://trajectoiredroit.com/histoire-du-droit-l1.html",
+          "shippingDetails": {"@type": "OfferShippingDetails", "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "EUR"}, "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "FR"}, "deliveryTime": {"@type": "ShippingDeliveryTime", "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}, "transitTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}}},
+          "hasMerchantReturnPolicy": {"@type": "MerchantReturnPolicy", "applicableCountry": "FR", "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"}
         },
         "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "149" }
       },
@@ -120,6 +122,20 @@
     gtag('js', new Date());
     gtag('config', 'G-SGBDDYMHMF');
   </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
 </head>
 <body>
 
@@ -139,7 +155,7 @@
           <div class="dropdown dropdown--simple" role="menu">
             <a class="dropdown__item" href="formations.html" role="menuitem">
               <span class="dropdown__icon dropdown__icon--blue">📖</span>
-              <span><strong>Fiches détaillées</strong><small>Le cours complet, tout y est</small></span>
+              <span><strong>Fiches détaillées</strong><small>Toute la matière, claire et bien construite</small></span>
             </a>
             <a class="dropdown__item" href="majeures-preparees.html" role="menuitem">
               <span class="dropdown__icon dropdown__icon--amber">🎯</span>
@@ -318,7 +334,11 @@
           <h3 style="margin-top:0">Fiche détaillée · Histoire du droit L1</h3>
           <p style="color:var(--body); font-size:.95rem">De l'héritage de Rome à la monarchie absolue, les grandes périodes, les institutions, les textes fondateurs, les auteurs et les dates, avec les schémas et les citations à replacer.</p>
           <p style="font-family:var(--font-display); font-size:1.6rem; font-weight:700; margin:6px 0">14,99 €</p>
-          <button type="button" class="btn btn--primary btn--full" data-tjd-produit="fiche-hist-droit-l1">Télécharger la fiche →</button>
+          <label style="display:flex; gap:8px; align-items:flex-start; font-size:.83rem; color:var(--body); text-align:left; margin:0 0 12px; cursor:pointer">
+            <input type="checkbox" id="bump-hist-droit-citations" style="margin-top:3px">
+            <span>Ajouter aussi la <strong>fiche de citations</strong> de la matière (+4,99 €), un seul paiement</span>
+          </label>
+          <button type="button" class="btn btn--primary btn--full" data-tjd-produit="fiche-hist-droit-l1" data-tjd-bump="citations-hist-droit-l1" data-tjd-bump-checkbox="bump-hist-droit-citations">Télécharger la fiche →</button>
         </div>
         <p style="font-size:.92rem; color:var(--body)">Tu prends toute la L1 ? Le <a href="formations.html">pack Licence 1</a> réunit l'histoire du droit, le droit constitutionnel, l'introduction au droit et le droit des personnes à prix réduit.</p>
       </div>
@@ -493,6 +513,7 @@
           <a href="droit-penal-l2.html">Droit pénal L2</a>
           <a href="droit-des-biens-l2.html">Droit des biens L2</a>
           <a href="procedure-penale-l3.html">Procédure pénale L3</a>
+          <a href="droit-des-societes-l3.html">Droit des sociétés L3</a>
           <a href="formations.html">Toutes les matières</a>
         </div>
         <div>

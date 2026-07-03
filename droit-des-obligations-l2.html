@@ -72,7 +72,9 @@
           "price": "14.99",
           "priceCurrency": "EUR",
           "availability": "https://schema.org/InStock",
-          "url": "https://trajectoiredroit.com/droit-des-obligations-l2.html"
+          "url": "https://trajectoiredroit.com/droit-des-obligations-l2.html",
+          "shippingDetails": {"@type": "OfferShippingDetails", "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "EUR"}, "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "FR"}, "deliveryTime": {"@type": "ShippingDeliveryTime", "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}, "transitTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}}},
+          "hasMerchantReturnPolicy": {"@type": "MerchantReturnPolicy", "applicableCountry": "FR", "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"}
         },
         "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "149" }
       },
@@ -120,6 +122,20 @@
     gtag('js', new Date());
     gtag('config', 'G-SGBDDYMHMF');
   </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
 </head>
 <body>
 
@@ -139,7 +155,7 @@
           <div class="dropdown dropdown--simple" role="menu">
             <a class="dropdown__item" href="formations.html" role="menuitem">
               <span class="dropdown__icon dropdown__icon--blue">📖</span>
-              <span><strong>Fiches détaillées</strong><small>Le cours complet, tout y est</small></span>
+              <span><strong>Fiches détaillées</strong><small>Toute la matière, claire et bien construite</small></span>
             </a>
             <a class="dropdown__item" href="majeures-preparees.html" role="menuitem">
               <span class="dropdown__icon dropdown__icon--amber">🎯</span>
@@ -314,7 +330,11 @@
           <h3 style="margin-top:0">Fiche détaillée · Droit des obligations L2</h3>
           <p style="color:var(--body); font-size:.95rem">La responsabilité civile, le fait des choses, le fait d'autrui, les quasi-contrats et le régime général de l'obligation, avec les articles et les arrêts.</p>
           <p style="font-family:var(--font-display); font-size:1.6rem; font-weight:700; margin:6px 0">14,99 €</p>
-          <button type="button" class="btn btn--primary btn--full" data-tjd-produit="fiche-obligations-l2-s2">Télécharger la fiche →</button>
+          <label style="display:flex; gap:8px; align-items:flex-start; font-size:.83rem; color:var(--body); text-align:left; margin:0 0 12px; cursor:pointer">
+            <input type="checkbox" id="bump-obligations-s2" style="margin-top:3px">
+            <span>Ajouter aussi le <strong>Semestre 1, Droit des contrats</strong> (+14,99 €), un seul paiement</span>
+          </label>
+          <button type="button" class="btn btn--primary btn--full" data-tjd-produit="fiche-obligations-l2-s2" data-tjd-bump="fiche-contrats-l2-s1" data-tjd-bump-checkbox="bump-obligations-s2">Télécharger la fiche →</button>
         </div>
         <p style="font-size:.92rem; color:var(--body)">Tu prends toute la L2 ? Le <a href="formations.html">pack Licence 2</a> réunit le droit des obligations, le droit des contrats, le droit administratif et le droit pénal à prix réduit.</p>
       </div>
@@ -460,6 +480,7 @@
         <h2 class="h2" id="cluster-domaine-titre-3">Les autres matières à réviser avec le droit des obligations</h2>
         <p class="lead">Le droit des obligations est le centre du droit civil de deuxième année. Voici les matières qui s'y rattachent.</p>
         <ul style="line-height:2; padding-left:1.2em; margin-top:8px">
+          <li><a href="comment-reviser-le-droit-des-obligations-l2.html">Comment réviser le droit des obligations L2, la méthode complète</a></li>
           <li><a href="responsabilite-civile-l2.html">La responsabilité civile L2, expliquée régime par régime</a></li>
           <li><a href="droit-des-contrats-l2.html">Droit des contrats L2, la théorie générale du contrat</a></li>
           <li><a href="droit-des-biens-l2.html">Droit des biens L2, la propriété et la possession</a></li>
@@ -491,6 +512,7 @@
           <a href="droit-penal-l2.html">Droit pénal L2</a>
           <a href="droit-des-biens-l2.html">Droit des biens L2</a>
           <a href="procedure-penale-l3.html">Procédure pénale L3</a>
+          <a href="droit-des-societes-l3.html">Droit des sociétés L3</a>
           <a href="formations.html">Toutes les matières</a>
         </div>
         <div>

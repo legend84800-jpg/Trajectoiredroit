@@ -74,6 +74,20 @@
     .quiz-capture form{display:flex;gap:8px;flex-direction:column;max-width:420px;margin:0 auto}
     .quiz-fineprint{font-size:.82rem;color:var(--muted);text-align:center;margin-top:12px}
   </style>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
 </head>
 <body>
 
@@ -93,7 +107,7 @@
           <div class="dropdown dropdown--simple" role="menu">
             <a class="dropdown__item" href="formations.html" role="menuitem">
               <span class="dropdown__icon dropdown__icon--blue">📖</span>
-              <span><strong>Fiches détaillées</strong><small>Le cours complet, tout y est</small></span>
+              <span><strong>Fiches détaillées</strong><small>Toute la matière, claire et bien construite</small></span>
             </a>
             <a class="dropdown__item" href="majeures-preparees.html" role="menuitem">
               <span class="dropdown__icon dropdown__icon--amber">🎯</span>
@@ -177,6 +191,29 @@
               <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">3 min</div><div style="font-size:.88rem;color:var(--body)">pour avoir ton diagnostic</div></div>
               <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">+3 pts</div><div style="font-size:.88rem;color:var(--body)">de moyenne en moyenne avec la méthode</div></div>
             </div>
+            <div style="max-width:420px;margin:0 auto 20px;text-align:left">
+              <label for="matiereSelect" style="display:block;font-size:.86rem;font-weight:600;color:var(--navy);margin-bottom:6px">Quelle matière tu révises en ce moment ? <span style="font-weight:400;color:var(--muted)">(optionnel, pour un plan encore plus précis)</span></label>
+              <select id="matiereSelect" class="form__select" style="width:100%">
+                <option value="">Plusieurs matières / je ne sais pas encore</option>
+                <option value="introduction-au-droit-l1">Introduction au droit (L1)</option>
+                <option value="histoire-du-droit-l1">Histoire du droit (L1 S1)</option>
+                <option value="droit-constitutionnel-l1">Droit constitutionnel (L1)</option>
+                <option value="histoire-des-institutions-l1">Histoire des institutions (L1 S2)</option>
+                <option value="droit-des-personnes-l1">Droit des personnes (L1)</option>
+                <option value="droit-de-la-famille-l1">Droit de la famille (L1 S2)</option>
+                <option value="droit-penal-general-l1">Droit pénal général (L1 S2)</option>
+                <option value="droit-des-contrats-l2">Droit des contrats (L2 S1)</option>
+                <option value="droit-des-obligations-l2">Droit des obligations (L2 S2)</option>
+                <option value="droit-administratif-l2">Droit administratif (L2)</option>
+                <option value="droit-des-biens-l2">Droit des biens (L2)</option>
+                <option value="droit-penal-l2">Droit pénal (L2 S1)</option>
+                <option value="droit-commercial-l3">Droit commercial (L3 S1)</option>
+                <option value="droit-des-societes-l3">Droit des sociétés (L3 S1)</option>
+                <option value="contrats-speciaux-l3">Contrats spéciaux (L3)</option>
+                <option value="droit-du-travail-l3">Droit du travail (L3 S1)</option>
+                <option value="procedure-penale-l3">Procédure pénale (L3)</option>
+              </select>
+            </div>
             <button class="btn btn--primary btn--lg" id="startBtn">Commencer le quiz →</button>
             <p style="font-size:.84rem;color:var(--muted);margin:14px 0 0">Construit par Julien, major de promo à Assas, à partir de sa méthode des exercices.</p>
           </div>
@@ -220,6 +257,7 @@
                 <input type="hidden" name="_subject" value="Quiz méthode · nouveau lead">
                 <input type="hidden" name="score" id="hiddenScore" value="">
                 <input type="hidden" name="profil" id="hiddenProfil" value="">
+                <input type="hidden" name="matiere" id="hiddenMatiere" value="">
                 <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
                 <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon plan méthode →</button>
               </form>
@@ -360,15 +398,39 @@
       low:{ tag:"Ta méthode te coûte des points", cls:"tag-low", profil:"faible",
         title:"Ta méthode te coûte des points que ton travail mérite",
         lead:"Tu connais sûrement ton cours, mais la méthode des exercices te fait perdre des points en copie. C'est une bonne nouvelle, parce que la méthode s'apprend vite et rapporte gros. C'est exactement ce qu'on reprend dans le stage de méthode, les quatre exercices en direct, jusqu'à ce que tu saches quoi écrire et dans quel ordre.",
-        cta:'<a class="btn btn--primary btn--lg" href="stage-methode.html">Voir le stage de méthode · 149 €</a><div class="quiz-cta__row"><a class="btn btn--outline" href="majeures-preparees.html">Commencer par les majeures préparées</a></div>' },
+        ctaPrincipal:{ href:"stage-methode.html", label:"Voir le stage de méthode · 149 €" },
+        ctaSecondaire:{ href:"majeures-preparees.html", label:"Commencer par les majeures préparées" } },
       mid:{ tag:"Tu as les bases, il te manque des réflexes", cls:"tag-mid", profil:"intermédiaire",
         title:"Tu as les bases, il te manque des réflexes",
         lead:"Tu as déjà les bons réflexes sur plusieurs exercices et il t'en manque encore sur d'autres. En verrouillant les deux ou trois points qui te coûtent des points, tu passes assez vite au-dessus de 13. Tes majeures préparées et les pages méthode sont faites pour ça.",
-        cta:'<a class="btn btn--primary btn--lg" href="majeures-preparees.html">Voir les majeures préparées</a><div class="quiz-cta__row"><a class="btn btn--outline" href="stage-methode.html">Ou le stage de méthode complet</a></div>' },
+        ctaPrincipal:{ href:"majeures-preparees.html", label:"Voir les majeures préparées" },
+        ctaSecondaire:{ href:"stage-methode.html", label:"Ou le stage de méthode complet" } },
       high:{ tag:"Ta méthode est solide", cls:"tag-high", profil:"solide",
         title:"Ta méthode est solide",
         lead:"Ta méthode tient la route, tu sais comment aborder chaque exercice. Maintenant tu dois rendre tout ça automatique le jour du partiel, quand le stress fait oublier les bons réflexes. Les majeures préparées et les fiches détaillées te font gagner les derniers points, ceux qui font la différence entre 13 et 16.",
-        cta:'<a class="btn btn--primary btn--lg" href="formations.html">Voir les fiches détaillées</a><div class="quiz-cta__row"><a class="btn btn--outline" href="majeures-preparees.html">Et les majeures préparées</a></div>' }
+        ctaPrincipal:{ href:"formations.html", label:"Voir les fiches détaillées" },
+        ctaSecondaire:{ href:"majeures-preparees.html", label:"Et les majeures préparées" } }
+    };
+
+    // Matières couvertes par une page dédiée (slug -> nom affiché), pour orienter le CTA vers la fiche précise
+    var MATIERES = {
+      "introduction-au-droit-l1": "Introduction au droit (L1)",
+      "histoire-du-droit-l1": "Histoire du droit (L1 S1)",
+      "droit-constitutionnel-l1": "Droit constitutionnel (L1)",
+      "histoire-des-institutions-l1": "Histoire des institutions (L1 S2)",
+      "droit-des-personnes-l1": "Droit des personnes (L1)",
+      "droit-de-la-famille-l1": "Droit de la famille (L1 S2)",
+      "droit-penal-general-l1": "Droit pénal général (L1 S2)",
+      "droit-des-contrats-l2": "Droit des contrats (L2 S1)",
+      "droit-des-obligations-l2": "Droit des obligations (L2 S2)",
+      "droit-administratif-l2": "Droit administratif (L2)",
+      "droit-des-biens-l2": "Droit des biens (L2)",
+      "droit-penal-l2": "Droit pénal (L2 S1)",
+      "droit-commercial-l3": "Droit commercial (L3 S1)",
+      "droit-des-societes-l3": "Droit des sociétés (L3 S1)",
+      "contrats-speciaux-l3": "Contrats spéciaux (L3)",
+      "droit-du-travail-l3": "Droit du travail (L3 S1)",
+      "procedure-penale-l3": "Procédure pénale (L3)"
     };
 
     var idx = 0, answers = new Array(QUESTIONS.length).fill(null);
@@ -411,9 +473,27 @@
       tagEl.textContent = prof.tag; tagEl.className = 'quiz-score__tag ' + prof.cls;
       document.getElementById('resultTitle').textContent = prof.title;
       document.getElementById('resultLead').textContent = prof.lead;
-      document.getElementById('ctaMain').innerHTML = prof.cta;
+
+      // Personnalisation par matière : la fiche précise remplace le lien catalogue générique
+      var matiereKey = document.getElementById('matiereSelect').value;
+      var matiereNom = MATIERES[matiereKey] || null;
+      var ctaPrincipal = prof.ctaPrincipal, ctaSecondaire = prof.ctaSecondaire;
+      if (matiereNom) {
+        var lienFiche = matiereKey + '.html#fiches';
+        var cibleFiche = { href: lienFiche, label: 'Voir la fiche de ' + matiereNom };
+        if (prof.profil === 'faible') {
+          ctaSecondaire = cibleFiche;
+        } else {
+          ctaPrincipal = cibleFiche;
+        }
+      }
+      document.getElementById('ctaMain').innerHTML =
+        '<a class="btn btn--primary btn--lg" href="' + ctaPrincipal.href + '">' + ctaPrincipal.label + '</a>' +
+        '<div class="quiz-cta__row"><a class="btn btn--outline" href="' + ctaSecondaire.href + '">' + ctaSecondaire.label + '</a></div>';
+
       document.getElementById('hiddenScore').value = score + '/30';
       document.getElementById('hiddenProfil').value = prof.profil;
+      document.getElementById('hiddenMatiere').value = matiereNom || 'non précisé';
       // points à récupérer : les questions où la réponse n'est pas la meilleure (3 pts)
       var todo = document.getElementById('todoList'); todo.innerHTML = '';
       var count = 0;
@@ -427,7 +507,7 @@
       });
       document.getElementById('todoBox').style.display = count ? '' : 'none';
       document.getElementById('progressBar').style.width = '100%';
-      if (window.gtag) gtag('event', 'quiz_complete', { score: score, profil: prof.profil });
+      if (window.gtag) gtag('event', 'quiz_complete', { score: score, profil: prof.profil, matiere: matiereKey || 'non_precise' });
       show(elResult);
     }
 

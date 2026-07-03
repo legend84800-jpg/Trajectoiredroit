@@ -72,7 +72,9 @@
           "price": "14.99",
           "priceCurrency": "EUR",
           "availability": "https://schema.org/InStock",
-          "url": "https://trajectoiredroit.com/droit-administratif-l2.html"
+          "url": "https://trajectoiredroit.com/droit-administratif-l2.html",
+          "shippingDetails": {"@type": "OfferShippingDetails", "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "EUR"}, "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "FR"}, "deliveryTime": {"@type": "ShippingDeliveryTime", "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}, "transitTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}}},
+          "hasMerchantReturnPolicy": {"@type": "MerchantReturnPolicy", "applicableCountry": "FR", "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"}
         },
         "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "149" }
       },
@@ -87,7 +89,9 @@
           "price": "14.99",
           "priceCurrency": "EUR",
           "availability": "https://schema.org/InStock",
-          "url": "https://trajectoiredroit.com/droit-administratif-l2.html"
+          "url": "https://trajectoiredroit.com/droit-administratif-l2.html",
+          "shippingDetails": {"@type": "OfferShippingDetails", "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "EUR"}, "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "FR"}, "deliveryTime": {"@type": "ShippingDeliveryTime", "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}, "transitTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}}},
+          "hasMerchantReturnPolicy": {"@type": "MerchantReturnPolicy", "applicableCountry": "FR", "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"}
         },
         "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "149" }
       },
@@ -135,6 +139,20 @@
     gtag('js', new Date());
     gtag('config', 'G-SGBDDYMHMF');
   </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
 </head>
 <body>
 
@@ -154,7 +172,7 @@
           <div class="dropdown dropdown--simple" role="menu">
             <a class="dropdown__item" href="formations.html" role="menuitem">
               <span class="dropdown__icon dropdown__icon--blue">📖</span>
-              <span><strong>Fiches détaillées</strong><small>Le cours complet, tout y est</small></span>
+              <span><strong>Fiches détaillées</strong><small>Toute la matière, claire et bien construite</small></span>
             </a>
             <a class="dropdown__item" href="majeures-preparees.html" role="menuitem">
               <span class="dropdown__icon dropdown__icon--amber">🎯</span>
@@ -346,13 +364,21 @@
             <h3 style="margin-top:0">Semestre 1 · 109 p.</h3>
             <p style="color:var(--body); font-size:.95rem">Acte administratif, service public, police administrative, organisation administrative.</p>
             <p style="font-family:var(--font-display); font-size:1.6rem; font-weight:700; margin:6px 0">14,99 €</p>
-            <button type="button" class="btn btn--primary btn--full" data-tjd-produit="fiche-da-l2-s1">Voir la fiche S1 →</button>
+            <label style="display:flex; gap:8px; align-items:flex-start; font-size:.83rem; color:var(--body); text-align:left; margin:0 0 12px; cursor:pointer">
+              <input type="checkbox" id="bump-da-s1" style="margin-top:3px">
+              <span>Ajouter aussi le <strong>Semestre 2</strong> (+14,99 €), un seul paiement</span>
+            </label>
+            <button type="button" class="btn btn--primary btn--full" data-tjd-produit="fiche-da-l2-s1" data-tjd-bump="fiche-da-l2-s2" data-tjd-bump-checkbox="bump-da-s1">Voir la fiche S1 →</button>
           </div>
           <div class="card">
             <h3 style="margin-top:0">Semestre 2 · 126 p.</h3>
             <p style="color:var(--body); font-size:.95rem">Responsabilité administrative, contentieux, contrats administratifs.</p>
             <p style="font-family:var(--font-display); font-size:1.6rem; font-weight:700; margin:6px 0">14,99 €</p>
-            <button type="button" class="btn btn--primary btn--full" data-tjd-produit="fiche-da-l2-s2">Voir la fiche S2 →</button>
+            <label style="display:flex; gap:8px; align-items:flex-start; font-size:.83rem; color:var(--body); text-align:left; margin:0 0 12px; cursor:pointer">
+              <input type="checkbox" id="bump-da-s2" style="margin-top:3px">
+              <span>Ajouter aussi le <strong>Semestre 1</strong> (+14,99 €), un seul paiement</span>
+            </label>
+            <button type="button" class="btn btn--primary btn--full" data-tjd-produit="fiche-da-l2-s2" data-tjd-bump="fiche-da-l2-s1" data-tjd-bump-checkbox="bump-da-s2">Voir la fiche S2 →</button>
           </div>
         </div>
         <p style="font-size:.92rem; color:var(--body)">Tu prends toute la L2 ? Le <a href="formations.html">pack Licence 2</a> réunit le droit administratif, le civil et le pénal à prix réduit.</p>
@@ -381,6 +407,9 @@
           <div class="card" style="padding:18px 22px"><strong>CE, 30 octobre 2009, Dame Perreux</strong><br><span style="color:var(--body)">L'invocabilité directe des directives européennes contre un acte administratif individuel.</span></div>
         </div>
         <p style="margin-top:22px; font-size:.95rem; color:var(--body)">Tu veux la fiche de chacun de ces arrêts, prête à réviser ? Va voir nos <a href="fiche-arrets.html">fiches d'arrêt annotées</a>, faits, problématique, solution et portée pour chaque grande décision.</p>
+
+        <h2 class="h2" style="margin-top:44px; margin-bottom:8px">Fiche de révision droit administratif L2</h2>
+        <p style="color:var(--body)">Une bonne fiche de révision de droit administratif L2 ne recopie pas le cours, elle le trie. Sur une à deux pages par thème, tu gardes seulement l'essentiel : la définition de l'acte administratif, les trois grands services publics, les conditions de la responsabilité sans faute et les douze arrêts ci-dessus avec leur idée en une ligne. C'est ce que tu relis la veille de l'examen, pas tout le cours. La <a href="fiche-revision-droit-administratif-l2.html">fiche de révision complète est disponible ici</a>, déjà triée et mise en couleur pour aller vite.</p>
       </div>
     </section>
 

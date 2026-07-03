@@ -1,5 +1,5 @@
-// Crée une session Stripe Checkout pour un produit TJD.
-// Reçoit { produitId } en POST. Retourne { url } pour rediriger le client.
+// Crée une session Stripe Checkout pour un produit TJD, avec order bump optionnel.
+// Reçoit { produitId, bumpId? } en POST. Retourne { url } pour rediriger le client.
 
 const PRODUITS = require("./_produits");
 
@@ -16,18 +16,23 @@ module.exports = async (req, res) => {
   corps = corps || {};
 
   const produitId = typeof corps.produitId === "string" ? corps.produitId.trim() : "";
+  const bumpId = typeof corps.bumpId === "string" ? corps.bumpId.trim() : "";
+
   const produit = PRODUITS[produitId];
   if (!produit) {
     res.status(400).json({ erreur: "Produit inconnu" });
     return;
   }
 
+  const bump = bumpId && bumpId !== produitId ? PRODUITS[bumpId] : null;
+  const idsAchetes = bump ? [produitId, bumpId] : [produitId];
+
   const stripeKey = process.env.STRIPE_SECRET_KEY;
   if (!stripeKey) { res.status(500).json({ erreur: "Configuration Stripe manquante" }); return; }
 
   const origin = "https://trajectoiredroit.com";
 
-  const body = new URLSearchParams({
+  const params = new URLSearchParams({
     "payment_method_types[0]": "card",
     "line_items[0][price_data][currency]": "eur",
     "line_items[0][price_data][unit_amount]": String(produit.prix),
@@ -37,9 +42,18 @@ module.exports = async (req, res) => {
     allow_promotion_codes: "true",
     success_url: `${origin}/merci-achat.html?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/formations.html`,
-    "metadata[produitId]": produitId,
-    "payment_intent_data[metadata][produitId]": produitId,
-  }).toString();
+    "metadata[produitIds]": idsAchetes.join(","),
+    "payment_intent_data[metadata][produitIds]": idsAchetes.join(","),
+  });
+
+  if (bump) {
+    params.set("line_items[1][price_data][currency]", "eur");
+    params.set("line_items[1][price_data][unit_amount]", String(bump.prix));
+    params.set("line_items[1][price_data][product_data][name]", bump.nom);
+    params.set("line_items[1][quantity]", "1");
+  }
+
+  const body = params.toString();
 
   try {
     const resp = await fetch("https://api.stripe.com/v1/checkout/sessions", {
