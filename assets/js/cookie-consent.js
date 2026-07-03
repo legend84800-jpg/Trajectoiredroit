@@ -45,7 +45,7 @@
     banner.setAttribute("role", "dialog");
     banner.setAttribute("aria-label", "Cookies");
     banner.innerHTML =
-      '<p class="cookie-banner__text">On utilise des cookies de mesure d’audience pour voir ce qui aide vraiment tes révisions. <a href="confidentialite.html">En savoir plus</a></p>' +
+      '<p class="cookie-banner__text">Cookies de mesure d’audience et de pub. <a href="confidentialite.html">En savoir plus</a></p>' +
       '<div class="cookie-banner__actions">' +
       '<button type="button" class="btn btn--secondary btn--sm" data-cookie-decline>Refuser</button>' +
       '<button type="button" class="btn btn--primary btn--sm" data-cookie-accept>Accepter</button>' +
@@ -56,9 +56,12 @@
 
     document.body.appendChild(banner);
 
-    requestAnimationFrame(function () {
-      banner.classList.add("cookie-banner--visible");
-    });
+    // Petit délai avant apparition : on laisse le visiteur atterrir sur la page avant de lui demander quoi que ce soit.
+    setTimeout(function () {
+      requestAnimationFrame(function () {
+        banner.classList.add("cookie-banner--visible");
+      });
+    }, 1200);
 
     banner.querySelector("[data-cookie-accept]").addEventListener("click", function () {
       setConsent("granted");
