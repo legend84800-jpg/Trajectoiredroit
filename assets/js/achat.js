@@ -2,6 +2,11 @@
 (function () {
   var TEXTES_ORIGINAUX = {};
 
+  function lireCookie(nom) {
+    var m = document.cookie.match('(?:^|; )' + nom + '=([^;]*)');
+    return m ? decodeURIComponent(m[1]) : null;
+  }
+
   function tjdAcheter(produitId, btnEl) {
     if (!btnEl) btnEl = document.querySelector('[data-tjd-produit="' + produitId + '"]');
     if (!btnEl) return;
@@ -14,12 +19,23 @@
     var bumpCheckbox = bumpCheckboxId ? document.getElementById(bumpCheckboxId) : null;
     var bumpActif = !!(bumpId && bumpCheckbox && bumpCheckbox.checked);
 
+    // Identifiants Meta transmis uniquement si le visiteur a accepté les cookies,
+    // pour permettre à l'API Conversions de recouper l'achat avec le pixel côté serveur.
+    var corps = bumpActif ? { produitId: produitId, bumpId: bumpId } : { produitId: produitId };
+    if (localStorage.getItem('tjd_consent') === 'granted') {
+      var fbp = lireCookie('_fbp');
+      var fbc = lireCookie('_fbc');
+      if (fbp) corps.fbp = fbp;
+      if (fbc) corps.fbc = fbc;
+      corps.consentMarketing = true;
+    }
+
     btnEl.disabled = true;
     btnEl.textContent = 'Chargement…';
     fetch('/api/create-checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(bumpActif ? { produitId: produitId, bumpId: bumpId } : { produitId: produitId })
+      body: JSON.stringify(corps)
     })
       .then(function (r) { return r.json(); })
       .then(function (d) {

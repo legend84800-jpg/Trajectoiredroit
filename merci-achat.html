@@ -222,5 +222,35 @@
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/chatbot.js" defer></script>
   <script src="assets/js/cookie-consent.js" defer></script>
+  <script defer>
+  (function () {
+    var sessionId = new URLSearchParams(window.location.search).get('session_id');
+    if (!sessionId) return;
+
+    function envoyerPurchase() {
+      fetch('/api/session-info?session_id=' + encodeURIComponent(sessionId))
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d && d.montant != null) {
+            fbq('track', 'Purchase', { value: d.montant, currency: d.devise || 'EUR' }, { eventID: sessionId });
+          }
+        })
+        .catch(function () {});
+    }
+
+    // Le pixel se charge après consentement (cookie-consent.js), potentiellement
+    // juste après ce script si le visiteur accepte la bannière sur cette page.
+    var tentatives = 0;
+    var attente = setInterval(function () {
+      tentatives++;
+      if (typeof window.fbq === 'function') {
+        clearInterval(attente);
+        envoyerPurchase();
+      } else if (tentatives > 20) {
+        clearInterval(attente);
+      }
+    }, 250);
+  })();
+  </script>
 </body>
 </html>

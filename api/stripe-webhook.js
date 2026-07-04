@@ -1,9 +1,53 @@
 // Webhook Stripe : reçoit checkout.session.completed,
 // génère des tokens de téléchargement HMAC et envoie l'email Brevo.
 // Trace aussi les codes ambassadeurs utilisés dans les logs Vercel.
+// Remonte aussi l'achat à l'API Conversions Meta (server-side, ne dépend pas
+// des bloqueurs de pub), uniquement si le visiteur a accepté les cookies.
 
 const crypto = require("crypto");
 const PRODUITS = require("./_produits");
+
+const META_PIXEL_ID = "1736839687358457";
+
+async function envoyerAchatMeta({ email, montantEuros, produitIds, sessionId, fbp, fbc }) {
+  const token = process.env.META_CAPI_ACCESS_TOKEN;
+  if (!token) return;
+
+  const emHash = crypto.createHash("sha256").update(email.trim().toLowerCase()).digest("hex");
+  const userData = { em: [emHash] };
+  if (fbp) userData.fbp = fbp;
+  if (fbc) userData.fbc = fbc;
+
+  const payload = {
+    data: [{
+      event_name: "Purchase",
+      event_time: Math.floor(Date.now() / 1000),
+      event_id: sessionId, // identique au eventID envoyé par le pixel côté client, pour la déduplication Meta
+      action_source: "website",
+      event_source_url: "https://trajectoiredroit.com/merci-achat.html",
+      user_data: userData,
+      custom_data: {
+        currency: "EUR",
+        value: Number(montantEuros),
+        content_ids: produitIds,
+        content_type: "product",
+      },
+    }],
+  };
+
+  try {
+    const resp = await fetch(`https://graph.facebook.com/v19.0/${META_PIXEL_ID}/events?access_token=${encodeURIComponent(token)}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!resp.ok) {
+      console.error("Meta CAPI erreur:", await resp.text());
+    }
+  } catch (e) {
+    console.error("Meta CAPI fetch erreur:", e.message);
+  }
+}
 
 module.exports.config = { api: { bodyParser: false } };
 
@@ -218,6 +262,17 @@ module.exports = async (req, res) => {
   produitsAchetes.forEach(({ id, produit }) => {
     liens = liens.concat(construireLiensEmail(id, produit, downloadSecret, origin));
   });
+
+  if (session.metadata && session.metadata.consentMarketing === "1" && montantEuros !== "?") {
+    envoyerAchatMeta({
+      email,
+      montantEuros,
+      produitIds,
+      sessionId: session.id,
+      fbp: session.metadata.fbp,
+      fbc: session.metadata.fbc,
+    }).catch(e => console.error("envoyerAchatMeta erreur:", e.message));
+  }
 
   try {
     await envoyerEmail(email, produitsAchetes.map(p => p.produit), liens, brevoKey, codeAmbassadeur);

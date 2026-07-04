@@ -17,6 +17,9 @@ module.exports = async (req, res) => {
 
   const produitId = typeof corps.produitId === "string" ? corps.produitId.trim() : "";
   const bumpId = typeof corps.bumpId === "string" ? corps.bumpId.trim() : "";
+  const fbp = typeof corps.fbp === "string" ? corps.fbp.trim() : "";
+  const fbc = typeof corps.fbc === "string" ? corps.fbc.trim() : "";
+  const consentMarketing = corps.consentMarketing === true;
 
   const produit = PRODUITS[produitId];
   if (!produit) {
@@ -45,6 +48,12 @@ module.exports = async (req, res) => {
     "metadata[produitIds]": idsAchetes.join(","),
     "payment_intent_data[metadata][produitIds]": idsAchetes.join(","),
   });
+
+  if (consentMarketing) {
+    params.set("metadata[consentMarketing]", "1");
+    if (fbp) params.set("metadata[fbp]", fbp);
+    if (fbc) params.set("metadata[fbc]", fbc);
+  }
 
   if (bump) {
     params.set("line_items[1][price_data][currency]", "eur");
