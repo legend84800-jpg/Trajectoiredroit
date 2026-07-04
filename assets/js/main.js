@@ -96,7 +96,7 @@
   ];
 
   function normalize(s) {
-    return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
   function buildUI() {
@@ -455,11 +455,28 @@
     document.querySelectorAll('[data-count-to]').forEach(function (el) { counterIo.observe(el); });
   }
 
-  // ----- 6. Filtres catalogue (chips) -----
+  // ----- 6. Filtres catalogue (chips + recherche texte) -----
   var filtersRoot = document.querySelector('[data-filters]');
   if (filtersRoot) {
     var grid = document.querySelector('[data-filter-grid]');
-    var state = { niveau: 'tous', matiere: 'tous' };
+    var state = { niveau: 'tous', matiere: 'tous', recherche: '' };
+
+    function appliquerFiltres() {
+      if (!grid) return;
+      grid.querySelectorAll('[data-niveau]').forEach(function (card) {
+        var matchN = state.niveau === 'tous' || card.getAttribute('data-niveau').split(',').indexOf(state.niveau) !== -1;
+        var matchM = state.matiere === 'tous' || card.getAttribute('data-matiere').split(',').indexOf(state.matiere) !== -1;
+        var matchR = !state.recherche || card.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').indexOf(state.recherche) !== -1;
+        card.hidden = !(matchN && matchM && matchR);
+      });
+    }
+    // Exposée pour que le filtre de recherche texte (filtre-recherche.js) partage le même état
+    // que les chips, plutôt que d'écraser leur résultat en manipulant `hidden` séparément.
+    window.tjdAppliquerFiltreRecherche = function (terme) {
+      state.recherche = terme;
+      appliquerFiltres();
+    };
+
     filtersRoot.querySelectorAll('.filter-chip').forEach(function (chip) {
       chip.addEventListener('click', function () {
         var group = chip.getAttribute('data-group');
@@ -469,12 +486,7 @@
         filtersRoot.querySelectorAll('.filter-chip[data-group="' + group + '"]').forEach(function (c) {
           c.classList.toggle('active', c === chip);
         });
-        if (!grid) return;
-        grid.querySelectorAll('[data-niveau]').forEach(function (card) {
-          var matchN = state.niveau === 'tous' || card.getAttribute('data-niveau').split(',').indexOf(state.niveau) !== -1;
-          var matchM = state.matiere === 'tous' || card.getAttribute('data-matiere').split(',').indexOf(state.matiere) !== -1;
-          card.hidden = !(matchN && matchM);
-        });
+        appliquerFiltres();
       });
     });
   }

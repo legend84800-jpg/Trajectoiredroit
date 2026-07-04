@@ -216,8 +216,8 @@
           <span>Paiement sécurisé · Prix en euros</span>
           <span>Accès à vie</span>
         </div>
-        <p style="margin-top:14px; font-size:.82rem; color:var(--muted); max-width:560px; margin-left:auto; margin-right:auto">Le PDF est livré tout de suite, la loi ne prévoit donc pas de rétractation de 14 jours sur ce type d'achat. Je réponds à toute question avant achat en moins de 24 heures. <a href="faq.html#paiement-garantie">Voir la politique complète →</a></p>
-        <p style="margin-top:8px; font-size:.85rem; text-align:center"><a href="formations.html#comparatif">Tu hésites entre une majeure, une fiche ou un cours particulier ? Compare les formats →</a></p>
+        <p class="hero-note" style="margin-top:14px; max-width:560px; margin-left:auto; margin-right:auto">Le PDF est livré tout de suite, la loi ne prévoit donc pas de rétractation de 14 jours sur ce type d'achat. Je réponds à toute question avant achat en moins de 24 heures. <a href="faq.html#paiement-garantie">Voir la politique complète →</a></p>
+        <p class="hero-note" style="margin-top:8px; text-align:center"><a href="formations.html#comparatif">Tu hésites entre une majeure, une fiche ou un cours particulier ? Compare les formats →</a></p>
       </div>
     </section>
 
@@ -245,6 +245,9 @@
     <!-- GRILLE PRODUITS -->
     <section class="section" id="grille-majeures" style="padding-top:16px">
       <div class="container">
+        <div class="filtre-recherche">
+          <input type="search" data-filtre-recherche="#grille-majeures .grid-3" placeholder="Cherche ta matière (ex : contrats, administratif, L2...)" aria-label="Rechercher une matière">
+        </div>
         <div class="grid-3">
 
           <article class="card card--product fade-in">
@@ -252,7 +255,7 @@
             <div class="product__body">
               <h3 class="product__title">Introduction au droit</h3>
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · Cas pratique</span></div>
-              <p style="font-size:.92rem; color:var(--body); margin:0">Sources du droit, application de la loi dans le temps, organisation judiciaire, charge et modes de preuve.</p>
+              <p class="product__desc">Sources du droit, application de la loi dans le temps, organisation judiciaire, charge et modes de preuve.</p>
               <div><span class="product__price">12,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="maj-intro-droit-l1">Acheter · 12,99 €</button>
             </div>
@@ -263,7 +266,7 @@
             <div class="product__body">
               <h3 class="product__title">Droit des personnes</h3>
               <div class="product__meta"><span>L1</span><span>·</span><span>Année</span><span>·</span><span>PDF · Cas pratique</span></div>
-              <p style="font-size:.92rem; color:var(--body); margin:0">Personnalité juridique, droits de la personnalité, incapacités, personnes morales.</p>
+              <p class="product__desc">Personnalité juridique, droits de la personnalité, incapacités, personnes morales.</p>
               <div><span class="product__price">12,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="maj-personnes-l1">Acheter · 12,99 €</button>
             </div>
@@ -274,7 +277,7 @@
             <div class="product__body">
               <h3 class="product__title">Droit de la famille</h3>
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · Cas pratique</span></div>
-              <p style="font-size:.92rem; color:var(--body); margin:0">Mariage, couples non mariés, divorce, filiation.</p>
+              <p class="product__desc">Mariage, couples non mariés, divorce, filiation.</p>
               <div><span class="product__price">12,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="maj-famille-l1-s2">Acheter · 12,99 €</button>
             </div>
@@ -285,7 +288,7 @@
             <div class="product__body">
               <h3 class="product__title">Droit administratif</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · Cas pratique</span></div>
-              <p style="font-size:.92rem; color:var(--body); margin:0">Acte administratif, service public, police administrative.</p>
+              <p class="product__desc">Acte administratif, service public, police administrative.</p>
               <div><span class="product__price">12,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="maj-da-l2-s1">Acheter · 12,99 €</button>
             </div>
@@ -296,7 +299,7 @@
             <div class="product__body">
               <h3 class="product__title">Droit administratif</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · Cas pratique</span></div>
-              <p style="font-size:.92rem; color:var(--body); margin:0">Responsabilité de l'administration, contrats administratifs, voies de recours.</p>
+              <p class="product__desc">Responsabilité de l'administration, contrats administratifs, voies de recours.</p>
               <div><span class="product__price">12,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="maj-da-l2-s2">Acheter · 12,99 €</button>
             </div>
@@ -307,7 +310,7 @@
             <div class="product__body">
               <h3 class="product__title">Droit des contrats</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · Cas pratique</span></div>
-              <p style="font-size:.92rem; color:var(--body); margin:0">Formation du contrat, vices du consentement, exécution. La réforme de 2016 intégrée.</p>
+              <p class="product__desc">Formation du contrat, vices du consentement, exécution. La réforme de 2016 intégrée.</p>
               <div><span class="product__price">12,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="maj-contrats-l2-s1">Acheter · 12,99 €</button>
             </div>
@@ -318,7 +321,7 @@
             <div class="product__body">
               <h3 class="product__title">Droit des obligations</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · Cas pratique</span></div>
-              <p style="font-size:.92rem; color:var(--body); margin:0">La responsabilité civile et ses conditions (faute, dommage, lien de causalité), le régime de l'obligation.</p>
+              <p class="product__desc">La responsabilité civile et ses conditions (faute, dommage, lien de causalité), le régime de l'obligation.</p>
               <div><span class="product__price">12,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="maj-obligations-l2-s2">Acheter · 12,99 €</button>
             </div>
@@ -329,7 +332,7 @@
             <div class="product__body">
               <h3 class="product__title">Droit pénal</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · Cas pratique</span></div>
-              <p style="font-size:.92rem; color:var(--body); margin:0">L'infraction et ses éléments, la tentative, la complicité.</p>
+              <p class="product__desc">L'infraction et ses éléments, la tentative, la complicité.</p>
               <div><span class="product__price">12,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="maj-penal-l2-s1">Acheter · 12,99 €</button>
             </div>
@@ -340,7 +343,7 @@
             <div class="product__body">
               <h3 class="product__title">Droit pénal</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · Cas pratique</span></div>
-              <p style="font-size:.92rem; color:var(--body); margin:0">Causes d'irresponsabilité, responsabilité pénale, peines.</p>
+              <p class="product__desc">Causes d'irresponsabilité, responsabilité pénale, peines.</p>
               <div><span class="product__price">12,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="maj-penal-l2-s2">Acheter · 12,99 €</button>
             </div>
@@ -351,7 +354,7 @@
             <div class="product__body">
               <h3 class="product__title">Droit des biens</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Année</span><span>·</span><span>PDF · Cas pratique</span></div>
-              <p style="font-size:.92rem; color:var(--body); margin:0">Possession, droit de propriété, démembrements, indivision.</p>
+              <p class="product__desc">Possession, droit de propriété, démembrements, indivision.</p>
               <div><span class="product__price">12,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="maj-biens-l2">Acheter · 12,99 €</button>
             </div>
@@ -362,7 +365,7 @@
             <div class="product__body">
               <h3 class="product__title">Droit commercial</h3>
               <div class="product__meta"><span>L3</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · Cas pratique</span></div>
-              <p style="font-size:.92rem; color:var(--body); margin:0">Actes de commerce, fonds de commerce, bail commercial, concurrence.</p>
+              <p class="product__desc">Actes de commerce, fonds de commerce, bail commercial, concurrence.</p>
               <div><span class="product__price">12,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="maj-commercial-l3-s1">Acheter · 12,99 €</button>
             </div>
@@ -471,6 +474,7 @@
   </div>
 
   <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/filtre-recherche.js" defer></script>
   <script src="assets/js/achat.js" defer></script>
   <script src="assets/js/chatbot.js" defer></script>
 
