@@ -372,7 +372,7 @@
       fa: {
         label:       "Colle ici le texte complet de l'arrêt",
         placeholder: "Colle le texte de la décision (Cour de cassation, Conseil d'État, cour d'appel…). Plus le texte est complet, plus la fiche est précise.",
-        api:         "/api/generer-fiche-arret",
+        api:         "/api/generer",
         champ:       "arret",
         loading:     "Je lis l'arrêt et je rédige ta fiche…",
         minChars:    200,
@@ -386,7 +386,7 @@
       ca: {
         label:       "Colle ici le texte complet de l'arrêt à commenter",
         placeholder: "Colle le texte de l'arrêt. L'outil génère une introduction rédigée et un plan argumenté en deux parties, deux sous-parties.",
-        api:         "/api/generer-commentaire-arret",
+        api:         "/api/generer",
         champ:       "arret",
         loading:     "Je lis l'arrêt et je construis le plan du commentaire…",
         minChars:    200,
@@ -400,7 +400,7 @@
       cp: {
         label:       "Colle ici l'énoncé du cas pratique",
         placeholder: "Colle l'énoncé complet. L'outil identifie chaque problème de droit et rédige le syllogisme : Majeure, Mineure, Conclusion.",
-        api:         "/api/generer-cas-pratique",
+        api:         "/api/generer",
         champ:       "enonce",
         loading:     "J'identifie les problèmes de droit et je construis les syllogismes…",
         minChars:    50,
@@ -414,7 +414,7 @@
       dis: {
         label:       "Entre le sujet de dissertation",
         placeholder: "Ex : « La liberté contractuelle » ou « Le juge et la loi ».",
-        api:         "/api/generer-dissertation",
+        api:         "/api/generer",
         champ:       "sujet",
         loading:     "J'analyse le sujet et je construis le plan…",
         minChars:    5,
@@ -506,7 +506,7 @@
       loadingMsg.textContent = o.loading;
       loading.style.display = "block";
 
-      var body = {};
+      var body = { type: outilActif };
       body[o.champ] = texte;
 
       try {
