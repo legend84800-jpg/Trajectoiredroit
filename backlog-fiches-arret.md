@@ -17,7 +17,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 - [x] matiere:droit administratif L2 | arret:CE, 1978, GISTI | theme:la valeur juridique des principes généraux du droit appliqués aux étrangers
 - [x] matiere:droit administratif L2 | arret:CE, 1954, Barel | theme:l'égalité d'accès à la fonction publique et le contrôle du juge sur les motifs
 - [x] matiere:droit administratif L2 | arret:CE, 1971, Ville Nouvelle Est | theme:le contrôle du bilan coût-avantages dans l'expropriation
-- [ ] matiere:droit administratif L2 | arret:CE, 2006, Société KPMG | theme:le principe de sécurité juridique en droit administratif
+- [x] matiere:droit administratif L2 | arret:CE, 2006, Société KPMG | theme:le principe de sécurité juridique en droit administratif
 - [ ] matiere:droit administratif L2 | arret:CE, 1961, Magnier | theme:le service public géré par une personne privée
 
 ## Droit constitutionnel L1
