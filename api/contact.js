@@ -44,15 +44,17 @@ export default async function handler(req, res) {
 
   rows.push(['Message', message.replace(/\n/g, '<br>')]);
 
+  const replyToDefaut = type === 'cours' ? 'contact@trajectoiredroit.com' : 'julien.prof1@gmail.com';
+
   const emailPayload = {
     sender:  { name: 'TrajectoireDroit', email: 'julien.prof1@gmail.com' },
     to:      [{ email: 'julien.prof1@gmail.com', name: 'Julien' }],
-    replyTo: { email: email || 'julien.prof1@gmail.com', name: nom },
+    replyTo: { email: email || replyToDefaut, name: nom },
     subject,
     htmlContent: `
       <h2>${titre}</h2>
       <table style="border-collapse:collapse; width:100%; max-width:600px">
-        ${rows.map(([label, value]) => `<tr><td style="padding:8px 12px; font-weight:bold; background:#f4f4f4; vertical-align:top">${label}</td><td style="padding:8px 12px">${value}</td></tr>`).join('\n        ')}
+        ${rows.map(([label, value], i) => `<tr><td style="padding:8px 12px; font-weight:bold; background:#f4f4f4${i === rows.length - 1 ? '; vertical-align:top' : ''}">${label}</td><td style="padding:8px 12px">${value}</td></tr>`).join('\n        ')}
       </table>
     `,
   };

@@ -108,13 +108,14 @@ module.exports = async (req, res) => {
   }
 
   const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "inconnue";
+  const cleRafale = corps.type + ":" + ip;
   const maintenant = Date.now();
-  const dernier = dernierAppelParIp.get(ip) || 0;
+  const dernier = dernierAppelParIp.get(cleRafale) || 0;
   if (maintenant - dernier < DELAI_IP_MS) {
     res.status(429).json({ erreur: config.erreurRafale });
     return;
   }
-  dernierAppelParIp.set(ip, maintenant);
+  dernierAppelParIp.set(cleRafale, maintenant);
 
   try {
     const reponse = await fetch("https://api.anthropic.com/v1/messages", {
