@@ -484,7 +484,7 @@
           <p class="lead">Remplis le formulaire ci-dessous. Je te recontacte sous 24 h pour caler une date.</p>
         </div>
 
-        <form id="contactForm" class="form card" action="/api/contact-cours" method="POST" novalidate>
+        <form id="contactForm" class="form card" action="/api/contact" method="POST" novalidate>
           <div class="grid-2" style="gap:16px">
             <div class="form__row">
               <label class="form__label" for="nom">Prénom &amp; nom</label>
@@ -642,9 +642,9 @@
       e.preventDefault();
       var ok = document.getElementById('formSuccess'); var ko = document.getElementById('formError');
       ok.hidden = true; ko.hidden = true;
-      var data = {};
+      var data = { type: 'cours' };
       new FormData(f).forEach(function(v, k) { data[k] = v; });
-      fetch('/api/contact-cours', {
+      fetch('/api/contact', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }

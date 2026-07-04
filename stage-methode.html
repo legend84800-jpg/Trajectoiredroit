@@ -529,7 +529,7 @@
             <li>Le replay de toutes les séances</li>
             <li>Les cadeaux de chaque séance (fiches de citations, corrigés rédigés, majeures préparées)</li>
           </ul>
-          <form id="stageForm" class="form" action="/api/contact-stage" method="POST" novalidate style="margin-top:4px">
+          <form id="stageForm" class="form" action="/api/contact" method="POST" novalidate style="margin-top:4px">
             <div class="grid-2" style="gap:16px">
               <div class="form__row">
                 <label class="form__label" for="stage_nom">Prénom &amp; nom</label>
@@ -650,9 +650,9 @@
       var ok = document.getElementById('stageFormSuccess');
       var ko = document.getElementById('stageFormError');
       ok.hidden = true; ko.hidden = true;
-      var data = {};
+      var data = { type: 'stage' };
       new FormData(sf).forEach(function(v, k) { data[k] = v; });
-      fetch('/api/contact-stage', {
+      fetch('/api/contact', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
