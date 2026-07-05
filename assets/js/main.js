@@ -189,6 +189,82 @@
   }
 })();
 
+/* ----- APERÇU PDF (modale) -----
+   Injecté une seule fois par page si au moins un déclencheur [data-apercu] existe
+   (catalogue formations.html et pages matière individuelles). Le CTA de la modale
+   porte data-tjd-produit : achat.js gère déjà le clic globalement, pas besoin de le refaire ici. */
+(function () {
+  function init() {
+    var triggers = document.querySelectorAll('[data-apercu]');
+    if (!triggers.length) return;
+    if (document.getElementById('apercuModal')) return;
+
+    var modal = document.createElement('div');
+    modal.className = 'apercu-backdrop';
+    modal.id = 'apercuModal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'apercuTitle');
+    modal.innerHTML =
+      '<div class="apercu-panel">' +
+      '<div class="apercu-head">' +
+      '<div><h3 id="apercuTitle"></h3><p>Extraits réels de la fiche détaillée</p></div>' +
+      '<button class="apercu-close" data-apercu-close aria-label="Fermer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
+      '</div>' +
+      '<div class="apercu-imgs" id="apercuImgs"></div>' +
+      '<div class="apercu-foot">' +
+      '<span class="price" id="apercuPrice"></span>' +
+      '<a class="btn btn--primary" id="apercuCta" href="#" target="_blank" rel="noopener">Acheter la fiche</a>' +
+      '</div>' +
+      '</div>';
+    document.body.appendChild(modal);
+
+    var imgsBox = document.getElementById('apercuImgs');
+
+    function open(btn) {
+      var imgs;
+      try { imgs = JSON.parse(btn.getAttribute('data-apercu') || '[]'); } catch (e) { imgs = []; }
+      document.getElementById('apercuTitle').textContent = btn.getAttribute('data-apercu-title') || 'Aperçu';
+      var price = btn.getAttribute('data-apercu-price') || '';
+      document.getElementById('apercuPrice').textContent = price;
+      var cta = document.getElementById('apercuCta');
+      var ctaVal = btn.getAttribute('data-apercu-cta') || '#';
+      if (ctaVal && !ctaVal.startsWith('http')) {
+        cta.href = '#';
+        cta.setAttribute('data-tjd-produit', ctaVal);
+      } else {
+        cta.href = ctaVal;
+        cta.removeAttribute('data-tjd-produit');
+      }
+      cta.textContent = price ? ('Acheter · ' + price) : 'Acheter la fiche';
+      imgsBox.innerHTML = '';
+      imgs.forEach(function (src) {
+        var im = document.createElement('img');
+        im.src = src; im.loading = 'lazy'; im.alt = 'Extrait de la fiche';
+        imgsBox.appendChild(im);
+      });
+      imgsBox.scrollTop = 0;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      if (window.gtag) gtag('event', 'apercu_open', { matiere: btn.getAttribute('data-apercu-title') || '' });
+    }
+    function close() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    triggers.forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal || e.target.hasAttribute('data-apercu-close')) close();
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
 /* ----- DARK MODE -----
    Le script anti-flash dans <head> applique déjà le thème au plus tôt.
    Ce bloc gère le bouton toggle une fois le DOM prêt.                   */
