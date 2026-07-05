@@ -200,8 +200,23 @@
       syncFabOffset();
       window.addEventListener("resize", syncFabOffset);
     }
-    // Apparition différée : laisse la page respirer avant de proposer le chat
-    setTimeout(function () { fab.classList.add("tjd-fab--visible"); }, 2500);
+    // Apparition différée : laisse la page respirer avant de proposer le chat.
+    // Tant que le bandeau cookies est affiché, on attend qu'il soit refermé avant de révéler la bulle
+    // (les deux se chevauchent sinon en bas d'écran mobile), avec un délai maximal pour ne jamais bloquer
+    // la bulle indéfiniment si le visiteur laisse le bandeau ouvert sans décider.
+    var fabRevealStart = null;
+    var FAB_REVEAL_MAX_WAIT = 15000;
+    function revealFabWhenSafe() {
+      if (fabRevealStart === null) fabRevealStart = Date.now();
+      var banner = document.querySelector(".cookie-banner");
+      var bannerBlocking = banner && banner.classList.contains("cookie-banner--visible");
+      if (!bannerBlocking || Date.now() - fabRevealStart > FAB_REVEAL_MAX_WAIT) {
+        fab.classList.add("tjd-fab--visible");
+        return;
+      }
+      setTimeout(revealFabWhenSafe, 400);
+    }
+    setTimeout(revealFabWhenSafe, 2500);
 
     // Panneau
     panel = el("div", "tjd-panel");

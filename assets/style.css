@@ -720,6 +720,17 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 }
 @media (max-width: 540px) {
   .site-header__cta .btn:not(.btn--primary) { display: none }
+  /* Le libellé complet ("Voir les fiches"/"Voir les cours") passe à la ligne sous 540px et déborde du header à hauteur fixe : on le remplace par un libellé court qui tient sur une ligne */
+  .site-header__cta .btn--primary {
+    white-space: nowrap;
+    font-size: 0;
+    max-width: none;
+  }
+  .site-header__cta .btn--primary::before {
+    content: "Fiches";
+    font-size: .85rem;
+    font-weight: 600;
+  }
 }
 
 /* Menu mobile (slide-down) */
