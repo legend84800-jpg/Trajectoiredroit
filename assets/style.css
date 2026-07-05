@@ -2565,6 +2565,10 @@ body:has(.sticky-cta-bar--always) { padding-bottom: 80px; }
 }
 .post-card--soon .post-card__media{background:linear-gradient(140deg,var(--slate-100),var(--slate-200))}
 .post-card--soon .post-card__glyph{color:var(--muted)}
+/* Variantes par catégorie : un traitement visuel distinct pour repérer le type d'article d'un coup d'œil */
+.post-card__media--arret{background:linear-gradient(140deg,#8B1538 0%,#5C0E24 100%)}
+.post-card__media--methode{background:linear-gradient(140deg,#0F766E 0%,#0B4F49 100%)}
+.post-card__icon{position:relative; z-index:1; width:44px; height:44px; color:rgba(255,255,255,.95)}
 .post-card__body{padding:22px 22px 24px; display:flex; flex-direction:column; flex:1}
 .post-card__cat{
   font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
