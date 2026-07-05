@@ -121,7 +121,7 @@
       '<div class="search-panel__head">' +
       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
       '<input type="text" class="search-panel__input" placeholder="Une matière, un arrêt, une méthode…" aria-label="Rechercher">' +
-      '<button type="button" class="search-panel__close" aria-label="Fermer">✕</button>' +
+      '<button type="button" class="search-panel__close" aria-label="Fermer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
       '</div>' +
       '<div class="search-panel__results" id="searchResults"></div>' +
       '</div>';
@@ -276,12 +276,14 @@
   // ----- 3. Burger menu mobile -----
   var burger = document.getElementById('burgerBtn');
   var mobileNav = document.getElementById('mobileNav');
+  var BURGER_ICON = '<svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-menu"/></svg>';
+  var CLOSE_ICON = '<svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-close"/></svg>';
   if (burger && mobileNav) {
     burger.addEventListener('click', function () {
       var open = mobileNav.classList.toggle('open');
       mobileNav.hidden = !open;
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      burger.textContent = open ? '✕' : '☰';
+      burger.innerHTML = open ? CLOSE_ICON : BURGER_ICON;
       document.body.style.overflow = open ? 'hidden' : '';
     });
     // Fermer en cliquant sur un lien
@@ -290,7 +292,7 @@
         mobileNav.classList.remove('open');
         mobileNav.hidden = true;
         burger.setAttribute('aria-expanded', 'false');
-        burger.textContent = '☰';
+        burger.innerHTML = BURGER_ICON;
         document.body.style.overflow = '';
       });
     });

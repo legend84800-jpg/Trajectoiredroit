@@ -407,6 +407,20 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   transition: transform .25s ease;
   flex-shrink: 0;
 }
+/* Icônes SVG au trait (remplacent les emojis dans la nav, les megamenus, les dropdowns et le menu mobile) */
+.nav-icon {
+  width: 16px; height: 16px;
+  flex-shrink: 0;
+  vertical-align: -3px;
+}
+.nav-item__link--stage .nav-icon,
+.mobile-nav__stage .nav-icon { color: var(--rose, #F43F5E); }
+.megamenu__col-icon .nav-icon,
+.dropdown__icon .nav-icon { width: 18px; height: 18px; }
+.mobile-nav a .nav-icon {
+  width: 18px; height: 18px;
+  margin-right: 8px;
+}
 .nav-item:hover .nav-item__chevron,
 .nav-item.open .nav-item__chevron {
   transform: rotate(180deg);
@@ -511,10 +525,10 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   font-size: 1.05rem;
   flex-shrink: 0;
 }
-.dropdown__icon--blue { background: var(--blue-50); }
-.dropdown__icon--violet { background: var(--blue-50); }
-.dropdown__icon--emerald { background: var(--emerald-bg); }
-.dropdown__icon--amber { background: var(--amber-bg); }
+.dropdown__icon--blue { background: var(--blue-50); color: var(--blue-600); }
+.dropdown__icon--violet { background: var(--blue-50); color: var(--violet); }
+.dropdown__icon--emerald { background: var(--emerald-bg); color: var(--emerald); }
+.dropdown__icon--amber { background: var(--amber-bg); color: var(--amber); }
 
 .dropdown__divider {
   height: 1px;
@@ -601,10 +615,10 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   font-size: 1.15rem;
   flex-shrink: 0;
 }
-.megamenu__col-icon--blue { background: var(--blue-50); }
-.megamenu__col-icon--violet { background: var(--blue-50); }
-.megamenu__col-icon--emerald { background: var(--emerald-bg); }
-.megamenu__col-icon--amber { background: var(--amber-bg); }
+.megamenu__col-icon--blue { background: var(--blue-50); color: var(--blue-600); }
+.megamenu__col-icon--violet { background: var(--blue-50); color: var(--violet); }
+.megamenu__col-icon--emerald { background: var(--emerald-bg); color: var(--emerald); }
+.megamenu__col-icon--amber { background: var(--amber-bg); color: var(--amber); }
 
 /* Rangée "Par niveau", au-dessus des colonnes du méga-menu Fiches */
 .megamenu__niveaux {
