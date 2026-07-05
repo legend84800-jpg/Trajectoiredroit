@@ -360,6 +360,7 @@
               <span>·</span>
               <span>Google Meet</span>
             </div>
+            <p style="margin-top:14px"><span class="eyebrow eyebrow--amber js-decision-badge"></span></p>
           </div>
 
           <div class="fade-in fade-in--delay-1">
@@ -558,6 +559,7 @@
 
         <div class="offer-card fade-in">
           <div class="offer-scarcity">🎟️ 15 places pour cette session</div>
+          <div style="margin-top:10px"><span class="eyebrow eyebrow--amber js-decision-badge"></span></div>
           <div class="offer-card__price">
             <span class="offer-card__amount">149 €</span>
             <span class="offer-card__per">8 heures de cours en direct, soit <strong>19 € l'heure</strong>.<br>Une heure de cours particulier avec moi, c'est 89 €.</span>
@@ -703,6 +705,21 @@
           else { ko.hidden = false; }
         }).catch(function() { ko.hidden = false; });
     });
+  </script>
+  <script>
+    (function(){
+      // Vraie date de clôture (cf FAQ : 12 jours avant le stage, le groupe est arrêté). Jamais de faux compte à rebours.
+      var decision = new Date('2026-08-06T00:00:00');
+      var msParJour = 1000 * 60 * 60 * 24;
+      var joursRestants = Math.ceil((decision - new Date()) / msParJour);
+      var badges = document.querySelectorAll('.js-decision-badge');
+      var texte;
+      if (joursRestants > 1) texte = '📅 Je ferme les inscriptions le 6 août · dans ' + joursRestants + ' jours';
+      else if (joursRestants === 1) texte = '📅 Dernier jour pour t\'inscrire avant la clôture du 6 août';
+      else if (joursRestants === 0) texte = '📅 Clôture des inscriptions aujourd\'hui';
+      else texte = '📅 Stage du 18 au 20 août 2026';
+      badges.forEach(function(b){ b.textContent = texte; });
+    })();
   </script>
   <script src="assets/js/cookie-consent.js" defer></script>
 </body>
