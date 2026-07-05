@@ -53,6 +53,8 @@
     { t: "Méthode de la fiche d'arrêt", u: 'methode-fiche-arret.html', c: 'Méthode' },
     { t: 'Correcteur IA gratuit (fiche, commentaire, cas pratique, dissert)', u: 'outil-fiche-arret.html', c: 'Outil gratuit' },
     { t: 'Quiz : teste ta méthode', u: 'quiz-methode.html', c: 'Outil gratuit' },
+    { t: 'Quiz : quel métier du droit te correspond ?', u: 'quiz-metier-droit.html', c: 'Outil gratuit' },
+    { t: 'Toutes les ressources gratuites', u: 'ressources-gratuites.html', c: 'Outil gratuit' },
     { t: 'Arrêt Blanco expliqué', u: 'arret-blanco-explique.html', c: 'Arrêt expliqué' },
     { t: 'Arrêt Benjamin expliqué', u: 'arret-benjamin-explique.html', c: 'Arrêt expliqué' },
     { t: 'Arrêt Cadot expliqué', u: 'arret-cadot-explique.html', c: 'Arrêt expliqué' },
