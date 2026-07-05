@@ -604,6 +604,31 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .megamenu__col-icon--blue { background: var(--blue-50); }
 .megamenu__col-icon--violet { background: var(--blue-50); }
 .megamenu__col-icon--emerald { background: var(--emerald-bg); }
+.megamenu__col-icon--amber { background: var(--amber-bg); }
+
+/* Rangée "Par niveau", au-dessus des colonnes du méga-menu Fiches */
+.megamenu__niveaux {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.megamenu__niveau {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 8px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: border-color .15s, background .15s;
+}
+.megamenu__niveau:hover { background: var(--blue-50); border-color: var(--blue-200); }
+.megamenu__niveau strong { font-family: var(--font-display); font-size: 1.1rem; color: var(--navy); }
+.megamenu__niveau span { font-size: .74rem; color: var(--muted); }
 .megamenu__col-title {
   font-family: var(--font-display);
   font-weight: 700;

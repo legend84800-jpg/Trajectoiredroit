@@ -105,66 +105,63 @@
         <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
       </a>
       <nav class="primary-nav" aria-label="Navigation principale">
-        <div class="nav-item has-dropdown">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
           <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
             📚 Fiches
             <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <div class="dropdown dropdown--simple" role="menu">
-            <a class="dropdown__item" href="formations.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--blue">📖</span>
-              <span><strong>Fiches détaillées</strong><small>Toute la matière, claire et bien construite</small></span>
-            </a>
-            <a class="dropdown__item" href="majeures-preparees.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--amber">🎯</span>
-              <span><strong>Majeures préparées</strong><small>Prêtes pour le cas pratique</small></span>
-            </a>
-            <a class="dropdown__item" href="cours-fiches.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--violet">📘</span>
-              <span><strong>Cours complet</strong><small>Le format le plus long, jusqu'au moindre détail</small></span>
-            </a>
-            <a class="dropdown__item" href="revisions.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--blue">🗂️</span>
-              <span><strong>Fiches d'arrêt et citations</strong><small>L'essentiel à réviser vite</small></span>
-            </a>            <a class="dropdown__item" href="corriges.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--violet">📝</span>
-              <span><strong>Corrigés type examen</strong><small>Commentaires, cas pratiques, disserts</small></span>
-            </a>
-            <div class="dropdown__divider"></div>
-            <a class="dropdown__item" href="outil-fiche-arret.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--emerald">✨</span>
-              <span><strong>Correcteur IA</strong><small>Gratuit · fiche d'arrêt, commentaire, cas pratique, dissert</small></span>
-            </a>
-            <div class="dropdown__divider"></div>
-            <a class="dropdown__cta" href="formations.html">Voir toutes les fiches →</a>
-          </div>
-        </div>
-
-        <!-- Item : Méthode (dropdown simple) -->
-        <div class="nav-item has-dropdown">
-          <a href="methodologie-juridique.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
-            🧭 Méthode
-            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <div class="dropdown dropdown--simple" role="menu">
-            <a class="dropdown__item" href="methode-fiche-arret.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--blue">📝</span>
-              <span><strong>La fiche d'arrêt</strong><small>Décortiquer une décision étape par étape</small></span>
-            </a>
-            <a class="dropdown__item" href="methode-commentaire-arret.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--violet">🖋️</span>
-              <span><strong>Le commentaire d'arrêt</strong><small>De la fiche au devoir rédigé</small></span>
-            </a>
-            <a class="dropdown__item" href="methode-cas-pratique.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--amber">⚖️</span>
-              <span><strong>Le cas pratique</strong><small>Majeure, mineure, conclusion</small></span>
-            </a>
-            <a class="dropdown__item" href="methode-dissertation-juridique.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--emerald">📐</span>
-              <span><strong>La dissertation juridique</strong><small>Problématiser et construire un plan</small></span>
-            </a>
-            <div class="dropdown__divider"></div>
-            <a class="dropdown__cta" href="methodologie-juridique.html">Toute la méthodologie →</a>
+          <div class="megamenu" role="menu">
+            <div class="megamenu__niveaux">
+              <a class="megamenu__niveau" href="formations.html#cours-l1" role="menuitem"><strong>L1</strong><span>8 matières</span></a>
+              <a class="megamenu__niveau" href="formations.html#cours-l2" role="menuitem"><strong>L2</strong><span>5 matières</span></a>
+              <a class="megamenu__niveau" href="formations.html#cours-l3" role="menuitem"><strong>L3</strong><span>5 matières</span></a>
+            </div>
+            <div class="megamenu__cols">
+              <div class="megamenu__col">
+                <div class="megamenu__col-head">
+                  <span class="megamenu__col-icon megamenu__col-icon--blue">📖</span>
+                  <div>
+                    <div class="megamenu__col-title">Par format</div>
+                    <div class="megamenu__col-sub">Le format qui te convient</div>
+                  </div>
+                </div>
+                <ul class="megamenu__list" role="none">
+                  <li><a href="formations.html" role="menuitem">Fiches détaillées</a></li>
+                  <li><a href="majeures-preparees.html" role="menuitem">Majeures préparées</a></li>
+                  <li><a href="cours-fiches.html" role="menuitem">Cours complet</a></li>
+                  <li><a href="revisions.html" role="menuitem">Fiches d'arrêt et citations</a></li>
+                  <li><a href="corriges.html" role="menuitem">Corrigés type examen</a></li>
+                  <li><a href="outil-fiche-arret.html" role="menuitem"><strong>Correcteur IA</strong>, gratuit</a></li>
+                </ul>
+                <a class="megamenu__col-link" href="formations.html">Voir toutes les fiches →</a>
+              </div>
+              <div class="megamenu__col">
+                <div class="megamenu__col-head">
+                  <span class="megamenu__col-icon megamenu__col-icon--amber">🎯</span>
+                  <div>
+                    <div class="megamenu__col-title">Les + demandées</div>
+                    <div class="megamenu__col-sub">Un accès direct à ta matière</div>
+                  </div>
+                </div>
+                <ul class="megamenu__list" role="none">
+                  <li><a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (L2)</a></li>
+                  <li><a href="droit-administratif-l2.html" role="menuitem">Droit administratif (L2)</a></li>
+                  <li><a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel (L1)</a></li>
+                  <li><a href="droit-penal-l2.html" role="menuitem">Droit pénal (L2)</a></li>
+                  <li><a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (L2)</a></li>
+                  <li><a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés (L3)</a></li>
+                </ul>
+                <a class="megamenu__col-link" href="formations.html">Voir les 18 matières →</a>
+              </div>
+            </div>
+            <div class="megamenu__footer">
+              <div>
+                <strong>Pas sûr de ta matière ?</strong>
+                <span>Le quiz gratuit te dit où tu perds des points, en 3 minutes.</span>
+              </div>
+              <a class="btn btn--primary btn--sm" href="quiz-methode.html">Faire le quiz →</a>
+            </div>
           </div>
         </div>
 
