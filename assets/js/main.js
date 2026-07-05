@@ -120,7 +120,7 @@
       '<div class="search-panel">' +
       '<div class="search-panel__head">' +
       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
-      '<input type="text" class="search-panel__input" placeholder="Une matière, un arrêt, une méthode…" aria-label="Rechercher">' +
+      '<input type="text" class="search-panel__input" placeholder="Cherche parmi 70+ matières, arrêts et corrigés…" aria-label="Rechercher">' +
       '<button type="button" class="search-panel__close" aria-label="Fermer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
       '</div>' +
       '<div class="search-panel__results" id="searchResults"></div>' +

@@ -959,6 +959,14 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .stats-strip__num { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: var(--blue-700); line-height: 1 }
 .stats-strip__label { color: var(--body); font-size: .9rem; margin-top: 6px }
 @media (max-width: 700px) { .stats-strip { grid-template-columns: repeat(2, 1fr) } }
+/* Variante sombre, pour une section--dark (bandeau "en chiffres") */
+.stats-strip--dark {
+  background: rgba(255,255,255,.04);
+  border-color: rgba(255,255,255,.14);
+}
+.stats-strip--dark .stats-strip__item { border-right-color: rgba(255,255,255,.14); }
+.stats-strip--dark .stats-strip__num { color: var(--gold-line); }
+.stats-strip--dark .stats-strip__label { color: rgba(255,255,255,.78); }
 
 /* ===== 12. STEPS (Comment ça marche) ===== */
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-6) }
@@ -1347,21 +1355,22 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   letter-spacing: .04em;
   font-family: var(--font-body);
   z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 .fiche-preview__viewport {
   margin-top: 8px;
   border-radius: var(--r-md);
   overflow: hidden;
-  aspect-ratio: 1 / 1;        /* cadre l'apercu sur le haut de la fiche : titre, texte et schema */
+  aspect-ratio: 2.36 / 1;     /* cadre l'apercu sur le schema du parcours de l'erreur, pas sur un mur de texte */
 }
 .fiche-preview__img { display: block; border-radius: 0; }
-/* zoom sur le haut de la fiche : on force les dimensions ici pour battre .hero__visual img et le reset max-width:100% */
 .hero__visual .fiche-preview__img {
-  width: 112%;                /* leger zoom pour mieux lire le contenu */
-  height: auto;
+  width: 100%;
+  height: 100%;
   max-width: none;
-  margin-left: -6%;           /* recentre le zoom horizontalement */
-  object-fit: contain;
+  object-fit: cover;
 }
 .fiche-preview__fallback {
   display: none; /* affiché si onerror sur l'image */
@@ -1532,6 +1541,9 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   z-index: 3;
   animation: floatBadge 4s ease-in-out infinite;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 @media (max-width: 600px) {

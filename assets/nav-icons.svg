@@ -82,4 +82,8 @@
     <path d="M5 5L19 19"/>
     <path d="M19 5L5 19"/>
   </symbol>
+  <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3.5L19 6.3V11C19 15.4 16.1 19.3 12 20.5C7.9 19.3 5 15.4 5 11V6.3L12 3.5Z"/>
+    <path d="M9 11.3L11 13.3L15.3 9"/>
+  </symbol>
 </svg>
