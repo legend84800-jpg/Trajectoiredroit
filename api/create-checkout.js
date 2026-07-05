@@ -47,6 +47,13 @@ module.exports = async (req, res) => {
     cancel_url: `${origin}/formations.html`,
     "metadata[produitIds]": idsAchetes.join(","),
     "payment_intent_data[metadata][produitIds]": idsAchetes.join(","),
+    "branding_settings[display_name]": "Trajectoire Droit",
+    "branding_settings[icon][type]": "url",
+    "branding_settings[icon][url]": `${origin}/assets/logo-tjd-mark.png`,
+    "branding_settings[background_color]": "#ffffff",
+    "branding_settings[button_color]": "#1A2851",
+    "branding_settings[border_style]": "rounded",
+    "branding_settings[font_family]": "pt_serif",
   });
 
   if (consentMarketing) {
