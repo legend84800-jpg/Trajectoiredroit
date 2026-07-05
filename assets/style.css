@@ -1912,6 +1912,99 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   .pain-gain-arrow { grid-row: auto; transform: rotate(90deg); padding: 8px 0; }
 }
 
+/* ===== 23bis. AVANT / APRÈS PAR EXERCICE (copie réelle transformée) ===== */
+.before-after-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-4);
+}
+.before-after-pair:last-child { margin-bottom: 0; }
+.before-after-col {
+  border-radius: var(--r-lg);
+  padding: 20px 22px;
+  border: 1px solid;
+}
+.before-after-col--avant { background: #FEF2F2; border-color: #FECACA; }
+.before-after-col--apres { background: #F0FDF4; border-color: #BBF7D0; }
+.before-after-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 10px;
+}
+.before-after-col--avant .before-after-label { color: #991B1B; }
+.before-after-col--apres .before-after-label { color: #065F46; }
+.before-after-col p { margin: 0; color: var(--body); line-height: 1.65; font-size: .95rem; }
+.before-after-note { margin-top: 10px; color: var(--muted); font-size: .85rem; }
+@media (max-width: 640px) {
+  .before-after-pair { grid-template-columns: 1fr; }
+}
+html[data-theme="dark"] .before-after-col--avant { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.25); }
+html[data-theme="dark"] .before-after-col--apres { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.25); }
+html[data-theme="dark"] .before-after-col--avant .before-after-label { color: #FCA5A5; }
+html[data-theme="dark"] .before-after-col--apres .before-after-label { color: #6EE7B7; }
+
+/* ===== 23ter. FRISE CHRONOLOGIQUE (articles grands arrêts / décisions) ===== */
+.case-timeline { display: flex; gap: var(--sp-3); margin: var(--sp-8) 0; }
+.case-timeline__step { flex: 1; position: relative; padding-top: 26px; text-align: center; }
+.case-timeline__step::before {
+  content: ""; position: absolute; top: 6px; left: -50%; width: 100%; height: 2px;
+  background: var(--gold-line);
+}
+.case-timeline__step:first-child::before { display: none; }
+.case-timeline__dot {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--navy); border: 2px solid var(--gold-line);
+}
+.case-timeline__date { font-weight: 700; font-size: .78rem; color: var(--accent); text-transform: uppercase; letter-spacing: .03em; margin-bottom: 4px; }
+.case-timeline__label { font-weight: 700; font-size: .98rem; color: var(--navy); margin-bottom: 6px; }
+.case-timeline__text { color: var(--body); font-size: .87rem; line-height: 1.55; margin: 0; }
+@media (max-width: 720px) {
+  .case-timeline { flex-direction: column; gap: var(--sp-6); position: relative; padding-left: 26px; }
+  .case-timeline__step { position: static; text-align: left; padding-top: 0; }
+  .case-timeline__step::before { display: none; }
+  .case-timeline::after { content: ""; position: absolute; top: 6px; bottom: 6px; left: 5px; width: 2px; background: var(--gold-line); }
+  .case-timeline__dot { position: absolute; top: 2px; left: -21px; transform: none; }
+}
+html[data-theme="dark"] .case-timeline__step::before { background: rgba(201,169,97,.4); }
+html[data-theme="dark"] .case-timeline::after { background: rgba(201,169,97,.4); }
+html[data-theme="dark"] .case-timeline__dot { background: #2E6DB4; border-color: #C9A961; }
+html[data-theme="dark"] .case-timeline__date { color: #D4A85A; }
+html[data-theme="dark"] .case-timeline__label { color: #D4E0F0; }
+
+/* ===== 23quater. SCHÉMAS DE NOTION (articles notions) ===== */
+.notion-schema { margin: var(--sp-8) 0; }
+.notion-compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: var(--sp-4); align-items: stretch; }
+.notion-compare__col { background: var(--slate-50); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--sp-5); }
+.notion-compare__title { font-weight: 700; color: var(--navy); margin: 0 0 10px; font-size: 1.02rem; }
+.notion-compare__col ul { margin: 0; padding-left: 20px; }
+.notion-compare__col li { color: var(--body); font-size: .9rem; line-height: 1.6; margin-bottom: 6px; }
+.notion-compare__vs { display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--gold-line); font-size: .82rem; text-transform: uppercase; }
+@media (max-width: 640px) {
+  .notion-compare { grid-template-columns: 1fr; }
+  .notion-compare__vs { padding: 4px 0; }
+}
+html[data-theme="dark"] .notion-compare__col { background: #1A2840; border-color: rgba(255,255,255,.08); }
+html[data-theme="dark"] .notion-compare__title { color: #D4E0F0; }
+
+.notion-conditions { display: flex; align-items: stretch; gap: var(--sp-3); flex-wrap: wrap; }
+.notion-conditions__item { flex: 1; min-width: 160px; background: var(--gold-bg); border: 1px solid rgba(201,169,97,.35); border-radius: var(--r-lg); padding: var(--sp-4); }
+.notion-conditions__num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--navy); color: #fff; font-weight: 700; font-size: .82rem; margin-bottom: 8px; }
+.notion-conditions__item p { margin: 0; color: var(--body); font-size: .87rem; line-height: 1.55; }
+.notion-conditions__plus { display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--gold-line); font-size: 1.1rem; }
+@media (max-width: 640px) {
+  .notion-conditions { flex-direction: column; }
+  .notion-conditions__plus { padding: 2px 0; }
+}
+html[data-theme="dark"] .notion-conditions__item { background: rgba(201,169,97,.08); border-color: rgba(201,169,97,.25); }
+html[data-theme="dark"] .notion-conditions__num { background: #2E6DB4; }
+
 /* ===== 24e. ACCORDION SOMBRE (clôture FAQ) ===== */
 .accordion--dark .accordion__item {
   background: rgba(255,255,255,.06);
