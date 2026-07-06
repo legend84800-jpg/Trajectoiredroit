@@ -136,6 +136,7 @@ p:last-child { margin-bottom: 0 }
 /* ===== 4. LAYOUT ===== */
 .container { width: min(var(--maxw), 92vw); margin-inline: auto }
 .container--narrow { width: min(var(--maxw-narrow), 92vw); margin-inline: auto }
+.container--wide { width: min(1360px, 94vw); margin-inline: auto }
 .section { padding: clamp(32px, 5vw, 64px) 0; position: relative }
 .section--sm { padding: clamp(20px, 3vw, 36px) 0 }
 .section--alt { background: var(--slate-50); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border) }
@@ -2335,7 +2336,7 @@ body:has(.sticky-cta-bar--always) { padding-bottom: 80px; }
 /* ===== 24b. PARCOURS TIMELINE (Le parcours TrajectoireDroit) ===== */
 .parcours {
   display: grid;
-  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
   gap: var(--sp-3);
   align-items: stretch;
 }
