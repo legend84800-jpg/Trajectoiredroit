@@ -39,7 +39,12 @@
     })
       .then(function (r) { return r.json(); })
       .then(function (d) {
-        if (d.url) { window.location.href = d.url; }
+        if (d.url) {
+          if (localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
+            fbq('track', 'InitiateCheckout', { content_ids: [produitId], content_type: 'product' });
+          }
+          window.location.href = d.url;
+        }
         else {
           alert('Une erreur est survenue. Réessaie dans quelques secondes.');
           btnEl.disabled = false;
