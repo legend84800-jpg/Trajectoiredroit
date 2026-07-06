@@ -237,6 +237,8 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 }
 .card--product .product__thumb img { width: 100%; height: 100%; object-fit: cover }
 .card--product .product__thumb .badge { position: absolute; top: 12px; left: 12px; z-index: 2 }
+/* Badge de format (Fiche détaillée, Cours complet...) : toujours en haut à droite, fond plein, jamais en filigrane, pour qu'on sache sans ambiguïté ce qu'on achète */
+.card--product .product__thumb .badge--format { left: auto; right: 12px; background: var(--ink); color: var(--white); font-weight: 700 }
 /* Illustration vectorielle au centre du thumbnail */
 .card--product .product__thumb:not(.has-cover)::after {
   content: "📚";
