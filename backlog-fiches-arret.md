@@ -24,7 +24,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 
 - [x] matiere:droit constitutionnel L1 | arret:CC, 1971, Liberté d'association | theme:la valeur constitutionnelle du préambule de 1958
 - [x] matiere:droit constitutionnel L1 | arret:CC, 1975, IVG | theme:le refus du Conseil de contrôler la conformité d'une loi aux traités
-- [ ] matiere:droit constitutionnel L1 | arret:CC, 1962, Loi référendaire | theme:le refus de contrôler une loi adoptée par référendum
+- [x] matiere:droit constitutionnel L1 | arret:CC, 1962, Loi référendaire | theme:le refus de contrôler une loi adoptée par référendum
 - [ ] matiere:droit constitutionnel L1 | arret:CE, 1998, Sarran et Levacher | theme:la suprématie de la Constitution sur les traités dans l'ordre interne
 - [ ] matiere:droit constitutionnel L1 | arret:CJCE, 1964, Costa contre ENEL | theme:la primauté du droit communautaire sur le droit national des Etats membres
 
