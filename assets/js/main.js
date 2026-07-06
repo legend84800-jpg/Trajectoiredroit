@@ -609,6 +609,11 @@
     fd.append('locale', 'fr');
     fd.append('html_type', 'simple');
     var url = form.action.split('?')[0] + '?isAjax=1';
+    function trackLead() {
+      if (localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
+        fbq('track', 'Lead');
+      }
+    }
     fetch(url, { method: 'POST', body: fd, mode: 'cors' })
       .then(function (r) { return r.json().catch(function () { return { success: true }; }); })
       .then(function (data) {
@@ -617,9 +622,10 @@
           alert(data.message || 'Une erreur est survenue, réessaie dans un instant.');
           return;
         }
+        trackLead();
         window.location.href = '/merci.html';
       })
-      .catch(function () { window.location.href = '/merci.html'; });
+      .catch(function () { trackLead(); window.location.href = '/merci.html'; });
   }, true);
 
 })();

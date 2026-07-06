@@ -71,7 +71,8 @@
 /* Skip link accessibilité */
 .skip-link {
   position: absolute;
-  top: -40px; left: 0;
+  top: 0; left: 0;
+  transform: translateY(-100%);
   background: var(--blue-600); color: #fff;
   padding: 8px 16px;
   z-index: 100;
@@ -79,7 +80,7 @@
   font-weight: 600;
   text-decoration: none;
 }
-.skip-link:focus { top: 0; }
+.skip-link:focus { transform: translateY(0); }
 
 /* ===== 2. RESET ===== */
 *, *::before, *::after { box-sizing: border-box }
@@ -1363,7 +1364,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   margin-top: 8px;
   border-radius: var(--r-md);
   overflow: hidden;
-  aspect-ratio: 2.36 / 1;     /* cadre l'apercu sur le schema du parcours de l'erreur, pas sur un mur de texte */
+  aspect-ratio: 2.39 / 1;     /* cadre l'apercu sur un passage complet (paragraphe + schema + encadre a retenir), sans couper une phrase */
 }
 .fiche-preview__img { display: block; border-radius: 0; }
 .hero__visual .fiche-preview__img {
