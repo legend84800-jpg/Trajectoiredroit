@@ -260,18 +260,57 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .card--product .product__price-old { text-decoration: line-through; color: var(--muted); font-size: 1rem; font-weight: 500; margin-right: 6px }
 .card--product .product__cta { margin-top: auto }
 
+/* Grille de sélection (catalogue à l'unité) : bordure plus marquée et petit repère de couleur par niveau, pour que chaque carte se détache nettement des autres quand on choisit sa matière */
+[data-filter-grid] .card--product,
+.grid-3 .card--product[data-niveau] {
+  border-color: var(--border-strong);
+}
+[data-filter-grid] .card--product:hover,
+.grid-3 .card--product[data-niveau]:hover {
+  border-color: var(--blue-500);
+}
+.card--product[data-niveau] .product__meta span:first-child {
+  padding: 2px 9px; border-radius: var(--r-pill); font-weight: 700;
+}
+.card--product[data-niveau="L1"] .product__meta span:first-child { color: var(--blue-700); background: var(--blue-50) }
+.card--product[data-niveau="L2"] .product__meta span:first-child { color: var(--violet); background: var(--violet-bg) }
+.card--product[data-niveau="L3"] .product__meta span:first-child { color: var(--accent); background: var(--amber-bg) }
+
 /* Notes de réassurance sous le hero (garantie, lien de comparaison) : taille uniforme, distincte du trust-row */
 .hero-note { font-size: .8rem; color: var(--muted) }
 
+/* Bandeau de réassurance sous le hero (téléchargement, paiement, garantie...) */
+.trust-row {
+  display: flex; flex-wrap: wrap; gap: 10px 22px;
+  justify-content: center; margin-top: 22px;
+  color: var(--body); font-size: .92rem; font-weight: 500;
+}
+.trust-row--tight { gap: 8px 18px; margin-top: 14px; font-size: .85rem; color: var(--muted); justify-content: flex-start }
+/* item texte simple : jamais de retour à la ligne entre une icône et son texte */
+.trust-row > span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap }
+
 /* Recherche texte libre au-dessus d'une grille de produits (formations, cours-fiches, majeures-preparees) */
-.filtre-recherche { max-width: 420px; margin: 0 auto 28px }
+.catalogue-toolbar {
+  background: var(--slate-50);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  margin-bottom: var(--sp-6);
+}
+.catalogue-toolbar .filtre-recherche { max-width: none; margin: 0 0 var(--sp-4) }
+.catalogue-toolbar .filters { background: transparent; border: 0; padding: var(--sp-4) 0 0; margin-top: var(--sp-4); border-top: 1px solid var(--border) }
+.filtre-recherche { max-width: 420px; margin: 0 auto 28px; position: relative }
+.filtre-recherche__icon {
+  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; color: var(--muted); pointer-events: none;
+}
 .filtre-recherche input {
-  width: 100%; padding: 12px 16px;
-  border: 1px solid var(--border); border-radius: var(--r-md);
+  width: 100%; padding: 12px 16px 12px 44px;
+  border: 1px solid var(--border-strong); border-radius: var(--r-md);
   font-family: var(--font-body); font-size: 1rem; color: var(--ink);
   background: var(--white);
 }
-.filtre-recherche input:focus { outline: none; border-color: var(--blue-600) }
+.filtre-recherche input:focus { outline: none; border-color: var(--blue-600); box-shadow: 0 0 0 3px rgba(26,40,81,.12) }
 
 /* Card pricing */
 .card--pricing { display: flex; flex-direction: column; gap: var(--sp-4); position: relative }

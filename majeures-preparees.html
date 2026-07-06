@@ -267,7 +267,7 @@
         <span class="eyebrow">La règle de droit déjà rédigée pour tes cas pratiques.</span>
         <h1 class="h1" style="margin-top:12px">Majeures préparées · Gagne du temps le jour J.</h1>
         <p class="lead">Une majeure préparée, c'est la règle de droit déjà reformulée condition par condition, avec les articles et les arrêts intégrés. Tu n'as plus qu'à l'adapter aux faits et à la recopier dans ta copie, ce qui te fait gagner un temps considérable le jour de l'examen et t'évite d'oublier une condition.</p>
-        <div class="trust-row" style="display:flex; flex-wrap:wrap; gap:10px 22px; justify-content:center; margin-top:22px; color:var(--body); font-size:.92rem; font-weight:500">
+        <div class="trust-row">
           <span>Téléchargement immédiat</span>
           <span>Paiement sécurisé · Prix en euros</span>
           <span>Accès à vie</span>
@@ -302,11 +302,12 @@
     <section class="section" id="grille-majeures" style="padding-top:16px">
       <div class="container">
         <div class="filtre-recherche">
+          <svg class="filtre-recherche__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input type="search" data-filtre-recherche="#grille-majeures .grid-3" placeholder="Cherche ta matière (ex : contrats, administratif, L2...)" aria-label="Rechercher une matière">
         </div>
         <div class="grid-3">
 
-          <article class="card card--product fade-in">
+          <article class="card card--product fade-in" data-niveau="L1">
             <div class="product__thumb has-cover"><img src="assets/majeures/intro-droit-l1s1.jpg" alt="Introduction au droit, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Introduction au droit</h3>
@@ -317,7 +318,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in">
+          <article class="card card--product fade-in" data-niveau="L1">
             <div class="product__thumb has-cover"><img src="assets/majeures/personnes-l1.jpg" alt="Droit des personnes, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des personnes</h3>
@@ -328,7 +329,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in">
+          <article class="card card--product fade-in" data-niveau="L1">
             <div class="product__thumb has-cover"><img src="assets/majeures/famille-l1s2.jpg" alt="Droit de la famille, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit de la famille</h3>
@@ -339,7 +340,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in">
+          <article class="card card--product fade-in" data-niveau="L2">
             <div class="product__thumb has-cover"><img src="assets/majeures/administratif-l2s1.jpg" alt="Droit administratif, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif S1</h3>
@@ -350,7 +351,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in">
+          <article class="card card--product fade-in" data-niveau="L2">
             <div class="product__thumb has-cover"><img src="assets/majeures/administratif-l2s2.jpg" alt="Droit administratif, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif S2</h3>
@@ -361,7 +362,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in">
+          <article class="card card--product fade-in" data-niveau="L2">
             <div class="product__thumb has-cover"><img src="assets/majeures/contrats-l2s1.jpg" alt="Droit des contrats, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des contrats</h3>
@@ -372,7 +373,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in">
+          <article class="card card--product fade-in" data-niveau="L2">
             <div class="product__thumb has-cover"><img src="assets/majeures/obligations-l2s2.jpg" alt="Droit des obligations, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des obligations</h3>
@@ -383,7 +384,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in">
+          <article class="card card--product fade-in" data-niveau="L2">
             <div class="product__thumb has-cover"><img src="assets/majeures/penal-l2s1.jpg" alt="Droit penal, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit pénal S1</h3>
@@ -394,7 +395,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in">
+          <article class="card card--product fade-in" data-niveau="L2">
             <div class="product__thumb has-cover"><img src="assets/majeures/penal-l2s2.jpg" alt="Droit penal, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit pénal S2</h3>
@@ -405,7 +406,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in">
+          <article class="card card--product fade-in" data-niveau="L2">
             <div class="product__thumb has-cover"><img src="assets/majeures/biens-l2.jpg" alt="Droit des biens, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des biens</h3>
@@ -416,7 +417,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in">
+          <article class="card card--product fade-in" data-niveau="L3">
             <div class="product__thumb has-cover"><img src="assets/majeures/commercial-l3s1.jpg" alt="Droit commercial, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit commercial</h3>
