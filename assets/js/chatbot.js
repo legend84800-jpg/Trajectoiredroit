@@ -27,6 +27,10 @@
   .tjd-fab.tjd-fab--visible{opacity:1;pointer-events:auto}
   .tjd-fab:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 30px rgba(15,26,53,.4)}
   .tjd-fab.tjd-fab--raised{bottom:92px}
+  /* La bulle flotte au-dessus de tout (z-index 9998) : sans ça, elle recouvre le bouton
+     "Acheter" des modales (aperçu de fiche, exit-intent) et intercepte le clic d'achat. */
+  body:has(.apercu-backdrop.open) .tjd-fab,
+  body:has(#exitModal.open) .tjd-fab{opacity:0!important;pointer-events:none!important}
   .tjd-fab svg{width:28px;height:28px}
   .tjd-fab__dot{position:absolute;top:6px;right:6px;width:12px;height:12px;border-radius:50%;background:#C9A961;border:2px solid #1A2851}
   .tjd-panel{position:fixed;right:20px;bottom:20px;z-index:9999;width:380px;max-width:calc(100vw - 32px);height:560px;
