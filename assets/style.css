@@ -496,7 +496,6 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 }
 .nav-item__link--stage .nav-icon,
 .mobile-nav__stage .nav-icon { color: var(--rose, #F43F5E); }
-.megamenu__col-icon .nav-icon,
 .dropdown__icon .nav-icon { width: 18px; height: 18px; }
 .mobile-nav a .nav-icon {
   width: 18px; height: 18px;
@@ -674,28 +673,6 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   display: flex;
   flex-direction: column;
 }
-.megamenu__col-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-bottom: 12px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-}
-.megamenu__col-icon {
-  width: 36px; height: 36px;
-  border-radius: var(--r-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.15rem;
-  flex-shrink: 0;
-}
-.megamenu__col-icon--blue { background: var(--blue-50); color: var(--blue-600); }
-.megamenu__col-icon--violet { background: var(--blue-50); color: var(--violet); }
-.megamenu__col-icon--emerald { background: var(--emerald-bg); color: var(--emerald); }
-.megamenu__col-icon--amber { background: var(--amber-bg); color: var(--amber); }
-
 /* Rangée "Par niveau", au-dessus des colonnes du méga-menu Fiches */
 .megamenu__niveaux {
   display: grid;
@@ -719,18 +696,6 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .megamenu__niveau:hover { background: var(--blue-50); border-color: var(--blue-200); }
 .megamenu__niveau strong { font-family: var(--font-display); font-size: 1.1rem; color: var(--navy); }
 .megamenu__niveau span { font-size: .74rem; color: var(--muted); }
-.megamenu__col-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--navy);
-  line-height: 1.2;
-}
-.megamenu__col-sub {
-  font-size: .78rem;
-  color: var(--muted);
-  margin-top: 2px;
-}
 /* Grille "Par format" en blocs carrés avec émoji, titre et description
    (colonne unique du méga-menu Fiches, remplace l'ancienne liste + la
    colonne "Les + demandées" retirée pour laisser plus de place aux blocs) */
@@ -3028,7 +2993,6 @@ html[data-theme="dark"] h3,
 html[data-theme="dark"] h4 { color: #E2ECF8; }
 
 html[data-theme="dark"] .dropdown__item strong { color: #D4E0F0; }
-html[data-theme="dark"] .megamenu__col-title   { color: #D4E0F0; }
 html[data-theme="dark"] .megamenu__footer strong { color: #D4E0F0; }
 html[data-theme="dark"] .fiche-preview__fallback-title { color: #D4E0F0; }
 html[data-theme="dark"] .fiche-preview__caption strong { color: #D4E0F0; }
@@ -3068,7 +3032,6 @@ html[data-theme="dark"] .dropdown__item:hover { background: rgba(255,255,255,0.0
 html[data-theme="dark"] .megamenu__col-item:hover { background: rgba(255,255,255,0.05); }
 html[data-theme="dark"] .megamenu__footer { background: rgba(255,255,255,0.04); border-top-color: rgba(255,255,255,0.1); }
 html[data-theme="dark"] .megamenu__footer span { color: #4F6680; }
-html[data-theme="dark"] .megamenu__col-icon { opacity: .9; }
 html[data-theme="dark"] .megamenu__tile { background: rgba(255,255,255,.03); border-color: rgba(255,255,255,.1); color: #B8CCE8; }
 html[data-theme="dark"] .megamenu__tile:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.2); }
 html[data-theme="dark"] .megamenu__tile-title { color: #D4E0F0; }
@@ -3451,8 +3414,7 @@ html[data-theme="dark"] .inline-capture {
 }
 
 /* Icônes megamenu emerald (fond var(--emerald-bg) non redéfini) */
-html[data-theme="dark"] .dropdown__icon--emerald,
-html[data-theme="dark"] .megamenu__col-icon--emerald {
+html[data-theme="dark"] .dropdown__icon--emerald {
   background: rgba(16,185,129,0.15);
   color: #34D399;
 }
