@@ -24,7 +24,7 @@
 (function () {
   var INDEX = [
     { t: 'Accueil', u: 'index.html', c: 'Page' },
-    { t: 'Catalogue des fiches détaillées, L1 L2 L3', u: 'formations.html', c: 'Produit' },
+    { t: 'Catalogue des fiches complètes, L1 L2 L3', u: 'formations.html', c: 'Produit' },
     { t: 'Meilleures ventes', u: 'top-ventes.html', c: 'Produit' },
     { t: 'Majeures préparées', u: 'majeures-preparees.html', c: 'Produit' },
     { t: 'Cours particuliers de droit en visio', u: 'cours-particuliers.html', c: 'Produit' },
@@ -208,7 +208,7 @@
     modal.innerHTML =
       '<div class="apercu-panel">' +
       '<div class="apercu-head">' +
-      '<div><h3 id="apercuTitle"></h3><p>Extraits réels de la fiche détaillée</p></div>' +
+      '<div><h3 id="apercuTitle"></h3><p>Extraits réels de la fiche complète</p></div>' +
       '<button class="apercu-close" data-apercu-close aria-label="Fermer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
       '</div>' +
       '<div class="apercu-imgs" id="apercuImgs"></div>' +
