@@ -569,6 +569,23 @@
         appliquerFiltres();
       });
     });
+
+    // Ancres #cours-l1 / #cours-l2 / #cours-l3 (méga-menu "Fiches" du header) :
+    // le lien pointe vers formations.html#cours-lX, mais aucun élément ne porte
+    // cet id. On active donc le filtre niveau correspondant et on scrolle
+    // jusqu'au catalogue, comme si le chip L1/L2/L3 avait été cliqué à la main.
+    var niveauDepuisHash = { 'cours-l1': 'L1', 'cours-l2': 'L2', 'cours-l3': 'L3' };
+    function appliquerNiveauDepuisHash() {
+      var niveau = niveauDepuisHash[window.location.hash.replace('#', '')];
+      if (!niveau) return;
+      var chip = filtersRoot.querySelector('.filter-chip[data-group="niveau"][data-value="' + niveau + '"]');
+      if (!chip) return;
+      chip.click();
+      var cible = document.getElementById('a-l-unite');
+      if (cible) cible.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    appliquerNiveauDepuisHash();
+    window.addEventListener('hashchange', appliquerNiveauDepuisHash);
   }
 
   // ----- 7. Savings calculator (Hassle Premium) -----
