@@ -291,6 +291,44 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 /* item texte simple : jamais de retour à la ligne entre une icône et son texte */
 .trust-row > span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap }
 
+/* Bandeau de confiance "Nos contenus sont conformes aux programmes de" (logos de facultés, page d'accueil) */
+.facs-strip__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 26px;
+}
+.facs-strip__grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.facs-strip__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 76px;
+  padding: 12px 26px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.facs-strip__logo:hover { border-color: var(--blue-200); box-shadow: var(--sh-2); }
+.facs-strip__logo img {
+  max-height: 48px;
+  max-width: 160px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(1) opacity(.85);
+  transition: filter .15s ease;
+}
+.facs-strip__logo:hover img { filter: grayscale(0) opacity(1); }
+
 /* Recherche texte libre au-dessus d'une grille de produits (formations, cours-fiches, majeures-preparees) */
 .catalogue-toolbar {
   background: var(--slate-50);
@@ -3039,6 +3077,11 @@ html[data-theme="dark"] .megamenu__tile--featured { background: linear-gradient(
 html[data-theme="dark"] .megamenu__tile--featured .megamenu__tile-title,
 html[data-theme="dark"] .megamenu__tile--featured .megamenu__tile-title strong { color: #fff; }
 html[data-theme="dark"] .megamenu__tile--featured .megamenu__tile-desc { color: rgba(255,255,255,.82); }
+
+/* Bandeau de confiance facs : le fond du chip reste clair même en dark mode, les logos d'universités */
+/* (souvent en texte noir) resteraient illisibles sur un fond sombre sinon */
+html[data-theme="dark"] .facs-strip__logo { background: #F1F3F6; border-color: rgba(255,255,255,.08); }
+html[data-theme="dark"] .facs-strip__logo:hover { border-color: rgba(255,255,255,.18); }
 
 /* 8. Menu mobile */
 html[data-theme="dark"] .mobile-nav {
