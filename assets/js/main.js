@@ -476,9 +476,19 @@
         link.setAttribute('aria-expanded', 'true');
       }
     });
-    // Sur desktop : sync aria-expanded au hover
-    item.addEventListener('mouseenter', function () { link.setAttribute('aria-expanded', 'true'); });
-    item.addEventListener('mouseleave', function () { link.setAttribute('aria-expanded', 'false'); item.classList.remove('open'); });
+    // Sur desktop : sync aria-expanded au hover, avec un délai avant fermeture
+    // (hover-intent). Sans ce délai, un mouvement de souris en diagonale vers
+    // un élément éloigné du menu (ex. le pilier L3, le plus à droite) peut
+    // sortir un instant de la zone survolée et fermer le menu avant le clic.
+    item.addEventListener('mouseenter', function () {
+      clearTimeout(item._closeTimer);
+      link.setAttribute('aria-expanded', 'true');
+      item.classList.add('open');
+    });
+    item.addEventListener('mouseleave', function () {
+      link.setAttribute('aria-expanded', 'false');
+      item._closeTimer = setTimeout(function () { item.classList.remove('open'); }, 300);
+    });
   });
   // Click extérieur ferme tous les dropdowns
   document.addEventListener('click', function (e) {
