@@ -469,12 +469,12 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   transform: rotate(180deg);
 }
 /* Fallback : si pas .nav-item__link (ancienne syntaxe), garde le style */
-.primary-nav a:not(.nav-item__link):not(.dropdown__item):not(.dropdown__cta):not(.megamenu__col-link):not(.megamenu__list a):not(.btn) {
+.primary-nav a:not(.nav-item__link):not(.dropdown__item):not(.dropdown__cta):not(.megamenu__col-link):not(.megamenu__tile):not(.btn) {
   color: var(--body); font-weight: 500; font-size: .92rem;
   padding: 8px 2px;
   white-space: nowrap;
 }
-.primary-nav a:not(.nav-item__link):not(.dropdown__item):not(.dropdown__cta):not(.megamenu__col-link):not(.megamenu__list a):not(.btn):hover { color: var(--blue-700) }
+.primary-nav a:not(.nav-item__link):not(.dropdown__item):not(.dropdown__cta):not(.megamenu__col-link):not(.megamenu__tile):not(.btn):hover { color: var(--blue-700) }
 
 /* ===== DROPDOWN simple (3 items + cta) ===== */
 .dropdown {
@@ -600,7 +600,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
   box-shadow: 0 24px 60px rgba(15, 26, 53, .2), 0 0 0 1px rgba(0,0,0,.04);
-  width: min(640px, 92vw);
+  width: min(520px, 92vw);
   padding: 24px;
   opacity: 0;
   visibility: hidden;
@@ -631,11 +631,6 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   visibility: visible;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0);
-}
-.megamenu__cols {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
 }
 .megamenu__col {
   display: flex;
@@ -698,86 +693,60 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   color: var(--muted);
   margin-top: 2px;
 }
-.megamenu__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex: 1;
+/* Grille "Par format" en blocs carrés avec émoji, titre et description
+   (colonne unique du méga-menu Fiches, remplace l'ancienne liste + la
+   colonne "Les + demandées" retirée pour laisser plus de place aux blocs) */
+.megamenu__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.megamenu__tile {
   display: flex;
   flex-direction: column;
-  gap: 1px;
-}
-.megamenu__list a {
-  display: block;
-  padding: 7px 8px;
-  font-size: .88rem;
-  color: var(--body);
-  border-radius: var(--r-sm);
-  text-decoration: none;
-  transition: background .15s, color .15s, padding-left .15s;
-}
-.megamenu__list a:hover {
-  background: var(--slate-50);
-  color: var(--blue-700);
-  padding-left: 12px;
-}
-.megamenu__list a strong {
-  color: var(--accent);
-  font-weight: 600;
-}
-
-/* Liste "Par format" en blocs avec émoji (colonne 1 du méga-menu Fiches) */
-/* Sélecteurs préfixés par .megamenu__list--blocks : la règle générique
-   ".megamenu__list a" (display:block) est plus spécifique qu'une simple
-   classe seule et l'écrasait, collant l'icône et le texte l'un sur l'autre. */
-.megamenu__list--blocks { gap: 6px; }
-.megamenu__list--blocks .megamenu__list-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 9px 12px;
-  border-radius: var(--r-md);
+  align-items: flex-start;
+  gap: 6px;
+  padding: 16px;
+  border-radius: var(--r-lg);
   border: 1px solid var(--border);
   background: var(--white);
   text-decoration: none;
   color: var(--body);
   transition: background .15s ease, border-color .15s ease, transform .15s ease, box-shadow .15s ease;
 }
-.megamenu__list--blocks .megamenu__list-item:hover {
+.megamenu__tile:hover {
   background: var(--blue-50);
   border-color: var(--blue-200);
-  color: var(--blue-700);
-  transform: translateX(2px);
+  transform: translateY(-2px);
+  box-shadow: var(--sh-2);
 }
-.megamenu__list--blocks .megamenu__list-icon {
-  width: 32px; height: 32px;
-  flex-shrink: 0;
-  border-radius: var(--r-sm);
-  background: var(--blue-50);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.15rem;
+.megamenu__tile-icon {
+  font-size: 1.6rem;
   line-height: 1;
 }
-.megamenu__list--blocks .megamenu__list-label {
-  font-size: 1rem;
-  font-weight: 500;
+.megamenu__tile-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--navy);
   line-height: 1.25;
 }
-.megamenu__list--blocks .megamenu__list-label strong { color: var(--accent); font-weight: 700; }
-.megamenu__list--blocks .megamenu__list-item--featured {
+.megamenu__tile-title strong { color: var(--accent); font-weight: 700; }
+.megamenu__tile-desc {
+  font-size: .78rem;
+  color: var(--muted);
+  line-height: 1.35;
+}
+.megamenu__tile--featured {
   background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 140%);
   border-color: transparent;
-  color: #fff;
 }
-.megamenu__list--blocks .megamenu__list-item--featured .megamenu__list-icon { background: rgba(255,255,255,.18); }
-.megamenu__list--blocks .megamenu__list-item--featured .megamenu__list-label,
-.megamenu__list--blocks .megamenu__list-item--featured .megamenu__list-label strong { color: #fff; font-weight: 600; }
-.megamenu__list--blocks .megamenu__list-item--featured:hover {
-  transform: translateX(2px) translateY(-1px);
+.megamenu__tile--featured .megamenu__tile-title,
+.megamenu__tile--featured .megamenu__tile-title strong { color: #fff; }
+.megamenu__tile--featured .megamenu__tile-desc { color: rgba(255,255,255,.82); }
+.megamenu__tile--featured:hover {
+  transform: translateY(-2px);
   box-shadow: var(--sh-2);
-  color: #fff;
 }
 
 .megamenu__col-link {
@@ -3062,11 +3031,14 @@ html[data-theme="dark"] .megamenu__col-item:hover { background: rgba(255,255,255
 html[data-theme="dark"] .megamenu__footer { background: rgba(255,255,255,0.04); border-top-color: rgba(255,255,255,0.1); }
 html[data-theme="dark"] .megamenu__footer span { color: #4F6680; }
 html[data-theme="dark"] .megamenu__col-icon { opacity: .9; }
-html[data-theme="dark"] .megamenu__list-item { background: rgba(255,255,255,.03); border-color: rgba(255,255,255,.1); color: #B8CCE8; }
-html[data-theme="dark"] .megamenu__list-item:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.2); color: #E2ECF8; }
-html[data-theme="dark"] .megamenu__list-icon { background: rgba(255,255,255,.08); }
-html[data-theme="dark"] .megamenu__list-item--featured { background: linear-gradient(135deg, #22355E 0%, #8A6A1C 140%); }
-html[data-theme="dark"] .megamenu__list-item--featured .megamenu__list-icon { background: rgba(255,255,255,.18); }
+html[data-theme="dark"] .megamenu__tile { background: rgba(255,255,255,.03); border-color: rgba(255,255,255,.1); color: #B8CCE8; }
+html[data-theme="dark"] .megamenu__tile:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.2); }
+html[data-theme="dark"] .megamenu__tile-title { color: #D4E0F0; }
+html[data-theme="dark"] .megamenu__tile-desc { color: #8AA0BE; }
+html[data-theme="dark"] .megamenu__tile--featured { background: linear-gradient(135deg, #22355E 0%, #8A6A1C 140%); }
+html[data-theme="dark"] .megamenu__tile--featured .megamenu__tile-title,
+html[data-theme="dark"] .megamenu__tile--featured .megamenu__tile-title strong { color: #fff; }
+html[data-theme="dark"] .megamenu__tile--featured .megamenu__tile-desc { color: rgba(255,255,255,.82); }
 
 /* 8. Menu mobile */
 html[data-theme="dark"] .mobile-nav {
@@ -3225,7 +3197,6 @@ html[data-theme="dark"] .hero__cta-secondary { color: #7BA5E8; }
 /* Dropdown CTA et liens megamenu */
 html[data-theme="dark"] .dropdown__cta { color: #7BA5E8; }
 html[data-theme="dark"] .megamenu__col-link { color: #7BA5E8; }
-html[data-theme="dark"] .megamenu__list a:hover { background: rgba(255,255,255,0.06); color: #E2ECF8; }
 
 /* Icône feature card et accordion (--blue-600 = #1A2851 sur fond sombre) */
 html[data-theme="dark"] .card--feature .feature__icon { color: #7BA5E8; background: rgba(94,139,218,0.15); }
@@ -3274,7 +3245,7 @@ html[data-theme="dark"] .pain-gain-arrow { color: rgba(94,139,218,0.5); }
 html[data-theme="dark"] .hero__unis-list span:hover { color: #E2ECF8; }
 
 /* Hover nav spécifique (sélecteur à haute spécificité, doit être explicite) */
-html[data-theme="dark"] .primary-nav a:not(.nav-item__link):not(.dropdown__item):not(.dropdown__cta):not(.megamenu__col-link):not(.megamenu__list a):not(.btn):hover { color: #E2ECF8; }
+html[data-theme="dark"] .primary-nav a:not(.nav-item__link):not(.dropdown__item):not(.dropdown__cta):not(.megamenu__col-link):not(.megamenu__tile):not(.btn):hover { color: #E2ECF8; }
 
 /* 30. Éléments avec fond --blue-600/--navy (quasi-noir sur fond sombre) → bleu royal visible */
 html[data-theme="dark"] .btn--primary {
