@@ -36,7 +36,7 @@ const PRODUITS = {
   "maj-obligations-l2-s2":  { nom: "Majeures préparées Droit des obligations L2 S2", prix: 1299, blobs: [`${BLOB}/maj-obligations-l2-s2.pdf`] },
   "maj-penal-l2-s1":        { nom: "Majeures préparées Droit pénal L2 S1",           prix: 1299, blobs: [`${BLOB}/maj-penal-l2-s1.pdf`] },
   "maj-penal-l2-s2":        { nom: "Majeures préparées Droit pénal L2 S2",           prix: 1299, blobs: [`${BLOB}/maj-penal-l2-s2.pdf`] },
-  "maj-biens-l2":           { nom: "Majeures préparées Droit des biens L2",          prix: 1299, blobs: [`${BLOB}/maj-biens-l2.pdf`] },
+  "maj-biens-l2": { nom: "Majeures préparées Droit des biens L2", prix: 1299, blobs: ["https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/maj-biens-l2.pdf"] },
   "maj-commercial-l3-s1":   { nom: "Majeures préparées Droit commercial L3 S1",      prix: 1299, blobs: [`${BLOB}/maj-commercial-l3-s1.pdf`] },
 
   // Cours complet – 19,99 €
