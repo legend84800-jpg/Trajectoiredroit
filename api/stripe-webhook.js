@@ -124,6 +124,129 @@ function construireLiensEmail(produitId, produit, secret, origin) {
   });
 }
 
+// Recrée une session Checkout identique (mêmes produits, même montant) pour la
+// relance de panier abandonné, puisque l'URL d'une session expirée n'est plus
+// utilisable et que Stripe ne permet pas de "réouvrir" une session existante.
+async function recreerLienCheckout(produitIds, origin, stripeKey) {
+  const params = new URLSearchParams({
+    "payment_method_types[0]": "card",
+    mode: "payment",
+    allow_promotion_codes: "true",
+    success_url: `${origin}/merci-achat.html?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${origin}/formations.html`,
+    "metadata[produitIds]": produitIds.join(","),
+    "payment_intent_data[metadata][produitIds]": produitIds.join(","),
+    "branding_settings[display_name]": "Trajectoire Droit",
+    "branding_settings[icon][type]": "url",
+    "branding_settings[icon][url]": `${origin}/assets/logo-tjd-mark.png`,
+    "branding_settings[background_color]": "#ffffff",
+    "branding_settings[button_color]": "#1A2851",
+    "branding_settings[border_style]": "rounded",
+    "branding_settings[font_family]": "pt_serif",
+  });
+  produitIds.forEach((id, i) => {
+    const p = PRODUITS[id];
+    params.set(`line_items[${i}][price_data][currency]`, "eur");
+    params.set(`line_items[${i}][price_data][unit_amount]`, String(p.prix));
+    params.set(`line_items[${i}][price_data][product_data][name]`, p.nom);
+    params.set(`line_items[${i}][quantity]`, "1");
+  });
+
+  const resp = await fetch("https://api.stripe.com/v1/checkout/sessions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${stripeKey}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: params.toString(),
+  });
+  const data = await resp.json();
+  if (!resp.ok) throw new Error(`Stripe erreur (relance panier): ${JSON.stringify(data.error)}`);
+  return data.url;
+}
+
+async function envoyerRelancePanier(email, produits, checkoutUrl, brevoKey) {
+  const noms = produits.map(p => p.nom).join(" + ");
+
+  const html = `
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f5f5f5;font-family:sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;padding:40px 0;">
+    <tr><td align="center">
+      <table width="560" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:8px;overflow:hidden;">
+        <tr><td style="background:#1a237e;padding:24px 32px;">
+          <p style="margin:0;color:#fff;font-size:22px;font-weight:700;">TrajectoireDroit</p>
+        </td></tr>
+        <tr><td style="padding:32px;">
+          <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 16px;">Il te manque juste le paiement</p>
+          <p style="font-size:15px;color:#333;margin:0 0 24px;">
+            Tu as commencé un achat sur TrajectoireDroit (<strong>${noms}</strong>) sans aller jusqu'au bout. Le lien ci-dessous te ramène directement à l'étape de paiement, rien à ressaisir.
+          </p>
+          <a href="${checkoutUrl}" style="display:inline-block;margin:8px 0;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;font-family:sans-serif;font-size:14px;">
+            Finaliser mon achat
+          </a>
+          <p style="font-size:13px;color:#777;margin:24px 0 0;">
+            Une question avant d'acheter ? Réponds directement à cet email.
+          </p>
+        </td></tr>
+        <tr><td style="background:#f0f0f0;padding:16px 32px;">
+          <p style="font-size:12px;color:#999;margin:0;">TrajectoireDroit &mdash; La référence francophone en droit</p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+
+  const texte = `Tu as commencé un achat sur TrajectoireDroit (${noms}) sans aller jusqu'au bout.\n\nFinalise ton achat ici :\n${checkoutUrl}`;
+
+  const payload = {
+    sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
+    to: [{ email }],
+    subject: `Il te manque juste le paiement (${noms})`,
+    htmlContent: html,
+    textContent: texte,
+  };
+
+  const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "api-key": brevoKey,
+    },
+    body: JSON.stringify(payload),
+  });
+  if (!resp.ok) {
+    const err = await resp.text();
+    throw new Error(`Brevo ${resp.status}: ${err}`);
+  }
+}
+
+// Panier abandonné : la session a expiré (2h, voir create-checkout.js) sans paiement.
+// On ne peut relancer que si Stripe a capté l'email avant l'abandon (le client a
+// eu le temps de le taper dans le formulaire Checkout), sinon rien n'est faisable.
+async function gererPanierAbandonne(session, brevoKey, stripeKey, origin) {
+  if (session.mode === "subscription") return; // Portalis, pas concerné par cette relance.
+
+  const produitIdsRaw = session.metadata && session.metadata.produitIds;
+  const email = session.customer_details && session.customer_details.email;
+
+  if (!produitIdsRaw || !email) {
+    console.log(`[PANIER ABANDONNÉ] non relançable (email ou produit manquant), session=${session.id}`);
+    return;
+  }
+
+  const produitIds = produitIdsRaw.split(",").map(s => s.trim()).filter(Boolean);
+  const produitsAbandonnes = produitIds.map(id => PRODUITS[id]).filter(Boolean);
+  if (!produitsAbandonnes.length) return;
+
+  const checkoutUrl = await recreerLienCheckout(produitIds, origin, stripeKey);
+  await envoyerRelancePanier(email, produitsAbandonnes, checkoutUrl, brevoKey);
+  console.log(`[PANIER ABANDONNÉ] relance envoyée à ${email} pour ${produitIds.join("+")}, session expirée=${session.id}`);
+}
+
 // Récupère le code textuel d'un promotion code Stripe (ex: "LYON3JULIE")
 async function recupererCodePromo(promotionCodeId, stripeKey) {
   try {
@@ -240,6 +363,16 @@ module.exports = async (req, res) => {
       await synchroniserAbonnement(evt.data.object);
     } catch (e) {
       console.error("Erreur synchronisation abonnement Supabase:", e.message);
+    }
+    res.status(200).json({ recu: true });
+    return;
+  }
+
+  if (evt.type === "checkout.session.expired") {
+    try {
+      await gererPanierAbandonne(evt.data.object, brevoKey, stripeKey, origin);
+    } catch (e) {
+      console.error("Erreur relance panier abandonné:", e.message);
     }
     res.status(200).json({ recu: true });
     return;

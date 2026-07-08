@@ -165,6 +165,10 @@ module.exports = async (req, res) => {
     allow_promotion_codes: "true",
     success_url: `${origin}/merci-achat.html?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/formations.html`,
+    // Expiration raccourcie à 2h (au lieu des 24h par défaut Stripe) pour que la
+    // relance de panier abandonné (voir stripe-webhook.js, event checkout.session.expired)
+    // puisse partir le jour même plutôt que le lendemain.
+    expires_at: String(Math.floor(Date.now() / 1000) + 2 * 3600),
     "metadata[produitIds]": idsAchetes.join(","),
     "payment_intent_data[metadata][produitIds]": idsAchetes.join(","),
     "branding_settings[display_name]": "Trajectoire Droit",
