@@ -3,9 +3,34 @@
 // Trace aussi les codes ambassadeurs utilisés dans les logs Vercel.
 // Remonte aussi l'achat à l'API Conversions Meta (server-side, ne dépend pas
 // des bloqueurs de pub), uniquement si le visiteur a accepté les cookies.
+// Gère aussi les events d'abonnement Portalis (customer.subscription.*) et
+// alimente l'historique d'achats consultable depuis mon-compte.html.
 
 const crypto = require("crypto");
 const PRODUITS = require("./_produits");
+const { upsert, inserer } = require("./_supabase");
+
+// Traduit le statut Stripe en statut simplifié stocké côté Supabase.
+function statutAbonnement(statutStripe) {
+  if (statutStripe === "active" || statutStripe === "trialing") return "actif";
+  if (statutStripe === "past_due" || statutStripe === "unpaid") return "impaye";
+  return "annule";
+}
+
+async function synchroniserAbonnement(subscription) {
+  const userId = subscription.metadata && subscription.metadata.supabase_user_id;
+  if (!userId) return; // Abonnement créé hors de ce flux (ex: test manuel Stripe) : on ignore.
+  const periodeFin = subscription.current_period_end
+    ? new Date(subscription.current_period_end * 1000).toISOString()
+    : null;
+  await upsert("abonnements", {
+    user_id: userId,
+    stripe_customer_id: subscription.customer,
+    stripe_subscription_id: subscription.id,
+    statut: statutAbonnement(subscription.status),
+    periode_fin: periodeFin,
+  }, "user_id");
+}
 
 const META_PIXEL_ID = "1736839687358457";
 
@@ -210,12 +235,30 @@ module.exports = async (req, res) => {
   let evt;
   try { evt = JSON.parse(body.toString("utf-8")); } catch { res.status(400).end(); return; }
 
+  if (evt.type === "customer.subscription.created" || evt.type === "customer.subscription.updated" || evt.type === "customer.subscription.deleted") {
+    try {
+      await synchroniserAbonnement(evt.data.object);
+    } catch (e) {
+      console.error("Erreur synchronisation abonnement Supabase:", e.message);
+    }
+    res.status(200).json({ recu: true });
+    return;
+  }
+
   if (evt.type !== "checkout.session.completed") {
     res.status(200).json({ recu: true });
     return;
   }
 
   const session = evt.data.object;
+
+  // L'abonnement Portalis est traité par customer.subscription.created ci-dessus,
+  // qui contient déjà toutes les informations nécessaires (customer, statut, période).
+  if (session.mode === "subscription") {
+    res.status(200).json({ recu: true });
+    return;
+  }
+
   const produitIdsRaw = session.metadata && session.metadata.produitIds;
   const email = session.customer_details && session.customer_details.email;
 
@@ -279,6 +322,17 @@ module.exports = async (req, res) => {
     console.log(`Email envoyé à ${email} pour ${libelleProduits}${codeAmbassadeur ? " (code " + codeAmbassadeur + ")" : ""}`);
   } catch (e) {
     console.error("Erreur envoi email:", e.message);
+  }
+
+  try {
+    await inserer("achats", {
+      email,
+      produit_ids: produitIds,
+      session_id: session.id,
+      montant: montantEuros !== "?" ? Number(montantEuros) : null,
+    });
+  } catch (e) {
+    console.error("Erreur écriture achat Supabase:", e.message);
   }
 
   res.status(200).json({ recu: true });

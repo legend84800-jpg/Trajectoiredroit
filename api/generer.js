@@ -3,14 +3,39 @@
 // Fusion de generer-fiche-arret.js, generer-commentaire-arret.js,
 // generer-cas-pratique.js et generer-dissertation.js pour rester sous la
 // limite de 12 fonctions serverless du plan Vercel Hobby.
+// Les abonnés Portalis (Supabase + Stripe subscription) passent un quota mensuel
+// large plutôt que la limite d'essais gratuits par email des visiteurs non connectés.
 
 const { PROMPT_METHODE: PROMPT_FICHE_ARRET } = require("./_methode-fiche-arret.js");
 const { PROMPT_METHODE: PROMPT_COMMENTAIRE_ARRET } = require("./_methode-commentaire-arret.js");
 const { PROMPT_METHODE: PROMPT_CAS_PRATIQUE } = require("./_methode-cas-pratique.js");
 const { PROMPT_METHODE: PROMPT_DISSERTATION } = require("./_methode-dissertation.js");
+const { utilisateurDepuisJWT, selectionner, upsert } = require("./_supabase");
 
 const MODELE = "claude-sonnet-4-6";
 const DELAI_IP_MS = 8000;
+const QUOTA_MENSUEL_ABONNE = 80;
+
+// Retourne { id, email } si le JWT envoyé par le front correspond à un abonné
+// Portalis actif, sinon null. Toute erreur Supabase est traitée comme "non abonné"
+// plutôt que de bloquer l'outil pour un problème transitoire indépendant du visiteur.
+async function abonnePortalisActif(req) {
+  const entete = req.headers["authorization"] || "";
+  const jwt = entete.startsWith("Bearer ") ? entete.slice(7) : "";
+  if (!jwt) return null;
+  try {
+    const utilisateur = await utilisateurDepuisJWT(jwt);
+    if (!utilisateur) return null;
+    const lignes = await selectionner(
+      "abonnements",
+      `user_id=eq.${encodeURIComponent(utilisateur.id)}&statut=eq.actif&select=user_id&limit=1`
+    );
+    return lignes.length ? utilisateur : null;
+  } catch (e) {
+    console.error("Vérification abonnement Portalis erreur:", e.message);
+    return null;
+  }
+}
 
 const CONFIGS = {
   fa: {
@@ -107,6 +132,28 @@ module.exports = async (req, res) => {
     return;
   }
 
+  const abonne = await abonnePortalisActif(req);
+  const moisCourant = new Date().toISOString().slice(0, 7);
+  let usageAvant = 0;
+
+  if (abonne) {
+    try {
+      const lignes = await selectionner(
+        "usage_portalis",
+        `user_id=eq.${encodeURIComponent(abonne.id)}&mois=eq.${moisCourant}&select=compteur&limit=1`
+      );
+      usageAvant = lignes.length ? lignes[0].compteur : 0;
+    } catch (e) {
+      console.error("Lecture quota Portalis erreur:", e.message);
+    }
+    if (usageAvant >= QUOTA_MENSUEL_ABONNE) {
+      res.status(429).json({
+        erreur: `Tu as atteint tes ${QUOTA_MENSUEL_ABONNE} générations Portalis ce mois-ci. Ça revient le mois prochain.`,
+      });
+      return;
+    }
+  }
+
   const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "inconnue";
   const cleRafale = corps.type + ":" + ip;
   const maintenant = Date.now();
@@ -128,7 +175,7 @@ module.exports = async (req, res) => {
       body: JSON.stringify({
         model: MODELE,
         max_tokens: config.maxTokens,
-        system: config.prompt,
+        system: [{ type: "text", text: config.prompt, cache_control: { type: "ephemeral" } }],
         messages: [{ role: "user", content: texte }],
       }),
     });
@@ -164,6 +211,18 @@ module.exports = async (req, res) => {
     if (!html.startsWith("<article")) {
       res.status(502).json({ erreur: "La génération a échoué. Réessaie dans un instant." });
       return;
+    }
+
+    if (abonne) {
+      try {
+        await upsert(
+          "usage_portalis",
+          { user_id: abonne.id, mois: moisCourant, compteur: usageAvant + 1 },
+          "user_id,mois"
+        );
+      } catch (e) {
+        console.error("Incrément quota Portalis erreur:", e.message);
+      }
     }
 
     res.status(200).json({ html: nettoyerHtml(html) });

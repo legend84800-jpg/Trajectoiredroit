@@ -316,6 +316,7 @@
             <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Nous contacter →</a>
           </div>
         </div>
+        <div class="nav-item"><a href="mon-compte.html" class="nav-item__link"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-graduate"/></svg>Mon compte</a></div>
       </nav>
       <div class="site-header__cta">
         <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
@@ -430,6 +431,7 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="assets/js/main.js" defer></script>
   <script>
   (function(){
@@ -437,6 +439,27 @@
     var TOTAL_GRATUIT = 4;
     var KEY_COUNT = "tjd_fa_count";
     var KEY_EMAIL = "tjd_fa_email";
+    var QUOTA_MENSUEL_ABONNE = 80;
+
+    // TODO : remplacer par l'URL et la clé anon du projet Supabase TJD une fois créé (même valeurs que mon-compte.html).
+    var SUPABASE_URL = "https://ksqkhktcdgwrmzfcfjoe.supabase.co";
+    var SUPABASE_ANON_KEY = "mas ahora tem ese productos o no ?Y si yo comprendo";
+    var sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+    var sessionAbonne = null; // { jwt, restant } si connecté et abonné actif, sinon null
+
+    async function initAbonnement(){
+      if (!sb) return;
+      var res = await sb.auth.getSession();
+      var session = res.data && res.data.session;
+      if (!session) return;
+      var abo = await sb.from("abonnements").select("user_id").eq("user_id", session.user.id).eq("statut", "actif").maybeSingle();
+      if (!abo.data) return;
+      var mois = new Date().toISOString().slice(0, 7);
+      var usage = await sb.from("usage_portalis").select("compteur").eq("user_id", session.user.id).eq("mois", mois).maybeSingle();
+      var compteur = usage.data ? usage.data.compteur : 0;
+      sessionAbonne = { jwt: session.access_token, restant: Math.max(0, QUOTA_MENSUEL_ABONNE - compteur) };
+      majCompteur();
+    }
 
     var OUTILS = {
       fa: {
@@ -517,6 +540,10 @@
     function hasEmail(){ return localStorage.getItem(KEY_EMAIL) === "1"; }
 
     function majCompteur(){
+      if (sessionAbonne){
+        counter.innerHTML = "Abonné Portalis · <strong>" + sessionAbonne.restant + "</strong> générations restantes ce mois-ci.";
+        return;
+      }
       var c = getCount();
       var restant = TOTAL_GRATUIT - c;
       if (c < ESSAI_LIBRE){
@@ -568,8 +595,10 @@
       if (texte.length < o.minChars){ montrerErreur(o.erreurCourt); return; }
 
       var c = getCount();
-      if (c >= TOTAL_GRATUIT){ ctaAbonnement(); return; }
-      if (c >= ESSAI_LIBRE && !hasEmail()){ ouvrirEmail(); return; }
+      if (!sessionAbonne){
+        if (c >= TOTAL_GRATUIT){ ctaAbonnement(); return; }
+        if (c >= ESSAI_LIBRE && !hasEmail()){ ouvrirEmail(); return; }
+      }
 
       genBtn.disabled = true;
       result.innerHTML = "";
@@ -579,10 +608,13 @@
       var body = { type: outilActif };
       body[o.champ] = texte;
 
+      var entetes = { "content-type": "application/json" };
+      if (sessionAbonne) entetes["authorization"] = "Bearer " + sessionAbonne.jwt;
+
       try {
         var rep = await fetch(o.api, {
           method: "POST",
-          headers: { "content-type": "application/json" },
+          headers: entetes,
           body: JSON.stringify(body)
         });
         var data = await rep.json();
@@ -594,7 +626,11 @@
           '<button class="btn btn--outline btn--sm" id="copyBtn">Copier</button>' +
           o.actions +
           '</div>';
-        localStorage.setItem(KEY_COUNT, String(c + 1));
+        if (sessionAbonne){
+          sessionAbonne.restant = Math.max(0, sessionAbonne.restant - 1);
+        } else {
+          localStorage.setItem(KEY_COUNT, String(c + 1));
+        }
         majCompteur();
         brancherCopie();
         result.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -646,6 +682,7 @@
     emailModal.addEventListener("click", function(e){ if (e.target === emailModal) fermerEmail(); });
 
     changerOutil("fa");
+    initAbonnement();
   })();
   </script>
   <script>
