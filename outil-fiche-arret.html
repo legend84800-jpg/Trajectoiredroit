@@ -86,6 +86,7 @@
     .tool-counter strong{color:#2563EB}
     .tool-hint{font-size:.82rem;color:#94A3B8;margin-top:10px}
     .tool-error{display:none;margin-top:14px;background:#FEF2F2;border:1px solid #FECACA;color:#B91C1C;padding:12px 14px;border-radius:10px;font-size:.92rem}
+    .tool-partial-notice{margin-top:14px;background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;padding:12px 14px;border-radius:10px;font-size:.92rem}
 
     /* ---- Zone résultat ---- */
     #resultZone{margin-top:26px}
@@ -587,6 +588,26 @@
         '</div>';
     }
 
+    // Miroir léger du nettoyage fait côté serveur (nettoyerHtml dans api/generer.js),
+    // appliqué au texte brut affiché pendant le flux, avant que la version finale
+    // nettoyée côté serveur ne remplace tout à la fin.
+    function nettoyerHtmlLive(html){
+      return html
+        .replace(/<script[\s\S]*?<\/script>/gi, "")
+        .replace(/ on[a-z]+\s*=\s*"[^"]*"/gi, "")
+        .replace(/ on[a-z]+\s*=\s*'[^']*'/gi, "")
+        .replace(/javascript:/gi, "");
+    }
+
+    function marquerEssaiUtilise(c){
+      if (sessionAbonne){
+        sessionAbonne.restant = Math.max(0, sessionAbonne.restant - 1);
+      } else {
+        localStorage.setItem(KEY_COUNT, String(c + 1));
+      }
+      majCompteur();
+    }
+
     async function generer(){
       cacherErreur();
       var o = OUTILS[outilActif];
@@ -610,32 +631,105 @@
       var entetes = { "content-type": "application/json" };
       if (sessionAbonne) entetes["authorization"] = "Bearer " + sessionAbonne.jwt;
 
+      var acc = "";
+      var began = false;
+
       try {
         var rep = await fetch(o.api, {
           method: "POST",
           headers: entetes,
           body: JSON.stringify(body)
         });
-        var data = await rep.json();
-        loading.style.display = "none";
-        if (!rep.ok){ montrerErreur(data.erreur || "La génération a échoué. Réessaie."); genBtn.disabled = false; return; }
 
-        result.innerHTML = data.html +
-          '<div class="fa-actions">' +
-          '<button class="btn btn--outline btn--sm" id="copyBtn">Copier</button>' +
-          o.actions +
-          '</div>';
-        if (sessionAbonne){
-          sessionAbonne.restant = Math.max(0, sessionAbonne.restant - 1);
-        } else {
-          localStorage.setItem(KEY_COUNT, String(c + 1));
+        if (!rep.ok){
+          var errData = await rep.json().catch(function(){ return {}; });
+          loading.style.display = "none";
+          montrerErreur(errData.erreur || "La génération a échoué. Réessaie.");
+          genBtn.disabled = false;
+          return;
         }
-        majCompteur();
-        brancherCopie();
-        result.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        var reader = rep.body.getReader();
+        var decoder = new TextDecoder();
+        var tampon = "";
+        var finalData = null;
+        var gotError = null;
+
+        while (true){
+          var chunk = await reader.read();
+          if (chunk.done) break;
+          tampon += decoder.decode(chunk.value, { stream: true });
+
+          var idx;
+          while ((idx = tampon.indexOf("\n\n")) !== -1){
+            var bloc = tampon.slice(0, idx);
+            tampon = tampon.slice(idx + 2);
+            var ligne = bloc.split("\n").filter(function(l){ return l.indexOf("data:") === 0; })[0];
+            if (!ligne) continue;
+            var payload;
+            try { payload = JSON.parse(ligne.slice(5).trim()); } catch (e){ continue; }
+
+            if (payload.delta){
+              acc += payload.delta;
+              var pos = acc.indexOf("<article");
+              if (pos !== -1){
+                if (!began){ began = true; loading.style.display = "none"; }
+                result.innerHTML = nettoyerHtmlLive(acc.slice(pos));
+              }
+            } else if (payload.done){
+              finalData = payload;
+            } else if (payload.error){
+              gotError = payload.error;
+            }
+          }
+        }
+
+        loading.style.display = "none";
+
+        if (finalData && finalData.html){
+          result.innerHTML = finalData.html +
+            '<div class="fa-actions">' +
+            '<button class="btn btn--outline btn--sm" id="copyBtn">Copier</button>' +
+            o.actions +
+            '</div>';
+          marquerEssaiUtilise(c);
+          brancherCopie();
+          result.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          var pos2 = acc.indexOf("<article");
+          if (pos2 !== -1){
+            // Le flux s'est arrêté avant la fin (troncature ou coupure réseau),
+            // mais on a déjà un début de corrigé lisible : on le garde plutôt
+            // que d'afficher une erreur qui ferait tout perdre.
+            result.innerHTML = nettoyerHtmlLive(acc.slice(pos2)) +
+              '<div class="tool-partial-notice">⚠️ Génération interrompue avant la fin (sujet particulièrement long). Voici le corrigé jusqu\'à ce point, relance pour la version complète.</div>' +
+              '<div class="fa-actions">' +
+              '<button class="btn btn--outline btn--sm" id="copyBtn">Copier</button>' +
+              o.actions +
+              '</div>';
+            marquerEssaiUtilise(c);
+            brancherCopie();
+            result.scrollIntoView({ behavior: "smooth", block: "start" });
+          } else {
+            montrerErreur(gotError && gotError !== "tronque" ? gotError : "La génération a échoué. Vérifie ta connexion et réessaie.");
+          }
+        }
       } catch (e){
         loading.style.display = "none";
-        montrerErreur("La génération a échoué. Vérifie ta connexion et réessaie.");
+        var pos3 = acc.indexOf("<article");
+        if (pos3 !== -1){
+          result.innerHTML = nettoyerHtmlLive(acc.slice(pos3)) +
+            '<div class="tool-partial-notice">⚠️ Génération interrompue avant la fin. Voici le corrigé jusqu\'à ce point, relance pour la version complète.</div>' +
+            '<div class="fa-actions">' +
+            '<button class="btn btn--outline btn--sm" id="copyBtn">Copier</button>' +
+            o.actions +
+            '</div>';
+          marquerEssaiUtilise(c);
+          brancherCopie();
+          result.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          montrerErreur("La génération a échoué. Vérifie ta connexion et réessaie.");
+        }
       }
       genBtn.disabled = false;
     }

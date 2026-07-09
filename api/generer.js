@@ -175,6 +175,7 @@ module.exports = async (req, res) => {
       body: JSON.stringify({
         model: MODELE,
         max_tokens: config.maxTokens,
+        stream: true,
         system: [{ type: "text", text: config.prompt, cache_control: { type: "ephemeral" } }],
         messages: [{ role: "user", content: texte }],
       }),
@@ -190,28 +191,90 @@ module.exports = async (req, res) => {
       return;
     }
 
-    const data = await reponse.json();
-    const texteGenere = (data.content || [])
-      .filter((b) => b.type === "text")
-      .map((b) => b.text)
-      .join("")
-      .trim();
+    // À partir d'ici la réponse passe en flux (SSE minimal, un objet JSON par
+    // ligne "data:"). Chaque bout de texte rédigé par le modèle est renvoyé au
+    // navigateur dès qu'il arrive, pour que le client garde ce qui a déjà été
+    // écrit même si la fonction est coupée à la limite des 60 secondes du plan
+    // Vercel avant la fin de la génération (au lieu de perdre tout le travail
+    // déjà fait, comme c'était le cas en mode bufferisé).
+    res.writeHead(200, {
+      "content-type": "text/event-stream; charset=utf-8",
+      "cache-control": "no-cache, no-transform",
+      connection: "keep-alive",
+      "x-accel-buffering": "no",
+    });
+    const envoyer = (payload) => res.write("data: " + JSON.stringify(payload) + "\n\n");
 
-    if (!texteGenere || texteGenere.startsWith(config.codeErreur)) {
-      res.status(422).json({ erreur: config.erreurContenu });
+    let texteGenere = "";
+    let erreurFlux = null;
+
+    try {
+      const reader = reponse.body.getReader();
+      const decoder = new TextDecoder();
+      let tampon = "";
+      let sortir = false;
+
+      while (!sortir) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        tampon += decoder.decode(value, { stream: true });
+
+        let idx;
+        while ((idx = tampon.indexOf("\n\n")) !== -1) {
+          const bloc = tampon.slice(0, idx);
+          tampon = tampon.slice(idx + 2);
+
+          const ligneData = bloc.split("\n").find((l) => l.startsWith("data:"));
+          if (!ligneData) continue;
+          let evt;
+          try { evt = JSON.parse(ligneData.slice(5).trim()); } catch (e) { continue; }
+
+          if (evt.type === "content_block_delta" && evt.delta && evt.delta.type === "text_delta") {
+            texteGenere += evt.delta.text;
+            envoyer({ delta: evt.delta.text });
+          } else if (evt.type === "error") {
+            erreurFlux = (evt.error && evt.error.message) || "Erreur du modèle.";
+            sortir = true;
+            break;
+          } else if (evt.type === "message_stop") {
+            sortir = true;
+            break;
+          }
+        }
+      }
+    } catch (e) {
+      erreurFlux = e.message;
+    }
+
+    texteGenere = texteGenere.trim();
+
+    if (!texteGenere) {
+      envoyer({ error: erreurFlux || "La génération a échoué. Réessaie dans un instant." });
+      res.end();
       return;
     }
 
-    let html = texteGenere;
-    const debut = html.indexOf("<article");
-    const fin = html.lastIndexOf("</article>");
-    if (debut !== -1 && fin !== -1) {
-      html = html.slice(debut, fin + "</article>".length);
-    }
-    if (!html.startsWith("<article")) {
-      res.status(502).json({ erreur: "La génération a échoué. Réessaie dans un instant." });
+    if (texteGenere.startsWith(config.codeErreur)) {
+      envoyer({ error: config.erreurContenu });
+      res.end();
       return;
     }
+
+    const debut = texteGenere.indexOf("<article");
+    const fin = texteGenere.lastIndexOf("</article>");
+    const complet = debut !== -1 && fin !== -1 && fin > debut;
+
+    if (!complet) {
+      // Pas de balise de fermeture propre : soit le budget de tokens a été
+      // atteint (troncature), soit le flux a été coupé net. Le client garde
+      // déjà en direct le texte brut affiché jusque-là, il n'a pas besoin du
+      // html ici, juste du signal que ce n'est pas la version complète.
+      envoyer({ error: "tronque" });
+      res.end();
+      return;
+    }
+
+    const html = texteGenere.slice(debut, fin + "</article>".length);
 
     if (abonne) {
       try {
@@ -225,9 +288,17 @@ module.exports = async (req, res) => {
       }
     }
 
-    res.status(200).json({ html: nettoyerHtml(html) });
+    envoyer({ done: true, html: nettoyerHtml(html) });
+    res.end();
   } catch (e) {
-    res.status(502).json({ erreur: "La génération a échoué. Réessaie dans un instant." });
+    // Si on a déjà commencé à streamer (headers envoyés), il faut le signaler
+    // en flux plutôt qu'avec un nouveau code HTTP, qui ne peut plus être posé.
+    if (res.headersSent) {
+      try { res.write("data: " + JSON.stringify({ error: "La génération a échoué. Réessaie dans un instant." }) + "\n\n"); } catch (e2) {}
+      res.end();
+    } else {
+      res.status(502).json({ erreur: "La génération a échoué. Réessaie dans un instant." });
+    }
   }
 };
 
