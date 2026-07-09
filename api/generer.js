@@ -41,7 +41,7 @@ const CONFIGS = {
   fa: {
     prompt: PROMPT_FICHE_ARRET,
     champ: "arret",
-    maxTokens: 2800,
+    maxTokens: 3200,
     minChars: 200,
     maxChars: 24000,
     erreurCourt: "Le texte est trop court pour être un arrêt. Colle le texte complet de la décision.",
@@ -53,7 +53,7 @@ const CONFIGS = {
   ca: {
     prompt: PROMPT_COMMENTAIRE_ARRET,
     champ: "arret",
-    maxTokens: 3200,
+    maxTokens: 3800,
     minChars: 200,
     maxChars: 24000,
     erreurCourt: "Le texte est trop court. Colle le texte complet de l'arrêt à commenter.",
@@ -65,7 +65,7 @@ const CONFIGS = {
   cp: {
     prompt: PROMPT_CAS_PRATIQUE,
     champ: "enonce",
-    maxTokens: 3500,
+    maxTokens: 4500,
     minChars: 50,
     maxChars: 20000,
     erreurCourt: "L'énoncé est trop court. Colle le texte complet du cas pratique.",
@@ -77,7 +77,7 @@ const CONFIGS = {
   dis: {
     prompt: PROMPT_DISSERTATION,
     champ: "sujet",
-    maxTokens: 3200,
+    maxTokens: 4000,
     minChars: 5,
     maxChars: 2000,
     erreurCourt: "Entre un sujet de dissertation.",
