@@ -437,7 +437,7 @@
   <script>
   (function(){
     var ESSAI_LIBRE  = 1;
-    var TOTAL_GRATUIT = 2;
+    var TOTAL_GRATUIT = 1;
     var KEY_COUNT = "tjd_fa_count";
     var KEY_EMAIL = "tjd_fa_email";
     var QUOTA_MENSUEL_ABONNE = 80;
@@ -608,6 +608,13 @@
       majCompteur();
     }
 
+    // Une génération longue (commentaire, dissertation) dépasse souvent le budget
+    // de 60 secondes d'une fonction Vercel avant la fin du corrigé. Plutôt que de
+    // laisser l'élève relancer manuellement depuis zéro, on renvoie ici le texte
+    // déjà rédigé en continuation : chaque nouvel appel a son propre budget de
+    // 60 secondes, et le modèle reprend exactement où il s'était arrêté.
+    var MAX_TENTATIVES_CONTINUATION = 6;
+
     async function generer(){
       cacherErreur();
       var o = OUTILS[outilActif];
@@ -625,112 +632,123 @@
       loadingMsg.textContent = o.loading;
       loading.style.display = "block";
 
-      var body = { type: outilActif };
-      body[o.champ] = texte;
-
       var entetes = { "content-type": "application/json" };
       if (sessionAbonne) entetes["authorization"] = "Bearer " + sessionAbonne.jwt;
 
       var acc = "";
       var began = false;
+      var finalData = null;
+      var gotError = null;
 
-      try {
-        var rep = await fetch(o.api, {
-          method: "POST",
-          headers: entetes,
-          body: JSON.stringify(body)
-        });
+      for (var tentative = 1; tentative <= MAX_TENTATIVES_CONTINUATION; tentative++){
+        var body = { type: outilActif };
+        body[o.champ] = texte;
+        if (acc) body.continuation = acc;
 
-        if (!rep.ok){
-          var errData = await rep.json().catch(function(){ return {}; });
-          loading.style.display = "none";
-          montrerErreur(errData.erreur || "La génération a échoué. Réessaie.");
-          genBtn.disabled = false;
-          return;
-        }
+        gotError = null;
 
-        var reader = rep.body.getReader();
-        var decoder = new TextDecoder();
-        var tampon = "";
-        var finalData = null;
-        var gotError = null;
+        try {
+          var rep = await fetch(o.api, {
+            method: "POST",
+            headers: entetes,
+            body: JSON.stringify(body)
+          });
 
-        while (true){
-          var chunk = await reader.read();
-          if (chunk.done) break;
-          tampon += decoder.decode(chunk.value, { stream: true });
+          if (!rep.ok){
+            var errData = await rep.json().catch(function(){ return {}; });
+            loading.style.display = "none";
+            montrerErreur(errData.erreur || "La génération a échoué. Réessaie.");
+            genBtn.disabled = false;
+            return;
+          }
 
-          var idx;
-          while ((idx = tampon.indexOf("\n\n")) !== -1){
-            var bloc = tampon.slice(0, idx);
-            tampon = tampon.slice(idx + 2);
-            var ligne = bloc.split("\n").filter(function(l){ return l.indexOf("data:") === 0; })[0];
-            if (!ligne) continue;
-            var payload;
-            try { payload = JSON.parse(ligne.slice(5).trim()); } catch (e){ continue; }
+          var reader = rep.body.getReader();
+          var decoder = new TextDecoder();
+          var tampon = "";
 
-            if (payload.delta){
-              acc += payload.delta;
-              var pos = acc.indexOf("<article");
-              if (pos !== -1){
-                if (!began){ began = true; loading.style.display = "none"; }
-                result.innerHTML = nettoyerHtmlLive(acc.slice(pos));
+          while (true){
+            var chunk = await reader.read();
+            if (chunk.done) break;
+            tampon += decoder.decode(chunk.value, { stream: true });
+
+            var idx;
+            while ((idx = tampon.indexOf("\n\n")) !== -1){
+              var bloc = tampon.slice(0, idx);
+              tampon = tampon.slice(idx + 2);
+              var ligne = bloc.split("\n").filter(function(l){ return l.indexOf("data:") === 0; })[0];
+              if (!ligne) continue;
+              var payload;
+              try { payload = JSON.parse(ligne.slice(5).trim()); } catch (e){ continue; }
+
+              if (payload.delta){
+                acc += payload.delta;
+                var pos = acc.indexOf("<article");
+                if (pos !== -1){
+                  if (!began){ began = true; loading.style.display = "none"; }
+                  result.innerHTML = nettoyerHtmlLive(acc.slice(pos));
+                }
+              } else if (payload.done){
+                finalData = payload;
+              } else if (payload.error){
+                gotError = payload.error;
               }
-            } else if (payload.done){
-              finalData = payload;
-            } else if (payload.error){
-              gotError = payload.error;
             }
           }
+
+          // Le flux s'est fermé sans qu'on ait reçu ni "done" ni "error" : la
+          // fonction serverless a très probablement été tuée net par la limite
+          // de 60 secondes du plan Vercel avant d'avoir pu envoyer le signal de
+          // troncature. On le traite comme une troncature à reprendre, pas comme
+          // un échec, sinon le mécanisme de continuation ne se déclenche jamais
+          // sur les générations les plus longues (le cas le plus fréquent).
+          if (!finalData && !gotError) gotError = "tronque";
+        } catch (e){
+          // Une coupure de connexion en cours de lecture a la même cause la
+          // plupart du temps : on retente aussi une continuation.
+          gotError = gotError || "tronque";
         }
 
-        loading.style.display = "none";
+        if (finalData) break;
+        if (gotError && gotError !== "tronque") break;
 
-        if (finalData && finalData.html){
-          result.innerHTML = finalData.html +
-            '<div class="fa-actions">' +
-            '<button class="btn btn--outline btn--sm" id="copyBtn">Copier</button>' +
-            o.actions +
-            '</div>';
-          marquerEssaiUtilise(c);
-          brancherCopie();
-          result.scrollIntoView({ behavior: "smooth", block: "start" });
-        } else {
-          var pos2 = acc.indexOf("<article");
-          if (pos2 !== -1){
-            // Le flux s'est arrêté avant la fin (troncature ou coupure réseau),
-            // mais on a déjà un début de corrigé lisible : on le garde plutôt
-            // que d'afficher une erreur qui ferait tout perdre.
-            result.innerHTML = nettoyerHtmlLive(acc.slice(pos2)) +
-              '<div class="tool-partial-notice">⚠️ Génération interrompue avant la fin (sujet particulièrement long). Voici le corrigé jusqu\'à ce point, relance pour la version complète.</div>' +
-              '<div class="fa-actions">' +
-              '<button class="btn btn--outline btn--sm" id="copyBtn">Copier</button>' +
-              o.actions +
-              '</div>';
-            marquerEssaiUtilise(c);
-            brancherCopie();
-            result.scrollIntoView({ behavior: "smooth", block: "start" });
-          } else {
-            montrerErreur(gotError && gotError !== "tronque" ? gotError : "La génération a échoué. Vérifie ta connexion et réessaie.");
-          }
-        }
-      } catch (e){
-        loading.style.display = "none";
-        var pos3 = acc.indexOf("<article");
-        if (pos3 !== -1){
-          result.innerHTML = nettoyerHtmlLive(acc.slice(pos3)) +
+        // Troncature (signalée par le serveur ou déduite d'une coupure) : on
+        // relance automatiquement, sans action de l'élève, tant qu'il reste des
+        // tentatives. Le texte déjà affiché reste visible.
+        loadingMsg.textContent = "La rédaction continue, c'est un sujet long…";
+        loading.style.display = "block";
+      }
+
+      loading.style.display = "none";
+
+      if (finalData && finalData.html){
+        result.innerHTML = finalData.html +
+          '<div class="fa-actions">' +
+          '<button class="btn btn--outline btn--sm" id="copyBtn">Copier</button>' +
+          o.actions +
+          '</div>';
+        marquerEssaiUtilise(c);
+        brancherCopie();
+        result.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        var pos2 = acc.indexOf("<article");
+        if (pos2 !== -1){
+          // Le flux ne s'est pas terminé malgré les relances automatiques (ou une
+          // coupure réseau est survenue) : on garde le texte déjà rédigé plutôt
+          // que d'afficher une erreur qui ferait tout perdre. Cet essai n'a pas
+          // abouti, il n'est donc pas décompté du quota.
+          result.innerHTML = nettoyerHtmlLive(acc.slice(pos2)) +
             '<div class="tool-partial-notice">⚠️ Génération interrompue avant la fin. Voici le corrigé jusqu\'à ce point, relance pour la version complète.</div>' +
             '<div class="fa-actions">' +
             '<button class="btn btn--outline btn--sm" id="copyBtn">Copier</button>' +
             o.actions +
             '</div>';
-          marquerEssaiUtilise(c);
           brancherCopie();
           result.scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
-          montrerErreur("La génération a échoué. Vérifie ta connexion et réessaie.");
+          montrerErreur(gotError && gotError !== "tronque" ? gotError : "La génération a échoué. Vérifie ta connexion et réessaie.");
         }
       }
+
       genBtn.disabled = false;
     }
 

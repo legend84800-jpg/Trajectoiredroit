@@ -122,6 +122,14 @@ module.exports = async (req, res) => {
   }
 
   const texte = typeof corps[config.champ] === "string" ? corps[config.champ].trim() : "";
+  // Texte déjà rédigé lors d'un appel précédent sur le même exercice, envoyé par
+  // le client quand la génération a été coupée par la limite de 60 secondes de
+  // la fonction serverless. Le modèle (claude-sonnet-4-6) ne supporte pas le
+  // préremplissage de message assistant ("the conversation must end with a user
+  // message"), donc on ne peut pas lui faire continuer son propre message : on
+  // renvoie tout dans un seul message utilisateur qui lui montre ce qu'il a déjà
+  // écrit et lui demande explicitement d'écrire la suite, sans rien répéter.
+  const continuation = typeof corps.continuation === "string" ? corps.continuation.slice(0, 60000) : "";
 
   if (texte.length < config.minChars) {
     res.status(422).json({ erreur: config.erreurCourt });
@@ -154,17 +162,37 @@ module.exports = async (req, res) => {
     }
   }
 
-  const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "inconnue";
-  const cleRafale = corps.type + ":" + ip;
-  const maintenant = Date.now();
-  const dernier = dernierAppelParIp.get(cleRafale) || 0;
-  if (maintenant - dernier < DELAI_IP_MS) {
-    res.status(429).json({ erreur: config.erreurRafale });
-    return;
+  // Le garde-fou anti-rafale protège contre un élève qui relance des générations
+  // à la chaîne. Une continuation n'est pas une nouvelle génération demandée par
+  // l'élève, c'est la suite automatique de celle en cours : elle ne doit pas être
+  // bloquée par le délai, sinon aucune génération longue ne pourrait jamais aboutir.
+  if (!continuation) {
+    const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "inconnue";
+    const cleRafale = corps.type + ":" + ip;
+    const maintenant = Date.now();
+    const dernier = dernierAppelParIp.get(cleRafale) || 0;
+    if (maintenant - dernier < DELAI_IP_MS) {
+      res.status(429).json({ erreur: config.erreurRafale });
+      return;
+    }
+    dernierAppelParIp.set(cleRafale, maintenant);
   }
-  dernierAppelParIp.set(cleRafale, maintenant);
 
   try {
+    // Sans continuation : un seul message utilisateur, comme avant. Avec
+    // continuation : un unique message utilisateur qui montre au modèle ce
+    // qu'il a déjà écrit et lui demande d'écrire uniquement la suite, jusqu'à
+    // la fermeture de la balise. Le modèle ne recopie donc jamais le début.
+    const messages = continuation
+      ? [{
+          role: "user",
+          content: texte +
+            "\n\n---\n\nTa réponse précédente à cette demande a été interrompue avant la fin car trop longue pour un seul appel. Voici exactement ce que tu as déjà rédigé, à ne surtout pas répéter :\n\n" +
+            continuation +
+            "\n\n---\n\nÉcris uniquement la SUITE de ce texte, en reprenant très exactement là où il s'arrête (y compris en terminant un mot ou une phrase coupée en plein milieu si besoin), jusqu'à la fermeture complète de la balise </article>. Ne recopie et ne réécris rien de ce qui précède, ne remets pas la balise d'ouverture <article>, commence directement par la suite.",
+        }]
+      : [{ role: "user", content: texte }];
+
     const reponse = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
@@ -177,12 +205,14 @@ module.exports = async (req, res) => {
         max_tokens: config.maxTokens,
         stream: true,
         system: [{ type: "text", text: config.prompt, cache_control: { type: "ephemeral" } }],
-        messages: [{ role: "user", content: texte }],
+        messages,
       }),
     });
 
     if (!reponse.ok) {
       const code = reponse.status;
+      const detail = await reponse.text().catch(() => "");
+      console.error("Appel Anthropic en échec:", code, detail.slice(0, 500));
       if (code === 429) {
         res.status(503).json({ erreur: "L'outil est très demandé en ce moment. Réessaie dans une minute." });
       } else {
@@ -195,8 +225,11 @@ module.exports = async (req, res) => {
     // ligne "data:"). Chaque bout de texte rédigé par le modèle est renvoyé au
     // navigateur dès qu'il arrive, pour que le client garde ce qui a déjà été
     // écrit même si la fonction est coupée à la limite des 60 secondes du plan
-    // Vercel avant la fin de la génération (au lieu de perdre tout le travail
-    // déjà fait, comme c'était le cas en mode bufferisé).
+    // Vercel avant la fin de la génération. Si le texte est incomplet à la fin
+    // du flux, le client relance automatiquement un nouvel appel avec ce texte
+    // en continuation (voir plus haut), chaque appel disposant de son propre
+    // budget de 60 secondes, jusqu'à ce que la génération aboutisse ou que le
+    // nombre maximal de relances soit atteint.
     res.writeHead(200, {
       "content-type": "text/event-stream; charset=utf-8",
       "cache-control": "no-cache, no-transform",
@@ -254,27 +287,36 @@ module.exports = async (req, res) => {
       return;
     }
 
-    if (texteGenere.startsWith(config.codeErreur)) {
+    // En continuation, texteGenere ne devrait contenir que la suite écrite lors
+    // de CET appel (la balise d'ouverture est déjà dans le texte du premier
+    // appel). Si le modèle a malgré la consigne réécrit une balise d'ouverture,
+    // il est reparti du début : dans ce cas on ignore l'ancien texte accumulé
+    // plutôt que de produire un HTML dupliqué et cassé.
+    const repartiDuDebut = continuation && /^\s*<article/.test(texteGenere);
+    const texteComplet = repartiDuDebut ? texteGenere : continuation + texteGenere;
+
+    if (texteComplet.startsWith(config.codeErreur)) {
       envoyer({ error: config.erreurContenu });
       res.end();
       return;
     }
 
-    const debut = texteGenere.indexOf("<article");
-    const fin = texteGenere.lastIndexOf("</article>");
+    const debut = texteComplet.indexOf("<article");
+    const fin = texteComplet.lastIndexOf("</article>");
     const complet = debut !== -1 && fin !== -1 && fin > debut;
 
     if (!complet) {
       // Pas de balise de fermeture propre : soit le budget de tokens a été
       // atteint (troncature), soit le flux a été coupé net. Le client garde
-      // déjà en direct le texte brut affiché jusque-là, il n'a pas besoin du
-      // html ici, juste du signal que ce n'est pas la version complète.
+      // déjà en direct le texte brut affiché jusque-là et va relancer une
+      // continuation automatique ; il n'a pas besoin du html ici, juste du
+      // signal que ce n'est pas la version complète.
       envoyer({ error: "tronque" });
       res.end();
       return;
     }
 
-    const html = texteGenere.slice(debut, fin + "</article>".length);
+    const html = texteComplet.slice(debut, fin + "</article>".length);
 
     if (abonne) {
       try {

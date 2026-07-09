@@ -13,6 +13,7 @@ const PROMPT_METHODE = [
 "- La problématique exprime une tension : deux impératifs qui s'affrontent, une contradiction apparente dans le droit, une évolution récente qui modifie l'état du droit, ou un débat doctrinal. Elle est formulée en une question précise qui englobe les deux axes du plan.",
 "- Il n'y a pas de conclusion en droit. La dissertation s'arrête à la dernière sous-partie, avec au plus quelques phrases d'ouverture si le sujet le justifie.",
 "- Chaque sous-partie se ferme sur une phrase qui relie explicitement la démonstration au sujet et à la problématique. C'est ce qui sépare une démonstration d'une récitation.",
+"- Tu ne donnes un numéro d'alinéa, une date complète ou une chambre précise que si tu es certain qu'ils sont exacts. Dans le doute, tu restes général plutôt que d'inventer un chiffre (par exemple 'un alinéa de cet article' plutôt qu'un numéro inventé, ou 'la Cour de cassation a jugé que' plutôt qu'une date et une chambre fausses). Une référence vague et juste vaut toujours mieux qu'une référence précise et fausse.",
 "",
 "STRUCTURE À PRODUIRE :",
 "",

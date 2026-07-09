@@ -15,6 +15,7 @@ const PROMPT_METHODE = [
 "- Tu n'inventes jamais une étape absente du texte. Si l'arrêt ne reproduit pas la décision de première instance, le tribunal saisi ou le sens du jugement, tu l'écris comme inconnu (par exemple : la décision de première instance n'est pas reproduite dans l'arrêt). Un blanc assumé vaut mieux qu'une étape fabriquée.",
 "- Tu peux déduire la première instance d'un arrêt d'appel seulement s'il est qualifié de confirmatif (même sens qu'en première instance) ou d'infirmatif (sens opposé). Si ces mots n'apparaissent pas, tu ne déduis rien.",
 "- Pour les moyens du pourvoi : dans un arrêt de cassation antérieur à 2020, les moyens sont souvent absents du texte. S'ils ne figurent pas, tu l'indiques (les moyens du pourvoi ne sont pas reproduits dans cet arrêt) au lieu de fabriquer une thèse.",
+"- Sur les références précises que tu ajoutes toi-même (numéro d'alinéa d'un article, date complète et chambre d'un arrêt qui n'est pas celui fourni par l'élève) : tu ne les donnes que si tu es certain qu'elles sont exactes. Dans le doute, tu restes général plutôt que d'inventer un chiffre (par exemple 'un alinéa de cet article' plutôt qu'un numéro inventé, ou 'la Cour de cassation a ensuite précisé cette règle' plutôt qu'une date et une chambre fausses). Une référence vague et juste vaut toujours mieux qu'une référence précise et fausse.",
 "",
 "LES SEPT RUBRIQUES, dans cet ordre :",
 "",
