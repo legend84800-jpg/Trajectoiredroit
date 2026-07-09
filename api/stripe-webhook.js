@@ -116,7 +116,7 @@ function construireLiensEmail(produitId, produit, secret, origin) {
   return produit.blobs.map((blobUrl, i) => {
     const sig = genererToken(produitId, i, expiry, secret);
     const url = `${origin}/api/telecharger?id=${encodeURIComponent(produitId)}&b=${i}&exp=${expiry}&sig=${sig}`;
-    const suffixes = { flashcards: "Flashcards", qcm: "QCM", anki: "Deck Anki" };
+    const suffixes = { flashcards: "Flashcards", qcm: "QCM", anki: "Deck Anki", cartesmentales: "Cartes mentales" };
     const brut = blobUrl.split("/").pop().replace(/\.(pdf|apkg)$/i, "");
     const dernierMot = brut.split("-").pop();
     const nom = suffixes[dernierMot] || brut.replace(/-/g, " ");

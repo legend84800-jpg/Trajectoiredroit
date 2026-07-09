@@ -59,7 +59,8 @@ const PRODUITS = {
   "cours-fiche-hist-droit-l1": { nom: "Cours complet Histoire du droit L1 S1", prix: 1999, blobs: ["https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-hist-droit-l1.pdf"] },
   "cours-fiche-constit-l1-s1": { nom: "Cours complet Droit constitutionnel L1 S1", prix: 1999, blobs: ["https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-constit-l1-s1.pdf"] },
   "cours-fiche-relations-internationales-l1": { nom: "Cours complet Relations internationales L1", prix: 1999, blobs: ["https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-relations-internationales-l1.pdf"] },
-  "cours-fiche-personnes-l1": { nom: "Cours complet Droit des personnes L1", prix: 1999, blobs: ["https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-personnes-l1.pdf"] },
+  "cours-fiche-personnes-l1": { nom: "Cours complet Droit des personnes L1", prix: 1999, blobs: ["https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-personnes-l1.pdf",
+      "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-personnes-l1-cartesmentales.pdf"] },
   "cours-fiche-finances-publiques-l2-s1": { nom: "Cours complet Finances publiques L2 S1", prix: 1999, blobs: ["https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-uc-finances-publiques-l2-s1.pdf"] },
   "cours-fiche-philo-droit-l2-s1": { nom: "Cours complet Philosophie du droit L2 S1", prix: 1999, blobs: ["https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-uc-philo-droit-l2-s1.pdf"] },
 
