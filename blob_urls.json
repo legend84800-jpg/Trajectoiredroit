@@ -13,7 +13,7 @@
   "fiche-obligations-l2-s2": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-obligations-l2-s2.pdf",
   "fiche-penal-general-l1": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-penal-general-l1.pdf",
   "fiche-penal-l2-s1": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-penal-l2-s1.pdf",
-  "fiche-biens-l2": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-biens-l2.pdf",
+  "fiche-biens-l2": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-biens-l2.pdf",
   "fiche-commercial-l3-s1": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-commercial-l3-s1.pdf",
   "fiche-societes-l3-s1": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-societes-l3-s1.pdf",
   "fiche-contrats-speciaux-l3": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-contrats-speciaux-l3.pdf",
@@ -39,7 +39,7 @@
   "cours-fiche-famille-l1-s2": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-famille-l1-s2.pdf",
   "cours-fiche-penal-general-l1": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-penal-general-l1.pdf",
   "cours-fiche-hist-institutions-l1": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-hist-institutions-l1.pdf",
-  "cours-fiche-biens-l2": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-biens-l2.pdf",
+  "cours-fiche-biens-l2": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-biens-l2.pdf",
   "cours-fiche-da-l2-s1": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-da-l2-s1.pdf",
   "cours-fiche-contrats-l2-s1": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-contrats-l2-s1.pdf",
   "cours-fiche-penal-l2-s1": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-penal-l2-s1.pdf",
@@ -157,5 +157,6 @@
   "fiche-arret-intro-droit-l1": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-arret-intro-droit-l1.pdf",
   "fiche-arret-relations-internationales-l1": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-arret-relations-internationales-l1.pdf",
   "fiche-arret-commercial-l3-s1": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-arret-commercial-l3-s1.pdf",
-  "fiche-arret-travail-l3-s1": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-arret-travail-l3-s1.pdf"
+  "fiche-arret-travail-l3-s1": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-arret-travail-l3-s1.pdf",
+  "pack-l2": "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-da-l2-s1.pdf"
 }
