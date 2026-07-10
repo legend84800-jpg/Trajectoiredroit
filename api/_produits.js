@@ -7,8 +7,8 @@ const PRODUITS = {
   // Fiche complète – 14,99 €
   "fiche-da-l2-s1": { nom: "Fiche complète Droit administratif L2 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s1-plan.pdf"] },
-  "fiche-da-l2-s2": { nom: "Fiche complète Droit administratif L2 S2", prix: 1499, blobs: ["https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-da-l2-s2.pdf",
-      "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/fiche-da-l2-s2-plan.pdf"] },
+  "fiche-da-l2-s2": { nom: "Fiche complète Droit administratif L2 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s2.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s2-plan.pdf"] },
   "fiche-constit-l1-s1": { nom: "Fiche complète Droit constitutionnel L1 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-constit-l1-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-constit-l1-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-constit-l1-s1-cartesmentales.pdf"] },
@@ -308,7 +308,7 @@ const PRODUITS = {
     prix: 6800,
     blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s1.pdf",
-      `${BLOB}/fiche-da-l2-s2.pdf`,
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s2.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-contrats-l2-s1.pdf",
       `${BLOB}/fiche-obligations-l2-s2.pdf`,
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-l2-s1.pdf",
@@ -339,7 +339,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-famille-l1-s2.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s1.pdf",
-      `${BLOB}/fiche-da-l2-s2.pdf`,
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s2.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-contrats-l2-s1.pdf",
       `${BLOB}/fiche-obligations-l2-s2.pdf`,
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-l2-s1.pdf",
