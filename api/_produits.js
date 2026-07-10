@@ -84,8 +84,8 @@ const PRODUITS = {
   // Cours complet – 19,99 €
   "cours-fiche-travail-l3-s1": { nom: "Cours complet Droit du travail L3 S1", prix: 1999, blobs: ["https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-travail-l3-s1.pdf",
       "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-travail-l3-s1-plan.pdf"] },
-  "cours-fiche-societes-l3-s1": { nom: "Cours complet Droit des sociétés L3 S1", prix: 1999, blobs: ["https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-societes-l3-s1.pdf",
-      "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/cours-fiche-societes-l3-s1-plan.pdf"] },
+  "cours-fiche-societes-l3-s1": { nom: "Cours complet Droit des sociétés L3 S1", prix: 1999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-societes-l3-s1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-societes-l3-s1-plan.pdf"] },
   "cours-fiche-commercial-l3-s1": { nom: "Cours complet Droit commercial L3 S1", prix: 1999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-commercial-l3-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-commercial-l3-s1-plan.pdf"] },
   "cours-fiche-procedure-penale-l3": { nom: "Cours complet Procédure pénale L3", prix: 1999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-procedure-penale-l3.pdf",
