@@ -425,11 +425,14 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   gap: var(--sp-6);
   height: var(--header-h);
 }
+/* Logo + nav complète + CTA dépassent la largeur du container standard (1200px) : le header a besoin d'un peu plus de place, sans quoi flexbox écrase le logo faute d'autre élément compressible. */
+.site-header__inner.container { width: min(1360px, 94vw); }
 .logo {
   display: inline-flex; flex-direction: column; align-items: flex-start;
   gap: 1px;
   text-decoration: none;
   color: var(--navy);
+  flex-shrink: 0;
 }
 .logo:hover { opacity: .85; }
 .logo__img {
@@ -793,13 +796,13 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 }
 
 /* Mobile : on cache les dropdowns desktop (la nav mobile prend le relais via burger) */
-@media (max-width: 1200px) {
+@media (max-width: 1460px) {
   .dropdown, .megamenu { display: none; }
 }
 .site-header__cta { display: flex; gap: var(--sp-3); align-items: center }
 .burger { display: none; background: transparent; border: 0; padding: 8px; font-size: 1.4rem; color: var(--ink) }
 
-@media (max-width: 1200px) {
+@media (max-width: 1460px) {
   .primary-nav { display: none }
   .burger { display: inline-flex }
   .site-header__cta .btn--ghost { display: none }
