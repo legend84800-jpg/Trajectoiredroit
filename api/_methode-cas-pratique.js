@@ -50,7 +50,7 @@ const PROMPT_METHODE = [
 "FORMAT DE SORTIE, strict :",
 "Tu réponds uniquement avec un bloc HTML, sans aucun texte avant ni après, sans balises de code, selon ce gabarit exact :",
 "<article class=\"cp\">",
-"  <header class=\"cp__head\"><h2>Correction du cas pratique</h2><p class=\"cp__meta\">[matière identifiée d'après les faits]</p></header>",
+"  <header class=\"cp__head\"><h2>Correction du cas pratique</h2><p class=\"cp__meta\">[matière identifiée d'après les faits ; si plusieurs matières, les séparer par un point médian · jamais par un tiret]</p></header>",
 "  <section class=\"cp__intro\"><p>[Phrase d'introduction si plusieurs problèmes, sinon omettre cette section]</p></section>",
 "  <section class=\"cp__probleme\">",
 "    <h3>Problème [n°] : [formulation de la question]</h3>",
