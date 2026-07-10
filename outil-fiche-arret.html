@@ -478,16 +478,16 @@
       },
       ca: {
         label:       "Colle ici le texte complet de l'arrêt à commenter",
-        placeholder: "Colle le texte de l'arrêt. L'outil génère une introduction rédigée et un plan argumenté en deux parties, deux sous-parties.",
+        placeholder: "Colle le texte de l'arrêt. L'outil rédige une introduction complète et un commentaire entier en deux parties, deux sous-parties, prêt à être recopié.",
         api:         "/api/generer",
         champ:       "arret",
-        loading:     "Je lis l'arrêt et je construis le plan du commentaire…",
+        loading:     "Je lis l'arrêt et je rédige ton commentaire…",
         minChars:    200,
         erreurCourt: "Colle le texte complet de l'arrêt à commenter.",
         erreurCode:  "ERREUR_PAS_UN_ARRET",
         erreurMsg:   "Ce texte ne ressemble pas à un arrêt. Colle le texte complet d'une décision de justice.",
-        trust:       ["✅ Introduction rédigée en 7 étapes", "⚖️ Plan I.A/B II.A/B argumenté", "📌 Pistes par sous-partie"],
-        btn:         "Générer le plan →",
+        trust:       ["✅ Introduction rédigée en 7 étapes", "⚖️ Plan I.A/B II.A/B rédigé", "📌 Sous-parties entièrement rédigées"],
+        btn:         "Générer mon commentaire →",
         actions:     '<a class="btn btn--ghost btn--sm" href="methode-commentaire-arret.html">Voir la méthode</a>'
       },
       cp: {
@@ -509,13 +509,13 @@
         placeholder: "Ex : « La liberté contractuelle » ou « Le juge et la loi ».",
         api:         "/api/generer",
         champ:       "sujet",
-        loading:     "J'analyse le sujet et je construis le plan…",
+        loading:     "J'analyse le sujet et je rédige ta dissertation…",
         minChars:    5,
         erreurCourt: "Entre un sujet de dissertation.",
         erreurCode:  "ERREUR_PAS_UN_SUJET",
         erreurMsg:   "Ce texte n'est pas exploitable comme sujet de dissertation.",
-        trust:       ["✅ Analyse du sujet", "📌 Problématique + plan I.A/B II.A/B", "✍️ Introduction rédigée"],
-        btn:         "Générer le plan →",
+        trust:       ["✅ Analyse du sujet", "📌 Plan I.A/B II.A/B rédigé", "✍️ Introduction et sous-parties rédigées"],
+        btn:         "Générer ma dissertation →",
         actions:     '<a class="btn btn--ghost btn--sm" href="methode-dissertation.html">Voir la méthode</a>'
       }
     };
