@@ -31,7 +31,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 ## Droit des obligations L2
 
 - [x] matiere:droit des obligations L2 | arret:Cass. ch. réunies, 1930, Jand'heur | theme:le principe général de responsabilité du fait des choses
-- [ ] matiere:droit des obligations L2 | arret:Cass. ch. réunies, 1941, Franck | theme:la définition du gardien par l'usage, la direction et le contrôle
+- [x] matiere:droit des obligations L2 | arret:Cass. ch. réunies, 1941, Franck | theme:la définition du gardien par l'usage, la direction et le contrôle
 - [ ] matiere:droit des obligations L2 | arret:Cass. civ. 2e, 1997, Bertrand | theme:la responsabilité de plein droit des parents
 - [ ] matiere:droit des obligations L2 | arret:Cass. ass. plén., 2000, Costedoat | theme:l'immunité civile du préposé
 
