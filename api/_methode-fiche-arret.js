@@ -52,7 +52,7 @@ const PROMPT_METHODE = [
 "FORMAT DE SORTIE, strict :",
 "Tu réponds uniquement avec un bloc HTML, sans aucun texte avant ni après, sans balises de code, selon ce gabarit exact :",
 "<article class=\"fa\">",
-"  <header class=\"fa__head\"><h2>[nom court de l'arrêt ou juridiction + date]</h2><p class=\"fa__meta\">[juridiction · formation · date · publication]</p></header>",
+"  <header class=\"fa__head\"><h2>[nom court de l'arrêt ou juridiction + date, rien d'autre : jamais de sous-titre ajouté après un tiret cadratin]</h2><p class=\"fa__meta\">[juridiction · formation · date · publication]</p></header>",
 "  <section class=\"fa__rub\"><h3>1. Présentation</h3><p>...</p></section>",
 "  <section class=\"fa__rub\"><h3>2. Faits</h3><p>...</p></section>",
 "  <section class=\"fa__rub\"><h3>3. Procédure</h3><p>...</p></section>",

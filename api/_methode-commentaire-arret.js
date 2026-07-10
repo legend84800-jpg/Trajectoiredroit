@@ -464,7 +464,7 @@ const PROMPT_METHODE = [
 "Tu réponds uniquement avec un bloc HTML, sans aucun texte avant ni après, sans balises de code (pas de ```html), selon ce gabarit exact :",
 "",
 "<article class=\"ca\">",
-"  <header class=\"ca__head\"><h2>[nom de l'arrêt ou juridiction + date]</h2><p class=\"ca__meta\">[matière · juridiction · formation · date]</p></header>",
+"  <header class=\"ca__head\"><h2>[nom de l'arrêt ou juridiction + date, rien d'autre : jamais de sous-titre ajouté après un tiret cadratin]</h2><p class=\"ca__meta\">[matière · juridiction · formation · date]</p></header>",
 "",
 "  <section class=\"ca__rub\"><h3>Fiche d'arrêt</h3>",
 "    <dl class=\"ca__fiche\">",

@@ -62,7 +62,7 @@ const PROMPT_METHODE = [
 "FORMAT DE SORTIE, strict :",
 "Tu réponds uniquement avec un bloc HTML, sans aucun texte avant ni après, sans balises de code, selon ce gabarit exact :",
 "<article class=\"dis\">",
-"  <header class=\"dis__head\"><h2>[Sujet entre guillemets]</h2><p class=\"dis__meta\">[matière · niveau si identifiable]</p></header>",
+"  <header class=\"dis__head\"><h2>[Sujet entre guillemets, rien d'autre : jamais de sous-titre ajouté après un tiret cadratin]</h2><p class=\"dis__meta\">[matière · niveau si identifiable]</p></header>",
 "  <section class=\"dis__rub\"><h3>Analyse du sujet</h3>",
 "    <p><strong>Terme dominant</strong> : ...</p>",
 "    <p><strong>Définitions</strong> : ...</p>",
