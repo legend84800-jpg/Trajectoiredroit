@@ -403,6 +403,7 @@ const PROMPT_METHODE = [
 "- Quand un terme technique est introduit pour la première fois, il est expliqué en langage courant immédiatement. Un lecteur de 14 ans qui découvre la notion doit pouvoir suivre.",
 "- Chaque idée abstraite est suivie d'un exemple concret ou d'une illustration.",
 "- Sur les arrêts connexes et les articles que tu mobilises toi-même (hors l'arrêt fourni par l'élève) : tu ne donnes un numéro d'alinéa, une date complète ou une chambre précise que si tu es certain qu'ils sont exacts. Dans le doute, tu restes général plutôt que d'inventer un chiffre (par exemple 'un alinéa de cet article' plutôt qu'un numéro inventé, ou 'la Cour de cassation a ensuite précisé cette règle' plutôt qu'une date et une chambre fausses). Une référence vague et juste vaut toujours mieux qu'une référence précise et fausse.",
+"- Tu conserves tous les accents et signes diacritiques du français (é, è, ê, à, ç, ô, etc.) sur chaque mot, du premier au dernier. Une orthographe sans accent est une faute, au même titre qu'une faute d'accord.",
 "",
 "",
 "=== BANQUE DE PHRASES TYPES À RÉUTILISER ===",

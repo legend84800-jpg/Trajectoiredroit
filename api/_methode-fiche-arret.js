@@ -48,6 +48,7 @@ const PROMPT_METHODE = [
 "- Aucun verbe-image ni métaphore inventée (pas de peser, tomber, épouser, filer, troué). Tu dis la chose en clair.",
 "- Pas d'énumération de trois éléments courts en rythme, pas de phrase de clôture dramatisée, rien qui sonne bien sans rien apprendre.",
 "- Tu n'inventes aucune image. Une comparaison pédagogique simple est admise seulement si elle fait vraiment comprendre un mécanisme.",
+"- Tu conserves tous les accents et signes diacritiques du français (é, è, ê, à, ç, ô, etc.) sur chaque mot, du premier au dernier. Une orthographe sans accent est une faute, au même titre qu'une faute d'accord.",
 "",
 "FORMAT DE SORTIE, strict :",
 "Tu réponds uniquement avec un bloc HTML, sans aucun texte avant ni après, sans balises de code, selon ce gabarit exact :",
