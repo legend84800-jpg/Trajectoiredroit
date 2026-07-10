@@ -129,7 +129,11 @@ module.exports = async (req, res) => {
   // message"), donc on ne peut pas lui faire continuer son propre message : on
   // renvoie tout dans un seul message utilisateur qui lui montre ce qu'il a déjà
   // écrit et lui demande explicitement d'écrire la suite, sans rien répéter.
-  const continuation = typeof corps.continuation === "string" ? corps.continuation.slice(0, 60000) : "";
+  // slice(-60000) et non slice(0, 60000) : sur un document long ayant déjà
+  // enchaîné plusieurs relances, c'est la FIN du texte déjà rédigé qui indique
+  // au modèle où reprendre. Garder le début et couper la fin lui aurait caché
+  // la coupure réelle et l'aurait fait regénérer (en double) tout ce qui suit.
+  const continuation = typeof corps.continuation === "string" ? corps.continuation.slice(-60000) : "";
 
   if (texte.length < config.minChars) {
     res.status(422).json({ erreur: config.erreurCourt });
@@ -183,13 +187,19 @@ module.exports = async (req, res) => {
     // continuation : un unique message utilisateur qui montre au modèle ce
     // qu'il a déjà écrit et lui demande d'écrire uniquement la suite, jusqu'à
     // la fermeture de la balise. Le modèle ne recopie donc jamais le début.
+    // Le client (voir trimAuDernierMotComplet dans outil-fiche-arret.html)
+    // recule toujours jusqu'au dernier espace avant d'envoyer ce texte : il se
+    // termine donc systématiquement par un espace, juste après un mot complet.
+    // Sans cette garantie, demander au modèle de deviner si la coupure tombe
+    // en plein milieu d'un mot produisait régulièrement un mot recollé sans
+    // espace à la jointure ("d'équitéqui").
     const messages = continuation
       ? [{
           role: "user",
           content: texte +
-            "\n\n---\n\nTa réponse précédente à cette demande a été interrompue avant la fin car trop longue pour un seul appel. Voici exactement ce que tu as déjà rédigé, à ne surtout pas répéter :\n\n" +
+            "\n\n---\n\nTa réponse précédente à cette demande a été interrompue avant la fin car trop longue pour un seul appel. Voici exactement ce que tu as déjà rédigé, à ne surtout pas répéter (ce texte se termine toujours par un espace, juste après un mot complet) :\n\n" +
             continuation +
-            "\n\n---\n\nÉcris uniquement la SUITE de ce texte, en reprenant très exactement là où il s'arrête (y compris en terminant un mot ou une phrase coupée en plein milieu si besoin), jusqu'à la fermeture complète de la balise </article>. Ne recopie et ne réécris rien de ce qui précède, ne remets pas la balise d'ouverture <article>, commence directement par la suite.",
+            "\n\n---\n\nÉcris uniquement la SUITE de ce texte : commence directement par le mot suivant, sans espace ni retour à la ligne avant ce mot, et continue jusqu'à la fermeture complète de la balise </article>. Ne recopie et ne réécris rien de ce qui précède, ne remets pas la balise d'ouverture <article>.",
         }]
       : [{ role: "user", content: texte }];
 

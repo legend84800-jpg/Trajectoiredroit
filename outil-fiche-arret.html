@@ -615,6 +615,17 @@
     // 60 secondes, et le modèle reprend exactement où il s'était arrêté.
     var MAX_TENTATIVES_CONTINUATION = 6;
 
+    // La coupure d'un appel peut tomber en plein milieu d'un mot. Demander au
+    // modèle de deviner si le dernier mot du texte déjà rédigé est complet ou
+    // coupé produit régulièrement un mot recollé sans espace à la jointure
+    // ("d'équitéqui"). On supprime l'ambiguïté en reculant systématiquement
+    // jusqu'au dernier espace : le dernier mot, complet ou non, est abandonné
+    // et réécrit en entier par le modèle au prochain appel.
+    function trimAuDernierMotComplet(s){
+      var m = s.match(/^[\s\S]*\s/);
+      return m ? m[0] : s;
+    }
+
     async function generer(){
       cacherErreur();
       var o = OUTILS[outilActif];
@@ -713,7 +724,10 @@
 
         // Troncature (signalée par le serveur ou déduite d'une coupure) : on
         // relance automatiquement, sans action de l'élève, tant qu'il reste des
-        // tentatives. Le texte déjà affiché reste visible.
+        // tentatives. Le texte déjà affiché reste visible. On recule au dernier
+        // mot complet avant de repartir (voir trimAuDernierMotComplet) pour que
+        // la continuation envoyée au modèle se termine toujours par un espace.
+        acc = trimAuDernierMotComplet(acc);
         loadingMsg.textContent = "La rédaction continue, c'est un sujet long…";
         loading.style.display = "block";
       }
