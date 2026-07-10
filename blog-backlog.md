@@ -25,7 +25,7 @@ Tu peux ajouter, retirer ou réordonner les lignes quand tu veux, depuis ton Mac
 - [x] type:notion | matiere:droit administratif L2 | sujet:la responsabilité de l'administration sans faute, du risque à la rupture d'égalité devant les charges publiques
 - [x] type:arret | matiere:droit constitutionnel L1 | sujet:la décision Liberté d'association (CC, 16 juillet 1971) et la valeur constitutionnelle du préambule
 - [x] type:arret | matiere:droit constitutionnel L1 | sujet:la décision IVG (CC, 15 janvier 1975) et le refus du Conseil de contrôler la loi face aux traités
-- [ ] type:notion | matiere:droit constitutionnel L1 | sujet:le bloc de constitutionnalité, ce que le Conseil constitutionnel protège vraiment
+- [x] type:notion | matiere:droit constitutionnel L1 | sujet:le bloc de constitutionnalité, ce que le Conseil constitutionnel protège vraiment (publié le 10/07/2026)
 - [x] type:notion | matiere:droit constitutionnel L1 | sujet:la question prioritaire de constitutionnalité, à quoi elle sert et comment elle fonctionne (publié le 08/07/2026)
 - [ ] type:notion | matiere:droit constitutionnel L1 | sujet:la séparation des pouvoirs, de Montesquieu à la Cinquième République
 - [ ] type:arret | matiere:droit des contrats L2 | sujet:l'arrêt Chronopost (Cass. com., 22 octobre 1996) et la clause qui contredit l'obligation essentielle
