@@ -32,14 +32,14 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 
 - [x] matiere:droit des obligations L2 | arret:Cass. ch. réunies, 1930, Jand'heur | theme:le principe général de responsabilité du fait des choses
 - [x] matiere:droit des obligations L2 | arret:Cass. ch. réunies, 1941, Franck | theme:la définition du gardien par l'usage, la direction et le contrôle
-- [ ] matiere:droit des obligations L2 | arret:Cass. civ. 2e, 1997, Bertrand | theme:la responsabilité de plein droit des parents
+- [x] matiere:droit des obligations L2 | arret:Cass. civ. 2e, 1997, Bertrand | theme:la responsabilité de plein droit des parents
 - [ ] matiere:droit des obligations L2 | arret:Cass. ass. plén., 2000, Costedoat | theme:l'immunité civile du préposé
 
 ## Droit des contrats L2
 
 - [ ] matiere:droit des contrats L2 | arret:Cass. civ. 1re, 2000, Baldus | theme:la réticence dolosive et l'obligation d'information de l'acheteur
 - [x] matiere:droit des contrats L2 | arret:Cass. com., 1996, Chronopost | theme:la clause limitative de responsabilité et l'obligation essentielle
-- [ ] matiere:droit des contrats L2 | arret:Cass. civ., 1876, Canal de Craponne | theme:le refus de la révision pour imprévision
+- [x] matiere:droit des contrats L2 | arret:Cass. civ., 1876, Canal de Craponne | theme:le refus de la révision pour imprévision
 - [ ] matiere:droit des contrats L2 | arret:Cass. civ. 1re, 2003, Manoukian | theme:la rupture fautive des pourparlers
 
 ## Droit des personnes L1
