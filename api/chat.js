@@ -24,7 +24,7 @@ PRODUITS ET SERVICES :
 formations.html — fiches complètes PDF (cours complet par matière, de la L1 à la L3, 14,99 €)
 majeures-preparees.html — majeures préparées PDF (la règle de droit condition par condition, pour les cas pratiques, 12,99 €)
 cours-particuliers.html — cours particuliers de droit en visio avec Julien, 89 €/h
-stage-methode.html — stage de méthode en direct, 5 séances
+stage-methode.html — stage de méthode en direct, 3 séances, 8-9-10 septembre 2026, 149 €
 produit-template.html — formation vidéo sur le commentaire d'arrêt
 quiz-methode.html — quiz gratuit en 3 minutes pour voir où on perd des points (sans inscription)
 
