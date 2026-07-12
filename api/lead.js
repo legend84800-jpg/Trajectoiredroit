@@ -19,6 +19,7 @@ export default async function handler(req, res) {
   try {
     const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
     const email = (body.email || "").trim().toLowerCase();
+    const source = typeof body.source === "string" && body.source.trim() ? body.source.trim() : "assistant-chat";
 
     if (!EMAIL_RE.test(email)) {
       res.status(400).json({ error: "Email invalide." });
@@ -28,7 +29,7 @@ export default async function handler(req, res) {
     const payload = {
       email,
       updateEnabled: true,
-      attributes: { SOURCE: "assistant-chat" },
+      attributes: { SOURCE: source },
     };
     const listId = parseInt(process.env.BREVO_LIST_ID || "", 10);
     if (!Number.isNaN(listId)) payload.listIds = [listId];
