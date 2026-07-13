@@ -37,10 +37,10 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 
 ## Droit des contrats L2
 
-- [ ] matiere:droit des contrats L2 | arret:Cass. civ. 1re, 2000, Baldus | theme:la réticence dolosive et l'obligation d'information de l'acheteur
+- [x] matiere:droit des contrats L2 | arret:Cass. civ. 1re, 2000, Baldus | theme:la réticence dolosive et l'obligation d'information de l'acheteur
 - [x] matiere:droit des contrats L2 | arret:Cass. com., 1996, Chronopost | theme:la clause limitative de responsabilité et l'obligation essentielle
 - [x] matiere:droit des contrats L2 | arret:Cass. civ., 1876, Canal de Craponne | theme:le refus de la révision pour imprévision
-- [ ] matiere:droit des contrats L2 | arret:Cass. civ. 1re, 2003, Manoukian | theme:la rupture fautive des pourparlers
+- [x] matiere:droit des contrats L2 | arret:Cass. com., 2003, Manoukian | theme:la rupture fautive des pourparlers
 
 ## Droit des personnes L1
 
