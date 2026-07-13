@@ -27,10 +27,10 @@ Tu peux ajouter, retirer ou réordonner les lignes quand tu veux, depuis ton Mac
 - [x] type:arret | matiere:droit constitutionnel L1 | sujet:la décision IVG (CC, 15 janvier 1975) et le refus du Conseil de contrôler la loi face aux traités
 - [x] type:notion | matiere:droit constitutionnel L1 | sujet:le bloc de constitutionnalité, ce que le Conseil constitutionnel protège vraiment (publié le 10/07/2026)
 - [x] type:notion | matiere:droit constitutionnel L1 | sujet:la question prioritaire de constitutionnalité, à quoi elle sert et comment elle fonctionne (publié le 08/07/2026)
-- [ ] type:notion | matiere:droit constitutionnel L1 | sujet:la séparation des pouvoirs, de Montesquieu à la Cinquième République
-- [ ] type:arret | matiere:droit des contrats L2 | sujet:l'arrêt Chronopost (Cass. com., 22 octobre 1996) et la clause qui contredit l'obligation essentielle
-- [ ] type:arret | matiere:droit des contrats L2 | sujet:l'arrêt Canal de Craponne (Cass. civ., 6 mars 1876) et le refus de l'imprévision
-- [ ] type:arret | matiere:droit des contrats L2 | sujet:l'arrêt Baldus (Cass. civ. 1re, 3 mai 2000) et la réticence dolosive sur la valeur du bien
+- [x] type:notion | matiere:droit constitutionnel L1 | sujet:la séparation des pouvoirs, de Montesquieu à la Cinquième République (déjà publié le 03/07/2026, coche oubliée, corrigé par la routine du 13/07/2026)
+- [x] type:arret | matiere:droit des contrats L2 | sujet:l'arrêt Chronopost (Cass. com., 22 octobre 1996) et la clause qui contredit l'obligation essentielle (déjà publié le 06/07/2026, coche oubliée, corrigé par la routine du 13/07/2026)
+- [x] type:arret | matiere:droit des contrats L2 | sujet:l'arrêt Canal de Craponne (Cass. civ., 6 mars 1876) et le refus de l'imprévision (déjà publié le 11/07/2026, coche oubliée, corrigé par la routine du 13/07/2026)
+- [x] type:arret | matiere:droit des contrats L2 | sujet:l'arrêt Baldus (Cass. civ. 1re, 3 mai 2000) et la réticence dolosive sur la valeur du bien (publié le 13/07/2026)
 - [ ] type:notion | matiere:droit des contrats L2 | sujet:la cause du contrat, de l'article 1131 ancien à la réforme de 2016
 - [ ] type:notion | matiere:droit des contrats L2 | sujet:les vices du consentement, l'erreur, le dol et la violence
 - [ ] type:notion | matiere:droit des contrats L2 | sujet:la réforme du droit des contrats de 2016, ce qui a changé pour les étudiants
