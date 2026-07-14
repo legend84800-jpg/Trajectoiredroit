@@ -15,7 +15,13 @@ const { PROMPT_METHODE: PROMPT_CAS_PRATIQUE } = require("./_methode-cas-pratique
 const { PROMPT_METHODE: PROMPT_DISSERTATION } = require("./_methode-dissertation.js");
 const { utilisateurDepuisJWT, selectionner, upsert } = require("./_supabase");
 
-const MODELE = "claude-sonnet-4-6";
+const MODELE = "claude-sonnet-5";
+// Sonnet 5 pense en mode adaptatif par défaut (contrairement à Sonnet 4.6, qui
+// ne pensait pas sauf configuration explicite) : les tokens de réflexion,
+// invisibles ici, grignotent le budget maxTokens de chaque config ci-dessous,
+// donc plus de relances de continuation possibles sur les textes longs. Laissé
+// tel quel, la réflexion sert justement les tâches de raisonnement juridique
+// (cas pratique, commentaire, dissertation) que fait Portalis.
 const DELAI_IP_MS = 8000;
 const QUOTA_MENSUEL_ABONNE = 80;
 // Deux essais gratuits au total avant abonnement : un sans inscription (gated
@@ -177,7 +183,7 @@ module.exports = async (req, res) => {
   const texte = typeof corps[config.champ] === "string" ? corps[config.champ].trim() : "";
   // Texte déjà rédigé lors d'un appel précédent sur le même exercice, envoyé par
   // le client quand la génération a été coupée par la limite de 60 secondes de
-  // la fonction serverless. Le modèle (claude-sonnet-4-6) ne supporte pas le
+  // la fonction serverless. Le modèle (claude-sonnet-5) ne supporte pas le
   // préremplissage de message assistant ("the conversation must end with a user
   // message"), donc on ne peut pas lui faire continuer son propre message : on
   // renvoie tout dans un seul message utilisateur qui lui montre ce qu'il a déjà
