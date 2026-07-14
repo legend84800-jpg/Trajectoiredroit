@@ -17,11 +17,12 @@ const { utilisateurDepuisJWT, selectionner, upsert } = require("./_supabase");
 
 const MODELE = "claude-sonnet-5";
 // Sonnet 5 pense en mode adaptatif par défaut (contrairement à Sonnet 4.6, qui
-// ne pensait pas sauf configuration explicite) : les tokens de réflexion,
-// invisibles ici, grignotent le budget maxTokens de chaque config ci-dessous,
-// donc plus de relances de continuation possibles sur les textes longs. Laissé
-// tel quel, la réflexion sert justement les tâches de raisonnement juridique
-// (cas pratique, commentaire, dissertation) que fait Portalis.
+// ne pensait pas sauf configuration explicite), et cette réflexion partage le
+// même budget maxTokens que la réponse. Testé en conditions réelles le
+// 14/07/2026 : sur "fa" (maxTokens 3200), la réflexion a consommé tout le
+// budget avant d'écrire le moindre <article>, génération vide. D'où le
+// thinking: {type: "disabled"} explicite plus bas, qui restaure le
+// comportement d'avant (texte immédiat, sans réflexion invisible facturée).
 const DELAI_IP_MS = 8000;
 const QUOTA_MENSUEL_ABONNE = 80;
 // Deux essais gratuits au total avant abonnement : un sans inscription (gated
@@ -305,6 +306,7 @@ module.exports = async (req, res) => {
         model: MODELE,
         max_tokens: config.maxTokens,
         stream: true,
+        thinking: { type: "disabled" },
         system: [{ type: "text", text: config.prompt, cache_control: { type: "ephemeral" } }],
         messages,
       }),
