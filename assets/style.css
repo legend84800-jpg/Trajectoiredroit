@@ -37,7 +37,7 @@
   /* Accents fonctionnels */
   --warn:#F59E0B;   --warn-bg:#FEF3C7;
   --success:#10B981; --success-bg:#D1FAE5;
-  --rating-star:#065F46;  /* étoiles de notation (vert), contraste AA 7,7:1 sur blanc */
+  --rating-star:#047857;  /* étoiles de notation (vert plus clair), contraste AA 5,5:1 sur blanc */
   --danger:#EF4444;
   --pink-bg:#FCE7F3;
 
