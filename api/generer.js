@@ -4,8 +4,11 @@
 // generer-cas-pratique.js et generer-dissertation.js pour rester sous la
 // limite de 12 fonctions serverless du plan Vercel Hobby.
 // Les abonnés Portalis (Supabase + Stripe subscription) passent un quota mensuel
-// large plutôt que la limite d'essais gratuits par email des visiteurs non connectés.
+// large. Les autres ont droit à deux essais gratuits vérifiés ici même (table
+// essais_gratuits) : un par IP sans inscription, un par compte après connexion
+// par lien magique. Rien de tout ça ne doit jamais être vérifié côté client.
 
+const crypto = require("crypto");
 const { PROMPT_METHODE: PROMPT_FICHE_ARRET } = require("./_methode-fiche-arret.js");
 const { PROMPT_METHODE: PROMPT_COMMENTAIRE_ARRET } = require("./_methode-commentaire-arret.js");
 const { PROMPT_METHODE: PROMPT_CAS_PRATIQUE } = require("./_methode-cas-pratique.js");
@@ -15,25 +18,75 @@ const { utilisateurDepuisJWT, selectionner, upsert } = require("./_supabase");
 const MODELE = "claude-sonnet-4-6";
 const DELAI_IP_MS = 8000;
 const QUOTA_MENSUEL_ABONNE = 80;
+// Deux essais gratuits au total avant abonnement : un sans inscription (gated
+// par IP), un supplémentaire après connexion par email (lien magique
+// Supabase). Les deux sont vérifiés ici côté serveur (table essais_gratuits),
+// jamais côté client : le localStorage du navigateur ne fait plus foi, il ne
+// sert qu'à l'affichage indicatif du compteur.
+const LIMITE_ESSAI_IP = 1;
+const LIMITE_ESSAI_COMPTE = 1;
 
-// Retourne { id, email } si le JWT envoyé par le front correspond à un abonné
-// Portalis actif, sinon null. Toute erreur Supabase est traitée comme "non abonné"
-// plutôt que de bloquer l'outil pour un problème transitoire indépendant du visiteur.
-async function abonnePortalisActif(req) {
+// Retourne { id, email } si le JWT envoyé par le front correspond à une
+// session Supabase valide, qu'il s'agisse d'un abonné payant ou d'un simple
+// compte créé pour débloquer l'essai gratuit supplémentaire. null si aucun JWT
+// ou JWT invalide.
+async function utilisateurDuJWT(req) {
   const entete = req.headers["authorization"] || "";
   const jwt = entete.startsWith("Bearer ") ? entete.slice(7) : "";
   if (!jwt) return null;
   try {
-    const utilisateur = await utilisateurDepuisJWT(jwt);
-    if (!utilisateur) return null;
+    return await utilisateurDepuisJWT(jwt);
+  } catch (e) {
+    console.error("Vérification JWT Portalis erreur:", e.message);
+    return null;
+  }
+}
+
+// true si l'utilisateur a un abonnement Portalis actif. Toute erreur Supabase
+// est traitée comme "non abonné" plutôt que de bloquer l'outil pour un
+// problème transitoire indépendant du visiteur.
+async function estAbonneActif(utilisateur) {
+  if (!utilisateur) return false;
+  try {
     const lignes = await selectionner(
       "abonnements",
       `user_id=eq.${encodeURIComponent(utilisateur.id)}&statut=eq.actif&select=user_id&limit=1`
     );
-    return lignes.length ? utilisateur : null;
+    return lignes.length > 0;
   } catch (e) {
     console.error("Vérification abonnement Portalis erreur:", e.message);
-    return null;
+    return false;
+  }
+}
+
+// Clé de rate-limit, pas une frontière de sécurité : un simple sha256 de l'IP
+// suffit à identifier "le même visiteur" sans stocker l'IP en clair.
+function cleEssaiIp(ip) {
+  return "ip:" + crypto.createHash("sha256").update(ip).digest("hex");
+}
+
+async function compteurEssai(identifiant) {
+  try {
+    const lignes = await selectionner(
+      "essais_gratuits",
+      `identifiant=eq.${encodeURIComponent(identifiant)}&select=compteur&limit=1`
+    );
+    return lignes.length ? lignes[0].compteur : 0;
+  } catch (e) {
+    console.error("Lecture essai gratuit Portalis erreur:", e.message);
+    return 0;
+  }
+}
+
+async function incrementerEssai(identifiant, valeurActuelle) {
+  try {
+    await upsert(
+      "essais_gratuits",
+      { identifiant, compteur: valeurActuelle + 1, maj: new Date().toISOString() },
+      "identifiant"
+    );
+  } catch (e) {
+    console.error("Incrément essai gratuit Portalis erreur:", e.message);
   }
 }
 
@@ -144,9 +197,18 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const abonne = await abonnePortalisActif(req);
+  const utilisateur = await utilisateurDuJWT(req);
+  const abonne = utilisateur && (await estAbonneActif(utilisateur)) ? utilisateur : null;
   const moisCourant = new Date().toISOString().slice(0, 7);
   let usageAvant = 0;
+
+  // Trois cas, du plus large accès au plus restreint : abonné payant (quota
+  // mensuel large), compte connecté sans abonnement (un essai gratuit
+  // supplémentaire, débloqué par lien magique), visiteur anonyme (un essai
+  // gratuit sans inscription, gated par IP). Les compteurs essais_gratuits ne
+  // sont incrémentés qu'après une génération réussie, plus bas, jamais ici.
+  let identifiantEssai = null;
+  let essaiAvant = 0;
 
   if (abonne) {
     try {
@@ -161,6 +223,29 @@ module.exports = async (req, res) => {
     if (usageAvant >= QUOTA_MENSUEL_ABONNE) {
       res.status(429).json({
         erreur: `Tu as atteint tes ${QUOTA_MENSUEL_ABONNE} générations Portalis ce mois-ci. Ça revient le mois prochain.`,
+        code: "QUOTA_ABONNE_EPUISE",
+      });
+      return;
+    }
+  } else if (utilisateur) {
+    identifiantEssai = "compte:" + utilisateur.id;
+    essaiAvant = await compteurEssai(identifiantEssai);
+    if (essaiAvant >= LIMITE_ESSAI_COMPTE) {
+      res.status(429).json({
+        erreur: "Tu as déjà utilisé ton essai gratuit avec ce compte. Abonne-toi à Portalis (6 €/mois) pour continuer.",
+        code: "ESSAI_COMPTE_EPUISE",
+      });
+      return;
+    }
+  } else {
+    identifiantEssai = cleEssaiIp(
+      (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "inconnue"
+    );
+    essaiAvant = await compteurEssai(identifiantEssai);
+    if (essaiAvant >= LIMITE_ESSAI_IP) {
+      res.status(403).json({
+        erreur: "Tu as déjà utilisé ton essai gratuit sans compte. Connecte-toi avec ton email pour un essai supplémentaire.",
+        code: "ESSAI_IP_EPUISE",
       });
       return;
     }
@@ -338,6 +423,8 @@ module.exports = async (req, res) => {
       } catch (e) {
         console.error("Incrément quota Portalis erreur:", e.message);
       }
+    } else if (identifiantEssai) {
+      await incrementerEssai(identifiantEssai, essaiAvant);
     }
 
     envoyer({ done: true, html: nettoyerHtml(html) });

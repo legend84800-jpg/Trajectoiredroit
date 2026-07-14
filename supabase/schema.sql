@@ -44,3 +44,19 @@ create policy "Lecture de ses propres achats par email" on achats
 
 create policy "Lecture de son propre usage Portalis" on usage_portalis
   for select using (auth.uid() = user_id);
+
+-- Ajoutée le 13/07/2026 : trace les essais gratuits Portalis pris hors
+-- abonnement (avant, ce compteur ne vivait que dans le localStorage du
+-- navigateur, contournable en le vidant, en navigation privée, ou en
+-- appelant l'API directement sans passer par le front).
+-- identifiant = 'ip:<sha256 de l'IP>' (essai sans inscription) ou
+-- 'compte:<user_id>' (essai supplémentaire après connexion par lien magique).
+create table essais_gratuits (
+  identifiant text primary key,
+  compteur integer not null default 0,
+  maj timestamptz not null default now()
+);
+
+alter table essais_gratuits enable row level security;
+-- Aucune policy : jamais lu ni écrit depuis le front (clé anon), seule la clé
+-- service_role (api/generer.js) y accède, et elle bypass RLS.

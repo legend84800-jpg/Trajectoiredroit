@@ -86,6 +86,7 @@
     .tool-counter strong{color:#2563EB}
     .tool-hint{font-size:.82rem;color:#94A3B8;margin-top:10px}
     .tool-error{display:none;margin-top:14px;background:#FEF2F2;border:1px solid #FECACA;color:#B91C1C;padding:12px 14px;border-radius:10px;font-size:.92rem}
+    .tool-success{display:none;margin-top:14px;background:#ECFDF5;border:1px solid #A7F3D0;color:#065F46;padding:12px 14px;border-radius:10px;font-size:.92rem}
     .tool-partial-notice{margin-top:14px;background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;padding:12px 14px;border-radius:10px;font-size:.92rem}
 
     /* ---- Zone résultat ---- */
@@ -427,13 +428,15 @@
   <div class="modal-backdrop" id="emailModal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
     <div class="modal">
       <button class="modal__close" data-close-email aria-label="Fermer">✕</button>
-      <h2 id="emailModalTitle" style="margin-top:16px">Continue avec un essai offert</h2>
-      <p class="lead" style="margin-bottom:22px">Laisse ton email et je débloque un essai supplémentaire sur tous les outils. Tu reçois aussi mes meilleures méthodes pour réussir tes partiels.</p>
+      <h2 id="emailModalTitle" style="margin-top:16px">Débloque un essai supplémentaire</h2>
+      <p class="lead" style="margin-bottom:22px" id="emailModalLead">Laisse ton email, je t'envoie un lien de connexion. Clique dessus, reviens ici et relance ta génération : elle passera par ton essai gratuit.</p>
       <form id="emailForm" style="display:flex; gap:8px; flex-direction:column">
         <input type="email" id="emailInput" required placeholder="ton@email.com" class="form__input" aria-label="Email">
-        <button class="btn btn--primary btn--lg btn--full" type="submit" id="emailSubmit">Débloquer mes essais →</button>
+        <button class="btn btn--primary btn--lg btn--full" type="submit" id="emailSubmit">Recevoir mon lien de connexion →</button>
       </form>
-      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic. Aucune carte bancaire.</p>
+      <div class="tool-error" id="emailModalError"></div>
+      <div class="tool-success" id="emailModalSuccess"></div>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Aucune carte bancaire. Le lien de connexion expire après un court délai.</p>
     </div>
   </div>
 
@@ -441,29 +444,56 @@
   <script src="assets/js/main.js" defer></script>
   <script>
   (function(){
-    var ESSAI_LIBRE  = 1;
-    var TOTAL_GRATUIT = 1;
-    var KEY_COUNT = "tjd_fa_count";
-    var KEY_EMAIL = "tjd_fa_email";
     var QUOTA_MENSUEL_ABONNE = 80;
+    var KEY_SAISIE_ATTENTE = "tjd_fa_saisie_attente"; // texte + outil en attente d'une connexion par email
 
     var SUPABASE_URL = "https://ksqkhktcdgwrmzfcfjoe.supabase.co";
     var SUPABASE_ANON_KEY = "sb_publishable_Ahl2DDtcburQJZl1h2NHZQ_5eKh-isk";
     var sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
     var sessionAbonne = null; // { jwt, restant } si connecté et abonné actif, sinon null
+    var jwtConnecte = null;   // token de session dès qu'un compte est connecté, abonné ou non
 
-    async function initAbonnement(){
+    // Le compteur d'essais gratuits ne vit plus côté client (un ancien
+    // localStorage était trivialement contournable en le vidant, en
+    // navigation privée, ou en appelant l'API directement). Le serveur
+    // (api/generer.js) est la seule source de vérité : il répond avec un code
+    // ESSAI_IP_EPUISE ou ESSAI_COMPTE_EPUISE quand l'essai correspondant est
+    // déjà consommé, et c'est cette réponse qui pilote l'affichage ici.
+    async function initSession(){
       if (!sb) return;
       var res = await sb.auth.getSession();
       var session = res.data && res.data.session;
-      if (!session) return;
+      if (!session) { majCompteur(); return; }
+      jwtConnecte = session.access_token;
       var abo = await sb.from("abonnements").select("user_id").eq("user_id", session.user.id).eq("statut", "actif").maybeSingle();
-      if (!abo.data) return;
-      var mois = new Date().toISOString().slice(0, 7);
-      var usage = await sb.from("usage_portalis").select("compteur").eq("user_id", session.user.id).eq("mois", mois).maybeSingle();
-      var compteur = usage.data ? usage.data.compteur : 0;
-      sessionAbonne = { jwt: session.access_token, restant: Math.max(0, QUOTA_MENSUEL_ABONNE - compteur) };
+      if (abo.data){
+        var mois = new Date().toISOString().slice(0, 7);
+        var usage = await sb.from("usage_portalis").select("compteur").eq("user_id", session.user.id).eq("mois", mois).maybeSingle();
+        var compteur = usage.data ? usage.data.compteur : 0;
+        sessionAbonne = { jwt: session.access_token, restant: Math.max(0, QUOTA_MENSUEL_ABONNE - compteur) };
+      }
       majCompteur();
+      restaurerSaisieEnAttente();
+    }
+
+    // Retour du lien magique : on avait mis de côté le texte que l'élève avait
+    // déjà collé avant d'ouvrir la modale email, pour ne pas le lui faire
+    // retaper après la vérification.
+    function sauverSaisieEnAttente(){
+      try {
+        sessionStorage.setItem(KEY_SAISIE_ATTENTE, JSON.stringify({ outil: outilActif, texte: inputEl.value }));
+      } catch (e){}
+    }
+    function restaurerSaisieEnAttente(){
+      var brut;
+      try { brut = sessionStorage.getItem(KEY_SAISIE_ATTENTE); } catch (e){ return; }
+      if (!brut) return;
+      sessionStorage.removeItem(KEY_SAISIE_ATTENTE);
+      try {
+        var donnees = JSON.parse(brut);
+        if (donnees.outil && OUTILS[donnees.outil]) changerOutil(donnees.outil);
+        if (donnees.texte) inputEl.value = donnees.texte;
+      } catch (e){}
     }
 
     var OUTILS = {
@@ -541,22 +571,13 @@
     var emailInput = document.getElementById("emailInput");
     var emailSubmit= document.getElementById("emailSubmit");
 
-    function getCount(){ return parseInt(localStorage.getItem(KEY_COUNT) || "0", 10); }
-    function hasEmail(){ return localStorage.getItem(KEY_EMAIL) === "1"; }
-
     function majCompteur(){
       if (sessionAbonne){
         counter.innerHTML = "Abonné Portalis · <strong>" + sessionAbonne.restant + "</strong> générations restantes ce mois-ci.";
-        return;
-      }
-      var c = getCount();
-      var restant = TOTAL_GRATUIT - c;
-      if (c < ESSAI_LIBRE){
-        counter.innerHTML = "Ton <strong>premier essai</strong> est gratuit, sans inscription.";
-      } else if (restant > 0){
-        counter.innerHTML = "Il te reste <strong>" + restant + "</strong> essai" + (restant > 1 ? "s" : "") + " offert" + (restant > 1 ? "s" : "") + ".";
+      } else if (jwtConnecte){
+        counter.innerHTML = "Connecté · ton essai gratuit supplémentaire est peut-être déjà utilisé, lance ta génération pour le savoir.";
       } else {
-        counter.innerHTML = "Tu as utilisé tes essais offerts.";
+        counter.innerHTML = "Ton <strong>premier essai</strong> est gratuit, sans inscription.";
       }
     }
 
@@ -581,7 +602,14 @@
     function montrerErreur(msg){ errorBox.textContent = msg; errorBox.style.display = "block"; }
     function cacherErreur(){ errorBox.style.display = "none"; }
 
-    function ouvrirEmail(){ emailModal.classList.add("is-open"); emailModal.style.display = "flex"; }
+    function ouvrirEmail(){
+      emailForm.style.display = "flex";
+      emailForm.reset();
+      document.getElementById("emailModalError").style.display = "none";
+      document.getElementById("emailModalSuccess").style.display = "none";
+      emailModal.classList.add("is-open");
+      emailModal.style.display = "flex";
+    }
     function fermerEmail(){ emailModal.classList.remove("is-open"); emailModal.style.display = "none"; }
 
     function ctaAbonnement(){
@@ -604,13 +632,11 @@
         .replace(/javascript:/gi, "");
     }
 
-    function marquerEssaiUtilise(c){
+    function apresGenerationReussie(){
       if (sessionAbonne){
         sessionAbonne.restant = Math.max(0, sessionAbonne.restant - 1);
-      } else {
-        localStorage.setItem(KEY_COUNT, String(c + 1));
+        majCompteur();
       }
-      majCompteur();
     }
 
     // Une génération longue (commentaire, dissertation) dépasse souvent le budget
@@ -637,19 +663,13 @@
       var texte = inputEl.value.trim();
       if (texte.length < o.minChars){ montrerErreur(o.erreurCourt); return; }
 
-      var c = getCount();
-      if (!sessionAbonne){
-        if (c >= TOTAL_GRATUIT){ ctaAbonnement(); return; }
-        if (c >= ESSAI_LIBRE && !hasEmail()){ ouvrirEmail(); return; }
-      }
-
       genBtn.disabled = true;
       result.innerHTML = "";
       loadingMsg.textContent = o.loading;
       loading.style.display = "block";
 
       var entetes = { "content-type": "application/json" };
-      if (sessionAbonne) entetes["authorization"] = "Bearer " + sessionAbonne.jwt;
+      if (jwtConnecte) entetes["authorization"] = "Bearer " + jwtConnecte;
 
       var acc = "";
       var began = false;
@@ -673,8 +693,10 @@
           if (!rep.ok){
             var errData = await rep.json().catch(function(){ return {}; });
             loading.style.display = "none";
-            montrerErreur(errData.erreur || "La génération a échoué. Réessaie.");
             genBtn.disabled = false;
+            if (tentative === 1 && errData.code === "ESSAI_IP_EPUISE"){ sauverSaisieEnAttente(); ouvrirEmail(); return; }
+            if (tentative === 1 && (errData.code === "ESSAI_COMPTE_EPUISE" || errData.code === "QUOTA_ABONNE_EPUISE")){ ctaAbonnement(); return; }
+            montrerErreur(errData.erreur || "La génération a échoué. Réessaie.");
             return;
           }
 
@@ -745,7 +767,7 @@
           '<button class="btn btn--outline btn--sm" id="copyBtn">Copier</button>' +
           o.actions +
           '</div>';
-        marquerEssaiUtilise(c);
+        apresGenerationReussie();
         brancherCopie();
         result.scrollIntoView({ behavior: "smooth", block: "start" });
       } else {
@@ -790,11 +812,18 @@
 
     genBtn.addEventListener("click", generer);
 
+    var emailModalError   = document.getElementById("emailModalError");
+    var emailModalSuccess = document.getElementById("emailModalSuccess");
+
     emailForm.addEventListener("submit", async function(e){
       e.preventDefault();
       var email = emailInput.value.trim();
-      if (!email){ return; }
+      if (!email || !sb){ return; }
+      emailModalError.style.display = "none";
+      emailModalSuccess.style.display = "none";
       emailSubmit.disabled = true;
+      // Best-effort, jamais bloquant : capture marketing (liste Brevo),
+      // distincte de la vérification réelle qui suit via Supabase Auth.
       try {
         await fetch("/api/inscrire-email", {
           method: "POST",
@@ -802,17 +831,26 @@
           body: JSON.stringify({ email: email })
         });
       } catch (e){}
-      localStorage.setItem(KEY_EMAIL, "1");
+      var res = await sb.auth.signInWithOtp({
+        email: email,
+        options: { emailRedirectTo: window.location.href }
+      });
       emailSubmit.disabled = false;
-      fermerEmail();
-      generer();
+      if (res.error){
+        emailModalError.textContent = "L'envoi a échoué. Réessaie dans un instant.";
+        emailModalError.style.display = "block";
+        return;
+      }
+      emailModalSuccess.textContent = "Lien envoyé à " + email + ". Vérifie ta boîte mail (et tes spams), clique dessus, puis reviens ici relancer ta génération.";
+      emailModalSuccess.style.display = "block";
+      emailForm.style.display = "none";
     });
 
     document.querySelectorAll("[data-close-email]").forEach(function(b){ b.addEventListener("click", fermerEmail); });
     emailModal.addEventListener("click", function(e){ if (e.target === emailModal) fermerEmail(); });
 
     changerOutil("fa");
-    initAbonnement();
+    initSession();
   })();
   </script>
   <script>
