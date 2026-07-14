@@ -38,6 +38,7 @@
   --warn:#F59E0B;   --warn-bg:#FEF3C7;
   --success:#10B981; --success-bg:#D1FAE5;
   --rating-star:#047857;  /* étoiles de notation (vert plus clair), contraste AA 5,5:1 sur blanc */
+  --price-violet:#6D28D9;  /* prix Portalis, contraste AA 7,1:1 sur blanc */
   --danger:#EF4444;
   --pink-bg:#FCE7F3;
 
@@ -358,9 +359,9 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .card--pricing { display: flex; flex-direction: column; gap: var(--sp-4); position: relative }
 .card--pricing .pricing__name { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem }
 .card--pricing .pricing__price { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; line-height: 1; color: var(--ink) }
-.card--pricing .pricing__price--gold { color: #78350F }
+.card--pricing .pricing__price--blue { color: var(--navy) }
 .card--pricing .pricing__price--green { color: #065F46 }
-.card--pricing .pricing__price--amber { color: #92400E }
+.card--pricing .pricing__price--violet { color: var(--price-violet) }
 .card--pricing .pricing__period { color: var(--muted); font-size: .95rem; font-weight: 500 }
 .card--pricing .pricing__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px }
 .card--pricing .pricing__list li { display: flex; gap: 10px; align-items: flex-start; color: var(--body); font-size: .95rem }
@@ -2946,6 +2947,7 @@ html[data-theme="dark"] {
   --body:        #8FA8CC;
   --muted:       #4F6680;
   --rating-star: #34D399;  /* étoiles de notation (vert), contraste AA 9:1 sur les fonds sombres */
+  --price-violet: #A78BFA;  /* prix Portalis, contraste AA 6,4:1 sur les fonds sombres */
 
   --border:         rgba(255,255,255,0.09);
   --border-strong:  rgba(255,255,255,0.16);
@@ -3450,11 +3452,11 @@ html[data-theme="dark"] .author-box__name { color: #E2ECF8; }
 /* Eyebrows à fond hardcodé amber et green (utilisés dans a-propos.html) */
 .eyebrow--amber { background: #FEF3C7; color: #92400E; }
 .eyebrow--green { background: #D1FAE5; color: #065F46; }
+.eyebrow--violet { background: var(--violet-bg); color: var(--price-violet); }
 html[data-theme="dark"] .eyebrow--amber { background: rgba(245,158,11,0.15); color: #FBBF24; }
 html[data-theme="dark"] .eyebrow--green { background: rgba(16,185,129,0.15); color: #34D399; }
-html[data-theme="dark"] .pricing__price--gold { color: #D4A85A; }
+html[data-theme="dark"] .eyebrow--violet { background: rgba(139,92,246,0.18); color: #A78BFA; }
 html[data-theme="dark"] .pricing__price--green { color: #34D399; }
-html[data-theme="dark"] .pricing__price--amber { color: #FBBF24; }
 
 /* Bouton fond blanc (utilisé dans formations.html) */
 .btn--white { background: #fff; color: var(--navy); }
