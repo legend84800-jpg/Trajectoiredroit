@@ -37,7 +37,7 @@
   /* Accents fonctionnels */
   --warn:#F59E0B;   --warn-bg:#FEF3C7;
   --success:#10B981; --success-bg:#D1FAE5;
-  --gold:#946F16;      /* étoiles de notation, contraste AA 4,6:1 sur blanc */
+  --rating-star:#065F46;  /* étoiles de notation (vert), contraste AA 7,7:1 sur blanc */
   --danger:#EF4444;
   --pink-bg:#FCE7F3;
 
@@ -210,7 +210,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .badge--success { background: var(--success-bg); color: #065F46 }
 .badge--warn { background: var(--warn-bg); color: #78350F }
 .badge--rating { background: transparent; color: var(--ink); padding: 0; font-weight: 700 }
-.badge--rating::before { content: "★"; color: var(--gold); margin-right: 4px }
+.badge--rating::before { content: "★"; color: var(--rating-star); margin-right: 4px }
 
 /* ===== 7. CARDS ===== */
 .card {
@@ -375,7 +375,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 
 /* Card témoignage */
 .card--testi { display: flex; flex-direction: column; gap: var(--sp-3) }
-.card--testi .testi__rating { color: var(--gold); font-size: 1rem; letter-spacing: 2px }
+.card--testi .testi__rating { color: var(--rating-star); font-size: 1rem; letter-spacing: 2px }
 .card--testi blockquote { margin: 0; font-size: 1rem; line-height: 1.6; color: var(--ink) }
 .card--testi .testi__author { display: flex; align-items: center; gap: 12px; margin-top: auto }
 .card--testi .testi__avatar {
@@ -1710,7 +1710,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   flex-wrap: wrap;
 }
 .superprof-proof__stars {
-  color: #E0A92E;
+  color: var(--rating-star);
   font-size: 1.1rem;
   letter-spacing: 2px;
 }
@@ -2942,7 +2942,7 @@ html[data-theme="dark"] {
   --ink:         #E2ECF8;
   --body:        #8FA8CC;
   --muted:       #4F6680;
-  --gold:        #FACC15;   /* étoiles, contraste AA 9,6:1 sur les fonds sombres */
+  --rating-star: #34D399;  /* étoiles de notation (vert), contraste AA 9:1 sur les fonds sombres */
 
   --border:         rgba(255,255,255,0.09);
   --border-strong:  rgba(255,255,255,0.16);
