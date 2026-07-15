@@ -35,7 +35,7 @@ Tu peux ajouter, retirer ou réordonner les lignes quand tu veux, depuis ton Mac
 - [ ] type:notion | matiere:droit des contrats L2 | sujet:les vices du consentement, l'erreur, le dol et la violence
 - [ ] type:notion | matiere:droit des contrats L2 | sujet:la réforme du droit des contrats de 2016, ce qui a changé pour les étudiants
 - [ ] type:notion | matiere:droit des sociétés L3 | sujet:l'affectio societatis, la volonté de s'associer et ses conséquences
-- [ ] type:arret | matiere:droit des sociétés L3 | sujet:l'arrêt Fruehauf (CA Paris, 22 mai 1965) et l'intérêt social face à l'intérêt des associés
+- [x] type:arret | matiere:droit des sociétés L3 | sujet:l'arrêt Fruehauf (CA Paris, 22 mai 1965) et l'intérêt social face à l'intérêt des associés (publié le 15/07/2026)
 - [ ] type:notion | matiere:droit des sociétés L3 | sujet:la personnalité morale de la société, ce qu'elle change concrètement
 - [ ] type:notion | matiere:procédure pénale L3 | sujet:la garde à vue, sa durée et les droits de la personne gardée à vue
 - [ ] type:notion | matiere:procédure pénale L3 | sujet:la présomption d'innocence et sa portée dans le procès pénal
@@ -43,7 +43,7 @@ Tu peux ajouter, retirer ou réordonner les lignes quand tu veux, depuis ton Mac
 - [ ] type:arret | matiere:droit pénal général L1 | sujet:l'arrêt Laboube (Cass. crim., 13 décembre 1956) et l'exigence de discernement
 - [ ] type:notion | matiere:droit pénal général L1 | sujet:la tentative, du commencement d'exécution au désistement volontaire
 - [ ] type:notion | matiere:droit pénal général L1 | sujet:le principe de légalité criminelle, pas d'infraction sans texte
-- [ ] type:arret | matiere:droit civil L1 | sujet:l'arrêt Perruche (Cass. ass. plén., 17 novembre 2000) et le préjudice de l'enfant né handicapé
+- [x] type:arret | matiere:droit civil L1 | sujet:l'arrêt Perruche (Cass. ass. plén., 17 novembre 2000) et le préjudice de l'enfant né handicapé (déjà publié le 14/07/2026, coche oubliée, corrigé par la routine du 15/07/2026)
 - [ ] type:notion | matiere:droit des personnes L1 | sujet:la personnalité juridique, son début à la naissance et sa fin à la mort
 - [ ] type:notion | matiere:droit de la famille L1 | sujet:l'autorité parentale, ses titulaires et son exercice
 - [x] type:comment-reviser | matiere:droit administratif L2 | sujet:comment réviser le droit administratif L2 (publié le 30/06/2026)
