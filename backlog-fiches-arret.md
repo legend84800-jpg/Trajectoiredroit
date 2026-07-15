@@ -45,7 +45,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 ## Droit des personnes L1
 
 - [x] matiere:droit des personnes L1 | arret:Cass. ass. plén., 2000, Perruche | theme:le préjudice de l'enfant né handicapé
-- [ ] matiere:droit des personnes L1 | arret:Cass. ass. plén., 2019, Mennesson | theme:la transcription de l'état civil de l'enfant né d'une GPA à l'étranger
+- [x] matiere:droit des personnes L1 | arret:Cass. ass. plén., 2019, Mennesson | theme:la transcription de l'état civil de l'enfant né d'une GPA à l'étranger
 - [ ] matiere:droit des personnes L1 | arret:Cass. civ. 1re, 2017, Sexe neutre | theme:le refus d'une mention de sexe neutre à l'état civil
 
 ## Droit des biens L2
