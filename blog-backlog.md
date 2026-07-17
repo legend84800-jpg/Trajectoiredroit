@@ -31,9 +31,9 @@ Tu peux ajouter, retirer ou réordonner les lignes quand tu veux, depuis ton Mac
 - [x] type:arret | matiere:droit des contrats L2 | sujet:l'arrêt Chronopost (Cass. com., 22 octobre 1996) et la clause qui contredit l'obligation essentielle (déjà publié le 06/07/2026, coche oubliée, corrigé par la routine du 13/07/2026)
 - [x] type:arret | matiere:droit des contrats L2 | sujet:l'arrêt Canal de Craponne (Cass. civ., 6 mars 1876) et le refus de l'imprévision (déjà publié le 11/07/2026, coche oubliée, corrigé par la routine du 13/07/2026)
 - [x] type:arret | matiere:droit des contrats L2 | sujet:l'arrêt Baldus (Cass. civ. 1re, 3 mai 2000) et la réticence dolosive sur la valeur du bien (publié le 13/07/2026)
-- [ ] type:notion | matiere:droit des contrats L2 | sujet:la cause du contrat, de l'article 1131 ancien à la réforme de 2016
-- [ ] type:notion | matiere:droit des contrats L2 | sujet:les vices du consentement, l'erreur, le dol et la violence
-- [ ] type:notion | matiere:droit des contrats L2 | sujet:la réforme du droit des contrats de 2016, ce qui a changé pour les étudiants
+- [x] type:notion | matiere:droit des contrats L2 | sujet:la cause du contrat, de l'article 1131 ancien à la réforme de 2016 (doublon avec la page déjà en ligne la-cause-en-droit.html, sautée par la routine du 17/07/2026)
+- [x] type:notion | matiere:droit des contrats L2 | sujet:les vices du consentement, l'erreur, le dol et la violence (doublon avec la page déjà en ligne les-vices-du-consentement.html, sautée par la routine du 17/07/2026)
+- [x] type:notion | matiere:droit des contrats L2 | sujet:la réforme du droit des contrats de 2016, ce qui a changé pour les étudiants (publié le 17/07/2026)
 - [ ] type:notion | matiere:droit des sociétés L3 | sujet:l'affectio societatis, la volonté de s'associer et ses conséquences
 - [x] type:arret | matiere:droit des sociétés L3 | sujet:l'arrêt Fruehauf (CA Paris, 22 mai 1965) et l'intérêt social face à l'intérêt des associés (publié le 15/07/2026)
 - [ ] type:notion | matiere:droit des sociétés L3 | sujet:la personnalité morale de la société, ce qu'elle change concrètement
