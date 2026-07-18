@@ -51,7 +51,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 ## Droit des biens L2
 
 - [x] matiere:droit des biens L2 | arret:Cass. civ. 3e, 1990, Empiètement | theme:la démolition imposée même pour un empiétement minime
-- [ ] matiere:droit des biens L2 | arret:Cass. civ. 1re, 2002, Trésor | theme:la propriété du trésor découvert
+- [x] matiere:droit des biens L2 | arret:Cass. civ. 1re, 2002, Trésor | theme:la propriété du trésor découvert
 
 ## Droit pénal L1
 
