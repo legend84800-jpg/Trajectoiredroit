@@ -85,8 +85,8 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/maj-penal-l2-s1-plan.pdf"] },
   "maj-penal-l2-s2": { nom: "Majeures préparées Droit pénal L2 S2", prix: 1299, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/maj-penal-l2-s2.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/maj-penal-l2-s2-plan.pdf"] },
-  "maj-biens-l2": { nom: "Majeures préparées Droit des biens L2", prix: 1299, blobs: ["https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/maj-biens-l2.pdf",
-      "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd/maj-biens-l2-plan.pdf"] },
+  "maj-biens-l2": { nom: "Majeures préparées Droit des biens L2", prix: 1299, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/maj-biens-l2.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/maj-biens-l2-plan.pdf"] },
   "maj-commercial-l3-s1": { nom: "Majeures préparées Droit commercial L3 S1", prix: 1299, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/maj-commercial-l3-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/maj-commercial-l3-s1-plan.pdf"] },
 
