@@ -34,13 +34,13 @@ Tu peux ajouter, retirer ou réordonner les lignes quand tu veux, depuis ton Mac
 - [x] type:notion | matiere:droit des contrats L2 | sujet:la cause du contrat, de l'article 1131 ancien à la réforme de 2016 (doublon avec la page déjà en ligne la-cause-en-droit.html, sautée par la routine du 17/07/2026)
 - [x] type:notion | matiere:droit des contrats L2 | sujet:les vices du consentement, l'erreur, le dol et la violence (doublon avec la page déjà en ligne les-vices-du-consentement.html, sautée par la routine du 17/07/2026)
 - [x] type:notion | matiere:droit des contrats L2 | sujet:la réforme du droit des contrats de 2016, ce qui a changé pour les étudiants (publié le 17/07/2026)
-- [ ] type:notion | matiere:droit des sociétés L3 | sujet:l'affectio societatis, la volonté de s'associer et ses conséquences
+- [x] type:notion | matiere:droit des sociétés L3 | sujet:l'affectio societatis, la volonté de s'associer et ses conséquences (publié le 20/07/2026)
 - [x] type:arret | matiere:droit des sociétés L3 | sujet:l'arrêt Fruehauf (CA Paris, 22 mai 1965) et l'intérêt social face à l'intérêt des associés (publié le 15/07/2026)
 - [ ] type:notion | matiere:droit des sociétés L3 | sujet:la personnalité morale de la société, ce qu'elle change concrètement
 - [ ] type:notion | matiere:procédure pénale L3 | sujet:la garde à vue, sa durée et les droits de la personne gardée à vue
 - [ ] type:notion | matiere:procédure pénale L3 | sujet:la présomption d'innocence et sa portée dans le procès pénal
 - [ ] type:notion | matiere:droit pénal général L1 | sujet:les trois éléments de l'infraction, légal, matériel et moral
-- [ ] type:arret | matiere:droit pénal général L1 | sujet:l'arrêt Laboube (Cass. crim., 13 décembre 1956) et l'exigence de discernement
+- [x] type:arret | matiere:droit pénal général L1 | sujet:l'arrêt Laboube (Cass. crim., 13 décembre 1956) et l'exigence de discernement (déjà publié le 19/07/2026, coche oubliée, corrigé par la routine du 20/07/2026)
 - [ ] type:notion | matiere:droit pénal général L1 | sujet:la tentative, du commencement d'exécution au désistement volontaire
 - [ ] type:notion | matiere:droit pénal général L1 | sujet:le principe de légalité criminelle, pas d'infraction sans texte
 - [x] type:arret | matiere:droit civil L1 | sujet:l'arrêt Perruche (Cass. ass. plén., 17 novembre 2000) et le préjudice de l'enfant né handicapé (déjà publié le 14/07/2026, coche oubliée, corrigé par la routine du 15/07/2026)
