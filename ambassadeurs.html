@@ -159,8 +159,22 @@
           </div>
         </div>
 
-        <div class="nav-item">
-          <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-live"/></svg>Stage en direct</a>
+        <div class="nav-item has-dropdown">
+          <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-live"/></svg>Stage en direct
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <button type="button" class="dropdown__item stage-teaser" aria-expanded="false" aria-controls="stageTeaserPanel">
+              <span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-live"/></svg></span>
+              <span><strong>Stage de méthode en direct</strong><small>3 séances · 149 €</small></span>
+            </button>
+            <div class="stage-teaser__panel" id="stageTeaserPanel">
+              <p>Trois séances en direct pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un vrai sujet travaillé à chaque fois. La prochaine session a lieu les 8, 9 et 10 septembre, pour 15 places.</p>
+            </div>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="stage-methode.html">Voir toutes les infos et réserver →</a>
+          </div>
         </div>
         <div class="nav-item">
           <a href="blog.html" class="nav-item__link"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-pen"/></svg>Blog</a>

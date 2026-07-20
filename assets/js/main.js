@@ -361,6 +361,12 @@
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       burger.innerHTML = open ? CLOSE_ICON : BURGER_ICON;
       document.body.style.overflow = open ? 'hidden' : '';
+      // Le bandeau d'urgence pousse le header sous y=0 tant qu'on n'a pas scrollé :
+      // on recale le panneau sur le vrai bas du header plutôt que sur --header-h fixe.
+      if (open) {
+        var headerEl = document.querySelector('.site-header');
+        if (headerEl) mobileNav.style.top = headerEl.getBoundingClientRect().bottom + 'px';
+      }
     });
     // Fermer en cliquant sur un lien
     mobileNav.querySelectorAll('a').forEach(function (a) {
@@ -374,36 +380,59 @@
     });
   }
 
-  // ----- 4. Urgency banner : countdown + dismiss -----
-  var banner = document.getElementById('urgencyBanner');
-  if (banner && !sessionStorage.getItem('urgencyDismissed')) {
-    banner.hidden = false;
-    var deadline = banner.getAttribute('data-deadline');
+  // ----- 4. Urgency banner : stage de droit pré-rentrée -----
+  // Construit en JS, comme le skip-link et la recherche plus haut, pour ne pas
+  // coller ce bloc dans les 138 pages HTML. Compte à rebours réel vers la
+  // clôture des inscriptions (27 août, cf. la FAQ de stage-methode.html) :
+  // jamais un faux compte à rebours qui repart à chaque visite. Masqué sur la
+  // page du stage elle-même, déjà entièrement consacrée à cette offre.
+  (function () {
+    var header = document.querySelector('.site-header');
+    if (!header || sessionStorage.getItem('urgencyDismissed')) return;
+    if (/stage-methode\.html/.test(window.location.pathname)) return;
+
+    var DEADLINE = new Date('2026-08-27T00:00:00').getTime();
+    if (Date.now() >= DEADLINE) return;
+
+    var banner = document.createElement('div');
+    banner.className = 'urgency-banner';
+    banner.id = 'urgencyBanner';
+    banner.innerHTML =
+      '<a class="urgency-banner__link" href="stage-methode.html#reserver">' +
+        '<span class="urgency-banner__dot" aria-hidden="true"></span>' +
+        '<span class="urgency-banner__label"><span class="urgency-banner__label-strong">Stage de droit</span>, pré-rentrée</span>' +
+        '<span class="urgency-banner__chip">du 8 au 10 septembre &middot; 15 places</span>' +
+        '<span class="urgency-banner__countdown-group">' +
+          '<span class="urgency-banner__countdown-label">Je ferme les inscriptions dans</span>' +
+          '<span class="urgency-banner__countdown" id="urgencyCountdown"></span>' +
+        '</span>' +
+        '<span class="urgency-banner__cta">Réserver ma place <span class="urgency-banner__cta-arrow" aria-hidden="true">→</span></span>' +
+      '</a>' +
+      '<button type="button" class="urgency-banner__close" aria-label="Fermer ce message" data-close-urgency>✕</button>';
+    header.parentNode.insertBefore(banner, header);
+
     var countdown = document.getElementById('urgencyCountdown');
-    if (deadline && countdown) {
-      var target = new Date(deadline).getTime();
-      var update = function () {
-        var diff = target - Date.now();
-        if (diff <= 0) {
-          countdown.textContent = 'terminée';
-          return;
-        }
-        var d = Math.floor(diff / 86400000);
-        var h = Math.floor((diff / 3600000) % 24);
-        var m = Math.floor((diff / 60000) % 60);
-        countdown.textContent = d + 'j ' + h + 'h ' + m + 'm';
-      };
-      update();
-      setInterval(update, 30000);
-    }
-    var closeBtn = banner.querySelector('[data-close-urgency]');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', function () {
-        banner.hidden = true;
-        sessionStorage.setItem('urgencyDismissed', '1');
-      });
-    }
-  }
+    var update = function () {
+      var diff = DEADLINE - Date.now();
+      if (diff <= 0) { banner.remove(); return; }
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff / 3600000) % 24);
+      var m = Math.floor((diff / 60000) % 60);
+      var texte;
+      if (d >= 1) texte = d + ' jour' + (d > 1 ? 's' : '');
+      else if (h >= 1) texte = h + ' h ' + m + ' min';
+      else texte = m + ' min';
+      countdown.textContent = texte;
+    };
+    update();
+    var urgencyTimer = setInterval(update, 30000);
+
+    banner.querySelector('[data-close-urgency]').addEventListener('click', function () {
+      clearInterval(urgencyTimer);
+      banner.remove();
+      sessionStorage.setItem('urgencyDismissed', '1');
+    });
+  })();
 
   // ----- 5. Exit-intent modal (desktop only, 1× par session, après engagement) -----
   // Conditions cumulées avant déclenchement :
@@ -490,6 +519,20 @@
       item._closeTimer = setTimeout(function () { item.classList.remove('open'); }, 300);
     });
   });
+
+  // ----- 7c. Accordéon "Stage en direct" : description au clic, sans navigation -----
+  var stageTeaser = document.querySelector('.stage-teaser');
+  if (stageTeaser) {
+    var stagePanel = document.getElementById(stageTeaser.getAttribute('aria-controls'));
+    if (stagePanel) {
+      stageTeaser.addEventListener('click', function (e) {
+        e.preventDefault();
+        var open = stagePanel.classList.toggle('is-open');
+        stageTeaser.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  }
+
   // Click extérieur ferme tous les dropdowns
   document.addEventListener('click', function (e) {
     if (e.target.closest('.has-dropdown')) return;
