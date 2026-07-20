@@ -620,8 +620,16 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .dropdown__icon--amber { background: var(--amber-bg); color: var(--amber); }
 .dropdown__icon--rose { background: var(--rose-bg); color: var(--rose); }
 
-/* Carte "Stage en direct" : bouton (pas un lien), ouvre une description au clic sans naviguer */
+/* Carte "Stage en direct" : boîte autonome (fond + coins arrondis sur elle-même,
+   pas sur le dropdown parent) pour que le bouton et sa description au clic
+   forment un seul bloc cohérent, quel que soit le navigateur. */
 .stage-teaser {
+  border: 1px solid rgba(244,63,94,.22);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--rose-bg);
+}
+.stage-teaser__trigger {
   width: 100%;
   border: none;
   background: none;
@@ -629,7 +637,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   text-align: left;
   cursor: pointer;
 }
-.stage-teaser::after {
+.stage-teaser__trigger::after {
   content: "";
   width: 8px; height: 8px;
   margin-left: auto;
@@ -639,7 +647,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   transform: rotate(45deg);
   transition: transform .2s ease;
 }
-.stage-teaser[aria-expanded="true"]::after {
+.stage-teaser__trigger[aria-expanded="true"]::after {
   transform: rotate(225deg);
 }
 .stage-teaser__panel {
@@ -650,7 +658,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 }
 .stage-teaser__panel.is-open {
   max-height: 240px;
-  padding: 2px 12px 14px;
+  padding: 0 12px 14px;
 }
 .stage-teaser__panel p {
   margin: 0;

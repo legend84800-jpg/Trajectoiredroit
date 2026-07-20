@@ -521,7 +521,7 @@
   });
 
   // ----- 7c. Accordéon "Stage en direct" : description au clic, sans navigation -----
-  var stageTeaser = document.querySelector('.stage-teaser');
+  var stageTeaser = document.querySelector('.stage-teaser__trigger');
   if (stageTeaser) {
     var stagePanel = document.getElementById(stageTeaser.getAttribute('aria-controls'));
     if (stagePanel) {
