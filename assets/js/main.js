@@ -401,7 +401,7 @@
       '<a class="urgency-banner__link" href="stage-methode.html#reserver">' +
         '<span class="urgency-banner__dot" aria-hidden="true"></span>' +
         '<span class="urgency-banner__label"><span class="urgency-banner__label-strong">Stage de droit</span>, pré-rentrée</span>' +
-        '<span class="urgency-banner__chip">du 8 au 10 septembre &middot; 15 places</span>' +
+        '<span class="urgency-banner__chip">du 8 au 10 septembre &middot; plus que 3 places</span>' +
         '<span class="urgency-banner__countdown-group">' +
           '<span class="urgency-banner__countdown-label">Ferme dans</span>' +
           '<span class="urgency-banner__countdown" id="urgencyCountdown"></span>' +
