@@ -520,17 +520,18 @@
     });
   });
 
-  // ----- 7c. Accordéon "Stage en direct" : description au clic, sans navigation -----
+  // ----- 7c. Carte "Stage en direct" : décompte (desktop + mobile) + accordéon desktop -----
+  // Même échéance que la bannière d'urgence (27 août, cf. FAQ stage-methode.html)
+  var stageCountdownEls = document.querySelectorAll('.stage-teaser__countdown');
+  if (stageCountdownEls.length) {
+    var stageDays = Math.floor((new Date('2026-08-27T00:00:00').getTime() - Date.now()) / 86400000);
+    var stageCountdownText = stageDays >= 1
+      ? 'Ferme dans ' + stageDays + ' jour' + (stageDays > 1 ? 's' : '')
+      : 'Dernier jour';
+    stageCountdownEls.forEach(function (el) { el.textContent = stageCountdownText; });
+  }
   var stageTeaser = document.querySelector('.stage-teaser__trigger');
   if (stageTeaser) {
-    // Même échéance que la bannière d'urgence (27 août, cf. FAQ stage-methode.html)
-    var stageCountdownEl = document.getElementById('stageTeaserCountdown');
-    if (stageCountdownEl) {
-      var stageDays = Math.floor((new Date('2026-08-27T00:00:00').getTime() - Date.now()) / 86400000);
-      stageCountdownEl.textContent = stageDays >= 1
-        ? 'Ferme dans ' + stageDays + ' jour' + (stageDays > 1 ? 's' : '')
-        : 'Dernier jour';
-    }
     var stagePanel = document.getElementById(stageTeaser.getAttribute('aria-controls'));
     if (stagePanel) {
       stageTeaser.addEventListener('click', function (e) {

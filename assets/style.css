@@ -925,6 +925,19 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   border-bottom: 1px solid var(--border);
   color: var(--ink);
 }
+/* Carte "Stage en direct" du menu mobile : même offre flash que la version
+   desktop (prix barré, badge -50 %, décompte), pas juste un lien texte. */
+.mobile-nav a.mobile-nav__stage {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.mobile-nav__stage .nav-icon { margin-top: 3px; flex-shrink: 0 }
+.mobile-nav__stage-main { flex: 1; min-width: 0 }
+.mobile-nav__stage-title { display: block; font-size: 1.1rem }
+.mobile-nav__stage .stage-teaser__price { margin-top: 5px }
+.mobile-nav__stage .stage-teaser__price-new { font-size: 1rem }
+.mobile-nav__stage .stage-teaser__countdown { display: block; margin-top: 5px; font-size: .82rem }
 
 /* ===== 9. URGENCY BANNER =====
    Construit en JS (main.js), pas collé dans les 138 pages HTML : voir le
