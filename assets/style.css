@@ -85,6 +85,9 @@
 
 /* ===== 2. RESET ===== */
 *, *::before, *::after { box-sizing: border-box }
+/* Sans ça, chaque lien/bouton flashe en bleu translucide au tap sur mobile
+   (surbrillance tactile par défaut du navigateur, jamais désactivée ici). */
+html { -webkit-tap-highlight-color: transparent }
 html { scroll-behavior: smooth }
 html, body { height: 100% }
 body {
@@ -663,9 +666,14 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 }
 .stage-teaser__price {
   display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+}
+.stage-teaser__price-row {
+  display: flex;
   align-items: center;
   gap: 7px;
-  margin-top: 3px;
 }
 .stage-teaser__price-old {
   font-size: .78rem;
@@ -992,7 +1000,20 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   border: 1px solid rgba(244,63,94,.55);
 }
 .urgency-banner__countdown-label { font-weight: 500; opacity: .92 }
-.urgency-banner__countdown { font-variant-numeric: tabular-nums; font-weight: 700 }
+.urgency-banner__countdown {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.urgency-banner__countdown-sep { opacity: .55 }
+.urgency-banner__countdown-seg small {
+  font-size: .72em;
+  font-weight: 500;
+  opacity: .8;
+  margin-left: 1px;
+}
 .urgency-banner__cta {
   white-space: nowrap;
   text-decoration: underline;

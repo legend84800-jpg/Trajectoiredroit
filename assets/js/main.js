@@ -403,7 +403,7 @@
         '<span class="urgency-banner__label"><span class="urgency-banner__label-strong">Stage de droit</span>, pré-rentrée</span>' +
         '<span class="urgency-banner__chip">du 8 au 10 septembre &middot; 15 places</span>' +
         '<span class="urgency-banner__countdown-group">' +
-          '<span class="urgency-banner__countdown-label">Je ferme les inscriptions dans</span>' +
+          '<span class="urgency-banner__countdown-label">Ferme dans</span>' +
           '<span class="urgency-banner__countdown" id="urgencyCountdown"></span>' +
         '</span>' +
         '<span class="urgency-banner__cta">Réserver ma place <span class="urgency-banner__cta-arrow" aria-hidden="true">→</span></span>' +
@@ -411,21 +411,24 @@
       '<button type="button" class="urgency-banner__close" aria-label="Fermer ce message" data-close-urgency>✕</button>';
     header.parentNode.insertBefore(banner, header);
 
+    // Décompte automatique réel (jour/heure/min/sec, tique chaque seconde),
+    // toujours vers la même échéance DEADLINE ci-dessus, jamais un faux
+    // compte à rebours qui repart à chaque visite.
     var countdown = document.getElementById('urgencyCountdown');
+    var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
+    var seg = function (n, unit) { return '<span class="urgency-banner__countdown-seg">' + n + '<small>' + unit + '</small></span>'; };
+    var sep = '<span class="urgency-banner__countdown-sep">:</span>';
     var update = function () {
       var diff = DEADLINE - Date.now();
       if (diff <= 0) { banner.remove(); return; }
       var d = Math.floor(diff / 86400000);
       var h = Math.floor((diff / 3600000) % 24);
       var m = Math.floor((diff / 60000) % 60);
-      var texte;
-      if (d >= 1) texte = d + ' jour' + (d > 1 ? 's' : '');
-      else if (h >= 1) texte = h + ' h ' + m + ' min';
-      else texte = m + ' min';
-      countdown.textContent = texte;
+      var s = Math.floor((diff / 1000) % 60);
+      countdown.innerHTML = seg(d, 'j') + sep + seg(pad(h), 'h') + sep + seg(pad(m), 'min') + sep + seg(pad(s), 's');
     };
     update();
-    var urgencyTimer = setInterval(update, 30000);
+    var urgencyTimer = setInterval(update, 1000);
 
     banner.querySelector('[data-close-urgency]').addEventListener('click', function () {
       clearInterval(urgencyTimer);
