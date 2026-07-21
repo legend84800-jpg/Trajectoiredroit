@@ -57,4 +57,4 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 
 - [x] matiere:droit pénal L1 | arret:Cass. crim., 1956, Laboube | theme:l'exigence de discernement du mineur en droit pénal
 - [x] matiere:droit pénal L1 | arret:Cass. crim., 1986, Perdereau | theme:la tentative sur une infraction impossible
-- [ ] matiere:droit pénal L1 | arret:Cass. crim., 1962, Lacour | theme:la distinction entre acte préparatoire et commencement d'exécution
+- [x] matiere:droit pénal L1 | arret:Cass. crim., 1962, Lacour | theme:la distinction entre acte préparatoire et commencement d'exécution
