@@ -391,7 +391,7 @@
     if (!header || sessionStorage.getItem('urgencyDismissed')) return;
     if (/stage-methode\.html/.test(window.location.pathname)) return;
 
-    var DEADLINE = new Date('2026-08-27T00:00:00').getTime();
+    var DEADLINE = new Date('2026-07-26T00:00:00').getTime();
     if (Date.now() >= DEADLINE) return;
 
     var banner = document.createElement('div');
@@ -527,7 +527,7 @@
   // Même échéance que la bannière d'urgence (27 août, cf. FAQ stage-methode.html)
   var stageCountdownEls = document.querySelectorAll('.stage-teaser__countdown');
   if (stageCountdownEls.length) {
-    var stageDays = Math.floor((new Date('2026-08-27T00:00:00').getTime() - Date.now()) / 86400000);
+    var stageDays = Math.floor((new Date('2026-07-26T00:00:00').getTime() - Date.now()) / 86400000);
     var stageCountdownText = stageDays >= 1
       ? 'Ferme dans ' + stageDays + ' jour' + (stageDays > 1 ? 's' : '')
       : 'Dernier jour';
