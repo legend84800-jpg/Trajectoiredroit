@@ -419,6 +419,13 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .card--feature p { font-size: .95rem }
 
 /* ===== 8. HEADER (sticky blanc) ===== */
+/* user-select:none sur toute la chrome de nav (header, bannière, menu mobile) :
+   un clic qui dérape en léger glissé (trackpad, tactile) sélectionnait le
+   texte et affichait la surbrillance bleue native du navigateur. */
+.site-header, .urgency-banner, .mobile-nav {
+  -webkit-user-select: none;
+  user-select: none;
+}
 .site-header {
   position: sticky; top: 0; z-index: 50;
   background: rgba(255,255,255,.95);
