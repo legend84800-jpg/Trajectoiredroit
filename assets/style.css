@@ -977,6 +977,15 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   font-weight: 600;
   line-height: 1.3;
 }
+.urgency-banner__link:hover,
+.urgency-banner__link:focus,
+.urgency-banner__link:focus-visible {
+  /* la règle globale a:hover { color: var(--blue-700) } est plus spécifique
+     que .urgency-banner__link seul et gagnait la cascade : le lien entier
+     (et tout ce qui hérite sa couleur, texte du CTA compris) virait au
+     bleu (bleu ciel en mode sombre) au survol/clic au lieu de rester blanc. */
+  color: #fff;
+}
 .urgency-banner__link:focus-visible {
   outline: 2px solid var(--gold-line); outline-offset: -2px; border-radius: 4px;
 }
