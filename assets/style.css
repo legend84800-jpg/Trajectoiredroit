@@ -650,6 +650,41 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .stage-teaser__trigger[aria-expanded="true"]::after {
   transform: rotate(225deg);
 }
+.stage-teaser__main { flex: 1; min-width: 0 }
+.stage-teaser__badge {
+  flex-shrink: 0;
+  background: var(--rose);
+  color: #fff;
+  font-size: .66rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  letter-spacing: .02em;
+}
+.stage-teaser__price {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 3px;
+}
+.stage-teaser__price-old {
+  font-size: .78rem;
+  color: var(--muted);
+  text-decoration: line-through;
+}
+.stage-teaser__price-new {
+  font-family: var(--font-display);
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--rose);
+}
+.stage-teaser__countdown {
+  display: block;
+  margin-top: 4px;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--rose);
+}
 .stage-teaser__panel {
   max-height: 0;
   overflow: hidden;
