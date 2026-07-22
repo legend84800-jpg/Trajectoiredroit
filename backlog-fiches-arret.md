@@ -19,6 +19,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 - [x] matiere:droit administratif L2 | arret:CE, 1971, Ville Nouvelle Est | theme:le contrôle du bilan coût-avantages dans l'expropriation
 - [x] matiere:droit administratif L2 | arret:CE, 2006, Société KPMG | theme:le principe de sécurité juridique en droit administratif
 - [x] matiere:droit administratif L2 | arret:CE, 1961, Magnier | theme:le service public géré par une personne privée
+- [x] matiere:droit administratif L2 | arret:CE, Sect., 1963, Narcy | theme:les trois critères cumulatifs du service public géré par une personne privée (ajouté et publié le 2026-07-22, backlog dédié épuisé, arrêt repéré dans les dossiers élèves)
 
 ## Droit constitutionnel L1
 
