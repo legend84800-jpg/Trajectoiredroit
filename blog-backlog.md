@@ -36,7 +36,7 @@ Tu peux ajouter, retirer ou réordonner les lignes quand tu veux, depuis ton Mac
 - [x] type:notion | matiere:droit des contrats L2 | sujet:la réforme du droit des contrats de 2016, ce qui a changé pour les étudiants (publié le 17/07/2026)
 - [x] type:notion | matiere:droit des sociétés L3 | sujet:l'affectio societatis, la volonté de s'associer et ses conséquences (publié le 20/07/2026)
 - [x] type:arret | matiere:droit des sociétés L3 | sujet:l'arrêt Fruehauf (CA Paris, 22 mai 1965) et l'intérêt social face à l'intérêt des associés (publié le 15/07/2026)
-- [ ] type:notion | matiere:droit des sociétés L3 | sujet:la personnalité morale de la société, ce qu'elle change concrètement
+- [x] type:notion | matiere:droit des sociétés L3 | sujet:la personnalité morale de la société, ce qu'elle change concrètement (publié le 22/07/2026)
 - [ ] type:notion | matiere:procédure pénale L3 | sujet:la garde à vue, sa durée et les droits de la personne gardée à vue
 - [ ] type:notion | matiere:procédure pénale L3 | sujet:la présomption d'innocence et sa portée dans le procès pénal
 - [ ] type:notion | matiere:droit pénal général L1 | sujet:les trois éléments de l'infraction, légal, matériel et moral
