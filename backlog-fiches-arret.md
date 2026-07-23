@@ -20,6 +20,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 - [x] matiere:droit administratif L2 | arret:CE, 2006, Société KPMG | theme:le principe de sécurité juridique en droit administratif
 - [x] matiere:droit administratif L2 | arret:CE, 1961, Magnier | theme:le service public géré par une personne privée
 - [x] matiere:droit administratif L2 | arret:CE, Sect., 1963, Narcy | theme:les trois critères cumulatifs du service public géré par une personne privée (ajouté et publié le 2026-07-22, backlog dédié épuisé, arrêt repéré dans les dossiers élèves)
+- [x] matiere:droit administratif L2 | arret:CE, 1903, Terrier | theme:l'extension du droit administratif au service public des collectivités locales (ajouté et publié le 2026-07-23, backlog entièrement épuisé sur toutes les matières, arrêt fondateur repéré dans les fiches TJD "Grands arrêts et notions-clés", sourcé pour le reste sur le web croisé, Légifrance/conseil-etat.fr et revuegeneraledudroit.eu)
 
 ## Droit constitutionnel L1
 
