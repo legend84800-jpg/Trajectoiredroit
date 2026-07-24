@@ -111,15 +111,32 @@ function genererToken(produitId, blobIndex, expiry, secret) {
   return crypto.createHmac("sha256", secret).update(message).digest("hex");
 }
 
+// Le libellé du fichier principal dépend de la famille de produit (identifiée
+// par le préfixe de son nom), faute de quoi le nom de fichier brut fuitait
+// dans l'email du client (ex: "fiche da l2 s1" au lieu de "la fiche complète").
+function libelleFichierPrincipal(nomProduit) {
+  if (nomProduit.startsWith("Cours complet")) return "le cours complet";
+  if (nomProduit.startsWith("Majeures préparées")) return "les majeures préparées";
+  if (nomProduit.startsWith("Fiche complète")) return "la fiche complète";
+  if (nomProduit.startsWith("Fiches d'arrêt")) return "les fiches d'arrêt";
+  return "le PDF principal";
+}
+
 function construireLiensEmail(produitId, produit, secret, origin) {
   const expiry = Math.floor(Date.now() / 1000) + 48 * 3600;
+  const suffixes = {
+    flashcards: "les flashcards",
+    qcm: "le QCM",
+    anki: "le deck Anki",
+    cartesmentales: "la carte mentale",
+    plan: "le plan du cours",
+  };
   return produit.blobs.map((blobUrl, i) => {
     const sig = genererToken(produitId, i, expiry, secret);
     const url = `${origin}/api/telecharger?id=${encodeURIComponent(produitId)}&b=${i}&exp=${expiry}&sig=${sig}`;
-    const suffixes = { flashcards: "Flashcards", qcm: "QCM", anki: "Deck Anki", cartesmentales: "Cartes mentales" };
     const brut = blobUrl.split("/").pop().replace(/\.(pdf|apkg)$/i, "");
     const dernierMot = brut.split("-").pop();
-    const nom = suffixes[dernierMot] || brut.replace(/-/g, " ");
+    const nom = suffixes[dernierMot] || libelleFichierPrincipal(produit.nom);
     return { nom, url };
   });
 }
@@ -192,7 +209,7 @@ async function envoyerRelancePanier(email, produits, checkoutUrl, brevoKey) {
           </p>
         </td></tr>
         <tr><td style="background:#f0f0f0;padding:16px 32px;">
-          <p style="font-size:12px;color:#999;margin:0;">TrajectoireDroit &mdash; La référence francophone en droit</p>
+          <p style="font-size:12px;color:#999;margin:0;">TrajectoireDroit, la référence francophone en droit</p>
         </td></tr>
       </table>
     </td></tr>
@@ -288,19 +305,35 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
         <tr><td style="padding:32px;">
           <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 16px;">Ton achat est confirmé !</p>
           <p style="font-size:15px;color:#333;margin:0 0 8px;">
-            Merci pour ton achat : <strong>${nomsAchetes}</strong>.
+            Tu viens d'acheter <strong>${nomsAchetes}</strong>, et tes PDF sont prêts juste en dessous.
           </p>
           ${ligneCodePromo}
           <p style="font-size:15px;color:#333;margin:0 0 24px;">
-            Clique sur les boutons ci-dessous pour télécharger tes PDF. Les liens sont valables 48 heures.
+            Clique sur les liens pour les télécharger. Ils restent valables 48 heures, donc mieux vaut les enregistrer sur ton ordinateur ou ton téléphone tout de suite.
           </p>
           ${boutons}
-          <p style="font-size:13px;color:#777;margin:24px 0 0;">
-            Si un lien expire, réponds à cet email et je te l'envoie de nouveau.
+          <p style="font-size:13px;color:#777;margin:24px 0 16px;">
+            Si un lien a expiré, tu peux me répondre directement à cet email, je t'envoie tes PDF de nouveau sans attendre.
           </p>
+          <p style="font-size:13px;color:#777;margin:0 0 16px;">
+            Au moindre problème n'hésite pas à me contacter par mail, à l'adresse suivante julien.prof1@gmail.com, ou par WhatsApp au numéro suivant +33 6 05 41 85 21.
+          </p>
+          <p style="font-size:13px;color:#777;margin:0 0 16px;">
+            En outre, mon but est de créer les meilleures fiches de droit en France. Par conséquent, je m'efforce de constamment les améliorer.
+          </p>
+          <p style="font-size:13px;color:#777;margin:0 0 16px;">
+            Ainsi, à la moindre remarque, que ce soit sur le fond (exemple : pas assez développé pour toi, ou au contraire trop, il manque des exemples etc.) ou sur la forme (pas assez pédagogue, trop développé, pas assez de couleur, etc.) n'hésite pas à me contacter.
+          </p>
+          <p style="font-size:13px;color:#777;margin:0 0 16px;">
+            En échange, je te renvoie la nouvelle fiche améliorée par mes soins, et si tes commentaires sont réellement détaillés et pertinents, je t'offre une « fiche de citations » en cadeau, très utile pour tes commentaires et dissertations.
+          </p>
+          <p style="font-size:13px;color:#777;margin:0 0 16px;">
+            Dernière chose, j'ai mis un temps long à rédiger ces fiches. Donc je te fais confiance, garde ces fiches pour toi et ne les divulgue pas à autrui, je t'en remercie.
+          </p>
+          <p style="font-size:15px;color:#1a237e;font-weight:700;margin:0;">Julien</p>
         </td></tr>
         <tr><td style="background:#f0f0f0;padding:16px 32px;">
-          <p style="font-size:12px;color:#999;margin:0;">TrajectoireDroit &mdash; La référence francophone en droit</p>
+          <p style="font-size:12px;color:#999;margin:0;">TrajectoireDroit, la référence francophone en droit</p>
         </td></tr>
       </table>
     </td></tr>
@@ -308,7 +341,7 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
 </body>
 </html>`;
 
-  const texte = `Ton achat est confirmé : ${nomsAchetes}.\n\nTélécharge tes PDF ici :\n${liens.map(l => l.url).join("\n")}\n\nLiens valables 48 heures.`;
+  const texte = `Tu viens d'acheter ${nomsAchetes}, et tes PDF sont prêts.\n\nTélécharge-les ici :\n${liens.map(l => `${l.nom} : ${l.url}`).join("\n")}\n\nLiens valables 48 heures. Si l'un d'eux a expiré, réponds directement à cet email.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com ou par WhatsApp au +33 6 05 41 85 21.\n\nMon but est de créer les meilleures fiches de droit en France, donc à la moindre remarque sur le fond ou sur la forme, n'hésite pas à me contacter. Je te renvoie la fiche améliorée, et si tes commentaires sont détaillés et pertinents, je t'offre une fiche de citations en cadeau.\n\nJ'ai mis un temps long à rédiger ces fiches, garde-les pour toi et ne les divulgue pas à autrui, merci.\n\nJulien, TrajectoireDroit`;
 
   const payload = {
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
