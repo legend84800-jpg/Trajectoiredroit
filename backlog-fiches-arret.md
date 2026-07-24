@@ -64,3 +64,11 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 ## Droit du travail L3
 
 - [x] matiere:droit du travail L3 | arret:Cass. Ass. plén., 2014, Baby Loup | theme:la validité d'une clause de neutralité religieuse dans le règlement intérieur d'une entreprise privée (ajouté et publié le 2026-07-24, backlog entièrement épuisé sur toutes les matières, aucune requête Search Console en position 5-15, grand arrêt repéré dans les dossiers élèves droit du travail L3, sourcé et croisé avec le web, Légifrance/JCP E/Le Droit Ouvrier, matière encore non couverte par le site)
+
+## Droit des sociétés L3
+
+- [ ] matiere:droit des sociétés L3 | arret:Cass. crim., 2020, Sté Iron Mountain (ex-Intradis) | theme:la transmission de la responsabilité pénale de la société absorbée à la société absorbante en cas de fusion (repéré le 2026-07-24 pendant la recherche de secours, candidat non retenu ce jour au profit de Baby Loup, source dans les dossiers élèves droit des sociétés L3 TD S6)
+
+## Procédure civile L3
+
+- [ ] matiere:procédure civile L3 | arret:Cass. ch. mixte, 2006, Cesareo | theme:le principe de concentration des moyens, une partie doit présenter dès l'instance initiale tous les moyens de nature à fonder sa prétention (repéré le 2026-07-24 pendant la recherche de secours, candidat non retenu ce jour au profit de Baby Loup, source dans les dossiers élèves procédure civile L3)
