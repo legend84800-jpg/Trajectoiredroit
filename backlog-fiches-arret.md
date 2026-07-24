@@ -60,3 +60,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 - [x] matiere:droit pénal L1 | arret:Cass. crim., 1956, Laboube | theme:l'exigence de discernement du mineur en droit pénal
 - [x] matiere:droit pénal L1 | arret:Cass. crim., 1986, Perdereau | theme:la tentative sur une infraction impossible
 - [x] matiere:droit pénal L1 | arret:Cass. crim., 1962, Lacour | theme:la distinction entre acte préparatoire et commencement d'exécution
+
+## Droit du travail L3
+
+- [x] matiere:droit du travail L3 | arret:Cass. Ass. plén., 2014, Baby Loup | theme:la validité d'une clause de neutralité religieuse dans le règlement intérieur d'une entreprise privée (ajouté et publié le 2026-07-24, backlog entièrement épuisé sur toutes les matières, aucune requête Search Console en position 5-15, grand arrêt repéré dans les dossiers élèves droit du travail L3, sourcé et croisé avec le web, Légifrance/JCP E/Le Droit Ouvrier, matière encore non couverte par le site)
