@@ -67,7 +67,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 
 ## Droit des sociétés L3
 
-- [ ] matiere:droit des sociétés L3 | arret:Cass. crim., 2020, Sté Iron Mountain (ex-Intradis) | theme:la transmission de la responsabilité pénale de la société absorbée à la société absorbante en cas de fusion (repéré le 2026-07-24 pendant la recherche de secours, candidat non retenu ce jour au profit de Baby Loup, source dans les dossiers élèves droit des sociétés L3 TD S6)
+- [x] matiere:droit des sociétés L3 | arret:Cass. crim., 2020, Sté Iron Mountain (ex-Intradis) | theme:la transmission de la responsabilité pénale de la société absorbée à la société absorbante en cas de fusion (publié le 2026-07-25, sourcé sur le texte intégral officiel dans les dossiers élèves droit des sociétés L3 TD S6 et croisé avec le web, Légifrance/Dalloz/Lexbase)
 
 ## Procédure civile L3
 
