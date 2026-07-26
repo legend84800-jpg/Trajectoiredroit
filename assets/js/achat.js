@@ -33,6 +33,10 @@
     // Attribution capturée par main.js à la première page vue de la session,
     // pour relier chaque vente à sa page et sa source d'origine.
     corps.landingPage = sessionStorage.getItem('tjd_landing_page') || window.location.pathname.replace(/^\//, '');
+    // Page réellement en cours au moment du clic (peut différer de la landing page
+    // si le visiteur a navigué avant d'acheter) : sert de cancel_url pour ne pas
+    // renvoyer tout le monde vers formations.html en cas d'abandon du paiement.
+    corps.pageActuelle = window.location.pathname.replace(/^\//, '') + window.location.hash;
     var referrerSession = sessionStorage.getItem('tjd_referrer');
     if (referrerSession) corps.referrer = referrerSession;
     ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (cle) {
@@ -87,4 +91,38 @@
     e.preventDefault();
     tjdAcheter(produitId, btn);
   });
+
+  // Total dynamique de l'order bump : le libellé du bouton reflète le prix réel
+  // dès que la case est cochée, au lieu de garder un prix fixe qui ne correspond
+  // plus à ce qui sera réellement facturé sur Stripe.
+  function euroVersCentimes(txt) {
+    var m = txt && txt.match(/([\d]+)[,.]?(\d{0,2})\s*€/);
+    if (!m) return null;
+    return parseInt(m[1], 10) * 100 + parseInt((m[2] || '0').padEnd(2, '0'), 10);
+  }
+  function centimesVersEuro(c) {
+    return (c / 100).toFixed(2).replace('.', ',') + ' €';
+  }
+  function initTotauxBump() {
+    document.querySelectorAll('[data-tjd-bump-checkbox]').forEach(function (btn) {
+      var checkboxId = btn.getAttribute('data-tjd-bump-checkbox');
+      var checkbox = checkboxId ? document.getElementById(checkboxId) : null;
+      if (!checkbox) return;
+      var label = checkbox.closest('label');
+      var prixBumpCentimes = euroVersCentimes(label ? label.textContent : '');
+      var texteBase = btn.textContent;
+      var prixBaseCentimes = euroVersCentimes(texteBase);
+      if (prixBumpCentimes == null || prixBaseCentimes == null) return;
+      var prefixe = texteBase.replace(/[\d]+[,.]?\d{0,2}\s*€\s*$/, '').replace(/[·\-–:]\s*$/, '').trim();
+      checkbox.addEventListener('change', function () {
+        var total = prixBaseCentimes + (checkbox.checked ? prixBumpCentimes : 0);
+        btn.textContent = prefixe + ' · ' + centimesVersEuro(total);
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTotauxBump);
+  } else {
+    initTotauxBump();
+  }
 })();

@@ -152,6 +152,10 @@ module.exports = async (req, res) => {
   const tronquer = (v, max) => (typeof v === "string" ? v.trim().slice(0, max) : "");
   const landingPage = tronquer(corps.landingPage, 200);
   const referrer = tronquer(corps.referrer, 200);
+  // Chemin relatif uniquement (lettres/chiffres/tirets/slash/point/ancre) : jamais une URL
+  // absolue, pour ne pas transformer cancel_url en redirection ouverte vers un autre domaine.
+  const pageActuelleBrute = tronquer(corps.pageActuelle, 200);
+  const pageActuelle = /^[a-z0-9/_-]+\.html(#[a-z0-9_-]+)?$/i.test(pageActuelleBrute) ? pageActuelleBrute : "";
   const utmSource = tronquer(corps.utm_source, 100);
   const utmMedium = tronquer(corps.utm_medium, 100);
   const utmCampaign = tronquer(corps.utm_campaign, 100);
@@ -176,7 +180,7 @@ module.exports = async (req, res) => {
     mode: "payment",
     allow_promotion_codes: "true",
     success_url: `${origin}/merci-achat.html?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${origin}/formations.html`,
+    cancel_url: pageActuelle ? `${origin}/${pageActuelle}` : `${origin}/formations.html`,
     // Expiration raccourcie à 2h (au lieu des 24h par défaut Stripe) pour que la
     // relance de panier abandonné (voir stripe-webhook.js, event checkout.session.expired)
     // puisse partir le jour même plutôt que le lendemain.
