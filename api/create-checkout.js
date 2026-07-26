@@ -156,7 +156,9 @@ module.exports = async (req, res) => {
   const idsAchetes = bump ? [produitId, bumpId] : [produitId];
 
   const params = new URLSearchParams({
-    "payment_method_types[0]": "card",
+    // Pas de payment_method_types forcé : Stripe active les moyens de paiement
+    // dynamiques du dashboard (carte, Link, Apple Pay, Google Pay, PayPal si activé),
+    // essentiels pour des étudiants qui n'ont pas toujours de CB à leur nom.
     "line_items[0][price_data][currency]": "eur",
     "line_items[0][price_data][unit_amount]": String(produit.prix),
     "line_items[0][price_data][product_data][name]": produit.nom,

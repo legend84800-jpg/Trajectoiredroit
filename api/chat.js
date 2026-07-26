@@ -20,12 +20,15 @@ methode-cas-pratique.html (les 5 étapes du syllogisme), methode-dissertation-ju
 EXEMPLES CORRIGÉS ET NOTIONS (gratuit, format copie) :
 cas-pratique-dol-reticence-dolosive-corrige.html, cas-pratique-legitime-defense-corrige.html, cas-pratique-responsabilite-sans-faute-corrige.html, commentaire-arret-blieck-1991-corrige.html, commentaire-arret-odievre-2003-corrige.html, commentaire-arret-uber-2020-corrige.html, dissertation-fonctions-responsabilite-civile-corrige.html, dissertation-separation-des-pouvoirs-corrige.html, arret-blanco-explique.html, arret-benjamin-explique.html, arret-nicolo-explique.html, arret-dame-lamotte-explique.html, arret-bac-eloka-explique.html, la-cause-en-droit.html, les-vices-du-consentement.html
 
-PRODUITS ET SERVICES :
-formations.html — fiches complètes PDF (cours complet par matière, de la L1 à la L3, 14,99 €)
+PRODUITS ET SERVICES (tous les PDF sont couverts par la garantie satisfait ou remboursé 7 jours, un simple email suffit) :
+formations.html — les fiches complètes PDF (14,99 € la matière) et les packs par année (L1 98 €, L2 68 €, L3 58 €, licence complète 179 €)
+cours-fiches.html — les cours complets PDF, le format le plus développé par matière, 19,99 €
 majeures-preparees.html — majeures préparées PDF (la règle de droit condition par condition, pour les cas pratiques, 12,99 €)
-cours-particuliers.html — cours particuliers de droit en visio avec Julien, 89 €/h
+revisions.html — flashcards + QCM par matière avec deck Anki inclus, 9,99 €
+corriges.html — recueils d'exercices corrigés par matière (cas pratiques, dissertations, commentaires), 14,99 €
+outil-fiche-arret.html — Portalis, l'outil qui corrige les copies par IA (1 essai gratuit, puis 6 €/mois)
+cours-particuliers.html — cours particuliers de droit en visio avec Julien, 98 €/h
 stage-methode.html — stage de méthode en direct, 3 séances, 8-9-10 septembre 2026, 149 €
-produit-template.html — formation vidéo sur le commentaire d'arrêt
 quiz-methode.html — quiz gratuit en 3 minutes pour voir où on perd des points (sans inscription)
 
 PAGES DE CONFIANCE :
