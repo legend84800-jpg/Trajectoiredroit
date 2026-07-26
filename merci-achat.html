@@ -28,11 +28,13 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-SGBDDYMHMF');
-    gtag('event', 'purchase', { event_category: 'ecommerce' });
+    // L'évènement purchase part plus bas, une fois le montant et les produits
+    // connus via /api/session-info (voir le script en fin de page).
   </script>
   <!-- Matomo -->
   <script>
     var _paq = window._paq = window._paq || [];
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     (function() {
@@ -325,19 +327,45 @@
     var sessionId = new URLSearchParams(window.location.search).get('session_id');
     if (!sessionId) return;
 
+    // Dédup : un rechargement de cette page ne doit pas recompter la vente,
+    // ni dans GA4 (transaction_id), ni dans Matomo, ni dans les logs.
+    var dejaEnvoye = sessionStorage.getItem('tjd_purchase_envoye_' + sessionId);
+
+    function envoyerMesures(d) {
+      if (dejaEnvoye) return;
+      sessionStorage.setItem('tjd_purchase_envoye_' + sessionId, '1');
+
+      if (d && d.montant != null && typeof window.gtag === 'function') {
+        gtag('event', 'purchase', {
+          transaction_id: sessionId,
+          value: d.montant,
+          currency: d.devise || 'EUR',
+          items: (d.produitIds || []).map(function (id) { return { item_id: id }; }),
+        });
+      }
+      if (d && d.montant != null && window._paq) {
+        // trackEcommerceOrder alimente le rapport Ecommerce de Matomo (revenu,
+        // panier), sans avoir besoin de créer un objectif dans l'interface.
+        window._paq.push(['trackEcommerceOrder', sessionId, d.montant]);
+      }
+    }
+
     function envoyerPurchase() {
       fetch('/api/session-info?session_id=' + encodeURIComponent(sessionId))
         .then(function (r) { return r.json(); })
         .then(function (d) {
-          if (d && d.montant != null) {
+          envoyerMesures(d);
+          if (d && d.montant != null && typeof window.fbq === 'function') {
             fbq('track', 'Purchase', { value: d.montant, currency: d.devise || 'EUR' }, { eventID: sessionId });
           }
         })
         .catch(function () {});
     }
 
-    // Le pixel se charge après consentement (cookie-consent.js), potentiellement
+    // Le pixel Meta se charge après consentement (cookie-consent.js), potentiellement
     // juste après ce script si le visiteur accepte la bannière sur cette page.
+    // GA4 et Matomo n'en dépendent pas : on les envoie dès que le montant est connu,
+    // sans attendre fbq (sinon un refus de cookies laisserait le funnel muet).
     var tentatives = 0;
     var attente = setInterval(function () {
       tentatives++;
@@ -346,6 +374,11 @@
         envoyerPurchase();
       } else if (tentatives > 20) {
         clearInterval(attente);
+        // Pas de pixel Meta (cookies refusés) : on envoie quand même GA4 et Matomo.
+        fetch('/api/session-info?session_id=' + encodeURIComponent(sessionId))
+          .then(function (r) { return r.json(); })
+          .then(envoyerMesures)
+          .catch(function () {});
       }
     }, 250);
   })();

@@ -3,6 +3,21 @@
    Initialisations communes à toutes les pages.
    ========================================================= */
 
+/* ----- ATTRIBUTION : landing page, referrer et UTM de la session -----
+   Capturés une seule fois par session (première page vue), pour que chaque
+   vente et chaque lead puissent être reliés à la page et à la source qui les
+   ont amenés (voir achat.js et api/create-checkout.js pour la suite). */
+(function () {
+  if (sessionStorage.getItem('tjd_landing_page')) return;
+  sessionStorage.setItem('tjd_landing_page', window.location.pathname.replace(/^\//, '') || 'index.html');
+  sessionStorage.setItem('tjd_referrer', (document.referrer || '').slice(0, 200));
+  var params = new URLSearchParams(window.location.search);
+  ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (cle) {
+    var val = params.get(cle);
+    if (val) sessionStorage.setItem('tjd_' + cle, val.slice(0, 100));
+  });
+})();
+
 /* ----- SKIP LINK (accessibilité clavier) -----
    Injecté en JS car le site n'a pas de gabarit HTML partagé : chaque
    page reçoit le lien sans qu'il faille éditer 75 fichiers un par un. */
@@ -691,10 +706,15 @@
     if (!email) { if (emailInput) emailInput.focus(); return; }
     var btn = form.querySelector('button[type="submit"], button:not([type])');
     if (btn) { btn.dataset.label = btn.innerHTML; btn.disabled = true; btn.innerHTML = 'Inscription…'; }
+    // Source par page (au lieu d'un "newsletter-site" identique partout), pour
+    // savoir dans Brevo quelle page capture vraiment des leads.
+    var pageActuelle = window.location.pathname.split('/').pop().replace('.html', '') || 'accueil';
     function trackLead() {
       if (localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
         fbq('track', 'Lead');
       }
+      if (typeof window.gtag === 'function') gtag('event', 'generate_lead', { source: pageActuelle });
+      if (window._paq) window._paq.push(['trackEvent', 'Lead', 'Inscription', pageActuelle]);
     }
     function echec() {
       if (btn) { btn.disabled = false; btn.innerHTML = btn.dataset.label || 'S’inscrire'; }
@@ -703,7 +723,7 @@
     fetch('/api/lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, source: 'newsletter-site' })
+      body: JSON.stringify({ email: email, source: 'newsletter-' + pageActuelle })
     })
       .then(function (r) {
         if (!r.ok) { echec(); return; }

@@ -30,6 +30,25 @@
       corps.consentMarketing = true;
     }
 
+    // Attribution capturée par main.js à la première page vue de la session,
+    // pour relier chaque vente à sa page et sa source d'origine.
+    corps.landingPage = sessionStorage.getItem('tjd_landing_page') || window.location.pathname.replace(/^\//, '');
+    var referrerSession = sessionStorage.getItem('tjd_referrer');
+    if (referrerSession) corps.referrer = referrerSession;
+    ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (cle) {
+      var val = sessionStorage.getItem('tjd_' + cle);
+      if (val) corps[cle] = val;
+    });
+
+    // Mesure du funnel : le clic Acheter, avant même la redirection Stripe,
+    // pour pouvoir calculer un taux de clic par page et un taux d'abandon vers le paiement.
+    if (typeof window.gtag === 'function') {
+      gtag('event', 'begin_checkout', { items: [{ item_id: produitId }] });
+    }
+    if (window._paq) {
+      window._paq.push(['trackEvent', 'Ecommerce', 'ClicAcheter', produitId]);
+    }
+
     btnEl.disabled = true;
     btnEl.textContent = 'Chargement…';
     fetch('/api/create-checkout', {

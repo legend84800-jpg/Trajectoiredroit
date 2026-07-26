@@ -1,6 +1,7 @@
-// Renvoie le montant et la devise d'une session Stripe Checkout terminée,
-// pour permettre à merci-achat.html d'envoyer l'évènement Purchase au pixel Meta
-// avec la vraie valeur de la commande (le succès_url ne porte que le session_id).
+// Renvoie le montant, la devise et les produits d'une session Stripe Checkout
+// terminée, pour permettre à merci-achat.html d'envoyer l'évènement Purchase
+// au pixel Meta ET à GA4/Matomo avec la vraie valeur de la commande (le
+// success_url ne porte que le session_id).
 // GET /api/session-info?session_id=cs_xxx
 
 module.exports = async (req, res) => {
@@ -23,9 +24,13 @@ module.exports = async (req, res) => {
       res.status(404).json({ erreur: "Session introuvable ou non payée" });
       return;
     }
+    const produitIds = (data.metadata && data.metadata.produitIds)
+      ? data.metadata.produitIds.split(",").map((s) => s.trim()).filter(Boolean)
+      : [];
     res.status(200).json({
       montant: data.amount_total != null ? data.amount_total / 100 : null,
       devise: (data.currency || "eur").toUpperCase(),
+      produitIds,
     });
   } catch (e) {
     console.error("session-info fetch erreur:", e);

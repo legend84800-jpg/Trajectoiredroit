@@ -146,6 +146,16 @@ module.exports = async (req, res) => {
   const fbc = typeof corps.fbc === "string" ? corps.fbc.trim() : "";
   const consentMarketing = corps.consentMarketing === true;
 
+  // Attribution (page d'origine, referrer, UTM) : simple texte affiché nulle part,
+  // uniquement écrit en metadata Stripe puis dans Supabase par le webhook, tronqué
+  // par sécurité même si aucun de ces champs n'est jamais interprété comme du code.
+  const tronquer = (v, max) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+  const landingPage = tronquer(corps.landingPage, 200);
+  const referrer = tronquer(corps.referrer, 200);
+  const utmSource = tronquer(corps.utm_source, 100);
+  const utmMedium = tronquer(corps.utm_medium, 100);
+  const utmCampaign = tronquer(corps.utm_campaign, 100);
+
   const produit = PRODUITS[produitId];
   if (!produit) {
     res.status(400).json({ erreur: "Produit inconnu" });
@@ -187,6 +197,12 @@ module.exports = async (req, res) => {
     if (fbp) params.set("metadata[fbp]", fbp);
     if (fbc) params.set("metadata[fbc]", fbc);
   }
+
+  if (landingPage) params.set("metadata[landingPage]", landingPage);
+  if (referrer) params.set("metadata[referrer]", referrer);
+  if (utmSource) params.set("metadata[utmSource]", utmSource);
+  if (utmMedium) params.set("metadata[utmMedium]", utmMedium);
+  if (utmCampaign) params.set("metadata[utmCampaign]", utmCampaign);
 
   if (bump) {
     params.set("line_items[1][price_data][currency]", "eur");

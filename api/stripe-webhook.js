@@ -146,12 +146,16 @@ function construireLiensEmail(produitId, produit, secret, origin) {
 // utilisable et que Stripe ne permet pas de "réouvrir" une session existante.
 async function recreerLienCheckout(produitIds, origin, stripeKey) {
   const params = new URLSearchParams({
-    "payment_method_types[0]": "card",
+    // Pas de payment_method_types forcé, même raison que create-checkout.js :
+    // laisser Stripe proposer tous les moyens actifs du dashboard.
     mode: "payment",
     allow_promotion_codes: "true",
     success_url: `${origin}/merci-achat.html?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/formations.html`,
     "metadata[produitIds]": produitIds.join(","),
+    // Marque cette vente comme issue de la relance de panier abandonné, pour
+    // savoir si le mécanisme rapporte (voir le log [VENTE-RELANCE] plus bas).
+    "metadata[relance]": "1",
     "payment_intent_data[metadata][produitIds]": produitIds.join(","),
     "branding_settings[display_name]": "Trajectoire Droit",
     "branding_settings[icon][type]": "url",
@@ -459,10 +463,13 @@ module.exports = async (req, res) => {
   }
 
   const montantEuros = session.amount_total != null ? (session.amount_total / 100).toFixed(2) : "?";
+  const estRelance = session.metadata && session.metadata.relance === "1";
 
   const libelleProduits = produitIds.join("+");
   if (codeAmbassadeur) {
     console.log(`[AMBASSADEUR] code=${codeAmbassadeur} produits=${libelleProduits} montant=${montantEuros}€ session=${session.id}`);
+  } else if (estRelance) {
+    console.log(`[VENTE-RELANCE] produits=${libelleProduits} montant=${montantEuros}€ session=${session.id}`);
   } else {
     console.log(`[VENTE] produits=${libelleProduits} montant=${montantEuros}€ session=${session.id}`);
   }
@@ -496,6 +503,12 @@ module.exports = async (req, res) => {
       produit_ids: produitIds,
       session_id: session.id,
       montant: montantEuros !== "?" ? Number(montantEuros) : null,
+      landing_page: (session.metadata && session.metadata.landingPage) || null,
+      referrer: (session.metadata && session.metadata.referrer) || null,
+      utm_source: (session.metadata && session.metadata.utmSource) || null,
+      utm_medium: (session.metadata && session.metadata.utmMedium) || null,
+      utm_campaign: (session.metadata && session.metadata.utmCampaign) || null,
+      relance: !!estRelance,
     });
   } catch (e) {
     console.error("Erreur écriture achat Supabase:", e.message);

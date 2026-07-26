@@ -38,19 +38,12 @@ Tu peux ajouter, retirer ou réordonner les lignes quand tu veux, depuis ton Mac
 - [x] type:arret | matiere:droit des sociétés L3 | sujet:l'arrêt Fruehauf (CA Paris, 22 mai 1965) et l'intérêt social face à l'intérêt des associés (publié le 15/07/2026)
 - [x] type:notion | matiere:droit des sociétés L3 | sujet:la personnalité morale de la société, ce qu'elle change concrètement (publié le 22/07/2026)
 - [x] type:notion | matiere:procédure pénale L3 | sujet:la garde à vue, sa durée et les droits de la personne gardée à vue (publié le 24/07/2026)
-- [ ] type:notion | matiere:procédure pénale L3 | sujet:la présomption d'innocence et sa portée dans le procès pénal
-- [ ] type:notion | matiere:droit pénal général L1 | sujet:les trois éléments de l'infraction, légal, matériel et moral
 - [x] type:arret | matiere:droit pénal général L1 | sujet:l'arrêt Laboube (Cass. crim., 13 décembre 1956) et l'exigence de discernement (déjà publié le 19/07/2026, coche oubliée, corrigé par la routine du 20/07/2026)
-- [ ] type:notion | matiere:droit pénal général L1 | sujet:la tentative, du commencement d'exécution au désistement volontaire
-- [ ] type:notion | matiere:droit pénal général L1 | sujet:le principe de légalité criminelle, pas d'infraction sans texte
-- [x] type:arret | matiere:droit civil L1 | sujet:l'arrêt Perruche (Cass. ass. plén., 17 novembre 2000) et le préjudice de l'enfant né handicapé (déjà publié le 14/07/2026, coche oubliée, corrigé par la routine du 15/07/2026)
-- [ ] type:notion | matiere:droit des personnes L1 | sujet:la personnalité juridique, son début à la naissance et sa fin à la mort
-- [ ] type:notion | matiere:droit de la famille L1 | sujet:l'autorité parentale, ses titulaires et son exercice
 - [x] type:comment-reviser | matiere:droit administratif L2 | sujet:comment réviser le droit administratif L2 (publié le 30/06/2026)
 - [x] type:comment-reviser | matiere:droit des obligations L2 | sujet:comment réviser le droit des obligations L2 (publié le 03/07/2026)
-- [ ] type:comment-reviser | matiere:introduction au droit L1 | sujet:comment réviser l'introduction au droit L1
-- [ ] type:comment-reviser | matiere:droit constitutionnel L1 | sujet:comment réviser le droit constitutionnel L1
-- [ ] type:comment-reviser | matiere:droit pénal général L1 | sujet:comment réviser le droit pénal général L1
+- [x] type:arret | matiere:droit civil L1 | sujet:l'arrêt Perruche (Cass. ass. plén., 17 novembre 2000) et le préjudice de l'enfant né handicapé (déjà publié le 14/07/2026, coche oubliée, corrigé par la routine du 15/07/2026)
+
+<!-- Réordonné le 26/07/2026 : les 32 questions lecteurs Reddit/Juristudiant ci-dessous passent en tête, elles étaient bloquées depuis le 03/07 par les 9 vieux sujets de programme placés plus bas (jamais traités car "notion" et "comment-reviser" restent en dernière priorité). -->
 
 - [ ] type:notion | matiere:droit du travail | sujet:travailler le dimanche et le 15 août peuvent-ils être imposés à un salarié sans son accord, le cas d'une préparatrice en pharmacie (question lecteur Reddit du 2026-07-03, fondement déjà vérifié dans livrables/automatisation/presence-hors-site-tjd/reddit-drafts/2026-07-03.md)
 - [ ] type:notion | matiere:droit des contrats | sujet:une clause de non-concurrence dans un bail professionnel est-elle valable, le cas d'une psychologue libérale (question lecteur Reddit du 2026-07-05, fondement déjà vérifié dans livrables/automatisation/presence-hors-site-tjd/reddit-drafts/2026-07-05.md)
@@ -84,3 +77,13 @@ Tu peux ajouter, retirer ou réordonner les lignes quand tu veux, depuis ton Mac
 - [ ] type:notion | matiere:orientation, méthodologie juridique | sujet:que faire après un deuxième échec en L1 de droit et un refus de redoublement, les recours possibles contre un refus de réinscription non motivé, et les passerelles réelles vers une autre université, un BUT carrières juridiques, une licence AES ou l'IED de Paris 1 pour continuer le droit autrement (question lecteur Juristudiant du 2026-07-24, fondement déjà vérifié dans livrables/automatisation/presence-hors-site-tjd/juristudiant-drafts/2026-07-24.md)
 - [ ] type:notion | matiere:droit du travail | sujet:un salarié en CDD peut-il démissionner librement après sa période d'essai, comment se calcule la durée de la période d'essai pour un CDD d'un mois, et quels sont les seuls cas légaux de rupture anticipée d'un CDD (accord des parties, faute grave, force majeure, CDI) (question lecteur Reddit du 2026-07-25, fondement déjà vérifié dans livrables/automatisation/presence-hors-site-tjd/reddit-drafts/2026-07-25.md)
 - [ ] type:notion | matiere:droit civil (copropriété) | sujet:un syndic peut-il refuser d'organiser une recherche de fuite dans les parties communes en invoquant un manque de trésorerie de la copropriété, l'obligation légale du syndic d'agir en urgence même sans vote d'assemblée générale, et les recours possibles contre un syndic inactif (question lecteur Reddit du 2026-07-25, fondement déjà vérifié dans livrables/automatisation/presence-hors-site-tjd/reddit-drafts/2026-07-25.md)
+
+- [ ] type:notion | matiere:procédure pénale L3 | sujet:la présomption d'innocence et sa portée dans le procès pénal
+- [ ] type:notion | matiere:droit pénal général L1 | sujet:les trois éléments de l'infraction, légal, matériel et moral
+- [ ] type:notion | matiere:droit pénal général L1 | sujet:la tentative, du commencement d'exécution au désistement volontaire
+- [ ] type:notion | matiere:droit pénal général L1 | sujet:le principe de légalité criminelle, pas d'infraction sans texte
+- [ ] type:notion | matiere:droit des personnes L1 | sujet:la personnalité juridique, son début à la naissance et sa fin à la mort
+- [ ] type:notion | matiere:droit de la famille L1 | sujet:l'autorité parentale, ses titulaires et son exercice
+- [ ] type:comment-reviser | matiere:introduction au droit L1 | sujet:comment réviser l'introduction au droit L1
+- [ ] type:comment-reviser | matiere:droit constitutionnel L1 | sujet:comment réviser le droit constitutionnel L1
+- [ ] type:comment-reviser | matiere:droit pénal général L1 | sujet:comment réviser le droit pénal général L1
