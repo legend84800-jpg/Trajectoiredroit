@@ -3947,3 +3947,39 @@ html[data-theme="dark"] .search-trigger:hover { background: rgba(255,255,255,0.0
 .search-result__title { font-size: .95rem; }
 html[data-theme="dark"] .search-panel { background: var(--white); }
 html[data-theme="dark"] .search-result:hover, html[data-theme="dark"] .search-result:focus { background: var(--slate-100); }
+
+/* ===== Encart produit inline (vague 2, trafic SEO -> vente) ===== */
+.article-produit-inline {
+  display: flex; align-items: center; gap: var(--sp-4);
+  background: var(--blue-50); border: 1px solid var(--blue-200);
+  border-radius: var(--r-lg, 16px); padding: var(--sp-4);
+  margin: var(--sp-6) 0;
+}
+.article-produit-inline__thumb {
+  width: 60px; height: 80px; object-fit: cover; border-radius: 6px;
+  box-shadow: var(--sh-2); flex-shrink: 0; background: var(--white);
+}
+.article-produit-inline__body { flex: 1; min-width: 0; }
+.article-produit-inline__label {
+  font-size: .72rem; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--blue-600); font-weight: 700; margin: 0 0 2px;
+}
+.article-produit-inline__title {
+  font-family: var(--font-display); font-size: 1.05rem; color: var(--navy);
+  margin: 0 0 4px; line-height: 1.25;
+}
+.article-produit-inline__meta { font-size: .85rem; color: var(--muted); margin: 0; }
+.article-produit-inline__meta strong { color: var(--navy); }
+.article-produit-inline__actions {
+  display: flex; flex-direction: column; gap: 6px; align-items: flex-end; flex-shrink: 0;
+}
+.article-produit-inline__actions .apercu-link {
+  font-size: .78rem; background: none; border: none; color: var(--blue-600);
+  text-decoration: underline; cursor: pointer; padding: 0;
+}
+@media (max-width: 640px) {
+  .article-produit-inline { flex-direction: column; text-align: center; }
+  .article-produit-inline__actions { align-items: center; width: 100%; }
+  .article-produit-inline__actions .btn { width: 100%; }
+}
+html[data-theme="dark"] .article-produit-inline { background: rgba(94,139,218,0.08); border-color: rgba(94,139,218,0.25); }
