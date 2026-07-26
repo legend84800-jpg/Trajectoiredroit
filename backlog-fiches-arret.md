@@ -71,4 +71,4 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 
 ## Procédure civile L3
 
-- [ ] matiere:procédure civile L3 | arret:Cass. ch. mixte, 2006, Cesareo | theme:le principe de concentration des moyens, une partie doit présenter dès l'instance initiale tous les moyens de nature à fonder sa prétention (repéré le 2026-07-24 pendant la recherche de secours, candidat non retenu ce jour au profit de Baby Loup, source dans les dossiers élèves procédure civile L3)
+- [x] matiere:procédure civile L3 | arret:Cass., Ass. plén., 2006, Cesareo | theme:le principe de concentration des moyens, une partie doit présenter dès l'instance initiale tous les moyens de nature à fonder sa prétention (publié le 2026-07-26 ; correction sur la formation, c'est l'Assemblée plénière et non une chambre mixte comme indiqué initialement dans ce backlog ; sourcé sur le CM de procédure civile S1 des dossiers élèves droit L3, croisé et vérifié avec Légifrance/Dalloz/Lexbase, la matière procédure civile L3 n'a pas de page produit dédiée sur le site)
