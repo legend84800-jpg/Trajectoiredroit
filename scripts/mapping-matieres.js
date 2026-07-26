@@ -10,12 +10,24 @@ const MATIERES = {
       { label: "Semestre 1", id: "fiche-da-l2-s1", prix: "14,99 €", apercus: ["assets/apercus/da-l2-s1-1.jpg", "assets/apercus/da-l2-s1-2.jpg"] },
       { label: "Semestre 2", id: "fiche-da-l2-s2", prix: "14,99 €", apercus: ["assets/apercus/admin-l2-s2-1.jpg", "assets/apercus/admin-l2-s2-2.jpg"] },
     ],
+    majeures: [
+      { label: "Semestre 1", id: "maj-da-l2-s1", prix: "12,99 €" },
+      { label: "Semestre 2", id: "maj-da-l2-s2", prix: "12,99 €" },
+    ],
+    coursComplets: [
+      { label: "Semestre 1", id: "cours-fiche-da-l2-s1", prix: "19,99 €" },
+      { label: "Semestre 2", id: "cours-fiche-da-l2-s2", prix: "19,99 €" },
+    ],
+    packMatiere: { id: "pack-matiere-da-l2", prix: "29,99 €" },
   },
   "droit-commercial-l3": {
     nom: "Droit commercial L3",
     semestres: [
       { label: null, id: "fiche-commercial-l3-s1", prix: "14,99 €", apercus: ["assets/apercus/commercial-l3-s1-1.jpg", "assets/apercus/commercial-l3-s1-2.jpg"] },
     ],
+    majeures: [{ label: null, id: "maj-commercial-l3-s1", prix: "12,99 €" }],
+    coursComplets: [{ label: null, id: "cours-fiche-commercial-l3-s1", prix: "19,99 €" }],
+    packMatiere: { id: "pack-matiere-commercial-l3", prix: "29,99 €" },
   },
   "droit-constitutionnel-l1": {
     nom: "Droit constitutionnel L1",
@@ -23,96 +35,147 @@ const MATIERES = {
       { label: "Semestre 1", id: "fiche-constit-l1-s1", prix: "14,99 €", apercus: ["assets/apercus/constit-l1-s1-1.jpg", "assets/apercus/constit-l1-s1-2.jpg"] },
       { label: "Semestre 2", id: "fiche-constit-l1-s2", prix: "14,99 €", apercus: ["assets/apercus/constit-l1-s2-1.jpg", "assets/apercus/constit-l1-s2-2.jpg"] },
     ],
+    majeures: [],
+    coursComplets: [
+      { label: "Semestre 1", id: "cours-fiche-constit-l1-s1", prix: "19,99 €" },
+      { label: "Semestre 2", id: "cours-fiche-constit-l1-s2", prix: "19,99 €" },
+    ],
+    packMatiere: { id: "pack-matiere-constit-l1", prix: "29,99 €" },
   },
   "droit-de-la-famille-l1": {
     nom: "Droit de la famille L1",
     semestres: [
       { label: null, id: "fiche-famille-l1-s2", prix: "14,99 €", apercus: ["assets/apercus/famille-l1-s2-1.jpg", "assets/apercus/famille-l1-s2-2.jpg"] },
     ],
+    majeures: [{ label: null, id: "maj-famille-l1-s2", prix: "12,99 €" }],
+    coursComplets: [{ label: null, id: "cours-fiche-famille-l1-s2", prix: "19,99 €" }],
+    packMatiere: { id: "pack-matiere-famille-l1", prix: "29,99 €" },
   },
   "droit-des-biens-l2": {
     nom: "Droit des biens L2",
     semestres: [
       { label: null, id: "fiche-biens-l2", prix: "14,99 €", apercus: ["assets/apercus/biens-l2-1.jpg", "assets/apercus/biens-l2-2.jpg"] },
     ],
+    majeures: [{ label: null, id: "maj-biens-l2", prix: "12,99 €" }],
+    coursComplets: [{ label: null, id: "cours-fiche-biens-l2", prix: "19,99 €" }],
+    packMatiere: { id: "pack-matiere-biens-l2", prix: "29,99 €" },
   },
   "droit-des-contrats-l2": {
     nom: "Droit des contrats L2",
     semestres: [
       { label: null, id: "fiche-contrats-l2-s1", prix: "14,99 €", apercus: ["assets/apercus/contrats-l2-s1-1.jpg", "assets/apercus/contrats-l2-s1-2.jpg"] },
     ],
+    majeures: [{ label: null, id: "maj-contrats-l2-s1", prix: "12,99 €" }],
+    coursComplets: [{ label: null, id: "cours-fiche-contrats-l2-s1", prix: "19,99 €" }],
+    packMatiere: { id: "pack-matiere-contrats-l2", prix: "29,99 €" },
   },
   "droit-des-obligations-l2": {
     nom: "Droit des obligations L2",
     semestres: [
       { label: null, id: "fiche-obligations-l2-s2", prix: "14,99 €", apercus: ["assets/apercus/obligations-l2-s2-1.jpg", "assets/apercus/obligations-l2-s2-2.jpg"] },
     ],
+    majeures: [{ label: null, id: "maj-obligations-l2-s2", prix: "12,99 €" }],
+    coursComplets: [{ label: null, id: "cours-fiche-obligations-l2-s2", prix: "19,99 €" }],
+    packMatiere: { id: "pack-matiere-obligations-l2", prix: "29,99 €" },
   },
   "droit-des-personnes-l1": {
     nom: "Droit des personnes L1",
     semestres: [
       { label: null, id: "fiche-personnes-l1", prix: "14,99 €", apercus: ["assets/apercus/personnes-l1-1.jpg"] },
     ],
+    majeures: [{ label: null, id: "maj-personnes-l1", prix: "12,99 €" }],
+    coursComplets: [{ label: null, id: "cours-fiche-personnes-l1", prix: "19,99 €" }],
+    packMatiere: { id: "pack-matiere-personnes-l1", prix: "29,99 €" },
   },
   "droit-des-societes-l3": {
     nom: "Droit des sociétés L3",
     semestres: [
       { label: null, id: "fiche-societes-l3-s1", prix: "14,99 €", apercus: ["assets/apercus/societes-l3-s1-1.jpg", "assets/apercus/societes-l3-s1-2.jpg"] },
     ],
+    majeures: [],
+    coursComplets: [{ label: null, id: "cours-fiche-societes-l3-s1", prix: "19,99 €" }],
+    packMatiere: { id: "pack-matiere-societes-l3", prix: "29,99 €" },
   },
   "droit-du-travail-l3": {
     nom: "Droit du travail L3",
     semestres: [
       { label: null, id: "fiche-travail-l3-s1", prix: "14,99 €", apercus: ["assets/apercus/travail-l3-s1-1.jpg", "assets/apercus/travail-l3-s1-2.jpg"] },
     ],
+    majeures: [],
+    coursComplets: [{ label: null, id: "cours-fiche-travail-l3-s1", prix: "19,99 €" }],
+    packMatiere: { id: "pack-matiere-travail-l3", prix: "29,99 €" },
   },
   "droit-penal-general-l1": {
     nom: "Droit pénal général L1",
     semestres: [
       { label: null, id: "fiche-penal-general-l1", prix: "14,99 €", apercus: ["assets/apercus/penal-general-l1-1.jpg"] },
     ],
+    majeures: [],
+    coursComplets: [{ label: null, id: "cours-fiche-penal-general-l1", prix: "19,99 €" }],
+    packMatiere: { id: "pack-matiere-penal-general-l1", prix: "29,99 €" },
   },
   "droit-penal-l2": {
     nom: "Droit pénal L2",
     semestres: [
       { label: null, id: "fiche-penal-l2-s1", prix: "14,99 €", apercus: ["assets/apercus/penal-l2-s1-1.jpg", "assets/apercus/penal-l2-s1-2.jpg"] },
     ],
+    majeures: [{ label: null, id: "maj-penal-l2-s1", prix: "12,99 €" }],
+    coursComplets: [{ label: null, id: "cours-fiche-penal-l2-s1", prix: "19,99 €" }],
+    packMatiere: { id: "pack-matiere-penal-l2", prix: "29,99 €" },
   },
   "histoire-des-institutions-l1": {
     nom: "Histoire des institutions L1",
     semestres: [
       { label: null, id: "fiche-hist-institutions-l1", prix: "14,99 €", apercus: ["assets/apercus/hist-institutions-l1-1.jpg", "assets/apercus/hist-institutions-l1-2.jpg"] },
     ],
+    majeures: [],
+    coursComplets: [{ label: null, id: "cours-fiche-hist-institutions-l1", prix: "19,99 €" }],
+    packMatiere: null,
   },
   "histoire-du-droit-l1": {
     nom: "Histoire du droit L1",
     semestres: [
       { label: null, id: "fiche-hist-droit-l1", prix: "14,99 €", apercus: ["assets/apercus/hist-droit-l1-1.jpg", "assets/apercus/hist-droit-l1-2.jpg"] },
     ],
+    majeures: [],
+    coursComplets: [{ label: null, id: "cours-fiche-hist-droit-l1", prix: "19,99 €" }],
+    packMatiere: null,
   },
   "introduction-au-droit-l1": {
     nom: "Introduction au droit L1",
     semestres: [
       { label: null, id: "fiche-intro-droit-l1", prix: "14,99 €", apercus: ["assets/apercus/intro-droit-l1-1.jpg", "assets/apercus/intro-droit-l1-2.jpg"] },
     ],
+    majeures: [{ label: null, id: "maj-intro-droit-l1", prix: "12,99 €" }],
+    coursComplets: [{ label: null, id: "cours-fiche-intro-droit-l1", prix: "19,99 €" }],
+    packMatiere: { id: "pack-matiere-intro-droit-l1", prix: "29,99 €" },
   },
   "procedure-penale-l3": {
     nom: "Procédure pénale L3",
     semestres: [
       { label: null, id: "fiche-procedure-penale-l3", prix: "14,99 €", apercus: ["assets/apercus/procedure-penale-l3-1.jpg", "assets/apercus/procedure-penale-l3-2.jpg"] },
     ],
+    majeures: [],
+    coursComplets: [{ label: null, id: "cours-fiche-procedure-penale-l3", prix: "19,99 €" }],
+    packMatiere: null,
   },
   "contrats-speciaux-l3": {
     nom: "Contrats spéciaux L3",
     semestres: [
       { label: null, id: "fiche-contrats-speciaux-l3", prix: "14,99 €", apercus: ["assets/apercus/contrats-speciaux-l3-1.jpg", "assets/apercus/contrats-speciaux-l3-2.jpg"] },
     ],
+    majeures: [],
+    coursComplets: [{ label: null, id: "cours-fiche-contrats-speciaux-l3", prix: "19,99 €" }],
+    packMatiere: { id: "pack-matiere-contrats-speciaux-l3", prix: "29,99 €" },
   },
   "relations-internationales-l1": {
     nom: "Relations internationales L1",
     semestres: [
       { label: null, id: "fiche-relations-internationales-l1", prix: "14,99 €", apercus: [] },
     ],
+    majeures: [],
+    coursComplets: [{ label: null, id: "cours-fiche-relations-internationales-l1", prix: "19,99 €" }],
+    packMatiere: null,
   },
 };
 
