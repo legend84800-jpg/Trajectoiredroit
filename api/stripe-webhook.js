@@ -75,6 +75,51 @@ async function envoyerAchatMeta({ email, montantEuros, produitIds, sessionId, fb
   }
 }
 
+// Liste Brevo "Clients TJD (acheteurs)", créée pour segmenter les acheteurs et
+// pouvoir leur envoyer une séquence post-achat (relance J+3, demande d'avis J+7).
+const BREVO_LISTE_CLIENTS = 6;
+
+// Le nom d'un produit suit toujours "Famille Matière [Semestre]" (ex: "Fiche complète
+// Droit administratif L2 S1") : on retire juste le préfixe de famille pour ne garder
+// que la matière, affichée dans Brevo pour cibler une campagne par matière.
+function deduireMatiere(nomProduit) {
+  return nomProduit
+    .replace(/^(Fiche complète|Cours complet|Majeures préparées|Fiches d'arrêt|Fiche de citations|Flashcards \+ QCM|Commentaires d'arrêt|Cas pratiques corrigés|Dissertations corrigées|Pack)\s*/i, "")
+    .replace(/\s*\(.*$/, "")
+    .replace(/\s*complet$/i, "")
+    .trim();
+}
+
+// Crée ou met à jour le contact acheteur dans Brevo, avec ses derniers achats en
+// attributs et un ajout à la liste Clients, pour ouvrir la porte à une séquence
+// post-achat (relance J+3, demande d'avis J+7) sans dépendre du formulaire lead magnet.
+async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey) {
+  const noms = produits.map((p) => p.nom).join(" + ");
+  const matiere = produits.length ? deduireMatiere(produits[0].nom) : "";
+
+  const payload = {
+    email,
+    updateEnabled: true,
+    attributes: {
+      DERNIER_ACHAT: noms,
+      MATIERE_ACHETEE: matiere,
+      MONTANT_DERNIER_ACHAT: montantEuros !== "?" ? Number(montantEuros) : undefined,
+      DATE_DERNIER_ACHAT: new Date().toISOString().slice(0, 10),
+    },
+    listIds: [BREVO_LISTE_CLIENTS],
+  };
+
+  const resp = await fetch("https://api.brevo.com/v3/contacts", {
+    method: "POST",
+    headers: { "content-type": "application/json", "api-key": brevoKey, accept: "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (resp.ok || resp.status === 204) return;
+  const detail = await resp.json().catch(() => ({}));
+  if (detail && detail.code === "duplicate_parameter") return;
+  throw new Error(`Brevo contacts ${resp.status}: ${JSON.stringify(detail)}`);
+}
+
 module.exports.config = { api: { bodyParser: false } };
 
 async function lireBodyBrut(req) {
@@ -287,8 +332,11 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
           </p>
           ${boutons}
           <p style="font-size:13px;color:#777;margin:24px 0 16px;">
-            Si un lien a expiré, tu peux me répondre directement à cet email, je t'envoie tes PDF de nouveau sans attendre.
+            Passé ce délai de 48 heures, pas besoin de m'écrire pour les récupérer : connecte-toi à <a href="https://trajectoiredroit.com/mon-compte.html" style="color:#1a237e;">ton espace Mon compte</a> avec cette même adresse email, tu retrouves tous tes achats et tu régénères un lien de téléchargement à tout moment. L'accès est à vie.
           </p>
+          <div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:8px;padding:14px 16px;margin:0 0 16px;">
+            <p style="font-size:13px;color:#065F46;margin:0;">Satisfait ou remboursé sous 7 jours. Si le contenu ne te convient pas, réponds à cet email, je te rembourse sans poser de questions.</p>
+          </div>
           <p style="font-size:13px;color:#777;margin:0 0 16px;">
             Au moindre problème n'hésite pas à me contacter par mail, à l'adresse suivante julien.prof1@gmail.com, ou par WhatsApp au numéro suivant +33 6 05 41 85 21.
           </p>
@@ -304,6 +352,9 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
           <p style="font-size:13px;color:#777;margin:0 0 16px;">
             Dernière chose, j'ai mis un temps long à rédiger ces fiches. Donc je te fais confiance, garde ces fiches pour toi et ne les divulgue pas à autrui, je t'en remercie.
           </p>
+          <p style="font-size:13px;color:#777;margin:0 0 16px;">
+            Si tu as un bon réseau dans ta promo et que tu recommandes déjà mes fiches autour de toi, j'ai un <a href="https://trajectoiredroit.com/ambassadeurs.html" style="color:#1a237e;">programme ambassadeurs</a>, 10 % de réduction pour chaque filleul, 20 % de commission pour toi sur chaque vente.
+          </p>
           <p style="font-size:15px;color:#1a237e;font-weight:700;margin:0;">Julien</p>
         </td></tr>
         <tr><td style="background:#f0f0f0;padding:16px 32px;">
@@ -315,7 +366,7 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
 </body>
 </html>`;
 
-  const texte = `Tu viens d'acheter ${nomsAchetes}, et tes PDF sont prêts.\n\nTélécharge-les ici :\n${liens.map(l => `${l.nom} : ${l.url}`).join("\n")}\n\nLiens valables 48 heures. Si l'un d'eux a expiré, réponds directement à cet email.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com ou par WhatsApp au +33 6 05 41 85 21.\n\nMon but est de créer les meilleures fiches de droit en France, donc à la moindre remarque sur le fond ou sur la forme, n'hésite pas à me contacter. Je te renvoie la fiche améliorée, et si tes commentaires sont détaillés et pertinents, je t'offre une fiche de citations en cadeau.\n\nJ'ai mis un temps long à rédiger ces fiches, garde-les pour toi et ne les divulgue pas à autrui, merci.\n\nJulien, TrajectoireDroit`;
+  const texte = `Tu viens d'acheter ${nomsAchetes}, et tes PDF sont prêts.\n\nTélécharge-les ici :\n${liens.map(l => `${l.nom} : ${l.url}`).join("\n")}\n\nLiens valables 48 heures. Passé ce délai, connecte-toi à https://trajectoiredroit.com/mon-compte.html avec cette même adresse email pour régénérer un lien à tout moment : l'accès est à vie.\n\nSatisfait ou remboursé sous 7 jours. Si le contenu ne te convient pas, réponds à cet email, je te rembourse sans poser de questions.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com ou par WhatsApp au +33 6 05 41 85 21.\n\nMon but est de créer les meilleures fiches de droit en France, donc à la moindre remarque sur le fond ou sur la forme, n'hésite pas à me contacter. Je te renvoie la fiche améliorée, et si tes commentaires sont détaillés et pertinents, je t'offre une fiche de citations en cadeau.\n\nJ'ai mis un temps long à rédiger ces fiches, garde-les pour toi et ne les divulgue pas à autrui, merci.\n\nSi tu as un bon réseau dans ta promo, j'ai un programme ambassadeurs (https://trajectoiredroit.com/ambassadeurs.html) : 10 % de réduction pour chaque filleul, 20 % de commission pour toi.\n\nJulien, TrajectoireDroit`;
 
   const payload = {
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
@@ -465,6 +516,12 @@ module.exports = async (req, res) => {
     console.log(`Email envoyé à ${email} pour ${libelleProduits}${codeAmbassadeur ? " (code " + codeAmbassadeur + ")" : ""}`);
   } catch (e) {
     console.error("Erreur envoi email:", e.message);
+  }
+
+  try {
+    await creerContactBrevoAchat(email, produitsAchetes.map(p => p.produit), montantEuros, brevoKey);
+  } catch (e) {
+    console.error("Erreur création contact Brevo:", e.message);
   }
 
   try {
