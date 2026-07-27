@@ -1,8 +1,11 @@
 // Renvoie le montant, la devise et les produits d'une session Stripe Checkout
 // terminée, pour permettre à merci-achat.html d'envoyer l'évènement Purchase
 // au pixel Meta ET à GA4/Matomo avec la vraie valeur de la commande (le
-// success_url ne porte que le session_id).
+// success_url ne porte que le session_id). Renvoie aussi 2-3 suggestions de
+// compléments (vague 2.6), affichées pendant que la confiance est maximale.
 // GET /api/session-info?session_id=cs_xxx
+
+const { suggererComplements } = require("./_suggestions-post-achat");
 
 module.exports = async (req, res) => {
   const { session_id } = req.query || {};
@@ -31,6 +34,7 @@ module.exports = async (req, res) => {
       montant: data.amount_total != null ? data.amount_total / 100 : null,
       devise: (data.currency || "eur").toUpperCase(),
       produitIds,
+      suggestions: suggererComplements(produitIds, 3),
     });
   } catch (e) {
     console.error("session-info fetch erreur:", e);

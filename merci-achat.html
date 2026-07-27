@@ -273,7 +273,13 @@
           </a>
         </div>
 
-        <div class="card" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center">
+        <div class="card" id="suggestionsCard" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center; display:none">
+          <h2 class="h4" style="margin-top:0" id="suggestionsTitre">Complète ta matière</h2>
+          <p style="margin:8px 0 16px; font-size:.95rem">Puisque tu es déjà dessus, voici ce qui va bien avec ce que tu viens de prendre.</p>
+          <div id="suggestionsListe" style="display:flex; flex-direction:column; gap:10px; text-align:left"></div>
+        </div>
+
+        <div class="card" id="suggestionsFallback" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center">
           <h2 class="h4" style="margin-top:0">D'autres matières à réviser ?</h2>
           <p style="margin:8px 0 16px; font-size:.95rem">Toute ta licence de droit en fiches complètes et en majeures préparées.</p>
           <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
@@ -350,11 +356,38 @@
       }
     }
 
+    // Suggestions de compléments (vague 2.6) : affichées une seule fois, la page
+    // n'appelant /api/session-info que 1 ou 2 fois selon le chargement de fbq.
+    var suggestionsAffichees = false;
+    function afficherSuggestions(suggestions) {
+      if (suggestionsAffichees || !suggestions || !suggestions.length) return;
+      suggestionsAffichees = true;
+      var carte = document.getElementById('suggestionsCard');
+      var liste = document.getElementById('suggestionsListe');
+      var fallback = document.getElementById('suggestionsFallback');
+      liste.innerHTML = suggestions.map(function (s) {
+        var prix = (s.prix / 100).toFixed(2).replace('.', ',') + ' €';
+        return '<div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-top:1px solid var(--blue-100)">' +
+          '<span style="font-size:.92rem; color:var(--body)">' + s.nom + '</span>' +
+          '<button type="button" class="btn btn--primary btn--sm" data-tjd-produit="' + s.id + '">Acheter · ' + prix + '</button>' +
+        '</div>';
+      }).join('');
+      carte.style.display = 'block';
+      fallback.style.display = 'none';
+      if (!document.querySelector('script[src*="achat.js"]')) {
+        var s = document.createElement('script');
+        s.src = 'assets/js/achat.js';
+        s.defer = true;
+        document.body.appendChild(s);
+      }
+    }
+
     function envoyerPurchase() {
       fetch('/api/session-info?session_id=' + encodeURIComponent(sessionId))
         .then(function (r) { return r.json(); })
         .then(function (d) {
           envoyerMesures(d);
+          afficherSuggestions(d && d.suggestions);
           if (d && d.montant != null && typeof window.fbq === 'function') {
             fbq('track', 'Purchase', { value: d.montant, currency: d.devise || 'EUR' }, { eventID: sessionId });
           }
@@ -377,7 +410,7 @@
         // Pas de pixel Meta (cookies refusés) : on envoie quand même GA4 et Matomo.
         fetch('/api/session-info?session_id=' + encodeURIComponent(sessionId))
           .then(function (r) { return r.json(); })
-          .then(envoyerMesures)
+          .then(function (d) { envoyerMesures(d); afficherSuggestions(d && d.suggestions); })
           .catch(function () {});
       }
     }, 250);
