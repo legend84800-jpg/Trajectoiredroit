@@ -366,19 +366,41 @@
       quotaTexte.innerHTML = "Il te reste <strong>" + restant + "</strong> générations ce mois-ci (sur " + QUOTA_MENSUEL + ").";
     }
 
-    async function chargerAchats(email){
-      var rep = await sb.from("achats").select("*").eq("email", email).order("cree_le", { ascending: false });
-      var achats = rep.data || [];
+    // Accès à vie en self-service : régénère des liens de téléchargement signés
+    // à la demande (15 min) plutôt que de dépendre du lien 48h envoyé par email.
+    async function chargerAchats(accessToken){
+      var rep, data;
+      try {
+        rep = await fetch("/api/mes-telechargements", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ accessToken: accessToken })
+        });
+        data = await rep.json();
+      } catch (e){
+        achatsVide.style.display = "block";
+        achatsVide.textContent = "Impossible de charger tes achats pour l'instant. Réessaie dans un instant.";
+        achatsListe.innerHTML = "";
+        return;
+      }
+      var achats = (rep.ok && data.achats) || [];
       if (!achats.length){
         achatsVide.style.display = "block";
         achatsListe.innerHTML = "";
         return;
       }
       achatsVide.style.display = "none";
-      achatsListe.innerHTML = achats.map(function(a){
-        var date = new Date(a.cree_le).toLocaleDateString("fr-FR");
-        var produits = (a.produit_ids || []).join(", ");
-        return "<li><span>" + produits + "</span><span class=\"achat-date\">" + date + "</span></li>";
+      achatsListe.innerHTML = achats.map(function(a, idx){
+        var date = new Date(a.date).toLocaleDateString("fr-FR");
+        var noms = a.produits.map(function(p){ return p.nom; }).join(", ");
+        var fichiers = a.produits.reduce(function(acc, p){ return acc.concat(p.fichiers); }, []);
+        var liens = fichiers.map(function(f){
+          return "<a class=\"btn btn--outline btn--sm\" href=\"" + f.url + "\" style=\"margin:4px 6px 0 0\">Télécharger " + f.nom + "</a>";
+        }).join("");
+        return "<li style=\"flex-direction:column; align-items:flex-start; gap:8px\">" +
+          "<div class=\"compte-row\" style=\"width:100%\"><span>" + noms + "</span><span class=\"achat-date\">" + date + "</span></div>" +
+          "<div>" + liens + "</div>" +
+        "</li>";
       }).join("");
     }
 
@@ -386,7 +408,7 @@
       compteEmail.textContent = session.user.email;
       afficherEtat("etatConnecte");
       await chargerAbonnement(session.user.id);
-      await chargerAchats(session.user.email);
+      await chargerAchats(session.access_token);
     }
 
     async function verifierSession(){
