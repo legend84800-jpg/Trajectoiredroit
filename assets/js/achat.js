@@ -125,4 +125,38 @@
   } else {
     initTotauxBump();
   }
+
+  // Réassurance sous chaque bouton d'achat principal (pas les boutons compacts en liste,
+  // ni celui de la modale d'aperçu) : garantie, paiement Stripe, livraison immédiate,
+  // plus un lien WhatsApp pour lever une dernière hésitation avant de payer.
+  var TEXTE_REASSURANCE = 'Satisfait ou remboursé sous 7 jours · Paiement sécurisé par Stripe · PDF reçu immédiatement par email';
+  var WHATSAPP_NUMERO = '33605418521';
+  function initReassurance() {
+    document.querySelectorAll('.btn--full[data-tjd-produit]').forEach(function (btn) {
+      if (btn.id === 'apercuCta') return;
+      var parent = btn.parentElement;
+      if (!parent || parent.querySelector('.tjd-reassurance')) return;
+      var suivant = btn.nextElementSibling;
+      if (suivant && /pdf complet par email/i.test(suivant.textContent || '')) suivant.remove();
+      var p = document.createElement('p');
+      p.className = 'tjd-reassurance';
+      p.textContent = TEXTE_REASSURANCE;
+      btn.insertAdjacentElement('afterend', p);
+
+      var nomProduit = btn.getAttribute('data-tjd-produit') || '';
+      var messagePreRempli = encodeURIComponent("Bonjour Julien, j'ai une question avant d'acheter (" + nomProduit + ").");
+      var lienWa = document.createElement('a');
+      lienWa.className = 'tjd-reassurance tjd-reassurance--wa';
+      lienWa.href = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + messagePreRempli;
+      lienWa.target = '_blank';
+      lienWa.rel = 'noopener';
+      lienWa.textContent = 'Une question avant d\'acheter ? Écris-moi sur WhatsApp →';
+      p.insertAdjacentElement('afterend', lienWa);
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initReassurance);
+  } else {
+    initReassurance();
+  }
 })();
