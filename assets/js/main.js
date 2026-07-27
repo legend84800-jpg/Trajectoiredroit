@@ -452,19 +452,21 @@
     });
   })();
 
-  // ----- 5. Exit-intent modal (desktop only, 1× par session, après engagement) -----
+  // ----- 5. Exit-intent modal (desktop + mobile, 1× par session, après engagement) -----
   // Conditions cumulées avant déclenchement :
-  //   - desktop (>= 768px)
   //   - pas déjà vu cette session
   //   - >= 30 secondes sur la page
   //   - >= 25% scrollé (preuve d'engagement)
-  //   - souris quitte par le haut OU 60 secondes sans interaction
+  //   - desktop : souris quitte par le haut OU 60 secondes sans interaction
+  //   - mobile (pas de mouseleave) : remontée rapide vers le haut (signal d'abandon,
+  //     on referme l'onglet ou revient en arrière) OU 60 secondes sans interaction
   var modal = document.getElementById('exitModal');
-  if (modal && window.matchMedia('(min-width: 768px)').matches && !sessionStorage.getItem('exitShown')) {
+  if (modal && !sessionStorage.getItem('exitShown')) {
     var triggered = false;
     var pageLoadedAt = Date.now();
     var minTimeMs = 30000;   // 30 s minimum
     var minScroll = 0.25;    // 25 % de la page
+    var estMobile = !window.matchMedia('(min-width: 768px)').matches;
 
     function hasEngaged() {
       var elapsed = Date.now() - pageLoadedAt;
@@ -484,10 +486,21 @@
       if (e.clientY <= 0 && hasEngaged()) fireModal();
     }
 
-    document.addEventListener('mouseleave', onMouseLeave);
+    if (estMobile) {
+      // Pas de mouseleave sur tactile : une remontée rapide et ample vers le haut
+      // de l'écran est le signal le plus proche d'une intention de quitter la page.
+      var dernierScrollY = window.scrollY;
+      window.addEventListener('scroll', function () {
+        var delta = dernierScrollY - window.scrollY;
+        dernierScrollY = window.scrollY;
+        if (delta > 150 && hasEngaged()) fireModal();
+      }, { passive: true });
+    } else {
+      document.addEventListener('mouseleave', onMouseLeave);
+    }
 
-    // Fallback : si l'utilisateur reste 60 sec sans bouger la souris vers le haut,
-    // on déclenche quand même (en page de défilement par exemple)
+    // Fallback commun desktop/mobile : si le visiteur reste 60 sec sans déclencher
+    // le signal ci-dessus, on affiche quand même la modale (page de lecture longue).
     setTimeout(function () {
       if (!triggered && hasEngaged()) fireModal();
     }, 60000);
