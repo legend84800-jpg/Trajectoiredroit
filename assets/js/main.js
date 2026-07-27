@@ -471,6 +471,11 @@
     function hasEngaged() {
       var elapsed = Date.now() - pageLoadedAt;
       if (elapsed < minTimeMs) return false;
+      // Vague 4.10 : jamais deux sollicitations en même temps. Le cookie-banner
+      // (z-index 900) passe au-dessus de la modale exit-intent (z-index 100) et
+      // la rendait confuse si les deux étaient visibles ensemble.
+      var banner = document.querySelector('.cookie-banner');
+      if (banner && banner.classList.contains('cookie-banner--visible')) return false;
       var scrollRatio = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
       return scrollRatio >= minScroll;
     }

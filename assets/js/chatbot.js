@@ -214,7 +214,24 @@
       if (fabRevealStart === null) fabRevealStart = Date.now();
       var banner = document.querySelector(".cookie-banner");
       var bannerBlocking = banner && banner.classList.contains("cookie-banner--visible");
-      if (!bannerBlocking || Date.now() - fabRevealStart > FAB_REVEAL_MAX_WAIT) {
+      var delaiDepasse = Date.now() - fabRevealStart > FAB_REVEAL_MAX_WAIT;
+      if (!bannerBlocking || delaiDepasse) {
+        // Cas limite (vague 4.10) : le visiteur n'a toujours pas décidé du bandeau
+        // cookies après le délai max, la bulle apparaît quand même mais décalée
+        // au-dessus du bandeau (hauteur variable selon le texte) pour ne jamais
+        // recouvrir ses boutons Accepter/Refuser.
+        if (bannerBlocking && delaiDepasse) {
+          fab.style.bottom = (banner.getBoundingClientRect().height + 32) + "px";
+          // Dès que le visiteur répond enfin au bandeau, on rend la main à la
+          // position normale (classe CSS .tjd-fab / .tjd-fab--raised).
+          var mo = new MutationObserver(function () {
+            if (!banner.classList.contains("cookie-banner--visible")) {
+              fab.style.bottom = "";
+              mo.disconnect();
+            }
+          });
+          mo.observe(banner, { attributes: true, attributeFilter: ["class"] });
+        }
         fab.classList.add("tjd-fab--visible");
         return;
       }
