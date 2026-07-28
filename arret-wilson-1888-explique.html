@@ -516,7 +516,7 @@
       if (loaded) return;
       loaded = true;
       var s = document.createElement('script');
-      s.src = 'assets/js/chatbot.js';
+      s.src = 'assets/js/chatbot.js?v=5f959e14';
       s.defer = true;
       document.body.appendChild(s);
       events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
@@ -526,6 +526,6 @@
     var fallback = setTimeout(loadChatbot, 4000);
   })();
   </script>
-  <script src="assets/js/cookie-consent.js" defer></script>
+  <script src="assets/js/cookie-consent.js?v=db22c0f7" defer></script>
 </body>
 </html>
