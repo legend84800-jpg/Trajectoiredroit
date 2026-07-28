@@ -50,6 +50,10 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 - [x] matiere:droit des personnes L1 | arret:Cass. ass. plén., 2019, Mennesson | theme:la transcription de l'état civil de l'enfant né d'une GPA à l'étranger
 - [x] matiere:droit des personnes L1 | arret:Cass. civ. 1re, 2017, Sexe neutre | theme:le refus d'une mention de sexe neutre à l'état civil
 
+## Droit de la famille L1
+
+- [x] matiere:droit de la famille L1 | arret:Cass. 1re civ., 13 mars 2007, Bègles | theme:l'altérité sexuelle, condition du mariage jusqu'à la loi du 17 mai 2013 (ajouté et publié le 2026-07-28, backlog dédié entièrement épuisé sur toutes les matières et aucune requête Search Console en position 5-15 ne visait un arrêt non traité, arrêt repéré via le commentaire d'arrêt déjà existant dans contenus-tjd/commentaires-arrets/coma_begles_fam_2007.pdf, sourcé pour le reste sur Légifrance (considérant vérifié mot à mot, dates et numéro de pourvoi), la CEDH et le Conseil constitutionnel ; matière droit de la famille L1 non couverte jusqu'ici en fiches d'arrêt, page de matière droit-de-la-famille-l1.html déjà en ligne)
+
 ## Droit des biens L2
 
 - [x] matiere:droit des biens L2 | arret:Cass. civ. 3e, 1990, Empiètement | theme:la démolition imposée même pour un empiétement minime
