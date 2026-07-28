@@ -1372,6 +1372,24 @@ html[data-theme="dark"] .megamenu__niveau-col a:not(.megamenu__niveau-cta):hover
 .accordion__item[open] summary { border-bottom: 1px solid var(--border) }
 .accordion__body { padding: var(--sp-4) var(--sp-5); color: var(--body) }
 
+/* Vague 5.10 : sommaire en accordéon sous chaque carte produit, replié par
+   défaut (compacité de la grille), contenu réel extrait des plans détaillés,
+   jamais un chiffre ou un thème inventé. */
+.product__sommaire { margin: 2px 0 0; font-size: .82rem; }
+.product__sommaire summary {
+  cursor: pointer; list-style: none; color: var(--blue-700); font-weight: 600;
+  display: inline-flex; align-items: center; gap: 5px; padding: 2px 0;
+}
+.product__sommaire summary::-webkit-details-marker { display: none }
+.product__sommaire summary::after {
+  content: "▾"; font-size: .68rem; transition: transform .2s ease; display: inline-block;
+}
+.product__sommaire[open] summary::after { transform: rotate(180deg); }
+.product__sommaire summary:hover { color: var(--navy) }
+.product__sommaire-list { margin: 6px 0 0; padding-left: 18px; color: var(--body); line-height: 1.55; }
+.product__sommaire-list li { margin-bottom: 2px }
+html[data-theme="dark"] .product__sommaire summary { color: #7BA5E8; }
+
 /* ===== 15. PRICING (comparison) ===== */
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-6); align-items: stretch }
 .pricing-grid > .card--pricing { padding-top: var(--sp-8) }
