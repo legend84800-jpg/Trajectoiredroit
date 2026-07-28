@@ -11,14 +11,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#1A2851">
-  <title>Quiz : quel métier du droit te correspond ?</title>
+  <title>Quiz : quelle fiche prendre en droit ? (année, matière, échéance)</title>
   <meta name="author" content="Julien">
-  <meta name="description" content="8 questions, 3 minutes. Avocat, magistrat, notaire, juriste d'entreprise, commissaire de justice ou enseignant-chercheur : découvre le métier du droit qui te correspond le plus.">
-  <link rel="canonical" href="https://trajectoiredroit.com/quiz-metier-droit.html">
+  <meta name="description" content="4 questions, 1 minute. Réponds sur ton année, ta matière qui coince, ton échéance et ton objectif, et reçois la fiche exacte qu'il te faut.">
+  <link rel="canonical" href="https://trajectoiredroit.com/quiz-orienteur.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Quel métier du droit te correspond ? Le quiz en 8 questions">
-  <meta property="og:description" content="Avocat, magistrat, notaire, juriste d'entreprise, commissaire de justice, enseignant-chercheur. 8 questions pour voir vers quel métier du droit tu penches vraiment.">
-  <meta property="og:url" content="https://trajectoiredroit.com/quiz-metier-droit.html">
+  <meta property="og:title" content="Quelle fiche prendre ? Le quiz en 4 questions">
+  <meta property="og:description" content="4 questions sur ton année, ta matière, ton échéance et ton objectif. Tu repars avec la fiche exacte qu'il te faut.">
+  <meta property="og:url" content="https://trajectoiredroit.com/quiz-orienteur.html">
   <meta property="og:locale" content="fr_FR">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,13 +36,14 @@
   </script>
 
   <style>
-    /* ===== Quiz métier (scopé) ===== */
+    /* ===== Quiz méthode (scopé) ===== */
     .quiz-wrap{max-width:720px;margin:0 auto}
     .quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-xl);box-shadow:var(--sh-2);padding:32px 28px}
     @media(min-width:640px){.quiz-card{padding:40px 44px}}
     .quiz-progress{height:8px;background:var(--slate-100);border-radius:var(--r-pill);overflow:hidden;margin-bottom:8px}
     .quiz-progress__bar{height:100%;width:0;background:var(--navy);border-radius:var(--r-pill);transition:width .3s ease}
     .quiz-progress__label{font-size:.82rem;color:var(--muted);font-weight:600;margin-bottom:24px;display:flex;justify-content:space-between}
+    .quiz-exo{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
     .quiz-q{font-family:var(--font-display);font-size:1.4rem;line-height:1.3;color:var(--navy);font-weight:700;margin:0 0 24px}
     .quiz-opts{display:flex;flex-direction:column;gap:12px}
     .quiz-opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--border-strong);border-radius:var(--r-md);padding:16px 18px;font-family:var(--font-body);font-size:1rem;line-height:1.4;color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s,box-shadow .15s}
@@ -52,27 +53,27 @@
     .quiz-back:hover{color:var(--navy)}
     .quiz-back[hidden]{display:none}
     /* résultat */
-    .quiz-result__badge{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;text-align:center;width:100%}
-    .quiz-result__title{font-family:var(--font-display);font-size:1.9rem;color:var(--navy);font-weight:800;text-align:center;margin:0 0 14px}
-    .quiz-result__lead{color:var(--body);text-align:center;margin:0 auto 24px;max-width:560px;font-size:1.02rem;line-height:1.55}
-    .quiz-facts{background:var(--slate-50);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 24px;margin-bottom:24px}
-    .quiz-facts h3{font-size:1.02rem;color:var(--navy);margin:0 0 14px}
-    .quiz-facts dl{margin:0;display:flex;flex-direction:column;gap:12px}
-    .quiz-facts dt{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--accent);margin-bottom:3px}
-    .quiz-facts dd{margin:0;font-size:.95rem;color:var(--body);line-height:1.5}
-    .quiz-trait{background:var(--blue-50);border-radius:var(--r-lg);padding:18px 22px;margin-bottom:24px}
-    .quiz-trait p{margin:0;font-size:.95rem;color:var(--navy);line-height:1.5}
+    .quiz-score{text-align:center;margin-bottom:28px}
+    .quiz-score__num{font-family:var(--font-display);font-size:3.4rem;font-weight:800;color:var(--navy);line-height:1}
+    .quiz-score__num small{font-size:1.4rem;color:var(--muted);font-weight:600}
+    .quiz-score__tag{display:inline-block;margin-top:14px;padding:6px 16px;border-radius:var(--r-pill);font-weight:700;font-size:.92rem}
+    .tag-low{background:var(--rose-bg);color:var(--accent)}
+    .tag-mid{background:var(--amber-bg);color:#92600A}
+    .tag-high{background:var(--emerald-bg);color:#047857}
+    .quiz-result__title{font-family:var(--font-display);font-size:1.5rem;color:var(--navy);font-weight:700;text-align:center;margin:0 0 12px}
+    .quiz-result__lead{color:var(--body);text-align:center;margin:0 auto 28px;max-width:540px}
+    .quiz-todo{background:var(--slate-50);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 24px;margin-bottom:28px}
+    .quiz-todo h3{font-size:1.05rem;color:var(--navy);margin:0 0 14px}
+    .quiz-todo ul{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+    .quiz-todo li{display:flex;gap:10px;align-items:flex-start;font-size:.96rem;color:var(--body);line-height:1.45}
+    .quiz-todo li::before{content:"→";color:var(--accent);font-weight:800;flex:none}
     .quiz-cta{text-align:center}
-    .quiz-cta__row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+    .quiz-cta__row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
     .quiz-capture{margin-top:32px;border-top:1px dashed var(--border-strong);padding-top:28px}
     .quiz-capture h3{font-family:var(--font-display);font-size:1.25rem;color:var(--navy);text-align:center;margin:0 0 8px}
     .quiz-capture p{text-align:center;color:var(--body);margin:0 auto 18px;max-width:480px}
     .quiz-capture form{display:flex;gap:8px;flex-direction:column;max-width:420px;margin:0 auto}
     .quiz-fineprint{font-size:.82rem;color:var(--muted);text-align:center;margin-top:12px}
-    .quiz-other-profils{margin-top:28px;padding-top:24px;border-top:1px solid var(--border)}
-    .quiz-other-profils h4{font-size:.88rem;color:var(--muted);text-align:center;font-weight:600;margin:0 0 12px;text-transform:uppercase;letter-spacing:.03em}
-    .quiz-other-profils__row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-    .quiz-other-profils__pill{font-size:.82rem;color:var(--body);background:var(--slate-50);border:1px solid var(--border);border-radius:var(--r-pill);padding:5px 12px}
   </style>
   <!-- Matomo -->
   <script>
@@ -279,18 +280,18 @@
         <!-- ÉCRAN 1 : INTRO -->
         <div class="quiz-wrap" id="screen-intro">
           <div class="text-center" style="margin-bottom:28px">
-            <span class="eyebrow eyebrow--gold">⭐ Quiz gratuit · 3 minutes · sans inscription</span>
-            <h1 class="h1 text-balance" style="margin-top:14px">Quel métier du droit te correspond ?</h1>
-            <p class="lead" style="max-width:600px;margin:16px auto 0">Avocat, magistrat, notaire, juriste d'entreprise, commissaire de justice, enseignant-chercheur. Six métiers, six quotidiens très différents, alors que le droit qu'on apprend en licence est le même pour tous. En 8 questions, tu vois lequel te correspond le plus, avec le parcours réel pour y arriver.</p>
+            <span class="eyebrow eyebrow--gold">🎯 Quiz gratuit · 1 minute · sans inscription</span>
+            <h1 class="h1 text-balance" style="margin-top:14px">Quelle fiche prendre ?</h1>
+            <p class="lead" style="max-width:600px;margin:16px auto 0">Le catalogue compte plusieurs formats et 18 matières. En 4 questions, sur ton année, ta matière qui coince, ton échéance et ce que tu cherches vraiment, tu repars avec la fiche exacte qu'il te faut, pas une recommandation générale.</p>
           </div>
           <div class="quiz-card text-center">
             <div class="grid-3" style="gap:16px;margin-bottom:24px;text-align:left">
-              <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">8</div><div style="font-size:.88rem;color:var(--body)">questions, 6 métiers possibles</div></div>
-              <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">3 min</div><div style="font-size:.88rem;color:var(--body)">pour voir ton profil</div></div>
-              <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">6</div><div style="font-size:.88rem;color:var(--body)">vrais parcours, concours et chiffres à l'appui</div></div>
+              <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">4</div><div style="font-size:.88rem;color:var(--body)">questions courtes</div></div>
+              <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">1 min</div><div style="font-size:.88rem;color:var(--body)">pour avoir ta réponse</div></div>
+              <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">18</div><div style="font-size:.88rem;color:var(--body)">matières couvertes, L1 à L3</div></div>
             </div>
             <button class="btn btn--primary btn--lg" id="startBtn">Commencer le quiz →</button>
-            <p style="font-size:.84rem;color:var(--muted);margin:14px 0 0">Construit par Julien, à partir des voies d'accès réelles de chaque métier (CRFPA, ENM, DESN, agrégation...).</p>
+            <p style="font-size:.84rem;color:var(--muted);margin:14px 0 0">Construit par Julien, à partir des vraies erreurs vues dans les copies de ses élèves.</p>
           </div>
         </div>
 
@@ -298,7 +299,7 @@
         <div class="quiz-wrap" id="screen-quiz" hidden>
           <div class="quiz-card">
             <div class="quiz-progress"><div class="quiz-progress__bar" id="progressBar"></div></div>
-            <div class="quiz-progress__label"><span id="progressText">Question 1 sur 8</span></div>
+            <div class="quiz-progress__label"><span id="progressText">Question 1 sur 4</span></div>
             <p class="quiz-q" id="questionText"></p>
             <div class="quiz-opts" id="optionsBox"></div>
             <button class="quiz-back" id="backBtn" hidden>← Revenir à la question précédente</button>
@@ -308,37 +309,28 @@
         <!-- ÉCRAN 3 : RÉSULTAT -->
         <div class="quiz-wrap" id="screen-result" hidden>
           <div class="quiz-card">
-            <div class="quiz-result__badge" id="resultBadge"></div>
+            <div class="text-center" style="margin-bottom:8px">
+              <span class="eyebrow" id="resultEyebrow"></span>
+            </div>
             <h2 class="quiz-result__title" id="resultTitle"></h2>
             <p class="quiz-result__lead" id="resultLead"></p>
 
-            <div class="quiz-trait">
-              <p id="resultTrait"></p>
-            </div>
-
-            <div class="quiz-facts" id="factsBox">
-              <h3>Le parcours réel</h3>
-              <dl id="factsList"></dl>
-            </div>
-
             <div class="quiz-cta">
               <div id="ctaMain"></div>
-            </div>
-
-            <div class="quiz-other-profils">
-              <h4>Les 5 autres profils du quiz</h4>
-              <div class="quiz-other-profils__row" id="autresProfils"></div>
+              <p id="ctaSecondary" style="margin-top:14px;font-size:.92rem;color:var(--body)"></p>
             </div>
 
             <div class="quiz-capture">
-              <h3>Reçois le guide complet des 6 métiers</h3>
-              <p>Je t'envoie par email le détail des six parcours (concours, durée de formation, quotidien, chiffres) pour comparer tranquillement avant de choisir, même si ton profil penche déjà d'un côté.</p>
+              <h3>On t'envoie le récap par email</h3>
+              <p>Le lien direct vers ta fiche, et un rappel une semaine avant ton échéance si tu l'as indiquée.</p>
               <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST">
                 <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
-                <input type="hidden" name="_subject" value="Quiz métier · nouveau lead">
-                <input type="hidden" name="profil" id="hiddenProfil" value="">
+                <input type="hidden" name="_subject" value="Quiz orienteur · nouveau lead">
+                <input type="hidden" name="niveau" id="hiddenNiveau" value="">
+                <input type="hidden" name="matiere" id="hiddenMatiere" value="">
+                <input type="hidden" name="objectif" id="hiddenObjectif" value="">
                 <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
-                <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir le guide des 6 métiers →</button>
+                <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir le récap →</button>
               </form>
               <p class="quiz-fineprint">Désinscription en 1 clic · Aucune carte bancaire</p>
             </div>
@@ -371,7 +363,6 @@
           <a href="methodologie-juridique.html">Méthodologie juridique</a>
           <a href="quiz-methode.html">Quiz de méthode</a>
           <a href="quiz-orienteur.html">Quiz orienteur</a>
-          <a href="quiz-metier-droit.html">Quiz métier du droit</a>
           <a href="ambassadeurs.html">Programme ambassadeurs</a>
         </div>
         <div>
@@ -386,7 +377,7 @@
           <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Fiche méthode gratuite chaque semaine.</p>
           <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
             <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
-            <input type="hidden" name="_subject" value="Newsletter (page quiz metier droit)">
+            <input type="hidden" name="_subject" value="Newsletter (page quiz orienteur)">
             <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
           </form>
         </div>
@@ -400,219 +391,171 @@
 
   <script src="assets/js/main.js?v=1fd5ad70" defer></script>
   <script>
-  (function(){
-    // Chaque question propose 6 réponses, une par métier, dans le même ordre :
-    // 0 avocat · 1 magistrat · 2 notaire · 3 juriste · 4 commissaire · 5 enseignant
-    var QUESTIONS = [
-      { q:"Quelle scène te motive le plus ?",
-        opts:[
-          "Plaider à l'audience et retourner la salle avec ton argumentation.",
-          "Rendre un jugement après avoir entendu les deux parties.",
-          "Signer un acte qui sécurise un moment important dans la vie de tes clients.",
-          "Négocier et rédiger le contrat qui protège ton entreprise.",
-          "Faire un constat sur le terrain, au contact direct des gens.",
-          "Donner un cours qui fait enfin comprendre une notion difficile à tout un amphi."
-        ]},
-      { q:"Tu préfères, au fond...",
-        opts:[
-          "Défendre une personne ou une cause dans un conflit déjà ouvert.",
-          "Trancher un litige en restant strictement neutre entre les deux parties.",
-          "Éviter le conflit en sécurisant l'acte avant qu'il ne puisse naître.",
-          "Anticiper un risque juridique avant qu'un problème n'éclate pour ton entreprise.",
-          "Exécuter concrètement une décision de justice déjà rendue.",
-          "Analyser le droit pour le comprendre en profondeur, pas pour trancher un cas précis."
-        ]},
-      { q:"Face à la pression, tu es plutôt du genre à...",
-        opts:[
-          "Carburer à l'incertitude, un procès n'est jamais gagné d'avance.",
-          "Assumer seul une décision qui engage la vie de quelqu'un d'autre.",
-          "Vouloir zéro erreur, un acte signé ne se corrige pas après coup.",
-          "Gérer un risque business sous contrainte de délai.",
-          "Gérer des situations humainement tendues, parfois à toute heure.",
-          "Préférer la patience longue d'une recherche à l'urgence d'un dossier."
-        ]},
-      { q:"Ton cadre de travail idéal, ce serait plutôt...",
-        opts:[
-          "Ton propre cabinet, ou associé, sans patron au-dessus de toi.",
-          "Un poste protégé par l'État, garanti et à l'abri des pressions extérieures.",
-          "Ton étude à diriger, entre acte juridique et gestion d'entreprise.",
-          "Une équipe, dans une direction juridique intégrée à une entreprise.",
-          "Ton office, avec des missions différentes plusieurs fois par jour.",
-          "Une université, entre amphithéâtre et bureau de recherche."
-        ]},
-      { q:"Ce qui te ressemble le plus, à l'écrit ou à l'oral...",
-        opts:[
-          "Une plaidoirie qui retourne un jury.",
-          "Un jugement motivé, écrit noir sur blanc pour trancher.",
-          "Un acte rédigé au mot près, qui engage pour des années.",
-          "Une note courte et actionnable, écrite pour des non-juristes.",
-          "Un procès-verbal de constat, précis et daté.",
-          "Un article de recherche ou une thèse, construite sur plusieurs années."
-        ]},
-      { q:"Ton rythme de travail idéal ressemble à...",
-        opts:[
-          "Des audiences et des délais de procédure qui rythment tes semaines.",
-          "Le rôle d'un tribunal, avec parfois des permanences à assurer.",
-          "Des rendez-vous clients, plutôt stables d'une semaine à l'autre.",
-          "Des horaires de bureau, calés sur le rythme d'une entreprise.",
-          "Des horaires imprévisibles, terrain le matin, urgence le soir.",
-          "Le rythme d'une année universitaire, dense d'octobre à juin."
-        ]},
-      { q:"Ce qui te fait le plus envie, au fond...",
-        opts:[
-          "Défendre quelqu'un qui a vraiment besoin de toi.",
-          "Servir la loi et l'intérêt général, sans jamais prendre parti.",
-          "Sécuriser le patrimoine et les grands moments de la vie des gens.",
-          "Faire avancer une entreprise en la protégeant juridiquement.",
-          "Faire respecter concrètement le droit, sur le terrain.",
-          "Transmettre et faire progresser la compréhension du droit."
-        ]},
-      { q:"Le parcours qui ne te fait pas peur, c'est plutôt...",
-        opts:[
-          "Un examen sélectif puis 18 mois d'école, pour aller vite vers le concret.",
-          "Un concours très sélectif (5 à 10 % de reçus), puis 31 mois de formation.",
-          "Un master puis 2 ans en office, sans concours à effectif limité.",
-          "Un master, puis apprendre directement sur le terrain en entreprise.",
-          "Un examen sélectif, puis 2 ans de formation en alternance en office.",
-          "Une thèse de plusieurs années, puis un concours national très sélectif."
-        ]}
+    // ----- Donnees reelles : matieres par niveau, avec l'id produit de la fiche complete et des flashcards -----
+    var MATIERES = {
+      L1: [
+        {nom:"Introduction au droit", sem:"S1", fiche:"fiche-intro-droit-l1", fc:"flashcards-qcm-intro-droit-l1"},
+        {nom:"Histoire du droit", sem:"S1", fiche:"fiche-hist-droit-l1", fc:"flashcards-qcm-hist-droit-l1"},
+        {nom:"Droit constitutionnel", sem:"S1", fiche:"fiche-constit-l1-s1", fc:"flashcards-qcm-constit-l1-s1"},
+        {nom:"Droit constitutionnel", sem:"S2", fiche:"fiche-constit-l1-s2", fc:"flashcards-qcm-constit-l1-s2"},
+        {nom:"Histoire des institutions", sem:"S2", fiche:"fiche-hist-institutions-l1", fc:"flashcards-qcm-hist-institutions-l1"},
+        {nom:"Droit pénal général", sem:"S2", fiche:"fiche-penal-general-l1", fc:"flashcards-qcm-penal-general-l1"},
+        {nom:"Droit de la famille", sem:"S2", fiche:"fiche-famille-l1-s2", fc:"flashcards-qcm-famille-l1-s2"},
+        {nom:"Droit des personnes", sem:"", fiche:"fiche-personnes-l1", fc:"flashcards-qcm-personnes-l1"},
+        {nom:"Relations internationales", sem:"", fiche:"fiche-relations-internationales-l1", fc:"flashcards-qcm-relations-internationales-l1"}
+      ],
+      L2: [
+        {nom:"Droit administratif", sem:"S1", fiche:"fiche-da-l2-s1", fc:"flashcards-qcm-da-l2-s1"},
+        {nom:"Droit des contrats", sem:"S1", fiche:"fiche-contrats-l2-s1", fc:"flashcards-qcm-contrats-l2-s1"},
+        {nom:"Droit pénal", sem:"S1", fiche:"fiche-penal-l2-s1", fc:"flashcards-qcm-penal-l2-s1"},
+        {nom:"Droit administratif", sem:"S2", fiche:"fiche-da-l2-s2", fc:"flashcards-qcm-da-l2-s2"},
+        {nom:"Droit des obligations", sem:"S2", fiche:"fiche-obligations-l2-s2", fc:"flashcards-qcm-obligations-l2-s2"},
+        {nom:"Droit des biens", sem:"", fiche:"fiche-biens-l2", fc:"flashcards-qcm-biens-l2"}
+      ],
+      L3: [
+        {nom:"Droit commercial", sem:"S1", fiche:"fiche-commercial-l3-s1", fc:"flashcards-qcm-commercial-l3-s1"},
+        {nom:"Droit des sociétés", sem:"S1", fiche:"fiche-societes-l3-s1", fc:"flashcards-qcm-societes-l3-s1"},
+        {nom:"Droit du travail", sem:"S1", fiche:"fiche-travail-l3-s1", fc:"flashcards-qcm-travail-l3-s1"},
+        {nom:"Contrats spéciaux", sem:"", fiche:"fiche-contrats-speciaux-l3", fc:"flashcards-qcm-contrats-speciaux-l3"},
+        {nom:"Procédure pénale", sem:"", fiche:"fiche-procedure-penale-l3", fc:"flashcards-qcm-procedure-penale-l3"}
+      ]
+    };
+
+    var ECHEANCES = [
+      {v:"proche", t:"Moins de 2 semaines"},
+      {v:"mois", t:"Dans le mois"},
+      {v:"debut", t:"Je commence tout juste le semestre"},
+      {v:"continu", t:"Pas d'échéance précise, je révise en continu"}
     ];
 
-    var PROFILS = [
-      { key:"avocat", badge:"Ton profil", title:"Avocat", cls:"avocat",
-        lead:"Tu es fait pour le contentieux et la défense d'une cause. Le mélange d'oral, d'incertitude et de relation client individuelle, c'est exactement ce qui te fait tenir.",
-        trait:"Tu carbures à l'oral et à la joute argumentative, tu tolères l'incertitude d'un résultat jamais gagné d'avance, et tu aimes défendre une personne ou une cause précise plutôt qu'un principe général.",
-        facts:[
-          ["Voie d'accès","Examen du CRFPA, accessible avec un Master 2, environ 30 % de réussite en moyenne nationale (de 12 % à 43 % selon le centre)."],
-          ["Formation","18 mois répartis en école, stage en cabinet et projet pédagogique individuel, sanctionnés par le CAPA."],
-          ["Chiffre","77 190 avocats inscrits en France en 2025, 97 % en exercice libéral, profession en hausse de 25 % depuis 2015."]
-        ] },
-      { key:"magistrat", badge:"Ton profil", title:"Magistrat", cls:"magistrat",
-        lead:"Tu es fait pour trancher, pas pour défendre un camp. La neutralité, le poids d'une décision qui engage la vie d'autrui et le service de la loi, voilà ce qui te correspond.",
-        trait:"Tu cherches l'équité plus que la défense d'un intérêt partisan, tu assumes de décider seul, et tu tiens la pression d'un métier aux horaires parfois imprévisibles (astreintes, urgences).",
-        facts:[
-          ["Voie d'accès","Concours de l'ENM, environ 180 à 200 places par an sur le 1ᵉʳ concours, 5 à 10 % de réussite selon les sessions."],
-          ["Formation","31 mois à l'ENM (Bordeaux), sous statut d'auditeur ou auditrice de justice, théorie et stages en juridiction."],
-          ["Chiffre","Siège (juge, inamovible) ou parquet (procureur, hiérarchique), deux visages très différents du même concours."]
-        ] },
-      { key:"notaire", badge:"Ton profil", title:"Notaire", cls:"notaire",
-        lead:"Tu es fait pour sécuriser plutôt que pour trancher un conflit déjà né. Le conseil, la rigueur et la gestion d'une petite entreprise (ton étude), ça te parle.",
-        trait:"Tu préfères éviter le conflit en amont plutôt que l'arbitrer une fois né, tu veux zéro erreur sur ce que tu signes, et diriger une structure (ton étude) ne te fait pas peur.",
-        facts:[
-          ["Voie d'accès","DESN depuis la réforme de 2022, accessible avec un Master en droit, pas de concours à effectif limité mais une sélection sur le niveau académique."],
-          ["Formation","24 mois en apprentissage dans un office, sous statut de notaire stagiaire, avec l'INFN."],
-          ["Chiffre","17 305 notaires en France en 2024, pour 6 750 offices et 5,1 millions d'actes authentiques dans l'année."]
-        ] },
-      { key:"juriste", badge:"Ton profil", title:"Juriste d'entreprise", cls:"juriste",
-        lead:"Tu es fait pour le conseil interne plus que pour le prétoire. Traduire une contrainte juridique en langage business, avec de l'autonomie au quotidien, c'est ton terrain.",
-        trait:"Tu aimes la logique d'entreprise plus que la logique judiciaire, tu es autonome et tu sais synthétiser une question complexe en note courte et actionnable pour des non-juristes.",
-        facts:[
-          ["Voie d'accès","Pas de concours, un Master en droit des affaires ou équivalent (souvent DJCE), l'anglais courant quasi indispensable."],
-          ["Formation","Pas de scolarité professionnelle type école, montée en compétence directement en entreprise après un stage ou une alternance."],
-          ["Chiffre","Plus de 15 000 juristes d'entreprise en France (AFJE), salaire de départ indicatif entre 38 000 et 50 000 € bruts par an."]
-        ] },
-      { key:"commissaire", badge:"Ton profil", title:"Commissaire de justice", cls:"commissaire",
-        lead:"Tu es fait pour le terrain plus que pour le bureau. L'action concrète, la variété des missions dans une même journée et un rythme imprévisible, ça te va bien.",
-        trait:"Tu préfères l'exécution concrète du droit au contact direct des gens, tu es à l'aise dans des situations humainement tendues, et la polyvalence d'horaires ne te fait pas peur.",
-        facts:[
-          ["Voie d'accès","Examen d'accès sélectif (environ 8 à 9 % de réussite), accessible avec un Master 2 en droit."],
-          ["Formation","2 ans de formation en alternance avec l'INCJ, entre théorie et exercice en office."],
-          ["Chiffre","3 748 commissaires de justice en France en 2025 (fusion huissiers et commissaires-priseurs judiciaires depuis 2022), 9,4 millions d'actes réalisés en 2024."]
-        ] },
-      { key:"enseignant", badge:"Ton profil", title:"Enseignant-chercheur", cls:"enseignant",
-        lead:"Tu es fait pour la recherche et la transmission plus que pour la pratique d'un cas concret. L'écrit long, la patience et le plaisir de faire comprendre, voilà ce qui te tient.",
-        trait:"Tu préfères l'écrit long et solitaire (thèse, articles) à l'oral de confrontation judiciaire, tu aimes transmettre et vulgariser, et la patience d'une carrière qui se construit sur plusieurs années ne t'effraie pas.",
-        facts:[
-          ["Voie d'accès","Doctorat puis qualification CNU pour devenir maître de conférences, puis agrégation de droit (20 à 30 admis par session) pour devenir professeur."],
-          ["Formation","Le doctorat (3 à 6 ans) est lui-même la formation par la recherche, sans école complémentaire."],
-          ["Chiffre","192 heures d'enseignement minimum par an pour un maître de conférences, rythme calé sur l'année universitaire."]
-        ] }
+    var OBJECTIFS = [
+      {v:"comprendre", t:"Comprendre et apprendre tout le cours"},
+      {v:"mention", t:"Avoir plus de 15/20 en cas pratique et en commentaire"},
+      {v:"arrets", t:"Connaître les arrêts par cœur"},
+      {v:"reviser", t:"Réviser vite, tester ce que je retiens"},
+      {v:"methode", t:"Revoir la méthode elle-même, pas le contenu"},
+      {v:"bloque", t:"Je bloque sur un point précis, j'ai besoin d'aide individuelle"}
     ];
 
-    var idx = 0, tally = [0,0,0,0,0,0];
-    var answers = new Array(QUESTIONS.length).fill(null);
+    var reponses = {niveau:null, matiere:null, echeance:null, objectif:null};
+    var idx = 0;
+    var TOTAL = 4;
+
     var elIntro = document.getElementById('screen-intro');
     var elQuiz = document.getElementById('screen-quiz');
     var elResult = document.getElementById('screen-result');
 
     function show(el){ [elIntro,elQuiz,elResult].forEach(function(s){ s.hidden = (s!==el); }); window.scrollTo({top:0,behavior:'smooth'}); }
 
+    function optionsPourEtape(i){
+      if (i === 0) return [{v:"L1",t:"L1"},{v:"L2",t:"L2"},{v:"L3",t:"L3"}];
+      if (i === 1) return MATIERES[reponses.niveau].map(function(m, mi){ return {v:String(mi), t: m.nom + (m.sem ? " (" + m.sem + ")" : "")}; });
+      if (i === 2) return ECHEANCES.map(function(e){ return {v:e.v, t:e.t}; });
+      return OBJECTIFS.map(function(o){ return {v:o.v, t:o.t}; });
+    }
+
+    function questionPourEtape(i){
+      if (i === 0) return "Tu es en quelle année ?";
+      if (i === 1) return "Quelle matière te pose le plus de problème en ce moment ?";
+      if (i === 2) return "C'est pour quand ?";
+      return "Qu'est-ce que tu cherches en priorité ?";
+    }
+
     function render(){
-      var Q = QUESTIONS[idx];
-      document.getElementById('questionText').textContent = Q.q;
-      document.getElementById('progressText').textContent = 'Question ' + (idx+1) + ' sur ' + QUESTIONS.length;
-      document.getElementById('progressBar').style.width = ((idx)/QUESTIONS.length*100) + '%';
+      document.getElementById('questionText').textContent = questionPourEtape(idx);
+      document.getElementById('progressText').textContent = 'Question ' + (idx+1) + ' sur ' + TOTAL;
+      document.getElementById('progressBar').style.width = (idx/TOTAL*100) + '%';
       var box = document.getElementById('optionsBox');
       box.innerHTML = '';
-      Q.opts.forEach(function(o, i){
+      optionsPourEtape(idx).forEach(function(o){
         var b = document.createElement('button');
         b.className = 'quiz-opt';
-        b.type = 'button';
-        b.textContent = o;
-        b.addEventListener('click', function(){ answers[idx] = i; next(); });
+        b.textContent = o.t;
+        b.addEventListener('click', function(){ repondre(o.v); });
         box.appendChild(b);
       });
       document.getElementById('backBtn').hidden = (idx === 0);
     }
 
-    function next(){
-      if (idx < QUESTIONS.length - 1){ idx++; render(); }
-      else { finish(); }
+    function repondre(v){
+      if (idx === 0) reponses.niveau = v;
+      else if (idx === 1) reponses.matiere = MATIERES[reponses.niveau][parseInt(v,10)];
+      else if (idx === 2) reponses.echeance = v;
+      else reponses.objectif = v;
+
+      if (idx < TOTAL - 1) { idx++; render(); }
+      else { resultat(); }
     }
 
-    function finish(){
-      tally = [0,0,0,0,0,0];
-      answers.forEach(function(a){ if (a !== null) tally[a]++; });
-      var maxScore = Math.max.apply(null, tally);
-      var winnerIdx = tally.indexOf(maxScore);
-      var prof = PROFILS[winnerIdx];
+    document.getElementById('backBtn').addEventListener('click', function(){
+      if (idx > 0) { idx--; render(); }
+    });
 
-      document.getElementById('resultBadge').textContent = prof.badge;
-      document.getElementById('resultTitle').textContent = prof.title;
-      document.getElementById('resultLead').textContent = prof.lead;
-      document.getElementById('resultTrait').textContent = prof.trait;
+    function boutonAchat(pid, label, prix){
+      return '<button type="button" class="btn btn--primary btn--lg product__cta" data-tjd-produit="' + pid + '">' + label + ' · ' + prix + '</button>';
+    }
+    function boutonLien(href, label){
+      return '<a class="btn btn--primary btn--lg" href="' + href + '">' + label + ' →</a>';
+    }
 
-      var factsList = document.getElementById('factsList');
-      factsList.innerHTML = '';
-      prof.facts.forEach(function(f){
-        var dt = document.createElement('dt'); dt.textContent = f[0];
-        var dd = document.createElement('dd'); dd.textContent = f[1];
-        factsList.appendChild(dt); factsList.appendChild(dd);
-      });
+    function resultat(){
+      var m = reponses.matiere;
+      var obj = reponses.objectif;
+      var ech = reponses.echeance;
+      var eyebrow = document.getElementById('resultEyebrow');
+      var title = document.getElementById('resultTitle');
+      var lead = document.getElementById('resultLead');
+      var ctaMain = document.getElementById('ctaMain');
+      var ctaSecondary = document.getElementById('ctaSecondary');
 
-      var ctaByProfil = {
-        avocat: { href:"methode-cas-pratique.html", label:"Voir la méthode du cas pratique" },
-        magistrat: { href:"methode-commentaire-arret.html", label:"Voir la méthode du commentaire d'arrêt" },
-        notaire: { href:"majeures-preparees.html", label:"Voir les majeures préparées" },
-        juriste: { href:"majeures-preparees.html", label:"Voir les majeures préparées" },
-        commissaire: { href:"cours-particuliers.html", label:"Voir les cours particuliers" },
-        enseignant: { href:"methode-dissertation-juridique.html", label:"Voir la méthode de la dissertation" }
-      };
-      var cta = ctaByProfil[prof.key];
-      document.getElementById('ctaMain').innerHTML =
-        '<a class="btn btn--primary btn--lg" href="formations.html">Voir les fiches complètes</a>' +
-        '<div class="quiz-cta__row"><a class="btn btn--outline" href="' + cta.href + '">' + cta.label + '</a></div>';
+      eyebrow.textContent = reponses.niveau + ' · ' + m.nom + (m.sem ? ' (' + m.sem + ')' : '');
+      ctaSecondary.textContent = '';
 
-      var autresBox = document.getElementById('autresProfils');
-      autresBox.innerHTML = '';
-      PROFILS.forEach(function(p, i){
-        if (i === winnerIdx) return;
-        var span = document.createElement('span');
-        span.className = 'quiz-other-profils__pill';
-        span.textContent = p.title;
-        autresBox.appendChild(span);
-      });
+      if (obj === 'comprendre') {
+        title.textContent = 'La fiche complète de ' + m.nom;
+        lead.textContent = "Elle réunit tout le semestre en un seul PDF, avec les définitions, les articles et les exemples qui font comprendre.";
+        ctaMain.innerHTML = boutonAchat(m.fiche, 'Acheter la fiche', '14,99 €');
+        if (ech === 'proche') {
+          ctaSecondary.innerHTML = "Ton échéance est proche. En complément, les <a href=\"flashcards-qcm.html\">flashcards + QCM</a> de " + m.nom + " te permettent de réviser plus vite juste avant l'examen.";
+        } else if (ech === 'debut') {
+          ctaSecondary.innerHTML = "Tu commences tout juste le semestre. Le <a href=\"formations.html#packs-annee\">pack de l'année</a> couvre toutes les matières de ta " + reponses.niveau + " pour moins cher qu'à l'unité.";
+        }
+      } else if (obj === 'mention') {
+        title.textContent = 'Une majeure préparée en ' + m.nom;
+        lead.textContent = "Les règles de droit, articles et jurisprudences, déjà rédigées condition par condition. C'est ce format qui fait gagner les points de méthode en cas pratique et en commentaire.";
+        ctaMain.innerHTML = boutonLien('majeures-preparees.html', 'Voir les majeures préparées');
+      } else if (obj === 'arrets') {
+        title.textContent = 'Les fiches d\'arrêt de ' + m.nom;
+        lead.textContent = "Les grands arrêts de la matière, avec les faits, la procédure, la solution et la portée, pour les connaître par cœur avant l'examen.";
+        ctaMain.innerHTML = boutonLien('revisions.html', 'Voir les fiches d\'arrêt');
+      } else if (obj === 'reviser') {
+        title.textContent = 'Flashcards + QCM de ' + m.nom;
+        lead.textContent = "Une flashcard par notion et un QCM corrigé pour tester ce que tu retiens vraiment, plus le deck Anki prêt à importer.";
+        ctaMain.innerHTML = boutonAchat(m.fc, 'Acheter les flashcards', '9,99 €');
+      } else if (obj === 'methode') {
+        title.textContent = 'Le stage de méthode en direct';
+        lead.textContent = "Trois séances en direct sur les quatre exercices de droit, la fiche d'arrêt, le commentaire, le cas pratique et la dissertation. Ce n'est pas le contenu d'une matière, c'est la méthode elle-même.";
+        ctaMain.innerHTML = boutonLien('stage-methode.html', 'Voir le stage de méthode');
+      } else {
+        title.textContent = 'Un accompagnement individuel';
+        lead.textContent = "Pour un blocage précis, deux options. Un cours particulier pour reprendre le point avec moi, ou Portalis pour une correction immédiate de ton propre exercice.";
+        ctaMain.innerHTML = boutonLien('cours-particuliers.html#reserver', 'Réserver un cours particulier');
+        ctaSecondary.innerHTML = "Ou essaie <a href=\"outil-fiche-arret.html\">Portalis</a>, premier essai gratuit sans inscription.";
+      }
 
-      document.getElementById('hiddenProfil').value = prof.title;
-      document.getElementById('progressBar').style.width = '100%';
-      if (window.gtag) gtag('event', 'quiz_metier_complete', { profil: prof.key });
+      document.getElementById('hiddenNiveau').value = reponses.niveau;
+      document.getElementById('hiddenMatiere').value = m.nom + (m.sem ? ' ' + m.sem : '');
+      document.getElementById('hiddenObjectif').value = obj;
+
       show(elResult);
     }
 
-    document.getElementById('startBtn').addEventListener('click', function(){ idx=0; answers.fill(null); render(); show(elQuiz); });
-    document.getElementById('backBtn').addEventListener('click', function(){ if (idx>0){ idx--; render(); } });
-    document.getElementById('restartBtn').addEventListener('click', function(){ idx=0; answers.fill(null); show(elIntro); });
-  })();
+    document.getElementById('startBtn').addEventListener('click', function(){ idx = 0; render(); show(elQuiz); });
+    document.getElementById('restartBtn').addEventListener('click', function(){
+      reponses = {niveau:null, matiere:null, echeance:null, objectif:null};
+      idx = 0;
+      show(elIntro);
+    });
   </script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
