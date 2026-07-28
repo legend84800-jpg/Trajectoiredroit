@@ -930,6 +930,17 @@ html[data-theme="dark"] .megamenu__niveau-col--formats { border-left-color: rgba
 html[data-theme="dark"] .megamenu__niveau-head { border-bottom-color: rgba(255,255,255,.1); }
 html[data-theme="dark"] .megamenu__niveau-col a:not(.megamenu__niveau-cta):hover { background: rgba(255,255,255,.05); }
 
+/* Vague 5.1 : Fiches complètes redevient le format prioritaire (déjà le cas avant
+   la vague 4.6, tuile foncée megamenu__tile--featured perdue dans la refonte). */
+.megamenu__niveau-col a.megamenu__format--featured {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 140%);
+  color: #fff !important; font-weight: 600 !important;
+}
+.megamenu__niveau-col a.megamenu__format--featured:hover {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 140%);
+  color: #fff !important; opacity: .92;
+}
+
 /* Vague 4.1 : nav compacte entre 1081px et 1460px (icônes retirées, espacements
    resserrés, logo réduit) pour que la nav tienne sans passer par le burger,
    qui disparaissait avant sur la plupart des laptops (breakpoint à 1460px). */
