@@ -253,6 +253,10 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 }
 /* Carte avec vraie couverture : pas d'emoji de fond */
 .card--product .product__thumb.has-cover::after { content: none; }
+/* Triptyque (carte "Pack Licence complète") : les 3 couvertures L1/L2/L3 côte à côte
+   plutôt qu'une seule image, pour montrer que le pack couvre les 3 années. */
+.card--product .product__thumb.thumb--trio { align-items: stretch; gap: 2px; }
+.card--product .product__thumb.thumb--trio img { width: auto; min-width: 0; flex: 1; height: 100%; object-fit: cover; }
 .card--product:hover .product__thumb::after {
   opacity: .25;
   transform: scale(1.1);

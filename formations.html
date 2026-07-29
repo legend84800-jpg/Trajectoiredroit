@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=9ffdd3f7">
+  <link rel="stylesheet" href="assets/style.css?v=d5924c2a">
   <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
   <!-- Google Analytics (GA4) -->
@@ -58,7 +58,7 @@
         "position": 1,
         "name": "Pack Licence complète, droit L1 à L3",
         "description": "Toutes les fiches complètes de droit de la licence, L1, L2 et L3, en PDF, accès à vie.",
-        "image": "https://trajectoiredroit.com/assets/covers/pack-complet.jpg",
+        "image": "https://trajectoiredroit.com/assets/covers/pack-l1.jpg",
         "brand": {"@type": "Brand", "name": "TrajectoireDroit"},
         "offers": {
           "@type": "Offer",
@@ -419,6 +419,7 @@
         <div class="grid-3">
 
           <article class="card card--product fade-in">
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/cours-fiche-da-l2-s1.jpg" alt="Exemple de fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">À l'unité</h3>
               <div class="product__meta"><span>1 fiche</span><span>·</span><span>une matière, un semestre</span></div>
@@ -429,6 +430,7 @@
           </article>
 
           <article class="card card--product card--featured fade-in">
+            <div class="product__thumb has-cover"><span class="badge badge--format">Pack de fiches</span><img src="assets/covers/pack-l1.jpg" alt="Exemple de pack d'une année, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Pack d'une année</h3>
               <div class="product__meta"><span>toutes les fiches d'une année</span><span>·</span><span>accès à vie</span></div>
@@ -439,6 +441,11 @@
           </article>
 
           <article class="card card--product fade-in">
+            <div class="product__thumb has-cover thumb--trio">
+              <img src="assets/covers/pack-l1.jpg" alt="Couverture pack Licence 1" loading="lazy">
+              <img src="assets/covers/pack-l2.jpg" alt="Couverture pack Licence 2" loading="lazy">
+              <img src="assets/covers/pack-l3.jpg" alt="Couverture pack Licence 3" loading="lazy">
+            </div>
             <div class="product__body">
               <h3 class="product__title">Pack Licence complète</h3>
               <div class="product__meta"><span>L1 + L2 + L3</span><span>·</span><span>tout le cursus</span></div>
@@ -1094,6 +1101,11 @@
       if (map[h]) {
         var chip = document.querySelector('.filter-chip[data-group="niveau"][data-value="' + map[h] + '"]');
         if (chip) chip.click();
+        // Le clic sur "Fiches complètes L1/L2/L3" depuis le menu ne servait qu'à filtrer :
+        // on restait en haut de la page, avec tout le hero et le comparatif à traverser
+        // avant de voir la moindre fiche. On scrolle maintenant droit sur le catalogue filtré.
+        var grid = document.getElementById('a-l-unite');
+        if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   </script>
