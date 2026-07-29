@@ -956,7 +956,23 @@ html[data-theme="dark"] .megamenu__niveau-col a:not(.megamenu__niveau-cta):hover
   .dropdown, .megamenu { display: none; }
 }
 .site-header__cta { display: flex; gap: var(--sp-3); align-items: center }
-.burger { display: none; background: transparent; border: 0; padding: 8px; font-size: 1.4rem; color: var(--ink) }
+/* Bouton burger aligné sur le même gabarit que .theme-toggle (cercle 36px, bordure visible)
+   pour que le seul point d'entrée du menu mobile ne soit plus une icône nue et minuscule. */
+.burger {
+  display: none;
+  align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  background: transparent;
+  color: var(--ink);
+  flex-shrink: 0;
+  transition: background .18s, border-color .18s, transform .18s;
+}
+.burger:hover { background: var(--slate-100); transform: scale(1.08); }
+.burger .nav-icon { width: 20px; height: 20px }
+html[data-theme="dark"] .burger { border-color: rgba(255,255,255,0.22); }
+html[data-theme="dark"] .burger:hover { background: rgba(255,255,255,0.08); }
 
 @media (max-width: 1080px) {
   .primary-nav { display: none }
