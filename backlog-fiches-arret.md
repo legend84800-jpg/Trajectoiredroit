@@ -58,6 +58,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 
 - [x] matiere:droit des biens L2 | arret:Cass. civ. 3e, 1990, Empiètement | theme:la démolition imposée même pour un empiétement minime
 - [x] matiere:droit des biens L2 | arret:Cass. civ. 1re, 2002, Trésor | theme:la propriété du trésor découvert
+- [x] matiere:droit des biens L2 | arret:Cass. 2e civ., 19 novembre 1986, n° 84-16.379, Troubles de voisinage | theme:le principe autonome des troubles anormaux de voisinage, codifié depuis à l'article 1253 du Code civil (publié le 2026-07-29 ; backlog dédié entièrement épuisé sur toutes les matières et aucune requête Search Console en position 5-15 ne visait un arrêt non traité ; matière droit des biens L2 la moins couverte parmi celles ayant déjà des fiches, arrêt sourcé sur le commentaire déjà existant dans contenus-tjd/commentaires-arrets/coma_voisinage_biens_1986.pdf et croisé avec Légifrance (visa vérifié mot à mot, texte intégral) et le web pour la portée, Hôtel George V 2005 et codification 2024 ; attention, le commentaire source ne précisait pas que la cassation profite au boulanger et non aux voisins, point vérifié et corrigé sur le texte intégral Légifrance)
 
 ## Droit pénal L1
 
