@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1A2851">
+  <title>Quiz : quelle fiche prendre en droit ? (année, matière, échéance)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="4 questions, 1 minute. Réponds sur ton année, ta matière qui coince, ton échéance et ton objectif, et reçois la fiche exacte qu'il te faut.">
+  <link rel="canonical" href="https://trajectoiredroit.com/quiz-orienteur.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Quelle fiche prendre ? Le quiz en 4 questions">
+  <meta property="og:description" content="4 questions sur ton année, ta matière, ton échéance et ton objectif. Tu repars avec la fiche exacte qu'il te faut.">
+  <meta property="og:url" content="https://trajectoiredroit.com/quiz-orienteur.html">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=dab5ca9e">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF');
+  </script>
+
+  <style>
+    /* ===== Quiz méthode (scopé) ===== */
+    .quiz-wrap{max-width:720px;margin:0 auto}
+    .quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-xl);box-shadow:var(--sh-2);padding:32px 28px}
+    @media(min-width:640px){.quiz-card{padding:40px 44px}}
+    .quiz-progress{height:8px;background:var(--slate-100);border-radius:var(--r-pill);overflow:hidden;margin-bottom:8px}
+    .quiz-progress__bar{height:100%;width:0;background:var(--navy);border-radius:var(--r-pill);transition:width .3s ease}
+    .quiz-progress__label{font-size:.82rem;color:var(--muted);font-weight:600;margin-bottom:24px;display:flex;justify-content:space-between}
+    .quiz-exo{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+    .quiz-q{font-family:var(--font-display);font-size:1.4rem;line-height:1.3;color:var(--navy);font-weight:700;margin:0 0 24px}
+    .quiz-opts{display:flex;flex-direction:column;gap:12px}
+    .quiz-opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--border-strong);border-radius:var(--r-md);padding:16px 18px;font-family:var(--font-body);font-size:1rem;line-height:1.4;color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s,box-shadow .15s}
+    .quiz-opt:hover{border-color:var(--navy);background:var(--blue-50)}
+    .quiz-opt:focus-visible{outline:none;box-shadow:var(--sh-glow)}
+    .quiz-back{margin-top:22px;background:none;border:none;color:var(--muted);font-size:.9rem;font-weight:600;cursor:pointer;padding:4px}
+    .quiz-back:hover{color:var(--navy)}
+    .quiz-back[hidden]{display:none}
+    /* résultat */
+    .quiz-score{text-align:center;margin-bottom:28px}
+    .quiz-score__num{font-family:var(--font-display);font-size:3.4rem;font-weight:800;color:var(--navy);line-height:1}
+    .quiz-score__num small{font-size:1.4rem;color:var(--muted);font-weight:600}
+    .quiz-score__tag{display:inline-block;margin-top:14px;padding:6px 16px;border-radius:var(--r-pill);font-weight:700;font-size:.92rem}
+    .tag-low{background:var(--rose-bg);color:var(--accent)}
+    .tag-mid{background:var(--amber-bg);color:#92600A}
+    .tag-high{background:var(--emerald-bg);color:#047857}
+    .quiz-result__title{font-family:var(--font-display);font-size:1.5rem;color:var(--navy);font-weight:700;text-align:center;margin:0 0 12px}
+    .quiz-result__lead{color:var(--body);text-align:center;margin:0 auto 28px;max-width:540px}
+    .quiz-todo{background:var(--slate-50);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 24px;margin-bottom:28px}
+    .quiz-todo h3{font-size:1.05rem;color:var(--navy);margin:0 0 14px}
+    .quiz-todo ul{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+    .quiz-todo li{display:flex;gap:10px;align-items:flex-start;font-size:.96rem;color:var(--body);line-height:1.45}
+    .quiz-todo li::before{content:"→";color:var(--accent);font-weight:800;flex:none}
+    .quiz-cta{text-align:center}
+    .quiz-cta__row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+    .quiz-capture{margin-top:32px;border-top:1px dashed var(--border-strong);padding-top:28px}
+    .quiz-capture h3{font-family:var(--font-display);font-size:1.25rem;color:var(--navy);text-align:center;margin:0 0 8px}
+    .quiz-capture p{text-align:center;color:var(--body);margin:0 auto 18px;max-width:480px}
+    .quiz-capture form{display:flex;gap:8px;flex-direction:column;max-width:420px;margin:0 auto}
+    .quiz-fineprint{font-size:.82rem;color:var(--muted);text-align:center;margin-top:12px}
+  </style>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="index.html" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague4.6:megamenu-inverse -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>8 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a href="droit-penal-general-l1.html" role="menuitem">Droit pénal général</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>5 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="outil-fiche-arret.html" role="menuitem">🤖 Portalis</a>
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            </div>
+            <div class="megamenu__footer">
+              <div>
+                <strong>Pas sûr de ta matière ?</strong>
+                <span>Le quiz gratuit te dit où tu perds des points, en 3 minutes.</span>
+              </div>
+              <a class="btn btn--primary btn--sm" href="quiz-methode.html">Faire le quiz →</a>
+            </div>
+          </div>
+        </div>
+        <!-- Item : Methode (dropdown simple) -->
+        <div class="nav-item has-dropdown">
+          <a href="methodologie-juridique.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-compass"/></svg>Méthode
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="methode-fiche-arret.html" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-note"/></svg></span>
+              <span><strong>La fiche d'arrêt</strong><small>Décortiquer une décision étape par étape</small></span>
+            </a>
+            <a class="dropdown__item" href="methode-commentaire-arret.html" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-pen"/></svg></span>
+              <span><strong>Le commentaire d'arrêt</strong><small>De la fiche au devoir rédigé</small></span>
+            </a>
+            <a class="dropdown__item" href="methode-cas-pratique.html" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-scale"/></svg></span>
+              <span><strong>Le cas pratique</strong><small>Majeure, mineure, conclusion</small></span>
+            </a>
+            <a class="dropdown__item" href="methode-dissertation-juridique.html" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-ruler"/></svg></span>
+              <span><strong>La dissertation juridique</strong><small>Problématiser et construire un plan</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="methodologie-juridique.html">Toute la méthodologie →</a>
+          </div>
+        </div>
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-scale"/></svg></span><span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-star"/></svg></span><span><strong>Pack 5 séances <em>· -10 %</em></strong><small>465 € · 93 €/h</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+        <!-- Item : Stage en direct (mis en avant) -->
+        <div class="nav-item has-dropdown">
+          <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-live"/></svg>Stage en direct
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <div class="stage-teaser">
+              <button type="button" class="dropdown__item stage-teaser__trigger" aria-expanded="false" aria-controls="stageTeaserPanel">
+                <span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-live"/></svg></span>
+                <span class="stage-teaser__main">
+                  <strong>Stage de méthode en direct</strong>
+                  <span class="stage-teaser__price"><span class="stage-teaser__price-old">38 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">19 € de l'heure</span><span class="stage-teaser__badge">-50 %</span></span></span>
+                  <span class="stage-teaser__countdown"></span>
+                </span>
+              </button>
+              <div class="stage-teaser__panel" id="stageTeaserPanel">
+                <p>Trois séances en direct, 8 h au total pour 149 €, pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un vrai sujet travaillé à chaque fois. La prochaine session a lieu les 8, 9 et 10 septembre. Plus que 3 places.</p>
+              </div>
+            </div>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="stage-methode.html">Voir toutes les infos et réserver →</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="blog.html" class="nav-item__link">Blog</a></div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-compass"/></svg></span><span><strong>Notre méthode</strong><small>3 piliers : cours, fiches, majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <a href="formations.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-book"/></svg>Fiches complètes</a>
+    <a href="majeures-preparees.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-target"/></svg>Majeures préparées</a>
+    <a href="outil-fiche-arret.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-sparkle"/></svg>Portalis</a>
+    <a href="flashcards-qcm.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-cards"/></svg>Flashcards + QCM</a>
+    <a href="methodologie-juridique.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-compass"/></svg>Méthodologie juridique</a>
+    <a href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-graduate"/></svg>Cours particuliers</a>
+    <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
+      <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-live"/></svg>
+      <span class="mobile-nav__stage-main">
+        <span class="mobile-nav__stage-title">Stage en direct</span>
+        <span class="stage-teaser__price"><span class="stage-teaser__price-old">38 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">19 € de l'heure</span><span class="stage-teaser__badge">-50 %</span></span></span>
+        <span class="stage-teaser__countdown"></span>
+      </span>
+    </a>
+    <a href="blog.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-pen"/></svg>Blog</a>
+    <a href="temoignages.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-star"/></svg>Témoignages</a>
+    <a href="a-propos.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-compass"/></svg>À propos</a>
+    <a href="faq.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-help"/></svg>FAQ</a>
+    <div style="margin-top:24px; display:flex; gap:12px; flex-direction:column">
+      <a class="btn btn--primary btn--full" href="formations.html">Voir les fiches</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="section">
+      <div class="container">
+
+        <!-- ÉCRAN 1 : INTRO -->
+        <div class="quiz-wrap" id="screen-intro">
+          <div class="text-center" style="margin-bottom:28px">
+            <span class="eyebrow eyebrow--gold">🎯 Quiz gratuit · 1 minute · sans inscription</span>
+            <h1 class="h1 text-balance" style="margin-top:14px">Quelle fiche prendre ?</h1>
+            <p class="lead" style="max-width:600px;margin:16px auto 0">Le catalogue compte plusieurs formats et 18 matières. En 4 questions, sur ton année, ta matière qui coince, ton échéance et ce que tu cherches vraiment, tu repars avec la fiche exacte qu'il te faut, pas une recommandation générale.</p>
+          </div>
+          <div class="quiz-card text-center">
+            <div class="grid-3" style="gap:16px;margin-bottom:24px;text-align:left">
+              <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">4</div><div style="font-size:.88rem;color:var(--body)">questions courtes</div></div>
+              <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">1 min</div><div style="font-size:.88rem;color:var(--body)">pour avoir ta réponse</div></div>
+              <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">18</div><div style="font-size:.88rem;color:var(--body)">matières couvertes, L1 à L3</div></div>
+            </div>
+            <button class="btn btn--primary btn--lg" id="startBtn">Commencer le quiz →</button>
+            <p style="font-size:.84rem;color:var(--muted);margin:14px 0 0">Construit par Julien, à partir des vraies erreurs vues dans les copies de ses élèves.</p>
+          </div>
+        </div>
+
+        <!-- ÉCRAN 2 : QUESTIONS -->
+        <div class="quiz-wrap" id="screen-quiz" hidden>
+          <div class="quiz-card">
+            <div class="quiz-progress"><div class="quiz-progress__bar" id="progressBar"></div></div>
+            <div class="quiz-progress__label"><span id="progressText">Question 1 sur 4</span></div>
+            <p class="quiz-q" id="questionText"></p>
+            <div class="quiz-opts" id="optionsBox"></div>
+            <button class="quiz-back" id="backBtn" hidden>← Revenir à la question précédente</button>
+          </div>
+        </div>
+
+        <!-- ÉCRAN 3 : RÉSULTAT -->
+        <div class="quiz-wrap" id="screen-result" hidden>
+          <div class="quiz-card">
+            <div class="text-center" style="margin-bottom:8px">
+              <span class="eyebrow" id="resultEyebrow"></span>
+            </div>
+            <h2 class="quiz-result__title" id="resultTitle"></h2>
+            <p class="quiz-result__lead" id="resultLead"></p>
+
+            <div class="quiz-cta">
+              <div id="ctaMain"></div>
+              <p id="ctaSecondary" style="margin-top:14px;font-size:.92rem;color:var(--body)"></p>
+            </div>
+
+            <div class="quiz-capture">
+              <h3>On t'envoie le récap par email</h3>
+              <p>Le lien direct vers ta fiche, et un rappel une semaine avant ton échéance si tu l'as indiquée.</p>
+              <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST">
+                <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+                <input type="hidden" name="_subject" value="Quiz orienteur · nouveau lead">
+                <input type="hidden" name="niveau" id="hiddenNiveau" value="">
+                <input type="hidden" name="matiere" id="hiddenMatiere" value="">
+                <input type="hidden" name="objectif" id="hiddenObjectif" value="">
+                <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+                <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir le récap →</button>
+              </form>
+              <p class="quiz-fineprint">Désinscription en 1 clic · Aucune carte bancaire</p>
+            </div>
+          </div>
+          <p class="text-center" style="margin-top:18px"><button class="quiz-back" id="restartBtn" style="color:var(--muted)">↻ Refaire le quiz</button></p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par 620+ étudiants.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+        </div>
+        <div>
+          <h4>Produits</h4>
+          <a href="formations.html">Fiches complètes</a>
+          <a href="majeures-preparees.html">Majeures préparées</a>
+          <a href="cours-particuliers.html">👨‍🏫 Cours particuliers</a>
+        </div>
+        <div>
+          <h4>Ressources</h4>
+          <a href="ressources-gratuites.html">Toutes les ressources gratuites</a>
+          <a href="methodologie-juridique.html">Méthodologie juridique</a>
+          <a href="quiz-methode.html">Quiz de méthode</a>
+          <a href="quiz-orienteur.html">Quiz orienteur</a>
+          <a href="ambassadeurs.html">Programme ambassadeurs</a>
+        </div>
+        <div>
+          <h4>Légal</h4>
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgu.html">CGV / CGU</a>
+          <a href="confidentialite.html">Confidentialité</a>
+          <a href="mailto:julien.prof1@gmail.com">Contact</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div>
+        <div>Conçu pour les étudiants en droit</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js?v=1fd5ad70" defer></script>
+  <script>
+    // ----- Donnees reelles : matieres par niveau, avec l'id produit de la fiche complete et des flashcards -----
+    var MATIERES = {
+      L1: [
+        {nom:"Introduction au droit", sem:"S1", fiche:"fiche-intro-droit-l1", fc:"flashcards-qcm-intro-droit-l1"},
+        {nom:"Histoire du droit", sem:"S1", fiche:"fiche-hist-droit-l1", fc:"flashcards-qcm-hist-droit-l1"},
+        {nom:"Droit constitutionnel", sem:"S1", fiche:"fiche-constit-l1-s1", fc:"flashcards-qcm-constit-l1-s1"},
+        {nom:"Droit constitutionnel", sem:"S2", fiche:"fiche-constit-l1-s2", fc:"flashcards-qcm-constit-l1-s2"},
+        {nom:"Histoire des institutions", sem:"S2", fiche:"fiche-hist-institutions-l1", fc:"flashcards-qcm-hist-institutions-l1"},
+        {nom:"Droit pénal général", sem:"S2", fiche:"fiche-penal-general-l1", fc:"flashcards-qcm-penal-general-l1"},
+        {nom:"Droit de la famille", sem:"S2", fiche:"fiche-famille-l1-s2", fc:"flashcards-qcm-famille-l1-s2"},
+        {nom:"Droit des personnes", sem:"", fiche:"fiche-personnes-l1", fc:"flashcards-qcm-personnes-l1"},
+        {nom:"Relations internationales", sem:"", fiche:"fiche-relations-internationales-l1", fc:"flashcards-qcm-relations-internationales-l1"}
+      ],
+      L2: [
+        {nom:"Droit administratif", sem:"S1", fiche:"fiche-da-l2-s1", fc:"flashcards-qcm-da-l2-s1"},
+        {nom:"Droit des contrats", sem:"S1", fiche:"fiche-contrats-l2-s1", fc:"flashcards-qcm-contrats-l2-s1"},
+        {nom:"Droit pénal", sem:"S1", fiche:"fiche-penal-l2-s1", fc:"flashcards-qcm-penal-l2-s1"},
+        {nom:"Droit administratif", sem:"S2", fiche:"fiche-da-l2-s2", fc:"flashcards-qcm-da-l2-s2"},
+        {nom:"Droit des obligations", sem:"S2", fiche:"fiche-obligations-l2-s2", fc:"flashcards-qcm-obligations-l2-s2"},
+        {nom:"Droit des biens", sem:"", fiche:"fiche-biens-l2", fc:"flashcards-qcm-biens-l2"}
+      ],
+      L3: [
+        {nom:"Droit commercial", sem:"S1", fiche:"fiche-commercial-l3-s1", fc:"flashcards-qcm-commercial-l3-s1"},
+        {nom:"Droit des sociétés", sem:"S1", fiche:"fiche-societes-l3-s1", fc:"flashcards-qcm-societes-l3-s1"},
+        {nom:"Droit du travail", sem:"S1", fiche:"fiche-travail-l3-s1", fc:"flashcards-qcm-travail-l3-s1"},
+        {nom:"Contrats spéciaux", sem:"", fiche:"fiche-contrats-speciaux-l3", fc:"flashcards-qcm-contrats-speciaux-l3"},
+        {nom:"Procédure pénale", sem:"", fiche:"fiche-procedure-penale-l3", fc:"flashcards-qcm-procedure-penale-l3"}
+      ]
+    };
+
+    var ECHEANCES = [
+      {v:"proche", t:"Moins de 2 semaines"},
+      {v:"mois", t:"Dans le mois"},
+      {v:"debut", t:"Je commence tout juste le semestre"},
+      {v:"continu", t:"Pas d'échéance précise, je révise en continu"}
+    ];
+
+    var OBJECTIFS = [
+      {v:"comprendre", t:"Comprendre et apprendre tout le cours"},
+      {v:"mention", t:"Avoir plus de 15/20 en cas pratique et en commentaire"},
+      {v:"arrets", t:"Connaître les arrêts par cœur"},
+      {v:"reviser", t:"Réviser vite, tester ce que je retiens"},
+      {v:"methode", t:"Revoir la méthode elle-même, pas le contenu"},
+      {v:"bloque", t:"Je bloque sur un point précis, j'ai besoin d'aide individuelle"}
+    ];
+
+    var reponses = {niveau:null, matiere:null, echeance:null, objectif:null};
+    var idx = 0;
+    var TOTAL = 4;
+
+    var elIntro = document.getElementById('screen-intro');
+    var elQuiz = document.getElementById('screen-quiz');
+    var elResult = document.getElementById('screen-result');
+
+    function show(el){ [elIntro,elQuiz,elResult].forEach(function(s){ s.hidden = (s!==el); }); window.scrollTo({top:0,behavior:'smooth'}); }
+
+    function optionsPourEtape(i){
+      if (i === 0) return [{v:"L1",t:"L1"},{v:"L2",t:"L2"},{v:"L3",t:"L3"}];
+      if (i === 1) return MATIERES[reponses.niveau].map(function(m, mi){ return {v:String(mi), t: m.nom + (m.sem ? " (" + m.sem + ")" : "")}; });
+      if (i === 2) return ECHEANCES.map(function(e){ return {v:e.v, t:e.t}; });
+      return OBJECTIFS.map(function(o){ return {v:o.v, t:o.t}; });
+    }
+
+    function questionPourEtape(i){
+      if (i === 0) return "Tu es en quelle année ?";
+      if (i === 1) return "Quelle matière te pose le plus de problème en ce moment ?";
+      if (i === 2) return "C'est pour quand ?";
+      return "Qu'est-ce que tu cherches en priorité ?";
+    }
+
+    function render(){
+      document.getElementById('questionText').textContent = questionPourEtape(idx);
+      document.getElementById('progressText').textContent = 'Question ' + (idx+1) + ' sur ' + TOTAL;
+      document.getElementById('progressBar').style.width = (idx/TOTAL*100) + '%';
+      var box = document.getElementById('optionsBox');
+      box.innerHTML = '';
+      optionsPourEtape(idx).forEach(function(o){
+        var b = document.createElement('button');
+        b.className = 'quiz-opt';
+        b.textContent = o.t;
+        b.addEventListener('click', function(){ repondre(o.v); });
+        box.appendChild(b);
+      });
+      document.getElementById('backBtn').hidden = (idx === 0);
+    }
+
+    function repondre(v){
+      if (idx === 0) reponses.niveau = v;
+      else if (idx === 1) reponses.matiere = MATIERES[reponses.niveau][parseInt(v,10)];
+      else if (idx === 2) reponses.echeance = v;
+      else reponses.objectif = v;
+
+      if (idx < TOTAL - 1) { idx++; render(); }
+      else { resultat(); }
+    }
+
+    document.getElementById('backBtn').addEventListener('click', function(){
+      if (idx > 0) { idx--; render(); }
+    });
+
+    function boutonAchat(pid, label, prix){
+      return '<button type="button" class="btn btn--primary btn--lg product__cta" data-tjd-produit="' + pid + '">' + label + ' · ' + prix + '</button>';
+    }
+    function boutonLien(href, label){
+      return '<a class="btn btn--primary btn--lg" href="' + href + '">' + label + ' →</a>';
+    }
+
+    function resultat(){
+      var m = reponses.matiere;
+      var obj = reponses.objectif;
+      var ech = reponses.echeance;
+      var eyebrow = document.getElementById('resultEyebrow');
+      var title = document.getElementById('resultTitle');
+      var lead = document.getElementById('resultLead');
+      var ctaMain = document.getElementById('ctaMain');
+      var ctaSecondary = document.getElementById('ctaSecondary');
+
+      eyebrow.textContent = reponses.niveau + ' · ' + m.nom + (m.sem ? ' (' + m.sem + ')' : '');
+      ctaSecondary.textContent = '';
+
+      if (obj === 'comprendre') {
+        title.textContent = 'La fiche complète de ' + m.nom;
+        lead.textContent = "Elle réunit tout le semestre en un seul PDF, avec les définitions, les articles et les exemples qui font comprendre.";
+        ctaMain.innerHTML = boutonAchat(m.fiche, 'Acheter la fiche', '14,99 €');
+        if (ech === 'proche') {
+          ctaSecondary.innerHTML = "Ton échéance est proche. En complément, les <a href=\"flashcards-qcm.html\">flashcards + QCM</a> de " + m.nom + " te permettent de réviser plus vite juste avant l'examen.";
+        } else if (ech === 'debut') {
+          ctaSecondary.innerHTML = "Tu commences tout juste le semestre. Le <a href=\"formations.html#packs-annee\">pack de l'année</a> couvre toutes les matières de ta " + reponses.niveau + " pour moins cher qu'à l'unité.";
+        }
+      } else if (obj === 'mention') {
+        title.textContent = 'Une majeure préparée en ' + m.nom;
+        lead.textContent = "Les règles de droit, articles et jurisprudences, déjà rédigées condition par condition. C'est ce format qui fait gagner les points de méthode en cas pratique et en commentaire.";
+        ctaMain.innerHTML = boutonLien('majeures-preparees.html', 'Voir les majeures préparées');
+      } else if (obj === 'arrets') {
+        title.textContent = 'Les fiches d\'arrêt de ' + m.nom;
+        lead.textContent = "Les grands arrêts de la matière, avec les faits, la procédure, la solution et la portée, pour les connaître par cœur avant l'examen.";
+        ctaMain.innerHTML = boutonLien('revisions.html', 'Voir les fiches d\'arrêt');
+      } else if (obj === 'reviser') {
+        title.textContent = 'Flashcards + QCM de ' + m.nom;
+        lead.textContent = "Une flashcard par notion et un QCM corrigé pour tester ce que tu retiens vraiment, plus le deck Anki prêt à importer.";
+        ctaMain.innerHTML = boutonAchat(m.fc, 'Acheter les flashcards', '9,99 €');
+      } else if (obj === 'methode') {
+        title.textContent = 'Le stage de méthode en direct';
+        lead.textContent = "Trois séances en direct sur les quatre exercices de droit, la fiche d'arrêt, le commentaire, le cas pratique et la dissertation. Ce n'est pas le contenu d'une matière, c'est la méthode elle-même.";
+        ctaMain.innerHTML = boutonLien('stage-methode.html', 'Voir le stage de méthode');
+      } else {
+        title.textContent = 'Un accompagnement individuel';
+        lead.textContent = "Pour un blocage précis, deux options. Un cours particulier pour reprendre le point avec moi, ou Portalis pour une correction immédiate de ton propre exercice.";
+        ctaMain.innerHTML = boutonLien('cours-particuliers.html#reserver', 'Réserver un cours particulier');
+        ctaSecondary.innerHTML = "Ou essaie <a href=\"outil-fiche-arret.html\">Portalis</a>, premier essai gratuit sans inscription.";
+      }
+
+      document.getElementById('hiddenNiveau').value = reponses.niveau;
+      document.getElementById('hiddenMatiere').value = m.nom + (m.sem ? ' ' + m.sem : '');
+      document.getElementById('hiddenObjectif').value = obj;
+
+      show(elResult);
+    }
+
+    document.getElementById('startBtn').addEventListener('click', function(){ idx = 0; render(); show(elQuiz); });
+    document.getElementById('restartBtn').addEventListener('click', function(){
+      reponses = {niveau:null, matiere:null, echeance:null, objectif:null};
+      idx = 0;
+      show(elIntro);
+    });
+  </script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=5f959e14';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=db22c0f7" defer></script>
+</body>
+</html>

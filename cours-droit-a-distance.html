@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=8c1f3bf3">
+  <link rel="stylesheet" href="assets/style.css?v=dab5ca9e">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
@@ -145,11 +145,12 @@
             <div class="megamenu__niveau-col megamenu__niveau-col--formats">
               <div class="megamenu__niveau-head"><strong>Par format</strong></div>
               <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
-              <a href="formations.html" role="menuitem">📄 Fiches complètes</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
               <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
               <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
               <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
               <a href="outil-fiche-arret.html" role="menuitem">🤖 Portalis</a>
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
             </div>
             </div>
             <div class="megamenu__footer">
@@ -277,6 +278,7 @@
     <a href="formations.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-book"/></svg>Fiches complètes</a>
     <a href="majeures-preparees.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-target"/></svg>Majeures préparées</a>
     <a href="outil-fiche-arret.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-sparkle"/></svg>Portalis</a>
+    <a href="flashcards-qcm.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-cards"/></svg>Flashcards + QCM</a>
     <a href="methodologie-juridique.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-compass"/></svg>Méthodologie juridique</a>
     <a href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-graduate"/></svg>Cours particuliers</a>
     <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
@@ -323,7 +325,7 @@
         </div>
         <p class="lead">Que tu sois inscrit à la Licence numérique en droit d'Assas ou à l'IED-EDS de la Sorbonne, le programme est rigoureux et le niveau attendu est le même qu'en présentiel, entre 20 et 25 heures de travail personnel par semaine. La différence, c'est qu'en présentiel un étudiant qui bloque sur une notion peut lever la main en TD ou coincer un chargé de TD à la sortie de l'amphi. À distance, tu es seul face à des vidéos de cours, et si tu ne comprends pas un point, il n'y a personne pour te le réexpliquer autrement, tout de suite.</p>
         <p>C'est exactement pour ça qu'une part importante des étudiants qui s'inscrivent en L1 à distance abandonnent avant les examens, un chiffre qui revient dans plusieurs analyses de ces formations et qui contraste avec le taux d'abandon du présentiel, nettement plus bas. Ce n'est pas une question d'intelligence ou de motivation. C'est un manque d'accompagnement, purement structurel, et il se corrige.</p>
-        <p>Mes cours particuliers en visio existent pour ça précisément, avoir quelqu'un en face de toi qui repère où tu perds des points, qui te réexplique la notion autrement que la vidéo de cours, et qui te suit d'une semaine sur l'autre jusqu'aux partiels. En ce moment, j'accompagne des étudiants d'Assas et de la Sorbonne installés à Dubaï, à Genève, à Bruxelles, au Luxembourg, à Casablanca ou à Montréal, en plus de ceux qui vivent en France. La visio ne fait aucune différence, seul le fuseau horaire du rendez-vous change.</p>
+        <p>Mes cours particuliers en visio existent pour ça précisément, avoir quelqu'un en face de toi qui repère où tu perds des points, qui te réexplique la notion autrement que la vidéo de cours, et qui te suit d'une semaine sur l'autre jusqu'aux partiels. En ce moment, j'accompagne des étudiants d'Assas et de la Sorbonne installés à Dubaï, à Genève, à Bruxelles, au Luxembourg, à Casablanca ou à Montréal, en plus de ceux qui vivent en France. La visio ne fait aucune différence, seul le fuseau horaire du rendez-vous change. Si tu es inscrit à <a href="cours-droit-sorbonne-abu-dhabi.html">Sorbonne Université Abu Dhabi</a>, la licence de droit y est elle aussi enseignée entièrement en français, et je propose un accompagnement pensé spécifiquement pour ce cursus.</p>
       </div>
     </section>
 
@@ -532,8 +534,11 @@
         </div>
         <div>
           <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
           <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
             <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
             <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
           </form>
         </div>
@@ -562,6 +567,6 @@
 
   <script src="assets/js/main.js?v=1fd5ad70" defer></script>
   <script src="assets/js/chatbot.js" defer></script>
-  <script src="assets/js/cookie-consent.js" defer></script>
+  <script src="assets/js/cookie-consent.js?v=db22c0f7" defer></script>
 </body>
 </html>

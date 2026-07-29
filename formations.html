@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=8c1f3bf3">
+  <link rel="stylesheet" href="assets/style.css?v=dab5ca9e">
   <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
   <!-- Google Analytics (GA4) -->
@@ -233,11 +233,12 @@
             <div class="megamenu__niveau-col megamenu__niveau-col--formats">
               <div class="megamenu__niveau-head"><strong>Par format</strong></div>
               <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
-              <a href="formations.html" role="menuitem">📄 Fiches complètes</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
               <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
               <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
               <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
               <a href="outil-fiche-arret.html" role="menuitem">🤖 Portalis</a>
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
             </div>
             </div>
             <div class="megamenu__footer">
@@ -366,6 +367,7 @@
     <a href="formations.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-book"/></svg>Fiches complètes</a>
     <a href="majeures-preparees.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-target"/></svg>Majeures préparées</a>
     <a href="outil-fiche-arret.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-sparkle"/></svg>Portalis</a>
+    <a href="flashcards-qcm.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-cards"/></svg>Flashcards + QCM</a>
     <a href="methodologie-juridique.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-compass"/></svg>Méthodologie juridique</a>
     <a href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-graduate"/></svg>Cours particuliers</a>
     <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
@@ -515,7 +517,7 @@
         <div class="text-center" style="margin-bottom:24px">
           <span class="eyebrow">Tu hésites entre plusieurs formats ?</span>
           <h2 class="h2" style="margin-top:12px">Quel format prendre selon ta situation</h2>
-          <p class="lead">Les neuf formats répondent à des besoins différents. Voici comment choisir avant de parcourir le catalogue.</p>
+          <p class="lead">Les onze formats répondent à des besoins différents. Voici comment choisir avant de parcourir le catalogue.</p>
         </div>
         <div style="overflow-x:auto">
           <table class="compare-table">
@@ -529,7 +531,9 @@
               <tr><th>Fiches d'arrêt</th><td>9,99 € / matière</td><td>Les grands arrêts d'une matière, avec les faits, la procédure, la solution et la portée</td><td>Tu veux connaître par cœur les arrêts essentiels avant l'examen</td></tr>
               <tr><th>Fiches de citations</th><td>4,99 € / matière</td><td>Une banque de citations classées par thème, à placer en introduction ou en ouverture de copie</td><td>Tu veux réussir toutes tes accroches et surprendre le correcteur lors de tes développements</td></tr>
               <tr><th>Exercices corrigés</th><td>14,99 € / sujet</td><td>Des corrections intégrales de commentaires, de cas pratiques et de dissertations</td><td>Tu veux voir à quoi ressemble une copie d'un major de promo pour compléter ta maîtrise de la méthode</td></tr>
+              <tr><th>Flashcards + QCM</th><td>9,99 € / matière</td><td>Des cartes de révision et des questions à choix multiples pour tester ce que tu retiens vraiment, plus un deck Anki prêt à l'emploi</td><td>Tu veux réviser vite entre deux cours, sans relire tes fiches en entier</td></tr>
               <tr><th>Pack d'une année</th><td>dès 58 €</td><td>Toutes les fiches d'une année réunies, moins cher qu'à l'unité</td><td>Tu veux couvrir toute ton année d'un coup afin de viser la mention</td></tr>
+              <tr><th>Portalis (IA)</th><td>6 € / mois</td><td>Correction automatique d'un exercice que tu as toi-même rédigé, fiche d'arrêt, commentaire, cas pratique ou dissertation</td><td>Tu veux t'entraîner par toi-même et être corrigé sans attendre un prof</td></tr>
               <tr><th>Cours particuliers</th><td>104 € / h</td><td>Un accompagnement individuel adapté spécifiquement à ton profil</td><td>Tu bloques sur un point que les fiches ne suffisent pas à résoudre seules</td></tr>
               <tr><th>Stage de méthode</th><td>149 €</td><td>Trois séances en direct sur les quatre exercices de droit</td><td>Tu veux revoir la méthode elle-même, pas le contenu d'une matière</td></tr>
             </tbody>
@@ -578,7 +582,7 @@
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 76 p.</span></div>
               <p class="product__desc">Acte administratif, service public, police administrative. Tout le premier semestre compilé et expliqué.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/da-l2-s1-1.jpg","assets/apercus/da-l2-s1-2.jpg"]' data-apercu-title="Droit administratif · L2 Semestre 1" data-apercu-price="14,99 €" data-apercu-cta="fiche-da-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (6 thèmes)</summary><ul class="product__sommaire-list"><li>L'identité du droit administratif</li><li>Le dualisme juridictionnel et le juge administratif</li><li>Le principe de légalité</li><li>Les sources de la légalité administrative</li><li>L'organisation administrative</li><li>Méthodologie, bilan et révisions</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-da-l2-s1">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -590,7 +594,7 @@
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · 91 p.</span></div>
               <p class="product__desc">Responsabilité administrative, contentieux, contrats administratifs. Le second semestre au complet.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/admin-l2-s2-1.jpg", "assets/apercus/admin-l2-s2-2.jpg"]' data-apercu-title="Droit administratif · L2 Semestre 2" data-apercu-price="14,99 €" data-apercu-cta="fiche-da-l2-s2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (7 thèmes)</summary><ul class="product__sommaire-list"><li>Les missions de l'administration : le service public</li><li>Les missions de l'administration : la police</li><li>Les moyens unilatéraux : l'acte administratif</li><li>Les moyens contractuels : le contrat administratif</li><li>La responsabilité administrative</li><li>Le contentieux administratif</li><li>Bilan et synthèse du semestre 2</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-da-l2-s2">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -602,7 +606,7 @@
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 192 p.</span></div>
               <p class="product__desc">Théorie de l'État, Constitution, séparation des pouvoirs. Les fondations posées proprement.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/constit-l1-s1-1.jpg", "assets/apercus/constit-l1-s1-2.jpg"]' data-apercu-title="Droit constitutionnel · L1 Semestre 1" data-apercu-price="14,99 €" data-apercu-cta="fiche-constit-l1-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (6 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction au droit constitutionnel</li><li>Le cadre du pouvoir politique · l'état</li><li>La source du pouvoir politique · la souveraineté</li><li>Les fondements du pouvoir politique · la constitution</li><li>Les modes d'organisation du pouvoir politique</li><li>L'histoire constitutionnelle française</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-constit-l1-s1">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -614,7 +618,7 @@
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · 110 p.</span></div>
               <p class="product__desc">La Ve République dans le détail, les institutions, le contrôle de constitutionnalité.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/constit-l1-s2-1.jpg", "assets/apercus/constit-l1-s2-2.jpg"]' data-apercu-title="Droit constitutionnel · L1 Semestre 2" data-apercu-price="14,99 €" data-apercu-cta="fiche-constit-l1-s2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (5 thèmes)</summary><ul class="product__sommaire-list"><li>La genèse de la ve république</li><li>Le pouvoir exécutif</li><li>Le parlement</li><li>Le conseil constitutionnel et le contrôle de</li><li>La révision constitutionnelle et l'environnement</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-constit-l1-s2">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -626,7 +630,7 @@
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 83 p.</span></div>
               <p class="product__desc">Les sources, la règle de droit, l'organisation judiciaire. Le socle de toute la licence.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/intro-droit-l1-1.jpg", "assets/apercus/intro-droit-l1-2.jpg"]' data-apercu-title="Introduction au droit · L1 Semestre 1" data-apercu-price="14,99 €" data-apercu-cta="fiche-intro-droit-l1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (5 thèmes)</summary><ul class="product__sommaire-list"><li>Présentation de la règle de droit</li><li>Le droit objectif</li><li>Les droits subjectifs</li><li>Les sujets et objets de droit (passerelle)</li><li>Bilan et méthodologie</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-intro-droit-l1">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -638,7 +642,7 @@
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 139 p.</span></div>
               <p class="product__desc">De Rome au Code civil, la construction du droit français expliquée pas à pas.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/hist-droit-l1-1.jpg", "assets/apercus/hist-droit-l1-2.jpg"]' data-apercu-title="Histoire du droit · L1 Semestre 1" data-apercu-price="14,99 €" data-apercu-cta="fiche-hist-droit-l1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (6 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction générale</li><li>L'héritage de rome : la naissance de l'état</li><li>La décadence de l'état : l'époque franque</li><li>Le morcellement féodal</li><li>La reconstruction de l'état monarchique</li><li>Le triomphe de l'état : la monarchie absolue</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-hist-droit-l1">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -650,7 +654,7 @@
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · 92 p.</span></div>
               <p class="product__desc">L'État et ses institutions à travers les siècles, jusqu'à la République.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/hist-institutions-l1-1.jpg", "assets/apercus/hist-institutions-l1-2.jpg"]' data-apercu-title="Histoire des institutions · L1 Semestre 2" data-apercu-price="14,99 €" data-apercu-cta="fiche-hist-institutions-l1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (6 thèmes)</summary><ul class="product__sommaire-list"><li>La révolution et la recherche d'un régime (1789-1799)</li><li>L'état napoléonien et la construction</li><li>Le temps des monarchies censitaires (1814-1848)</li><li>De la république à l'empire (1848-1870)</li><li>L'enracinement républicain : la troisième république</li><li>Crise et refondation (1940 à nos jours)</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-hist-institutions-l1">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -661,7 +665,7 @@
               <h3 class="product__title">Relations internationales</h3>
               <div class="product__meta"><span>L1</span><span>·</span><span>Année</span><span>·</span><span>PDF · 60 p.</span></div>
               <p class="product__desc">Les rapports entre États et les grandes organisations internationales, expliqués clairement.</p>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (5 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction à la société internationale</li><li>L'histoire des relations internationales</li><li>Les acteurs des relations internationales</li><li>La régulation des relations internationales : la paix</li><li>Le conflit et la mondialisation</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-relations-internationales-l1">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -673,7 +677,7 @@
               <div class="product__meta"><span>L1</span><span>·</span><span>Année</span><span>·</span><span>PDF · 96 p.</span></div>
               <p class="product__desc">Personnalité juridique, état civil, incapacités, droits de la personnalité.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/personnes-l1-1.jpg"]' data-apercu-title="Droit des personnes · L1" data-apercu-price="14,99 €" data-apercu-cta="fiche-personnes-l1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (7 thèmes)</summary><ul class="product__sommaire-list"><li>La personnalité juridique</li><li>L'identification de la personne physique</li><li>La protection du corps humain</li><li>Les droits de la personnalité</li><li>Les incapacités</li><li>Les personnes morales</li><li>Bilan et méthodologie</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-personnes-l1">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -685,7 +689,7 @@
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · 133 p.</span></div>
               <p class="product__desc">Mariage, divorce, filiation, autorité parentale. Tout le droit de la famille.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/famille-l1-s2-1.jpg", "assets/apercus/famille-l1-s2-2.jpg"]' data-apercu-title="Droit de la famille · L1 Semestre 2" data-apercu-price="14,99 €" data-apercu-cta="fiche-famille-l1-s2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (5 thèmes)</summary><ul class="product__sommaire-list"><li>Le mariage</li><li>Les couples non mariés</li><li>La désunion</li><li>L'établissement de la filiation</li><li>Les effets de la filiation</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-famille-l1-s2">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -697,7 +701,7 @@
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 166 p.</span></div>
               <p class="product__desc">Formation, validité, exécution du contrat. La réforme de 2016 intégrée.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/contrats-l2-s1-1.jpg", "assets/apercus/contrats-l2-s1-2.jpg"]' data-apercu-title="Droit des contrats · L2 Semestre 1" data-apercu-price="14,99 €" data-apercu-cta="fiche-contrats-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (6 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction au droit des contrats</li><li>La formation du contrat</li><li>La validité du contrat</li><li>Les effets du contrat</li><li>L'inexécution du contrat</li><li>Bilan et révisions</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-contrats-l2-s1">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -709,7 +713,7 @@
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · 88 p.</span></div>
               <p class="product__desc">Responsabilité civile, régime de l'obligation, quasi-contrats.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/obligations-l2-s2-1.jpg", "assets/apercus/obligations-l2-s2-2.jpg"]' data-apercu-title="Droit des obligations · L2 Semestre 2" data-apercu-price="14,99 €" data-apercu-cta="fiche-obligations-l2-s2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (7 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction à la responsabilité civile</li><li>Les conditions communes de la responsabilité civile</li><li>La responsabilité du fait personnel</li><li>La responsabilité du fait des choses</li><li>La responsabilité du fait d'autrui</li><li>Les régimes spéciaux de responsabilité</li><li>Les quasi-contrats</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-obligations-l2-s2">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -721,7 +725,7 @@
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · 100 p.</span></div>
               <p class="product__desc">L'infraction, l'élément légal, matériel et moral. Les fondamentaux du pénal.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/penal-general-l1-1.jpg"]' data-apercu-title="Droit pénal général · L1 Semestre 2" data-apercu-price="14,99 €" data-apercu-cta="fiche-penal-general-l1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (5 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction au droit pénal</li><li>La norme pénale et son application</li><li>L'infraction pénale</li><li>La responsabilité pénale</li><li>La sanction pénale</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-penal-general-l1">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -733,7 +737,7 @@
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 50 p.</span></div>
               <p class="product__desc">Responsabilité pénale, complicité, tentative, peines. Le pénal approfondi.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/penal-l2-s1-1.jpg", "assets/apercus/penal-l2-s1-2.jpg"]' data-apercu-title="Droit pénal · L2 Semestre 1" data-apercu-price="14,99 €" data-apercu-cta="fiche-penal-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (3 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction au droit pénal</li><li>L'infraction pénale</li><li>Le responsable de l'infraction pénale</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-penal-l2-s1">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -745,7 +749,7 @@
               <div class="product__meta"><span>L2</span><span>·</span><span>Année</span><span>·</span><span>PDF · 63 p.</span></div>
               <p class="product__desc">Propriété, possession, démembrements, indivision. Le droit des biens en entier.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/biens-l2-1.jpg", "assets/apercus/biens-l2-2.jpg"]' data-apercu-title="Droit des biens · L2" data-apercu-price="14,99 €" data-apercu-cta="fiche-biens-l2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (6 thèmes)</summary><ul class="product__sommaire-list"><li>La notion de bien et le patrimoine</li><li>La possession</li><li>Le droit de propriété</li><li>Les modes d'acquisition de la propriété</li><li>Les démembrements de la propriété</li><li>La propriété collective</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-biens-l2">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -757,7 +761,7 @@
               <div class="product__meta"><span>L3</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 129 p.</span></div>
               <p class="product__desc">Commerçant, fonds de commerce, actes de commerce. L'entrée dans le droit des affaires.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/commercial-l3-s1-1.jpg", "assets/apercus/commercial-l3-s1-2.jpg"]' data-apercu-title="Droit commercial · L3 Semestre 1" data-apercu-price="14,99 €" data-apercu-cta="fiche-commercial-l3-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (5 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction au droit commercial</li><li>Les actes de commerce</li><li>Le commerçant et les acteurs de la vie commerciale</li><li>Le fonds de commerce</li><li>Le bail commercial et la protection de la</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-commercial-l3-s1">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -769,7 +773,7 @@
               <div class="product__meta"><span>L3</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 77 p.</span></div>
               <p class="product__desc">Constitution, fonctionnement, dirigeants. Toutes les formes sociales étudiées.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/societes-l3-s1-1.jpg", "assets/apercus/societes-l3-s1-2.jpg"]' data-apercu-title="Droit des sociétés · L3 Semestre 1" data-apercu-price="14,99 €" data-apercu-cta="fiche-societes-l3-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (6 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction au droit des sociétés</li><li>La formation de la société : le contrat de société</li><li>La personnalité morale</li><li>Le fonctionnement de la société</li><li>La disparition de la société</li><li>Méthodologie et révisions</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-societes-l3-s1">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -781,7 +785,7 @@
               <div class="product__meta"><span>L3</span><span>·</span><span>Année</span><span>·</span><span>PDF · 66 p.</span></div>
               <p class="product__desc">Vente, bail, mandat, prêt. Les contrats du quotidien décortiqués.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/contrats-speciaux-l3-1.jpg", "assets/apercus/contrats-speciaux-l3-2.jpg"]' data-apercu-title="Contrats spéciaux · L3" data-apercu-price="14,99 €" data-apercu-cta="fiche-contrats-speciaux-l3"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (5 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction au droit des contrats spéciaux</li><li>Les contrats translatifs de propriété : la vente</li><li>Les contrats relatifs à l'usage d'une chose</li><li>Les contrats de service</li><li>Les contrats de distribution, de règlement et</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-contrats-speciaux-l3">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -793,7 +797,7 @@
               <div class="product__meta"><span>L3</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 76 p.</span></div>
               <p class="product__desc">Contrat de travail, rupture, durée du travail, pouvoir de l'employeur.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/travail-l3-s1-1.jpg", "assets/apercus/travail-l3-s1-2.jpg"]' data-apercu-title="Droit du travail · L3 Semestre 1" data-apercu-price="14,99 €" data-apercu-cta="fiche-travail-l3-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (4 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction au droit du travail</li><li>La formation de la relation de travail</li><li>L'exécution de la relation de travail</li><li>La rupture de la relation de travail</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-travail-l3-s1">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -805,7 +809,7 @@
               <div class="product__meta"><span>L3</span><span>·</span><span>Année</span><span>·</span><span>PDF · 124 p.</span></div>
               <p class="product__desc">De l'enquête au jugement, la garde à vue, l'instruction, le procès pénal.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/procedure-penale-l3-1.jpg", "assets/apercus/procedure-penale-l3-2.jpg"]' data-apercu-title="Procédure pénale · L3" data-apercu-price="14,99 €" data-apercu-cta="fiche-procedure-penale-l3"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-              <div><span class="product__price">14,99 €</span></div>
+              <details class="product__sommaire"><summary>Voir le sommaire (7 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction générale à la procédure pénale</li><li>Les principes directeurs du procès pénal</li><li>Les acteurs de la procédure pénale</li><li>L'enquête de police</li><li>Le déclenchement des poursuites</li><li>L'instruction préparatoire</li><li>Le jugement et les voies de recours</li></ul></details><div><span class="product__price">14,99 €</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-procedure-penale-l3">Acheter · 14,99 €</button>
             </div>
           </article>
@@ -1044,10 +1048,11 @@
         </div>
         <div>
           <h4>Newsletter</h4>
-          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Fiche méthode gratuite chaque semaine.</p>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
           <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
             <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
-            <input type="hidden" name="_subject" value="Newsletter (footer formations)">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
             <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
           </form>
         </div>
@@ -1101,7 +1106,7 @@
       if (loaded) return;
       loaded = true;
       var s = document.createElement('script');
-      s.src = 'assets/js/chatbot.js';
+      s.src = 'assets/js/chatbot.js?v=5f959e14';
       s.defer = true;
       document.body.appendChild(s);
       events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
@@ -1111,6 +1116,6 @@
     var fallback = setTimeout(loadChatbot, 4000);
   })();
   </script>
-  <script src="assets/js/cookie-consent.js" defer></script>
+  <script src="assets/js/cookie-consent.js?v=db22c0f7" defer></script>
 </body>
 </html>

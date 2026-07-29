@@ -73,7 +73,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=8c1f3bf3">
+  <link rel="stylesheet" href="assets/style.css?v=dab5ca9e">
   <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
   <!-- Google Analytics (GA4) -->
@@ -150,11 +150,12 @@
             <div class="megamenu__niveau-col megamenu__niveau-col--formats">
               <div class="megamenu__niveau-head"><strong>Par format</strong></div>
               <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
-              <a href="formations.html" role="menuitem">📄 Fiches complètes</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
               <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
               <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
               <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
               <a href="outil-fiche-arret.html" role="menuitem">🤖 Portalis</a>
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
             </div>
             </div>
             <div class="megamenu__footer">
@@ -283,6 +284,7 @@
     <a href="formations.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-book"/></svg>Fiches complètes</a>
     <a href="majeures-preparees.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-target"/></svg>Majeures préparées</a>
     <a href="outil-fiche-arret.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-sparkle"/></svg>Portalis</a>
+    <a href="flashcards-qcm.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-cards"/></svg>Flashcards + QCM</a>
     <a href="methodologie-juridique.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-compass"/></svg>Méthodologie juridique</a>
     <a href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-graduate"/></svg>Cours particuliers</a>
     <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
@@ -451,8 +453,11 @@
         <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
         <div>
           <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
           <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
             <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
             <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
           </form>
         </div>
@@ -487,7 +492,7 @@
       if (loaded) return;
       loaded = true;
       var s = document.createElement('script');
-      s.src = 'assets/js/chatbot.js';
+      s.src = 'assets/js/chatbot.js?v=5f959e14';
       s.defer = true;
       document.body.appendChild(s);
       events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
@@ -497,6 +502,6 @@
     var fallback = setTimeout(loadChatbot, 4000);
   })();
   </script>
-  <script src="assets/js/cookie-consent.js" defer></script>
+  <script src="assets/js/cookie-consent.js?v=db22c0f7" defer></script>
 </body>
 </html>

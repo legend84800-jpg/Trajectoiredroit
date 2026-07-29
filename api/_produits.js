@@ -1,8 +1,6 @@
 // Catalogue des produits TJD.
 // Clé = id produit utilisé dans les metadata Stripe et dans les tokens de téléchargement.
 
-const BLOB = "https://pugq0h77i21rhva7.public.blob.vercel-storage.com/tjd";
-
 const PRODUITS = {
   // Fiche complète – 14,99 €
   "fiche-da-l2-s1": { nom: "Fiche complète Droit administratif L2 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s1.pdf",
