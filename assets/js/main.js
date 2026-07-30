@@ -393,6 +393,36 @@
         document.body.style.overflow = '';
       });
     });
+    // Recherche + thème masqués du header sous 1080px faute de place (voir style.css) :
+    // les 2 actions rapides du menu mobile relaient les boutons desktop existants,
+    // recherchés au clic (pas à l'init) pour ne pas dépendre de leur ordre de création.
+    var mobileSearchBtn = mobileNav.querySelector('[data-mobile-search]');
+    if (mobileSearchBtn) {
+      mobileSearchBtn.addEventListener('click', function () {
+        mobileNav.classList.remove('open');
+        mobileNav.hidden = true;
+        burger.setAttribute('aria-expanded', 'false');
+        burger.innerHTML = BURGER_ICON;
+        document.body.style.overflow = '';
+        var trigger = document.querySelector('.search-trigger');
+        if (trigger) setTimeout(function () { trigger.click(); }, 60);
+      });
+    }
+    var mobileThemeBtn = mobileNav.querySelector('[data-mobile-theme]');
+    if (mobileThemeBtn) {
+      var mobileThemeLabel = mobileThemeBtn.querySelector('[data-mobile-theme-label]');
+      var syncMobileThemeLabel = function () {
+        if (mobileThemeLabel) {
+          mobileThemeLabel.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? 'Mode clair' : 'Mode sombre';
+        }
+      };
+      syncMobileThemeLabel();
+      mobileThemeBtn.addEventListener('click', function () {
+        var toggle = document.getElementById('themeToggle');
+        if (toggle) toggle.click();
+        syncMobileThemeLabel();
+      });
+    }
   }
 
   // ----- 4. Urgency banner : stage de droit pré-rentrée -----
