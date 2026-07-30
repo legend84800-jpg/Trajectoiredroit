@@ -73,6 +73,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 ## Droit des sociétés L3
 
 - [x] matiere:droit des sociétés L3 | arret:Cass. crim., 2020, Sté Iron Mountain (ex-Intradis) | theme:la transmission de la responsabilité pénale de la société absorbée à la société absorbante en cas de fusion (publié le 2026-07-25, sourcé sur le texte intégral officiel dans les dossiers élèves droit des sociétés L3 TD S6 et croisé avec le web, Légifrance/Dalloz/Lexbase)
+- [x] matiere:droit des sociétés L3 | arret:Cass. com., 20 mai 1986, n° 85-16.716, Bowater | theme:le critère de l'objet contre celui de l'effet dans la prohibition des clauses léonines de l'article 1844-1 du Code civil (publié le 2026-07-30 ; backlog dédié entièrement épuisé sur toutes les matières et aucune requête Search Console en position 5-15 ne visait un arrêt non traité ; droit des sociétés L3 identifiée comme la matière la moins couverte en fiches d'arrêt malgré la fiche Fruehauf déjà en ligne, hors suivi de ce backlog ; arrêt sourcé sur le commentaire déjà existant dans contenus-tjd/commentaires-arrets/coma_bowater_soc_1986.pdf et croisé avec Légifrance (attendu de principe vérifié mot à mot, dates et numéro de pourvoi) et le web pour la portée jusqu'à l'arrêt du 21 juin 2023, n° 21-21.875 ; attention, une source secondaire étudiante attribuait à tort cet arrêt de 2023 à la chambre sociale, corrigé et vérifié, il s'agit bien de la chambre commerciale)
 
 ## Procédure civile L3
 
