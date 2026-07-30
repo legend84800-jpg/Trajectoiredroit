@@ -982,6 +982,11 @@ html[data-theme="dark"] .burger:hover { background: rgba(255,255,255,0.08); }
   .primary-nav { display: none }
   .burger { display: inline-flex }
   .site-header__cta .btn--ghost { display: none }
+  /* Recherche + bascule thème : avec le bouton "Fiches" et le burger, les 4 boutons
+     dépassaient la largeur de tous les téléphones courants (375 à 414px), poussant
+     le burger hors de l'écran. Les deux passent dans le menu mobile ci-dessous. */
+  .site-header__cta .search-trigger,
+  .site-header__cta .theme-toggle { display: none }
 }
 @media (max-width: 540px) {
   .site-header__cta .btn:not(.btn--primary) { display: none }
