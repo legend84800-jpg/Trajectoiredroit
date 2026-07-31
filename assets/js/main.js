@@ -456,6 +456,15 @@
       '<button type="button" class="urgency-banner__close" aria-label="Fermer ce message" data-close-urgency>✕</button>';
     header.parentNode.insertBefore(banner, header);
 
+    // Le bandeau s'insère après coup et décale tout le contenu vers le bas.
+    // Si la page vient d'atterrir sur une ancre (ex : #fiches depuis un
+    // article de blog), ce décalage invalide le scroll déjà fait par le
+    // navigateur : on recale une fois, sans animation, sur la cible réelle.
+    if (window.location.hash) {
+      var ancre = document.getElementById(window.location.hash.slice(1));
+      if (ancre) ancre.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }
+
     // Décompte automatique réel (jour/heure/min/sec, tique chaque seconde),
     // toujours vers la même échéance DEADLINE ci-dessus, jamais un faux
     // compte à rebours qui repart à chaque visite.
