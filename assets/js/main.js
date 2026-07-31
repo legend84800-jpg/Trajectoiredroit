@@ -462,7 +462,15 @@
     // navigateur : on recale une fois, sans animation, sur la cible réelle.
     if (window.location.hash) {
       var ancre = document.getElementById(window.location.hash.slice(1));
-      if (ancre) ancre.scrollIntoView({ behavior: 'auto', block: 'start' });
+      if (ancre) {
+        // { behavior: 'auto' } respecte le CSS scroll-behavior:smooth du site
+        // (donc anime quand même) : on neutralise le CSS le temps du recalage.
+        var root = document.documentElement;
+        var scrollCssAvant = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        ancre.scrollIntoView({ behavior: 'auto', block: 'start' });
+        root.style.scrollBehavior = scrollCssAvant;
+      }
     }
 
     // Décompte automatique réel (jour/heure/min/sec, tique chaque seconde),
