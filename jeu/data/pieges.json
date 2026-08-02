@@ -1,0 +1,698 @@
+[
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Quelle chambre de la Cour de cassation a rendu les grands arrêts sur la promesse unilatérale de vente, celui du 15 décembre 1993 sur la rétractation et celui du 5 décembre 1995 sur l'indemnité d'immobilisation ?",
+  "options": [
+   "La troisième chambre civile, compétente pour le contentieux immobilier et les ventes.",
+   "La première chambre civile, la chambre la plus citée en cours sur le droit des contrats.",
+   "La chambre commerciale, parce qu'une indemnité d'immobilisation était en jeu.",
+   "La chambre mixte, réunie pour trancher un désaccord entre chambres."
+  ],
+  "correct": 0,
+  "justif": "Ces deux arrêts relèvent de la troisième chambre civile, celle qui juge le contentieux immobilier et les ventes. Le piège, c'est de citer « civ. 1 » par réflexe, parce que c'est la chambre la plus citée en cours, sans vérifier la matière du litige. Cette confusion fait perdre des points même quand la règle citée est juste. Retiens Cass. 3e civ., 15 décembre 1993, n° 91-10.199 (Cruz) et Cass. 3e civ., 5 décembre 1995, n° 93-19.874."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Une acheteuse découvre après la signature de la vente des nuisances importantes qui existaient déjà. Peut-elle encore invoquer l'erreur ?",
+  "options": [
+   "Non, une découverte postérieure à la conclusion du contrat ne peut plus fonder l'erreur.",
+   "Oui, l'erreur s'apprécie au jour du contrat et les éléments postérieurs servent à prouver la croyance erronée de ce jour-là.",
+   "Oui, à condition que la découverte intervienne dans l'année qui suit la vente.",
+   "Non, sauf si le vendeur connaissait lui-même les nuisances au moment de la vente."
+  ],
+  "correct": 1,
+  "justif": "L'erreur est un vice du consentement, elle s'apprécie donc au moment où le consentement est donné, le jour de la conclusion du contrat. Le piège, c'est de croire que ce qui est découvert après la vente arrive trop tard. En réalité, ce qui arrive après ne crée pas l'erreur, il la révèle, et les juges peuvent s'appuyer sur ces éléments postérieurs pour prouver ce que l'acheteuse croyait le jour de la signature. Civ. 1re, 13 décembre 1983, la suite de l'affaire Poussin."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Un acheteur croit payer une maison 10 000 euros alors qu'elle en valait 100 000. Quelle erreur commet-il ?",
+  "options": [
+   "Un défaut de contrepartie qui rend le contrat nul pour contenu illusoire.",
+   "Une erreur sur les qualités essentielles de la prestation, cause de nullité du contrat.",
+   "Une erreur sur la valeur, qui ne permet jamais d'annuler le contrat.",
+   "Une erreur qui ouvre la nullité seulement si elle est excusable."
+  ],
+  "correct": 2,
+  "justif": "Se tromper sur le prix, c'est se tromper sur la valeur de la chose, et le Code civil dit en toutes lettres que cette erreur reste sans effet sur le contrat (article 1136). Le piège, c'est de prendre cet exemple pour une erreur sur les qualités essentielles, celle des articles 1132 et 1133, qui vise par exemple l'authenticité d'un tableau ou le caractère constructible d'un terrain. Retiens le bon exemple, la table d'époque Louis XV qui s'avère une copie (Civ. 1re, 23 février 1970)."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Dans l'affaire Poussin, qu'est-ce qui permet aux vendeurs d'obtenir la nullité de la vente pour erreur ?",
+  "options": [
+   "Le simple doute sur l'authenticité du tableau, considéré comme une qualité substantielle.",
+   "L'acceptation d'un aléa sur l'attribution du tableau au moment de la vente.",
+   "La découverte de l'authenticité après la vente, qui fait naître l'erreur.",
+   "Leur conviction erronée, au moment de la vente, que le tableau ne pouvait pas être de Poussin."
+  ],
+  "correct": 3,
+  "justif": "Ce qui ouvre la nullité, c'est la conviction erronée des vendeurs, persuadés que leur tableau ne pouvait pas être de Poussin (Civ. 1re, 22 février 1978). Le piège, c'est de croire que le doute fonde l'erreur, alors qu'il l'exclut. Celui qui doute de l'authenticité et vend quand même accepte un risque, et cet aléa accepté ferme la porte à l'erreur, comme dans l'affaire du tableau vendu « attribué à » Fragonard (Civ. 1re, 24 mars 1987). La règle est aujourd'hui écrite à l'article 1133, alinéa 3, du Code civil."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Le frère du vendeur, qui présentait l'objet, a faussement affirmé son authenticité. L'acheteur peut-il obtenir la nullité pour dol ?",
+  "options": [
+   "Oui, s'il démontre que le frère agissait pour le compte du vendeur ou de connivence avec lui.",
+   "Oui, le vendeur a menti sur l'origine de l'objet, le dol est constitué contre lui.",
+   "Non, le mensonge d'un tiers ne laisse aucune action à l'acheteur.",
+   "Oui, le lien de famille prouve à lui seul la connivence entre le frère et le vendeur."
+  ],
+  "correct": 0,
+  "justif": "Le dol n'est une cause de nullité que s'il émane du cocontractant lui-même, de son représentant, préposé ou porte-fort, ou d'un tiers de connivence (articles 1137 et 1138 du Code civil). Le piège, c'est d'imputer directement au vendeur un mensonge qui vient de son frère, ce qui fait sauter une condition entière du raisonnement, celle de l'auteur du dol. Le lien de famille est un indice de connivence, jamais une preuve. À défaut de connivence, il reste la nullité pour erreur (article 1132) et la responsabilité délictuelle du tiers menteur (article 1240)."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Quel article du Code civil fonde la demande de nullité d'un contrat entaché de dol ?",
+  "options": [
+   "L'article 1130, qui définit les vices du consentement et leur caractère déterminant.",
+   "L'article 1131, qui fait des vices du consentement une cause de nullité relative.",
+   "L'article 1128, qui exige un contenu licite et certain.",
+   "L'article 1240, qui répare le préjudice causé par le mensonge."
+  ],
+  "correct": 1,
+  "justif": "C'est l'article 1131 qui énonce la sanction, les vices du consentement sont une cause de nullité relative du contrat, à combiner avec l'article 1137 qui définit le dol. Le piège, c'est de viser l'article 1130, qui se contente de définir les trois vices et de poser leur condition commune, le caractère déterminant du vice. Fonder la nullité sur l'article 1130, c'est citer le texte qui décrit le problème à la place de celui qui donne la sanction."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Un vendeur présente comme authentique un objet qu'il sait faux. Quel procédé de dol commet-il ?",
+  "options": [
+   "Une réticence dolosive, il a dissimulé une information déterminante.",
+   "Des manœuvres, il a organisé une mise en scène pour tromper l'acheteur.",
+   "Un mensonge, il a affirmé une chose fausse.",
+   "Une erreur provoquée qui se confond avec l'erreur spontanée de l'article 1132."
+  ],
+  "correct": 2,
+  "justif": "L'article 1137 distingue trois procédés, les manœuvres, le mensonge et la dissimulation intentionnelle d'une information, qu'on appelle la réticence dolosive. Affirmer une chose fausse, c'est mentir. Se taire, c'est dissimuler. Le piège, c'est de qualifier de dissimulation une affirmation positive et fausse, alors que la distinction compte, car la réticence dolosive exige en plus de prouver que son auteur connaissait le caractère déterminant de l'information tue. Ici, c'est l'article 1137, alinéa 1er, du Code civil qui s'applique."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Un acheteur a payé cher la récolte à venir d'un verger, ruinée ensuite par les intempéries. Peut-il remettre en cause la vente ?",
+  "options": [
+   "Non, il a acheté une chose future en acceptant un aléa, et l'erreur sur la valeur est indifférente.",
+   "Oui, le prix hors de proportion avec ce qu'il reçoit constitue une contrepartie dérisoire au sens de l'article 1169.",
+   "Oui, les intempéries font disparaître la contrepartie et rendent le contrat caduc.",
+   "Non, sauf s'il prouve que le vendeur connaissait la fragilité de la récolte."
+  ],
+  "correct": 0,
+  "justif": "La vente peut porter sur une chose future (article 1163), et acheter une récolte à venir intègre un aléa accepté, le risque que la récolte soit bonne ou mauvaise. Le piège, c'est d'attaquer par la lésion ou la contrepartie dérisoire, car le défaut d'équivalence s'apprécie au jour de la formation du contrat, avant les intempéries (articles 1168 et 1169). Se plaindre d'avoir payé trop cher revient à invoquer une erreur sur la valeur, qui reste indifférente (article 1136)."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Dans l'arrêt Chronopost (Com. 22 octobre 1996), sur quel fondement la clause limitative de responsabilité est-elle neutralisée ?",
+  "options": [
+   "La législation des clauses abusives du Code de la consommation.",
+   "L'absence de cause, sur le visa de l'ancien article 1131 du Code civil.",
+   "Le déséquilibre significatif de l'article 1171 du Code civil.",
+   "La faute lourde du transporteur, qui écarte toute limitation."
+  ],
+  "correct": 1,
+  "justif": "En 1996, la législation des clauses abusives ne s'appliquait qu'entre un professionnel et un consommateur, or Chronopost opposait deux sociétés. Le piège, c'est de parler de « clause abusive », car c'est précisément parce que ce régime était inapplicable que la Cour de cassation est passée par la cause pour neutraliser la clause, et tout l'intérêt de l'arrêt est là. Depuis la réforme de 2016, la solution vit à l'article 1170 du Code civil, la clause qui prive de sa substance l'obligation essentielle du débiteur est réputée non écrite."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Quelle sanction l'arrêt Chronopost retient-il contre la clause limitative de responsabilité ?",
+  "options": [
+   "La clause est jugée licite, faute de cause à la contrepartie.",
+   "La nullité du contrat de transport tout entier.",
+   "La clause est réputée non écrite, le contrat survit sans elle.",
+   "La résolution du contrat aux torts du transporteur."
+  ],
+  "correct": 2,
+  "justif": "L'arrêt répute non écrite la clause limitative qui contredit la portée de l'engagement pris. Elle est privée d'effet, le contrat survit et le transporteur répond de son manquement dans les conditions du droit commun. Le piège, c'est d'écrire que les juges déduisent de l'absence de cause la « licéité » de la clause, un contresens complet sur la solution commentée, qui coûte plus cher que dix maladresses de style. Com. 22 octobre 1996, aujourd'hui article 1170 du Code civil."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Quel texte en vigueur sanctionne la clause qui crée un déséquilibre significatif dans un contrat d'adhésion ?",
+  "options": [
+   "L'article 1122-2 du Code civil, qui permet de réviser ou supprimer la clause.",
+   "L'article 1171 du Code civil, qui répute la clause non écrite.",
+   "L'article 1131 du Code civil, qui prononce la nullité relative du contrat.",
+   "L'article L. 212-1 du Code de la consommation, applicable même entre professionnels."
+  ],
+  "correct": 1,
+  "justif": "Le texte en vigueur est l'article 1171 du Code civil pour les contrats d'adhésion, et l'article L. 212-1 du Code de la consommation pour les seuls consommateurs. Le piège, c'est de citer un « article 1122-2 » qui ne correspond à aucun texte du Code civil en vigueur, cette formulation vient de l'avant-projet Catala, recopiée depuis un manuel ou un site sans vérification. Prends le réflexe de vérifier chaque numéro d'article sur Légifrance avant de le citer."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Un contrat conclu en 2020 poursuit un but contraire à l'ordre public. Quel fondement de nullité invoquer ?",
+  "options": [
+   "La cause immorale du contrat, qui viole gravement les bonnes mœurs.",
+   "Les articles 1162 et 1128 du Code civil, qui exigent un but et un contenu licites.",
+   "L'ancien article 1131 du Code civil, toujours applicable aux contrats récents.",
+   "La caducité du contrat pour disparition de son élément essentiel."
+  ],
+  "correct": 1,
+  "justif": "L'ordonnance du 10 février 2016 a supprimé la notion de cause du Code civil. Pour un contrat postérieur au 1er octobre 2016, le contrôle passe par l'article 1162, le contrat ne peut déroger à l'ordre public ni par ses stipulations ni par son but, et par l'article 1128, qui exige un contenu licite et certain. Le piège, c'est d'invoquer une « cause immorale », un concept qui a disparu du droit positif, ce qui trahit une révision faite sur un ancien manuel. La nullité est absolue lorsque l'ordre public est en cause."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "L'acheteur d'un véhicule découvre un vice caché qui rend la chose impropre à son usage. Quelle action exerce-t-il ?",
+  "options": [
+   "Une action en nullité de la vente pour vice de formation.",
+   "La garantie des vices cachés, avec le choix entre action rédhibitoire et action estimatoire.",
+   "Une action en caducité de la vente.",
+   "Une action en responsabilité délictuelle contre le vendeur."
+  ],
+  "correct": 1,
+  "justif": "La garantie des vices cachés est une garantie légale propre à la vente, régie par les articles 1641 à 1649 du Code civil. L'acheteur choisit entre rendre la chose et récupérer le prix (action rédhibitoire) ou la garder avec une réduction du prix (action estimatoire, article 1644), dans les deux ans de la découverte du vice (article 1648). Le piège, c'est de parler de nullité, qui sanctionne un défaut présent lors de la formation du contrat, alors que le vice caché est un défaut de la chose vendue. Retiens aussi que l'action rédhibitoire est une résolution, jamais une annulation."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Un contrat est nul de nullité absolue pour objet illicite. La confirmation est-elle possible ?",
+  "options": [
+   "Oui, la partie protégée peut confirmer la nullité de manière expresse ou tacite.",
+   "Oui, si toutes les parties y consentent devant notaire.",
+   "Non, la confirmation est réservée à la nullité relative, et on confirme le contrat, jamais la nullité.",
+   "Non, sauf autorisation du ministère public."
+  ],
+  "correct": 2,
+  "justif": "On ne confirme jamais une nullité, on confirme le contrat, ce qui vaut renonciation à demander sa nullité (article 1182 du Code civil). Et cette confirmation ne joue que pour la nullité relative, celle qui protège un intérêt privé (article 1181). Le piège tient en deux erreurs, la formule « confirmer la nullité », qui dit l'inverse de ce qu'on veut dire, et l'idée qu'une nullité absolue pourrait être couverte, alors qu'elle protège l'intérêt général et reste ouverte à toute personne intéressée et au ministère public (article 1180)."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Que juge l'arrêt Soffimat (Com. 29 juin 2010) à propos de l'imprévision ?",
+  "options": [
+   "Il consacre la théorie de l'imprévision et le pouvoir du juge de réviser ou résilier le contrat.",
+   "Il casse pour manque de base légale, la cour d'appel devait rechercher si l'obligation restait sérieusement contestable.",
+   "Il refuse définitivement toute prise en compte du déséquilibre survenu en cours d'exécution.",
+   "Il impose aux parties une renégociation obligatoire du contrat."
+  ],
+  "correct": 1,
+  "justif": "L'arrêt est rendu en matière de référé, une procédure rapide qui suppose une obligation non sérieusement contestable, et la Cour casse seulement parce que la cour d'appel n'a pas recherché si l'évolution économique rendait l'obligation « sérieusement contestable ». Le piège, c'est de lire dans cet arrêt non publié la consécration de l'imprévision, alors qu'il ouvre au mieux un débat doctrinal. Faire dire à un arrêt plus qu'il ne dit est l'erreur la plus sanctionnée en commentaire. L'imprévision n'entre dans le Code civil qu'avec l'article 1195, issu de l'ordonnance du 10 février 2016."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Une obligation était dépourvue de contrepartie dès la conclusion du contrat. Quelle sanction s'applique ?",
+  "options": [
+   "La caducité du contrat, qui cesse de produire ses effets.",
+   "La résiliation du contrat pour l'avenir.",
+   "La révision judiciaire du contrat.",
+   "La nullité, parce que le contrat est mal formé dès l'origine."
+  ],
+  "correct": 3,
+  "justif": "La nullité sanctionne un défaut qui existe dès la formation, le contrat est mal né, et c'est le cas d'une contrepartie illusoire ou dérisoire au moment de la conclusion (ancien article 1131, aujourd'hui article 1169 du Code civil). Le piège, c'est d'employer « caduc », car la caducité frappe un contrat valablement formé qui perd ensuite un élément essentiel en cours de route (article 1186, créé par la réforme de 2016). Retiens le repère, mal né donne la nullité, bien né puis privé d'un élément essentiel donne la caducité."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Quelle différence sépare la résolution de la résiliation du contrat ?",
+  "options": [
+   "Aucune, les deux mots désignent la même sanction de l'inexécution.",
+   "La résolution anéantit le contrat et déclenche des restitutions, la résiliation ne vaut que pour l'avenir.",
+   "La résolution est toujours judiciaire, la résiliation toujours unilatérale.",
+   "La résiliation exige une faute grave, la résolution une simple inexécution."
+  ],
+  "correct": 1,
+  "justif": "La résolution anéantit le contrat pour inexécution et déclenche en principe des restitutions, on fait comme si le contrat n'avait jamais existé pour les prestations qui n'ont pas trouvé leur utilité. La résiliation ne vaut que pour l'avenir, quand les prestations ont trouvé leur utilité au fur et à mesure, le cas typique des contrats à exécution successive. Le piège, c'est d'employer les deux mots comme des synonymes, alors que la distinction commande les restitutions. Articles 1224 à 1229 du Code civil, la ligne de partage étant à l'article 1229, alinéa 3."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "La victime d'un accident doit-elle limiter son propre préjudice dans l'intérêt du responsable ?",
+  "options": [
+   "Non, l'auteur d'un accident doit en réparer toutes les conséquences dommageables.",
+   "Oui, elle doit prendre les mesures raisonnables, comme confier son fonds de commerce à un tiers pendant son incapacité.",
+   "Oui, le droit français impose un devoir de minimiser le dommage comme les droits anglo-saxons.",
+   "Non, sauf si le responsable prouve la mauvaise foi de la victime."
+  ],
+  "correct": 0,
+  "justif": "La Cour de cassation refuse d'imposer à la victime une obligation de minimiser son propre dommage, ce que les pays anglo-saxons appellent le duty to mitigate. L'attendu est net, l'auteur d'un accident doit en réparer toutes les conséquences dommageables et la victime n'est pas tenue de limiter son préjudice dans l'intérêt du responsable. Le piège, c'est de reprendre le reproche de la cour d'appel, qui voulait que la boulangère confie son fonds à un tiers pendant son incapacité. Civ. 2e, 19 juin 2003, au visa de l'ancien article 1382, devenu 1240."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Quelle formation de la Cour de cassation a rendu l'arrêt Bootshop du 6 octobre 2006, sur le manquement contractuel invoqué par un tiers ?",
+  "options": [
+   "La première chambre civile.",
+   "La chambre commerciale.",
+   "L'Assemblée plénière, la formation la plus solennelle.",
+   "Une chambre mixte réunissant les chambres civiles."
+  ],
+  "correct": 2,
+  "justif": "L'arrêt Bootshop a été rendu par l'Assemblée plénière, la formation la plus solennelle de la Cour de cassation, précisément parce que l'articulation entre manquement contractuel et faute délictuelle à l'égard des tiers faisait débat entre les chambres. Le piège, c'est de le citer comme un arrêt de la première chambre civile, ce qui banalise sa portée sur un arrêt à identifier à coup sûr. Retiens la solution, le tiers à un contrat peut invoquer, sur le fondement de la responsabilité délictuelle, un manquement contractuel dès lors que ce manquement lui a causé un dommage. Cass., Ass. plén., 6 octobre 2006, n° 05-13.255."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Tes sous-parties sont titrées A et B. Avec quels symboles les annonces-tu dans le chapeau ?",
+  "options": [
+   "Avec (I) et (II), comme pour les grandes parties.",
+   "Avec (A) et (B), chaque niveau garde son symbole.",
+   "Avec (1) et (2), réservés aux annonces de sous-parties.",
+   "Sans symbole, une phrase d'annonce suffit toujours."
+  ],
+  "correct": 1,
+  "justif": "La hiérarchie d'un plan juridique suit des niveaux fixes, I et II pour les grandes parties, A et B pour les sous-parties, 1 et 2 pour les subdivisions internes, et l'annonce reprend exactement le symbole du titre qui suit. Le piège, c'est d'annoncer les sous-parties avec (I) et (II), ce qui brouille les niveaux, le correcteur ne sait plus s'il lit une sous-partie ou une nouvelle grande partie."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Dans un cas pratique, comment vérifies-tu les conditions d'une notion comme le dol ?",
+  "options": [
+   "Tu énonces chaque condition avec sa source, tu la confrontes aux faits, tu conclus, puis tu passes à la suivante.",
+   "Tu poses toutes les conditions en bloc dans la majeure, puis tu conclus d'un coup que tout est réuni.",
+   "Tu vérifies seulement les conditions discutables et tu passes les autres sous silence.",
+   "Tu donnes d'abord la conclusion, puis tu remontes vers les conditions."
+  ],
+  "correct": 0,
+  "justif": "Le correcteur doit voir chaque condition testée séparément contre les faits, sinon il ne peut pas suivre le raisonnement. Le piège, c'est de tout balayer en un seul paragraphe avant de conclure que le dol est constitué, car une condition noyée compte comme une condition oubliée aux yeux du correcteur, même si la conclusion est juste. Retiens que le cas pratique note la démonstration, jamais le seul résultat, et que la conclusion générale se rédige sans article."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Ta majeure sur les vices du consentement cite les bons articles du Code civil. Suffit-elle ?",
+  "options": [
+   "Oui, les articles du Code sont la seule source qui compte dans la majeure.",
+   "Non, il faut citer au moins un arrêt pour chaque condition discutable.",
+   "Oui, à condition de recopier les articles mot à mot.",
+   "Non, il faut surtout multiplier les références de doctrine."
+  ],
+  "correct": 1,
+  "justif": "En droit des obligations, une grande partie des règles vit dans la jurisprudence. Le caractère excusable de l'erreur, son appréciation in concreto, c'est-à-dire selon la situation concrète de la personne, ou l'aléa accepté ne se lisent pas dans le seul texte des articles. Le piège, c'est de croire qu'une majeure faite d'articles suffit, alors qu'elle reste abstraite et laisse la mineure sans point d'appui pour trancher les cas discutables. Par exemple, l'erreur s'apprécie plus sévèrement pour un professionnel qui traite dans sa spécialité que pour un profane."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Comment cites-tu la règle sur l'aléa qui figure au troisième alinéa de l'article 1133 du Code civil ?",
+  "options": [
+   "Article 1133-3 du Code civil.",
+   "Ancien article 1133 du Code civil.",
+   "Article 1133 du Code civil, sans autre précision.",
+   "Article 1133, alinéa 3, du Code civil."
+  ],
+  "correct": 3,
+  "justif": "Un alinéa se cite « article 1133, alinéa 3 », jamais « article 1133-3 », car un alinéa n'est jamais un article, et coller le chiffre au bout invente un texte qui n'existe pas. Le piège vaut aussi pour les numéros d'avant et d'après la réforme de 2016, où presque tous les numéros du droit des contrats ont changé. Précise toujours « ancien article » ou « article issu de la réforme », et vérifie la table de correspondance, l'ancien 1135 est devenu 1194, l'ancien 1382 est devenu 1240."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Que pose l'article 1240 du Code civil ?",
+  "options": [
+   "Le principe selon lequel la responsabilité ne peut pas être partagée.",
+   "La responsabilité du fait des choses que l'on a sous sa garde.",
+   "La responsabilité du fait personnel, tout fait de l'homme qui cause un dommage oblige à le réparer.",
+   "L'interdiction de cumuler responsabilité contractuelle et responsabilité délictuelle."
+  ],
+  "correct": 2,
+  "justif": "L'article 1240 pose la responsabilité du fait personnel, celui qui cause un dommage par sa faute doit le réparer. Le piège, c'est de lui faire dire que la responsabilité ne se partage pas, une idée sortie d'une citation littéraire faussement rattachée au texte, alors que le partage de responsabilité existe bel et bien, notamment en cas de faute de la victime. Retiens la règle d'or de l'accroche, n'utiliser que des références vérifiables, et dans le doute préférer une accroche factuelle à une citation inventée."
+ },
+ {
+  "matiere": "obligations-l2s2",
+  "q": "Quelle formule est correcte pour présenter une décision de justice dans une copie ?",
+  "options": [
+   "L'arrêt de la première chambre civile énonce que les conditions sont cumulatives.",
+   "L'arrêt de la première chambre civile dispose que les conditions sont cumulatives.",
+   "Les juges décrètent deux conditions cumulatives.",
+   "La cour d'appel infirme le moyen soulevé par les époux."
+  ],
+  "correct": 0,
+  "justif": "Chaque acte juridique a son verbe. La loi dispose, le contrat stipule, l'arrêt énonce, retient ou juge. Le piège, c'est d'écrire qu'un arrêt « dispose » ou que des juges « décrètent », alors qu'un décret est un acte du pouvoir exécutif. De même, une cour infirme ou confirme un jugement, mais face à un moyen elle l'écarte, le rejette ou l'accueille. Ces confusions signalent au correcteur une maîtrise fragile du vocabulaire avant même la lecture du fond."
+ },
+ {
+  "matiere": "famille-l1s2",
+  "q": "Pour apprécier les capacités financières d'un parent qui doit une pension alimentaire, les allocations familiales qu'il perçoit comptent-elles comme des revenus personnels ?",
+  "options": [
+   "Oui, elles peuvent être prises en compte dans le calcul de la pension.",
+   "Non, elles ne sont pas comptabilisées comme des revenus personnels de ce parent.",
+   "Oui, mais seulement pour la moitié de leur montant.",
+   "Non, sauf accord exprès des deux parents."
+  ],
+  "correct": 1,
+  "justif": "La jurisprudence exclut les allocations familiales des revenus personnels du parent pour apprécier ses capacités financières. Le piège vu en copie est instructif, l'élève avait démontré cette règle dans sa majeure avec deux arrêts, puis a conclu l'exact contraire dans sa mineure, orienté par une note de recherche mal rattachée. Retiens la méthode, la mineure applique la règle posée dans la majeure, jamais son contraire, et la conclusion se relit phrase par phrase contre la règle démontrée."
+ },
+ {
+  "matiere": "famille-l1s2",
+  "q": "Un époux découvre que son conjoint lui a caché une précédente union. Quel texte fonde la nullité du mariage pour erreur ?",
+  "options": [
+   "L'article 1132 du Code civil, l'erreur sur les qualités substantielles de la chose objet du contrat.",
+   "L'article 180, alinéa 2, du Code civil, l'erreur sur la personne ou sur ses qualités essentielles.",
+   "L'article 1130 du Code civil, qui exige un vice déterminant du consentement.",
+   "L'article 180 du Code civil, limité à la seule erreur sur l'identité de la personne."
+  ],
+  "correct": 1,
+  "justif": "Le mariage a son propre régime, l'article 180, alinéa 2, du Code civil dispose que « s'il y a eu erreur dans la personne, ou sur des qualités essentielles de la personne, l'autre époux peut demander la nullité du mariage ». La qualité essentielle s'apprécie toujours par rapport à la personne du conjoint, par exemple un passé matrimonial caché. Le piège, c'est de raisonner avec le vocabulaire du droit des contrats, l'erreur sur les qualités de la chose de l'article 1132, alors que le mariage n'a pas d'objet au sens contractuel et relève d'une règle propre."
+ },
+ {
+  "matiere": "famille-l1s2",
+  "q": "Quelle durée de cessation de la communauté de vie exige le divorce pour altération définitive du lien conjugal ?",
+  "options": [
+   "Deux ans au jour de la demande en divorce.",
+   "Six mois au jour de la demande.",
+   "Un an, depuis la réforme entrée en vigueur le 1er janvier 2021.",
+   "Aucune durée minimale, le juge apprécie librement."
+  ],
+  "correct": 2,
+  "justif": "Depuis le 1er janvier 2021, l'article 238 du Code civil retient une cessation de la communauté de vie d'un an seulement à la date de la demande en divorce, appréciée au jour du prononcé si la demande initiale ne précisait pas de fondement. Le piège, c'est de citer encore les deux ans, une durée qui a existé mais que la loi du 23 mars 2019 de programmation et de réforme pour la justice a réduite. Réviser sur un cours ancien fait appliquer une version de l'article qui n'est plus en vigueur."
+ },
+ {
+  "matiere": "famille-l1s2",
+  "q": "Quel article du Code civil organise la preuve de la possession d'état par un acte de notoriété ?",
+  "options": [
+   "L'article 317, l'acte de notoriété faisant foi jusqu'à preuve du contraire.",
+   "L'article 311-1, qui exige un acte notarié pour constater la filiation.",
+   "L'article 311-2, qui énumère les caractères de la possession d'état.",
+   "L'article 321, qui fixe le délai de prescription de dix ans."
+  ],
+  "correct": 0,
+  "justif": "Les articles 311-1 et 311-2 définissent seulement la possession d'état, ses éléments constitutifs, le nomen, le tractatus et la fama, et ses caractères, continue, paisible, publique et non équivoque. Ils ne parlent jamais d'acte notarié. Le piège, c'est de rattacher la preuve à l'article de définition, alors que c'est l'article 317 du Code civil qui organise la preuve par la délivrance d'un acte de notoriété, lequel fait foi de la possession d'état jusqu'à preuve du contraire. Deux questions, la définition et la preuve, relèvent de deux textes distincts."
+ },
+ {
+  "matiere": "famille-l1s2",
+  "q": "À quelle condition le procureur de la République peut-il accorder une dispense d'âge pour permettre à un mineur de se marier ?",
+  "options": [
+   "Pour des motifs graves, selon l'article 145 du Code civil.",
+   "Pour un intérêt légitime, comme en matière de changement de nom.",
+   "Avec le seul accord des deux parents, sans contrôle du procureur.",
+   "Jamais, le mariage exige dix-huit ans révolus sans aucune exception."
+  ],
+  "correct": 0,
+  "justif": "L'article 145 du Code civil dispose qu'il est loisible au procureur de la République du lieu de célébration du mariage d'accorder des dispenses d'âge pour des motifs graves. Le piège, c'est de recycler le critère de « l'intérêt légitime », qui appartient à un autre mécanisme, le changement de nom de l'article 61. Les deux critères ne se substituent jamais l'un à l'autre, et les motifs graves sont un critère plus exigeant que l'intérêt légitime."
+ },
+ {
+  "matiere": "famille-l1s2",
+  "q": "L'article 515-8 du Code civil impose-t-il aux concubins de contribuer aux charges de la vie commune ?",
+  "options": [
+   "Oui, à proportion des facultés respectives de chacun.",
+   "Oui, mais seulement après deux ans de vie commune stable.",
+   "Non, la contribution des concubins repose sur l'article 214 du Code civil, applicable à tous les couples.",
+   "Non, il définit seulement le concubinage et ne crée aucune obligation entre concubins."
+  ],
+  "correct": 3,
+  "justif": "L'article 515-8 se contente de définir le concubinage, une union de fait stable et continue entre deux personnes qui vivent en couple. Il n'impose strictement aucune obligation réciproque. Le piège, c'est de lui prêter la contribution aux charges proportionnelle aux facultés de chacun, qui n'existe que dans le mariage (article 214) et le PACS (article 515-4). Le concubin qui s'est appauvri au profit de l'autre doit passer par la société créée de fait ou l'enrichissement injustifié (articles 1303 et suivants du Code civil)."
+ },
+ {
+  "matiere": "famille-l1s2",
+  "q": "Depuis quand le PACS est-il ouvert aux couples de même sexe ?",
+  "options": [
+   "Depuis la loi du 17 mai 2013 sur le mariage pour tous.",
+   "Depuis sa création par la loi du 15 novembre 1999.",
+   "Depuis la loi du 23 mars 2019 de réforme pour la justice.",
+   "Il reste réservé aux couples de sexe différent."
+  ],
+  "correct": 1,
+  "justif": "Le PACS a été créé par la loi du 15 novembre 1999 précisément pour offrir un cadre juridique aux couples de même sexe qui ne pouvaient alors pas se marier, c'était l'une des raisons principales de sa création. Il a donc toujours été ouvert aux couples de même sexe comme de sexe différent (article 515-1 du Code civil). Le piège, c'est de créditer la loi du 17 mai 2013 de cette ouverture, alors qu'elle concerne uniquement le mariage, un texte distinct et postérieur de quatorze ans."
+ },
+ {
+  "matiere": "famille-l1s2",
+  "q": "Un mari a consenti devant notaire à une PMA avec tiers donneur. L'amant de l'épouse, convaincu d'être le géniteur, peut-il faire établir sa paternité après la naissance ?",
+  "options": [
+   "Oui, en prouvant par tous moyens l'absence de lien biologique du mari, selon les règles générales de contestation.",
+   "Oui, si le divorce des époux est prononcé après la naissance.",
+   "Non, l'article 342-10 du Code civil verrouille la filiation, sauf preuve que l'enfant n'est pas issu de la PMA.",
+   "Non, sauf accord écrit de l'épouse devant notaire."
+  ],
+  "correct": 2,
+  "justif": "Dès qu'une PMA a recours à un tiers donneur, l'article 342-10 du Code civil s'applique en priorité, celui qui a valablement consenti ne peut plus contester la filiation qui en résulte, et aucune action en établissement n'est ouverte, sauf à démontrer que l'enfant n'est pas issu de cette assistance. Le consentement n'est privé d'effet qu'en cas de décès, divorce ou séparation survenus avant l'insémination, jamais après. Le piège, c'est de raisonner avec les seules règles générales des articles 332 et 333, alors que ce verrou spécial prime le droit commun de la filiation."
+ },
+ {
+  "matiere": "famille-l1s2",
+  "q": "Un père biologique absent depuis la naissance veut reconnaître son fils des années plus tard, sans aucune possession d'état. Quel texte gouverne l'action en contestation de la filiation ?",
+  "options": [
+   "L'article 333 du Code civil, avec son délai de cinq ans.",
+   "L'article 334 du Code civil, action ouverte à tout intéressé avec une prescription de dix ans.",
+   "L'article 333 du Code civil, mais avec un délai porté à dix ans.",
+   "L'article 317 du Code civil, par la délivrance d'un acte de notoriété."
+  ],
+  "correct": 1,
+  "justif": "L'article 333 ne s'applique que lorsque la possession d'état est conforme au titre, c'est-à-dire quand la réalité vécue confirme ce que dit l'acte de filiation, avec un cercle d'action restreint et un délai de cinq ans. Le piège, c'est de le citer alors qu'ici le père a été totalement absent, donc sans aucune possession d'état. Dans ce cas, c'est l'article 334 du Code civil qui gouverne l'action, ouverte à toute personne qui y a intérêt, avec un délai de prescription de dix ans (article 321)."
+ },
+ {
+  "matiere": "famille-l1s2",
+  "q": "Quel texte protège le logement de la famille pendant le mariage ?",
+  "options": [
+   "L'article 515-4 du Code civil, sur la résidence de la famille.",
+   "L'article 214 du Code civil, sur la contribution aux charges du mariage.",
+   "Aucun texte, la protection du logement est purement jurisprudentielle.",
+   "L'article 215, alinéa 3, du Code civil, aucun époux ne peut disposer seul des droits assurant le logement."
+  ],
+  "correct": 3,
+  "justif": "La protection du logement de la famille pendant le mariage relève de l'article 215, alinéa 3, du Code civil, qui interdit à un époux de disposer seul des droits assurant le logement de la famille. Le piège, c'est de citer l'article 515-4, qui ne parle ni de domicile ni de résidence, il fixe l'obligation d'aide matérielle et d'assistance réciproque entre partenaires liés par un PACS, un régime totalement différent de celui du mariage."
+ },
+ {
+  "matiere": "famille-l1s2",
+  "q": "La participation financière d'un concubin à la construction d'un immeuble suffit-elle à prouver une société créée de fait entre concubins ?",
+  "options": [
+   "Oui, elle établit à elle seule l'intention de s'associer au projet.",
+   "Oui, dès que la participation dépasse la moitié du coût des travaux.",
+   "Non, il faut établir séparément les apports, l'affectio societatis et la vocation aux bénéfices et aux pertes.",
+   "Non, la société créée de fait est impossible entre concubins."
+  ],
+  "correct": 2,
+  "justif": "La société créée de fait exige trois conditions cumulatives tirées de l'article 1832 du Code civil, des apports, une affectio societatis, c'est-à-dire l'intention de collaborer sur un pied d'égalité à un projet commun, et l'intention de participer aux bénéfices comme aux pertes. Chacune doit être établie séparément, elles ne se déduisent jamais les unes des autres. Le piège, c'est le raisonnement de la cour d'appel censurée, qui avait déduit l'affectio societatis de la seule participation financière. Cass. com., 23 juin 2004, « l'intention de s'associer ne peut se déduire de la participation financière à la réalisation d'un projet immobilier »."
+ },
+ {
+  "matiere": "penal-l2s1",
+  "q": "Dans le meurtre, où ranges-tu le comportement homicide, le décès de la victime et le lien de causalité ?",
+  "options": [
+   "Dans l'élément moral, avec le dol général et le dol spécial.",
+   "Dans l'élément matériel de l'infraction.",
+   "Dans l'élément légal, avec l'article 221-1 du Code pénal.",
+   "Pour moitié dans l'élément matériel et pour moitié dans l'élément moral."
+  ],
+  "correct": 1,
+  "justif": "Le triptyque comportement, résultat et lien de causalité certain forme l'élément matériel du meurtre, une infraction de commission et de résultat. Le piège, c'est de ranger ces trois composantes sous l'élément moral, qui ne concerne que l'intention, le dol général, la volonté de l'acte en connaissance de la loi pénale, et le dol spécial, l'animus necandi, la volonté de donner la mort. Article 221-1 du Code pénal."
+ },
+ {
+  "matiere": "penal-l2s1",
+  "q": "Homicide involontaire à causalité indirecte. À quel stade du raisonnement discutes-tu la gravité de la faute, délibérée ou caractérisée ?",
+  "options": [
+   "Dans l'élément matériel, dès la description du comportement.",
+   "Dans l'élément moral, une fois le lien de causalité qualifié.",
+   "Dans l'élément légal, avant toute qualification des faits.",
+   "À n'importe quel stade, la place ne change rien à la démonstration."
+  ],
+  "correct": 1,
+  "justif": "Pour les infractions non intentionnelles, l'élément matériel se limite au triptyque comportement, résultat et nature du lien de causalité, direct ou indirect. La qualification de la faute et son degré de gravité exigé quand le lien est indirect, faute délibérée ou faute caractérisée, relèvent de l'élément moral, une fois le lien de causalité établi. Le piège, c'est de développer la gravité de la faute dès l'élément matériel, ce qui casse le raisonnement en deux temps voulu par l'article 121-3, alinéas 3 et 4, du Code pénal."
+ },
+ {
+  "matiere": "penal-l2s1",
+  "q": "L'auteur a tenté de pénétrer la victime sans y parvenir. Peux-tu retenir l'agression sexuelle en secours de la tentative de viol sur ces mêmes faits ?",
+  "options": [
+   "Oui, l'agression sexuelle sert de qualification de repli si la tentative de viol paraît fragile.",
+   "Oui, les deux qualifications se cumulent toujours pour aggraver la peine.",
+   "Non, les faits couverts par la tentative de viol absorbent la qualification d'agression sexuelle.",
+   "Non, seule l'agression sexuelle peut être retenue en l'absence de pénétration."
+  ],
+  "correct": 2,
+  "justif": "Quand les mêmes faits, les gestes qui visaient la pénétration et qui ont échoué, sont déjà couverts par la tentative de viol, l'agression sexuelle est absorbée par la qualification la plus grave. Le piège, c'est de présenter les deux comme des hypothèses concurrentes entre lesquelles choisir, alors qu'il s'agit d'un principe de non-cumul des qualifications sur un même fait. L'agression sexuelle ne redevient une qualification autonome que pour des faits distincts, non couverts par la tentative de viol."
+ },
+ {
+  "matiere": "penal-l2s1",
+  "q": "Un conducteur n'a pas remarqué que le feu venait de passer au rouge et blesse un piéton. Quelle faute retiens-tu ?",
+  "options": [
+   "Une faute simple, l'inattention n'est jamais un choix conscient de transgresser la règle.",
+   "Une faute délibérée, il a agi sciemment en violation du Code de la route.",
+   "Une faute caractérisée, le risque était d'une particulière gravité.",
+   "Aucune faute, l'inattention exclut la responsabilité pénale."
+  ],
+  "correct": 0,
+  "justif": "La faute délibérée suppose une violation manifestement délibérée d'une obligation particulière de prudence ou de sécurité, c'est-à-dire un acte conscient et volontaire de transgression. Ne pas remarquer un feu rouge est une inattention, qui relève par nature de la faute simple. Le piège, c'est d'écrire que le conducteur a agi « sciemment » alors que l'énoncé décrit le contraire, ce qui aggrave la qualification à tort. La faute simple suffit d'ailleurs quand le lien de causalité est direct (article 121-3, alinéa 3, du Code pénal)."
+ },
+ {
+  "matiere": "penal-l2s1",
+  "q": "Prêter sa voiture à l'auteur d'un crime pour qu'il se rende sur les lieux relève de quelle forme de complicité ?",
+  "options": [
+   "La complicité par abstention.",
+   "La complicité par provocation ou instructions.",
+   "La complicité par aide ou assistance matérielle, article 121-7, alinéa 1er, du Code pénal.",
+   "Aucune, un simple prêt de véhicule est trop indirect pour être punissable."
+  ],
+  "correct": 2,
+  "justif": "Prêter un véhicule est un acte positif qui facilite la préparation ou la consommation de l'infraction, donc une complicité par aide ou assistance matérielle, la catégorie de principe de l'article 121-7, alinéa 1er, du Code pénal. Le piège, c'est de parler de complicité par abstention, une catégorie exceptionnelle strictement encadrée par la jurisprudence, réservée aux comportements purement passifs, comme rester sur place à encourager sans intervenir."
+ },
+ {
+  "matiere": "penal-l2s1",
+  "q": "À quelles infractions s'applique la complicité par aide ou assistance ?",
+  "options": [
+   "Aux crimes et aux délits, à l'exclusion en principe des contraventions.",
+   "Aux crimes toujours, et aux délits seulement quand la loi le prévoit.",
+   "À toutes les infractions, contraventions comprises.",
+   "Aux seuls crimes, les plus graves des infractions."
+  ],
+  "correct": 0,
+  "justif": "La complicité par aide ou assistance de l'article 121-7, alinéa 1er, du Code pénal concerne les crimes et les délits, à l'exclusion en principe des contraventions. Le piège, c'est de plaquer sur la complicité le régime de la tentative, punissable de plein droit pour les crimes et seulement si la loi le prévoit pour les délits (article 121-5). Les deux notions n'ont rien à voir, et mélanger leurs régimes dans la même phrase signale immédiatement une confusion au correcteur."
+ },
+ {
+  "matiere": "penal-l2s1",
+  "q": "Dans un cas pratique sur la responsabilité pénale d'une société, commences-tu par l'historique de la responsabilité des personnes morales ?",
+  "options": [
+   "Oui, montrer sa connaissance du cours rapporte toujours des points.",
+   "Non, tu énonces la règle actuelle et son fondement, l'article 121-2 du Code pénal, sans détour historique.",
+   "Oui, mais uniquement dans une introduction générale au devoir.",
+   "Non, tu donnes directement la conclusion pour gagner du temps."
+  ],
+  "correct": 1,
+  "justif": "Dans un cas pratique, chaque ligne doit servir à répondre à la question posée pour le client. Le piège, c'est de croire qu'un rappel historique valorise la copie, alors qu'il fait perdre un temps de rédaction précieux en examen sans rien apporter à la démonstration. Retiens la règle, énoncer le droit applicable par sa formulation actuelle et son fondement textuel, l'historique ne se justifiant que si la question porte explicitement sur l'évolution du droit."
+ },
+ {
+  "matiere": "penal-l2s1",
+  "q": "Un élément constitutif d'une infraction fait manifestement défaut dès la lecture de l'énoncé. Que fais-tu de cette qualification ?",
+  "options": [
+   "Tu la développes en détail pour montrer que tu connais tous ses éléments.",
+   "Tu l'écartes rapidement avec une motivation brève, et tu gardes ton temps pour les vraies discussions.",
+   "Tu la passes totalement sous silence, sans la mentionner.",
+   "Tu la traites en dernier, après toutes les autres qualifications."
+  ],
+  "correct": 1,
+  "justif": "Quand un élément constitutif manque de façon manifeste, comme l'intention de donner la mort dans un empoisonnement, la qualification s'écarte rapidement et brièvement motivée. Le piège, c'est de la développer longuement, une erreur de gestion du temps d'examen qui prive de minutes les qualifications réellement discutables, celles qui rapportent les points. Le temps de rédaction se concentre là où la discussion existe."
+ },
+ {
+  "matiere": "constit-l1s1",
+  "q": "Sous la Vème République, le gouvernement doit-il obtenir un vote d'investiture de l'Assemblée nationale avant d'entrer en fonction ?",
+  "options": [
+   "Oui, le Premier ministre engage sa responsabilité sur son programme lors d'un vote de confiance d'investiture.",
+   "Non, il entre en fonction dès sa nomination par le président de la République, sans approbation préalable du Parlement.",
+   "Oui, comme le prévoyait déjà l'article 45 de la Constitution de 1946.",
+   "Non, sauf en période de cohabitation."
+  ],
+  "correct": 1,
+  "justif": "Le gouvernement est nommé par le président de la République et entre en fonction dès sa nomination par décret. L'engagement de responsabilité de l'article 49, alinéa 1er, est une simple faculté du Premier ministre, un choix politique, jamais une condition de validité du gouvernement. Le piège, c'est de transposer la IVème République, où l'article 45 de la Constitution du 27 octobre 1946 imposait un véritable vote d'investiture. La Vème a précisément rompu avec ce mécanisme pour renforcer l'exécutif face au Parlement."
+ },
+ {
+  "matiere": "constit-l1s1",
+  "q": "Quel organe était chargé de veiller sur la Constitution sous la IVème République ?",
+  "options": [
+   "Une cour constitutionnelle, juge de la conformité des lois.",
+   "Le Conseil constitutionnel, créé dès 1946.",
+   "Le Comité constitutionnel, un organe politique à la compétence volontairement réduite.",
+   "Le Conseil d'État, juridiction suprême de l'ordre administratif."
+  ],
+  "correct": 2,
+  "justif": "Il s'agissait du Comité constitutionnel, institué par les articles 91 à 93 de la Constitution du 27 octobre 1946. Organe politique et non juridictionnel, saisi seulement de façon conjointe par le président de la République et le président du Conseil de la République, il n'a statué qu'une seule fois, en 1948. Le piège, c'est d'en faire une « cour constitutionnelle », alors que sa compétence était volontairement réduite pour préserver la souveraineté du Parlement. Le Conseil constitutionnel, au rôle nettement élargi, arrive seulement avec la Constitution du 4 octobre 1958 (article 56 et suivants)."
+ },
+ {
+  "matiere": "constit-l1s1",
+  "q": "Où se trouve la question de confiance dans l'article 49 de la Constitution de 1958 ?",
+  "options": [
+   "À l'alinéa 3, qui permet d'engager la responsabilité du gouvernement sur un texte.",
+   "À l'alinéa 2, qui organise la motion de censure.",
+   "La question de confiance a disparu en 1958.",
+   "À l'alinéa 1er, l'engagement de responsabilité sur le programme ou une déclaration de politique générale."
+  ],
+  "correct": 3,
+  "justif": "La question de confiance proprement dite est celle de l'article 49, alinéa 1er, le Premier ministre y engage volontairement la responsabilité du gouvernement sur son programme ou une déclaration de politique générale pour obtenir un vote de soutien. Le piège, c'est de la confondre avec le 49.3, un mécanisme différent qui permet de faire adopter un texte précis sans vote, le texte étant considéré comme adopté sauf motion de censure déposée puis votée dans les vingt-quatre heures. L'alinéa 2, lui, organise la motion de censure à l'initiative des députés."
+ },
+ {
+  "matiere": "constit-l1s1",
+  "q": "Qui a écrit Le Léviathan ?",
+  "options": [
+   "John Locke, pour exposer les pouvoirs législatif, exécutif et fédératif.",
+   "Thomas Hobbes, défenseur d'un pouvoir souverain unique et absolu.",
+   "Jean-Jacques Rousseau, autre théoricien du contrat social.",
+   "Montesquieu, père de la séparation des pouvoirs à la française."
+  ],
+  "correct": 1,
+  "justif": "Le Léviathan (1651) est l'ouvrage majeur de Thomas Hobbes, qui y défend un pouvoir souverain unique et absolu, à l'opposé de la séparation des pouvoirs. Le piège, c'est de l'attribuer à Locke, souvent étudié dans le même chapitre sur le contrat social. La théorie des trois pouvoirs législatif, exécutif et fédératif, ce dernier chargé des relations extérieures, est développée par John Locke dans le Second traité du gouvernement civil (1690), chapitre XII."
+ },
+ {
+  "matiere": "personnes-l1",
+  "q": "Un fondateur a donné son nom patronymique à sa société, inséré dans les statuts, puis a cédé ses droits. Peut-il interdire à la société de continuer à utiliser ce nom ?",
+  "options": [
+   "Non, le nom inséré volontairement dans les statuts est devenu un signe distinctif détaché de sa personne, propriété incorporelle de la société.",
+   "Oui, le nom patronymique est inaliénable, son porteur peut toujours s'opposer à son usage par la société.",
+   "Oui, l'usage du nom d'une personne physique par une société constitue toujours une usurpation.",
+   "Non, parce que le droit sur le nom patronymique se prescrit par cinq ans."
+  ],
+  "correct": 0,
+  "justif": "Le nom patronymique est en principe imprescriptible, inaliénable et insaisissable, et son porteur peut s'opposer à toute appropriation indue par un tiers (Cass. civ. 1re, 19 décembre 1967). Le piège, c'est de s'arrêter à ce principe, car lorsque le nom a été donné volontairement à une société et inséré dans ses statuts, il devient un signe distinctif détaché de la personne physique, objet de propriété incorporelle de la société, et l'associé fondateur ne peut plus s'y opposer après avoir cédé ses droits. Cass. com., 12 mars 1985, arrêt Bordas."
+ },
+ {
+  "matiere": "personnes-l1",
+  "q": "Qu'est-ce que la sauvegarde de justice parmi les régimes de protection des majeurs ?",
+  "options": [
+   "Une simple étape de vérification obligatoire avant de pouvoir demander la curatelle.",
+   "Une mesure continue d'assistance pour les actes importants de la vie civile.",
+   "Une mesure de représentation continue de la personne protégée.",
+   "Un régime de protection autonome, temporaire, pour un ou plusieurs actes déterminés."
+  ],
+  "correct": 3,
+  "justif": "La sauvegarde de justice est un régime de protection à part entière, la mesure la plus légère des trois, ponctuelle et destinée à protéger la personne pour l'accomplissement d'un ou plusieurs actes déterminés (articles 432 et 433 du Code civil). Le piège, c'est de la réduire à une case à cocher avant la curatelle. La curatelle, elle, est une assistance dans les actes importants de la vie civile, et la tutelle une représentation continue (article 440), deux mesures continues qui s'appliquent à l'ensemble des actes de la vie civile."
+ },
+ {
+  "matiere": "personnes-l1",
+  "q": "La filiation d'un enfant est établie simultanément envers ses deux parents, sans déclaration conjointe de choix de nom. Quel nom porte l'enfant ?",
+  "options": [
+   "Le nom du père, qui prime par défaut.",
+   "Le nom de la mère, qui a accouché de l'enfant.",
+   "Les deux noms accolés, dans l'ordre alphabétique.",
+   "Le nom choisi par l'officier de l'état civil."
+  ],
+  "correct": 2,
+  "justif": "Depuis la loi du 2 mars 2022, l'article 311-21 du Code civil prévoit qu'en cas d'établissement simultané de la filiation envers les deux parents, sans déclaration conjointe, l'enfant porte leurs deux noms accolés dans l'ordre alphabétique, dans la limite d'un nom de famille pour chacun. Le piège, c'est de citer la primauté du nom du père, une règle qui a existé jusqu'en 2022 mais que la réforme a supprimée au nom de l'égalité entre les parents."
+ },
+ {
+  "matiere": "personnes-l1",
+  "q": "Des jumeaux sont conçus avant le décès de l'assuré et naissent après. La majoration de capital-décès est versée à leur mère, bénéficiaire du contrat. La règle infans conceptus s'applique-t-elle ?",
+  "options": [
+   "Non, la règle protège l'intérêt de celui qui perçoit matériellement la somme, ici la mère.",
+   "Oui, la majoration est destinée à l'entretien des enfants, c'est leur intérêt à eux qui est en jeu.",
+   "Non, l'enfant simplement conçu n'a aucun droit avant sa naissance.",
+   "Oui, mais seulement si le père avait désigné les enfants comme bénéficiaires du contrat."
+  ],
+  "correct": 1,
+  "justif": "La maxime infans conceptus répute l'enfant conçu déjà né chaque fois qu'il y va de son intérêt à lui. Le piège, c'est de raisonner sur la personne qui perçoit matériellement la somme, car le fait que l'argent transite juridiquement par la mère, bénéficiaire du contrat d'assurance, ne change rien à la nature de l'intérêt en jeu, la majoration étant destinée à faciliter l'entretien des enfants. Cass. 1re civ., 10 décembre 1985, au visa des principes généraux du droit et des articles 311 et 906 du Code civil."
+ },
+ {
+  "matiere": "contrats-l2s1",
+  "q": "Sous quelle forme rédiges-tu la problématique d'un commentaire d'arrêt ?",
+  "options": [
+   "Une phrase affirmative qui expose déjà la réponse des juges.",
+   "Un résumé des positions de la cour d'appel et de la Cour de cassation.",
+   "Une citation de l'attendu de principe de l'arrêt.",
+   "Une vraie question, avec un point d'interrogation, sans élément de réponse."
+  ],
+  "correct": 3,
+  "justif": "La problématique doit rester une question ouverte au moment où elle est posée, avant que la solution ne soit dévoilée. Le piège, c'est la tournure affirmative du type « les juges se sont alors demandés si... » suivie de la réponse, qui révèle la solution par avance et casse la logique de démonstration du commentaire. Utilise une vraie interrogative, « Dans quelle mesure... ? » ou « À quelles conditions... ? »."
+ },
+ {
+  "matiere": "contrats-l2s1",
+  "q": "Combien de problématiques poses-tu dans l'introduction d'un commentaire d'arrêt ?",
+  "options": [
+   "Deux, une sur les faits précis de l'espèce et une sur la portée générale.",
+   "Une par sous-partie du plan, pour guider le correcteur.",
+   "Une seule, assez large pour couvrir les deux parties et ancrée dans l'arrêt.",
+   "Aucune, l'annonce de plan suffit à introduire le devoir."
+  ],
+  "correct": 2,
+  "justif": "La problématique doit être unique et synthétique. Le piège, c'est d'enchaîner deux questions successives, l'une sur l'espèce et l'autre qui généralise, ce qui donne l'impression de ne pas avoir choisi l'angle exact de l'arrêt. Fonds les deux interrogations en une seule phrase, assez générale pour servir de fil conducteur aux deux parties, assez précise pour rester ancrée dans l'arrêt, et sans les noms des parties au litige."
+ },
+ {
+  "matiere": "da-l2s1",
+  "q": "Tu commentes un arrêt du Conseil d'État. Comment nommes-tu la juridiction qui a rendu la décision ?",
+  "options": [
+   "La Cour de cassation, juridiction suprême commune aux deux ordres.",
+   "Le Conseil d'État, juridiction suprême de l'ordre administratif.",
+   "Indifféremment l'un ou l'autre, les deux ordres jugent les mêmes litiges.",
+   "La cour administrative d'appel, qui a statué en dernier ressort."
+  ],
+  "correct": 1,
+  "justif": "Le Conseil d'État est la juridiction suprême de l'ordre administratif, la Cour de cassation celle de l'ordre judiciaire, et les deux ordres jugent des litiges différents avec des vocabulaires différents. Le piège, c'est d'écrire « la Cour de cassation » pour une décision du Conseil d'État, ce qui révèle une confusion sur la nature même de la juridiction étudiée. Vérifie l'en-tête de la décision avant de rédiger, et si tu veux une métonymie, écris « les juges du Palais-Royal »."
+ },
+ {
+  "matiere": "da-l2s1",
+  "q": "L'article 66 de la Constitution fait-il du juge judiciaire le gardien de la propriété privée ?",
+  "options": [
+   "Oui, il vise à la fois la liberté individuelle et la propriété privée.",
+   "Oui, depuis la loi des 16-24 août 1790 qu'il a constitutionnalisée.",
+   "Non, il ne mentionne que la liberté individuelle, la propriété relève d'autres fondements.",
+   "Non, la propriété privée relève du juge administratif."
+  ],
+  "correct": 2,
+  "justif": "L'article 66 de la Constitution ne mentionne que la liberté individuelle, l'autorité judiciaire en est la gardienne, ce qui vise la sûreté physique, les arrestations et les détentions. Le piège, c'est d'y rattacher aussi la propriété privée, dont la compétence judiciaire est une construction distincte, protection historique depuis la loi des 16-24 août 1790, rattachée à l'article 17 de la Déclaration de 1789 et confirmée par le Conseil constitutionnel en 1989. Deux matières réservées au juge judiciaire, mais deux bases juridiques différentes."
+ },
+ {
+  "matiere": "da-l2s1",
+  "q": "Comment s'appelle la formation de jugement la plus solennelle du Conseil d'État ?",
+  "options": [
+   "L'assemblée plénière.",
+   "La section du contentieux.",
+   "L'Assemblée du contentieux, dite aussi l'Assemblée.",
+   "La chambre mixte."
+  ],
+  "correct": 2,
+  "justif": "Au Conseil d'État, la formation la plus solennelle s'appelle l'Assemblée du contentieux, ou simplement l'Assemblée. Le piège, c'est d'écrire qu'un arrêt du Conseil d'État a été « rendu en assemblée plénière », car l'assemblée plénière est le nom de la formation la plus solennelle de la Cour de cassation, un vocabulaire propre à l'ordre judiciaire. Chaque ordre de juridiction a ses propres noms de formation, à connaître par cœur avant de commenter un arrêt."
+ },
+ {
+  "matiere": "commercial-l3s1",
+  "q": "En présence d'un acte mixte, quelle règle de compétence juridictionnelle s'applique ?",
+  "options": [
+   "Le non-commerçant peut assigner le commerçant devant le tribunal judiciaire ou le tribunal de commerce, selon l'arrêt fondateur du 18 mai 1907.",
+   "La même option existe, mais elle a été posée par un arrêt du 8 mai 1907.",
+   "Le commerçant demandeur dispose lui aussi d'une option de compétence.",
+   "Le tribunal de commerce est seul compétent dès qu'une partie est commerçante."
+  ],
+  "correct": 0,
+  "justif": "L'arrêt fondateur de l'option de compétence du non-commerçant a été rendu le 18 mai 1907 (Cass. civ., DP 1911, 1, 222). Le piège, c'est la date du 8 mai, née d'une lecture rapide qui fait perdre le premier chiffre du jour, et une date de jurisprudence inexacte reste une erreur factuelle même quand la règle énoncée est correcte. Retiens aussi la règle complète, le non-commerçant demandeur choisit entre tribunal judiciaire et tribunal de commerce, alors que le commerçant demandeur n'a aucune option et doit assigner le non-commerçant devant le tribunal judiciaire."
+ }
+]

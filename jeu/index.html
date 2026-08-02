@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1A2851">
+  <title>Cassation, le jeu de révision des étudiants en droit | TrajectoireDroit</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Cassation est le rituel de révision quotidien des étudiants en droit. Une audience de 8 questions par jour sur ta matière, un Arrêt du jour à deviner, des duels à lancer dans ta promo, et les questions ratées qui reviennent jusqu'à consolidation. Gratuit, de la L1 à la L3.">
+  <link rel="canonical" href="https://trajectoiredroit.com/jeu/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Cassation, le jeu de révision des étudiants en droit">
+  <meta property="og:description" content="Une audience de 8 questions par jour, un Arrêt du jour à deviner, des duels dans ta promo. Gratuit, de la L1 à la L3, sur le vrai programme de licence.">
+  <meta property="og:url" content="https://trajectoiredroit.com/jeu/">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@600;700;800&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="jeu.css?v=1">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="retour" href="../index.html" aria-label="Retour au site TrajectoireDroit">TrajectoireDroit</a>
+  <div class="marque">⚖️ Cassation</div>
+  <div class="jauges">
+    <span id="jauge-serie" title="Ta série d'audiences">🔥 <b id="serie-val">0</b></span>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- ================= ACCUEIL ================= -->
+  <section id="ecran-accueil" class="ecran actif">
+    <div class="hero">
+      <h1>Le rituel de révision des étudiants en droit</h1>
+      <p class="sous-titre">Cinq minutes par jour sur le vrai programme de ta licence. Tu enchaînes les audiences, ta cote grimpe de juridiction en juridiction, et chaque question ratée fait appel, donc elle reviendra jusqu'à ce que tu la maîtrises.</p>
+    </div>
+
+    <div id="carte-arret" class="carte carte-arret">
+      <div class="carte-titre">⚖️ L'Arrêt du jour <span id="arret-numero" class="badge-num"></span></div>
+      <p id="arret-teaser" class="carte-texte">Une histoire vraie, la même pour toute la France aujourd'hui. Tu devines ce que les juges ont décidé, puis tu découvres de quel grand arrêt il s'agit.</p>
+      <button id="btn-arret" class="btn btn-or">Jouer l'Arrêt du jour</button>
+      <p id="arret-fait" class="carte-note" hidden>Déjà joué aujourd'hui. Le prochain arrive à minuit.</p>
+    </div>
+
+    <div class="carte">
+      <div class="carte-titre">Ton audience</div>
+      <div class="choix-niveau" id="choix-niveau" role="tablist" aria-label="Niveau d'études"></div>
+      <div class="choix-matiere">
+        <select id="select-matiere" aria-label="Choisir la matière"></select>
+      </div>
+      <div class="ligne-cote">
+        <span id="palier-nom" class="palier"></span>
+        <span id="cote-val" class="cote"></span>
+      </div>
+      <div id="ligne-appel" class="ligne-appel" hidden></div>
+      <button id="btn-audience" class="btn btn-navy">Lancer l'audience (8 questions)</button>
+      <button id="btn-duel" class="btn btn-contour">Défier quelqu'un sur cette matière</button>
+    </div>
+
+    <div class="carte carte-stats">
+      <div class="carte-titre">Ta progression</div>
+      <div id="bloc-stats" class="bloc-stats"></div>
+      <p class="carte-note">Ta progression reste sur ton téléphone. Si tu laisses ton email plus bas, tu recevras aussi le bilan de tes points faibles avant les partiels.</p>
+    </div>
+
+    <div class="carte carte-email" id="carte-email">
+      <div class="carte-titre">La newsletter des joueurs</div>
+      <p class="carte-texte">Une fois par semaine, tu reçois la règle de droit de la semaine et les nouveautés du jeu. Un seul email, et tu te désinscris en un clic.</p>
+      <form id="form-email" class="form-email">
+        <input type="email" id="champ-email" placeholder="ton.email@exemple.fr" required autocomplete="email">
+        <button type="submit" class="btn btn-navy">Recevoir la newsletter</button>
+      </form>
+      <p id="email-ok" class="carte-note" hidden>C'est noté. Tu recevras la prochaine édition.</p>
+    </div>
+
+    <footer class="pied">
+      <p>Un jeu gratuit signé <a href="../index.html">TrajectoireDroit</a>, sur le contenu des fiches et QCM de la plateforme. Toutes les questions viennent des supports déjà relus et publiés.</p>
+    </footer>
+  </section>
+
+  <!-- ================= ARRÊT DU JOUR ================= -->
+  <section id="ecran-arret" class="ecran">
+    <div class="entete-partie">
+      <button class="btn-fermer" data-retour aria-label="Quitter">✕</button>
+      <div class="entete-titre">L'Arrêt du jour</div>
+    </div>
+    <div class="carte">
+      <p class="etiquette-histoire">Cette histoire est vraie.</p>
+      <p id="arret-histoire" class="histoire"></p>
+      <p id="arret-question" class="question-texte"></p>
+      <div id="arret-options" class="options"></div>
+    </div>
+    <div id="arret-revelation" class="carte carte-revelation" hidden>
+      <div id="arret-resultat" class="resultat-bandeau"></div>
+      <p class="etiquette-revelation">La révélation</p>
+      <p id="arret-reponse" class="revelation-texte"></p>
+      <a id="arret-lien" class="lien-arret" href="#">Lire la page complète de l'arrêt</a>
+      <button id="btn-partage-arret" class="btn btn-or">Partager mon résultat (sans spoiler)</button>
+      <p id="partage-ok" class="carte-note" hidden>Copié. Tu peux le coller dans le groupe de ta promo.</p>
+      <button class="btn btn-contour" data-retour>Retour à l'accueil</button>
+    </div>
+  </section>
+
+  <!-- ================= PARTIE (audience ou duel) ================= -->
+  <section id="ecran-partie" class="ecran">
+    <div class="entete-partie">
+      <button class="btn-fermer" data-abandon aria-label="Abandonner l'audience">✕</button>
+      <div class="progression"><div id="barre-prog" class="barre"></div></div>
+      <div id="compteur" class="compteur">1/8</div>
+    </div>
+    <div id="zone-chrono" class="zone-chrono" hidden><div id="chrono-barre" class="chrono-barre"></div></div>
+    <div class="carte carte-question">
+      <div id="badge-format" class="badge-format"></div>
+      <p id="texte-question" class="question-texte"></p>
+      <div id="zone-options" class="options"></div>
+      <div id="zone-justif" class="justif" hidden>
+        <p id="texte-justif"></p>
+        <p id="mention-appel" class="mention-appel" hidden>La question fait appel. Elle reviendra dans une prochaine audience.</p>
+        <button id="btn-suivant" class="btn btn-navy">Question suivante</button>
+      </div>
+    </div>
+    <div class="barre-partie">
+      <span id="score-partie" class="score-partie">0 pt</span>
+      <span id="multi-partie" class="multi-partie"></span>
+      <button id="btn-objection" class="btn-objection">Objection ! <small>points doublés sur la prochaine question</small></button>
+    </div>
+  </section>
+
+  <!-- ================= VERDICT ================= -->
+  <section id="ecran-verdict" class="ecran">
+    <div class="entete-partie">
+      <div class="entete-titre">Le Verdict</div>
+    </div>
+    <div class="carte carte-verdict">
+      <div id="verdict-score" class="verdict-score"></div>
+      <div id="verdict-grille" class="verdict-grille"></div>
+      <p id="verdict-attendu" class="attendu"></p>
+      <div id="verdict-cote" class="verdict-cote"></div>
+      <div id="verdict-duel" class="verdict-duel" hidden></div>
+    </div>
+    <div id="carte-lacune" class="carte carte-lacune" hidden>
+      <div class="carte-titre">Ton point faible du jour</div>
+      <p id="lacune-texte" class="carte-texte"></p>
+      <a id="lacune-lien" class="btn btn-or" href="#">Voir la fiche qui couvre ce chapitre</a>
+    </div>
+    <div class="carte actions-verdict">
+      <button id="btn-encore" class="btn btn-navy">Encore une audience</button>
+      <button id="btn-defi-verdict" class="btn btn-or">Envoyer ce défi à quelqu'un</button>
+      <button id="btn-partage-verdict" class="btn btn-contour">Partager mon verdict</button>
+      <button class="btn btn-contour" data-retour>Retour à l'accueil</button>
+      <p id="partage-verdict-ok" class="carte-note" hidden>Copié. Tu peux le coller où tu veux.</p>
+    </div>
+  </section>
+
+  <!-- ================= DÉFI REÇU ================= -->
+  <section id="ecran-defi" class="ecran">
+    <div class="carte carte-defi">
+      <div class="carte-titre">⚖️ On te défie</div>
+      <p id="defi-texte" class="carte-texte"></p>
+      <button id="btn-accepter-defi" class="btn btn-navy">Relever le défi</button>
+      <button class="btn btn-contour" data-retour>Voir le jeu d'abord</button>
+    </div>
+  </section>
+
+</main>
+
+<script src="jeu.js?v=1"></script>
+</body>
+</html>
