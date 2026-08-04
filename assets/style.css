@@ -905,18 +905,17 @@ section[id] { scroll-margin-top: 100px; }
   margin-top: 2px;
 }
 
-/* Vague 4.6 : megamenu Fiches inversé, le niveau (L1/L2/L3) devient la colonne
-   principale avec les matières listées directement, le format passe en 4e
-   colonne secondaire. Avant, le format dominait et le niveau n'était qu'un
-   bandeau de 3 liens en haut. */
+/* Vague 5.2 : megamenu Fiches, le format redevient l'entrée prioritaire (titre
+   plus gros, colonne en tête) et les niveaux L1/L2/L3 suivent. Avant (vague 4.6),
+   c'était l'inverse, le niveau dominait et le format était une 4e colonne discrète. */
 .megamenu--fiches { width: min(760px, 92vw); }
 .megamenu__niveaux-cols {
   display: grid;
-  grid-template-columns: repeat(3, 1fr) 1fr;
+  grid-template-columns: 1fr repeat(3, 1fr);
   gap: 20px;
 }
 .megamenu__niveau-col { display: flex; flex-direction: column; }
-.megamenu__niveau-col--formats { padding-left: 16px; border-left: 1px solid var(--border); }
+.megamenu__niveau-col--formats { padding-right: 16px; border-right: 1px solid var(--border); }
 .megamenu__niveau-head {
   display: flex; align-items: baseline; gap: 6px;
   padding-bottom: 8px; margin-bottom: 8px;
@@ -924,6 +923,7 @@ section[id] { scroll-margin-top: 100px; }
 }
 .megamenu__niveau-head strong { font-family: var(--font-display); font-size: 1.05rem; color: var(--navy); }
 .megamenu__niveau-head span { font-size: .74rem; color: var(--muted); }
+.megamenu__niveau-col--formats .megamenu__niveau-head strong { font-size: 1.3rem; color: var(--accent); }
 .megamenu__niveau-col a:not(.megamenu__niveau-cta) {
   display: block; padding: 5px 4px; font-size: .86rem; color: var(--body);
   text-decoration: none; border-radius: var(--r-sm, 6px); line-height: 1.3;
@@ -934,7 +934,8 @@ section[id] { scroll-margin-top: 100px; }
   text-decoration: none;
 }
 .megamenu__niveau-cta:hover { text-decoration: underline; }
-html[data-theme="dark"] .megamenu__niveau-col--formats { border-left-color: rgba(255,255,255,.1); }
+html[data-theme="dark"] .megamenu__niveau-col--formats { border-right-color: rgba(255,255,255,.1); }
+html[data-theme="dark"] .megamenu__niveau-col--formats .megamenu__niveau-head strong { color: #D4A85A; }
 html[data-theme="dark"] .megamenu__niveau-head { border-bottom-color: rgba(255,255,255,.1); }
 html[data-theme="dark"] .megamenu__niveau-col a:not(.megamenu__niveau-cta):hover { background: rgba(255,255,255,.05); }
 
