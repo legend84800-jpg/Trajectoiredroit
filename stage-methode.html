@@ -70,7 +70,7 @@
           { "@type": "Question", "name": "Le stage est en ligne ou en présentiel ?", "acceptedAnswer": { "@type": "Answer", "text": "En ligne, en visio, en direct. Tu suis depuis chez toi, où que tu sois, et tu poses tes questions pendant la séance." } },
           { "@type": "Question", "name": "C'est pour quel niveau ?", "acceptedAnswer": { "@type": "Answer", "text": "De la L1 au M1. La méthode des exercices est la même tout au long de la licence, donc le stage te sert quelle que soit ton année." } },
           { "@type": "Question", "name": "Et si je rate une séance ?", "acceptedAnswer": { "@type": "Answer", "text": "Tu as le replay de chaque séance. Tu la rattrapes quand tu veux et tu gardes l'accès pour réviser avant tes partiels." } },
-          { "@type": "Question", "name": "Et si le stage n'a pas lieu ?", "acceptedAnswer": { "@type": "Answer", "text": "Tu ne paies rien à l'inscription. Le 27 août, douze jours avant le stage, je regarde si le groupe est complet. S'il l'est, je te confirme le stage et je t'envoie le lien de paiement. S'il ne l'est pas, je te recontacte avec une solution, et tu n'auras rien payé." } },
+          { "@type": "Question", "name": "Et si le stage n'a pas lieu ?", "acceptedAnswer": { "@type": "Answer", "text": "Si le stage n'a finalement pas lieu, par exemple en cas d'empêchement de ma part, tu es intégralement remboursé sous quelques jours." } },
           { "@type": "Question", "name": "Faut-il déjà avoir des bases solides ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. On part de la méthode depuis le début, depuis la lecture d'un arrêt. Que tu débutes ou que tu veuilles corriger ce qui ne va pas dans ta méthode, tu suis sans problème." } }
         ]
       }
@@ -681,7 +681,7 @@
           <details class="accordion__item"><summary><h3>C'est pour quel niveau ?</h3></summary><div class="accordion__body">De la L1 au M1. La méthode des exercices est la même tout au long de la licence, donc le stage te sert quelle que soit ton année. On part de la méthode depuis le début, tu n'as pas besoin d'avoir déjà des bases solides.</div></details>
           <details class="accordion__item"><summary><h3>Et si je rate une séance ?</h3></summary><div class="accordion__body">Tu as le replay de chaque séance. Tu la rattrapes quand tu veux et tu gardes l'accès pour réviser avant tes partiels.</div></details>
           <details class="accordion__item"><summary><h3>Comment je reçois le lien ?</h3></summary><div class="accordion__body">Par email, après ton inscription. Tu reçois le lien Google Meet, les dates des trois séances (8, 9 et 10 septembre) et les supports.</div></details>
-          <details class="accordion__item"><summary><h3>Et si le stage n'a pas lieu ?</h3></summary><div class="accordion__body">Tu ne paies rien à l'inscription. Le 27 août, douze jours avant le stage, je regarde si le groupe est complet. S'il l'est, je te confirme le stage et je t'envoie le lien de paiement. S'il ne l'est pas, je te recontacte avec une solution, et tu n'auras rien payé.</div></details>
+          <details class="accordion__item"><summary><h3>Et si le stage n'a pas lieu ?</h3></summary><div class="accordion__body">Si le stage n'a finalement pas lieu, par exemple en cas d'empêchement de ma part, tu es intégralement remboursé sous quelques jours.</div></details>
         </div>
         <p style="margin-top:28px; color:var(--body); text-align:center">Tu veux d'abord voir comment je travaille ? Lis les méthodes du <a href="methode-cas-pratique.html">cas pratique</a>, du <a href="methode-commentaire-arret.html">commentaire d'arrêt</a> et de la <a href="methode-dissertation-juridique.html">dissertation</a>.</p>
       </div>
@@ -789,15 +789,15 @@
   </script>
   <script>
     (function(){
-      // Vraie date de clôture (cf FAQ : 12 jours avant le stage, le groupe est arrêté). Jamais de faux compte à rebours.
-      var decision = new Date('2026-08-27T00:00:00');
+      // Vraie date de début du stage. Jamais de faux compte à rebours.
+      var debutStage = new Date('2026-09-08T16:00:00');
       var msParJour = 1000 * 60 * 60 * 24;
-      var joursRestants = Math.ceil((decision - new Date()) / msParJour);
+      var joursRestants = Math.ceil((debutStage - new Date()) / msParJour);
       var badges = document.querySelectorAll('.js-decision-badge');
       var texte;
-      if (joursRestants > 1) texte = '📅 Je ferme les inscriptions le 27 août · dans ' + joursRestants + ' jours';
-      else if (joursRestants === 1) texte = '📅 Dernier jour pour t\'inscrire avant la clôture du 27 août';
-      else if (joursRestants === 0) texte = '📅 Clôture des inscriptions aujourd\'hui';
+      if (joursRestants > 1) texte = '📅 Le stage commence dans ' + joursRestants + ' jours';
+      else if (joursRestants === 1) texte = '📅 Le stage commence demain';
+      else if (joursRestants === 0) texte = '📅 Le stage commence aujourd\'hui';
       else texte = '📅 Stage du 8 au 10 septembre 2026';
       badges.forEach(function(b){ b.textContent = texte; });
     })();
