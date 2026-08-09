@@ -166,8 +166,25 @@ module.exports = async (req, res) => {
     return;
   }
 
+  // Le stage de méthode est une session datée à 15 places, pas un PDF en stock illimité :
+  // on compte les achats déjà enregistrés pour ne jamais vendre une place qui n'existe pas.
+  const LIMITE_PLACES_STAGE = 15;
+  if (produitId === "stage-methode") {
+    try {
+      const dejaInscrits = await selectionner("achats", `produit_ids=cs.${encodeURIComponent("{stage-methode}")}&select=id`);
+      if (dejaInscrits.length >= LIMITE_PLACES_STAGE) {
+        res.status(409).json({ erreur: "Stage complet", complet: true });
+        return;
+      }
+    } catch (e) {
+      console.error("create-checkout (stage) erreur vérification places:", e.message);
+      // Non bloquant : une panne de lecture Supabase ne doit pas empêcher une vente légitime.
+    }
+  }
+
   const bump = bumpId && bumpId !== produitId ? PRODUITS[bumpId] : null;
   const idsAchetes = bump ? [produitId, bumpId] : [produitId];
+  const pageSucces = produitId === "stage-methode" ? "merci-stage.html" : "merci-achat.html";
 
   const params = new URLSearchParams({
     // Pas de payment_method_types forcé : Stripe active les moyens de paiement
@@ -179,7 +196,7 @@ module.exports = async (req, res) => {
     "line_items[0][quantity]": "1",
     mode: "payment",
     allow_promotion_codes: "true",
-    success_url: `${origin}/merci-achat.html?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${origin}/${pageSucces}?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: pageActuelle ? `${origin}/${pageActuelle}` : `${origin}/formations.html`,
     // Expiration raccourcie à 2h (au lieu des 24h par défaut Stripe) pour que la
     // relance de panier abandonné (voir stripe-webhook.js, event checkout.session.expired)
@@ -207,6 +224,26 @@ module.exports = async (req, res) => {
   if (utmSource) params.set("metadata[utmSource]", utmSource);
   if (utmMedium) params.set("metadata[utmMedium]", utmMedium);
   if (utmCampaign) params.set("metadata[utmCampaign]", utmCampaign);
+
+  // Champs du formulaire d'inscription au stage (remplace l'ancien flux /api/contact,
+  // qui envoyait ces infos par email sans jamais déclencher de paiement) : transmis en
+  // metadata Stripe pour que stripe-webhook.js confirme l'inscription et prévienne Julien.
+  if (produitId === "stage-methode") {
+    const nomInscrit = tronquer(corps.nom, 120);
+    const emailInscrit = tronquer(corps.email, 200);
+    const whatsapp = tronquer(corps.whatsapp, 40);
+    const niveau = tronquer(corps.niveau, 40);
+    const messageInscrit = tronquer(corps.message, 500);
+    if (nomInscrit) params.set("metadata[nom]", nomInscrit);
+    if (whatsapp) params.set("metadata[whatsapp]", whatsapp);
+    if (niveau) params.set("metadata[niveau]", niveau);
+    if (messageInscrit) params.set("metadata[message]", messageInscrit);
+    // Pré-remplit l'email sur la page Stripe Checkout, déjà saisi dans le formulaire :
+    // évite de le faire retaper, sans jamais faire confiance à une entrée non validée.
+    if (emailInscrit && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInscrit)) {
+      params.set("customer_email", emailInscrit);
+    }
+  }
 
   if (bump) {
     params.set("line_items[1][price_data][currency]", "eur");

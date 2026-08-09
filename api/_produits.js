@@ -629,6 +629,10 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-contrats-speciaux-l3-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-contrats-speciaux-l3.pdf"
   ] },
+
+  // Stage de méthode en direct (inscription à une session datée, pas de PDF à livrer :
+  // create-checkout.js et stripe-webhook.js le traitent via des branches dédiées).
+  "stage-methode": { nom: "Stage de méthode en direct (3 séances, 8-10 septembre 2026)", prix: 14900, blobs: [] },
 };
 
 module.exports = PRODUITS;

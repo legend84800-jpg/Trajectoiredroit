@@ -614,7 +614,7 @@
         <div class="text-center" style="margin-bottom:32px">
           <span class="eyebrow">8, 9 et 10 septembre 2026</span>
           <h2 class="h2" style="margin-top:12px">Réserve ta place pour le stage du 8 au 10 septembre.</h2>
-          <p class="lead">Remplis le formulaire ci-dessous. Je te recontacte sous 24 h pour confirmer ta place et t'envoyer le lien Google Meet.</p>
+          <p class="lead">Remplis le formulaire ci-dessous et paie en ligne, ta place est confirmée tout de suite. Je t'envoie le lien Google Meet par email avant le début du stage.</p>
         </div>
 
         <div class="offer-card fade-in">
@@ -632,7 +632,7 @@
             <li>Le replay de toutes les séances</li>
             <li>Les cadeaux de chaque séance (fiches de citations, corrigés rédigés, majeures préparées)</li>
           </ul>
-          <form id="stageForm" class="form" action="/api/contact" method="POST" novalidate style="margin-top:4px">
+          <form id="stageForm" class="form" novalidate style="margin-top:4px">
             <div class="grid-2" style="gap:16px">
               <div class="form__row">
                 <label class="form__label" for="stage_nom">Prénom &amp; nom</label>
@@ -661,11 +661,8 @@
               <label class="form__label" for="stage_message">Message (facultatif)</label>
               <textarea class="form__textarea" id="stage_message" name="message" placeholder="Ex : Intéressé L1, j'ai eu 7/20 en droit civil et j'aimerais progresser sur le commentaire d'arrêt avant les partiels."></textarea>
             </div>
-            <input type="hidden" name="_subject" value="Nouvelle inscription stage de méthode · 8-10 septembre 2026">
-            <input type="hidden" name="_format" value="plain">
-            <button class="btn btn--primary btn--lg btn--full" type="submit">Réserver ma place · 19 €/h · 149 € au total</button>
-            <p class="form__hint text-center">Réponse sous 24 h · sans engagement</p>
-            <div class="form__success" id="stageFormSuccess" hidden>Merci ! Je te recontacte sous 24 h pour confirmer ta place.</div>
+            <button class="btn btn--primary btn--lg btn--full" type="submit" id="stageFormSubmit">Réserver ma place · 19 €/h · 149 € au total</button>
+            <p class="form__hint text-center">Paiement sécurisé par Stripe · place confirmée immédiatement</p>
             <div class="form__error" id="stageFormError" hidden>Une erreur est survenue. Réessaie ou écris-moi directement à <a href="mailto:julien.prof1@gmail.com">julien.prof1@gmail.com</a>.</div>
           </form>
         </div>
@@ -768,24 +765,84 @@
   })();
   </script>
   <script>
-    var sf = document.getElementById('stageForm');
-    if (sf) sf.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var ok = document.getElementById('stageFormSuccess');
+    (function () {
+      var sf = document.getElementById('stageForm');
+      if (!sf) return;
+      var btn = document.getElementById('stageFormSubmit');
       var ko = document.getElementById('stageFormError');
-      ok.hidden = true; ko.hidden = true;
-      var data = { type: 'stage' };
-      new FormData(sf).forEach(function(v, k) { data[k] = v; });
-      fetch('/api/contact', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
-      })
-        .then(function(r) {
-          if (r.ok) { sf.reset(); ok.hidden = false; ok.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-          else { ko.hidden = false; }
-        }).catch(function() { ko.hidden = false; });
-    });
+      var koTexteDefaut = ko.innerHTML;
+      var texteBoutonDefaut = btn.textContent;
+
+      function lireCookie(nom) {
+        var m = document.cookie.match('(?:^|; )' + nom + '=([^;]*)');
+        return m ? decodeURIComponent(m[1]) : null;
+      }
+
+      sf.addEventListener('submit', function (e) {
+        e.preventDefault();
+        ko.hidden = true;
+        ko.innerHTML = koTexteDefaut;
+
+        var corps = { produitId: 'stage-methode' };
+        new FormData(sf).forEach(function (v, k) { corps[k] = v; });
+
+        // Identifiants Meta transmis uniquement si le visiteur a accepté les cookies,
+        // même logique que assets/js/achat.js pour tous les autres produits du site.
+        if (localStorage.getItem('tjd_consent') === 'granted') {
+          var fbp = lireCookie('_fbp');
+          var fbc = lireCookie('_fbc');
+          if (fbp) corps.fbp = fbp;
+          if (fbc) corps.fbc = fbc;
+          corps.consentMarketing = true;
+        }
+        corps.landingPage = sessionStorage.getItem('tjd_landing_page') || window.location.pathname.replace(/^\//, '');
+        corps.pageActuelle = window.location.pathname.replace(/^\//, '') + window.location.hash;
+        var referrerSession = sessionStorage.getItem('tjd_referrer');
+        if (referrerSession) corps.referrer = referrerSession;
+        ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (cle) {
+          var val = sessionStorage.getItem('tjd_' + cle);
+          if (val) corps[cle] = val;
+        });
+
+        if (typeof window.gtag === 'function') {
+          gtag('event', 'begin_checkout', { items: [{ item_id: 'stage-methode' }] });
+        }
+        if (window._paq) {
+          window._paq.push(['trackEvent', 'Ecommerce', 'ClicAcheter', 'stage-methode']);
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Chargement…';
+
+        fetch('/api/create-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(corps)
+        })
+          .then(function (r) { return r.json().then(function (d) { return { statutOk: r.ok, d: d }; }); })
+          .then(function (res) {
+            if (res.statutOk && res.d.url) {
+              if (localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
+                fbq('track', 'InitiateCheckout', { content_ids: ['stage-methode'], content_type: 'product' });
+              }
+              window.location.href = res.d.url;
+              return;
+            }
+            if (res.d && res.d.complet) {
+              ko.textContent = 'Le stage est complet pour cette session. Écris-moi à julien.prof1@gmail.com pour être prévenu de la prochaine.';
+            }
+            ko.hidden = false;
+            ko.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            btn.disabled = false;
+            btn.textContent = texteBoutonDefaut;
+          })
+          .catch(function () {
+            ko.hidden = false;
+            btn.disabled = false;
+            btn.textContent = texteBoutonDefaut;
+          });
+      });
+    })();
   </script>
   <script>
     (function(){

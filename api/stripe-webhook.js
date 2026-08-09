@@ -390,6 +390,111 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
   }
 }
 
+// Confirmation envoyée au client qui vient de payer le stage de méthode : pas de PDF
+// à livrer ici (contrairement à envoyerEmail ci-dessus), l'inscription porte sur une
+// session datée dont le lien Google Meet suivra par email avant le 8 septembre.
+async function envoyerConfirmationStage(email, metadata, brevoKey) {
+  const nom = (metadata && metadata.nom) || "";
+
+  const html = `
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f5f5f5;font-family:sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;padding:40px 0;">
+    <tr><td align="center">
+      <table width="560" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:8px;overflow:hidden;">
+        <tr><td style="background:#1a237e;padding:24px 32px;">
+          <p style="margin:0;color:#fff;font-size:22px;font-weight:700;">TrajectoireDroit</p>
+        </td></tr>
+        <tr><td style="padding:32px;">
+          <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 16px;">Ta place est réservée !</p>
+          <p style="font-size:15px;color:#333;margin:0 0 16px;">
+            ${nom ? `Merci ${nom}, ton` : "Ton"} paiement de 149 € a bien été reçu. Tu es inscrit au stage de méthode en direct.
+          </p>
+          <div style="background:#F0F4FF;border:1px solid #C7D2FE;border-radius:8px;padding:14px 16px;margin:0 0 20px;">
+            <p style="font-size:14px;color:#1a237e;margin:0;font-weight:600;">Mardi 8, mercredi 9 et jeudi 10 septembre 2026, 16h (heure de Paris)</p>
+          </div>
+          <p style="font-size:15px;color:#333;margin:0 0 16px;">
+            Avant le début du stage, tu reçois un second email avec le lien de connexion Google Meet et les supports de chaque séance. Si tu rates une séance, tu as le replay pour la rattraper.
+          </p>
+          <div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:8px;padding:14px 16px;margin:0 0 20px;">
+            <p style="font-size:13px;color:#065F46;margin:0;">Si le stage n'a finalement pas lieu, par exemple en cas d'empêchement de ma part, tu es intégralement remboursé sous quelques jours.</p>
+          </div>
+          <p style="font-size:13px;color:#777;margin:0 0 16px;">
+            Une question avant le stage ? Écris-moi par mail à julien.prof1@gmail.com ou par WhatsApp au +33 6 05 41 85 21.
+          </p>
+          <p style="font-size:15px;color:#1a237e;font-weight:700;margin:0;">Julien</p>
+        </td></tr>
+        <tr><td style="background:#f0f0f0;padding:16px 32px;">
+          <p style="font-size:12px;color:#999;margin:0;">TrajectoireDroit, la référence francophone en droit</p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+
+  const texte = `${nom ? `Merci ${nom}, ton` : "Ton"} paiement de 149 € a bien été reçu. Tu es inscrit au stage de méthode en direct.\n\nMardi 8, mercredi 9 et jeudi 10 septembre 2026, 16h (heure de Paris).\n\nAvant le début du stage, tu reçois un second email avec le lien Google Meet et les supports de chaque séance. Si tu rates une séance, tu as le replay pour la rattraper.\n\nSi le stage n'a finalement pas lieu, par exemple en cas d'empêchement de ma part, tu es intégralement remboursé sous quelques jours.\n\nUne question avant le stage ? Écris-moi par mail à julien.prof1@gmail.com ou par WhatsApp au +33 6 05 41 85 21.\n\nJulien, TrajectoireDroit`;
+
+  const payload = {
+    sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
+    to: [{ email }],
+    subject: "Ton inscription au stage de méthode est confirmée !",
+    htmlContent: html,
+    textContent: texte,
+  };
+
+  const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "api-key": brevoKey },
+    body: JSON.stringify(payload),
+  });
+  if (!resp.ok) {
+    const err = await resp.text();
+    throw new Error(`Brevo ${resp.status}: ${err}`);
+  }
+}
+
+// Notifie Julien d'une inscription payée au stage, avec les infos du formulaire
+// (nom, whatsapp, niveau, message) transmises en metadata Stripe par create-checkout.js.
+// Remplace la notification que faisait l'ancien endpoint /api/contact avant paiement.
+async function notifierJulienStage(metadata, email, montantEuros, sessionId, brevoKey) {
+  const m = metadata || {};
+  const rows = [
+    ["Nom", m.nom || "(non renseigné)"],
+    ["Email", `<a href="mailto:${email}">${email}</a>`],
+    ["WhatsApp", m.whatsapp || "(non renseigné)"],
+    ["Niveau", m.niveau || "(non renseigné)"],
+    ["Montant payé", `${montantEuros} €`],
+    ["Message", (m.message || "(aucun message)").replace(/\n/g, "<br>")],
+  ];
+
+  const payload = {
+    sender: { name: "TrajectoireDroit", email: "julien.prof1@gmail.com" },
+    to: [{ email: "julien.prof1@gmail.com", name: "Julien" }],
+    replyTo: { email, name: m.nom || email },
+    subject: `Nouvelle inscription payée — stage de méthode (${m.nom || email})`,
+    htmlContent: `
+      <h2>Nouvelle inscription payée au stage de méthode</h2>
+      <table style="border-collapse:collapse; width:100%; max-width:600px">
+        ${rows.map(([label, value], i) => `<tr><td style="padding:8px 12px; font-weight:bold; background:#f4f4f4${i === rows.length - 1 ? "; vertical-align:top" : ""}">${label}</td><td style="padding:8px 12px">${value}</td></tr>`).join("\n        ")}
+      </table>
+      <p style="font-size:12px; color:#999; margin-top:16px">Session Stripe : ${sessionId}</p>
+    `,
+  };
+
+  const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: { "content-type": "application/json", "api-key": brevoKey, accept: "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!resp.ok) {
+    const err = await resp.text();
+    throw new Error(`Brevo ${resp.status}: ${err}`);
+  }
+}
+
 module.exports = async (req, res) => {
   if (req.method !== "POST") { res.status(405).end(); return; }
 
@@ -495,10 +600,7 @@ module.exports = async (req, res) => {
     console.log(`[VENTE] produits=${libelleProduits} montant=${montantEuros}€ session=${session.id}`);
   }
 
-  let liens = [];
-  produitsAchetes.forEach(({ id, produit }) => {
-    liens = liens.concat(construireLiensEmail(id, produit, downloadSecret, origin));
-  });
+  const estStage = produitIds.includes("stage-methode");
 
   if (session.metadata && session.metadata.consentMarketing === "1" && montantEuros !== "?") {
     envoyerAchatMeta({
@@ -511,11 +613,27 @@ module.exports = async (req, res) => {
     }).catch(e => console.error("envoyerAchatMeta erreur:", e.message));
   }
 
-  try {
-    await envoyerEmail(email, produitsAchetes.map(p => p.produit), liens, brevoKey, codeAmbassadeur);
-    console.log(`Email envoyé à ${email} pour ${libelleProduits}${codeAmbassadeur ? " (code " + codeAmbassadeur + ")" : ""}`);
-  } catch (e) {
-    console.error("Erreur envoi email:", e.message);
+  if (estStage) {
+    // Session datée, pas de PDF : confirmation d'inscription au client + notification
+    // à Julien avec les infos du formulaire, au lieu des liens de téléchargement.
+    try {
+      await envoyerConfirmationStage(email, session.metadata, brevoKey);
+      await notifierJulienStage(session.metadata, email, montantEuros, session.id, brevoKey);
+      console.log(`Confirmation stage envoyée à ${email}, Julien notifié`);
+    } catch (e) {
+      console.error("Erreur envoi email stage:", e.message);
+    }
+  } else {
+    let liens = [];
+    produitsAchetes.forEach(({ id, produit }) => {
+      liens = liens.concat(construireLiensEmail(id, produit, downloadSecret, origin));
+    });
+    try {
+      await envoyerEmail(email, produitsAchetes.map(p => p.produit), liens, brevoKey, codeAmbassadeur);
+      console.log(`Email envoyé à ${email} pour ${libelleProduits}${codeAmbassadeur ? " (code " + codeAmbassadeur + ")" : ""}`);
+    } catch (e) {
+      console.error("Erreur envoi email:", e.message);
+    }
   }
 
   try {
