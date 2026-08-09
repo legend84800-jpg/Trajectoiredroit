@@ -390,11 +390,33 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
   }
 }
 
-// Confirmation envoyée au client qui vient de payer le stage de méthode : pas de PDF
-// à livrer ici (contrairement à envoyerEmail ci-dessus), l'inscription porte sur une
-// session datée dont le lien Google Meet suivra par email avant le 8 septembre.
+// Confirmation envoyée au client qui vient de payer le stage de méthode : reprend le
+// mail que Julien envoyait déjà lui-même aux inscrits (routine-stage/routine_stage.py,
+// GABARIT_MAIL, validé au filtre redaction-julien), avec le bloc paiement retiré
+// puisque le paiement est désormais fait avant l'envoi, plus après coup sur un délai.
 async function envoyerConfirmationStage(email, metadata, brevoKey) {
-  const nom = (metadata && metadata.nom) || "";
+  const nomComplet = ((metadata && metadata.nom) || "").trim();
+  const prenom = nomComplet ? nomComplet.split(/\s+/)[0] : "";
+  const salutation = prenom ? `Bonjour ${prenom},` : "Bonjour,";
+
+  const paragraphes = [
+    salutation,
+    "Ton inscription au stage est bien enregistrée. Ton paiement de 149 € a bien été reçu.",
+    "Pour rappel, voici le contenu du stage :",
+    "Le stage comprend trois séances en direct, pour un total de huit heures, consacrées aux quatre principaux exercices juridiques : la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation.",
+    "La première séance aura lieu le mardi 8 septembre, de 16 h à 19 h. Nous travaillerons la structure complète de la fiche d'arrêt, notamment la différence entre un arrêt de rejet et un arrêt de cassation, puis la méthode du commentaire d'arrêt : introduction, construction du plan et rédaction des sous-parties.",
+    "La deuxième séance se déroulera le mercredi 9 septembre, de 16 h à 19 h. Nous corrigerons un commentaire d'arrêt de A à Z, puis nous travaillerons la méthode du cas pratique : construction précise de la majeure, application de chaque condition aux faits et rédaction de la solution.",
+    "Enfin, la troisième séance aura lieu le jeudi 10 septembre, de 16 h à 18 h. Nous commencerons par la correction complète d'un cas pratique, puis nous étudierons la méthode de la dissertation juridique : recherche du plan, construction de la problématique et rédaction de l'introduction.",
+    "Plusieurs supports seront également offerts pendant le stage, notamment des fiches de citations, des formulations types, un corrigé intégralement rédigé et une majeure préparée.",
+    "Le stage se déroulera entièrement en ligne, sur Google Meet. Le lien de connexion ainsi que toutes les informations pratiques te seront envoyés avant le début du stage.",
+    "Si tu as la moindre question concernant le contenu ou l'organisation du stage, tu peux me contacter :",
+    "📧 julien.prof1@gmail.com<br>📱 WhatsApp : +33 6 05 41 85 21",
+    "À bientôt,",
+  ];
+
+  const corpsHtml = paragraphes
+    .map((p) => `<p style="font-size:15px;color:#333;margin:0 0 16px;">${p}</p>`)
+    .join("\n          ");
 
   const html = `
 <!DOCTYPE html>
@@ -408,23 +430,8 @@ async function envoyerConfirmationStage(email, metadata, brevoKey) {
           <p style="margin:0;color:#fff;font-size:22px;font-weight:700;">TrajectoireDroit</p>
         </td></tr>
         <tr><td style="padding:32px;">
-          <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 16px;">Ta place est réservée !</p>
-          <p style="font-size:15px;color:#333;margin:0 0 16px;">
-            ${nom ? `Merci ${nom}, ton` : "Ton"} paiement de 149 € a bien été reçu. Tu es inscrit au stage de méthode en direct.
-          </p>
-          <div style="background:#F0F4FF;border:1px solid #C7D2FE;border-radius:8px;padding:14px 16px;margin:0 0 20px;">
-            <p style="font-size:14px;color:#1a237e;margin:0;font-weight:600;">Mardi 8, mercredi 9 et jeudi 10 septembre 2026, 16h (heure de Paris)</p>
-          </div>
-          <p style="font-size:15px;color:#333;margin:0 0 16px;">
-            Avant le début du stage, tu reçois un second email avec le lien de connexion Google Meet et les supports de chaque séance. Si tu rates une séance, tu as le replay pour la rattraper.
-          </p>
-          <div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:8px;padding:14px 16px;margin:0 0 20px;">
-            <p style="font-size:13px;color:#065F46;margin:0;">Si le stage n'a finalement pas lieu, par exemple en cas d'empêchement de ma part, tu es intégralement remboursé sous quelques jours.</p>
-          </div>
-          <p style="font-size:13px;color:#777;margin:0 0 16px;">
-            Une question avant le stage ? Écris-moi par mail à julien.prof1@gmail.com ou par WhatsApp au +33 6 05 41 85 21.
-          </p>
-          <p style="font-size:15px;color:#1a237e;font-weight:700;margin:0;">Julien</p>
+          ${corpsHtml}
+          <p style="font-size:15px;color:#1a237e;font-weight:700;margin:0;">Julien<br>Trajectoire Droit</p>
         </td></tr>
         <tr><td style="background:#f0f0f0;padding:16px 32px;">
           <p style="font-size:12px;color:#999;margin:0;">TrajectoireDroit, la référence francophone en droit</p>
@@ -435,12 +442,12 @@ async function envoyerConfirmationStage(email, metadata, brevoKey) {
 </body>
 </html>`;
 
-  const texte = `${nom ? `Merci ${nom}, ton` : "Ton"} paiement de 149 € a bien été reçu. Tu es inscrit au stage de méthode en direct.\n\nMardi 8, mercredi 9 et jeudi 10 septembre 2026, 16h (heure de Paris).\n\nAvant le début du stage, tu reçois un second email avec le lien Google Meet et les supports de chaque séance. Si tu rates une séance, tu as le replay pour la rattraper.\n\nSi le stage n'a finalement pas lieu, par exemple en cas d'empêchement de ma part, tu es intégralement remboursé sous quelques jours.\n\nUne question avant le stage ? Écris-moi par mail à julien.prof1@gmail.com ou par WhatsApp au +33 6 05 41 85 21.\n\nJulien, TrajectoireDroit`;
+  const texte = `${paragraphes.join("\n\n").replace(/<br>/g, "\n")}\n\nJulien\nTrajectoire Droit`;
 
   const payload = {
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
     to: [{ email }],
-    subject: "Ton inscription au stage de méthode est confirmée !",
+    subject: "Stage TrajectoireDroit, confirmation",
     htmlContent: html,
     textContent: texte,
   };
