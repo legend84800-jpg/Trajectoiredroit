@@ -474,7 +474,7 @@ async function notifierJulienStage(metadata, email, montantEuros, sessionId, bre
     sender: { name: "TrajectoireDroit", email: "julien.prof1@gmail.com" },
     to: [{ email: "julien.prof1@gmail.com", name: "Julien" }],
     replyTo: { email, name: m.nom || email },
-    subject: `Nouvelle inscription payée — stage de méthode (${m.nom || email})`,
+    subject: `Nouvelle inscription payée, stage de méthode (${m.nom || email})`,
     htmlContent: `
       <h2>Nouvelle inscription payée au stage de méthode</h2>
       <table style="border-collapse:collapse; width:100%; max-width:600px">
