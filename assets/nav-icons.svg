@@ -86,4 +86,11 @@
     <path d="M12 3.5L19 6.3V11C19 15.4 16.1 19.3 12 20.5C7.9 19.3 5 15.4 5 11V6.3L12 3.5Z"/>
     <path d="M9 11.3L11 13.3L15.3 9"/>
   </symbol>
+  <symbol id="icon-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="6" cy="12" r="2.3"/>
+    <circle cx="18" cy="6" r="2.3"/>
+    <circle cx="18" cy="18" r="2.3"/>
+    <path d="M8 10.8L16 7.2"/>
+    <path d="M8 13.2L16 16.8"/>
+  </symbol>
 </svg>
