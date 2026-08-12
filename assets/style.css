@@ -4128,9 +4128,3 @@ html[data-theme="dark"] .article-produit-inline { background: rgba(94,139,218,0.
   font-size: .78rem; color: var(--muted); text-align: center;
   margin: 8px 0 0; line-height: 1.4;
 }
-.tjd-reassurance--wa {
-  display: block; color: var(--blue-600); text-decoration: none; font-weight: 600;
-  margin-top: 4px;
-}
-.tjd-reassurance--wa:hover { text-decoration: underline; }
-html[data-theme="dark"] .tjd-reassurance--wa { color: #7BA5E8; }

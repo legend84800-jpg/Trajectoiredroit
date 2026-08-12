@@ -127,10 +127,8 @@
   }
 
   // Réassurance sous chaque bouton d'achat principal (pas les boutons compacts en liste,
-  // ni celui de la modale d'aperçu) : garantie, paiement Stripe, livraison immédiate,
-  // plus un lien WhatsApp pour lever une dernière hésitation avant de payer.
+  // ni celui de la modale d'aperçu) : garantie, paiement Stripe, livraison immédiate.
   var TEXTE_REASSURANCE = 'Satisfait ou remboursé sous 7 jours · Paiement sécurisé par Stripe · PDF reçu immédiatement par email';
-  var WHATSAPP_NUMERO = '33605418521';
   function initReassurance() {
     document.querySelectorAll('.btn--full[data-tjd-produit]').forEach(function (btn) {
       if (btn.id === 'apercuCta') return;
@@ -142,16 +140,6 @@
       p.className = 'tjd-reassurance';
       p.textContent = TEXTE_REASSURANCE;
       btn.insertAdjacentElement('afterend', p);
-
-      var nomProduit = btn.getAttribute('data-tjd-produit') || '';
-      var messagePreRempli = encodeURIComponent("Bonjour Julien, j'ai une question avant d'acheter (" + nomProduit + ").");
-      var lienWa = document.createElement('a');
-      lienWa.className = 'tjd-reassurance tjd-reassurance--wa';
-      lienWa.href = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + messagePreRempli;
-      lienWa.target = '_blank';
-      lienWa.rel = 'noopener';
-      lienWa.textContent = 'Une question avant d\'acheter ? Écris-moi sur WhatsApp →';
-      p.insertAdjacentElement('afterend', lienWa);
     });
   }
   if (document.readyState === 'loading') {
