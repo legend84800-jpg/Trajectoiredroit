@@ -1785,6 +1785,15 @@ html[data-theme="dark"] .product__sommaire summary { color: #7BA5E8; }
 .hero__fiche--extrait .fiche-preview__viewport {
   aspect-ratio: 919 / 340;
 }
+.hero__fiche--video .fiche-preview__viewport {
+  aspect-ratio: 16 / 9;
+  background: #0B1220;
+}
+.hero__fiche--video .fiche-preview__video {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 .fiche-preview__img { display: block; border-radius: 0; }
 .hero__visual .fiche-preview__img {
   width: 100%;

@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=6a61f802">
+  <link rel="stylesheet" href="assets/style.css?v=af33310d">
   <!-- Plausible Analytics : décommente après création du compte -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
 
@@ -343,18 +343,21 @@
             </a>
           </div>
 
-          <!-- VISUEL HERO : extrait recadré sur le schéma + la citation (vague 4.8, la page A4 entière n'était pas lisible en petit format) -->
-          <div class="hero__visual hero__fiche hero__fiche--extrait fade-in fade-in--delay-1" aria-hidden="true">
+          <!-- VISUEL HERO : vidéo de présentation des formats de ressources (publiée le 12/08/2026 à la place de l'extrait de fiche) -->
+          <div class="hero__visual hero__fiche hero__fiche--video fade-in fade-in--delay-1">
             <div class="fiche-preview">
-              <div class="fiche-preview__badge"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Aperçu d'un cours TJD</div>
+              <div class="fiche-preview__badge"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>3 min pour tout comprendre</div>
               <div class="fiche-preview__viewport">
-                <img class="fiche-preview__img"
-                     src="assets/hero-fiche-divorce-extrait.jpg"
-                     alt="Schéma des 6 étapes du divorce par consentement mutuel, fiche complète de droit de la famille L1">
+                <video class="fiche-preview__video"
+                       controls
+                       preload="metadata"
+                       poster="assets/hero-video-produits-poster.jpg">
+                  <source src="https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/video/vue-ensemble-produits.mp4" type="video/mp4">
+                </video>
               </div>
               <div class="fiche-preview__caption">
-                <strong>Le divorce par consentement mutuel · Droit de la famille L1</strong>
-                <span class="fiche-preview__caption-sub">L'une des 20 fiches complètes</span>
+                <strong>Les fiches, les majeures, les cours et les exercices corrigés</strong>
+                <span class="fiche-preview__caption-sub">Julien t'explique tous les formats du site</span>
               </div>
             </div>
             <div class="edu-badge"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-trophy"/></svg>+3 pts de moyenne</div>
