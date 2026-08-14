@@ -908,11 +908,11 @@ section[id] { scroll-margin-top: 100px; }
 /* Vague 5.2 : megamenu Fiches, le format redevient l'entrée prioritaire (titre
    plus gros, colonne en tête) et les niveaux L1/L2/L3 suivent. Avant (vague 4.6),
    c'était l'inverse, le niveau dominait et le format était une 4e colonne discrète. */
-.megamenu--fiches { width: min(760px, 92vw); }
+.megamenu--fiches { width: min(1120px, calc(100vw - 32px)); }
 .megamenu__niveaux-cols {
   display: grid;
-  grid-template-columns: 1.15fr repeat(3, .95fr);
-  gap: 20px;
+  grid-template-columns: minmax(240px, 1.15fr) repeat(3, minmax(180px, 1fr));
+  gap: 24px;
 }
 .megamenu__niveau-col { display: flex; flex-direction: column; }
 .megamenu__niveau-col--formats { padding-right: 16px; border-right: 1px solid var(--border); }
