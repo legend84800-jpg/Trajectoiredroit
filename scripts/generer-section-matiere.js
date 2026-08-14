@@ -54,6 +54,7 @@ function construireSection(matiereSlug) {
   if (m.packMatiere) {
     cartes.push(`
       <div class="card" style="border-color:var(--blue-600); border-width:2px">
+        <img src="assets/covers/${m.packMatiere.id}.jpg" alt="Coffret ${m.nom}, couverture Trajectoire Droit" loading="lazy" style="display:block; width:100%; aspect-ratio:16 / 9; object-fit:cover; border-radius:10px; margin-bottom:14px">
         <span class="badge badge--popular" style="margin-bottom:8px">Meilleure offre</span>
         <h3 style="margin-top:0">Pack matière complet</h3>
         <p style="color:var(--body); font-size:.9rem">Fiche complète, flashcards et QCM, fiches d'arrêt et un corrigé. Tout ce qu'il faut pour ${m.nom}, à prix réduit.</p>
@@ -77,8 +78,16 @@ function construireSection(matiereSlug) {
 `;
 }
 
+function ajouterCouverturePack(html, m) {
+  if (!m.packMatiere || html.includes(`assets/covers/${m.packMatiere.id}.jpg`)) return html;
+  const carte = '<div class="card" style="border-color:var(--blue-600); border-width:2px">';
+  const image = `${carte}\n        <img src="assets/covers/${m.packMatiere.id}.jpg" alt="Coffret ${m.nom}, couverture Trajectoire Droit" loading="lazy" style="display:block; width:100%; aspect-ratio:16 / 9; object-fit:cover; border-radius:10px; margin-bottom:14px">`;
+  return html.replace(carte, image);
+}
+
 let traites = 0;
 for (const slug of Object.keys(MATIERES)) {
+  const m = MATIERES[slug];
   const fichier = slug + ".html";
   const chemin = path.join(ROOT, fichier);
   if (!fs.existsSync(chemin)) {
@@ -87,7 +96,14 @@ for (const slug of Object.keys(MATIERES)) {
   }
   let html = fs.readFileSync(chemin, "utf8");
   if (html.includes(MARQUEUR)) {
-    console.log("--  " + fichier + " (déjà à jour)");
+    const htmlAvecCouverture = ajouterCouverturePack(html, m);
+    if (htmlAvecCouverture !== html) {
+      fs.writeFileSync(chemin, htmlAvecCouverture, "utf8");
+      console.log("OK  " + fichier + " (couverture du pack ajoutée)");
+      traites++;
+    } else {
+      console.log("--  " + fichier + " (déjà à jour)");
+    }
     continue;
   }
   const section = construireSection(slug);
