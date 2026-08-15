@@ -98,7 +98,8 @@ module.exports = async (req, res) => {
       "line_items[0][price]": PORTALIS_PRICE_ID,
       "line_items[0][quantity]": "1",
       mode: "subscription",
-      allow_promotion_codes: "true",
+      // Portalis est un abonnement, hors périmètre de la remise post-achat.
+      allow_promotion_codes: "false",
       success_url: `${origin}/mon-compte.html?abonnement=ok`,
       cancel_url: `${origin}/mon-compte.html`,
       "metadata[supabase_user_id]": supabaseUserId,
@@ -195,7 +196,9 @@ module.exports = async (req, res) => {
     "line_items[0][price_data][product_data][name]": produit.nom,
     "line_items[0][quantity]": "1",
     mode: "payment",
-    allow_promotion_codes: "true",
+    // La remise post-achat concerne les fiches et formations numériques. Le stage
+    // reste exclu, car il correspond à une place limitée dans une session datée.
+    allow_promotion_codes: produitId === "stage-methode" ? "false" : "true",
     // Stripe affiche une case facultative pour les communications promotionnelles
     // quand le contexte juridique du client l'exige. Le webhook ajoute ensuite à
     // la liste marketing Brevo uniquement les personnes qui ont donné cet accord.

@@ -168,7 +168,9 @@ async function recreerLienCheckout(produitIds, origin, stripeKey) {
     // Pas de payment_method_types forcé, même raison que create-checkout.js :
     // laisser Stripe proposer tous les moyens actifs du dashboard.
     mode: "payment",
-    allow_promotion_codes: "true",
+    // Une relance ne doit pas rouvrir l'accès au code promo pour le stage,
+    // qui reste une place limitée dans une session datée.
+    allow_promotion_codes: produitIds.includes("stage-methode") ? "false" : "true",
     "consent_collection[promotions]": "auto",
     success_url: `${origin}/merci-achat.html?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/formations.html`,
