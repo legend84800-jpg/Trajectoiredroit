@@ -93,7 +93,7 @@ function deduireMatiere(nomProduit) {
 // Crée ou met à jour le contact acheteur dans Brevo, avec ses derniers achats en
 // attributs et un ajout à la liste Clients, pour ouvrir la porte à une séquence
 // post-achat (relance J+3, demande d'avis J+7) sans dépendre du formulaire lead magnet.
-async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey) {
+async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, accordPromotionnel) {
   const noms = produits.map((p) => p.nom).join(" + ");
   const matiere = produits.length ? deduireMatiere(produits[0].nom) : "";
 
@@ -106,8 +106,12 @@ async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey) {
       MONTANT_DERNIER_ACHAT: montantEuros !== "?" ? Number(montantEuros) : undefined,
       DATE_DERNIER_ACHAT: new Date().toISOString().slice(0, 10),
     },
-    listIds: [BREVO_LISTE_CLIENTS],
   };
+
+  // L'adresse sert toujours à la livraison, à l'historique d'achat et au support.
+  // Elle rejoint la liste marketing seulement après un accord explicite recueilli
+  // par Stripe pendant le paiement.
+  if (accordPromotionnel) payload.listIds = [BREVO_LISTE_CLIENTS];
 
   const resp = await fetch("https://api.brevo.com/v3/contacts", {
     method: "POST",
@@ -165,6 +169,7 @@ async function recreerLienCheckout(produitIds, origin, stripeKey) {
     // laisser Stripe proposer tous les moyens actifs du dashboard.
     mode: "payment",
     allow_promotion_codes: "true",
+    "consent_collection[promotions]": "auto",
     success_url: `${origin}/merci-achat.html?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/formations.html`,
     "metadata[produitIds]": produitIds.join(","),
@@ -269,7 +274,8 @@ async function gererPanierAbandonne(session, brevoKey, stripeKey, origin) {
   const produitIdsRaw = session.metadata && session.metadata.produitIds;
   const email = session.customer_details && session.customer_details.email;
 
-  if (!produitIdsRaw || !email) {
+  const accordPromotionnel = session.consent && session.consent.promotions === "opt_in";
+  if (!produitIdsRaw || !email || !accordPromotionnel) {
     console.log(`[PANIER ABANDONNÉ] non relançable (email ou produit manquant), session=${session.id}`);
     return;
   }
@@ -597,6 +603,7 @@ module.exports = async (req, res) => {
 
   const montantEuros = session.amount_total != null ? (session.amount_total / 100).toFixed(2) : "?";
   const estRelance = session.metadata && session.metadata.relance === "1";
+  const accordPromotionnel = session.consent && session.consent.promotions === "opt_in";
 
   const libelleProduits = produitIds.join("+");
   if (codeAmbassadeur) {
@@ -644,7 +651,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    await creerContactBrevoAchat(email, produitsAchetes.map(p => p.produit), montantEuros, brevoKey);
+    await creerContactBrevoAchat(email, produitsAchetes.map(p => p.produit), montantEuros, brevoKey, accordPromotionnel);
   } catch (e) {
     console.error("Erreur création contact Brevo:", e.message);
   }

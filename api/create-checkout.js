@@ -196,6 +196,10 @@ module.exports = async (req, res) => {
     "line_items[0][quantity]": "1",
     mode: "payment",
     allow_promotion_codes: "true",
+    // Stripe affiche une case facultative pour les communications promotionnelles
+    // quand le contexte juridique du client l'exige. Le webhook ajoute ensuite à
+    // la liste marketing Brevo uniquement les personnes qui ont donné cet accord.
+    "consent_collection[promotions]": "auto",
     success_url: `${origin}/${pageSucces}?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: pageActuelle ? `${origin}/${pageActuelle}` : `${origin}/formations.html`,
     // Expiration raccourcie à 2h (au lieu des 24h par défaut Stripe) pour que la
