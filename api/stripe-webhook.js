@@ -75,9 +75,9 @@ async function envoyerAchatMeta({ email, montantEuros, produitIds, sessionId, fb
   }
 }
 
-// Liste Brevo "Clients TJD (acheteurs)", créée pour segmenter les acheteurs et
-// pouvoir leur envoyer une séquence post-achat (relance J+3, demande d'avis J+7).
-const BREVO_LISTE_CLIENTS = 6;
+// Liste Brevo "Clients TJD acheteurs consentis", créée pour déclencher la
+// séquence post-achat auprès des acheteurs ayant accepté les emails promotionnels.
+const BREVO_LISTE_CLIENTS = 7;
 
 // Le nom d'un produit suit toujours "Famille Matière [Semestre]" (ex: "Fiche complète
 // Droit administratif L2 S1") : on retire juste le préfixe de famille pour ne garder
