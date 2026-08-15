@@ -78,6 +78,63 @@ async function envoyerAchatMeta({ email, montantEuros, produitIds, sessionId, fb
 // Liste Brevo "Clients TJD acheteurs consentis", créée pour déclencher la
 // séquence post-achat auprès des acheteurs ayant accepté les emails promotionnels.
 const BREVO_LISTE_CLIENTS = 7;
+const COUPON_REMISE_POST_ACHAT = "remise-post-achat-10";
+
+function formaterDateRemise(timestamp) {
+  return new Intl.DateTimeFormat("fr-FR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "Europe/Paris",
+  }).format(new Date(timestamp * 1000));
+}
+
+// Chaque acheteur consentant reçoit un code personnel. Il est créé dès l'achat,
+// puis l'email J+8 lui laisse encore sept jours pour l'utiliser.
+async function creerRemisePostAchat(sessionId, stripeKey) {
+  const expiresAt = Math.floor(Date.now() / 1000) + (15 * 24 * 60 * 60);
+  const suffixe = crypto.createHash("sha256").update(sessionId).digest("hex").slice(0, 8).toUpperCase();
+  const code = `POSTA-${suffixe}`;
+  const headers = {
+    Authorization: `Bearer ${stripeKey}`,
+    "Content-Type": "application/x-www-form-urlencoded",
+  };
+  const params = new URLSearchParams({
+    code,
+    active: "true",
+    expires_at: String(expiresAt),
+    max_redemptions: "1",
+    "promotion[type]": "coupon",
+    "promotion[coupon]": COUPON_REMISE_POST_ACHAT,
+    "metadata[campaign]": "post-achat-brevo",
+    "metadata[checkout_session]": sessionId,
+  });
+
+  const resp = await fetch("https://api.stripe.com/v1/promotion_codes", {
+    method: "POST",
+    headers,
+    body: params.toString(),
+  });
+  const data = await resp.json();
+  if (resp.ok) {
+    return { code: data.code, dateFin: formaterDateRemise(data.expires_at) };
+  }
+
+  // Stripe rejette un deuxième envoi du même webhook. On récupère alors le code
+  // déjà créé, ce qui conserve un seul code pour une même vente.
+  if (data.error && data.error.code === "resource_already_exists") {
+    const existant = await fetch(
+      `https://api.stripe.com/v1/promotion_codes?code=${encodeURIComponent(code)}&limit=1`,
+      { headers: { Authorization: `Bearer ${stripeKey}` } }
+    );
+    const liste = await existant.json();
+    const promo = liste.data && liste.data[0];
+    if (existant.ok && promo) {
+      return { code: promo.code, dateFin: formaterDateRemise(promo.expires_at) };
+    }
+  }
+  throw new Error(`Stripe promotion code ${resp.status}: ${JSON.stringify(data.error)}`);
+}
 
 // Le nom d'un produit suit toujours "Famille Matière [Semestre]" (ex: "Fiche complète
 // Droit administratif L2 S1") : on retire juste le préfixe de famille pour ne garder
@@ -93,7 +150,7 @@ function deduireMatiere(nomProduit) {
 // Crée ou met à jour le contact acheteur dans Brevo, avec ses derniers achats en
 // attributs et un ajout à la liste Clients, pour ouvrir la porte à une séquence
 // post-achat (relance J+3, demande d'avis J+7) sans dépendre du formulaire lead magnet.
-async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, accordPromotionnel) {
+async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, accordPromotionnel, remisePostAchat) {
   const noms = produits.map((p) => p.nom).join(" + ");
   const matiere = produits.length ? deduireMatiere(produits[0].nom) : "";
 
@@ -107,6 +164,11 @@ async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, a
       DATE_DERNIER_ACHAT: new Date().toISOString().slice(0, 10),
     },
   };
+
+  if (remisePostAchat) {
+    payload.attributes.CODE_REMISE_POST_ACHAT = remisePostAchat.code;
+    payload.attributes.DATE_FIN_REMISE_POST_ACHAT = remisePostAchat.dateFin;
+  }
 
   // L'adresse sert toujours à la livraison, à l'historique d'achat et au support.
   // Elle rejoint la liste marketing seulement après un accord explicite recueilli
@@ -617,6 +679,15 @@ module.exports = async (req, res) => {
   }
 
   const estStage = produitIds.includes("stage-methode");
+  let remisePostAchat = null;
+
+  if (accordPromotionnel && !estStage) {
+    try {
+      remisePostAchat = await creerRemisePostAchat(session.id, stripeKey);
+    } catch (e) {
+      console.error("Erreur création remise post-achat:", e.message);
+    }
+  }
 
   if (session.metadata && session.metadata.consentMarketing === "1" && montantEuros !== "?") {
     envoyerAchatMeta({
@@ -653,7 +724,14 @@ module.exports = async (req, res) => {
   }
 
   try {
-    await creerContactBrevoAchat(email, produitsAchetes.map(p => p.produit), montantEuros, brevoKey, accordPromotionnel);
+    await creerContactBrevoAchat(
+      email,
+      produitsAchetes.map(p => p.produit),
+      montantEuros,
+      brevoKey,
+      accordPromotionnel,
+      remisePostAchat
+    );
   } catch (e) {
     console.error("Erreur création contact Brevo:", e.message);
   }
