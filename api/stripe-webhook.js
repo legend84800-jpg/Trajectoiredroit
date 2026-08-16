@@ -75,10 +75,13 @@ async function envoyerAchatMeta({ email, montantEuros, produitIds, sessionId, fb
   }
 }
 
-// Liste Brevo "Clients TJD acheteurs consentis", créée pour déclencher la
-// séquence post-achat auprès des acheteurs ayant accepté les emails promotionnels.
+// Liste Brevo des acheteurs qui ont accepté les communications promotionnelles.
+// L'automatisation post-achat ne dépend pas de cette liste : elle écoute un
+// événement d'achat, ce qui permet à un même acheteur de la recommencer lors
+// d'un nouvel achat.
 const BREVO_LISTE_CLIENTS = 7;
 const COUPON_REMISE_POST_ACHAT = "remise-post-achat-10";
+const BREVO_EVENEMENT_ACHAT = "tjd_purchase_completed";
 
 function formaterDateRemise(timestamp) {
   return new Intl.DateTimeFormat("fr-FR", {
@@ -184,6 +187,36 @@ async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, a
   const detail = await resp.json().catch(() => ({}));
   if (detail && detail.code === "duplicate_parameter") return;
   throw new Error(`Brevo contacts ${resp.status}: ${JSON.stringify(detail)}`);
+}
+
+// Le déclencheur Brevo est un événement, et non un ajout à une liste. Ajouter
+// à nouveau un contact déjà inscrit à une liste ne produit pas toujours un
+// nouvel événement d'entrée, alors qu'un paiement Stripe doit toujours ouvrir
+// une nouvelle séquence post-achat pour un acheteur consentant.
+async function envoyerEvenementBrevoAchat(email, produits, montantEuros, sessionId, brevoKey, remisePostAchat) {
+  const noms = produits.map((p) => p.nom).join(" + ");
+  const matiere = produits.length ? deduireMatiere(produits[0].nom) : "";
+  const payload = {
+    event_name: BREVO_EVENEMENT_ACHAT,
+    event_date: new Date().toISOString(),
+    identifiers: { email_id: email },
+    event_properties: {
+      checkout_session_id: sessionId,
+      dernier_achat: noms,
+      matiere_achetee: matiere,
+      montant_dernier_achat: montantEuros !== "?" ? Number(montantEuros) : null,
+      code_remise_post_achat: remisePostAchat.code,
+      date_fin_remise_post_achat: remisePostAchat.dateFin,
+    },
+  };
+
+  const resp = await fetch("https://api.brevo.com/v3/events", {
+    method: "POST",
+    headers: { "content-type": "application/json", "api-key": brevoKey, accept: "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (resp.ok || resp.status === 204) return;
+  throw new Error(`Brevo événement achat ${resp.status}: ${await resp.text()}`);
 }
 
 module.exports.config = { api: { bodyParser: false } };
@@ -734,6 +767,24 @@ module.exports = async (req, res) => {
     );
   } catch (e) {
     console.error("Erreur création contact Brevo:", e.message);
+  }
+
+  // Cette séquence concerne uniquement les acheteurs qui ont accepté les
+  // communications promotionnelles. Le code personnel existe avant l'envoi de
+  // l'événement, donc l'email J+8 reçoit toujours ses deux attributs dynamiques.
+  if (accordPromotionnel && !estStage && remisePostAchat) {
+    try {
+      await envoyerEvenementBrevoAchat(
+        email,
+        produitsAchetes.map(p => p.produit),
+        montantEuros,
+        session.id,
+        brevoKey,
+        remisePostAchat
+      );
+    } catch (e) {
+      console.error("Erreur événement Brevo post-achat:", e.message);
+    }
   }
 
   try {
