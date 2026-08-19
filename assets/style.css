@@ -1472,8 +1472,8 @@ html[data-theme="dark"] .product__sommaire summary { color: #7BA5E8; }
 .compare-table td.yes { color: var(--success); font-weight: 600 }
 .compare-table td.no { color: var(--muted) }
 .compare-table th a {
-  color: inherit; text-decoration: underline;
-  text-decoration-color: var(--border); text-underline-offset: 3px;
+  color: var(--blue-600); text-decoration: underline;
+  text-decoration-color: var(--blue-200); text-underline-offset: 3px;
 }
 .compare-table th a:hover { color: var(--blue-700); text-decoration-color: var(--blue-700); }
 
