@@ -11,8 +11,8 @@ const MATIERES = {
       { label: "Semestre 2", id: "fiche-da-l2-s2", prix: "14,99 €", apercus: ["assets/apercus/admin-l2-s2-1.jpg", "assets/apercus/admin-l2-s2-2.jpg"] },
     ],
     majeures: [
-      { label: "Semestre 1", id: "maj-da-l2-s1", prix: "12,99 €" },
-      { label: "Semestre 2", id: "maj-da-l2-s2", prix: "12,99 €" },
+      { label: "Semestre 1", id: "maj-da-l2-s1", prix: "14,99 €" },
+      { label: "Semestre 2", id: "maj-da-l2-s2", prix: "14,99 €" },
     ],
     coursComplets: [
       { label: "Semestre 1", id: "cours-fiche-da-l2-s1", prix: "19,99 €" },
@@ -25,7 +25,7 @@ const MATIERES = {
     semestres: [
       { label: null, id: "fiche-commercial-l3-s1", prix: "14,99 €", apercus: ["assets/apercus/commercial-l3-s1-1.jpg", "assets/apercus/commercial-l3-s1-2.jpg"] },
     ],
-    majeures: [{ label: null, id: "maj-commercial-l3-s1", prix: "12,99 €" }],
+    majeures: [{ label: null, id: "maj-commercial-l3-s1", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-commercial-l3-s1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-commercial-l3", prix: "29,99 €" },
   },
@@ -47,7 +47,7 @@ const MATIERES = {
     semestres: [
       { label: null, id: "fiche-famille-l1-s2", prix: "14,99 €", apercus: ["assets/apercus/famille-l1-s2-1.jpg", "assets/apercus/famille-l1-s2-2.jpg"] },
     ],
-    majeures: [{ label: null, id: "maj-famille-l1-s2", prix: "12,99 €" }],
+    majeures: [{ label: null, id: "maj-famille-l1-s2", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-famille-l1-s2", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-famille-l1", prix: "29,99 €" },
   },
@@ -56,7 +56,7 @@ const MATIERES = {
     semestres: [
       { label: null, id: "fiche-biens-l2", prix: "14,99 €", apercus: ["assets/apercus/biens-l2-1.jpg", "assets/apercus/biens-l2-2.jpg"] },
     ],
-    majeures: [{ label: null, id: "maj-biens-l2", prix: "12,99 €" }],
+    majeures: [{ label: null, id: "maj-biens-l2", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-biens-l2", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-biens-l2", prix: "29,99 €" },
   },
@@ -65,7 +65,7 @@ const MATIERES = {
     semestres: [
       { label: null, id: "fiche-contrats-l2-s1", prix: "14,99 €", apercus: ["assets/apercus/contrats-l2-s1-1.jpg", "assets/apercus/contrats-l2-s1-2.jpg"] },
     ],
-    majeures: [{ label: null, id: "maj-contrats-l2-s1", prix: "12,99 €" }],
+    majeures: [{ label: null, id: "maj-contrats-l2-s1", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-contrats-l2-s1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-contrats-l2", prix: "29,99 €" },
   },
@@ -74,7 +74,7 @@ const MATIERES = {
     semestres: [
       { label: null, id: "fiche-obligations-l2-s2", prix: "14,99 €", apercus: ["assets/apercus/obligations-l2-s2-1.jpg", "assets/apercus/obligations-l2-s2-2.jpg"] },
     ],
-    majeures: [{ label: null, id: "maj-obligations-l2-s2", prix: "12,99 €" }],
+    majeures: [{ label: null, id: "maj-obligations-l2-s2", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-obligations-l2-s2", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-obligations-l2", prix: "29,99 €" },
   },
@@ -83,7 +83,7 @@ const MATIERES = {
     semestres: [
       { label: null, id: "fiche-personnes-l1", prix: "14,99 €", apercus: ["assets/apercus/personnes-l1-1.jpg"] },
     ],
-    majeures: [{ label: null, id: "maj-personnes-l1", prix: "12,99 €" }],
+    majeures: [{ label: null, id: "maj-personnes-l1", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-personnes-l1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-personnes-l1", prix: "29,99 €" },
   },
@@ -119,7 +119,7 @@ const MATIERES = {
     semestres: [
       { label: null, id: "fiche-penal-l2-s1", prix: "14,99 €", apercus: ["assets/apercus/penal-l2-s1-1.jpg", "assets/apercus/penal-l2-s1-2.jpg"] },
     ],
-    majeures: [{ label: null, id: "maj-penal-l2-s1", prix: "12,99 €" }],
+    majeures: [{ label: null, id: "maj-penal-l2-s1", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-penal-l2-s1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-penal-l2", prix: "29,99 €" },
   },
@@ -146,7 +146,7 @@ const MATIERES = {
     semestres: [
       { label: null, id: "fiche-intro-droit-l1", prix: "14,99 €", apercus: ["assets/apercus/intro-droit-l1-1.jpg", "assets/apercus/intro-droit-l1-2.jpg"] },
     ],
-    majeures: [{ label: null, id: "maj-intro-droit-l1", prix: "12,99 €" }],
+    majeures: [{ label: null, id: "maj-intro-droit-l1", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-intro-droit-l1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-intro-droit-l1", prix: "29,99 €" },
   },
