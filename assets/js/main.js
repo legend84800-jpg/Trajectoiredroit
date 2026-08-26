@@ -280,6 +280,56 @@
   }
 })();
 
+/* ----- CARROUSEL D'APERÇU PRODUIT (page d'accueil) -----
+   Le swipe tactile est natif (scroll-snap CSS) : ce script gère seulement
+   les flèches, les dots et la synchronisation du dot actif au scroll. */
+(function () {
+  function initCarousel(root) {
+    var track = root.querySelector('.product-carousel__viewport');
+    var slides = Array.prototype.slice.call(root.querySelectorAll('.product-carousel__slide'));
+    var dots = Array.prototype.slice.call(root.querySelectorAll('.product-carousel__dot'));
+    if (!track || !slides.length) return;
+
+    function goTo(i) {
+      slides[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+    function setActive(i) {
+      dots.forEach(function (d, di) { d.classList.toggle('is-active', di === i); });
+    }
+
+    var prevBtn = root.querySelector('[data-carousel-prev]');
+    var nextBtn = root.querySelector('[data-carousel-next]');
+    if (prevBtn) prevBtn.addEventListener('click', function () {
+      var current = dots.findIndex(function (d) { return d.classList.contains('is-active'); });
+      goTo(Math.max(0, current - 1));
+    });
+    if (nextBtn) nextBtn.addEventListener('click', function () {
+      var current = dots.findIndex(function (d) { return d.classList.contains('is-active'); });
+      goTo(Math.min(slides.length - 1, current + 1));
+    });
+    dots.forEach(function (d, i) { d.addEventListener('click', function () { goTo(i); }); });
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+            setActive(slides.indexOf(entry.target));
+          }
+        });
+      }, { root: track, threshold: 0.6 });
+      slides.forEach(function (s) { observer.observe(s); });
+    }
+  }
+  function init() {
+    document.querySelectorAll('[data-product-carousel]').forEach(initCarousel);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
 /* ----- DARK MODE -----
    Le script anti-flash dans <head> applique déjà le thème au plus tôt.
    Ce bloc gère le bouton toggle une fois le DOM prêt.                   */

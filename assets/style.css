@@ -1872,6 +1872,80 @@ html[data-theme="dark"] .product__sommaire summary { color: #7BA5E8; }
   margin-top: 4px;
 }
 
+/* ===== 24bis. CARROUSEL D'APERÇU PRODUIT (page d'accueil, pages réelles swipeables) ===== */
+.product-carousel {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.product-carousel__viewport {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-3);
+  border: 1px solid var(--border);
+  background: var(--white);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.product-carousel__viewport::-webkit-scrollbar { display: none; }
+.product-carousel__viewport:focus-visible { outline: 2px solid var(--gold-line); outline-offset: 2px; }
+.product-carousel__slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+}
+.product-carousel__slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.product-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.92);
+  box-shadow: var(--sh-2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--navy);
+  cursor: pointer;
+  transition: background .15s, transform .15s;
+}
+.product-carousel__arrow:hover { background: var(--white); transform: translateY(-50%) scale(1.06); }
+.product-carousel__arrow--prev { left: 10px; }
+.product-carousel__arrow--next { right: 10px; }
+.product-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+.product-carousel__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--border-strong);
+  cursor: pointer;
+  padding: 0;
+  transition: background .15s, transform .15s;
+}
+.product-carousel__dot.is-active { background: var(--navy); transform: scale(1.3); }
+@media (max-width: 640px) {
+  .product-carousel { max-width: 100%; }
+  .product-carousel__arrow { display: none; }
+}
+html[data-theme="dark"] .product-carousel__viewport { background: #1A2840; border-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .product-carousel__arrow { background: rgba(26,40,64,.92); border-color: rgba(255,255,255,0.15); color: #D4E0F0; }
+html[data-theme="dark"] .product-carousel__arrow:hover { background: #1A2840; }
+html[data-theme="dark"] .product-carousel__dot { background: rgba(255,255,255,.2); }
+html[data-theme="dark"] .product-carousel__dot.is-active { background: var(--gold-line); }
+
 /* ===== 24-edu. HERO ÉDUCATIF (style Brilliant/Khan Academy) ===== */
 .hero__edu-illu {
   position: relative;
