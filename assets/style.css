@@ -191,6 +191,75 @@
 .conversion-reviews[hidden] {
   display: none !important;
 }
+.conversion-reviews {
+  margin-top: 20px;
+}
+.conversion-reviews__title {
+  margin: 0 0 12px;
+  color: var(--blue-700);
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.conversion-reviews__grid {
+  display: grid;
+  gap: 12px;
+}
+.conversion-reviews--two .conversion-reviews__grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.conversion-reviews--catalogue .conversion-reviews__grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.conversion-review {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 169, 97, .45);
+  border-radius: 12px;
+  background: var(--gold-bg);
+  text-align: left;
+}
+.conversion-review::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--gold-line);
+}
+.conversion-review blockquote {
+  margin: 0;
+}
+.conversion-review blockquote p {
+  margin: 0;
+  color: var(--body);
+  font-size: .88rem;
+  line-height: 1.62;
+}
+.conversion-review footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+.conversion-review footer strong {
+  color: var(--navy);
+  font-size: .86rem;
+}
+.conversion-review footer span {
+  padding: 3px 8px;
+  border-radius: var(--r-pill);
+  background: var(--blue-50);
+  color: var(--blue-700);
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
 
 @media (max-width: 760px) {
   .conversion-offer {
@@ -208,6 +277,10 @@
   }
   .sample-capture form {
     flex-direction: column;
+  }
+  .conversion-reviews--two .conversion-reviews__grid,
+  .conversion-reviews--catalogue .conversion-reviews__grid {
+    grid-template-columns: 1fr;
   }
   .sticky-cta-bar__text {
     display: none;

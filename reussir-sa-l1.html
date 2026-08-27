@@ -75,7 +75,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=bdb59b2c">
+  <link rel="stylesheet" href="assets/style.css?v=4d48b620">
   <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
   <!-- Google Analytics (GA4) -->
@@ -348,7 +348,15 @@
               <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="pack-l1">Choisir le pack L1 · 98 €</button>
             </div>
             <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
-            <div class="conversion-reviews" data-review-slot="pack-l1" hidden></div>
+            <section class="conversion-reviews" data-review-slot="pack-l1" aria-label="Avis d'élèves">
+              <p class="conversion-reviews__title">Ils révisent avec mes fiches</p>
+              <div class="conversion-reviews__grid">
+                <article class="conversion-review" aria-label="Avis de Laure, étudiante en L1">
+                  <blockquote><p>J’ai commencé par acheter une seule fiche complète pour tester, parce que je voulais d’abord voir ce que ça valait. Finalement, j’ai acheté tout le pack derrière. En droit constitutionnel, j’étais complètement perdue avec le cours de mon prof. J’apprenais des parties par cœur, mais je ne comprenais pas vraiment comment les idées se reliaient entre elles. Avec les fiches, j’ai compris bien plus vite car tout est expliqué beaucoup plus simplement. Elles m’ont clairement aidé une bonne partie de mon semestre.</p></blockquote>
+                  <footer><strong>Laure</strong><span>L1</span></footer>
+                </article>
+              </div>
+            </section>
           </div>
         </div>
       </div>
