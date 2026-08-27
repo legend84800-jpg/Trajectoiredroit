@@ -321,7 +321,42 @@ const PRODUITS = {
   "dissertation-hist-droit-l1": { nom: "Dissertations corrigées Histoire du droit L1 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/dissertation-hist-droit-l1.pdf"] },
   "dissertation-intro-droit-l1": { nom: "Dissertations corrigées Introduction au droit L1 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/dissertation-intro-droit-l1.pdf"] },
 
-  // Packs annuels
+  // Packs annuels d'exercices corrigés
+  "pack-commentaires-arret-l1": { nom: "Pack annuel Commentaires d'arrêt corrigés L1", prix: 2200, blobs: [
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-personnes-l1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-famille-l1-s2.pdf"] },
+  "pack-commentaires-arret-l2": { nom: "Pack annuel Commentaires d'arrêt corrigés L2", prix: 6700, blobs: [
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-da-l2-s1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-da-l2-s2.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-contrats-l2-s1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-obligations-l2-s2.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-penal-l2-s1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-biens-l2.pdf"] },
+  "pack-commentaires-arret-l3": { nom: "Pack annuel Commentaires d'arrêt corrigés L3", prix: 3400, blobs: [
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-contrats-speciaux-l3.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-societes-l3-s1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-travail-l3-s1.pdf"] },
+  "pack-cas-pratiques-l1": { nom: "Pack annuel Cas pratiques corrigés L1", prix: 4500, blobs: [
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-intro-droit-l1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-personnes-l1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-famille-l1-s2.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-penal-general-l1.pdf"] },
+  "pack-cas-pratiques-l2": { nom: "Pack annuel Cas pratiques corrigés L2", prix: 6700, blobs: [
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-da-l2-s1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-da-l2-s2.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-contrats-l2-s1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-obligations-l2-s2.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-penal-l2-s1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-biens-l2.pdf"] },
+  "pack-cas-pratiques-l3": { nom: "Pack annuel Cas pratiques corrigés L3", prix: 6700, blobs: [
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-commercial-l3-s1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-commercial-l3-s2.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-contrats-speciaux-l3.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-societes-l3.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-travail-l3.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-procedure-penale-l3.pdf"] },
+
+  // Autres packs annuels
   "pack-cours-complets-l3": { nom: "Pack annuel Cours complets L3", prix: 7500, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-travail-l3-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-travail-l3-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-travail-l3-s1-cartesmentales.pdf",

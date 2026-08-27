@@ -25,7 +25,7 @@ formations.html — les fiches complètes PDF (14,99 € la matière) et les pac
 cours-fiches.html — les cours complets PDF, le format le plus développé par matière, 19,99 €
 majeures-preparees.html — majeures préparées PDF (la règle de droit condition par condition, pour les cas pratiques, 14,99 €)
 revisions.html — flashcards + QCM par matière avec deck Anki inclus, 9,99 €
-corriges.html — recueils d'exercices corrigés par matière (cas pratiques, dissertations, commentaires), 14,99 €
+corriges.html — recueils d'exercices corrigés par matière à 14,99 €, plus des packs annuels de commentaires d'arrêt et de cas pratiques corrigés pour la L1, la L2 et la L3
 outil-fiche-arret.html — Portalis, l'outil qui corrige les copies par IA (1 essai gratuit, puis 6 €/mois)
 cours-particuliers.html — cours particuliers de droit en visio avec Julien, 98 €/h
 stage-methode.html — stage de méthode en direct, 3 séances, 8-9-10 septembre 2026, 149 €
