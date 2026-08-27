@@ -2,6 +2,24 @@
 (function () {
   var TEXTES_ORIGINAUX = {};
 
+  function estTestInterne() {
+    try {
+      var parametre = new URLSearchParams(window.location.search).get('tjd_test');
+      if (parametre === '1') localStorage.setItem('tjd_internal_test', '1');
+      if (parametre === '0') localStorage.removeItem('tjd_internal_test');
+      return localStorage.getItem('tjd_internal_test') === '1';
+    } catch (_) {
+      return window.tjdTestInterne === true;
+    }
+  }
+
+  function typeAppareil() {
+    var largeur = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    if (largeur < 768) return 'mobile';
+    if (largeur < 1100) return 'tablette';
+    return 'ordinateur';
+  }
+
   function lireCookie(nom) {
     var m = document.cookie.match('(?:^|; )' + nom + '=([^;]*)');
     return m ? decodeURIComponent(m[1]) : null;
@@ -14,15 +32,29 @@
     return 'tjd-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 14);
   }
 
-  function mesurerCheckout(action, produitId) {
+  function mesurerCheckout(action, produitId, apresMesure) {
+    if (estTestInterne()) {
+      if (apresMesure) apresMesure();
+      return;
+    }
+    var termine = false;
+    function terminer() {
+      if (termine) return;
+      termine = true;
+      if (apresMesure) apresMesure();
+    }
     if (typeof window.gtag === 'function') {
       gtag('event', action === 'CheckoutCree' ? 'checkout_session_created' : 'checkout_error', {
-        items: [{ item_id: produitId }]
+        items: [{ item_id: produitId }],
+        event_callback: action === 'CheckoutCree' ? terminer : undefined,
+        event_timeout: action === 'CheckoutCree' ? 450 : undefined
       });
     }
     if (window._paq) {
       window._paq.push(['trackEvent', 'Ecommerce', action, produitId]);
     }
+    if (action === 'CheckoutCree') window.setTimeout(terminer, 500);
+    else terminer();
   }
 
   function tjdAcheter(produitId, btnEl) {
@@ -57,6 +89,10 @@
     // si le visiteur a navigué avant d'acheter) : sert de cancel_url pour ne pas
     // renvoyer tout le monde vers formations.html en cas d'abandon du paiement.
     corps.pageActuelle = window.location.pathname.replace(/^\//, '') + window.location.hash;
+    corps.deviceType = typeAppareil();
+    corps.viewport = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+      + 'x' + Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    corps.internalTest = estTestInterne();
     var referrerSession = sessionStorage.getItem('tjd_referrer');
     if (referrerSession) corps.referrer = referrerSession;
     ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (cle) {
@@ -66,10 +102,10 @@
 
     // Mesure du funnel : le clic Acheter, avant même la redirection Stripe,
     // pour pouvoir calculer un taux de clic par page et un taux d'abandon vers le paiement.
-    if (typeof window.gtag === 'function') {
+    if (!estTestInterne() && typeof window.gtag === 'function') {
       gtag('event', 'begin_checkout', { items: [{ item_id: produitId }] });
     }
-    if (window._paq) {
+    if (!estTestInterne() && window._paq) {
       window._paq.push(['trackEvent', 'Ecommerce', 'ClicAcheter', produitId]);
     }
 
@@ -88,11 +124,12 @@
       })
       .then(function (d) {
         if (d.url) {
-          mesurerCheckout('CheckoutCree', produitId);
-          if (localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
+          if (!estTestInterne() && localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
             fbq('track', 'InitiateCheckout', { content_ids: [produitId], content_type: 'product' });
           }
-          window.location.href = d.url;
+          mesurerCheckout('CheckoutCree', produitId, function () {
+            window.location.assign(d.url);
+          });
         }
         else {
           throw new Error('URL Stripe absente');
@@ -107,6 +144,9 @@
   }
 
   window.tjdAcheter = tjdAcheter;
+  window.tjdEstTestInterne = estTestInterne;
+  window.tjdTypeAppareil = typeAppareil;
+  window.tjdMesurerCheckout = mesurerCheckout;
 
   document.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-tjd-produit]');

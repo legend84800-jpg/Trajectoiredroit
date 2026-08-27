@@ -10,7 +10,7 @@ const crypto = require("crypto");
 const PRODUITS = require("./_produits");
 const { upsert, insererSiAbsent, supprimer } = require("./_supabase");
 const { construireLiensTelechargement } = require("./_liens-telechargement");
-const { creerClientStripe, INTEGRATION_IDS } = require("./_stripe");
+const { creerClientStripe } = require("./_stripe");
 
 // Traduit le statut Stripe en statut simplifié stocké côté Supabase.
 function statutAbonnement(statutStripe) {
@@ -205,56 +205,29 @@ function construireLiensEmail(produitId, produit, secret, origin) {
   return construireLiensTelechargement(produitId, produit, secret, origin, 48 * 3600);
 }
 
-// Recrée une session Checkout identique (mêmes produits, même montant) pour la
-// relance de panier abandonné, puisque l'URL d'une session expirée n'est plus
-// utilisable et que Stripe ne permet pas de "réouvrir" une session existante.
-async function recreerLienCheckout(produitIds, origin, stripe, sessionExpireeId) {
-  const params = {
-    // Pas de payment_method_types forcé, même raison que create-checkout.js :
-    // laisser Stripe proposer tous les moyens actifs du dashboard.
-    mode: "payment",
-    // Une relance ne doit pas rouvrir l'accès au code promo pour le stage,
-    // qui reste une place limitée dans une session datée.
-    allow_promotion_codes: !produitIds.includes("stage-methode"),
-    consent_collection: { promotions: "auto" },
-    success_url: `${origin}/merci-achat.html?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${origin}/formations.html`,
-    metadata: {
-      produitIds: produitIds.join(","),
-      relance: "1",
-      source: "relance",
-      sessionOrigine: sessionExpireeId,
-    },
-    // Marque cette vente comme issue de la relance de panier abandonné, pour
-    // savoir si le mécanisme rapporte (voir le log [VENTE-RELANCE] plus bas).
-    payment_intent_data: { metadata: { produitIds: produitIds.join(",") } },
-    branding_settings: {
-      display_name: "Trajectoire Droit",
-      icon: { type: "url", url: `${origin}/assets/logo-tjd-mark.png` },
-      background_color: "#ffffff",
-      button_color: "#1A2851",
-      border_style: "rounded",
-      font_family: "pt_serif",
-    },
-    integration_identifier: INTEGRATION_IDS.relance,
-    line_items: [],
-  };
-  produitIds.forEach((id) => {
-    const p = PRODUITS[id];
-    params.line_items.push({
-      price_data: { currency: "eur", unit_amount: p.prix, product_data: { name: p.nom } },
-      quantity: 1,
-    });
-  });
-
-  const session = await stripe.checkout.sessions.create(params, {
-    idempotencyKey: `relance-${sessionExpireeId}`,
-  });
-  return session.url;
+function uuidRelance(sessionId, etape) {
+  const caracteres = crypto.createHash("sha256").update(`${sessionId}:${etape}`).digest("hex").slice(0, 32).split("");
+  caracteres[12] = "4";
+  caracteres[16] = ((parseInt(caracteres[16], 16) & 3) | 8).toString(16);
+  return `${caracteres.slice(0, 8).join("")}-${caracteres.slice(8, 12).join("")}-${caracteres.slice(12, 16).join("")}-${caracteres.slice(16, 20).join("")}-${caracteres.slice(20).join("")}`;
 }
 
-async function envoyerRelancePanier(email, produits, checkoutUrl, brevoKey) {
+function echapperHtml(texte) {
+  return String(texte).replace(/[&<>"']/g, caractere => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  })[caractere]);
+}
+
+async function envoyerRelancePanier(email, produits, checkoutUrl, brevoKey, options) {
   const noms = produits.map(p => p.nom).join(" + ");
+  const nomsHtml = echapperHtml(noms);
+  const urlHtml = echapperHtml(checkoutUrl);
+  const estH24 = options.etape === "h24";
+  const titre = estH24 ? "Tu peux encore reprendre ton achat" : "Ton paiement est resté en attente";
+  const explication = estH24
+    ? `Tu avais commencé à commander <strong>${nomsHtml}</strong> hier, mais le paiement n'a pas été terminé. Le nouveau lien sécurisé reste disponible.`
+    : `Tu avais commencé à commander <strong>${nomsHtml}</strong>, mais le paiement n'a pas été terminé. Un nouveau lien sécurisé est prêt.`;
+  const bouton = estH24 ? "Reprendre mon achat" : "Reprendre mon paiement";
 
   const html = `
 <!DOCTYPE html>
@@ -268,12 +241,10 @@ async function envoyerRelancePanier(email, produits, checkoutUrl, brevoKey) {
           <p style="margin:0;color:#fff;font-size:22px;font-weight:700;">TrajectoireDroit</p>
         </td></tr>
         <tr><td style="padding:32px;">
-          <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 16px;">Il te manque juste le paiement</p>
-          <p style="font-size:15px;color:#333;margin:0 0 24px;">
-            Tu as commencé un achat sur TrajectoireDroit (<strong>${noms}</strong>) sans aller jusqu'au bout. Le lien ci-dessous te ramène directement à l'étape de paiement, rien à ressaisir.
-          </p>
-          <a href="${checkoutUrl}" style="display:inline-block;margin:8px 0;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;font-family:sans-serif;font-size:14px;">
-            Finaliser mon achat
+          <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 16px;">${titre}</p>
+          <p style="font-size:15px;color:#333;line-height:1.6;margin:0 0 24px;">${explication}</p>
+          <a href="${urlHtml}" style="display:inline-block;margin:8px 0;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;font-family:sans-serif;font-size:14px;">
+            ${bouton}
           </a>
           <p style="font-size:13px;color:#777;margin:24px 0 0;">
             Une question avant d'acheter ? Réponds directement à cet email.
@@ -288,15 +259,19 @@ async function envoyerRelancePanier(email, produits, checkoutUrl, brevoKey) {
 </body>
 </html>`;
 
-  const texte = `Tu as commencé un achat sur TrajectoireDroit (${noms}) sans aller jusqu'au bout.\n\nFinalise ton achat ici :\n${checkoutUrl}`;
+  const texte = `${titre}\n\nTu avais commencé à commander ${noms}, mais le paiement n'a pas été terminé.\n\n${bouton}\n${checkoutUrl}\n\nUne question avant d'acheter ? Réponds directement à cet email.`;
 
   const payload = {
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
     to: [{ email }],
-    subject: `Il te manque juste le paiement (${noms})`,
+    subject: estH24 ? "Tu peux encore reprendre ton achat" : `Ton paiement pour ${noms} est resté en attente`,
     htmlContent: html,
     textContent: texte,
+    tags: ["relance-panier", `relance-panier-${options.etape}`],
+    headers: { idempotencyKey: uuidRelance(options.sessionOrigine, options.etape) },
   };
+  if (options.scheduledAt) payload.scheduledAt = options.scheduledAt;
+  if (options.batchId) payload.batchId = options.batchId;
 
   const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
@@ -312,28 +287,67 @@ async function envoyerRelancePanier(email, produits, checkoutUrl, brevoKey) {
   }
 }
 
-// Panier abandonné : la session a expiré (2h, voir create-checkout.js) sans paiement.
-// On ne peut relancer que si Stripe a capté l'email avant l'abandon (le client a
-// eu le temps de le taper dans le formulaire Checkout), sinon rien n'est faisable.
-async function gererPanierAbandonne(session, brevoKey, stripe, origin) {
-  if (session.mode === "subscription") return; // Portalis, pas concerné par cette relance.
-
-  const produitIdsRaw = session.metadata && session.metadata.produitIds;
+// Panier abandonné : la session expire à H+1. Stripe fournit son lien de
+// récupération natif, puis le webhook envoie H+1 et programme H+24 dans Brevo.
+async function gererPanierAbandonne(sessionEvenement, brevoKey, stripe, origin, operations = {}) {
+  if (sessionEvenement.mode === "subscription") return { ignore: "abonnement" };
+  const recuperer = operations.recuperer || (id => stripe.checkout.sessions.retrieve(id));
+  const mettreAJour = operations.mettreAJour || ((id, params) => stripe.checkout.sessions.update(id, params));
+  const envoyer = operations.envoyer || ((email, produits, url, options) => envoyerRelancePanier(email, produits, url, brevoKey, options));
+  const session = await recuperer(sessionEvenement.id);
+  const metadata = session.metadata || {};
+  const produitIdsRaw = metadata.produitIds;
   const email = session.customer_details && session.customer_details.email;
-
+  const checkoutUrl = session.after_expiration
+    && session.after_expiration.recovery
+    && session.after_expiration.recovery.url;
   const accordPromotionnel = session.consent && session.consent.promotions === "opt_in";
-  if (!produitIdsRaw || !email || !accordPromotionnel) {
-    console.log(`[PANIER ABANDONNÉ] non relançable (email ou produit manquant), session=${session.id}`);
-    return;
+  const eligible = metadata.reminderPlan === "h1-h24-v1"
+    && metadata.source === "site"
+    && metadata.internalTest !== "1"
+    && !session.recovered_from;
+  if (!eligible || !produitIdsRaw || !email || !accordPromotionnel || !checkoutUrl) {
+    console.log(`[PANIER ABANDONNÉ] ignoré, session=${session.id}`);
+    return { ignore: "non-eligible" };
   }
 
   const produitIds = produitIdsRaw.split(",").map(s => s.trim()).filter(Boolean);
   const produitsAbandonnes = produitIds.map(id => PRODUITS[id]).filter(Boolean);
-  if (!produitsAbandonnes.length) return;
+  if (!produitsAbandonnes.length || produitsAbandonnes.length !== produitIds.length) {
+    return { ignore: "produit-inconnu" };
+  }
 
-  const checkoutUrl = await recreerLienCheckout(produitIds, origin, stripe, session.id);
-  await envoyerRelancePanier(email, produitsAbandonnes, checkoutUrl, brevoKey);
-  console.log(`[PANIER ABANDONNÉ] relance envoyée à ${email} pour ${produitIds.join("+")}, session expirée=${session.id}`);
+  if (metadata.rappelH1Status !== "sent") {
+    await envoyer(email, produitsAbandonnes, checkoutUrl, {
+      etape: "h1",
+      sessionOrigine: session.id,
+    });
+    await mettreAJour(session.id, { metadata: { rappelH1Status: "sent" } });
+  }
+
+  const batchId = uuidRelance(session.id, "h24-batch");
+  if (metadata.rappelH24Status !== "scheduled") {
+    const dateH24 = new Date((session.created + 24 * 3600) * 1000).toISOString();
+    await envoyer(email, produitsAbandonnes, checkoutUrl, {
+      etape: "h24",
+      sessionOrigine: session.id,
+      scheduledAt: dateH24,
+      batchId,
+    });
+    await mettreAJour(session.id, { metadata: { rappelH24Status: "scheduled", rappelH24BatchId: batchId } });
+  }
+  console.log(`[PANIER ABANDONNÉ] rappels préparés pour ${produitIds.join("+")}, session=${session.id}`);
+  return { traite: true, batchId };
+}
+
+async function annulerRelancePlanifiee(sessionOrigine, brevoKey) {
+  const batchId = uuidRelance(sessionOrigine, "h24-batch");
+  const resp = await fetch(`https://api.brevo.com/v3/smtp/email/${encodeURIComponent(batchId)}`, {
+    method: "DELETE",
+    headers: { "api-key": brevoKey, accept: "application/json" },
+  });
+  if (resp.ok || resp.status === 404) return;
+  throw new Error(`Brevo annulation relance ${resp.status}`);
 }
 
 // Récupère le code textuel d'un promotion code Stripe (ex: "LYON3JULIE")
@@ -451,6 +465,7 @@ async function envoyerConfirmationStage(email, metadata, brevoKey) {
   const paragraphes = [
     salutation,
     "Ton inscription au stage est bien enregistrée. Ton paiement de 149 € a bien été reçu.",
+    "Réponds simplement à cet email avec ton prénom, ton numéro WhatsApp si tu souhaites être contacté par ce moyen et la difficulté principale que tu veux travailler pendant le stage.",
     "Pour rappel, voici le contenu du stage :",
     "Le stage comprend trois séances en direct, pour un total de huit heures, consacrées aux quatre principaux exercices juridiques : la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation.",
     "La première séance aura lieu le mardi 8 septembre, de 16 h à 19 h. Nous travaillerons la structure complète de la fiche d'arrêt, notamment la différence entre un arrêt de rejet et un arrêt de cassation, puis la méthode du commentaire d'arrêt : introduction, construction du plan et rédaction des sous-parties.",
@@ -512,9 +527,9 @@ async function envoyerConfirmationStage(email, metadata, brevoKey) {
   }
 }
 
-// Notifie Julien d'une inscription payée au stage, avec les infos du formulaire
-// (nom, whatsapp, niveau, message) transmises en metadata Stripe par create-checkout.js.
-// Remplace la notification que faisait l'ancien endpoint /api/contact avant paiement.
+// Notifie Julien d'une inscription payée au stage. Le formulaire avant paiement ne
+// demande que l'email et le niveau. Le client peut répondre au mail de confirmation
+// pour transmettre ensuite son prénom, son WhatsApp et sa difficulté principale.
 async function notifierJulienStage(metadata, email, montantEuros, sessionId, brevoKey) {
   const m = metadata || {};
   const rows = [
@@ -586,7 +601,10 @@ async function traiterAchatPaye(session, contexte) {
   }
 
   const montantEuros = session.amount_total != null ? (session.amount_total / 100).toFixed(2) : "?";
-  const estRelance = session.metadata && session.metadata.relance === "1";
+  const sessionOrigineRelance = session.recovered_from
+    || (session.metadata && session.metadata.sessionOrigine)
+    || null;
+  const estRelance = !!sessionOrigineRelance || (session.metadata && session.metadata.relance === "1");
   const accordPromotionnel = session.consent && session.consent.promotions === "opt_in";
   const estStage = produitIds.includes("stage-methode");
   const libelleProduits = produitIds.join("+");
@@ -602,6 +620,7 @@ async function traiterAchatPaye(session, contexte) {
     creerContactBrevoAchat,
     reinscrireAcheteurBrevo,
     recupererCodePromo,
+    annulerRelancePlanifiee,
   };
 
   // La contrainte unique achats.session_id devient le verrou d'idempotence.
@@ -614,6 +633,14 @@ async function traiterAchatPaye(session, contexte) {
   if (!Array.isArray(lignesCreees) || lignesCreees.length === 0) {
     console.log(`[WEBHOOK DÉJÀ TRAITÉ] session=${session.id}`);
     return { dejaTraite: true };
+  }
+
+  if (estRelance && sessionOrigineRelance) {
+    try {
+      await operations.annulerRelancePlanifiee(sessionOrigineRelance, contexte.brevoKey);
+    } catch (e) {
+      console.error("Erreur annulation rappel H+24:", e.message);
+    }
   }
 
   let codeAmbassadeur = null;
@@ -662,7 +689,7 @@ async function traiterAchatPaye(session, contexte) {
   } else {
     console.log(`[VENTE] produits=${libelleProduits} montant=${montantEuros}€ session=${session.id}`);
   }
-  console.log(`Livraison confirmée à ${email} pour ${libelleProduits}`);
+  console.log(`Livraison confirmée pour ${libelleProduits}, session=${session.id}`);
 
   // Les actions suivantes enrichissent le suivi mais ne doivent jamais faire
   // rejouer une livraison réussie au client.
@@ -767,6 +794,8 @@ async function handler(req, res) {
       await gererPanierAbandonne(evt.data.object, brevoKey, stripe, origin);
     } catch (e) {
       console.error("Erreur relance panier abandonné:", e.message);
+      res.status(500).json({ erreur: "Relance temporairement impossible" });
+      return;
     }
     res.status(200).json({ recu: true });
     return;
@@ -810,4 +839,4 @@ async function handler(req, res) {
 
 handler.config = { api: { bodyParser: false } };
 module.exports = handler;
-module.exports._test = { traiterAchatPaye, donneesAchat };
+module.exports._test = { traiterAchatPaye, donneesAchat, gererPanierAbandonne, uuidRelance };

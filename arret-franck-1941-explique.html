@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <!-- tjd-consent-default -->
+  <script src="assets/js/analytics-mode.js?v=b8d18c50"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -77,18 +78,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=f11507b7">
+  <link rel="stylesheet" href="assets/style.css?v=bdb59b2c">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-SGBDDYMHMF');
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
   </script>
   <!-- Matomo -->
   <script>
     var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
     _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
@@ -99,6 +101,7 @@
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
       g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
     })();
+    }
   </script>
   <!-- End Matomo Code -->
 </head>
@@ -307,7 +310,7 @@
         <h1 class="article-hero__title">L'arrêt Franck expliqué simplement</h1>
         <p class="article-hero__standfirst">L'arrêt Franck est rendu par les Chambres réunies de la Cour de cassation le 2 décembre 1941. Il pose la définition de la garde de la chose que retient encore aujourd'hui l'article 1242 alinéa 1er du Code civil, l'ancien article 1384. Le gardien est celui qui a l'usage, la direction et le contrôle de la chose, non plus seulement son propriétaire. Il suffit d'un vol pour que le propriétaire perde sa garde au profit du voleur.</p>
         <div class="article-author">
-          <img class="article-author__avatar" src="assets/julien-sm.jpg" alt="Julien, professeur de droit">
+          <img class="article-author__avatar" src="assets/julien-sm.webp" alt="Julien, professeur de droit">
           <div>
             <div class="article-author__name">Julien</div>
             <div class="article-author__role">Master II de droit pénal, Panthéon-Assas · Major de promo</div>
@@ -377,7 +380,7 @@
 
           <!-- vague2:encart-produit -->
 <div class="article-produit-inline">
-  <img class="article-produit-inline__thumb" src="assets/apercus/obligations-l2-s2-1.jpg" alt="Aperçu de la fiche Droit des obligations L2" loading="lazy">
+  <img class="article-produit-inline__thumb" src="assets/apercus/obligations-l2-s2-1.webp" alt="Aperçu de la fiche Droit des obligations L2" loading="lazy">
   <div class="article-produit-inline__body">
     <p class="article-produit-inline__label">Fiche complète</p>
     <p class="article-produit-inline__title">Droit des obligations L2</p>
@@ -464,7 +467,7 @@
 
           <!-- BLOC AUTEUR -->
           <div class="author-box">
-            <img class="author-box__avatar" src="assets/julien-md.jpg" alt="Julien, professeur de droit">
+            <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
             <div>
               <p class="author-box__name">Julien</p>
               <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
@@ -529,7 +532,7 @@
   </div>
 
 
-  <script src="assets/js/achat.js" defer></script>
+  <script src="assets/js/achat.js?v=641d5535" defer></script>
 
 
   <script src="assets/js/main.js?v=4d255b44" defer></script>

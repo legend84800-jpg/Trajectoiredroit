@@ -159,6 +159,13 @@ async function handler(req, res) {
   const utmSource = tronquer(corps.utm_source, 100);
   const utmMedium = tronquer(corps.utm_medium, 100);
   const utmCampaign = tronquer(corps.utm_campaign, 100);
+  const deviceType = ["mobile", "tablette", "ordinateur"].includes(corps.deviceType)
+    ? corps.deviceType
+    : "inconnu";
+  const viewport = /^\d{2,5}x\d{2,5}$/.test(tronquer(corps.viewport, 20))
+    ? tronquer(corps.viewport, 20)
+    : "inconnu";
+  const internalTest = corps.internalTest === true;
 
   const produit = PRODUITS[produitId];
   if (!produit) {
@@ -184,6 +191,8 @@ async function handler(req, res) {
 
   const bump = bumpId && bumpId !== produitId ? PRODUITS[bumpId] : null;
   const idsAchetes = bump ? [produitId, bumpId] : [produitId];
+  const contientStage = idsAchetes.includes("stage-methode");
+  const autoriserRelance = !internalTest && !contientStage;
   const pageSucces = produitId === "stage-methode" ? "merci-stage.html" : "merci-achat.html";
 
   const params = {
@@ -208,14 +217,18 @@ async function handler(req, res) {
     consent_collection: { promotions: "auto" },
     success_url: `${origin}/${pageSucces}?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: pageActuelle ? `${origin}/${pageActuelle}` : `${origin}/formations.html`,
-    // Expiration raccourcie à 2h (au lieu des 24h par défaut Stripe) pour que la
-    // relance de panier abandonné (voir stripe-webhook.js, event checkout.session.expired)
-    // puisse partir le jour même plutôt que le lendemain.
-    expires_at: attemptTimestamp + 2 * 3600,
+    // L'expiration à H+1 déclenche le webhook de panier abandonné. Stripe fournit
+    // alors son lien de récupération natif et le webhook programme les deux rappels.
+    expires_at: attemptTimestamp + 3600,
     metadata: {
       produitIds: idsAchetes.join(","),
       attemptId,
-      source: "site",
+      source: internalTest ? "test_interne" : "site",
+      currentPage: pageActuelle || "formations.html",
+      deviceType,
+      viewport,
+      internalTest: internalTest ? "1" : "0",
+      reminderPlan: autoriserRelance ? "h1-h24-v1" : "none",
     },
     payment_intent_data: { metadata: { produitIds: idsAchetes.join(",") } },
     branding_settings: {
@@ -228,6 +241,17 @@ async function handler(req, res) {
     },
     integration_identifier: INTEGRATION_IDS.checkout,
   };
+
+  // Stripe génère à l'expiration un lien de récupération sécurisé, valable
+  // 30 jours. Les stages datés et les tests internes restent exclus.
+  if (autoriserRelance) {
+    params.after_expiration = {
+      recovery: {
+        enabled: true,
+        allow_promotion_codes: params.allow_promotion_codes,
+      },
+    };
+  }
 
   if (consentMarketing) {
     params.metadata.consentMarketing = "1";

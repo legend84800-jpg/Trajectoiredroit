@@ -42,6 +42,7 @@ function operationsFactices(surcharges = {}) {
     creerContactBrevoAchat: async () => ({ estNouveau: true }),
     reinscrireAcheteurBrevo: async () => {},
     recupererCodePromo: async () => null,
+    annulerRelancePlanifiee: async () => {},
     ...surcharges,
   };
 }
@@ -72,6 +73,10 @@ test("la création Checkout conserve le garde-fou Stripe et l'idempotence", asyn
       produitId: "fiche-da-l2-s1",
       attemptId: "12345678-1234-1234-1234-123456789012",
       attemptCreatedAt: Math.floor(Date.now() / 1000),
+      landingPage: "reussir-sa-l2.html",
+      pageActuelle: "droit-administratif-l2.html#fiches",
+      deviceType: "mobile",
+      viewport: "390x844",
     },
   };
   const res = reponseFactice();
@@ -94,18 +99,173 @@ test("la création Checkout conserve le garde-fou Stripe et l'idempotence", asyn
   assert.deepEqual(appel.params.consent_collection, { promotions: "auto" });
   assert.equal(appel.params.payment_method_types, undefined);
   assert.equal(appel.params.metadata.source, "site");
-  assert.equal(appel.params.expires_at, req.body.attemptCreatedAt + 2 * 3600);
+  assert.equal(appel.params.expires_at, req.body.attemptCreatedAt + 3600);
+  assert.equal(appel.params.metadata.landingPage, "reussir-sa-l2.html");
+  assert.equal(appel.params.metadata.currentPage, "droit-administratif-l2.html#fiches");
+  assert.equal(appel.params.metadata.deviceType, "mobile");
+  assert.equal(appel.params.metadata.viewport, "390x844");
+  assert.equal(appel.params.metadata.internalTest, "0");
+  assert.equal(appel.params.metadata.reminderPlan, "h1-h24-v1");
+  assert.deepEqual(appel.params.after_expiration, {
+    recovery: { enabled: true, allow_promotion_codes: true },
+  });
   assert.match(appel.params.integration_identifier, /_[a-z]{8}$/);
   assert.equal(appel.options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012");
 });
 
-test("les deux flux Stripe gardent le consentement et les moyens dynamiques", () => {
+test("le panier abandonné prépare une seule relance H+1 et une seule relance H+24", async () => {
+  const { gererPanierAbandonne } = require("../api/stripe-webhook")._test;
+  const misesAJour = [];
+  const envois = [];
+  const session = {
+    id: "cs_test_abandon",
+    mode: "payment",
+    created: 1_900_000_000,
+    metadata: {
+      produitIds: "fiche-da-l2-s1",
+      reminderPlan: "h1-h24-v1",
+      source: "site",
+      internalTest: "0",
+      currentPage: "droit-administratif-l2.html#fiches",
+    },
+    customer_details: { email: "eleve@example.com" },
+    consent: { promotions: "opt_in" },
+    after_expiration: {
+      recovery: { url: "https://buy.stripe.com/r/test_recuperation" },
+    },
+  };
+  const resultat = await gererPanierAbandonne(session, "brevo_test", {}, "https://trajectoiredroit.com", {
+    recuperer: async () => session,
+    mettreAJour: async (_id, params) => { misesAJour.push(params); },
+    envoyer: async (_email, _produits, _url, options) => { envois.push(options); },
+  });
+  assert.equal(resultat.traite, true);
+  assert.deepEqual(envois.map(envoi => envoi.etape), ["h1", "h24"]);
+  assert.match(envois[1].scheduledAt, /T/);
+  assert.equal(misesAJour[0].metadata.rappelH1Status, "sent");
+  assert.equal(misesAJour[1].metadata.rappelH24Status, "scheduled");
+});
+
+test("une session interne ne déclenche aucune relance", async () => {
+  const { gererPanierAbandonne } = require("../api/stripe-webhook")._test;
+  let envois = 0;
+  const session = {
+    id: "cs_test_interne_expire",
+    mode: "payment",
+    metadata: { produitIds: "fiche-da-l2-s1", reminderPlan: "none", source: "test_interne", internalTest: "1" },
+    customer_details: { email: "interne@example.com" },
+    consent: { promotions: "opt_in" },
+  };
+  const resultat = await gererPanierAbandonne(session, "brevo_test", {}, "https://trajectoiredroit.com", {
+    recuperer: async () => session,
+    envoyer: async () => { envois += 1; },
+  });
+  assert.equal(resultat.ignore, "non-eligible");
+  assert.equal(envois, 0);
+});
+
+test("une session interne reste identifiable et ne peut pas déclencher de relance", async () => {
+  const stripeModule = require("../api/_stripe");
+  const creerOriginal = stripeModule.creerClientStripe;
+  let paramsCrees;
+  stripeModule.creerClientStripe = () => ({
+    checkout: { sessions: { create: async (params) => {
+      paramsCrees = params;
+      return { id: "cs_test_interne", url: "https://checkout.stripe.com/c/pay/test" };
+    } } },
+  });
+  const cheminModule = require.resolve("../api/create-checkout");
+  delete require.cache[cheminModule];
+  const handler = require("../api/create-checkout");
+  const ancienneCle = process.env.STRIPE_SECRET_KEY;
+  process.env.STRIPE_SECRET_KEY = "sk_test_factice";
+  try {
+    await handler({ method: "POST", body: {
+      produitId: "fiche-da-l2-s1",
+      attemptId: "interne-1234567890123456",
+      internalTest: true,
+    } }, reponseFactice());
+  } finally {
+    stripeModule.creerClientStripe = creerOriginal;
+    delete require.cache[cheminModule];
+    if (ancienneCle === undefined) delete process.env.STRIPE_SECRET_KEY;
+    else process.env.STRIPE_SECRET_KEY = ancienneCle;
+  }
+  assert.equal(paramsCrees.metadata.source, "test_interne");
+  assert.equal(paramsCrees.metadata.internalTest, "1");
+  assert.equal(paramsCrees.metadata.reminderPlan, "none");
+  assert.equal(paramsCrees.after_expiration, undefined);
+});
+
+test("le flux Stripe garde le consentement, les moyens dynamiques et la récupération native", () => {
   const checkout = fs.readFileSync(path.join(RACINE, "api/create-checkout.js"), "utf8");
   const webhook = fs.readFileSync(path.join(RACINE, "api/stripe-webhook.js"), "utf8");
   assert.match(checkout, /consent_collection:\s*\{\s*promotions:\s*"auto"\s*\}/);
-  assert.match(webhook, /consent_collection:\s*\{\s*promotions:\s*"auto"\s*\}/);
+  assert.match(checkout, /after_expiration\s*=\s*\{/);
   assert.doesNotMatch(checkout, /payment_method_types\s*:/);
   assert.doesNotMatch(webhook, /payment_method_types\s*:/);
+  assert.doesNotMatch(webhook, /checkout\.sessions\.create/);
+});
+
+test("un stage daté ne reçoit pas de lien de récupération de 30 jours", async () => {
+  const stripeModule = require("../api/_stripe");
+  const supabaseModule = require("../api/_supabase");
+  const creerOriginal = stripeModule.creerClientStripe;
+  const selectionnerOriginal = supabaseModule.selectionner;
+  let paramsCrees;
+  stripeModule.creerClientStripe = () => ({
+    checkout: { sessions: { create: async (params) => {
+      paramsCrees = params;
+      return { id: "cs_test_stage", url: "https://checkout.stripe.com/c/pay/stage" };
+    } } },
+  });
+  supabaseModule.selectionner = async () => [];
+  const cheminModule = require.resolve("../api/create-checkout");
+  delete require.cache[cheminModule];
+  const handler = require("../api/create-checkout");
+  const ancienneCle = process.env.STRIPE_SECRET_KEY;
+  process.env.STRIPE_SECRET_KEY = "sk_test_factice";
+  try {
+    await handler({ method: "POST", body: {
+      produitId: "stage-methode",
+      attemptId: "stage-1234567890123456",
+      email: "eleve@example.com",
+      niveau: "L2",
+    } }, reponseFactice());
+  } finally {
+    stripeModule.creerClientStripe = creerOriginal;
+    supabaseModule.selectionner = selectionnerOriginal;
+    delete require.cache[cheminModule];
+    if (ancienneCle === undefined) delete process.env.STRIPE_SECRET_KEY;
+    else process.env.STRIPE_SECRET_KEY = ancienneCle;
+  }
+  assert.equal(paramsCrees.metadata.reminderPlan, "none");
+  assert.equal(paramsCrees.after_expiration, undefined);
+  assert.equal(paramsCrees.allow_promotion_codes, false);
+});
+
+test("un paiement récupéré annule le rappel H+24 et reste attribué à la relance", async () => {
+  const { traiterAchatPaye } = require("../api/stripe-webhook")._test;
+  let sessionAnnulee = null;
+  let achatEnregistre = null;
+  const session = sessionPayee("cs_test_recuperee");
+  session.recovered_from = "cs_test_abandon_origine";
+  const operations = operationsFactices({
+    insererSiAbsent: async (_table, donnees) => {
+      achatEnregistre = donnees;
+      return [{ id: 1 }];
+    },
+    annulerRelancePlanifiee: async (id) => { sessionAnnulee = id; },
+  });
+  await traiterAchatPaye(session, {
+    operations,
+    stripe: {},
+    brevoKey: "brevo_test",
+    downloadSecret: "secret_test",
+    origin: "https://trajectoiredroit.com",
+  });
+  assert.equal(sessionAnnulee, "cs_test_abandon_origine");
+  assert.equal(achatEnregistre.relance, true);
 });
 
 test("un webhook rejoué ne renvoie pas le PDF", async () => {

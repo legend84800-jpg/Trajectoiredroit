@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <!-- tjd-consent-default -->
+  <script src="assets/js/analytics-mode.js?v=b8d18c50"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -73,7 +74,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=f11507b7">
+  <link rel="stylesheet" href="assets/style.css?v=bdb59b2c">
   <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
   <!-- Google Analytics (GA4) -->
@@ -82,11 +83,12 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-SGBDDYMHMF');
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
   </script>
   <!-- Matomo -->
   <script>
     var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
     _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
@@ -97,6 +99,7 @@
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
       g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
     })();
+    }
   </script>
   <!-- End Matomo Code -->
 </head>
@@ -325,6 +328,31 @@
       </div>
     </section>
 
+    <section class="conversion-offer" aria-labelledby="offre-l3-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/pack-l3.webp" alt="Pack complet des fiches de L3" loading="eager" fetchpriority="high" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">Choix recommandé pour la L3</p>
+            <h2 class="conversion-offer__title" id="offre-l3-titre">Les 5 matières de ta L3 réunies</h2>
+            <p class="conversion-offer__summary">Le pack réunit les 5 fiches complètes de la L3 en un seul achat. Chaque matière conserve son plan et ses cartes mentales.</p>
+            <ul class="conversion-offer__benefits">
+              <li>5 fiches complètes</li>
+              <li>Les matières de l'année</li>
+              <li>Téléchargement immédiat</li>
+            </ul>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="pack-l3">Choisir le pack L3 · 58 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
+            <div class="conversion-reviews" data-review-slot="pack-l3" hidden></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- INTRO -->
     <section class="section">
       <div class="container container--narrow">
@@ -494,7 +522,7 @@
   </div>
 
 
-  <script src="assets/js/achat.js" defer></script>
+  <script src="assets/js/achat.js?v=641d5535" defer></script>
 
 
   <script src="assets/js/main.js?v=4d255b44" defer></script>

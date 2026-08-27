@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <!-- tjd-consent-default -->
+  <script src="assets/js/analytics-mode.js?v=b8d18c50"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -26,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=f11507b7">
+  <link rel="stylesheet" href="assets/style.css?v=bdb59b2c">
   <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
   <!-- Google Analytics (GA4) -->
@@ -35,7 +36,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-SGBDDYMHMF');
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
   </script>
   <script type="application/ld+json">
   {
@@ -170,6 +171,7 @@
   <!-- Matomo -->
   <script>
     var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
     _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
@@ -180,6 +182,7 @@
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
       g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
     })();
+    }
   </script>
   <!-- End Matomo Code -->
 </head>
@@ -428,7 +431,7 @@
         <div class="grid-3">
 
           <article class="card card--product fade-in">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-da-l2-s1.jpg?v=fiche-texte-net-v3-20260821" alt="Exemple de fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-da-l2-s1.webp" alt="Exemple de fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">À l'unité</h3>
               <div class="product__meta"><span>1 fiche</span><span>·</span><span>une matière, un semestre</span></div>
@@ -439,7 +442,7 @@
           </article>
 
           <article class="card card--product card--featured fade-in">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Pack de fiches</span><img src="assets/covers/pack-l1.jpg" alt="Exemple de pack d'une année, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Pack de fiches</span><img src="assets/covers/pack-l1.webp" alt="Exemple de pack d'une année, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Pack d'une année</h3>
               <div class="product__meta"><span>toutes les fiches d'une année</span><span>·</span><span>accès à vie</span></div>
@@ -450,7 +453,7 @@
           </article>
 
           <article class="card card--product fade-in">
-            <div class="product__thumb has-cover"><img src="assets/covers/pack-licence-complete.jpg" alt="Coffret Pack Licence complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><img src="assets/covers/pack-licence-complete.webp" alt="Coffret Pack Licence complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Pack Licence complète</h3>
               <div class="product__meta"><span>L1 + L2 + L3</span><span>·</span><span>tout le cursus</span></div>
@@ -473,7 +476,7 @@
         <div class="grid-3">
 
           <article class="card card--product fade-in">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Pack de fiches</span><img src="assets/covers/pack-l1.jpg" alt="Pack Licence 1, toutes les fiches de droit, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Pack de fiches</span><img src="assets/covers/pack-l1.webp" alt="Pack Licence 1, toutes les fiches de droit, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Pack Licence 1</h3>
               <div class="product__meta"><span>L1</span><span>·</span><span>9 fiches complètes</span><span>·</span><span>PDF · Accès à vie</span></div>
@@ -484,7 +487,7 @@
           </article>
 
           <article class="card card--product fade-in">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Pack de fiches</span><img src="assets/covers/pack-l2.jpg" alt="Pack Licence 2, toutes les fiches de droit, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Pack de fiches</span><img src="assets/covers/pack-l2.webp" alt="Pack Licence 2, toutes les fiches de droit, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Pack Licence 2</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>6 fiches complètes</span><span>·</span><span>PDF · Accès à vie</span></div>
@@ -495,7 +498,7 @@
           </article>
 
           <article class="card card--product fade-in">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Pack de fiches</span><img src="assets/covers/pack-l3.jpg" alt="Pack Licence 3, toutes les fiches de droit, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Pack de fiches</span><img src="assets/covers/pack-l3.webp" alt="Pack Licence 3, toutes les fiches de droit, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Pack Licence 3</h3>
               <div class="product__meta"><span>L3</span><span>·</span><span>5 fiches complètes</span><span>·</span><span>PDF · Accès à vie</span></div>
@@ -506,6 +509,7 @@
           </article>
 
         </div>
+        <section class="conversion-reviews" data-review-slot="catalogue-packs" hidden aria-label="Avis d'élèves"></section>
         <p style="margin-top:22px; font-size:.92rem; color:var(--body)">Tu préfères une seule matière ? Tout le catalogue à l'unité est juste en dessous.</p>
       </div>
     </section>
@@ -557,7 +561,7 @@
         <div class="grid-3" data-filter-grid>
 
           <article class="card card--product fade-in" data-niveau="L2" data-matiere="public">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-da-l2-s1.jpg?v=fiche-texte-net-v3-20260821" alt="Droit administratif , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-da-l2-s1.webp" alt="Droit administratif , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif S1</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 109 p.</span></div>
@@ -569,7 +573,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L2" data-matiere="public">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-da-l2-s2.jpg?v=fiche-texte-net-v3-20260821" alt="Droit administratif , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-da-l2-s2.webp" alt="Droit administratif , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif S2</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · 91 p.</span></div>
@@ -581,7 +585,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L1" data-matiere="public">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-constit-l1-s1.jpg?v=fiche-texte-net-v3-20260821" alt="Droit constitutionnel , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-constit-l1-s1.webp" alt="Droit constitutionnel , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel S1</h3>
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 181 p.</span></div>
@@ -593,7 +597,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L1" data-matiere="public">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-constit-l1-s2.jpg?v=fiche-texte-net-v3-20260821" alt="Droit constitutionnel , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-constit-l1-s2.webp" alt="Droit constitutionnel , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel S2</h3>
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · 112 p.</span></div>
@@ -605,7 +609,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L1" data-matiere="histoire">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-intro-droit-l1.jpg?v=fiche-texte-net-v3-20260821" alt="Introduction au droit , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-intro-droit-l1.webp" alt="Introduction au droit , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Introduction au droit</h3>
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 76 p.</span></div>
@@ -617,7 +621,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L1" data-matiere="histoire">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-hist-droit-l1.jpg?v=fiche-texte-net-v3-20260821" alt="Histoire du droit , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-hist-droit-l1.webp" alt="Histoire du droit , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Histoire du droit</h3>
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 138 p.</span></div>
@@ -629,7 +633,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L1" data-matiere="histoire">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-hist-institutions-l1.jpg?v=fiche-texte-net-v3-20260821" alt="Histoire des institutions , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-hist-institutions-l1.webp" alt="Histoire des institutions , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Histoire des institutions</h3>
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · 92 p.</span></div>
@@ -641,7 +645,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L1" data-matiere="public">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-relations-internationales-l1.jpg?v=fiche-texte-net-v3-20260821" alt="Relations internationales, fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-relations-internationales-l1.webp" alt="Relations internationales, fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Relations internationales</h3>
               <div class="product__meta"><span>L1</span><span>·</span><span>Année</span><span>·</span><span>PDF · 111 p.</span></div>
@@ -652,7 +656,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L1" data-matiere="civil">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-personnes-l1.jpg?v=fiche-texte-net-v3-20260821" alt="Droit des personnes , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-personnes-l1.webp" alt="Droit des personnes , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des personnes</h3>
               <div class="product__meta"><span>L1</span><span>·</span><span>Année</span><span>·</span><span>PDF · 93 p.</span></div>
@@ -664,7 +668,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L1" data-matiere="civil">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-famille-l1-s2.jpg?v=fiche-texte-net-v3-20260821" alt="Droit de la famille , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-famille-l1-s2.webp" alt="Droit de la famille , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit de la famille</h3>
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · 135 p.</span></div>
@@ -676,7 +680,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L2" data-matiere="civil">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-contrats-l2-s1.jpg?v=fiche-texte-net-v3-20260821" alt="Droit des contrats , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-contrats-l2-s1.webp" alt="Droit des contrats , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des contrats S1</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 145 p.</span></div>
@@ -688,7 +692,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L2" data-matiere="civil">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-obligations-l2-s2.jpg?v=fiche-texte-net-v3-20260821" alt="Droit des obligations , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-obligations-l2-s2.webp" alt="Droit des obligations , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des contrats S2</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · 88 p.</span></div>
@@ -700,7 +704,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L1" data-matiere="penal">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-penal-general-l1.jpg?v=fiche-texte-net-v3-20260821" alt="Droit pénal général , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-penal-general-l1.webp" alt="Droit pénal général , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit pénal général S1</h3>
               <div class="product__meta"><span>L1</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · 100 p.</span></div>
@@ -712,7 +716,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L2" data-matiere="penal">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-penal-l2-s1.jpg?v=fiche-texte-net-v3-20260821" alt="Droit pénal , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-penal-l2-s1.webp" alt="Droit pénal , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit pénal S2</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 95 p.</span></div>
@@ -724,7 +728,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L2" data-matiere="civil">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-biens-l2.jpg?v=fiche-texte-net-v3-20260821" alt="Droit des biens , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-biens-l2.webp" alt="Droit des biens , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des biens</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Année</span><span>·</span><span>PDF · 109 p.</span></div>
@@ -736,7 +740,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L3" data-matiere="affaires">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-commercial-l3-s1.jpg?v=fiche-texte-net-v3-20260821" alt="Droit commercial , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-commercial-l3-s1.webp" alt="Droit commercial , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit commercial</h3>
               <div class="product__meta"><span>L3</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 129 p.</span></div>
@@ -748,7 +752,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L3" data-matiere="affaires">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-societes-l3-s1.jpg?v=fiche-texte-net-v3-20260821" alt="Droit des sociétés , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-societes-l3-s1.webp" alt="Droit des sociétés , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des sociétés S1</h3>
               <div class="product__meta"><span>L3</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 71 p.</span></div>
@@ -760,7 +764,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L3" data-matiere="civil">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-contrats-speciaux-l3.jpg?v=fiche-texte-net-v3-20260821" alt="Contrats spéciaux , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-contrats-speciaux-l3.webp" alt="Contrats spéciaux , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Contrats spéciaux</h3>
               <div class="product__meta"><span>L3</span><span>·</span><span>Année</span><span>·</span><span>PDF · 118 p.</span></div>
@@ -772,7 +776,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L3" data-matiere="affaires">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-travail-l3-s1.jpg?v=fiche-texte-net-v3-20260821" alt="Droit du travail , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-travail-l3-s1.webp" alt="Droit du travail , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit du travail S1</h3>
               <div class="product__meta"><span>L3</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 76 p.</span></div>
@@ -784,7 +788,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L3" data-matiere="penal">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-procedure-penale-l3.jpg?v=fiche-texte-net-v3-20260821" alt="Procédure pénale , fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-procedure-penale-l3.webp" alt="Procédure pénale , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Procédure pénale</h3>
               <div class="product__meta"><span>L3</span><span>·</span><span>Année</span><span>·</span><span>PDF · 124 p.</span></div>
@@ -796,7 +800,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L2" data-matiere="public">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-finances-publiques-l2-s1.png?v=fiche-texte-net-v3-20260821" alt="Finances publiques L2 S1, fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-finances-publiques-l2-s1.webp" alt="Finances publiques L2 S1, fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Finances publiques</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 69 p.</span></div>
@@ -807,7 +811,7 @@
           </article>
 
           <article class="card card--product fade-in" data-niveau="L2" data-matiere="histoire">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-philo-droit-l2-s1.png?v=fiche-texte-net-v3-20260821" alt="Philosophie du droit L2 S1, fiche complète, couverture Trajectoire Droit" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-philo-droit-l2-s1.webp" alt="Philosophie du droit L2 S1, fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Philosophie du droit</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 63 p.</span></div>
@@ -1114,7 +1118,7 @@
 
   <script src="assets/js/main.js?v=4d255b44" defer></script>
   <script src="assets/js/filtre-recherche.js" defer></script>
-  <script src="assets/js/achat.js?v=490ce72b" defer></script>
+  <script src="assets/js/achat.js?v=641d5535" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var map = { '#cours-l1': 'L1', '#cours-l2': 'L2', '#cours-l3': 'L3' };

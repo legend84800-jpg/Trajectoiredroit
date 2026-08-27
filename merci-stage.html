@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <!-- tjd-consent-default -->
+  <script src="assets/js/analytics-mode.js?v=b8d18c50"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -21,18 +22,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=f11507b7">
+  <link rel="stylesheet" href="assets/style.css?v=bdb59b2c">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-SGBDDYMHMF');
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
     // L'évènement purchase part plus bas, une fois le montant connu via /api/session-info (voir le script en fin de page).
   </script>
   <!-- Matomo -->
   <script>
     var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
     _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
@@ -43,6 +45,7 @@
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
       g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
     })();
+    }
   </script>
   <!-- End Matomo Code -->
 </head>
@@ -233,6 +236,7 @@
           <h2 class="h4" style="margin-top:0">Ce qui se passe maintenant</h2>
           <ol style="margin:16px 0 0; padding-left:20px; line-height:1.9; color:var(--text)">
             <li>Tu reçois un email de confirmation de <strong>julien.prof1@gmail.com</strong> avec le récapitulatif de ton inscription.</li>
+            <li>Réponds à cet email avec ton prénom, ton WhatsApp si tu veux l'utiliser et la difficulté que tu souhaites travailler pendant le stage.</li>
             <li>Avant le début du stage, un second email t'envoie le lien Google Meet et les supports de chaque séance.</li>
             <li>Rendez-vous les <strong>8, 9 et 10 septembre 2026, 17h</strong> (heure de Paris), pour la première séance. Si tu rates une séance, tu as le replay pour la rattraper.</li>
           </ol>

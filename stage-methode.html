@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <!-- tjd-consent-default -->
+  <script src="assets/js/analytics-mode.js?v=b8d18c50"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -82,14 +83,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=f11507b7">
+  <link rel="stylesheet" href="assets/style.css?v=bdb59b2c">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-SGBDDYMHMF');
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
   </script>
 
   <style>
@@ -179,6 +180,7 @@
   <!-- Matomo -->
   <script>
     var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
     _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
@@ -189,6 +191,7 @@
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
       g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
     })();
+    }
   </script>
   <!-- End Matomo Code -->
 </head>
@@ -640,34 +643,22 @@
           <form id="stageForm" class="form" novalidate style="margin-top:4px">
             <div class="grid-2" style="gap:16px">
               <div class="form__row">
-                <label class="form__label" for="stage_nom">Prénom &amp; nom</label>
-                <input class="form__input" type="text" id="stage_nom" name="nom" required>
+                <label class="form__label" for="stage_email">Email</label>
+                <input class="form__input" type="email" id="stage_email" name="email" autocomplete="email" required>
               </div>
               <div class="form__row">
-                <label class="form__label" for="stage_email">Email</label>
-                <input class="form__input" type="email" id="stage_email" name="email" required>
+                <label class="form__label" for="stage_niveau">Niveau d'études</label>
+                <select class="form__select" id="stage_niveau" name="niveau" required>
+                  <option value="">Sélectionner</option>
+                  <option>L1</option><option>L2</option><option>L3</option>
+                  <option>M1</option><option>M2</option>
+                  <option>Capacité en droit</option>
+                  <option>Autre</option>
+                </select>
               </div>
             </div>
-            <div class="form__row">
-              <label class="form__label" for="stage_whatsapp">Numéro WhatsApp <span style="font-weight:400; color:var(--muted)">(facultatif · pour te répondre plus vite)</span></label>
-              <input class="form__input" type="tel" id="stage_whatsapp" name="whatsapp" placeholder="Ex : +33 6 12 34 56 78">
-            </div>
-            <div class="form__row">
-              <label class="form__label" for="stage_niveau">Niveau d'études</label>
-              <select class="form__select" id="stage_niveau" name="niveau" required>
-                <option value="">Sélectionner</option>
-                <option>L1</option><option>L2</option><option>L3</option>
-                <option>M1</option><option>M2</option>
-                <option>Capacité en droit</option>
-                <option>Autre</option>
-              </select>
-            </div>
-            <div class="form__row">
-              <label class="form__label" for="stage_message">Message (facultatif)</label>
-              <textarea class="form__textarea" id="stage_message" name="message" placeholder="Ex : Intéressé L1, j'ai eu 7/20 en droit civil et j'aimerais progresser sur le commentaire d'arrêt avant les partiels."></textarea>
-            </div>
             <button class="btn btn--primary btn--lg btn--full" type="submit" id="stageFormSubmit">Réserver ma place · 19 €/h · 149 € au total</button>
-            <p class="form__hint text-center">Paiement sécurisé par Stripe · place confirmée immédiatement</p>
+            <p class="form__hint text-center">Paiement sécurisé par Stripe · place confirmée immédiatement · les informations complémentaires sont demandées après le paiement</p>
             <div class="form__error" id="stageFormError" hidden>Une erreur est survenue. Réessaie ou écris-moi directement à <a href="mailto:julien.prof1@gmail.com">julien.prof1@gmail.com</a>.</div>
           </form>
         </div>
@@ -755,6 +746,7 @@
   </div>
 
   <script src="assets/js/main.js?v=4d255b44" defer></script>
+  <script src="assets/js/achat.js?v=641d5535"></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
   (function(){
@@ -806,7 +798,7 @@
         new FormData(sf).forEach(function (v, k) { corps[k] = v; });
 
         // Identifiants Meta transmis uniquement si le visiteur a accepté les cookies,
-        // même logique que assets/js/achat.js pour tous les autres produits du site.
+        // même logique que assets/js/achat.js?v=641d5535 pour tous les autres produits du site.
         if (localStorage.getItem('tjd_consent') === 'granted') {
           var fbp = lireCookie('_fbp');
           var fbc = lireCookie('_fbc');
@@ -816,6 +808,10 @@
         }
         corps.landingPage = sessionStorage.getItem('tjd_landing_page') || window.location.pathname.replace(/^\//, '');
         corps.pageActuelle = window.location.pathname.replace(/^\//, '') + window.location.hash;
+        corps.deviceType = window.tjdTypeAppareil ? window.tjdTypeAppareil() : 'inconnu';
+        corps.viewport = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+          + 'x' + Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        corps.internalTest = window.tjdEstTestInterne ? window.tjdEstTestInterne() : false;
         var referrerSession = sessionStorage.getItem('tjd_referrer');
         if (referrerSession) corps.referrer = referrerSession;
         ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (cle) {
@@ -823,10 +819,10 @@
           if (val) corps[cle] = val;
         });
 
-        if (typeof window.gtag === 'function') {
+        if (!corps.internalTest && typeof window.gtag === 'function') {
           gtag('event', 'begin_checkout', { items: [{ item_id: 'stage-methode' }] });
         }
-        if (window._paq) {
+        if (!corps.internalTest && window._paq) {
           window._paq.push(['trackEvent', 'Ecommerce', 'ClicAcheter', 'stage-methode']);
         }
 
@@ -841,24 +837,19 @@
           .then(function (r) { return r.json().then(function (d) { return { statutOk: r.ok, d: d }; }); })
           .then(function (res) {
             if (res.statutOk && res.d.url) {
-              if (typeof window.gtag === 'function') {
-                gtag('event', 'checkout_session_created', { items: [{ item_id: 'stage-methode' }] });
-              }
-              if (window._paq) {
-                window._paq.push(['trackEvent', 'Ecommerce', 'CheckoutCree', 'stage-methode']);
-              }
-              if (localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
+              if (!corps.internalTest && localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
                 fbq('track', 'InitiateCheckout', { content_ids: ['stage-methode'], content_type: 'product' });
               }
-              window.location.href = res.d.url;
+              if (window.tjdMesurerCheckout) {
+                window.tjdMesurerCheckout('CheckoutCree', 'stage-methode', function () {
+                  window.location.assign(res.d.url);
+                });
+              } else {
+                window.location.assign(res.d.url);
+              }
               return;
             }
-            if (typeof window.gtag === 'function') {
-              gtag('event', 'checkout_error', { items: [{ item_id: 'stage-methode' }] });
-            }
-            if (window._paq) {
-              window._paq.push(['trackEvent', 'Ecommerce', 'CheckoutErreur', 'stage-methode']);
-            }
+            if (window.tjdMesurerCheckout) window.tjdMesurerCheckout('CheckoutErreur', 'stage-methode');
             if (res.d && res.d.complet) {
               ko.textContent = 'Le stage est complet pour cette session. Écris-moi à julien.prof1@gmail.com pour être prévenu de la prochaine.';
             }
@@ -868,12 +859,7 @@
             btn.textContent = texteBoutonDefaut;
           })
           .catch(function () {
-            if (typeof window.gtag === 'function') {
-              gtag('event', 'checkout_error', { items: [{ item_id: 'stage-methode' }] });
-            }
-            if (window._paq) {
-              window._paq.push(['trackEvent', 'Ecommerce', 'CheckoutErreur', 'stage-methode']);
-            }
+            if (window.tjdMesurerCheckout) window.tjdMesurerCheckout('CheckoutErreur', 'stage-methode');
             ko.hidden = false;
             btn.disabled = false;
             btn.textContent = texteBoutonDefaut;

@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <!-- tjd-consent-default -->
+  <script src="assets/js/analytics-mode.js?v=b8d18c50"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -28,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=f11507b7">
+  <link rel="stylesheet" href="assets/style.css?v=bdb59b2c">
 
   <script type="application/ld+json">
   {
@@ -138,11 +139,12 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-SGBDDYMHMF');
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
   </script>
   <!-- Matomo -->
   <script>
     var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
     _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
@@ -153,6 +155,7 @@
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
       g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
     })();
+    }
   </script>
   <!-- End Matomo Code -->
 </head>
@@ -369,6 +372,46 @@
       </div>
     </section>
 
+    <section class="conversion-offer" aria-labelledby="offre-admin-titre">
+      <div class="container">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/fiche-da-l2-s1.webp" alt="Couverture de la fiche complète Droit administratif L2" fetchpriority="high" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">La fiche complète de la matière</p>
+            <h2 class="conversion-offer__title" id="offre-admin-titre">Droit administratif L2, prêt à réviser</h2>
+            <p class="conversion-offer__summary"><strong>200 pages sur les deux semestres.</strong> Le S1 réunit l'organisation administrative, les actes, le service public et la police. Le S2 couvre les contrats, la responsabilité et le contentieux.</p>
+            <ul class="conversion-offer__benefits">
+              <li>Les arrêts replacés dans leur contexte</li>
+              <li>Des schémas et des cartes mentales</li>
+              <li>Un PDF reçu juste après le paiement</li>
+            </ul>
+            <div class="conversion-offer__choices" aria-label="Choisir la fiche de droit administratif">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="pack-l2">Toute la L2 · 68 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="fiche-da-l2-s1">Semestre 1 · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="fiche-da-l2-s2">Semestre 2 · 14,99 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement Stripe · accès à vie · mises à jour incluses · garantie satisfait ou remboursé sous 7 jours</p>
+            <section class="conversion-reviews" data-review-slot="droit-administratif" hidden aria-label="Avis d'élèves"></section>
+            <details class="sample-capture">
+              <summary>Lire un extrait gratuit de droit administratif</summary>
+              <form data-tjd-sample-form data-source="extrait-droit-administratif-l2">
+                <input class="form__input" type="email" name="email" autocomplete="email" placeholder="ton@email.com" aria-label="Ton email" required>
+                <button class="btn btn--outline" type="submit">Voir mon extrait</button>
+              </form>
+              <p class="sample-capture__consent">En cliquant, tu acceptes de recevoir mes emails de révision. Désinscription en un clic.</p>
+              <p class="sample-capture__status" data-tjd-sample-status aria-live="polite"></p>
+              <div class="sample-capture__pages" data-tjd-sample-result hidden>
+                <img src="assets/apercus/da-l2-s1-1.webp" alt="Première page de l'extrait Droit administratif L2" width="672" height="950" loading="lazy" decoding="async">
+                <img src="assets/apercus/da-l2-s1-2.webp" alt="Deuxième page de l'extrait Droit administratif L2" width="672" height="950" loading="lazy" decoding="async">
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section--sm intro-pourquoi" style="padding-top:24px">
       <div class="container container--narrow">
         <h3 style="margin:0 0 12px">Pourquoi j'ai créé ces fiches</h3>
@@ -398,7 +441,7 @@
         <p class="lead" style="max-width:620px; margin:14px auto 28px">Tout ce qui est sur cette page, mais en détail, mis en couleur, avec les schémas, les arrêts replacés dans leur contexte et la méthode appliquée. Deux semestres, 200 pages au total, agréables à lire et faciles à mémoriser. Accès à vie, mises à jour incluses.</p>
         <div class="grid-2" style="gap:20px; max-width:760px; margin:0 auto 24px">
           <div class="card card--product">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-da-l2-s1.jpg?v=fiche-texte-net-v3-20260821" alt="Couverture de la fiche Droit admin S1" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-da-l2-s1.webp" alt="Couverture de la fiche Droit admin S1" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
             <h3 style="margin-top:0">Droit admin S1 · 109 p.</h3>
             <p style="color:var(--body); font-size:.95rem">Acte administratif, service public, police administrative, organisation administrative.</p>
@@ -413,7 +456,7 @@
           </div>
           </div>
           <div class="card card--product">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-da-l2-s2.jpg?v=fiche-texte-net-v3-20260821" alt="Couverture de la fiche Droit admin S2" loading="lazy"></div>
+            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-da-l2-s2.webp" alt="Couverture de la fiche Droit admin S2" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
             <h3 style="margin-top:0">Droit admin S2 · 91 p.</h3>
             <p style="color:var(--body); font-size:.95rem">Responsabilité administrative, contentieux, contrats administratifs.</p>
@@ -534,7 +577,7 @@
         </div>
       </div>
       <div class="card" style="border-color:var(--blue-600); border-width:2px">
-        <img src="assets/covers/pack-matiere-da-l2.jpg" alt="Coffret Droit administratif L2, couverture Trajectoire Droit" loading="lazy" style="display:block; width:100%; aspect-ratio:16 / 9; object-fit:cover; border-radius:10px; margin-bottom:14px">
+        <img src="assets/covers/pack-matiere-da-l2.webp" alt="Coffret Droit administratif L2, couverture Trajectoire Droit" loading="lazy" style="display:block; width:100%; aspect-ratio:16 / 9; object-fit:cover; border-radius:10px; margin-bottom:14px" width="960" height="540" decoding="async">
         <span class="badge badge--popular" style="margin-bottom:8px">Meilleure offre</span>
         <h3 style="margin-top:0">Pack matière complet</h3>
         <p style="color:var(--body); font-size:.9rem">Fiche complète, flashcards et QCM, fiches d'arrêt et un corrigé. Tout ce qu'il faut pour Droit administratif L2, à prix réduit.</p>
@@ -647,7 +690,7 @@
     <section class="section" id="auteur">
       <div class="container container--narrow">
         <div class="card" style="display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:start">
-          <img src="assets/julien-sm.jpg" alt="Julien, professeur de droit, auteur de la fiche de droit administratif" style="width:110px; height:110px; border-radius:50%; object-fit:cover">
+          <img src="assets/julien-sm.webp" alt="Julien, professeur de droit, auteur de la fiche de droit administratif" style="width:110px; height:110px; border-radius:50%; object-fit:cover">
           <div>
             <h2 class="h3" style="margin-top:0">Écrit par Julien, professeur de droit</h2>
             <p style="color:var(--blue-700); font-weight:600; margin-bottom:10px">Master II de droit pénal · Panthéon-Assas · Major puis vice-major de promo · #1 sur Superprof</p>
@@ -822,14 +865,19 @@
   <!-- ===== STICKY CTA (mobile et desktop, visible pendant la lecture de la page) ===== -->
   <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
     <div class="sticky-cta-bar__text">
-      <strong>Droit administratif L2 · 14,99 €</strong>
-      <small>Fiche S1 ou S2 · accès à vie</small>
+      <strong>Choisis ton droit administratif L2</strong>
+      <small>S1, S2 ou toute la L2</small>
     </div>
-    <a class="btn btn--primary" href="#fiches">Voir les fiches →</a>
+    <div class="sticky-cta-bar__choices" aria-label="Achat rapide droit administratif">
+      <button type="button" class="btn btn--primary" data-tjd-produit="pack-l2">Pack L2 · 68 €</button>
+      <button type="button" class="btn btn--outline" data-tjd-produit="fiche-da-l2-s1">S1 · 14,99 €</button>
+      <button type="button" class="btn btn--outline" data-tjd-produit="fiche-da-l2-s2">S2 · 14,99 €</button>
+    </div>
   </div>
 
   <script src="assets/js/main.js?v=4d255b44" defer></script>
-  <script src="assets/js/achat.js?v=490ce72b" defer></script>
+  <script src="assets/js/achat.js?v=641d5535" defer></script>
+  <script src="assets/js/lead-sample.js?v=2fb15f79" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
   (function(){

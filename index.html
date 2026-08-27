@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <!-- tjd-consent-default -->
+  <script src="assets/js/analytics-mode.js?v=b8d18c50"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -30,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=f11507b7">
+  <link rel="stylesheet" href="assets/style.css?v=bdb59b2c">
   <!-- Plausible Analytics : décommente après création du compte -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
 
@@ -54,11 +55,12 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-SGBDDYMHMF');
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
   </script>
   <!-- Matomo -->
   <script>
     var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
     _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
@@ -69,6 +71,7 @@
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
       g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
     })();
+    }
   </script>
   <!-- End Matomo Code -->
 </head>
@@ -355,7 +358,7 @@
                 <video class="fiche-preview__video"
                        controls
                        preload="metadata"
-                       poster="assets/hero-video-produits-poster.jpg?v=6e152b1c">
+                       poster="assets/hero-video-produits-poster.webp">
                   <source src="https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/video/vue-ensemble-produits.mp4" type="video/mp4">
                 </video>
               </div>
@@ -483,10 +486,10 @@
 
       <div class="product-carousel" data-product-carousel>
         <div class="product-carousel__viewport" tabindex="0" aria-label="Aperçu de la majeure préparée, Droit des contrats L2 Semestre 1, 4 pages">
-          <div class="product-carousel__slide"><img src="assets/apercus/home-majeure-contrats-l2s1-p10.jpg" alt="Majeure préparée, Droit des contrats L2 Semestre 1, page 10, fin de la majeure sur l'erreur et début de la majeure sur le dol" loading="lazy" width="1310" height="1853"></div>
-          <div class="product-carousel__slide"><img src="assets/apercus/home-majeure-contrats-l2s1-p11.jpg" alt="Majeure préparée, Droit des contrats L2 Semestre 1, page 11, les cinq conditions du dol" loading="lazy" width="1310" height="1853"></div>
-          <div class="product-carousel__slide"><img src="assets/apercus/home-majeure-contrats-l2s1-p12.jpg" alt="Majeure préparée, Droit des contrats L2 Semestre 1, page 12, les effets du dol" loading="lazy" width="1310" height="1853"></div>
-          <div class="product-carousel__slide"><img src="assets/apercus/home-majeure-contrats-l2s1-p13.jpg" alt="Majeure préparée, Droit des contrats L2 Semestre 1, page 13, début de la majeure sur la violence" loading="lazy" width="1310" height="1853"></div>
+          <div class="product-carousel__slide"><img src="assets/apercus/home-majeure-contrats-l2s1-p10.webp" alt="Majeure préparée, Droit des contrats L2 Semestre 1, page 10, fin de la majeure sur l'erreur et début de la majeure sur le dol" loading="lazy" width="1310" height="1853"></div>
+          <div class="product-carousel__slide"><img src="assets/apercus/home-majeure-contrats-l2s1-p11.webp" alt="Majeure préparée, Droit des contrats L2 Semestre 1, page 11, les cinq conditions du dol" loading="lazy" width="1310" height="1853"></div>
+          <div class="product-carousel__slide"><img src="assets/apercus/home-majeure-contrats-l2s1-p12.webp" alt="Majeure préparée, Droit des contrats L2 Semestre 1, page 12, les effets du dol" loading="lazy" width="1310" height="1853"></div>
+          <div class="product-carousel__slide"><img src="assets/apercus/home-majeure-contrats-l2s1-p13.webp" alt="Majeure préparée, Droit des contrats L2 Semestre 1, page 13, début de la majeure sur la violence" loading="lazy" width="1310" height="1853"></div>
         </div>
         <button type="button" class="product-carousel__arrow product-carousel__arrow--prev" data-carousel-prev aria-label="Page précédente">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg>
@@ -544,21 +547,21 @@
 
           <article class="card card--pricing card--featured fade-in fade-in--delay-1">
             <div>
-              <span class="eyebrow eyebrow--green">Achat unique</span>
-              <div class="pricing__name" style="margin-top:12px">Fiches complètes</div>
+              <span class="eyebrow eyebrow--green">Choix recommandé</span>
+              <div class="pricing__name" style="margin-top:12px">Pack d'une année</div>
               <div style="display:flex; align-items:baseline; gap:6px; margin-top:8px">
-                <span class="pricing__price pricing__price--green">14,99 €</span>
-                <span class="pricing__period">/ matière</span>
+                <span class="pricing__price pricing__price--green">dès 58 €</span>
+                <span class="pricing__period">/ année</span>
               </div>
-              <p style="font-size:.9rem; color:var(--rating-star); font-weight:600; margin-top:6px">Aucun abonnement, accès à vie</p>
+              <p style="font-size:.9rem; color:var(--rating-star); font-weight:600; margin-top:6px">Moins cher que les mêmes fiches à l'unité</p>
             </div>
             <ul class="pricing__list">
-              <li>Toute la matière d'un semestre en un PDF</li>
-              <li>Mise en page claire, schémas et exemples</li>
-              <li>Mises à jour à chaque réforme</li>
-              <li>Téléchargement immédiat</li>
+              <li>Toutes les fiches de ton année</li>
+              <li>Un PDF complet par matière et par semestre</li>
+              <li>Accès à vie et mises à jour incluses</li>
+              <li>Fiches à l'unité toujours disponibles</li>
             </ul>
-            <a class="btn btn--primary btn--full" href="formations.html">Voir le catalogue →</a>
+            <a class="btn btn--primary btn--full" href="formations.html#packs-annee">Choisir mon année →</a>
           </article>
 
           <article class="card card--pricing fade-in fade-in--delay-2">
@@ -749,7 +752,7 @@
       <div class="container">
         <div class="grid-2" style="gap:48px; align-items:center">
           <div class="fade-in">
-            <img src="assets/julien-md.jpg" srcset="assets/julien-sm.jpg 400w, assets/julien-md.jpg 800w, assets/julien-lg.jpg 1200w" sizes="(max-width: 768px) 90vw, 480px" alt="Julien, professeur de droit, major puis vice-major de promo à Panthéon-Assas" style="width:100%; border-radius:var(--r-xl); box-shadow:var(--sh-3); border:1px solid var(--border)">
+            <img src="assets/julien-md.webp" srcset="assets/julien-sm.webp 400w, assets/julien-md.webp 800w, assets/julien-lg.webp 1200w" sizes="(max-width: 768px) 90vw, 480px" alt="Julien, professeur de droit, major puis vice-major de promo à Panthéon-Assas" width="768" height="800" loading="lazy" decoding="async" style="width:100%; border-radius:var(--r-xl); box-shadow:var(--sh-3); border:1px solid var(--border)">
           </div>
           <div class="fade-in fade-in--delay-1">
             <span class="eyebrow">Qui est derrière TrajectoireDroit</span>
@@ -1007,6 +1010,7 @@
   </div>
 
   <script src="assets/js/main.js?v=4d255b44" defer></script>
+  <script src="assets/js/achat.js?v=641d5535"></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
   (function(){
