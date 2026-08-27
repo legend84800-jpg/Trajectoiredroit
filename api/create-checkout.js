@@ -1,15 +1,33 @@
 // Crée une session Stripe Checkout pour un produit TJD, avec order bump optionnel.
-// Reçoit { produitId, bumpId? } en POST. Retourne { url } pour rediriger le client.
+// Reçoit { produitId, bumpId?, attemptId? } en POST. Retourne { url } pour rediriger le client.
 // Gère aussi l'abonnement récurrent Portalis (mode: "subscription") et l'ouverture
 // du portail client Stripe pour le gérer/résilier (type: "portal"), afin de rester
 // sous la limite de 12 fonctions serverless du plan Vercel Hobby.
 
+const crypto = require("crypto");
 const PRODUITS = require("./_produits");
 const { selectionner } = require("./_supabase");
+const { creerClientStripe, INTEGRATION_IDS } = require("./_stripe");
 
 const PORTALIS_PRICE_ID = "price_1TqyboIJrx5ith04BGxcyg5T";
 
-module.exports = async (req, res) => {
+function normaliserAttemptId(valeur) {
+  if (typeof valeur === "string" && /^[a-zA-Z0-9_-]{16,80}$/.test(valeur.trim())) {
+    return valeur.trim();
+  }
+  return crypto.randomUUID();
+}
+
+function normaliserAttemptTimestamp(valeur) {
+  const maintenant = Math.floor(Date.now() / 1000);
+  const timestamp = Number(valeur);
+  if (Number.isInteger(timestamp) && timestamp >= maintenant - 600 && timestamp <= maintenant + 60) {
+    return timestamp;
+  }
+  return maintenant;
+}
+
+async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "https://trajectoiredroit.com");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -23,6 +41,9 @@ module.exports = async (req, res) => {
 
   const stripeKey = process.env.STRIPE_SECRET_KEY;
   if (!stripeKey) { res.status(500).json({ erreur: "Configuration Stripe manquante" }); return; }
+  const stripe = creerClientStripe(stripeKey);
+  const attemptId = normaliserAttemptId(corps.attemptId);
+  const attemptTimestamp = normaliserAttemptTimestamp(corps.attemptCreatedAt);
 
   const origin = "https://trajectoiredroit.com";
 
@@ -49,27 +70,14 @@ module.exports = async (req, res) => {
     }
 
     try {
-      const resp = await fetch("https://api.stripe.com/v1/billing_portal/sessions", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${stripeKey}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          customer: abonnement.stripe_customer_id,
-          return_url: `${origin}/mon-compte.html`,
-        }).toString(),
+      const sessionPortail = await stripe.billingPortal.sessions.create({
+        customer: abonnement.stripe_customer_id,
+        return_url: `${origin}/mon-compte.html`,
       });
-      const data = await resp.json();
-      if (!resp.ok) {
-        console.error("Stripe erreur (portal):", data);
-        res.status(502).json({ erreur: "Erreur Stripe", detail: data.error && data.error.message });
-        return;
-      }
-      res.status(200).json({ url: data.url });
+      res.status(200).json({ url: sessionPortail.url });
     } catch (e) {
-      console.error("create-checkout (portal) fetch erreur:", e);
-      res.status(500).json({ erreur: "Erreur interne" });
+      console.error("create-checkout (portal) erreur Stripe:", e.message);
+      res.status(502).json({ erreur: "Erreur Stripe", detail: e.message });
     }
     return;
   }
@@ -94,49 +102,40 @@ module.exports = async (req, res) => {
       // Non bloquant : Stripe créera un nouveau customer par email si la lecture échoue.
     }
 
-    const paramsAbo = new URLSearchParams({
-      "line_items[0][price]": PORTALIS_PRICE_ID,
-      "line_items[0][quantity]": "1",
+    const paramsAbo = {
+      line_items: [{ price: PORTALIS_PRICE_ID, quantity: 1 }],
       mode: "subscription",
       // Portalis est un abonnement, hors périmètre de la remise post-achat.
-      allow_promotion_codes: "false",
+      allow_promotion_codes: false,
       success_url: `${origin}/mon-compte.html?abonnement=ok`,
       cancel_url: `${origin}/mon-compte.html`,
-      "metadata[supabase_user_id]": supabaseUserId,
-      "subscription_data[metadata][supabase_user_id]": supabaseUserId,
-      "branding_settings[display_name]": "Trajectoire Droit",
-      "branding_settings[icon][type]": "url",
-      "branding_settings[icon][url]": `${origin}/assets/logo-tjd-mark.png`,
-      "branding_settings[background_color]": "#ffffff",
-      "branding_settings[button_color]": "#1A2851",
-      "branding_settings[border_style]": "rounded",
-      "branding_settings[font_family]": "pt_serif",
-    });
+      metadata: { supabase_user_id: supabaseUserId, attemptId, source: "site" },
+      subscription_data: { metadata: { supabase_user_id: supabaseUserId } },
+      branding_settings: {
+        display_name: "Trajectoire Droit",
+        icon: { type: "url", url: `${origin}/assets/logo-tjd-mark.png` },
+        background_color: "#ffffff",
+        button_color: "#1A2851",
+        border_style: "rounded",
+        font_family: "pt_serif",
+      },
+      integration_identifier: INTEGRATION_IDS.portalis,
+    };
     if (customerExistant) {
-      paramsAbo.set("customer", customerExistant);
+      paramsAbo.customer = customerExistant;
     } else {
-      paramsAbo.set("customer_email", supabaseEmail);
+      paramsAbo.customer_email = supabaseEmail;
     }
 
     try {
-      const resp = await fetch("https://api.stripe.com/v1/checkout/sessions", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${stripeKey}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: paramsAbo.toString(),
-      });
-      const data = await resp.json();
-      if (!resp.ok) {
-        console.error("Stripe erreur (subscription):", data);
-        res.status(502).json({ erreur: "Erreur Stripe", detail: data.error && data.error.message });
-        return;
-      }
-      res.status(200).json({ url: data.url });
+      const sessionAbo = await stripe.checkout.sessions.create(
+        paramsAbo,
+        { idempotencyKey: `portalis-${attemptId}` }
+      );
+      res.status(200).json({ url: sessionAbo.url, sessionId: sessionAbo.id, attemptId });
     } catch (e) {
-      console.error("create-checkout (subscription) fetch erreur:", e);
-      res.status(500).json({ erreur: "Erreur interne" });
+      console.error("create-checkout (subscription) erreur Stripe:", e.message);
+      res.status(502).json({ erreur: "Erreur Stripe", detail: e.message });
     }
     return;
   }
@@ -187,50 +186,60 @@ module.exports = async (req, res) => {
   const idsAchetes = bump ? [produitId, bumpId] : [produitId];
   const pageSucces = produitId === "stage-methode" ? "merci-stage.html" : "merci-achat.html";
 
-  const params = new URLSearchParams({
+  const params = {
     // Pas de payment_method_types forcé : Stripe active les moyens de paiement
     // dynamiques du dashboard (carte, Link, Apple Pay, Google Pay, PayPal si activé),
     // essentiels pour des étudiants qui n'ont pas toujours de CB à leur nom.
-    "line_items[0][price_data][currency]": "eur",
-    "line_items[0][price_data][unit_amount]": String(produit.prix),
-    "line_items[0][price_data][product_data][name]": produit.nom,
-    "line_items[0][quantity]": "1",
+    line_items: [{
+      price_data: {
+        currency: "eur",
+        unit_amount: produit.prix,
+        product_data: { name: produit.nom },
+      },
+      quantity: 1,
+    }],
     mode: "payment",
     // La remise post-achat concerne les fiches et formations numériques. Le stage
     // reste exclu, car il correspond à une place limitée dans une session datée.
-    allow_promotion_codes: produitId === "stage-methode" ? "false" : "true",
+    allow_promotion_codes: produitId !== "stage-methode",
     // Stripe affiche une case facultative pour les communications promotionnelles
     // quand le contexte juridique du client l'exige. Le webhook ajoute ensuite à
     // la liste marketing Brevo uniquement les personnes qui ont donné cet accord.
-    "consent_collection[promotions]": "auto",
+    consent_collection: { promotions: "auto" },
     success_url: `${origin}/${pageSucces}?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: pageActuelle ? `${origin}/${pageActuelle}` : `${origin}/formations.html`,
     // Expiration raccourcie à 2h (au lieu des 24h par défaut Stripe) pour que la
     // relance de panier abandonné (voir stripe-webhook.js, event checkout.session.expired)
     // puisse partir le jour même plutôt que le lendemain.
-    expires_at: String(Math.floor(Date.now() / 1000) + 2 * 3600),
-    "metadata[produitIds]": idsAchetes.join(","),
-    "payment_intent_data[metadata][produitIds]": idsAchetes.join(","),
-    "branding_settings[display_name]": "Trajectoire Droit",
-    "branding_settings[icon][type]": "url",
-    "branding_settings[icon][url]": `${origin}/assets/logo-tjd-mark.png`,
-    "branding_settings[background_color]": "#ffffff",
-    "branding_settings[button_color]": "#1A2851",
-    "branding_settings[border_style]": "rounded",
-    "branding_settings[font_family]": "pt_serif",
-  });
+    expires_at: attemptTimestamp + 2 * 3600,
+    metadata: {
+      produitIds: idsAchetes.join(","),
+      attemptId,
+      source: "site",
+    },
+    payment_intent_data: { metadata: { produitIds: idsAchetes.join(",") } },
+    branding_settings: {
+      display_name: "Trajectoire Droit",
+      icon: { type: "url", url: `${origin}/assets/logo-tjd-mark.png` },
+      background_color: "#ffffff",
+      button_color: "#1A2851",
+      border_style: "rounded",
+      font_family: "pt_serif",
+    },
+    integration_identifier: INTEGRATION_IDS.checkout,
+  };
 
   if (consentMarketing) {
-    params.set("metadata[consentMarketing]", "1");
-    if (fbp) params.set("metadata[fbp]", fbp);
-    if (fbc) params.set("metadata[fbc]", fbc);
+    params.metadata.consentMarketing = "1";
+    if (fbp) params.metadata.fbp = fbp;
+    if (fbc) params.metadata.fbc = fbc;
   }
 
-  if (landingPage) params.set("metadata[landingPage]", landingPage);
-  if (referrer) params.set("metadata[referrer]", referrer);
-  if (utmSource) params.set("metadata[utmSource]", utmSource);
-  if (utmMedium) params.set("metadata[utmMedium]", utmMedium);
-  if (utmCampaign) params.set("metadata[utmCampaign]", utmCampaign);
+  if (landingPage) params.metadata.landingPage = landingPage;
+  if (referrer) params.metadata.referrer = referrer;
+  if (utmSource) params.metadata.utmSource = utmSource;
+  if (utmMedium) params.metadata.utmMedium = utmMedium;
+  if (utmCampaign) params.metadata.utmCampaign = utmCampaign;
 
   // Champs du formulaire d'inscription au stage (remplace l'ancien flux /api/contact,
   // qui envoyait ces infos par email sans jamais déclencher de paiement) : transmis en
@@ -241,44 +250,44 @@ module.exports = async (req, res) => {
     const whatsapp = tronquer(corps.whatsapp, 40);
     const niveau = tronquer(corps.niveau, 40);
     const messageInscrit = tronquer(corps.message, 500);
-    if (nomInscrit) params.set("metadata[nom]", nomInscrit);
-    if (whatsapp) params.set("metadata[whatsapp]", whatsapp);
-    if (niveau) params.set("metadata[niveau]", niveau);
-    if (messageInscrit) params.set("metadata[message]", messageInscrit);
+    if (nomInscrit) params.metadata.nom = nomInscrit;
+    if (whatsapp) params.metadata.whatsapp = whatsapp;
+    if (niveau) params.metadata.niveau = niveau;
+    if (messageInscrit) params.metadata.message = messageInscrit;
     // Pré-remplit l'email sur la page Stripe Checkout, déjà saisi dans le formulaire :
     // évite de le faire retaper, sans jamais faire confiance à une entrée non validée.
     if (emailInscrit && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInscrit)) {
-      params.set("customer_email", emailInscrit);
+      params.customer_email = emailInscrit;
     }
   }
 
   if (bump) {
-    params.set("line_items[1][price_data][currency]", "eur");
-    params.set("line_items[1][price_data][unit_amount]", String(bump.prix));
-    params.set("line_items[1][price_data][product_data][name]", bump.nom);
-    params.set("line_items[1][quantity]", "1");
+    params.line_items.push({
+      price_data: {
+        currency: "eur",
+        unit_amount: bump.prix,
+        product_data: { name: bump.nom },
+      },
+      quantity: 1,
+    });
   }
-
-  const body = params.toString();
 
   try {
-    const resp = await fetch("https://api.stripe.com/v1/checkout/sessions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${stripeKey}`,
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body,
+    const sessionCheckout = await stripe.checkout.sessions.create(
+      params,
+      { idempotencyKey: `checkout-${attemptId}` }
+    );
+    res.status(200).json({
+      url: sessionCheckout.url,
+      sessionId: sessionCheckout.id,
+      attemptId,
+      attemptCreatedAt: attemptTimestamp,
     });
-    const data = await resp.json();
-    if (!resp.ok) {
-      console.error("Stripe erreur:", data);
-      res.status(502).json({ erreur: "Erreur Stripe", detail: data.error?.message });
-      return;
-    }
-    res.status(200).json({ url: data.url });
   } catch (e) {
-    console.error("create-checkout fetch erreur:", e);
-    res.status(500).json({ erreur: "Erreur interne" });
+    console.error("create-checkout erreur Stripe:", e.message);
+    res.status(502).json({ erreur: "Erreur Stripe", detail: e.message });
   }
-};
+}
+
+module.exports = handler;
+module.exports._test = { normaliserAttemptId, normaliserAttemptTimestamp };

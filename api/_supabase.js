@@ -46,6 +46,39 @@ async function inserer(table, donnees) {
   return resp.json();
 }
 
+// Réserve une ligne sans écraser celle qui existe déjà. Avec une contrainte
+// unique sur colonneConflit, un tableau vide signifie que l'événement a déjà
+// été traité. Ce mécanisme sert de verrou durable pour les webhooks Stripe.
+async function insererSiAbsent(table, donnees, colonneConflit) {
+  const { url, serviceKey } = base();
+  const resp = await fetch(`${url}/rest/v1/${table}?on_conflict=${encodeURIComponent(colonneConflit)}`, {
+    method: "POST",
+    headers: {
+      apikey: serviceKey,
+      Authorization: `Bearer ${serviceKey}`,
+      "Content-Type": "application/json",
+      Prefer: "resolution=ignore-duplicates,return=representation",
+    },
+    body: JSON.stringify(donnees),
+  });
+  if (!resp.ok) throw new Error(`Supabase insert-if-absent ${table}: ${resp.status} ${await resp.text()}`);
+  return resp.json();
+}
+
+async function supprimer(table, requete) {
+  const { url, serviceKey } = base();
+  const resp = await fetch(`${url}/rest/v1/${table}?${requete}`, {
+    method: "DELETE",
+    headers: {
+      apikey: serviceKey,
+      Authorization: `Bearer ${serviceKey}`,
+      Prefer: "return=representation",
+    },
+  });
+  if (!resp.ok) throw new Error(`Supabase delete ${table}: ${resp.status} ${await resp.text()}`);
+  return resp.json();
+}
+
 // Insère ou met à jour selon une contrainte unique (ex: "user_id" ou "user_id,mois").
 async function upsert(table, donnees, colonneConflit) {
   const { url, serviceKey } = base();
@@ -79,4 +112,12 @@ async function mettreAJour(table, requete, donnees) {
   return resp.json();
 }
 
-module.exports = { utilisateurDepuisJWT, selectionner, inserer, upsert, mettreAJour };
+module.exports = {
+  utilisateurDepuisJWT,
+  selectionner,
+  inserer,
+  insererSiAbsent,
+  supprimer,
+  upsert,
+  mettreAJour,
+};

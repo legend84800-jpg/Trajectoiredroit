@@ -788,12 +788,21 @@
         return m ? decodeURIComponent(m[1]) : null;
       }
 
+      function creerAttemptId() {
+        var alea = window.crypto && typeof window.crypto.randomUUID === 'function'
+          ? window.crypto.randomUUID()
+          : Math.random().toString(36).slice(2, 14);
+        return 'stage-' + Date.now().toString(36) + '-' + alea;
+      }
+
       sf.addEventListener('submit', function (e) {
         e.preventDefault();
         ko.hidden = true;
         ko.innerHTML = koTexteDefaut;
 
         var corps = { produitId: 'stage-methode' };
+        corps.attemptId = creerAttemptId();
+        corps.attemptCreatedAt = Math.floor(Date.now() / 1000);
         new FormData(sf).forEach(function (v, k) { corps[k] = v; });
 
         // Identifiants Meta transmis uniquement si le visiteur a accepté les cookies,
@@ -832,11 +841,23 @@
           .then(function (r) { return r.json().then(function (d) { return { statutOk: r.ok, d: d }; }); })
           .then(function (res) {
             if (res.statutOk && res.d.url) {
+              if (typeof window.gtag === 'function') {
+                gtag('event', 'checkout_session_created', { items: [{ item_id: 'stage-methode' }] });
+              }
+              if (window._paq) {
+                window._paq.push(['trackEvent', 'Ecommerce', 'CheckoutCree', 'stage-methode']);
+              }
               if (localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
                 fbq('track', 'InitiateCheckout', { content_ids: ['stage-methode'], content_type: 'product' });
               }
               window.location.href = res.d.url;
               return;
+            }
+            if (typeof window.gtag === 'function') {
+              gtag('event', 'checkout_error', { items: [{ item_id: 'stage-methode' }] });
+            }
+            if (window._paq) {
+              window._paq.push(['trackEvent', 'Ecommerce', 'CheckoutErreur', 'stage-methode']);
             }
             if (res.d && res.d.complet) {
               ko.textContent = 'Le stage est complet pour cette session. Écris-moi à julien.prof1@gmail.com pour être prévenu de la prochaine.';
@@ -847,6 +868,12 @@
             btn.textContent = texteBoutonDefaut;
           })
           .catch(function () {
+            if (typeof window.gtag === 'function') {
+              gtag('event', 'checkout_error', { items: [{ item_id: 'stage-methode' }] });
+            }
+            if (window._paq) {
+              window._paq.push(['trackEvent', 'Ecommerce', 'CheckoutErreur', 'stage-methode']);
+            }
             ko.hidden = false;
             btn.disabled = false;
             btn.textContent = texteBoutonDefaut;

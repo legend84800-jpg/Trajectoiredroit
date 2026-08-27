@@ -8,8 +8,9 @@
 
 const crypto = require("crypto");
 const PRODUITS = require("./_produits");
-const { upsert, inserer } = require("./_supabase");
+const { upsert, insererSiAbsent, supprimer } = require("./_supabase");
 const { construireLiensTelechargement } = require("./_liens-telechargement");
+const { creerClientStripe, INTEGRATION_IDS } = require("./_stripe");
 
 // Traduit le statut Stripe en statut simplifié stocké côté Supabase.
 function statutAbonnement(statutStripe) {
@@ -92,49 +93,32 @@ function formaterDateRemise(timestamp) {
 
 // Chaque acheteur consentant reçoit un code personnel. Il est créé dès l'achat,
 // puis l'email J+8 lui laisse encore sept jours pour l'utiliser.
-async function creerRemisePostAchat(sessionId, stripeKey) {
+async function creerRemisePostAchat(sessionId, stripe) {
   const expiresAt = Math.floor(Date.now() / 1000) + (15 * 24 * 60 * 60);
   const suffixe = crypto.createHash("sha256").update(sessionId).digest("hex").slice(0, 8).toUpperCase();
   const code = `POSTA-${suffixe}`;
-  const headers = {
-    Authorization: `Bearer ${stripeKey}`,
-    "Content-Type": "application/x-www-form-urlencoded",
-  };
-  const params = new URLSearchParams({
+  const params = {
     code,
-    active: "true",
-    expires_at: String(expiresAt),
-    max_redemptions: "1",
-    "promotion[type]": "coupon",
-    "promotion[coupon]": COUPON_REMISE_POST_ACHAT,
-    "metadata[campaign]": "post-achat-brevo",
-    "metadata[checkout_session]": sessionId,
-  });
+    active: true,
+    expires_at: expiresAt,
+    max_redemptions: 1,
+    promotion: { type: "coupon", coupon: COUPON_REMISE_POST_ACHAT },
+    metadata: { campaign: "post-achat-brevo", checkout_session: sessionId },
+  };
 
-  const resp = await fetch("https://api.stripe.com/v1/promotion_codes", {
-    method: "POST",
-    headers,
-    body: params.toString(),
-  });
-  const data = await resp.json();
-  if (resp.ok) {
-    return { code: data.code, dateFin: formaterDateRemise(data.expires_at) };
-  }
-
-  // Stripe rejette un deuxième envoi du même webhook. On récupère alors le code
-  // déjà créé, ce qui conserve un seul code pour une même vente.
-  if (data.error && data.error.code === "resource_already_exists") {
-    const existant = await fetch(
-      `https://api.stripe.com/v1/promotion_codes?code=${encodeURIComponent(code)}&limit=1`,
-      { headers: { Authorization: `Bearer ${stripeKey}` } }
-    );
-    const liste = await existant.json();
-    const promo = liste.data && liste.data[0];
-    if (existant.ok && promo) {
-      return { code: promo.code, dateFin: formaterDateRemise(promo.expires_at) };
+  try {
+    const promotion = await stripe.promotionCodes.create(params, {
+      idempotencyKey: `remise-${sessionId}`,
+    });
+    return { code: promotion.code, dateFin: formaterDateRemise(promotion.expires_at) };
+  } catch (e) {
+    if (e && e.code === "resource_already_exists") {
+      const liste = await stripe.promotionCodes.list({ code, limit: 1 });
+      const promo = liste.data && liste.data[0];
+      if (promo) return { code: promo.code, dateFin: formaterDateRemise(promo.expires_at) };
     }
+    throw e;
   }
-  throw new Error(`Stripe promotion code ${resp.status}: ${JSON.stringify(data.error)}`);
 }
 
 // Le nom d'un produit suit toujours "Famille Matière [Semestre]" (ex: "Fiche complète
@@ -208,8 +192,6 @@ async function reinscrireAcheteurBrevo(email, brevoKey) {
   if (!ajouter.ok) throw new Error(`Brevo ajout liste ${ajouter.status}: ${await ajouter.text()}`);
 }
 
-module.exports.config = { api: { bodyParser: false } };
-
 async function lireBodyBrut(req) {
   return new Promise((resolve, reject) => {
     const chunks = [];
@@ -219,27 +201,6 @@ async function lireBodyBrut(req) {
   });
 }
 
-function verifierSignatureStripe(body, header, secret) {
-  if (!header) return false;
-  const parties = {};
-  header.split(",").forEach(p => {
-    const [k, v] = p.split("=");
-    if (k && v) parties[k] = v;
-  });
-  const t = parties["t"];
-  const v1 = parties["v1"];
-  if (!t || !v1) return false;
-  const now = Math.floor(Date.now() / 1000);
-  if (Math.abs(now - parseInt(t, 10)) > 300) return false;
-  const payload = `${t}.${body.toString("utf-8")}`;
-  const attendu = crypto.createHmac("sha256", secret).update(payload).digest("hex");
-  try {
-    return crypto.timingSafeEqual(Buffer.from(attendu, "hex"), Buffer.from(v1, "hex"));
-  } catch {
-    return false;
-  }
-}
-
 function construireLiensEmail(produitId, produit, secret, origin) {
   return construireLiensTelechargement(produitId, produit, secret, origin, 48 * 3600);
 }
@@ -247,49 +208,49 @@ function construireLiensEmail(produitId, produit, secret, origin) {
 // Recrée une session Checkout identique (mêmes produits, même montant) pour la
 // relance de panier abandonné, puisque l'URL d'une session expirée n'est plus
 // utilisable et que Stripe ne permet pas de "réouvrir" une session existante.
-async function recreerLienCheckout(produitIds, origin, stripeKey) {
-  const params = new URLSearchParams({
+async function recreerLienCheckout(produitIds, origin, stripe, sessionExpireeId) {
+  const params = {
     // Pas de payment_method_types forcé, même raison que create-checkout.js :
     // laisser Stripe proposer tous les moyens actifs du dashboard.
     mode: "payment",
     // Une relance ne doit pas rouvrir l'accès au code promo pour le stage,
     // qui reste une place limitée dans une session datée.
-    allow_promotion_codes: produitIds.includes("stage-methode") ? "false" : "true",
-    "consent_collection[promotions]": "auto",
+    allow_promotion_codes: !produitIds.includes("stage-methode"),
+    consent_collection: { promotions: "auto" },
     success_url: `${origin}/merci-achat.html?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/formations.html`,
-    "metadata[produitIds]": produitIds.join(","),
+    metadata: {
+      produitIds: produitIds.join(","),
+      relance: "1",
+      source: "relance",
+      sessionOrigine: sessionExpireeId,
+    },
     // Marque cette vente comme issue de la relance de panier abandonné, pour
     // savoir si le mécanisme rapporte (voir le log [VENTE-RELANCE] plus bas).
-    "metadata[relance]": "1",
-    "payment_intent_data[metadata][produitIds]": produitIds.join(","),
-    "branding_settings[display_name]": "Trajectoire Droit",
-    "branding_settings[icon][type]": "url",
-    "branding_settings[icon][url]": `${origin}/assets/logo-tjd-mark.png`,
-    "branding_settings[background_color]": "#ffffff",
-    "branding_settings[button_color]": "#1A2851",
-    "branding_settings[border_style]": "rounded",
-    "branding_settings[font_family]": "pt_serif",
-  });
-  produitIds.forEach((id, i) => {
+    payment_intent_data: { metadata: { produitIds: produitIds.join(",") } },
+    branding_settings: {
+      display_name: "Trajectoire Droit",
+      icon: { type: "url", url: `${origin}/assets/logo-tjd-mark.png` },
+      background_color: "#ffffff",
+      button_color: "#1A2851",
+      border_style: "rounded",
+      font_family: "pt_serif",
+    },
+    integration_identifier: INTEGRATION_IDS.relance,
+    line_items: [],
+  };
+  produitIds.forEach((id) => {
     const p = PRODUITS[id];
-    params.set(`line_items[${i}][price_data][currency]`, "eur");
-    params.set(`line_items[${i}][price_data][unit_amount]`, String(p.prix));
-    params.set(`line_items[${i}][price_data][product_data][name]`, p.nom);
-    params.set(`line_items[${i}][quantity]`, "1");
+    params.line_items.push({
+      price_data: { currency: "eur", unit_amount: p.prix, product_data: { name: p.nom } },
+      quantity: 1,
+    });
   });
 
-  const resp = await fetch("https://api.stripe.com/v1/checkout/sessions", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${stripeKey}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: params.toString(),
+  const session = await stripe.checkout.sessions.create(params, {
+    idempotencyKey: `relance-${sessionExpireeId}`,
   });
-  const data = await resp.json();
-  if (!resp.ok) throw new Error(`Stripe erreur (relance panier): ${JSON.stringify(data.error)}`);
-  return data.url;
+  return session.url;
 }
 
 async function envoyerRelancePanier(email, produits, checkoutUrl, brevoKey) {
@@ -354,7 +315,7 @@ async function envoyerRelancePanier(email, produits, checkoutUrl, brevoKey) {
 // Panier abandonné : la session a expiré (2h, voir create-checkout.js) sans paiement.
 // On ne peut relancer que si Stripe a capté l'email avant l'abandon (le client a
 // eu le temps de le taper dans le formulaire Checkout), sinon rien n'est faisable.
-async function gererPanierAbandonne(session, brevoKey, stripeKey, origin) {
+async function gererPanierAbandonne(session, brevoKey, stripe, origin) {
   if (session.mode === "subscription") return; // Portalis, pas concerné par cette relance.
 
   const produitIdsRaw = session.metadata && session.metadata.produitIds;
@@ -370,20 +331,16 @@ async function gererPanierAbandonne(session, brevoKey, stripeKey, origin) {
   const produitsAbandonnes = produitIds.map(id => PRODUITS[id]).filter(Boolean);
   if (!produitsAbandonnes.length) return;
 
-  const checkoutUrl = await recreerLienCheckout(produitIds, origin, stripeKey);
+  const checkoutUrl = await recreerLienCheckout(produitIds, origin, stripe, session.id);
   await envoyerRelancePanier(email, produitsAbandonnes, checkoutUrl, brevoKey);
   console.log(`[PANIER ABANDONNÉ] relance envoyée à ${email} pour ${produitIds.join("+")}, session expirée=${session.id}`);
 }
 
 // Récupère le code textuel d'un promotion code Stripe (ex: "LYON3JULIE")
-async function recupererCodePromo(promotionCodeId, stripeKey) {
+async function recupererCodePromo(promotionCodeId, stripe) {
   try {
-    const resp = await fetch(`https://api.stripe.com/v1/promotion_codes/${promotionCodeId}`, {
-      headers: { Authorization: `Bearer ${stripeKey}` },
-    });
-    if (!resp.ok) return null;
-    const data = await resp.json();
-    return data.code || null;
+    const promotion = await stripe.promotionCodes.retrieve(promotionCodeId);
+    return promotion.code || null;
   } catch {
     return null;
   }
@@ -594,7 +551,179 @@ async function notifierJulienStage(metadata, email, montantEuros, sessionId, bre
   }
 }
 
-module.exports = async (req, res) => {
+function donneesAchat(session, email, produitIds, montantEuros, estRelance) {
+  return {
+    email,
+    produit_ids: produitIds,
+    session_id: session.id,
+    montant: montantEuros !== "?" ? Number(montantEuros) : null,
+    landing_page: (session.metadata && session.metadata.landingPage) || null,
+    referrer: (session.metadata && session.metadata.referrer) || null,
+    utm_source: (session.metadata && session.metadata.utmSource) || null,
+    utm_medium: (session.metadata && session.metadata.utmMedium) || null,
+    utm_campaign: (session.metadata && session.metadata.utmCampaign) || null,
+    relance: !!estRelance,
+  };
+}
+
+async function traiterAchatPaye(session, contexte) {
+  if (session.mode === "subscription") return { ignore: "abonnement" };
+
+  const produitIdsRaw = session.metadata && session.metadata.produitIds;
+  const email = session.customer_details && session.customer_details.email;
+  if (!produitIdsRaw || !email) {
+    console.error("produitIds ou email manquant dans la session:", JSON.stringify(session));
+    return { ignore: "donnees-manquantes" };
+  }
+
+  const produitIds = produitIdsRaw.split(",").map(s => s.trim()).filter(Boolean);
+  const produitsAchetes = produitIds
+    .map(id => ({ id, produit: PRODUITS[id] }))
+    .filter(p => p.produit);
+  if (!produitsAchetes.length) {
+    console.error("Aucun produitId connu dans la session:", produitIdsRaw);
+    return { ignore: "produit-inconnu" };
+  }
+
+  const montantEuros = session.amount_total != null ? (session.amount_total / 100).toFixed(2) : "?";
+  const estRelance = session.metadata && session.metadata.relance === "1";
+  const accordPromotionnel = session.consent && session.consent.promotions === "opt_in";
+  const estStage = produitIds.includes("stage-methode");
+  const libelleProduits = produitIds.join("+");
+
+  const operations = contexte.operations || {
+    insererSiAbsent,
+    supprimer,
+    envoyerEmail,
+    envoyerConfirmationStage,
+    notifierJulienStage,
+    envoyerAchatMeta,
+    creerRemisePostAchat,
+    creerContactBrevoAchat,
+    reinscrireAcheteurBrevo,
+    recupererCodePromo,
+  };
+
+  // La contrainte unique achats.session_id devient le verrou d'idempotence.
+  // On réserve la session avant tout email. Un webhook rejoué s'arrête ici.
+  const lignesCreees = await operations.insererSiAbsent(
+    "achats",
+    donneesAchat(session, email, produitIds, montantEuros, estRelance),
+    "session_id"
+  );
+  if (!Array.isArray(lignesCreees) || lignesCreees.length === 0) {
+    console.log(`[WEBHOOK DÉJÀ TRAITÉ] session=${session.id}`);
+    return { dejaTraite: true };
+  }
+
+  let codeAmbassadeur = null;
+  const discounts = session.discounts || [];
+  if (discounts.length > 0) {
+    const promotionCodeId = typeof discounts[0].promotion_code === "string"
+      ? discounts[0].promotion_code
+      : discounts[0].promotion_code && discounts[0].promotion_code.id;
+    if (promotionCodeId) {
+      codeAmbassadeur = await operations.recupererCodePromo(promotionCodeId, contexte.stripe);
+    }
+  }
+
+  // La livraison au client est la seule action critique après la réservation.
+  // En cas d'échec, la réservation est supprimée et Stripe reçoit un code 500,
+  // ce qui lui permet de rejouer le webhook sans créer de double livraison.
+  try {
+    if (estStage) {
+      await operations.envoyerConfirmationStage(email, session.metadata, contexte.brevoKey);
+    } else {
+      let liens = [];
+      produitsAchetes.forEach(({ id, produit }) => {
+        liens = liens.concat(construireLiensEmail(id, produit, contexte.downloadSecret, contexte.origin));
+      });
+      await operations.envoyerEmail(
+        email,
+        produitsAchetes.map(p => p.produit),
+        liens,
+        contexte.brevoKey,
+        codeAmbassadeur
+      );
+    }
+  } catch (erreurLivraison) {
+    try {
+      await operations.supprimer("achats", `session_id=eq.${encodeURIComponent(session.id)}`);
+    } catch (erreurAnnulation) {
+      console.error("ÉCHEC CRITIQUE annulation verrou webhook:", erreurAnnulation.message);
+    }
+    throw erreurLivraison;
+  }
+
+  if (codeAmbassadeur) {
+    console.log(`[AMBASSADEUR] code=${codeAmbassadeur} produits=${libelleProduits} montant=${montantEuros}€ session=${session.id}`);
+  } else if (estRelance) {
+    console.log(`[VENTE-RELANCE] produits=${libelleProduits} montant=${montantEuros}€ session=${session.id}`);
+  } else {
+    console.log(`[VENTE] produits=${libelleProduits} montant=${montantEuros}€ session=${session.id}`);
+  }
+  console.log(`Livraison confirmée à ${email} pour ${libelleProduits}`);
+
+  // Les actions suivantes enrichissent le suivi mais ne doivent jamais faire
+  // rejouer une livraison réussie au client.
+  if (estStage) {
+    try {
+      await operations.notifierJulienStage(session.metadata, email, montantEuros, session.id, contexte.brevoKey);
+    } catch (e) {
+      console.error("Erreur notification stage à Julien:", e.message);
+    }
+  }
+
+  let remisePostAchat = null;
+  if (accordPromotionnel && !estStage) {
+    try {
+      remisePostAchat = await operations.creerRemisePostAchat(session.id, contexte.stripe);
+    } catch (e) {
+      console.error("Erreur création remise post-achat:", e.message);
+    }
+  }
+
+  if (session.metadata && session.metadata.consentMarketing === "1" && montantEuros !== "?") {
+    try {
+      await operations.envoyerAchatMeta({
+        email,
+        montantEuros,
+        produitIds,
+        sessionId: session.id,
+        fbp: session.metadata.fbp,
+        fbc: session.metadata.fbc,
+      });
+    } catch (e) {
+      console.error("envoyerAchatMeta erreur:", e.message);
+    }
+  }
+
+  let contactBrevo;
+  try {
+    contactBrevo = await operations.creerContactBrevoAchat(
+      email,
+      produitsAchetes.map(p => p.produit),
+      montantEuros,
+      contexte.brevoKey,
+      accordPromotionnel,
+      remisePostAchat
+    );
+  } catch (e) {
+    console.error("Erreur création contact Brevo:", e.message);
+  }
+
+  if (accordPromotionnel && !estStage && remisePostAchat && contactBrevo && !contactBrevo.estNouveau) {
+    try {
+      await operations.reinscrireAcheteurBrevo(email, contexte.brevoKey);
+    } catch (e) {
+      console.error("Erreur réinscription Brevo post-achat:", e.message);
+    }
+  }
+
+  return { traite: true };
+}
+
+async function handler(req, res) {
   if (req.method !== "POST") { res.status(405).end(); return; }
 
   const body = await lireBodyBrut(req);
@@ -605,26 +734,29 @@ module.exports = async (req, res) => {
   const stripeKey = process.env.STRIPE_SECRET_KEY;
   const origin = "https://trajectoiredroit.com";
 
-  if (!webhookSecret || !brevoKey || !downloadSecret) {
+  if (!webhookSecret || !brevoKey || !downloadSecret || !stripeKey) {
     console.error("Variables d'environnement manquantes");
     res.status(500).end();
     return;
   }
 
-  if (!verifierSignatureStripe(body, sig, webhookSecret)) {
+  const stripe = creerClientStripe(stripeKey);
+  let evt;
+  try {
+    evt = stripe.webhooks.constructEvent(body, sig, webhookSecret);
+  } catch (e) {
     console.error("Signature Stripe invalide");
     res.status(400).json({ erreur: "Signature invalide" });
     return;
   }
-
-  let evt;
-  try { evt = JSON.parse(body.toString("utf-8")); } catch { res.status(400).end(); return; }
 
   if (evt.type === "customer.subscription.created" || evt.type === "customer.subscription.updated" || evt.type === "customer.subscription.deleted") {
     try {
       await synchroniserAbonnement(evt.data.object);
     } catch (e) {
       console.error("Erreur synchronisation abonnement Supabase:", e.message);
+      res.status(500).json({ erreur: "Synchronisation impossible" });
+      return;
     }
     res.status(200).json({ recu: true });
     return;
@@ -632,7 +764,7 @@ module.exports = async (req, res) => {
 
   if (evt.type === "checkout.session.expired") {
     try {
-      await gererPanierAbandonne(evt.data.object, brevoKey, stripeKey, origin);
+      await gererPanierAbandonne(evt.data.object, brevoKey, stripe, origin);
     } catch (e) {
       console.error("Erreur relance panier abandonné:", e.message);
     }
@@ -640,152 +772,42 @@ module.exports = async (req, res) => {
     return;
   }
 
-  if (evt.type !== "checkout.session.completed") {
+  if (evt.type === "checkout.session.async_payment_failed") {
+    console.warn(`[PAIEMENT ASYNCHRONE ÉCHOUÉ] session=${evt.data.object.id}`);
+    res.status(200).json({ recu: true });
+    return;
+  }
+
+  const estEvenementPaiement = evt.type === "checkout.session.completed"
+    || evt.type === "checkout.session.async_payment_succeeded";
+  if (!estEvenementPaiement) {
     res.status(200).json({ recu: true });
     return;
   }
 
   const session = evt.data.object;
-
-  // L'abonnement Portalis est traité par customer.subscription.created ci-dessus,
-  // qui contient déjà toutes les informations nécessaires (customer, statut, période).
-  if (session.mode === "subscription") {
+  if (evt.type === "checkout.session.completed" && session.payment_status !== "paid") {
+    console.log(`[PAIEMENT EN ATTENTE] session=${session.id}`);
     res.status(200).json({ recu: true });
     return;
   }
 
-  const produitIdsRaw = session.metadata && session.metadata.produitIds;
-  const email = session.customer_details && session.customer_details.email;
-
-  if (!produitIdsRaw || !email) {
-    console.error("produitIds ou email manquant dans la session:", JSON.stringify(session));
-    res.status(200).json({ recu: true });
-    return;
-  }
-
-  const produitIds = produitIdsRaw.split(",").map(s => s.trim()).filter(Boolean);
-  const produitsAchetes = produitIds
-    .map(id => ({ id, produit: PRODUITS[id] }))
-    .filter(p => p.produit);
-
-  if (!produitsAchetes.length) {
-    console.error("Aucun produitId connu dans la session:", produitIdsRaw);
-    res.status(200).json({ recu: true });
-    return;
-  }
-
-  // Détecter un code ambassadeur utilisé
-  let codeAmbassadeur = null;
-  const discounts = session.discounts || [];
-  if (discounts.length > 0 && stripeKey) {
-    const promotionCodeId =
-      typeof discounts[0].promotion_code === "string"
-        ? discounts[0].promotion_code
-        : discounts[0].promotion_code?.id || null;
-    if (promotionCodeId) {
-      codeAmbassadeur = await recupererCodePromo(promotionCodeId, stripeKey);
-    }
-  }
-
-  const montantEuros = session.amount_total != null ? (session.amount_total / 100).toFixed(2) : "?";
-  const estRelance = session.metadata && session.metadata.relance === "1";
-  const accordPromotionnel = session.consent && session.consent.promotions === "opt_in";
-
-  const libelleProduits = produitIds.join("+");
-  if (codeAmbassadeur) {
-    console.log(`[AMBASSADEUR] code=${codeAmbassadeur} produits=${libelleProduits} montant=${montantEuros}€ session=${session.id}`);
-  } else if (estRelance) {
-    console.log(`[VENTE-RELANCE] produits=${libelleProduits} montant=${montantEuros}€ session=${session.id}`);
-  } else {
-    console.log(`[VENTE] produits=${libelleProduits} montant=${montantEuros}€ session=${session.id}`);
-  }
-
-  const estStage = produitIds.includes("stage-methode");
-  let remisePostAchat = null;
-
-  if (accordPromotionnel && !estStage) {
-    try {
-      remisePostAchat = await creerRemisePostAchat(session.id, stripeKey);
-    } catch (e) {
-      console.error("Erreur création remise post-achat:", e.message);
-    }
-  }
-
-  if (session.metadata && session.metadata.consentMarketing === "1" && montantEuros !== "?") {
-    envoyerAchatMeta({
-      email,
-      montantEuros,
-      produitIds,
-      sessionId: session.id,
-      fbp: session.metadata.fbp,
-      fbc: session.metadata.fbc,
-    }).catch(e => console.error("envoyerAchatMeta erreur:", e.message));
-  }
-
-  if (estStage) {
-    // Session datée, pas de PDF : confirmation d'inscription au client + notification
-    // à Julien avec les infos du formulaire, au lieu des liens de téléchargement.
-    try {
-      await envoyerConfirmationStage(email, session.metadata, brevoKey);
-      await notifierJulienStage(session.metadata, email, montantEuros, session.id, brevoKey);
-      console.log(`Confirmation stage envoyée à ${email}, Julien notifié`);
-    } catch (e) {
-      console.error("Erreur envoi email stage:", e.message);
-    }
-  } else {
-    let liens = [];
-    produitsAchetes.forEach(({ id, produit }) => {
-      liens = liens.concat(construireLiensEmail(id, produit, downloadSecret, origin));
-    });
-    try {
-      await envoyerEmail(email, produitsAchetes.map(p => p.produit), liens, brevoKey, codeAmbassadeur);
-      console.log(`Email envoyé à ${email} pour ${libelleProduits}${codeAmbassadeur ? " (code " + codeAmbassadeur + ")" : ""}`);
-    } catch (e) {
-      console.error("Erreur envoi email:", e.message);
-    }
-  }
-
-  let contactBrevo;
   try {
-    contactBrevo = await creerContactBrevoAchat(
-      email,
-      produitsAchetes.map(p => p.produit),
-      montantEuros,
+    await traiterAchatPaye(session, {
       brevoKey,
-      accordPromotionnel,
-      remisePostAchat
-    );
-  } catch (e) {
-    console.error("Erreur création contact Brevo:", e.message);
-  }
-
-  // Le premier achat entre grâce à la création du contact dans la liste. Les
-  // suivants réinscrivent le même contact : la condition de redémarrage Brevo
-  // renvoie alors sa séquence au début avec les attributs du dernier achat.
-  if (accordPromotionnel && !estStage && remisePostAchat && contactBrevo && !contactBrevo.estNouveau) {
-    try {
-      await reinscrireAcheteurBrevo(email, brevoKey);
-    } catch (e) {
-      console.error("Erreur réinscription Brevo post-achat:", e.message);
-    }
-  }
-
-  try {
-    await inserer("achats", {
-      email,
-      produit_ids: produitIds,
-      session_id: session.id,
-      montant: montantEuros !== "?" ? Number(montantEuros) : null,
-      landing_page: (session.metadata && session.metadata.landingPage) || null,
-      referrer: (session.metadata && session.metadata.referrer) || null,
-      utm_source: (session.metadata && session.metadata.utmSource) || null,
-      utm_medium: (session.metadata && session.metadata.utmMedium) || null,
-      utm_campaign: (session.metadata && session.metadata.utmCampaign) || null,
-      relance: !!estRelance,
+      downloadSecret,
+      stripe,
+      origin,
     });
   } catch (e) {
-    console.error("Erreur écriture achat Supabase:", e.message);
+    console.error("Erreur critique livraison achat:", e.message);
+    res.status(500).json({ erreur: "Livraison temporairement impossible" });
+    return;
   }
 
   res.status(200).json({ recu: true });
-};
+}
+
+handler.config = { api: { bodyParser: false } };
+module.exports = handler;
+module.exports._test = { traiterAchatPaye, donneesAchat };

@@ -356,6 +356,13 @@
     var achatsListe        = document.getElementById("achatsListe");
     var achatsVide         = document.getElementById("achatsVide");
 
+    function creerAttemptId(prefixe){
+      var alea = window.crypto && typeof window.crypto.randomUUID === "function"
+        ? window.crypto.randomUUID()
+        : Math.random().toString(36).slice(2, 14);
+      return prefixe + "-" + Date.now().toString(36) + "-" + alea;
+    }
+
     function afficherEtat(id){
       [etatChargement, etatConnexion, etatConnecte].forEach(function(el){ el.classList.remove("is-active"); });
       document.getElementById(id).classList.add("is-active");
@@ -470,7 +477,8 @@
           body: JSON.stringify({
             mode: "subscription",
             supabaseUserId: session.user.id,
-            supabaseEmail: session.user.email
+            supabaseEmail: session.user.email,
+            attemptId: creerAttemptId("portalis")
           })
         });
         var data = await rep.json();
@@ -495,7 +503,8 @@
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             type: "portal",
-            supabaseUserId: session.user.id
+            supabaseUserId: session.user.id,
+            attemptId: creerAttemptId("portail")
           })
         });
         var data = await rep.json();

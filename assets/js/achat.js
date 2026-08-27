@@ -7,6 +7,24 @@
     return m ? decodeURIComponent(m[1]) : null;
   }
 
+  function creerAttemptId() {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+      return window.crypto.randomUUID();
+    }
+    return 'tjd-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 14);
+  }
+
+  function mesurerCheckout(action, produitId) {
+    if (typeof window.gtag === 'function') {
+      gtag('event', action === 'CheckoutCree' ? 'checkout_session_created' : 'checkout_error', {
+        items: [{ item_id: produitId }]
+      });
+    }
+    if (window._paq) {
+      window._paq.push(['trackEvent', 'Ecommerce', action, produitId]);
+    }
+  }
+
   function tjdAcheter(produitId, btnEl) {
     if (!btnEl) btnEl = document.querySelector('[data-tjd-produit="' + produitId + '"]');
     if (!btnEl) return;
@@ -22,6 +40,8 @@
     // Identifiants Meta transmis uniquement si le visiteur a accepté les cookies,
     // pour permettre à l'API Conversions de recouper l'achat avec le pixel côté serveur.
     var corps = bumpActif ? { produitId: produitId, bumpId: bumpId } : { produitId: produitId };
+    corps.attemptId = creerAttemptId();
+    corps.attemptCreatedAt = Math.floor(Date.now() / 1000);
     if (localStorage.getItem('tjd_consent') === 'granted') {
       var fbp = lireCookie('_fbp');
       var fbc = lireCookie('_fbc');
@@ -60,22 +80,27 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(corps)
     })
-      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (d) {
+          if (!r.ok) throw new Error(d.erreur || 'Création du paiement impossible');
+          return d;
+        });
+      })
       .then(function (d) {
         if (d.url) {
+          mesurerCheckout('CheckoutCree', produitId);
           if (localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
             fbq('track', 'InitiateCheckout', { content_ids: [produitId], content_type: 'product' });
           }
           window.location.href = d.url;
         }
         else {
-          alert('Une erreur est survenue. Réessaie dans quelques secondes.');
-          btnEl.disabled = false;
-          btnEl.textContent = TEXTES_ORIGINAUX[idx] || 'Acheter';
+          throw new Error('URL Stripe absente');
         }
       })
       .catch(function () {
-        alert('Erreur réseau. Vérifie ta connexion et réessaie.');
+        mesurerCheckout('CheckoutErreur', produitId);
+        alert('Le paiement ne peut pas être ouvert pour le moment. Réessaie dans quelques secondes.');
         btnEl.disabled = false;
         btnEl.textContent = TEXTES_ORIGINAUX[idx] || 'Acheter';
       });
