@@ -587,7 +587,7 @@ async function traiterAchatPaye(session, contexte) {
   const produitIdsRaw = session.metadata && session.metadata.produitIds;
   const email = session.customer_details && session.customer_details.email;
   if (!produitIdsRaw || !email) {
-    console.error("produitIds ou email manquant dans la session:", JSON.stringify(session));
+    console.error(`produitIds ou email manquant, session=${session.id}`);
     return { ignore: "donnees-manquantes" };
   }
 
