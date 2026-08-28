@@ -217,19 +217,20 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: 20px;
+  padding: 22px 22px 20px;
   overflow: hidden;
-  border: 1px solid rgba(201, 169, 97, .45);
-  border-radius: 12px;
-  background: var(--gold-bg);
+  border: 1px solid rgba(201, 169, 97, .5);
+  border-radius: 16px;
+  background: linear-gradient(145deg, #fffdf8 0%, var(--gold-bg) 100%);
+  box-shadow: 0 12px 30px rgba(12, 30, 58, .07);
   text-align: left;
 }
 .conversion-review::before {
   content: "";
   position: absolute;
   inset: 0 auto 0 0;
-  width: 3px;
-  background: var(--gold-line);
+  width: 4px;
+  background: linear-gradient(180deg, var(--gold-line), var(--rating-star));
 }
 .conversion-review blockquote {
   margin: 0;
@@ -240,18 +241,38 @@
   font-size: .88rem;
   line-height: 1.62;
 }
+.conversion-review blockquote p::before {
+  content: "«\00a0";
+  color: var(--rating-star);
+  font-weight: 800;
+}
+.conversion-review blockquote p::after {
+  content: "\00a0»";
+  color: var(--rating-star);
+  font-weight: 800;
+}
 .conversion-review footer {
   display: flex;
   align-items: center;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 7px 9px;
   margin-top: auto;
-  padding-top: 16px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(201, 169, 97, .28);
 }
 .conversion-review footer strong {
   color: var(--navy);
-  font-size: .86rem;
+  font-size: .9rem;
 }
-.conversion-review footer span {
+.conversion-review__rating {
+  color: var(--rating-star);
+  font-size: .76rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .7);
+}
+.conversion-review__level {
   padding: 3px 8px;
   border-radius: var(--r-pill);
   background: var(--blue-50);
