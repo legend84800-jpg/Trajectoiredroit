@@ -653,15 +653,10 @@
     });
   });
 
-  // ----- 7c. Carte "Stage en direct" : décompte (desktop + mobile) + accordéon desktop -----
-  // Même échéance que la bannière d'urgence (27 août, cf. FAQ stage-methode.html)
+  // ----- 7c. Carte "Stage en direct" : mention fixe (desktop + mobile) + accordéon desktop -----
   var stageCountdownEls = document.querySelectorAll('.stage-teaser__countdown');
   if (stageCountdownEls.length) {
-    var stageDays = Math.floor((new Date('2026-08-27T00:00:00').getTime() - Date.now()) / 86400000);
-    var stageCountdownText = stageDays >= 1
-      ? 'Ferme dans ' + stageDays + ' jour' + (stageDays > 1 ? 's' : '')
-      : 'Dernier jour';
-    stageCountdownEls.forEach(function (el) { el.textContent = stageCountdownText; });
+    stageCountdownEls.forEach(function (el) { el.textContent = 'Dernier jour'; });
   }
   var stageTeaser = document.querySelector('.stage-teaser__trigger');
   if (stageTeaser) {
