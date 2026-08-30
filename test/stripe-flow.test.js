@@ -221,6 +221,33 @@ test("le remerciement après achat contient les liens sociaux et les information
   assert.match(pageMerci, /mon-compte\.html/);
 });
 
+test("la remise post-achat est personnelle, unique, valable 15 jours et reliée au coupon de 15 %", async () => {
+  const { creerRemisePostAchat } = require("../api/stripe-webhook")._test;
+  let appel;
+  const stripe = {
+    promotionCodes: {
+      create: async (params, options) => {
+        appel = { params, options };
+        return { code: params.code, expires_at: params.expires_at };
+      },
+    },
+  };
+  const avant = Math.floor(Date.now() / 1000);
+
+  const remise = await creerRemisePostAchat("cs_test_remise_15", stripe);
+  const apres = Math.floor(Date.now() / 1000);
+
+  assert.match(remise.code, /^POSTA-[A-F0-9]{8}$/);
+  assert.equal(appel.params.promotion.coupon, "remise-post-achat-15");
+  assert.equal(appel.params.max_redemptions, 1);
+  assert.equal(appel.params.active, true);
+  assert.equal(appel.params.metadata.campaign, "post-achat-brevo");
+  assert.equal(appel.params.metadata.checkout_session, "cs_test_remise_15");
+  assert.equal(appel.options.idempotencyKey, "remise-cs_test_remise_15");
+  assert.ok(appel.params.expires_at >= avant + (15 * 24 * 60 * 60));
+  assert.ok(appel.params.expires_at <= apres + (15 * 24 * 60 * 60));
+});
+
 test("un stage daté ne reçoit pas de lien de récupération de 30 jours", async () => {
   const stripeModule = require("../api/_stripe");
   const supabaseModule = require("../api/_supabase");

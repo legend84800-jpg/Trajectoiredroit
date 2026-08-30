@@ -80,7 +80,7 @@ async function envoyerAchatMeta({ email, montantEuros, produitIds, sessionId, fb
 // La réinscription contrôlée à cette liste ouvre ou redémarre la séquence
 // post-achat à chaque nouveau paiement.
 const BREVO_LISTE_CLIENTS = 7;
-const COUPON_REMISE_POST_ACHAT = "remise-post-achat-10";
+const COUPON_REMISE_POST_ACHAT = "remise-post-achat-15";
 
 function formaterDateRemise(timestamp) {
   return new Intl.DateTimeFormat("fr-FR", {
@@ -842,4 +842,10 @@ async function handler(req, res) {
 
 handler.config = { api: { bodyParser: false } };
 module.exports = handler;
-module.exports._test = { traiterAchatPaye, donneesAchat, gererPanierAbandonne, uuidRelance };
+module.exports._test = {
+  traiterAchatPaye,
+  donneesAchat,
+  gererPanierAbandonne,
+  uuidRelance,
+  creerRemisePostAchat,
+};
