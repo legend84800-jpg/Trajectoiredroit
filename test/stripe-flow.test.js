@@ -207,6 +207,20 @@ test("le flux Stripe garde le consentement, les moyens dynamiques et la récupé
   assert.doesNotMatch(webhook, /checkout\.sessions\.create/);
 });
 
+test("le remerciement après achat contient les liens sociaux et les informations à jour", () => {
+  const webhook = fs.readFileSync(path.join(RACINE, "api/stripe-webhook.js"), "utf8");
+  const pageMerci = fs.readFileSync(path.join(RACINE, "merci-achat.html"), "utf8");
+  const youtube = "https://www.youtube.com/@TrajectoireDroit";
+  const tiktok = "https://www.tiktok.com/@trajectoiredroit";
+
+  assert.ok(webhook.split(youtube).length >= 3, "YouTube doit être présent dans les versions HTML et texte de l'email");
+  assert.ok(webhook.split(tiktok).length >= 3, "TikTok doit être présent dans les versions HTML et texte de l'email");
+  assert.match(pageMerci, new RegExp(youtube.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.match(pageMerci, new RegExp(tiktok.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.match(pageMerci, /contact@trajectoiredroit\.com/);
+  assert.match(pageMerci, /mon-compte\.html/);
+});
+
 test("un stage daté ne reçoit pas de lien de récupération de 30 jours", async () => {
   const stripeModule = require("../api/_stripe");
   const supabaseModule = require("../api/_supabase");
