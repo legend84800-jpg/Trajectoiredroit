@@ -209,6 +209,10 @@ test("le flux Stripe garde le consentement, les moyens dynamiques et la récupé
 
 test("le remerciement après achat contient les liens sociaux et les informations à jour", () => {
   const webhook = fs.readFileSync(path.join(RACINE, "api/stripe-webhook.js"), "utf8");
+  const emailAchat = webhook.slice(
+    webhook.indexOf("async function envoyerEmail"),
+    webhook.indexOf("// Confirmation envoyée au client")
+  );
   const pageMerci = fs.readFileSync(path.join(RACINE, "merci-achat.html"), "utf8");
   const youtube = "https://www.youtube.com/@TrajectoireDroit";
   const tiktok = "https://www.tiktok.com/@trajectoiredroit";
@@ -219,6 +223,12 @@ test("le remerciement après achat contient les liens sociaux et les information
   assert.match(pageMerci, new RegExp(tiktok.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   assert.match(pageMerci, /contact@trajectoiredroit\.com/);
   assert.match(pageMerci, /mon-compte\.html/);
+  assert.doesNotMatch(emailAchat, /Satisfait ou remboursé sous 7 jours/);
+  assert.doesNotMatch(emailAchat, /margin:0 0 (?:8|16)px/);
+  assert.ok(
+    emailAchat.split("margin:0 0 24px;").length >= 9,
+    "Chaque paragraphe de l'email doit conserver un espace visible"
+  );
 });
 
 test("la remise post-achat est personnelle, unique, valable 15 jours et reliée au coupon de 15 %", async () => {

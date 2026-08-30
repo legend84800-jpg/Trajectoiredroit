@@ -370,7 +370,7 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
   ).join("\n");
 
   const ligneCodePromo = codeAmbassadeur
-    ? `<p style="font-size:13px;color:#555;margin:0 0 16px;">Réduction appliquée avec le code <strong>${codeAmbassadeur}</strong>.</p>`
+    ? `<p style="font-size:13px;color:#555;margin:0 0 24px;">Réduction appliquée avec le code <strong>${codeAmbassadeur}</strong>.</p>`
     : "";
 
   const html = `
@@ -385,8 +385,8 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
           <p style="margin:0;color:#fff;font-size:22px;font-weight:700;">TrajectoireDroit</p>
         </td></tr>
         <tr><td style="padding:32px;">
-          <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 16px;">Ton achat est confirmé !</p>
-          <p style="font-size:15px;color:#333;margin:0 0 8px;">
+          <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 24px;">Ton achat est confirmé !</p>
+          <p style="font-size:15px;color:#333;margin:0 0 24px;">
             Tu viens d'acheter <strong>${nomsAchetes}</strong>, et tes PDF sont prêts juste en dessous.
           </p>
           ${ligneCodePromo}
@@ -394,31 +394,28 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
             Clique sur les liens pour les télécharger. Ils restent valables 48 heures, donc mieux vaut les enregistrer sur ton ordinateur ou ton téléphone tout de suite.
           </p>
           ${boutons}
-          <p style="font-size:13px;color:#777;margin:24px 0 16px;">
+          <p style="font-size:13px;color:#777;margin:24px 0 24px;">
             Passé ce délai de 48 heures, pas besoin de m'écrire pour les récupérer : connecte-toi à <a href="https://trajectoiredroit.com/mon-compte.html" style="color:#1a237e;">ton espace Mon compte</a> avec cette même adresse email, tu retrouves tous tes achats et tu régénères un lien de téléchargement à tout moment. L'accès est à vie.
           </p>
-          <div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:8px;padding:14px 16px;margin:0 0 16px;">
-            <p style="font-size:13px;color:#065F46;margin:0;">Satisfait ou remboursé sous 7 jours. Si le contenu ne te convient pas, réponds à cet email, je te rembourse sans poser de questions.</p>
-          </div>
-          <p style="font-size:13px;color:#777;margin:0 0 16px;">
+          <p style="font-size:13px;color:#777;margin:0 0 24px;">
             Au moindre problème n'hésite pas à me contacter par mail, à l'adresse suivante julien.prof1@gmail.com, ou par WhatsApp au numéro suivant +33 6 05 41 85 21.
           </p>
-          <p style="font-size:13px;color:#777;margin:0 0 16px;">
+          <p style="font-size:13px;color:#777;margin:0 0 24px;">
             En outre, mon but est de créer les meilleures fiches de droit en France. Par conséquent, je m'efforce de constamment les améliorer.
           </p>
-          <p style="font-size:13px;color:#777;margin:0 0 16px;">
+          <p style="font-size:13px;color:#777;margin:0 0 24px;">
             Ainsi, à la moindre remarque, que ce soit sur le fond (exemple : pas assez développé pour toi, ou au contraire trop, il manque des exemples etc.) ou sur la forme (pas assez pédagogue, trop développé, pas assez de couleur, etc.) n'hésite pas à me contacter.
           </p>
-          <p style="font-size:13px;color:#777;margin:0 0 16px;">
+          <p style="font-size:13px;color:#777;margin:0 0 24px;">
             En échange, je te renvoie la nouvelle fiche améliorée par mes soins, et si tes commentaires sont réellement détaillés et pertinents, je t'offre une « fiche de citations » en cadeau, très utile pour tes commentaires et dissertations.
           </p>
-          <p style="font-size:13px;color:#777;margin:0 0 16px;">
+          <p style="font-size:13px;color:#777;margin:0 0 24px;">
             Dernière chose, j'ai mis un temps long à rédiger ces fiches. Donc je te fais confiance, garde ces fiches pour toi et ne les divulgue pas à autrui, je t'en remercie.
           </p>
-          <p style="font-size:13px;color:#777;margin:0 0 16px;">
+          <p style="font-size:13px;color:#777;margin:0 0 24px;">
             Si tu as un bon réseau dans ta promo et que tu recommandes déjà mes fiches autour de toi, j'ai un <a href="https://trajectoiredroit.com/ambassadeurs.html" style="color:#1a237e;">programme ambassadeurs</a>, 10 % de réduction pour chaque filleul, 20 % de commission pour toi sur chaque vente.
           </p>
-          <p style="font-size:13px;color:#777;margin:0 0 16px;">
+          <p style="font-size:13px;color:#777;margin:0 0 24px;">
             Enfin, si tu veux aussi apprendre le droit de manière plus ludique, tu peux me retrouver sur <a href="https://www.youtube.com/@TrajectoireDroit" style="color:#1a237e;">YouTube</a> et sur <a href="https://www.tiktok.com/@trajectoiredroit" style="color:#1a237e;">TikTok</a>.
           </p>
           <p style="font-size:15px;color:#1a237e;font-weight:700;margin:0;">Julien</p>
@@ -432,7 +429,7 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
 </body>
 </html>`;
 
-  const texte = `Tu viens d'acheter ${nomsAchetes}, et tes PDF sont prêts.\n\nTélécharge-les ici :\n${liens.map(l => `${l.nom} : ${l.url}`).join("\n")}\n\nLiens valables 48 heures. Passé ce délai, connecte-toi à https://trajectoiredroit.com/mon-compte.html avec cette même adresse email pour régénérer un lien à tout moment : l'accès est à vie.\n\nSatisfait ou remboursé sous 7 jours. Si le contenu ne te convient pas, réponds à cet email, je te rembourse sans poser de questions.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com ou par WhatsApp au +33 6 05 41 85 21.\n\nMon but est de créer les meilleures fiches de droit en France, donc à la moindre remarque sur le fond ou sur la forme, n'hésite pas à me contacter. Je te renvoie la fiche améliorée, et si tes commentaires sont détaillés et pertinents, je t'offre une fiche de citations en cadeau.\n\nJ'ai mis un temps long à rédiger ces fiches, garde-les pour toi et ne les divulgue pas à autrui, merci.\n\nSi tu as un bon réseau dans ta promo, j'ai un programme ambassadeurs (https://trajectoiredroit.com/ambassadeurs.html) : 10 % de réduction pour chaque filleul, 20 % de commission pour toi.\n\nEnfin, si tu veux aussi apprendre le droit de manière plus ludique, tu peux me retrouver sur YouTube (https://www.youtube.com/@TrajectoireDroit) et sur TikTok (https://www.tiktok.com/@trajectoiredroit).\n\nJulien, TrajectoireDroit`;
+  const texte = `Tu viens d'acheter ${nomsAchetes}, et tes PDF sont prêts.\n\nTélécharge-les ici :\n${liens.map(l => `${l.nom} : ${l.url}`).join("\n")}\n\nLiens valables 48 heures. Passé ce délai, connecte-toi à https://trajectoiredroit.com/mon-compte.html avec cette même adresse email pour régénérer un lien à tout moment : l'accès est à vie.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com ou par WhatsApp au +33 6 05 41 85 21.\n\nMon but est de créer les meilleures fiches de droit en France, donc à la moindre remarque sur le fond ou sur la forme, n'hésite pas à me contacter. Je te renvoie la fiche améliorée, et si tes commentaires sont détaillés et pertinents, je t'offre une fiche de citations en cadeau.\n\nJ'ai mis un temps long à rédiger ces fiches, garde-les pour toi et ne les divulgue pas à autrui, merci.\n\nSi tu as un bon réseau dans ta promo, j'ai un programme ambassadeurs (https://trajectoiredroit.com/ambassadeurs.html) : 10 % de réduction pour chaque filleul, 20 % de commission pour toi.\n\nEnfin, si tu veux aussi apprendre le droit de manière plus ludique, tu peux me retrouver sur YouTube (https://www.youtube.com/@TrajectoireDroit) et sur TikTok (https://www.tiktok.com/@trajectoiredroit).\n\nJulien, TrajectoireDroit`;
 
   const payload = {
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
