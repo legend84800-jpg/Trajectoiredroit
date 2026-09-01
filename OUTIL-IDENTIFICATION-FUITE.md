@@ -34,7 +34,38 @@ Les clés restent dans les variables d'environnement locales et ne sont jamais
 écrites dans le rapport. La clé réservée à cet outil est stockée dans le fichier
 local ignoré par Git et dans une variable Vercel sensible.
 
-La première version reconnaît le produit pilote `maj-penal-l2-s1`. Elle peut
-retrouver la copie après suppression des métadonnées, retrait de la licence
-visible ou aplatissement du PDF, tant que suffisamment de micro-marqueurs sont
-encore présents.
+## Couverture du catalogue
+
+Tous les PDF du catalogue passent automatiquement par la personnalisation. La
+couverture actuelle comprend 180 produits, 690 livraisons PDF et 283 fichiers
+distincts. Une nouvelle création PDF ajoutée à `api/_produits.js` est protégée
+sans modification supplémentaire de son générateur.
+
+Les fichiers Anki `.apkg` restent inchangés. Le stage en direct ne livre aucun
+PDF. Les anciens liens reçus avant la généralisation continuent de fonctionner
+pendant leur durée initiale. Les copies déjà générées pendant le pilote Droit
+pénal restent identifiables.
+
+## Expérience acheteur
+
+La protection n'ajoute aucun champ et aucune question dans Stripe Checkout.
+Le nom de licence vient des informations normales de paiement. Si Stripe ne
+fournit pas de nom, le système utilise une forme lisible dérivée de l'adresse
+email.
+
+Au premier téléchargement, le serveur génère la copie, la place sur R2 sous
+une adresse non devinable, puis lance le téléchargement. La copie est réutilisée
+aux téléchargements suivants. Une republication du PDF source invalide
+automatiquement cette copie et provoque une nouvelle génération.
+
+## Résistance et vérifications
+
+Chaque PDF contient une licence visible discrète dans la marge droite, un email
+partiellement masqué, des métadonnées, un texte invisible et des micro-marqueurs
+visuels redondants. L'outil peut retrouver l'achat après suppression des
+métadonnées, retrait de la licence visible ou aplatissement du PDF, tant que
+suffisamment de micro-marqueurs sont encore présents.
+
+L'attribution finale exige toujours une commande Supabase cohérente, une session
+Stripe payée, le bon produit et la même adresse email. Une correspondance locale
+seule ne suffit jamais à désigner un acheteur.

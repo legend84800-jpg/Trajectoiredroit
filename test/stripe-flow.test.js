@@ -113,7 +113,7 @@ test("la création Checkout conserve le garde-fou Stripe et l'idempotence", asyn
   assert.equal(appel.options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012");
 });
 
-test("le produit pilote collecte le nom destiné à la licence", async () => {
+test("la protection PDF n'ajoute aucun champ au parcours Checkout", async () => {
   const stripeModule = require("../api/_stripe");
   const creerOriginal = stripeModule.creerClientStripe;
   let paramsCrees;
@@ -140,14 +140,8 @@ test("le produit pilote collecte le nom destiné à la licence", async () => {
     else process.env.STRIPE_SECRET_KEY = ancienneCle;
   }
 
-  assert.deepEqual(paramsCrees.custom_fields, [{
-    key: "nomlicence",
-    label: { type: "custom", custom: "Prénom et nom pour ta licence" },
-    type: "text",
-    optional: false,
-    text: { minimum_length: 2, maximum_length: 80 },
-  }]);
-  assert.match(paramsCrees.custom_text.submit.message, /licence individuelle/);
+  assert.equal(paramsCrees.custom_fields, undefined);
+  assert.equal(paramsCrees.custom_text, undefined);
 });
 
 test("un lien nominatif est signé avec la commande Stripe", async () => {
@@ -176,20 +170,88 @@ test("un lien nominatif est signé avec la commande Stripe", async () => {
   );
 });
 
-test("le téléchargement du PDF pilote route vers la génération nominative", async () => {
-  const { genererToken } = require("../api/_liens-telechargement");
+test("chaque PDF du catalogue route vers une copie personnalisée", async () => {
+  const {
+    genererToken,
+    genererJetonPersonnalisation,
+  } = require("../api/_liens-telechargement");
+  const produits = require("../api/_produits");
   const handler = require("../api/telecharger");
   const ancienneValeur = process.env.DOWNLOAD_SECRET;
   process.env.DOWNLOAD_SECRET = "secret_test";
   const expiration = Math.floor(Date.now() / 1000) + 900;
   const sessionId = "cs_test_route_personnalisee";
-  const signature = genererToken(
-    "maj-penal-l2-s1",
-    0,
-    expiration,
-    "secret_test",
-    sessionId
-  );
+
+  try {
+    for (const [produitId, produit] of Object.entries(produits)) {
+      for (let blobIndex = 0; blobIndex < produit.blobs.length; blobIndex += 1) {
+        const sourceUrl = produit.blobs[blobIndex];
+        const signature = genererToken(
+          produitId,
+          blobIndex,
+          expiration,
+          "secret_test",
+          sessionId
+        );
+        let destination = "";
+        const reponse = reponseFactice();
+        reponse.send = function send(message) { this.payload = message; return this; };
+        reponse.redirect = function redirect(code, url) {
+          this.statusCode = code;
+          destination = url;
+          return this;
+        };
+        await handler({ query: {
+          id: produitId,
+          b: String(blobIndex),
+          exp: String(expiration),
+          sig: signature,
+          sid: sessionId,
+        } }, reponse);
+
+        assert.equal(reponse.statusCode, 302);
+        if (/\.pdf$/i.test(sourceUrl)) {
+          assert.match(
+            sourceUrl,
+            /^https:\/\/pub-45b53167be7548aca62650d34a771b47\.r2\.dev\/tjd\//
+          );
+          assert.match(destination, /^\/api\/personnaliser-pdf\?/);
+          const url = new URL(destination, "https://trajectoiredroit.com");
+          const nomFichier = decodeURIComponent(new URL(sourceUrl).pathname.split("/").pop());
+          assert.equal(url.searchParams.get("sid"), sessionId);
+          assert.equal(url.searchParams.get("src"), sourceUrl);
+          assert.equal(url.searchParams.get("nom"), produit.nom);
+          assert.equal(
+            url.searchParams.get("psig"),
+            genererJetonPersonnalisation({
+              produitId,
+              blobIndex,
+              expiry: expiration,
+              sessionId,
+              sourceUrl,
+              nomProduit: produit.nom,
+              nomFichier,
+            }, "secret_test")
+          );
+        } else {
+          assert.equal(destination, sourceUrl);
+        }
+      }
+    }
+  } finally {
+    if (ancienneValeur === undefined) delete process.env.DOWNLOAD_SECRET;
+    else process.env.DOWNLOAD_SECRET = ancienneValeur;
+  }
+
+});
+
+test("un ancien lien sans commande reste téléchargeable pendant sa validité", async () => {
+  const { genererToken } = require("../api/_liens-telechargement");
+  const produitId = "fiche-da-l2-s1";
+  const produit = require("../api/_produits")[produitId];
+  const expiration = Math.floor(Date.now() / 1000) + 900;
+  const ancienneValeur = process.env.DOWNLOAD_SECRET;
+  process.env.DOWNLOAD_SECRET = "secret_test";
   let destination = "";
   const reponse = reponseFactice();
   reponse.send = function send(message) { this.payload = message; return this; };
@@ -198,23 +260,19 @@ test("le téléchargement du PDF pilote route vers la génération nominative", 
     destination = url;
     return this;
   };
-
   try {
-    await handler({ query: {
-      id: "maj-penal-l2-s1",
+    await require("../api/telecharger")({ query: {
+      id: produitId,
       b: "0",
       exp: String(expiration),
-      sig: signature,
-      sid: sessionId,
+      sig: genererToken(produitId, 0, expiration, "secret_test"),
     } }, reponse);
   } finally {
     if (ancienneValeur === undefined) delete process.env.DOWNLOAD_SECRET;
     else process.env.DOWNLOAD_SECRET = ancienneValeur;
   }
-
   assert.equal(reponse.statusCode, 302);
-  assert.match(destination, /^\/api\/personnaliser-pdf\?/);
-  assert.equal(new URL(destination, "https://trajectoiredroit.com").searchParams.get("sid"), sessionId);
+  assert.equal(destination, produit.blobs[0]);
 });
 
 test("le panier abandonné prépare une seule relance H+1 et une seule relance H+24", async () => {

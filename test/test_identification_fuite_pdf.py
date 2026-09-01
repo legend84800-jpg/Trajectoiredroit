@@ -67,10 +67,24 @@ def source_pdf_protegee(pages: int = 5) -> bytes:
     return chiffree.getvalue()
 
 
-def ecrire_pdf_personnalise(chemin: Path, session: dict) -> None:
-    identite = identite_depuis_session(session, SECRET)
+def ecrire_pdf_personnalise(
+    chemin: Path,
+    session: dict,
+    produit_id: str = PRODUIT_PILOTE,
+    blob_index: int = 0,
+) -> None:
+    identite = identite_depuis_session(session, SECRET, produit_id, blob_index)
     chemin.write_bytes(
-        personnaliser_pdf(source_pdf_protegee(), identite, SECRET, session["id"])
+        personnaliser_pdf(
+            source_pdf_protegee(),
+            identite,
+            SECRET,
+            session["id"],
+            produit_id=produit_id,
+            blob_index=blob_index,
+            nom_produit="Produit généralisé de test",
+            nom_fichier="produit-test.pdf",
+        )
     )
 
 
@@ -125,7 +139,7 @@ def masquer_zone(
                 )
             if licence_visible:
                 page.add_redact_annot(
-                    pymupdf.Rect(285, 30, page.rect.width, 80),
+                    pymupdf.Rect(245, page.rect.height - 32, page.rect.width, page.rect.height),
                     fill=(1, 1, 1),
                 )
             page.apply_redactions()
@@ -195,6 +209,23 @@ class IdentificationFuitePdfTest(unittest.TestCase):
             aplatir_pdf(original, aplati)
             analyse = analyser_pdf(aplati, pages_max=6)
 
+        preuve = analyse["fingerprints"][identite.fingerprint]
+        self.assertGreaterEqual(preuve["occurrences_visuelles"], 2)
+        self.assertEqual(preuve["couches"], ["micro_marqueurs"])
+
+    def test_fingerprint_generalise_sur_douze_chiffres_resiste_a_aplatissement(self):
+        produit_id = "fiche-da-l2-s1"
+        session = session_payee("cs_test_forensic_generalise")
+        session["metadata"]["produitIds"] = produit_id
+        identite = identite_depuis_session(session, SECRET, produit_id, 0)
+        with tempfile.TemporaryDirectory() as dossier:
+            original = Path(dossier) / "original-generalise.pdf"
+            aplati = Path(dossier) / "aplati-generalise.pdf"
+            ecrire_pdf_personnalise(original, session, produit_id, 0)
+            aplatir_pdf(original, aplati)
+            analyse = analyser_pdf(aplati, pages_max=6)
+
+        self.assertEqual(len(identite.fingerprint), 12)
         preuve = analyse["fingerprints"][identite.fingerprint]
         self.assertGreaterEqual(preuve["occurrences_visuelles"], 2)
         self.assertEqual(preuve["couches"], ["micro_marqueurs"])

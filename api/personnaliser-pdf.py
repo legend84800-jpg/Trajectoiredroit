@@ -1,4 +1,4 @@
-"""Point d'entrée Vercel du téléchargement PDF nominatif."""
+"""Point d'entrée Vercel du téléchargement PDF nominatif généralisé."""
 
 from __future__ import annotations
 
@@ -29,7 +29,10 @@ class handler(BaseHTTPRequestHandler):
 
         produit_id = valeur("id")
         session_id = valeur("sid")
-        signature = valeur("sig")
+        source_url = valeur("src")
+        nom_produit = valeur("nom")
+        nom_fichier = valeur("fichier")
+        signature = valeur("psig")
         try:
             blob_index = int(valeur("b"))
             expiration = int(valeur("exp"))
@@ -51,11 +54,19 @@ class handler(BaseHTTPRequestHandler):
                 signature,
                 secret,
                 session_id,
+                source_url,
+                nom_produit,
+                nom_fichier,
             )
-            contenu, identite = produire_depuis_commande(
+            url_pdf, _, _ = produire_depuis_commande(
                 session_id,
                 secret,
                 cle_stripe,
+                produit_id,
+                blob_index,
+                source_url,
+                nom_produit,
+                nom_fichier,
             )
         except PermissionError as erreur:
             statut = 410 if str(erreur) == "Lien expiré" else 403
@@ -65,18 +76,14 @@ class handler(BaseHTTPRequestHandler):
             print(f"personnaliser-pdf erreur contrôlée: {type(erreur).__name__}")
             self._texte(400, "La commande ou le fichier source est invalide.")
             return
-        except Exception as erreur:
+        except Exception as erreur:  # noqa: BLE001, dernier garde-fou de la route Vercel
             print(f"personnaliser-pdf erreur interne: {type(erreur).__name__}")
             self._texte(500, "Le téléchargement est temporairement indisponible.")
             return
 
-        nom_fichier = f"majeures-penal-l2-s1-{identite.licence.lower()}.pdf"
-        self.send_response(200)
-        self.send_header("Content-Type", "application/pdf")
-        self.send_header("Content-Disposition", f'attachment; filename="{nom_fichier}"')
-        self.send_header("Content-Length", str(len(contenu)))
+        self.send_response(302)
+        self.send_header("Location", url_pdf)
         self.send_header("Cache-Control", "private, no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("X-Robots-Tag", "noindex, nofollow, noarchive")
         self.end_headers()
-        self.wfile.write(contenu)

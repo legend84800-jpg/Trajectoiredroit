@@ -11,6 +11,28 @@ function genererToken(produitId, blobIndex, expiry, secret, sessionId = "") {
   return crypto.createHmac("sha256", secret).update(message).digest("hex");
 }
 
+function genererJetonPersonnalisation({
+  produitId,
+  blobIndex,
+  expiry,
+  sessionId,
+  sourceUrl,
+  nomProduit,
+  nomFichier,
+}, secret) {
+  const message = [
+    "pdf-personnalise-v2",
+    produitId,
+    String(blobIndex),
+    String(expiry),
+    sessionId,
+    sourceUrl,
+    nomProduit,
+    nomFichier,
+  ].join("|");
+  return crypto.createHmac("sha256", secret).update(message).digest("hex");
+}
+
 // Le libellé du fichier principal dépend de la famille de produit (identifiée
 // par le préfixe de son nom), faute de quoi le nom de fichier brut fuitait
 // dans l'email du client (ex: "fiche da l2 s1" au lieu de "la fiche complète").
@@ -50,4 +72,9 @@ function construireLiensTelechargement(
   });
 }
 
-module.exports = { genererToken, libelleFichierPrincipal, construireLiensTelechargement };
+module.exports = {
+  genererToken,
+  genererJetonPersonnalisation,
+  libelleFichierPrincipal,
+  construireLiensTelechargement,
+};

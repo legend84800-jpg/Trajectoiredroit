@@ -184,7 +184,10 @@ def afficher_rapport(rapport: dict[str, object]) -> None:
     print(f"Paiement              {commande['paiement']}")
     print(f"Titulaire             {titulaire['nom'] or titulaire['nom_affiche_pdf']}")
     print(f"Email                 {titulaire['email']}")
-    print(f"Produit               {', '.join(commande['produits'])}")
+    produit = commande.get("produit_nom") or ", ".join(commande["produits"])
+    print(f"Produit               {produit}")
+    if commande.get("fichier"):
+        print(f"Fichier               {commande['fichier']}")
     print(f"Montant               {commande['montant_euros']} €")
     print(f"Date                   {commande['date']}")
     print(f"Niveau de confiance   {rapport['confiance']}")

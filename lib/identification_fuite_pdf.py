@@ -19,9 +19,15 @@ from pypdf import PdfReader
 
 logging.getLogger("pypdf").setLevel(logging.ERROR)
 
-FINGERPRINT_RE = re.compile(r"^[0-9A-F]{10}$")
-FINGERPRINT_TEXTE_RE = re.compile(r"TJD-FP:([0-9A-F]{10})", re.IGNORECASE)
-LICENCE_RE = re.compile(r"\bTD-PEN-S1-[0-9A-F]{8}\b", re.IGNORECASE)
+FINGERPRINT_RE = re.compile(r"^[0-9A-F]{10}(?:[0-9A-F]{2})?$")
+FINGERPRINT_TEXTE_RE = re.compile(
+    r"TJD-FP:([0-9A-F]{10}(?:[0-9A-F]{2})?)",
+    re.IGNORECASE,
+)
+LICENCE_RE = re.compile(
+    r"\b(?:TD-PEN-S1-[0-9A-F]{8}|TD-[0-9A-F]{10})\b",
+    re.IGNORECASE,
+)
 
 
 def sha256_fichier(chemin: Path) -> str:
@@ -88,7 +94,7 @@ def preuves_structurelles(chemin: Path) -> tuple[dict[str, set[str]], set[str]]:
         except Exception:  # noqa: BLE001, le XMP pirate peut être arbitrairement altéré
             texte_xmp = ""
         for match in re.finditer(
-            r"<tjd:fingerprint>\s*([0-9A-F]{10})\s*</tjd:fingerprint>",
+            r"<tjd:fingerprint>\s*([0-9A-F]{10}(?:[0-9A-F]{2})?)\s*</tjd:fingerprint>",
             texte_xmp,
             re.IGNORECASE,
         ):
@@ -127,15 +133,17 @@ def _obscurite(image: object, x: float, y: float, rayon: int = 3) -> float:
 def _positions_bit(
     zone: str,
     index_bit: int,
+    nombre_bits: int,
     largeur: float,
     hauteur: float,
 ) -> tuple[tuple[float, float], tuple[float, float]]:
     decalage = 2.6
+    diviseur = max(1, nombre_bits - 1)
     if zone == "haut":
-        x = 64 + index_bit * ((largeur - 128) / 39)
+        x = 64 + index_bit * ((largeur - 128) / diviseur)
         return (x, 4.5), (x, 4.5 + decalage)
 
-    y_pdf = 70 + index_bit * ((hauteur - 140) / 39)
+    y_pdf = 70 + index_bit * ((hauteur - 140) / diviseur)
     y_haut = hauteur - y_pdf
     if zone == "gauche_externe":
         return (4.5, y_haut), (4.5 + decalage, y_haut)
@@ -148,7 +156,11 @@ def _positions_bit(
     raise ValueError(f"Zone visuelle inconnue, {zone}")
 
 
-def decoder_page_visuelle(page: object, dpi: int = 288) -> tuple[str, float]:
+def decoder_page_visuelle(
+    page: object,
+    dpi: int = 288,
+    nombre_bits: int = 48,
+) -> tuple[str, float]:
     try:
         import pymupdf
         from PIL import Image
@@ -177,10 +189,16 @@ def decoder_page_visuelle(page: object, dpi: int = 288) -> tuple[str, float]:
     bits: list[int] = []
     confiances: list[float] = []
 
-    for index_bit in range(40):
+    for index_bit in range(nombre_bits):
         scores_signes: list[float] = []
         for zone in zones:
-            point_zero, point_un = _positions_bit(zone, index_bit, largeur, hauteur)
+            point_zero, point_un = _positions_bit(
+                zone,
+                index_bit,
+                nombre_bits,
+                largeur,
+                hauteur,
+            )
             sombre_zero = _obscurite(
                 image,
                 point_zero[0] * echelle,
@@ -201,7 +219,7 @@ def decoder_page_visuelle(page: object, dpi: int = 288) -> tuple[str, float]:
     valeur = 0
     for bit in bits:
         valeur = (valeur << 1) | bit
-    return f"{valeur:010X}", mean(confiances)
+    return f"{valeur:0{nombre_bits // 4}X}", mean(confiances)
 
 
 def preuves_visuelles(
@@ -223,13 +241,24 @@ def preuves_visuelles(
     pages: list[dict[str, object]] = []
     try:
         for index_page in range(min(pages_max, len(document))):
-            fingerprint, confiance = decoder_page_visuelle(document[index_page], dpi=dpi)
-            comptes[fingerprint] = comptes.get(fingerprint, 0) + 1
+            candidats_page = []
+            for nombre_bits in (48, 40):
+                fingerprint, confiance = decoder_page_visuelle(
+                    document[index_page],
+                    dpi=dpi,
+                    nombre_bits=nombre_bits,
+                )
+                comptes[fingerprint] = comptes.get(fingerprint, 0) + 1
+                candidats_page.append(
+                    {
+                        "fingerprint": fingerprint,
+                        "confiance": round(confiance, 3),
+                    }
+                )
             pages.append(
                 {
                     "page": index_page + 1,
-                    "fingerprint": fingerprint,
-                    "confiance": round(confiance, 3),
+                    "candidats": candidats_page,
                 }
             )
     finally:

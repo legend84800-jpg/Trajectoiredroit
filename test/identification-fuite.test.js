@@ -14,22 +14,22 @@ const DOWNLOAD_SECRET = "secret-telechargement-test";
 const ADMIN_SECRET = "secret-administration-test";
 const SESSION_ID = "cs_test_identification_fuite";
 
-function achat() {
+function achat(produit = PRODUIT) {
   return {
     email: "julien.test@example.com",
-    produit_ids: [PRODUIT],
+    produit_ids: [produit],
     session_id: SESSION_ID,
     montant: 14.99,
     cree_le: "2026-08-31T12:00:00Z",
   };
 }
 
-function session(statut = "paid") {
+function session(statut = "paid", produit = PRODUIT) {
   return {
     id: SESSION_ID,
     mode: "payment",
     payment_status: statut,
-    metadata: { produitIds: PRODUIT },
+    metadata: { produitIds: produit },
     customer_details: {
       email: "julien.test@example.com",
       name: "Nom carte",
@@ -41,14 +41,14 @@ function session(statut = "paid") {
   };
 }
 
-function contexte(statut = "paid") {
+function contexte(statut = "paid", produit = PRODUIT) {
   return {
-    selectionner: async () => [achat()],
+    selectionner: async () => [achat(produit)],
     downloadSecret: DOWNLOAD_SECRET,
     stripe: {
       checkout: {
         sessions: {
-          retrieve: async () => session(statut),
+          retrieve: async () => session(statut, produit),
         },
       },
     },
@@ -102,6 +102,52 @@ test("un fingerprint retrouve une commande payée et son titulaire", async () =>
   assert.equal(resultat.corps.commande.paiement, "paid");
   assert.equal(resultat.corps.titulaire.nom, "Julien Dupont");
   assert.equal(resultat.corps.titulaire.email, "julien.test@example.com");
+});
+
+test("un fingerprint généralisé retrouve le fichier exact d'une fiche", async () => {
+  const produit = "fiche-da-l2-s1";
+  const codes = codesCommande(SESSION_ID, DOWNLOAD_SECRET, produit, 1);
+  const resultat = await identifier(
+    { fingerprints: [codes.fingerprint], licences: [] },
+    contexte("paid", produit)
+  );
+
+  assert.equal(resultat.statut, 200);
+  assert.equal(resultat.corps.licence, codes.licence);
+  assert.equal(resultat.corps.fingerprint, codes.fingerprint);
+  assert.equal(resultat.corps.commande.produit_id, produit);
+  assert.equal(resultat.corps.commande.fichier_index, 1);
+  assert.equal(resultat.corps.commande.fichier, "fiche-da-l2-s1-plan.pdf");
+});
+
+test("une licence seule identifie l'achat sans inventer le fichier", async () => {
+  const produit = "fiche-da-l2-s1";
+  const codes = codesCommande(SESSION_ID, DOWNLOAD_SECRET, produit, 2);
+  const resultat = await identifier(
+    { fingerprints: [], licences: [codes.licence] },
+    contexte("paid", produit)
+  );
+
+  assert.equal(resultat.statut, 200);
+  assert.equal(resultat.corps.licence, codes.licence);
+  assert.equal(resultat.corps.fingerprint, "");
+  assert.equal(resultat.corps.commande.produit_id, produit);
+  assert.equal(resultat.corps.commande.fichier_index, null);
+  assert.equal(resultat.corps.commande.fichier, "");
+});
+
+test("le dernier PDF du plus gros pack est lui aussi attribuable", async () => {
+  const produit = "pack-complet";
+  const blobIndex = 59;
+  const codes = codesCommande(SESSION_ID, DOWNLOAD_SECRET, produit, blobIndex);
+  const resultat = await identifier(
+    { fingerprints: [codes.fingerprint], licences: [] },
+    contexte("paid", produit)
+  );
+
+  assert.equal(resultat.statut, 200);
+  assert.equal(resultat.corps.commande.produit_id, produit);
+  assert.equal(resultat.corps.commande.fichier_index, blobIndex);
 });
 
 test("un motif inconnu ne retourne aucune identité", async () => {

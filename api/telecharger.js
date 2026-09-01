@@ -3,9 +3,18 @@
 
 const crypto = require("crypto");
 const PRODUITS = require("./_produits");
-const { genererToken } = require("./_liens-telechargement");
+const {
+  genererToken,
+  genererJetonPersonnalisation,
+} = require("./_liens-telechargement");
 
-const PRODUIT_PERSONNALISE = "maj-penal-l2-s1";
+function nomFichierDepuisUrl(url) {
+  try {
+    return decodeURIComponent(new URL(url).pathname.split("/").pop() || "document.pdf");
+  } catch {
+    return "document.pdf";
+  }
+}
 
 module.exports = async (req, res) => {
   const { id, b, exp, sig, sid = "" } = req.query || {};
@@ -49,21 +58,38 @@ module.exports = async (req, res) => {
     return;
   }
 
-  if (id === PRODUIT_PERSONNALISE && blobIndex === 0) {
-    if (!sessionId) {
-      res.status(410).send("Ce lien a été créé avant la personnalisation. Connecte-toi à ton espace Mon compte pour générer une copie individuelle.");
-      return;
-    }
+  const sourceUrl = produit.blobs[blobIndex];
+  const estPdf = /\.pdf(?:$|\?)/i.test(sourceUrl);
+  if (estPdf && sessionId) {
+    const nomFichier = nomFichierDepuisUrl(sourceUrl);
+    const personnalisationSig = genererJetonPersonnalisation({
+      produitId: id,
+      blobIndex,
+      expiry,
+      sessionId,
+      sourceUrl,
+      nomProduit: produit.nom,
+      nomFichier,
+    }, secret);
     const parametres = new URLSearchParams({
       id,
       b: String(blobIndex),
       exp: String(expiry),
-      sig,
       sid: sessionId,
+      src: sourceUrl,
+      nom: produit.nom,
+      fichier: nomFichier,
+      psig: personnalisationSig,
     });
     res.redirect(302, `/api/personnaliser-pdf?${parametres.toString()}`);
     return;
   }
 
-  res.redirect(302, produit.blobs[blobIndex]);
+  // Les anciens liens envoyés avant la généralisation ne portaient pas la
+  // commande Stripe. Ils restent valables pendant leurs 48 heures afin de ne
+  // jamais casser une livraison déjà reçue. Les liens régénérés depuis Mon
+  // compte portent tous la commande et passent par la personnalisation.
+  res.redirect(302, sourceUrl);
 };
+
+module.exports._test = { nomFichierDepuisUrl };
