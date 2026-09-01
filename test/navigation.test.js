@@ -48,6 +48,10 @@ test('Ressources conserve les articles et les quatre méthodes juridiques', () =
   for (const { nom, html } of pages) {
     const nav = extraire(html, '<nav class="primary-nav"', '</nav>');
     assert.match(nav, /dropdown--resources/, `${nom} doit contenir le panneau Ressources`);
+    assert.match(nav, />Le blog pour apprendre le droit</, `${nom} doit présenter clairement le blog`);
+    assert.match(nav, />Grands arrêts, notions et conseils pour progresser\.</, `${nom} doit expliquer le contenu du blog`);
+    assert.match(nav, />Découvrir le blog →</, `${nom} doit proposer un appel à l'action explicite`);
+    assert.doesNotMatch(nav, />Articles pour apprendre le droit</, `${nom} ne doit plus afficher l'ancien titre du blog`);
     for (const lien of liensAttendus) {
       assert.ok(nav.includes(`href="${lien}"`), `${nom} doit conserver le lien ${lien}`);
     }
