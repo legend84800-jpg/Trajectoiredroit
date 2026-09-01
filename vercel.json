@@ -1,6 +1,10 @@
 {
   "functions": {
-    "api/generer.js": { "maxDuration": 60 }
+    "api/generer.js": { "maxDuration": 60 },
+    "api/personnaliser-pdf.py": {
+      "maxDuration": 60,
+      "excludeFiles": "{.env,.env.*,node_modules/**,.git/**,.vercel/**,.claude/**,assets/**,test/**,jeu/**,scripts/**,supabase/**,**/*.html,**/*.js,**/*.json,**/*.md,**/*.txt,**/*.css,**/*.map,**/*.png,**/*.jpg,**/*.svg,**/*.ico,**/*.xml,**/*.pdf,.DS_Store}"
+    }
   },
   "headers": [
     {

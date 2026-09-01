@@ -4,8 +4,10 @@
 
 const crypto = require("crypto");
 
-function genererToken(produitId, blobIndex, expiry, secret) {
-  const message = `${produitId}|${blobIndex}|${expiry}`;
+function genererToken(produitId, blobIndex, expiry, secret, sessionId = "") {
+  const message = sessionId
+    ? `${produitId}|${blobIndex}|${expiry}|${sessionId}`
+    : `${produitId}|${blobIndex}|${expiry}`;
   return crypto.createHmac("sha256", secret).update(message).digest("hex");
 }
 
@@ -21,7 +23,14 @@ function libelleFichierPrincipal(nomProduit) {
   return "le PDF principal";
 }
 
-function construireLiensTelechargement(produitId, produit, secret, origin, dureeSecondes) {
+function construireLiensTelechargement(
+  produitId,
+  produit,
+  secret,
+  origin,
+  dureeSecondes,
+  { sessionId = "" } = {}
+) {
   const expiry = Math.floor(Date.now() / 1000) + dureeSecondes;
   const suffixes = {
     flashcards: "les flashcards",
@@ -31,8 +40,9 @@ function construireLiensTelechargement(produitId, produit, secret, origin, duree
     plan: "le plan du cours",
   };
   return produit.blobs.map((blobUrl, i) => {
-    const sig = genererToken(produitId, i, expiry, secret);
-    const url = `${origin}/api/telecharger?id=${encodeURIComponent(produitId)}&b=${i}&exp=${expiry}&sig=${sig}`;
+    const sig = genererToken(produitId, i, expiry, secret, sessionId);
+    const sessionParam = sessionId ? `&sid=${encodeURIComponent(sessionId)}` : "";
+    const url = `${origin}/api/telecharger?id=${encodeURIComponent(produitId)}&b=${i}&exp=${expiry}&sig=${sig}${sessionParam}`;
     const brut = blobUrl.split("/").pop().replace(/\.(pdf|apkg)$/i, "");
     const dernierMot = brut.split("-").pop();
     const nom = suffixes[dernierMot] || libelleFichierPrincipal(produit.nom);

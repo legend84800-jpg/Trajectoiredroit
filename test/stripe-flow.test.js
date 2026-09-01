@@ -113,6 +113,110 @@ test("la création Checkout conserve le garde-fou Stripe et l'idempotence", asyn
   assert.equal(appel.options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012");
 });
 
+test("le produit pilote collecte le nom destiné à la licence", async () => {
+  const stripeModule = require("../api/_stripe");
+  const creerOriginal = stripeModule.creerClientStripe;
+  let paramsCrees;
+  stripeModule.creerClientStripe = () => ({
+    checkout: { sessions: { create: async (params) => {
+      paramsCrees = params;
+      return { id: "cs_test_personnalise", url: "https://checkout.stripe.com/c/pay/test" };
+    } } },
+  });
+  const cheminModule = require.resolve("../api/create-checkout");
+  delete require.cache[cheminModule];
+  const handler = require("../api/create-checkout");
+  const ancienneCle = process.env.STRIPE_SECRET_KEY;
+  process.env.STRIPE_SECRET_KEY = "sk_test_factice";
+  try {
+    await handler({ method: "POST", body: {
+      produitId: "maj-penal-l2-s1",
+      attemptId: "personnalise-1234567890",
+    } }, reponseFactice());
+  } finally {
+    stripeModule.creerClientStripe = creerOriginal;
+    delete require.cache[cheminModule];
+    if (ancienneCle === undefined) delete process.env.STRIPE_SECRET_KEY;
+    else process.env.STRIPE_SECRET_KEY = ancienneCle;
+  }
+
+  assert.deepEqual(paramsCrees.custom_fields, [{
+    key: "nomlicence",
+    label: { type: "custom", custom: "Prénom et nom pour ta licence" },
+    type: "text",
+    optional: false,
+    text: { minimum_length: 2, maximum_length: 80 },
+  }]);
+  assert.match(paramsCrees.custom_text.submit.message, /licence individuelle/);
+});
+
+test("un lien nominatif est signé avec la commande Stripe", async () => {
+  const { construireLiensTelechargement, genererToken } = require("../api/_liens-telechargement");
+  const produit = require("../api/_produits")["maj-penal-l2-s1"];
+  const sessionId = "cs_test_acheteur_42";
+  const liens = construireLiensTelechargement(
+    "maj-penal-l2-s1",
+    produit,
+    "secret_test",
+    "https://trajectoiredroit.com",
+    900,
+    { sessionId }
+  );
+  const url = new URL(liens[0].url);
+  const expiration = Number(url.searchParams.get("exp"));
+
+  assert.equal(url.searchParams.get("sid"), sessionId);
+  assert.equal(
+    url.searchParams.get("sig"),
+    genererToken("maj-penal-l2-s1", 0, expiration, "secret_test", sessionId)
+  );
+  assert.notEqual(
+    url.searchParams.get("sig"),
+    genererToken("maj-penal-l2-s1", 0, expiration, "secret_test", "cs_test_autre")
+  );
+});
+
+test("le téléchargement du PDF pilote route vers la génération nominative", async () => {
+  const { genererToken } = require("../api/_liens-telechargement");
+  const handler = require("../api/telecharger");
+  const ancienneValeur = process.env.DOWNLOAD_SECRET;
+  process.env.DOWNLOAD_SECRET = "secret_test";
+  const expiration = Math.floor(Date.now() / 1000) + 900;
+  const sessionId = "cs_test_route_personnalisee";
+  const signature = genererToken(
+    "maj-penal-l2-s1",
+    0,
+    expiration,
+    "secret_test",
+    sessionId
+  );
+  let destination = "";
+  const reponse = reponseFactice();
+  reponse.send = function send(message) { this.payload = message; return this; };
+  reponse.redirect = function redirect(code, url) {
+    this.statusCode = code;
+    destination = url;
+    return this;
+  };
+
+  try {
+    await handler({ query: {
+      id: "maj-penal-l2-s1",
+      b: "0",
+      exp: String(expiration),
+      sig: signature,
+      sid: sessionId,
+    } }, reponse);
+  } finally {
+    if (ancienneValeur === undefined) delete process.env.DOWNLOAD_SECRET;
+    else process.env.DOWNLOAD_SECRET = ancienneValeur;
+  }
+
+  assert.equal(reponse.statusCode, 302);
+  assert.match(destination, /^\/api\/personnaliser-pdf\?/);
+  assert.equal(new URL(destination, "https://trajectoiredroit.com").searchParams.get("sid"), sessionId);
+});
+
 test("le panier abandonné prépare une seule relance H+1 et une seule relance H+24", async () => {
   const { gererPanierAbandonne } = require("../api/stripe-webhook")._test;
   const misesAJour = [];

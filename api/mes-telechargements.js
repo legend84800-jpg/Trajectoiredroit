@@ -59,7 +59,14 @@ module.exports = async (req, res) => {
         return {
           id,
           nom: produit.nom,
-          fichiers: construireLiensTelechargement(id, produit, downloadSecret, origin, DUREE_LIEN_SECONDES),
+          fichiers: construireLiensTelechargement(
+            id,
+            produit,
+            downloadSecret,
+            origin,
+            DUREE_LIEN_SECONDES,
+            { sessionId: ligne.session_id }
+          ),
         };
       })
       .filter(Boolean);

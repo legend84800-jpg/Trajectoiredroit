@@ -242,6 +242,21 @@ async function handler(req, res) {
     integration_identifier: INTEGRATION_IDS.checkout,
   };
 
+  if (idsAchetes.includes("maj-penal-l2-s1")) {
+    params.custom_fields = [{
+      key: "nomlicence",
+      label: { type: "custom", custom: "Prénom et nom pour ta licence" },
+      type: "text",
+      optional: false,
+      text: { minimum_length: 2, maximum_length: 80 },
+    }];
+    params.custom_text = {
+      submit: {
+        message: "Le PDF principal portera une licence individuelle associée à ton nom et à ton adresse email.",
+      },
+    };
+  }
+
   // Stripe génère à l'expiration un lien de récupération sécurisé, valable
   // 30 jours. Les stages datés et les tests internes restent exclus.
   if (autoriserRelance) {

@@ -201,8 +201,15 @@ async function lireBodyBrut(req) {
   });
 }
 
-function construireLiensEmail(produitId, produit, secret, origin) {
-  return construireLiensTelechargement(produitId, produit, secret, origin, 48 * 3600);
+function construireLiensEmail(produitId, produit, secret, origin, sessionId) {
+  return construireLiensTelechargement(
+    produitId,
+    produit,
+    secret,
+    origin,
+    48 * 3600,
+    { sessionId }
+  );
 }
 
 function uuidRelance(sessionId, etape) {
@@ -663,7 +670,15 @@ async function traiterAchatPaye(session, contexte) {
     } else {
       let liens = [];
       produitsAchetes.forEach(({ id, produit }) => {
-        liens = liens.concat(construireLiensEmail(id, produit, contexte.downloadSecret, contexte.origin));
+        liens = liens.concat(
+          construireLiensEmail(
+            id,
+            produit,
+            contexte.downloadSecret,
+            contexte.origin,
+            session.id
+          )
+        );
       });
       await operations.envoyerEmail(
         email,

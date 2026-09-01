@@ -3,9 +3,12 @@
 
 const crypto = require("crypto");
 const PRODUITS = require("./_produits");
+const { genererToken } = require("./_liens-telechargement");
+
+const PRODUIT_PERSONNALISE = "maj-penal-l2-s1";
 
 module.exports = async (req, res) => {
-  const { id, b, exp, sig } = req.query || {};
+  const { id, b, exp, sig, sid = "" } = req.query || {};
 
   if (!id || b === undefined || !exp || !sig) {
     res.status(400).send("Lien invalide ou incomplet.");
@@ -22,8 +25,8 @@ module.exports = async (req, res) => {
   if (!secret) { res.status(500).send("Erreur de configuration."); return; }
 
   const blobIndex = parseInt(b, 10);
-  const message = `${id}|${blobIndex}|${expiry}`;
-  const attendu = crypto.createHmac("sha256", secret).update(message).digest("hex");
+  const sessionId = typeof sid === "string" ? sid.trim() : "";
+  const attendu = genererToken(id, blobIndex, expiry, secret, sessionId);
 
   let signaturesIdentiques = false;
   try {
@@ -43,6 +46,22 @@ module.exports = async (req, res) => {
   const produit = PRODUITS[id];
   if (!produit || !produit.blobs[blobIndex]) {
     res.status(404).send("Fichier introuvable.");
+    return;
+  }
+
+  if (id === PRODUIT_PERSONNALISE && blobIndex === 0) {
+    if (!sessionId) {
+      res.status(410).send("Ce lien a été créé avant la personnalisation. Connecte-toi à ton espace Mon compte pour générer une copie individuelle.");
+      return;
+    }
+    const parametres = new URLSearchParams({
+      id,
+      b: String(blobIndex),
+      exp: String(expiry),
+      sig,
+      sid: sessionId,
+    });
+    res.redirect(302, `/api/personnaliser-pdf?${parametres.toString()}`);
     return;
   }
 
