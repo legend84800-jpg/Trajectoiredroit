@@ -142,16 +142,34 @@ def masquer_email(email: str) -> str:
     return f"{visible}***@{domaine.lower()}"
 
 
+def codes_licence_depuis_session(session_id: str, secret: str) -> tuple[str, str]:
+    """Retourne les codes stables associés à une commande Stripe.
+
+    Cette fonction est partagée par la génération et par l'outil local
+    d'identification des fuites. Les deux côtés utilisent ainsi exactement le
+    même calcul, sans conserver le fingerprint dans une base publique.
+    """
+
+    session_propre = _nettoyer_texte(session_id, 255)
+    if not session_propre.startswith("cs_"):
+        raise ValueError("Commande Stripe invalide")
+    empreinte = _hmac_hex(
+        secret,
+        f"licence|{PRODUIT_PILOTE}|{session_propre}",
+    ).upper()
+    return f"TD-PEN-S1-{empreinte[:8]}", empreinte[8:18]
+
+
 def identite_depuis_session(session: dict, secret: str) -> IdentiteLicence:
     details = session.get("customer_details") or {}
     email = _nettoyer_texte(details.get("email"), 200).lower()
     if "@" not in email:
         raise ValueError("Adresse email Stripe manquante")
     session_id = _nettoyer_texte(session.get("id"), 255)
-    empreinte = _hmac_hex(secret, f"licence|{PRODUIT_PILOTE}|{session_id}").upper()
+    licence, fingerprint = codes_licence_depuis_session(session_id, secret)
     return IdentiteLicence(
-        licence=f"TD-PEN-S1-{empreinte[:8]}",
-        fingerprint=empreinte[8:18],
+        licence=licence,
+        fingerprint=fingerprint,
         nom_affiche=abreger_nom(_champ_nom(session), email),
         email_masque=masquer_email(email),
         email_hash=hashlib.sha256(email.encode("utf-8")).hexdigest(),

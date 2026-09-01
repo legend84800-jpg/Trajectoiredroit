@@ -25,6 +25,8 @@ node_modules/
 dist/
 build/
 .cache/
+__pycache__/
+*.py[cod]
 
 # ─── Config Impeccable (skill design, local uniquement) ──
 PRODUCT.md
