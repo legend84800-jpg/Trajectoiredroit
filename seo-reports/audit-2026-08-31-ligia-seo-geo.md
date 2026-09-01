@@ -44,4 +44,9 @@ Les pages de cours et plusieurs contenus éditoriaux disposent déjà de répons
 - Le contrôle de santé valide 301 fichiers produits et 317 liens internes, sans erreur.
 - Le diff HTML ne modifie que les destinations de liens vers l'accueil.
 
-Après déploiement, il reste à confirmer la redirection publique de `/index.html` vers `/` et le chargement public de l'accueil ainsi que des trois pages de matières.
+## Vérifications publiques
+
+- `/index.html` répond par une redirection permanente `308` vers `/`.
+- L'accueil, `blog.html` et les trois pages de matières répondent en `200`.
+- Les pages publiques contrôlées ne contiennent plus de lien vers `index.html`.
+- Un clic réel sur le logo depuis la page de droit commercial L3 ramène bien à l'accueil.
