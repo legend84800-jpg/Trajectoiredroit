@@ -9,12 +9,15 @@ from __future__ import annotations
 
 import hashlib
 import io
+import logging
 import re
 from pathlib import Path
 from statistics import mean
 
 import pikepdf
 from pypdf import PdfReader
+
+logging.getLogger("pypdf").setLevel(logging.ERROR)
 
 FINGERPRINT_RE = re.compile(r"^[0-9A-F]{10}$")
 FINGERPRINT_TEXTE_RE = re.compile(r"TJD-FP:([0-9A-F]{10})", re.IGNORECASE)
