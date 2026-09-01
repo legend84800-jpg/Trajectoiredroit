@@ -393,6 +393,19 @@ test("le remerciement après achat contient les liens sociaux et les information
   );
 });
 
+test("l'email de confirmation du stage reprend les horaires publics", () => {
+  const webhook = fs.readFileSync(path.join(RACINE, "api/stripe-webhook.js"), "utf8");
+  const emailStage = webhook.slice(
+    webhook.indexOf("async function envoyerConfirmationStage"),
+    webhook.indexOf("// Notifie Julien d'une inscription payée au stage")
+  );
+
+  assert.match(emailStage, /mardi 8 septembre, de 17 h à 20 h/);
+  assert.match(emailStage, /mercredi 9 septembre, de 17 h à 20 h/);
+  assert.match(emailStage, /jeudi 10 septembre, de 17 h à 19 h/);
+  assert.doesNotMatch(emailStage, /de 16 h à/);
+});
+
 test("la remise post-achat est personnelle, unique, valable 15 jours et reliée au coupon de 15 %", async () => {
   const { creerRemisePostAchat } = require("../api/stripe-webhook")._test;
   let appel;
