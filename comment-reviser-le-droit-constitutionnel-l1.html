@@ -68,7 +68,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=42552402">
+  <link rel="stylesheet" href="assets/style.css?v=edfc6991">
   <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
   <!-- Google Analytics (GA4) -->
@@ -164,33 +164,7 @@
             </div>
           </div>
         </div>
-        <!-- Item : Methode (dropdown simple) -->
-        <div class="nav-item has-dropdown">
-          <a href="methodologie-juridique.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
-            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>Méthode
-            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <div class="dropdown dropdown--simple" role="menu">
-            <a class="dropdown__item" href="methode-fiche-arret.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
-              <span><strong>La fiche d'arrêt</strong><small>Décortiquer une décision étape par étape</small></span>
-            </a>
-            <a class="dropdown__item" href="methode-commentaire-arret.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
-              <span><strong>Le commentaire d'arrêt</strong><small>De la fiche au devoir rédigé</small></span>
-            </a>
-            <a class="dropdown__item" href="methode-cas-pratique.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
-              <span><strong>Le cas pratique</strong><small>Majeure, mineure, conclusion</small></span>
-            </a>
-            <a class="dropdown__item" href="methode-dissertation-juridique.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
-              <span><strong>La dissertation juridique</strong><small>Problématiser et construire un plan</small></span>
-            </a>
-            <div class="dropdown__divider"></div>
-            <a class="dropdown__cta" href="methodologie-juridique.html">Toute la méthodologie →</a>
-          </div>
-        </div>
+
 
         <div class="nav-item has-dropdown">
           <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
@@ -211,7 +185,6 @@
             <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
           </div>
         </div>
-
         <div class="nav-item has-dropdown">
           <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link aria-haspopup="true" aria-expanded="false">
             <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>Stage en direct
@@ -228,15 +201,48 @@
                 </span>
               </button>
               <div class="stage-teaser__panel" id="stageTeaserPanel">
-                <p>Trois séances en direct, 8 h au total pour 149 €, pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un vrai sujet travaillé à chaque fois. La prochaine session a lieu les 8, 9 et 10 septembre. Plus que 3 places.</p>
+                <p>Trois séances en direct, 8 h au total pour 149 €, pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un sujet travaillé à chaque fois. La prochaine session a lieu les 8, 9 et 10 septembre. Plus que 3 places.</p>
               </div>
             </div>
             <div class="dropdown__divider"></div>
             <a class="dropdown__cta" href="stage-methode.html">Voir toutes les infos et réserver →</a>
           </div>
         </div>
-        <div class="nav-item">
-          <a href="blog.html" class="nav-item__link"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Blog</a>
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Articles pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts et notions expliqués simplement.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Voir tous les articles →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
         </div>
         <div class="nav-item has-dropdown">
           <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
@@ -244,26 +250,11 @@
             <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <div class="dropdown dropdown--simple" role="menu">
-            <a class="dropdown__item" href="a-propos.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span>
-              <span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span>
-            </a>
-            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span>
-              <span><strong>Notre méthode</strong><small>3 piliers : cours, fiches, majeures</small></span>
-            </a>
-            <a class="dropdown__item" href="temoignages.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
-              <span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span>
-            </a>
-            <a class="dropdown__item" href="faq.html" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span>
-              <span><strong>FAQ</strong><small>Toutes vos questions</small></span>
-            </a>
-            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem">
-              <span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span>
-              <span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span>
-            </a>
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
             <div class="dropdown__divider"></div>
             <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
           </div>
@@ -284,12 +275,18 @@
       <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
       <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
     </div>
-    <a href="formations.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches complètes</a>
-    <a href="majeures-preparees.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-target"/></svg>Majeures préparées</a>
-    <a href="outil-fiche-arret.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-sparkle"/></svg>Portalis</a>
-    <a href="flashcards-qcm.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-cards"/></svg>Flashcards + QCM</a>
-    <a href="methodologie-juridique.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>Méthodologie juridique</a>
-    <a href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers</a>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Fiches</span></summary>
+      <div class="mobile-nav__subnav">
+        <a href="formations.html">Fiches complètes</a>
+        <a href="cours-fiches.html">Cours complets</a>
+        <a href="majeures-preparees.html">Majeures préparées</a>
+        <a href="corriges.html">Exercices corrigés</a>
+        <a href="outil-fiche-arret.html">Portalis</a>
+        <a href="flashcards-qcm.html">Flashcards et QCM</a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
     <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
       <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>
       <span class="mobile-nav__stage-main">
@@ -298,11 +295,29 @@
         <span class="stage-teaser__countdown"></span>
       </span>
     </a>
-    <a href="blog.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Blog</a>
-    <a href="temoignages.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg>Témoignages</a>
-    <a href="a-propos.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos</a>
-    <a href="faq.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg>FAQ</a>
-    <div style="margin-top:24px; display:flex; gap:12px; flex-direction:column">
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a href="blog.html">Articles de droit</a>
+        <a href="methodologie-juridique.html">Toutes les méthodes</a>
+        <a href="methode-fiche-arret.html">Fiche d'arrêt</a>
+        <a href="methode-commentaire-arret.html">Commentaire d'arrêt</a>
+        <a href="methode-cas-pratique.html">Cas pratique</a>
+        <a href="methode-dissertation-juridique.html">Dissertation juridique</a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a href="a-propos.html">Qui suis-je</a>
+        <a href="a-propos.html#methode">Notre approche</a>
+        <a href="temoignages.html">Témoignages</a>
+        <a href="faq.html">FAQ</a>
+        <a href="a-propos.html#mes-reseaux">Mes réseaux</a>
+        <a href="mailto:julien.prof1@gmail.com">Me contacter</a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
       <a class="btn btn--primary btn--full" href="formations.html">Voir les fiches</a>
     </div>
   </nav>

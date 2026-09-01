@@ -783,12 +783,12 @@ section[id] { scroll-margin-top: 100px; }
   transform: rotate(180deg);
 }
 /* Fallback : si pas .nav-item__link (ancienne syntaxe), garde le style */
-.primary-nav a:not(.nav-item__link):not(.dropdown__item):not(.dropdown__cta):not(.megamenu__col-link):not(.megamenu__tile):not(.btn) {
+.primary-nav a:not(.nav-item__link):not(.dropdown__item):not(.dropdown__cta):not(.megamenu__col-link):not(.megamenu__tile):not(.resources-menu__articles-link):not(.resources-menu__method):not(.resources-menu__all-methods):not(.btn) {
   color: var(--body); font-weight: 500; font-size: .92rem;
   padding: 8px 2px;
   white-space: nowrap;
 }
-.primary-nav a:not(.nav-item__link):not(.dropdown__item):not(.dropdown__cta):not(.megamenu__col-link):not(.megamenu__tile):not(.btn):hover { color: var(--blue-700) }
+.primary-nav a:not(.nav-item__link):not(.dropdown__item):not(.dropdown__cta):not(.megamenu__col-link):not(.megamenu__tile):not(.resources-menu__articles-link):not(.resources-menu__method):not(.resources-menu__all-methods):not(.btn):hover { color: var(--blue-700) }
 
 /* ===== DROPDOWN simple (3 items + cta) ===== */
 .dropdown {
@@ -991,6 +991,116 @@ section[id] { scroll-margin-top: 100px; }
   text-decoration: none;
 }
 .dropdown__cta:hover { background: var(--blue-50); color: var(--blue-900); }
+
+/* Ressources réunit les articles et les méthodes dans un seul choix de premier
+   niveau. Le panneau reste large, mais sa lecture suit seulement deux axes. */
+.dropdown--resources {
+  left: auto;
+  right: -92px;
+  width: min(680px, calc(100vw - 40px));
+  min-width: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(220px, .82fr) minmax(380px, 1.45fr);
+  transform: translateY(-8px);
+}
+.dropdown--resources::after {
+  left: auto;
+  right: 124px;
+  transform: rotate(45deg);
+}
+.nav-item:hover > .dropdown--resources,
+.nav-item:focus-within > .dropdown--resources,
+.nav-item.open > .dropdown--resources {
+  transform: translateY(0);
+}
+.resources-menu__articles {
+  min-width: 0;
+  padding: 24px;
+  border-radius: var(--r-lg) 0 0 var(--r-lg);
+  background: linear-gradient(150deg, var(--navy-deep), var(--navy));
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.resources-menu__title {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.resources-menu__desc {
+  margin-top: 7px;
+  color: rgba(255,255,255,.76);
+  font-size: .84rem;
+  line-height: 1.5;
+}
+.resources-menu__articles-link {
+  margin-top: 18px;
+  padding: 7px 0 3px;
+  color: #fff;
+  font-size: .86rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+.resources-menu__articles-link:hover { color: #fff; text-decoration: underline; }
+.resources-menu__methods { min-width: 0; padding: 18px; }
+.resources-menu__heading {
+  display: block;
+  padding: 2px 10px 10px;
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+}
+.resources-menu__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px;
+}
+.resources-menu__method {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: var(--r-md);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background .15s ease;
+}
+.resources-menu__method:hover { color: var(--ink); background: var(--slate-50); }
+.resources-menu__method .dropdown__icon { width: 34px; height: 34px; }
+.resources-menu__method strong {
+  display: block;
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-size: .88rem;
+  line-height: 1.25;
+}
+.resources-menu__method small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: .74rem;
+  line-height: 1.3;
+}
+.resources-menu__all-methods {
+  display: block;
+  margin: 8px 10px 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  color: var(--blue-700);
+  font-size: .84rem;
+  font-weight: 700;
+  text-align: right;
+  text-decoration: none;
+}
+.resources-menu__all-methods:hover { color: var(--blue-900); text-decoration: underline; text-underline-offset: 3px; }
 
 /* ===== MEGA-MENU (Cours & Fiches : 3 colonnes) ===== */
 .megamenu {
@@ -1211,10 +1321,9 @@ html[data-theme="dark"] .megamenu__niveau-col a:not(.megamenu__niveau-cta):hover
   color: #fff !important; opacity: .92;
 }
 
-/* Vague 4.1 : nav compacte entre 1081px et 1460px (icônes retirées, espacements
-   resserrés, logo réduit) pour que la nav tienne sans passer par le burger,
-   qui disparaissait avant sur la plupart des laptops (breakpoint à 1460px). */
-@media (max-width: 1460px) and (min-width: 1081px) {
+/* Avec cinq familles au lieu de six, la navigation complète tient sur les grands
+   portables. La version compacte reste réservée aux largeurs intermédiaires. */
+@media (max-width: 1240px) and (min-width: 1081px) {
   .logo__img { height: 32px; }
   .primary-nav { gap: 12px; }
   .primary-nav .nav-item__link { font-size: .85rem; padding: 8px 2px; gap: 2px; }
@@ -1311,6 +1420,66 @@ html[data-theme="dark"] .mobile-nav__quick-btn:active { background: rgba(255,255
 .mobile-nav__stage .stage-teaser__price { margin-top: 5px }
 .mobile-nav__stage .stage-teaser__price-new { font-size: 1rem }
 .mobile-nav__stage .stage-teaser__countdown { display: block; margin-top: 5px; font-size: .82rem }
+
+/* Les cinq familles restent visibles sur mobile. Les liens secondaires sont
+   révélés à la demande, ce qui évite l'ancienne liste plate de douze entrées. */
+.mobile-nav__group { border-bottom: 1px solid var(--border); }
+.mobile-nav__group > summary {
+  min-height: 52px;
+  padding: 13px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.mobile-nav__group > summary::-webkit-details-marker { display: none; }
+.mobile-nav__group > summary .nav-icon { width: 18px; height: 18px; }
+.mobile-nav__group > summary::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin-left: auto;
+  border-right: 1.7px solid currentColor;
+  border-bottom: 1.7px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform .2s ease;
+}
+.mobile-nav__group[open] > summary::after { transform: rotate(225deg) translate(-2px, -2px); }
+.mobile-nav__group--current > summary { color: var(--blue-700); }
+.mobile-nav__subnav { padding: 0 0 10px 28px; }
+.mobile-nav__subnav a {
+  padding: 9px 0;
+  border-bottom: 0;
+  color: var(--body);
+  font-size: .94rem;
+  font-weight: 500;
+}
+.mobile-nav__subnav a:hover,
+.mobile-nav__subnav a[aria-current="page"] { color: var(--blue-700); }
+.mobile-nav__subnav a[aria-current="page"] { font-weight: 700; }
+.mobile-nav a.mobile-nav__top-link {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+.mobile-nav a.mobile-nav__top-link .nav-icon { margin-right: 0; }
+.mobile-nav a.mobile-nav__top-link[aria-current="page"],
+.mobile-nav a.mobile-nav__stage[aria-current="page"] { color: var(--blue-700); }
+.mobile-nav__cta { margin-top: 22px; }
+.mobile-nav__cta a {
+  padding: 12px 18px;
+  border-bottom: 0;
+  color: #fff;
+  font-size: .94rem;
+  font-weight: 700;
+}
+.mobile-nav__cta a:hover { color: #fff; }
 
 /* ===== 9. URGENCY BANNER =====
    Construit en JS (main.js), pas collé dans les 138 pages HTML : voir le
@@ -3747,6 +3916,14 @@ html[data-theme="dark"] .megamenu__tile--featured { background: linear-gradient(
 html[data-theme="dark"] .megamenu__tile--featured .megamenu__tile-title,
 html[data-theme="dark"] .megamenu__tile--featured .megamenu__tile-title strong { color: #fff; }
 html[data-theme="dark"] .megamenu__tile--featured .megamenu__tile-desc { color: rgba(255,255,255,.82); }
+html[data-theme="dark"] .dropdown::after,
+html[data-theme="dark"] .megamenu::after { background: #192840; border-color: rgba(255,255,255,.1); }
+html[data-theme="dark"] .resources-menu__articles { background: linear-gradient(150deg, #101B2B, #1E3150); }
+html[data-theme="dark"] .resources-menu__heading,
+html[data-theme="dark"] .resources-menu__method strong { color: #D4E0F0; }
+html[data-theme="dark"] .resources-menu__method:hover { color: #E2ECF8; background: rgba(255,255,255,.06); }
+html[data-theme="dark"] .resources-menu__method small { color: #8FA8CC; }
+html[data-theme="dark"] .resources-menu__all-methods { color: #7BA5E8; border-top-color: rgba(255,255,255,.1); }
 
 /* Bandeau de confiance facs : sans le fond clair, les logos (souvent en texte noir) */
 /* deviendraient invisibles sur le fond sombre, on les inverse donc en dark mode */
@@ -3758,6 +3935,11 @@ html[data-theme="dark"] .mobile-nav {
   background: #152234;
   border-top-color: rgba(255,255,255,0.1);
 }
+html[data-theme="dark"] .mobile-nav__group { border-bottom-color: rgba(255,255,255,.1); }
+html[data-theme="dark"] .mobile-nav__group > summary { color: #D4E0F0; }
+html[data-theme="dark"] .mobile-nav__group--current > summary,
+html[data-theme="dark"] .mobile-nav__subnav a[aria-current="page"] { color: #7BA5E8; }
+html[data-theme="dark"] .mobile-nav__subnav a { color: #B8CCE8; }
 html[data-theme="dark"] .mobile-nav a { color: #B8CCE8; }
 html[data-theme="dark"] .mobile-nav a:hover { color: #E2ECF8; background: rgba(255,255,255,0.05); }
 
