@@ -9,7 +9,7 @@
    ont amenés (voir achat.js et api/create-checkout.js pour la suite). */
 (function () {
   if (sessionStorage.getItem('tjd_landing_page')) return;
-  sessionStorage.setItem('tjd_landing_page', window.location.pathname.replace(/^\//, '') || 'index.html');
+  sessionStorage.setItem('tjd_landing_page', window.location.pathname.replace(/^\//, '') || '/');
   sessionStorage.setItem('tjd_referrer', (document.referrer || '').slice(0, 200));
   var params = new URLSearchParams(window.location.search);
   ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (cle) {
@@ -38,7 +38,7 @@
    recherche instantanée par titre/mots-clés. */
 (function () {
   var INDEX = [
-    { t: 'Accueil', u: 'index.html', c: 'Page' },
+    { t: 'Accueil', u: '/', c: 'Page' },
     { t: 'Catalogue des fiches complètes, L1 L2 L3', u: 'formations.html', c: 'Produit' },
     { t: 'Meilleures ventes', u: 'top-ventes.html', c: 'Produit' },
     { t: 'Majeures préparées', u: 'majeures-preparees.html', c: 'Produit' },
