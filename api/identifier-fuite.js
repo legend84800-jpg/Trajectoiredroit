@@ -177,7 +177,8 @@ async function handler(req, res) {
   }
 }
 
-module.exports = {
+module.exports = handler;
+module.exports._test = {
   handler,
   identifier,
   codesCommande,

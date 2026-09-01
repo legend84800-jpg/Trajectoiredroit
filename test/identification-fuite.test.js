@@ -7,7 +7,7 @@ const {
   codesCommande,
   chargeSignature,
   signatureValide,
-} = require("../api/identifier-fuite");
+} = require("../api/identifier-fuite")._test;
 
 const PRODUIT = "maj-penal-l2-s1";
 const DOWNLOAD_SECRET = "secret-telechargement-test";
