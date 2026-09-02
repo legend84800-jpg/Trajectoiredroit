@@ -3,6 +3,28 @@
 // l'API Brevo. Fusion de contact-cours.js et contact-stage.js pour rester
 // sous la limite de 12 fonctions serverless du plan Vercel Hobby.
 
+const ORIGINE_AUTORISEE = 'trajectoiredroit.com';
+
+function origineValide(req) {
+  const origin = req.headers.origin || '';
+  const referer = req.headers.referer || req.headers.referrer || '';
+  if (origin) return origin.includes(ORIGINE_AUTORISEE);
+  if (referer) return referer.includes(ORIGINE_AUTORISEE);
+  return false;
+}
+
+function echapperHtml(valeur) {
+  return String(valeur)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function tronquer(valeur, max) {
+  return valeur.length > max ? valeur.slice(0, max) : valeur;
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -14,13 +36,35 @@ export default async function handler(req, res) {
   }
 
   const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body || {};
+
+  // Honeypot : champ invisible pour un humain, quasi toujours rempli par un bot
+  // qui poste directement sur l'API sans jamais afficher le vrai formulaire.
+  // On répond 200 sans rien envoyer, pour ne pas révéler le piège au bot.
+  if (String(body.site_web || '').trim() !== '') {
+    return res.status(200).json({ ok: true });
+  }
+
+  // Rejette toute requête qui ne vient pas du vrai formulaire du site (bot qui
+  // poste en direct sur l'endpoint, jamais un Origin/Referer trajectoiredroit.com).
+  if (!origineValide(req)) {
+    return res.status(403).json({ error: 'Origine non autorisée.' });
+  }
+
   const type = body.type === 'stage' ? 'stage' : 'cours';
 
-  const nom      = String(body.nom      || '').trim() || '(non renseigné)';
-  const email    = String(body.email    || '').trim();
-  const whatsapp = String(body.whatsapp || '').trim() || '(non renseigné)';
-  const niveau   = String(body.niveau   || '').trim() || '(non renseigné)';
-  const message  = String(body.message  || '').trim() || '(aucun message)';
+  // Un seul \n possible dans les champs sur une ligne (nom, email, whatsapp, niveau,
+  // formule) : sans ça une valeur avec retour à la ligne peut injecter un en-tête
+  // ou un sujet d'email arbitraire.
+  const uneLigneSansSaut = (valeur) => valeur.replace(/[\r\n]+/g, ' ').trim();
+
+  const nom      = tronquer(uneLigneSansSaut(String(body.nom      || '')), 200) || '(non renseigné)';
+  const emailBrut = tronquer(uneLigneSansSaut(String(body.email   || '')), 200);
+  const whatsapp = tronquer(uneLigneSansSaut(String(body.whatsapp || '')), 50) || '(non renseigné)';
+  const niveau   = tronquer(uneLigneSansSaut(String(body.niveau   || '')), 100) || '(non renseigné)';
+  const message  = tronquer(String(body.message  || '').trim(), 4000) || '(aucun message)';
+
+  const emailValide = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailBrut);
+  const email = emailValide ? emailBrut : '';
 
   const subject = type === 'stage'
     ? `Nouvelle inscription stage — ${nom}`
@@ -31,18 +75,18 @@ export default async function handler(req, res) {
     : 'Nouvelle demande de cours particulier';
 
   const rows = [
-    ['Nom', nom],
-    ['Email', `<a href="mailto:${email}">${email}</a>`],
-    ['WhatsApp', whatsapp],
-    ['Niveau', niveau],
+    ['Nom', echapperHtml(nom)],
+    ['Email', email ? `<a href="mailto:${echapperHtml(email)}">${echapperHtml(email)}</a>` : echapperHtml(emailBrut) || '(non renseigné)'],
+    ['WhatsApp', echapperHtml(whatsapp)],
+    ['Niveau', echapperHtml(niveau)],
   ];
 
   if (type === 'cours') {
-    const formule = String(body.formule || '').trim() || '(non renseignée)';
-    rows.push(['Formule', formule]);
+    const formule = tronquer(uneLigneSansSaut(String(body.formule || '')), 100) || '(non renseignée)';
+    rows.push(['Formule', echapperHtml(formule)]);
   }
 
-  rows.push(['Message', message.replace(/\n/g, '<br>')]);
+  rows.push(['Message', echapperHtml(message).replace(/\n/g, '<br>')]);
 
   const replyToDefaut = type === 'cours' ? 'contact@trajectoiredroit.com' : 'julien.prof1@gmail.com';
 
