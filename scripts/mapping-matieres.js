@@ -93,7 +93,13 @@ const MATIERES = {
       { label: null, id: "fiche-societes-l3-s1", prix: "14,99 €", apercus: ["assets/apercus/societes-l3-s1-1.jpg", "assets/apercus/societes-l3-s1-2.jpg"] },
     ],
     majeures: [],
-    coursComplets: [{ label: null, id: "cours-fiche-societes-l3-s1", prix: "19,99 €" }],
+    // Les deux semestres portent un libellé enrichi, parce que le programme les
+    // sépare nettement, le droit commun d'abord et le droit spécial ensuite, et
+    // qu'un acheteur doit savoir lequel correspond à son semestre.
+    coursComplets: [
+      { label: "Semestre 1 · le droit commun", id: "cours-fiche-societes-l3-s1", prix: "19,99 €" },
+      { label: "Semestre 2 · le droit spécial", id: "cours-fiche-societes-l3-s2", prix: "19,99 €" },
+    ],
     packMatiere: { id: "pack-matiere-societes-l3", prix: "29,99 €" },
   },
   "droit-du-travail-l3": {
