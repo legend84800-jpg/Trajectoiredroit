@@ -105,6 +105,8 @@ async function handler(req, res) {
     const paramsAbo = {
       line_items: [{ price: PORTALIS_PRICE_ID, quantity: 1 }],
       mode: "subscription",
+      locale: "fr",
+      wallet_options: { link: { display: "never" } },
       // Portalis est un abonnement, hors périmètre de la remise post-achat.
       allow_promotion_codes: false,
       success_url: `${origin}/mon-compte.html?abonnement=ok`,
@@ -208,6 +210,8 @@ async function handler(req, res) {
       quantity: 1,
     }],
     mode: "payment",
+    locale: "fr",
+    wallet_options: { link: { display: "never" } },
     // La remise post-achat concerne les fiches et formations numériques. Le stage
     // reste exclu, car il correspond à une place limitée dans une session datée.
     allow_promotion_codes: produitId !== "stage-methode",

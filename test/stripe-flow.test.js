@@ -98,6 +98,8 @@ test("la création Checkout conserve le garde-fou Stripe et l'idempotence", asyn
   const appel = appels[0];
   assert.deepEqual(appel.params.consent_collection, { promotions: "auto" });
   assert.equal(appel.params.payment_method_types, undefined);
+  assert.equal(appel.params.locale, "fr");
+  assert.deepEqual(appel.params.wallet_options, { link: { display: "never" } });
   assert.equal(appel.params.metadata.source, "site");
   assert.equal(appel.params.expires_at, req.body.attemptCreatedAt + 3600);
   assert.equal(appel.params.metadata.landingPage, "reussir-sa-l2.html");
@@ -111,6 +113,43 @@ test("la création Checkout conserve le garde-fou Stripe et l'idempotence", asyn
   });
   assert.match(appel.params.integration_identifier, /_[a-z]{8}$/);
   assert.equal(appel.options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012");
+});
+
+test("l'abonnement Portalis ouvre aussi le Checkout français sans Link", async () => {
+  const stripeModule = require("../api/_stripe");
+  const supabaseModule = require("../api/_supabase");
+  const creerOriginal = stripeModule.creerClientStripe;
+  const selectionnerOriginal = supabaseModule.selectionner;
+  let paramsCrees;
+  stripeModule.creerClientStripe = () => ({
+    checkout: { sessions: { create: async (params) => {
+      paramsCrees = params;
+      return { id: "cs_test_portalis", url: "https://checkout.stripe.com/c/pay/portalis" };
+    } } },
+  });
+  supabaseModule.selectionner = async () => [];
+  const cheminModule = require.resolve("../api/create-checkout");
+  delete require.cache[cheminModule];
+  const handler = require("../api/create-checkout");
+  const ancienneCle = process.env.STRIPE_SECRET_KEY;
+  process.env.STRIPE_SECRET_KEY = "sk_test_factice";
+  try {
+    await handler({ method: "POST", body: {
+      mode: "subscription",
+      supabaseUserId: "utilisateur-test",
+      supabaseEmail: "eleve@example.com",
+      attemptId: "portalis-1234567890123456",
+    } }, reponseFactice());
+  } finally {
+    stripeModule.creerClientStripe = creerOriginal;
+    supabaseModule.selectionner = selectionnerOriginal;
+    delete require.cache[cheminModule];
+    if (ancienneCle === undefined) delete process.env.STRIPE_SECRET_KEY;
+    else process.env.STRIPE_SECRET_KEY = ancienneCle;
+  }
+
+  assert.equal(paramsCrees.locale, "fr");
+  assert.deepEqual(paramsCrees.wallet_options, { link: { display: "never" } });
 });
 
 test("la protection PDF n'ajoute aucun champ au parcours Checkout", async () => {
