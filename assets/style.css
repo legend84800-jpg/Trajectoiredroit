@@ -1500,11 +1500,13 @@ html[data-theme="dark"] .mobile-nav__quick-btn:active { background: rgba(255,255
 .mobile-nav__subnav a:hover,
 .mobile-nav__subnav a[aria-current="page"] { color: var(--blue-700); }
 .mobile-nav__subnav a[aria-current="page"] { font-weight: 700; }
-.mobile-nav__subnav a.mobile-nav__format {
+.mobile-nav__subnav a.mobile-nav__format,
+.mobile-nav__subnav a.mobile-nav__illustrated {
   gap: 9px;
   padding-right: 10px;
 }
-.mobile-nav__format-icon {
+.mobile-nav__format-icon,
+.mobile-nav__item-icon {
   width: 24px;
   flex: 0 0 24px;
   font-size: 1rem;

@@ -302,23 +302,23 @@ function menuMobile(fichier) {
     <details class="mobile-nav__group${groupeRessources}">
       <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
       <div class="mobile-nav__subnav">
-        ${lienMobile('blog.html', 'Articles de droit', fichier)}
-        ${lienMobile('methodologie-juridique.html', 'Toutes les méthodes', fichier)}
-        ${lienMobile('methode-fiche-arret.html', "Fiche d'arrêt", fichier)}
-        ${lienMobile('methode-commentaire-arret.html', "Commentaire d'arrêt", fichier)}
-        ${lienMobile('methode-cas-pratique.html', 'Cas pratique', fichier)}
-        ${lienMobile('methode-dissertation-juridique.html', 'Dissertation juridique', fichier)}
+        ${lienMobile('blog.html', '<span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span>', fichier, 'mobile-nav__illustrated')}
+        ${lienMobile('methodologie-juridique.html', '<span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span>', fichier, 'mobile-nav__illustrated')}
+        ${lienMobile('methode-fiche-arret.html', '<span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span>', fichier, 'mobile-nav__illustrated')}
+        ${lienMobile('methode-commentaire-arret.html', '<span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span>', fichier, 'mobile-nav__illustrated')}
+        ${lienMobile('methode-cas-pratique.html', '<span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span>', fichier, 'mobile-nav__illustrated')}
+        ${lienMobile('methode-dissertation-juridique.html', '<span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span>', fichier, 'mobile-nav__illustrated')}
       </div>
     </details>
     <details class="mobile-nav__group${groupeAPropos}">
       <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
       <div class="mobile-nav__subnav">
-        ${lienMobile('a-propos.html', 'Qui suis-je', fichier)}
-        ${lienMobile('a-propos.html#methode', 'Notre approche', fichier)}
-        ${lienMobile('temoignages.html', 'Témoignages', fichier)}
-        ${lienMobile('faq.html', 'FAQ', fichier)}
-        ${lienMobile('a-propos.html#mes-reseaux', 'Mes réseaux', fichier)}
-        <a href="mailto:julien.prof1@gmail.com">Me contacter</a>
+        ${lienMobile('a-propos.html', '<span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span>', fichier, 'mobile-nav__illustrated')}
+        ${lienMobile('a-propos.html#methode', '<span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span>', fichier, 'mobile-nav__illustrated')}
+        ${lienMobile('temoignages.html', '<span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span>', fichier, 'mobile-nav__illustrated')}
+        ${lienMobile('faq.html', '<span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span>', fichier, 'mobile-nav__illustrated')}
+        ${lienMobile('a-propos.html#mes-reseaux', '<span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span>', fichier, 'mobile-nav__illustrated')}
+        ${lienMobile('mailto:julien.prof1@gmail.com', '<span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span>', fichier, 'mobile-nav__illustrated')}
       </div>
     </details>
     <div class="mobile-nav__cta">

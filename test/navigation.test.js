@@ -76,6 +76,11 @@ test('le menu mobile reprend les cinq familles avec divulgation progressive', ()
     assert.match(navMobile, /mobile-nav__stage[^>]*data-stage-link/, `${nom} doit garder le stage en accès direct`);
     assert.match(navMobile, />Ressources</, `${nom} doit proposer Ressources sur mobile`);
     assert.match(navMobile, />À propos</, `${nom} doit proposer À propos sur mobile`);
+    assert.equal((navMobile.match(/mobile-nav__item-icon/g) || []).length, 12, `${nom} doit illustrer Ressources et À propos`);
+    assert.match(navMobile, /href="blog\.html"[^>]*><span[^>]*>📰<\/span><span>Articles de droit<\/span>/, `${nom} doit illustrer les articles de droit`);
+    assert.match(navMobile, /href="methode-cas-pratique\.html"[^>]*><span[^>]*>⚖️<\/span><span>Cas pratique<\/span>/, `${nom} doit illustrer le cas pratique`);
+    assert.match(navMobile, /href="a-propos\.html"[^>]*><span[^>]*>🎓<\/span><span>Qui suis-je<\/span>/, `${nom} doit illustrer la présentation`);
+    assert.match(navMobile, /href="temoignages\.html"[^>]*><span[^>]*>⭐<\/span><span>Témoignages<\/span>/, `${nom} doit illustrer les témoignages`);
   }
 });
 
