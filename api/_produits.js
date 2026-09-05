@@ -3,6 +3,7 @@
 
 const PRODUITS = {
   // Fiche complète – 14,99 €
+  "fiche-societes-l3-s2": { nom: "Fiche complète Droit des sociétés L3 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s2.pdf"] },
   "fiche-da-l2-s1": { nom: "Fiche complète Droit administratif L2 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s1-cartesmentales.pdf"] },
@@ -298,6 +299,7 @@ const PRODUITS = {
   "commentaire-arret-personnes-l1": { nom: "Commentaires d'arrêt Droit des personnes L1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-personnes-l1.pdf"] },
 
   // Cas pratiques corrigés – 14,99 €
+  "cas-pratique-societes-l3-s2": { nom: "Cas pratiques corrigés Droit des sociétés L3 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-societes-l3-s2.pdf"] },
   "cas-pratique-procedure-penale-l3": { nom: "Cas pratiques corrigés Procédure pénale L3", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-procedure-penale-l3.pdf"] },
   "cas-pratique-travail-l3": { nom: "Cas pratiques corrigés Droit du travail L3", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-travail-l3.pdf"] },
   "cas-pratique-societes-l3": { nom: "Cas pratiques corrigés Droit des sociétés L3", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-societes-l3.pdf"] },

@@ -90,7 +90,8 @@ const MATIERES = {
   "droit-des-societes-l3": {
     nom: "Droit des sociétés L3",
     semestres: [
-      { label: null, id: "fiche-societes-l3-s1", prix: "14,99 €", apercus: ["assets/apercus/societes-l3-s1-1.jpg", "assets/apercus/societes-l3-s1-2.jpg"] },
+      { label: "Semestre 1 · le droit commun", id: "fiche-societes-l3-s1", prix: "14,99 €", apercus: ["assets/apercus/societes-l3-s1-1.jpg", "assets/apercus/societes-l3-s1-2.jpg"] },
+      { label: "Semestre 2 · le droit spécial", id: "fiche-societes-l3-s2", prix: "14,99 €", apercus: ["assets/apercus/societes-l3-s2-1.jpg", "assets/apercus/societes-l3-s2-2.jpg"] },
     ],
     majeures: [],
     // Les deux semestres portent un libellé enrichi, parce que le programme les
