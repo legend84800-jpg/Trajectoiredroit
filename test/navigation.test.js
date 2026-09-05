@@ -19,7 +19,7 @@ function extraire(html, debut, fin) {
 }
 
 test('les pages françaises partagent cinq familles de navigation', () => {
-  assert.equal(pages.length, 244);
+  assert.equal(pages.length, 247);
 
   for (const { nom, html } of pages) {
     const nav = extraire(html, '<nav class="primary-nav"', '</nav>');
@@ -65,9 +65,20 @@ test('le menu mobile reprend les cinq familles avec divulgation progressive', ()
     const groupes = navMobile.match(/<details class="mobile-nav__group/g) || [];
 
     assert.equal(groupes.length, 3, `${nom} doit regrouper Fiches, Ressources et À propos`);
+    assert.match(navMobile, /<details class="mobile-nav__group[^>]*" open>/, `${nom} doit montrer les formats dès l'ouverture du menu`);
+    assert.match(navMobile, />Choisir un format</, `${nom} doit nommer clairement le premier groupe`);
+    assert.match(navMobile, /href="formations\.html#comparatif"[^>]*>Comparer tous les formats</, `${nom} doit donner un accès direct au comparatif`);
+    assert.match(navMobile, /href="revisions\.html"[^>]*>Fiches d'arrêt et citations</, `${nom} doit conserver les fiches d'arrêt et les citations sur mobile`);
     assert.match(navMobile, /mobile-nav__top-link[^>]*href="cours-particuliers\.html"/, `${nom} doit garder les cours en accès direct`);
     assert.match(navMobile, /mobile-nav__stage[^>]*data-stage-link/, `${nom} doit garder le stage en accès direct`);
     assert.match(navMobile, />Ressources</, `${nom} doit proposer Ressources sur mobile`);
     assert.match(navMobile, />À propos</, `${nom} doit proposer À propos sur mobile`);
   }
+});
+
+test('les contrôles tactiles de la navigation mobile gardent une hauteur suffisante', () => {
+  const css = fs.readFileSync(path.join(racine, 'assets', 'style.css'), 'utf8');
+
+  assert.match(css, /\.mobile-nav__subnav a\s*\{[^}]*min-height:\s*44px/s);
+  assert.doesNotMatch(css, /\.site-header__cta \.btn--primary::before\s*\{[^}]*content:\s*["']Fiches["']/s);
 });

@@ -277,12 +277,14 @@ function menuMobile(fichier) {
       <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
       <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
     </div>
-    <details class="mobile-nav__group${groupeFiches}">
-      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Fiches</span></summary>
+    <details class="mobile-nav__group${groupeFiches}" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
       <div class="mobile-nav__subnav">
+        ${lienMobile('formations.html#comparatif', 'Comparer tous les formats', fichier, 'mobile-nav__compare')}
         ${lienMobile('formations.html', 'Fiches complètes', fichier)}
         ${lienMobile('cours-fiches.html', 'Cours complets', fichier)}
         ${lienMobile('majeures-preparees.html', 'Majeures préparées', fichier)}
+        ${lienMobile('revisions.html', "Fiches d'arrêt et citations", fichier)}
         ${lienMobile('corriges.html', 'Exercices corrigés', fichier)}
         ${lienMobile('outil-fiche-arret.html', 'Portalis', fichier)}
         ${lienMobile('flashcards-qcm.html', 'Flashcards et QCM', fichier)}
@@ -320,7 +322,7 @@ function menuMobile(fichier) {
       </div>
     </details>
     <div class="mobile-nav__cta">
-      <a class="btn btn--primary btn--full" href="formations.html">Voir les fiches</a>
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
     </div>
   </nav>`;
 }
@@ -402,6 +404,7 @@ console.log(JSON.stringify({
   inchanges: bilan.inchanges,
 }, null, 2));
 
-if (bilan.inchanges.length !== 1 || bilan.bureauModifies !== 244 || ![0, 244].includes(bilan.aEcrire.length)) {
+const nombrePagesAttendues = bilan.examines - bilan.anglaisIgnores - bilan.inchanges.length;
+if (bilan.inchanges.length !== 1 || bilan.bureauModifies !== nombrePagesAttendues || ![0, nombrePagesAttendues].includes(bilan.aEcrire.length)) {
   process.exitCode = 2;
 }
