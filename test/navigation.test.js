@@ -68,7 +68,10 @@ test('le menu mobile reprend les cinq familles avec divulgation progressive', ()
     assert.match(navMobile, /<details class="mobile-nav__group[^>]*" open>/, `${nom} doit montrer les formats dès l'ouverture du menu`);
     assert.match(navMobile, />Choisir un format</, `${nom} doit nommer clairement le premier groupe`);
     assert.match(navMobile, /href="formations\.html#comparatif"[^>]*>Comparer tous les formats</, `${nom} doit donner un accès direct au comparatif`);
-    assert.match(navMobile, /href="revisions\.html"[^>]*>Fiches d'arrêt et citations</, `${nom} doit conserver les fiches d'arrêt et les citations sur mobile`);
+    assert.equal((navMobile.match(/mobile-nav__format-icon/g) || []).length, 7, `${nom} doit illustrer les sept formats`);
+    assert.match(navMobile, /href="cours-fiches\.html"[^>]*><span[^>]*>🎓<\/span><span>Cours complets<\/span>/, `${nom} doit illustrer les cours complets`);
+    assert.match(navMobile, /mobile-nav__format--featured[^>]*href="formations\.html"[^>]*><span[^>]*>📄<\/span><span>Fiches complètes<\/span>/, `${nom} doit mettre en avant les fiches complètes`);
+    assert.match(navMobile, /href="revisions\.html"[^>]*><span[^>]*>📜<\/span><span>Fiches d’arrêt et citations<\/span>/, `${nom} doit conserver les fiches d'arrêt et les citations sur mobile`);
     assert.match(navMobile, /mobile-nav__top-link[^>]*href="cours-particuliers\.html"/, `${nom} doit garder les cours en accès direct`);
     assert.match(navMobile, /mobile-nav__stage[^>]*data-stage-link/, `${nom} doit garder le stage en accès direct`);
     assert.match(navMobile, />Ressources</, `${nom} doit proposer Ressources sur mobile`);

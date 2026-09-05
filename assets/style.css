@@ -1500,6 +1500,28 @@ html[data-theme="dark"] .mobile-nav__quick-btn:active { background: rgba(255,255
 .mobile-nav__subnav a:hover,
 .mobile-nav__subnav a[aria-current="page"] { color: var(--blue-700); }
 .mobile-nav__subnav a[aria-current="page"] { font-weight: 700; }
+.mobile-nav__subnav a.mobile-nav__format {
+  gap: 9px;
+  padding-right: 10px;
+}
+.mobile-nav__format-icon {
+  width: 24px;
+  flex: 0 0 24px;
+  font-size: 1rem;
+  line-height: 1;
+  text-align: center;
+}
+.mobile-nav__subnav a.mobile-nav__format--featured,
+.mobile-nav__subnav a.mobile-nav__format--featured:hover,
+.mobile-nav__subnav a.mobile-nav__format--featured[aria-current="page"] {
+  min-height: 46px;
+  margin: 3px 0;
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 140%);
+  color: #fff;
+  font-weight: 700;
+}
 .mobile-nav a.mobile-nav__top-link {
   min-height: 52px;
   display: flex;
@@ -4074,6 +4096,12 @@ html[data-theme="dark"] .mobile-nav__subnav a[aria-current="page"] { color: #7BA
 html[data-theme="dark"] .mobile-nav__subnav a { color: #B8CCE8; }
 html[data-theme="dark"] .mobile-nav a { color: #B8CCE8; }
 html[data-theme="dark"] .mobile-nav a:hover { color: #E2ECF8; background: rgba(255,255,255,0.05); }
+html[data-theme="dark"] .mobile-nav__subnav a.mobile-nav__format--featured,
+html[data-theme="dark"] .mobile-nav__subnav a.mobile-nav__format--featured:hover,
+html[data-theme="dark"] .mobile-nav__subnav a.mobile-nav__format--featured[aria-current="page"] {
+  background: linear-gradient(135deg, #22355E 0%, #8A6A1C 140%);
+  color: #fff;
+}
 
 /* 9. Cartes blog et article (background:#fff en dur) */
 html[data-theme="dark"] .post-feature,

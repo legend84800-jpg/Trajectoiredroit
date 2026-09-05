@@ -281,13 +281,13 @@ function menuMobile(fichier) {
       <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
       <div class="mobile-nav__subnav">
         ${lienMobile('formations.html#comparatif', 'Comparer tous les formats', fichier, 'mobile-nav__compare')}
-        ${lienMobile('formations.html', 'Fiches complètes', fichier)}
-        ${lienMobile('cours-fiches.html', 'Cours complets', fichier)}
-        ${lienMobile('majeures-preparees.html', 'Majeures préparées', fichier)}
-        ${lienMobile('revisions.html', "Fiches d'arrêt et citations", fichier)}
-        ${lienMobile('corriges.html', 'Exercices corrigés', fichier)}
-        ${lienMobile('outil-fiche-arret.html', 'Portalis', fichier)}
-        ${lienMobile('flashcards-qcm.html', 'Flashcards et QCM', fichier)}
+        ${lienMobile('cours-fiches.html', '<span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span>', fichier, 'mobile-nav__format')}
+        ${lienMobile('formations.html', '<span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span>', fichier, 'mobile-nav__format mobile-nav__format--featured')}
+        ${lienMobile('majeures-preparees.html', '<span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span>', fichier, 'mobile-nav__format')}
+        ${lienMobile('revisions.html', '<span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span>', fichier, 'mobile-nav__format')}
+        ${lienMobile('corriges.html', '<span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span>', fichier, 'mobile-nav__format')}
+        ${lienMobile('outil-fiche-arret.html', '<span class="mobile-nav__format-icon" aria-hidden="true">🤖</span><span>Portalis</span>', fichier, 'mobile-nav__format')}
+        ${lienMobile('flashcards-qcm.html', '<span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span>', fichier, 'mobile-nav__format')}
       </div>
     </details>
     ${lienMobile('cours-particuliers.html', '<svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span>', fichier, 'mobile-nav__top-link')}
