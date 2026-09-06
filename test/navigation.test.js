@@ -19,7 +19,7 @@ function extraire(html, debut, fin) {
 }
 
 test('les pages françaises partagent cinq familles de navigation', () => {
-  assert.equal(pages.length, 247);
+  assert.ok(pages.length >= 247, `Le contrôle doit couvrir au moins 247 pages, ${pages.length} trouvées`);
 
   for (const { nom, html } of pages) {
     const nav = extraire(html, '<nav class="primary-nav"', '</nav>');

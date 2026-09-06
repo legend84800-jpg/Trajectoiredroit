@@ -408,6 +408,29 @@ test("le flux Stripe garde le consentement, les moyens dynamiques et la récupé
   assert.doesNotMatch(webhook, /checkout\.sessions\.create/);
 });
 
+test("la lecture d'une session refuse le mélange entre test et production", () => {
+  const sessionInfo = require("../api/session-info");
+  const { modeDepuisCle, sessionCompatibleAvecCle } = sessionInfo._test;
+
+  assert.equal(modeDepuisCle("sk_live_factice"), "live");
+  assert.equal(modeDepuisCle("rk_test_factice"), "test");
+  assert.equal(sessionCompatibleAvecCle("cs_live_abc123", "sk_live_factice"), true);
+  assert.equal(sessionCompatibleAvecCle("cs_test_abc123", "rk_test_factice"), true);
+  assert.equal(sessionCompatibleAvecCle("cs_test_abc123", "sk_live_factice"), false);
+  assert.equal(sessionCompatibleAvecCle("cs_live_abc123", "rk_test_factice"), false);
+});
+
+test("la page de remerciement attend la confirmation Stripe avant d'annoncer le paiement", () => {
+  const pageMerci = fs.readFileSync(path.join(RACINE, "merci-achat.html"), "utf8");
+
+  assert.match(pageMerci, /id="purchaseStatusEyebrow"[^>]*>Vérification en cours</);
+  assert.match(pageMerci, /id="purchaseConfirmedContent" hidden/);
+  assert.match(pageMerci, /if \(r\.status === 404\) throw new Error\('paiement_non_confirme'\)/);
+  assert.match(pageMerci, /if \(!d \|\| d\.montant == null\) throw new Error\('paiement_non_confirme'\)/);
+  assert.match(pageMerci, /afficherAchatConfirme\(\);/);
+  assert.match(pageMerci, /afficherPaiementNonConfirme\(\);/);
+});
+
 test("le remerciement après achat contient les liens sociaux et les informations à jour", () => {
   const webhook = fs.readFileSync(path.join(RACINE, "api/stripe-webhook.js"), "utf8");
   const emailAchat = webhook.slice(

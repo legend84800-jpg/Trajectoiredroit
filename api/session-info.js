@@ -6,24 +6,39 @@
 // GET /api/session-info?session_id=cs_xxx
 
 const { suggererComplements } = require("./_suggestions-post-achat");
+const { creerClientStripe } = require("./_stripe");
 
-module.exports = async (req, res) => {
+function modeDepuisCle(cle) {
+  const correspondance = typeof cle === "string" && cle.match(/^[sr]k_(live|test)_/);
+  return correspondance ? correspondance[1] : null;
+}
+
+function sessionCompatibleAvecCle(sessionId, cle) {
+  const correspondance = typeof sessionId === "string" && sessionId.match(/^cs_(live|test)_[A-Za-z0-9]+$/);
+  if (!correspondance) return false;
+  const modeCle = modeDepuisCle(cle);
+  return !modeCle || correspondance[1] === modeCle;
+}
+
+async function handler(req, res) {
   const { session_id } = req.query || {};
 
-  if (!session_id || !session_id.startsWith("cs_")) {
+  if (!session_id || !/^cs_(live|test)_[A-Za-z0-9]+$/.test(session_id)) {
     res.status(400).json({ erreur: "session_id invalide" });
     return;
   }
 
   const stripeKey = process.env.STRIPE_SECRET_KEY;
   if (!stripeKey) { res.status(500).json({ erreur: "Configuration Stripe manquante" }); return; }
+  if (!sessionCompatibleAvecCle(session_id, stripeKey)) {
+    res.status(404).json({ erreur: "Session introuvable ou non payée" });
+    return;
+  }
 
   try {
-    const resp = await fetch(`https://api.stripe.com/v1/checkout/sessions/${encodeURIComponent(session_id)}`, {
-      headers: { Authorization: `Bearer ${stripeKey}` },
-    });
-    const data = await resp.json();
-    if (!resp.ok || data.payment_status !== "paid") {
+    const stripe = creerClientStripe(stripeKey);
+    const data = await stripe.checkout.sessions.retrieve(session_id);
+    if (data.payment_status !== "paid") {
       res.status(404).json({ erreur: "Session introuvable ou non payée" });
       return;
     }
@@ -37,7 +52,14 @@ module.exports = async (req, res) => {
       suggestions: suggererComplements(produitIds, 3),
     });
   } catch (e) {
-    console.error("session-info fetch erreur:", e);
+    if (e && (e.code === "resource_missing" || e.statusCode === 404)) {
+      res.status(404).json({ erreur: "Session introuvable ou non payée" });
+      return;
+    }
+    console.error("session-info Stripe erreur:", e && e.message ? e.message : "erreur inconnue");
     res.status(500).json({ erreur: "Erreur interne" });
   }
-};
+}
+
+module.exports = handler;
+module.exports._test = { modeDepuisCle, sessionCompatibleAvecCle };

@@ -12,9 +12,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#2563EB">
-  <title>Achat confirmé · TrajectoireDroit</title>
+  <title>Vérification du paiement · TrajectoireDroit</title>
   <meta name="author" content="Julien">
-  <meta name="description" content="Ton achat est confirmé. Vérifie ta boîte mail pour accéder à ton PDF.">
+  <meta name="description" content="Vérification sécurisée du paiement avant la confirmation de ton achat.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://trajectoiredroit.com/merci-achat.html">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -281,50 +281,57 @@
     <section class="section" style="padding-top:64px; padding-bottom:64px">
       <div class="container container--narrow" style="text-align:center">
 
-        <div style="font-size:3.4rem; line-height:1">✅</div>
-        <span class="eyebrow" style="margin-top:16px; display:inline-block">Achat confirmé</span>
-        <h1 class="h1" style="margin-top:12px">Ton PDF arrive par email</h1>
-        <p class="lead" style="max-width:560px; margin-left:auto; margin-right:auto">
-          Paiement reçu. Dans quelques secondes, tu reçois un email avec le lien de téléchargement.
-          Vérifie ta boîte de réception et ton dossier spam si tu ne le vois pas.
+        <div id="purchaseStatusIcon" style="font-size:3.4rem; line-height:1" aria-hidden="true">⌛</div>
+        <span id="purchaseStatusEyebrow" class="eyebrow" style="margin-top:16px; display:inline-block">Vérification en cours</span>
+        <h1 id="purchaseStatusTitle" class="h1" style="margin-top:12px">Nous vérifions ton paiement</h1>
+        <p id="purchaseStatusMessage" class="lead" style="max-width:560px; margin-left:auto; margin-right:auto">
+          Cette vérification prend généralement quelques secondes. Garde cette page ouverte.
         </p>
 
-        <div class="card" style="margin-top:40px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; padding:28px 32px">
-          <h2 class="h4" style="margin-top:0">Ce qui se passe maintenant</h2>
-          <ol style="margin:16px 0 0; padding-left:20px; line-height:1.9; color:var(--text)">
-            <li>Tu reçois un email de <strong>contact@trajectoiredroit.com</strong> avec le lien de téléchargement direct.</li>
-            <li>Tu cliques sur le bouton dans l'email, le PDF se télécharge immédiatement.</li>
-            <li>Le lien est valable <strong>48 heures</strong>. Passé ce délai, retrouve tes achats dans ton espace <a href="mon-compte.html">Mon compte</a> et génère un nouveau lien.</li>
-          </ol>
-        </div>
-
-        <div class="card" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center">
-          <p style="margin:0; font-size:1rem">Email non reçu au bout de 5 minutes ?</p>
-          <a class="btn btn--outline" href="mailto:julien.prof1@gmail.com?subject=Lien%20de%20t%C3%A9l%C3%A9chargement%20non%20re%C3%A7u" style="margin-top:14px; display:inline-block">
-            Contacter le support →
-          </a>
-        </div>
-
-        <div class="card" id="suggestionsCard" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center; display:none">
-          <h2 class="h4" style="margin-top:0" id="suggestionsTitre">Complète ta matière</h2>
-          <p style="margin:8px 0 16px; font-size:.95rem">Puisque tu es déjà dessus, voici ce qui va bien avec ce que tu viens de prendre.</p>
-          <div id="suggestionsListe" style="display:flex; flex-direction:column; gap:10px; text-align:left"></div>
-        </div>
-
-        <div class="card" id="suggestionsFallback" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center">
-          <h2 class="h4" style="margin-top:0">D'autres matières à réviser ?</h2>
-          <p style="margin:8px 0 16px; font-size:.95rem">Toute ta licence de droit en fiches complètes et en majeures préparées.</p>
-          <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
-            <a class="btn btn--secondary" href="formations.html">Fiches complètes →</a>
-            <a class="btn btn--outline" href="majeures-preparees.html">Majeures préparées →</a>
+        <div id="purchaseConfirmedContent" hidden>
+          <div class="card" style="margin-top:40px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; padding:28px 32px">
+            <h2 class="h4" style="margin-top:0">Ce qui se passe maintenant</h2>
+            <ol style="margin:16px 0 0; padding-left:20px; line-height:1.9; color:var(--text)">
+              <li>Tu reçois un email de <strong>contact@trajectoiredroit.com</strong> avec le lien de téléchargement direct.</li>
+              <li>Tu cliques sur le bouton dans l'email, le PDF se télécharge immédiatement.</li>
+              <li>Le lien est valable <strong>48 heures</strong>. Passé ce délai, retrouve tes achats dans ton espace <a href="mon-compte.html">Mon compte</a> et génère un nouveau lien.</li>
+            </ol>
           </div>
+
+          <div class="card" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center">
+            <p style="margin:0; font-size:1rem">Email non reçu au bout de 5 minutes ?</p>
+            <a class="btn btn--outline" href="mailto:julien.prof1@gmail.com?subject=Lien%20de%20t%C3%A9l%C3%A9chargement%20non%20re%C3%A7u" style="margin-top:14px; display:inline-block">
+              Contacter le support →
+            </a>
+          </div>
+
+          <div class="card" id="suggestionsCard" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center; display:none">
+            <h2 class="h4" style="margin-top:0" id="suggestionsTitre">Complète ta matière</h2>
+            <p style="margin:8px 0 16px; font-size:.95rem">Puisque tu es déjà dessus, voici ce qui va bien avec ce que tu viens de prendre.</p>
+            <div id="suggestionsListe" style="display:flex; flex-direction:column; gap:10px; text-align:left"></div>
+          </div>
+
+          <div class="card" id="suggestionsFallback" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center">
+            <h2 class="h4" style="margin-top:0">D'autres matières à réviser ?</h2>
+            <p style="margin:8px 0 16px; font-size:.95rem">Toute ta licence de droit en fiches complètes et en majeures préparées.</p>
+            <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
+              <a class="btn btn--secondary" href="formations.html">Fiches complètes →</a>
+              <a class="btn btn--outline" href="majeures-preparees.html">Majeures préparées →</a>
+            </div>
+          </div>
+
+          <p style="max-width:520px; margin:24px auto 0; color:var(--muted); font-size:.92rem">
+            Enfin, si tu veux aussi apprendre le droit de manière plus ludique, retrouve-moi sur
+            <a href="https://www.youtube.com/@TrajectoireDroit" target="_blank" rel="noopener noreferrer">YouTube</a>
+            et sur <a href="https://www.tiktok.com/@trajectoiredroit" target="_blank" rel="noopener noreferrer">TikTok</a>.
+          </p>
         </div>
 
-        <p style="max-width:520px; margin:24px auto 0; color:var(--muted); font-size:.92rem">
-          Enfin, si tu veux aussi apprendre le droit de manière plus ludique, retrouve-moi sur
-          <a href="https://www.youtube.com/@TrajectoireDroit" target="_blank" rel="noopener noreferrer">YouTube</a>
-          et sur <a href="https://www.tiktok.com/@trajectoiredroit" target="_blank" rel="noopener noreferrer">TikTok</a>.
-        </p>
+        <div id="purchaseStatusCard" class="card" hidden style="margin-top:32px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center; padding:28px 32px">
+          <h2 id="purchaseStatusCardTitle" class="h4" style="margin-top:0">Paiement non confirmé</h2>
+          <p id="purchaseStatusCardMessage" style="margin:12px 0 0">Aucun paiement validé ne correspond à cette session.</p>
+          <a id="purchaseStatusCardLink" class="btn btn--primary" href="formations.html" style="margin-top:18px; display:inline-block">Revenir aux formations</a>
+        </div>
 
       </div>
     </section>
@@ -384,7 +391,58 @@
   <script defer>
   (function () {
     var sessionId = new URLSearchParams(window.location.search).get('session_id');
-    if (!sessionId) return;
+    var statusIcon = document.getElementById('purchaseStatusIcon');
+    var statusEyebrow = document.getElementById('purchaseStatusEyebrow');
+    var statusTitle = document.getElementById('purchaseStatusTitle');
+    var statusMessage = document.getElementById('purchaseStatusMessage');
+    var confirmedContent = document.getElementById('purchaseConfirmedContent');
+    var statusCard = document.getElementById('purchaseStatusCard');
+    var statusCardTitle = document.getElementById('purchaseStatusCardTitle');
+    var statusCardMessage = document.getElementById('purchaseStatusCardMessage');
+    var statusCardLink = document.getElementById('purchaseStatusCardLink');
+
+    function afficherAchatConfirme() {
+      document.title = 'Achat confirmé · TrajectoireDroit';
+      statusIcon.textContent = '✅';
+      statusEyebrow.textContent = 'Achat confirmé';
+      statusTitle.textContent = 'Ton PDF arrive par email';
+      statusMessage.textContent = 'Paiement reçu. Dans quelques secondes, tu reçois un email avec le lien de téléchargement. Vérifie ta boîte de réception et ton dossier spam si tu ne le vois pas.';
+      confirmedContent.hidden = false;
+      statusCard.hidden = true;
+    }
+
+    function afficherPaiementNonConfirme() {
+      document.title = 'Paiement non confirmé · TrajectoireDroit';
+      statusIcon.textContent = 'ℹ️';
+      statusEyebrow.textContent = 'Paiement non confirmé';
+      statusTitle.textContent = 'Aucun paiement validé';
+      statusMessage.textContent = "La commande n'a pas été confirmée par Stripe.";
+      confirmedContent.hidden = true;
+      statusCardTitle.textContent = 'Tu peux reprendre ton achat';
+      statusCardMessage.textContent = "Si tu as quitté Stripe avant la validation, aucun débit n'a été effectué.";
+      statusCardLink.textContent = 'Revenir aux formations';
+      statusCardLink.href = 'formations.html';
+      statusCard.hidden = false;
+    }
+
+    function afficherVerificationIndisponible() {
+      document.title = 'Vérification indisponible · TrajectoireDroit';
+      statusIcon.textContent = '⏱️';
+      statusEyebrow.textContent = 'Vérification indisponible';
+      statusTitle.textContent = 'Nous ne pouvons pas encore confirmer ton paiement';
+      statusMessage.textContent = "Ton email de confirmation reste la preuve de ton achat.";
+      confirmedContent.hidden = true;
+      statusCardTitle.textContent = 'Réessaie dans quelques instants';
+      statusCardMessage.textContent = "Si le paiement a été validé, ton email avec le lien de téléchargement arrivera automatiquement.";
+      statusCardLink.textContent = 'Actualiser la page';
+      statusCardLink.href = window.location.href;
+      statusCard.hidden = false;
+    }
+
+    if (!sessionId || !/^cs_(live|test)_[A-Za-z0-9]+$/.test(sessionId)) {
+      afficherPaiementNonConfirme();
+      return;
+    }
 
     // Dédup : un rechargement de cette page ne doit pas recompter la vente,
     // ni dans GA4 (transaction_id), ni dans Matomo, ni dans les logs.
@@ -393,6 +451,7 @@
     function envoyerMesures(d) {
       if (dejaEnvoye) return;
       sessionStorage.setItem('tjd_purchase_envoye_' + sessionId, '1');
+      dejaEnvoye = true;
 
       if (d && d.montant != null && typeof window.gtag === 'function') {
         gtag('event', 'purchase', {
@@ -435,36 +494,52 @@
       }
     }
 
-    function envoyerPurchase() {
-      fetch('/api/session-info?session_id=' + encodeURIComponent(sessionId))
-        .then(function (r) { return r.json(); })
-        .then(function (d) {
-          envoyerMesures(d);
-          afficherSuggestions(d && d.suggestions);
-          if (d && d.montant != null && typeof window.fbq === 'function') {
-            fbq('track', 'Purchase', { value: d.montant, currency: d.devise || 'EUR' }, { eventID: sessionId });
-          }
-        })
-        .catch(function () {});
+    var donneesSession = null;
+    var metaEnvoye = false;
+
+    function envoyerMetaSiPret() {
+      if (metaEnvoye || !donneesSession || typeof window.fbq !== 'function') return;
+      metaEnvoye = true;
+      fbq('track', 'Purchase', { value: donneesSession.montant, currency: donneesSession.devise || 'EUR' }, { eventID: sessionId });
     }
 
-    // Le pixel Meta se charge après consentement (cookie-consent.js), potentiellement
-    // juste après ce script si le visiteur accepte la bannière sur cette page.
-    // GA4 et Matomo n'en dépendent pas : on les envoie dès que le montant est connu,
-    // sans attendre fbq (sinon un refus de cookies laisserait le funnel muet).
+    function verifierSession(tentative) {
+      fetch('/api/session-info?session_id=' + encodeURIComponent(sessionId))
+        .then(function (r) {
+          if (r.status === 404) throw new Error('paiement_non_confirme');
+          if (!r.ok) throw new Error('verification_indisponible');
+          return r.json();
+        })
+        .then(function (d) {
+          if (!d || d.montant == null) throw new Error('paiement_non_confirme');
+          donneesSession = d;
+          afficherAchatConfirme();
+          envoyerMesures(d);
+          afficherSuggestions(d && d.suggestions);
+          envoyerMetaSiPret();
+        })
+        .catch(function (erreur) {
+          if (erreur && erreur.message === 'verification_indisponible' && tentative < 2) {
+            window.setTimeout(function () { verifierSession(tentative + 1); }, 1200);
+            return;
+          }
+          if (erreur && erreur.message === 'paiement_non_confirme') afficherPaiementNonConfirme();
+          else afficherVerificationIndisponible();
+        });
+    }
+
+    verifierSession(1);
+
+    // Le pixel Meta peut se charger après le contrôle de la session. Les autres
+    // mesures partent dès que Stripe a confirmé le paiement.
     var tentatives = 0;
     var attente = setInterval(function () {
       tentatives++;
-      if (typeof window.fbq === 'function') {
+      if (donneesSession && typeof window.fbq === 'function') {
         clearInterval(attente);
-        envoyerPurchase();
+        envoyerMetaSiPret();
       } else if (tentatives > 20) {
         clearInterval(attente);
-        // Pas de pixel Meta (cookies refusés) : on envoie quand même GA4 et Matomo.
-        fetch('/api/session-info?session_id=' + encodeURIComponent(sessionId))
-          .then(function (r) { return r.json(); })
-          .then(function (d) { envoyerMesures(d); afficherSuggestions(d && d.suggestions); })
-          .catch(function () {});
       }
     }, 250);
   })();
