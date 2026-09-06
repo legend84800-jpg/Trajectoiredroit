@@ -752,12 +752,14 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s1-cartesmentales.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s2.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-societes-l3-s1-flashcards.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-societes-l3-s1-qcm.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-societes-l3-s1-anki.apkg",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-societes.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-societes-plan.pdf",
-      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-societes-l3.pdf"
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-societes-l3.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-societes-l3-s2.pdf"
   ] },
   "pack-matiere-travail-l3": { nom: "Pack Droit du travail L3 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-travail-l3-s1.pdf",
