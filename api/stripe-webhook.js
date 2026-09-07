@@ -464,15 +464,21 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
 // mail que Julien envoyait déjà lui-même aux inscrits (routine-stage/routine_stage.py,
 // GABARIT_MAIL, validé au filtre redaction-julien), avec le bloc paiement retiré
 // puisque le paiement est désormais fait avant l'envoi, plus après coup sur un délai.
+// Le numéro WhatsApp est demandé directement dans le formulaire avant paiement
+// (depuis le 07/09/2026), donc le mail confirme l'ajout au groupe au lieu de le redemander.
 async function envoyerConfirmationStage(email, metadata, brevoKey) {
   const nomComplet = ((metadata && metadata.nom) || "").trim();
   const prenom = nomComplet ? nomComplet.split(/\s+/)[0] : "";
   const salutation = prenom ? `Bonjour ${prenom},` : "Bonjour,";
+  const whatsapp = ((metadata && metadata.whatsapp) || "").trim();
+  const phraseWhatsapp = whatsapp
+    ? `Je t'ajoute dans le groupe WhatsApp du stage sur le numéro ${whatsapp}, avec les autres élèves et toutes les informations pratiques.`
+    : "Réponds à cet email avec ton numéro WhatsApp, pour que je t'ajoute dans le groupe du stage avec les autres élèves et toutes les informations pratiques.";
 
   const paragraphes = [
     salutation,
     "Ton inscription au stage est bien enregistrée. Ton paiement de 176 € a bien été reçu.",
-    "Réponds simplement à cet email avec ton prénom, ton numéro WhatsApp si tu souhaites être contacté par ce moyen et la difficulté principale que tu veux travailler pendant le stage.",
+    phraseWhatsapp,
     "Pour rappel, voici le contenu du stage :",
     "Le stage comprend trois séances en direct, pour un total de huit heures, consacrées aux quatre principaux exercices juridiques : la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation.",
     "La première séance aura lieu le mardi 27 octobre, de 18 h à 21 h. Nous travaillerons la structure complète de la fiche d'arrêt, notamment la différence entre un arrêt de rejet et un arrêt de cassation, puis la méthode du commentaire d'arrêt : introduction, construction du plan et rédaction des sous-parties.",
@@ -534,9 +540,10 @@ async function envoyerConfirmationStage(email, metadata, brevoKey) {
   }
 }
 
-// Notifie Julien d'une inscription payée au stage. Le formulaire avant paiement ne
-// demande que l'email et le niveau. Le client peut répondre au mail de confirmation
-// pour transmettre ensuite son prénom, son WhatsApp et sa difficulté principale.
+// Notifie Julien d'une inscription payée au stage. Le formulaire avant paiement
+// demande l'email, le WhatsApp et le niveau (WhatsApp ajouté le 07/09/2026, avant
+// cette date il fallait répondre au mail de confirmation pour le transmettre).
+// Le client peut toujours répondre au mail pour donner son prénom ou une précision.
 async function notifierJulienStage(metadata, email, montantEuros, sessionId, brevoKey) {
   const m = metadata || {};
   const rows = [
