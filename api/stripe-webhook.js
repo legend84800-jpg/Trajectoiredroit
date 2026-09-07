@@ -520,6 +520,10 @@ async function envoyerConfirmationStage(email, metadata, brevoKey) {
   const payload = {
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
     to: [{ email }],
+    // Le client répond directement à ce mail avec son WhatsApp : sans ce replyTo,
+    // Brevo renvoie par défaut vers l'adresse "sender" (contact@trajectoiredroit.com),
+    // jamais lue par Julien, la réponse se perdrait.
+    replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
     subject: "Stage TrajectoireDroit, confirmation",
     htmlContent: html,
     textContent: texte,
