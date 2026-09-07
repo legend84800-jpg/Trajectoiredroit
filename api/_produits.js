@@ -821,7 +821,7 @@ const PRODUITS = {
 
   // Stage de méthode en direct (inscription à une session datée, pas de PDF à livrer :
   // create-checkout.js et stripe-webhook.js le traitent via des branches dédiées).
-  "stage-methode": { nom: "Stage de méthode en direct (3 séances, 8-10 septembre 2026)", prix: 14900, blobs: [] },
+  "stage-methode": { nom: "Stage de méthode en direct (3 séances, vacances de la Toussaint, 27-29 octobre 2026)", prix: 17600, blobs: [] },
 };
 
 module.exports = PRODUITS;

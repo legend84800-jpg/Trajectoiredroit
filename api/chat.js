@@ -28,7 +28,7 @@ revisions.html — flashcards + QCM par matière avec deck Anki inclus, 9,99 €
 corriges.html — recueils d'exercices corrigés par matière à 14,99 €, plus des packs annuels de commentaires d'arrêt et de cas pratiques corrigés pour la L1, la L2 et la L3
 outil-fiche-arret.html — Portalis, l'outil qui corrige les copies par IA (1 essai gratuit, puis 6 €/mois)
 cours-particuliers.html — cours particuliers de droit en visio avec Julien, 98 €/h
-stage-methode.html — stage de méthode en direct, 3 séances, 8-9-10 septembre 2026, 149 €
+stage-methode.html — stage de méthode en direct, 3 séances, 27-28-29 octobre 2026 (vacances de la Toussaint), 176 €
 quiz-methode.html — quiz gratuit en 3 minutes pour voir où on perd des points (sans inscription)
 
 PAGES DE CONFIANCE :

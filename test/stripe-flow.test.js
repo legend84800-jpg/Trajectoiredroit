@@ -462,9 +462,9 @@ test("l'email de confirmation du stage reprend les horaires publics", () => {
     webhook.indexOf("// Notifie Julien d'une inscription payée au stage")
   );
 
-  assert.match(emailStage, /mardi 8 septembre, de 17 h à 20 h/);
-  assert.match(emailStage, /mercredi 9 septembre, de 17 h à 20 h/);
-  assert.match(emailStage, /jeudi 10 septembre, de 17 h à 19 h/);
+  assert.match(emailStage, /mardi 27 octobre, de 18 h à 21 h/);
+  assert.match(emailStage, /mercredi 28 octobre, de 18 h à 21 h/);
+  assert.match(emailStage, /jeudi 29 octobre, de 18 h 30 à 20 h 30/);
   assert.doesNotMatch(emailStage, /de 16 h à/);
 });
 
