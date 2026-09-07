@@ -85,7 +85,7 @@
         "mainEntity": [
           { "@type": "Question", "name": "Le stage est en ligne ou en présentiel ?", "acceptedAnswer": { "@type": "Answer", "text": "En ligne, en visio, en direct. Tu suis depuis chez toi, où que tu sois, et tu poses tes questions pendant la séance." } },
           { "@type": "Question", "name": "C'est pour quel niveau ?", "acceptedAnswer": { "@type": "Answer", "text": "De la L1 au M1. La méthode des exercices est la même tout au long de la licence, donc le stage te sert quelle que soit ton année." } },
-          { "@type": "Question", "name": "Comment je reçois le lien ?", "acceptedAnswer": { "@type": "Answer", "text": "Dès ton paiement reçu, je t'ajoute dans le groupe WhatsApp avec les autres élèves du stage et toutes les informations pratiques. Je t'envoie le lien Google Meet 48 heures avant." } },
+          { "@type": "Question", "name": "Comment je reçois le lien ?", "acceptedAnswer": { "@type": "Answer", "text": "Réponds à l'email de confirmation avec ton numéro WhatsApp, je t'ajoute dans le groupe avec les autres élèves du stage et toutes les informations pratiques. Je t'enverrai le lien Google Meet 48 heures avant." } },
           { "@type": "Question", "name": "Et si je ne peux pas assister à une ou plusieurs séances ?", "acceptedAnswer": { "@type": "Answer", "text": "Aucun souci. J'enregistre chaque séance, donc si tu en rates une ou plusieurs, je t'envoie le replay et tu la rattrapes quand tu veux." } },
           { "@type": "Question", "name": "Et si le stage n'a pas lieu ?", "acceptedAnswer": { "@type": "Answer", "text": "Si le stage n'a finalement pas lieu, par exemple en cas d'empêchement de ma part, tu es intégralement remboursé sous quelques jours." } },
           { "@type": "Question", "name": "Faut-il déjà avoir des bases solides ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. On part de la méthode depuis le début, depuis la lecture d'un arrêt. Que tu débutes ou que tu veuilles corriger ce qui ne va pas dans ta méthode, tu suis sans problème." } }
@@ -654,7 +654,7 @@
         <div class="text-center" style="margin-bottom:32px">
           <span class="eyebrow">27, 28 et 29 octobre 2026 · Vacances de la Toussaint</span>
           <h2 class="h2" style="margin-top:12px">Réserve ta place pour le stage du 27 au 29 octobre.</h2>
-          <p class="lead">Remplis le formulaire ci-dessous et paie en ligne. Ta place est confirmée tout de suite, et dès ton paiement reçu, je t'ajoute dans le groupe WhatsApp avec les autres élèves du stage et toutes les informations pratiques. Je t'envoie le lien Google Meet 48 heures avant.</p>
+          <p class="lead">Remplis le formulaire ci-dessous et paie en ligne. Ta place est confirmée tout de suite. Réponds ensuite à l'email de confirmation avec ton numéro WhatsApp, et je t'ajoute dans le groupe avec les autres élèves du stage et toutes les informations pratiques. Je t'enverrai le lien Google Meet 48 heures avant.</p>
         </div>
 
         <div class="offer-card fade-in">
@@ -673,14 +673,10 @@
             <li>Les cadeaux de chaque séance (fiches de citations, corrigés rédigés, majeures préparées)</li>
           </ul>
           <form id="stageForm" class="form" novalidate style="margin-top:4px">
-            <div class="grid-3" style="gap:16px">
+            <div class="grid-2" style="gap:16px">
               <div class="form__row">
                 <label class="form__label" for="stage_email">Email</label>
                 <input class="form__input" type="email" id="stage_email" name="email" autocomplete="email" required>
-              </div>
-              <div class="form__row">
-                <label class="form__label" for="stage_whatsapp">Numéro WhatsApp</label>
-                <input class="form__input" type="tel" id="stage_whatsapp" name="whatsapp" autocomplete="tel" placeholder="+33 6 12 34 56 78" required>
               </div>
               <div class="form__row">
                 <label class="form__label" for="stage_niveau">Niveau d'études</label>
@@ -694,7 +690,7 @@
               </div>
             </div>
             <button class="btn btn--primary btn--lg btn--full" type="submit" id="stageFormSubmit">Réserver ma place · 22 €/h · 176 € au total</button>
-            <p class="form__hint text-center">Paiement sécurisé par Stripe · place confirmée immédiatement · ton numéro WhatsApp sert uniquement à t'ajouter au groupe du stage</p>
+            <p class="form__hint text-center">Paiement sécurisé par Stripe · place confirmée immédiatement · les informations complémentaires sont demandées après le paiement</p>
             <div class="form__error" id="stageFormError" hidden>Une erreur est survenue. Réessaie ou écris-moi directement à <a href="mailto:julien.prof1@gmail.com">julien.prof1@gmail.com</a>.</div>
           </form>
         </div>
@@ -708,7 +704,7 @@
         <div class="accordion">
           <details class="accordion__item" open><summary><h3>Le stage est en ligne ou en présentiel ?</h3></summary><div class="accordion__body">En ligne, en visio, en direct. Tu suis depuis chez toi, où que tu sois, et tu poses tes questions pendant la séance.</div></details>
           <details class="accordion__item"><summary><h3>C'est pour quel niveau ?</h3></summary><div class="accordion__body">De la L1 au M1. La méthode des exercices est la même tout au long de la licence, donc le stage te sert quelle que soit ton année. On part de la méthode depuis le début, tu n'as pas besoin d'avoir déjà des bases solides.</div></details>
-          <details class="accordion__item"><summary><h3>Comment je reçois le lien ?</h3></summary><div class="accordion__body">Dès ton paiement reçu, je t'ajoute dans le groupe WhatsApp avec les autres élèves du stage et toutes les informations pratiques. Je t'envoie le lien Google Meet 48 heures avant.</div></details>
+          <details class="accordion__item"><summary><h3>Comment je reçois le lien ?</h3></summary><div class="accordion__body">Réponds à l'email de confirmation avec ton numéro WhatsApp, je t'ajoute dans le groupe avec les autres élèves du stage et toutes les informations pratiques. Je t'enverrai le lien Google Meet 48 heures avant.</div></details>
           <details class="accordion__item"><summary><h3>Et si je ne peux pas assister à une ou plusieurs séances ?</h3></summary><div class="accordion__body">Aucun souci. J'enregistre chaque séance, donc si tu en rates une ou plusieurs, je t'envoie le replay et tu la rattrapes quand tu veux.</div></details>
           <details class="accordion__item"><summary><h3>Et si le stage n'a pas lieu ?</h3></summary><div class="accordion__body">Si le stage n'a finalement pas lieu, par exemple en cas d'empêchement de ma part, tu es intégralement remboursé sous quelques jours.</div></details>
         </div>
