@@ -175,9 +175,9 @@ async function handler(req, res) {
     return;
   }
 
-  // Le stage de méthode est une session datée à 15 places, pas un PDF en stock illimité :
+  // Le stage de méthode est une session datée à 18 places, pas un PDF en stock illimité :
   // on compte les achats déjà enregistrés pour ne jamais vendre une place qui n'existe pas.
-  const LIMITE_PLACES_STAGE = 15;
+  const LIMITE_PLACES_STAGE = 18;
   if (produitId === "stage-methode") {
     try {
       const dejaInscrits = await selectionner("achats", `produit_ids=cs.${encodeURIComponent("{stage-methode}")}&select=id`);

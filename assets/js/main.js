@@ -656,7 +656,7 @@
   // ----- 7c. Carte "Stage en direct" : mention fixe (desktop + mobile) + accordéon desktop -----
   var stageCountdownEls = document.querySelectorAll('.stage-teaser__countdown');
   if (stageCountdownEls.length) {
-    stageCountdownEls.forEach(function (el) { el.textContent = 'Dernier jour'; });
+    stageCountdownEls.forEach(function (el) { el.textContent = 'Plus que 5 jours'; });
   }
   var stageTeaser = document.querySelector('.stage-teaser__trigger');
   if (stageTeaser) {
