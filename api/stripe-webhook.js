@@ -271,6 +271,9 @@ async function envoyerRelancePanier(email, produits, checkoutUrl, brevoKey, opti
   const payload = {
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
     to: [{ email }],
+    // Le mail invite à répondre directement : sans ce replyTo, Brevo renverrait par
+    // défaut vers l'adresse "sender" (contact@trajectoiredroit.com), jamais lue par Julien.
+    replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
     subject: estH24 ? "Tu peux encore reprendre ton achat" : `Ton paiement pour ${noms} est resté en attente`,
     htmlContent: html,
     textContent: texte,
@@ -441,6 +444,10 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
   const payload = {
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
     to: [{ email }],
+    // Le mail invite à contacter Julien "au moindre problème" : si le client répond
+    // directement au lieu de réécrire à julien.prof1@gmail.com, ce replyTo garantit
+    // que ça arrive quand même chez lui plutôt que sur contact@, jamais consultée.
+    replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
     subject: `Ton achat : ${nomsAchetes}`,
     htmlContent: html,
     textContent: texte,
