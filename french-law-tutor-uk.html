@@ -10,9 +10,12 @@
     var valeur = new URLSearchParams(window.location.search).get('tjd_test');
     if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
     if (valeur === '0') localStorage.removeItem('tjd_internal_test');
-    interne = localStorage.getItem('tjd_internal_test') === '1';
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
   } catch (_) {
-    interne = false;
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
   }
   window.tjdTestInterne = interne;
 })();
@@ -27,16 +30,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="max-image-preview:large">
   <meta name="theme-color" content="#1A2851">
-  <title>French Law Tutor for UK "Law with French Law" Students · TrajectoireDroit</title>
+  <title>French Law Tutor for UK Students · TrajectoireDroit</title>
   <meta name="author" content="Julien">
-  <meta name="description" content="Private tutoring in French law and legal method for UK students on a Law with French Law degree, taught by Julien, a graduate of Panthéon-Assas, 620+ students tutored.">
+  <meta name="description" content="Online tutoring in French law and legal method for UK students on a Law with French Law degree, with Julien, a Panthéon-Assas graduate.">
   <link rel="canonical" href="https://trajectoiredroit.com/french-law-tutor-uk.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="French Law Tutor for UK Law with French Law Students · TrajectoireDroit">
   <meta property="og:description" content="Your year abroad is spent studying French law in French. Private tutoring with a Panthéon-Assas graduate to help you get through it with strong grades.">
   <meta property="og:url" content="https://trajectoiredroit.com/french-law-tutor-uk.html">
   <meta property="og:locale" content="en_GB">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/julien-lg.jpg">
+  <meta property="og:image:width" content="1152">
+  <meta property="og:image:height" content="1200">
+  <meta property="og:image:alt" content="Julien, professeur de droit à TrajectoireDroit">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/julien-lg.jpg">
+  <meta name="twitter:image:alt" content="Julien, professeur de droit à TrajectoireDroit">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <script type="application/ld+json">
   {
@@ -181,6 +190,7 @@
         <p class="lead">A Law with French Law degree, at UCL, Warwick, Newcastle or elsewhere, drops you into a French law faculty for a full year, French civil law, French constitutional law, French contract law, and the French exercises that go with them, the <a href="methode-fiche-arret.html">fiche d'arrêt</a>, the <a href="methode-commentaire-arret.html">commentaire d'arrêt</a>, the <a href="methode-cas-pratique.html">cas pratique</a>. None of these exist in an English law degree, and none of them get taught before you land in France.</p>
         <p>Most students find out how different French legal method is only once they're sitting in front of a French professor who assumes everyone already knows how to structure a cas pratique. The French system rewards a very specific, very rigid way of answering a legal question, and getting it wrong costs marks even when the legal reasoning underneath is correct. On top of that, French lecturers rarely offer the kind of one-to-one office hours a UK student is used to, so a concept that doesn't click in the lecture theatre tends to stay unclear until the exam.</p>
         <p>That's exactly the gap my tutoring fills. I go over the notion your French course didn't quite land, mark your practice answers before the same mistake repeats itself, and stay reachable on WhatsApp between sessions for a quick question before a deadline. I already work with students based in Dubai, Geneva, Brussels and Luxembourg, on top of students in France. The time zone changes, the method doesn't.</p>
+        <p>If you are following a French law degree entirely online, you can also read how I organise <a href="cours-droit-a-distance.html">distance learning support for French law students</a>.</p>
       </div>
     </section>
 

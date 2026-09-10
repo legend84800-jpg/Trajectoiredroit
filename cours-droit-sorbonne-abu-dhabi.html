@@ -10,9 +10,12 @@
     var valeur = new URLSearchParams(window.location.search).get('tjd_test');
     if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
     if (valeur === '0') localStorage.removeItem('tjd_internal_test');
-    interne = localStorage.getItem('tjd_internal_test') === '1';
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
   } catch (_) {
-    interne = false;
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
   }
   window.tjdTestInterne = interne;
 })();
@@ -27,16 +30,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="max-image-preview:large">
   <meta name="theme-color" content="#1A2851">
-  <title>Cours particuliers de droit pour Sorbonne Université Abu Dhabi · TrajectoireDroit</title>
+  <title>Cours de droit à Sorbonne Abu Dhabi · TrajectoireDroit</title>
   <meta name="author" content="Julien">
-  <meta name="description" content="Licence de droit à Sorbonne Université Abu Dhabi (diplôme Université Paris Cité) : cours particuliers en visio avec Julien, professeur diplômé de Panthéon-Assas, 620+ étudiants accompagnés.">
+  <meta name="description" content="Cours particuliers en visio pour les étudiants de Sorbonne Université Abu Dhabi. Méthode juridique, suivi et préparation aux partiels avec Julien.">
   <link rel="canonical" href="https://trajectoiredroit.com/cours-droit-sorbonne-abu-dhabi.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Cours particuliers de droit pour Sorbonne Université Abu Dhabi · TrajectoireDroit">
   <meta property="og:description" content="Ta licence de droit est enseignée en français, diplôme Université Paris Cité. Cours particuliers en visio avec un professeur diplômé de Panthéon-Assas, où que tu vives aux Émirats.">
   <meta property="og:url" content="https://trajectoiredroit.com/cours-droit-sorbonne-abu-dhabi.html">
   <meta property="og:locale" content="fr_FR">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/julien-lg.jpg">
+  <meta property="og:image:width" content="1152">
+  <meta property="og:image:height" content="1200">
+  <meta property="og:image:alt" content="Julien, professeur de droit à TrajectoireDroit">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/julien-lg.jpg">
+  <meta name="twitter:image:alt" content="Julien, professeur de droit à TrajectoireDroit">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <script type="application/ld+json">
   {

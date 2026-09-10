@@ -33,14 +33,14 @@ async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") { res.status(200).end(); return; }
-  if (req.method !== "POST") { res.status(405).json({ erreur: "Méthode non autorisée" }); return; }
+  if (req.method !== "POST") { res.status(405).json({ erreur: "Méthode non autorisée", code: "methode_non_autorisee" }); return; }
 
   let corps = req.body;
   if (typeof corps === "string") { try { corps = JSON.parse(corps); } catch { corps = {}; } }
   corps = corps || {};
 
   const stripeKey = process.env.STRIPE_SECRET_KEY;
-  if (!stripeKey) { res.status(500).json({ erreur: "Configuration Stripe manquante" }); return; }
+  if (!stripeKey) { res.status(500).json({ erreur: "Configuration Stripe manquante", code: "configuration" }); return; }
   const stripe = creerClientStripe(stripeKey);
   const attemptId = normaliserAttemptId(corps.attemptId);
   const attemptTimestamp = normaliserAttemptTimestamp(corps.attemptCreatedAt);
@@ -50,7 +50,7 @@ async function handler(req, res) {
   // Portail client Stripe (gérer/résilier l'abonnement Portalis).
   if (corps.type === "portal") {
     const supabaseUserId = typeof corps.supabaseUserId === "string" ? corps.supabaseUserId.trim() : "";
-    if (!supabaseUserId) { res.status(400).json({ erreur: "Compte manquant" }); return; }
+    if (!supabaseUserId) { res.status(400).json({ erreur: "Compte manquant", code: "compte_manquant" }); return; }
 
     let abonnement;
     try {
@@ -61,11 +61,11 @@ async function handler(req, res) {
       abonnement = lignes[0];
     } catch (e) {
       console.error("create-checkout (portal) erreur Supabase:", e.message);
-      res.status(500).json({ erreur: "Erreur interne" });
+      res.status(500).json({ erreur: "Erreur interne", code: "supabase" });
       return;
     }
     if (!abonnement || !abonnement.stripe_customer_id) {
-      res.status(400).json({ erreur: "Aucun abonnement trouvé pour ce compte" });
+      res.status(400).json({ erreur: "Aucun abonnement trouvé pour ce compte", code: "abonnement_absent" });
       return;
     }
 
@@ -76,8 +76,12 @@ async function handler(req, res) {
       });
       res.status(200).json({ url: sessionPortail.url });
     } catch (e) {
-      console.error("create-checkout (portal) erreur Stripe:", e.message);
-      res.status(502).json({ erreur: "Erreur Stripe", detail: e.message });
+      console.error("create-checkout (portal) erreur Stripe", {
+        attemptId,
+        stripeCode: e && e.code ? e.code : "inconnu",
+        stripeType: e && e.type ? e.type : "inconnu",
+      });
+      res.status(502).json({ erreur: "Erreur Stripe", code: "stripe" });
     }
     return;
   }
@@ -86,7 +90,7 @@ async function handler(req, res) {
   if (corps.mode === "subscription") {
     const supabaseUserId = typeof corps.supabaseUserId === "string" ? corps.supabaseUserId.trim() : "";
     const supabaseEmail = typeof corps.supabaseEmail === "string" ? corps.supabaseEmail.trim() : "";
-    if (!supabaseUserId || !supabaseEmail) { res.status(400).json({ erreur: "Compte manquant" }); return; }
+    if (!supabaseUserId || !supabaseEmail) { res.status(400).json({ erreur: "Compte manquant", code: "compte_manquant" }); return; }
 
     // Réutilise le customer Stripe existant si l'utilisateur a déjà été abonné,
     // pour éviter de créer un doublon à chaque nouvelle tentative d'abonnement.
@@ -136,8 +140,12 @@ async function handler(req, res) {
       );
       res.status(200).json({ url: sessionAbo.url, sessionId: sessionAbo.id, attemptId });
     } catch (e) {
-      console.error("create-checkout (subscription) erreur Stripe:", e.message);
-      res.status(502).json({ erreur: "Erreur Stripe", detail: e.message });
+      console.error("create-checkout (subscription) erreur Stripe", {
+        attemptId,
+        stripeCode: e && e.code ? e.code : "inconnu",
+        stripeType: e && e.type ? e.type : "inconnu",
+      });
+      res.status(502).json({ erreur: "Erreur Stripe", code: "stripe" });
     }
     return;
   }
@@ -171,7 +179,7 @@ async function handler(req, res) {
 
   const produit = PRODUITS[produitId];
   if (!produit) {
-    res.status(400).json({ erreur: "Produit inconnu" });
+    res.status(400).json({ erreur: "Produit inconnu", code: "produit_inconnu" });
     return;
   }
 
@@ -182,7 +190,7 @@ async function handler(req, res) {
     try {
       const dejaInscrits = await selectionner("achats", `produit_ids=cs.${encodeURIComponent("{stage-methode}")}&select=id`);
       if (dejaInscrits.length >= LIMITE_PLACES_STAGE) {
-        res.status(409).json({ erreur: "Stage complet", complet: true });
+        res.status(409).json({ erreur: "Stage complet", code: "stage_complet", complet: true });
         return;
       }
     } catch (e) {
@@ -312,8 +320,13 @@ async function handler(req, res) {
       attemptCreatedAt: attemptTimestamp,
     });
   } catch (e) {
-    console.error("create-checkout erreur Stripe:", e.message);
-    res.status(502).json({ erreur: "Erreur Stripe", detail: e.message });
+    console.error("create-checkout erreur Stripe", {
+      attemptId,
+      produitId,
+      stripeCode: e && e.code ? e.code : "inconnu",
+      stripeType: e && e.type ? e.type : "inconnu",
+    });
+    res.status(502).json({ erreur: "Erreur Stripe", code: "stripe" });
   }
 }
 

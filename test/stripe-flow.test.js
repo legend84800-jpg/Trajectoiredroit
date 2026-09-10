@@ -115,6 +115,46 @@ test("la création Checkout conserve le garde-fou Stripe et l'idempotence", asyn
   assert.equal(appel.options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012");
 });
 
+test("une erreur Stripe renvoie un code stable sans exposer son message", async () => {
+  const stripeModule = require("../api/_stripe");
+  const creerOriginal = stripeModule.creerClientStripe;
+  stripeModule.creerClientStripe = () => ({
+    checkout: {
+      sessions: {
+        create: async () => {
+          const erreur = new Error("message Stripe interne à ne pas envoyer au navigateur");
+          erreur.code = "api_connection_error";
+          erreur.type = "StripeConnectionError";
+          throw erreur;
+        },
+      },
+    },
+  });
+
+  const cheminModule = require.resolve("../api/create-checkout");
+  delete require.cache[cheminModule];
+  const handler = require("../api/create-checkout");
+  const ancienneCle = process.env.STRIPE_SECRET_KEY;
+  process.env.STRIPE_SECRET_KEY = "sk_test_factice";
+  const res = reponseFactice();
+
+  try {
+    await handler({ method: "POST", body: {
+      produitId: "fiche-da-l2-s1",
+      attemptId: "erreur-stripe-1234567890",
+    } }, res);
+  } finally {
+    stripeModule.creerClientStripe = creerOriginal;
+    delete require.cache[cheminModule];
+    if (ancienneCle === undefined) delete process.env.STRIPE_SECRET_KEY;
+    else process.env.STRIPE_SECRET_KEY = ancienneCle;
+  }
+
+  assert.equal(res.statusCode, 502);
+  assert.deepEqual(res.payload, { erreur: "Erreur Stripe", code: "stripe" });
+  assert.equal(Object.hasOwn(res.payload, "detail"), false);
+});
+
 test("l'abonnement Portalis ouvre aussi le Checkout français sans Link", async () => {
   const stripeModule = require("../api/_stripe");
   const supabaseModule = require("../api/_supabase");

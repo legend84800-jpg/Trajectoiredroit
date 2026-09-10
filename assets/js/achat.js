@@ -7,9 +7,13 @@
       var parametre = new URLSearchParams(window.location.search).get('tjd_test');
       if (parametre === '1') localStorage.setItem('tjd_internal_test', '1');
       if (parametre === '0') localStorage.removeItem('tjd_internal_test');
-      return localStorage.getItem('tjd_internal_test') === '1';
+      return localStorage.getItem('tjd_internal_test') === '1'
+        || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+        || window.location.protocol === 'file:';
     } catch (_) {
-      return window.tjdTestInterne === true;
+      return window.tjdTestInterne === true
+        || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+        || window.location.protocol === 'file:';
     }
   }
 
@@ -32,11 +36,27 @@
     return 'tjd-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 14);
   }
 
-  function mesurerCheckout(action, produitId, apresMesure) {
+  function codeDiagnostic(valeur, valeurParDefaut) {
+    return typeof valeur === 'string' && /^[a-z0-9_-]{1,40}$/.test(valeur)
+      ? valeur
+      : valeurParDefaut;
+  }
+
+  function creerErreurCheckout(message, type, statut) {
+    var erreur = new Error(message || 'Création du paiement impossible');
+    erreur.tjdType = codeDiagnostic(type, 'http');
+    erreur.tjdStatut = Number.isInteger(statut) ? statut : 0;
+    return erreur;
+  }
+
+  function mesurerCheckout(action, produitId, apresMesure, diagnostic) {
     if (estTestInterne()) {
       if (apresMesure) apresMesure();
       return;
     }
+    diagnostic = diagnostic || {};
+    var typeErreur = codeDiagnostic(diagnostic.type, 'inconnue');
+    var statutErreur = Number.isInteger(diagnostic.statut) ? diagnostic.statut : 0;
     var termine = false;
     function terminer() {
       if (termine) return;
@@ -44,14 +64,28 @@
       if (apresMesure) apresMesure();
     }
     if (typeof window.gtag === 'function') {
-      gtag('event', action === 'CheckoutCree' ? 'checkout_session_created' : 'checkout_error', {
+      var parametresGtag = {
         items: [{ item_id: produitId }],
+        page_path: window.location.pathname,
         event_callback: action === 'CheckoutCree' ? terminer : undefined,
         event_timeout: action === 'CheckoutCree' ? 450 : undefined
-      });
+      };
+      if (action === 'CheckoutErreur') {
+        parametresGtag.error_type = typeErreur;
+        parametresGtag.http_status = statutErreur;
+      }
+      gtag('event', action === 'CheckoutCree' ? 'checkout_session_created' : 'checkout_error', parametresGtag);
     }
     if (window._paq) {
       window._paq.push(['trackEvent', 'Ecommerce', action, produitId]);
+      if (action === 'CheckoutErreur') {
+        window._paq.push([
+          'trackEvent',
+          'EcommerceDiagnostic',
+          'CheckoutErreurDetail',
+          produitId + '|' + typeErreur + '|' + statutErreur
+        ]);
+      }
     }
     if (action === 'CheckoutCree') window.setTimeout(terminer, 500);
     else terminer();
@@ -103,7 +137,10 @@
     // Mesure du funnel : le clic Acheter, avant même la redirection Stripe,
     // pour pouvoir calculer un taux de clic par page et un taux d'abandon vers le paiement.
     if (!estTestInterne() && typeof window.gtag === 'function') {
-      gtag('event', 'begin_checkout', { items: [{ item_id: produitId }] });
+      gtag('event', 'begin_checkout', {
+        items: [{ item_id: produitId }],
+        page_path: window.location.pathname
+      });
     }
     if (!estTestInterne() && window._paq) {
       window._paq.push(['trackEvent', 'Ecommerce', 'ClicAcheter', produitId]);
@@ -118,7 +155,11 @@
     })
       .then(function (r) {
         return r.json().catch(function () { return {}; }).then(function (d) {
-          if (!r.ok) throw new Error(d.erreur || 'Création du paiement impossible');
+          if (!r.ok) throw creerErreurCheckout(
+            d.erreur || 'Création du paiement impossible',
+            d.code || 'http',
+            r.status
+          );
           return d;
         });
       })
@@ -132,11 +173,14 @@
           });
         }
         else {
-          throw new Error('URL Stripe absente');
+          throw creerErreurCheckout('URL Stripe absente', 'reponse_incomplete', 200);
         }
       })
-      .catch(function () {
-        mesurerCheckout('CheckoutErreur', produitId);
+      .catch(function (erreur) {
+        mesurerCheckout('CheckoutErreur', produitId, null, {
+          type: erreur && erreur.tjdType ? erreur.tjdType : 'reseau',
+          statut: erreur && Number.isInteger(erreur.tjdStatut) ? erreur.tjdStatut : 0
+        });
         alert('Le paiement ne peut pas être ouvert pour le moment. Réessaie dans quelques secondes.');
         btnEl.disabled = false;
         btnEl.textContent = TEXTES_ORIGINAUX[idx] || 'Acheter';

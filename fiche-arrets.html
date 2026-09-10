@@ -10,9 +10,12 @@
     var valeur = new URLSearchParams(window.location.search).get('tjd_test');
     if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
     if (valeur === '0') localStorage.removeItem('tjd_internal_test');
-    interne = localStorage.getItem('tjd_internal_test') === '1';
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
   } catch (_) {
-    interne = false;
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
   }
   window.tjdTestInterne = interne;
 })();
@@ -538,7 +541,7 @@
           <div class="card" style="padding:18px 22px"><strong>7. La portée</strong><br><span style="color:var(--body)">Tu dis ce que l'arrêt apporte. Il peut confirmer une jurisprudence, opérer un revirement, préciser une notion, ou limiter une règle. Cette portée fait l'intérêt de la décision, et tu l'approfondiras dans ton commentaire.</span></div>
         </div>
 
-        <p style="margin-top:22px; color:var(--body); line-height:1.75">La fiche d'arrêt est la base de ton <a href="produit-template.html">commentaire d'arrêt</a>. En fin de L1, tu arrêtes même de mettre les titres et tu rédiges les faits, la procédure et les moyens d'un seul tenant, parce que ce bloc devient directement l'introduction de ton commentaire. Plus tu fiches d'arrêts, plus cette introduction te viendra vite le jour de l'examen.</p>
+        <p style="margin-top:22px; color:var(--body); line-height:1.75">La fiche d'arrêt est la base de ton <a href="methode-commentaire-arret.html">commentaire d'arrêt</a>. En fin de L1, tu arrêtes même de mettre les titres et tu rédiges les faits, la procédure et les moyens d'un seul tenant, parce que ce bloc devient directement l'introduction de ton commentaire. Plus tu fiches d'arrêts, plus cette introduction te viendra vite le jour de l'examen.</p>
 
         <h3 style="margin:30px 0 14px">Un exemple de fiche d'arrêt</h3>
         <div class="card" style="padding:18px 22px; margin-bottom:18px; border-left:4px solid var(--blue-700)"><strong>L'arrêt.</strong> <span style="color:var(--body)">Cour de cassation, première chambre civile, 16 septembre 2010, l'affaire de l'exposition de cadavres « Our Body ».</span></div>
