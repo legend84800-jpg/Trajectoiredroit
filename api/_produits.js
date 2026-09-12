@@ -325,6 +325,11 @@ const PRODUITS = {
   "dissertation-hist-droit-l1": { nom: "Dissertations corrigées Histoire du droit L1 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/dissertation-hist-droit-l1.pdf"] },
   "dissertation-intro-droit-l1": { nom: "Dissertations corrigées Introduction au droit L1 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/dissertation-intro-droit-l1.pdf"] },
 
+  // Stage de methode
+  "stage-methode-replay-sept2026": { nom: "Replays du stage de methode (session de septembre 2026)", prix: 0, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/stage-methode-replay-sept2026-seance-1.mp4",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/stage-methode-replay-sept2026-seance-2.mp4",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/stage-methode-replay-sept2026-seance-3.mp4"] },
+
   // Packs annuels d'exercices corrigés
   "pack-commentaires-arret-l1": { nom: "Pack annuel Commentaires d'arrêt corrigés L1", prix: 2200, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/commentaire-arret-personnes-l1.pdf",

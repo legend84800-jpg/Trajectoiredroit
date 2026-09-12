@@ -60,14 +60,19 @@ function construireLiensTelechargement(
     anki: "le deck Anki",
     cartesmentales: "la carte mentale",
     plan: "le plan du cours",
+    "seance-1": "le replay séance 1",
+    "seance-2": "le replay séance 2",
+    "seance-3": "le replay séance 3",
   };
   return produit.blobs.map((blobUrl, i) => {
     const sig = genererToken(produitId, i, expiry, secret, sessionId);
     const sessionParam = sessionId ? `&sid=${encodeURIComponent(sessionId)}` : "";
     const url = `${origin}/api/telecharger?id=${encodeURIComponent(produitId)}&b=${i}&exp=${expiry}&sig=${sig}${sessionParam}`;
-    const brut = blobUrl.split("/").pop().replace(/\.(pdf|apkg)$/i, "");
-    const dernierMot = brut.split("-").pop();
-    const nom = suffixes[dernierMot] || libelleFichierPrincipal(produit.nom);
+    const brut = blobUrl.split("/").pop().replace(/\.(pdf|apkg|mp4)$/i, "");
+    const segments = brut.split("-");
+    const deuxDerniersMots = segments.slice(-2).join("-");
+    const dernierMot = segments[segments.length - 1];
+    const nom = suffixes[deuxDerniersMots] || suffixes[dernierMot] || libelleFichierPrincipal(produit.nom);
     return { nom, url };
   });
 }
