@@ -93,7 +93,11 @@ const MATIERES = {
       { label: "Semestre 1 · le droit commun", id: "fiche-societes-l3-s1", prix: "14,99 €", apercus: ["assets/apercus/societes-l3-s1-1.jpg", "assets/apercus/societes-l3-s1-2.jpg"] },
       { label: "Semestre 2 · le droit spécial", id: "fiche-societes-l3-s2", prix: "14,99 €", apercus: ["assets/apercus/societes-l3-s2-1.jpg", "assets/apercus/societes-l3-s2-2.jpg"] },
     ],
-    majeures: [],
+    // Une seule majeure existe à ce jour (le droit commun, S1). Aucune majeure
+    // n'est produite pour le droit spécial (S2), corrigé le 12/09/2026 (audit
+    // qualité, proposition 7.7) : le bloc était vide alors que le produit
+    // existait déjà en vente, invisible sur cette page à trafic SEO.
+    majeures: [{ label: "Semestre 1 · le droit commun", id: "maj-societes-l3-s1", prix: "14,99 €" }],
     // Les deux semestres portent un libellé enrichi, parce que le programme les
     // sépare nettement, le droit commun d'abord et le droit spécial ensuite, et
     // qu'un acheteur doit savoir lequel correspond à son semestre.
@@ -108,7 +112,9 @@ const MATIERES = {
     semestres: [
       { label: null, id: "fiche-travail-l3-s1", prix: "14,99 €", apercus: ["assets/apercus/travail-l3-s1-1.jpg", "assets/apercus/travail-l3-s1-2.jpg"] },
     ],
-    majeures: [],
+    // Bloc vide corrigé le 12/09/2026 (audit qualité, proposition 7.7) : le
+    // produit existait déjà en vente, invisible sur cette page à trafic SEO.
+    majeures: [{ label: null, id: "maj-travail-l3-s1", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-travail-l3-s1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-travail-l3", prix: "29,99 €" },
   },
@@ -126,7 +132,12 @@ const MATIERES = {
     semestres: [
       { label: null, id: "fiche-penal-l2-s1", prix: "14,99 €", apercus: ["assets/apercus/penal-l2-s1-1.jpg", "assets/apercus/penal-l2-s1-2.jpg"] },
     ],
-    majeures: [{ label: null, id: "maj-penal-l2-s1", prix: "14,99 €" }],
+    // Le S2 manquait alors que le produit maj-penal-l2-s2 existe déjà en
+    // vente, corrigé le 12/09/2026 (audit qualité, proposition 7.7).
+    majeures: [
+      { label: "Semestre 1", id: "maj-penal-l2-s1", prix: "14,99 €" },
+      { label: "Semestre 2", id: "maj-penal-l2-s2", prix: "14,99 €" },
+    ],
     coursComplets: [{ label: null, id: "cours-fiche-penal-l2-s1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-penal-l2", prix: "29,99 €" },
   },
@@ -162,7 +173,9 @@ const MATIERES = {
     semestres: [
       { label: null, id: "fiche-procedure-penale-l3", prix: "14,99 €", apercus: ["assets/apercus/procedure-penale-l3-1.jpg", "assets/apercus/procedure-penale-l3-2.jpg"] },
     ],
-    majeures: [],
+    // Bloc vide corrigé le 12/09/2026 (audit qualité, proposition 7.7) : le
+    // produit existait déjà en vente, invisible sur cette page à trafic SEO.
+    majeures: [{ label: null, id: "maj-procedure-penale-l3", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-procedure-penale-l3", prix: "19,99 €" }],
     packMatiere: null,
   },
@@ -171,7 +184,9 @@ const MATIERES = {
     semestres: [
       { label: null, id: "fiche-contrats-speciaux-l3", prix: "14,99 €", apercus: ["assets/apercus/contrats-speciaux-l3-1.jpg", "assets/apercus/contrats-speciaux-l3-2.jpg"] },
     ],
-    majeures: [],
+    // Bloc vide corrigé le 12/09/2026 (audit qualité, proposition 7.7) : le
+    // produit existait déjà en vente, invisible sur cette page à trafic SEO.
+    majeures: [{ label: null, id: "maj-contrats-speciaux-l3", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-contrats-speciaux-l3", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-contrats-speciaux-l3", prix: "29,99 €" },
   },
