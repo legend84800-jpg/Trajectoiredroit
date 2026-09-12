@@ -62,4 +62,4 @@ function suggererComplements(produitIdsAchetes, max) {
   return resultat;
 }
 
-module.exports = { suggererComplements };
+module.exports = { suggererComplements, CATALOGUE_ANALYSE };
