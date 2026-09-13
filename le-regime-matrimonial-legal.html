@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#1A2851">
+  <title>La communauté réduite aux acquêts, le régime légal (2026)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Le régime matrimonial légal expliqué simplement, ce qui devient commun entre époux, ce qui reste propre à chacun, qui gère les biens et qui paie les dettes.">
+  <link rel="canonical" href="https://trajectoiredroit.com/le-regime-matrimonial-legal.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="La communauté réduite aux acquêts, le régime légal (2026)">
+  <meta property="og:description" content="Le régime matrimonial légal expliqué simplement, ce qui devient commun entre époux, ce qui reste propre à chacun, qui gère les biens et qui paie les dettes.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/covers/cours-fiche-famille-l1-s2.jpg?v=captures-reelles-20260912">
+  <meta property="og:url" content="https://trajectoiredroit.com/le-regime-matrimonial-legal.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Le régime matrimonial légal, ce qui devient commun quand tu te maries sans contrat",
+        "description": "La communauté réduite aux acquêts, articles 1400 et suivants du Code civil. Composition de l'actif (art. 1401 à 1405), gestion des biens communs (art. 1421-1422), obligation aux dettes (art. 1413-1414), liquidation et récompenses (art. 1467 à 1476), comparaison avec la séparation de biens, la participation aux acquêts et la communauté universelle.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-09-13",
+        "dateModified": "2026-09-13",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": { "@type": "EducationalOrganization", "name": "TrajectoireDroit" }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": { "@type": "ImageObject", "url": "https://trajectoiredroit.com/assets/logo-tjd.svg" }
+        },
+        "about": { "@type": "Thing", "name": "Le régime matrimonial légal, la communauté réduite aux acquêts, articles 1400 et suivants du Code civil" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://trajectoiredroit.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://trajectoiredroit.com/blog.html" },
+          { "@type": "ListItem", "position": 3, "name": "Le régime matrimonial légal", "item": "https://trajectoiredroit.com/le-regime-matrimonial-legal.html" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Qu'est-ce que le régime matrimonial légal en France ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "C'est le régime qui s'applique automatiquement si tu te maries sans avoir signé de contrat de mariage devant notaire, selon l'article 1400 du Code civil. Depuis la réforme du 13 juillet 1965, ce régime légal est la communauté réduite aux acquêts. Tu gardes tes biens d'avant le mariage et ceux que tu reçois par succession ou donation, mais ton salaire et tout ce que le couple achète pendant le mariage deviennent des biens communs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quelle est la différence entre un bien propre et un bien commun ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Un bien propre reste ta propriété exclusive, par exemple ce que tu possédais avant le mariage ou ce que tu as reçu par succession ou donation, selon l'article 1405 du Code civil. Un bien commun appartient aux deux époux, notamment vos salaires et les biens que vous achetez pendant le mariage, selon l'article 1401. L'article 1402 pose une présomption forte, tout bien qui existe au jour de la dissolution est réputé commun si tu ne prouves pas qu'il t'est propre."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qui doit payer les dettes contractées par un seul époux marié sous le régime légal ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En principe, une dette que tu contractes seul pendant le mariage engage les biens communs en plus de tes propres biens, selon l'article 1413 du Code civil, sauf si tu as agi frauduleusement et que ton créancier était lui-même de mauvaise foi. Le salaire de ton conjoint échappe en revanche à cette poursuite, sauf s'il s'agit d'une dette ménagère au sens de l'article 220, comme un achat pour l'entretien du foyer ou l'éducation des enfants, auquel cas vous êtes tous les deux solidairement tenus."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Peut-on choisir un autre régime que la communauté réduite aux acquêts ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, avant ton mariage, tu peux signer avec ton futur conjoint un contrat de mariage devant notaire pour choisir un autre régime, selon l'article 1393 du Code civil. Les trois principaux régimes conventionnels sont la séparation de biens, où chacun garde tout séparément, la participation aux acquêts, qui fonctionne comme une séparation pendant le mariage mais partage l'enrichissement à la fin, et la communauté universelle, où la quasi-totalité de votre patrimoine devient commune. Sans ce contrat, la communauté réduite aux acquêts s'applique automatiquement."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+  <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=92141fc4">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="outil-fiche-arret.html" role="menuitem">🤖 Portalis</a>
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>8 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a href="droit-penal-general-l1.html" role="menuitem">Droit pénal général (S1)</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>5 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des contrats (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__footer">
+              <div>
+                <strong>Pas sûr de ta matière ?</strong>
+                <span>Le quiz gratuit te dit où tu perds des points, en 3 minutes.</span>
+              </div>
+              <a class="btn btn--primary btn--sm" href="quiz-methode.html">Faire le quiz →</a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -14 %</em></strong><small>890 € · 89 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>Stage en direct
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <div class="stage-teaser">
+              <button type="button" class="dropdown__item stage-teaser__trigger" aria-expanded="false" aria-controls="stageTeaserPanel">
+                <span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg></span>
+                <span class="stage-teaser__main">
+                  <strong>Stage de méthode en direct</strong>
+                  <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+                  <span class="stage-teaser__countdown"></span>
+                </span>
+              </button>
+              <div class="stage-teaser__panel" id="stageTeaserPanel">
+                <p>Trois séances en direct, 8 h au total pour 176 €, pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un sujet travaillé à chaque fois. La prochaine session a lieu les 27, 28 et 29 octobre, pendant les vacances de la Toussaint. Plus que 3 places.</p>
+              </div>
+            </div>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="stage-methode.html">Voir toutes les infos et réserver →</a>
+          </div>
+        </div>
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format mobile-nav__format--featured" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="outil-fiche-arret.html"><span class="mobile-nav__format-icon" aria-hidden="true">🤖</span><span>Portalis</span></a>
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+    <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
+      <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>
+      <span class="mobile-nav__stage-main">
+        <span class="mobile-nav__stage-title">Stage en direct</span>
+        <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+        <span class="stage-teaser__countdown"></span>
+      </span>
+    </a>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow text-center">
+        <h1 class="h1">Le régime matrimonial légal, ce qui devient commun quand tu te maries sans contrat</h1>
+        <p class="lead">Dès que tu te maries sans signer de contrat de mariage devant notaire, la loi t'impose automatiquement le régime légal, la communauté réduite aux acquêts, article 1400 et suivants du Code civil. Chacun garde ses biens d'avant le mariage et ce qu'il reçoit par succession ou donation. En revanche, les salaires des deux époux et tout ce que le couple achète pendant le mariage deviennent des biens communs, partagés par moitié le jour où le mariage prend fin.</p>
+        <div class="hero__cta flex flex--center" style="margin-top:24px">
+          <a class="btn btn--primary btn--lg" href="#actif">Ce qui devient commun</a>
+          <a class="btn btn--outline btn--lg" href="#comparaison">Comparer avec les autres régimes</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LE REGIME LEGAL -->
+    <section class="section" id="regime-legal">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Pourquoi ce régime s'applique-t-il sans que tu le choisisses ?</h2>
+        <p class="lead" style="margin-bottom:24px">Un futur couple peut organiser lui-même les règles patrimoniales de son mariage. Mais la loi ne laisse jamais un mariage sans régime, donc elle prévoit un régime par défaut pour tous ceux qui ne se sont pas déplacés chez le notaire avant leur mariage.</p>
+        <p style="color:var(--body); line-height:1.75">L'article 1393 du Code civil te laisse libre de fixer, dans un contrat de mariage, les règles patrimoniales de ton couple. Ce contrat doit être signé devant notaire avant la célébration du mariage. Si tu ne fais pas cette démarche, l'article 1400 déclenche automatiquement le régime légal à ta place, la communauté réduite aux acquêts. C'est le cas de la plupart des couples mariés en France, tout simplement parce que la démarche chez le notaire demande du temps et de l'argent, et que beaucoup de couples ne ressentent pas le besoin de s'en écarter.</p>
+        <p style="color:var(--body); line-height:1.75">Ce régime n'a pourtant rien d'éternel. Avant la réforme du 13 juillet 1965, le régime légal était la communauté de meubles et acquêts, un régime beaucoup plus large qui faisait entrer dans la masse commune la quasi-totalité des meubles des deux époux, y compris ceux qu'ils possédaient avant le mariage. Le législateur de 1965 a resserré cette masse commune aux seuls acquêts, c'est-à-dire à ce que le couple gagne réellement pendant le mariage, pour mieux protéger le patrimoine que chacun apporte en entrant dans l'union. L'ancien régime existe toujours, mais seulement comme régime conventionnel que tu dois choisir explicitement chez le notaire.</p>
+
+        <div class="key-callout">
+          <div class="key-callout__label"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg>À retenir</div>
+          <p>Sans contrat de mariage signé devant notaire avant la célébration, l'article 1400 t'impose la communauté réduite aux acquêts. Ce régime légal remplace depuis 1965 l'ancienne communauté de meubles et acquêts, aujourd'hui reléguée au rang de régime conventionnel.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACTIF -->
+    <section class="section section--alt" id="actif">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Ce qui devient commun, l'actif de la communauté</h2>
+        <p class="lead" style="margin-bottom:24px">Voici ce que la loi range dans la masse commune de ton couple, et comment elle traite le doute quand un bien n'est pas clairement identifié.</p>
+        <p style="color:var(--body); line-height:1.75">L'article 1401 du Code civil pose la règle de base. La communauté se compose des acquêts faits par les deux époux ensemble ou séparément pendant le mariage. Ces acquêts viennent de deux sources, ton travail personnel d'abord, donc ton salaire ou tes revenus professionnels, et les économies réalisées sur les fruits et les revenus de tes biens propres ensuite, par exemple le loyer d'un appartement que tu possédais déjà avant le mariage. Cette deuxième source surprend souvent les étudiants, parce qu'elle montre qu'un bien propre reste à toi, mais que les revenus qu'il génère pendant le mariage, eux, rejoignent la communauté s'ils sont épargnés.</p>
+        <p style="color:var(--body); line-height:1.75">L'article 1402 renforce cette logique avec une présomption redoutable en cas pratique. Tout bien, meuble ou immeuble, est réputé être un acquêt de communauté tant que l'un des époux n'a pas prouvé qu'il lui est propre. Cette preuve exige en principe un écrit, sauf si l'époux se trouvait dans l'impossibilité matérielle ou morale de s'en procurer un. Si tu ne gardes aucune trace de l'origine d'un bien acheté pendant le mariage, la loi considère donc qu'il appartient au couple, même si tu l'as payé seul avec ton propre argent.</p>
+        <p style="color:var(--body); line-height:1.75">L'article 1403 tempère un peu cette présomption sur un point précis, les fruits de tes propres. Tu gardes la pleine propriété de tes biens propres pendant tout le mariage, mais la communauté a droit aux fruits que ces biens produisent, à condition que tu les aies perçus et non consommés. Si tu loues un studio que tu possédais avant le mariage et que tu places les loyers sur un compte commun sans les dépenser, ces sommes rejoignent la communauté. Si au contraire tu les dépenses au fur et à mesure pour tes besoins personnels, la communauté n'y touche pas.</p>
+
+        <div class="key-callout">
+          <div class="key-callout__label"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg>À retenir</div>
+          <p>L'actif commun, ce sont tes revenus professionnels et les économies réalisées pendant le mariage, article 1401. Sans preuve écrite du contraire, tout bien est présumé commun, article 1402. Les fruits de tes propres rejoignent la communauté seulement s'ils sont épargnés, article 1403.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIENS PROPRES -->
+    <section class="section" id="biens-propres">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Ce qui reste à toi, les biens propres</h2>
+        <p class="lead" style="margin-bottom:24px">La loi écarte deux catégories entières de la communauté, quelle que soit leur valeur. La première tient à la nature même du bien, la seconde à son origine.</p>
+        <p style="color:var(--body); line-height:1.75">L'article 1404 range parmi les propres par nature une liste de biens qui échappent toujours à la communauté, même achetés pendant le mariage avec de l'argent commun. Tu retrouves d'abord tes vêtements et ton linge à usage personnel. Viennent ensuite les actions en réparation d'un dommage corporel ou moral, ainsi que les créances et pensions incessibles, parce que ces sommes réparent une atteinte qui te touche personnellement. La loi ajoute aussi tous les droits exclusivement attachés à ta personne, et enfin tes instruments de travail nécessaires à l'exercice de ta profession. Cette dernière catégorie connaît une exception logique, si l'instrument constitue l'accessoire d'un fonds de commerce qui appartient lui-même à la communauté, il devient commun, sauf récompense due à ton profit si tu l'as financé sur tes propres deniers.</p>
+        <p style="color:var(--body); line-height:1.75">L'article 1405 range ensuite les propres par origine, une catégorie plus simple à retenir. Restent propres les biens que tu possédais déjà au jour du mariage, ainsi que ceux que tu reçois pendant le mariage par succession, donation ou legs. Cette règle protège l'héritage familial. Un appartement transmis par tes grands-parents t'appartient en propre, même si tu le reçois pendant ton mariage. Deux nuances méritent ton attention. D'abord, une donation peut prévoir elle-même que le bien donné entrera en communauté, si le donateur l'a expressément écrit dans l'acte. Ensuite, quand la libéralité est faite conjointement aux deux époux, elle entre directement en communauté, sauf clause contraire dans l'acte de donation.</p>
+
+        <div class="key-callout">
+          <div class="key-callout__label"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg>À retenir</div>
+          <p>Propres par nature, article 1404, tes vêtements, tes indemnités personnelles et tes instruments de travail. Propres par origine, article 1405, ce que tu possédais avant le mariage et ce que tu reçois seul par succession ou donation. Une donation conjointe aux deux époux entre en communauté, sauf clause contraire.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GESTION -->
+    <section class="section section--alt" id="gestion">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Qui gère les biens communs pendant le mariage ?</h2>
+        <p class="lead" style="margin-bottom:24px">Le régime légal repose sur une gestion plutôt souple au quotidien, mais il verrouille les décisions les plus lourdes en exigeant l'accord des deux époux.</p>
+        <p style="color:var(--body); line-height:1.75">L'article 1421 pose le principe de la gestion concurrente. Chacun de vous deux peut administrer seul les biens communs et en disposer, sans avoir besoin de l'accord de l'autre pour les actes du quotidien, un virement, un achat courant ou la gestion d'un compte commun. Cette liberté a une contrepartie, car chaque époux répond des fautes qu'il commet dans cette gestion. Les actes accomplis sans fraude par l'un des époux restent opposables à l'autre, ce qui veut dire que ton conjoint ne peut pas revenir sur un acte que tu as signé seul de bonne foi. Si tu exerces une profession séparée de celle de ton conjoint, tu as même le pouvoir exclusif de faire seul les actes nécessaires à cette activité professionnelle.</p>
+        <p style="color:var(--body); line-height:1.75">Cette liberté s'arrête net dès qu'un acte à titre gratuit est en jeu. L'article 1422 impose la cogestion pour deux situations précises. Tu ne peux pas donner seul un bien de la communauté à un tiers, et tu ne peux pas non plus affecter seul un bien commun à la garantie de la dette d'un tiers, par exemple en hypothéquant la maison familiale pour cautionner l'emprunt d'un ami. Le Code civil impose la même cogestion pour d'autres actes lourds, vendre un immeuble commun, céder un fonds de commerce commun ou disposer de parts sociales non négociables sur un marché. Dans tous ces cas, la signature d'un seul époux ne suffit pas, quelle que soit sa bonne foi.</p>
+        <p style="color:var(--body); line-height:1.75">Un dernier point mérite ton attention, même si tu es marié sous la séparation de biens. L'article 215 du Code civil, qui appartient au régime primaire imposé à tous les couples mariés quel que soit leur régime, protège le logement de la famille. Aucun époux ne peut disposer seul des droits sur ce logement, ni le vendre, ni le donner en garantie, ni même résilier le bail, même s'il en est l'unique propriétaire. Cette protection existe indépendamment de la communauté réduite aux acquêts. Elle s'ajoute simplement aux règles que tu viens de voir quand le logement familial est un bien commun.</p>
+
+        <div class="key-callout">
+          <div class="key-callout__label"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg>À retenir</div>
+          <p>Gestion concurrente pour les actes courants, article 1421, chacun peut agir seul et engage l'autre. Cogestion obligatoire pour les actes à titre gratuit, article 1422, ainsi que pour vendre un immeuble, un fonds de commerce ou des parts sociales non négociables. Le logement familial reste protégé par l'article 215, quel que soit le régime matrimonial.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PASSIF -->
+    <section class="section" id="passif">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Qui paie les dettes contractées pendant le mariage ?</h2>
+        <p class="lead" style="margin-bottom:24px">La logique du passif suit celle de l'actif. Ce qui profite au couple engage le couple, avec deux mécanismes distincts à ne jamais confondre en cas pratique.</p>
+        <p style="color:var(--body); line-height:1.75">L'article 1413 pose le principe général. Une dette contractée par l'un des époux, quelle qu'en soit la cause, peut toujours être poursuivie sur les biens communs, en plus des biens propres de cet époux. Cette règle protège les créanciers. Un banquier qui prête de l'argent à l'un de vous deux peut donc saisir le compte commun du couple pour se faire rembourser. Une exception existe cependant. Si l'époux débiteur a agi frauduleusement et que le créancier était lui-même de mauvaise foi, les biens communs échappent à cette poursuite, quitte à ce qu'une récompense soit due à la communauté si elle en a tout de même profité.</p>
+        <p style="color:var(--body); line-height:1.75">L'article 1414 vient ensuite protéger un point sensible, tes gains et salaires personnels. Les créanciers de ton conjoint ne peuvent pas saisir ton propre salaire pour rembourser une dette qu'il a seul contractée. Cette protection connaît toutefois une limite précise. Elle disparaît dès que la dette a été contractée pour l'entretien du ménage ou l'éducation des enfants, au sens de l'article 220. Cette exception te ramène directement au régime primaire, applicable à tous les couples mariés indépendamment de leur régime matrimonial. L'article 220 permet à chaque époux de contracter seul les dettes nécessaires à la vie du foyer, et ces dettes engagent alors les deux époux solidairement, y compris sur leurs biens propres respectifs, sauf si la dépense était manifestement excessive au regard du niveau de vie du ménage.</p>
+        <p style="color:var(--body); line-height:1.75">Distingue donc bien ces deux mécanismes en cas pratique. L'article 1413 organise le gage général des créanciers sur les biens communs, propre au régime de communauté. L'article 220 organise la solidarité entre époux pour les dettes ménagères, un mécanisme du régime primaire qui s'applique même à un couple marié sous la séparation de biens. Une dette ménagère engage donc les deux époux personnellement. Une dette ordinaire contractée par un seul d'entre eux engage seulement ses biens propres et les biens communs, et laisse intacts les biens propres de l'autre époux.</p>
+
+        <div class="key-callout">
+          <div class="key-callout__label"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg>À retenir</div>
+          <p>Une dette ordinaire contractée par un seul époux engage ses biens propres et les biens communs, article 1413. Tes gains et salaires personnels échappent aux créanciers de ton conjoint, article 1414, sauf dette ménagère au sens de l'article 220, qui engage alors les deux époux solidairement sur tous leurs biens.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIQUIDATION -->
+    <section class="section section--alt" id="liquidation">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">La fin du régime, liquidation et récompenses</h2>
+        <p class="lead" style="margin-bottom:24px">Divorce, décès ou changement de régime matrimonial mettent fin à la communauté. Il faut alors démêler ce qui appartient à qui, avant de partager ce qui reste.</p>
+        <p style="color:var(--body); line-height:1.75">L'article 1467 ouvre les opérations de liquidation. Chaque époux reprend d'abord les biens qui n'étaient jamais entrés en communauté, s'ils existent encore en nature, ou les biens qui leur ont été subrogés, c'est-à-dire les biens achetés pour les remplacer. Vient ensuite la liquidation de la masse commune elle-même, à l'actif comme au passif.</p>
+        <p style="color:var(--body); line-height:1.75">Cette liquidation fait souvent apparaître des récompenses, un mécanisme qui compense les mouvements de valeur entre ton patrimoine propre et la communauté pendant le mariage. Prenons un exemple simple. Si tu as utilisé de l'argent commun pour rénover un appartement qui t'appartenait en propre avant le mariage, la communauté a droit à une récompense, parce qu'elle a financé une dépense qui a profité à ton seul patrimoine. L'article 1469 fixe ainsi le montant de cette récompense à la plus faible des deux sommes suivantes, la dépense réellement faite d'un côté, et le profit qui en subsiste dans ton patrimoine au jour de la liquidation de l'autre. Une limite protège toutefois la communauté. La récompense ne peut jamais être inférieure au profit subsistant quand la somme empruntée a servi à acquérir, conserver ou améliorer un bien qui se retrouve encore dans ton patrimoine au moment de la liquidation.</p>
+        <p style="color:var(--body); line-height:1.75">Une fois toutes ces récompenses calculées et versées d'un patrimoine à l'autre, l'article 1476 renvoie aux règles du partage successoral pour répartir ce qui reste de la communauté. Le principe reste le partage par moitié entre les deux époux, sans qu'aucun d'eux puisse revendiquer une part plus grande au motif qu'il aurait davantage contribué aux dépenses du ménage pendant le mariage.</p>
+
+        <div class="key-callout">
+          <div class="key-callout__label"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg>À retenir</div>
+          <p>La dissolution ouvre la liquidation, article 1467. Chacun reprend ses propres, puis la masse commune se règle. Les récompenses corrigent les transferts de valeur entre patrimoine propre et communauté, article 1469, plafonnées à la plus faible des deux sommes entre la dépense faite et le profit qui subsiste. Le partage final se fait par moitié, article 1476.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARAISON -->
+    <section class="section" id="comparaison">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Comparer avec les autres régimes matrimoniaux</h2>
+        <p class="lead" style="margin-bottom:24px">Un contrat de mariage devant notaire t'ouvre trois alternatives principales à la communauté réduite aux acquêts. Voici ce qui change pour chacune, sur l'actif comme sur les dettes.</p>
+        <div style="overflow-x:auto; margin-top:8px">
+        <table style="width:100%; border-collapse:collapse; font-size:.95rem">
+          <thead>
+            <tr style="border-bottom:2px solid var(--border)"><th style="padding:12px 14px; text-align:left">Régime</th><th style="padding:12px 14px; text-align:left">Ce qui devient commun</th><th style="padding:12px 14px; text-align:left">Qui paie les dettes</th></tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:12px 14px"><strong>Communauté réduite aux acquêts</strong><br>art. 1400 et s., régime légal</td><td style="padding:12px 14px">Les revenus professionnels et les biens achetés pendant le mariage</td><td style="padding:12px 14px">La communauté, sauf fraude, en plus des biens propres du débiteur</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:12px 14px"><strong>Séparation de biens</strong><br>art. 1536 et s.</td><td style="padding:12px 14px">Rien, chaque époux garde l'administration et la propriété de tous ses biens</td><td style="padding:12px 14px">Chaque époux seul, sauf dette ménagère commune de l'article 220</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:12px 14px"><strong>Participation aux acquêts</strong><br>art. 1569 et s.</td><td style="padding:12px 14px">Rien pendant le mariage, mais chacun a droit à la moitié de l'enrichissement net de l'autre à la dissolution</td><td style="padding:12px 14px">Chaque époux seul pendant le mariage, comme en séparation de biens</td></tr>
+            <tr><td style="padding:12px 14px"><strong>Communauté universelle</strong><br>art. 1526</td><td style="padding:12px 14px">La quasi-totalité du patrimoine des deux époux, présent et à venir (les propres par nature de l'article 1404 restent à part, sauf clause contraire)</td><td style="padding:12px 14px">La communauté supporte définitivement toutes les dettes, présentes et futures</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:20px">Retiens surtout la logique derrière ce tableau. La séparation de biens et la participation aux acquêts te protègent pendant le mariage, en évitant que les dettes de ton conjoint touchent ton patrimoine personnel. La participation aux acquêts ajoute ensuite une correction au moment de la dissolution, pour éviter qu'un des deux époux ne s'enrichisse seul pendant que l'autre reste pauvre. La communauté universelle, à l'inverse, pousse la logique de partage à son maximum, souvent choisie par des couples plus âgés qui veulent tout transmettre au conjoint survivant.</p>
+      </div>
+    </section>
+
+    <!-- EXEMPLE -->
+    <section class="section section--alt" id="exemple">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Un exemple pour fixer le mécanisme</h2>
+        <p class="lead" style="margin-bottom:24px">Un scénario chiffré te montre comment l'actif, le passif et les récompenses s'articulent en cas pratique.</p>
+        <p style="color:var(--body); line-height:1.75">Camille et Thomas se marient sans contrat de mariage. Ils sont donc soumis à la communauté réduite aux acquêts. Deux ans plus tard, Camille hérite de l'appartement de sa grand-mère, d'une valeur de 180 000 euros. Cet appartement lui reste propre en application de l'article 1405, même reçu pendant le mariage, parce qu'il vient d'une succession. La même année, Thomas achète une voiture à 25 000 euros avec son salaire. Cette voiture entre dans la communauté, article 1401, puisqu'elle vient de ses revenus professionnels perçus pendant le mariage.</p>
+        <p style="color:var(--body); line-height:1.75">Le couple utilise ensuite 40 000 euros pris sur le compte commun pour refaire la toiture et l'isolation de l'appartement propre de Camille. Cette dépense profite uniquement à son patrimoine personnel, alors qu'elle a été financée par de l'argent commun. Au jour du divorce, la communauté aura donc droit à une récompense contre Camille, calculée sur la plus faible des deux sommes entre la dépense de 40 000 euros et la plus-value réellement apportée par ces travaux à l'appartement, article 1469.</p>
+        <p style="color:var(--body); line-height:1.75">Enfin, Thomas contracte seul un prêt personnel de 8 000 euros pour financer une formation professionnelle qui ne profite qu'à lui. Ce prêt engage ses biens propres et les biens communs du couple, article 1413, mais le salaire de Camille reste hors de portée du créancier de Thomas, article 1414, puisque cette dette ne relève pas de l'entretien du ménage au sens de l'article 220. Au moment du divorce, la communauté rembourse ce qu'il reste du prêt sur les biens communs, puis le solde de la communauté, une fois toutes les récompenses réglées, se partage par moitié entre Camille et Thomas.</p>
+      </div>
+    </section>
+
+    <!-- ERREURS -->
+    <section class="section" id="erreurs">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:24px">Les erreurs qui coûtent des points</h2>
+        <ul style="line-height:2; padding-left:1.2em">
+          <li><strong>Croire qu'un bien acheté à ton seul nom t'appartient forcément en propre.</strong> Retiens l'inverse. L'article 1402 présume que tout bien est commun tant que tu n'as pas prouvé par écrit qu'il t'est propre, même si tu l'as payé seul et qu'il porte ton nom sur la facture.</li>
+          <li><strong>Confondre l'article 1414 et l'article 220.</strong> Ton salaire échappe en principe aux créanciers de ton conjoint, article 1414. Mais dès que la dette sert à l'entretien du ménage ou à l'éducation des enfants, article 220, tu deviens solidairement tenu, y compris sur tes biens propres.</li>
+          <li><strong>Penser qu'un héritage reçu pendant le mariage devient automatiquement commun.</strong> L'article 1405 protège les successions et les donations reçues par un seul époux, quel que soit le moment où elles arrivent dans le mariage, sauf clause contraire écrite dans l'acte de donation.</li>
+          <li><strong>Oublier la protection du logement familial.</strong> L'article 215 s'applique même si tu es marié sous un régime séparatiste, et même si tu es l'unique propriétaire du logement. L'accord de ton conjoint reste obligatoire pour le vendre ou le donner en garantie.</li>
+        </ul>
+        <p style="color:var(--body); line-height:1.75; margin-top:24px">Cette notion se comprend mieux une fois posée à côté de <a href="difference-pacs-mariage.html">la différence entre le PACS et le mariage</a>, où tu retrouveras le régime légal du PACS, la séparation de biens, et de <a href="le-testament-et-la-reserve-hereditaire.html">la réserve héréditaire</a>, qui organise ce que tu peux transmettre par testament une fois la communauté déjà liquidée.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container container--narrow">
+        <h2 class="h2 text-center" style="margin-bottom:32px">Questions fréquentes sur le régime matrimonial légal</h2>
+        <div class="accordion">
+          <details class="accordion__item" open>
+            <summary><h3>Qu'est-ce que le régime matrimonial légal en France ?</h3></summary>
+            <div class="accordion__body">C'est le régime qui s'applique automatiquement si tu te maries sans avoir signé de contrat de mariage devant notaire, selon l'article 1400 du Code civil. Depuis la réforme du 13 juillet 1965, ce régime légal est la communauté réduite aux acquêts. Tu gardes tes biens d'avant le mariage et ceux que tu reçois par succession ou donation, mais ton salaire et tout ce que le couple achète pendant le mariage deviennent des biens communs.</div>
+          </details>
+          <details class="accordion__item">
+            <summary><h3>Quelle est la différence entre un bien propre et un bien commun ?</h3></summary>
+            <div class="accordion__body">Un bien propre reste ta propriété exclusive, par exemple ce que tu possédais avant le mariage ou ce que tu as reçu par succession ou donation, selon l'article 1405 du Code civil. Un bien commun appartient aux deux époux, notamment vos salaires et les biens que vous achetez pendant le mariage, selon l'article 1401. L'article 1402 pose une présomption forte, tout bien qui existe au jour de la dissolution est réputé commun si tu ne prouves pas qu'il t'est propre.</div>
+          </details>
+          <details class="accordion__item">
+            <summary><h3>Qui doit payer les dettes contractées par un seul époux marié sous le régime légal ?</h3></summary>
+            <div class="accordion__body">En principe, une dette que tu contractes seul pendant le mariage engage les biens communs en plus de tes propres biens, selon l'article 1413 du Code civil, sauf si tu as agi frauduleusement et que ton créancier était lui-même de mauvaise foi. Le salaire de ton conjoint échappe en revanche à cette poursuite, sauf s'il s'agit d'une dette ménagère au sens de l'article 220, comme un achat pour l'entretien du foyer ou l'éducation des enfants, auquel cas vous êtes tous les deux solidairement tenus.</div>
+          </details>
+          <details class="accordion__item">
+            <summary><h3>Peut-on choisir un autre régime que la communauté réduite aux acquêts ?</h3></summary>
+            <div class="accordion__body">Oui, avant ton mariage, tu peux signer avec ton futur conjoint un contrat de mariage devant notaire pour choisir un autre régime, selon l'article 1393 du Code civil. Les trois principaux régimes conventionnels sont la séparation de biens, où chacun garde tout séparément, la participation aux acquêts, qui fonctionne comme une séparation pendant le mariage mais partage l'enrichissement à la fin, et la communauté universelle, où la quasi-totalité de votre patrimoine devient commune. Sans ce contrat, la communauté réduite aux acquêts s'applique automatiquement.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section section--dark">
+      <div class="container container--narrow text-center">
+        <h2 class="h2" style="color:#fff">Le droit de la famille ne s'arrête pas au couple et à la filiation.</h2>
+        <p class="lead" style="color:rgba(255,255,255,.85); max-width:560px; margin:16px auto 32px">Ma fiche complète de droit de la famille reprend le couple, la filiation, l'autorité parentale et les mécanismes patrimoniaux comme celui-ci, avec les articles à connaître, prête à servir en TD comme en partiel.</p>
+        <a class="btn btn--primary btn--lg" href="droit-de-la-famille-l1.html">Voir la fiche de droit de la famille</a>
+        <p style="margin-top:18px"><a href="cours-particuliers.html" style="color:rgba(255,255,255,.8)">Travailler les régimes matrimoniaux en cours particulier →</a></p>
+      </div>
+    </section>
+
+    <!-- CLUSTER -->
+    <section class="section section--alt" aria-labelledby="cluster-famille-titre">
+      <div class="container container--narrow">
+        <h2 class="h2" id="cluster-famille-titre">Où se range cette notion dans le programme</h2>
+        <p class="lead">Le régime matrimonial légal relève du droit patrimonial de la famille, une matière qui prolonge le droit de la famille de L1. Voici les pages à consulter si tu veux aller plus loin.</p>
+        <ul style="line-height:2; padding-left:1.2em; margin-top:8px">
+          <li><a href="droit-de-la-famille-l1.html">Droit de la famille L1, le cours complet avec le couple et la filiation</a></li>
+          <li><a href="difference-pacs-mariage.html">La différence entre le PACS et le mariage, et leurs régimes patrimoniaux très inégaux</a></li>
+          <li><a href="le-testament-et-la-reserve-hereditaire.html">Le testament et la réserve héréditaire, pour transmettre ta part de la communauté</a></li>
+          <li><a href="comment-reviser-le-droit-de-la-famille-l1.html">Comment réviser le droit de la famille L1, la méthode complète</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par 620+ étudiants.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (article régime matrimonial légal)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir ma fiche gratuite →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js?v=3d512e75" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=5f959e14';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=fd545d49" defer></script>
+</body>
+</html>
