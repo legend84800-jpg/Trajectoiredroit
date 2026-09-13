@@ -18,12 +18,12 @@
   --gold-bg:#FBF8EE;   /* fond chamois pour encadrés type "Citation" */
   --highlight:#FFF59D; /* surlignage jaune fluo type concept-clé */
 
-  /* Accents Brilliant/Khan Academy (touch éducatif friendly) */
-  --emerald:#10B981; --emerald-bg:#ECFDF5;   /* succès / progression */
-  --violet:#8B5CF6;  --violet-bg:#F5F3FF;    /* engagement / nouveau */
-  --rose:#F43F5E;    --rose-bg:#FFF1F2;      /* urgence douce */
-  --amber:#F59E0B;   --amber-bg:#FEF3C7;     /* highlight pédagogique */
-  --teal:#14B8A6;    --teal-bg:#F0FDFA;      /* méthode / outils */
+  /* Accents éditoriaux TJD (dérivés de la charte navy/or/bordeaux, plus de tons Tailwind par défaut) */
+  --emerald:#2F6B4F; --emerald-bg:#EAF3EE;   /* succès / progression, vert forêt sourd */
+  --violet:#7A2E44;  --violet-bg:#FBEFF1;    /* engagement / nouveau, bordeaux */
+  --rose:#B5533E;    --rose-bg:#FBEEE9;      /* urgence douce, terre cuite */
+  --amber:#B8862F;   --amber-bg:#FBF3E1;     /* highlight pédagogique, or sourd */
+  --teal:#2B6B72;    --teal-bg:#EAF3F4;      /* méthode / outils, bleu ardoise */
 
   /* Surfaces */
   --white:#FFFFFF; --slate-50:#F8FAFC; --slate-100:#F1F5F9;
@@ -375,12 +375,12 @@ p:last-child { margin-bottom: 0 }
 .lead { font-size: clamp(1.05rem, 1.5vw, 1.25rem); color: var(--body); line-height: 1.6 }
 .intro-pourquoi p { font-size: 1.1rem; line-height: 1.65 }
 .eyebrow {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--font-display);
-  font-size: .82rem; font-weight: 600;
-  color: var(--blue-700); background: var(--blue-50);
-  padding: 6px 12px; border-radius: var(--r-pill);
-  letter-spacing: .04em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-style: italic;
+  font-size: .88rem; font-weight: 600;
+  color: var(--accent); background: none;
+  padding: 0 0 4px; border-radius: 0; border-bottom: 1px solid var(--gold-line);
+  letter-spacing: .01em; text-transform: none;
 }
 .text-muted { color: var(--muted) }
 .text-body { color: var(--body) }
@@ -623,19 +623,13 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .card--pricing .pricing__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px }
 .card--pricing .pricing__list li { display: flex; gap: 10px; align-items: flex-start; color: var(--body); font-size: .95rem }
 .card--pricing .pricing__list li::before { content: "✓"; color: var(--success); font-weight: 700; flex-shrink: 0 }
-.card--featured { border-color: var(--blue-600); border-width: 2px; box-shadow: var(--sh-3); transform: translateY(-8px) }
-/* Carte produit mise en avant : sans vignette, on laisse le badge "LE PLUS POPULAIRE" dépasser (sinon overflow:hidden le coupe) */
+/* Distinction sobre de l'offre recommandée : un simple filet doré en haut, sans surélévation ni ruban.
+   L'étiquette au-dessus du titre ("Choix recommandé" etc., voir .eyebrow) suffit à orienter le choix. */
+.card--featured { border-top: 3px solid var(--gold-line) }
 .card--product.card--featured { overflow: visible }
-.card--featured::before {
-  content: "LE PLUS POPULAIRE";
-  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-  background: var(--blue-600); color: var(--white);
-  font-size: .72rem; font-weight: 700; letter-spacing: .08em;
-  padding: 5px 14px; border-radius: var(--r-pill);
-}
 
 /* Card témoignage */
-.card--testi { display: flex; flex-direction: column; gap: var(--sp-3) }
+.card--testi { display: flex; flex-direction: column; gap: var(--sp-3); align-self: start } /* hauteur libre : un avis de 5 mots ne s'étire pas comme un avis de 100 */
 .card--testi .testi__rating { color: var(--rating-star); font-size: 1rem; letter-spacing: 2px }
 .card--testi blockquote { margin: 0; font-size: 1rem; line-height: 1.6; color: var(--ink) }
 .card--testi .testi__author { display: flex; align-items: center; gap: 12px; margin-top: auto }
@@ -3473,8 +3467,7 @@ body:has(.sticky-cta-bar--always) { padding-bottom: 80px; }
 .parcours__step:nth-child(7) .parcours__icon-svg { color: var(--amber); }
 .parcours__step--free .parcours__icon-svg { color: var(--emerald); }
 .parcours__icon-svg {
-  display: block;
-  margin-bottom: 2px;
+  display: none; /* icônes pastel retirées : le numéro + le filet de couleur suffisent à distinguer chaque étape */
 }
 .parcours__num {
   font-family: var(--font-display);
@@ -4320,7 +4313,7 @@ html[data-theme="dark"] .btn--primary:hover {
 }
 html[data-theme="dark"] .step__num { background: #2E6DB4; color: #fff; }
 html[data-theme="dark"] .badge--popular { background: #2E6DB4; color: #fff; }
-html[data-theme="dark"] .card--featured::before { background: #2E6DB4; color: #fff; }
+html[data-theme="dark"] .card--featured { border-top-color: #C9A961; }
 html[data-theme="dark"] .abo-step--blue .abo-step__num { background: #2E6DB4; }
 html[data-theme="dark"] .filter-chip.active { background: #2E6DB4; border-color: #2E6DB4; color: #fff; }
 
@@ -4328,8 +4321,8 @@ html[data-theme="dark"] .filter-chip.active { background: #2E6DB4; border-color:
 
 /* A1. Eyebrow générique (fond et texte) */
 html[data-theme="dark"] .eyebrow {
-  color: #7BA5E8;
-  background: rgba(94,139,218,0.1);
+  color: #C9A961;
+  border-bottom-color: rgba(201,169,97,.4);
 }
 
 /* A2/A3. Boutons outline (fond var(--white) et texte var(--blue-700) tous deux invisibles) */
@@ -4493,12 +4486,12 @@ html[data-theme="dark"] .grid-4 > .card--feature:nth-child(4) .feature__icon {
 html[data-theme="dark"] .author-box__name { color: #E2ECF8; }
 
 /* Eyebrows à fond hardcodé amber et green (utilisés dans a-propos.html) */
-.eyebrow--amber { background: #FEF3C7; color: #92400E; }
-.eyebrow--green { background: #D1FAE5; color: #065F46; }
-.eyebrow--violet { background: var(--violet-bg); color: var(--price-violet); }
-html[data-theme="dark"] .eyebrow--amber { background: rgba(245,158,11,0.15); color: #FBBF24; }
-html[data-theme="dark"] .eyebrow--green { background: rgba(16,185,129,0.15); color: #34D399; }
-html[data-theme="dark"] .eyebrow--violet { background: rgba(139,92,246,0.18); color: #A78BFA; }
+.eyebrow--amber { background: none; color: #92400E; border-bottom-color: #92400E33; }
+.eyebrow--green { background: none; color: #065F46; border-bottom-color: #065F4633; }
+.eyebrow--violet { background: none; color: var(--price-violet); border-bottom-color: color-mix(in srgb, var(--price-violet) 35%, transparent); }
+html[data-theme="dark"] .eyebrow--amber { color: #FBBF24; border-bottom-color: #FBBF2440; }
+html[data-theme="dark"] .eyebrow--green { color: #34D399; border-bottom-color: #34D39940; }
+html[data-theme="dark"] .eyebrow--violet { color: #A78BFA; border-bottom-color: #A78BFA40; }
 html[data-theme="dark"] .pricing__price--green { color: #34D399; }
 
 /* Bouton fond blanc (utilisé dans formations.html) */
