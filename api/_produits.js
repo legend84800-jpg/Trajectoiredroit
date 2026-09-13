@@ -104,6 +104,10 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/maj-commercial-l3-s1-plan.pdf"] },
 
   // Cours complet – 19,99 €
+  "cours-complet-finances-publiques-l2-s1": { nom: "Cours complet Finances publiques L2 S1", prix: 1999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-complet-finances-publiques-l2-s1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-complet-finances-publiques-l2-s1-plan.pdf"] },
+  "cours-complet-philosophie-du-droit-l2-s1": { nom: "Cours complet Philosophie du droit L2 S1", prix: 1999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-complet-philosophie-du-droit-l2-s1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-complet-philosophie-du-droit-l2-s1-plan.pdf"] },
   "cours-fiche-societes-l3-s2": { nom: "Cours complet Droit des sociétés L3 S2", prix: 1999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-societes-l3-s2.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-societes-l3-s2-plan.pdf"] },
   "cours-fiche-travail-l3-s1": { nom: "Cours complet Droit du travail L3 S1", prix: 1999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-travail-l3-s1.pdf",
