@@ -53,7 +53,6 @@ function construireLiensTelechargement(
   dureeSecondes,
   { sessionId = "" } = {}
 ) {
-  const expiry = Math.floor(Date.now() / 1000) + dureeSecondes;
   const suffixes = {
     flashcards: "les flashcards",
     qcm: "le QCM",
@@ -64,7 +63,14 @@ function construireLiensTelechargement(
     "seance-2": "le replay séance 2",
     "seance-3": "le replay séance 3",
   };
+  // Une vidéo se regarde en place (lecteur intégré), pas en téléchargement ponctuel :
+  // le lien doit rester valide le temps de tout un visionnage, jamais seulement 15 minutes,
+  // faute de quoi le lecteur perd l'accès en pleine lecture dès qu'il cherche à avancer/reculer.
+  const DUREE_MIN_VIDEO_SECONDES = 6 * 60 * 60;
   return produit.blobs.map((blobUrl, i) => {
+    const estVideo = /\.mp4$/i.test(blobUrl);
+    const dureeEffective = estVideo ? Math.max(dureeSecondes, DUREE_MIN_VIDEO_SECONDES) : dureeSecondes;
+    const expiry = Math.floor(Date.now() / 1000) + dureeEffective;
     const sig = genererToken(produitId, i, expiry, secret, sessionId);
     const sessionParam = sessionId ? `&sid=${encodeURIComponent(sessionId)}` : "";
     const url = `${origin}/api/telecharger?id=${encodeURIComponent(produitId)}&b=${i}&exp=${expiry}&sig=${sig}${sessionParam}`;
@@ -73,7 +79,7 @@ function construireLiensTelechargement(
     const deuxDerniersMots = segments.slice(-2).join("-");
     const dernierMot = segments[segments.length - 1];
     const nom = suffixes[deuxDerniersMots] || suffixes[dernierMot] || libelleFichierPrincipal(produit.nom);
-    return { nom, url };
+    return { nom, url, type: estVideo ? "video" : "pdf" };
   });
 }
 
