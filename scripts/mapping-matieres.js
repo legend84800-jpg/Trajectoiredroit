@@ -119,7 +119,7 @@ const MATIERES = {
     packMatiere: { id: "pack-matiere-travail-l3", prix: "29,99 €" },
   },
   "droit-penal-general-l1": {
-    nom: "Droit pénal général L1",
+    nom: "Droit pénal général L2",
     semestres: [
       { label: null, id: "fiche-penal-general-l1", prix: "14,99 €", apercus: ["assets/apercus/penal-general-l1-1.jpg"] },
     ],
