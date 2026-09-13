@@ -508,8 +508,8 @@ const PRODUITS = {
 
   // Packs (chaque fiche est livrée avec son plan et ses cartes mentales, comme à l'unité)
   "pack-l1": {
-    nom: "Pack Fiches L1 intégral (9 matières)",
-    prix: 9800,
+    nom: "Pack Fiches L1 intégral (8 matières)",
+    prix: 8700,
     blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-intro-droit-l1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-intro-droit-l1-plan.pdf",
@@ -532,17 +532,14 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-famille-l1-s2.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-famille-l1-s2-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-famille-l1-s2-cartesmentales.pdf",
-      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1.pdf",
-      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1-plan.pdf",
-      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1-cartesmentales.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-relations-internationales-l1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-relations-internationales-l1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-relations-internationales-l1-cartesmentales.pdf",
     ],
   },
   "pack-l2": {
-    nom: "Pack Fiches L2 intégral (6 matières)",
-    prix: 6800,
+    nom: "Pack Fiches L2 intégral (7 matières)",
+    prix: 7900,
     blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s1-plan.pdf",
@@ -562,6 +559,9 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-biens-l2.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-biens-l2-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-biens-l2-cartesmentales.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1-plan.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1-cartesmentales.pdf",
     ],
   },
   "pack-l3": {
