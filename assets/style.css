@@ -623,10 +623,16 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .card--pricing .pricing__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px }
 .card--pricing .pricing__list li { display: flex; gap: 10px; align-items: flex-start; color: var(--body); font-size: .95rem }
 .card--pricing .pricing__list li::before { content: "✓"; color: var(--success); font-weight: 700; flex-shrink: 0 }
-/* Distinction sobre de l'offre recommandée : un simple filet doré en haut, sans surélévation ni ruban.
-   L'étiquette au-dessus du titre ("Choix recommandé" etc., voir .eyebrow) suffit à orienter le choix. */
-.card--featured { border-top: 3px solid var(--gold-line) }
+.card--featured { border-color: var(--blue-600); border-width: 2px; box-shadow: var(--sh-3); transform: translateY(-8px) }
+/* Carte produit mise en avant : sans vignette, on laisse le badge "LE PLUS POPULAIRE" dépasser (sinon overflow:hidden le coupe) */
 .card--product.card--featured { overflow: visible }
+.card--featured::before {
+  content: "LE PLUS POPULAIRE";
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--blue-600); color: var(--white);
+  font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+  padding: 5px 14px; border-radius: var(--r-pill);
+}
 
 /* Card témoignage */
 .card--testi { display: flex; flex-direction: column; gap: var(--sp-3); align-self: start } /* hauteur libre : un avis de 5 mots ne s'étire pas comme un avis de 100 */
@@ -3467,7 +3473,8 @@ body:has(.sticky-cta-bar--always) { padding-bottom: 80px; }
 .parcours__step:nth-child(7) .parcours__icon-svg { color: var(--amber); }
 .parcours__step--free .parcours__icon-svg { color: var(--emerald); }
 .parcours__icon-svg {
-  display: none; /* icônes pastel retirées : le numéro + le filet de couleur suffisent à distinguer chaque étape */
+  display: block;
+  margin-bottom: 2px;
 }
 .parcours__num {
   font-family: var(--font-display);
@@ -4313,7 +4320,7 @@ html[data-theme="dark"] .btn--primary:hover {
 }
 html[data-theme="dark"] .step__num { background: #2E6DB4; color: #fff; }
 html[data-theme="dark"] .badge--popular { background: #2E6DB4; color: #fff; }
-html[data-theme="dark"] .card--featured { border-top-color: #C9A961; }
+html[data-theme="dark"] .card--featured::before { background: #2E6DB4; color: #fff; }
 html[data-theme="dark"] .abo-step--blue .abo-step__num { background: #2E6DB4; }
 html[data-theme="dark"] .filter-chip.active { background: #2E6DB4; border-color: #2E6DB4; color: #fff; }
 
