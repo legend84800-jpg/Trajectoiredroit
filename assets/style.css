@@ -2450,7 +2450,7 @@ html[data-theme="dark"] .product__sommaire summary { color: #7BA5E8; }
 /* ===== 24bis. CARROUSEL D'APERÇU PRODUIT (page d'accueil, pages réelles swipeables) ===== */
 .product-carousel {
   position: relative;
-  max-width: 480px;
+  max-width: 560px;
   margin: 0 auto;
 }
 .product-carousel__viewport {
