@@ -18,12 +18,13 @@
   --gold-bg:#FBF8EE;   /* fond chamois pour encadrés type "Citation" */
   --highlight:#FFF59D; /* surlignage jaune fluo type concept-clé */
 
-  /* Accents éditoriaux TJD (dérivés de la charte navy/or/bordeaux, plus de tons Tailwind par défaut) */
-  --emerald:#2F6B4F; --emerald-bg:#EAF3EE;   /* succès / progression, vert forêt sourd */
-  --violet:#7A2E44;  --violet-bg:#FBEFF1;    /* engagement / nouveau, bordeaux */
-  --rose:#B5533E;    --rose-bg:#FBEEE9;      /* urgence douce, terre cuite */
-  --amber:#B8862F;   --amber-bg:#FBF3E1;     /* highlight pédagogique, or sourd */
-  --teal:#2B6B72;    --teal-bg:#EAF3F4;      /* méthode / outils, bleu ardoise */
+  /* Accents éditoriaux TJD (dérivés de la charte navy/or/bordeaux, plus de tons Tailwind par défaut).
+     Saturation remontée le 14/09 (compromis Julien : plus vif que l'audit anti-IA du 12/09, sans retour au Tailwind d'origine). */
+  --emerald:#257952; --emerald-bg:#EAF3EE;   /* succès / progression, vert forêt */
+  --violet:#8A2341;  --violet-bg:#FBEFF1;    /* engagement / nouveau, bordeaux */
+  --rose:#CC4A2E;    --rose-bg:#FBEEE9;      /* urgence douce, terre cuite */
+  --amber:#C58C28;   --amber-bg:#FBF3E1;     /* highlight pédagogique, or */
+  --teal:#217781;    --teal-bg:#EAF3F4;      /* méthode / outils, bleu ardoise */
 
   /* Surfaces */
   --white:#FFFFFF; --slate-50:#F8FAFC; --slate-100:#F1F5F9;
