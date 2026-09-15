@@ -2664,6 +2664,12 @@ html[data-theme="dark"] .product-carousel__dot.is-active { background: var(--gol
   color: #FFF;
   border: 1px solid rgba(255,255,255,.18);
 }
+/* Encadré crédibilité du hero (#1 Superprof...), agrandi sur demande de Julien du 14/09 */
+.eyebrow--lg {
+  font-size: 1rem;
+  padding: 10px 16px;
+}
+.eyebrow--lg .nav-icon { width: 19px; height: 19px; }
 .hero__cta-secondary {
   color: var(--blue-700);
   font-weight: 600;
