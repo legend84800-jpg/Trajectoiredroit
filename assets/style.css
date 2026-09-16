@@ -4224,6 +4224,14 @@ html[data-theme="dark"] .card--testi blockquote { color: #8FA8CC; }
 html[data-theme="dark"] .testi__name { color: #D4E0F0; }
 html[data-theme="dark"] .testi__role { color: #4F6680; }
 
+/* 25bis. Avis de conversion (fond en dur #fffdf8, invisible en clair sur clair sans cette surcharge) */
+html[data-theme="dark"] .conversion-review {
+  background: linear-gradient(145deg, #1A2840 0%, rgba(201,169,97,0.10) 100%);
+  border-color: rgba(201,169,97,0.35);
+}
+html[data-theme="dark"] .conversion-review footer { border-top-color: rgba(201,169,97,0.22); }
+html[data-theme="dark"] .conversion-review__level { background: rgba(94,139,218,0.15); }
+
 /* 26. Unités et blocs alternatifs */
 html[data-theme="dark"] .unit-alt-block { background: #1A2840; border-color: rgba(255,255,255,0.1); }
 html[data-theme="dark"] .unit-alt-block__sub { color: #8FA8CC; }
