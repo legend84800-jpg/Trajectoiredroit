@@ -341,6 +341,9 @@
 html { -webkit-tap-highlight-color: transparent }
 html { scroll-behavior: smooth }
 html, body { height: 100% }
+/* Desactive le "font boosting" mobile (Chrome/Safari grossissent seuls le texte
+   dans les blocs etroits comme le h1 du hero, sans lien avec le font-size CSS). */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
   margin: 0;
   color: var(--ink);
