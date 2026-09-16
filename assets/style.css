@@ -378,7 +378,7 @@ p:last-child { margin-bottom: 0 }
 .eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--font-display); font-style: italic;
-  font-size: .88rem; font-weight: 600;
+  font-size: 1rem; font-weight: 600;
   color: var(--accent); background: none;
   padding: 0 0 4px; border-radius: 0; border-bottom: 1px solid var(--gold-line);
   letter-spacing: .01em; text-transform: none;
@@ -2664,9 +2664,9 @@ html[data-theme="dark"] .product-carousel__dot.is-active { background: var(--gol
   color: #FFF;
   border: 1px solid rgba(255,255,255,.18);
 }
-/* Encadré crédibilité du hero (#1 Superprof...), agrandi sur demande de Julien du 14/09 */
+/* Encadré crédibilité du hero (#1 Superprof...), agrandi sur demande de Julien du 14/09, re-agrandi le 16/09 */
 .eyebrow--lg {
-  font-size: 1rem;
+  font-size: 1.15rem;
   padding: 10px 16px;
 }
 .eyebrow--lg .nav-icon { width: 19px; height: 19px; }
