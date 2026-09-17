@@ -237,22 +237,21 @@
 
   // Réassurance sous chaque bouton d'achat principal (pas les boutons compacts en liste,
   // ni celui de la modale d'aperçu) : garantie, paiement Stripe, livraison immédiate.
-  // Le remboursement ne s'applique qu'à l'achat à l'unité, jamais aux packs.
-  // Cours complets et flashcards/QCM restent sur l'ancien design, sans cette ligne.
+  // Le remboursement ne s'applique qu'à l'achat à l'unité : jamais aux packs, ni aux
+  // cours complets ou flashcards/QCM, qui restent sur l'ancien design sans cette ligne.
   var TEXTE_REASSURANCE = 'Satisfait ou remboursé sous 7 jours · Paiement sécurisé par Stripe · PDF reçu immédiatement par email';
-  var TEXTE_REASSURANCE_PACK = 'Paiement sécurisé par Stripe · PDF reçu immédiatement par email';
   function initReassurance() {
     document.querySelectorAll('.btn--full[data-tjd-produit]').forEach(function (btn) {
       if (btn.id === 'apercuCta') return;
       var produitId = btn.getAttribute('data-tjd-produit') || '';
-      if (produitId.indexOf('cours-fiche-') === 0 || produitId.indexOf('flashcards-qcm-') === 0) return;
+      if (produitId.indexOf('cours-fiche-') === 0 || produitId.indexOf('flashcards-qcm-') === 0 || produitId.indexOf('pack-') === 0) return;
       var parent = btn.parentElement;
       if (!parent || parent.querySelector('.tjd-reassurance')) return;
       var suivant = btn.nextElementSibling;
       if (suivant && /pdf complet par email/i.test(suivant.textContent || '')) suivant.remove();
       var p = document.createElement('p');
       p.className = 'tjd-reassurance';
-      p.textContent = produitId.indexOf('pack-') === 0 ? TEXTE_REASSURANCE_PACK : TEXTE_REASSURANCE;
+      p.textContent = TEXTE_REASSURANCE;
       btn.insertAdjacentElement('afterend', p);
     });
   }
