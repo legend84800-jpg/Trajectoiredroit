@@ -77,6 +77,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 - [x] matiere:droit pénal L1 | arret:Cass. crim., 1986, Perdereau | theme:la tentative sur une infraction impossible
 - [x] matiere:droit pénal L1 | arret:Cass. crim., 1962, Lacour | theme:la distinction entre acte préparatoire et commencement d'exécution
 - [x] matiere:droit pénal L1 | arret:Cass. crim., 20 juin 2006, n° 05-85.255, Sollac | theme:la présomption d'imputation d'une infraction non intentionnelle à l'organe ou au représentant d'une personne morale (ajouté et publié le 2026-09-06, backlog dédié épuisé, arrêt repéré dans le cours complet TJD puis vérifié et redaté après correction d'une confusion de la source interne avec l'arrêt Tecphy du 24 octobre 2000)
+- [x] matiere:droit pénal L1 | arret:Cass. crim., 17 décembre 2008, n° 08-82.085 | theme:la frontière entre acte préparatoire et commencement d'exécution dans la tentative d'escroquerie à l'assurance (ajouté et publié le 2026-09-17, backlog dédié épuisé, arrêt repéré sur la page de matière droit-penal-general-l1.html, sourcé exclusivement sur le web faute de documentation dans les dossiers élèves et les contenus TJD internes)
 
 ## Droit du travail L3
 
