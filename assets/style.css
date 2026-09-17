@@ -518,7 +518,9 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 }
 .card--product .product__body { padding: var(--sp-5); display: flex; flex-direction: column; flex: 1; gap: var(--sp-3) }
 .card--product .product__title { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--ink); line-height: 1.3 }
-.card--product .product__meta { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .03em; display: flex; gap: 12px }
+.card--product .product__meta { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .03em; display: flex; flex-wrap: wrap; gap: 4px 12px }
+/* Chaque repère (pages, nombre, niveau...) reste entier : jamais de retour à la ligne au milieu d'un même repère, quand il y en a beaucoup (ex. majeures préparées) */
+.card--product .product__meta span { white-space: nowrap }
 .card--product .product__desc { font-size: .95rem; color: var(--body); margin: 0 }
 .card--product .product__price { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: var(--navy) }
 .card--product .product__price-old { text-decoration: line-through; color: var(--muted); font-size: 1rem; font-weight: 500; margin-right: 6px }
