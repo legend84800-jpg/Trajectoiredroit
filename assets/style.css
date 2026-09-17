@@ -379,12 +379,12 @@ p:last-child { margin-bottom: 0 }
 .lead { font-size: clamp(1.05rem, 1.5vw, 1.25rem); color: var(--body); line-height: 1.6 }
 .intro-pourquoi p { font-size: 1.1rem; line-height: 1.65 }
 .eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-display); font-style: italic;
-  font-size: 1rem; font-weight: 600;
-  color: var(--accent); background: none;
-  padding: 0 0 4px; border-radius: 0; border-bottom: 1px solid var(--gold-line);
-  letter-spacing: .01em; text-transform: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-display);
+  font-size: .82rem; font-weight: 600;
+  color: var(--blue-700); background: var(--blue-50);
+  padding: 6px 12px; border-radius: var(--r-pill);
+  letter-spacing: .04em; text-transform: uppercase;
 }
 .text-muted { color: var(--muted) }
 .text-body { color: var(--body) }
@@ -2667,12 +2667,6 @@ html[data-theme="dark"] .product-carousel__dot.is-active { background: var(--gol
   color: #FFF;
   border: 1px solid rgba(255,255,255,.18);
 }
-/* Encadré crédibilité du hero (#1 Superprof...), agrandi sur demande de Julien du 14/09, re-agrandi le 16/09 */
-.eyebrow--lg {
-  font-size: 1.15rem;
-  padding: 10px 16px;
-}
-.eyebrow--lg .nav-icon { width: 19px; height: 19px; }
 .hero__cta-secondary {
   color: var(--blue-700);
   font-weight: 600;
@@ -4346,8 +4340,8 @@ html[data-theme="dark"] .filter-chip.active { background: #2E6DB4; border-color:
 
 /* A1. Eyebrow générique (fond et texte) */
 html[data-theme="dark"] .eyebrow {
-  color: #C9A961;
-  border-bottom-color: rgba(201,169,97,.4);
+  color: #7BA5E8;
+  background: rgba(94,139,218,0.1);
 }
 
 /* A2/A3. Boutons outline (fond var(--white) et texte var(--blue-700) tous deux invisibles) */
@@ -4511,12 +4505,12 @@ html[data-theme="dark"] .grid-4 > .card--feature:nth-child(4) .feature__icon {
 html[data-theme="dark"] .author-box__name { color: #E2ECF8; }
 
 /* Eyebrows à fond hardcodé amber et green (utilisés dans a-propos.html) */
-.eyebrow--amber { background: none; color: #92400E; border-bottom-color: #92400E33; }
-.eyebrow--green { background: none; color: #065F46; border-bottom-color: #065F4633; }
-.eyebrow--violet { background: none; color: var(--price-violet); border-bottom-color: color-mix(in srgb, var(--price-violet) 35%, transparent); }
-html[data-theme="dark"] .eyebrow--amber { color: #FBBF24; border-bottom-color: #FBBF2440; }
-html[data-theme="dark"] .eyebrow--green { color: #34D399; border-bottom-color: #34D39940; }
-html[data-theme="dark"] .eyebrow--violet { color: #A78BFA; border-bottom-color: #A78BFA40; }
+.eyebrow--amber { background: #FEF3C7; color: #92400E; }
+.eyebrow--green { background: #D1FAE5; color: #065F46; }
+.eyebrow--violet { background: var(--violet-bg); color: var(--price-violet); }
+html[data-theme="dark"] .eyebrow--amber { background: rgba(245,158,11,0.15); color: #FBBF24; }
+html[data-theme="dark"] .eyebrow--green { background: rgba(16,185,129,0.15); color: #34D399; }
+html[data-theme="dark"] .eyebrow--violet { background: rgba(139,92,246,0.18); color: #A78BFA; }
 html[data-theme="dark"] .pricing__price--green { color: #34D399; }
 
 /* Bouton fond blanc (utilisé dans formations.html) */
