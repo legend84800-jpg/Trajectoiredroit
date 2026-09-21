@@ -573,6 +573,9 @@
       // la rendait confuse si les deux étaient visibles ensemble.
       var banner = document.querySelector('.cookie-banner');
       if (banner && banner.classList.contains('cookie-banner--visible')) return false;
+      // Chantier 5.12 (panier) : même logique, jamais l'exit-intent par-dessus le panier ouvert.
+      var panierOuvert = document.getElementById('tjdPanierBackdrop');
+      if (panierOuvert && panierOuvert.classList.contains('open')) return false;
       var scrollRatio = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
       return scrollRatio >= minScroll;
     }

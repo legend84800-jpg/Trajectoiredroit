@@ -387,7 +387,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=3d512e75" defer></script>
+  <script src="assets/js/main.js?v=d8d85e69" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
   (function(){
@@ -422,6 +422,9 @@
     var statusCardLink = document.getElementById('purchaseStatusCardLink');
 
     function afficherAchatConfirme() {
+      // Chantier 5.12 : vide le panier seulement ici, sur la confirmation réelle du
+      // paiement, jamais avant (un abandon Stripe doit retrouver son panier intact).
+      try { localStorage.removeItem('tjd_panier'); } catch (_) {}
       document.title = 'Achat confirmé · TrajectoireDroit';
       statusIcon.textContent = '✅';
       statusEyebrow.textContent = 'Achat confirmé';
@@ -508,7 +511,7 @@
       fallback.style.display = 'none';
       if (!document.querySelector('script[src*="achat.js"]')) {
         var s = document.createElement('script');
-        s.src = 'assets/js/achat.js?v=641d5535';
+        s.src = 'assets/js/achat.js?v=ab566ed4';
         s.defer = true;
         document.body.appendChild(s);
       }

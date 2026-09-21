@@ -150,6 +150,124 @@ async function handler(req, res) {
     return;
   }
 
+  // Panier multi-produits (chantier 5.12, ajouté le 21/09/2026). Reçoit { produitIds: [...] }
+  // au lieu de { produitId, bumpId? }. Reste une branche séparée, retournée avant la validation
+  // du produit unique ci-dessous, pour ne rien changer au flux existant à 1 (ou 2 avec bump)
+  // produit qui gère l'essentiel des ventes aujourd'hui.
+  if (Array.isArray(corps.produitIds)) {
+    const idsBrut = corps.produitIds
+      .filter((v) => typeof v === "string" && v.trim())
+      .map((v) => v.trim());
+    const idsUniques = [...new Set(idsBrut)];
+    // Le stage de méthode reste hors panier : places limitées et datées, formulaire
+    // d'inscription dédié (nom, WhatsApp, niveau) qui n'a pas sa place dans un achat groupé.
+    const produitsPanier = idsUniques
+      .map((id) => ({ id, produit: PRODUITS[id] }))
+      .filter((p) => p.produit && p.id !== "stage-methode");
+
+    if (!produitsPanier.length) {
+      res.status(400).json({ erreur: "Panier vide ou produits inconnus", code: "panier_invalide" });
+      return;
+    }
+
+    const fbpPanier = typeof corps.fbp === "string" ? corps.fbp.trim() : "";
+    const fbcPanier = typeof corps.fbc === "string" ? corps.fbc.trim() : "";
+    const consentMarketingPanier = corps.consentMarketing === true;
+    const tronquerPanier = (v, max) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+    const landingPagePanier = tronquerPanier(corps.landingPage, 200);
+    const referrerPanier = tronquerPanier(corps.referrer, 200);
+    const pageActuelleBrutePanier = tronquerPanier(corps.pageActuelle, 200);
+    const pageActuellePanier = /^[a-z0-9/_-]+\.html(#[a-z0-9_-]+)?$/i.test(pageActuelleBrutePanier)
+      ? pageActuelleBrutePanier
+      : "";
+    const utmSourcePanier = tronquerPanier(corps.utm_source, 100);
+    const utmMediumPanier = tronquerPanier(corps.utm_medium, 100);
+    const utmCampaignPanier = tronquerPanier(corps.utm_campaign, 100);
+    const deviceTypePanier = ["mobile", "tablette", "ordinateur"].includes(corps.deviceType)
+      ? corps.deviceType
+      : "inconnu";
+    const viewportPanier = /^\d{2,5}x\d{2,5}$/.test(tronquerPanier(corps.viewport, 20))
+      ? tronquerPanier(corps.viewport, 20)
+      : "inconnu";
+    const internalTestPanier = corps.internalTest === true;
+    const idsAchetesPanier = produitsPanier.map((p) => p.id);
+
+    const paramsPanier = {
+      line_items: produitsPanier.map(({ produit }) => ({
+        price_data: {
+          currency: "eur",
+          unit_amount: produit.prix,
+          product_data: { name: produit.nom },
+        },
+        quantity: 1,
+      })),
+      mode: "payment",
+      locale: "fr",
+      wallet_options: { link: { display: "never" } },
+      allow_promotion_codes: true,
+      consent_collection: { promotions: "auto" },
+      success_url: `${origin}/merci-achat.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: pageActuellePanier ? `${origin}/${pageActuellePanier}` : `${origin}/formations.html`,
+      expires_at: attemptTimestamp + 3600,
+      metadata: {
+        produitIds: idsAchetesPanier.join(","),
+        attemptId,
+        source: internalTestPanier ? "test_interne" : "site",
+        currentPage: pageActuellePanier || "formations.html",
+        deviceType: deviceTypePanier,
+        viewport: viewportPanier,
+        internalTest: internalTestPanier ? "1" : "0",
+        reminderPlan: internalTestPanier ? "none" : "h1-h24-v1",
+        panier: "1",
+      },
+      payment_intent_data: { metadata: { produitIds: idsAchetesPanier.join(",") } },
+      branding_settings: {
+        display_name: "Trajectoire Droit",
+        icon: { type: "url", url: `${origin}/assets/logo-tjd-mark.png` },
+        background_color: "#ffffff",
+        button_color: "#1A2851",
+        border_style: "rounded",
+        font_family: "pt_serif",
+      },
+      integration_identifier: INTEGRATION_IDS.checkout,
+    };
+    if (!internalTestPanier) {
+      paramsPanier.after_expiration = { recovery: { enabled: true, allow_promotion_codes: true } };
+    }
+    if (consentMarketingPanier) {
+      paramsPanier.metadata.consentMarketing = "1";
+      if (fbpPanier) paramsPanier.metadata.fbp = fbpPanier;
+      if (fbcPanier) paramsPanier.metadata.fbc = fbcPanier;
+    }
+    if (landingPagePanier) paramsPanier.metadata.landingPage = landingPagePanier;
+    if (referrerPanier) paramsPanier.metadata.referrer = referrerPanier;
+    if (utmSourcePanier) paramsPanier.metadata.utmSource = utmSourcePanier;
+    if (utmMediumPanier) paramsPanier.metadata.utmMedium = utmMediumPanier;
+    if (utmCampaignPanier) paramsPanier.metadata.utmCampaign = utmCampaignPanier;
+
+    try {
+      const sessionPanier = await stripe.checkout.sessions.create(
+        paramsPanier,
+        { idempotencyKey: `checkout-panier-${attemptId}` }
+      );
+      res.status(200).json({
+        url: sessionPanier.url,
+        sessionId: sessionPanier.id,
+        attemptId,
+        attemptCreatedAt: attemptTimestamp,
+      });
+    } catch (e) {
+      console.error("create-checkout (panier) erreur Stripe", {
+        attemptId,
+        produits: idsAchetesPanier.join(","),
+        stripeCode: e && e.code ? e.code : "inconnu",
+        stripeType: e && e.type ? e.type : "inconnu",
+      });
+      res.status(502).json({ erreur: "Erreur Stripe", code: "stripe" });
+    }
+    return;
+  }
+
   const produitId = typeof corps.produitId === "string" ? corps.produitId.trim() : "";
   const bumpId = typeof corps.bumpId === "string" ? corps.bumpId.trim() : "";
   const fbp = typeof corps.fbp === "string" ? corps.fbp.trim() : "";
