@@ -561,8 +561,8 @@
   if (modal && !sessionStorage.getItem('exitShown')) {
     var triggered = false;
     var pageLoadedAt = Date.now();
-    var minTimeMs = 30000;   // 30 s minimum
-    var minScroll = 0.25;    // 25 % de la page
+    var minTimeMs = 15000;   // 15 s minimum (abaissé le 21/09/2026, C5 : 77% de rebond et 92s de session moyenne empêchaient le seuil de 30s de s'armer pour la majorité du trafic)
+    var minScroll = 0.15;    // 15 % de la page (même raison que ci-dessus)
     var estMobile = !window.matchMedia('(min-width: 768px)').matches;
 
     function hasEngaged() {
