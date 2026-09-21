@@ -146,7 +146,7 @@ const PRODUITS = {
   "cours-fiche-hist-institutions-l1": { nom: "Cours complet Histoire des institutions L1 S2", prix: 1999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-hist-institutions-l1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-hist-institutions-l1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-hist-institutions-l1-cartesmentales.pdf"] },
-  "cours-fiche-penal-general-l1": { nom: "Cours complet Droit pénal général L2 S2", prix: 1999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-penal-general-l1.pdf",
+  "cours-fiche-penal-general-l1": { nom: "Cours complet Droit pénal général L1 S2", prix: 1999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-penal-general-l1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-penal-general-l1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-penal-general-l1-cartesmentales.pdf"] },
   "cours-fiche-famille-l1-s2": { nom: "Cours complet Droit de la famille L1 S2", prix: 1999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-famille-l1-s2.pdf",
@@ -267,7 +267,7 @@ const PRODUITS = {
   "flashcards-qcm-famille-l1-s2": { nom: "Flashcards + QCM Droit de la famille L1 S2", prix: 999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-famille-l1-s2-flashcards.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-famille-l1-s2-qcm.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-famille-l1-s2-anki.apkg"] },
-  "flashcards-qcm-penal-general-l1": { nom: "Flashcards + QCM Droit pénal général L2 S2", prix: 999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-penal-general-l1-flashcards.pdf",
+  "flashcards-qcm-penal-general-l1": { nom: "Flashcards + QCM Droit pénal général L1 S2", prix: 999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-penal-general-l1-flashcards.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-penal-general-l1-qcm.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-penal-general-l1-anki.apkg"] },
   "flashcards-qcm-constit-l1-s2": { nom: "Flashcards + QCM Droit constitutionnel L1 S2", prix: 999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-constit-l1-s2-flashcards.pdf",
@@ -316,7 +316,7 @@ const PRODUITS = {
   "cas-pratique-penal-l2-s1": { nom: "Cas pratiques corrigés Droit pénal L2 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-penal-l2-s1.pdf"] },
   "cas-pratique-contrats-l2-s1": { nom: "Cas pratiques corrigés Droit des contrats L2 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-contrats-l2-s1.pdf"] },
   "cas-pratique-da-l2-s1": { nom: "Cas pratiques corrigés Droit administratif L2 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-da-l2-s1.pdf"] },
-  "cas-pratique-penal-general-l1": { nom: "Cas pratiques corrigés Droit pénal général L2 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-penal-general-l1.pdf"] },
+  "cas-pratique-penal-general-l1": { nom: "Cas pratiques corrigés Droit pénal général L1 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-penal-general-l1.pdf"] },
   "cas-pratique-famille-l1-s2": { nom: "Cas pratiques corrigés Droit de la famille L1 S2", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-famille-l1-s2.pdf"] },
   "cas-pratique-personnes-l1": { nom: "Cas pratiques corrigés Droit des personnes L1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-personnes-l1.pdf"] },
   "cas-pratique-intro-droit-l1": { nom: "Cas pratiques corrigés Introduction au droit L1 S1", prix: 1499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-intro-droit-l1.pdf"] },
@@ -785,7 +785,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-travail-l3-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-travail-l3.pdf"
   ] },
-  "pack-matiere-penal-general-l1": { nom: "Pack Droit pénal général L2 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
+  "pack-matiere-penal-general-l1": { nom: "Pack Droit pénal général L1 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1-cartesmentales.pdf",
