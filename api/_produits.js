@@ -385,7 +385,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-contrats-speciaux-l3.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-contrats-speciaux-l3-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-contrats-speciaux-l3-cartesmentales.pdf"] },
-  "pack-cours-complets-l2": { nom: "Pack annuel Cours complets L2", prix: 12000, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-obligations-l2-s2.pdf",
+  "pack-cours-complets-l2": { nom: "Pack annuel Cours complets L2", prix: 13500, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-obligations-l2-s2.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-obligations-l2-s2-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-obligations-l2-s2-cartesmentales.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-da-l2-s2.pdf",
