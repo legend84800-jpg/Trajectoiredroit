@@ -326,9 +326,9 @@
   function panierSyncLien(lien, produitId) {
     var dansPanier = panierContient(produitId);
     lien.disabled = dansPanier;
-    lien.textContent = dansPanier
+    lien.innerHTML = dansPanier
       ? 'Déjà dans ton panier ✓'
-      : '+ Ajouter au panier (pour acheter plusieurs matières d’un coup)';
+      : '+ <span class="tjd-panier-lien__full">Ajouter au panier (pour acheter plusieurs matières d’un coup)</span><span class="tjd-panier-lien__short">Panier</span>';
   }
 
   function initPanierBoutons() {

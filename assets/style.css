@@ -318,6 +318,24 @@
     padding-inline: 12px;
     font-size: .78rem;
   }
+  /* Le lien panier (achat.js, tjd-panier-lien) doit rester aussi compact que les
+     boutons voisins dans la barre sticky, sinon son texte long fait déborder la
+     barre sur plusieurs lignes (trouvé le 22/09/2026, C17/C19 de l'audit mobile). */
+  .sticky-cta-bar__choices .tjd-panier-lien {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding-inline: 10px;
+    font-size: .78rem;
+    white-space: nowrap;
+  }
+  .sticky-cta-bar__choices .tjd-panier-lien__full {
+    display: none;
+  }
+  .sticky-cta-bar__choices .tjd-panier-lien__short {
+    display: inline;
+  }
 }
 
 /* Skip link accessibilité */
@@ -3391,6 +3409,10 @@ html[data-theme="dark"] .notion-conditions__num { background: #2E6DB4; }
 /* Variante toujours visible (desktop compris) : pages matière longues, prix/CTA visibles pendant la lecture */
 .sticky-cta-bar--always { display: flex; }
 body:has(.sticky-cta-bar--always) { padding-bottom: 80px; }
+/* Version courte du lien panier (achat.js), masquée par défaut : le texte complet
+   reste affiché partout sauf dans la barre sticky mobile, seul endroit trop étroit
+   pour lui (voir @media max-width:768px ci-dessus, C17 de l'audit mobile du 22/09/2026). */
+.tjd-panier-lien__short { display: none; }
 @media (max-width: 768px) {
   .sticky-cta-bar { display: flex; }
   body { padding-bottom: 80px; }
