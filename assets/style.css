@@ -339,8 +339,11 @@
 }
 
 /* Skip link accessibilité */
+/* position:fixed (et non absolute) : ancré au viewport plutôt qu'au document,
+   sans quoi top:0 le place au-dessus du tout début de la page (y négatif) et
+   le rebond élastique du trackpad en haut de page le révèle brièvement. */
 .skip-link {
-  position: absolute;
+  position: fixed;
   top: 0; left: 0;
   transform: translateY(-100%);
   background: var(--blue-600); color: #fff;
