@@ -3,6 +3,7 @@
 // demande depuis l'espace compte, pour un accès "à vie" réel sans lien permanent qui pourrait fuiter).
 
 const crypto = require("crypto");
+const PRODUITS = require("./_produits");
 
 function genererToken(produitId, blobIndex, expiry, secret, sessionId = "") {
   const message = sessionId
@@ -78,7 +79,15 @@ function construireLiensTelechargement(
     const segments = brut.split("-");
     const deuxDerniersMots = segments.slice(-2).join("-");
     const dernierMot = segments[segments.length - 1];
-    const nom = suffixes[deuxDerniersMots] || suffixes[dernierMot] || libelleFichierPrincipal(produit.nom);
+    let nom = suffixes[deuxDerniersMots] || suffixes[dernierMot] || libelleFichierPrincipal(produit.nom);
+    if (produitId.startsWith("pack-flashcards-qcm-")) {
+      const match = blobUrl.match(/\/(flashcards-qcm-[a-z0-9-]+)-(flashcards|qcm|anki)\.(?:pdf|apkg)$/i);
+      const matiere = match && PRODUITS[match[1]];
+      if (matiere) {
+        const format = match[2] === "qcm" ? "le QCM corrigé" : suffixes[match[2]];
+        nom = `${format} · ${matiere.nom.replace(/^Flashcards \+ QCM /, "")}`;
+      }
+    }
     return { nom, url, type: estVideo ? "video" : "pdf" };
   });
 }
