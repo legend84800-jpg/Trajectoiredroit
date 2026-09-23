@@ -770,6 +770,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s1-cartesmentales.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s2.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s2-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-societes-l3-s1-flashcards.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-societes-l3-s1-qcm.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-societes-l3-s1-anki.apkg",
