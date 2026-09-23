@@ -28,6 +28,10 @@ h2 { margin: 7px 0 7px; font-size: clamp(29px, 4vw, 42px); }
 .sample { margin: 0 0 22px; color: #bdb5aa; font-size: 14px; }
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .card { overflow: hidden; background: #282623; border: 1px solid #49443e; border-radius: 14px; }
+.card.selected { border-color: #d4b078; box-shadow: 0 0 0 1px #d4b078; }
+.pick { display: inline-block; margin: 0 0 9px; color: #ead2a9; font-size: 12px; letter-spacing: .09em; text-transform: uppercase; }
+.compare { margin: 0 18px 18px; font-size: 13px; color: #d6cec2; }
+.compare a { display: inline; text-underline-offset: 3px; }
 .card a { display: block; text-decoration: none; }
 .card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
 .card-copy { padding: 17px 18px 20px; }
@@ -43,7 +47,7 @@ h3 { margin: 0 0 6px; font-size: 25px; }
   <header><div class="wrap"><p>Trajectoire Droit · Atelier de visuels</p></div></header>
   <main class="wrap">
     <h1>Exercices corrigés<br>Neuf autres pistes</h1>
-    <p class="intro">Voici trois nouveaux visuels pour chaque format. Appuie sur une image pour l’agrandir. Note les codes de tes préférés pour qu’on puisse comparer les deux séries.</p>
+    <p class="intro">Tu as retenu CP6 pour les cas pratiques et D4 pour les dissertations. CA6 a maintenant une pile de feuilles plus épaisse. Appuie sur une image pour l’agrandir.</p>
     <a class="toplink" href="../exercices-corriges-20260923/">Voir les neuf premières propositions</a>
     <nav aria-label="Accéder à une famille"><a href="#cas-pratiques">Cas pratiques</a><a href="#dissertations">Dissertations</a><a href="#commentaires">Commentaires d’arrêt</a></nav>
     <section id="cas-pratiques">
@@ -53,7 +57,7 @@ h3 { margin: 0 0 6px; font-size: 25px; }
       <div class="grid">
         <article class="card"><a href="cp4.webp"><img src="cp4.webp" width="1200" height="675" alt="CP4, couverture typographique" loading="lazy"><div class="card-copy"><span class="code">CP4</span><h3>Couverture typographique</h3><p>Un titre très grand sur fond ivoire, avec une tranche rouge.</p></div></a></article>
         <article class="card"><a href="cp5.webp"><img src="cp5.webp" width="1200" height="675" alt="CP5, dossiers à onglets" loading="lazy"><div class="card-copy"><span class="code">CP5</span><h3>Dossiers à onglets</h3><p>Des chemises noires superposées et des repères rouges.</p></div></a></article>
-        <article class="card"><a href="cp6.webp"><img src="cp6.webp" width="1200" height="675" alt="CP6, chemise à rabat" loading="lazy"><div class="card-copy"><span class="code">CP6</span><h3>Chemise à rabat</h3><p>Une pochette claire fermée par un petit rabat rouge.</p></div></a></article>
+        <article class="card selected"><a href="cp6.webp"><img src="cp6.webp" width="1200" height="675" alt="CP6, chemise à rabat" loading="lazy"><div class="card-copy"><span class="code">CP6</span><span class="pick">Ton choix</span><h3>Chemise à rabat</h3><p>Une pochette claire fermée par un petit rabat rouge.</p></div></a></article>
       </div>
     </section>
     <section id="dissertations">
@@ -61,7 +65,7 @@ h3 { margin: 0 0 6px; font-size: 25px; }
       <h2>Dissertations corrigées</h2>
       <p class="sample">Exemple : Droit constitutionnel, L1 · Semestre 1</p>
       <div class="grid">
-        <article class="card"><a href="d4.webp"><img src="d4.webp" width="1200" height="675" alt="D4, coffret et fascicule" loading="lazy"><div class="card-copy"><span class="code">D4</span><h3>Coffret et fascicule</h3><p>Un fascicule ivoire glissé dans un coffret prune.</p></div></a></article>
+        <article class="card selected"><a href="d4.webp"><img src="d4.webp" width="1200" height="675" alt="D4, coffret et fascicule" loading="lazy"><div class="card-copy"><span class="code">D4</span><span class="pick">Ton choix</span><h3>Coffret et fascicule</h3><p>Un fascicule ivoire glissé dans un coffret prune.</p></div></a></article>
         <article class="card"><a href="d5.webp"><img src="d5.webp" width="1200" height="675" alt="D5, folio cousu" loading="lazy"><div class="card-copy"><span class="code">D5</span><h3>Folio cousu</h3><p>Une couverture de papier, un grand chiffre romain et une couture visible.</p></div></a></article>
         <article class="card"><a href="d6.webp"><img src="d6.webp" width="1200" height="675" alt="D6, série de fascicules" loading="lazy"><div class="card-copy"><span class="code">D6</span><h3>Série de fascicules</h3><p>Trois cahiers superposés, comme une petite collection.</p></div></a></article>
       </div>
@@ -73,10 +77,10 @@ h3 { margin: 0 0 6px; font-size: 25px; }
       <div class="grid">
         <article class="card"><a href="ca4.webp"><img src="ca4.webp" width="1200" height="675" alt="CA4, pochette d’analyse" loading="lazy"><div class="card-copy"><span class="code">CA4</span><h3>Pochette d’analyse</h3><p>Une feuille de travail sort d’une pochette bleu pétrole.</p></div></a></article>
         <article class="card"><a href="ca5.webp"><img src="ca5.webp" width="1200" height="675" alt="CA5, boîte de fiches" loading="lazy"><div class="card-copy"><span class="code">CA5</span><h3>Boîte de fiches</h3><p>Des fiches classées par onglets, avec un titre bien visible.</p></div></a></article>
-        <article class="card"><a href="ca6.webp"><img src="ca6.webp" width="1200" height="675" alt="CA6, revue juridique" loading="lazy"><div class="card-copy"><span class="code">CA6</span><h3>Revue juridique</h3><p>Une grande feuille pliée, présentée comme une revue de droit.</p></div></a></article>
+        <article class="card selected"><a href="ca6-epais.webp"><img src="ca6-epais.webp" width="1200" height="675" alt="CA6, revue juridique avec une pile de feuilles plus épaisse" loading="lazy"><div class="card-copy"><span class="code">CA6</span><span class="pick">Retouche demandée</span><h3>Revue juridique</h3><p>La pile de feuilles se voit désormais sur la droite et sous la couverture.</p></div></a><p class="compare"><a href="ca6.webp">Voir la première version de CA6</a></p></article>
       </div>
     </section>
-    <p class="note">Ces visuels sont des propositions. Les couvertures des produits en vente restent inchangées. Après le choix du design, les couleurs pourront varier selon la matière.</p>
+    <p class="note">La retouche de CA6 est à valider avant de décliner les trois designs selon les matières. Les couvertures des produits en vente restent inchangées à ce stade.</p>
   </main>
 </body>
 </html>
