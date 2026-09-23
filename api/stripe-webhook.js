@@ -372,12 +372,17 @@ async function recupererCodePromo(promotionCodeId, stripe) {
 
 async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
   const nomsAchetes = produits.map(p => p.nom).join(" + ");
+  const contientPackUltra = produits.some(p => Array.isArray(p.inclus) && Array.isArray(p.blobsMeta));
 
-  const boutons = liens.map(l =>
+  const boutonsFichiers = liens.map(l =>
     `<a href="${l.url}" style="display:inline-block;margin:8px 0;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;font-family:sans-serif;font-size:14px;">
       Télécharger ${l.nom}
     </a><br>`
   ).join("\n");
+  const boutonPackUltra = contientPackUltra
+    ? `<a href="https://trajectoiredroit.com/mon-compte.html" style="display:inline-block;margin:8px 0;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;font-family:sans-serif;font-size:14px;">Accéder à mon Pack Ultra</a><br>`
+    : "";
+  const boutons = `${boutonPackUltra}${boutonsFichiers}`;
 
   const ligneCodePromo = codeAmbassadeur
     ? `<p style="font-size:13px;color:#555;margin:0 0 24px;">Réduction appliquée avec le code <strong>${codeAmbassadeur}</strong>.</p>`
@@ -397,15 +402,21 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
         <tr><td style="padding:32px;">
           <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 24px;">Ton achat est confirmé !</p>
           <p style="font-size:15px;color:#333;margin:0 0 24px;">
-            Tu viens d'acheter <strong>${nomsAchetes}</strong>, et tes PDF sont prêts juste en dessous.
+            ${contientPackUltra
+              ? `Tu viens d'acheter <strong>${nomsAchetes}</strong>. Tes ressources sont disponibles dès maintenant.`
+              : `Tu viens d'acheter <strong>${nomsAchetes}</strong>, et tes PDF sont prêts juste en dessous.`}
           </p>
           ${ligneCodePromo}
           <p style="font-size:15px;color:#333;margin:0 0 24px;">
-            Clique sur les liens pour les télécharger. Ils restent valables 48 heures, donc mieux vaut les enregistrer sur ton ordinateur ou ton téléphone tout de suite.
+            ${contientPackUltra
+              ? "Pour télécharger les ressources de ton Pack Ultra, connecte-toi à ton espace Mon compte avec l'adresse email utilisée pour cet achat. Ensuite, ouvre la ressource dont tu as besoin."
+              : "Clique sur les liens pour les télécharger. Ils restent valables 48 heures, donc mieux vaut les enregistrer sur ton ordinateur ou ton téléphone tout de suite."}
           </p>
           ${boutons}
           <p style="font-size:13px;color:#777;margin:24px 0 24px;">
-            Passé ce délai de 48 heures, pas besoin de m'écrire pour les récupérer : connecte-toi à <a href="https://trajectoiredroit.com/mon-compte.html" style="color:#1a237e;">ton espace Mon compte</a> avec cette même adresse email, tu retrouves tous tes achats et tu régénères un lien de téléchargement à tout moment. L'accès est à vie.
+            ${contientPackUltra
+              ? `Tu peux revenir dans <a href="https://trajectoiredroit.com/mon-compte.html" style="color:#1a237e;">ton espace Mon compte</a> à tout moment pour retrouver les fichiers de ton pack. L'accès est à vie.`
+              : `Passé ce délai de 48 heures, pas besoin de m'écrire pour les récupérer : connecte-toi à <a href="https://trajectoiredroit.com/mon-compte.html" style="color:#1a237e;">ton espace Mon compte</a> avec cette même adresse email, tu retrouves tous tes achats et tu régénères un lien de téléchargement à tout moment. L'accès est à vie.`}
           </p>
           <p style="font-size:13px;color:#777;margin:0 0 24px;">
             Au moindre problème, n'hésite pas à me contacter par mail à julien.prof1@gmail.com. Je réponds sous 24 heures.
@@ -442,7 +453,9 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
 </body>
 </html>`;
 
-  const texte = `Tu viens d'acheter ${nomsAchetes}, et tes PDF sont prêts.\n\nTélécharge-les ici :\n${liens.map(l => `${l.nom} : ${l.url}`).join("\n")}\n\nLiens valables 48 heures. Passé ce délai, connecte-toi à https://trajectoiredroit.com/mon-compte.html avec cette même adresse email pour régénérer un lien à tout moment : l'accès est à vie.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com. Je réponds sous 24 heures.\n\nMon but est de créer les meilleures fiches de droit en France, donc à la moindre remarque sur le fond ou sur la forme, n'hésite pas à me contacter. Je te renvoie la fiche améliorée, et si tes commentaires sont détaillés et pertinents, je t'offre une fiche de citations en cadeau.\n\nCes mises à jour sont automatiques. N'hésite pas à revenir régulièrement sur ton espace Mon compte (https://trajectoiredroit.com/mon-compte.html) pour retélécharger le même format que tu as déjà acheté. Tu profites ainsi de la dernière version sans rien payer de plus.\n\nJ'ai mis un temps long à rédiger ces fiches, alors je te fais confiance, garde-les pour toi et ne les divulgue pas à autrui, merci à toi 🙂\n\nSi tu as un bon réseau dans ta promo, j'ai un programme ambassadeurs (https://trajectoiredroit.com/ambassadeurs.html) : 10 % de réduction pour chaque filleul, 20 % de commission pour toi.\n\nEnfin, si tu veux aussi apprendre le droit de manière plus ludique, tu peux me retrouver sur YouTube (https://www.youtube.com/@TrajectoireDroit) et sur TikTok (https://www.tiktok.com/@trajectoiredroit).\n\nJulien, TrajectoireDroit`;
+  const texte = contientPackUltra
+    ? `Tu viens d'acheter ${nomsAchetes}. Tes ressources sont disponibles dès maintenant.\n\nPour télécharger les ressources de ton Pack Ultra, connecte-toi à https://trajectoiredroit.com/mon-compte.html avec l'adresse email utilisée pour cet achat. Ensuite, ouvre la ressource dont tu as besoin.\n\n${liens.length ? `Tes autres ressources :\n${liens.map(l => `${l.nom} : ${l.url}`).join("\n")}\n\n` : ""}Tu peux retrouver les fichiers de ton pack à tout moment. L'accès est à vie.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com. Je réponds sous 24 heures.\n\nJulien, TrajectoireDroit`
+    : `Tu viens d'acheter ${nomsAchetes}, et tes PDF sont prêts.\n\nTélécharge-les ici :\n${liens.map(l => `${l.nom} : ${l.url}`).join("\n")}\n\nLiens valables 48 heures. Passé ce délai, connecte-toi à https://trajectoiredroit.com/mon-compte.html avec cette même adresse email pour régénérer un lien à tout moment : l'accès est à vie.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com. Je réponds sous 24 heures.\n\nMon but est de créer les meilleures fiches de droit en France, donc à la moindre remarque sur le fond ou sur la forme, n'hésite pas à me contacter. Je te renvoie la fiche améliorée, et si tes commentaires sont détaillés et pertinents, je t'offre une fiche de citations en cadeau.\n\nCes mises à jour sont automatiques. N'hésite pas à revenir régulièrement sur ton espace Mon compte (https://trajectoiredroit.com/mon-compte.html) pour retélécharger le même format que tu as déjà acheté. Tu profites ainsi de la dernière version sans rien payer de plus.\n\nJ'ai mis un temps long à rédiger ces fiches, alors je te fais confiance, garde-les pour toi et ne les divulgue pas à autrui, merci à toi 🙂\n\nSi tu as un bon réseau dans ta promo, j'ai un programme ambassadeurs (https://trajectoiredroit.com/ambassadeurs.html) : 10 % de réduction pour chaque filleul, 20 % de commission pour toi.\n\nEnfin, si tu veux aussi apprendre le droit de manière plus ludique, tu peux me retrouver sur YouTube (https://www.youtube.com/@TrajectoireDroit) et sur TikTok (https://www.tiktok.com/@trajectoiredroit).\n\nJulien, TrajectoireDroit`;
 
   const payload = {
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
@@ -686,6 +699,7 @@ async function traiterAchatPaye(session, contexte) {
     } else {
       let liens = [];
       produitsAchetes.forEach(({ id, produit }) => {
+        if (Array.isArray(produit.inclus) && Array.isArray(produit.blobsMeta)) return;
         liens = liens.concat(
           construireLiensEmail(
             id,

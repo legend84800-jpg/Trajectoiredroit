@@ -80,6 +80,11 @@ function construireLiensTelechargement(
     const deuxDerniersMots = segments.slice(-2).join("-");
     const dernierMot = segments[segments.length - 1];
     let nom = suffixes[deuxDerniersMots] || suffixes[dernierMot] || libelleFichierPrincipal(produit.nom);
+    const composant = produit.blobsMeta && produit.blobsMeta[i];
+    if (composant) {
+      const annexe = suffixes[deuxDerniersMots] || suffixes[dernierMot];
+      nom = annexe ? `${composant.nom} · ${annexe}` : composant.nom;
+    }
     if (produitId.startsWith("pack-flashcards-qcm-")) {
       const match = blobUrl.match(/\/(flashcards-qcm-[a-z0-9-]+)-(flashcards|qcm|anki)\.(?:pdf|apkg)$/i);
       const matiere = match && PRODUITS[match[1]];
@@ -88,7 +93,7 @@ function construireLiensTelechargement(
         nom = `${format} · ${matiere.nom.replace(/^Flashcards \+ QCM /, "")}`;
       }
     }
-    return { nom, url, type: estVideo ? "video" : "pdf" };
+    return { nom, url, type: estVideo ? "video" : "pdf", ...(composant ? { groupe: composant.nom } : {}) };
   });
 }
 
