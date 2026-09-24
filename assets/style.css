@@ -1348,6 +1348,42 @@ html[data-theme="dark"] .megamenu__niveau-col a:not(.megamenu__niveau-cta):hover
   color: #fff !important; opacity: .92;
 }
 
+/* Vague 5.3 : rangée "Par pack", pleine largeur sous les colonnes niveaux
+   du méga-menu Fiches. Rend visibles les packs Licence déjà vendus sur
+   formations.html mais absents jusqu'ici de la navigation. */
+.megamenu__packs {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.megamenu__packs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.megamenu__pack-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: background .15s ease, border-color .15s ease;
+}
+.megamenu__pack-tile:hover { background: var(--blue-50); border-color: var(--blue-200); }
+.megamenu__pack-tile-title { font-family: var(--font-display); font-weight: 600; font-size: .82rem; color: var(--navy); line-height: 1.25; }
+.megamenu__pack-tile-price { font-size: .85rem; color: var(--accent); font-weight: 700; }
+.megamenu__pack-tile--featured {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 140%);
+  border-color: transparent;
+}
+.megamenu__pack-tile--featured .megamenu__pack-tile-title,
+.megamenu__pack-tile--featured .megamenu__pack-tile-price { color: #fff; }
+.megamenu__pack-tile--featured:hover { opacity: .92; }
+html[data-theme="dark"] .megamenu__packs { border-top-color: rgba(255,255,255,.1); }
+html[data-theme="dark"] .megamenu__pack-tile:hover { background: rgba(255,255,255,.05); }
+
 /* Avec cinq familles au lieu de six, la navigation complète tient sur les grands
    portables. La version compacte reste réservée aux largeurs intermédiaires. */
 @media (max-width: 1240px) and (min-width: 1081px) {
