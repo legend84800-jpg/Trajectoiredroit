@@ -20,15 +20,18 @@ const lignesPacks = packsActifs.map(([id, definition]) => {
   const prixAffiche = `${definition.prix / 100} €`;
   const [, annee, semestre] = suffixe.match(/^(l[123])-s([12])$/);
   const titre = `${annee.toUpperCase()} semestre ${semestre}`;
-  return `                <a href="index.html#${id}" role="menuitem" class="megamenu__pack-tile">
-                  <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">${titre}</span><span class="badge badge--success">-${economie} %</span></span>
-                  <span class="megamenu__pack-tile-meta">${definition.attendus} ressources · accès à vie</span>
-                  <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">${totalAffiche}</span><span class="megamenu__pack-tile-price">${prixAffiche}</span></span>
+  return `                <a href="index.html#${id}" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra ${titre}, ${definition.attendus} ressources, ${prixAffiche} au lieu de ${totalAffiche}, ${economie} % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/${id}.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">${annee.toUpperCase()} · S${semestre}</span><span class="badge badge--success">-${economie} %</span></span>
+                    <span class="megamenu__pack-tile-meta">${definition.attendus} ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">${totalAffiche}</span><span class="megamenu__pack-tile-price">${prixAffiche}</span></span>
+                  </span>
                 </a>`;
 }).join('\n');
 
 const blocPacks = `            <div class="megamenu__packs">
-              <div class="megamenu__niveau-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span></div>
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Achat unique · accès à vie</small></div>
               <div class="megamenu__packs-grid">
 ${lignesPacks}
               </div>

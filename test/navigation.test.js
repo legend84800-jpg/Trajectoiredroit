@@ -63,9 +63,11 @@ test('Fiches montre les cinq Packs Ultra et Ressources accueille le quiz', () =>
   const packs = ['l1-s1', 'l1-s2', 'l2-s1', 'l2-s2', 'l3-s1'];
   for (const { nom, html } of pages) {
     const nav = extraire(html, '<nav class="primary-nav"', '</nav>');
-    assert.match(nav, /<strong>Le Pack Ultra<\/strong><span>Choisis ton semestre<\/span>/, nom);
+    assert.match(nav, /<strong>Le Pack Ultra<\/strong><span>Choisis ton semestre<\/span><small>Achat unique · accès à vie<\/small>/, nom);
     for (const pack of packs) {
       assert.ok(nav.includes(`href="index.html#pack-ultra-${pack}"`), `${nom}: ${pack}`);
+      assert.ok(nav.includes(`src="assets/covers/pack-ultra-${pack}.webp"`), `${nom}: couverture ${pack}`);
+      assert.ok(fs.existsSync(path.join(racine, `assets/covers/pack-ultra-${pack}.webp`)), `${nom}: fichier de couverture ${pack}`);
     }
     assert.ok(!nav.includes('href="index.html#pack-ultra-l3-s2"'), `${nom}: L3 S2 suspendu`);
     assert.ok(!nav.includes('Pack Licence complète'), `${nom}: ancien pack dans Fiches`);
