@@ -38,12 +38,22 @@
   object-fit: cover;
 }
 .ultra-card__body { display: flex; flex: 1; flex-direction: column; padding: 22px; }
+.ultra-card__topline { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .ultra-card__eyebrow {
   color: #796122;
   font-size: .78rem;
   font-weight: 800;
   letter-spacing: .08em;
   text-transform: uppercase;
+}
+.ultra-card__saving {
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: #f7eed4;
+  color: #665014;
+  font-size: .78rem;
+  font-weight: 800;
+  white-space: nowrap;
 }
 .ultra-card__title {
   margin: 7px 0 10px;
@@ -70,6 +80,7 @@
 }
 .ultra-card__cta { margin-top: 16px; }
 .ultra-card__amount { display: flex; flex-direction: column; gap: 4px; }
+.ultra-card__comparison { color: #4f5a70; font-size: .82rem; line-height: 1.3; }
 .ultra-card__price {
   color: #1a2851;
   font-family: var(--font-display);
@@ -80,6 +91,13 @@
 }
 .ultra-card__payment { color: #4f5a70; font-size: .84rem; font-weight: 600; }
 .ultra-card__foot a { font-weight: 700; }
+.ultra-section__comparison {
+  margin: 17px auto 0;
+  color: #4f5a70;
+  font-size: .82rem;
+  line-height: 1.5;
+  text-align: center;
+}
 .ultra-inclusions {
   max-width: 1040px;
   margin: 48px auto 0;
@@ -165,9 +183,12 @@ html[data-theme="dark"] .ultra-card { background: #1b2945; border-color: #415371
 html[data-theme="dark"] .ultra-card__title,
 html[data-theme="dark"] .ultra-card__price { color: #f6f3ea; }
 html[data-theme="dark"] .ultra-card__description,
+html[data-theme="dark"] .ultra-card__comparison,
 html[data-theme="dark"] .ultra-card__payment,
-html[data-theme="dark"] .ultra-section__note { color: #d0d7e4; }
+html[data-theme="dark"] .ultra-section__note,
+html[data-theme="dark"] .ultra-section__comparison { color: #d0d7e4; }
 html[data-theme="dark"] .ultra-card__eyebrow { color: #e5c277; }
+html[data-theme="dark"] .ultra-card__saving { background: #51421f; color: #f4d990; }
 html[data-theme="dark"] .ultra-inclusions__item { background: #1b2945; border-color: #415371; }
 html[data-theme="dark"] .ultra-inclusions__item summary,
 html[data-theme="dark"] .ultra-inclusions__action { color: #f6f3ea; }
