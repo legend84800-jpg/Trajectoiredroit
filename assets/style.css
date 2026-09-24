@@ -1364,23 +1364,30 @@ html[data-theme="dark"] .megamenu__niveau-col a:not(.megamenu__niveau-cta):hover
 .megamenu__pack-tile {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   padding: 10px 12px;
   border-radius: var(--r-md);
   border: 1px solid var(--border);
   text-decoration: none;
-  transition: background .15s ease, border-color .15s ease;
+  transition: background .15s ease, border-color .15s ease, transform .15s ease;
 }
-.megamenu__pack-tile:hover { background: var(--blue-50); border-color: var(--blue-200); }
+.megamenu__pack-tile:hover { background: var(--blue-50); border-color: var(--blue-200); transform: translateY(-1px); }
+.megamenu__pack-tile-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
 .megamenu__pack-tile-title { font-family: var(--font-display); font-weight: 600; font-size: .82rem; color: var(--navy); line-height: 1.25; }
-.megamenu__pack-tile-price { font-size: .85rem; color: var(--accent); font-weight: 700; }
+.megamenu__pack-tile .badge { font-size: .66rem; padding: 2px 7px; white-space: nowrap; }
+.megamenu__pack-tile-meta { font-size: .72rem; color: var(--muted); }
+.megamenu__pack-tile-prices { display: flex; align-items: baseline; gap: 6px; }
+.megamenu__pack-tile-price-old { font-size: .74rem; color: var(--muted); text-decoration: line-through; }
+.megamenu__pack-tile-price { font-family: var(--font-display); font-size: .95rem; color: var(--accent); font-weight: 700; }
 .megamenu__pack-tile--featured {
   background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 140%);
   border-color: transparent;
 }
 .megamenu__pack-tile--featured .megamenu__pack-tile-title,
 .megamenu__pack-tile--featured .megamenu__pack-tile-price { color: #fff; }
-.megamenu__pack-tile--featured:hover { opacity: .92; }
+.megamenu__pack-tile--featured .megamenu__pack-tile-meta { color: rgba(255,255,255,.75); }
+.megamenu__pack-tile--featured .megamenu__pack-tile-price-old { color: rgba(255,255,255,.6); }
+.megamenu__pack-tile--featured:hover { opacity: .92; transform: translateY(-1px); }
 html[data-theme="dark"] .megamenu__packs { border-top-color: rgba(255,255,255,.1); }
 html[data-theme="dark"] .megamenu__pack-tile:hover { background: rgba(255,255,255,.05); }
 
