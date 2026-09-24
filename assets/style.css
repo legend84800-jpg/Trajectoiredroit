@@ -1128,6 +1128,18 @@ section[id] { scroll-margin-top: 100px; }
   text-decoration: none;
 }
 .resources-menu__all-methods:hover { color: var(--blue-900); text-decoration: underline; text-underline-offset: 3px; }
+.resources-menu__quiz {
+  display: block;
+  margin: 10px 10px 0;
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+  background: var(--blue-50);
+  color: var(--blue-900);
+  font-size: .84rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.resources-menu__quiz:hover { background: var(--blue-100); color: var(--blue-900); }
 
 /* ===== MEGA-MENU (Cours & Fiches : 3 colonnes) ===== */
 .megamenu {
@@ -1348,9 +1360,7 @@ html[data-theme="dark"] .megamenu__niveau-col a:not(.megamenu__niveau-cta):hover
   color: #fff !important; opacity: .92;
 }
 
-/* Vague 5.3 : rangée "Par pack", pleine largeur sous les colonnes niveaux
-   du méga-menu Fiches. Rend visibles les packs Licence déjà vendus sur
-   formations.html mais absents jusqu'ici de la navigation. */
+/* Les cinq Packs Ultra par semestre suivent les matières dans le menu Fiches. */
 .megamenu__packs {
   margin-top: 20px;
   padding-top: 20px;
@@ -1358,7 +1368,7 @@ html[data-theme="dark"] .megamenu__niveau-col a:not(.megamenu__niveau-cta):hover
 }
 .megamenu__packs-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 10px;
 }
 .megamenu__pack-tile {
@@ -1390,6 +1400,8 @@ html[data-theme="dark"] .megamenu__niveau-col a:not(.megamenu__niveau-cta):hover
 .megamenu__pack-tile--featured:hover { opacity: .92; transform: translateY(-1px); }
 html[data-theme="dark"] .megamenu__packs { border-top-color: rgba(255,255,255,.1); }
 html[data-theme="dark"] .megamenu__pack-tile:hover { background: rgba(255,255,255,.05); }
+html[data-theme="dark"] .resources-menu__quiz { background: rgba(123,165,232,.16); color: #C7DBF7; }
+html[data-theme="dark"] .resources-menu__quiz:hover { background: rgba(123,165,232,.25); }
 
 /* Avec cinq familles au lieu de six, la navigation complète tient sur les grands
    portables. La version compacte reste réservée aux largeurs intermédiaires. */

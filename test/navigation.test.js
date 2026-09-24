@@ -59,6 +59,21 @@ test('Ressources conserve les articles et les quatre méthodes juridiques', () =
   }
 });
 
+test('Fiches montre les cinq Packs Ultra et Ressources accueille le quiz', () => {
+  const packs = ['l1-s1', 'l1-s2', 'l2-s1', 'l2-s2', 'l3-s1'];
+  for (const { nom, html } of pages) {
+    const nav = extraire(html, '<nav class="primary-nav"', '</nav>');
+    assert.match(nav, /<strong>Le Pack Ultra<\/strong><span>Choisis ton semestre<\/span>/, nom);
+    for (const pack of packs) {
+      assert.ok(nav.includes(`href="index.html#pack-ultra-${pack}"`), `${nom}: ${pack}`);
+    }
+    assert.ok(!nav.includes('href="index.html#pack-ultra-l3-s2"'), `${nom}: L3 S2 suspendu`);
+    assert.ok(!nav.includes('Pack Licence complète'), `${nom}: ancien pack dans Fiches`);
+    assert.ok(!nav.includes('class="megamenu__footer"'), `${nom}: ancien encart quiz dans Fiches`);
+    assert.ok(nav.indexOf('href="quiz-methode.html"') > nav.indexOf('dropdown--resources'), `${nom}: quiz dans Ressources`);
+  }
+});
+
 test('le menu mobile reprend les cinq familles avec divulgation progressive', () => {
   for (const { nom, html } of pages) {
     const navMobile = extraire(html, '<nav class="mobile-nav"', '</nav>');
@@ -68,15 +83,17 @@ test('le menu mobile reprend les cinq familles avec divulgation progressive', ()
     assert.match(navMobile, /<details class="mobile-nav__group[^>]*" open>/, `${nom} doit montrer les formats dès l'ouverture du menu`);
     assert.match(navMobile, />Choisir un format</, `${nom} doit nommer clairement le premier groupe`);
     assert.match(navMobile, /href="formations\.html#comparatif"[^>]*>Comparer tous les formats</, `${nom} doit donner un accès direct au comparatif`);
-    assert.equal((navMobile.match(/mobile-nav__format-icon/g) || []).length, 7, `${nom} doit illustrer les sept formats`);
+    assert.equal((navMobile.match(/mobile-nav__format-icon/g) || []).length, 8, `${nom} doit illustrer les sept formats et le Pack Ultra`);
+    assert.match(navMobile, /mobile-nav__format--featured[^>]*href="index\.html#pack-ultra"/, `${nom} doit mettre le Pack Ultra en avant`);
     assert.match(navMobile, /href="cours-fiches\.html"[^>]*><span[^>]*>🎓<\/span><span>Cours complets<\/span>/, `${nom} doit illustrer les cours complets`);
-    assert.match(navMobile, /mobile-nav__format--featured[^>]*href="formations\.html"[^>]*><span[^>]*>📄<\/span><span>Fiches complètes<\/span>/, `${nom} doit mettre en avant les fiches complètes`);
-    assert.match(navMobile, /href="revisions\.html"[^>]*><span[^>]*>📜<\/span><span>Fiches d’arrêt et citations<\/span>/, `${nom} doit conserver les fiches d'arrêt et les citations sur mobile`);
+    assert.match(navMobile, /href="formations\.html"[^>]*><span[^>]*>📄<\/span><span>Fiches complètes<\/span>/, `${nom} doit conserver les fiches complètes`);
+    assert.match(navMobile, /href="revisions\.html"[^>]*><span[^>]*>📜<\/span><span>Fiches d[’']arrêt et citations<\/span>/, `${nom} doit conserver les fiches d'arrêt et les citations sur mobile`);
     assert.match(navMobile, /mobile-nav__top-link[^>]*href="cours-particuliers\.html"/, `${nom} doit garder les cours en accès direct`);
     assert.match(navMobile, /mobile-nav__stage[^>]*data-stage-link/, `${nom} doit garder le stage en accès direct`);
     assert.match(navMobile, />Ressources</, `${nom} doit proposer Ressources sur mobile`);
     assert.match(navMobile, />À propos</, `${nom} doit proposer À propos sur mobile`);
-    assert.equal((navMobile.match(/mobile-nav__item-icon/g) || []).length, 12, `${nom} doit illustrer Ressources et À propos`);
+    assert.equal((navMobile.match(/mobile-nav__item-icon/g) || []).length, 13, `${nom} doit illustrer Ressources et À propos`);
+    assert.match(navMobile, /href="quiz-methode\.html"[^>]*><span[^>]*>❓<\/span><span>Quiz de méthode · 3 min<\/span>/, `${nom} doit proposer le quiz dans Ressources`);
     assert.match(navMobile, /href="blog\.html"[^>]*><span[^>]*>📰<\/span><span>Articles de droit<\/span>/, `${nom} doit illustrer les articles de droit`);
     assert.match(navMobile, /href="methode-cas-pratique\.html"[^>]*><span[^>]*>⚖️<\/span><span>Cas pratique<\/span>/, `${nom} doit illustrer le cas pratique`);
     assert.match(navMobile, /href="a-propos\.html"[^>]*><span[^>]*>🎓<\/span><span>Qui suis-je<\/span>/, `${nom} doit illustrer la présentation`);

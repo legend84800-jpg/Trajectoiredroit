@@ -97,8 +97,8 @@ test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async
   };
   const refus = [];
   try {
-    await handler({ method: "POST", body: { produitId: "pack-ultra-l1-s1" } }, res);
-    await handler({ method: "POST", body: { produitId: "pack-ultra-l2-s2" } }, res);
+    await handler({ method: "POST", body: { produitId: "pack-ultra-l1-s1", pageActuelle: "#pack-ultra-l1-s1" } }, res);
+    await handler({ method: "POST", body: { produitId: "pack-ultra-l2-s2", pageActuelle: "#pack-ultra-detail-l2-s2" } }, res);
     await handler({ method: "POST", body: { produitId: "pack-ultra-l3-s2" } }, res);
     refus.push([res.statusCode, res.data.code]);
     await handler({ method: "POST", body: { produitIds: ["pack-ultra-l3-s2"] } }, res);
@@ -119,8 +119,10 @@ test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async
   assert.equal(appels.length, 2);
   assert.equal(appels[0].line_items[0].price_data.unit_amount, 23900);
   assert.equal(appels[0].metadata.produitIds, "pack-ultra-l1-s1");
+  assert.equal(appels[0].cancel_url, "https://trajectoiredroit.com/#pack-ultra-l1-s1");
   assert.equal(appels[1].line_items[0].price_data.unit_amount, 20900);
   assert.equal(appels[1].metadata.produitIds, "pack-ultra-l2-s2");
+  assert.equal(appels[1].cancel_url, "https://trajectoiredroit.com/#pack-ultra-detail-l2-s2");
 });
 
 test("le webhook livre le pack par l'espace client sans envoyer 67 liens dans l'email", async () => {

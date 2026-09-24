@@ -287,7 +287,9 @@ async function handler(req, res) {
   // Chemin relatif uniquement (lettres/chiffres/tirets/slash/point/ancre) : jamais une URL
   // absolue, pour ne pas transformer cancel_url en redirection ouverte vers un autre domaine.
   const pageActuelleBrute = tronquer(corps.pageActuelle, 200);
-  const pageActuelle = /^[a-z0-9/_-]+\.html(#[a-z0-9_-]+)?$/i.test(pageActuelleBrute) ? pageActuelleBrute : "";
+  const pageAccueilPack = /^#pack-ultra(?:-l[123]-s[12]|-detail-l[123]-s[12])?$/.test(pageActuelleBrute);
+  const pageActuelle = pageAccueilPack || /^[a-z0-9/_-]+\.html(#[a-z0-9_-]+)?$/i.test(pageActuelleBrute)
+    ? pageActuelleBrute : "";
   const utmSource = tronquer(corps.utm_source, 100);
   const utmMedium = tronquer(corps.utm_medium, 100);
   const utmCampaign = tronquer(corps.utm_campaign, 100);
