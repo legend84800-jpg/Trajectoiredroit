@@ -71,6 +71,7 @@ test('Fiches montre les cinq Packs Ultra et Ressources accueille le quiz', () =>
     assert.ok(!nav.includes('Pack Licence complète'), `${nom}: ancien pack dans Fiches`);
     assert.ok(!nav.includes('class="megamenu__footer"'), `${nom}: ancien encart quiz dans Fiches`);
     assert.ok(nav.indexOf('href="quiz-methode.html"') > nav.indexOf('dropdown--resources'), `${nom}: quiz dans Ressources`);
+    assert.match(nav, /resources-menu__quiz-copy"><strong>Teste ta méthode<\/strong><small>10 questions pour voir où tu perds des points<\/small>/, `${nom}: présentation du quiz`);
   }
 });
 
@@ -93,7 +94,8 @@ test('le menu mobile reprend les cinq familles avec divulgation progressive', ()
     assert.match(navMobile, />Ressources</, `${nom} doit proposer Ressources sur mobile`);
     assert.match(navMobile, />À propos</, `${nom} doit proposer À propos sur mobile`);
     assert.equal((navMobile.match(/mobile-nav__item-icon/g) || []).length, 13, `${nom} doit illustrer Ressources et À propos`);
-    assert.match(navMobile, /href="quiz-methode\.html"[^>]*><span[^>]*>❓<\/span><span>Quiz de méthode · 3 min<\/span>/, `${nom} doit proposer le quiz dans Ressources`);
+    assert.match(navMobile, /mobile-nav__quiz" href="quiz-methode\.html"/, `${nom} doit proposer le quiz dans Ressources`);
+    assert.match(navMobile, /mobile-nav__quiz-time">3 min<\/span>/, `${nom} doit afficher la durée du quiz`);
     assert.match(navMobile, /href="blog\.html"[^>]*><span[^>]*>📰<\/span><span>Articles de droit<\/span>/, `${nom} doit illustrer les articles de droit`);
     assert.match(navMobile, /href="methode-cas-pratique\.html"[^>]*><span[^>]*>⚖️<\/span><span>Cas pratique<\/span>/, `${nom} doit illustrer le cas pratique`);
     assert.match(navMobile, /href="a-propos\.html"[^>]*><span[^>]*>🎓<\/span><span>Qui suis-je<\/span>/, `${nom} doit illustrer la présentation`);

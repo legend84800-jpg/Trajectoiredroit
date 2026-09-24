@@ -38,9 +38,21 @@ ${lignesPacks}
 const ancienPacks = /            <div class="megamenu__packs">[\s\S]*?            <\/div>\n(?=            <div class="megamenu__footer">|          <\/div>\n        <\/div>)/;
 const ancienFooter = /            <div class="megamenu__footer">[\s\S]*?              <a class="btn btn--primary btn--sm" href="quiz-methode\.html">Faire le quiz →<\/a>\n            <\/div>\n/;
 const repereQuiz = '              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>';
-const quizRessources = `              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">Faire le quiz de méthode · 3 min →</a>\n`;
+const ancienQuizRessources = '              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">Faire le quiz de méthode · 3 min →</a>\n';
+const quizRessources = `              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+`;
 const repereMobile = /        <a class="mobile-nav__illustrated" href="methodologie-juridique\.html"(?: aria-current="page")?><span class="mobile-nav__item-icon" aria-hidden="true">🧭<\/span><span>Toutes les méthodes<\/span><\/a>/;
-const quizMobile = `        <a class="mobile-nav__illustrated" href="quiz-methode.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>Quiz de méthode · 3 min</span></a>\n`;
+const ancienQuizMobile = '        <a class="mobile-nav__illustrated" href="quiz-methode.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>Quiz de méthode · 3 min</span></a>\n';
+const quizMobile = `        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+`;
 const packMobile = `        <a class="mobile-nav__format mobile-nav__format--featured" href="index.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>\n`;
 
 const bilan = { pages: 0, conformes: 0, modifiees: 0, erreurs: [] };
@@ -61,12 +73,18 @@ for (const nom of fs.readdirSync(racine).filter((fichier) => fichier.endsWith('.
   }
   if (nouveau.includes('class="megamenu__footer"')) nouveau = nouveau.replace(ancienFooter, '');
   if (!nouveau.includes(quizRessources)) {
-    if (!nouveau.includes(repereQuiz)) { bilan.erreurs.push(`${nom}: menu Ressources introuvable`); continue; }
-    nouveau = nouveau.replace(repereQuiz, quizRessources + repereQuiz);
+    if (nouveau.includes(ancienQuizRessources)) nouveau = nouveau.replace(ancienQuizRessources, quizRessources);
+    else {
+      if (!nouveau.includes(repereQuiz)) { bilan.erreurs.push(`${nom}: menu Ressources introuvable`); continue; }
+      nouveau = nouveau.replace(repereQuiz, quizRessources + repereQuiz);
+    }
   }
   if (!nouveau.includes(quizMobile)) {
-    if (!repereMobile.test(nouveau)) { bilan.erreurs.push(`${nom}: menu mobile introuvable`); continue; }
-    nouveau = nouveau.replace(repereMobile, (trouve) => trouve + '\n' + quizMobile.trimEnd());
+    if (nouveau.includes(ancienQuizMobile)) nouveau = nouveau.replace(ancienQuizMobile, quizMobile);
+    else {
+      if (!repereMobile.test(nouveau)) { bilan.erreurs.push(`${nom}: menu mobile introuvable`); continue; }
+      nouveau = nouveau.replace(repereMobile, (trouve) => trouve + '\n' + quizMobile.trimEnd());
+    }
   }
   if (!nouveau.includes(packMobile)) {
     const marqueurFormats = '      <div class="mobile-nav__subnav">\n';
