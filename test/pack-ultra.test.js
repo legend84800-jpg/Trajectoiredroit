@@ -66,7 +66,7 @@ test("la page d'accueil montre seulement les cinq packs en vente et leurs ressou
       const totalUnitaire = referencesPour(id, PRODUITS).reduce((total, reference) => total + PRODUITS[reference].prix, 0);
       const totalAffiche = `${(totalUnitaire / 100).toFixed(2).replace(".", ",")} €`;
       const pourcentage = Math.round((totalUnitaire - DEFINITIONS[id].prix) / totalUnitaire * 100);
-      assert.ok(carte.includes(`class="ultra-card__comparison">Total à l’unité : ${totalAffiche}</span>`), id);
+      assert.ok(carte.includes(`class="ultra-card__comparison">Total à l’unité : <span class="ultra-card__unit-total">${totalAffiche}</span></span>`), id);
       assert.ok(carte.includes(`class="ultra-card__saving">${pourcentage} % d’économie</span>`), id);
       assert.ok(carte.includes(`class="ultra-card__price">${prixAffiche}</span>`), id);
       assert.ok(bloc.includes(`<span>${prixAffiche}</span>`), id);
