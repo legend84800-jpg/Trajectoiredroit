@@ -59,7 +59,7 @@
 }
 .ultra-card__foot {
   display: flex;
-  align-items: baseline;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 12px;
   margin-top: 22px;
@@ -67,12 +67,16 @@
   padding-top: 15px;
 }
 .ultra-card__cta { margin-top: 16px; }
+.ultra-card__amount { display: flex; flex-direction: column; gap: 4px; }
 .ultra-card__price {
   color: #1a2851;
-  font-size: 1.65rem;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
   white-space: nowrap;
 }
+.ultra-card__payment { color: #4f5a70; font-size: .84rem; font-weight: 600; }
 .ultra-card__foot a { font-weight: 700; }
 .ultra-inclusions {
   max-width: 1040px;
@@ -139,6 +143,7 @@ html[data-theme="dark"] .ultra-card { background: #1b2945; border-color: #415371
 html[data-theme="dark"] .ultra-card__title,
 html[data-theme="dark"] .ultra-card__price { color: #f6f3ea; }
 html[data-theme="dark"] .ultra-card__description,
+html[data-theme="dark"] .ultra-card__payment,
 html[data-theme="dark"] .ultra-section__note { color: #d0d7e4; }
 html[data-theme="dark"] .ultra-card__eyebrow { color: #e5c277; }
 html[data-theme="dark"] .ultra-inclusions__item { background: #1b2945; border-color: #415371; }

@@ -38,6 +38,7 @@ test("les fichiers du pack conservent le nom de chaque ressource et un lien sign
 
 test("la page d'accueil montre la couverture et le contenu exact de chaque semestre", () => {
   const html = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8");
+  assert.match(html, /dès 199 €<\/span>\s*<span class="pricing__period">achat unique<\/span>/);
   for (const id of Object.keys(DEFINITIONS)) {
     const suffixe = id.replace("pack-ultra-", "");
     assert.ok(html.includes(`assets/covers/pack-ultra-${suffixe}.webp`), id);
@@ -80,6 +81,7 @@ test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async
   try {
     await handler({ method: "POST", body: { produitId: "pack-ultra-l1-s1" } }, res);
     await handler({ method: "POST", body: { produitId: "pack-ultra-l2-s2" } }, res);
+    await handler({ method: "POST", body: { produitId: "pack-ultra-l3-s2" } }, res);
   } finally {
     stripeModule.creerClientStripe = original;
     delete require.cache[chemin];
@@ -87,11 +89,13 @@ test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async
     else process.env.STRIPE_SECRET_KEY = ancienneCle;
   }
   assert.equal(res.statusCode, 200);
-  assert.equal(appels.length, 2);
+  assert.equal(appels.length, 3);
   assert.equal(appels[0].line_items[0].price_data.unit_amount, 23900);
   assert.equal(appels[0].metadata.produitIds, "pack-ultra-l1-s1");
   assert.equal(appels[1].line_items[0].price_data.unit_amount, 20900);
   assert.equal(appels[1].metadata.produitIds, "pack-ultra-l2-s2");
+  assert.equal(appels[2].line_items[0].price_data.unit_amount, 19900);
+  assert.equal(appels[2].metadata.produitIds, "pack-ultra-l3-s2");
 });
 
 test("le webhook livre le pack par l'espace client sans envoyer 67 liens dans l'email", async () => {
