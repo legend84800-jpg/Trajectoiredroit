@@ -5,6 +5,7 @@ const path = require("node:path");
 const PRODUITS = require("../api/_produits");
 const { DEFINITIONS, referencesPour } = require("../api/_packs-ultra");
 const { construireLiensTelechargement } = require("../api/_liens-telechargement");
+const { MATIERES, classerRessource } = require("../assets/js/pack-ultra-inclusions");
 
 test("chaque Pack Ultra contient exactement les références de son semestre", () => {
   for (const [id, definition] of Object.entries(DEFINITIONS)) {
@@ -43,6 +44,7 @@ test("la page d'accueil montre seulement les cinq packs en vente et leurs ressou
   assert.match(html, /Cinq packs, de la L1 à la L3/);
   assert.equal((html.match(/<article class="ultra-card"/g) || []).length, 5);
   assert.equal((html.match(/<details class="ultra-inclusions__item"/g) || []).length, 5);
+  assert.match(html, /assets\/js\/pack-ultra-inclusions\.js\?v=/);
   assert.match(html, /Économies calculées par rapport à l’achat séparé des ressources incluses/);
   for (const id of Object.keys(DEFINITIONS)) {
     const suffixe = id.replace("pack-ultra-", "");
@@ -72,6 +74,26 @@ test("la page d'accueil montre seulement les cinq packs en vente et leurs ressou
       assert.ok(bloc.includes(`<span>${prixAffiche}</span>`), id);
     }
   }
+});
+
+test("le sommaire par matière classe toutes les ressources des cinq semestres", () => {
+  const html = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8");
+  for (const [semestre, matieres] of Object.entries(MATIERES)) {
+    const debut = `<details class="ultra-inclusions__item" id="pack-ultra-detail-${semestre}">`;
+    const bloc = html.split(debut)[1]?.split("</details>")[0];
+    assert.ok(bloc, semestre);
+    const titres = [...bloc.matchAll(/<li class="ultra-resource [^"]+"><span class="ultra-resource__type">[^<]+<\/span> ([^<]+)<\/li>/g)].map(match => match[1]);
+    const quantites = new Map(matieres.map(([nom]) => [nom, 0]));
+    for (const titre of titres) {
+      const matiere = classerRessource(semestre, titre);
+      assert.ok(quantites.has(matiere), `${semestre} : ${titre}`);
+      quantites.set(matiere, quantites.get(matiere) + 1);
+    }
+    assert.equal(titres.length, DEFINITIONS[`pack-ultra-${semestre}`].attendus, semestre);
+    for (const [nom, quantite] of quantites) assert.ok(quantite > 0, `${semestre} : ${nom}`);
+  }
+  assert.equal(classerRessource("l3-s1", "Procédure civile L3 S1"), "Procédure civile");
+  assert.equal(classerRessource("l3-s1", "Droit pénal spécial L3"), "Droit pénal spécial");
 });
 
 test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async () => {
