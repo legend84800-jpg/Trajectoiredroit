@@ -159,6 +159,10 @@ async function handler(req, res) {
       .filter((v) => typeof v === "string" && v.trim())
       .map((v) => v.trim());
     const idsUniques = [...new Set(idsBrut)];
+    if (idsUniques.some((id) => PRODUITS[id]?.venteSuspendue)) {
+      res.status(400).json({ erreur: "Produit indisponible", code: "produit_indisponible" });
+      return;
+    }
     // Le stage de méthode reste hors panier : places limitées et datées, formulaire
     // d'inscription dédié (nom, WhatsApp, niveau) qui n'a pas sa place dans un achat groupé.
     const produitsPanier = idsUniques
@@ -300,6 +304,10 @@ async function handler(req, res) {
     res.status(400).json({ erreur: "Produit inconnu", code: "produit_inconnu" });
     return;
   }
+  if (produit.venteSuspendue) {
+    res.status(400).json({ erreur: "Produit indisponible", code: "produit_indisponible" });
+    return;
+  }
 
   // Le stage de méthode est une session datée à 18 places, pas un PDF en stock illimité :
   // on compte les achats déjà enregistrés pour ne jamais vendre une place qui n'existe pas.
@@ -318,6 +326,10 @@ async function handler(req, res) {
   }
 
   const bump = bumpId && bumpId !== produitId ? PRODUITS[bumpId] : null;
+  if (bump?.venteSuspendue) {
+    res.status(400).json({ erreur: "Produit indisponible", code: "produit_indisponible" });
+    return;
+  }
   const idsAchetes = bump ? [produitId, bumpId] : [produitId];
   const contientStage = idsAchetes.includes("stage-methode");
   const autoriserRelance = !internalTest && !contientStage;

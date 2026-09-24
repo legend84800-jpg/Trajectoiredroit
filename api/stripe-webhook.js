@@ -326,6 +326,9 @@ async function gererPanierAbandonne(sessionEvenement, brevoKey, stripe, origin, 
   if (!produitsAbandonnes.length || produitsAbandonnes.length !== produitIds.length) {
     return { ignore: "produit-inconnu" };
   }
+  if (produitsAbandonnes.some(produit => produit.venteSuspendue)) {
+    return { ignore: "vente-suspendue" };
+  }
 
   if (metadata.rappelH1Status !== "sent") {
     await envoyer(email, produitsAbandonnes, checkoutUrl, {

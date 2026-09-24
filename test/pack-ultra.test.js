@@ -19,6 +19,7 @@ test("chaque Pack Ultra contient exactement les références de son semestre", (
     }
     const pack = PRODUITS[id];
     assert.equal(pack.prix, definition.prix);
+    assert.equal(pack.venteSuspendue === true, definition.venteSuspendue === true);
     assert.deepEqual(pack.inclus, references);
     assert.equal(pack.blobs.length, pack.blobsMeta.length);
     assert.equal(pack.blobs.length, references.reduce((n, reference) => n + PRODUITS[reference].blobs.length, 0));
@@ -36,18 +37,28 @@ test("les fichiers du pack conservent le nom de chaque ressource et un lien sign
   assert.match(liens.at(-1).url, /sid=cs_test_pack/);
 });
 
-test("la page d'accueil montre la couverture et le contenu exact de chaque semestre", () => {
+test("la page d'accueil montre seulement les cinq packs en vente et leurs ressources", () => {
   const html = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8");
   assert.match(html, /dès 199 €<\/span>\s*<span class="pricing__period">achat unique<\/span>/);
+  assert.match(html, /Cinq packs, de la L1 à la L3/);
+  assert.equal((html.match(/<article class="ultra-card"/g) || []).length, 5);
+  assert.equal((html.match(/<details class="ultra-inclusions__item"/g) || []).length, 5);
   for (const id of Object.keys(DEFINITIONS)) {
     const suffixe = id.replace("pack-ultra-", "");
+    if (DEFINITIONS[id].venteSuspendue) {
+      assert.ok(!html.includes(`id="${id}"`), id);
+      assert.ok(!html.includes(`pack-ultra-detail-${suffixe}`), id);
+      assert.ok(!html.includes(`data-tjd-produit="${id}"`), id);
+      continue;
+    }
     assert.ok(html.includes(`assets/covers/pack-ultra-${suffixe}.webp`), id);
     const carte = html.split(`<article class="ultra-card" id="${id}">`)[1]?.split("</article>")[0];
     assert.ok(carte, id);
     const debut = `<details class="ultra-inclusions__item" id="pack-ultra-detail-${suffixe}">`;
     const bloc = html.split(debut)[1]?.split("</details>")[0];
     assert.ok(bloc, id);
-    assert.equal((bloc.match(/<li>/g) || []).length, DEFINITIONS[id].attendus, id);
+    assert.equal((bloc.match(/<li class="ultra-resource ultra-resource--/g) || []).length, DEFINITIONS[id].attendus, id);
+    assert.equal((bloc.match(/<span class="ultra-resource__type">/g) || []).length, DEFINITIONS[id].attendus, id);
     assert.equal(html.includes(`data-tjd-produit="${id}"`), DEFINITIONS[id].prix !== null, id);
     if (DEFINITIONS[id].prix !== null) {
       const prixAffiche = `${DEFINITIONS[id].prix / 100} €`;
@@ -78,24 +89,32 @@ test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async
     status(code) { this.statusCode = code; return this; },
     json(data) { this.data = data; return this; },
   };
+  const refus = [];
   try {
     await handler({ method: "POST", body: { produitId: "pack-ultra-l1-s1" } }, res);
     await handler({ method: "POST", body: { produitId: "pack-ultra-l2-s2" } }, res);
     await handler({ method: "POST", body: { produitId: "pack-ultra-l3-s2" } }, res);
+    refus.push([res.statusCode, res.data.code]);
+    await handler({ method: "POST", body: { produitIds: ["pack-ultra-l3-s2"] } }, res);
+    refus.push([res.statusCode, res.data.code]);
+    await handler({ method: "POST", body: { produitId: "pack-ultra-l1-s1", bumpId: "pack-ultra-l3-s2" } }, res);
+    refus.push([res.statusCode, res.data.code]);
   } finally {
     stripeModule.creerClientStripe = original;
     delete require.cache[chemin];
     if (ancienneCle === undefined) delete process.env.STRIPE_SECRET_KEY;
     else process.env.STRIPE_SECRET_KEY = ancienneCle;
   }
-  assert.equal(res.statusCode, 200);
-  assert.equal(appels.length, 3);
+  assert.deepEqual(refus, [
+    [400, "produit_indisponible"],
+    [400, "produit_indisponible"],
+    [400, "produit_indisponible"],
+  ]);
+  assert.equal(appels.length, 2);
   assert.equal(appels[0].line_items[0].price_data.unit_amount, 23900);
   assert.equal(appels[0].metadata.produitIds, "pack-ultra-l1-s1");
   assert.equal(appels[1].line_items[0].price_data.unit_amount, 20900);
   assert.equal(appels[1].metadata.produitIds, "pack-ultra-l2-s2");
-  assert.equal(appels[2].line_items[0].price_data.unit_amount, 19900);
-  assert.equal(appels[2].metadata.produitIds, "pack-ultra-l3-s2");
 });
 
 test("le webhook livre le pack par l'espace client sans envoyer 67 liens dans l'email", async () => {
@@ -131,4 +150,29 @@ test("le webhook livre le pack par l'espace client sans envoyer 67 liens dans l'
   assert.ok(emailEnvoye);
   assert.equal(emailEnvoye.produits[0].nom, "Le Pack Ultra L1 semestre 1");
   assert.deepEqual(emailEnvoye.liens, []);
+});
+
+test("un ancien paiement L3 S2 reste livrable, sans relance pour cette offre suspendue", async () => {
+  const pack = PRODUITS["pack-ultra-l3-s2"];
+  assert.ok(pack);
+  assert.equal(pack.venteSuspendue, true);
+  assert.ok(pack.blobs.length > 0);
+  const liens = construireLiensTelechargement("pack-ultra-l3-s2", pack, "secret-de-test", "https://trajectoiredroit.com", 900, { sessionId: "cs_test_ancien_achat" });
+  assert.equal(liens.length, pack.blobs.length);
+
+  const { gererPanierAbandonne } = require("../api/stripe-webhook")._test;
+  const session = {
+    id: "cs_test_l3_s2_suspendu",
+    mode: "payment",
+    created: Math.floor(Date.now() / 1000),
+    metadata: { produitIds: "pack-ultra-l3-s2", reminderPlan: "h1-h24-v1", source: "site", internalTest: "0" },
+    customer_details: { email: "client@example.com" },
+    consent: { promotions: "opt_in" },
+    after_expiration: { recovery: { url: "https://checkout.stripe.com/c/pay/test" } },
+  };
+  const resultat = await gererPanierAbandonne(session, "brevo_test", {}, "https://trajectoiredroit.com", {
+    recuperer: async () => session,
+    envoyer: async () => { throw new Error("Relance interdite"); },
+  });
+  assert.deepEqual(resultat, { ignore: "vente-suspendue" });
 });
