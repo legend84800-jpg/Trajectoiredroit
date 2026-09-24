@@ -7,8 +7,7 @@ const DEFINITIONS = {
   "pack-ultra-l1-s1": { nom: "Le Pack Ultra L1 semestre 1", prix: 23900, attendus: 31 },
   "pack-ultra-l1-s2": { nom: "Le Pack Ultra L1 semestre 2", prix: 19900, attendus: 22 },
   "pack-ultra-l2-s1": { nom: "Le Pack Ultra L2 semestre 1", prix: 22900, attendus: 28 },
-  // Le montant saisi pour L2 S2 ("2009") attend la confirmation de Julien.
-  "pack-ultra-l2-s2": { nom: "Le Pack Ultra L2 semestre 2", prix: null, attendus: 27 },
+  "pack-ultra-l2-s2": { nom: "Le Pack Ultra L2 semestre 2", prix: 20900, attendus: 27 },
   "pack-ultra-l3-s1": { nom: "Le Pack Ultra L3 semestre 1", prix: 29900, attendus: 37 },
   "pack-ultra-l3-s2": { nom: "Le Pack Ultra L3 semestre 2", prix: 4900, attendus: 5 },
 };

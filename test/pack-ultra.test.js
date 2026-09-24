@@ -41,11 +41,18 @@ test("la page d'accueil montre la couverture et le contenu exact de chaque semes
   for (const id of Object.keys(DEFINITIONS)) {
     const suffixe = id.replace("pack-ultra-", "");
     assert.ok(html.includes(`assets/covers/pack-ultra-${suffixe}.webp`), id);
+    const carte = html.split(`<article class="ultra-card" id="${id}">`)[1]?.split("</article>")[0];
+    assert.ok(carte, id);
     const debut = `<details class="ultra-inclusions__item" id="pack-ultra-detail-${suffixe}">`;
     const bloc = html.split(debut)[1]?.split("</details>")[0];
     assert.ok(bloc, id);
     assert.equal((bloc.match(/<li>/g) || []).length, DEFINITIONS[id].attendus, id);
     assert.equal(html.includes(`data-tjd-produit="${id}"`), DEFINITIONS[id].prix !== null, id);
+    if (DEFINITIONS[id].prix !== null) {
+      const prixAffiche = `${DEFINITIONS[id].prix / 100} €`;
+      assert.ok(carte.includes(`class="ultra-card__price">${prixAffiche}</span>`), id);
+      assert.ok(bloc.includes(`<span>${prixAffiche}</span>`), id);
+    }
   }
 });
 
@@ -72,6 +79,7 @@ test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async
   };
   try {
     await handler({ method: "POST", body: { produitId: "pack-ultra-l1-s1" } }, res);
+    await handler({ method: "POST", body: { produitId: "pack-ultra-l2-s2" } }, res);
   } finally {
     stripeModule.creerClientStripe = original;
     delete require.cache[chemin];
@@ -79,9 +87,11 @@ test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async
     else process.env.STRIPE_SECRET_KEY = ancienneCle;
   }
   assert.equal(res.statusCode, 200);
-  assert.equal(appels.length, 1);
+  assert.equal(appels.length, 2);
   assert.equal(appels[0].line_items[0].price_data.unit_amount, 23900);
   assert.equal(appels[0].metadata.produitIds, "pack-ultra-l1-s1");
+  assert.equal(appels[1].line_items[0].price_data.unit_amount, 20900);
+  assert.equal(appels[1].metadata.produitIds, "pack-ultra-l2-s2");
 });
 
 test("le webhook livre le pack par l'espace client sans envoyer 67 liens dans l'email", async () => {
