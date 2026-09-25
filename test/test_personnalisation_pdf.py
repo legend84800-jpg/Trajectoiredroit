@@ -241,7 +241,7 @@ class PersonnalisationPdfTest(unittest.TestCase):
         self.assertEqual(client.puts, 1)
         self.assertEqual(url_1, url_2)
         self.assertEqual(identite_1, identite_2)
-        self.assertTrue(url_1.startswith("https://public.example.com/personnalises/v2/"))
+        self.assertTrue(url_1.startswith("https://public.example.com/personnalises/v3/"))
 
 
 if __name__ == "__main__":

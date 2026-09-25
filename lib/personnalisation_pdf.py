@@ -33,7 +33,7 @@ from reportlab.platypus import Paragraph
 
 PRODUIT_PILOTE = "maj-penal-l2-s1"
 SOURCE_PREFIX = "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/"
-VERSION_PROTECTION = "tjd-acheteur-2"
+VERSION_PROTECTION = "tjd-acheteur-3"
 STRIPE_API_VERSION = "2026-07-29.dahlia"
 TAILLE_SOURCE_MAX = 60 * 1024 * 1024
 
@@ -338,9 +338,9 @@ def _destination_r2(
 ) -> tuple[str, str]:
     jeton = _hmac_hex(
         secret,
-        f"cache-pdf-v2|{session_id}|{produit_id}|{blob_index}|{source_version}",
+        f"cache-pdf-v3|{session_id}|{produit_id}|{blob_index}|{source_version}",
     )[:32]
-    cle = f"personnalises/v2/{produit_id}/{blob_index}/{jeton}.pdf"
+    cle = f"personnalises/v3/{produit_id}/{blob_index}/{jeton}.pdf"
     public_url = _variable_obligatoire("R2_PUBLIC_URL").rstrip("/")
     if not public_url.startswith("https://"):
         raise RuntimeError("URL publique R2 invalide")
