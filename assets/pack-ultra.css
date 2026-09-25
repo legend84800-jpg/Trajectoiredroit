@@ -84,6 +84,9 @@
 .ultra-card__split-btn:hover, .ultra-card__split-btn:focus-visible { color: #7a1f2b; }
 .ultra-card__split-btn:disabled { cursor: progress; opacity: .7; }
 html[data-theme="dark"] .ultra-card__split { color: #c5cbd8; }
+.ultra-card__parents { margin: 6px 0 0; text-align: center; font-size: .82rem; }
+.ultra-card__parents a { color: #7a1f2b; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+html[data-theme="dark"] .ultra-card__parents a { color: #e8a0a8; }
 html[data-theme="dark"] .ultra-card__split-btn { color: #e8d9a8; }
 .ultra-card__amount { display: flex; flex-direction: column; gap: 4px; }
 .ultra-card__comparison { color: #4f5a70; font-size: .82rem; line-height: 1.3; }
