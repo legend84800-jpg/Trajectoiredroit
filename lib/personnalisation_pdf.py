@@ -723,15 +723,16 @@ def personnaliser_pdf(
     page_licence[NameObject("/TJDLicense")] = TextStringObject(identite.licence)
     page_licence[NameObject("/TJDFingerprint")] = TextStringObject(identite.fingerprint)
     writer.add_page(page_licence)
+    # L'ajout du document entier conserve les signets et décale leurs cibles
+    # après la page de licence. add_page() perdait ces signets à la livraison.
+    writer.append(reader, import_outline=True)
 
-    for index, page_source in enumerate(reader.pages, start=2):
-        largeur = float(page_source.mediabox.width)
-        hauteur = float(page_source.mediabox.height)
+    for index, page_finale in enumerate(writer.pages[1:], start=2):
+        largeur = float(page_finale.mediabox.width)
+        hauteur = float(page_finale.mediabox.height)
         overlay = PdfReader(
             io.BytesIO(_page_overlay(largeur, hauteur, identite, index))
         ).pages[0]
-        writer.add_page(page_source)
-        page_finale = writer.pages[-1]
         page_finale.merge_page(overlay, over=True)
         page_finale[NameObject("/TJDLicense")] = TextStringObject(identite.licence)
         page_finale[NameObject("/TJDFingerprint")] = TextStringObject(identite.fingerprint)
