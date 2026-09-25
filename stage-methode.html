@@ -840,8 +840,8 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js?v=d8d85e69" defer></script>
-  <script src="assets/js/achat.js?v=cf261ab1"></script>
+  <script src="assets/js/main.js?v=30c14d23" defer></script>
+  <script src="assets/js/achat.js?v=60004b0a"></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
   (function(){
@@ -893,7 +893,7 @@
         new FormData(sf).forEach(function (v, k) { corps[k] = v; });
 
         // Identifiants Meta transmis uniquement si le visiteur a accepté les cookies,
-        // même logique que assets/js/achat.js?v=cf261ab1 pour tous les autres produits du site.
+        // même logique que assets/js/achat.js?v=60004b0a pour tous les autres produits du site.
         if (localStorage.getItem('tjd_consent') === 'granted') {
           var fbp = lireCookie('_fbp');
           var fbc = lireCookie('_fbc');
@@ -909,7 +909,7 @@
         corps.internalTest = window.tjdEstTestInterne ? window.tjdEstTestInterne() : false;
         var referrerSession = sessionStorage.getItem('tjd_referrer');
         if (referrerSession) corps.referrer = referrerSession;
-        ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (cle) {
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (cle) {
           var val = sessionStorage.getItem('tjd_' + cle);
           if (val) corps[cle] = val;
         });

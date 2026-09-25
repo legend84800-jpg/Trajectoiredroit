@@ -617,6 +617,7 @@ function donneesAchat(session, email, produitIds, montantEuros, estRelance) {
     utm_source: (session.metadata && session.metadata.utmSource) || null,
     utm_medium: (session.metadata && session.metadata.utmMedium) || null,
     utm_campaign: (session.metadata && session.metadata.utmCampaign) || null,
+    utm_content: (session.metadata && session.metadata.utmContent) || null,
     relance: !!estRelance,
   };
 }

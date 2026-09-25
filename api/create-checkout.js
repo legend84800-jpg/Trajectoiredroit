@@ -188,6 +188,7 @@ async function handler(req, res) {
     const utmSourcePanier = tronquerPanier(corps.utm_source, 100);
     const utmMediumPanier = tronquerPanier(corps.utm_medium, 100);
     const utmCampaignPanier = tronquerPanier(corps.utm_campaign, 100);
+    const utmContentPanier = tronquerPanier(corps.utm_content, 100);
     const deviceTypePanier = ["mobile", "tablette", "ordinateur"].includes(corps.deviceType)
       ? corps.deviceType
       : "inconnu";
@@ -249,6 +250,7 @@ async function handler(req, res) {
     if (utmSourcePanier) paramsPanier.metadata.utmSource = utmSourcePanier;
     if (utmMediumPanier) paramsPanier.metadata.utmMedium = utmMediumPanier;
     if (utmCampaignPanier) paramsPanier.metadata.utmCampaign = utmCampaignPanier;
+    if (utmContentPanier) paramsPanier.metadata.utmContent = utmContentPanier;
 
     try {
       const sessionPanier = await stripe.checkout.sessions.create(
@@ -294,6 +296,7 @@ async function handler(req, res) {
   const utmSource = tronquer(corps.utm_source, 100);
   const utmMedium = tronquer(corps.utm_medium, 100);
   const utmCampaign = tronquer(corps.utm_campaign, 100);
+  const utmContent = tronquer(corps.utm_content, 100);
   const deviceType = ["mobile", "tablette", "ordinateur"].includes(corps.deviceType)
     ? corps.deviceType
     : "inconnu";
@@ -409,6 +412,7 @@ async function handler(req, res) {
   if (utmSource) params.metadata.utmSource = utmSource;
   if (utmMedium) params.metadata.utmMedium = utmMedium;
   if (utmCampaign) params.metadata.utmCampaign = utmCampaign;
+  if (utmContent) params.metadata.utmContent = utmContent;
 
   // Champs du formulaire d'inscription au stage (remplace l'ancien flux /api/contact,
   // qui envoyait ces infos par email sans jamais déclencher de paiement) : transmis en

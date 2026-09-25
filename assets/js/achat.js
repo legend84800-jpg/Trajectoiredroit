@@ -132,7 +132,7 @@
     corps.internalTest = estTestInterne();
     var referrerSession = sessionStorage.getItem('tjd_referrer');
     if (referrerSession) corps.referrer = referrerSession;
-    ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (cle) {
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (cle) {
       var val = sessionStorage.getItem('tjd_' + cle);
       if (val) corps[cle] = val;
     });
@@ -540,7 +540,7 @@
     corps.internalTest = estTestInterne();
     var referrerSession = sessionStorage.getItem('tjd_referrer');
     if (referrerSession) corps.referrer = referrerSession;
-    ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (cle) {
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (cle) {
       var val = sessionStorage.getItem('tjd_' + cle);
       if (val) corps[cle] = val;
     });
