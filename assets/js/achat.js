@@ -106,6 +106,9 @@
     // Identifiants Meta transmis uniquement si le visiteur a accepté les cookies,
     // pour permettre à l'API Conversions de recouper l'achat avec le pixel côté serveur.
     var corps = bumpActif ? { produitId: produitId, bumpId: bumpId } : { produitId: produitId };
+    // Paiement en 2 ou 3 fois sans frais (Packs Ultra) : le serveur revérifie le produit.
+    var echeances = parseInt(btnEl.getAttribute('data-tjd-echeances') || '', 10);
+    if (echeances === 2 || echeances === 3) corps.echeances = echeances;
     corps.attemptId = creerAttemptId();
     corps.attemptCreatedAt = Math.floor(Date.now() / 1000);
     if (localStorage.getItem('tjd_consent') === 'granted') {

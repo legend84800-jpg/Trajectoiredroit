@@ -8,6 +8,7 @@ const crypto = require("crypto");
 const PRODUITS = require("./_produits");
 const { selectionner } = require("./_supabase");
 const { creerClientStripe, INTEGRATION_IDS } = require("./_stripe");
+const { nombreEcheancesValide, versCheckoutEcheances } = require("./_echeances");
 
 const PORTALIS_PRICE_ID = "price_1TqyboIJrx5ith04BGxcyg5T";
 
@@ -440,10 +441,15 @@ async function handler(req, res) {
     });
   }
 
+  // Paiement en 2 ou 3 fois sans frais, réservé aux Packs Ultra achetés seuls.
+  const nombreEcheances = bump ? null : nombreEcheancesValide(produitId, produit, corps.echeances);
+  const paramsFinaux = nombreEcheances ? versCheckoutEcheances(params, produit, nombreEcheances) : params;
+  const cleIdempotence = nombreEcheances ? `checkout-${attemptId}-x${nombreEcheances}` : `checkout-${attemptId}`;
+
   try {
     const sessionCheckout = await stripe.checkout.sessions.create(
-      params,
-      { idempotencyKey: `checkout-${attemptId}` }
+      paramsFinaux,
+      { idempotencyKey: cleIdempotence }
     );
     res.status(200).json({
       url: sessionCheckout.url,

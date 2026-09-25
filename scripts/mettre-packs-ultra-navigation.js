@@ -31,7 +31,7 @@ const lignesPacks = packsActifs.map(([id, definition]) => {
 }).join('\n');
 
 const blocPacks = `            <div class="megamenu__packs">
-              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Achat unique · accès à vie</small></div>
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
               <div class="megamenu__packs-grid">
 ${lignesPacks}
               </div>

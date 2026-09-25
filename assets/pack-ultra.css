@@ -79,6 +79,12 @@
   padding-top: 15px;
 }
 .ultra-card__cta { margin-top: 16px; }
+.ultra-card__split { margin: 10px 0 0; text-align: center; color: #4f5a70; font-size: .86rem; }
+.ultra-card__split-btn { padding: 0; border: 0; background: none; color: #1A2851; font: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.ultra-card__split-btn:hover, .ultra-card__split-btn:focus-visible { color: #7a1f2b; }
+.ultra-card__split-btn:disabled { cursor: progress; opacity: .7; }
+html[data-theme="dark"] .ultra-card__split { color: #c5cbd8; }
+html[data-theme="dark"] .ultra-card__split-btn { color: #e8d9a8; }
 .ultra-card__amount { display: flex; flex-direction: column; gap: 4px; }
 .ultra-card__comparison { color: #4f5a70; font-size: .82rem; line-height: 1.3; }
 .ultra-card__unit-total { text-decoration: line-through; text-decoration-thickness: 1px; }

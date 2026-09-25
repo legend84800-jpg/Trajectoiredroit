@@ -11,6 +11,7 @@ const PRODUITS = require("./_produits");
 const { upsert, insererSiAbsent, supprimer } = require("./_supabase");
 const { construireLiensTelechargement } = require("./_liens-telechargement");
 const { creerClientStripe } = require("./_stripe");
+const { bornerAbonnement } = require("./_echeances");
 
 // Traduit le statut Stripe en statut simplifié stocké côté Supabase.
 function statutAbonnement(statutStripe) {
@@ -621,7 +622,10 @@ function donneesAchat(session, email, produitIds, montantEuros, estRelance) {
 }
 
 async function traiterAchatPaye(session, contexte) {
-  if (session.mode === "subscription") return { ignore: "abonnement" };
+  // Un abonnement Checkout n'est livré ici que s'il porte un paiement en plusieurs
+  // fois d'un Pack Ultra. Portalis reste géré par les events customer.subscription.*.
+  const nombreEcheances = Number(session.metadata && session.metadata.echeances) || 0;
+  if (session.mode === "subscription" && !nombreEcheances) return { ignore: "abonnement" };
 
   const produitIdsRaw = session.metadata && session.metadata.produitIds;
   const email = session.customer_details && session.customer_details.email;
@@ -660,7 +664,19 @@ async function traiterAchatPaye(session, contexte) {
     reinscrireAcheteurBrevo,
     recupererCodePromo,
     annulerRelancePlanifiee,
+    bornerAbonnement,
   };
+
+  // Le plafond du nombre de prélèvements est posé avant toute livraison. En cas
+  // d'échec, Stripe reçoit un code 500 et rejoue le webhook : jamais un pack
+  // livré avec un abonnement qui continuerait à prélever sans fin.
+  if (session.mode === "subscription") {
+    const subscriptionId = typeof session.subscription === "string"
+      ? session.subscription
+      : session.subscription && session.subscription.id;
+    if (!subscriptionId) throw new Error(`Abonnement absent pour un paiement en ${nombreEcheances} fois, session=${session.id}`);
+    await operations.bornerAbonnement(contexte.stripe, subscriptionId, nombreEcheances);
+  }
 
   // La contrainte unique achats.session_id devient le verrou d'idempotence.
   // On réserve la session avant tout email. Un webhook rejoué s'arrête ici.

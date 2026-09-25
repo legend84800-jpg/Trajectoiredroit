@@ -45,8 +45,13 @@ async function handler(req, res) {
     const produitIds = (data.metadata && data.metadata.produitIds)
       ? data.metadata.produitIds.split(",").map((s) => s.trim()).filter(Boolean)
       : [];
+    // Paiement en plusieurs fois : la valeur de la commande est le total des
+    // échéances, pas la seule première mensualité encaissée par Checkout.
+    const montantTotalEcheances = Number(data.metadata && data.metadata.montantTotal);
     res.status(200).json({
-      montant: data.amount_total != null ? data.amount_total / 100 : null,
+      montant: montantTotalEcheances > 0
+        ? montantTotalEcheances / 100
+        : (data.amount_total != null ? data.amount_total / 100 : null),
       devise: (data.currency || "eur").toUpperCase(),
       produitIds,
       suggestions: suggererComplements(produitIds, 3),
