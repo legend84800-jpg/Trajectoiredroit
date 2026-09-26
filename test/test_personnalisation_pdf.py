@@ -20,9 +20,15 @@ from lib.personnalisation_pdf import (
 )
 
 
-def source_pdf_protegee() -> bytes:
+def source_pdf_protegee(*, interactif: bool = False) -> bytes:
     claire = io.BytesIO()
     dessin = canvas.Canvas(claire, pagesize=(595.28, 841.89))
+    if interactif:
+        dessin.drawString(72, 760, "SOMMAIRE CLIQUABLE")
+        dessin.linkRect("Ouvrir le chapitre", "chapitre", (72, 700, 300, 725))
+        dessin.showPage()
+        dessin.bookmarkPage("chapitre")
+        dessin.addOutlineEntry("Chapitre 1. Exemple", "chapitre")
     dessin.drawString(72, 760, "Page source de test")
     dessin.showPage()
     dessin.save()
@@ -158,6 +164,27 @@ class PersonnalisationPdfTest(unittest.TestCase):
         self.assertIn("jul***@gmail.com", texte)
         self.assertIn("Julien D.", texte)
 
+    def test_sommaire_et_signets_survivent_a_la_personnalisation(self):
+        session = session_payee()
+        identite = identite_depuis_session(session, "secret-de-test")
+        contenu = personnaliser_pdf(
+            source_pdf_protegee(interactif=True),
+            identite,
+            "secret-de-test",
+            session["id"],
+        )
+        clair = io.BytesIO()
+        with pikepdf.open(io.BytesIO(contenu), password="") as pdf:
+            pdf.save(clair)
+        lecteur = PdfReader(clair)
+        self.assertEqual(len(lecteur.pages), 3)
+        self.assertEqual(len(lecteur.outline), 1)
+        self.assertEqual(lecteur.get_destination_page_number(lecteur.outline[0]), 2)
+        lien = lecteur.pages[1]["/Annots"][0].get_object()
+        destination = lien.get("/Dest") or lien["/A"]["/D"]
+        self.assertEqual(destination[0].idnum,
+                         lecteur.pages[2].indirect_reference.idnum)
+
     def test_generation_r2_est_mise_en_cache_sans_renvoyer_le_pdf_par_vercel(self):
         produit_id = "fiche-da-l2-s1"
         session = session_payee()
@@ -214,7 +241,7 @@ class PersonnalisationPdfTest(unittest.TestCase):
         self.assertEqual(client.puts, 1)
         self.assertEqual(url_1, url_2)
         self.assertEqual(identite_1, identite_2)
-        self.assertTrue(url_1.startswith("https://public.example.com/personnalises/v2/"))
+        self.assertTrue(url_1.startswith("https://public.example.com/personnalises/v3/"))
 
 
 if __name__ == "__main__":

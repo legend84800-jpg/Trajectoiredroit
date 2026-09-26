@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#1A2851">
+  <title>Présentation aux parents · TrajectoireDroit</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Qui est Julien, ce que contient le Pack Ultra et comment se passe le paiement en 1, 2 ou 3 fois. Une présentation de quatre pages pour les parents d'étudiants en droit.">
+  <link rel="canonical" href="https://trajectoiredroit.com/parents.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Présentation aux parents, Trajectoire Droit">
+  <meta property="og:description" content="Qui est Julien, ce que contient le Pack Ultra et comment se passe le paiement en 1, 2 ou 3 fois. Une présentation de quatre pages pour les parents d'étudiants en droit.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/cours-contrats-hero.jpg">
+  <meta property="og:url" content="https://trajectoiredroit.com/parents.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Présentation aux parents",
+    "description": "Qui est Julien, ce que contient le Pack Ultra et comment se passe le paiement en 1, 2 ou 3 fois. Une présentation de quatre pages pour les parents d'étudiants en droit.",
+    "inLanguage": "fr-FR",
+    "url": "https://trajectoiredroit.com/parents.html",
+    "author": { "@type": "Person", "name": "Julien", "jobTitle": "Professeur de droit", "url": "https://trajectoiredroit.com/a-propos.html" }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=479afa66">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+  <style>
+    .parents{max-width:760px}
+    .parents .transmis{display:inline-block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid var(--gold-line);border-radius:30px;padding:3px 12px;margin-bottom:14px}
+    .parents h1{font-family:Spectral,Georgia,serif;color:var(--navy);font-size:clamp(1.8rem,4.5vw,2.5rem);line-height:1.15;margin:0 0 16px}
+    .parents .chapeau{font-size:1.1rem;color:var(--body)}
+    .parents h2{font-family:Spectral,Georgia,serif;color:var(--navy);font-size:1.45rem;margin:40px 0 12px;display:flex;align-items:baseline;gap:10px}
+    .parents h2 .num{font-family:"Hanken Grotesk",sans-serif;font-size:.8rem;color:var(--accent);letter-spacing:.1em;font-weight:700}
+    .parents p{color:var(--body);line-height:1.7}
+    .parents .accent,.parents .question{color:var(--navy);font-weight:700}
+    .parents .question{margin:22px 0 6px}
+    .parents .bordeaux{color:#7A1F2B;font-weight:700}
+    .parents .presentation{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:start}
+    .parents .presentation img{width:150px;height:180px;object-fit:cover;border-radius:10px;border:1px solid var(--gold-line)}
+    .parents .chiffres{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}
+    .parents .chiffre{border:1px solid rgba(15,23,42,.1);border-radius:10px;padding:12px 8px;text-align:center}
+    .parents .chiffre b{display:block;font-family:Spectral,Georgia,serif;color:var(--accent);font-size:1.5rem;line-height:1.1}
+    .parents .chiffre span{display:block;font-size:.8rem;color:var(--body);margin-top:4px;line-height:1.3}
+    .parents .encadre{background:var(--gold-bg);border-left:3px solid var(--gold-line);padding:16px 20px;border-radius:0 10px 10px 0;margin:18px 0}
+    .parents .gains{display:grid;gap:14px}
+    .parents .gain b{color:var(--navy);display:block;margin-bottom:2px}
+    .parents .gain p{margin:0}
+    .parents ul.formats{list-style:none;padding:0;margin:6px 0 14px}
+    .parents ul.formats li{position:relative;padding-left:22px;margin-bottom:8px;color:var(--body)}
+    .parents ul.formats li::before{content:"→";position:absolute;left:0;color:#7A1F2B;font-weight:700}
+    .parents .avis{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0 16px}
+    .parents .avis blockquote{margin:0;border:1px solid rgba(15,23,42,.1);border-radius:10px;padding:14px 16px;font-family:Spectral,Georgia,serif;font-style:italic;line-height:1.5;color:var(--navy)}
+    .parents .avis blockquote.parent{border-color:var(--gold-line);background:var(--gold-bg)}
+    .parents .avis cite{display:block;margin-top:8px;font-style:normal;font-family:"Hanken Grotesk",sans-serif;font-size:.8rem;color:var(--body)}
+    .parents table{width:100%;border-collapse:collapse;margin:12px 0 18px;font-size:.95rem}
+    .parents th{text-align:left;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--body);border-bottom:2px solid var(--navy);padding:8px 6px;font-weight:600}
+    .parents td{padding:10px 6px;border-bottom:1px solid rgba(15,23,42,.1);color:var(--body)}
+    .parents td.prix{font-family:Spectral,Georgia,serif;font-weight:700;color:var(--navy);font-size:1.1rem}
+    .parents td.barre{text-decoration:line-through}
+    .parents .contact{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+    .parents .contact div{border:1px solid var(--gold-line);border-radius:10px;padding:14px 18px}
+    .parents .contact small{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+    .parents .signature{margin-top:24px;font-family:Spectral,Georgia,serif;font-size:1.2rem;color:var(--navy)}
+    .parents .signature span{display:block;font-family:"Hanken Grotesk",sans-serif;font-size:.85rem;color:var(--body)}
+    .parents .parents__pdf{margin:18px 0 8px}
+    .parents p a:not(.btn),.parents .contact a{color:var(--navy);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+    @media (max-width:640px){
+      .parents .presentation{grid-template-columns:1fr}
+      .parents .chiffres{grid-template-columns:repeat(2,1fr)}
+      .parents .avis,.parents .contact{grid-template-columns:1fr}
+      .parents table{font-size:.82rem}
+      .parents th:nth-child(2),.parents td:nth-child(2),.parents th:nth-child(5),.parents td:nth-child(5){display:none}
+    }
+    html[data-theme="dark"] .parents .bordeaux,html[data-theme="dark"] .parents ul.formats li::before{color:#E8A0A8}
+  </style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d’arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="outil-fiche-arret.html" role="menuitem">🤖 Portalis</a>
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>7 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-penal-general-l1.html" role="menuitem">Droit pénal général (S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="index.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 239 € au lieu de 416,69 €, 43 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-43 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">416,69 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 22 ressources, 199 € au lieu de 305,78 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">22 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">305,78 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 28 ressources, 229 € au lieu de 393,72 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">28 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">393,72 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 27 ressources, 209 € au lieu de 361,73 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">27 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">361,73 €</span><span class="megamenu__pack-tile-price">209 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 37 ressources, 299 € au lieu de 513,63 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">37 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">513,63 €</span><span class="megamenu__pack-tile-price">299 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -14 %</em></strong><small>890 € · 89 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <div class="nav-item has-dropdown">
+          <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>Stage en direct
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <div class="stage-teaser">
+              <button type="button" class="dropdown__item stage-teaser__trigger" aria-expanded="false" aria-controls="stageTeaserPanel">
+                <span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg></span>
+                <span class="stage-teaser__main">
+                  <strong>Stage de méthode en direct</strong>
+                  <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+                  <span class="stage-teaser__countdown"></span>
+                </span>
+              </button>
+              <div class="stage-teaser__panel" id="stageTeaserPanel">
+                <p>Trois séances en direct, 8 h au total pour 176 €, pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un sujet travaillé à chaque fois. La prochaine session a lieu les 27, 28 et 29 octobre, pendant les vacances de la Toussaint. Plus que 3 places.</p>
+              </div>
+            </div>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="stage-methode.html">Voir toutes les infos et réserver →</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="index.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="outil-fiche-arret.html"><span class="mobile-nav__format-icon" aria-hidden="true">🤖</span><span>Portalis</span></a>
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+    <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
+      <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>
+      <span class="mobile-nav__stage-main">
+        <span class="mobile-nav__stage-title">Stage en direct</span>
+        <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+        <span class="stage-teaser__countdown"></span>
+      </span>
+    </a>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d'arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d'arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group mobile-nav__group--current">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow parents">
+<span class="transmis">Document transmis par votre enfant</span>
+  <h1>La méthode d'un major de promotion en droit, réunie pour le semestre de votre enfant</h1>
+  <p class="chapeau">Votre enfant envisage d'acheter un Pack Ultra de Trajectoire Droit. Dans ce document, je vous présente qui je suis, ce que contient le pack et ce qu'il change dans son semestre. La lecture prend environ cinq minutes.</p>
+<p class="parents__pdf"><a class="btn btn--primary" href="assets/downloads/presentation-parents-trajectoire-droit.pdf" target="_blank" rel="noopener">Télécharger la présentation en PDF →</a></p>
+
+  <h2><span class="num">01</span>Qui je suis</h2>
+  <div class="presentation">
+    <img src="assets/julien-md.webp" width="300" height="360" loading="lazy" alt="Julien, fondateur de Trajectoire Droit">
+    <div>
+      <p>Je m'appelle Julien et je suis titulaire d'un <span class="accent">Master II de droit pénal et sciences criminelles de l'université Panthéon-Assas</span>. Pendant mes études, j'ai été <span class="accent">major de promotion à plusieurs reprises</span>. En licence 2, j'ai ainsi terminé premier sur 329 étudiants, puis deuxième sur 299 en licence 3, où j'étais vice-major.</p>
+      <p>Mes relevés de notes sont en ligne, anonymisés, et vous pouvez les consulter vous-même sur <a href="a-propos.html#resultats-universitaires">la page de mes résultats universitaires</a>.</p>
+    </div>
+  </div>
+  <p>Depuis cinq ans, j'enseigne le droit à plein temps en cours particuliers, de la L1 au master. J'ai aussi enseigné pour la prépa privée Mission Master. Sur Superprof, je suis le <span class="accent">professeur de droit le mieux classé</span>, et les 162 avis laissés sur ma page sont publics.</p>
+  <div class="chiffres">
+    <div class="chiffre"><b>620+</b><span>étudiants accompagnés</span></div>
+    <div class="chiffre"><b>4 500 h</b><span>de cours particuliers donnés</span></div>
+    <div class="chiffre"><b>5/5</b><span>sur 162 avis Superprof</span></div>
+    <div class="chiffre"><b>+3 pts</b><span>de moyenne gagnés par mes élèves</span></div>
+  </div>
+  <p>De plus, je conçois chaque support avec un enseignant universitaire spécialisé dans la matière, qui le relit et le valide avant sa mise en ligne.</p>
+
+  <h2><span class="num">02</span>Le constat de départ</h2>
+  <p>D'après le ministère de l'Enseignement supérieur, <span class="bordeaux">43,3 % des étudiants</span> obtiennent leur licence de droit en trois ou quatre ans (Note Flash n°29, novembre 2025). Autrement dit, plus d'un étudiant sur deux ne l'a pas dans ce délai.</p>
+  <p>En cinq ans de cours particuliers, j'ai vu la même difficulté revenir chez la plupart de mes élèves. Ils travaillent beaucoup, mais personne ne leur apprend à réussir les exercices qui font leurs notes, c'est-à-dire le cas pratique, le commentaire d'arrêt et la dissertation. L'amphithéâtre explique le droit, puis l'étudiant se retrouve seul devant sa copie, sans savoir ce que le correcteur attend de lui.</p>
+<h2><span class="num">03</span>Ce que votre enfant y gagne</h2>
+  <div class="gains">
+    <div class="gain"><b>Il sait quoi apprendre, matière par matière.</b><p>Chaque matière du semestre a son cours complet, écrit pour être compris sans aide, et sa fiche complète pour réviser. Votre enfant arrête donc de passer ses soirées à recopier et à résumer ses notes d'amphithéâtre, et il consacre ce temps à apprendre.</p></div>
+    <div class="gain"><b>Votre enfant voit à quoi ressemble une copie qui obtient une bonne note.</b><p>Le pack contient des cas pratiques, des commentaires d'arrêt et des dissertations corrigés, rédigés comme la copie d'un très bon étudiant. Ainsi, votre enfant voit la méthode appliquée du premier mot au dernier, sur des sujets de sa propre matière.</p></div>
+    <div class="gain"><b>Les règles sont déjà rédigées quand arrive le cas pratique.</b><p>Les majeures préparées donnent, pour chaque thème, la règle de droit déjà formulée condition par condition, avec ses articles et ses arrêts. Le jour de l'examen, il lui reste alors à l'appliquer aux faits du sujet.</p></div>
+    <div class="gain"><b>Il vérifie lui-même où il en est, chaque semaine.</b><p>Les flashcards et les QCM lui permettent de tester ses connaissances au fil du semestre. Il repère ainsi ce qu'il a oublié plusieurs semaines avant les partiels, au moment où il a encore le temps de le reprendre.</p></div>
+  </div>
+  <div class="encadre">
+    <p style="margin:0">En moyenne, les étudiants que j'accompagne en cours particuliers <span class="accent">gagnent 3 points sur leur moyenne générale</span>, et <span class="accent">94 % d'entre eux valident leur année</span>. Le Pack Ultra réunit la méthode que je leur enseigne, sous une forme que votre enfant peut suivre seul, à son rythme.</p>
+  </div>
+
+  <h2><span class="num">04</span>Ce que contient le pack</h2>
+  <p>Le Pack Ultra réunit toutes les ressources déjà publiées pour un semestre donné, de la L1 à la L3. Selon le semestre, il contient <span class="accent">entre 22 et 37 documents PDF</span>, répartis entre plusieurs formats.</p>
+  <ul class="formats">
+    <li><b>Les cours complets</b>, pour préparer les TD et reprendre un point mal compris en amphithéâtre.</li>
+    <li><b>Les fiches complètes</b>, pour réviser une matière entière avant les partiels.</li>
+    <li><b>Les majeures préparées</b>, qui donnent la règle de droit prête à appliquer dans un cas pratique.</li>
+    <li><b>Les fiches d'arrêt et les fiches de citations</b>, pour retenir la jurisprudence et les auteurs à citer.</li>
+    <li><b>Les cas pratiques, commentaires d'arrêt et dissertations corrigés</b>, pour voir la méthode appliquée.</li>
+    <li><b>Les flashcards et les QCM</b>, pour s'entraîner et mesurer ses progrès.</li>
+  </ul>
+  <p>Votre enfant reçoit tous les fichiers par email dès le paiement. Ils se lisent aussi bien sur ordinateur que sur téléphone, et il les garde à vie. En outre, les mises à jour qui suivent une réforme ou un nouvel arrêt important sont incluses sans supplément.</p>
+<h2><span class="num">05</span>Ce qu'en disent les parents et les étudiants</h2>
+  <p>Les trois premiers avis ont été écrits par des parents qui m'ont confié leur enfant en cours particuliers. Les suivants viennent d'étudiants qui ont travaillé avec mes fiches.</p>
+  <div class="avis">
+    <blockquote class="parent">« Julien accompagne ma fille dans son rattrapage de L1 de droit. Il fait preuve de pédagogie. »<cite><b>Jerome</b>, parent · L1, Cergy Pontoise</cite></blockquote>
+    <blockquote class="parent">« Excellent professeur. Julien suit mon fils Amaël en 1ère année de droit depuis près de 4 mois. »<cite><b>Laila</b>, parent · L1, Assas</cite></blockquote>
+    <blockquote class="parent">« Julien est un excellent professeur pour mon fils en 3ème année de droit. Grâce à lui, il a progressé. »<cite><b>Aurélie</b>, parent · L3, Lyon III</cite></blockquote>
+    <blockquote>« Les fiches m'ont vraiment aidée à m'y retrouver. Ça m'a permis de remettre de l'ordre dans tout ce que j'avais accumulé pendant le semestre. »<cite><b>Julie</b>, étudiante · L1 Droit</cite></blockquote>
+    <blockquote>« Les fiches m'ont permis de rattraper certains chapitres que je n'avais pratiquement jamais relus. Ça m'a évité de passer des heures à faire mes propres synthèses. »<cite><b>Antoine</b>, étudiant · L3 Droit</cite></blockquote>
+    <blockquote>« Quand on a cinq ou six matières à préparer en même temps, chaque heure compte. Ça m'a permis d'aborder les examens beaucoup plus sereinement. »<cite><b>Baptiste</b>, étudiant · L3 Droit</cite></blockquote>
+  </div>
+  <p>Vous pouvez lire les 162 avis sur <a target="_blank" rel="noopener" href="https://www.superprof.fr/professeur-prive-diplome-master-droit-penal-assas-major-promotion-deux-reprises-donne-cours.html">ma page Superprof</a>, ainsi que tous les retours publiés sur <a href="temoignages.html">la page des témoignages</a> de mon site.</p>
+
+  <h2><span class="num">06</span>Deux questions que vous vous posez peut-être</h2>
+  <p class="question">Votre enfant a déjà ses cours à la faculté.</p>
+  <p>Les cours de la faculté donnent le programme, et le pack suit ce même programme. Il ajoute ce que l'amphithéâtre laisse de côté, à savoir des explications reprises pas à pas et des copies corrigées qui montrent comment se servir du cours pour répondre à un sujet d'examen. Votre enfant continue donc d'aller en cours, puis il travaille avec le pack pour préparer ses TD et ses partiels.</p>
+  <p class="question">Vous hésitez avec des cours particuliers.</p>
+  <p>Une heure de cours particulier avec moi coûte 104 €. Le Pack Ultra de L1 semestre 1 coûte 239 €, soit un peu plus de deux heures de cours, alors qu'il réunit les ressources de toutes les matières publiées pour ce semestre. Les cours particuliers restent utiles quand un étudiant a besoin qu'on reprenne ses copies avec lui, c'est pourquoi je continue d'en donner. Toutefois, le pack apporte la méthode sur tout le semestre pour un prix fixe, et vous pourrez ensuite ajouter quelques heures de cours si votre enfant bloque sur une matière.</p>
+<h2><span class="num">07</span>Le prix et le paiement</h2>
+  <p>Le prix dépend du semestre. Vous payez le pack une seule fois, et rien ne se renouvelle ensuite.</p>
+  <table>
+    <thead><tr><th>Pack Ultra</th><th>Documents</th><th>Prix</th><th>En 3 fois sans frais</th><th>Prix à l'unité</th></tr></thead>
+    <tbody>
+      <tr><td>L1 · semestre 1</td><td>31</td><td class="prix">239 €</td><td>3 × 79,66 €</td><td class="barre">416,69 €</td></tr>
+      <tr><td>L1 · semestre 2</td><td>22</td><td class="prix">199 €</td><td>3 × 66,33 €</td><td class="barre">305,78 €</td></tr>
+      <tr><td>L2 · semestre 1</td><td>28</td><td class="prix">229 €</td><td>3 × 76,33 €</td><td class="barre">393,72 €</td></tr>
+      <tr><td>L2 · semestre 2</td><td>27</td><td class="prix">209 €</td><td>3 × 69,66 €</td><td class="barre">361,73 €</td></tr>
+      <tr><td>L3 · semestre 1</td><td>37</td><td class="prix">299 €</td><td>3 × 99,66 €</td><td class="barre">513,63 €</td></tr>
+    </tbody>
+  </table>
+  <p>Le paiement se fait par carte bancaire, en une, deux ou trois fois sans frais. En trois fois, le premier prélèvement a lieu le jour de l'achat, puis les deux suivants à un mois d'intervalle. Les prélèvements s'arrêtent ensuite automatiquement, et votre enfant reçoit tout le pack dès le premier paiement.</p>
+  <p>Le paiement passe par Stripe, un prestataire de paiement sécurisé utilisé par de nombreux sites marchands. Les données de votre carte restent donc chez Stripe, et je n'y ai pas accès.</p>
+
+  <h2><span class="num">08</span>Me poser une question</h2>
+  <p>Si vous avez une question avant de décider, vous pouvez m'écrire par email ou sur WhatsApp. Je vous réponds moi-même, et vous pouvez en profiter pour me parler de la situation de votre enfant.</p>
+  <div class="contact">
+    <div><small>Email</small><a href="mailto:julien.prof1@gmail.com">julien.prof1@gmail.com</a></div>
+    <div><small>WhatsApp</small><a target="_blank" rel="noopener" href="https://wa.me/33605418521">+33 6 05 41 85 21</a></div>
+  </div>
+  <div class="encadre">
+    <p style="margin:0">Je vous invite aussi à visiter mon site, <a href="https://trajectoiredroit.com">trajectoiredroit.com</a>. Vous y trouverez <a href="a-propos.html#resultats-universitaires">mes relevés de notes</a>, <a href="temoignages.html">les avis de mes élèves</a> et <a href="ressources-gratuites.html">des ressources gratuites</a>, qui vous donnent un aperçu de ce que votre enfant recevra.</p>
+  </div>
+  <p class="signature">Julien<span>Fondateur de Trajectoire Droit, major de promotion à Panthéon-Assas</span></p>
+<p class="parents__pdf"><a class="btn btn--primary" href="assets/downloads/presentation-parents-trajectoire-droit.pdf" target="_blank" rel="noopener">Télécharger la présentation en PDF →</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (guide revision droit)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir ma fiche gratuite →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js?v=30c14d23" defer></script>
+  <script>
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=70097293';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=fd545d49" defer></script>
+</body>
+</html>

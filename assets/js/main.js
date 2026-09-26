@@ -3,19 +3,68 @@
    Initialisations communes à toutes les pages.
    ========================================================= */
 
-/* ----- ATTRIBUTION : landing page, referrer et UTM de la session -----
-   Capturés une seule fois par session (première page vue), pour que chaque
-   vente et chaque lead puissent être reliés à la page et à la source qui les
-   ont amenés (voir achat.js et api/create-checkout.js pour la suite). */
+/* ----- ATTRIBUTION : landing page, referrer et UTM -----
+   Capturés à la première page vue de la session, pour que chaque vente et
+   chaque lead puissent être reliés à la page et à la source qui les ont
+   amenés (voir achat.js et api/create-checkout.js pour la suite).
+   sessionStorage meurt avec l'onglet : une arrivée avec UTM est donc aussi
+   gardée 30 jours en localStorage (dernier contact gagne), puis recopiée en
+   sessionStorage à la première page d'une session suivante sans UTM, pour
+   qu'un achat différé reste attribué au réseau qui a amené le visiteur. */
 (function () {
-  if (sessionStorage.getItem('tjd_landing_page')) return;
-  sessionStorage.setItem('tjd_landing_page', window.location.pathname.replace(/^\//, '') || '/');
-  sessionStorage.setItem('tjd_referrer', (document.referrer || '').slice(0, 200));
-  var params = new URLSearchParams(window.location.search);
-  ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (cle) {
+  var CLES_UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+  var CLE_LOCALE = 'tjd_attribution';
+  var DUREE_MAX = 30 * 24 * 60 * 60 * 1000;
+
+  function lire(nom, cle) {
+    try { return window[nom].getItem(cle); } catch (e) { return null; }
+  }
+  function ecrire(nom, cle, val) {
+    try {
+      if (val) window[nom].setItem(cle, val);
+      else window[nom].removeItem(cle);
+    } catch (e) {}
+  }
+  function remplirSession(contact) {
+    ecrire('sessionStorage', 'tjd_landing_page', contact.landing_page || '/');
+    ecrire('sessionStorage', 'tjd_referrer', contact.referrer || '');
+    CLES_UTM.forEach(function (cle) {
+      ecrire('sessionStorage', 'tjd_' + cle, contact[cle] || '');
+    });
+  }
+
+  var params;
+  try { params = new URLSearchParams(window.location.search); } catch (e) { return; }
+  var contact = {
+    landing_page: window.location.pathname.replace(/^\//, '') || '/',
+    referrer: (document.referrer || '').slice(0, 200)
+  };
+  var porteUtm = false;
+  CLES_UTM.forEach(function (cle) {
     var val = params.get(cle);
-    if (val) sessionStorage.setItem('tjd_' + cle, val.slice(0, 100));
+    if (val) { contact[cle] = val.slice(0, 100); porteUtm = true; }
   });
+
+  // Arrivée avec UTM : nouveau contact, il remplace l'ancien dans l'onglet
+  // comme dans la mémoire de 30 jours.
+  if (porteUtm) {
+    remplirSession(contact);
+    contact.ts = Date.now();
+    try { ecrire('localStorage', CLE_LOCALE, JSON.stringify(contact)); } catch (e) {}
+    return;
+  }
+
+  if (lire('sessionStorage', 'tjd_landing_page')) return;
+
+  // Nouvelle session sans UTM : on reprend le dernier contact UTM s'il date
+  // de moins de 30 jours, sinon on garde la page et le referrer du moment.
+  var memorise = null;
+  try { memorise = JSON.parse(lire('localStorage', CLE_LOCALE) || 'null'); } catch (e) {}
+  if (memorise && typeof memorise.ts === 'number' && Date.now() - memorise.ts < DUREE_MAX) {
+    remplirSession(memorise);
+    return;
+  }
+  remplirSession(contact);
 })();
 
 /* ----- SKIP LINK (accessibilité clavier) -----
@@ -561,8 +610,8 @@
   if (modal && !sessionStorage.getItem('exitShown')) {
     var triggered = false;
     var pageLoadedAt = Date.now();
-    var minTimeMs = 30000;   // 30 s minimum
-    var minScroll = 0.25;    // 25 % de la page
+    var minTimeMs = 15000;   // 15 s minimum (abaissé le 21/09/2026, C5 : 77% de rebond et 92s de session moyenne empêchaient le seuil de 30s de s'armer pour la majorité du trafic)
+    var minScroll = 0.15;    // 15 % de la page (même raison que ci-dessus)
     var estMobile = !window.matchMedia('(min-width: 768px)').matches;
 
     function hasEngaged() {
@@ -573,6 +622,9 @@
       // la rendait confuse si les deux étaient visibles ensemble.
       var banner = document.querySelector('.cookie-banner');
       if (banner && banner.classList.contains('cookie-banner--visible')) return false;
+      // Chantier 5.12 (panier) : même logique, jamais l'exit-intent par-dessus le panier ouvert.
+      var panierOuvert = document.getElementById('tjdPanierBackdrop');
+      if (panierOuvert && panierOuvert.classList.contains('open')) return false;
       var scrollRatio = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
       return scrollRatio >= minScroll;
     }

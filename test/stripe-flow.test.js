@@ -115,6 +115,79 @@ test("la création Checkout conserve le garde-fou Stripe et l'idempotence", asyn
   assert.equal(appel.options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012");
 });
 
+test("le panier réunit plusieurs produits dans une seule session, dédoublonnés et sans le stage", async () => {
+  const stripeModule = require("../api/_stripe");
+  const creerOriginal = stripeModule.creerClientStripe;
+  let paramsCrees;
+  stripeModule.creerClientStripe = () => ({
+    checkout: { sessions: { create: async (params) => {
+      paramsCrees = params;
+      return { id: "cs_test_panier", url: "https://checkout.stripe.com/c/pay/panier" };
+    } } },
+  });
+  const cheminModule = require.resolve("../api/create-checkout");
+  delete require.cache[cheminModule];
+  const handler = require("../api/create-checkout");
+  const ancienneCle = process.env.STRIPE_SECRET_KEY;
+  process.env.STRIPE_SECRET_KEY = "sk_test_factice";
+  const res = reponseFactice();
+  try {
+    await handler({ method: "POST", body: {
+      produitIds: ["fiche-da-l2-s1", "maj-penal-l2-s1", "fiche-da-l2-s1", "stage-methode"],
+      attemptId: "panier-1234567890123456",
+      pageActuelle: "formations.html",
+    } }, res);
+  } finally {
+    stripeModule.creerClientStripe = creerOriginal;
+    delete require.cache[cheminModule];
+    if (ancienneCle === undefined) delete process.env.STRIPE_SECRET_KEY;
+    else process.env.STRIPE_SECRET_KEY = ancienneCle;
+  }
+
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.payload.sessionId, "cs_test_panier");
+  assert.equal(paramsCrees.line_items.length, 2, "dédoublonné, sans le stage");
+  assert.equal(paramsCrees.metadata.produitIds, "fiche-da-l2-s1,maj-penal-l2-s1");
+  assert.equal(paramsCrees.metadata.panier, "1");
+  assert.equal(paramsCrees.allow_promotion_codes, true);
+  assert.match(paramsCrees.success_url, /^https:\/\/trajectoiredroit\.com\/merci-achat\.html\?session_id=/);
+  assert.deepEqual(paramsCrees.wallet_options, { link: { display: "never" } });
+  assert.deepEqual(paramsCrees.consent_collection, { promotions: "auto" });
+  assert.deepEqual(paramsCrees.after_expiration, {
+    recovery: { enabled: true, allow_promotion_codes: true },
+  });
+});
+
+test("un panier vide ou sans produit connu est refusé avant tout appel Stripe", async () => {
+  const stripeModule = require("../api/_stripe");
+  const creerOriginal = stripeModule.creerClientStripe;
+  let appele = false;
+  stripeModule.creerClientStripe = () => ({
+    checkout: { sessions: { create: async () => { appele = true; return {}; } } },
+  });
+  const cheminModule = require.resolve("../api/create-checkout");
+  delete require.cache[cheminModule];
+  const handler = require("../api/create-checkout");
+  const ancienneCle = process.env.STRIPE_SECRET_KEY;
+  process.env.STRIPE_SECRET_KEY = "sk_test_factice";
+  const res = reponseFactice();
+  try {
+    await handler({ method: "POST", body: {
+      produitIds: ["stage-methode", "produit-invente-qui-nexiste-pas"],
+      attemptId: "panier-vide-1234567890",
+    } }, res);
+  } finally {
+    stripeModule.creerClientStripe = creerOriginal;
+    delete require.cache[cheminModule];
+    if (ancienneCle === undefined) delete process.env.STRIPE_SECRET_KEY;
+    else process.env.STRIPE_SECRET_KEY = ancienneCle;
+  }
+
+  assert.equal(appele, false);
+  assert.equal(res.statusCode, 400);
+  assert.equal(res.payload.code, "panier_invalide");
+});
+
 test("une erreur Stripe renvoie un code stable sans exposer son message", async () => {
   const stripeModule = require("../api/_stripe");
   const creerOriginal = stripeModule.creerClientStripe;

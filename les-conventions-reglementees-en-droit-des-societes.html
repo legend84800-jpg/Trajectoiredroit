@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#1A2851">
+  <title>Les conventions réglementées en société, SARL et SA (2026)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="La procédure complète des conventions réglementées en SARL et en SA, l'autorisation préalable, le commissaire aux comptes et la sanction en cas d'oubli.">
+  <link rel="canonical" href="https://trajectoiredroit.com/les-conventions-reglementees-en-droit-des-societes.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Les conventions réglementées, entre une société et son dirigeant">
+  <meta property="og:description" content="La procédure des conventions réglementées en SARL, en SA et en SAS, l'autorisation, le rapport du commissaire aux comptes, le vote et la sanction en cas d'oubli.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/covers/fiche-societes-l3-s1.jpg">
+  <meta property="og:url" content="https://trajectoiredroit.com/les-conventions-reglementees-en-droit-des-societes.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Les conventions réglementées, entre une société et son dirigeant",
+        "description": "Les conventions réglementées en SARL, en SA à conseil d'administration, en SA dualiste et en SAS, la distinction avec les conventions libres et les conventions interdites, la procédure d'autorisation, le rapport du commissaire aux comptes, le vote et la sanction en cas d'oubli.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-09-22",
+        "dateModified": "2026-09-22",
+        "image": "https://trajectoiredroit.com/assets/covers/fiche-societes-l3-s1.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": { "@type": "EducationalOrganization", "name": "TrajectoireDroit" }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": { "@type": "ImageObject", "url": "https://trajectoiredroit.com/assets/logo-tjd.svg" }
+        },
+        "about": { "@type": "Thing", "name": "Les conventions réglementées, articles L223-19 et L225-38 du Code de commerce" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://trajectoiredroit.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://trajectoiredroit.com/blog.html" },
+          { "@type": "ListItem", "position": 3, "name": "Les conventions réglementées", "item": "https://trajectoiredroit.com/les-conventions-reglementees-en-droit-des-societes.html" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Qu'est-ce qu'une convention réglementée dans une société ?", "acceptedAnswer": { "@type": "Answer", "text": "Une convention réglementée est un contrat passé directement ou par personne interposée entre une société et l'un de ses dirigeants, un actionnaire significatif ou une entreprise liée à l'un d'eux, en dehors des opérations courantes conclues à des conditions normales. Elle reste en effet autorisée par la loi, à condition de suivre une procédure de contrôle, un rapport et un vote en SARL et en SAS, une autorisation préalable du conseil puis un vote en SA." } },
+          { "@type": "Question", "name": "Que se passe-t-il si une convention réglementée n'est pas autorisée ?", "acceptedAnswer": { "@type": "Answer", "text": "La sanction dépend de la forme sociale. En SARL et en SAS, la convention continue de produire ses effets, et le dirigeant supporte seul les conséquences dommageables pour la société. En SA, l'absence d'autorisation préalable du conseil permet de plus d'annuler la convention si elle a causé un préjudice, une nullité qui se prescrit par trois ans et qui peut être couverte par un vote de ratification de l'assemblée." } },
+          { "@type": "Question", "name": "Une convention réglementée est-elle la même chose qu'une convention interdite ?", "acceptedAnswer": { "@type": "Answer", "text": "Non, les deux notions suivent des logiques différentes. La convention réglementée reste d'ailleurs autorisée sous contrôle, un rapport et un vote selon la forme sociale. La convention interdite vise un type précis d'opération, l'emprunt, le découvert ou la caution qu'une société consentirait à son dirigeant personne physique, et elle est nulle de plein droit dès sa conclusion, sans aucune condition de préjudice." } },
+          { "@type": "Question", "name": "La ratification d'une convention réglementée par l'assemblée efface-t-elle la responsabilité du dirigeant ?", "acceptedAnswer": { "@type": "Answer", "text": "Non, la ratification ne couvre que la nullité du contrat. L'article L225-42 du Code de commerce le précise donc expressément. La nullité peut être écartée par un vote de l'assemblée sur rapport spécial des commissaires aux comptes, mais la responsabilité personnelle de l'intéressé pour le préjudice causé à la société demeure malgré tout." } }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=479afa66">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="outil-fiche-arret.html" role="menuitem">🤖 Portalis</a>
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>7 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-penal-general-l1.html" role="menuitem">Droit pénal général (S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="index.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 239 € au lieu de 416,69 €, 43 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-43 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">416,69 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 22 ressources, 199 € au lieu de 305,78 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">22 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">305,78 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 28 ressources, 229 € au lieu de 393,72 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">28 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">393,72 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 27 ressources, 209 € au lieu de 361,73 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">27 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">361,73 €</span><span class="megamenu__pack-tile-price">209 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 37 ressources, 299 € au lieu de 513,63 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">37 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">513,63 €</span><span class="megamenu__pack-tile-price">299 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span><span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Pack 10 séances <em>· -14 %</em></strong><small>890 € · 89 €/h</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>Stage en direct
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <div class="stage-teaser">
+              <button type="button" class="dropdown__item stage-teaser__trigger" aria-expanded="false" aria-controls="stageTeaserPanel">
+                <span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg></span>
+                <span class="stage-teaser__main">
+                  <strong>Stage de méthode en direct</strong>
+                  <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+                  <span class="stage-teaser__countdown"></span>
+                </span>
+              </button>
+              <div class="stage-teaser__panel" id="stageTeaserPanel">
+                <p>Trois séances en direct, 8 h au total pour 176 €, pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un sujet travaillé à chaque fois. La prochaine session a lieu les 27, 28 et 29 octobre, pendant les vacances de la Toussaint. Plus que 3 places.</p>
+              </div>
+            </div>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="stage-methode.html">Voir toutes les infos et réserver →</a>
+          </div>
+        </div>
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="index.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="outil-fiche-arret.html"><span class="mobile-nav__format-icon" aria-hidden="true">🤖</span><span>Portalis</span></a>
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+    <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
+      <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>
+      <span class="mobile-nav__stage-main">
+        <span class="mobile-nav__stage-title">Stage en direct</span>
+        <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+        <span class="stage-teaser__countdown"></span>
+      </span>
+    </a>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO ARTICLE -->
+    <article>
+    <section class="article-hero">
+      <div class="container container--narrow">
+        <nav class="article-breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/">Accueil</a> · <a href="blog.html">Blog</a> · <span>Les conventions réglementées</span>
+        </nav>
+        <div class="post-meta">
+          <span class="post-meta__cat">Droit des sociétés · L3</span>
+          <span class="post-meta__dot"></span>
+          <span>13 min de lecture</span>
+          <span class="post-meta__dot"></span>
+          <span>Mis à jour le 22 septembre 2026</span>
+        </div>
+        <h1 class="article-hero__title">Les conventions réglementées, entre une société et son dirigeant</h1>
+        <p class="article-hero__standfirst">Une convention réglementée, c'est un contrat que tu retrouveras souvent en cas pratique, passé directement ou par personne interposée entre une société et l'un de ses dirigeants, en dehors des opérations courantes conclues à des conditions normales. La loi encadre ce risque par un contrôle qui varie selon la forme sociale, un rapport en SARL et en SAS, une autorisation avant signature en SA, pour empêcher un dirigeant d'abuser de son pouvoir.</p>
+        <div class="article-author">
+          <img class="article-author__avatar" src="assets/julien-sm.webp" alt="Julien, professeur de droit">
+          <div>
+            <div class="article-author__name">Julien</div>
+            <div class="article-author__role">Master II de droit pénal, Panthéon-Assas · Major de promo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:36px">
+      <div class="container container--narrow">
+
+        <!-- SOMMAIRE -->
+        <nav class="toc" aria-label="Sommaire">
+          <p class="toc__title">Dans cet article</p>
+          <ol>
+            <li><a href="#essentiel">L'essentiel en une phrase</a></li>
+            <li><a href="#categories">Les trois catégories de conventions</a></li>
+            <li><a href="#sarl">La procédure en SARL</a></li>
+            <li><a href="#sa">La procédure en SA, conseil d'administration</a></li>
+            <li><a href="#directoire">Le régime dualiste, directoire et conseil de surveillance</a></li>
+            <li><a href="#sas">La SAS, un contrôle allégé</a></li>
+            <li><a href="#interdites">Les conventions interdites</a></li>
+            <li><a href="#jurisprudence">L'intérêt indirect et la personne interposée</a></li>
+            <li><a href="#copie">L'utiliser dans une copie</a></li>
+            <li><a href="#erreurs">Les erreurs à éviter</a></li>
+            <li><a href="#faq">Questions fréquentes</a></li>
+          </ol>
+        </nav>
+
+        <div class="prose">
+
+          <h2 id="essentiel">L'essentiel en une phrase</h2>
+          <p>Une convention réglementée est un contrat que tu retrouveras souvent en cas pratique de droit des sociétés, passé directement ou par personne interposée entre une société et l'un de ses dirigeants, en dehors des opérations courantes conclues à des conditions normales. La loi encadre ce risque de conflit d'intérêts par un contrôle qui varie selon la forme sociale, un simple rapport soumis aux associés en SARL et en SAS, une autorisation avant même la signature en SA. Autrement dit, ce contrôle protège la société contre un dirigeant qui utiliserait son pouvoir à son propre avantage.</p>
+          <p>Le régime exact change selon la forme sociale que tu étudies. La SARL et la SAS se contentent d'un contrôle après coup, avec un simple rapport soumis aux associés. La SA impose au contraire une autorisation avant même la signature du contrat, par le conseil d'administration ou le conseil de surveillance selon sa structure. Commence donc toujours par identifier la forme sociale en cause avant de répondre à une question sur ce sujet. La sanction et la procédure changent d'un régime à l'autre.</p>
+
+          <div class="key-callout">
+            <div class="key-callout__label"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg>À retenir</div>
+            <p>Classe toujours une convention entre trois catégories avant de répondre. La convention libre échappe d'abord à tout formalisme. La convention réglementée exige ensuite un contrôle, qui intervient avant la signature en SA et seulement après coup en SARL comme en SAS. La convention interdite, en revanche, est frappée d'une nullité automatique du contrat lui-même, un régime bien plus sévère que celui des conventions réglementées ordinaires.</p>
+          </div>
+
+          <!-- vague2:encart-produit -->
+<div class="article-produit-inline">
+  <img class="article-produit-inline__thumb" src="assets/apercus/societes-l3-s1-1.jpg" alt="Aperçu de la fiche Droit des sociétés L3, semestre 1" loading="lazy">
+  <div class="article-produit-inline__body">
+    <p class="article-produit-inline__label">Fiche complète</p>
+    <p class="article-produit-inline__title">Droit des sociétés L3, semestre 1</p>
+    <p class="article-produit-inline__meta">Tout le cours en PDF, la formation de la société, la gouvernance, les conventions réglementées et la responsabilité des dirigeants · <strong>14,99 €</strong></p>
+  </div>
+  <div class="article-produit-inline__actions">
+    <button type="button" class="apercu-link" data-apercu='["assets/apercus/societes-l3-s1-1.jpg", "assets/apercus/societes-l3-s1-2.jpg"]' data-apercu-title="Droit des sociétés L3 · Semestre 1" data-apercu-price="14,99 €" data-apercu-cta="fiche-societes-l3-s1">Voir un aperçu</button>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-societes-l3-s1">Acheter · 14,99 €</button>
+  </div>
+</div>
+
+          <h2 id="categories">Les trois catégories de conventions</h2>
+          <p>Avant d'entrer dans le détail de la procédure, tu dois savoir situer une convention dans l'une de ces trois catégories, parce que chacune obéit à un régime de contrôle totalement différent.</p>
+          <p>La convention libre échappe à toute formalité particulière. Elle doit réunir deux conditions cumulatives, fixées à l'identique par l'article L223-20 du Code de commerce en SARL, l'article L225-39 en SA à conseil d'administration et l'article L225-87 en SA à conseil de surveillance. La convention doit d'abord porter sur une opération courante de l'activité de la société, un achat de matières premières ou un contrat de prestation habituel par exemple. Elle doit ensuite être conclue à des conditions normales, celles qu'un tiers étranger à la société aurait obtenues dans les mêmes circonstances. Une seule des deux conditions ne suffit jamais. Il te faut les deux à la fois pour écarter tout contrôle.</p>
+          <p>La convention réglementée regroupe tout le reste, chaque contrat conclu directement ou par personne interposée entre la société et un dirigeant, un actionnaire significatif ou une entreprise liée à l'un d'eux, dès qu'il sort du cadre des opérations courantes à conditions normales. C'est la catégorie la plus riche, celle que développent les sections suivantes, et son régime varie fortement selon la forme sociale.</p>
+          <p>La convention interdite, enfin, ne relève d'aucun contrôle. Elle vise un type précis d'opération, l'emprunt, le découvert en compte courant, le cautionnement ou l'aval que la société consentirait à son propre dirigeant, et elle est directement sanctionnée par la nullité. Tu trouveras le détail de ce régime plus sévère à la section dédiée plus bas.</p>
+
+          <h2 id="sarl">La procédure en SARL, un contrôle après coup</h2>
+          <p>En SARL, l'article L223-19 du Code de commerce organise un contrôle qui intervient en principe après la signature de la convention, et non avant sa conclusion. Le gérant, ou le commissaire aux comptes s'il en existe un, présente à l'assemblée un rapport sur les conventions intervenues directement ou par personne interposée entre la société et l'un de ses gérants ou associés. L'assemblée statue ensuite sur ce rapport. Le gérant ou l'associé intéressé ne peut jamais prendre part au vote, et ses parts sont retirées du calcul du quorum et de la majorité, exactement comme dans les autres formes sociales que tu verras plus loin.</p>
+          <p>Une exception fait basculer ce contrôle avant la signature. Si la société n'a pas de commissaire aux comptes et que la convention est conclue par un gérant non associé, l'approbation préalable de l'assemblée devient en effet obligatoire. Retiens bien ces deux conditions cumulatives, l'absence de commissaire aux comptes et la qualité de gérant non associé. Elles reviennent souvent en QCM pour piéger un étudiant qui croirait le contrôle a priori généralisé à toute la SARL.</p>
+          <p>Une seconde exception concerne la SARL unipersonnelle. Quand la société ne comprend qu'un seul associé et que la convention est conclue avec lui, la loi allège encore le formalisme. Il suffit d'en faire mention au registre des décisions, sans rapport ni vote.</p>
+          <p>La sanction, en revanche, surprend souvent les étudiants qui la découvrent pour la première fois. Une convention non approuvée continue malgré tout à produire ses effets. Le gérant et, le cas échéant, l'associé contractant supportent alors individuellement ou solidairement les conséquences du contrat qui se révèlent préjudiciables à la société. La Cour de cassation l'a confirmé sans détour dans un arrêt du 10 avril 2019 (n° 17-19.474, cassation partielle), en cassant une cour d'appel qui avait annulé des conventions de comptes courants faute de rapport et de vote, alors que le texte prévoit expressément que ces conventions produisent leurs effets. Sur ce point, réponds toujours par la responsabilité du gérant, seule sanction que le texte organise réellement en SARL.</p>
+          <p>Le régime s'étend enfin aux conventions passées avec une société liée. Si un associé indéfiniment responsable, gérant, administrateur, directeur général, membre du directoire ou membre du conseil de surveillance d'une autre société est en même temps gérant ou associé de la SARL, la convention entre les deux sociétés suit d'ailleurs exactement le même régime que celle passée directement avec un dirigeant.</p>
+
+          <h2 id="sa">La procédure en SA, une autorisation avant la signature</h2>
+          <p>La société anonyme à conseil d'administration inverse la logique de la SARL et impose un contrôle avant la signature de la convention. L'article L225-38 du Code de commerce soumet à l'autorisation préalable du conseil d'administration toute convention intervenant directement ou par personne interposée entre la société et son directeur général, l'un de ses directeurs généraux délégués, l'un de ses administrateurs, ou un actionnaire qui détient plus de 10 % des droits de vote. La même autorisation s'impose quand l'actionnaire concerné est lui-même une société, à l'égard de la société qui la contrôle. Le texte vise aussi les conventions passées avec une entreprise dont un dirigeant de la SA est propriétaire, associé indéfiniment responsable, gérant, administrateur ou dirigeant.</p>
+          <p>La procédure se déroule en plusieurs temps précis, que tu dois savoir restituer dans l'ordre. La personne intéressée informe d'abord le conseil dès qu'elle a connaissance d'une convention concernée, et elle ne prend part ni aux délibérations ni au vote sur l'autorisation. Le conseil motive ensuite sa décision en justifiant l'intérêt de la convention pour la société, notamment ses conditions financières. Le président du conseil avise alors les commissaires aux comptes de toutes les conventions autorisées et conclues, et les soumet à l'approbation de l'assemblée générale. Les commissaires aux comptes présentent enfin un rapport spécial sur ces conventions, sur lequel l'assemblée statue à son tour, sans que la personne intéressée puisse prendre part au vote ni faire compter ses actions dans le calcul de la majorité.</p>
+          <p>Le sort d'une convention non approuvée par l'assemblée diffère de celui d'une convention correctement autorisée sur un seul point. Les deux catégories produisent en principe leurs effets à l'égard des tiers, sauf en cas de fraude. Une convention désapprouvée expose malgré tout l'intéressé, et éventuellement les autres membres du conseil, à devoir supporter les conséquences préjudiciables pour la société.</p>
+          <p>La vraie sanction se joue en amont, quand l'autorisation préalable du conseil a été totalement omise. L'article L225-42 permet alors d'annuler la convention à la condition qu'elle ait eu des conséquences dommageables pour la société, une nullité relative, conditionnée à l'existence d'un préjudice pour la société. L'action en nullité se prescrit par trois ans à compter de la date de la convention, un délai reporté au jour de sa révélation si elle a été dissimulée. Cette nullité peut ensuite être couverte par un vote de ratification de l'assemblée, sur un nouveau rapport spécial des commissaires aux comptes qui expose les circonstances de cet oubli de procédure.</p>
+          <p>Cette ratification par l'assemblée règle uniquement le sort du contrat. Le texte le précise noir sur blanc. La nullité peut en effet être écartée, mais toujours sans préjudice de la responsabilité de l'intéressé. Le dirigeant reste donc exposé à une action en responsabilité pour le préjudice qu'il a causé à la société, même après un vote de ratification en bonne et due forme. Distingue toujours ces deux actions dans une copie, la nullité du contrat d'un côté, la responsabilité personnelle du dirigeant de l'autre. Elles suivent chacune leur propre logique.</p>
+
+          <h2 id="directoire">Le régime dualiste, directoire et conseil de surveillance</h2>
+          <p>Si la SA a choisi la formule dualiste, avec un directoire et un conseil de surveillance plutôt qu'un conseil d'administration, le régime des conventions réglementées ne change pas de logique. Les articles L225-86 à L225-90 du Code de commerce reprennent exactement le même schéma que les articles L225-38 à L225-42, avec un seul changement de vocabulaire, le conseil de surveillance remplace le conseil d'administration, et les membres du directoire remplacent le directeur général et les administrateurs.</p>
+          <p>Tu retrouves donc l'autorisation préalable du conseil de surveillance, l'exclusion du vote de la personne intéressée, le rapport spécial des commissaires aux comptes soumis à l'assemblée, et la même sanction en cas d'oubli de procédure. Beaucoup de cours présentent pourtant ce régime comme un chapitre entièrement nouveau à apprendre par cœur. Tu gagnes du temps de révision en le traitant plutôt comme la formule à conseil d'administration, avec juste deux noms d'organes différents.</p>
+
+          <h2 id="sas">La SAS, un contrôle allégé et seulement après coup</h2>
+          <p>La SAS occupe une position à part parmi les quatre régimes que tu dois connaître. L'article L227-10 du Code de commerce ne prévoit aucune autorisation préalable par un organe collégial, la SAS n'étant d'ailleurs pas obligée d'en avoir un. Le commissaire aux comptes, ou le président de la société s'il n'en existe pas, présente aux associés un rapport sur les conventions passées directement ou par personne interposée avec le président, un dirigeant, ou un actionnaire disposant de plus de 10 % des droits de vote. Les associés statuent ensuite sur ce rapport, exactement comme en SARL.</p>
+          <p>La sanction reprend d'ailleurs le modèle de la SARL plutôt que celui de la SA. Une convention non approuvée produit malgré tout ses effets. La personne intéressée, et éventuellement le président et les autres dirigeants, supportent seulement les conséquences dommageables pour la société. Aucune nullité ne vient en effet sanctionner à elle seule le défaut d'approbation. Retiens ce classement à deux vitesses pour l'examen. La SARL et la SAS partagent un contrôle a posteriori sans nullité. La SA impose au contraire une autorisation a priori assortie d'une nullité relative possible. Une exception allège encore la SAS unipersonnelle. La convention conclue avec l'associé unique se contente d'une mention au registre des décisions.</p>
+
+          <h2 id="interdites">Les conventions interdites, une nullité automatique</h2>
+          <p>La convention interdite obéit à un régime radicalement différent de celui des conventions réglementées que tu viens de voir, puisque la loi empêche purement et simplement l'opération plutôt que de la soumettre à un contrôle. L'article L223-21 du Code de commerce en SARL et l'article L225-43 en SA visent le même type d'opération. Le dirigeant ne peut ni emprunter auprès de sa société, ni se faire consentir par elle un découvert en compte courant, ni obtenir qu'elle cautionne ou avalise ses engagements personnels envers des tiers. Le texte fixe une sanction automatique. Ces opérations sont nulles à peine de nullité du contrat, sans qu'aucune condition de préjudice ne soit exigée, une nullité bien plus sévère que la nullité relative et conditionnelle des conventions réglementées ordinaires.</p>
+          <p>L'interdiction vise en premier lieu les gérants et administrateurs personnes physiques, à l'exclusion des personnes morales. Elle s'étend ensuite aux représentants légaux permanents des personnes morales elles-mêmes associées ou administratrices, ainsi qu'aux conjoints, ascendants et descendants de toutes ces personnes, et à toute personne interposée qui tenterait de contourner la règle. Une seule exception existe, prévue à l'identique dans les deux textes, la société qui exploite un établissement bancaire ou financier peut continuer à consentir ce type d'opération à son dirigeant, à condition qu'il s'agisse d'une opération courante conclue à des conditions normales.</p>
+          <p>Une nuance mérite ton attention en SARL. Le texte exclut en effet expressément les personnes morales du champ de l'interdiction, ce qui autorise de fait les prêts, avances ou garanties entre une SARL et une société mère ou une filiale qui serait elle-même associée. C'est une utilité pratique bien réelle dans un groupe de sociétés, à ne jamais confondre avec une brèche dans la protection des associés personnes physiques.</p>
+
+          <h2 id="jurisprudence">L'intérêt indirect et la personne interposée</h2>
+          <p>La loi vise aussi les conventions passées par personne interposée ou dans lesquelles un dirigeant n'est qu'indirectement intéressé, une notion que la loi ne définit jamais précisément et que les juges du fond apprécient d'ailleurs au cas par cas, sous le contrôle de la Cour de cassation.</p>
+          <p>L'arrêt fondateur reste ancien mais toujours cité aujourd'hui, rendu par la chambre commerciale le 23 octobre 1990 (n° 89-14.950). Le président du conseil d'administration d'une société était le père des deux seuls associés d'une SARL cocontractante. La Cour de cassation a rejeté le pourvoi et validé le raisonnement des juges du fond, qui avaient retenu un intérêt indirect malgré l'absence de tout lien capitalistique direct entre le dirigeant et la SARL. Le lien familial suffisait à lui seul à caractériser l'intérêt indirect.</p>
+          <p>Un arrêt plus récent illustre à l'inverse les conséquences d'un défaut de recherche sur ce point. Le 16 mai 2018 (n° 16-18.183), la chambre commerciale a cassé un arrêt de la cour d'appel d'Aix-en-Provence qui avait écarté un bail du champ des conventions réglementées, sans avoir recherché si le directeur général délégué concerné y avait un intérêt indirect. La leçon à retenir pour une copie est simple. L'absence de lien direct et apparent entre le dirigeant et le cocontractant ne suffit jamais à écarter la qualification. Autrement dit, il faut toujours vérifier l'existence d'un intérêt indirect avant de conclure qu'une convention échappe au régime protecteur.</p>
+          <p>Une précision d'actualité, pour éviter une confusion possible avec une réforme récente. L'ordonnance du 12 mars 2025, entrée en vigueur le 1er octobre 2025, a recodifié le régime général des nullités de sociétés aux articles 1844-10 et suivants du Code civil, en remplacement des anciens articles L235-1 et suivants du Code de commerce. Cette réforme ne touche cependant pas les articles propres aux conventions réglementées que tu viens d'étudier. L223-19, L225-38 à L225-42 et L227-10 restent tous inchangés, parce que la nullité d'une convention passée avec un tiers reste un mécanisme autonome, distinct de la nullité des décisions sociales que réorganise la réforme de 2025.</p>
+
+          <div class="inline-capture">
+            <p class="inline-capture__title">Tu révises ton droit des sociétés ?</p>
+            <p class="inline-capture__text">Reçois gratuitement mon guide « Réviser le droit sans s'épuiser ». La méthode que mes élèves utilisent pour retenir les articles et les régimes sans les bachoter la veille.</p>
+            <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST">
+              <input type="email" name="email" required placeholder="ton@email.com" aria-label="Email">
+              <input type="hidden" name="_subject" value="Lead magnet (article conventions réglementées)">
+              <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+              <button class="btn btn--primary" type="submit">Recevoir ma fiche →</button>
+            </form>
+          </div>
+
+          <h2 id="copie">L'utiliser dans une copie</h2>
+          <p><strong>Dans un cas pratique.</strong> Commence toujours par identifier la forme sociale en cause, parce que la procédure et la sanction changent radicalement d'un régime à l'autre. Vérifie ensuite si la convention litigieuse relève d'une opération courante à conditions normales, ce qui l'exclurait purement et simplement du contrôle. Identifie enfin la sanction adaptée, la responsabilité du dirigeant en SARL et en SAS, la nullité relative conditionnée en SA. Pour la méthode complète du raisonnement en deux temps, majeure puis mineure, revois ma page sur <a href="methode-cas-pratique.html">la méthode du cas pratique</a>.</p>
+          <p>Voici un exemple entièrement fictif pour t'entraîner. Mathieu est gérant et associé de la SARL Charpente du Rhône, une entreprise de menuiserie qu'il a fondée avec deux amis. Il loue à sa société un hangar de stockage qu'il possède personnellement à titre privé, pour un loyer mensuel de 3 200 euros, alors que le prix du marché local pour ce type de local avoisine plutôt 1 800 euros. La SARL n'a pas de commissaire aux comptes. Aucun rapport n'a jamais été présenté à l'assemblée sur cette location, qui dure depuis quatorze mois au moment où un nouvel associé s'en aperçoit et s'interroge sur la validité du bail. Cette convention est-elle valable ? Le bail ne relève pas d'une opération courante à conditions normales, puisque le loyer s'écarte trop nettement du prix du marché. Il s'agit donc bien d'une convention réglementée. Mathieu occupant la double qualité de gérant et d'associé, le contrôle préalable de l'assemblée ne s'imposait pas malgré l'absence de commissaire aux comptes, cette exigence ne visant que le gérant non associé. Seul un rapport a posteriori était donc requis dans son cas. Ce rapport n'ayant jamais été présenté, le bail reste pourtant valable. Il continue de produire ses effets malgré cet oubli. Mathieu, en revanche, engage sa responsabilité pour le surcoût que la société a supporté chaque mois depuis la signature, soit un préjudice approchant les 19 600 euros sur quatorze mois.</p>
+          <p><strong>Dans une dissertation.</strong> Mets ce contrôle en perspective avec sa vraie fonction, protéger la société et ses associés minoritaires contre l'utilisation du pouvoir de gestion à des fins personnelles, sans pour autant paralyser la gestion courante de l'entreprise. Interroge aussi la cohérence du système entre les quatre régimes, pourquoi la SA impose-t-elle une autorisation préalable quand la SARL et la SAS se contentent d'un contrôle après coup. Relie enfin cette notion au reste du <a href="droit-des-societes-l3.html">programme de droit des sociétés L3</a>, en particulier à <a href="l-apport-en-societe.html">la formation du capital social</a> et aux <a href="arret-abus-majorite-1961-explique.html">clauses léonines et à l'abus de majorité</a>, deux autres mécanismes qui protègent l'associé contre le pouvoir du dirigeant ou de la majorité.</p>
+
+          <h2 id="erreurs">Les erreurs à éviter avec les conventions réglementées</h2>
+          <ul>
+            <li><strong>Croire qu'une convention réglementée non autorisée est toujours nulle.</strong> Vérifie d'abord la forme sociale. La SARL et la SAS sanctionnent en effet l'oubli par la seule responsabilité du dirigeant. La SA et sa formule dualiste ouvrent de plus une action en nullité relative et conditionnée.</li>
+            <li><strong>Oublier l'exclusion du vote de la personne intéressée.</strong> Retiens que ses parts ou ses actions sont d'ailleurs systématiquement retirées du calcul du quorum et de la majorité, dans les quatre régimes que tu as étudiés.</li>
+            <li><strong>Penser qu'une ratification de l'assemblée efface toute responsabilité du dirigeant.</strong> L'article L225-42 le précise expressément. La nullité peut être couverte, mais la responsabilité personnelle de l'intéressé demeure malgré tout.</li>
+            <li><strong>Confondre convention réglementée et convention interdite.</strong> Elles suivent deux logiques de sanction complètement différentes, une nullité relative et conditionnée pour la première, une nullité automatique et absolue pour la seconde.</li>
+          </ul>
+
+          <h2 id="faq">Questions fréquentes</h2>
+          <div class="accordion">
+            <details class="accordion__item" open><summary><h3>Qu'est-ce qu'une convention réglementée dans une société ?</h3></summary><div class="accordion__body">Une convention réglementée est un contrat passé directement ou par personne interposée entre une société et l'un de ses dirigeants, un actionnaire significatif ou une entreprise liée à l'un d'eux, en dehors des opérations courantes conclues à des conditions normales. Elle reste en effet autorisée par la loi, à condition de suivre une procédure de contrôle, un rapport et un vote en SARL et en SAS, une autorisation préalable du conseil puis un vote en SA.</div></details>
+            <details class="accordion__item"><summary><h3>Que se passe-t-il si une convention réglementée n'est pas autorisée ?</h3></summary><div class="accordion__body">La sanction dépend de la forme sociale. En SARL et en SAS, la convention continue de produire ses effets, et le dirigeant supporte seul les conséquences dommageables pour la société. En SA, l'absence d'autorisation préalable du conseil permet de plus d'annuler la convention si elle a causé un préjudice, une nullité qui se prescrit par trois ans et qui peut être couverte par un vote de ratification de l'assemblée.</div></details>
+            <details class="accordion__item"><summary><h3>Une convention réglementée est-elle la même chose qu'une convention interdite ?</h3></summary><div class="accordion__body">Non, les deux notions suivent des logiques différentes. La convention réglementée reste d'ailleurs autorisée sous contrôle, un rapport et un vote selon la forme sociale. La convention interdite vise un type précis d'opération, l'emprunt, le découvert ou la caution qu'une société consentirait à son dirigeant personne physique, et elle est nulle de plein droit dès sa conclusion, sans aucune condition de préjudice.</div></details>
+            <details class="accordion__item"><summary><h3>La ratification d'une convention réglementée par l'assemblée efface-t-elle la responsabilité du dirigeant ?</h3></summary><div class="accordion__body">Non, la ratification ne couvre que la nullité du contrat. L'article L225-42 du Code de commerce le précise donc expressément. La nullité peut être écartée par un vote de l'assemblée sur rapport spécial des commissaires aux comptes, mais la responsabilité personnelle de l'intéressé pour le préjudice causé à la société demeure malgré tout.</div></details>
+          </div>
+
+          <!-- BLOC AUTEUR -->
+          <div class="author-box">
+            <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+            <div>
+              <p class="author-box__name">Julien</p>
+              <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+              <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">162 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention avec une méthode claire. Sur TrajectoireDroit, je mets à disposition mes fiches complètes, mes majeures préparées et mes cours particuliers.</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section section--dark">
+      <div class="container container--narrow text-center">
+        <h2 class="h2" style="color:#fff">Le droit des sociétés va bien au-delà des conventions réglementées.</h2>
+        <p class="lead" style="color:rgba(255,255,255,.85); max-width:560px; margin:16px auto 32px">Ma fiche de droit des sociétés L3 reprend toute la gouvernance de la société, chaque grand arrêt et chaque notion, expliqués simplement et prêts à servir en cas pratique.</p>
+        <a class="btn btn--primary btn--lg" href="droit-des-societes-l3.html">Voir la fiche de droit des sociétés L3</a>
+        <p style="margin-top:18px"><a href="blog.html" style="color:rgba(255,255,255,.8)">← Revenir au blog</a></p>
+      </div>
+    </section>
+    </article>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="majeures-preparees.html">Majeures préparées</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a><a href="blog.html">Blog</a><a href="methode-cas-pratique.html">Méthode du cas pratique</a><a href="fiche-arrets.html">Fiche d'arrêt</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (article conventions réglementées)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir ma fiche gratuite →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- vague2:sticky-bar -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit des sociétés L3 S1 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <a class="btn btn--primary" href="droit-des-societes-l3.html#fiches">Voir la fiche →</a>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=60004b0a" defer></script>
+
+
+  <script src="assets/js/main.js?v=30c14d23" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=70097293';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=fd545d49" defer></script>
+</body>
+</html>

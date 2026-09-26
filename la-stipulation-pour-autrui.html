@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#1A2851">
+  <title>La stipulation pour autrui, articles 1205 à 1209 (2026)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="La stipulation pour autrui expliquée simplement, le triangle stipulant-promettant-bénéficiaire, l'assurance-vie comme exemple, et les pièges en cas pratique.">
+  <link rel="canonical" href="https://trajectoiredroit.com/la-stipulation-pour-autrui.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="La stipulation pour autrui, articles 1205 à 1209 du Code civil">
+  <meta property="og:description" content="Le stipulant, le promettant et le bénéficiaire, le droit direct de l'article 1206, la révocation, l'acceptation, et l'assurance-vie comme illustration.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/covers/fiche-contrats-l2-s1.jpg">
+  <meta property="og:url" content="https://trajectoiredroit.com/la-stipulation-pour-autrui.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "La stipulation pour autrui, articles 1205 à 1209 du Code civil",
+        "description": "Le triangle stipulant, promettant, bénéficiaire, le droit direct du bénéficiaire dès la stipulation, sa révocation tant qu'il n'a pas accepté, l'acceptation expresse ou tacite, la distinction avec le porte-fort et la représentation, et l'assurance-vie comme régime spécial dérogatoire.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-09-23",
+        "dateModified": "2026-09-23",
+        "image": "https://trajectoiredroit.com/assets/covers/fiche-contrats-l2-s1.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": { "@type": "EducationalOrganization", "name": "TrajectoireDroit" }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": { "@type": "ImageObject", "url": "https://trajectoiredroit.com/assets/logo-tjd.svg" }
+        },
+        "about": { "@type": "Thing", "name": "La stipulation pour autrui, articles 1205 à 1209 du Code civil, le régime dérogatoire de l'assurance-vie et deux arrêts de 2025" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://trajectoiredroit.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://trajectoiredroit.com/blog.html" },
+          { "@type": "ListItem", "position": 3, "name": "La stipulation pour autrui", "item": "https://trajectoiredroit.com/la-stipulation-pour-autrui.html" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Qu'est-ce que la stipulation pour autrui ?", "acceptedAnswer": { "@type": "Answer", "text": "La stipulation pour autrui est le mécanisme par lequel un contractant, le stipulant, fait promettre à l'autre, le promettant, d'accomplir une prestation au profit d'une troisième personne, le bénéficiaire, article 1205 du Code civil. Le bénéficiaire n'est pas partie au contrat et n'a rien signé, mais il reçoit malgré tout un droit direct contre le promettant dès la conclusion de la stipulation." } },
+          { "@type": "Question", "name": "Le bénéficiaire doit-il accepter la stipulation pour qu'elle produise effet ?", "acceptedAnswer": { "@type": "Answer", "text": "Non, le droit du bénéficiaire existe dès la stipulation, article 1206 du Code civil. L'acceptation ne crée pas ce droit. Elle le rend seulement irrévocable. Tant que le bénéficiaire n'a pas accepté, le stipulant garde la faculté de révoquer la stipulation, y compris à son profit ou au profit d'un autre bénéficiaire." } },
+          { "@type": "Question", "name": "Le stipulant peut-il révoquer la stipulation à tout moment ?", "acceptedAnswer": { "@type": "Answer", "text": "Le stipulant peut révoquer librement tant que le bénéficiaire n'a pas accepté, article 1206 du Code civil. Après son décès, ses héritiers peuvent aussi révoquer, mais seulement après avoir mis le bénéficiaire en demeure d'accepter et après un délai de trois mois, article 1207. Une fois l'acceptation reçue par le stipulant ou le promettant, la révocation n'est plus possible." } },
+          { "@type": "Question", "name": "L'assurance-vie est-elle une stipulation pour autrui comme les autres ?", "acceptedAnswer": { "@type": "Answer", "text": "L'assurance-vie applique le schéma de la stipulation pour autrui, le souscripteur stipule au profit d'un bénéficiaire désigné contre l'assureur, mais elle suit un régime spécial et dérogatoire, les articles L132-8 et L132-9 du Code des assurances, plutôt que le droit commun des articles 1205 à 1209. Les formes de l'acceptation et le délai laissé aux héritiers pour révoquer y sont organisés différemment." } }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=479afa66">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="outil-fiche-arret.html" role="menuitem">🤖 Portalis</a>
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>7 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-penal-general-l1.html" role="menuitem">Droit pénal général (S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="index.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 239 € au lieu de 416,69 €, 43 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-43 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">416,69 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 22 ressources, 199 € au lieu de 305,78 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">22 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">305,78 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 28 ressources, 229 € au lieu de 393,72 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">28 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">393,72 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 27 ressources, 209 € au lieu de 361,73 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">27 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">361,73 €</span><span class="megamenu__pack-tile-price">209 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 37 ressources, 299 € au lieu de 513,63 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">37 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">513,63 €</span><span class="megamenu__pack-tile-price">299 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span><span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Pack 10 séances <em>· -14 %</em></strong><small>890 € · 89 €/h</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>Stage en direct
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <div class="stage-teaser">
+              <button type="button" class="dropdown__item stage-teaser__trigger" aria-expanded="false" aria-controls="stageTeaserPanel">
+                <span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg></span>
+                <span class="stage-teaser__main">
+                  <strong>Stage de méthode en direct</strong>
+                  <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+                  <span class="stage-teaser__countdown"></span>
+                </span>
+              </button>
+              <div class="stage-teaser__panel" id="stageTeaserPanel">
+                <p>Trois séances en direct, 8 h au total pour 176 €, pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un sujet travaillé à chaque fois. La prochaine session a lieu les 27, 28 et 29 octobre, pendant les vacances de la Toussaint. Plus que 3 places.</p>
+              </div>
+            </div>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="stage-methode.html">Voir toutes les infos et réserver →</a>
+          </div>
+        </div>
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="index.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="outil-fiche-arret.html"><span class="mobile-nav__format-icon" aria-hidden="true">🤖</span><span>Portalis</span></a>
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+    <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
+      <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>
+      <span class="mobile-nav__stage-main">
+        <span class="mobile-nav__stage-title">Stage en direct</span>
+        <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+        <span class="stage-teaser__countdown"></span>
+      </span>
+    </a>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO ARTICLE -->
+    <article>
+    <section class="article-hero">
+      <div class="container container--narrow">
+        <nav class="article-breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/">Accueil</a> · <a href="blog.html">Blog</a> · <span>La stipulation pour autrui</span>
+        </nav>
+        <div class="post-meta">
+          <span class="post-meta__cat">Droit des contrats · L2 S1</span>
+          <span class="post-meta__dot"></span>
+          <span>14 min de lecture</span>
+          <span class="post-meta__dot"></span>
+          <span>Mis à jour le 23 septembre 2026</span>
+        </div>
+        <h1 class="article-hero__title">La stipulation pour autrui</h1>
+        <p class="article-hero__standfirst">La stipulation pour autrui, c'est le mécanisme qui te permet de faire promettre à ton cocontractant, le promettant, d'accomplir une prestation au profit d'une troisième personne, le bénéficiaire, sans que ce bénéficiaire ait signé quoi que ce soit. Les articles 1205 à 1209 du Code civil lui donnent malgré tout un droit direct contre le promettant dès la conclusion du contrat, révocable tant qu'il n'a pas accepté. L'assurance-vie en est l'exemple le plus concret.</p>
+        <div class="article-author">
+          <img class="article-author__avatar" src="assets/julien-sm.webp" alt="Julien, professeur de droit">
+          <div>
+            <div class="article-author__name">Julien</div>
+            <div class="article-author__role">Master II de droit pénal, Panthéon-Assas · Major de promo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:36px">
+      <div class="container container--narrow">
+
+        <!-- SOMMAIRE -->
+        <nav class="toc" aria-label="Sommaire">
+          <p class="toc__title">Dans cet article</p>
+          <ol>
+            <li><a href="#essentiel">L'essentiel en une phrase</a></li>
+            <li><a href="#triangle">Le triangle stipulant, promettant, bénéficiaire</a></li>
+            <li><a href="#droit-direct">Le droit direct du bénéficiaire</a></li>
+            <li><a href="#revocation">La révocation, qui peut la faire et jusqu'à quand</a></li>
+            <li><a href="#acceptation">L'acceptation du bénéficiaire</a></li>
+            <li><a href="#droit-stipulant">Le stipulant garde aussi son propre droit</a></li>
+            <li><a href="#distinctions">Porte-fort et représentation, ne pas confondre</a></li>
+            <li><a href="#assurance-vie">L'assurance-vie, l'exemple central</a></li>
+            <li><a href="#actualite">Deux décisions récentes à connaître</a></li>
+            <li><a href="#copie">L'utiliser dans une copie</a></li>
+            <li><a href="#erreurs">Les erreurs qui coûtent des points</a></li>
+            <li><a href="#faq">Questions fréquentes</a></li>
+          </ol>
+        </nav>
+
+        <div class="prose">
+
+          <h2 id="essentiel">L'essentiel en une phrase</h2>
+          <p>Retiens d'abord le principe que la stipulation pour autrui vient contredire. En droit des contrats, un contrat ne lie en principe que ceux qui l'ont signé, c'est ce qu'on appelle <strong>l'effet relatif du contrat</strong>. Tu ne peux d'ailleurs ni t'engager pour un tiers, ni faire naître un droit au profit d'un tiers, sauf exception prévue par la loi. La stipulation pour autrui est justement l'une de ces exceptions, avec le porte-fort que tu croiseras plus loin dans cet article. Elle te permet, en tant que stipulant, de faire promettre à ton cocontractant, le promettant, d'accomplir une prestation au profit d'une troisième personne étrangère au contrat, le bénéficiaire.</p>
+          <p>Le bénéficiaire n'a rien signé et n'a même pas besoin d'être présent au moment du contrat. Il reçoit pourtant un droit direct contre le promettant, dès la conclusion de la stipulation, article 1206 du Code civil. C'est ce droit direct qui rend la notion si utile en pratique, tu la retrouves dans l'assurance-vie, mais aussi dans certains contrats de transport ou d'entreprise où une prestation doit profiter à quelqu'un d'autre que celui qui paie.</p>
+
+          <div class="key-callout">
+            <div class="key-callout__label"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg>À retenir</div>
+            <p>Fixe le vocabulaire avant tout le reste, tu vas en avoir besoin à chaque paragraphe. Le <strong>stipulant</strong> est celui qui négocie et qui exige la prestation au profit d'un autre. Le <strong>promettant</strong> est ensuite celui qui s'engage à l'exécuter. Le <strong>bénéficiaire</strong> est enfin le tiers qui reçoit la prestation sans avoir signé le contrat. Ces trois rôles ne s'échangent jamais entre eux dans ta copie.</p>
+          </div>
+
+          <!-- vague2:encart-produit -->
+<div class="article-produit-inline">
+  <img class="article-produit-inline__thumb" src="assets/apercus/contrats-l2-s1-1.jpg" alt="Aperçu de la fiche Droit des contrats L2, semestre 1" loading="lazy">
+  <div class="article-produit-inline__body">
+    <p class="article-produit-inline__label">Fiche complète</p>
+    <p class="article-produit-inline__title">Droit des contrats L2, semestre 1</p>
+    <p class="article-produit-inline__meta">Tout le cours en PDF, la formation du contrat, ses effets et cette notion avec le reste du programme · <strong>14,99 €</strong></p>
+  </div>
+  <div class="article-produit-inline__actions">
+    <button type="button" class="apercu-link" data-apercu='["assets/apercus/contrats-l2-s1-1.jpg", "assets/apercus/contrats-l2-s1-2.jpg"]' data-apercu-title="Droit des contrats · L2 Semestre 1" data-apercu-price="14,99 €" data-apercu-cta="fiche-contrats-l2-s1">Voir un aperçu</button>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-contrats-l2-s1">Acheter · 14,99 €</button>
+  </div>
+</div>
+
+          <h2 id="triangle">Le triangle stipulant, promettant, bénéficiaire</h2>
+          <p>L'article 1205 pose la définition à connaître par cœur, dans son intégralité, parce qu'un jury attend souvent la citation exacte sur ce point.</p>
+
+          <div class="citation-box">
+            <p class="citation-box__label">Article 1205 du Code civil</p>
+            <blockquote>« On peut stipuler pour autrui. L'un des contractants, le stipulant, peut faire promettre à l'autre, le promettant, d'accomplir une prestation au profit d'un tiers, le bénéficiaire. Ce dernier peut être une personne future mais doit être précisément désigné ou pouvoir être déterminé lors de l'exécution de la promesse. »</blockquote>
+            <cite>Code civil, article 1205</cite>
+          </div>
+
+          <p>Deux précisions méritent ton attention dans ce texte. D'abord, le stipulant agit en son nom propre. Il ne représente pas le bénéficiaire. C'est une différence essentielle avec la représentation que tu retrouveras dans la section sur les distinctions plus bas. Ensuite, le bénéficiaire n'a pas besoin d'exister au moment du contrat. Un enfant à naître peut parfaitement être désigné bénéficiaire d'une assurance-vie souscrite avant sa naissance, à condition qu'il soit déterminable au moment où la prestation doit être exécutée, en général le décès du souscripteur.</p>
+          <p>La stipulation pour autrui n'est en effet jamais présumée. Tu dois la reconnaître à un signe précis dans ton énoncé de cas pratique, un contrat qui prévoit expressément qu'une prestation profitera à quelqu'un d'autre que les deux parties. Sans cette clause, tu restes dans un contrat classique, purement bilatéral.</p>
+
+          <h2 id="droit-direct">Le droit direct du bénéficiaire, article 1206</h2>
+          <p>Voici le point que beaucoup d'étudiants ratent en cas pratique. Le droit du bénéficiaire n'attend pas son acceptation pour exister. Il naît dès la conclusion du contrat entre le stipulant et le promettant.</p>
+
+          <div class="citation-box">
+            <p class="citation-box__label">Article 1206, alinéa 1er, du Code civil</p>
+            <blockquote>« Le bénéficiaire est investi d'un droit direct à la prestation contre le promettant dès la stipulation. »</blockquote>
+            <cite>Code civil, article 1206</cite>
+          </div>
+
+          <p>Ce droit direct produit une conséquence pratique importante. Le bénéficiaire peut en effet agir en justice contre le promettant pour obtenir l'exécution de la prestation, sans avoir besoin de passer par le stipulant et sans même avoir formellement accepté la stipulation. Le droit existe déjà dans son patrimoine. Tu n'as donc jamais à attendre une acceptation pour conclure qu'une action est ouverte au bénéficiaire.</p>
+          <p>Ce droit reste toutefois fragile pendant un temps. L'alinéa 2 de l'article 1206 permet au stipulant de révoquer librement la stipulation tant que le bénéficiaire ne l'a pas acceptée. L'alinéa 3 fixe le moment précis où cette fragilité disparaît. La stipulation devient irrévocable dès que l'acceptation parvient au stipulant ou au promettant. Tu dois donc toujours vérifier deux éléments dans un énoncé. Le droit existe-t-il déjà, et la stipulation reste-t-elle encore révocable ?</p>
+
+          <h2 id="revocation">La révocation, qui peut la faire et jusqu'à quand</h2>
+          <p>L'article 1207 détaille un régime que les étudiants connaissent mal, parce qu'ils s'arrêtent en général au principe posé par l'article 1206. Ce régime devient pourtant central dès que le stipulant décède avant que le bénéficiaire ait accepté.</p>
+          <p>La révocation ne peut émaner que du stipulant lui-même, de son vivant. Après son décès, ses héritiers peuvent prendre le relais, mais pas immédiatement. Ils doivent d'abord mettre le bénéficiaire en demeure d'accepter, puis attendre un délai de trois mois à compter de cette mise en demeure avant de pouvoir révoquer. Ce délai protège le bénéficiaire contre une révocation précipitée décidée par des héritiers qui voudraient récupérer l'avantage pour eux-mêmes.</p>
+          <p>Trois précisions complètent ce régime, chacune utile en cas pratique. Une révocation qui ne désigne aucun nouveau bénéficiaire profite au stipulant lui-même, ou à ses héritiers s'il est décédé. Une révocation ne produit effet qu'à partir du moment où le bénéficiaire ou le promettant en a eu connaissance. Un simple changement d'avis resté secret ne suffit donc jamais. Enfin, une révocation faite par testament ne prend effet qu'au moment du décès du testateur, ce qui laisse le bénéficiaire initial croire à tort qu'il garde son droit tant que le testateur reste en vie. Le tiers évincé par une révocation est d'ailleurs réputé n'avoir jamais bénéficié de la stipulation, un effet rétroactif que tu dois citer si ton énoncé porte sur les conséquences patrimoniales d'une révocation.</p>
+
+          <h2 id="acceptation">L'acceptation du bénéficiaire, article 1208</h2>
+          <p>L'acceptation joue en réalité un rôle plus limité que ce que son nom laisse penser. Elle ne crée pas le droit du bénéficiaire, qui existe déjà depuis la stipulation. Elle le rend seulement irrévocable et met fin à la période de fragilité que tu viens d'étudier.</p>
+          <p>Le texte reste de plus souple sur la forme, et tu dois t'en souvenir avant de conclure trop vite qu'une acceptation manque. Elle peut être expresse, une déclaration claire du bénéficiaire, ou tacite, un comportement qui manifeste sans ambiguïté sa volonté de profiter de la stipulation. Elle peut d'ailleurs intervenir très tard, même après le décès du stipulant ou du promettant. Si c'est le bénéficiaire lui-même qui meurt avant d'avoir accepté, ce sont ses propres héritiers qui peuvent accepter à sa place. Cette souplesse s'explique en effet par la nature même du mécanisme. Personne n'oblige jamais le bénéficiaire à profiter d'un avantage qu'il n'a pas demandé. Il garde toujours la liberté de refuser ou de rester silencieux.</p>
+
+          <h2 id="droit-stipulant">Le stipulant garde aussi son propre droit, article 1209</h2>
+          <p>Sois attentif à un point souvent mal résumé, y compris dans certaines fiches. L'article 1209 ne parle ni du droit direct du bénéficiaire, déjà posé par l'article 1206, ni des héritiers de qui que ce soit. Il donne au stipulant lui-même un droit concurrent à celui du bénéficiaire.</p>
+
+          <div class="citation-box">
+            <p class="citation-box__label">Article 1209 du Code civil</p>
+            <blockquote>« Le stipulant peut lui-même exiger du promettant l'exécution de son engagement envers le bénéficiaire. »</blockquote>
+            <cite>Code civil, article 1209</cite>
+          </div>
+
+          <p>Ce droit propre du stipulant a une utilité pratique. Garde-le en tête pour ta copie. Prenons un promettant qui refuse d'exécuter sa prestation envers le bénéficiaire, alors qu'il ignore encore l'existence de la stipulation ou n'a pas les moyens d'agir lui-même. Le stipulant, qui a lui-même contracté avec le promettant, peut exiger l'exécution sans attendre que le bénéficiaire s'en charge. Les deux actions coexistent d'ailleurs, celle du bénéficiaire fondée sur son droit direct de l'article 1206, et celle du stipulant fondée sur sa propre qualité de partie au contrat.</p>
+          <p>Une dernière question revient souvent en cas pratique, celle du sort du droit du bénéficiaire après son propre décès. Tu ne trouveras la réponse dans aucun texte des articles 1205 à 1209, mais le droit à la prestation entre dans le patrimoine du bénéficiaire dès la stipulation, article 1206. Ce droit se transmet donc en principe à ses héritiers selon les règles ordinaires des successions, sauf clause contraire du contrat initial entre le stipulant et le promettant.</p>
+
+          <h2 id="distinctions">Porte-fort et représentation, ne pas confondre</h2>
+          <p>Deux mécanismes voisins reviennent souvent en piège de qualification. Apprends à les distinguer par un seul critère, celui du droit direct créé ou non au profit d'un tiers.</p>
+          <p>Le <strong>porte-fort</strong>, article 1204, ressemble à la stipulation pour autrui parce qu'il implique lui aussi un tiers étranger au contrat, mais sa logique reste inverse. Tu promets à ton cocontractant le fait d'un tiers, par exemple qu'un absent ratifiera bien l'engagement pris en son nom. Si ce tiers accomplit le fait promis, tu es libéré. S'il ne l'accomplit pas, c'est toi, le porte-fort, qui dois des dommages et intérêts à ton cocontractant, une obligation de résultat confirmée par la Cour de cassation (Cass. com., 13 décembre 2005, n°03-19.217). Le tiers lui-même ne devient jamais titulaire d'un droit ni débiteur d'une obligation par ce mécanisme, à la différence du bénéficiaire d'une stipulation pour autrui qui obtient, lui, un droit direct contre le promettant.</p>
+          <p>La <strong>représentation</strong> suit une logique différente encore. Le représentant agit en effet au nom et pour le compte du représenté, si bien que le contrat engage directement ce représenté, comme s'il l'avait signé lui-même. Le stipulant, à l'inverse, agit en son nom propre, article 1205, et le contrat continue de le lier personnellement même si la prestation profite à quelqu'un d'autre. Pour approfondir cette notion étroitement liée aux pouvoirs du mandataire, j'ai détaillé le mécanisme et ses limites sur ma page consacrée à <a href="la-representation-en-droit-des-contrats.html">la représentation en droit des contrats et le mandat apparent</a>.</p>
+
+          <h2 id="assurance-vie">L'assurance-vie, l'exemple central</h2>
+          <p>L'assurance-vie reste en effet l'illustration la plus parlante de la stipulation pour autrui, et c'est aussi celle qu'un jury attend presque toujours dans ta copie. Le souscripteur, qui paie les primes, joue le rôle du stipulant. L'assureur, qui s'engage à verser un capital ou une rente, joue le rôle du promettant. Le bénéficiaire désigné, qui touchera d'ailleurs cette somme au décès du souscripteur, joue le rôle du tiers bénéficiaire.</p>
+          <p>Attention pourtant à une nuance que beaucoup de copies oublient. L'assurance-vie ne suit pas exactement le droit commun des articles 1205 à 1209 que tu viens d'apprendre. Elle obéit à un régime spécial et dérogatoire, organisé par les articles L132-8 et L132-9 du Code des assurances. Les formalités de l'acceptation en particulier changent du tout au tout. Le droit commun admet une acceptation tacite, mais en assurance-vie, tant que le souscripteur et l'assuré sont en vie, l'acceptation doit en principe prendre la forme d'un avenant signé conjointement par l'assureur, le souscripteur et le bénéficiaire, ou d'un acte authentique ou sous seing privé signé du souscripteur et du bénéficiaire puis notifié par écrit à l'assureur.</p>
+          <p>Le régime de la révocation garde en revanche la même logique protectrice que le droit commun, avec un chiffre identique. Les héritiers du souscripteur décédé ne peuvent révoquer la désignation du bénéficiaire qu'après l'exigibilité du capital et au moins trois mois après avoir mis ce bénéficiaire en demeure de déclarer s'il accepte, exactement le même délai de trois mois que l'article 1207 du droit commun. Le droit de révocation, tant que l'acceptation n'a pas eu lieu, appartient au seul souscripteur. Il ne peut jamais être exercé de son vivant par ses créanciers ni par ses représentants légaux, une protection d'ailleurs propre à ce régime spécial.</p>
+
+          <h2 id="actualite">Deux décisions récentes à connaître</h2>
+          <p>La Cour de cassation a rendu en 2025 deux décisions qui actualisent cette matière. Elles te permettent de montrer à un correcteur que tu maîtrises l'état du droit le plus récent, au-delà du seul texte de 2016.</p>
+          <p>La première précise l'opposabilité d'une clause du contrat de base au bénéficiaire lui-même. Dans une affaire où une cession de parts sociales désignait en effet un tiers comme bénéficiaire du paiement du prix, la première chambre civile a jugé qu'une clause attributive de juridiction contenue dans le contrat entre le stipulant et le promettant, dès lors qu'elle est indissociable de l'exercice du droit créé au profit du bénéficiaire, peut être invoquée par ce bénéficiaire et contre lui (Cass. 1re civ., 18 juin 2025, n°23-21.709). Le bénéficiaire ne peut donc pas se contenter de réclamer le bénéfice de la stipulation en écartant les clauses du contrat qui l'organisent.</p>
+          <p>La seconde marque un revirement net en matière d'assurance-vie. La jurisprudence exigeait d'ailleurs jusque-là que l'assureur soit informé de la substitution d'un nouveau bénéficiaire avant le décès du souscripteur pour que cette substitution soit valable. La deuxième chambre civile a donc abandonné cette exigence. La substitution de bénéficiaire est désormais valable même si l'assureur n'en a eu connaissance qu'après le décès (Cass. 2e civ., 3 avril 2025, n°23-13.803). Si ton énoncé porte sur un changement de bénéficiaire découvert tardivement par l'assureur, c'est cette décision qu'il te faut citer.</p>
+
+          <h2 id="copie">L'utiliser dans une copie</h2>
+          <p><strong>Dans un cas pratique.</strong> Repère d'abord les trois personnages, un contractant qui négocie un avantage pour un tiers étranger au contrat, un autre contractant qui s'engage à fournir cet avantage, et ce tiers lui-même. Vérifie ensuite le stade où en est la stipulation. Le bénéficiaire a-t-il déjà accepté, expressément ou tacitement, ou la stipulation reste-t-elle encore révocable ? Identifie enfin qui peut agir contre qui. Le bénéficiaire peut invoquer son droit direct de l'article 1206, et le stipulant garde lui aussi la possibilité d'exiger l'exécution sur le fondement de l'article 1209. Pour la méthode complète du raisonnement en deux temps, majeure puis mineure, revois ma page sur <a href="methode-cas-pratique.html">la méthode du cas pratique</a>.</p>
+          <p>Voici un exemple entièrement fictif pour t'entraîner. Élodie signe un contrat avec une société de transport à la demande, pour que sa mère Geneviève, âgée et qui ne conduit plus, soit prise en charge chaque semaine pour ses rendez-vous médicaux. Geneviève n'a en effet rien signé et ignore même les détails exacts du contrat. Trois semaines plus tard, la société annule plusieurs trajets sans prévenir. Geneviève rate un rendez-vous important. Peut-elle agir directement contre la société de transport ? Le contrat entre Élodie et la société de transport contient une stipulation pour autrui, puisqu'il prévoit expressément une prestation au profit de Geneviève, un tiers étranger au contrat. Geneviève dispose donc d'un droit direct contre la société dès la conclusion du contrat, article 1206, qu'elle peut invoquer sans même avoir formellement accepté la stipulation au préalable, puisqu'un tel accueil régulier des trajets suffit à caractériser une acceptation au moins tacite. Élodie, en revanche, garde elle aussi la possibilité d'agir contre la société sur le fondement de l'article 1209, en sa qualité de stipulante partie au contrat.</p>
+          <p><strong>Dans une dissertation.</strong> Interroge la cohérence de cette exception avec le principe de l'effet relatif du contrat. Pourquoi le législateur a-t-il choisi de laisser naître un droit au profit d'une personne qui n'a jamais consenti au contrat ? Compare par ailleurs le régime de droit commun avec celui, dérogatoire, de l'assurance-vie, pour montrer que la loi adapte le mécanisme général à des besoins économiques précis. Replace enfin cette notion dans l'ensemble du <a href="droit-des-contrats-l2.html">programme de droit des contrats L2</a>, aux côtés des autres exceptions à l'effet relatif que tu dois connaître.</p>
+
+          <h2 id="erreurs">Les erreurs qui coûtent des points</h2>
+          <ul>
+            <li><strong>Tu crois que le bénéficiaire doit signer ou accepter pour que son droit naisse.</strong> Le droit existe en effet dès la stipulation, article 1206. L'acceptation ne fait donc que le rendre irrévocable. Elle ne le crée pas.</li>
+            <li><strong>Tu confonds porte-fort et stipulation pour autrui.</strong> Le porte-fort n'engage que le promettant envers son propre cocontractant. Il ne crée aucun droit direct au profit du tiers dont on promet le fait.</li>
+            <li><strong>Tu penses que le stipulant peut toujours révoquer librement après son décès.</strong> Ses héritiers doivent respecter un délai de trois mois après avoir mis le bénéficiaire en demeure d'accepter, article 1207.</li>
+            <li><strong>Croire que l'assurance-vie suit exactement les articles 1205 à 1209.</strong> Elle obéit à un régime spécial du Code des assurances, notamment sur les formes de l'acceptation.</li>
+            <li><strong>Tu oublies le droit propre du stipulant.</strong> L'article 1209 permet pourtant au stipulant lui-même d'exiger l'exécution, indépendamment de toute action du bénéficiaire.</li>
+          </ul>
+
+          <h2 id="faq">Questions fréquentes</h2>
+          <div class="accordion">
+            <details class="accordion__item" open><summary><h3>Qu'est-ce que la stipulation pour autrui ?</h3></summary><div class="accordion__body">La stipulation pour autrui est le mécanisme par lequel un contractant, le stipulant, fait promettre à l'autre, le promettant, d'accomplir une prestation au profit d'une troisième personne, le bénéficiaire, article 1205 du Code civil. Le bénéficiaire n'est pas partie au contrat et n'a rien signé, mais il reçoit malgré tout un droit direct contre le promettant dès la conclusion de la stipulation.</div></details>
+            <details class="accordion__item"><summary><h3>Le bénéficiaire doit-il accepter la stipulation pour qu'elle produise effet ?</h3></summary><div class="accordion__body">Non, le droit du bénéficiaire existe dès la stipulation, article 1206 du Code civil. L'acceptation ne crée pas ce droit. Elle le rend seulement irrévocable. Tant que le bénéficiaire n'a pas accepté, le stipulant garde la faculté de révoquer la stipulation, y compris à son profit ou au profit d'un autre bénéficiaire.</div></details>
+            <details class="accordion__item"><summary><h3>Le stipulant peut-il révoquer la stipulation à tout moment ?</h3></summary><div class="accordion__body">Le stipulant peut révoquer librement tant que le bénéficiaire n'a pas accepté, article 1206 du Code civil. Après son décès, ses héritiers peuvent aussi révoquer, mais seulement après avoir mis le bénéficiaire en demeure d'accepter et après un délai de trois mois, article 1207. Une fois l'acceptation reçue par le stipulant ou le promettant, la révocation n'est plus possible.</div></details>
+            <details class="accordion__item"><summary><h3>L'assurance-vie est-elle une stipulation pour autrui comme les autres ?</h3></summary><div class="accordion__body">L'assurance-vie applique le schéma de la stipulation pour autrui, le souscripteur stipule au profit d'un bénéficiaire désigné contre l'assureur, mais elle suit un régime spécial et dérogatoire, les articles L132-8 et L132-9 du Code des assurances, plutôt que le droit commun des articles 1205 à 1209. Les formes de l'acceptation et le délai laissé aux héritiers pour révoquer y sont organisés différemment.</div></details>
+          </div>
+
+          <!-- BLOC AUTEUR -->
+          <div class="author-box">
+            <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+            <div>
+              <p class="author-box__name">Julien</p>
+              <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+              <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">162 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention avec une méthode claire. Sur TrajectoireDroit, je mets à disposition mes fiches complètes, mes majeures préparées et mes cours particuliers.</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section section--dark">
+      <div class="container container--narrow text-center">
+        <h2 class="h2" style="color:#fff">Le droit des contrats va bien au-delà de la seule stipulation pour autrui.</h2>
+        <p class="lead" style="color:rgba(255,255,255,.85); max-width:560px; margin:16px auto 32px">Ma fiche de droit des contrats L2 reprend toute la formation et les effets du contrat, chaque exception et chaque notion, expliqués simplement et prêts à servir en cas pratique.</p>
+        <a class="btn btn--primary btn--lg" href="droit-des-contrats-l2.html">Voir la fiche de droit des contrats L2</a>
+        <p style="margin-top:18px"><a href="blog.html" style="color:rgba(255,255,255,.8)">← Revenir au blog</a></p>
+      </div>
+    </section>
+    </article>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="majeures-preparees.html">Majeures préparées</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a><a href="blog.html">Blog</a><a href="methode-cas-pratique.html">Méthode du cas pratique</a><a href="fiche-arrets.html">Fiche d'arrêt</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (article stipulation pour autrui)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir ma fiche gratuite →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- vague2:sticky-bar -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit des contrats L2 S1 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <a class="btn btn--primary" href="droit-des-contrats-l2.html#fiches">Voir la fiche →</a>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=60004b0a" defer></script>
+
+
+  <script src="assets/js/main.js?v=30c14d23" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=70097293';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=fd545d49" defer></script>
+</body>
+</html>

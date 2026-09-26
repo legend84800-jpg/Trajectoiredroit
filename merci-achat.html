@@ -41,7 +41,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
   <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=91dcd544">
+  <link rel="stylesheet" href="assets/style.css?v=479afa66">
+  <style>
+    .achat-retour[hidden] { display: none !important; }
+    .achat-retour__question { border: 0; padding: 0; margin: 20px 0 0; min-width: 0; }
+    .achat-retour__question legend { font-weight: 700; color: var(--ink); line-height: 1.4; }
+    .achat-retour__choix { display: grid; gap: 8px; margin-top: 12px; }
+    .achat-retour__choix label { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; color: var(--ink); cursor: pointer; }
+    .achat-retour__choix label:has(input:checked) { border-color: var(--blue-600); background: var(--blue-50); }
+    .achat-retour__choix input { margin-top: 4px; flex-shrink: 0; accent-color: var(--blue-600); }
+    .achat-retour__choix label:focus-within, .achat-retour__actions button:focus-visible { outline: 2px solid var(--blue-600); outline-offset: 2px; }
+    .achat-retour__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 22px; }
+    .achat-retour__actions .btn { width: auto; }
+    @media (max-width: 480px) { .achat-retour__actions .btn { width: 100%; } }
+  </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -111,7 +124,7 @@
               <div class="megamenu__niveau-head"><strong>L2</strong><span>7 matières</span></div>
               <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
               <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
-              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des contrats (S2)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
               <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
               <a href="droit-penal-general-l1.html" role="menuitem">Droit pénal général (S2)</a>
               <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
@@ -128,12 +141,50 @@
               <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
             </div>
             </div>
-            <div class="megamenu__footer">
-              <div>
-                <strong>Pas sûr de ta matière ?</strong>
-                <span>Le quiz gratuit te dit où tu perds des points, en 3 minutes.</span>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="index.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 239 € au lieu de 416,69 €, 43 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-43 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">416,69 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 22 ressources, 199 € au lieu de 305,78 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">22 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">305,78 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 28 ressources, 229 € au lieu de 393,72 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">28 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">393,72 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 27 ressources, 209 € au lieu de 361,73 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">27 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">361,73 €</span><span class="megamenu__pack-tile-price">209 €</span></span>
+                  </span>
+                </a>
+                <a href="index.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 37 ressources, 299 € au lieu de 513,63 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">37 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">513,63 €</span><span class="megamenu__pack-tile-price">299 €</span></span>
+                  </span>
+                </a>
               </div>
-              <a class="btn btn--primary btn--sm" href="quiz-methode.html">Faire le quiz →</a>
             </div>
           </div>
         </div>
@@ -213,6 +264,11 @@
                   <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
                 </a>
               </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
               <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
             </div>
           </div>
@@ -251,9 +307,10 @@
     <details class="mobile-nav__group" open>
       <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
       <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="index.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
         <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
         <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
-        <a class="mobile-nav__format mobile-nav__format--featured" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
         <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
         <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
         <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
@@ -275,6 +332,11 @@
       <div class="mobile-nav__subnav">
         <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
         <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
         <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
         <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
         <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
@@ -323,6 +385,45 @@
             <a class="btn btn--outline" href="mailto:julien.prof1@gmail.com?subject=Lien%20de%20t%C3%A9l%C3%A9chargement%20non%20re%C3%A7u" style="margin-top:14px; display:inline-block">
               Contacter le support →
             </a>
+          </div>
+
+          <div class="card achat-retour" id="achatRetour" hidden style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; padding:28px 32px">
+            <h2 class="h4" style="margin:0">Ton achat en deux questions</h2>
+            <p style="margin:8px 0 0; color:var(--body)">Tes réponses m'aident à adapter les fiches aux besoins des étudiants. Elles sont facultatives. Ton PDF arrive par email dans tous les cas.</p>
+            <form id="achatRetourForm">
+              <fieldset class="achat-retour__question">
+                <legend>Qu'est-ce qui t'a décidé à acheter aujourd'hui ?</legend>
+                <div class="achat-retour__choix">
+                  <label><input type="radio" name="declencheur" value="td" required> Un TD m'a posé problème</label>
+                  <label><input type="radio" name="declencheur" value="note"> J'ai reçu une note qui m'a déçu</label>
+                  <label><input type="radio" name="declencheur" value="partiel"> Un partiel approche</label>
+                  <label><input type="radio" name="declencheur" value="nouvelle_matiere"> Je commence une nouvelle matière</label>
+                  <label><input type="radio" name="declencheur" value="autre"> Autre chose</label>
+                </div>
+                <div id="achatRetourAutre" hidden style="margin-top:10px">
+                  <label class="form__label" for="achatRetourAutreTexte">Tu peux préciser en quelques mots</label>
+                  <input class="form__input" id="achatRetourAutreTexte" name="declencheur_autre" maxlength="160" autocomplete="off">
+                </div>
+              </fieldset>
+              <fieldset class="achat-retour__question">
+                <legend>Qu'aimerais-tu surtout faire grâce à cet achat ?</legend>
+                <div class="achat-retour__choix">
+                  <label><input type="radio" name="resultat" value="comprendre" required> Comprendre mon cours</label>
+                  <label><input type="radio" name="resultat" value="exercice"> Réussir un exercice juridique</label>
+                  <label><input type="radio" name="resultat" value="partiel"> Réviser pour mon partiel</label>
+                  <label><input type="radio" name="resultat" value="temps"> Gagner du temps dans mes révisions</label>
+                  <label><input type="radio" name="resultat" value="autre"> Autre chose</label>
+                </div>
+                <label class="form__label" for="achatRetourPrecision" style="display:block; margin-top:12px">Si tu veux, précise ton objectif avec tes mots</label>
+                <input class="form__input" id="achatRetourPrecision" name="resultat_precision" maxlength="160" autocomplete="off">
+              </fieldset>
+              <div class="achat-retour__actions">
+                <button class="btn btn--primary" type="submit" id="achatRetourEnvoyer">Envoyer mes réponses</button>
+                <button class="btn btn--outline" type="button" id="achatRetourPasser">Passer</button>
+              </div>
+            </form>
+            <p id="achatRetourStatut" role="status" aria-live="polite" style="margin:12px 0 0; color:var(--body)"></p>
+            <p style="margin:14px 0 0; font-size:.82rem; color:var(--muted)">Évite d'indiquer ton nom ou tes coordonnées dans les champs libres. Tes réponses ne sont pas ajoutées à ton compte. <a href="confidentialite.html">Comment elles sont utilisées</a>.</p>
           </div>
 
           <div class="card" id="suggestionsCard" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center; display:none">
@@ -387,7 +488,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=3d512e75" defer></script>
+  <script src="assets/js/main.js?v=30c14d23" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
   (function(){
@@ -397,7 +498,7 @@
       if (loaded) return;
       loaded = true;
       var s = document.createElement('script');
-      s.src = 'assets/js/chatbot.js?v=5f959e14';
+      s.src = 'assets/js/chatbot.js?v=70097293';
       s.defer = true;
       document.body.appendChild(s);
       events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
@@ -422,6 +523,9 @@
     var statusCardLink = document.getElementById('purchaseStatusCardLink');
 
     function afficherAchatConfirme() {
+      // Chantier 5.12 : vide le panier seulement ici, sur la confirmation réelle du
+      // paiement, jamais avant (un abandon Stripe doit retrouver son panier intact).
+      try { localStorage.removeItem('tjd_panier'); } catch (_) {}
       document.title = 'Achat confirmé · TrajectoireDroit';
       statusIcon.textContent = '✅';
       statusEyebrow.textContent = 'Achat confirmé';
@@ -508,7 +612,7 @@
       fallback.style.display = 'none';
       if (!document.querySelector('script[src*="achat.js"]')) {
         var s = document.createElement('script');
-        s.src = 'assets/js/achat.js?v=641d5535';
+        s.src = 'assets/js/achat.js?v=60004b0a';
         s.defer = true;
         document.body.appendChild(s);
       }
@@ -516,6 +620,55 @@
 
     var donneesSession = null;
     var metaEnvoye = false;
+
+    var retour = document.getElementById('achatRetour');
+    var formulaireRetour = document.getElementById('achatRetourForm');
+    var statutRetour = document.getElementById('achatRetourStatut');
+    var boutonRetour = document.getElementById('achatRetourEnvoyer');
+    var cleRetour = 'tjd_motivation_' + sessionId;
+
+    formulaireRetour.addEventListener('change', function () {
+      document.getElementById('achatRetourAutre').hidden =
+        !formulaireRetour.querySelector('input[name="declencheur"][value="autre"]:checked');
+    });
+    document.getElementById('achatRetourPasser').addEventListener('click', function () {
+      try { sessionStorage.setItem(cleRetour, 'passee'); } catch (_) {}
+      retour.hidden = true;
+    });
+    formulaireRetour.addEventListener('submit', function (evenement) {
+      evenement.preventDefault();
+      if (!formulaireRetour.reportValidity()) return;
+      boutonRetour.disabled = true;
+      statutRetour.textContent = 'Enregistrement en cours…';
+      var valeurs = new FormData(formulaireRetour);
+      fetch('/api/motivation-achat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_id: sessionId,
+          declencheur: valeurs.get('declencheur'),
+          declencheur_autre: valeurs.get('declencheur_autre'),
+          resultat: valeurs.get('resultat'),
+          resultat_precision: valeurs.get('resultat_precision')
+        })
+      }).then(function (reponse) {
+        if (!reponse.ok) throw new Error('enregistrement_indisponible');
+        try { sessionStorage.setItem(cleRetour, 'envoyee'); } catch (_) {}
+        formulaireRetour.hidden = true;
+        statutRetour.textContent = 'Merci pour ta réponse.';
+      }).catch(function () {
+        boutonRetour.disabled = false;
+        statutRetour.textContent = 'Tes réponses n’ont pas été enregistrées. Tu peux réessayer. Ton PDF arrive par email.';
+      });
+    });
+
+    function afficherRetourSiEligible(d) {
+      if (window.tjdTestInterne || !d || !(d.montant > 0) || !(d.produitIds || []).some(function (id) {
+        return /^(fiche-|maj-)/.test(id);
+      })) return;
+      try { if (sessionStorage.getItem(cleRetour)) return; } catch (_) {}
+      retour.hidden = false;
+    }
 
     function envoyerMetaSiPret() {
       if (metaEnvoye || !donneesSession || typeof window.fbq !== 'function') return;
@@ -535,6 +688,7 @@
           donneesSession = d;
           afficherAchatConfirme();
           envoyerMesures(d);
+          afficherRetourSiEligible(d);
           afficherSuggestions(d && d.suggestions);
           envoyerMetaSiPret();
         })
