@@ -904,6 +904,7 @@ const PRODUITS = {
   "stage-methode": { nom: "Stage de méthode en direct (3 séances, vacances de la Toussaint, 27-29 octobre 2026)", prix: 17600, blobs: [] },
 };
 
+Object.assign(PRODUITS, require("./_packs-citations").construireProduits(PRODUITS));
 Object.assign(PRODUITS, require("./_packs-ultra").construireProduits(PRODUITS));
 
 module.exports = PRODUITS;
