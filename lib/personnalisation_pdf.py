@@ -220,6 +220,17 @@ def codes_licence_depuis_session(
     return f"TD-{licence[:10]}", fingerprint[:12]
 
 
+_EMAIL_CADEAU = re.compile(r"[^\s@]+@[^\s@]+\.[^\s@]{2,}")
+
+
+def email_cadeau(session: dict) -> str:
+    """Email de l'étudiant quand un parent lui a offert le pack, sinon ""."""
+
+    metadata = session.get("metadata") or {}
+    email = _nettoyer_texte(metadata.get("cadeauEmail"), 200).lower()
+    return email if _EMAIL_CADEAU.fullmatch(email) else ""
+
+
 def identite_depuis_session(
     session: dict,
     secret: str,
@@ -227,9 +238,17 @@ def identite_depuis_session(
     blob_index: int = 0,
 ) -> IdentiteLicence:
     details = session.get("customer_details") or {}
-    email = _nettoyer_texte(details.get("email"), 200).lower()
+    # Pack offert : la licence porte le prénom et l'email de l'étudiant qui
+    # reçoit le pack, jamais le nom ni l'adresse du parent qui a payé.
+    beneficiaire = email_cadeau(session)
+    email = beneficiaire or _nettoyer_texte(details.get("email"), 200).lower()
     if "@" not in email:
         raise ValueError("Adresse email Stripe manquante")
+    nom = (
+        _nettoyer_texte((session.get("metadata") or {}).get("cadeauPrenom"), 40)
+        if beneficiaire
+        else _champ_nom(session)
+    )
     session_id = _nettoyer_texte(session.get("id"), 255)
     licence, fingerprint = codes_licence_depuis_session(
         session_id,
@@ -240,14 +259,23 @@ def identite_depuis_session(
     return IdentiteLicence(
         licence=licence,
         fingerprint=fingerprint,
-        nom_affiche=abreger_nom(_champ_nom(session), email),
+        nom_affiche=abreger_nom(nom, email),
         email_masque=masquer_email(email),
         email_hash=hashlib.sha256(email.encode("utf-8")).hexdigest(),
     )
 
 
 def verifier_session_payee(session: dict, produit_id: str = PRODUIT_PILOTE) -> None:
-    if session.get("mode") != "payment" or session.get("payment_status") != "paid":
+    # Le paiement en 2 ou 3 fois des Packs Ultra passe par un abonnement borné :
+    # la session est alors en mode "subscription" et porte le nombre d'échéances.
+    en_plusieurs_fois = (
+        session.get("mode") == "subscription"
+        and str((session.get("metadata") or {}).get("echeances") or "") in {"2", "3"}
+    )
+    if (
+        (session.get("mode") != "payment" and not en_plusieurs_fois)
+        or session.get("payment_status") != "paid"
+    ):
         raise PermissionError("Paiement non confirmé")
     produit_ids = ((session.get("metadata") or {}).get("produitIds") or "").split(",")
     if produit_id not in [produit.strip() for produit in produit_ids]:

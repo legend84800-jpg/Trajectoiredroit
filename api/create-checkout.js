@@ -8,7 +8,8 @@ const crypto = require("crypto");
 const PRODUITS = require("./_produits");
 const { selectionner } = require("./_supabase");
 const { creerClientStripe, INTEGRATION_IDS } = require("./_stripe");
-const { nombreEcheancesValide, versCheckoutEcheances } = require("./_echeances");
+const { nombreEcheancesValide, versCheckoutEcheances, montantEcheance } = require("./_echeances");
+const { lireCadeauFormulaire, appliquerCadeauCheckout } = require("./_cadeau");
 
 // Textes affichés par Stripe sur la page de paiement des produits livrés par email.
 // Sur mobile, Stripe replie le récapitulatif : le message sous le bouton Payer
@@ -372,6 +373,18 @@ async function handler(req, res) {
     res.status(400).json({ erreur: "Produit indisponible", code: "produit_indisponible" });
     return;
   }
+
+  // Pack Ultra offert par un parent (parents.html) : l'étudiant reçoit le pack,
+  // le parent la confirmation. Réservé aux Packs Ultra achetés seuls.
+  const cadeau = lireCadeauFormulaire(corps);
+  if (cadeau && cadeau.erreur) {
+    res.status(400).json({ erreur: "Adresse email de l'étudiant invalide", code: cadeau.erreur });
+    return;
+  }
+  if (cadeau && (!produitId.startsWith("pack-ultra-") || bump)) {
+    res.status(400).json({ erreur: "Cadeau réservé aux Packs Ultra", code: "cadeau_indisponible" });
+    return;
+  }
   const idsAchetes = bump ? [produitId, bumpId] : [produitId];
   const contientStage = idsAchetes.includes("stage-methode");
   const autoriserRelance = !internalTest && !contientStage;
@@ -487,8 +500,18 @@ async function handler(req, res) {
 
   // Paiement en 2 ou 3 fois sans frais, réservé aux Packs Ultra achetés seuls.
   const nombreEcheances = bump ? null : nombreEcheancesValide(produitId, produit, corps.echeances);
-  const paramsFinaux = nombreEcheances ? versCheckoutEcheances(params, produit, nombreEcheances) : params;
-  const cleIdempotence = nombreEcheances ? `checkout-${attemptId}-x${nombreEcheances}` : `checkout-${attemptId}`;
+  const paramsEcheances = nombreEcheances ? versCheckoutEcheances(params, produit, nombreEcheances) : params;
+  const paramsFinaux = cadeau
+    ? appliquerCadeauCheckout(
+      paramsEcheances,
+      produit,
+      cadeau,
+      nombreEcheances,
+      nombreEcheances ? montantEcheance(produit.prix, nombreEcheances) : 0
+    )
+    : paramsEcheances;
+  const cleBase = nombreEcheances ? `checkout-${attemptId}-x${nombreEcheances}` : `checkout-${attemptId}`;
+  const cleIdempotence = cadeau ? `${cleBase}-cadeau` : cleBase;
 
   try {
     const sessionCheckout = await stripe.checkout.sessions.create(

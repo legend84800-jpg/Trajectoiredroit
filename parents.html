@@ -58,7 +58,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=479afa66">
+  <link rel="stylesheet" href="assets/style.css?v=00c08d57">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
@@ -124,6 +124,11 @@
     .parents .signature span{display:block;font-family:"Hanken Grotesk",sans-serif;font-size:.85rem;color:var(--body)}
     .parents .parents__pdf{margin:18px 0 8px}
     .parents p a:not(.btn),.parents .contact a{color:var(--navy);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+    .parents .offrir{margin:18px 0 8px;padding:22px 24px;border:1px solid var(--gold-line);border-radius:12px;background:var(--gold-bg)}
+    .parents .offrir__echeances{border:0;padding:0;margin:0;display:grid;gap:8px;min-width:0}
+    .parents .offrir__echeances label{display:flex;gap:10px;align-items:center;color:var(--body);cursor:pointer}
+    .parents .offrir .form__error[hidden]{display:none}
+    html[data-theme="dark"] .parents .offrir{background:rgba(255,255,255,.04)}
     @media (max-width:640px){
       .parents .presentation{grid-template-columns:1fr}
       .parents .chiffres{grid-template-columns:repeat(2,1fr)}
@@ -491,7 +496,50 @@
   <p>Le paiement se fait par carte bancaire, en une, deux ou trois fois sans frais. En trois fois, le premier prélèvement a lieu le jour de l'achat, puis les deux suivants à un mois d'intervalle. Les prélèvements s'arrêtent ensuite automatiquement, et votre enfant reçoit tout le pack dès le premier paiement.</p>
   <p>Le paiement passe par Stripe, un prestataire de paiement sécurisé utilisé par de nombreux sites marchands. Les données de votre carte restent donc chez Stripe, et je n'y ai pas accès.</p>
 
-  <h2><span class="num">08</span>Me poser une question</h2>
+  <h2 id="offrir"><span class="num">08</span>Offrir le Pack Ultra à votre enfant</h2>
+  <p>Vous pouvez aussi payer le pack vous-même et l'offrir directement à votre enfant. Vous choisissez le semestre et le nombre de paiements, puis vous indiquez son adresse email. Dès que le paiement est validé, il reçoit le pack par email, avec votre message si vous en écrivez un. Vous recevez alors de votre côté une confirmation d'achat.</p>
+  <form class="form offrir" id="offrirForm" novalidate>
+    <div class="form__row">
+      <label class="form__label" for="offrirPack">Le semestre de votre enfant</label>
+      <select class="form__select" id="offrirPack" name="pack" required>
+        <option value="pack-ultra-l1-s1" data-prix="23900">L1, semestre 1 (239 €)</option>
+        <option value="pack-ultra-l1-s2" data-prix="19900">L1, semestre 2 (199 €)</option>
+        <option value="pack-ultra-l2-s1" data-prix="22900">L2, semestre 1 (229 €)</option>
+        <option value="pack-ultra-l2-s2" data-prix="20900">L2, semestre 2 (209 €)</option>
+        <option value="pack-ultra-l3-s1" data-prix="29900">L3, semestre 1 (299 €)</option>
+      </select>
+    </div>
+    <fieldset class="offrir__echeances">
+      <legend class="form__label">Le paiement</legend>
+      <label><input type="radio" name="echeances" value="1" checked> <span data-echeances-libelle="1">En une fois</span></label>
+      <label><input type="radio" name="echeances" value="2"> <span data-echeances-libelle="2">En 2 fois sans frais</span></label>
+      <label><input type="radio" name="echeances" value="3"> <span data-echeances-libelle="3">En 3 fois sans frais</span></label>
+    </fieldset>
+    <div class="form__row">
+      <label class="form__label" for="offrirEmail">Son adresse email</label>
+      <input class="form__input" type="email" id="offrirEmail" name="email" required maxlength="200" autocomplete="off" placeholder="prenom.nom@exemple.fr">
+      <span class="form__hint">Le pack part à cette adresse, et votre enfant s'en sert ensuite pour se connecter à son espace et retrouver ses fichiers.</span>
+    </div>
+    <div class="form__row">
+      <label class="form__label" for="offrirEmailConfirmation">Confirmez son adresse email</label>
+      <input class="form__input" type="email" id="offrirEmailConfirmation" name="emailConfirmation" required maxlength="200" autocomplete="off">
+    </div>
+    <div class="form__row">
+      <label class="form__label" for="offrirPrenom">Son prénom (facultatif)</label>
+      <input class="form__input" type="text" id="offrirPrenom" name="prenom" maxlength="40" autocomplete="off">
+      <span class="form__hint">Le prénom apparaît dans l'email qu'il reçoit et sur la licence de ses PDF.</span>
+    </div>
+    <div class="form__row">
+      <label class="form__label" for="offrirMessage">Votre message (facultatif)</label>
+      <textarea class="form__textarea" id="offrirMessage" name="message" maxlength="300" rows="4"></textarea>
+      <span class="form__hint"><span id="offrirCompteur">0</span> / 300 caractères</span>
+    </div>
+    <p class="form__error" id="offrirErreur" role="alert" aria-live="polite" hidden></p>
+    <button class="btn btn--primary btn--full" type="submit" id="offrirBouton">Offrir le pack et passer au paiement</button>
+    <p class="form__hint" style="margin:0">Le paiement se fait ensuite sur la page sécurisée de Stripe, par carte bancaire.</p>
+  </form>
+
+  <h2><span class="num">09</span>Me poser une question</h2>
   <p>Si vous avez une question avant de décider, vous pouvez m'écrire par email ou sur WhatsApp. Je vous réponds moi-même, et vous pouvez en profiter pour me parler de la situation de votre enfant.</p>
   <div class="contact">
     <div><small>Email</small><a href="mailto:julien.prof1@gmail.com">julien.prof1@gmail.com</a></div>
@@ -553,7 +601,7 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js?v=30c14d23" defer></script>
+  <script src="assets/js/main.js?v=38fe4f30" defer></script>
   <script>
   (function(){
     var loaded = false;
@@ -570,6 +618,115 @@
     }
     events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
     var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script>
+  /* Offrir le Pack Ultra (27/09/2026) : le parent paie, l'étudiant reçoit le pack.
+     Le serveur revérifie le produit, les échéances et l'adresse email. */
+  (function () {
+    var form = document.getElementById('offrirForm');
+    if (!form) return;
+    var pack = document.getElementById('offrirPack');
+    var email = document.getElementById('offrirEmail');
+    var confirmation = document.getElementById('offrirEmailConfirmation');
+    var prenom = document.getElementById('offrirPrenom');
+    var message = document.getElementById('offrirMessage');
+    var compteur = document.getElementById('offrirCompteur');
+    var erreur = document.getElementById('offrirErreur');
+    var bouton = document.getElementById('offrirBouton');
+    var texteBouton = bouton.textContent;
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    function euros(centimes) {
+      var texte = (centimes / 100).toFixed(2).replace('.', ',');
+      return (/,00$/.test(texte) ? texte.slice(0, -3) : texte) + ' €';
+    }
+    function majEcheances() {
+      var prix = parseInt(pack.options[pack.selectedIndex].getAttribute('data-prix'), 10);
+      form.querySelector('[data-echeances-libelle="1"]').textContent = 'En une fois, ' + euros(prix);
+      [2, 3].forEach(function (n) {
+        form.querySelector('[data-echeances-libelle="' + n + '"]').textContent =
+          'En ' + n + ' fois sans frais, ' + n + ' × ' + euros(Math.floor(prix / n));
+      });
+    }
+    function afficherErreur(texte, champ) {
+      erreur.textContent = texte;
+      erreur.hidden = false;
+      if (champ) champ.focus();
+    }
+    function estTestInterne() {
+      try { return window.tjdTestInterne === true || localStorage.getItem('tjd_internal_test') === '1'; }
+      catch (_) { return window.tjdTestInterne === true; }
+    }
+    function creerAttemptId() {
+      if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+      return 'cad-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12);
+    }
+
+    try {
+      var packDemande = new URLSearchParams(window.location.search).get('pack');
+      if (packDemande && pack.querySelector('option[value="' + packDemande.replace(/[^a-z0-9-]/g, '') + '"]')) pack.value = packDemande;
+    } catch (_) {}
+    majEcheances();
+    pack.addEventListener('change', majEcheances);
+    message.addEventListener('input', function () { compteur.textContent = message.value.length; });
+
+    form.addEventListener('submit', function (evenement) {
+      evenement.preventDefault();
+      erreur.hidden = true;
+      var adresse = email.value.trim().toLowerCase();
+      if (!EMAIL_RE.test(adresse)) {
+        afficherErreur("Cette adresse email semble incomplète. Vérifiez-la avant de continuer.", email);
+        return;
+      }
+      if (confirmation.value.trim().toLowerCase() !== adresse) {
+        afficherErreur('Les deux adresses email sont différentes. Corrigez la confirmation pour continuer.', confirmation);
+        return;
+      }
+      var echeances = parseInt((form.querySelector('input[name="echeances"]:checked') || {}).value || '1', 10);
+      var corps = {
+        produitId: pack.value,
+        cadeauEmail: adresse,
+        cadeauPrenom: prenom.value.trim().slice(0, 40),
+        cadeauMessage: message.value.trim().slice(0, 300),
+        attemptId: creerAttemptId(),
+        attemptCreatedAt: Math.floor(Date.now() / 1000),
+        pageActuelle: 'parents.html#offrir',
+        landingPage: (function () { try { return sessionStorage.getItem('tjd_landing_page') || 'parents.html'; } catch (_) { return 'parents.html'; } })(),
+        deviceType: window.innerWidth < 768 ? 'mobile' : (window.innerWidth < 1024 ? 'tablette' : 'ordinateur'),
+        viewport: Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) + 'x' + Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0),
+        internalTest: estTestInterne()
+      };
+      if (echeances === 2 || echeances === 3) corps.echeances = echeances;
+      try {
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (cle) {
+          var valeur = sessionStorage.getItem('tjd_' + cle);
+          if (valeur) corps[cle] = valeur;
+        });
+        var referrer = sessionStorage.getItem('tjd_referrer');
+        if (referrer) corps.referrer = referrer;
+      } catch (_) {}
+      if (!estTestInterne() && typeof window.gtag === 'function') {
+        gtag('event', 'begin_checkout', { items: [{ item_id: pack.value }], page_path: window.location.pathname, cadeau: true });
+      }
+      if (!estTestInterne() && window._paq) window._paq.push(['trackEvent', 'Ecommerce', 'ClicOffrir', pack.value]);
+
+      bouton.disabled = true;
+      bouton.textContent = 'Ouverture du paiement…';
+      fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(corps)
+      })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { if (!r.ok || !d.url) throw d; return d; }); })
+        .then(function (d) { window.location.assign(d.url); })
+        .catch(function (d) {
+          bouton.disabled = false;
+          bouton.textContent = texteBouton;
+          if (d && d.code === 'cadeau_email_invalide') afficherErreur("Cette adresse email semble incomplète. Vérifiez-la avant de continuer.", email);
+          else afficherErreur("La page de paiement ne s'ouvre pas pour le moment. Réessayez dans quelques secondes.");
+        });
+    });
   })();
   </script>
   <script src="assets/js/cookie-consent.js?v=fd545d49" defer></script>

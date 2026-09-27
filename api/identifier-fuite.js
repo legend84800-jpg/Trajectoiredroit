@@ -2,6 +2,7 @@ const crypto = require("crypto");
 const { selectionner } = require("./_supabase");
 const { creerClientStripe } = require("./_stripe");
 const PRODUITS = require("./_produits");
+const { cadeauDepuisMetadata } = require("./_cadeau");
 
 const PRODUIT_PILOTE = "maj-penal-l2-s1";
 const FINGERPRINT_RE = /^[0-9A-F]{10}(?:[0-9A-F]{2})?$/;
@@ -143,16 +144,22 @@ async function identifier(body, contexte) {
   const produitsStripe = String((session.metadata && session.metadata.produitIds) || "")
     .split(",")
     .map(produit => produit.trim());
+  // Paiement en 2 ou 3 fois d'un Pack Ultra : abonnement borné, mode "subscription".
+  const enPlusieursFois = session.mode === "subscription"
+    && ["2", "3"].includes(String((session.metadata && session.metadata.echeances) || ""));
   if (
-    session.mode !== "payment"
+    (session.mode !== "payment" && !enPlusieursFois)
     || session.payment_status !== "paid"
     || !produitsStripe.includes(correspondance.produitId)
   ) {
     throw new Error("La session Stripe ne confirme pas l'achat");
   }
-  const emailStripe = String(
+  const emailPayeur = String(
     (session.customer_details && session.customer_details.email) || ""
   ).trim().toLowerCase();
+  // Pack offert : l'achat et la licence sont au nom de l'étudiant, le parent a payé.
+  const cadeau = cadeauDepuisMetadata(session.metadata);
+  const emailStripe = cadeau ? cadeau.email : emailPayeur;
   if (!emailStripe || emailStripe !== String(correspondance.achat.email || "").trim().toLowerCase()) {
     throw new Error("Les adresses Supabase et Stripe ne correspondent pas");
   }
@@ -175,9 +182,10 @@ async function identifier(body, contexte) {
         date: correspondance.achat.cree_le,
       },
       titulaire: {
-        nom: nomLicence(session),
+        nom: cadeau ? cadeau.prenom : nomLicence(session),
         nom_affiche_pdf: "",
         email: emailStripe,
+        ...(cadeau ? { cadeau_paye_par: emailPayeur } : {}),
       },
     },
   };

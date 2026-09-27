@@ -102,6 +102,7 @@ async function bornerAbonnement(stripe, subscriptionId, nombre) {
 module.exports = {
   NOMBRES_ECHEANCES,
   montantEcheance,
+  euros,
   nombreEcheancesValide,
   versCheckoutEcheances,
   bornerAbonnement,

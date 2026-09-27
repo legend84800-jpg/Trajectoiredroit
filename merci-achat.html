@@ -44,6 +44,7 @@
   <link rel="stylesheet" href="assets/style.css?v=00c08d57">
   <style>
     .achat-retour[hidden] { display: none !important; }
+    #purchaseSteps[hidden], #purchaseGiftSteps[hidden] { display: none !important; }
     .achat-retour__question { border: 0; padding: 0; margin: 20px 0 0; min-width: 0; }
     .achat-retour__question legend { font-weight: 700; color: var(--ink); line-height: 1.4; }
     .achat-retour__choix { display: grid; gap: 8px; margin-top: 12px; }
@@ -371,7 +372,16 @@
         </p>
 
         <div id="purchaseConfirmedContent" hidden>
-          <div class="card" style="margin-top:40px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; padding:28px 32px">
+          <div class="card" id="purchaseGiftSteps" hidden style="margin-top:40px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; padding:28px 32px">
+            <h2 class="h4" style="margin-top:0">Ce qui se passe maintenant</h2>
+            <ol style="margin:16px 0 0; padding-left:20px; line-height:1.9; color:var(--text)">
+              <li>Votre enfant reçoit un email de <strong>contact@trajectoiredroit.com</strong> qui lui annonce le cadeau, avec votre message si vous en avez écrit un.</li>
+              <li>Il se connecte à son espace <a href="mon-compte.html">Mon compte</a> avec l'adresse que vous avez indiquée, et il y retrouve tous les fichiers du pack.</li>
+              <li>Vous recevez de votre côté une confirmation d'achat, à l'adresse saisie sur la page de paiement.</li>
+            </ol>
+          </div>
+
+          <div class="card" id="purchaseSteps" style="margin-top:40px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; padding:28px 32px">
             <h2 class="h4" style="margin-top:0">Ce qui se passe maintenant</h2>
             <ol style="margin:16px 0 0; padding-left:20px; line-height:1.9; color:var(--text)">
               <li>Tu reçois un email de <strong>contact@trajectoiredroit.com</strong> avec le lien de téléchargement direct.</li>
@@ -523,6 +533,7 @@
     var statusCardLink = document.getElementById('purchaseStatusCardLink');
 
     function afficherAchatConfirme() {
+      var d = donneesSession;
       // Chantier 5.12 : vide le panier seulement ici, sur la confirmation réelle du
       // paiement, jamais avant (un abandon Stripe doit retrouver son panier intact).
       try { localStorage.removeItem('tjd_panier'); } catch (_) {}
@@ -531,6 +542,16 @@
       statusEyebrow.textContent = 'Achat confirmé';
       statusTitle.textContent = 'Ton PDF arrive par email';
       statusMessage.textContent = 'Paiement reçu. Dans quelques secondes, tu reçois un email avec le lien de téléchargement. Vérifie ta boîte de réception et ton dossier spam si tu ne le vois pas.';
+      // Pack offert depuis parents.html : la page s'adresse au parent, qui a payé,
+      // et le pack est parti chez l'étudiant.
+      if (d && d.cadeau) {
+        document.title = 'Cadeau confirmé · TrajectoireDroit';
+        statusEyebrow.textContent = 'Cadeau confirmé';
+        statusTitle.textContent = 'Votre cadeau est parti';
+        statusMessage.textContent = "Paiement reçu. Le pack part par email chez votre enfant dans quelques secondes, et vous recevez aussi une confirmation d'achat. Si elle n'apparaît pas dans votre boîte de réception, regardez dans les courriers indésirables.";
+        document.getElementById('purchaseSteps').hidden = true;
+        document.getElementById('purchaseGiftSteps').hidden = false;
+      }
       confirmedContent.hidden = false;
       statusCard.hidden = true;
     }

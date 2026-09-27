@@ -12,6 +12,12 @@ const { upsert, insererSiAbsent, supprimer } = require("./_supabase");
 const { construireLiensTelechargement } = require("./_liens-telechargement");
 const { creerClientStripe } = require("./_stripe");
 const { bornerAbonnement } = require("./_echeances");
+const {
+  cadeauDepuisMetadata,
+  formaterNomOffrant,
+  construireEmailEtudiant,
+  construireEmailParent,
+} = require("./_cadeau");
 
 // Traduit le statut Stripe en statut simplifié stocké côté Supabase.
 function statutAbonnement(statutStripe) {
@@ -615,6 +621,55 @@ async function notifierJulienStage(metadata, email, montantEuros, sessionId, bre
   }
 }
 
+async function envoyerTransactionnel(destinataire, contenu, brevoKey, tags) {
+  const payload = {
+    sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
+    to: [{ email: destinataire }],
+    // Les deux emails du cadeau invitent à répondre : sans ce replyTo, la réponse
+    // partirait vers contact@trajectoiredroit.com, jamais lue par Julien.
+    replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
+    subject: contenu.sujet,
+    htmlContent: contenu.html,
+    textContent: contenu.texte,
+    tags,
+  };
+  const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "api-key": brevoKey },
+    body: JSON.stringify(payload),
+  });
+  if (!resp.ok) {
+    const err = await resp.text();
+    throw new Error(`Brevo ${resp.status}: ${err}`);
+  }
+}
+
+// Pack offert : l'étudiant reçoit l'accès au pack et le message du parent.
+async function envoyerEmailCadeau(cadeau, nomOffrant, produits, liens, brevoKey) {
+  await envoyerTransactionnel(
+    cadeau.email,
+    construireEmailEtudiant({ cadeau, nomOffrant, produits, liens }),
+    brevoKey,
+    ["cadeau-pack", "cadeau-etudiant"]
+  );
+}
+
+// Pack offert : le parent reçoit une confirmation d'achat, sans les fichiers.
+async function envoyerConfirmationCadeau(emailParent, cadeau, produits, session, codePromo, brevoKey) {
+  await envoyerTransactionnel(
+    emailParent,
+    construireEmailParent({
+      cadeau,
+      produits,
+      metadata: session.metadata,
+      montantCentimes: session.amount_total,
+      codePromo,
+    }),
+    brevoKey,
+    ["cadeau-pack", "cadeau-parent"]
+  );
+}
+
 function donneesAchat(session, email, produitIds, montantEuros, estRelance) {
   return {
     email,
@@ -661,11 +716,18 @@ async function traiterAchatPaye(session, contexte) {
   const accordPromotionnel = accordEmails(session);
   const estStage = produitIds.includes("stage-methode");
   const libelleProduits = produitIds.join("+");
+  // Pack offert : l'achat, la licence des PDF et l'accès Mon compte vont à
+  // l'étudiant. Le parent, qui a payé et fait son choix « emails » sur la page
+  // de paiement, reste le seul concerné par Brevo, la remise et Meta.
+  const cadeau = estStage ? null : cadeauDepuisMetadata(session.metadata);
+  const emailBeneficiaire = cadeau ? cadeau.email : email;
 
   const operations = contexte.operations || {
     insererSiAbsent,
     supprimer,
     envoyerEmail,
+    envoyerEmailCadeau,
+    envoyerConfirmationCadeau,
     envoyerConfirmationStage,
     notifierJulienStage,
     envoyerAchatMeta,
@@ -692,7 +754,7 @@ async function traiterAchatPaye(session, contexte) {
   // On réserve la session avant tout email. Un webhook rejoué s'arrête ici.
   const lignesCreees = await operations.insererSiAbsent(
     "achats",
-    donneesAchat(session, email, produitIds, montantEuros, estRelance),
+    donneesAchat(session, emailBeneficiaire, produitIds, montantEuros, estRelance),
     "session_id"
   );
   if (!Array.isArray(lignesCreees) || lignesCreees.length === 0) {
@@ -739,13 +801,23 @@ async function traiterAchatPaye(session, contexte) {
           )
         );
       });
-      await operations.envoyerEmail(
-        email,
-        produitsAchetes.map(p => p.produit),
-        liens,
-        contexte.brevoKey,
-        codeAmbassadeur
-      );
+      if (cadeau) {
+        await operations.envoyerEmailCadeau(
+          cadeau,
+          formaterNomOffrant(session.customer_details && session.customer_details.name),
+          produitsAchetes.map(p => p.produit),
+          liens,
+          contexte.brevoKey
+        );
+      } else {
+        await operations.envoyerEmail(
+          email,
+          produitsAchetes.map(p => p.produit),
+          liens,
+          contexte.brevoKey,
+          codeAmbassadeur
+        );
+      }
     }
   } catch (erreurLivraison) {
     try {
@@ -763,7 +835,24 @@ async function traiterAchatPaye(session, contexte) {
   } else {
     console.log(`[VENTE] produits=${libelleProduits} montant=${montantEuros}€ session=${session.id}`);
   }
-  console.log(`Livraison confirmée pour ${libelleProduits}, session=${session.id}`);
+  console.log(`Livraison confirmée pour ${libelleProduits}${cadeau ? " (cadeau)" : ""}, session=${session.id}`);
+
+  // Le pack est déjà chez l'étudiant : un échec de la confirmation au parent se
+  // journalise sans faire rejouer le webhook, qui renverrait le pack en double.
+  if (cadeau) {
+    try {
+      await operations.envoyerConfirmationCadeau(
+        email,
+        cadeau,
+        produitsAchetes.map(p => p.produit),
+        session,
+        codeAmbassadeur,
+        contexte.brevoKey
+      );
+    } catch (e) {
+      console.error(`Erreur confirmation cadeau au parent, session=${session.id}:`, e.message);
+    }
+  }
 
   // Les actions suivantes enrichissent le suivi mais ne doivent jamais faire
   // rejouer une livraison réussie au client.
