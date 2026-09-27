@@ -448,7 +448,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-contrats-speciaux-l3.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-contrats-speciaux-l3-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-contrats-speciaux-l3-cartesmentales.pdf"] },
-  "pack-cours-complets-l2": { nom: "Pack annuel Cours complets L2", prix: 13500, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-obligations-l2-s2.pdf",
+  "pack-cours-complets-l2": { nom: "Pack Cours L2 (6 cours L2 + Droit pénal général L1 S2)", prix: 13500, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-obligations-l2-s2.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-obligations-l2-s2-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-obligations-l2-s2-cartesmentales.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-da-l2-s2.pdf",
@@ -604,7 +604,7 @@ const PRODUITS = {
     ],
   },
   "pack-l2": {
-    nom: "Pack Fiches L2 intégral (7 matières)",
+    nom: "Pack Fiches L2 (6 fiches L2 + Droit pénal général L1 S2)",
     prix: 7900,
     blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s1.pdf",
