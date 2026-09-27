@@ -1,0 +1,40 @@
+{
+  "_mode_emploi": "Fichier unique de la bascule saisonnière, lu par assets/js/main.js (section 4). Mis à jour chaque lundi par la routine bascule-saisonniere-tjd. Si ce fichier manque, est mal formé ou si periode.fin est passée, le site garde son affichage par défaut. Tout texte ici est lu par des étudiants et passe par le skill redaction-julien. Compte à rebours seulement vers une date réelle (compte_a_rebours_fin au format ISO), sinon null. La mention « plus que 3 places » du stage est une décision de Julien, ne jamais la modifier.",
+  "periode": {
+    "id": "2026-s1-td-notes-toussaint",
+    "nom": "TD notés, méthode et stage de la Toussaint",
+    "debut": "2026-09-28",
+    "fin": "2026-10-25"
+  },
+  "bandeau": {
+    "actif": true,
+    "etiquette_forte": "Stage de méthode en direct",
+    "etiquette": ", vacances de la Toussaint",
+    "puce": "27, 28 et 29 octobre · plus que 3 places",
+    "bouton": "Réserver ma place",
+    "lien": "stage-methode.html#reserver",
+    "compte_a_rebours_fin": null,
+    "compte_a_rebours_libelle": null,
+    "masquer_sur": ["stage-methode", "merci-stage", "parents"]
+  },
+  "accueil": {
+    "titre": null,
+    "annonce_etiquette": "Premiers TD notés",
+    "annonce_texte": "À partir de fin septembre, les chargés de TD commencent à noter tes copies, souvent sur une fiche d'arrêt ou un commentaire d'arrêt. Pour t'y préparer, les pages de méthode détaillent chaque exercice gratuitement, avec un exemple. Ensuite, pendant les vacances de la Toussaint, le stage reprend ces deux exercices avec toi, puis passe au cas pratique et à la dissertation.",
+    "annonce_liens": [
+      { "libelle": "Méthode de la fiche d'arrêt", "lien": "methode-fiche-arret.html" },
+      { "libelle": "Méthode du commentaire d'arrêt", "lien": "methode-commentaire-arret.html" },
+      { "libelle": "Exercices corrigés", "lien": "corriges.html" }
+    ],
+    "bouton": { "libelle": "Voir le stage de la Toussaint →", "lien": "stage-methode.html" },
+    "masquer_reassurance_pdf": true,
+    "texte_sous_bouton": "Trois séances en direct, 8 h au total pour 176 €, soit 22 € de l'heure. Les exercices corrigés montrent la copie modèle sur un commentaire ou un cas pratique, dès 14,99 €."
+  },
+  "bouton_collant": {
+    "pages": ["accueil"],
+    "titre": "Stage de la Toussaint",
+    "sous_titre": "27, 28 et 29 octobre · 176 €",
+    "libelle": "Réserver ma place →",
+    "lien": "stage-methode.html#reserver"
+  }
+}

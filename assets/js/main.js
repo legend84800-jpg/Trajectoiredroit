@@ -524,78 +524,187 @@
     }
   }
 
-  // ----- 4. Urgency banner : stage de droit pré-rentrée -----
-  // Construit en JS, comme le skip-link et la recherche plus haut, pour ne pas
-  // coller ce bloc dans les 138 pages HTML. Compte à rebours réel vers la
-  // clôture des inscriptions (27 août, cf. la FAQ de stage-methode.html) :
-  // jamais un faux compte à rebours qui repart à chaque visite. Masqué sur la
-  // page du stage elle-même, déjà entièrement consacrée à cette offre.
+  // ----- 4. Bascule saisonnière : bandeau, zone haute de l'accueil, bouton collant -----
+  // Tout le contenu vient d'un seul fichier, assets/data/saison.json, mis à jour
+  // chaque lundi par la routine bascule-saisonniere-tjd selon la période de
+  // l'année universitaire. Règle de sécurité : si le fichier manque, est mal
+  // formé ou si sa période est terminée (date "fin" passée), rien ne change et
+  // chaque page garde exactement son affichage codé en dur. Le compte à rebours
+  // n'apparaît que si le fichier donne une vraie échéance ("compte_a_rebours_fin"),
+  // jamais un faux compte à rebours qui repart à chaque visite.
   (function () {
-    var header = document.querySelector('.site-header');
-    if (!header || sessionStorage.getItem('urgencyDismissed')) return;
-    if (/stage-methode\.html/.test(window.location.pathname)) return;
+    if (!window.fetch || !window.JSON) return;
+    var chemin = window.location.pathname;
+    var page = chemin.split('/').pop() || 'index.html';
+    var estAccueil = chemin === '/' || chemin === '/index.html';
+    var nomPage = page.replace(/\.html$/, '');
 
-    var DEADLINE = new Date('2026-08-27T00:00:00').getTime();
-    if (Date.now() >= DEADLINE) return;
-
-    var banner = document.createElement('div');
-    banner.className = 'urgency-banner';
-    banner.id = 'urgencyBanner';
-    banner.innerHTML =
-      '<a class="urgency-banner__link" href="stage-methode.html#reserver">' +
-        '<span class="urgency-banner__dot" aria-hidden="true"></span>' +
-        '<span class="urgency-banner__label"><span class="urgency-banner__label-strong">Stage de droit</span>, pré-rentrée</span>' +
-        '<span class="urgency-banner__chip">du 8 au 10 septembre &middot; plus que 3 places</span>' +
-        '<span class="urgency-banner__countdown-group">' +
-          '<span class="urgency-banner__countdown-label">Ferme dans</span>' +
-          '<span class="urgency-banner__countdown" id="urgencyCountdown"></span>' +
-        '</span>' +
-        '<span class="urgency-banner__cta">Réserver ma place <span class="urgency-banner__cta-arrow" aria-hidden="true">→</span></span>' +
-      '</a>' +
-      '<button type="button" class="urgency-banner__close" aria-label="Fermer ce message" data-close-urgency>✕</button>';
-    header.parentNode.insertBefore(banner, header);
-
-    // Le bandeau s'insère après coup et décale tout le contenu vers le bas.
-    // Si la page vient d'atterrir sur une ancre (ex : #fiches depuis un
-    // article de blog), ce décalage invalide le scroll déjà fait par le
-    // navigateur : on recale une fois, sans animation, sur la cible réelle.
-    if (window.location.hash) {
-      var ancre = document.getElementById(window.location.hash.slice(1));
-      if (ancre) {
-        // { behavior: 'auto' } respecte le CSS scroll-behavior:smooth du site
-        // (donc anime quand même) : on neutralise le CSS le temps du recalage.
-        var root = document.documentElement;
-        var scrollCssAvant = root.style.scrollBehavior;
-        root.style.scrollBehavior = 'auto';
-        ancre.scrollIntoView({ behavior: 'auto', block: 'start' });
-        root.style.scrollBehavior = scrollCssAvant;
+    function pageDans(liste) {
+      if (!liste || !liste.length) return false;
+      for (var i = 0; i < liste.length; i++) {
+        var cible = String(liste[i]).replace(/\.html$/, '');
+        if (cible === 'accueil' || cible === 'index') { if (estAccueil) return true; }
+        else if (cible === nomPage) return true;
       }
+      return false;
+    }
+    function texte(v) { return typeof v === 'string' && v.trim() ? v.trim() : null; }
+    function lienSur(v) {
+      var l = texte(v);
+      return l && !/^\s*javascript:/i.test(l) ? l : null;
+    }
+    function el(tag, classe, contenu) {
+      var n = document.createElement(tag);
+      if (classe) n.className = classe;
+      if (contenu) n.textContent = contenu;
+      return n;
+    }
+    function lireSession(cle) { try { return sessionStorage.getItem(cle); } catch (e) { return null; } }
+    function ecrireSession(cle) { try { sessionStorage.setItem(cle, '1'); } catch (e) {} }
+
+    function bandeau(b, idPeriode) {
+      var header = document.querySelector('.site-header');
+      var lien = b && lienSur(b.lien);
+      var fort = b && texte(b.etiquette_forte);
+      if (!header || !lien || !fort || b.actif === false) return;
+      if (pageDans(b.masquer_sur)) return;
+      var cleFerme = 'saisonBandeauFerme:' + idPeriode;
+      if (lireSession(cleFerme)) return;
+
+      var echeance = texte(b.compte_a_rebours_fin) ? new Date(b.compte_a_rebours_fin).getTime() : NaN;
+      var avecDecompte = !isNaN(echeance) && echeance > Date.now();
+
+      var banner = el('div', 'urgency-banner');
+      banner.id = 'urgencyBanner';
+      var a = el('a', 'urgency-banner__link');
+      a.href = lien;
+      var dot = el('span', 'urgency-banner__dot');
+      dot.setAttribute('aria-hidden', 'true');
+      a.appendChild(dot);
+      var label = el('span', 'urgency-banner__label');
+      label.appendChild(el('span', 'urgency-banner__label-strong', fort));
+      if (texte(b.etiquette)) label.appendChild(document.createTextNode(b.etiquette));
+      a.appendChild(label);
+      if (texte(b.puce)) a.appendChild(el('span', 'urgency-banner__chip', b.puce));
+      var countdown = null;
+      if (avecDecompte) {
+        var groupe = el('span', 'urgency-banner__countdown-group');
+        groupe.appendChild(el('span', 'urgency-banner__countdown-label', texte(b.compte_a_rebours_libelle) || 'Ferme dans'));
+        countdown = el('span', 'urgency-banner__countdown');
+        groupe.appendChild(countdown);
+        a.appendChild(groupe);
+      }
+      var cta = el('span', 'urgency-banner__cta', (texte(b.bouton) || 'En savoir plus') + ' ');
+      var fleche = el('span', 'urgency-banner__cta-arrow', '→');
+      fleche.setAttribute('aria-hidden', 'true');
+      cta.appendChild(fleche);
+      a.appendChild(cta);
+      banner.appendChild(a);
+      var fermer = el('button', 'urgency-banner__close', '✕');
+      fermer.type = 'button';
+      fermer.setAttribute('aria-label', 'Fermer ce message');
+      banner.appendChild(fermer);
+      header.parentNode.insertBefore(banner, header);
+
+      // Le bandeau s'insère après coup et décale tout le contenu vers le bas.
+      // Si la page vient d'atterrir sur une ancre (ex : #fiches depuis un
+      // article de blog), on recale une fois, sans animation, sur la cible réelle.
+      if (window.location.hash) {
+        var ancre = document.getElementById(window.location.hash.slice(1));
+        if (ancre) {
+          var root = document.documentElement;
+          var scrollCssAvant = root.style.scrollBehavior;
+          root.style.scrollBehavior = 'auto';
+          ancre.scrollIntoView({ behavior: 'auto', block: 'start' });
+          root.style.scrollBehavior = scrollCssAvant;
+        }
+      }
+
+      var minuteur = null;
+      if (countdown) {
+        var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
+        var seg = function (n, unit) { return '<span class="urgency-banner__countdown-seg">' + n + '<small>' + unit + '</small></span>'; };
+        var sep = '<span class="urgency-banner__countdown-sep">:</span>';
+        var maj = function () {
+          var diff = echeance - Date.now();
+          if (diff <= 0) { clearInterval(minuteur); banner.remove(); return; }
+          var d = Math.floor(diff / 86400000);
+          var h = Math.floor((diff / 3600000) % 24);
+          var m = Math.floor((diff / 60000) % 60);
+          var s = Math.floor((diff / 1000) % 60);
+          countdown.innerHTML = seg(d, 'j') + sep + seg(pad(h), 'h') + sep + seg(pad(m), 'min') + sep + seg(pad(s), 's');
+        };
+        maj();
+        minuteur = setInterval(maj, 1000);
+      }
+      fermer.addEventListener('click', function () {
+        if (minuteur) clearInterval(minuteur);
+        banner.remove();
+        ecrireSession(cleFerme);
+      });
     }
 
-    // Décompte automatique réel (jour/heure/min/sec, tique chaque seconde),
-    // toujours vers la même échéance DEADLINE ci-dessus, jamais un faux
-    // compte à rebours qui repart à chaque visite.
-    var countdown = document.getElementById('urgencyCountdown');
-    var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
-    var seg = function (n, unit) { return '<span class="urgency-banner__countdown-seg">' + n + '<small>' + unit + '</small></span>'; };
-    var sep = '<span class="urgency-banner__countdown-sep">:</span>';
-    var update = function () {
-      var diff = DEADLINE - Date.now();
-      if (diff <= 0) { banner.remove(); return; }
-      var d = Math.floor(diff / 86400000);
-      var h = Math.floor((diff / 3600000) % 24);
-      var m = Math.floor((diff / 60000) % 60);
-      var s = Math.floor((diff / 1000) % 60);
-      countdown.innerHTML = seg(d, 'j') + sep + seg(pad(h), 'h') + sep + seg(pad(m), 'min') + sep + seg(pad(s), 's');
-    };
-    update();
-    var urgencyTimer = setInterval(update, 1000);
+    function zoneAccueil(h) {
+      if (!estAccueil || !h) return;
+      var titre = document.querySelector('[data-saison="hero-titre"]');
+      if (titre && texte(h.titre)) titre.textContent = h.titre;
 
-    banner.querySelector('[data-close-urgency]').addEventListener('click', function () {
-      clearInterval(urgencyTimer);
-      banner.remove();
-      sessionStorage.setItem('urgencyDismissed', '1');
-    });
+      var annonce = document.querySelector('[data-saison="hero-annonce"]');
+      if (annonce && texte(h.annonce_texte)) {
+        annonce.textContent = '';
+        if (texte(h.annonce_etiquette)) annonce.appendChild(el('span', 'hero__saison-etiquette', h.annonce_etiquette));
+        annonce.appendChild(el('p', 'hero__saison-texte', h.annonce_texte));
+        var liens = (h.annonce_liens || []).filter(function (l) { return l && texte(l.libelle) && lienSur(l.lien); });
+        if (liens.length) {
+          var bloc = el('p', 'hero__saison-liens');
+          liens.forEach(function (l) {
+            var la = el('a', null, l.libelle + ' →');
+            la.href = l.lien;
+            bloc.appendChild(la);
+          });
+          annonce.appendChild(bloc);
+        }
+        annonce.hidden = false;
+      }
+
+      var bouton = document.querySelector('[data-saison="hero-bouton"]');
+      if (bouton && h.bouton && texte(h.bouton.libelle) && lienSur(h.bouton.lien)) {
+        bouton.textContent = h.bouton.libelle;
+        bouton.href = h.bouton.lien;
+      }
+      var sous = document.querySelector('[data-saison="hero-texte"]');
+      if (sous && texte(h.texte_sous_bouton)) sous.textContent = h.texte_sous_bouton;
+      // Les mentions propres aux PDF n'ont pas de sens quand l'accueil pousse le stage en direct.
+      var reassurance = document.querySelector('[data-saison="hero-reassurance"]');
+      if (reassurance && h.masquer_reassurance_pdf === true) reassurance.hidden = true;
+    }
+
+    function boutonCollant(c) {
+      if (!c || !pageDans(c.pages)) return;
+      var barre = document.getElementById('stickyCta');
+      if (!barre || !texte(c.titre) || !texte(c.libelle) || !lienSur(c.lien)) return;
+      var fort = barre.querySelector('.sticky-cta-bar__text strong');
+      var petit = barre.querySelector('.sticky-cta-bar__text small');
+      var lien = barre.querySelector('a.btn');
+      if (!fort || !lien) return;
+      fort.textContent = c.titre;
+      if (petit && texte(c.sous_titre)) petit.textContent = c.sous_titre;
+      lien.textContent = c.libelle;
+      lien.href = c.lien;
+    }
+
+    fetch('/assets/data/saison.json', { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error('saison ' + r.status); return r.json(); })
+      .then(function (s) {
+        if (!s || !s.periode || !texte(s.periode.id) || !texte(s.periode.fin)) return;
+        // Période terminée sans mise à jour du fichier : on revient à l'affichage par défaut.
+        var fin = new Date(s.periode.fin + 'T23:59:59').getTime();
+        if (isNaN(fin) || Date.now() > fin) return;
+        try { bandeau(s.bandeau, s.periode.id); } catch (e) {}
+        try { zoneAccueil(s.accueil); } catch (e) {}
+        try { boutonCollant(s.bouton_collant); } catch (e) {}
+      })
+      .catch(function () {});
   })();
 
   // ----- 5. Exit-intent modal (desktop + mobile, 1× par session, après engagement) -----

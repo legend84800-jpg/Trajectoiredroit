@@ -51,7 +51,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=479afa66">
+  <link rel="stylesheet" href="assets/style.css?v=00c08d57">
   <link rel="stylesheet" href="assets/pack-ultra.css?v=cea9d5f04">
   <!-- Plausible Analytics : décommente après création du compte -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
@@ -389,15 +389,18 @@
             <span class="eyebrow eyebrow--gold"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg>#1 prof de droit sur Superprof · 162 avis 5/5 · Major de promo · Panthéon-Assas</span>
 
             <!-- 2. H1 (en positif, aspirationnel) -->
-            <h1 class="h1 text-balance" style="margin-top:16px">De la moyenne à <span class="highlight-anim" style="color:var(--accent)">la mention</span> en un semestre.</h1>
+            <h1 class="h1 text-balance" style="margin-top:16px" data-saison="hero-titre">De la moyenne à <span class="highlight-anim" style="color:var(--accent)">la mention</span> en un semestre.</h1>
+
+            <!-- Annonce de saison : vide et masquée par défaut, remplie par main.js depuis assets/data/saison.json -->
+            <div class="hero__saison" data-saison="hero-annonce" hidden></div>
 
             <!-- 3. CTA (1 dominant + 1 secondaire en lien) -->
             <div class="hero__cta">
-              <a class="btn btn--primary btn--lg" href="#pack-ultra">Découvrir Le Pack Ultra →</a>
+              <a class="btn btn--primary btn--lg" href="#pack-ultra" data-saison="hero-bouton">Découvrir Le Pack Ultra →</a>
               <a class="hero__cta-secondary" href="#apercu-produit">▶ Voir un extrait de la majeure</a>
             </div>
-            <p style="margin-top:10px; font-size:.88rem; color:var(--body)">Le Pack Ultra réunit les ressources disponibles pour ton semestre de L1, L2 ou L3. Chaque pack se paie une fois pour toutes, en 1, 2 ou 3 fois sans frais.</p>
-            <div class="trust-row trust-row--tight">
+            <p style="margin-top:10px; font-size:.88rem; color:var(--body)" data-saison="hero-texte">Le Pack Ultra réunit les ressources disponibles pour ton semestre de L1, L2 ou L3. Chaque pack se paie une fois pour toutes, en 1, 2 ou 3 fois sans frais.</p>
+            <div class="trust-row trust-row--tight" data-saison="hero-reassurance">
               <span>Téléchargement immédiat</span>
               <span>Accès à vie</span>
             </div>
@@ -1319,7 +1322,7 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js?v=30c14d23" defer></script>
+  <script src="assets/js/main.js?v=38fe4f30" defer></script>
   <script src="assets/js/achat.js?v=60004b0a"></script>
   <script src="assets/js/pack-ultra-inclusions.js?v=805ad17b6" defer></script>
   <script>
