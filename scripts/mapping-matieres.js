@@ -193,7 +193,7 @@ const MATIERES = {
   "relations-internationales-l1": {
     nom: "Relations internationales L1",
     semestres: [
-      { label: null, id: "fiche-relations-internationales-l1", prix: "14,99 €", apercus: [] },
+      { label: null, id: "fiche-relations-internationales-l1", prix: "14,99 €", apercus: ["assets/apercus/relations-internationales-l1-1.jpg", "assets/apercus/relations-internationales-l1-2.jpg"] },
     ],
     majeures: [],
     coursComplets: [{ label: null, id: "cours-fiche-relations-internationales-l1", prix: "19,99 €" }],
