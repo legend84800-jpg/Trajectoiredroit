@@ -293,7 +293,9 @@ test("la protection PDF n'ajoute aucun champ au parcours Checkout", async () => 
   }
 
   assert.equal(paramsCrees.custom_fields, undefined);
-  assert.equal(paramsCrees.custom_text, undefined);
+  // Seul le rappel de livraison par email est affiché, jamais de mention de licence.
+  assert.doesNotMatch(JSON.stringify(paramsCrees.custom_text || {}), /licence/i);
+  assert.match(paramsCrees.custom_text.submit.message, /email/);
 });
 
 test("un lien nominatif est signé avec la commande Stripe", async () => {

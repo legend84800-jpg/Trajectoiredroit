@@ -10,6 +10,14 @@ const { selectionner } = require("./_supabase");
 const { creerClientStripe, INTEGRATION_IDS } = require("./_stripe");
 const { nombreEcheancesValide, versCheckoutEcheances } = require("./_echeances");
 
+// Textes affichés par Stripe sur la page de paiement des produits en PDF.
+// Sur mobile, Stripe replie le récapitulatif : le message sous le bouton Payer
+// reste alors la seule information visible sur la livraison.
+const DESCRIPTION_PDF = "Le PDF arrive par email dès que le paiement est validé, et tu le gardes à vie avec ses mises à jour.";
+const MESSAGE_PAIEMENT_PDF = "Vérifie ton adresse email, car ton PDF y est envoyé juste après le paiement.";
+const donneesProduit = (p, estStage) => (estStage ? { name: p.nom } : { name: p.nom, description: DESCRIPTION_PDF });
+
+
 const PORTALIS_PRICE_ID = "price_1TqyboIJrx5ith04BGxcyg5T";
 
 function normaliserAttemptId(valeur) {
@@ -203,10 +211,11 @@ async function handler(req, res) {
         price_data: {
           currency: "eur",
           unit_amount: produit.prix,
-          product_data: { name: produit.nom },
+          product_data: donneesProduit(produit, false),
         },
         quantity: 1,
       })),
+      custom_text: { submit: { message: MESSAGE_PAIEMENT_PDF } },
       mode: "payment",
       locale: "fr",
       wallet_options: { link: { display: "never" } },
@@ -349,7 +358,7 @@ async function handler(req, res) {
       price_data: {
         currency: "eur",
         unit_amount: produit.prix,
-        product_data: { name: produit.nom },
+        product_data: donneesProduit(produit, produitId === "stage-methode"),
       },
       quantity: 1,
     }],
@@ -368,6 +377,7 @@ async function handler(req, res) {
     // L'expiration à H+1 déclenche le webhook de panier abandonné. Stripe fournit
     // alors son lien de récupération natif et le webhook programme les deux rappels.
     expires_at: attemptTimestamp + 3600,
+    ...(contientStage ? {} : { custom_text: { submit: { message: MESSAGE_PAIEMENT_PDF } } }),
     metadata: {
       produitIds: idsAchetes.join(","),
       attemptId,
@@ -439,7 +449,7 @@ async function handler(req, res) {
       price_data: {
         currency: "eur",
         unit_amount: bump.prix,
-        product_data: { name: bump.nom },
+        product_data: donneesProduit(bump, bumpId === "stage-methode"),
       },
       quantity: 1,
     });
