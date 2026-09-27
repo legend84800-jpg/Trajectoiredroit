@@ -246,9 +246,8 @@ function construireEmailParent({ cadeau, produits, metadata, montantCentimes, co
   const reduction = codePromo ? `La réduction du code ${codePromo} a bien été appliquée.` : "";
   const acces = `Pour ouvrir le pack, ${beneficiaire} se connecte à son espace Mon compte sur trajectoiredroit.com avec l'adresse ${cadeau.email}. `
     + "Les fichiers y portent son nom et restent disponibles à vie, avec leurs mises à jour.";
-  const indesirables = "Si l'email du cadeau n'apparaît pas dans sa boîte de réception, il se trouve sans doute dans ses courriers indésirables. "
-    + "En cas d'erreur dans l'adresse, il vous suffit de répondre à cet email, et j'envoie alors le pack à la bonne adresse.";
-  const contact = "Pour toute autre question, vous pouvez aussi me joindre sur WhatsApp au +33 6 05 41 85 21.";
+  const indesirables = "Si l'email du cadeau n'apparaît pas dans sa boîte de réception, il se trouve sans doute dans ses courriers indésirables.";
+  const contact = "Pour toute question, vous pouvez me joindre sur WhatsApp au +33 6 05 41 85 21.";
 
   const paragraphes = ["Bonjour,", annonce, paiement, reduction, acces, indesirables, contact].filter(Boolean);
   const html = gabarit(titre, paragraphes
