@@ -608,8 +608,8 @@
    "Les deux noms accolés, dans l'ordre alphabétique.",
    "Le nom choisi par l'officier de l'état civil."
   ],
-  "correct": 2,
-  "justif": "Depuis la loi du 2 mars 2022, l'article 311-21 du Code civil prévoit qu'en cas d'établissement simultané de la filiation envers les deux parents, sans déclaration conjointe, l'enfant porte leurs deux noms accolés dans l'ordre alphabétique, dans la limite d'un nom de famille pour chacun. Le piège, c'est de citer la primauté du nom du père, une règle qui a existé jusqu'en 2022 mais que la réforme a supprimée au nom de l'égalité entre les parents."
+  "correct": 0,
+  "justif": "L'article 311-21 du Code civil prévoit qu'en l'absence de déclaration conjointe, l'enfant prend le nom du parent envers qui sa filiation est établie en premier, et le nom du père si elle est établie en même temps envers les deux. Les deux noms accolés dans l'ordre alphabétique s'appliquent en revanche seulement si l'un des parents signale un désaccord à l'officier d'état civil, au plus tard le jour de la déclaration de naissance. Le piège, c'est donc de confondre ce désaccord exprimé avec le simple silence des parents. La loi du 2 mars 2022 a laissé cette règle intacte, puisqu'elle porte seulement sur le changement de nom et le nom d'usage."
  },
  {
   "matiere": "personnes-l1",
