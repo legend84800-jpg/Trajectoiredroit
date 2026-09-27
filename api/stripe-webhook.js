@@ -20,6 +20,15 @@ function statutAbonnement(statutStripe) {
   return "annule";
 }
 
+// Accord pour les emails de suivi et d'offres. Stripe ne recueille le sien qu'aux
+// États-Unis ; en France, l'acheteur est informé sur la page de paiement et peut
+// refuser grâce au champ « emails » prérempli sur « oui » (article L34-5 du CPCE).
+function accordEmails(session) {
+  if (session.consent && session.consent.promotions === "opt_in") return true;
+  const champ = (session.custom_fields || []).find((c) => c.key === "emails");
+  return !!(champ && champ.dropdown && champ.dropdown.value === "oui");
+}
+
 async function synchroniserAbonnement(subscription) {
   const userId = subscription.metadata && subscription.metadata.supabase_user_id;
   if (!userId) return; // Abonnement créé hors de ce flux (ex: test manuel Stripe) : on ignore.
@@ -312,7 +321,7 @@ async function gererPanierAbandonne(sessionEvenement, brevoKey, stripe, origin, 
   const checkoutUrl = session.after_expiration
     && session.after_expiration.recovery
     && session.after_expiration.recovery.url;
-  const accordPromotionnel = session.consent && session.consent.promotions === "opt_in";
+  const accordPromotionnel = accordEmails(session);
   const eligible = metadata.reminderPlan === "h1-h24-v1"
     && metadata.source === "site"
     && metadata.internalTest !== "1"
@@ -649,7 +658,7 @@ async function traiterAchatPaye(session, contexte) {
     || (session.metadata && session.metadata.sessionOrigine)
     || null;
   const estRelance = !!sessionOrigineRelance || (session.metadata && session.metadata.relance === "1");
-  const accordPromotionnel = session.consent && session.consent.promotions === "opt_in";
+  const accordPromotionnel = accordEmails(session);
   const estStage = produitIds.includes("stage-methode");
   const libelleProduits = produitIds.join("+");
 
@@ -905,6 +914,7 @@ async function handler(req, res) {
 handler.config = { api: { bodyParser: false } };
 module.exports = handler;
 module.exports._test = {
+  accordEmails,
   traiterAchatPaye,
   donneesAchat,
   gererPanierAbandonne,

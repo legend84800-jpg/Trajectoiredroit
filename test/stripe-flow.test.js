@@ -292,7 +292,10 @@ test("la protection PDF n'ajoute aucun champ au parcours Checkout", async () => 
     else process.env.STRIPE_SECRET_KEY = ancienneCle;
   }
 
-  assert.equal(paramsCrees.custom_fields, undefined);
+  // Seul le choix « emails » (prérempli sur oui) est ajouté, jamais le champ de licence retiré le 31/08.
+  assert.deepEqual(paramsCrees.custom_fields.map((c) => c.key), ["emails"]);
+  assert.equal(paramsCrees.custom_fields[0].dropdown.default_value, "oui");
+  assert.equal(paramsCrees.custom_fields[0].optional, true);
   // Seul le rappel de livraison par email est affiché, jamais de mention de licence.
   assert.doesNotMatch(JSON.stringify(paramsCrees.custom_text || {}), /licence/i);
   assert.match(paramsCrees.custom_text.submit.message, /email/);
@@ -743,4 +746,14 @@ test("le webhook attend un paiement asynchrone réussi", () => {
   assert.match(source, /session\.payment_status !== "paid"/);
   const webhook = require("../api/stripe-webhook");
   assert.equal(webhook.config.api.bodyParser, false);
+});
+
+test("l'accord pour les emails suit le choix prérempli de la page de paiement", () => {
+  const { accordEmails } = require("../api/stripe-webhook")._test;
+  const avecChoix = (valeur) => ({ custom_fields: [{ key: "emails", dropdown: { value: valeur } }] });
+  assert.equal(accordEmails(avecChoix("oui")), true);
+  assert.equal(accordEmails(avecChoix("non")), false);
+  assert.equal(accordEmails({ custom_fields: [] }), false);
+  assert.equal(accordEmails({ consent: { promotions: "opt_in" } }), true);
+  assert.equal(accordEmails({ consent: { promotions: "opt_out" }, custom_fields: [] }), false);
 });

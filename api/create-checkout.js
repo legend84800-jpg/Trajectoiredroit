@@ -21,6 +21,24 @@ const descriptionLivraison = (p) => (nombreFichiers(p) > 1
 const messagePaiement = (produits) => (produits.reduce((n, p) => n + nombreFichiers(p), 0) > 1
   ? "Vérifie ton adresse email, car tes fichiers y sont envoyés juste après le paiement."
   : "Vérifie ton adresse email, car ton PDF y est envoyé juste après le paiement.");
+// Stripe ne propose sa case d'accord promotionnel qu'aux entreprises et aux clients
+// américains : elle ne s'affiche jamais pour un étudiant français. Pour écrire aux
+// acheteurs sur des produits analogues (article L34-5 du Code des postes et des
+// communications électroniques), la page de paiement les informe et leur laisse
+// refuser dès l'achat, grâce à ce choix prérempli sur « oui ».
+const CHAMP_EMAILS = {
+  key: "emails",
+  type: "dropdown",
+  optional: true,
+  label: { type: "custom", custom: "Conseils de révision et offres par email" },
+  dropdown: {
+    default_value: "oui",
+    options: [
+      { label: "Oui, je veux les recevoir", value: "oui" },
+      { label: "Non merci", value: "non" },
+    ],
+  },
+};
 const donneesProduit = (p, estStage) => (estStage || nombreFichiers(p) === 0
   ? { name: p.nom }
   : { name: p.nom, description: descriptionLivraison(p) });
@@ -224,6 +242,7 @@ async function handler(req, res) {
         quantity: 1,
       })),
       custom_text: { submit: { message: messagePaiement(produitsPanier.map(({ produit }) => produit)) } },
+      custom_fields: [CHAMP_EMAILS],
       mode: "payment",
       locale: "fr",
       wallet_options: { link: { display: "never" } },
@@ -385,7 +404,10 @@ async function handler(req, res) {
     // L'expiration à H+1 déclenche le webhook de panier abandonné. Stripe fournit
     // alors son lien de récupération natif et le webhook programme les deux rappels.
     expires_at: attemptTimestamp + 3600,
-    ...(contientStage ? {} : { custom_text: { submit: { message: messagePaiement(bump ? [produit, bump] : [produit]) } } }),
+    ...(contientStage ? {} : {
+      custom_text: { submit: { message: messagePaiement(bump ? [produit, bump] : [produit]) } },
+      custom_fields: [CHAMP_EMAILS],
+    }),
     metadata: {
       produitIds: idsAchetes.join(","),
       attemptId,
