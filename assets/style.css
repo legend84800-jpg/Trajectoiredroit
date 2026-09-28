@@ -2091,8 +2091,8 @@ html[data-theme="dark"] .hero__saison-ligne { color: #D4E0F0 }
   background: var(--blue-50);
   transition: transform .25s ease, background .25s ease;
 }
-.accordion__item summary:hover::after { background: var(--blue-100); transform: rotate(45deg); }
-.accordion__item[open] summary::after { content: "−"; background: var(--blue-600); color: #fff; transform: rotate(0); }
+.accordion__item summary:hover::after { background: var(--blue-100); }
+.accordion__item[open] summary::after { content: "+"; background: var(--blue-600); color: #fff; transform: rotate(45deg); }
 .accordion__item[open] summary { border-bottom: 1px solid var(--border) }
 .accordion__body { padding: var(--sp-4) var(--sp-5); color: var(--body) }
 
