@@ -45,7 +45,7 @@ function construireSection(matiereSlug) {
     cartes.push(
       carteMultiple(
         "Cours complet",
-        "Le format le plus détaillé, jusqu'au moindre développement, pour ne rien laisser au hasard.",
+        "Il reprend le programme de la fiche complète, sur une fois et demie à deux fois plus de pages, avec des schémas complets et l'histoire des grands arrêts. Tu y trouves aussi les arguments de tes devoirs maison, qu'il s'agisse d'une dissertation ou d'un commentaire.",
         m.coursComplets,
         "btn--outline"
       )

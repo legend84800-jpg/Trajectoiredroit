@@ -24,7 +24,7 @@ for (const [slug, m] of Object.entries(MATIERES)) {
     console.log("--  " + fichier + " (déjà personnalisé ou texte différent)");
     continue;
   }
-  const texteNouveau = `<p class="lead" style="margin-bottom:24px">Tu révises ${m.nom} ? Reçois mon <strong>guide « 10 tips pour apprendre le droit »</strong>, <strong>gratuitement</strong>, pour réviser sans t'épuiser.</p>`;
+  const texteNouveau = `<p class="lead" style="margin-bottom:24px">Tu révises ${m.nom} ? Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>, avec ma fiche de dix conseils pour apprendre le droit.</p>`;
   html = html.replace(REGEX_GENERIQUE, texteNouveau);
   fs.writeFileSync(chemin, html, "utf8");
   console.log("OK  " + fichier);

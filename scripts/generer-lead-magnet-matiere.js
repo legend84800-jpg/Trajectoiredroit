@@ -19,7 +19,7 @@ function construireBloc(nomMatiere) {
       <div class="container container--narrow">
         <div class="inline-capture" style="max-width:560px; margin:0 auto">
           <p class="inline-capture__title">Pas encore prêt à acheter ?</p>
-          <p class="inline-capture__text">Reçois gratuitement mon guide « 10 tips pour apprendre le droit », pour t'aider à réviser ${nomMatiere} (et le reste) sans t'épuiser.</p>
+          <p class="inline-capture__text">Reçois gratuitement mon guide « Réviser le droit sans s'épuiser », avec ma fiche de dix conseils pour apprendre le droit. Les deux servent pour ${nomMatiere} comme pour tes autres matières.</p>
           <form action="${SIBFORMS_ACTION}" method="POST">
             <input type="email" name="email" required placeholder="ton@email.com" aria-label="Email">
             <input type="hidden" name="_subject" value="Lead magnet (page matière : ${nomMatiere})">

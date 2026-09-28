@@ -4745,6 +4745,22 @@ html[data-theme="dark"] .tag-high  { color: #34D399; }
 .apercu-imgs { padding: 18px 24px; display: flex; flex-direction: column; gap: 16px; max-height: 60vh; overflow-y: auto; background: var(--slate-50) }
 .apercu-imgs img { width: 100%; border: 1px solid var(--border); border-radius: var(--r-md); box-shadow: var(--sh-1) }
 .apercu-foot { padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--border) }
+.apercu-imgs img { cursor: zoom-in }
+.apercu-hint { margin: 0; padding: 8px 24px 0; font-size: .82rem; color: var(--muted); text-align: center; background: var(--slate-50) }
+.apercu-zoom { position: fixed; inset: 0; z-index: 1100; background: rgba(15,26,53,.94); display: none }
+.apercu-zoom.open { display: block }
+.apercu-zoom__scroll { position: absolute; inset: 0; overflow: auto; -webkit-overflow-scrolling: touch; padding: 56px 12px 48px }
+.apercu-zoom__scroll img { display: block; width: max(100%, 900px); max-width: none; margin: 0 auto; background: #fff; border-radius: 6px }
+.apercu-zoom--detail .apercu-zoom__scroll img { width: min(100%, 1100px) }
+.apercu-zoom__close { position: absolute; top: 10px; right: 12px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: none; background: #fff; color: var(--navy); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--sh-2) }
+.apercu-zoom__hint { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 12px 16px; text-align: center; color: rgba(255,255,255,.85); font-size: .85rem; background: rgba(15,26,53,.9); pointer-events: none }
+.apercu-zoom--detail .apercu-zoom__hint { display: none }
+@media (max-width: 600px) {
+  .apercu-backdrop { padding: 12px 8px }
+  .apercu-head { padding: 14px 16px }
+  .apercu-imgs { padding: 12px; max-height: 66vh }
+  .apercu-foot { padding: 14px 16px }
+}
 .apercu-foot .price { font-family: var(--font-display); font-weight: 800; color: var(--navy); font-size: 1.3rem }
 html[data-theme="dark"] .apercu-panel { background: var(--white); }
 

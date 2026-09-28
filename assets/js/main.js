@@ -272,10 +272,11 @@
     modal.innerHTML =
       '<div class="apercu-panel">' +
       '<div class="apercu-head">' +
-      '<div><h3 id="apercuTitle"></h3><p>Extraits réels de la fiche complète</p></div>' +
+      '<div><h3 id="apercuTitle"></h3><p id="apercuSub">Extraits réels de la fiche complète</p></div>' +
       '<button class="apercu-close" data-apercu-close aria-label="Fermer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
       '</div>' +
       '<div class="apercu-imgs" id="apercuImgs"></div>' +
+      '<p class="apercu-hint">Touche une page pour l’agrandir.</p>' +
       '<div class="apercu-foot">' +
       '<span class="price" id="apercuPrice"></span>' +
       '<a class="btn btn--primary" id="apercuCta" href="#" target="_blank" rel="noopener">Acheter la fiche</a>' +
@@ -283,12 +284,42 @@
       '</div>';
     document.body.appendChild(modal);
 
+    /* Visionneuse plein écran : la page s'affiche en grand et se parcourt en faisant glisser,
+       pour que le texte soit lisible sur téléphone. */
+    var viewer = document.createElement('div');
+    viewer.className = 'apercu-zoom';
+    viewer.setAttribute('role', 'dialog');
+    viewer.setAttribute('aria-modal', 'true');
+    viewer.setAttribute('aria-label', 'Page agrandie');
+    viewer.innerHTML =
+      '<button class="apercu-zoom__close" aria-label="Fermer l’agrandissement"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
+      '<div class="apercu-zoom__scroll"><img alt=""></div>' +
+      '<p class="apercu-zoom__hint">Fais glisser pour lire toute la page.</p>';
+    document.body.appendChild(viewer);
+    var viewerImg = viewer.querySelector('img');
+    var viewerScroll = viewer.querySelector('.apercu-zoom__scroll');
+    function openViewer(im) {
+      viewerImg.src = im.src;
+      viewerImg.alt = im.alt;
+      viewer.classList.toggle('apercu-zoom--detail', im.getAttribute('data-detail') === '1');
+      viewer.classList.add('open');
+      viewerScroll.scrollTop = 0;
+      viewerScroll.scrollLeft = 0;
+      if (window.gtag) gtag('event', 'apercu_zoom', { image: im.src.split('/').pop() });
+    }
+    function closeViewer() { viewer.classList.remove('open'); }
+    viewer.querySelector('.apercu-zoom__close').addEventListener('click', closeViewer);
+
     var imgsBox = document.getElementById('apercuImgs');
+    imgsBox.addEventListener('click', function (e) {
+      if (e.target.tagName === 'IMG') openViewer(e.target);
+    });
 
     function open(btn) {
       var imgs;
       try { imgs = JSON.parse(btn.getAttribute('data-apercu') || '[]'); } catch (e) { imgs = []; }
       document.getElementById('apercuTitle').textContent = btn.getAttribute('data-apercu-title') || 'Aperçu';
+      document.getElementById('apercuSub').textContent = btn.getAttribute('data-apercu-sub') || 'Extraits réels de la fiche complète';
       var price = btn.getAttribute('data-apercu-price') || '';
       document.getElementById('apercuPrice').textContent = price;
       var cta = document.getElementById('apercuCta');
@@ -304,7 +335,10 @@
       imgsBox.innerHTML = '';
       imgs.forEach(function (src) {
         var im = document.createElement('img');
-        im.src = src; im.loading = 'lazy'; im.alt = 'Extrait de la fiche';
+        var detail = /-zoom\.(jpg|webp|png)$/.test(src);
+        im.src = src; im.loading = 'lazy';
+        im.alt = detail ? 'Gros plan sur une page' : 'Page extraite du document';
+        if (detail) im.setAttribute('data-detail', '1');
         imgsBox.appendChild(im);
       });
       imgsBox.scrollTop = 0;
@@ -320,7 +354,10 @@
     modal.addEventListener('click', function (e) {
       if (e.target === modal || e.target.hasAttribute('data-apercu-close')) close();
     });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      if (viewer.classList.contains('open')) closeViewer(); else close();
+    });
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
