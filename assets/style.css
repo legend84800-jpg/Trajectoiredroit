@@ -1858,8 +1858,8 @@ html[data-theme="dark"] .mobile-nav__quick-btn:active { background: rgba(255,255
 .hero h1 { margin-bottom: var(--sp-4) }
 .hero .lead { margin-bottom: var(--sp-6); max-width: 540px }
 .hero__cta { display: flex; gap: var(--sp-3); flex-wrap: wrap }
-/* Annonce de saison du hero (accueil), remplie par main.js depuis assets/data/saison.json.
-   Masquée par l'attribut hidden tant que le fichier n'a pas été lu. */
+/* Annonce de saison du hero (accueil), une seule ligne sous le titre, remplie par main.js
+   depuis assets/data/saison.json. Masquée par l'attribut hidden tant que le fichier n'a pas été lu. */
 .hero__saison {
   margin: 0 0 var(--sp-5);
   padding-top: 14px;
