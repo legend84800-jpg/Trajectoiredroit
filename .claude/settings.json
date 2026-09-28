@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git remote add prod *)",
+      "Bash(git push prod main)",
+      "Bash(git push prod main:*)",
+      "Bash(git push origin main)",
+      "Bash(git pull*)"
+    ]
+  }
+}

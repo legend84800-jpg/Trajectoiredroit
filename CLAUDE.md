@@ -26,6 +26,8 @@ git pull && git add -A && git commit -m "…" && git push origin main && git pus
 
 Un `git pull` s'impose à l'ouverture de toute session sur ce dossier, avant la moindre modification.
 
+Dans une session cloud, le clone neuf n'a que `origin`. Ajouter d'abord le remote prod, que Vercel déploie, avec `git remote add prod https://github.com/legend84800-jpg/Trajectoiredroit.git`, puis publier normalement sur les deux remotes. Julien autorise ce push sur prod dans toutes les sessions, locales comme cloud (autorisation du 28/09/2026).
+
 ## Cache-busting, à faire à chaque fois
 
 Les assets sont servis avec un hash de version, du type `style.css?v=721b039e` et `main.js?v=ee37c3d3`. Vercel les met en cache une heure.
