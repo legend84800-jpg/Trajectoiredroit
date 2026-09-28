@@ -6,6 +6,8 @@ Pour chaque article listé dans blog.html :
 - remplace la section sombre finale par la carte du Pack Ultra du semestre ;
 - aligne la barre collante sur la fiche de la matière.
 Idempotent (marqueurs <!-- fin-article:... -->). Lancer depuis la racine du site.
+Sans argument : tous les articles de blog.html (table M). Pour une seule page, même hors blog :
+  python3 scripts/fin-article-pack-ultra.py --page ma-page.html --produit contrats --pack l2-s1
 """
 import re, sys
 from pathlib import Path
@@ -73,6 +75,12 @@ FICHES = {
                  "Tout le cours du semestre 1 en PDF"),
     "procpen": ("Procédure pénale L3", "procedure-penale-l3.html#fiches", "assets/apercus/procedure-penale-l3-1.jpg",
                 "Tout le cours en PDF, du contrôle d'identité à la garde à vue et au jugement"),
+    "penall2": ("Droit pénal L2", "droit-penal-l2.html#fiches", "assets/apercus/penal-l2-s1-1.jpg", "Tout le cours du semestre en PDF"),
+    "commercial": ("Droit commercial L3", "droit-commercial-l3.html#fiches", "assets/apercus/commercial-l3-s1-1.jpg", "Tout le cours du semestre en PDF"),
+    "introdroit": ("Introduction au droit L1", "introduction-au-droit-l1.html#fiches", "assets/apercus/intro-droit-l1-1.jpg", "Tout le cours du semestre en PDF"),
+    "histdroit": ("Histoire du droit L1", "histoire-du-droit-l1.html#fiches", "assets/apercus/hist-droit-l1-1.jpg", "Tout le cours du semestre en PDF"),
+    "histinst": ("Histoire des institutions L1", "histoire-des-institutions-l1.html#fiches", "assets/apercus/hist-institutions-l1-1.jpg", "Tout le cours du semestre en PDF"),
+    "ri": ("Relations internationales L1", "relations-internationales-l1.html#fiches", "assets/apercus/relations-internationales-l1-1.jpg", "Tout le cours du semestre en PDF"),
 }
 # Produits hors fiche complète (label, titre, lien, image, meta, prix, libellé du bouton)
 AUTRES = {
@@ -227,7 +235,9 @@ def traiter(f, cle, sid):
     assert n == 1, f
     # 3. Barre collante
     motif = r'(  <!-- (vague2:sticky-bar|fin-article:sticky) -->\n)?  <div class="sticky-cta-bar[^"]*" id="stickyCta">.*?\n  </div>\n'
-    if re.search(motif, a, re.S):
+    if "optimiseur-pages-existantes 20" in a and re.search(motif, a, re.S):
+        pass  # barre collante réglée par optimiseur-pages-existantes sur la requête réelle, on la garde
+    elif re.search(motif, a, re.S):
         a = re.sub(motif, barre(cle), a, count=1, flags=re.S)
     else:
         i = a.index("</footer>") + len("</footer>\n")
@@ -239,6 +249,14 @@ def traiter(f, cle, sid):
 
 
 if __name__ == "__main__":
+    # Page hors blog (routines SEO) : --page fichier.html --produit <clé FICHES/AUTRES> --pack <l1-s1|l1-s2|l2-s1|l2-s2|l3-s1>
+    if "--page" in sys.argv:
+        a = dict(zip(sys.argv[1::2], sys.argv[2::2]))
+        cle, sid = a["--produit"], a["--pack"]
+        if cle not in FICHES and cle not in AUTRES: sys.exit(f"Produit inconnu {cle}, choisir parmi {sorted(FICHES) + sorted(AUTRES)}")
+        if sid not in PACKS: sys.exit(f"Pack inconnu {sid}, choisir parmi {sorted(PACKS)}")
+        print(("modifié " if traiter(a["--page"], cle, sid) else "inchangé"), a["--page"], cle, sid)
+        sys.exit(0)
     blog = (ROOT / "blog.html").read_text()
     articles = [re.search(r'href="([^"]+)"', c).group(1)
                 for c in re.findall(r'<article class="post-card">(.*?)</article>', blog, re.S)]

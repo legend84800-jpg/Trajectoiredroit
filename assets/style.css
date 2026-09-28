@@ -5304,3 +5304,11 @@ html[data-theme="dark"] .article-produit-inline { background: rgba(94,139,218,0.
 @media (max-width: 480px) {
   .article-pack__list { grid-template-columns: 1fr; }
 }
+
+/* Cartes du blog avec photo (scripts/blog-photos-cartes.py) */
+.post-card__media--photo{background:var(--navy); height:auto; aspect-ratio:16/9}
+.post-card__media--photo::after{background-image:linear-gradient(180deg,rgba(15,23,42,0) 55%,rgba(15,23,42,.35) 100%); background-size:100% 100%; opacity:1}
+.post-card__media--photo .post-card__icon{display:none}
+.post-card__photo{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .4s ease}
+.post-card:hover .post-card__photo{transform:scale(1.03)}
+.post-card__media--photo .post-card__badge{z-index:2}
