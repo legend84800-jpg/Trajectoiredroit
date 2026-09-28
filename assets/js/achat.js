@@ -331,7 +331,7 @@
     lien.disabled = dansPanier;
     lien.innerHTML = dansPanier
       ? 'Déjà dans ton panier ✓'
-      : '+ <span class="tjd-panier-lien__full">Ajouter au panier (pour acheter plusieurs matières d’un coup)</span><span class="tjd-panier-lien__short">Panier</span>';
+      : '+ <span class="tjd-panier-lien__full">Ajouter au panier</span><span class="tjd-panier-lien__short">Panier</span>';
   }
 
   function initPanierBoutons() {

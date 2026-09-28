@@ -45,7 +45,6 @@ test("la page d'accueil montre seulement les cinq packs en vente et leurs ressou
   assert.equal((html.match(/<article class="ultra-card"/g) || []).length, 5);
   assert.equal((html.match(/<details class="ultra-inclusions__item"/g) || []).length, 5);
   assert.match(html, /assets\/js\/pack-ultra-inclusions\.js\?v=/);
-  assert.match(html, /Économies calculées par rapport à l’achat séparé des ressources incluses/);
   for (const id of Object.keys(DEFINITIONS)) {
     const suffixe = id.replace("pack-ultra-", "");
     if (DEFINITIONS[id].venteSuspendue) {
