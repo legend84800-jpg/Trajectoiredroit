@@ -32,7 +32,7 @@
   <meta name="theme-color" content="#1A2851">
   <title>Quiz : teste ta méthode en droit (cas pratique, dissertation, commentaire)</title>
   <meta name="author" content="Julien">
-  <meta name="description" content="10 questions, 3 minutes. Découvre sur quels exercices de droit ta méthode te fait perdre des points, et reçois ton plan pour les récupérer.">
+  <meta name="description" content="En 10 questions et 3 minutes, tu découvres sur quels exercices de droit ta méthode te fait perdre des points, puis tu reçois ton plan pour les récupérer.">
   <link rel="canonical" href="https://trajectoiredroit.com/quiz-methode.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Teste ta méthode en droit · le quiz qui montre où tu perds des points">
@@ -401,7 +401,7 @@
           <div class="text-center" style="margin-bottom:28px">
             <span class="eyebrow eyebrow--gold">⭐ Quiz gratuit · 3 minutes · sans inscription</span>
             <h1 class="h1 text-balance" style="margin-top:14px">Teste ta méthode en droit</h1>
-            <p class="lead" style="max-width:600px;margin:16px auto 0">La plupart des étudiants connaissent leur cours et perdent quand même des points sur la méthode des exercices. En 10 questions, tu vois sur quel exercice ta méthode te coûte des points, que ce soit le cas pratique, la dissertation, le commentaire d'arrêt ou la fiche d'arrêt. Tu repars avec un plan clair pour les récupérer.</p>
+            <p class="lead" style="max-width:600px;margin:16px auto 0">La plupart des étudiants connaissent leur cours et perdent quand même des points sur la méthode des exercices. En 10 questions, tu vois sur quel exercice ta méthode te coûte des points. Le quiz couvre le cas pratique et le commentaire d'arrêt, mais aussi la dissertation et la fiche d'arrêt. Tu repars ensuite avec un plan pour récupérer ces points.</p>
           </div>
           <div class="quiz-card text-center">
             <div class="grid-3" style="gap:16px;margin-bottom:24px;text-align:left">
@@ -410,7 +410,7 @@
               <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">+3 pts</div><div style="font-size:.88rem;color:var(--body)">de moyenne en moyenne avec la méthode</div></div>
             </div>
             <div style="max-width:420px;margin:0 auto 20px;text-align:left">
-              <label for="matiereSelect" style="display:block;font-size:.86rem;font-weight:600;color:var(--navy);margin-bottom:6px">Quelle matière tu révises en ce moment ? <span style="font-weight:400;color:var(--muted)">(optionnel, pour un plan encore plus précis)</span></label>
+              <label for="matiereSelect" style="display:block;font-size:.86rem;font-weight:600;color:var(--navy);margin-bottom:6px">Quelle matière tu révises en ce moment ? <span style="font-weight:400;color:var(--muted)">(optionnel, pour un plan adapté à ta matière)</span></label>
               <select id="matiereSelect" class="form__select" style="width:100%">
                 <option value="">Plusieurs matières / je ne sais pas encore</option>
                 <option value="introduction-au-droit-l1">Introduction au droit (L1)</option>
@@ -469,7 +469,7 @@
 
             <div class="quiz-capture">
               <h3>Reçois ton plan méthode complet</h3>
-              <p>Je t'envoie par email le détail des quatre méthodes, exercice par exercice, avec les étapes dans l'ordre et les erreurs qui coûtent le plus de points. De quoi transformer ce score en points sur ta prochaine copie.</p>
+              <p>Je t'envoie par email le détail des quatre méthodes, exercice par exercice, avec les étapes dans l'ordre et les erreurs qui coûtent le plus de points. Tu sais ainsi quoi corriger pour gagner des points sur ta prochaine copie.</p>
               <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST">
                 <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
                 <input type="hidden" name="_subject" value="Quiz méthode · nouveau lead">
@@ -547,7 +547,7 @@
   (function(){
     var QUESTIONS = [
       { exo:"Le jour J", q:"Tu reçois ton sujet. Qu'est-ce que tu fais avant d'écrire la première ligne ?",
-        tip:"Au moins la moitié du temps passe au brouillon. Pour un commentaire d'arrêt, tu lis l'arrêt deux ou trois fois, tu fais sa fiche au brouillon, puis tu listes toutes tes connaissances en lien avec la décision. Pour un cas pratique, tu qualifies d'abord chaque fait avant de chercher la règle. Rédiger tout de suite, c'est avancer dans la mauvaise direction.",
+        tip:"Tu passes au moins la moitié du temps au brouillon. Pour un commentaire d'arrêt, tu lis l'arrêt deux ou trois fois, tu fais sa fiche au brouillon, puis tu listes toutes tes connaissances en lien avec la décision. Pour un cas pratique, tu qualifies d'abord chaque fait, c'est-à-dire que tu lui donnes son nom juridique, avant de chercher la règle. Si tu rédiges tout de suite, tu risques de partir dans la mauvaise direction sans avoir le temps de revenir en arrière.",
         opts:[
           {t:"Je commence à rédiger tout de suite pour ne pas perdre de temps.",p:0},
           {t:"Je lis le sujet une fois et je note deux ou trois idées.",p:1},
@@ -555,15 +555,15 @@
           {t:"Je relis mon cours en vitesse pour retrouver ce que je sais.",p:0}
         ]},
       { exo:"Cas pratique", q:"Devant un cas pratique, par quoi commence ton raisonnement ?",
-        tip:"Tu qualifies d'abord chaque fait : tu lui donnes son nom juridique. Cette qualification te dit quelle règle chercher. Sans qualification, tu risques d'appliquer la mauvaise règle à des faits que tu n'as pas bien lus.",
+        tip:"Tu qualifies d'abord chaque fait, c'est-à-dire que tu lui donnes son nom juridique. Cette qualification te dit ensuite quelle règle chercher. Si tu sautes cette étape, tu risques d'appliquer la mauvaise règle à des faits que tu n'as pas bien lus.",
         opts:[
           {t:"J'écris la règle de droit que je connais sur le thème.",p:1},
           {t:"Je donne ma conclusion tout de suite et je détaille après.",p:0},
-          {t:"Je qualifie d'abord chaque fait, je lui donne son nom juridique.",p:3},
+          {t:"Je qualifie d'abord chaque fait, en lui donnant son nom juridique.",p:3},
           {t:"Je cherche un cas similaire dans mon cours.",p:0}
         ]},
       { exo:"Cas pratique", q:"Dans ton cas pratique, quelle partie est la plus développée ?",
-        tip:"Ta mineure doit être deux à trois fois plus longue que ta majeure. C'est dans l'application aux faits que se trouvent les points : tu montres condition par condition, avec la citation exacte des faits, si la règle s'applique ou non. Une majeure longue et une mineure courte, c'est souvent un 8 sur 20.",
+        tip:"Ta mineure, c'est-à-dire l'application de la règle aux faits, doit être deux à trois fois plus longue que ta majeure, où tu exposes la règle. En effet, la plupart des points se trouvent dans l'application aux faits. Tu y montres, condition par condition et en citant exactement les faits, si la règle s'applique ou non. Avec une majeure longue et une mineure courte, une copie obtient souvent 8 sur 20.",
         opts:[
           {t:"La majeure, là où j'expose la règle et le cours.",p:0},
           {t:"La mineure, là où j'applique la règle aux faits.",p:3},
@@ -571,15 +571,15 @@
           {t:"La conclusion.",p:0}
         ]},
       { exo:"Commentaire d'arrêt", q:"Ton commentaire d'arrêt analyse la décision sous trois angles. Lesquels, dans le bon ordre ?",
-        tip:"Sens, valeur, portée : ce sont les trois piliers qui dirigent tout le commentaire. Le sens, c'est expliquer le raisonnement du juge, la façon dont il a interprété la règle pour trancher. La valeur, c'est juger la décision : la solution est-elle solide juridiquement, ou critiquable ? La portée, c'est mesurer l'influence de l'arrêt sur le droit en le situant par rapport à la jurisprudence d'avant et d'après.",
+        tip:"Le sens, la valeur et la portée organisent tout le commentaire. Le sens explique le raisonnement du juge, c'est-à-dire la façon dont il a interprété la règle pour trancher. Avec la valeur, tu juges la décision et tu dis si la solution est solide juridiquement ou si elle mérite une critique. Enfin, la portée mesure l'influence de l'arrêt sur le droit, en le situant par rapport à la jurisprudence d'avant et d'après.",
         opts:[
           {t:"Le contexte historique de l'arrêt, les positions des parties et les conséquences pratiques.",p:0},
           {t:"L'exposé des faits, la procédure et la solution de la Cour.",p:1},
           {t:"Le sens du raisonnement du juge, la valeur de la solution et la portée de l'arrêt sur le droit.",p:3},
           {t:"La conformité à la loi, la logique du raisonnement et l'utilité pour les parties.",p:0}
         ]},
-      { exo:"Commentaire d'arrêt", q:"Deux erreurs détruisent presque toutes les copies de commentaire d'arrêt. Lesquelles ?",
-        tip:"La paraphrase consiste à redire l'arrêt avec d'autres mots : ça ne rapporte aucun point, parce que le correcteur a l'arrêt sous les yeux. La dissertation déguisée consiste à utiliser l'arrêt comme prétexte pour réciter une leçon générale en oubliant la décision. Le correcteur veut que tu expliques le raisonnement du juge et que tu le juges, rattaché à l'arrêt à chaque étape.",
+      { exo:"Commentaire d'arrêt", q:"Quelles sont les deux erreurs qui font perdre le plus de points en commentaire d'arrêt ?",
+        tip:"La paraphrase consiste à redire l'arrêt avec d'autres mots. Tu n'as alors aucun point sur ce passage, parce que le correcteur a déjà l'arrêt sous les yeux. La dissertation déguisée consiste à te servir de l'arrêt comme prétexte pour réciter une leçon générale, en oubliant la décision. Le correcteur veut que tu expliques le raisonnement du juge puis que tu le juges, en revenant à l'arrêt à chaque étape.",
         opts:[
           {t:"Ajouter une conclusion inutile et citer trop de passages de l'arrêt.",p:1},
           {t:"Manquer de connaissances juridiques et écrire des phrases trop courtes.",p:0},
@@ -587,15 +587,15 @@
           {t:"Se tromper de juridiction dans l'introduction et mal formuler les faits.",p:0}
         ]},
       { exo:"Dissertation", q:"Dans quel ordre tu construis ta dissertation ?",
-        tip:"Tu classes d'abord tes idées en grands blocs, tu tires ton plan de ces blocs, puis tu formules ta problématique une fois le plan trouvé. La problématique découle du plan, elle n'en est pas le point de départ. Si tu la formules en premier, tu risques de forcer ton plan pour la respecter au lieu de le construire librement.",
+        tip:"Tu classes d'abord tes idées en grands blocs, puis tu tires ton plan de ces blocs. Tu formules ensuite ta problématique, une fois le plan trouvé, car elle découle du plan. Si tu la formules en premier, tu risques de forcer ton plan pour la respecter au lieu de le construire librement.",
         opts:[
           {t:"Je trouve d'abord la problématique, puis je cherche un plan qui y répond.",p:1},
-          {t:"Je classe mes idées en grands blocs, j'en tire le plan, et je formule la problématique une fois le plan trouvé.",p:3},
-          {t:"Je prends un plan type : une partie sur la loi, une partie sur la jurisprudence.",p:0},
+          {t:"Je classe mes idées en grands blocs et j'en tire le plan, puis je formule la problématique une fois le plan trouvé.",p:3},
+          {t:"Je prends un plan type, avec une partie sur la loi et une partie sur la jurisprudence.",p:0},
           {t:"Je rédige au fil de l'eau, le plan se fait tout seul.",p:0}
         ]},
       { exo:"Dissertation", q:"Quelle place prend ton introduction de dissertation ?",
-        tip:"L'introduction fait environ un tiers de la copie et tu la rédiges avant le corps du devoir. Elle pose le sujet, en délimite le sens, expose les enjeux, formule la problématique et annonce le plan. Le correcteur commence à situer ta note dès la fin de ton introduction.",
+        tip:"L'introduction fait environ un tiers de la copie, et tu la rédiges avant le corps du devoir. Elle présente le sujet et fixe le sens de ses termes, puis elle explique ce qui est en jeu. Elle se termine par la problématique et l'annonce du plan. Dès la fin de ton introduction, le correcteur a d'ailleurs déjà une idée de ta note.",
         opts:[
           {t:"Quelques lignes, j'entre vite dans le sujet.",p:0},
           {t:"Environ un tiers de la copie, et je la rédige avant le corps.",p:3},
@@ -603,23 +603,23 @@
           {t:"Une demi-page, sans vraiment travailler le plan.",p:1}
         ]},
       { exo:"Les titres", q:"Tes titres de parties ressemblent à quoi ?",
-        tip:"Un bon titre est court, sans verbe conjugué, et qualifié : on retrouve l'arrêt ou le sujet rien qu'en le lisant. « L'application de la loi » ne dit rien. « L'extension du champ d'application du principe » dit précisément de quoi tu traites dans la partie.",
+        tip:"Un bon titre est court, sans verbe conjugué, et propre au sujet, si bien qu'on retrouve l'arrêt ou le sujet rien qu'en le lisant. Un titre comme « L'application de la loi » irait sur n'importe quelle copie. « L'extension du champ d'application du principe » dit au contraire exactement de quoi traite ta partie.",
         opts:[
           {t:"Ils contiennent un verbe, du genre « L'arrêt applique la règle ».",p:0},
-          {t:"Ils sont courts, sans verbe conjugué, et qualifiés sur le sujet traité.",p:3},
+          {t:"Ils sont courts, sans verbe conjugué, et propres au sujet traité.",p:3},
           {t:"Des titres passe-partout : « I. La loi », « II. La jurisprudence ».",p:0},
           {t:"Je n'y fais pas vraiment attention.",p:0}
         ]},
       { exo:"Fiche d'arrêt", q:"Comment tu identifies tout de suite si un arrêt est un rejet ou une cassation ?",
-        tip:"Tu repères le visa en tête de l'arrêt (les textes sur lesquels se fonde la Cour) et la formule finale. Une cassation se termine par « casse et annule » ou « casse et renvoie ». Un rejet se termine par « rejette le pourvoi ». Cette distinction change toute ton introduction de commentaire.",
+        tip:"Tu repères le visa en tête de l'arrêt, c'est-à-dire les textes sur lesquels la Cour se fonde, puis la formule finale. Une cassation se termine par « casse et annule » ou « casse et renvoie », alors qu'un rejet se termine par « rejette le pourvoi ». Cette distinction change toute ton introduction de commentaire, car elle te dit si la Cour approuve la cour d'appel ou annule sa décision.",
         opts:[
           {t:"Je confonds souvent les deux, je devine d'après le contexte.",p:0},
-          {t:"Je regarde le visa et la formule finale : « casse et annule » ou « rejette le pourvoi ».",p:3},
+          {t:"Je regarde le visa et la formule finale, « casse et annule » ou « rejette le pourvoi ».",p:3},
           {t:"Je lis le résumé au début si l'arrêt en a un.",p:1},
           {t:"Je ne regarde pas ce point.",p:0}
         ]},
       { exo:"Avant le partiel", q:"Avant un partiel avec cas pratique, qu'est-ce que tu prépares ?",
-        tip:"Tu prépares tes majeures condition par condition : tu notes la règle, puis chaque condition une à une, avec les arrêts qui y correspondent. Et tu prépares tes fiches d'arrêt à l'avance pour les grands arrêts de la matière. Le jour J, tu n'as plus qu'à les appliquer, sans avoir à reconstruire la règle sous le stress.",
+        tip:"Tu prépares tes majeures condition par condition, c'est-à-dire que tu notes la règle, puis chaque condition une à une, avec les arrêts qui y correspondent. Tu prépares aussi à l'avance les fiches des grands arrêts de la matière. Le jour J, tu n'as plus qu'à les appliquer, sans avoir à reconstruire la règle sous le stress.",
         opts:[
           {t:"Je relis tout mon cours en entier.",p:1},
           {t:"Je prépare mes majeures condition par condition et mes fiches d'arrêt à l'avance.",p:3},
@@ -631,19 +631,19 @@
     var PROFILS = {
       low:{ tag:"Ta méthode te coûte des points", cls:"tag-low", profil:"faible",
         title:"Ta méthode te coûte des points que ton travail mérite",
-        lead:"Tu connais sûrement ton cours, mais la méthode des exercices te fait perdre des points en copie. C'est une bonne nouvelle, parce que la méthode s'apprend vite et rapporte gros. C'est exactement ce qu'on reprend dans le stage de méthode, les quatre exercices en direct, jusqu'à ce que tu saches quoi écrire et dans quel ordre.",
+        lead:"Tu connais sûrement ton cours, mais la méthode des exercices te fait perdre des points en copie. C'est plutôt une bonne nouvelle, parce que la méthode s'apprend vite et qu'elle fait monter les notes rapidement. Le stage de méthode reprend justement les quatre exercices en direct, jusqu'à ce que tu saches quoi écrire et dans quel ordre.",
         ctaPrincipal:{ href:"stage-methode.html", label:"Voir le stage de méthode · 176 €" },
         ctaSecondaire:{ href:"majeures-preparees.html", label:"Commencer par les majeures préparées" } },
       mid:{ tag:"Tu as les bases, il te manque des réflexes", cls:"tag-mid", profil:"intermédiaire",
         title:"Tu as les bases, il te manque des réflexes",
-        lead:"Tu as déjà les bons réflexes sur plusieurs exercices et il t'en manque encore sur d'autres. En verrouillant les deux ou trois points qui te coûtent des points, tu passes assez vite au-dessus de 13. Tes majeures préparées et les pages méthode sont faites pour ça.",
+        lead:"Tu as déjà les bons réflexes sur plusieurs exercices, mais il t'en manque encore sur d'autres. Si tu corriges les deux ou trois erreurs qui te font perdre des points, tu passes assez vite au-dessus de 13. Les majeures préparées et les pages méthode t'aident justement à les travailler.",
         ctaPrincipal:{ href:"majeures-preparees.html", label:"Voir les majeures préparées" },
         ctaSecondaire:{ href:"stage-methode.html", label:"Ou le stage de méthode complet" } },
       high:{ tag:"Ta méthode est solide", cls:"tag-high", profil:"solide",
         title:"Ta méthode est solide",
-        lead:"Ta méthode tient la route, tu sais comment aborder chaque exercice. Maintenant tu dois rendre tout ça automatique le jour du partiel, quand le stress fait oublier les bons réflexes. Les majeures préparées et les fiches complètes te font gagner les derniers points, ceux qui font la différence entre 13 et 16.",
+        lead:"Ta méthode tient la route, car tu sais comment aborder chaque exercice. Il te reste à rendre ces réflexes automatiques pour le jour du partiel, quand le stress fait oublier les bonnes habitudes. Les majeures préparées et les fiches complètes t'aident alors à gagner les derniers points, ceux qui font la différence entre 13 et 16.",
         ctaPrincipal:{ href:"formations.html", label:"Voir les fiches complètes" },
-        ctaSecondaire:{ href:"majeures-preparees.html", label:"Et les majeures préparées" } }
+        ctaSecondaire:{ href:"majeures-preparees.html", label:"Voir aussi les majeures préparées" } }
     };
 
     // Matières couvertes par une page dédiée (slug -> nom affiché), pour orienter le CTA vers la fiche précise

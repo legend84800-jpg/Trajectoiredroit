@@ -32,11 +32,11 @@
   <meta name="theme-color" content="#1A2851">
   <title>Quiz : quelle fiche prendre en droit ? (année, matière, échéance)</title>
   <meta name="author" content="Julien">
-  <meta name="description" content="4 questions, 1 minute. Réponds sur ton année, ta matière qui coince, ton échéance et ton objectif, et reçois la fiche exacte qu'il te faut.">
+  <meta name="description" content="En 4 questions et 1 minute, tu indiques ton année et la matière qui te pose problème, puis ton échéance et ton objectif. Tu reçois alors la fiche adaptée à ta situation.">
   <link rel="canonical" href="https://trajectoiredroit.com/quiz-orienteur.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Quelle fiche prendre ? Le quiz en 4 questions">
-  <meta property="og:description" content="4 questions sur ton année, ta matière, ton échéance et ton objectif. Tu repars avec la fiche exacte qu'il te faut.">
+  <meta property="og:description" content="Le quiz te pose 4 questions sur ton année et ta matière, puis sur ton échéance et ton objectif. Tu repars avec la fiche adaptée à ta situation.">
   <meta property="og:url" content="https://trajectoiredroit.com/quiz-orienteur.html">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:image" content="https://trajectoiredroit.com/assets/hero-video-produits-poster.jpg">
@@ -401,7 +401,7 @@
           <div class="text-center" style="margin-bottom:28px">
             <span class="eyebrow eyebrow--gold">🎯 Quiz gratuit · 1 minute · sans inscription</span>
             <h1 class="h1 text-balance" style="margin-top:14px">Quelle fiche prendre ?</h1>
-            <p class="lead" style="max-width:600px;margin:16px auto 0">Le catalogue compte plusieurs formats et 18 matières. En 4 questions, sur ton année, ta matière qui coince, ton échéance et ce que tu cherches vraiment, tu repars avec la fiche exacte qu'il te faut, pas une recommandation générale.</p>
+            <p class="lead" style="max-width:600px;margin:16px auto 0">Le catalogue compte plusieurs formats et 18 matières. Le quiz te pose 4 questions, sur ton année et la matière qui te pose problème, puis sur ton échéance et ce que tu cherches en priorité. Tu repars ensuite avec la fiche adaptée à ta situation.</p>
           </div>
           <div class="quiz-card text-center">
             <div class="grid-3" style="gap:16px;margin-bottom:24px;text-align:left">
@@ -441,7 +441,7 @@
 
             <div class="quiz-capture">
               <h3>On t'envoie le récap par email</h3>
-              <p>Le lien direct vers ta fiche, et un rappel une semaine avant ton échéance si tu l'as indiquée.</p>
+              <p>Tu reçois le lien direct vers ta fiche, et un rappel une semaine avant ton échéance si tu l'as indiquée.</p>
               <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST">
                 <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
                 <input type="hidden" name="_subject" value="Quiz orienteur · nouveau lead">
@@ -558,8 +558,8 @@
       {v:"comprendre", t:"Comprendre et apprendre tout le cours"},
       {v:"mention", t:"Avoir plus de 15/20 en cas pratique et en commentaire"},
       {v:"arrets", t:"Connaître les arrêts par cœur"},
-      {v:"reviser", t:"Réviser vite, tester ce que je retiens"},
-      {v:"methode", t:"Revoir la méthode elle-même, pas le contenu"},
+      {v:"reviser", t:"Réviser vite en testant ce que je retiens"},
+      {v:"methode", t:"Revoir la méthode des exercices plutôt que le contenu"},
       {v:"bloque", t:"Je bloque sur un point précis, j'ai besoin d'aide individuelle"}
     ];
 
@@ -639,7 +639,7 @@
 
       if (obj === 'comprendre') {
         title.textContent = 'La fiche complète de ' + m.nom;
-        lead.textContent = "Elle réunit tout le semestre en un seul PDF, avec les définitions, les articles et les exemples qui font comprendre.";
+        lead.textContent = "Elle réunit tout le semestre en un seul PDF, avec les définitions et les articles, mais aussi des exemples qui t'aident à comprendre chaque notion.";
         ctaMain.innerHTML = boutonAchat(m.fiche, 'Acheter la fiche', '14,99 €');
         if (ech === 'proche') {
           ctaSecondary.innerHTML = "Ton échéance est proche. En complément, les <a href=\"flashcards-qcm.html\">flashcards + QCM</a> de " + m.nom + " te permettent de réviser plus vite juste avant l'examen.";
@@ -648,25 +648,25 @@
         }
       } else if (obj === 'mention') {
         title.textContent = 'Une majeure préparée en ' + m.nom;
-        lead.textContent = "Les règles de droit, articles et jurisprudences, déjà rédigées condition par condition. C'est ce format qui fait gagner les points de méthode en cas pratique et en commentaire.";
+        lead.textContent = "La majeure est la règle de droit que tu exposes avant de l'appliquer aux faits. Ici, elle est déjà rédigée condition par condition, avec ses articles et sa jurisprudence. Ce format te fait gagner les points de méthode en cas pratique comme en commentaire.";
         ctaMain.innerHTML = boutonLien('majeures-preparees.html', 'Voir les majeures préparées');
       } else if (obj === 'arrets') {
         title.textContent = 'Les fiches d\'arrêt de ' + m.nom;
-        lead.textContent = "Les grands arrêts de la matière, avec les faits, la procédure, la solution et la portée, pour les connaître par cœur avant l'examen.";
+        lead.textContent = "Chaque fiche reprend un grand arrêt de la matière. Elle en donne les faits et la procédure, puis elle explique la solution et ce qu'elle a changé au droit. Tu peux ainsi connaître ces arrêts par cœur avant l'examen.";
         ctaMain.innerHTML = boutonLien('revisions.html', 'Voir les fiches d\'arrêt');
       } else if (obj === 'reviser') {
         title.textContent = 'Flashcards + QCM de ' + m.nom;
-        lead.textContent = "Une flashcard par notion et un QCM corrigé pour tester ce que tu retiens vraiment, plus le deck Anki prêt à importer.";
+        lead.textContent = "Tu as une flashcard par notion et un QCM corrigé pour tester ce que tu retiens vraiment. Le paquet de cartes pour Anki, une application de révision, est aussi fourni, prêt à importer.";
         ctaMain.innerHTML = boutonAchat(m.fc, 'Acheter les flashcards', '9,99 €');
       } else if (obj === 'methode') {
         title.textContent = 'Le stage de méthode en direct';
-        lead.textContent = "Trois séances en direct sur les quatre exercices de droit, la fiche d'arrêt, le commentaire, le cas pratique et la dissertation. Ce n'est pas le contenu d'une matière, c'est la méthode elle-même.";
+        lead.textContent = "Le stage comprend trois séances en direct sur les quatre exercices de droit, de la fiche d'arrêt à la dissertation, en passant par le commentaire et le cas pratique. On y travaille la méthode elle-même, valable pour toutes les matières.";
         ctaMain.innerHTML = boutonLien('stage-methode.html', 'Voir le stage de méthode');
       } else {
         title.textContent = 'Un accompagnement individuel';
-        lead.textContent = "Pour un blocage précis, deux options. Un cours particulier pour reprendre le point avec moi, ou Portalis pour une correction immédiate de ton propre exercice.";
+        lead.textContent = "Pour un blocage sur un point, tu as deux options. Tu peux reprendre ce point avec moi en cours particulier, ou utiliser Portalis pour obtenir une correction immédiate de ton propre exercice.";
         ctaMain.innerHTML = boutonLien('cours-particuliers.html#reserver', 'Réserver un cours particulier');
-        ctaSecondary.innerHTML = "Ou essaie <a href=\"outil-fiche-arret.html\">Portalis</a>, premier essai gratuit sans inscription.";
+        ctaSecondary.innerHTML = "Tu peux aussi essayer <a href=\"outil-fiche-arret.html\">Portalis</a>, dont le premier essai est gratuit et sans inscription.";
       }
 
       document.getElementById('hiddenNiveau').value = reponses.niveau;
