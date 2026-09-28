@@ -19,12 +19,10 @@
   },
   "accueil": {
     "titre": null,
-    "annonce_etiquette": "Premiers TD notés",
-    "annonce_texte": "À partir de fin septembre, les chargés de TD commencent à noter tes copies, souvent sur une fiche d'arrêt ou un commentaire d'arrêt. Pour t'y préparer, les pages de méthode détaillent chaque exercice gratuitement, avec un exemple. Ensuite, pendant les vacances de la Toussaint, le stage reprend ces deux exercices avec toi, puis passe au cas pratique et à la dissertation.",
+    "annonce_etiquette": null,
+    "annonce_texte": "Tes premiers TD notés commencent, souvent sur une fiche d'arrêt.",
     "annonce_liens": [
-      { "libelle": "Méthode de la fiche d'arrêt", "lien": "methode-fiche-arret.html" },
-      { "libelle": "Méthode du commentaire d'arrêt", "lien": "methode-commentaire-arret.html" },
-      { "libelle": "Exercices corrigés", "lien": "corriges.html" }
+      { "libelle": "Voir la méthode gratuite, avec un exemple", "lien": "methode-fiche-arret.html" }
     ],
     "bouton": { "libelle": "Voir le stage de la Toussaint →", "lien": "stage-methode.html" },
     "masquer_reassurance_pdf": true,

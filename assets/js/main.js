@@ -651,19 +651,19 @@
 
       var annonce = document.querySelector('[data-saison="hero-annonce"]');
       if (annonce && texte(h.annonce_texte)) {
+        // Une seule ligne sous le titre : icône calendrier, phrase courte, puis le lien principal.
         annonce.textContent = '';
-        if (texte(h.annonce_etiquette)) annonce.appendChild(el('span', 'hero__saison-etiquette', h.annonce_etiquette));
-        annonce.appendChild(el('p', 'hero__saison-texte', h.annonce_texte));
+        var ligne = el('p', 'hero__saison-ligne');
+        ligne.insertAdjacentHTML('beforeend', '<svg class="hero__saison-icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>');
+        ligne.appendChild(el('span', null, h.annonce_texte + ' '));
         var liens = (h.annonce_liens || []).filter(function (l) { return l && texte(l.libelle) && lienSur(l.lien); });
-        if (liens.length) {
-          var bloc = el('p', 'hero__saison-liens');
-          liens.forEach(function (l) {
-            var la = el('a', null, l.libelle + ' →');
-            la.href = l.lien;
-            bloc.appendChild(la);
-          });
-          annonce.appendChild(bloc);
-        }
+        liens.forEach(function (l, i) {
+          if (i > 0) ligne.appendChild(document.createTextNode(' '));
+          var la = el('a', 'hero__saison-lien', l.libelle + ' →');
+          la.href = l.lien;
+          ligne.appendChild(la);
+        });
+        annonce.appendChild(ligne);
         annonce.hidden = false;
       }
 
