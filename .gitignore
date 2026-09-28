@@ -37,3 +37,5 @@ DESIGN.md
 preview-server.js
 .vercel
 .env*
+.env.cloud
+.secrets-vault/
