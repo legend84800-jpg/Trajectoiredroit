@@ -70,7 +70,7 @@ function construireSection(matiereSlug) {
     <section class="section" id="tout-pour-ta-matiere">
       <div class="container container--narrow">
         <h2 class="h2 text-center">Tout pour ${m.nom}</h2>
-        <p class="lead text-center" style="max-width:620px; margin:0 auto 28px">Choisis le format qui correspond à ta façon de réviser, ou prends le pack complet pour ne plus y penser.</p>
+        <p class="lead text-center" style="max-width:620px; margin:0 auto 28px">Chaque format correspond à une façon de réviser. Si tu préfères tout avoir, le pack matière complet en réunit plusieurs à prix réduit.</p>
         <div class="grid-3" style="gap:20px">${cartes.join("")}
         </div>
       </div>
