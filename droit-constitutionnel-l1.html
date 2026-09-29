@@ -49,6 +49,30 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
   <link rel="stylesheet" href="assets/style.css?v=656a6d97">
+  <style>
+    .tjd-semester-purchase {
+      display: grid;
+      gap: 6px;
+      padding: 12px 0;
+      border-top: 1px solid var(--blue-100);
+    }
+    .tjd-semester-purchase > span {
+      color: var(--body);
+      font-size: .9rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .tjd-semester-purchase > .btn {
+      width: 100%;
+      justify-content: center;
+      white-space: nowrap;
+    }
+    .tjd-semester-purchase > .tjd-panier-lien {
+      justify-self: start;
+      margin-top: 0;
+      white-space: nowrap;
+    }
+  </style>
 
   <script type="application/ld+json">
   {
@@ -501,7 +525,7 @@
             <div class="product__body">
             <h3 style="margin-top:0">Droit constit (S1) · 197 p.</h3>
             <p style="color:var(--body); font-size:.95rem">Théorie de l'État, Constitution, séparation des pouvoirs. Toutes les fondations de la matière.</p>
-            <button type="button" class="apercu-link" data-apercu='["assets/apercus/constit-l1-s1-zoom.webp", "assets/apercus/constit-l1-s1-1.webp", "assets/apercus/constit-l1-s1-2.webp"]' data-apercu-title="Droit constitutionnel L1 · Semestre 1" data-apercu-price="14,99 €" data-apercu-cta="fiche-constit-l1-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
+            <button type="button" class="apercu-link" data-apercu='["assets/apercus/constit-l1-s1-separation-zoom.webp", "assets/apercus/constit-l1-s1-etat.webp", "assets/apercus/constit-l1-s1-separation.webp"]' data-apercu-title="Droit constitutionnel L1 · Semestre 1" data-apercu-price="14,99 €" data-apercu-cta="fiche-constit-l1-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
             <p style="font-family:var(--font-display); font-size:1.6rem; font-weight:700; margin:6px 0">14,99 €</p>
             <label style="display:flex; gap:8px; align-items:flex-start; font-size:.83rem; color:var(--body); text-align:left; margin:0 0 12px; cursor:pointer">
               <input type="checkbox" id="bump-constit-s1" style="margin-top:3px">
@@ -541,12 +565,12 @@
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/cours-constit-l1-s1-zoom.webp", "assets/apercus/cours-constit-l1-s1-1.webp", "assets/apercus/cours-constit-l1-s1-2.webp"]' data-apercu-title="Droit constitutionnel L1 (S1), cours complet" data-apercu-sub="Extraits réels du cours complet" data-apercu-price="19,99 €" data-apercu-cta="cours-fiche-constit-l1-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu du cours complet (S1)</button>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/cours-constit-l1-s2-zoom.webp", "assets/apercus/cours-constit-l1-s2-1.webp", "assets/apercus/cours-constit-l1-s2-2.webp"]' data-apercu-title="Droit constitutionnel L1 (S2), cours complet" data-apercu-sub="Extraits réels du cours complet" data-apercu-price="19,99 €" data-apercu-cta="cours-fiche-constit-l1-s2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu du cours complet (S2)</button>
             
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-top:1px solid var(--blue-100)">
-              <span style="font-size:.9rem; color:var(--body)">Semestre 1</span>
+            <div class="tjd-semester-purchase">
+              <span>Semestre 1</span>
               <button type="button" class="btn btn--outline btn--sm" data-tjd-produit="cours-fiche-constit-l1-s1">Acheter · 19,99 €</button>
             </div>
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-top:1px solid var(--blue-100)">
-              <span style="font-size:.9rem; color:var(--body)">Semestre 2</span>
+            <div class="tjd-semester-purchase">
+              <span>Semestre 2</span>
               <button type="button" class="btn btn--outline btn--sm" data-tjd-produit="cours-fiche-constit-l1-s2">Acheter · 19,99 €</button>
             </div>
             </div>
@@ -673,7 +697,7 @@
         <p style="color:var(--body); line-height:1.75; margin-bottom:24px">De cette séparation naissent deux grandes familles de régimes. Dans le <strong>régime présidentiel</strong>, d'abord, la séparation est rigide. C'est le modèle des États-Unis, né avec la Constitution de 1787. Le président et le Congrès sont élus séparément et vont chacun au bout de leur mandat. Ainsi, le président ne peut pas dissoudre le Congrès, et le Congrès ne peut pas renverser le président par une motion de censure. Dans le <strong>régime parlementaire</strong>, au contraire, la séparation est souple. Il est né peu à peu en Angleterre au XVIIIe siècle, quand le roi George Ier, qui ne parlait pas l'anglais, a laissé Robert Walpole diriger le cabinet à partir de 1721. Dans ce régime, le gouvernement est responsable devant le Parlement, qui peut le renverser, et l'exécutif peut en retour dissoudre l'assemblée. La France est officiellement un régime parlementaire, avec une forte dose de pouvoir présidentiel en plus. Je détaille tout ce mécanisme dans ma page dédiée à <a href="la-separation-des-pouvoirs.html">la séparation des pouvoirs</a>, avec les citations de Montesquieu et les trois types de régimes.</p>
 
         <div class="card" style="border-left:4px solid var(--accent, #1A2851); padding:20px 24px; margin-top:8px">
-          <p style="margin:0; color:var(--body); line-height:1.75">Tu as là les bases du semestre 1. Le semestre 2 quitte ensuite la théorie pour entrer dans le détail de la Ve République. Tu y étudies le statut et les pouvoirs du Président, le rôle du Gouvernement et du Parlement, puis le contrôle de constitutionnalité exercé par le Conseil constitutionnel, avec la question prioritaire de constitutionnalité depuis 2010. Le cours complet du semestre 1 se trouve dans la fiche complète en PDF, 197 pages en couleur avec les schémas, et la méthode complète dans notre <a href="methode-dissertation-juridique.html">méthode de la dissertation juridique</a>.</p>
+          <p style="margin:0; color:var(--body); line-height:1.75">Tu as là les bases du semestre 1. Le semestre 2 quitte ensuite la théorie pour entrer dans le détail de la Ve République. Tu y étudies le statut et les pouvoirs du Président, le rôle du Gouvernement et du Parlement, puis le contrôle de constitutionnalité exercé par le Conseil constitutionnel, avec la question prioritaire de constitutionnalité depuis 2010. La fiche complète du semestre 1 compte 197 pages en couleur avec des schémas. Pour la dissertation, tu peux consulter la <a href="methode-dissertation-juridique.html">méthode de la dissertation juridique</a>.</p>
         </div>
       </div>
     </section>
@@ -689,20 +713,20 @@
         <h3 style="margin-top:0">Cours complet</h3>
         <p style="color:var(--body); font-size:.9rem; margin-bottom:0">Il reprend le programme de la fiche complète, sur une fois et demie à deux fois plus de pages, avec des schémas complets et l'histoire des grands arrêts. Tu y trouves aussi les arguments de tes devoirs maison, qu'il s'agisse d'une dissertation ou d'un commentaire.</p>
         
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-top:1px solid var(--blue-100)">
-          <span style="font-size:.9rem; color:var(--body)">Semestre 1</span>
+        <div class="tjd-semester-purchase">
+          <span>Semestre 1</span>
           <button type="button" class="btn btn--outline btn--sm" data-tjd-produit="cours-fiche-constit-l1-s1">Acheter · 19,99 €</button>
         </div>
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-top:1px solid var(--blue-100)">
-          <span style="font-size:.9rem; color:var(--body)">Semestre 2</span>
+        <div class="tjd-semester-purchase">
+          <span>Semestre 2</span>
           <button type="button" class="btn btn--outline btn--sm" data-tjd-produit="cours-fiche-constit-l1-s2">Acheter · 19,99 €</button>
         </div>
       </div>
       <div class="card" style="border-color:var(--blue-600); border-width:2px">
         <img src="assets/covers/pack-matiere-constit-l1.jpg?v=captures-reelles-20260912" alt="Coffret Droit constitutionnel L1, couverture Trajectoire Droit" loading="lazy" style="display:block; width:100%; aspect-ratio:16 / 9; object-fit:cover; border-radius:10px; margin-bottom:14px">
         <span class="badge badge--popular" style="margin-bottom:8px">Meilleure offre</span>
-        <h3 style="margin-top:0">Pack matière complet</h3>
-        <p style="color:var(--body); font-size:.9rem">Fiche complète, flashcards et QCM, fiches d'arrêt et un corrigé. Tout ce qu'il faut pour Droit constitutionnel L1, à prix réduit.</p>
+        <h3 style="margin-top:0">Pack Droit constitutionnel L1</h3>
+        <p style="color:var(--body); font-size:.9rem">Le pack réunit les fiches S1 et S2 avec leurs flashcards et QCM. Les fiches d'arrêt et deux dissertations corrigées sont incluses au même prix que les deux fiches seules.</p>
         <button type="button" class="btn btn--primary btn--full" data-tjd-produit="pack-matiere-constit-l1">Acheter le pack · 29,98 €</button>
       </div>
         </div>
