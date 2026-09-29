@@ -28,7 +28,7 @@ for (const [packId, def] of Object.entries(PACKS)) {
     blobs.push(...p.blobs);
   }
   const valeurUnite = def.composants.reduce((s, id) => s + (PRODUITS[id] ? PRODUITS[id].prix : 0), 0);
-  out += `  "${packId}": { nom: "${def.nom}", prix: 2999, blobs: [\n`;
+  out += `  "${packId}": { nom: "${def.nom}", prix: 2998, blobs: [\n`;
   for (const b of blobs) out += `      "${b}",\n`;
   out = out.replace(/,\n$/, "\n");
   out += `  ] }, // valeur à l'unité : ${(valeurUnite/100).toFixed(2)} €\n`;

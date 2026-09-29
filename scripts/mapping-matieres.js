@@ -18,7 +18,7 @@ const MATIERES = {
       { label: "Semestre 1", id: "cours-fiche-da-l2-s1", prix: "19,99 €" },
       { label: "Semestre 2", id: "cours-fiche-da-l2-s2", prix: "19,99 €" },
     ],
-    packMatiere: { id: "pack-matiere-da-l2", prix: "29,99 €" },
+    packMatiere: { id: "pack-matiere-da-l2", prix: "29,98 €" },
   },
   "droit-commercial-l3": {
     nom: "Droit commercial L3",
@@ -27,7 +27,7 @@ const MATIERES = {
     ],
     majeures: [{ label: null, id: "maj-commercial-l3-s1", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-commercial-l3-s1", prix: "19,99 €" }],
-    packMatiere: { id: "pack-matiere-commercial-l3", prix: "29,99 €" },
+    packMatiere: { id: "pack-matiere-commercial-l3", prix: "29,98 €" },
   },
   "droit-constitutionnel-l1": {
     nom: "Droit constitutionnel L1",
@@ -40,7 +40,7 @@ const MATIERES = {
       { label: "Semestre 1", id: "cours-fiche-constit-l1-s1", prix: "19,99 €" },
       { label: "Semestre 2", id: "cours-fiche-constit-l1-s2", prix: "19,99 €" },
     ],
-    packMatiere: { id: "pack-matiere-constit-l1", prix: "29,99 €" },
+    packMatiere: { id: "pack-matiere-constit-l1", prix: "29,98 €" },
   },
   "droit-de-la-famille-l1": {
     nom: "Droit de la famille L1",
@@ -49,7 +49,7 @@ const MATIERES = {
     ],
     majeures: [{ label: null, id: "maj-famille-l1-s2", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-famille-l1-s2", prix: "19,99 €" }],
-    packMatiere: { id: "pack-matiere-famille-l1", prix: "29,99 €" },
+    packMatiere: { id: "pack-matiere-famille-l1", prix: "29,98 €" },
   },
   "droit-des-biens-l2": {
     nom: "Droit des biens L2",
@@ -58,7 +58,7 @@ const MATIERES = {
     ],
     majeures: [{ label: null, id: "maj-biens-l2", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-biens-l2", prix: "19,99 €" }],
-    packMatiere: { id: "pack-matiere-biens-l2", prix: "29,99 €" },
+    packMatiere: { id: "pack-matiere-biens-l2", prix: "29,98 €" },
   },
   "droit-des-contrats-l2": {
     nom: "Droit des contrats L2",
@@ -67,7 +67,7 @@ const MATIERES = {
     ],
     majeures: [{ label: null, id: "maj-contrats-l2-s1", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-contrats-l2-s1", prix: "19,99 €" }],
-    packMatiere: { id: "pack-matiere-contrats-l2", prix: "29,99 €" },
+    packMatiere: { id: "pack-matiere-contrats-l2", prix: "29,98 €" },
   },
   "droit-des-obligations-l2": {
     nom: "Droit des obligations L2",
@@ -76,7 +76,7 @@ const MATIERES = {
     ],
     majeures: [{ label: null, id: "maj-obligations-l2-s2", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-obligations-l2-s2", prix: "19,99 €" }],
-    packMatiere: { id: "pack-matiere-obligations-l2", prix: "29,99 €" },
+    packMatiere: { id: "pack-matiere-obligations-l2", prix: "29,98 €" },
   },
   "droit-des-personnes-l1": {
     nom: "Droit des personnes L1",
@@ -85,7 +85,7 @@ const MATIERES = {
     ],
     majeures: [{ label: null, id: "maj-personnes-l1", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-personnes-l1", prix: "19,99 €" }],
-    packMatiere: { id: "pack-matiere-personnes-l1", prix: "29,99 €" },
+    packMatiere: { id: "pack-matiere-personnes-l1", prix: "29,98 €" },
   },
   "droit-des-societes-l3": {
     nom: "Droit des sociétés L3",
@@ -105,7 +105,7 @@ const MATIERES = {
       { label: "Semestre 1 · le droit commun", id: "cours-fiche-societes-l3-s1", prix: "19,99 €" },
       { label: "Semestre 2 · le droit spécial", id: "cours-fiche-societes-l3-s2", prix: "19,99 €" },
     ],
-    packMatiere: { id: "pack-matiere-societes-l3", prix: "29,99 €" },
+    packMatiere: { id: "pack-matiere-societes-l3", prix: "29,98 €" },
   },
   "droit-du-travail-l3": {
     nom: "Droit du travail L3",
@@ -116,7 +116,7 @@ const MATIERES = {
     // produit existait déjà en vente, invisible sur cette page à trafic SEO.
     majeures: [{ label: null, id: "maj-travail-l3-s1", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-travail-l3-s1", prix: "19,99 €" }],
-    packMatiere: { id: "pack-matiere-travail-l3", prix: "29,99 €" },
+    packMatiere: { id: "pack-matiere-travail-l3", prix: "29,98 €" },
   },
   "droit-penal-general-l1": {
     nom: "Droit pénal général L1 S2",
@@ -125,7 +125,7 @@ const MATIERES = {
     ],
     majeures: [],
     coursComplets: [{ label: null, id: "cours-fiche-penal-general-l1", prix: "19,99 €" }],
-    packMatiere: { id: "pack-matiere-penal-general-l1", prix: "29,99 €" },
+    packMatiere: { id: "pack-matiere-penal-general-l1", prix: "29,98 €" },
   },
   "droit-penal-l2": {
     nom: "Droit pénal L2",
@@ -139,7 +139,7 @@ const MATIERES = {
       { label: "Semestre 2", id: "maj-penal-l2-s2", prix: "14,99 €" },
     ],
     coursComplets: [{ label: null, id: "cours-fiche-penal-l2-s1", prix: "19,99 €" }],
-    packMatiere: { id: "pack-matiere-penal-l2", prix: "29,99 €" },
+    packMatiere: { id: "pack-matiere-penal-l2", prix: "29,98 €" },
   },
   "histoire-des-institutions-l1": {
     nom: "Histoire des institutions L1",
@@ -166,7 +166,7 @@ const MATIERES = {
     ],
     majeures: [{ label: null, id: "maj-intro-droit-l1", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-intro-droit-l1", prix: "19,99 €" }],
-    packMatiere: { id: "pack-matiere-intro-droit-l1", prix: "29,99 €" },
+    packMatiere: { id: "pack-matiere-intro-droit-l1", prix: "29,98 €" },
   },
   "procedure-penale-l3": {
     nom: "Procédure pénale L3",
@@ -188,7 +188,7 @@ const MATIERES = {
     // produit existait déjà en vente, invisible sur cette page à trafic SEO.
     majeures: [{ label: null, id: "maj-contrats-speciaux-l3", prix: "14,99 €" }],
     coursComplets: [{ label: null, id: "cours-fiche-contrats-speciaux-l3", prix: "19,99 €" }],
-    packMatiere: { id: "pack-matiere-contrats-speciaux-l3", prix: "29,99 €" },
+    packMatiere: { id: "pack-matiere-contrats-speciaux-l3", prix: "29,98 €" },
   },
   "relations-internationales-l1": {
     nom: "Relations internationales L1",

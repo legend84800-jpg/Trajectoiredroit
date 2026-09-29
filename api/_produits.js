@@ -718,11 +718,11 @@ const PRODUITS = {
     ],
   },
 
-  // Packs matière – 29,99 € (fiche complète + flashcards/QCM + fiches d'arrêt + un corrigé,
+  // Packs matière – 29,98 € (fiche complète + flashcards/QCM + fiches d'arrêt + un corrigé,
   // valeur à l'unité ~50 € selon la matière). Générés par scripts/gen-packs-matiere.js (vague 2.4).
   // Histoire du droit L1, histoire des institutions L1, procédure pénale L3 et relations
   // internationales L1 n'ont pas encore tous les formats nécessaires pour ce pack.
-  "pack-matiere-da-l2": { nom: "Pack Droit administratif L2 complet (fiche + flashcards + arrêts + cas pratiques)", prix: 2999, blobs: [
+  "pack-matiere-da-l2": { nom: "Pack Droit administratif L2 complet (fiche + flashcards + arrêts + cas pratiques)", prix: 2998, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-da-l2-s1-cartesmentales.pdf",
@@ -741,7 +741,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-da-l2-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-da-l2-s2.pdf"
   ] },
-  "pack-matiere-commercial-l3": { nom: "Pack Droit commercial L3 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
+  "pack-matiere-commercial-l3": { nom: "Pack Droit commercial L3 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2998, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-commercial-l3-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-commercial-l3-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-commercial-l3-s1-cartesmentales.pdf",
@@ -752,7 +752,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-commercial-l3-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-commercial-l3-s1.pdf"
   ] },
-  "pack-matiere-constit-l1": { nom: "Pack Droit constitutionnel L1 complet (fiche + flashcards + arrêts + dissertations)", prix: 2999, blobs: [
+  "pack-matiere-constit-l1": { nom: "Pack Droit constitutionnel L1 complet (fiche + flashcards + arrêts + dissertations)", prix: 2998, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-constit-l1-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-constit-l1-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-constit-l1-s1-cartesmentales.pdf",
@@ -772,7 +772,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/dissertation-constit-l1-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/dissertation-constit-l1-s2.pdf"
   ] },
-  "pack-matiere-famille-l1": { nom: "Pack Droit de la famille L1 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
+  "pack-matiere-famille-l1": { nom: "Pack Droit de la famille L1 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2998, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-famille-l1-s2.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-famille-l1-s2-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-famille-l1-s2-cartesmentales.pdf",
@@ -783,7 +783,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-famille-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-famille-l1-s2.pdf"
   ] },
-  "pack-matiere-biens-l2": { nom: "Pack Droit des biens L2 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
+  "pack-matiere-biens-l2": { nom: "Pack Droit des biens L2 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2998, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-biens-l2.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-biens-l2-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-biens-l2-cartesmentales.pdf",
@@ -794,7 +794,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-biens-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-biens-l2.pdf"
   ] },
-  "pack-matiere-contrats-l2": { nom: "Pack Droit des contrats L2 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
+  "pack-matiere-contrats-l2": { nom: "Pack Droit des contrats L2 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2998, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-contrats-l2-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-contrats-l2-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-contrats-l2-s1-cartesmentales.pdf",
@@ -805,7 +805,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-contrats-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-contrats-l2-s1.pdf"
   ] },
-  "pack-matiere-obligations-l2": { nom: "Pack Droit des obligations L2 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
+  "pack-matiere-obligations-l2": { nom: "Pack Droit des obligations L2 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2998, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-obligations-l2-s2.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-obligations-l2-s2-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-obligations-l2-s2-cartesmentales.pdf",
@@ -816,7 +816,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-obligations-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-obligations-l2-s2.pdf"
   ] },
-  "pack-matiere-personnes-l1": { nom: "Pack Droit des personnes L1 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
+  "pack-matiere-personnes-l1": { nom: "Pack Droit des personnes L1 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2998, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-personnes-l1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-personnes-l1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-personnes-l1-cartesmentales.pdf",
@@ -827,7 +827,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-personnes-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-personnes-l1.pdf"
   ] },
-  "pack-matiere-societes-l3": { nom: "Pack Droit des sociétés L3 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
+  "pack-matiere-societes-l3": { nom: "Pack Droit des sociétés L3 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2998, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s1-cartesmentales.pdf",
@@ -841,7 +841,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-societes-l3.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-societes-l3-s2.pdf"
   ] },
-  "pack-matiere-travail-l3": { nom: "Pack Droit du travail L3 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
+  "pack-matiere-travail-l3": { nom: "Pack Droit du travail L3 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2998, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-travail-l3-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-travail-l3-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-travail-l3-s1-cartesmentales.pdf",
@@ -852,7 +852,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-travail-l3-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-travail-l3.pdf"
   ] },
-  "pack-matiere-penal-general-l1": { nom: "Pack Droit pénal général L1 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
+  "pack-matiere-penal-general-l1": { nom: "Pack Droit pénal général L1 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2998, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1-cartesmentales.pdf",
@@ -864,7 +864,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-penal-plan-l2s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-penal-general-l1.pdf"
   ] },
-  "pack-matiere-penal-l2": { nom: "Pack Droit pénal L2 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
+  "pack-matiere-penal-l2": { nom: "Pack Droit pénal L2 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2998, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-l2-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-l2-s1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-l2-s1-cartesmentales.pdf",
@@ -876,7 +876,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-penal-plan-l2s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-penal-l2-s1.pdf"
   ] },
-  "pack-matiere-intro-droit-l1": { nom: "Pack Introduction au droit L1 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
+  "pack-matiere-intro-droit-l1": { nom: "Pack Introduction au droit L1 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2998, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-intro-droit-l1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-intro-droit-l1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-intro-droit-l1-cartesmentales.pdf",
@@ -887,7 +887,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-intro-droit-l1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cas-pratique-intro-droit-l1.pdf"
   ] },
-  "pack-matiere-contrats-speciaux-l3": { nom: "Pack Contrats spéciaux L3 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2999, blobs: [
+  "pack-matiere-contrats-speciaux-l3": { nom: "Pack Contrats spéciaux L3 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2998, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-contrats-speciaux-l3.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-contrats-speciaux-l3-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-contrats-speciaux-l3-cartesmentales.pdf",
