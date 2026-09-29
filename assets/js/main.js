@@ -352,7 +352,7 @@
     }
     triggers.forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
     modal.addEventListener('click', function (e) {
-      if (e.target === modal || e.target.hasAttribute('data-apercu-close')) close();
+      if (e.target === modal || e.target.closest('[data-apercu-close]')) close();
     });
     document.addEventListener('keydown', function (e) {
       if (e.key !== 'Escape') return;
