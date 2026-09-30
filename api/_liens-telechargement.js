@@ -5,6 +5,16 @@
 const crypto = require("crypto");
 const PRODUITS = require("./_produits");
 
+// Les fichiers des packs viennent de produits vendus séparément. On reprend
+// leur nom dans les boutons pour distinguer chaque ressource du pack.
+const PRODUITS_PAR_FICHIER = new Map();
+for (const [id, produit] of Object.entries(PRODUITS)) {
+  if (id.startsWith("pack-")) continue;
+  for (const fichier of produit.blobs) {
+    PRODUITS_PAR_FICHIER.set(fichier, produit);
+  }
+}
+
 function genererToken(produitId, blobIndex, expiry, secret, sessionId = "") {
   const message = sessionId
     ? `${produitId}|${blobIndex}|${expiry}|${sessionId}`
@@ -46,6 +56,14 @@ function libelleFichierPrincipal(nomProduit) {
   return "le PDF principal";
 }
 
+function libelleAnnexe(brut, suffixes) {
+  if (brut.endsWith("-textes-des-arrets")) return "les textes des arrêts";
+  const planSemestre = brut.match(/-plan-(l[123])s([12])$/i);
+  if (planSemestre) return `le plan ${planSemestre[1].toUpperCase()} S${planSemestre[2]}`;
+  const segments = brut.split("-");
+  return suffixes[segments.slice(-2).join("-")] || suffixes[segments[segments.length - 1]];
+}
+
 function construireLiensTelechargement(
   produitId,
   produit,
@@ -59,7 +77,7 @@ function construireLiensTelechargement(
     qcm: "le QCM",
     anki: "le deck Anki",
     cartesmentales: "la carte mentale",
-    plan: "le plan du cours",
+    plan: "le plan",
     "seance-1": "le replay séance 1",
     "seance-2": "le replay séance 2",
     "seance-3": "le replay séance 3",
@@ -76,14 +94,16 @@ function construireLiensTelechargement(
     const sessionParam = sessionId ? `&sid=${encodeURIComponent(sessionId)}` : "";
     const url = `${origin}/api/telecharger?id=${encodeURIComponent(produitId)}&b=${i}&exp=${expiry}&sig=${sig}${sessionParam}`;
     const brut = blobUrl.split("/").pop().replace(/\.(pdf|apkg|mp4)$/i, "");
-    const segments = brut.split("-");
-    const deuxDerniersMots = segments.slice(-2).join("-");
-    const dernierMot = segments[segments.length - 1];
-    let nom = suffixes[deuxDerniersMots] || suffixes[dernierMot] || libelleFichierPrincipal(produit.nom);
+    const annexe = libelleAnnexe(brut, suffixes);
+    let nom = annexe || libelleFichierPrincipal(produit.nom);
     const composant = produit.blobsMeta && produit.blobsMeta[i];
     if (composant) {
-      const annexe = suffixes[deuxDerniersMots] || suffixes[dernierMot];
       nom = annexe ? `${composant.nom} · ${annexe}` : composant.nom;
+    } else if (produitId.startsWith("pack-") && !produitId.startsWith("pack-flashcards-qcm-")) {
+      const produitSource = PRODUITS_PAR_FICHIER.get(blobUrl);
+      if (produitSource) {
+        nom = annexe ? `${produitSource.nom} · ${annexe}` : produitSource.nom;
+      }
     }
     if (produitId.startsWith("pack-flashcards-qcm-")) {
       const match = blobUrl.match(/\/(flashcards-qcm-[a-z0-9-]+)-(flashcards|qcm|anki)\.(?:pdf|apkg)$/i);

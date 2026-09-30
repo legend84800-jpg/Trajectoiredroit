@@ -327,6 +327,56 @@ test("un lien nominatif est signé avec la commande Stripe", async () => {
   );
 });
 
+test("les fichiers d'un pack portent des noms distincts dans l'email et Mon compte", () => {
+  const produits = require("../api/_produits");
+  const { construireLiensTelechargement } = require("../api/_liens-telechargement");
+  const liensPour = (id) => construireLiensTelechargement(
+    id,
+    produits[id],
+    "secret_test",
+    "https://trajectoiredroit.com",
+    900
+  );
+
+  assert.deepEqual(liensPour("pack-matiere-intro-droit-l1").map((lien) => lien.nom), [
+    "Fiche complète Introduction au droit L1 S1",
+    "Fiche complète Introduction au droit L1 S1 · le plan",
+    "Fiche complète Introduction au droit L1 S1 · la carte mentale",
+    "Flashcards + QCM Introduction au droit L1 S1 · les flashcards",
+    "Flashcards + QCM Introduction au droit L1 S1 · le QCM",
+    "Flashcards + QCM Introduction au droit L1 S1 · le deck Anki",
+    "Fiches d'arrêt Introduction au droit L1",
+    "Fiches d'arrêt Introduction au droit L1 · le plan",
+    "Cas pratiques corrigés Introduction au droit L1 S1",
+  ]);
+  assert.deepEqual(liensPour("fiche-arret-penal").map((lien) => lien.nom), [
+    "les fiches d'arrêt", "le plan L1 S2", "le plan L2 S1",
+  ]);
+  assert.deepEqual(liensPour("fiche-arret-administratif").map((lien) => lien.nom), [
+    "les fiches d'arrêt", "le plan L2 S1", "le plan L2 S2", "les textes des arrêts",
+  ]);
+
+  const produitsIndividuels = Object.entries(produits)
+    .filter(([id]) => !id.startsWith("pack-"));
+  for (const [id, produit] of Object.entries(produits)) {
+    const liens = liensPour(id);
+    const noms = liens.map((lien) => lien.nom);
+    assert.equal(new Set(noms).size, noms.length, `Libellés répétés pour ${id}`);
+    liens.forEach((lien, index) => {
+      const url = new URL(lien.url);
+      assert.equal(url.searchParams.get("id"), id);
+      assert.equal(url.searchParams.get("b"), String(index));
+      assert.equal(produit.blobs[index] !== undefined, true);
+      if (id.startsWith("pack-") && !id.startsWith("pack-flashcards-qcm-") && !produit.blobsMeta) {
+        const sources = produitsIndividuels.filter(([, source]) =>
+          source.blobs.includes(produit.blobs[index]));
+        assert.equal(sources.length, 1, `Produit source introuvable pour ${id}, fichier ${index}`);
+        assert.ok(lien.nom.startsWith(sources[0][1].nom), `Nom imprécis pour ${id}, fichier ${index}`);
+      }
+    });
+  }
+});
+
 test("chaque PDF du catalogue route vers une copie personnalisée", async () => {
   const {
     genererToken,
