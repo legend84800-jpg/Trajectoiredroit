@@ -1,0 +1,70 @@
+.pricing-grid > .ultra-home-card {
+  padding-top: var(--sp-6);
+}
+
+.ultra-home-card::before {
+  content: none;
+}
+
+.ultra-home-card__cover {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: #17243e;
+}
+
+.ultra-home-card__cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 190px;
+  aspect-ratio: 2.25 / 1;
+  object-fit: cover;
+}
+
+.ultra-home-card__cover-label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  background: #fff;
+  color: #1a2851;
+  font-size: .8rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.ultra-home-card .ultra-home-card__title {
+  margin: 0;
+  color: var(--ink);
+}
+
+.ultra-home-card__intro {
+  margin: 8px 0 0;
+  color: var(--body);
+  font-size: .95rem;
+  line-height: 1.5;
+}
+
+.ultra-home-card__amount {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.ultra-home-card__access {
+  margin: auto 0 0;
+  color: var(--body);
+  font-size: .9rem;
+}
+
+.pricing-grid > .card--pricing > .btn:last-child {
+  margin-top: auto;
+}
+
+.pricing-grid > .ultra-home-card > .btn:last-child {
+  margin-top: 0;
+}

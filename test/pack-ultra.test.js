@@ -96,7 +96,9 @@ test("le sommaire par matière classe toutes les ressources des cinq semestres",
 
 test("l'accueil oriente vers la page dédiée et garde les anciens liens utilisables", () => {
   const accueil = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8");
-  assert.match(accueil, /href="pack-ultra\.html#pack-ultra">Choisir mon semestre/);
+  assert.match(accueil, /href="pack-ultra\.html#pack-ultra">Voir les cinq packs/);
+  assert.match(accueil, /src="assets\/covers\/pack-ultra-l1-s2\.webp" alt="Exemple de couverture du Pack Ultra L1 semestre 2"/);
+  assert.match(accueil, /<span class="ultra-home-card__cover-label">5 packs au choix<\/span>/);
   assert.equal((accueil.match(/<article class="ultra-card"/g) || []).length, 0);
   assert.equal((accueil.match(/<details class="ultra-inclusions__item"/g) || []).length, 0);
   assert.match(accueil, /window\.location\.replace\('pack-ultra\.html'/);
