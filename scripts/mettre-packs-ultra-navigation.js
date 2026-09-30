@@ -20,7 +20,7 @@ const lignesPacks = packsActifs.map(([id, definition]) => {
   const prixAffiche = `${definition.prix / 100} €`;
   const [, annee, semestre] = suffixe.match(/^(l[123])-s([12])$/);
   const titre = `${annee.toUpperCase()} semestre ${semestre}`;
-  return `                <a href="index.html#${id}" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra ${titre}, ${definition.attendus} ressources, ${prixAffiche} au lieu de ${totalAffiche}, ${economie} % d’économie">
+  return `                <a href="pack-ultra.html#${id}" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra ${titre}, ${definition.attendus} ressources, ${prixAffiche} au lieu de ${totalAffiche}, ${economie} % d’économie">
                   <span class="megamenu__pack-tile-cover"><img src="assets/covers/${id}.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
                   <span class="megamenu__pack-tile-body">
                     <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">${annee.toUpperCase()} · S${semestre}</span><span class="badge badge--success">-${economie} %</span></span>
@@ -56,7 +56,7 @@ const quizMobile = `        <a class="mobile-nav__illustrated mobile-nav__quiz" 
           <span class="mobile-nav__quiz-time">3 min</span>
         </a>
 `;
-const packMobile = `        <a class="mobile-nav__format mobile-nav__format--featured" href="index.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>\n`;
+const packMobile = `        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>\n`;
 
 const bilan = { pages: 0, conformes: 0, modifiees: 0, erreurs: [] };
 for (const nom of fs.readdirSync(racine).filter((fichier) => fichier.endsWith('.html'))) {
@@ -102,4 +102,4 @@ for (const nom of fs.readdirSync(racine).filter((fichier) => fichier.endsWith('.
 }
 
 console.log(JSON.stringify({ mode: verification ? 'verification' : 'ecriture', versionStyle, ...bilan }, null, 2));
-if (bilan.erreurs.length || bilan.pages !== 294) process.exitCode = 1;
+if (bilan.erreurs.length || bilan.pages < 294) process.exitCode = 1;

@@ -38,10 +38,9 @@ test("les fichiers du pack conservent le nom de chaque ressource et un lien sign
   assert.match(liens.at(-1).url, /sid=cs_test_pack/);
 });
 
-test("la page d'accueil montre seulement les cinq packs en vente et leurs ressources", () => {
-  const html = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8");
-  assert.match(html, /dès 199 €<\/span>\s*<span class="pricing__period">achat unique<\/span>/);
-  assert.match(html, /Cinq packs, de la L1 à la L3/);
+test("la page dédiée montre seulement les cinq packs en vente et leurs ressources", () => {
+  const html = fs.readFileSync(path.join(__dirname, "../pack-ultra.html"), "utf8");
+  assert.match(html, /<h1 class="h1" id="pack-ultra-title"[^>]*>Le Pack Ultra<\/h1>/);
   assert.equal((html.match(/<article class="ultra-card"/g) || []).length, 5);
   assert.equal((html.match(/<details class="ultra-inclusions__item"/g) || []).length, 5);
   assert.match(html, /assets\/js\/pack-ultra-inclusions\.js\?v=/);
@@ -76,7 +75,7 @@ test("la page d'accueil montre seulement les cinq packs en vente et leurs ressou
 });
 
 test("le sommaire par matière classe toutes les ressources des cinq semestres", () => {
-  const html = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8");
+  const html = fs.readFileSync(path.join(__dirname, "../pack-ultra.html"), "utf8");
   for (const [semestre, matieres] of Object.entries(MATIERES)) {
     const debut = `<details class="ultra-inclusions__item" id="pack-ultra-detail-${semestre}">`;
     const bloc = html.split(debut)[1]?.split("</details>")[0];
@@ -93,6 +92,14 @@ test("le sommaire par matière classe toutes les ressources des cinq semestres",
   }
   assert.equal(classerRessource("l3-s1", "Procédure civile L3 S1"), "Procédure civile");
   assert.equal(classerRessource("l3-s1", "Droit pénal spécial L3"), "Droit pénal spécial");
+});
+
+test("l'accueil oriente vers la page dédiée et garde les anciens liens utilisables", () => {
+  const accueil = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8");
+  assert.match(accueil, /href="pack-ultra\.html#pack-ultra">Choisir mon semestre/);
+  assert.equal((accueil.match(/<article class="ultra-card"/g) || []).length, 0);
+  assert.equal((accueil.match(/<details class="ultra-inclusions__item"/g) || []).length, 0);
+  assert.match(accueil, /window\.location\.replace\('pack-ultra\.html'/);
 });
 
 test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async () => {
@@ -118,7 +125,7 @@ test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async
   };
   const refus = [];
   try {
-    await handler({ method: "POST", body: { produitId: "pack-ultra-l1-s1", pageActuelle: "#pack-ultra-l1-s1" } }, res);
+    await handler({ method: "POST", body: { produitId: "pack-ultra-l1-s1", pageActuelle: "pack-ultra.html#pack-ultra-l1-s1" } }, res);
     await handler({ method: "POST", body: { produitId: "pack-ultra-l2-s2", pageActuelle: "#pack-ultra-detail-l2-s2" } }, res);
     await handler({ method: "POST", body: { produitId: "pack-ultra-l3-s2" } }, res);
     refus.push([res.statusCode, res.data.code]);
@@ -140,7 +147,7 @@ test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async
   assert.equal(appels.length, 2);
   assert.equal(appels[0].line_items[0].price_data.unit_amount, 23900);
   assert.equal(appels[0].metadata.produitIds, "pack-ultra-l1-s1");
-  assert.equal(appels[0].cancel_url, "https://trajectoiredroit.com/#pack-ultra-l1-s1");
+  assert.equal(appels[0].cancel_url, "https://trajectoiredroit.com/pack-ultra.html#pack-ultra-l1-s1");
   assert.equal(appels[1].line_items[0].price_data.unit_amount, 20900);
   assert.equal(appels[1].metadata.produitIds, "pack-ultra-l2-s2");
   assert.equal(appels[1].cancel_url, "https://trajectoiredroit.com/#pack-ultra-detail-l2-s2");

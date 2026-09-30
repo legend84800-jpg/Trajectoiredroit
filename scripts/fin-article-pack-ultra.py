@@ -13,9 +13,9 @@ import re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-INDEX = (ROOT / "index.html").read_text()
+PAGE_ULTRA = (ROOT / "pack-ultra.html").read_text()
 
-# --- Packs Ultra, lus dans index.html (prix, description, ressources) ---
+# --- Packs Ultra, lus dans pack-ultra.html (prix, description, ressources) ---
 TYPES_PLURIEL = {
     "Fiche complète": ("fiche complète", "fiches complètes"),
     "Cours complet": ("cours complet", "cours complets"),
@@ -31,10 +31,10 @@ ORDRE_TYPES = ["Fiche complète", "Cours complet", "Majeures préparées", "Cas 
                "Fiches d'arrêt", "Commentaires d'arrêt", "Dissertations corrigées"]
 
 PACKS = {}
-for card in re.findall(r'<article class="ultra-card" id="pack-ultra-([^"]+)">(.*?)</article>', INDEX, re.S):
+for card in re.findall(r'<article class="ultra-card" id="pack-ultra-([^"]+)">(.*?)</article>', PAGE_ULTRA, re.S):
     sid, html = card
     g = lambda pat: re.search(pat, html).group(1)
-    detail = re.search(r'id="pack-ultra-detail-%s">(.*?)</details>' % sid, INDEX, re.S).group(1)
+    detail = re.search(r'id="pack-ultra-detail-%s">(.*?)</details>' % sid, PAGE_ULTRA, re.S).group(1)
     types = re.findall(r'ultra-resource__type">([^<]*)</span>', detail)
     PACKS[sid] = dict(
         niveau=g(r'ultra-card__eyebrow">([^<]*)<'),
@@ -179,7 +179,7 @@ def carte_pack(cle, sid):
     <section class="section section--dark article-pack" aria-labelledby="article-pack-titre">
       <div class="container">
         <div class="article-pack__grid">
-          <a class="article-pack__cover" href="index.html#pack-ultra-{sid}"><img src="assets/covers/pack-ultra-{sid}.webp" alt="{p['alt']}" width="960" height="540" loading="lazy" decoding="async"></a>
+          <a class="article-pack__cover" href="pack-ultra.html#pack-ultra-{sid}"><img src="assets/covers/pack-ultra-{sid}.webp" alt="{p['alt']}" width="960" height="540" loading="lazy" decoding="async"></a>
           <div class="article-pack__body">
             <p class="article-pack__eyebrow">Pack Ultra · Licence {num}, semestre {sid[-1]}<span class="article-pack__saving">{p['economie']}</span></p>
             <h2 class="article-pack__title" id="article-pack-titre">Tout ton {sem} semestre de L{num} dans un seul pack</h2>
@@ -190,7 +190,7 @@ def carte_pack(cle, sid):
             <div class="article-pack__price"><span class="article-pack__old">{p['old']}</span><span class="article-pack__now">{p['prix']}</span><span class="article-pack__split">{p['paiement']}</span></div>
             <div class="article-pack__actions">
               <button type="button" class="btn btn--primary btn--lg" data-tjd-produit="pack-ultra-{sid}">Acheter le pack · {p['prix']}</button>
-              <a class="article-pack__more" href="index.html#pack-ultra-detail-{sid}">Voir les {p['nb']} ressources incluses →</a>
+              <a class="article-pack__more" href="pack-ultra.html#pack-ultra-detail-{sid}">Voir les {p['nb']} ressources incluses →</a>
             </div>
           </div>
         </div>

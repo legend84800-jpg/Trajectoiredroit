@@ -65,11 +65,11 @@ test('Fiches montre les cinq Packs Ultra et Ressources accueille le quiz', () =>
     const nav = extraire(html, '<nav class="primary-nav"', '</nav>');
     assert.match(nav, /<strong>Le Pack Ultra<\/strong><span>Choisis ton semestre<\/span><small>Payable en 3 fois · accès à vie<\/small>/, nom);
     for (const pack of packs) {
-      assert.ok(nav.includes(`href="index.html#pack-ultra-${pack}"`), `${nom}: ${pack}`);
+      assert.ok(nav.includes(`href="pack-ultra.html#pack-ultra-${pack}"`), `${nom}: ${pack}`);
       assert.ok(nav.includes(`src="assets/covers/pack-ultra-${pack}.webp"`), `${nom}: couverture ${pack}`);
       assert.ok(fs.existsSync(path.join(racine, `assets/covers/pack-ultra-${pack}.webp`)), `${nom}: fichier de couverture ${pack}`);
     }
-    assert.ok(!nav.includes('href="index.html#pack-ultra-l3-s2"'), `${nom}: L3 S2 suspendu`);
+    assert.ok(!nav.includes('href="pack-ultra.html#pack-ultra-l3-s2"'), `${nom}: L3 S2 suspendu`);
     assert.ok(!nav.includes('Pack Licence complète'), `${nom}: ancien pack dans Fiches`);
     assert.ok(!nav.includes('class="megamenu__footer"'), `${nom}: ancien encart quiz dans Fiches`);
     assert.ok(nav.indexOf('href="quiz-methode.html"') > nav.indexOf('dropdown--resources'), `${nom}: quiz dans Ressources`);
@@ -87,7 +87,7 @@ test('le menu mobile reprend les cinq familles avec divulgation progressive', ()
     assert.match(navMobile, />Choisir un format</, `${nom} doit nommer clairement le premier groupe`);
     assert.match(navMobile, /href="formations\.html#comparatif"[^>]*>Comparer tous les formats</, `${nom} doit donner un accès direct au comparatif`);
     assert.equal((navMobile.match(/mobile-nav__format-icon/g) || []).length, 8, `${nom} doit illustrer les sept formats et le Pack Ultra`);
-    assert.match(navMobile, /mobile-nav__format--featured[^>]*href="index\.html#pack-ultra"/, `${nom} doit mettre le Pack Ultra en avant`);
+    assert.match(navMobile, /mobile-nav__format--featured[^>]*href="pack-ultra\.html#pack-ultra"/, `${nom} doit mettre le Pack Ultra en avant`);
     assert.match(navMobile, /href="cours-fiches\.html"[^>]*><span[^>]*>🎓<\/span><span>Cours complets<\/span>/, `${nom} doit illustrer les cours complets`);
     assert.match(navMobile, /href="formations\.html"[^>]*><span[^>]*>📄<\/span><span>Fiches complètes<\/span>/, `${nom} doit conserver les fiches complètes`);
     assert.match(navMobile, /href="revisions\.html"[^>]*><span[^>]*>📜<\/span><span>Fiches d[’']arrêt et citations<\/span>/, `${nom} doit conserver les fiches d'arrêt et les citations sur mobile`);

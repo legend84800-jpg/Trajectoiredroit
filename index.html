@@ -21,6 +21,12 @@
 })();
 </script>
   <script>
+  /* Les anciens liens vers les Packs Ultra sur l'accueil restent valides. */
+  if (/^#pack-ultra(?:-|$)/.test(window.location.hash)) {
+    window.location.replace('pack-ultra.html' + window.location.search + window.location.hash);
+  }
+  </script>
+  <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
@@ -52,7 +58,6 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
   <link rel="stylesheet" href="assets/style.css?v=656a6d97">
-  <link rel="stylesheet" href="assets/pack-ultra.css?v=26cb6064c">
   <!-- Plausible Analytics : décommente après création du compte -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
 
@@ -159,44 +164,44 @@
             <div class="megamenu__packs">
               <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
               <div class="megamenu__packs-grid">
-                <a href="index.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 239 € au lieu de 416,69 €, 43 % d’économie">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 239 € au lieu de 424,69 €, 44 % d’économie">
                   <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
                   <span class="megamenu__pack-tile-body">
-                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-43 %</span></span>
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-44 %</span></span>
                     <span class="megamenu__pack-tile-meta">31 ressources</span>
-                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">416,69 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">424,69 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
                   </span>
                 </a>
-                <a href="index.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 22 ressources, 199 € au lieu de 305,78 €, 35 % d’économie">
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 22 ressources, 199 € au lieu de 309,78 €, 36 % d’économie">
                   <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
                   <span class="megamenu__pack-tile-body">
-                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-36 %</span></span>
                     <span class="megamenu__pack-tile-meta">22 ressources</span>
-                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">305,78 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">309,78 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
                   </span>
                 </a>
-                <a href="index.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 28 ressources, 229 € au lieu de 393,72 €, 42 % d’économie">
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 28 ressources, 229 € au lieu de 399,72 €, 43 % d’économie">
                   <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
                   <span class="megamenu__pack-tile-body">
-                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-43 %</span></span>
                     <span class="megamenu__pack-tile-meta">28 ressources</span>
-                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">393,72 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,72 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
                   </span>
                 </a>
-                <a href="index.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 27 ressources, 209 € au lieu de 361,73 €, 42 % d’économie">
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 27 ressources, 209 € au lieu de 369,73 €, 43 % d’économie">
                   <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
                   <span class="megamenu__pack-tile-body">
-                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-43 %</span></span>
                     <span class="megamenu__pack-tile-meta">27 ressources</span>
-                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">361,73 €</span><span class="megamenu__pack-tile-price">209 €</span></span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">369,73 €</span><span class="megamenu__pack-tile-price">209 €</span></span>
                   </span>
                 </a>
-                <a href="index.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 37 ressources, 299 € au lieu de 513,63 €, 42 % d’économie">
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 37 ressources, 299 € au lieu de 519,63 €, 42 % d’économie">
                   <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
                   <span class="megamenu__pack-tile-body">
                     <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
                     <span class="megamenu__pack-tile-meta">37 ressources</span>
-                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">513,63 €</span><span class="megamenu__pack-tile-price">299 €</span></span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">519,63 €</span><span class="megamenu__pack-tile-price">299 €</span></span>
                   </span>
                 </a>
               </div>
@@ -324,7 +329,7 @@
     <details class="mobile-nav__group" open>
       <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
       <div class="mobile-nav__subnav">
-        <a class="mobile-nav__format mobile-nav__format--featured" href="index.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
         <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
         <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
         <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
@@ -396,13 +401,8 @@
 
             <!-- 3. CTA (1 dominant + 1 secondaire en lien) -->
             <div class="hero__cta">
-              <a class="btn btn--primary btn--lg" href="#pack-ultra" data-saison="hero-bouton">Découvrir Le Pack Ultra →</a>
+              <a class="btn btn--primary btn--lg" href="#formules" data-saison="hero-bouton">Choisir mes ressources →</a>
               <a class="hero__cta-secondary" href="#apercu-produit">▶ Voir un extrait de mes fiches</a>
-            </div>
-            <p style="margin-top:10px; font-size:.88rem; color:var(--body)" data-saison="hero-texte">Le Pack Ultra réunit les ressources disponibles pour ton semestre de L1, L2 ou L3. Chaque pack se paie une fois pour toutes, en 1, 2 ou 3 fois sans frais.</p>
-            <div class="trust-row trust-row--tight" data-saison="hero-reassurance">
-              <span>Téléchargement immédiat</span>
-              <span>Accès à vie</span>
             </div>
 
             <!-- 4. 3 CHIFFRES-CLÉS (loi du 3) -->
@@ -667,16 +667,14 @@
                 <span class="pricing__price pricing__price--blue">dès 199 €</span>
                 <span class="pricing__period">achat unique</span>
               </div>
-              <p style="font-size:.9rem; color:var(--blue-700); font-weight:600; margin-top:6px">Toutes les ressources déjà disponibles pour ton semestre, réunies dans un seul pack</p>
+              <p style="font-size:.9rem; color:var(--blue-700); font-weight:600; margin-top:6px">Choisis ton semestre et consulte les ressources incluses.</p>
             </div>
             <ul class="pricing__list">
-              <li>Tous les cours complets et toutes les fiches complètes de ton semestre</li>
-              <li>Toutes les majeures préparées et toutes les fiches d'arrêt</li>
-              <li>Tous les corrigés d'exercices, du cas pratique à la dissertation</li>
-              <li>Les flashcards, les QCM et les fiches de citations</li>
-              <li>Accès à vie, jusqu'à 43 % moins cher qu'à l'unité</li>
+              <li>Cours, fiches et exercices corrigés réunis par semestre</li>
+              <li>Cinq packs disponibles, de la L1 à la L3</li>
+              <li>Accès à vie, jusqu'à 44 % moins cher qu'à l'unité</li>
             </ul>
-            <a class="btn btn--primary btn--full" href="#pack-ultra">Choisir mon semestre →</a>
+            <a class="btn btn--primary btn--full" href="pack-ultra.html#pack-ultra">Choisir mon semestre →</a>
           </article>
 
         </div>
@@ -697,7 +695,7 @@
               <tr><th>Format</th><th>Prix</th><th>Ça sert à quoi</th><th>Idéal si</th></tr>
             </thead>
             <tbody>
-              <tr><th><a href="#pack-ultra">Pack Ultra</a></th><td>dès 199 € / semestre</td><td>Toutes les ressources de ton semestre réunies dans un seul pack, du cours complet au cas pratique corrigé, jusqu'à 43 % moins cher qu'à l'unité</td><td>Tu veux toutes les ressources de ton semestre pour maximiser tes chances d'entrer dans le top 10 de ta promo</td></tr>
+              <tr><th><a href="pack-ultra.html#pack-ultra">Pack Ultra</a></th><td>dès 199 € / semestre</td><td>Toutes les ressources de ton semestre réunies dans un seul pack, du cours complet au cas pratique corrigé, jusqu'à 44 % moins cher qu'à l'unité</td><td>Tu veux toutes les ressources de ton semestre pour maximiser tes chances d'entrer dans le top 10 de ta promo</td></tr>
               <tr><th><a href="formations.html#a-l-unite">Fiches complètes</a></th><td>14,99 € / matière</td><td>Apprendre et comprendre tout le cours d'un semestre</td><td>Tu veux des fiches complètes et agréables à lire, qui t'expliquent chaque notion clairement</td></tr>
               <tr><th><a href="cours-fiches.html">Cours complet</a></th><td>19,99 € / matière</td><td>Tout le cours d'une matière, chapitre par chapitre, dans un seul document de 56 à 309 pages selon la matière</td><td>Tu veux le format le plus long, jusqu'au moindre détail</td></tr>
               <tr><th><a href="majeures-preparees.html">Majeure préparée</a></th><td>14,99 € / matière</td><td>Les règles de droit (articles et jurisprudences) déjà rédigées condition par condition</td><td>Tu veux avoir plus de 15 sur 20 en cas pratique et en commentaire d'arrêt</td></tr>
@@ -713,221 +711,7 @@
       </div>
     </section>
 
-    <section class="section ultra-section" id="pack-ultra" aria-labelledby="pack-ultra-title">
-      <div class="container">
-        <div class="ultra-heading">
-          <span class="eyebrow eyebrow--gold">La collection par semestre</span>
-          <h2 class="h2" id="pack-ultra-title" style="margin-top:12px">Le Pack Ultra</h2>
-          <p class="lead">Retrouve dans un seul pack les ressources déjà disponibles pour ton semestre. Tu choisis ton niveau, puis tu vérifies les matières et les formats inclus.</p>
-        </div>
-        <div class="ultra-grid">
-          <article class="ultra-card" id="pack-ultra-l1-s1">
-            <div class="ultra-card__cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="Le Pack Ultra L1 semestre 1, couverture bleu nuit" loading="lazy" width="960" height="540"></div>
-            <div class="ultra-card__body"><div class="ultra-card__topline"><span class="ultra-card__eyebrow">Licence 1</span><span class="ultra-card__saving">43 % d’économie</span></div><h3 class="ultra-card__title">Semestre 1</h3><p class="ultra-card__description">31 ressources pour ton premier semestre de L1, du cours complet au cas pratique corrigé.</p><div class="ultra-card__foot"><div class="ultra-card__amount"><span class="ultra-card__comparison">Total à l’unité : <span class="ultra-card__unit-total">416,69 €</span></span><span class="ultra-card__price">239 €</span><span class="ultra-card__payment">ou 3 × 79,66 € sans frais</span></div><a href="#pack-ultra-detail-l1-s1">Voir le contenu</a></div><button type="button" class="btn btn--primary btn--full ultra-card__cta" data-tjd-produit="pack-ultra-l1-s1">Acheter ce pack</button><p class="ultra-card__split">Paiement en <button type="button" class="ultra-card__split-btn" data-tjd-produit="pack-ultra-l1-s1" data-tjd-echeances="2">2 fois</button> ou <button type="button" class="ultra-card__split-btn" data-tjd-produit="pack-ultra-l1-s1" data-tjd-echeances="3">3 fois</button> sans frais</p></div>
-          </article>
-          <article class="ultra-card" id="pack-ultra-l1-s2">
-            <div class="ultra-card__cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="Le Pack Ultra L1 semestre 2, couverture bleu royal" loading="lazy" width="960" height="540"></div>
-            <div class="ultra-card__body"><div class="ultra-card__topline"><span class="ultra-card__eyebrow">Licence 1</span><span class="ultra-card__saving">35 % d’économie</span></div><h3 class="ultra-card__title">Semestre 2</h3><p class="ultra-card__description">22 ressources pour ton second semestre de L1, avec les cours et les corrigés déjà disponibles.</p><div class="ultra-card__foot"><div class="ultra-card__amount"><span class="ultra-card__comparison">Total à l’unité : <span class="ultra-card__unit-total">305,78 €</span></span><span class="ultra-card__price">199 €</span><span class="ultra-card__payment">ou 3 × 66,33 € sans frais</span></div><a href="#pack-ultra-detail-l1-s2">Voir le contenu</a></div><button type="button" class="btn btn--primary btn--full ultra-card__cta" data-tjd-produit="pack-ultra-l1-s2">Acheter ce pack</button><p class="ultra-card__split">Paiement en <button type="button" class="ultra-card__split-btn" data-tjd-produit="pack-ultra-l1-s2" data-tjd-echeances="2">2 fois</button> ou <button type="button" class="ultra-card__split-btn" data-tjd-produit="pack-ultra-l1-s2" data-tjd-echeances="3">3 fois</button> sans frais</p></div>
-          </article>
-          <article class="ultra-card" id="pack-ultra-l2-s1">
-            <div class="ultra-card__cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="Le Pack Ultra L2 semestre 1, couverture vert émeraude" loading="lazy" width="960" height="540"></div>
-            <div class="ultra-card__body"><div class="ultra-card__topline"><span class="ultra-card__eyebrow">Licence 2</span><span class="ultra-card__saving">42 % d’économie</span></div><h3 class="ultra-card__title">Semestre 1</h3><p class="ultra-card__description">28 ressources pour tes TD de L2 S1, notamment en droit administratif et droit des contrats.</p><div class="ultra-card__foot"><div class="ultra-card__amount"><span class="ultra-card__comparison">Total à l’unité : <span class="ultra-card__unit-total">393,72 €</span></span><span class="ultra-card__price">229 €</span><span class="ultra-card__payment">ou 3 × 76,33 € sans frais</span></div><a href="#pack-ultra-detail-l2-s1">Voir le contenu</a></div><button type="button" class="btn btn--primary btn--full ultra-card__cta" data-tjd-produit="pack-ultra-l2-s1">Acheter ce pack</button><p class="ultra-card__split">Paiement en <button type="button" class="ultra-card__split-btn" data-tjd-produit="pack-ultra-l2-s1" data-tjd-echeances="2">2 fois</button> ou <button type="button" class="ultra-card__split-btn" data-tjd-produit="pack-ultra-l2-s1" data-tjd-echeances="3">3 fois</button> sans frais</p></div>
-          </article>
-          <article class="ultra-card" id="pack-ultra-l2-s2">
-            <div class="ultra-card__cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="Le Pack Ultra L2 semestre 2, couverture bleu pétrole" loading="lazy" width="960" height="540"></div>
-            <div class="ultra-card__body"><div class="ultra-card__topline"><span class="ultra-card__eyebrow">Licence 2</span><span class="ultra-card__saving">42 % d’économie</span></div><h3 class="ultra-card__title">Semestre 2</h3><p class="ultra-card__description">27 ressources pour travailler la responsabilité civile et le droit administratif au second semestre.</p><div class="ultra-card__foot"><div class="ultra-card__amount"><span class="ultra-card__comparison">Total à l’unité : <span class="ultra-card__unit-total">361,73 €</span></span><span class="ultra-card__price">209 €</span><span class="ultra-card__payment">ou 3 × 69,66 € sans frais</span></div><a href="#pack-ultra-detail-l2-s2">Voir le contenu</a></div><button type="button" class="btn btn--primary btn--full ultra-card__cta" data-tjd-produit="pack-ultra-l2-s2">Acheter ce pack</button><p class="ultra-card__split">Paiement en <button type="button" class="ultra-card__split-btn" data-tjd-produit="pack-ultra-l2-s2" data-tjd-echeances="2">2 fois</button> ou <button type="button" class="ultra-card__split-btn" data-tjd-produit="pack-ultra-l2-s2" data-tjd-echeances="3">3 fois</button> sans frais</p></div>
-          </article>
-          <article class="ultra-card" id="pack-ultra-l3-s1">
-            <div class="ultra-card__cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="Le Pack Ultra L3 semestre 1, couverture bordeaux" loading="lazy" width="960" height="540"></div>
-            <div class="ultra-card__body"><div class="ultra-card__topline"><span class="ultra-card__eyebrow">Licence 3</span><span class="ultra-card__saving">42 % d’économie</span></div><h3 class="ultra-card__title">Semestre 1</h3><p class="ultra-card__description">37 ressources pour ton premier semestre de L3, avec des corrigés en droit du travail et des sociétés.</p><div class="ultra-card__foot"><div class="ultra-card__amount"><span class="ultra-card__comparison">Total à l’unité : <span class="ultra-card__unit-total">513,63 €</span></span><span class="ultra-card__price">299 €</span><span class="ultra-card__payment">ou 3 × 99,66 € sans frais</span></div><a href="#pack-ultra-detail-l3-s1">Voir le contenu</a></div><button type="button" class="btn btn--primary btn--full ultra-card__cta" data-tjd-produit="pack-ultra-l3-s1">Acheter ce pack</button><p class="ultra-card__split">Paiement en <button type="button" class="ultra-card__split-btn" data-tjd-produit="pack-ultra-l3-s1" data-tjd-echeances="2">2 fois</button> ou <button type="button" class="ultra-card__split-btn" data-tjd-produit="pack-ultra-l3-s1" data-tjd-echeances="3">3 fois</button> sans frais</p></div>
-          </article>
-        </div>
-        <p class="ultra-parents"><a href="parents.html">Ce sont tes parents qui paient ? Envoie-leur la présentation →</a></p>
-        <div class="ultra-inclusions" aria-label="Contenu des packs par semestre">
-          <h3 class="ultra-inclusions__title">
-            <span class="ultra-inclusions__title-intro">Les ressources incluses dans</span>
-            <span class="ultra-inclusions__title-name"><span>Les Packs Ultra</span></span>
-          </h3>
-          <p>Choisis ton semestre, puis une matière pour voir les supports inclus dans ton pack.</p>
-          <details class="ultra-inclusions__item" id="pack-ultra-detail-l1-s1">
-            <summary><span>L1 semestre 1</span><span>31 ressources</span></summary>
-            <ul>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Droit constitutionnel L1 S1</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Introduction au droit L1 S1</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Histoire du droit L1 S1</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Droit des personnes L1</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Relations internationales L1</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Introduction au droit L1</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Droit des personnes L1</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Introduction au droit L1 S1</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Histoire du droit L1 S1</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Droit constitutionnel L1 S1</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Relations internationales L1</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Droit des personnes L1</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Droit des personnes</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Droit constitutionnel L1 S1</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Introduction au droit L1</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Relations internationales L1</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Introduction au droit L1</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Histoire du droit L1 S1</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Droit des personnes L1</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Droit constitutionnel L1 S1</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Introduction au droit L1 S1</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Histoire du droit L1 S1</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Droit constitutionnel L1 S1</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Relations internationales L1</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Droit des personnes L1</li>
-              <li class="ultra-resource ultra-resource--commentaire"><span class="ultra-resource__type">Commentaires d'arrêt</span> Droit des personnes L1</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Droit des personnes L1</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Introduction au droit L1 S1</li>
-              <li class="ultra-resource ultra-resource--dissertation"><span class="ultra-resource__type">Dissertations corrigées</span> Droit constitutionnel L1 S1</li>
-              <li class="ultra-resource ultra-resource--dissertation"><span class="ultra-resource__type">Dissertations corrigées</span> Histoire du droit L1 S1</li>
-              <li class="ultra-resource ultra-resource--dissertation"><span class="ultra-resource__type">Dissertations corrigées</span> Introduction au droit L1 S1</li>
-            </ul>
-            <div class="ultra-inclusions__action"><span>239 €</span><button type="button" class="btn btn--primary" data-tjd-produit="pack-ultra-l1-s1">Acheter ce pack</button></div>
-          </details>
-          <details class="ultra-inclusions__item" id="pack-ultra-detail-l1-s2">
-            <summary><span>L1 semestre 2</span><span>22 ressources</span></summary>
-            <ul>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Droit constitutionnel L1 S2</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Histoire des institutions L1 S2</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Droit de la famille L1 S2</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Droit pénal général L1 S2</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Droit de la famille L1 S2</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Histoire des institutions L1 S2</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Droit pénal général L1 S2</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Droit de la famille L1 S2</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Droit constitutionnel L1 S2</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Droit pénal</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Droit de la famille</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Droit constitutionnel L1 S2</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Histoire des institutions L1</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Droit constitutionnel L1 S2</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Droit de la famille L1 S2</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Droit pénal général L1 S2</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Droit constitutionnel L1 S2</li>
-              <li class="ultra-resource ultra-resource--commentaire"><span class="ultra-resource__type">Commentaires d'arrêt</span> Droit de la famille L1 S2</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Droit pénal général L1 S2</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Droit de la famille L1 S2</li>
-              <li class="ultra-resource ultra-resource--dissertation"><span class="ultra-resource__type">Dissertations corrigées</span> Histoire des institutions L1 S2</li>
-              <li class="ultra-resource ultra-resource--dissertation"><span class="ultra-resource__type">Dissertations corrigées</span> Droit constitutionnel L1 S2</li>
-            </ul>
-            <div class="ultra-inclusions__action"><span>199 €</span><button type="button" class="btn btn--primary" data-tjd-produit="pack-ultra-l1-s2">Acheter ce pack</button></div>
-          </details>
-          <details class="ultra-inclusions__item" id="pack-ultra-detail-l2-s1">
-            <summary><span>L2 semestre 1</span><span>28 ressources</span></summary>
-            <ul>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Droit administratif L2 S1</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Droit des contrats / des obligations L2 S1</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Droit pénal L2 S1</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Droit administratif L2 S1</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Droit des contrats L2 S1</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Droit pénal L2 S1</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Finances publiques L2 S1</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Philosophie du droit L2 S1</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Droit pénal L2 S1</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Droit des contrats / des obligations L2 S1</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Droit administratif L2 S1</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Finances publiques L2 S1</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Philosophie du droit L2 S1</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Droit pénal</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Droit des contrats</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Droit administratif</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Droit pénal L2 S1</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Droit des obligations L2 S1</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Droit administratif L2 S1</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Droit pénal L2 S1</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Droit des contrats L2 S1</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Droit administratif L2 S1</li>
-              <li class="ultra-resource ultra-resource--commentaire"><span class="ultra-resource__type">Commentaires d'arrêt</span> Droit pénal L2 S1</li>
-              <li class="ultra-resource ultra-resource--commentaire"><span class="ultra-resource__type">Commentaires d'arrêt</span> Droit des contrats L2 S1</li>
-              <li class="ultra-resource ultra-resource--commentaire"><span class="ultra-resource__type">Commentaires d'arrêt</span> Droit administratif L2 S1</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Droit pénal L2 S1</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Droit des contrats L2 S1</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Droit administratif L2 S1</li>
-            </ul>
-            <div class="ultra-inclusions__action"><span>229 €</span><button type="button" class="btn btn--primary" data-tjd-produit="pack-ultra-l2-s1">Acheter ce pack</button></div>
-          </details>
-          <details class="ultra-inclusions__item" id="pack-ultra-detail-l2-s2">
-            <summary><span>L2 semestre 2</span><span>27 ressources</span></summary>
-            <ul>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Droit administratif L2 S2</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Droit de la responsabilité civile / des obligations L2 S2</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Droit des biens L2</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Droit administratif L2 S2</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Droit des obligations L2 S2</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Droit pénal L2 S2</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Droit des biens L2</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Droit de la responsabilité civile / des obligations L2 S2</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Droit administratif L2 S2</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Droit des biens L2</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Droit des obligations</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Droit des biens</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Droit administratif</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Droit des biens L2</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Droit pénal L2 S2</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Droit des obligations L2 S2</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Droit administratif L2 S2</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Droit des obligations L2 S2</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Droit administratif L2 S2</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Droit des biens L2</li>
-              <li class="ultra-resource ultra-resource--commentaire"><span class="ultra-resource__type">Commentaires d'arrêt</span> Droit des obligations L2 S2</li>
-              <li class="ultra-resource ultra-resource--commentaire"><span class="ultra-resource__type">Commentaires d'arrêt</span> Droit des biens L2</li>
-              <li class="ultra-resource ultra-resource--commentaire"><span class="ultra-resource__type">Commentaires d'arrêt</span> Droit administratif L2 S2</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Droit des biens L2</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Droit des obligations L2 S2</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Droit administratif L2 S2</li>
-              <li class="ultra-resource ultra-resource--dissertation"><span class="ultra-resource__type">Dissertations corrigées</span> Droit des obligations L2 S2</li>
-            </ul>
-            <div class="ultra-inclusions__action"><span>209 €</span><button type="button" class="btn btn--primary" data-tjd-produit="pack-ultra-l2-s2">Acheter ce pack</button></div>
-          </details>
-          <details class="ultra-inclusions__item" id="pack-ultra-detail-l3-s1">
-            <summary><span>L3 semestre 1</span><span>37 ressources</span></summary>
-            <ul>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Droit commercial L3 S1</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Droit des sociétés L3 S1</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Contrats spéciaux L3</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Droit du travail L3 S1</li>
-              <li class="ultra-resource ultra-resource--fiche"><span class="ultra-resource__type">Fiche complète</span> Procédure pénale L3</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Procédure pénale L3</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Procédure civile L3 S1</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Droit des sociétés L3 S1</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Droit pénal spécial L3</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Droit du travail L3 S1</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Contrats spéciaux L3</li>
-              <li class="ultra-resource ultra-resource--majeure"><span class="ultra-resource__type">Majeures préparées</span> Droit commercial L3 S1</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Droit du travail L3 S1</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Droit des sociétés L3 S1</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Droit commercial L3 S1</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Procédure pénale L3</li>
-              <li class="ultra-resource ultra-resource--cours"><span class="ultra-resource__type">Cours complet</span> Contrats spéciaux L3</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Procédure pénale</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Droit des sociétés</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Contrats spéciaux L3</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Droit commercial L3</li>
-              <li class="ultra-resource ultra-resource--arret"><span class="ultra-resource__type">Fiches d'arrêt</span> Droit du travail L3</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Procédure pénale L3</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Droit du travail L3</li>
-              <li class="ultra-resource ultra-resource--citations"><span class="ultra-resource__type">Fiche de citations</span> Droit des sociétés L3</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Droit du travail L3 S1</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Contrats spéciaux L3</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Droit des sociétés L3 S1</li>
-              <li class="ultra-resource ultra-resource--flashcards"><span class="ultra-resource__type">Flashcards + QCM</span> Droit commercial L3 S1</li>
-              <li class="ultra-resource ultra-resource--commentaire"><span class="ultra-resource__type">Commentaires d'arrêt</span> Droit du travail L3 S1</li>
-              <li class="ultra-resource ultra-resource--commentaire"><span class="ultra-resource__type">Commentaires d'arrêt</span> Droit des sociétés L3 S1</li>
-              <li class="ultra-resource ultra-resource--commentaire"><span class="ultra-resource__type">Commentaires d'arrêt</span> Contrats spéciaux L3</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Procédure pénale L3</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Droit du travail L3</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Droit des sociétés L3</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Contrats spéciaux L3</li>
-              <li class="ultra-resource ultra-resource--cas"><span class="ultra-resource__type">Cas pratiques corrigés</span> Droit commercial L3 S1</li>
-            </ul>
-            <div class="ultra-inclusions__action"><span>299 €</span><button type="button" class="btn btn--primary" data-tjd-produit="pack-ultra-l3-s1">Acheter ce pack</button></div>
-          </details>
-        </div>
-        <p class="ultra-section__note">Le programme varie selon les universités. Avant d'acheter, vérifie dans la liste que les matières de ton pack correspondent à celles de ta fac.</p>
-      </div>
-    </section>
+
 
     <!-- ============================================================
          2b. SEGMENTATION PAR SITUATION · oriente vers la bonne offre
@@ -1307,7 +1091,7 @@
       <strong>Le Pack Ultra</strong>
       <small>Choisis ton semestre</small>
     </div>
-    <a class="btn btn--primary" href="#pack-ultra">Voir les packs →</a>
+    <a class="btn btn--primary" href="pack-ultra.html#pack-ultra">Voir les packs →</a>
   </div>
 
   <!-- ===== EXIT-INTENT MODAL ===== -->
@@ -1324,19 +1108,6 @@
 
   <script src="assets/js/main.js?v=ed7bdd96" defer></script>
   <script src="assets/js/achat.js?v=e004ddb7"></script>
-  <script src="assets/js/pack-ultra-inclusions.js?v=805ad17b6" defer></script>
-  <script>
-  (function(){
-    function ouvrirContenu(){
-      var id = window.location.hash.slice(1);
-      if (!id.startsWith('pack-ultra-detail-')) return;
-      var cible = document.getElementById(id);
-      if (cible && cible.tagName === 'DETAILS') cible.open = true;
-    }
-    window.addEventListener('hashchange', ouvrirContenu);
-    ouvrirContenu();
-  })();
-  </script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
   (function(){
