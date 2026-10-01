@@ -65,46 +65,41 @@
     return erreur;
   }
 
-  function mesurerCheckout(action, produitId, apresMesure, diagnostic) {
-    if (estTestInterne()) {
-      if (apresMesure) apresMesure();
-      return;
-    }
+  function mesurerCheckout(action, produitId, diagnostic) {
+    if (estTestInterne()) return;
     diagnostic = diagnostic || {};
     var typeErreur = codeDiagnostic(diagnostic.type, 'inconnue');
     var statutErreur = Number.isInteger(diagnostic.statut) ? diagnostic.statut : 0;
-    var termine = false;
-    function terminer() {
-      if (termine) return;
-      termine = true;
-      if (apresMesure) apresMesure();
-    }
     if (typeof window.gtag === 'function') {
-      var parametresGtag = {
-        items: [{ item_id: produitId }],
-        page_path: window.location.pathname,
-        event_callback: action === 'CheckoutCree' && apresMesure ? terminer : undefined,
-        event_timeout: action === 'CheckoutCree' && apresMesure ? 450 : undefined
-      };
-      if (action === 'CheckoutErreur') {
-        parametresGtag.error_type = typeErreur;
-        parametresGtag.http_status = statutErreur;
+      try {
+        var parametresGtag = {
+          items: [{ item_id: produitId }],
+          page_path: window.location.pathname
+        };
+        if (action === 'CheckoutErreur') {
+          parametresGtag.error_type = typeErreur;
+          parametresGtag.http_status = statutErreur;
+        }
+        gtag('event', action === 'CheckoutCree' ? 'checkout_session_created' : 'checkout_error', parametresGtag);
+      } catch (_) {
+        // Un outil de mesure indisponible ne doit pas bloquer le paiement.
       }
-      gtag('event', action === 'CheckoutCree' ? 'checkout_session_created' : 'checkout_error', parametresGtag);
     }
     if (window._paq) {
-      window._paq.push(['trackEvent', 'Ecommerce', action, produitId]);
-      if (action === 'CheckoutErreur') {
-        window._paq.push([
-          'trackEvent',
-          'EcommerceDiagnostic',
-          'CheckoutErreurDetail',
-          produitId + '|' + typeErreur + '|' + statutErreur
-        ]);
+      try {
+        window._paq.push(['trackEvent', 'Ecommerce', action, produitId]);
+        if (action === 'CheckoutErreur') {
+          window._paq.push([
+            'trackEvent',
+            'EcommerceDiagnostic',
+            'CheckoutErreurDetail',
+            produitId + '|' + typeErreur + '|' + statutErreur
+          ]);
+        }
+      } catch (_) {
+        // Le suivi reste facultatif pour ouvrir Stripe.
       }
     }
-    if (action === 'CheckoutCree' && apresMesure) window.setTimeout(terminer, 500);
-    else terminer();
   }
 
   function tjdAcheter(produitId, btnEl) {
@@ -155,15 +150,19 @@
 
     // Mesure du funnel : le clic Acheter, avant même la redirection Stripe,
     // pour pouvoir calculer un taux de clic par page et un taux d'abandon vers le paiement.
-    if (!estTestInterne() && typeof window.gtag === 'function') {
-      gtag('event', 'begin_checkout', {
-        items: [{ item_id: produitId }],
-        page_path: window.location.pathname
-      });
-    }
-    if (!estTestInterne() && window._paq) {
-      window._paq.push(['trackEvent', 'Ecommerce', 'ClicAcheter', produitId]);
-    }
+    try {
+      if (!estTestInterne() && typeof window.gtag === 'function') {
+        gtag('event', 'begin_checkout', {
+          items: [{ item_id: produitId }],
+          page_path: window.location.pathname
+        });
+      }
+    } catch (_) {}
+    try {
+      if (!estTestInterne() && window._paq) {
+        window._paq.push(['trackEvent', 'Ecommerce', 'ClicAcheter', produitId]);
+      }
+    } catch (_) {}
 
     btnEl.disabled = true;
     btnEl.textContent = 'Chargement…';
@@ -184,19 +183,20 @@
       })
       .then(function (d) {
         if (d.url) {
-          if (!estTestInterne() && localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
-            fbq('track', 'InitiateCheckout', { content_ids: [produitId], content_type: 'product' });
-          }
-          mesurerCheckout('CheckoutCree', produitId, function () {
-            window.location.assign(d.url);
-          });
+          try {
+            if (!estTestInterne() && localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
+              fbq('track', 'InitiateCheckout', { content_ids: [produitId], content_type: 'product' });
+            }
+          } catch (_) {}
+          mesurerCheckout('CheckoutCree', produitId);
+          window.location.assign(d.url);
         }
         else {
           throw creerErreurCheckout('URL Stripe absente', 'reponse_incomplete', 200);
         }
       })
       .catch(function (erreur) {
-        mesurerCheckout('CheckoutErreur', produitId, null, {
+        mesurerCheckout('CheckoutErreur', produitId, {
           type: erreur && erreur.tjdType ? erreur.tjdType : 'reseau',
           statut: erreur && Number.isInteger(erreur.tjdStatut) ? erreur.tjdStatut : 0
         });
@@ -561,15 +561,19 @@
       if (val) corps[cle] = val;
     });
 
-    if (!estTestInterne() && typeof window.gtag === 'function') {
-      gtag('event', 'begin_checkout', {
-        items: liste.map(function (a) { return { item_id: a.id }; }),
-        page_path: window.location.pathname
-      });
-    }
-    if (!estTestInterne() && window._paq) {
-      window._paq.push(['trackEvent', 'Ecommerce', 'ClicAcheterPanier', liste.map(function (a) { return a.id; }).join('+')]);
-    }
+    try {
+      if (!estTestInterne() && typeof window.gtag === 'function') {
+        gtag('event', 'begin_checkout', {
+          items: liste.map(function (a) { return { item_id: a.id }; }),
+          page_path: window.location.pathname
+        });
+      }
+    } catch (_) {}
+    try {
+      if (!estTestInterne() && window._paq) {
+        window._paq.push(['trackEvent', 'Ecommerce', 'ClicAcheterPanier', liste.map(function (a) { return a.id; }).join('+')]);
+      }
+    } catch (_) {}
 
     fetch('/api/create-checkout', {
       method: 'POST',
@@ -584,18 +588,16 @@
       })
       .then(function (d) {
         if (!d.url) throw creerErreurCheckout('URL Stripe absente', 'reponse_incomplete', 200);
-        if (!estTestInterne() && localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
-          fbq('track', 'InitiateCheckout', { content_ids: liste.map(function (a) { return a.id; }), content_type: 'product' });
-        }
         try {
-          mesurerCheckout('CheckoutCree', 'panier');
-        } catch (_) {
-          // La mesure ne doit jamais empêcher l'ouverture du paiement.
-        }
+          if (!estTestInterne() && localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
+            fbq('track', 'InitiateCheckout', { content_ids: liste.map(function (a) { return a.id; }), content_type: 'product' });
+          }
+        } catch (_) {}
+        mesurerCheckout('CheckoutCree', 'panier');
         window.location.assign(d.url);
       })
       .catch(function (erreur) {
-        mesurerCheckout('CheckoutErreur', 'panier', null, {
+        mesurerCheckout('CheckoutErreur', 'panier', {
           type: erreur && erreur.tjdType ? erreur.tjdType : 'reseau',
           statut: erreur && Number.isInteger(erreur.tjdStatut) ? erreur.tjdStatut : 0
         });
