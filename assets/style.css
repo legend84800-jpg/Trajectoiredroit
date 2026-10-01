@@ -5166,6 +5166,68 @@ html[data-theme="dark"] .btn--secondary {
 .cookie-banner--above-sticky {
   bottom: 82px;
 }
+/* Bandeau cookies réduit à une petite carte (01/10/2026) : il masquait 177 px au-dessus du bouton Acheter sur mobile. */
+.cookie-banner {
+  left: 12px;
+  right: auto;
+  bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: min(calc(100% - 24px), 340px);
+  max-width: 340px;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+.cookie-banner__content {
+  flex: 1 1 100%;
+}
+.cookie-banner h2 {
+  margin: 0;
+  font-size: .8rem;
+  font-family: inherit;
+  font-weight: 700;
+}
+/* Le détail reste lu par les lecteurs d'écran et dans « Modifier mes préférences ». */
+.cookie-banner__text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.cookie-banner .cookie-banner__actions {
+  display: flex;
+  flex: 1 1 100%;
+  width: 100%;
+  gap: 5px;
+}
+.cookie-banner .cookie-choice {
+  flex: 1 1 0;
+  justify-content: center;
+  min-height: 32px;
+  margin-top: 0;
+  padding: 4px 6px;
+  font-size: .64rem;
+  text-align: center;
+}
+.cookie-banner .cookie-choice--preferences {
+  flex: 0 0 auto;
+  border-color: transparent;
+  background: transparent;
+  color: #fff;
+  text-decoration: underline;
+}
+.cookie-banner--above-sticky {
+  bottom: 98px;
+}
+@media (min-width: 621px) {
+  .cookie-banner--above-sticky {
+    bottom: 82px;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .cookie-banner,
   .cookie-switch,
