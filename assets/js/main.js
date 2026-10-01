@@ -581,6 +581,7 @@
       for (var i = 0; i < liste.length; i++) {
         var cible = String(liste[i]).replace(/\.html$/, '');
         if (cible === 'accueil' || cible === 'index') { if (estAccueil) return true; }
+        else if (cible.slice(-1) === '*') { if (nomPage.indexOf(cible.slice(0, -1)) === 0) return true; }
         else if (cible === nomPage) return true;
       }
       return false;
@@ -605,6 +606,9 @@
       var fort = b && texte(b.etiquette_forte);
       if (!header || !lien || !fort || b.actif === false) return;
       if (pageDans(b.masquer_sur)) return;
+      // Liste blanche facultative : si elle existe, le bandeau ne sort que sur ces pages
+      // (depuis le 01/10/2026, accueil et pages méthode, pour laisser les pages de vente à la fiche).
+      if (b.afficher_sur && b.afficher_sur.length && !pageDans(b.afficher_sur)) return;
       var cleFerme = 'saisonBandeauFerme:' + idPeriode;
       if (lireSession(cleFerme)) return;
 

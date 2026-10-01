@@ -96,7 +96,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=7ce4f8fb">
+  <link rel="stylesheet" href="assets/style.css?v=4e41d062">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
@@ -460,7 +460,8 @@
     <p class="article-produit-inline__meta">Tout le cours du semestre en PDF · <strong>14,99 €</strong></p>
   </div>
   <div class="article-produit-inline__actions">
-    <a class="btn btn--primary" href="droit-des-biens-l2.html#fiches">Voir la fiche →</a>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-biens-l2">Acheter · 14,99 €</button>
+    <a class="article-produit-inline__more" href="droit-des-biens-l2.html#fiches">Voir la fiche →</a>
   </div>
 </div>
 
@@ -583,28 +584,9 @@
     </section>
 
     <!-- fin-article:pack-ultra -->
-    <section class="section section--dark article-pack" aria-labelledby="article-pack-titre">
+    <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
       <div class="container">
-        <div class="article-pack__grid">
-          <a class="article-pack__cover" href="pack-ultra.html#pack-ultra-l2-s2"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="Le Pack Ultra L2 semestre 2, couverture bleu pétrole" width="960" height="540" loading="lazy" decoding="async"></a>
-          <div class="article-pack__body">
-            <p class="article-pack__eyebrow">Pack Ultra · Licence 2, semestre 2<span class="article-pack__saving">42 % d’économie</span></p>
-            <h2 class="article-pack__title" id="article-pack-titre">Tout ton second semestre de L2 dans un seul pack</h2>
-            <p class="article-pack__lead">27 ressources pour travailler la responsabilité civile et le droit administratif au second semestre. La fiche de droit des biens L2 présentée plus haut en fait partie.</p>
-            <ul class="article-pack__list">
-            <li><strong>3</strong> fiches complètes</li>
-            <li><strong>3</strong> cours complets</li>
-            <li><strong>4</strong> séries de majeures préparées</li>
-            <li><strong>3</strong> recueils de cas pratiques corrigés</li>
-            <li><strong>3</strong> recueils de fiches d'arrêt</li>
-            </ul>
-            <div class="article-pack__price"><span class="article-pack__old">369,73 €</span><span class="article-pack__now">209 €</span><span class="article-pack__split">ou 3 × 69,66 € sans frais</span></div>
-            <div class="article-pack__actions">
-              <button type="button" class="btn btn--primary btn--lg" data-tjd-produit="pack-ultra-l2-s2">Acheter le pack · 209 €</button>
-              <a class="article-pack__more" href="pack-ultra.html#pack-ultra-detail-l2-s2">Voir les 27 ressources incluses →</a>
-            </div>
-          </div>
-        </div>
+        <p class="article-pack-ligne__texte">Le Pack Ultra L2 S2 réunit les 27 ressources de ton second semestre de L2 pour 209 €, la fiche de droit des biens L2 comprise. <a href="pack-ultra.html#pack-ultra-l2-s2">Voir le contenu du pack →</a></p>
         <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
       </div>
     </section>
@@ -648,11 +630,11 @@
       <strong>Droit des biens L2 · 14,99 €</strong>
       <small>Fiche complète · accès à vie</small>
     </div>
-    <a class="btn btn--primary" href="droit-des-biens-l2.html#fiches">Voir la fiche →</a>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-biens-l2">Acheter · 14,99 €</button>
   </div>
 
   <script src="assets/js/achat.js?v=6abaead2" defer></script>
-  <script src="assets/js/main.js?v=ed7bdd96" defer></script>
+  <script src="assets/js/main.js?v=5430c2c3" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
   (function(){

@@ -3,7 +3,7 @@
 
 Pour chaque article listé dans blog.html :
 - ajoute l'encart « Fiche complète » au milieu s'il manque ;
-- remplace la section sombre finale par la carte du Pack Ultra du semestre ;
+- remplace la section sombre finale par une ligne discrète vers le Pack Ultra du semestre ;
 - aligne la barre collante sur la fiche de la matière.
 Idempotent (marqueurs <!-- fin-article:... -->). Lancer depuis la racine du site.
 Sans argument : tous les articles de blog.html (table M). Pour une seule page, même hors blog :
@@ -89,7 +89,7 @@ AUTRES = {
                    "29 majeures dont le pourvoi en cassation et les cas d'ouverture", "14,99 €", "Voir la majeure →"),
     "packl1": ("Pack complet", "Toute la L1 de droit", "reussir-sa-l1.html",
                "assets/covers/pack-l1.webp?v=coffrets-universitaires-20260916",
-               "9 fiches complètes pour combler la base d'un semestre, en PDF", "98 €", "Voir le pack L1 →"),
+               "8 fiches complètes pour combler la base d'un semestre, en PDF", "87 €", "Voir le pack L1 →"),
 }
 
 # --- Article -> (produit du milieu, Pack Ultra) ---
@@ -130,6 +130,34 @@ lot("procpen", "l3-s1", "la-garde-a-vue-duree-et-droits.html")
 lot("proccivile", "l3-s1", "arret-estoppel-2009-explique.html")
 
 
+# Produit vendu en achat direct (bouton Stripe), par clé et par semestre du Pack Ultra.
+# Depuis le 01/10/2026 la fiche à 14,99 € s'achète en un clic dans l'article
+# (encart du milieu et barre collante), et le Pack Ultra n'est plus qu'une ligne de lien.
+ID_PRODUIT = {
+    "famille": "fiche-famille-l1-s2", "personnes": "fiche-personnes-l1", "penalgen": "fiche-penal-general-l1",
+    "contrats": "fiche-contrats-l2-s1", "obligations": "fiche-obligations-l2-s2", "biens": "fiche-biens-l2",
+    "travail": "fiche-travail-l3-s1", "cs": "fiche-contrats-speciaux-l3", "societes": "fiche-societes-l3-s1",
+    "procpen": "fiche-procedure-penale-l3", "penall2": "fiche-penal-l2-s1", "commercial": "fiche-commercial-l3-s1",
+    "introdroit": "fiche-intro-droit-l1", "histdroit": "fiche-hist-droit-l1", "histinst": "fiche-hist-institutions-l1",
+    "ri": "fiche-relations-internationales-l1", "proccivile": "maj-procedure-civile-l3-s1",
+}
+
+
+def id_produit(cle, sid):
+    if cle == "admin": return "fiche-da-l2-s2" if sid.endswith("s2") else "fiche-da-l2-s1"
+    if cle == "constit": return "fiche-constit-l1-s2" if sid.endswith("s2") else "fiche-constit-l1-s1"
+    return ID_PRODUIT.get(cle)
+
+
+def actions(cle, sid, classe_btn="btn btn--primary"):
+    """Bouton d'achat direct de la fiche, ou lien quand le produit n'a pas d'achat direct (pack L1)."""
+    label, titre, lien, img, meta, prix, bouton = produit(cle)
+    pid = id_produit(cle, sid)
+    if not pid:
+        return f'<a class="{classe_btn}" href="{lien}">{bouton}</a>'
+    return f'<button type="button" class="{classe_btn}" data-tjd-produit="{pid}">Acheter · {prix}</button>'
+
+
 def produit(cle):
     """(label, titre, lien, image, meta, prix, bouton)"""
     if cle in AUTRES: return AUTRES[cle]
@@ -137,8 +165,9 @@ def produit(cle):
     return ("Fiche complète", t, lien, img, meta, "14,99 €", "Voir la fiche →")
 
 
-def encart_milieu(cle):
+def encart_milieu(cle, sid):
     label, titre, lien, img, meta, prix, bouton = produit(cle)
+    lien_detail = f'\n    <a class="article-produit-inline__more" href="{lien}">{bouton}</a>' if id_produit(cle, sid) else ""
     return f'''<!-- fin-article:encart-milieu -->
 <div class="article-produit-inline">
   <img class="article-produit-inline__thumb" src="{img}" alt="{titre}" loading="lazy">
@@ -148,7 +177,7 @@ def encart_milieu(cle):
     <p class="article-produit-inline__meta">{meta} · <strong>{prix}</strong></p>
   </div>
   <div class="article-produit-inline__actions">
-    <a class="btn btn--primary" href="{lien}">{bouton}</a>
+    {actions(cle, sid)}{lien_detail}
   </div>
 </div>
 '''
@@ -163,44 +192,24 @@ def carte_pack(cle, sid):
     label, titre, *_ = produit(cle)
     num = sid[1]
     sem = "premier" if sid.endswith("s1") else "second"
-    lignes = []
-    for t in ORDRE_TYPES:
-        n = p["types"].get(t, 0)
-        if n:
-            s, pl = TYPES_PLURIEL[t]
-            lignes.append(f'<li><strong>{n}</strong> {s if n == 1 else pl}</li>')
-    lignes = "\n            ".join(lignes[:5])
     if cle == "packl1":
-        lien_matiere = ""
+        comprise = ""
     else:
-        nature = "La majeure de" if label == "Majeure préparée" else "La fiche de"
-        lien_matiere = f" {nature} {minuscule(titre)} présentée plus haut en fait partie."
+        nature = "la majeure" if label == "Majeure préparée" else "la fiche"
+        t = minuscule(titre)
+        de = "d'" if t[0] in "aeiouyhéèêàâîôû" else "de "
+        comprise = f", {nature} {de}{t} comprise"
     return f'''    <!-- fin-article:pack-ultra -->
-    <section class="section section--dark article-pack" aria-labelledby="article-pack-titre">
+    <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
       <div class="container">
-        <div class="article-pack__grid">
-          <a class="article-pack__cover" href="pack-ultra.html#pack-ultra-{sid}"><img src="assets/covers/pack-ultra-{sid}.webp" alt="{p['alt']}" width="960" height="540" loading="lazy" decoding="async"></a>
-          <div class="article-pack__body">
-            <p class="article-pack__eyebrow">Pack Ultra · Licence {num}, semestre {sid[-1]}<span class="article-pack__saving">{p['economie']}</span></p>
-            <h2 class="article-pack__title" id="article-pack-titre">Tout ton {sem} semestre de L{num} dans un seul pack</h2>
-            <p class="article-pack__lead">{p['desc']}{lien_matiere}</p>
-            <ul class="article-pack__list">
-            {lignes}
-            </ul>
-            <div class="article-pack__price"><span class="article-pack__old">{p['old']}</span><span class="article-pack__now">{p['prix']}</span><span class="article-pack__split">{p['paiement']}</span></div>
-            <div class="article-pack__actions">
-              <button type="button" class="btn btn--primary btn--lg" data-tjd-produit="pack-ultra-{sid}">Acheter le pack · {p['prix']}</button>
-              <a class="article-pack__more" href="pack-ultra.html#pack-ultra-detail-{sid}">Voir les {p['nb']} ressources incluses →</a>
-            </div>
-          </div>
-        </div>
+        <p class="article-pack-ligne__texte">Le Pack Ultra L{num} S{sid[-1]} réunit les {p['nb']} ressources de ton {sem} semestre de L{num} pour {p['prix']}{comprise}. <a href="pack-ultra.html#pack-ultra-{sid}">Voir le contenu du pack →</a></p>
         <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
       </div>
     </section>
 '''
 
 
-def barre(cle):
+def barre(cle, sid):
     label, titre, lien, img, meta, prix, bouton = produit(cle)
     return f'''  <!-- fin-article:sticky -->
   <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
@@ -208,7 +217,7 @@ def barre(cle):
       <strong>{titre} · {prix}</strong>
       <small>{label} · accès à vie</small>
     </div>
-    <a class="btn btn--primary" href="{lien}">{bouton}</a>
+    {actions(cle, sid)}
   </div>
 '''
 
@@ -224,24 +233,33 @@ def traiter(f, cle, sid):
             h2 = [m.start() for m in re.finditer(r'<h2 class="h2" style="margin-bottom:8px">', a)]
         pos = h2[1]
         debut_ligne = a.rfind("\n", 0, pos) + 1
-        a = a[:debut_ligne] + encart_milieu(cle) + "\n" + a[debut_ligne:]
-    elif f == "arret-estoppel-2009-explique.html" and "fin-article:encart-milieu" not in a:
+        a = a[:debut_ligne] + encart_milieu(cle, sid) + "\n" + a[debut_ligne:]
+    elif "<!-- fin-article:encart-milieu -->" in a:
+        # Encart déjà posé : on ne remplace que les boutons, pour garder la vignette et le texte réécrits depuis.
+        label, titre, lien, img, meta, prix, bouton = produit(cle)
+        detail = f'\n    <a class="article-produit-inline__more" href="{lien}">{bouton}</a>' if id_produit(cle, sid) else ""
+        a = re.sub(r'(<!-- fin-article:encart-milieu -->\n<div class="article-produit-inline">.*?<div class="article-produit-inline__actions">\n).*?(\n  </div>\n</div>\n)',
+                   lambda m: m.group(1) + "    " + actions(cle, sid) + detail + m.group(2), a, count=1, flags=re.S)
+    elif f == "arret-estoppel-2009-explique.html":
         a = re.sub(r'(<!--[^>]*-->\s*)?<div class="article-produit-inline">.*?</div>\s*</div>\n',
-                   encart_milieu(cle), a, count=1, flags=re.S)
+                   lambda m: encart_milieu(cle, sid), a, count=1, flags=re.S)
     # 2. Section sombre finale -> carte Pack Ultra
     a, n = re.subn(r'(    <!-- CTA FINAL -->\n)?    <section class="section section--dark[^"]*".*?</section>\n'
                    r'|    <!-- fin-article:pack-ultra -->\n    <section.*?</section>\n',
-                   carte_pack(cle, sid), a, count=1, flags=re.S)
+                   lambda m: carte_pack(cle, sid), a, count=1, flags=re.S)
     assert n == 1, f
     # 3. Barre collante
     motif = r'(  <!-- (vague2:sticky-bar|fin-article:sticky) -->\n)?  <div class="sticky-cta-bar[^"]*" id="stickyCta">.*?\n  </div>\n'
     if "optimiseur-pages-existantes 20" in a and re.search(motif, a, re.S):
         pass  # barre collante réglée par optimiseur-pages-existantes sur la requête réelle, on la garde
     elif re.search(motif, a, re.S):
-        a = re.sub(motif, barre(cle), a, count=1, flags=re.S)
+        a = re.sub(motif, lambda m: barre(cle, sid), a, count=1, flags=re.S)
     else:
         i = a.index("</footer>") + len("</footer>\n")
-        a = a[:i] + barre(cle) + a[i:]
+        a = a[:i] + barre(cle, sid) + a[i:]
+    if 'data-tjd-produit=' in a and "assets/js/achat.js" not in a:
+        v = re.search(r'assets/js/achat\.js\?v=([a-f0-9]+)', (ROOT / "index.html").read_text()).group(1)
+        a = re.sub(r'^(\s*)<script src="assets/js/main\.js', lambda m: f'{m.group(1)}<script src="assets/js/achat.js?v={v}" defer></script>\n{m.group(1)}<script src="assets/js/main.js', a, count=1, flags=re.M)
     if a != avant:
         path.write_text(a)
         return True

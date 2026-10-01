@@ -5388,6 +5388,14 @@ html[data-theme="dark"] .article-produit-inline { background: rgba(94,139,218,0.
 .article-pack__more:hover { color: #fff; }
 .article-pack .tjd-reassurance { color: rgba(255,255,255,.6); text-align: left; width: 100%; }
 .article-pack__back { text-align: center; margin: 40px 0 0; }
+.article-produit-inline__more { font-size: .78rem; color: var(--blue-600); text-decoration: underline; }
+/* Ligne discrète vers le Pack Ultra en fin d'article (01/10/2026), à la place de la grande carte sombre. */
+.article-pack-ligne { padding: 28px 0 36px; border-top: 1px solid var(--line, #e5e7eb); }
+.article-pack-ligne__texte { max-width: 720px; margin: 0 auto; text-align: center; font-size: .92rem; line-height: 1.55; color: var(--ink-soft, #475569); }
+.article-pack-ligne__texte a { color: var(--blue-600); font-weight: 600; text-decoration: underline; white-space: nowrap; }
+.article-pack-ligne .article-pack__back { margin-top: 18px; }
+.article-pack-ligne .article-pack__back a { color: var(--ink-soft, #475569); }
+
 .article-pack__back a { color: rgba(255,255,255,.7); font-size: .9rem; }
 @media (max-width: 820px) {
   .article-pack__grid { grid-template-columns: 1fr; gap: 24px; }

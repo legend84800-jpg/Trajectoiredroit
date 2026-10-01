@@ -1,5 +1,5 @@
 {
-  "_mode_emploi": "Fichier unique de la bascule saisonnière, lu par assets/js/main.js (section 4). Mis à jour chaque lundi par la routine bascule-saisonniere-tjd. Si ce fichier manque, est mal formé ou si periode.fin est passée, le site garde son affichage par défaut. Tout texte ici est lu par des étudiants et passe par le skill redaction-julien. Compte à rebours seulement vers une date réelle (compte_a_rebours_fin au format ISO), sinon null. La mention « plus que 3 places » du stage est une décision de Julien, ne jamais la modifier.",
+  "_mode_emploi": "Fichier unique de la bascule saisonnière, lu par assets/js/main.js (section 4). Mis à jour chaque lundi par la routine bascule-saisonniere-tjd. Si ce fichier manque, est mal formé ou si periode.fin est passée, le site garde son affichage par défaut. Tout texte ici est lu par des étudiants et passe par le skill redaction-julien. Compte à rebours seulement vers une date réelle (compte_a_rebours_fin au format ISO), sinon null. La mention « plus que 3 places » du stage est une décision de Julien, ne jamais la modifier. Le bandeau s'affiche seulement sur les pages de bandeau.afficher_sur (accueil et pages methode-*, décision du 01/10/2026 pour laisser les pages de vente à la fiche à 14,99 €), un « * » final vaut préfixe.",
   "periode": {
     "id": "2026-s1-td-notes-toussaint",
     "nom": "TD notés, méthode et stage de la Toussaint",
@@ -19,6 +19,10 @@
       "stage-methode",
       "merci-stage",
       "parents"
+    ],
+    "afficher_sur": [
+      "accueil",
+      "methode-*"
     ]
   },
   "accueil": null,
