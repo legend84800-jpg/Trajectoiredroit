@@ -1,0 +1,83 @@
+/* Page du Pack Fiches L2. Les styles partagés restent inchangés. */
+.l2-page { background: var(--white); color: var(--navy); }
+.l2-header { border-bottom: 1px solid var(--border); background: var(--white); }
+.l2-header__inner { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.l2-header nav { display: flex; gap: 28px; font-weight: 600; font-size: .92rem; }
+.l2-header a:hover, .l2-text-link:hover { color: var(--accent); }
+.l2-hero { padding: clamp(40px, 6vw, 76px) 0 62px; background: linear-gradient(135deg, #faf8f3, #fff 72%); border-bottom: 1px solid var(--border); }
+.l2-hero__grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.l2-eyebrow { margin: 0 0 14px; color: var(--accent); font-size: .8rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+.l2-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 4.8vw, 4.4rem); line-height: 1.08; letter-spacing: -.035em; margin: 0 0 24px; }
+.l2-intro { max-width: 560px; font-size: 1.06rem; line-height: 1.7; color: var(--body); }
+.l2-intro strong { color: var(--navy); }
+.l2-price { display: flex; align-items: center; gap: 22px; margin: 24px 0 10px; }
+.l2-price strong { font-family: var(--font-display); font-size: 3.2rem; line-height: 1.1; }
+.l2-price span { font-size: .9rem; line-height: 1.6; }
+.l2-saving { color: var(--body); font-size: .86rem; line-height: 1.6; margin-bottom: 20px; max-width: 420px; }
+.l2-buy { min-height: 54px; padding: 14px 30px; font-size: 1rem; }
+.l2-payment { color: var(--muted); max-width: 380px; font-size: .82rem; line-height: 1.65; margin: 14px 0 12px; }
+.l2-text-link { font-size: .92rem; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.l2-visual { margin: 0; }
+.l2-visual > img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.l2-visual figcaption { color: var(--muted); font-size: .76rem; line-height: 1.5; margin-top: 10px; }
+.l2-visual__note { margin-top: 28px; padding: 20px 0 0; border-top: 1px solid var(--gold-line); }
+.l2-visual__note span { display: block; color: var(--accent); font-size: .78rem; margin-bottom: 6px; }
+.l2-visual__note strong { font-family: var(--font-display); font-size: 1.22rem; font-weight: 600; }
+.l2-section { padding-top: 68px; padding-bottom: 68px; }
+.l2-section__heading { max-width: 740px; margin-bottom: 32px; }
+.l2-page h2 { font-family: var(--font-display); font-size: clamp(1.85rem, 3vw, 2.7rem); line-height: 1.2; letter-spacing: -.02em; margin: 0 0 20px; }
+.l2-section__heading > p:last-child, .l2-author p, .l2-faq p { color: var(--body); line-height: 1.75; }
+.l2-subjects { display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; margin: 0; padding: 0; list-style: none; }
+.l2-subjects li { display: flex; gap: 20px; align-items: baseline; padding: 19px 0; border-top: 1px solid var(--border); }
+.l2-subjects li > span { color: var(--accent); font-family: var(--font-display); font-size: 1.2rem; }
+.l2-subjects h3 { margin: 0 0 4px; font-size: 1.06rem; line-height: 1.5; }
+.l2-subjects p { margin: 0; color: var(--muted); font-size: .84rem; }
+.l2-content-note { margin: 26px 0 0; color: var(--body); font-size: .91rem; }
+.l2-preview-section { background: #f5f3ee; padding: 62px 0; }
+.l2-previews { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; max-width: 920px; }
+.l2-previews figure { margin: 0; }
+.l2-previews a { display: block; background: #fff; box-shadow: 0 10px 35px rgba(26, 40, 81, .08); }
+.l2-previews img { display: block; width: 100%; height: auto; }
+.l2-previews figcaption { font-weight: 600; margin-top: 15px; font-size: .92rem; }
+.l2-preview-caption { margin: 28px 0 0; color: var(--body); font-size: .88rem; }
+.l2-author { display: grid; grid-template-columns: 260px 1fr; gap: 64px; align-items: center; }
+.l2-author > img { width: 100%; height: 290px; object-fit: cover; object-position: center; border-radius: 8px; }
+.l2-author p { margin-bottom: 18px; }
+.l2-faq { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; border-top: 1px solid var(--border); }
+.l2-faq details { padding: 20px 0; border-bottom: 1px solid var(--border); }
+.l2-faq summary { cursor: pointer; font-weight: 700; font-size: 1.04rem; line-height: 1.5; }
+.l2-faq details p { margin: 16px 0 0; font-size: .95rem; }
+.l2-faq a { text-decoration: underline; }
+.l2-order { background: var(--blue-50); padding: 48px 0; }
+.l2-order__inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.l2-order h2 { font-size: clamp(1.6rem, 2.5vw, 2.3rem); margin-bottom: 10px; }
+.l2-order p:last-child { color: var(--body); margin: 0; }
+.l2-order button { flex-shrink: 0; }
+.l2-footer { background: var(--navy-deep); color: #fff; padding: 32px 0; }
+.l2-footer .container { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; justify-content: space-between; }
+.l2-footer p { font-size: .8rem; margin: 0; color: #d4dbea; }
+.l2-footer nav { display: flex; gap: 20px; flex-wrap: wrap; font-size: .82rem; }
+.l2-footer a { color: #fff; }
+.l2-page :focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+@media (max-width: 780px) {
+  .l2-header__inner { min-height: 68px; gap: 12px; }
+  .l2-header .logo__img { width: 150px; }
+  .l2-header nav { gap: 14px; font-size: .78rem; }
+  .l2-hero { padding-top: 34px; padding-bottom: 40px; }
+  .l2-hero__grid, .l2-author, .l2-faq { grid-template-columns: 1fr; gap: 34px; }
+  .l2-hero h1 { font-size: 2.7rem; }
+  .l2-intro { font-size: 1rem; }
+  .l2-visual { max-width: 600px; }
+  .l2-visual__note { margin-top: 18px; }
+  .l2-section { padding-top: 42px; padding-bottom: 42px; }
+  .l2-subjects { grid-template-columns: 1fr; }
+  .l2-previews { gap: 18px; }
+  .l2-preview-section { padding: 42px 0; }
+  .l2-previews figcaption { font-size: .8rem; }
+  .l2-author > img { width: 180px; height: 200px; }
+  .l2-order__inner { align-items: stretch; flex-direction: column; gap: 24px; }
+  .l2-buy { width: 100%; }
+  .l2-footer .container { align-items: flex-start; flex-direction: column; gap: 18px; }
+  .l2-footer nav { gap: 14px; }
+}
+@media (max-width: 370px) { .l2-header nav { gap: 10px; } .l2-header .logo__img { width: 125px; } }

@@ -594,7 +594,7 @@
     var dejaEnvoye = sessionStorage.getItem('tjd_purchase_envoye_' + sessionId);
 
     function envoyerMesures(d) {
-      if (dejaEnvoye) return;
+      if (window.tjdTestInterne || dejaEnvoye) return;
       sessionStorage.setItem('tjd_purchase_envoye_' + sessionId, '1');
       dejaEnvoye = true;
 
