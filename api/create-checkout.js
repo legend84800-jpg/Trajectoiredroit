@@ -6,6 +6,7 @@
 
 const crypto = require("crypto");
 const PRODUITS = require("./_produits");
+const { avecImagesProduits } = require("./_images-produits");
 const { selectionner } = require("./_supabase");
 const { creerClientStripe, INTEGRATION_IDS } = require("./_stripe");
 const { nombreEcheancesValide, versCheckoutEcheances, montantEcheance } = require("./_echeances");
@@ -291,7 +292,7 @@ async function handler(req, res) {
 
     try {
       const sessionPanier = await stripe.checkout.sessions.create(
-        paramsPanier,
+        avecImagesProduits(paramsPanier),
         { idempotencyKey: `checkout-panier-${attemptId}` }
       );
       res.status(200).json({
@@ -515,7 +516,7 @@ async function handler(req, res) {
 
   try {
     const sessionCheckout = await stripe.checkout.sessions.create(
-      paramsFinaux,
+      avecImagesProduits(paramsFinaux),
       { idempotencyKey: cleIdempotence }
     );
     res.status(200).json({
