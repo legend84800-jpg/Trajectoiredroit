@@ -83,8 +83,8 @@
       var parametresGtag = {
         items: [{ item_id: produitId }],
         page_path: window.location.pathname,
-        event_callback: action === 'CheckoutCree' ? terminer : undefined,
-        event_timeout: action === 'CheckoutCree' ? 450 : undefined
+        event_callback: action === 'CheckoutCree' && apresMesure ? terminer : undefined,
+        event_timeout: action === 'CheckoutCree' && apresMesure ? 450 : undefined
       };
       if (action === 'CheckoutErreur') {
         parametresGtag.error_type = typeErreur;
@@ -103,7 +103,7 @@
         ]);
       }
     }
-    if (action === 'CheckoutCree') window.setTimeout(terminer, 500);
+    if (action === 'CheckoutCree' && apresMesure) window.setTimeout(terminer, 500);
     else terminer();
   }
 
@@ -586,6 +586,11 @@
         if (!d.url) throw creerErreurCheckout('URL Stripe absente', 'reponse_incomplete', 200);
         if (!estTestInterne() && localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
           fbq('track', 'InitiateCheckout', { content_ids: liste.map(function (a) { return a.id; }), content_type: 'product' });
+        }
+        try {
+          mesurerCheckout('CheckoutCree', 'panier');
+        } catch (_) {
+          // La mesure ne doit jamais empêcher l'ouverture du paiement.
         }
         window.location.assign(d.url);
       })
