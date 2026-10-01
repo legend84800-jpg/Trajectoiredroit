@@ -2,6 +2,22 @@
 (function () {
   var TEXTES_ORIGINAUX = {};
 
+  // Ouvre dès le chargement la connexion vers Stripe sur les pages qui vendent,
+  // pour que la page de paiement s'affiche plus vite après le clic sur Acheter.
+  function preconnecterStripe() {
+    if (!document.querySelector('[data-tjd-produit]')) return;
+    ['https://checkout.stripe.com', 'https://js.stripe.com', 'https://m.stripe.network'].forEach(function (origine) {
+      if (document.querySelector('link[rel="preconnect"][href="' + origine + '"]')) return;
+      var lien = document.createElement('link');
+      lien.rel = 'preconnect';
+      lien.href = origine;
+      lien.crossOrigin = 'anonymous';
+      document.head.appendChild(lien);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', preconnecterStripe);
+  else preconnecterStripe();
+
   function estTestInterne() {
     try {
       var parametre = new URLSearchParams(window.location.search).get('tjd_test');
