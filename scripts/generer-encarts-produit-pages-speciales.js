@@ -4,6 +4,7 @@
 const fs = require("fs");
 const path = require("path");
 const { MATIERES } = require("./mapping-matieres");
+const { libelleApercu } = require("./libelles-offres");
 
 const ROOT = path.join(__dirname, "..");
 const MARQUEUR_ENCART = "<!-- vague2:encart-produit -->";
@@ -19,7 +20,7 @@ function construireEncart(matiereSlug) {
     const s = m.semestres[0];
     const thumb = s.apercus[0] || "";
     const apercuBtn = s.apercus.length
-      ? `<button type="button" class="apercu-link" data-apercu='${JSON.stringify(s.apercus)}' data-apercu-title="${m.nom}" data-apercu-price="${s.prix}" data-apercu-cta="${s.id}">Voir un aperçu</button>`
+      ? `<button type="button" class="apercu-link" data-apercu='${JSON.stringify(s.apercus)}' data-apercu-title="${libelleApercu(s.id) || m.nom}" data-apercu-price="${s.prix}" data-apercu-cta="${s.id}">Voir un aperçu</button>`
       : "";
     return `${MARQUEUR_ENCART}
     <section class="section" style="padding-top:0; padding-bottom:0">

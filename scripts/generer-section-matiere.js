@@ -5,6 +5,7 @@
 const fs = require("fs");
 const path = require("path");
 const { MATIERES } = require("./mapping-matieres");
+const { presentationPackMatiere } = require("./libelles-offres");
 
 const ROOT = path.join(__dirname, "..");
 const MARQUEUR = "<!-- vague2:tout-pour-ta-matiere -->";
@@ -52,12 +53,13 @@ function construireSection(matiereSlug) {
     );
   }
   if (m.packMatiere) {
+    const pack = presentationPackMatiere(m);
     cartes.push(`
       <div class="card" style="border-color:var(--blue-600); border-width:2px">
         <img src="assets/covers/${m.packMatiere.id}.jpg" alt="Coffret ${m.nom}, couverture Trajectoire Droit" loading="lazy" style="display:block; width:100%; aspect-ratio:16 / 9; object-fit:cover; border-radius:10px; margin-bottom:14px">
         <span class="badge badge--popular" style="margin-bottom:8px">Meilleure offre</span>
-        <h3 style="margin-top:0">Pack matière complet</h3>
-        <p style="color:var(--body); font-size:.9rem">Fiche complète, flashcards et QCM, fiches d'arrêt et un corrigé. Tout ce qu'il faut pour ${m.nom}, à prix réduit.</p>
+        <h3 style="margin-top:0">${pack.titre}</h3>
+        <p style="color:var(--body); font-size:.9rem">${pack.description}</p>
         <button type="button" class="btn btn--primary btn--full" data-tjd-produit="${m.packMatiere.id}">Acheter le pack · ${m.packMatiere.prix}</button>
       </div>`);
   }
