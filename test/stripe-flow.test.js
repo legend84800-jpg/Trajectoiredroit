@@ -228,43 +228,6 @@ test("une erreur Stripe renvoie un code stable sans exposer son message", async 
   assert.equal(Object.hasOwn(res.payload, "detail"), false);
 });
 
-test("l'abonnement Portalis ouvre aussi le Checkout français sans Link", async () => {
-  const stripeModule = require("../api/_stripe");
-  const supabaseModule = require("../api/_supabase");
-  const creerOriginal = stripeModule.creerClientStripe;
-  const selectionnerOriginal = supabaseModule.selectionner;
-  let paramsCrees;
-  stripeModule.creerClientStripe = () => ({
-    checkout: { sessions: { create: async (params) => {
-      paramsCrees = params;
-      return { id: "cs_test_portalis", url: "https://checkout.stripe.com/c/pay/portalis" };
-    } } },
-  });
-  supabaseModule.selectionner = async () => [];
-  const cheminModule = require.resolve("../api/create-checkout");
-  delete require.cache[cheminModule];
-  const handler = require("../api/create-checkout");
-  const ancienneCle = process.env.STRIPE_SECRET_KEY;
-  process.env.STRIPE_SECRET_KEY = "sk_test_factice";
-  try {
-    await handler({ method: "POST", body: {
-      mode: "subscription",
-      supabaseUserId: "utilisateur-test",
-      supabaseEmail: "eleve@example.com",
-      attemptId: "portalis-1234567890123456",
-    } }, reponseFactice());
-  } finally {
-    stripeModule.creerClientStripe = creerOriginal;
-    supabaseModule.selectionner = selectionnerOriginal;
-    delete require.cache[cheminModule];
-    if (ancienneCle === undefined) delete process.env.STRIPE_SECRET_KEY;
-    else process.env.STRIPE_SECRET_KEY = ancienneCle;
-  }
-
-  assert.equal(paramsCrees.locale, "fr");
-  assert.deepEqual(paramsCrees.wallet_options, { link: { display: "never" } });
-});
-
 test("la protection PDF n'ajoute aucun champ au parcours Checkout", async () => {
   const stripeModule = require("../api/_stripe");
   const creerOriginal = stripeModule.creerClientStripe;
@@ -296,6 +259,8 @@ test("la protection PDF n'ajoute aucun champ au parcours Checkout", async () => 
   assert.deepEqual(paramsCrees.custom_fields.map((c) => c.key), ["emails"]);
   assert.equal(paramsCrees.custom_fields[0].dropdown.default_value, "oui");
   assert.equal(paramsCrees.custom_fields[0].optional, true);
+  assert.equal(paramsCrees.custom_fields[0].label.custom, "Révisions et offres par email");
+  assert.deepEqual(paramsCrees.custom_fields[0].dropdown.options, [{ label: "Oui", value: "oui" }, { label: "Non merci", value: "non" }]);
   // Seul le rappel de livraison par email est affiché, jamais de mention de licence.
   assert.doesNotMatch(JSON.stringify(paramsCrees.custom_text || {}), /licence/i);
   assert.match(paramsCrees.custom_text.submit.message, /email/);

@@ -1,5 +1,4 @@
 // Visuels existants du site, associés aux produits affichés dans Stripe Checkout.
-// Portalis utilise un Price Stripe existant, son image se configure sur ce produit.
 const VISUELS = {
   "cas-pratique-biens-l2": "assets/covers/exercices-20260923/cas-pratique-biens-l2.webp",
   "cas-pratique-commercial-l3-s1": "assets/covers/exercices-20260923/cas-pratique-commercial-l3-s1.webp",
@@ -197,7 +196,6 @@ const VISUELS = {
   "pack-ultra-l2-s2": "assets/covers/pack-ultra-l2-s2.webp",
   "pack-ultra-l3-s1": "assets/covers/pack-ultra-l3-s1.webp",
   "pack-ultra-l3-s2": "assets/covers/pack-ultra-l3-s2.webp",
-  "portalis": "assets/logo-tjd-mark.png",
   "stage-methode": "assets/julien.jpg",
 };
 

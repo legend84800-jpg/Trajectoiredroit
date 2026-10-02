@@ -47,6 +47,16 @@
   ],
   "redirects": [
     {
+      "source": "/outil-fiche-arret.html",
+      "destination": "/methode-fiche-arret.html",
+      "permanent": true
+    },
+    {
+      "source": "/outil-fiche-arret",
+      "destination": "/methode-fiche-arret.html",
+      "permanent": true
+    },
+    {
       "source": "/index.html",
       "destination": "/",
       "permanent": true

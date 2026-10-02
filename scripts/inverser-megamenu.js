@@ -28,7 +28,6 @@ const COLONNE_FORMATS = `            <div class="megamenu__niveau-col megamenu__
               <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
               <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
               <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
-              <a href="outil-fiche-arret.html" role="menuitem">🤖 Portalis</a>
               <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
             </div>`;
 

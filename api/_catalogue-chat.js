@@ -45,7 +45,6 @@ majeures-preparees.html — majeures préparées PDF (la règle de droit conditi
 revisions.html — fiches d'arrêt par matière (${prixTexte(ficheArret)}, ${ficheArret.length} matières) et fiches de citations par matière (${prixTexte(citations)}, ${citations.length} matières), plus les packs annuels
 flashcards-qcm.html — flashcards + QCM par matière avec deck Anki inclus (${prixTexte(flashcards)}, ${flashcards.length} matières)
 corriges.html — cas pratiques corrigés (${casPratique.length} matières), commentaires d'arrêt corrigés (${commentaire.length} matières) et dissertations corrigées (${dissertation.length} matières), ${prixTexte(exercices)} chacun, plus des packs annuels par année
-outil-fiche-arret.html — Portalis, l'outil qui corrige les copies par IA (1 essai gratuit, puis 6 €/mois)
 cours-particuliers.html — cours particuliers de droit en visio avec Julien, 98 €/h
 stage-methode.html — stage de méthode en direct, ${euros(PRODUITS["stage-methode"].prix)}
 quiz-methode.html — quiz gratuit en 3 minutes pour voir où on perd des points (sans inscription)`;

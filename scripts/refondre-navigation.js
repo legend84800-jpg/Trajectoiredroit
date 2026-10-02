@@ -268,7 +268,7 @@ function groupeActif(fichier, pages) {
 }
 
 function menuMobile(fichier) {
-  const groupeFiches = groupeActif(fichier, ['formations.html', 'cours-fiches.html', 'majeures-preparees.html', 'corriges.html', 'revisions.html', 'outil-fiche-arret.html', 'flashcards-qcm.html']);
+  const groupeFiches = groupeActif(fichier, ['formations.html', 'cours-fiches.html', 'majeures-preparees.html', 'corriges.html', 'revisions.html', 'flashcards-qcm.html']);
   const groupeRessources = groupeActif(fichier, ['blog.html', 'methodologie-juridique.html', 'methode-fiche-arret.html', 'methode-commentaire-arret.html', 'methode-cas-pratique.html', 'methode-dissertation-juridique.html']);
   const groupeAPropos = groupeActif(fichier, ['a-propos.html', 'temoignages.html', 'faq.html']);
 
@@ -286,7 +286,6 @@ function menuMobile(fichier) {
         ${lienMobile('majeures-preparees.html', '<span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span>', fichier, 'mobile-nav__format')}
         ${lienMobile('revisions.html', '<span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span>', fichier, 'mobile-nav__format')}
         ${lienMobile('corriges.html', '<span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span>', fichier, 'mobile-nav__format')}
-        ${lienMobile('outil-fiche-arret.html', '<span class="mobile-nav__format-icon" aria-hidden="true">🤖</span><span>Portalis</span>', fichier, 'mobile-nav__format')}
         ${lienMobile('flashcards-qcm.html', '<span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span>', fichier, 'mobile-nav__format')}
       </div>
     </details>

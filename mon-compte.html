@@ -31,7 +31,7 @@
   <meta name="theme-color" content="#2563EB">
   <title>Mon compte | TrajectoireDroit</title>
   <meta name="author" content="Julien">
-  <meta name="description" content="Ton espace TrajectoireDroit, où tu gères ton abonnement Portalis et retrouves l'historique de tes achats.">
+  <meta name="description" content="Ton espace TrajectoireDroit pour retrouver tes achats et télécharger tes fichiers.">
   <meta name="robots" content="noindex">
   <link rel="canonical" href="https://trajectoiredroit.com/mon-compte.html">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -120,7 +120,7 @@
               <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
               <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
               <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
-              <a href="outil-fiche-arret.html" role="menuitem">🤖 Portalis</a>
+
               <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
             </div>
             <div class="megamenu__niveau-col">
@@ -322,7 +322,7 @@
         <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
         <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
         <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
-        <a class="mobile-nav__format" href="outil-fiche-arret.html"><span class="mobile-nav__format-icon" aria-hidden="true">🤖</span><span>Portalis</span></a>
+
         <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
       </div>
     </details>
@@ -371,7 +371,7 @@
     <section class="tool-hero" style="padding:54px 0 22px;text-align:center">
       <div class="container">
         <h1 style="font-family:'Spectral',Georgia,serif;font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.12;margin:0 0 14px">Mon compte</h1>
-        <p class="lead" style="max-width:560px;margin:0 auto;color:#475569;font-size:1.08rem">Tu retrouves ici ton abonnement Portalis et l'historique de tes achats.</p>
+        <p class="lead" style="max-width:560px;margin:0 auto;color:#475569;font-size:1.08rem">Tu retrouves ici l'historique de tes achats et tes liens de téléchargement.</p>
       </div>
     </section>
 
@@ -408,21 +408,6 @@
                 </div>
                 <button class="btn btn--ghost btn--sm" id="deconnexionBtn">Se déconnecter</button>
               </div>
-            </div>
-
-            <div class="compte-box">
-              <h2>Portalis</h2>
-              <div id="portalisNonAbonne">
-                <span class="compte-badge compte-badge--inactif">Pas encore abonné</span>
-                <p>6€/mois, résiliable à tout moment. Tu colles ton texte ou ton sujet, et Portalis te renvoie un corrigé structuré selon la méthode, que ce soit pour une fiche d'arrêt, un commentaire, un cas pratique ou une dissertation. Avec l'abonnement, tu t'en sers au-delà des essais gratuits.</p>
-                <button class="btn btn--primary" id="abonnerBtn">S'abonner à Portalis, 6€/mois →</button>
-              </div>
-              <div id="portalisAbonne" style="display:none">
-                <span class="compte-badge compte-badge--actif">✓ Abonnement actif</span>
-                <p class="compte-quota" id="quotaTexte"></p>
-                <button class="btn btn--outline" id="gererAbonnementBtn">Gérer mon abonnement</button>
-              </div>
-              <div class="compte-error" id="abonnementError"></div>
             </div>
 
             <div class="compte-box">
@@ -468,12 +453,11 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <script src="assets/js/main.js?v=5430c2c3" defer></script>
+  <script src="assets/js/main.js?v=4b8ba62a" defer></script>
   <script>
   (function(){
     var SUPABASE_URL = "https://ksqkhktcdgwrmzfcfjoe.supabase.co";
     var SUPABASE_ANON_KEY = "sb_publishable_Ahl2DDtcburQJZl1h2NHZQ_5eKh-isk";
-    var QUOTA_MENSUEL = 80;
 
     var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -489,41 +473,12 @@
 
     var compteEmail       = document.getElementById("compteEmail");
     var deconnexionBtn    = document.getElementById("deconnexionBtn");
-    var portalisNonAbonne = document.getElementById("portalisNonAbonne");
-    var portalisAbonne    = document.getElementById("portalisAbonne");
-    var quotaTexte        = document.getElementById("quotaTexte");
-    var abonnerBtn        = document.getElementById("abonnerBtn");
-    var gererAbonnementBtn= document.getElementById("gererAbonnementBtn");
-    var abonnementError   = document.getElementById("abonnementError");
     var achatsListe        = document.getElementById("achatsListe");
     var achatsVide         = document.getElementById("achatsVide");
-
-    function creerAttemptId(prefixe){
-      var alea = window.crypto && typeof window.crypto.randomUUID === "function"
-        ? window.crypto.randomUUID()
-        : Math.random().toString(36).slice(2, 14);
-      return prefixe + "-" + Date.now().toString(36) + "-" + alea;
-    }
 
     function afficherEtat(id){
       [etatChargement, etatConnexion, etatConnecte].forEach(function(el){ el.classList.remove("is-active"); });
       document.getElementById(id).classList.add("is-active");
-    }
-
-    async function chargerAbonnement(userId){
-      var rep = await sb.from("abonnements").select("*").eq("user_id", userId).eq("statut", "actif").maybeSingle();
-      if (rep.error || !rep.data){
-        portalisNonAbonne.style.display = "block";
-        portalisAbonne.style.display = "none";
-        return;
-      }
-      portalisNonAbonne.style.display = "none";
-      portalisAbonne.style.display = "block";
-      var mois = new Date().toISOString().slice(0, 7);
-      var usage = await sb.from("usage_portalis").select("compteur").eq("user_id", userId).eq("mois", mois).maybeSingle();
-      var compteur = usage.data ? usage.data.compteur : 0;
-      var restant = Math.max(0, QUOTA_MENSUEL - compteur);
-      quotaTexte.innerHTML = "Il te reste <strong>" + restant + "</strong> générations ce mois-ci (sur " + QUOTA_MENSUEL + ").";
     }
 
     // Accès à vie en self-service : régénère des liens de téléchargement signés
@@ -598,7 +553,6 @@
     async function afficherConnecte(session){
       compteEmail.textContent = session.user.email;
       afficherEtat("etatConnecte");
-      await chargerAbonnement(session.user.id);
       await chargerAchats(session.access_token);
     }
 
@@ -635,59 +589,6 @@
     deconnexionBtn.addEventListener("click", async function(){
       await sb.auth.signOut();
       afficherEtat("etatConnexion");
-    });
-
-    abonnerBtn.addEventListener("click", async function(){
-      abonnementError.style.display = "none";
-      abonnerBtn.disabled = true;
-      var res = await sb.auth.getSession();
-      var session = res.data && res.data.session;
-      if (!session){ abonnerBtn.disabled = false; return; }
-      try {
-        var rep = await fetch("/api/create-checkout", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            mode: "subscription",
-            supabaseUserId: session.user.id,
-            supabaseEmail: session.user.email,
-            attemptId: creerAttemptId("portalis")
-          })
-        });
-        var data = await rep.json();
-        if (!rep.ok || !data.url){ throw new Error(data.erreur || "Erreur"); }
-        window.location.href = data.url;
-      } catch (e){
-        abonnementError.textContent = "L'ouverture du paiement a échoué. Réessaie dans un instant.";
-        abonnementError.style.display = "block";
-        abonnerBtn.disabled = false;
-      }
-    });
-
-    gererAbonnementBtn.addEventListener("click", async function(){
-      abonnementError.style.display = "none";
-      gererAbonnementBtn.disabled = true;
-      var res = await sb.auth.getSession();
-      var session = res.data && res.data.session;
-      if (!session){ gererAbonnementBtn.disabled = false; return; }
-      try {
-        var rep = await fetch("/api/create-checkout", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            type: "portal",
-            supabaseUserId: session.user.id,
-            attemptId: creerAttemptId("portail")
-          })
-        });
-        var data = await rep.json();
-        if (!rep.ok || !data.url){ throw new Error(data.erreur || "Erreur"); }
-        window.location.href = data.url;
-      } catch (e){
-        abonnementError.textContent = "L'ouverture du portail a échoué. Réessaie dans un instant.";
-        abonnementError.style.display = "block";
-        gererAbonnementBtn.disabled = false;
-      }
     });
 
     sb.auth.onAuthStateChange(function(_event, session){

@@ -36,7 +36,20 @@ async function capturerCheckout(executer) {
       ...body,
     } }, res);
     assert.equal(res.statusCode, 200, JSON.stringify(body));
-    return appels.at(-1).params;
+    const params = appels.at(-1).params;
+    if (body.produitId === "stage-methode") {
+      assert.equal(params.custom_fields, undefined, "le stage conserve son parcours sans champ d'emails");
+      return params;
+    }
+    assert.equal(params.custom_fields.length, 1);
+    assert.deepEqual(params.custom_fields[0], {
+      key: "emails", type: "dropdown", optional: true,
+      label: { type: "custom", custom: "Révisions et offres par email" },
+      dropdown: { default_value: "oui", options: [
+        { label: "Oui", value: "oui" }, { label: "Non merci", value: "non" },
+      ] },
+    }, "le choix d'emails reste seul et facultatif, sur tous les parcours");
+    return params;
   };
   try {
     await executer(envoyer, appels);
@@ -49,8 +62,8 @@ async function capturerCheckout(executer) {
   }
 }
 
-test("chaque produit payant et Portalis ont un visuel existant sur le domaine du site", () => {
-  const attendus = Object.entries(PRODUITS).filter(([, p]) => p.prix > 0).map(([id]) => id).concat("portalis");
+test("chaque produit payant possède un visuel existant sur le domaine du site", () => {
+  const attendus = Object.entries(PRODUITS).filter(([, p]) => p.prix > 0).map(([id]) => id);
   assert.deepEqual(Object.keys(IMAGES_PRODUITS).sort(), attendus.sort());
   for (const [id, image] of Object.entries(IMAGES_PRODUITS)) {
     const url = new URL(image);
@@ -134,13 +147,5 @@ test("les Packs Ultra conservent leur couverture en cadeau et en deux ou trois f
         }
       }
     }
-  });
-});
-
-test("Portalis conserve son Price récurrent existant", async () => {
-  await capturerCheckout(async (envoyer) => {
-    const params = await envoyer({ mode: "subscription", supabaseUserId: "test", supabaseEmail: "eleve@example.com" });
-    assert.deepEqual(params.line_items, [{ price: "price_1TqyboIJrx5ith04BGxcyg5T", quantity: 1 }]);
-    assert.equal(params.mode, "subscription");
   });
 });

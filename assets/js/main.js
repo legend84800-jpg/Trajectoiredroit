@@ -115,7 +115,6 @@
     { t: "Méthode du commentaire d'arrêt", u: 'methode-commentaire-arret.html', c: 'Méthode' },
     { t: 'Méthode de la dissertation juridique', u: 'methode-dissertation-juridique.html', c: 'Méthode' },
     { t: "Méthode de la fiche d'arrêt", u: 'methode-fiche-arret.html', c: 'Méthode' },
-    { t: 'Correcteur IA gratuit (fiche, commentaire, cas pratique, dissert)', u: 'outil-fiche-arret.html', c: 'Outil gratuit' },
     { t: 'Quiz : teste ta méthode', u: 'quiz-methode.html', c: 'Outil gratuit' },
     { t: 'Quiz : quel métier du droit te correspond ?', u: 'quiz-metier-droit.html', c: 'Outil gratuit' },
     { t: 'Toutes les ressources gratuites', u: 'ressources-gratuites.html', c: 'Outil gratuit' },

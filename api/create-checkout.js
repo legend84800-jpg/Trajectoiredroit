@@ -1,7 +1,6 @@
 // Crée une session Stripe Checkout pour un produit TJD, avec order bump optionnel.
 // Reçoit { produitId, bumpId?, attemptId? } en POST. Retourne { url } pour rediriger le client.
-// Gère aussi l'abonnement récurrent Portalis (mode: "subscription") et l'ouverture
-// du portail client Stripe pour le gérer/résilier (type: "portal"), afin de rester
+// Garde le portail Stripe des anciens abonnements (type: "portal"), afin de rester
 // sous la limite de 12 fonctions serverless du plan Vercel Hobby.
 
 const crypto = require("crypto");
@@ -32,11 +31,11 @@ const CHAMP_EMAILS = {
   key: "emails",
   type: "dropdown",
   optional: true,
-  label: { type: "custom", custom: "Conseils de révision et offres par email" },
+  label: { type: "custom", custom: "Révisions et offres par email" },
   dropdown: {
     default_value: "oui",
     options: [
-      { label: "Oui, je veux les recevoir", value: "oui" },
+      { label: "Oui", value: "oui" },
       { label: "Non merci", value: "non" },
     ],
   },
@@ -45,8 +44,6 @@ const donneesProduit = (p, estStage) => (estStage || nombreFichiers(p) === 0
   ? { name: p.nom }
   : { name: p.nom, description: descriptionLivraison(p) });
 
-
-const PORTALIS_PRICE_ID = "price_1TqyboIJrx5ith04BGxcyg5T";
 
 function normaliserAttemptId(valeur) {
   if (typeof valeur === "string" && /^[a-zA-Z0-9_-]{16,80}$/.test(valeur.trim())) {
@@ -75,6 +72,13 @@ async function handler(req, res) {
   let corps = req.body;
   if (typeof corps === "string") { try { corps = JSON.parse(corps); } catch { corps = {}; } }
   corps = corps || {};
+
+  // L'offre retirée ne doit plus créer de souscription depuis une page en cache.
+  // Les Packs Ultra en plusieurs fois passent par produitId et echeances.
+  if (corps.mode === "subscription") {
+    res.status(410).json({ erreur: "Portalis a été retiré du site.", code: "offre_retiree" });
+    return;
+  }
 
   const stripeKey = process.env.STRIPE_SECRET_KEY;
   if (!stripeKey) { res.status(500).json({ erreur: "Configuration Stripe manquante", code: "configuration" }); return; }
@@ -114,70 +118,6 @@ async function handler(req, res) {
       res.status(200).json({ url: sessionPortail.url });
     } catch (e) {
       console.error("create-checkout (portal) erreur Stripe", {
-        attemptId,
-        stripeCode: e && e.code ? e.code : "inconnu",
-        stripeType: e && e.type ? e.type : "inconnu",
-      });
-      res.status(502).json({ erreur: "Erreur Stripe", code: "stripe" });
-    }
-    return;
-  }
-
-  // Abonnement récurrent Portalis.
-  if (corps.mode === "subscription") {
-    const supabaseUserId = typeof corps.supabaseUserId === "string" ? corps.supabaseUserId.trim() : "";
-    const supabaseEmail = typeof corps.supabaseEmail === "string" ? corps.supabaseEmail.trim() : "";
-    if (!supabaseUserId || !supabaseEmail) { res.status(400).json({ erreur: "Compte manquant", code: "compte_manquant" }); return; }
-
-    // Réutilise le customer Stripe existant si l'utilisateur a déjà été abonné,
-    // pour éviter de créer un doublon à chaque nouvelle tentative d'abonnement.
-    let customerExistant = null;
-    try {
-      const lignes = await selectionner(
-        "abonnements",
-        `user_id=eq.${encodeURIComponent(supabaseUserId)}&select=stripe_customer_id&limit=1`
-      );
-      if (lignes[0] && lignes[0].stripe_customer_id) customerExistant = lignes[0].stripe_customer_id;
-    } catch (e) {
-      console.error("create-checkout (subscription) erreur Supabase:", e.message);
-      // Non bloquant : Stripe créera un nouveau customer par email si la lecture échoue.
-    }
-
-    const paramsAbo = {
-      line_items: [{ price: PORTALIS_PRICE_ID, quantity: 1 }],
-      mode: "subscription",
-      locale: "fr",
-      wallet_options: { link: { display: "never" } },
-      // Portalis est un abonnement, hors périmètre de la remise post-achat.
-      allow_promotion_codes: false,
-      success_url: `${origin}/mon-compte.html?abonnement=ok`,
-      cancel_url: `${origin}/mon-compte.html`,
-      metadata: { supabase_user_id: supabaseUserId, attemptId, source: "site" },
-      subscription_data: { metadata: { supabase_user_id: supabaseUserId } },
-      branding_settings: {
-        display_name: "Trajectoire Droit",
-        icon: { type: "url", url: `${origin}/assets/logo-tjd-mark.png` },
-        background_color: "#ffffff",
-        button_color: "#1A2851",
-        border_style: "rounded",
-        font_family: "pt_serif",
-      },
-      integration_identifier: INTEGRATION_IDS.portalis,
-    };
-    if (customerExistant) {
-      paramsAbo.customer = customerExistant;
-    } else {
-      paramsAbo.customer_email = supabaseEmail;
-    }
-
-    try {
-      const sessionAbo = await stripe.checkout.sessions.create(
-        paramsAbo,
-        { idempotencyKey: `portalis-${attemptId}` }
-      );
-      res.status(200).json({ url: sessionAbo.url, sessionId: sessionAbo.id, attemptId });
-    } catch (e) {
-      console.error("create-checkout (subscription) erreur Stripe", {
         attemptId,
         stripeCode: e && e.code ? e.code : "inconnu",
         stripeType: e && e.type ? e.type : "inconnu",
