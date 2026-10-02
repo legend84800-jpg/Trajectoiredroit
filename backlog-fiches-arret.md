@@ -83,6 +83,7 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 - [x] matiere:droit pénal L1 | arret:Cass. crim., 1962, Lacour | theme:la distinction entre acte préparatoire et commencement d'exécution
 - [x] matiere:droit pénal L1 | arret:Cass. crim., 20 juin 2006, n° 05-85.255, Sollac | theme:la présomption d'imputation d'une infraction non intentionnelle à l'organe ou au représentant d'une personne morale (ajouté et publié le 2026-09-06, backlog dédié épuisé, arrêt repéré dans le cours complet TJD puis vérifié et redaté après correction d'une confusion de la source interne avec l'arrêt Tecphy du 24 octobre 2000)
 - [x] matiere:droit pénal L1 | arret:Cass. crim., 17 décembre 2008, n° 08-82.085 | theme:la frontière entre acte préparatoire et commencement d'exécution dans la tentative d'escroquerie à l'assurance (ajouté et publié le 2026-09-17, backlog dédié épuisé, arrêt repéré sur la page de matière droit-penal-general-l1.html, sourcé exclusivement sur le web faute de documentation dans les dossiers élèves et les contenus TJD internes)
+- [x] matiere:droit pénal L1 | arret:Cons. const., 16 juin 1999, n° 99-411 DC, loi sécurité routière | theme:en principe pas de présomption de culpabilité en matière répressive (exception encadrée par trois conditions), nul n'est punissable que de son propre fait, et la définition d'un délit doit inclure l'élément moral (ajouté et publié le 2026-10-02, backlog entièrement vide, mode fallback, pénal L1 première matière en amont à cinq fiches après biens L2)
 
 ## Droit du travail L3
 
