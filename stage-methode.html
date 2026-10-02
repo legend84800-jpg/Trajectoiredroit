@@ -735,7 +735,7 @@
             <li>Le replay de toutes les séances</li>
             <li>Les cadeaux de chaque séance (fiches de citations, corrigés rédigés, une fiche complète)</li>
           </ul>
-          <form id="stageForm" class="form" style="margin-top:4px">
+          <form id="stageForm" class="form" novalidate style="margin-top:4px">
             <div class="grid-2" style="gap:16px">
               <div class="form__row">
                 <label class="form__label" for="stage_email">Email</label>
@@ -965,19 +965,9 @@
   <script>
     (function(){
       // Vraie date de début du stage. Jamais de faux compte à rebours.
-      var debutStage = new Date('2026-10-27T18:00:00+01:00');
+      var debutStage = new Date('2026-10-27T17:00:00');
       var msParJour = 1000 * 60 * 60 * 24;
-      // Les jours affichés suivent le calendrier de Paris, comme les horaires du stage.
-      function jourParis(date) {
-        var valeurs = {};
-        new Intl.DateTimeFormat('fr-FR', {
-          timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit'
-        }).formatToParts(date).forEach(function(partie) {
-          valeurs[partie.type] = partie.value;
-        });
-        return Date.UTC(Number(valeurs.year), Number(valeurs.month) - 1, Number(valeurs.day));
-      }
-      var joursRestants = Math.round((jourParis(debutStage) - jourParis(new Date())) / msParJour);
+      var joursRestants = Math.ceil((debutStage - new Date()) / msParJour);
       var badges = document.querySelectorAll('.js-decision-badge');
       var texte;
       if (joursRestants > 1) texte = '📅 Le stage commence dans ' + joursRestants + ' jours';
