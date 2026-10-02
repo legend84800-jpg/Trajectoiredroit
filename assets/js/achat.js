@@ -65,8 +65,15 @@
     return erreur;
   }
 
-  function mesurerCheckout(action, produitId, diagnostic) {
-    if (estTestInterne()) return;
+  function mesurerCheckout(action, produitId, apresMesure, diagnostic) {
+    if (typeof apresMesure !== 'function') {
+      diagnostic = apresMesure || diagnostic;
+      apresMesure = null;
+    }
+    if (estTestInterne()) {
+      if (apresMesure) apresMesure();
+      return;
+    }
     diagnostic = diagnostic || {};
     var typeErreur = codeDiagnostic(diagnostic.type, 'inconnue');
     var statutErreur = Number.isInteger(diagnostic.statut) ? diagnostic.statut : 0;
@@ -100,6 +107,7 @@
         // Le suivi reste facultatif pour ouvrir Stripe.
       }
     }
+    if (apresMesure) apresMesure();
   }
 
   function tjdAcheter(produitId, btnEl) {

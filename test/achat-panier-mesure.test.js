@@ -142,3 +142,22 @@ for (const panne of ['ga4', 'matomo', 'ga4-clic', 'matomo-clic']) {
     assert.ok(!appels.includes('alerte'));
   });
 }
+
+test('la page du stage conserve sa redirection par rappel immédiat', () => {
+  const appels = [];
+  const window = {
+    location: { search: '', hostname: 'trajectoiredroit.com', protocol: 'https:', pathname: '/stage-methode.html' },
+    gtag: () => appels.push('ga4'),
+    _paq: { push: () => appels.push('matomo') },
+    setTimeout: () => appels.push('attente'),
+  };
+  const document = { readyState: 'loading', addEventListener: () => {}, documentElement: {} };
+  vm.runInNewContext(source, {
+    window, document,
+    localStorage: { getItem: () => null }, sessionStorage: { getItem: () => null },
+    gtag: window.gtag, URLSearchParams,
+  });
+  window.tjdMesurerCheckout('CheckoutCree', 'stage-methode', () => appels.push('redirige'));
+  assert.deepEqual(appels, ['ga4', 'matomo', 'redirige']);
+  assert.ok(!appels.includes('attente'));
+});
