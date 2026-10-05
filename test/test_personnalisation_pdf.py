@@ -161,8 +161,8 @@ class PersonnalisationPdfTest(unittest.TestCase):
         self.assertEqual(lecteur.metadata["/TJDFingerprint"], identite.fingerprint)
         texte = "\n".join(page.extract_text() or "" for page in lecteur.pages)
         self.assertIn(identite.licence, texte)
-        self.assertIn("jul***@gmail.com", texte)
-        self.assertIn("Julien D.", texte)
+        self.assertIn("julien.test@gmail.com", texte)
+        self.assertIn("Julien Dupont", texte)
 
     def test_sommaire_et_signets_survivent_a_la_personnalisation(self):
         session = session_payee()

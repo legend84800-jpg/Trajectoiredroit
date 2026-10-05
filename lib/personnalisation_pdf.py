@@ -164,20 +164,26 @@ def _nom_depuis_email(email: str) -> str:
     return " ".join(mot[:1].upper() + mot[1:].lower() for mot in mots[:2]) or "Titulaire"
 
 
-def abreger_nom(nom: str, email: str) -> str:
-    propre = _nettoyer_texte(nom) or _nom_depuis_email(email)
-    morceaux = propre.split()
-    if len(morceaux) < 2:
-        return propre
-    return f"{morceaux[0]} {morceaux[-1][0].upper()}."
+def nom_licence(nom: str, email: str) -> str:
+    """Nom complet de l'acheteur, tel qu'il l'a saisi (décision de Julien du 05/10/2026).
+
+    Jusqu'à cette date la licence n'affichait que « Prénom N. ». Elle porte maintenant
+    le nom en entier. Sans nom saisi, il se déduit de l'adresse email.
+    """
+    return _nettoyer_texte(nom) or _nom_depuis_email(email)
 
 
-def masquer_email(email: str) -> str:
+def email_licence(email: str) -> str:
+    """Adresse email complète affichée sur la licence et dans le filigrane (05/10/2026).
+
+    Elle était masquée (« jul***@gmail.com ») jusqu'à cette date. Le champ de
+    l'identité garde le nom `email_masque` pour rester compatible avec les copies déjà
+    livrées et avec l'outil d'identification des fuites.
+    """
     local, separateur, domaine = email.strip().partition("@")
     if not separateur or not local or not domaine:
         raise ValueError("Adresse email invalide")
-    visible = local[: min(3, len(local))]
-    return f"{visible}***@{domaine.lower()}"
+    return f"{local}@{domaine.lower()}"
 
 
 def codes_licence_depuis_session(
@@ -259,8 +265,8 @@ def identite_depuis_session(
     return IdentiteLicence(
         licence=licence,
         fingerprint=fingerprint,
-        nom_affiche=abreger_nom(nom, email),
-        email_masque=masquer_email(email),
+        nom_affiche=nom_licence(nom, email),
+        email_masque=email_licence(email),
         email_hash=hashlib.sha256(email.encode("utf-8")).hexdigest(),
     )
 

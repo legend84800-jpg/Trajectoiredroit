@@ -26,7 +26,7 @@ class CadeauPersonnalisationTest(unittest.TestCase):
     def test_licence_au_nom_et_a_l_email_de_l_etudiant(self):
         identite = identite_depuis_session(session(), "secret", "pack-ultra-l1-s1", 0)
         self.assertEqual(identite.nom_affiche, "Léa")
-        self.assertEqual(identite.email_masque, "lea***@example.com")
+        self.assertEqual(identite.email_masque, "lea.martin@example.com")
         self.assertEqual(
             identite.email_hash,
             hashlib.sha256(b"lea.martin@example.com").hexdigest(),
@@ -35,13 +35,13 @@ class CadeauPersonnalisationTest(unittest.TestCase):
     def test_sans_prenom_le_nom_vient_de_l_email_de_l_etudiant(self):
         s = session(metadata={"produitIds": "pack-ultra-l1-s1", "cadeauEmail": "lea.martin@example.com"})
         identite = identite_depuis_session(s, "secret", "pack-ultra-l1-s1", 0)
-        self.assertEqual(identite.nom_affiche, "Lea M.")
+        self.assertEqual(identite.nom_affiche, "Lea Martin")
 
     def test_sans_cadeau_la_licence_reste_celle_de_l_acheteur(self):
         s = session(metadata={"produitIds": "pack-ultra-l1-s1"})
         identite = identite_depuis_session(s, "secret", "pack-ultra-l1-s1", 0)
-        self.assertEqual(identite.email_masque, "par***@example.com")
-        self.assertEqual(identite.nom_affiche, "Marie D.")
+        self.assertEqual(identite.email_masque, "parent@example.com")
+        self.assertEqual(identite.nom_affiche, "Marie Dupont")
 
     def test_paiement_en_plusieurs_fois_accepte_seulement_avec_echeances(self):
         en_trois = session(
