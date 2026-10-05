@@ -12,7 +12,6 @@ const { upsert, insererSiAbsent, supprimer } = require("./_supabase");
 const { construireLiensTelechargement } = require("./_liens-telechargement");
 const { creerClientStripe } = require("./_stripe");
 const { bornerAbonnement } = require("./_echeances");
-const { construireConseilUtilisation } = require("./_conseils-utilisation");
 const {
   cadeauDepuisMetadata,
   formaterNomOffrant,
@@ -393,7 +392,6 @@ async function recupererCodePromo(promotionCodeId, stripe) {
 async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
   const nomsAchetes = produits.map(p => p.nom).join(" + ");
   const contientPackUltra = produits.some(p => Array.isArray(p.inclus) && Array.isArray(p.blobsMeta));
-  const conseil = construireConseilUtilisation(produits);
 
   const boutonsFichiers = liens.map(l =>
     `<a href="${l.url}" style="display:inline-block;margin:8px 0;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;font-family:sans-serif;font-size:14px;">
@@ -403,7 +401,7 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
   const boutonPackUltra = contientPackUltra
     ? `<a href="https://trajectoiredroit.com/mon-compte.html" style="display:inline-block;margin:8px 0;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;font-family:sans-serif;font-size:14px;">Accéder à mon Pack Ultra</a><br>`
     : "";
-  const boutons = `${boutonPackUltra}${boutonsFichiers}${conseil.html ? `\n          ${conseil.html}` : ""}`;
+  const boutons = `${boutonPackUltra}${boutonsFichiers}`;
 
   const ligneCodePromo = codeAmbassadeur
     ? `<p style="font-size:13px;color:#555;margin:0 0 24px;">Réduction appliquée avec le code <strong>${codeAmbassadeur}</strong>.</p>`
@@ -475,8 +473,8 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
 </html>`;
 
   const texte = contientPackUltra
-    ? `Tu viens d'acheter ${nomsAchetes}. Tes ressources sont disponibles dès maintenant.\n\nPour télécharger les ressources de ton Pack Ultra, connecte-toi à https://trajectoiredroit.com/mon-compte.html avec l'adresse email utilisée pour cet achat. Ensuite, ouvre la ressource dont tu as besoin.\n\n${liens.length ? `Tes autres ressources :\n${liens.map(l => `${l.nom} : ${l.url}`).join("\n")}\n\n` : ""}${conseil.texte ? `${conseil.texte}\n\n` : ""}Tu peux retrouver les fichiers de ton pack à tout moment. L'accès est à vie.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com. Je réponds sous 24 heures.\n\nJulien, TrajectoireDroit`
-    : `Tu viens d'acheter ${nomsAchetes}, et tes PDF sont prêts.\n\nTélécharge-les ici :\n${liens.map(l => `${l.nom} : ${l.url}`).join("\n")}\n\n${conseil.texte ? `${conseil.texte}\n\n` : ""}Liens valables 48 heures. Passé ce délai, connecte-toi à https://trajectoiredroit.com/mon-compte.html avec cette même adresse email pour régénérer un lien à tout moment : l'accès est à vie.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com. Je réponds sous 24 heures.\n\nMon but est de créer les meilleures fiches de droit en France, donc à la moindre remarque sur le fond ou sur la forme, n'hésite pas à me contacter. Je te renvoie la fiche améliorée, et si tes commentaires sont détaillés et pertinents, je t'offre une fiche de citations en cadeau.\n\nCes mises à jour sont automatiques. N'hésite pas à revenir régulièrement sur ton espace Mon compte (https://trajectoiredroit.com/mon-compte.html) pour retélécharger le même format que tu as déjà acheté. Tu profites ainsi de la dernière version sans rien payer de plus.\n\nJ'ai mis un temps long à rédiger ces fiches, alors je te fais confiance, garde-les pour toi et ne les divulgue pas à autrui, merci à toi 🙂\n\nSi tu as un bon réseau dans ta promo, j'ai un programme ambassadeurs (https://trajectoiredroit.com/ambassadeurs.html) : 10 % de réduction pour chaque filleul, 20 % de commission pour toi.\n\nEnfin, si tu veux aussi apprendre le droit de manière plus ludique, tu peux me retrouver sur YouTube (https://www.youtube.com/@TrajectoireDroit) et sur TikTok (https://www.tiktok.com/@trajectoiredroit).\n\nJulien, TrajectoireDroit`;
+    ? `Tu viens d'acheter ${nomsAchetes}. Tes ressources sont disponibles dès maintenant.\n\nPour télécharger les ressources de ton Pack Ultra, connecte-toi à https://trajectoiredroit.com/mon-compte.html avec l'adresse email utilisée pour cet achat. Ensuite, ouvre la ressource dont tu as besoin.\n\n${liens.length ? `Tes autres ressources :\n${liens.map(l => `${l.nom} : ${l.url}`).join("\n")}\n\n` : ""}Tu peux retrouver les fichiers de ton pack à tout moment. L'accès est à vie.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com. Je réponds sous 24 heures.\n\nJulien, TrajectoireDroit`
+    : `Tu viens d'acheter ${nomsAchetes}, et tes PDF sont prêts.\n\nTélécharge-les ici :\n${liens.map(l => `${l.nom} : ${l.url}`).join("\n")}\n\nLiens valables 48 heures. Passé ce délai, connecte-toi à https://trajectoiredroit.com/mon-compte.html avec cette même adresse email pour régénérer un lien à tout moment : l'accès est à vie.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com. Je réponds sous 24 heures.\n\nMon but est de créer les meilleures fiches de droit en France, donc à la moindre remarque sur le fond ou sur la forme, n'hésite pas à me contacter. Je te renvoie la fiche améliorée, et si tes commentaires sont détaillés et pertinents, je t'offre une fiche de citations en cadeau.\n\nCes mises à jour sont automatiques. N'hésite pas à revenir régulièrement sur ton espace Mon compte (https://trajectoiredroit.com/mon-compte.html) pour retélécharger le même format que tu as déjà acheté. Tu profites ainsi de la dernière version sans rien payer de plus.\n\nJ'ai mis un temps long à rédiger ces fiches, alors je te fais confiance, garde-les pour toi et ne les divulgue pas à autrui, merci à toi 🙂\n\nSi tu as un bon réseau dans ta promo, j'ai un programme ambassadeurs (https://trajectoiredroit.com/ambassadeurs.html) : 10 % de réduction pour chaque filleul, 20 % de commission pour toi.\n\nEnfin, si tu veux aussi apprendre le droit de manière plus ludique, tu peux me retrouver sur YouTube (https://www.youtube.com/@TrajectoireDroit) et sur TikTok (https://www.tiktok.com/@trajectoiredroit).\n\nJulien, TrajectoireDroit`;
 
   const payload = {
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
@@ -1013,5 +1011,4 @@ module.exports._test = {
   gererPanierAbandonne,
   uuidRelance,
   creerRemisePostAchat,
-  envoyerEmail,
 };
