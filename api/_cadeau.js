@@ -5,6 +5,8 @@
 // nominatifs à l'étudiant, et envoie au parent une confirmation sans les fichiers.
 // Aucune carte cadeau ni aucun code à gérer.
 
+const { construireConseilUtilisation } = require("./_conseils-utilisation");
+
 const LIMITES = { email: 200, prenom: 40, message: 300 };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -178,6 +180,7 @@ function gabarit(titre, corps) {
 // donne l'accès au pack. Tutoiement, comme tous les emails aux étudiants.
 function construireEmailEtudiant({ cadeau, nomOffrant, produits, liens }) {
   const nomsPack = produits.map((p) => p.nom).join(" + ");
+  const conseil = construireConseilUtilisation(produits);
   const nomsPhrase = nomEnPhrase(nomsPack);
   const offrant = nomOffrant || "";
   const sujet = `${offrant || "On"} t'offre ${nomsPhrase}`;
@@ -202,7 +205,7 @@ function construireEmailEtudiant({ cadeau, nomOffrant, produits, liens }) {
           ${blocMessage}
           <p style="${STYLE_P}">${echapperHtml(acces)}</p>
           <a href="${URL_COMPTE}" style="${STYLE_BOUTON}">Accéder à mon Pack Ultra</a><br>
-          ${boutonsFichiers}
+          ${boutonsFichiers}${conseil.html ? `\n          ${conseil.html}` : ""}
           <p style="${STYLE_P}">${echapperHtml(licence)}</p>
           <p style="${STYLE_P}">${echapperHtml(aide)}</p>`);
 
@@ -212,6 +215,7 @@ function construireEmailEtudiant({ cadeau, nomOffrant, produits, liens }) {
     cadeau.message ? `Voici le message qui accompagne ce cadeau :\n« ${cadeau.message} »` : "",
     `${acces}\n${URL_COMPTE}`,
     (liens || []).length ? (liens || []).map((l) => `${l.nom} : ${l.url}`).join("\n") : "",
+    conseil.texte,
     licence,
     aide,
     "Julien, TrajectoireDroit",
