@@ -1,9 +1,8 @@
 // Conseil dicté par Julien pour la livraison des majeures, le 04/10/2026.
 // Une seule source pour les emails HTML et texte, achat direct ou cadeau.
 const PARAGRAPHES_MAJEURES = [
-  "Utilise les majeures préparées pour tes cas pratiques. C'est aussi bien de les apprendre par cœur, en y consacrant environ trente minutes par jour.",
-  "Tu lis une majeure, puis, sans regarder le document, tu essaies de te rappeler toutes les étapes par cœur. Ensuite, tu compares ce que tu as retrouvé avec la majeure pour repérer les étapes que tu as oubliées. Tu relis les étapes oubliées, puis tu essaies à nouveau de les réciter sans regarder.",
-  "Comme ça, dans tes cas pratiques, tu vas être super efficace. Tu choisis la majeure qui correspond au problème posé, puis tu vérifies chaque condition à partir des faits de l'énoncé.",
+  "Utilise les majeures préparées pour des cas pratiques. Et c'est bien de les apprendre par cœur, environ 30 minutes par jour.",
+  "Tu lis une majeure et puis après, sans regarder, tu essaies de te rappeler toutes les étapes par cœur. Comme ça, dans tes cas pratiques, tu vas être super efficace.",
 ];
 
 function construireConseilUtilisation(produits) {
