@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#1A2851">
+  <title>Sujets de droit des contrats L2 corrigés (PDF 2026)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Sujets de droit des contrats L2 : quatorze sujets par thème, une dissertation et un cas pratique corrigés, huit questions de cours et la fiche complète en PDF.">
+  <link rel="canonical" href="https://trajectoiredroit.com/sujets-droit-des-contrats-l2.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sujets de droit des contrats L2, exemples corrigés">
+  <meta property="og:description" content="Sujets de droit des contrats L2 : quatorze sujets par thème, une dissertation et un cas pratique corrigés, huit questions de cours et la fiche complète en PDF.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/sujets-droit-des-contrats-l2.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/sujets-droit-des-contrats-l2.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sujets de droit des contrats L2, exemples corrigés">
+  <meta name="twitter:description" content="Sujets de droit des contrats L2 : quatorze sujets par thème, une dissertation et un cas pratique corrigés, huit questions de cours et la fiche complète en PDF.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/sujets-droit-des-contrats-l2.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Sujets de droit des contrats L2, exemples d'examen avec leur correction",
+      "description": "Sujets de droit des contrats L2 : quatorze sujets par thème, une dissertation et un cas pratique corrigés, huit questions de cours et la fiche complète en PDF.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://trajectoiredroit.com/assets/covers/fiche-contrats-l2-s1.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Les sujets d'examen de droit des contrats en L2"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://trajectoiredroit.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sujets de droit des contrats L2",
+          "item": "https://trajectoiredroit.com/sujets-droit-des-contrats-l2.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quels sont les sujets de droit des contrats en L2 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les sujets portent sur la formation du contrat (pourparlers, offre, acceptation, vices du consentement), sur son contenu (équilibre, clauses abusives), sur ses effets (force obligatoire, imprévision) et sur les sanctions de l'inexécution. Le format change selon la faculté, entre dissertation, cas pratique, commentaire d'arrêt et questions de cours."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment faire une dissertation de droit des contrats ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tu définis d'abord les mots du sujet, tu poses une problématique sous forme de question, puis tu bâtis un plan en deux parties qui répond à cette question. Chaque idée s'appuie sur un article du Code civil et sur un arrêt daté, comme l'arrêt Manoukian du 26 novembre 2003 pour la rupture des pourparlers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "L'article 1171 du Code civil s'applique-t-il entre professionnels ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pas dans les contrats conclus par une personne exerçant des activités de production, de distribution ou de services. La chambre commerciale de la Cour de cassation l'a jugé le 13 mai 2026, et le déséquilibre significatif relève alors de l'article L. 442-1 du Code de commerce. L'article 1171 garde un domaine résiduel pour les contrats d'adhésion qui échappent à ce texte et au Code de la consommation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Existe-t-il des sujets de droit des contrats corrigés en PDF ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, sous la forme de la fiche complète de droit des contrats L2, à 14,99 €, qui reprend le programme en 157 pages avec les articles et les arrêts à citer. Le cours complet, à 19,99 €, développe chaque chapitre sur 273 pages et donne les arguments pour les devoirs maison."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=4e41d062">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>8 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a href="droit-penal-general-l1.html" role="menuitem">Droit pénal général (L1 S2)</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 239 € au lieu de 424,69 €, 44 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-44 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">424,69 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 22 ressources, 199 € au lieu de 309,78 €, 36 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-36 %</span></span>
+                    <span class="megamenu__pack-tile-meta">22 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">309,78 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 28 ressources, 229 € au lieu de 399,72 €, 43 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-43 %</span></span>
+                    <span class="megamenu__pack-tile-meta">28 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,72 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 27 ressources, 209 € au lieu de 369,73 €, 43 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-43 %</span></span>
+                    <span class="megamenu__pack-tile-meta">27 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">369,73 €</span><span class="megamenu__pack-tile-price">209 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 37 ressources, 299 € au lieu de 519,63 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">37 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">519,63 €</span><span class="megamenu__pack-tile-price">299 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span><span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Pack 10 séances <em>· -14 %</em></strong><small>890 € · 89 €/h</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>Stage en direct
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <div class="stage-teaser">
+              <button type="button" class="dropdown__item stage-teaser__trigger" aria-expanded="false" aria-controls="stageTeaserPanel">
+                <span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg></span>
+                <span class="stage-teaser__main">
+                  <strong>Stage de méthode en direct</strong>
+                  <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+                  <span class="stage-teaser__countdown"></span>
+                </span>
+              </button>
+              <div class="stage-teaser__panel" id="stageTeaserPanel">
+                <p>Trois séances en direct, 8 h au total pour 176 €, pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un sujet travaillé à chaque fois. La prochaine session a lieu les 27, 28 et 29 octobre, pendant les vacances de la Toussaint. Plus que 3 places.</p>
+              </div>
+            </div>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="stage-methode.html">Voir toutes les infos et réserver →</a>
+          </div>
+        </div>
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+    <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
+      <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>
+      <span class="mobile-nav__stage-main">
+        <span class="mobile-nav__stage-title">Stage en direct</span>
+        <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+        <span class="stage-teaser__countdown"></span>
+      </span>
+    </a>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO ARTICLE -->
+    <article>
+    <section class="article-hero">
+      <div class="container container--narrow">
+        <nav class="article-breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/">Accueil</a> · <a href="blog.html">Blog</a> · <span>Sujets de droit des contrats L2</span>
+        </nav>
+        <div class="post-meta">
+          <span class="post-meta__cat">Droit des contrats · L2</span>
+          <span class="post-meta__dot"></span>
+          <span>14 min de lecture</span>
+          <span class="post-meta__dot"></span>
+          <span>Mis à jour le 6 octobre 2026</span>
+        </div>
+        <h1 class="article-hero__title">Sujets de droit des contrats L2, exemples d'examen avec leur correction</h1>
+        <p class="article-hero__standfirst">En droit des contrats L2, les sujets d'examen prennent quatre formes, la dissertation, le cas pratique, le commentaire d'arrêt et les questions de cours. Tu trouves ici quatorze sujets classés par thème du programme, une dissertation corrigée sur la bonne foi, un cas pratique corrigé sur les clauses abusives, huit questions de cours et la fiche complète en PDF.</p>
+        <div class="article-author">
+          <img class="article-author__avatar" src="assets/julien-sm.webp" alt="Julien, professeur de droit">
+          <div>
+            <div class="article-author__name">Julien</div>
+            <div class="article-author__role">Master II de droit, Panthéon-Assas · Major de promo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="conversion-offer" aria-labelledby="offre-sujetscontrats-titre">
+      <div class="container">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/fiche-contrats-l2-s1.webp" alt="Couverture de la fiche complète Droit des contrats L2 S1" fetchpriority="high" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">La fiche complète du semestre 1</p>
+            <h2 class="conversion-offer__title" id="offre-sujetscontrats-titre">Droit des contrats L2, la fiche complète de 157 pages</h2>
+            <p class="conversion-offer__summary"><strong>Tout le programme de la formation du contrat jusqu'aux sanctions de l'inexécution, avec la réforme de 2016 intégrée.</strong> Chaque chapitre donne les articles du Code civil, les définitions et les arrêts que tu cites dans tes dissertations, tes cas pratiques et tes commentaires d'arrêt.</p>
+            <ul class="conversion-offer__benefits">
+              <li>Les articles 1100 et suivants replacés dans leur contexte</li>
+              <li>Les arrêts à citer, avec leur date et leur apport</li>
+              <li>Un PDF reçu juste après le paiement</li>
+            </ul>
+            <div class="conversion-offer__choices" aria-label="Choisir le produit de droit des contrats">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-contrats-l2-s1">Fiche complète · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="cours-fiche-contrats-l2-s1">Cours complet · 19,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-l2">Toute la L2 · 79 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement Stripe · accès à vie · mises à jour incluses · garantie satisfait ou remboursé sous 7 jours</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:36px">
+      <div class="container container--narrow">
+
+        <!-- SOMMAIRE -->
+        <nav class="toc" aria-label="Sommaire">
+          <p class="toc__title">Dans cet article</p>
+          <ol>
+            <li><a href="#essentiel">Les sujets d'examen de droit des contrats</a></li>
+            <li><a href="#formats">Les quatre formats d'examen, un par un</a></li>
+            <li><a href="#banque">Quatorze sujets possibles, thème par thème</a></li>
+            <li><a href="#dissertation">Dissertation corrigée, la bonne foi</a></li>
+            <li><a href="#cas-pratique">Cas pratique corrigé, les clauses abusives</a></li>
+            <li><a href="#questions-cours">Huit questions de cours corrigées</a></li>
+            <li><a href="#erreurs">Les erreurs qui font perdre des points</a></li>
+            <li><a href="#progresser">Comment t'entraîner</a></li>
+            <li><a href="#pdf">Les sujets corrigés en PDF</a></li>
+            <li><a href="#faq">Questions fréquentes</a></li>
+          </ol>
+        </nav>
+
+        <div class="prose">
+
+          <h2 id="essentiel">Quels sujets d'examen tombent en droit des contrats en L2 ?</h2>
+          <p>Le programme de droit des contrats suit la vie du contrat. Tu étudies d'abord sa formation, qui va de la négociation jusqu'aux vices du consentement. Tu passes ensuite à son contenu et à sa validité. Les effets du contrat viennent après, et le programme se termine avec l'inexécution et ses sanctions. Depuis l'ordonnance du 10 février 2016, ratifiée par la loi du 20 avril 2018, tous ces chapitres s'appuient sur les articles 1100 et suivants du Code civil.</p>
+          <p>Les sujets d'examen puisent dans ces quatre blocs, et chaque faculté choisit son format. Tu dois donc regarder dans ta plaquette quel exercice t'attend, puis t'entraîner sur celui-là. Cette page te donne les quatre formats classiques, une liste de sujets possibles, une dissertation et un cas pratique corrigés, puis huit questions de cours.</p>
+
+          <div class="key-callout">
+            <div class="key-callout__label"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg>À retenir</div>
+            <p>Un sujet de droit des contrats se traite avec la même rigueur, quel que soit son format. Tu identifies d'abord la règle, avec son article du Code civil, puis tu l'appuies sur l'arrêt qui l'a précisée, et tu en tires la conséquence pour le sujet ou pour les faits. Un article cité sans arrêt reste théorique aux yeux du correcteur.</p>
+          </div>
+
+          <h2 id="formats">Les quatre formats d'examen de droit des contrats, un par un</h2>
+          <p>Voici ce que chaque exercice attend de toi, et la page qui t'aide à le préparer.</p>
+
+          <div class="card" style="padding:22px 24px; margin-bottom:16px">
+            <h3 style="margin-top:0">1. La dissertation</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Le sujet tient en quelques mots, par exemple « La bonne foi » ou « Le consentement ». Tu construis un plan en deux parties qui défend une thèse. Tu prépares d'abord l'exercice avec <a href="methode-dissertation-juridique.html">la méthode de la dissertation juridique</a>, puis la <a href="dissertation-force-obligatoire-du-contrat-corrigee.html">dissertation corrigée sur la force obligatoire du contrat</a> t'en donne un exemple complet. Un second sujet, sur la bonne foi, est traité plus bas.</p>
+          </div>
+          <div class="card" style="padding:22px 24px; margin-bottom:16px">
+            <h3 style="margin-top:0">2. Le cas pratique</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">On te décrit une situation et on te demande qui a raison. Tu raisonnes avec les faits, le problème de droit, la règle et l'application, comme l'explique <a href="methode-cas-pratique.html">la méthode du cas pratique</a>. D'ailleurs, la <a href="exemple-cas-pratique-corrige-contrats.html">formation du contrat</a> et le <a href="cas-pratique-dol-reticence-dolosive-corrige.html">dol par réticence</a> sont déjà corrigés sur le site. Un troisième cas, sur les clauses abusives, figure plus bas.</p>
+          </div>
+          <div class="card" style="padding:22px 24px; margin-bottom:16px">
+            <h3 style="margin-top:0">3. Le commentaire d'arrêt</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">On te remet une décision de la Cour de cassation, souvent un arrêt qui interprète un article de la réforme de 2016. Tu l'expliques, tu en discutes la valeur et tu en mesures la portée. Tu trouves la méthode dans <a href="methode-commentaire-arret.html">la page sur le commentaire d'arrêt</a>, et l'arrêt <a href="arret-chronopost-explique.html">Chronopost</a> te sert d'exemple sur la clause limitative de responsabilité.</p>
+          </div>
+          <div class="card" style="padding:22px 24px; margin-bottom:24px">
+            <h3 style="margin-top:0">4. Les questions de cours et le QCM</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Elles demandent un article, une définition ou un mécanisme, par exemple les étapes de l'imprévision. Les huit questions corrigées plus bas te montrent le niveau de précision attendu.</p>
+          </div>
+
+          <h2 id="banque">Quels sujets peuvent être posés, thème par thème ?</h2>
+          <p>Le programme limite le nombre de sujets possibles. Voici quatorze sujets, rangés dans l'ordre du cours, avec l'angle qui te permet de bâtir un plan en deux parties.</p>
+          <ul>
+            <li><strong>« La liberté contractuelle ».</strong> L'article 1102 laisse chacun libre de contracter ou non. Il lui permet aussi de choisir son cocontractant et de fixer le contenu du contrat, dans les limites de l'ordre public. Le plan oppose le principe, puis ses limites.</li>
+            <li><strong>« La bonne foi en droit des contrats ».</strong> L'article 1104 impose la bonne foi à toutes les étapes du contrat. Le sujet est traité en entier plus bas.</li>
+            <li><strong>« La force obligatoire du contrat ».</strong> L'article 1103 donne au contrat la valeur d'une loi pour les parties. Pourtant, le juge et les parties peuvent y toucher dans certains cas, ce que montre la <a href="dissertation-force-obligatoire-du-contrat-corrigee.html">dissertation corrigée sur ce sujet</a>.</li>
+            <li><strong>« Les pourparlers ».</strong> La rupture des négociations reste libre d'après l'article 1112, sauf si elle manque à la bonne foi. L'arrêt <a href="arret-manoukian-explique.html">Manoukian</a> de 2003 fixe la réparation à la perte subie, sans les gains espérés.</li>
+            <li><strong>« Le devoir d'information ».</strong> L'article 1112-1 oblige celui qui connaît une information déterminante à la donner à l'autre. Le devoir ne porte pas sur la valeur de la prestation, et les parties ne peuvent ni le limiter ni l'exclure.</li>
+            <li><strong>« L'offre et l'acceptation ».</strong> Le contrat se forme par la rencontre de ces deux volontés. Le sujet demande à quelles conditions une offre lie son auteur, mais aussi à quel moment le contrat est conclu. Tu t'appuies donc sur la page de <a href="la-formation-du-contrat-offre-et-acceptation.html">la formation du contrat</a>.</li>
+            <li><strong>« Le dol ».</strong> L'article 1137 vise les manœuvres et le mensonge, et son alinéa 2 ajoute la dissimulation intentionnelle d'une information déterminante. Le plan distingue l'élément matériel et l'élément intentionnel.</li>
+            <li><strong>« L'erreur ».</strong> Elle ne cause la nullité que si elle porte sur les qualités essentielles de la prestation ou du cocontractant, et si elle est excusable. Le sujet demande où passe la limite entre l'erreur qui annule et le simple mauvais calcul.</li>
+            <li><strong>« La violence économique ».</strong> L'article 1143 sanctionne l'abus de l'état de dépendance, quand il procure un avantage manifestement excessif. Le sujet interroge la protection du contractant faible.</li>
+            <li><strong>« L'équilibre du contrat ».</strong> L'article 1168 écarte en principe la nullité pour défaut d'équivalence des prestations. Pourtant, le Code civil contrôle bien le contenu du contrat, car trois textes le permettent. L'article 1169 vise la contrepartie dérisoire, l'article 1170 la clause qui vide l'obligation essentielle de sa substance, et l'article 1171 le déséquilibre significatif.</li>
+            <li><strong>« Le contrat d'adhésion ».</strong> L'article 1110 le définit par des clauses non négociables, déterminées à l'avance par une partie. Le sujet demande quelle protection ce régime apporte.</li>
+            <li><strong>« La nullité du contrat ».</strong> L'article 1178 distingue la nullité prononcée par le juge de celle que les parties constatent d'un commun accord, et le contrat annulé est censé n'avoir jamais existé. Tu retrouves le régime sur la page de <a href="la-nullite-du-contrat.html">la nullité du contrat</a>.</li>
+            <li><strong>« L'imprévision ».</strong> L'article 1195 organise une renégociation, puis une résolution amiable ou une révision par le juge. Le sujet demande si le droit français cède enfin à la révision judiciaire.</li>
+            <li><strong>« Les sanctions de l'inexécution ».</strong> L'article 1217 liste cinq sanctions, que le créancier peut cumuler si elles sont compatibles. Le plan peut opposer les sanctions que le créancier prend seul, puis celles qui passent par le juge.</li>
+          </ul>
+          <p>Tu peux t'entraîner en préparant le plan de chacun de ces sujets, puis en le comparant à ton cours pour repérer les arrêts datés qui manquent.</p>
+
+          <h2 id="dissertation">Dissertation corrigée, la bonne foi en droit des contrats</h2>
+          <p>Ce sujet est original, écrit pour cette page. Il traverse tout le programme, puisque la bonne foi s'applique du début des négociations jusqu'à la fin de l'exécution. Je te montre les trois étapes du travail préparatoire, puis le plan détaillé. Tu peux ensuite reprendre cette méthode sur n'importe quel autre sujet de la liste.</p>
+
+          <div class="card" style="padding:22px 24px; margin-bottom:16px">
+            <h3 style="margin-top:0">Étape 1, le décorticage des mots du sujet</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La <strong>bonne foi</strong> désigne ici la loyauté, c'est-à-dire l'honnêteté de la conduite d'un contractant envers l'autre. Elle se distingue de la bonne foi subjective, qui est l'ignorance d'un vice, comme celle d'un acquéreur qui ignore que son vendeur n'est pas propriétaire. Le <strong>contrat</strong> s'entend de la négociation à l'exécution, puisque l'article 1104 du Code civil dit que les contrats doivent être négociés, formés et exécutés de bonne foi. Le sujet n'a pas de point d'interrogation. Il te demande donc de décrire la place du principe et son régime, en reliant chaque arrêt à une règle.</p>
+          </div>
+          <div class="card" style="padding:22px 24px; margin-bottom:16px">
+            <h3 style="margin-top:0">Étape 2, la problématique</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Le législateur de 2016 a placé la bonne foi parmi les dispositions liminaires du Code civil, et il en a fait une règle d'ordre public. En parallèle, les juges refusent d'en faire un moyen de réécrire le contrat. <strong>Jusqu'où la bonne foi peut-elle contrôler le comportement des contractants sans remettre en cause l'accord qu'ils ont conclu ?</strong></p>
+          </div>
+          <div class="card" style="padding:22px 24px; margin-bottom:20px">
+            <h3 style="margin-top:0">Étape 3, le plan détaillé</h3>
+            <p style="color:var(--body); line-height:1.7"><strong>I. La bonne foi, un principe qui gouverne toute la vie du contrat.</strong></p>
+            <p style="color:var(--body); line-height:1.7"><strong>A. Elle s'applique de la négociation à l'exécution.</strong> L'article 1104 pose la règle à tous les stades, et l'article 1112 précise que l'initiative, le déroulement et la rupture des négociations sont libres, mais qu'ils doivent satisfaire aux exigences de la bonne foi. Un contractant peut donc rompre des pourparlers, et il engage sa responsabilité s'il le fait de mauvaise foi. Dans l'arrêt Manoukian du 26 novembre 2003, la Cour de cassation a jugé la rupture fautive parce que les cédants avaient conclu avec un tiers en laissant leur partenaire croire que la signature était proche, et elle a refusé de réparer la perte des gains que le contrat aurait procurés. L'alinéa 2 de l'article 1112 reprend aujourd'hui cette limite. Le principe a pourtant une borne dans le temps. Le 14 septembre 2005, la troisième chambre civile a jugé que la bonne foi suppose un lien contractuel et ne joue plus quand la condition suspensive a défailli et mis fin à la promesse.</p>
+            <p style="color:var(--body); line-height:1.7"><strong>B. Elle fait naître des devoirs précis et impératifs.</strong> L'article 1112-1 oblige celui qui connaît une information déterminante pour le consentement de l'autre à la lui donner, quand l'autre l'ignore légitimement ou lui fait confiance. En revanche, cette obligation ne porte pas sur l'estimation de la valeur de la prestation. Son alinéa 5 interdit aux parties de la limiter ou de l'exclure, et l'article 1104 alinéa 2 déclare lui-même la bonne foi d'ordre public. Aucune clause ne peut donc l'écarter par avance.</p>
+            <p style="color:var(--body); line-height:1.7"><strong>II. La bonne foi, un principe que le juge manie avec retenue.</strong></p>
+            <p style="color:var(--body); line-height:1.7"><strong>A. Elle sanctionne les comportements déloyaux dans l'exécution.</strong> Dans l'arrêt Huard du 3 novembre 1992, la chambre commerciale a approuvé les juges d'avoir condamné un fournisseur de carburant qui vendait à son distributeur à un prix supérieur au prix de détail pratiqué par ses propres mandataires, ce qui privait ce distributeur des moyens de pratiquer des prix concurrentiels. La Cour a jugé que le fournisseur n'avait pas exécuté le contrat de bonne foi. De même, la première chambre civile a reproché à des juges, le 16 février 1999, de ne pas avoir recherché si l'inertie d'une crédirentière pendant douze ans, face à des arrérages impayés, n'excluait pas la bonne foi dans la mise en œuvre de la clause résolutoire.</p>
+            <p style="color:var(--body); line-height:1.7"><strong>B. Elle ne permet pas de modifier la substance du contrat.</strong> Dans l'arrêt Les Maréchaux du 10 juillet 2007, la chambre commerciale a cassé une décision qui refusait à un cessionnaire de titres le bénéfice d'une garantie de passif, au motif qu'il était déloyal. Elle a jugé que la bonne foi permet de sanctionner l'usage déloyal d'une prérogative contractuelle, sans autoriser le juge à porter atteinte à la substance même des droits et obligations convenus. Le juge contrôle donc la manière dont un droit s'exerce, et le contenu du contrat reste celui que les parties ont fixé.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7"><strong>Réponse à donner.</strong> La bonne foi contrôle la loyauté des contractants à chaque étape du contrat, et le juge l'utilise pour sanctionner un comportement, sans réécrire l'accord. L'article 1104 lui donne une portée générale, et la jurisprudence en fixe la mesure.</p>
+          </div>
+
+          <h2 id="cas-pratique">Cas pratique corrigé, peut-on faire réputer non écrites des clauses d'un contrat d'adhésion ?</h2>
+          <p>Cet exercice porte sur les clauses abusives. L'article 1171 du Code civil attire le premier réflexe de l'étudiant, mais la jurisprudence récente en réserve l'usage aux contrats que ni le Code de commerce ni le Code de la consommation ne couvrent. Le sujet est original, et les deux sociétés n'existent pas.</p>
+
+          <div class="card" style="padding:22px 24px; margin-bottom:20px">
+            <p style="margin-top:0; color:var(--body); line-height:1.7"><strong>Énoncé.</strong> La société Brillance Pro, spécialisée dans le nettoyage industriel, conclut le 12 janvier 2025 un contrat de trois ans avec la société Jardins de Bretagne, qui exploite une cuisine centrale. Le contrat reprend les conditions générales de Brillance Pro, qu'elle impose à tous ses clients sans les négocier. La clause 9 permet à Brillance Pro de résilier à tout moment avec quinze jours de préavis, alors que le client qui résilie doit payer toutes les mensualités restantes. Ensuite, la clause 11 plafonne à 200 euros la réparation de tout dommage causé par Brillance Pro. En août 2026, un employé de Brillance Pro nettoie le sol de la cuisine avec un produit corrosif et détruit le revêtement, pour un dommage de 18 000 euros. Jardins de Bretagne résilie le contrat le 20 septembre 2026 et soutient que les clauses 9 et 11 sont réputées non écrites en application de l'article 1171. <em>A-t-elle raison ?</em></p>
+          </div>
+
+          <div class="card" style="padding:22px 24px; margin-bottom:16px">
+            <p style="margin-top:0; color:var(--body); line-height:1.7"><strong>Le problème de droit.</strong> Un professionnel qui a signé des conditions générales non négociables peut-il invoquer l'article 1171 contre un autre professionnel pour faire réputer non écrites une clause de résiliation déséquilibrée et une clause limitative de réparation ?</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7"><strong>La règle.</strong> L'article 1110 alinéa 2 définit le contrat d'adhésion comme celui qui comporte un ensemble de clauses non négociables, déterminées à l'avance par l'une des parties. L'article 1171 répute non écrite, dans un tel contrat, toute clause non négociable qui crée un déséquilibre significatif entre les droits et obligations des parties. De plus, le texte exclut de son contrôle l'objet principal du contrat et l'adéquation du prix à la prestation. Or la chambre commerciale juge, dans un arrêt du 13 mai 2026, que l'article 1171 ne s'applique pas aux contrats conclus par une personne exerçant des activités de production, de distribution ou de services, sauf si l'article L. 442-1 du Code de commerce est écarté par une autre disposition. Elle reprend cette solution le 23 septembre 2026. Dans ce cas, le déséquilibre significatif relève donc de l'article L. 442-1, I, 2° du Code de commerce. Ce texte engage la responsabilité de son auteur, et l'article L. 442-4, I permet à la victime de demander aussi la nullité de la clause et la cessation de la pratique. Par ailleurs, l'article 1170 répute non écrite toute clause qui prive de sa substance l'obligation essentielle du débiteur. L'arrêt Chronopost du 22 octobre 1996 a jugé en ce sens qu'une clause limitative qui contredit la portée de l'engagement pris est réputée non écrite, et l'arrêt Faurecia du 29 juin 2010 a précisé que seule une clause qui contredit l'obligation essentielle encourt cette sanction.</p>
+          </div>
+          <div class="card" style="padding:22px 24px; margin-bottom:16px">
+            <p style="margin-top:0; color:var(--body); line-height:1.7"><strong>L'application à la clause 9.</strong> Le contrat est bien un contrat d'adhésion au sens de l'article 1110, puisque les conditions générales de Brillance Pro ne se négocient pas. Mais le contrat est conclu par une personne qui exerce une activité de services, Brillance Pro, qui impose ses conditions générales. L'article 1171 ne s'applique donc pas, et Jardins de Bretagne se trompe de fondement. Elle doit invoquer l'article L. 442-1, I, 2° du Code de commerce. Le déséquilibre se caractérise facilement, car Brillance Pro peut partir en quinze jours sans rien payer, alors que son client doit régler toutes les mensualités restantes. La sanction diffère toutefois de celle de l'article 1171. Brillance Pro engage sa responsabilité, et Jardins de Bretagne peut demander la nullité de la clause 9 et la cessation de la pratique sur le fondement de l'article L. 442-4, I. Le résultat pratique se rapproche donc du réputé non écrit, mais le chemin juridique est différent. La chambre commerciale a d'ailleurs cassé, le 23 septembre 2026, un arrêt qui avait appliqué l'article 1171 sans rechercher d'office si l'article L. 442-6 de l'époque, devenu L. 442-1, s'appliquait.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7"><strong>L'application à la clause 11.</strong> Cette clause relève d'un autre texte, l'article 1170. Brillance Pro s'est engagée à nettoyer la cuisine, et cet engagement suppose de ne pas la détériorer. Une réparation plafonnée à 200 euros pour un dommage de 18 000 euros enlève à cette obligation presque toute portée, et elle se rapproche de la clause de l'arrêt Chronopost. À l'inverse, l'arrêt Faurecia valide un plafond qui ne contredit pas l'obligation essentielle. La qualification de l'obligation essentielle se discute donc, mais le montant du plafond plaide fortement pour le réputé non écrit.</p>
+          </div>
+          <div class="card" style="padding:22px 24px; margin-bottom:20px">
+            <p style="margin-top:0; margin-bottom:0; color:var(--body); line-height:1.7"><strong>La conclusion.</strong> En premier lieu, Jardins de Bretagne ne peut pas obtenir que la clause 9 soit réputée non écrite sur le fondement de l'article 1171, car ce texte ne joue pas dans un contrat conclu par un prestataire de services. Elle peut agir sur l'article L. 442-1, I, 2° du Code de commerce pour obtenir réparation du déséquilibre, et sur l'article L. 442-4, I pour demander la nullité de la clause. Ainsi, en second lieu, la clause 11 encourt sans doute le réputé non écrit de l'article 1170, ce qui permet de demander réparation du dommage de 18 000 euros. La copie se termine par une conclusion de ce type, qui répond à chaque question posée.</p>
+          </div>
+
+          <h2 id="questions-cours">Huit questions de cours corrigées en quelques lignes</h2>
+          <p>Ces questions reviennent sous forme de QCM ou de questions courtes. Essaie de répondre avant de lire la solution. Tu retrouves dans chaque réponse la précision d'un article, et c'est ce niveau que tu dois atteindre.</p>
+          <ul>
+            <li><strong>Que dit l'article 1104 du Code civil ?</strong> Les contrats doivent être négociés, formés et exécutés de bonne foi, et cette disposition est d'ordre public. Aucune clause ne peut donc l'écarter.</li>
+            <li><strong>Quelle différence entre un contrat de gré à gré et un contrat d'adhésion ?</strong> Dans le contrat de gré à gré, les stipulations sont négociables entre les parties. Dans le contrat d'adhésion, un ensemble de clauses non négociables est déterminé à l'avance par l'une des parties, d'après l'article 1110.</li>
+            <li><strong>Combien de temps une offre lie-t-elle son auteur ?</strong> Elle ne peut pas être rétractée avant l'expiration du délai fixé ou, à défaut, d'un délai raisonnable, selon l'article 1116. Une rétractation fautive empêche la conclusion du contrat et engage la responsabilité de l'offrant, sans compenser les avantages attendus du contrat.</li>
+            <li><strong>Que couvre le devoir d'information de l'article 1112-1 ?</strong> Toute information qui a un lien direct et nécessaire avec le contenu du contrat ou la qualité des parties, et dont l'importance est déterminante pour le consentement de l'autre. Il ne porte pas sur l'estimation de la valeur de la prestation, et les parties ne peuvent ni le limiter ni l'exclure.</li>
+            <li><strong>Quelles sont les étapes de l'imprévision ?</strong> L'article 1195 suppose un changement de circonstances imprévisible, qui rend l'exécution excessivement onéreuse pour une partie qui n'avait pas accepté d'en assumer le risque. Cette partie peut alors demander une renégociation, et elle continue d'exécuter le contrat pendant ce temps. Si elle échoue, les parties peuvent alors convenir de la résolution du contrat ou demander ensemble au juge de l'adapter. À défaut d'accord dans un délai raisonnable, le juge peut donc réviser le contrat ou y mettre fin, à la demande d'une partie.</li>
+            <li><strong>Quelles sont les sanctions de l'inexécution ?</strong> L'article 1217 en cite cinq. Le créancier peut opposer l'exception d'inexécution ou demander l'exécution forcée en nature. Il peut aussi réduire le prix, résoudre le contrat ou demander réparation. Ces sanctions se cumulent quand elles sont compatibles, et des dommages et intérêts peuvent toujours s'y ajouter.</li>
+            <li><strong>Que veut dire « réputée non écrite » ?</strong> La clause est supprimée du contrat comme si elle n'y avait jamais figuré, sans que le contrat soit annulé. Le juge la traite clause par clause, ce qui distingue cette sanction de la nullité de l'article 1178.</li>
+            <li><strong>Peut-on obtenir la réparation des gains espérés après une rupture fautive de pourparlers ?</strong> Non. L'article 1112 alinéa 2 écarte la perte des avantages attendus du contrat non conclu et la perte de chance de les obtenir, ce que l'arrêt Manoukian de 2003 annonçait déjà.</li>
+          </ul>
+
+          <h2 id="erreurs">Les erreurs qui font perdre des points en droit des contrats</h2>
+          <ul>
+            <li><strong>Tu cites l'ancien article 1134.</strong> Pour un contrat conclu à partir du 1er octobre 2016, la force obligatoire figure à l'article 1103 et la bonne foi à l'article 1104. Un arrêt antérieur à la réforme se cite avec le texte qu'il visait, et tu précises alors que la règle a changé de numéro.</li>
+            <li><strong>Tu confonds la bonne foi et l'abus de droit.</strong> La bonne foi sanctionne la déloyauté d'un contractant. L'arrêt de l'Assemblée plénière du 1er décembre 1995 sur la fixation du prix repose, lui, sur l'abus dans la fixation du prix.</li>
+            <li><strong>Tu fais dire à l'arrêt Huard qu'il oblige à renégocier.</strong> La Cour de cassation y juge seulement que le fournisseur n'a pas exécuté le contrat de bonne foi. L'obligation de renégocier vient de l'article 1195, dans le seul cas de l'imprévision.</li>
+            <li><strong>Tu appliques l'article 1171 à n'importe quel contrat.</strong> Il suppose un contrat d'adhésion et ne joue pas dans un contrat conclu par une personne exerçant des activités de services. Entre professionnels, le déséquilibre significatif relève de l'article L. 442-1 du Code de commerce, et le consommateur reste protégé par l'article L. 212-1 du Code de la consommation.</li>
+            <li><strong>Tu confonds les articles 1169, 1170 et 1171.</strong> L'article 1169 vise la contrepartie illusoire ou dérisoire, l'article 1170 la clause qui prive l'obligation essentielle de sa substance, et l'article 1171 le déséquilibre significatif d'une clause non négociable. Chacun a sa condition et son domaine.</li>
+            <li><strong>Tu écris « nullité » quand la sanction est « réputée non écrite ».</strong> La clause disparaît seule, et le reste du contrat continue de s'appliquer.</li>
+            <li><strong>Tu bâcles l'introduction d'une dissertation.</strong> Le correcteur lit d'abord la problématique et l'annonce de plan. Une introduction sans problématique prive ton plan de fil conducteur.</li>
+          </ul>
+
+          <h2 id="progresser">Comment t'entraîner pour un partiel de droit des contrats</h2>
+          <p>Tu progresses en alternant deux temps. D'abord, tu apprends chaque chapitre avec ses articles et ses arrêts. Ensuite, tu prends un sujet de la liste ci-dessus, tu bâtis son plan en un temps limité et sans notes, puis tu compares avec ton cours. Cette comparaison te montre les arrêts datés qui te manquent.</p>
+          <p>Pour revoir la matière dans son ensemble, tu peux lire <a href="droit-des-contrats-l2.html">la page de droit des contrats L2</a>, qui présente le programme et les notions à maîtriser. Ensuite, pour approfondir la réforme, <a href="reforme-droit-contrats-2016.html">la page sur la réforme de 2016</a> explique ce qui a changé. Sur les clauses abusives, <a href="les-clauses-abusives-dans-le-contrat.html">la page dédiée à l'article 1171</a> détaille le texte et ses arrêts. Enfin, si tu veux voir le droit de la responsabilité qui suit, <a href="droit-des-obligations-l2.html">le droit des obligations L2</a> prolonge le programme au second semestre.</p>
+
+          <h2 id="pdf">Où trouver des sujets de droit des contrats corrigés en PDF ?</h2>
+          <p>Trajectoire Droit propose deux supports pour cette matière. D'abord, la <strong>fiche complète</strong> reprend tout le programme en 157 pages, de la formation du contrat jusqu'aux sanctions de l'inexécution, avec les articles, les définitions et les arrêts à connaître pour traiter les sujets de cette page. Ensuite, le <strong>cours complet</strong> développe chaque chapitre sur 273 pages, avec des schémas complets et l'histoire des grands arrêts, et il te donne les arguments de tes devoirs maison. Chaque produit s'achète séparément. Tu peux aussi consulter <a href="corriges.html">tous les exercices corrigés par matière</a>.</p>
+
+          <h2 id="faq">Questions fréquentes</h2>
+          <div class="accordion">
+            <details class="accordion__item" open><summary><h3>Quels sont les sujets de droit des contrats en L2 ?</h3></summary><div class="accordion__body">Les sujets portent sur la formation du contrat (pourparlers, offre, acceptation, vices du consentement), sur son contenu (équilibre, clauses abusives), sur ses effets (force obligatoire, imprévision) et sur les sanctions de l'inexécution. Le format change selon la faculté, entre dissertation, cas pratique, commentaire d'arrêt et questions de cours.</div></details>
+            <details class="accordion__item"><summary><h3>Comment faire une dissertation de droit des contrats ?</h3></summary><div class="accordion__body">Tu définis d'abord les mots du sujet, tu poses une problématique sous forme de question, puis tu bâtis un plan en deux parties qui répond à cette question. Chaque idée s'appuie sur un article du Code civil et sur un arrêt daté, comme l'arrêt Manoukian du 26 novembre 2003 pour la rupture des pourparlers.</div></details>
+            <details class="accordion__item"><summary><h3>L'article 1171 du Code civil s'applique-t-il entre professionnels ?</h3></summary><div class="accordion__body">Pas dans les contrats conclus par une personne exerçant des activités de production, de distribution ou de services. La chambre commerciale de la Cour de cassation l'a jugé le 13 mai 2026, et le déséquilibre significatif relève alors de l'article L. 442-1 du Code de commerce. L'article 1171 garde un domaine résiduel pour les contrats d'adhésion qui échappent à ce texte et au Code de la consommation.</div></details>
+            <details class="accordion__item"><summary><h3>Existe-t-il des sujets de droit des contrats corrigés en PDF ?</h3></summary><div class="accordion__body">Oui, sous la forme de la fiche complète de droit des contrats L2, à 14,99 €, qui reprend le programme en 157 pages avec les articles et les arrêts à citer. Le cours complet, à 19,99 €, développe chaque chapitre sur 273 pages et donne les arguments pour les devoirs maison.</div></details>
+          </div>
+
+          <!-- BLOC AUTEUR -->
+          <div class="author-box">
+            <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+            <div>
+              <p class="author-box__name">Julien</p>
+              <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+              <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">162 avis 5/5</a>. Je donne aux étudiants en droit une méthode claire, qu'ils appliquent à chaque copie pour passer de la moyenne à la mention. Sur TrajectoireDroit, tu peux travailler avec mes fiches complètes et mes majeures préparées (les règles de droit à poser dans tes dissertations).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- fin-article:pack-ultra -->
+    <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
+      <div class="container">
+        <p class="article-pack-ligne__texte">Le Pack Ultra L2 S1 réunit les 28 ressources de ton premier semestre de L2 pour 229 €, la fiche de droit des contrats L2 comprise. <a href="pack-ultra.html#pack-ultra-l2-s1">Voir le contenu du pack →</a></p>
+        <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
+      </div>
+    </section>
+
+    <!-- CLUSTER -->
+    <section class="section section--alt" aria-labelledby="cluster-sujetscontrats-titre">
+      <div class="container container--narrow">
+        <h2 class="h2" id="cluster-sujetscontrats-titre">Où se rangent ces sujets dans le programme</h2>
+        <p class="lead">Le droit des contrats ouvre le droit des obligations. Les pages ci-dessous prolongent le travail de cette page.</p>
+        <ul style="line-height:2; padding-left:1.2em; margin-top:8px">
+          <li><a href="droit-des-contrats-l2.html">Droit des contrats L2, programme et notions clés</a></li>
+          <li><a href="dissertation-force-obligatoire-du-contrat-corrigee.html">Dissertation corrigée sur la force obligatoire du contrat</a></li>
+          <li><a href="exemple-cas-pratique-corrige-contrats.html">Cas pratique corrigé sur la formation du contrat</a></li>
+          <li><a href="corriges.html">Tous mes exercices corrigés, par matière</a></li>
+        </ul>
+      </div>
+    </section>
+    </article>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="majeures-preparees.html">Majeures préparées</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a><a href="blog.html">Blog</a><a href="methode-cas-pratique.html">Méthode du cas pratique</a><a href="fiche-arrets.html">Fiche d'arrêt</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (sujets droit des contrats L2)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit des contrats L2 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-contrats-l2-s1">Acheter · 14,99 €</button>
+  </div>
+
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (sujets droit des contrats L2)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <script src="assets/js/main.js?v=4b8ba62a" defer></script>
+  <script src="assets/js/achat.js?v=6abaead2" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=70097293';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=fd545d49" defer></script>
+</body>
+</html>
