@@ -78,6 +78,13 @@
     html[data-theme="dark"] .pack-ultra-downloads summary{color:#f6f3ea}
     .compte-error{display:none;margin-top:14px;background:#FEF2F2;border:1px solid #FECACA;color:#B91C1C;padding:12px 14px;border-radius:10px;font-size:.92rem}
     .compte-success{display:none;margin-top:14px;background:#ECFDF5;border:1px solid #A7F3D0;color:#065F46;padding:12px 14px;border-radius:10px;font-size:.92rem}
+    .compte-form{display:flex;gap:10px;flex-direction:column}
+    .compte-form[hidden]{display:none}
+    .compte-rester-connecte{display:flex;align-items:flex-start;gap:10px;font-size:.94rem;color:#475569;cursor:pointer;margin:4px 0}
+    .compte-rester-connecte input{margin-top:4px;flex-shrink:0;width:18px;height:18px;accent-color:#2563EB}
+    .compte-box .compte-aide{font-size:.88rem;margin:0 0 8px;line-height:1.5}
+    .compte-code-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+    .compte-code-destinataire{overflow-wrap:anywhere}
   </style>
   <!-- Matomo -->
   <script>
@@ -388,13 +395,26 @@
           <div class="compte-etat" id="etatConnexion">
             <div class="compte-box">
               <h2>Connecte-toi</h2>
-              <p>Tu saisis l'adresse email utilisée pour ton achat. Tu reçois ensuite un lien dans cette boîte mail. Pour accéder à tes achats, tu dois ouvrir ce lien.</p>
-              <form id="connexionForm" style="display:flex; gap:8px; flex-direction:column">
-                <input type="email" id="connexionEmail" required placeholder="ton@email.com" class="form__input" aria-label="Email">
-                <button class="btn btn--primary btn--lg btn--full" type="submit" id="connexionSubmit">Recevoir mon lien de connexion →</button>
+              <p>Tu saisis l'adresse email utilisée pour ton achat. Tu reçois ensuite un code dans cette boîte mail, puis tu le recopies ici pour accéder à tes achats.</p>
+              <form id="connexionForm" class="compte-form">
+                <input type="email" id="connexionEmail" required autocomplete="email" placeholder="ton@email.com" class="form__input" aria-label="Email">
+                <label class="compte-rester-connecte"><input type="checkbox" id="resterConnecte" aria-describedby="aideResterConnecte"><span>Rester connecté sur cet appareil</span></label>
+                <p class="compte-aide" id="aideResterConnecte">Si tu coches cette case, ta connexion est conservée pour tes prochaines visites. Tu peux la cocher sur ton appareil personnel. Sur un ordinateur partagé, laisse-la décochée.</p>
+                <button class="btn btn--primary btn--lg btn--full" type="submit" id="connexionSubmit">Recevoir mon code de connexion →</button>
               </form>
-              <div class="compte-error" id="connexionError"></div>
-              <div class="compte-success" id="connexionSuccess">Tu peux ouvrir le lien reçu dans ta boîte mail pour te connecter. Si le message manque, tu peux aussi vérifier les courriers indésirables.</div>
+              <form id="codeForm" class="compte-form" hidden>
+                <p class="compte-aide compte-code-destinataire">Ton code est envoyé à <strong id="codeDestinataire"></strong>.</p>
+                <label for="connexionCode">Code reçu par email</label>
+                <input type="text" id="connexionCode" required inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{8}" minlength="8" maxlength="8" placeholder="Code de huit chiffres" class="form__input" aria-describedby="aideConnexionCode">
+                <p class="compte-aide" id="aideConnexionCode">Tu recopies les huit chiffres du code reçu par email. Chaque code permet une seule connexion.</p>
+                <button class="btn btn--primary btn--lg btn--full" type="submit" id="codeSubmit">Me connecter</button>
+                <div class="compte-code-actions">
+                  <button class="btn btn--ghost btn--sm" type="button" id="renvoyerCode">Recevoir un nouveau code</button>
+                  <button class="btn btn--ghost btn--sm" type="button" id="changerEmail">Changer d'adresse email</button>
+                </div>
+              </form>
+              <div class="compte-error" id="connexionError" role="alert"></div>
+              <div class="compte-success" id="connexionSuccess" role="status">Tu peux recopier le code reçu dans ta boîte mail pour te connecter. Si l'email manque, tu peux aussi vérifier les courriers indésirables.</div>
             </div>
           </div>
 
@@ -454,7 +474,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="assets/js/main.js?v=4b8ba62a" defer></script>
-  <script src="assets/js/compte.js?v=b1c66b0e" defer></script>
+  <script src="assets/js/compte.js?v=7f4f6f1f" defer></script>
   <script src="assets/js/cookie-consent.js?v=fd545d49" defer></script>
 </body>
 </html>

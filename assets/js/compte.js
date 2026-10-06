@@ -2,7 +2,47 @@
     var SUPABASE_URL = "https://ksqkhktcdgwrmzfcfjoe.supabase.co";
     var SUPABASE_ANON_KEY = "sb_publishable_Ahl2DDtcburQJZl1h2NHZQ_5eKh-isk";
 
-    var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    var cleSession = "sb-ksqkhktcdgwrmzfcfjoe-auth-token";
+    var clePreference = "tjd-compte-rester-connecte";
+    var stockageMemoire = {};
+    function lireStockage(type, cle){
+      try { return window[type].getItem(cle); } catch (_) { return null; }
+    }
+    function retirerStockage(type, cle){
+      try { window[type].removeItem(cle); } catch (_) {}
+    }
+    var connexionConservee = lireStockage("localStorage", clePreference) === "1";
+    // Une ancienne session enregistrée automatiquement ne vaut pas un choix.
+    if (!connexionConservee) retirerStockage("localStorage", cleSession);
+    var stockageCompte = {
+      getItem: function(cle){
+        return stockageMemoire[cle]
+          || lireStockage(connexionConservee ? "localStorage" : "sessionStorage", cle) || null;
+      },
+      setItem: function(cle, valeur){
+        try {
+          window[connexionConservee ? "localStorage" : "sessionStorage"].setItem(cle, valeur);
+          delete stockageMemoire[cle];
+        } catch (_) { stockageMemoire[cle] = valeur; }
+        retirerStockage(connexionConservee ? "sessionStorage" : "localStorage", cle);
+      },
+      removeItem: function(cle){
+        delete stockageMemoire[cle];
+        retirerStockage("sessionStorage", cle);
+        retirerStockage("localStorage", cle);
+      }
+    };
+    function choisirPersistence(conserver){
+      var valeur = stockageCompte.getItem(cleSession);
+      connexionConservee = conserver;
+      if (conserver){
+        try { window.localStorage.setItem(clePreference, "1"); } catch (_) {}
+      } else retirerStockage("localStorage", clePreference);
+      if (valeur) stockageCompte.setItem(cleSession, valeur);
+    }
+    var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: { storageKey: cleSession, storage: stockageCompte, persistSession: true }
+    });
 
     var etatChargement = document.getElementById("etatChargement");
     var etatConnexion  = document.getElementById("etatConnexion");
@@ -13,6 +53,19 @@
     var connexionSubmit  = document.getElementById("connexionSubmit");
     var connexionError   = document.getElementById("connexionError");
     var connexionSuccess = document.getElementById("connexionSuccess");
+    var resterConnecte   = document.getElementById("resterConnecte");
+    var codeForm         = document.getElementById("codeForm");
+    var connexionCode    = document.getElementById("connexionCode");
+    var codeSubmit       = document.getElementById("codeSubmit");
+    var codeDestinataire = document.getElementById("codeDestinataire");
+    var renvoyerCode     = document.getElementById("renvoyerCode");
+    var changerEmail     = document.getElementById("changerEmail");
+    var emailEnAttente = "";
+    var conserverEnAttente = false;
+    var prochainEnvoi = 0;
+    var generationConnexion = 0;
+    var deconnexionEnCours = false;
+    resterConnecte.checked = false;
 
     var compteEmail       = document.getElementById("compteEmail");
     var deconnexionBtn    = document.getElementById("deconnexionBtn");
@@ -47,7 +100,7 @@
         if (generation !== generationSession) return;
         if (rep.status === 401){
           actualiserSession(null);
-          connexionError.textContent = "Ta session a expiré. Tu peux demander un nouveau lien de connexion.";
+          connexionError.textContent = "Ta session a expiré. Tu peux demander un nouveau code de connexion.";
           connexionError.style.display = "block";
           return;
         }
@@ -112,6 +165,7 @@
     }
 
     function actualiserSession(session){
+      if (deconnexionEnCours) session = null;
       var generation = ++generationSession;
       effacerAchats();
       if (!session || !session.access_token){
@@ -129,11 +183,16 @@
           if (verification.error || !utilisateur || !utilisateur.email_confirmed_at
               || utilisateur.is_anonymous === true || !utilisateur.email){
             actualiserSession(null);
-            connexionError.textContent = "Ta session doit être vérifiée. Tu peux demander un nouveau lien de connexion.";
+            connexionError.textContent = "Ta session doit être vérifiée. Tu peux demander un nouveau code de connexion.";
             connexionError.style.display = "block";
             return;
           }
           compteEmail.textContent = utilisateur.email;
+          ++generationConnexion;
+          emailEnAttente = "";
+          connexionCode.value = "";
+          codeForm.hidden = true;
+          connexionForm.hidden = false;
           connexionError.style.display = "none";
           connexionSuccess.style.display = "none";
           afficherEtat("etatConnecte");
@@ -158,30 +217,104 @@
       }
     }
 
-    connexionForm.addEventListener("submit", async function(e){
-      e.preventDefault();
+    function afficherErreur(message){
+      connexionError.textContent = message;
+      connexionError.style.display = "block";
+    }
+    async function envoyerCode(email, conserver){
+      var generation = ++generationConnexion;
       connexionError.style.display = "none";
       connexionSuccess.style.display = "none";
       connexionSubmit.disabled = true;
-      var email = connexionEmail.value.trim();
+      renvoyerCode.disabled = true;
       try {
         var res = await sb.auth.signInWithOtp({
           email: email,
           options: { emailRedirectTo: "https://trajectoiredroit.com/mon-compte.html" }
         });
+        if (generation !== generationConnexion) return;
         if (res.error) throw res.error;
+        emailEnAttente = email;
+        conserverEnAttente = conserver;
+        prochainEnvoi = Date.now() + 60000;
+        codeDestinataire.textContent = email;
+        connexionForm.hidden = true;
+        codeForm.hidden = false;
+        connexionCode.value = "";
         connexionSuccess.style.display = "block";
-        connexionForm.reset();
+        connexionCode.focus();
       } catch (e){
-        connexionError.textContent = "L'envoi a échoué. Réessaie dans un instant.";
-        connexionError.style.display = "block";
+        if (generation !== generationConnexion) return;
+        afficherErreur("L'envoi du code a échoué. Tu peux réessayer dans une minute.");
       } finally {
         connexionSubmit.disabled = false;
+        renvoyerCode.disabled = false;
+      }
+    }
+
+    connexionForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      return envoyerCode(connexionEmail.value.trim(), resterConnecte.checked);
+    });
+
+    codeForm.addEventListener("submit", async function(e){
+      e.preventDefault();
+      connexionError.style.display = "none";
+      connexionSuccess.style.display = "none";
+      var code = connexionCode.value.trim();
+      if (!emailEnAttente || !/^[0-9]{8}$/.test(code)){
+        afficherErreur("Tu dois saisir les huit chiffres du code reçu par email.");
+        return;
+      }
+      var generation = generationConnexion;
+      codeSubmit.disabled = true;
+      changerEmail.disabled = true;
+      renvoyerCode.disabled = true;
+      choisirPersistence(conserverEnAttente);
+      try {
+        var res = await sb.auth.verifyOtp({ email: emailEnAttente, token: code, type: "email" });
+        if (generation !== generationConnexion) return;
+        if (res.error || !res.data || !res.data.session) throw new Error("Code refusé");
+        actualiserSession(res.data.session);
+      } catch (e){
+        if (generation !== generationConnexion) return;
+        choisirPersistence(false);
+        afficherErreur("Le code est incorrect ou a expiré. Tu peux le vérifier dans ton email ou demander un nouveau code.");
+      } finally {
+        codeSubmit.disabled = false;
+        changerEmail.disabled = false;
+        renvoyerCode.disabled = false;
       }
     });
 
+    renvoyerCode.addEventListener("click", function(){
+      if (Date.now() < prochainEnvoi){
+        afficherErreur("Tu peux demander un nouveau code une minute après le précédent envoi.");
+        return;
+      }
+      return envoyerCode(emailEnAttente, conserverEnAttente);
+    });
+
+    changerEmail.addEventListener("click", function(){
+      ++generationConnexion;
+      emailEnAttente = "";
+      connexionCode.value = "";
+      codeForm.hidden = true;
+      connexionForm.hidden = false;
+      connexionError.style.display = "none";
+      connexionSuccess.style.display = "none";
+      connexionEmail.focus();
+    });
+
     deconnexionBtn.addEventListener("click", async function(){
+      deconnexionEnCours = true;
       actualiserSession(null);
+      ++generationConnexion;
+      emailEnAttente = "";
+      connexionCode.value = "";
+      resterConnecte.checked = false;
+      codeForm.hidden = true;
+      connexionForm.hidden = false;
       connexionSuccess.style.display = "none";
       try {
         var res = await sb.auth.signOut({ scope: "local" });
@@ -189,6 +322,10 @@
       } catch (e){
         connexionError.textContent = "La déconnexion n'a pas abouti. Tu peux réessayer en rechargeant cette page.";
         connexionError.style.display = "block";
+      } finally {
+        stockageCompte.removeItem(cleSession);
+        choisirPersistence(false);
+        deconnexionEnCours = false;
       }
     });
 
