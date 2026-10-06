@@ -163,6 +163,30 @@ class PersonnalisationPdfTest(unittest.TestCase):
         self.assertIn(identite.licence, texte)
         self.assertIn("julien.test@gmail.com", texte)
         self.assertIn("Julien Dupont", texte)
+        # Le tampon en marge des pages de contenu porte le nom, jamais l'email.
+        tampon = lecteur.pages[1].extract_text() or ""
+        self.assertIn(f"Licence {identite.licence}", tampon)
+        self.assertIn("Julien Dupont", tampon)
+        self.assertNotIn("julien.test@gmail.com", tampon)
+
+    def test_tampon_marge_reste_dans_la_page_avec_un_nom_tres_long(self):
+        session = session_payee()
+        session["custom_fields"][0]["text"]["value"] = (
+            "Marie-Charlotte de La Rochefoucauld-Montmorency Saint-Aignan"
+        )
+        identite = identite_depuis_session(session, "secret-de-test")
+        contenu = personnaliser_pdf(
+            source_pdf_protegee(),
+            identite,
+            "secret-de-test",
+            session["id"],
+        )
+        clair = io.BytesIO()
+        with pikepdf.open(io.BytesIO(contenu), password="") as pdf:
+            pdf.save(clair)
+        tampon = PdfReader(clair).pages[1].extract_text() or ""
+        self.assertIn("Saint-Aignan", tampon)
+        self.assertIn("copie individuelle", tampon)
 
     def test_sommaire_et_signets_survivent_a_la_personnalisation(self):
         session = session_payee()

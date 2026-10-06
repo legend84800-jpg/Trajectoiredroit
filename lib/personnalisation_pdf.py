@@ -174,9 +174,10 @@ def nom_licence(nom: str, email: str) -> str:
 
 
 def email_licence(email: str) -> str:
-    """Adresse email complète affichée sur la licence et dans le filigrane (05/10/2026).
+    """Adresse email complète affichée sur la page de licence (05/10/2026).
 
-    Elle était masquée (« jul***@gmail.com ») jusqu'à cette date. Le champ de
+    Elle était masquée (« jul***@gmail.com ») jusqu'à cette date. Le tampon en marge
+    de chaque page porte désormais le nom de l'acheteur et plus l'email. Le champ de
     l'identité garde le nom `email_masque` pour rester compatible avec les copies déjà
     livrées et avec l'outil d'identification des fuites.
     """
@@ -454,18 +455,26 @@ def _dessiner_licence_visible(
     couleur: object = GREY,
     pied_de_page: bool = False,
 ) -> None:
+    # Le tampon porte le nom complet de l'acheteur et non son email (décision de Julien
+    # du 05/10/2026). L'email reste sur la page de licence, ligne « Adresse associée ».
     libelle = (
-        f"Licence {identite.licence}  ·  {identite.email_masque}  ·  copie individuelle"
+        f"Licence {identite.licence}  ·  {identite.nom_affiche}  ·  copie individuelle"
     )
+    taille = 6.0
+    place = largeur - 24.0 if (pied_de_page or hauteur is None) else hauteur - 36.0
+    longueur = c.stringWidth(libelle, "Helvetica", taille)
+    if longueur > place:
+        # Nom très long : la police rétrécit pour que le tampon reste dans la page.
+        taille = max(4.0, taille * place / longueur)
     c.saveState()
     if hasattr(c, "setFillAlpha"):
         c.setFillAlpha(0.62 if pied_de_page else 0.48)
     c.setFillColor(couleur)
-    c.setFont("Helvetica", 6.0)
+    c.setFont("Helvetica", taille)
     if pied_de_page or hauteur is None:
         c.drawRightString(largeur - 12.0, y, libelle)
     else:
-        longueur = c.stringWidth(libelle, "Helvetica", 6.0)
+        longueur = c.stringWidth(libelle, "Helvetica", taille)
         c.translate(largeur - 18.0, max(18.0, (hauteur - longueur) / 2))
         c.rotate(90)
         c.drawString(0, 0, libelle)
