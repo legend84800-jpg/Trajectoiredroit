@@ -257,11 +257,17 @@
       return envoyerCode(connexionEmail.value.trim(), resterConnecte.checked);
     });
 
+    function normaliserCode(){
+      connexionCode.value = connexionCode.value.replace(/[\s-]/g, "");
+      return connexionCode.value;
+    }
+    connexionCode.addEventListener("input", normaliserCode);
+
     codeForm.addEventListener("submit", async function(e){
       e.preventDefault();
       connexionError.style.display = "none";
       connexionSuccess.style.display = "none";
-      var code = connexionCode.value.trim();
+      var code = normaliserCode();
       if (!emailEnAttente || !/^[0-9]{8}$/.test(code)){
         afficherErreur("Tu dois saisir les huit chiffres du code reçu par email.");
         return;

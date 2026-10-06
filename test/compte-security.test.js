@@ -183,6 +183,23 @@ test('le code est vérifié pour l’adresse demandée avant l’accès aux acha
   assert.deepEqual(JSON.parse(JSON.stringify(b.requests.find(r=>r.verification).verification)),{email:'titulaire@example.invalid',token:'12345678',type:'email'});
   assert.ok(b.state('etatConnecte'));assert.equal(b.elements.compteEmail.textContent,verified.email);
 });
+test('un code copié avec des espaces ou des tirets conserve les huit chiffres à vérifier',async()=>{
+  for(const code of [' 1234 5678 ', '1234-5678', '1234\u00a05678']) {
+    const b=browser();await demanderCode(b);b.elements.connexionCode.value=code;
+    b.elements.connexionCode.listeners.input();
+    assert.equal(b.elements.connexionCode.value,'12345678');
+    await saisirCode(b,code);
+    assert.equal(b.requests.find(r=>r.verification).verification.token,'12345678');
+    assert.ok(b.state('etatConnecte'));
+  }
+});
+test('la saisie tolérante ne transforme pas un code de neuf chiffres ou contenant une lettre en code valide',async()=>{
+  for(const code of ['1234 56789', '1234a5678']) {
+    const b=browser();await demanderCode(b);await saisirCode(b,code);
+    assert.ok(b.state('etatConnexion'));assert.equal(b.requests.filter(r=>r.verification).length,0);
+    assert.equal(b.requests.filter(r=>r.url).length,0);
+  }
+});
 test('un code accepté sans adresse confirmée ne suffit pas à afficher des achats',async()=>{
   const b=browser({getUser:async()=>({data:{user:{...verified,email_confirmed_at:null}}})});await demanderCode(b);await saisirCode(b);
   assert.ok(b.state('etatConnexion'));assert.equal(b.requests.filter(r=>r.url).length,0);
