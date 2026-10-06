@@ -77,15 +77,18 @@ test("le générateur retiré ne consomme plus d'IA et ne touche plus aux donné
 
 test("le compte conserve la connexion et les achats sans références JS orphelines", () => {
   const html = lire("mon-compte.html");
+  const compte = lire("assets/js/compte.js");
+  assert.match(html, /assets\/js\/compte\.js\?v=/);
   assert.match(html, /id="connexionForm"/);
   assert.match(html, /id="achatsListe"/);
-  assert.match(html, /\/api\/mes-telechargements/);
-  assert.match(html, /sb\.auth\.signInWithOtp/);
-  assert.doesNotMatch(html, /portalis|abonnerBtn|chargerAbonnement|QUOTA_MENSUEL|gererAbonnementBtn|abonnementError/i);
+  assert.match(compte, /\/api\/mes-telechargements/);
+  assert.match(compte, /sb\.auth\.signInWithOtp/);
+  assert.doesNotMatch(html + compte, /portalis|abonnerBtn|chargerAbonnement|QUOTA_MENSUEL|gererAbonnementBtn|abonnementError/i);
+  new vm.Script(compte);
   for (const match of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)) {
     if (!match[0].includes('type="application/ld+json"')) new vm.Script(match[1]);
   }
-  for (const [, id] of html.matchAll(/document\.getElementById\("([^"]+)"\)/g)) {
+  for (const [, id] of (html + compte).matchAll(/document\.getElementById\("([^"]+)"\)/g)) {
     assert.ok(html.includes(`id="${id}"`), `Élément absent ${id}`);
   }
 });

@@ -14,11 +14,16 @@ async function utilisateurDepuisJWT(jwt) {
   const { url, serviceKey } = base();
   if (!jwt) return null;
   const resp = await fetch(`${url}/auth/v1/user`, {
+    cache: "no-store",
     headers: { apikey: serviceKey, Authorization: `Bearer ${jwt}` },
   });
   if (!resp.ok) return null;
   const data = await resp.json();
-  return data && data.id ? { id: data.id, email: data.email } : null;
+  // Une session seule ne suffit pas à relier des achats à une adresse.
+  // L'adresse doit avoir été confirmée auprès du fournisseur d'identité.
+  if (!data || !data.id || typeof data.email !== "string" || !data.email.trim()
+      || !data.email_confirmed_at || data.is_anonymous === true) return null;
+  return { id: data.id, email: data.email };
 }
 
 async function selectionner(table, requete) {

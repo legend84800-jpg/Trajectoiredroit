@@ -10,6 +10,9 @@ const { construireLiensTelechargement } = require("./_liens-telechargement");
 const DUREE_LIEN_SECONDES = 15 * 60;
 
 module.exports = async (req, res) => {
+  res.setHeader("Cache-Control", "private, no-store, max-age=0");
+  res.setHeader("Vary", "Origin");
+  res.setHeader("Referrer-Policy", "no-referrer");
   res.setHeader("Access-Control-Allow-Origin", "https://trajectoiredroit.com");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");

@@ -388,13 +388,13 @@
           <div class="compte-etat" id="etatConnexion">
             <div class="compte-box">
               <h2>Connecte-toi</h2>
-              <p>Tu entres ton email et tu reçois un lien de connexion valable 1 heure, sans mot de passe à retenir.</p>
+              <p>Tu saisis l'adresse email utilisée pour ton achat. Tu reçois ensuite un lien dans cette boîte mail. Pour accéder à tes achats, tu dois ouvrir ce lien.</p>
               <form id="connexionForm" style="display:flex; gap:8px; flex-direction:column">
                 <input type="email" id="connexionEmail" required placeholder="ton@email.com" class="form__input" aria-label="Email">
                 <button class="btn btn--primary btn--lg btn--full" type="submit" id="connexionSubmit">Recevoir mon lien de connexion →</button>
               </form>
               <div class="compte-error" id="connexionError"></div>
-              <div class="compte-success" id="connexionSuccess">Lien envoyé. Vérifie ta boîte mail (et tes spams).</div>
+              <div class="compte-success" id="connexionSuccess">Tu peux ouvrir le lien reçu dans ta boîte mail pour te connecter. Si le message manque, tu peux aussi vérifier les courriers indésirables.</div>
             </div>
           </div>
 
@@ -454,150 +454,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="assets/js/main.js?v=4b8ba62a" defer></script>
-  <script>
-  (function(){
-    var SUPABASE_URL = "https://ksqkhktcdgwrmzfcfjoe.supabase.co";
-    var SUPABASE_ANON_KEY = "sb_publishable_Ahl2DDtcburQJZl1h2NHZQ_5eKh-isk";
-
-    var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    var etatChargement = document.getElementById("etatChargement");
-    var etatConnexion  = document.getElementById("etatConnexion");
-    var etatConnecte   = document.getElementById("etatConnecte");
-
-    var connexionForm    = document.getElementById("connexionForm");
-    var connexionEmail   = document.getElementById("connexionEmail");
-    var connexionSubmit  = document.getElementById("connexionSubmit");
-    var connexionError   = document.getElementById("connexionError");
-    var connexionSuccess = document.getElementById("connexionSuccess");
-
-    var compteEmail       = document.getElementById("compteEmail");
-    var deconnexionBtn    = document.getElementById("deconnexionBtn");
-    var achatsListe        = document.getElementById("achatsListe");
-    var achatsVide         = document.getElementById("achatsVide");
-
-    function afficherEtat(id){
-      [etatChargement, etatConnexion, etatConnecte].forEach(function(el){ el.classList.remove("is-active"); });
-      document.getElementById(id).classList.add("is-active");
-    }
-
-    // Accès à vie en self-service : régénère des liens de téléchargement signés
-    // à la demande (15 min) plutôt que de dépendre du lien 48h envoyé par email.
-    async function chargerAchats(accessToken){
-      var rep, data;
-      try {
-        rep = await fetch("/api/mes-telechargements", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ accessToken: accessToken })
-        });
-        data = await rep.json();
-      } catch (e){
-        achatsVide.style.display = "block";
-        achatsVide.textContent = "Impossible de charger tes achats pour l'instant. Réessaie dans un instant.";
-        achatsListe.innerHTML = "";
-        return;
-      }
-      var achats = (rep.ok && data.achats) || [];
-      if (!achats.length){
-        achatsVide.style.display = "block";
-        achatsListe.innerHTML = "";
-        return;
-      }
-      achatsVide.style.display = "none";
-      function echapperCompte(valeur){
-        return String(valeur).replace(/[&<>"']/g, function(c){
-          return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
-        });
-      }
-      achatsListe.innerHTML = achats.map(function(a, idx){
-        var date = new Date(a.date).toLocaleDateString("fr-FR");
-        var noms = a.produits.map(function(p){ return p.nom; }).join(", ");
-        var fichiers = a.produits.reduce(function(acc, p){ return acc.concat(p.fichiers); }, []);
-        function rendreFichier(f){
-          if (f.type === "video") {
-            return "<div style=\"margin:6px 0\">" +
-              "<div style=\"font-size:14px; margin-bottom:4px\">" + echapperCompte(f.nom) + "</div>" +
-              "<video controls controlsList=\"nodownload noremoteplayback\" disablePictureInPicture oncontextmenu=\"return false\" style=\"width:100%; max-width:480px; border-radius:8px; display:block\">" +
-                "<source src=\"" + f.url + "\" type=\"video/mp4\">" +
-              "</video>" +
-            "</div>";
-          }
-          return "<a class=\"btn btn--outline btn--sm\" href=\"" + f.url + "\" style=\"margin:4px 6px 0 0\">Télécharger " + echapperCompte(f.nom) + "</a>";
-        }
-        var groupes = [];
-        var indexGroupes = {};
-        fichiers.forEach(function(f){
-          if (!f.groupe){ groupes.push({ fichier: f }); return; }
-          if (indexGroupes[f.groupe] === undefined){
-            indexGroupes[f.groupe] = groupes.length;
-            groupes.push({ nom: f.groupe, fichiers: [] });
-          }
-          groupes[indexGroupes[f.groupe]].fichiers.push(f);
-        });
-        var liens = groupes.map(function(g){
-          if (g.fichier) return rendreFichier(g.fichier);
-          return "<details><summary>" + echapperCompte(g.nom) + "</summary><div class=\"pack-ultra-downloads__files\">" +
-            g.fichiers.map(rendreFichier).join("") + "</div></details>";
-        }).join("");
-        if (fichiers.some(function(f){ return !!f.groupe; })){
-          liens = "<div class=\"pack-ultra-downloads\">" + liens + "</div>";
-        }
-        return "<li style=\"flex-direction:column; align-items:flex-start; gap:8px\">" +
-          "<div class=\"compte-row\" style=\"width:100%\"><span>" + noms + "</span><span class=\"achat-date\">" + date + "</span></div>" +
-          "<div>" + liens + "</div>" +
-        "</li>";
-      }).join("");
-    }
-
-    async function afficherConnecte(session){
-      compteEmail.textContent = session.user.email;
-      afficherEtat("etatConnecte");
-      await chargerAchats(session.access_token);
-    }
-
-    async function verifierSession(){
-      var res = await sb.auth.getSession();
-      var session = res.data && res.data.session;
-      if (session){
-        afficherConnecte(session);
-      } else {
-        afficherEtat("etatConnexion");
-      }
-    }
-
-    connexionForm.addEventListener("submit", async function(e){
-      e.preventDefault();
-      connexionError.style.display = "none";
-      connexionSuccess.style.display = "none";
-      connexionSubmit.disabled = true;
-      var email = connexionEmail.value.trim();
-      var res = await sb.auth.signInWithOtp({
-        email: email,
-        options: { emailRedirectTo: window.location.href }
-      });
-      connexionSubmit.disabled = false;
-      if (res.error){
-        connexionError.textContent = "L'envoi a échoué. Réessaie dans un instant.";
-        connexionError.style.display = "block";
-        return;
-      }
-      connexionSuccess.style.display = "block";
-      connexionForm.reset();
-    });
-
-    deconnexionBtn.addEventListener("click", async function(){
-      await sb.auth.signOut();
-      afficherEtat("etatConnexion");
-    });
-
-    sb.auth.onAuthStateChange(function(_event, session){
-      if (session){ afficherConnecte(session); } else { afficherEtat("etatConnexion"); }
-    });
-
-    verifierSession();
-  })();
-  </script>
+  <script src="assets/js/compte.js?v=b1c66b0e" defer></script>
   <script src="assets/js/cookie-consent.js?v=fd545d49" defer></script>
 </body>
 </html>
