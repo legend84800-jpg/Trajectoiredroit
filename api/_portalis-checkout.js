@@ -1,5 +1,5 @@
 const {createHash,randomUUID}=require('node:crypto');
-const {FORMULES,formuleValide,UUID}=require('./_portalis-config');
+const {ABONNEMENTS_OUVERTS,FORMULES,formuleValide,UUID}=require('./_portalis-config');
 const {authentifier,ErreurPortalis,service,rpc}=require('./_portalis-store');
 const {creerClientStripe}=require('./_stripe');
 const ORIGIN='https://trajectoiredroit.com';
@@ -29,6 +29,8 @@ async function configurationPortail(stripe) {
 async function checkout(req,res,body) {
   try {
     const user=await authentifier(req);
+    if(!ABONNEMENTS_OUVERTS&&body.type!=='portal') throw new ErreurPortalis('offre_en_preparation','Les abonnements Portalis seront disponibles prochainement.',503);
+
     const stripe=creerClientStripe(process.env.STRIPE_SECRET_KEY);
     const rows=await (await service(`/rest/v1/abonnements?user_id=eq.${user.id}&select=stripe_customer_id,stripe_subscription_id&limit=1`)).json();
     const current=rows[0];

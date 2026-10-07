@@ -51,7 +51,7 @@ async function generer(body,user) {
   if (!state.actif) throw new ErreurPortalis('abonnement_requis','Choisis une formule pour utiliser Portalis.',403);
   const compte=await anthropic('/count_tokens',{model:MODELE,system:preparation.system,messages:preparation.messages},15000);
   if (!Number.isInteger(compte.input_tokens)||compte.input_tokens>LIMITES.jetonsEntree)
-    throw new ErreurPortalis('volume','Ce dossier est trop dense. Retire une partie du texte.');
+    throw new ErreurPortalis('volume','Cet exercice est trop dense. Retire une partie du texte.');
   const reservation=await rpc('portalis_reserver',{p_user:user,p_id:body.demandeId,p_empreinte:preparation.empreinte});
   if (reservation.code==='deja_terminee') return {reponse:reservation.reponse,etat:await rpc('portalis_etat',{p_user:user})};
   const messages={en_cours:'Une réponse est déjà en cours. Attends sa fin.',quota_epuise:'Tes réponses sont utilisées. Tu peux ajouter une recharge.',pause_temporaire:'Plusieurs demandes ont échoué. Réessaie dans une heure.',demande_expiree:'Cette demande a expiré. Relance-la avec un nouvel identifiant.',abonnement_requis:'Ton abonnement doit être actif.',demande_invalide:'Cet identifiant de demande est déjà utilisé.'};

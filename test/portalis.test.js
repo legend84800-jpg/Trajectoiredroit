@@ -20,7 +20,7 @@ test('les anciens liens conduisent à Portalis et le compte retrouve son espace'
   const redirects=JSON.parse(lire('vercel.json')).redirects;
   for(const source of ['/outil-fiche-arret.html','/outil-fiche-arret'])assert.equal(redirects.find(r=>r.source===source).destination,'/portalis.html');
   assert.match(lire('mon-compte.html'),/href="portalis.html#espace"/);
-  assert.match(lire('index.html'),/href="portalis.html"/);
+  assert.match(lire('index.html'),/href="portalis.html(?:#[^"]*)?"/);
   assert.match(lire('sitemap.xml'),/https:\/\/trajectoiredroit.com\/portalis.html/);
 });
 test('la génération et le paiement refusent une identité fournie par le navigateur sans JWT',async()=>{
@@ -138,4 +138,38 @@ test('le lecteur PDF accepte 15 pages et refuse 16 pages dans le worker isolé',
   const {extrairePDF}=require('../api/_portalis-generation');
   const doc=await extrairePDF(pdfFixture(15));assert.equal(doc.pages,15);assert.ok(doc.texte.length>20);
   await assert.rejects(extrairePDF(pdfFixture(16)),{message:'pages'});
+});
+
+test('une offre fermée ne crée aucun paiement même avec un compte confirmé',async()=>{
+  const store=require('../api/_portalis-store');
+  const checkout=charger('api/_portalis-checkout.js',{
+    './_portalis-config':{...require('../api/_portalis-config'),ABONNEMENTS_OUVERTS:false},
+    './_portalis-store':{...store,authentifier:async()=>({id:USER})},
+    './_stripe':{creerClientStripe(){assert.fail('Paiement créé pour une offre fermée');}}
+  }).checkout;
+  const r=res();await checkout({headers:{}},r,{mode:'subscription',formule:'portalis',accordConditions:true});
+  assert.equal(r.statusCode,503);assert.equal(r.payload.code,'offre_en_preparation');
+});
+test('le paiement utilise le tarif mensuel serveur et le propriétaire confirmé',async()=>{
+  for(const [formule,montant] of [['portalis',700],['classique',1200],['pro',1700]]){
+    let priceData,sessionData;
+    const stripe={
+      customers:{create:async()=>({id:'cus_fixture'})},
+      subscriptions:{list:async()=>({data:[]})},
+      products:{create:async()=>({id:'prod_fixture'})},
+      prices:{list:async()=>({data:[]}),create:async data=>{priceData=data;return{id:'price_fixture'};}},
+      checkout:{sessions:{create:async data=>{sessionData=data;return{url:'https://checkout.stripe.com/c/pay/fixture'};}}}
+    };
+    const checkout=charger('api/_portalis-checkout.js',{
+      './_portalis-config':{...require('../api/_portalis-config'),ABONNEMENTS_OUVERTS:true},
+      './_portalis-store':{...require('../api/_portalis-store'),authentifier:async()=>({id:USER,email:'fixture@example.test'}),
+        service:async()=>({json:async()=>[]}),rpc:async()=>({actif:false})},
+      './_stripe':{creerClientStripe:()=>stripe}
+    }).checkout;
+    const r=res();await checkout({headers:{}},r,{mode:'subscription',formule,accordConditions:true,prix:1,supabaseUserId:ID});
+    assert.equal(r.statusCode,200);assert.equal(priceData.unit_amount,montant);assert.equal(priceData.currency,'eur');
+    assert.equal(priceData.recurring.interval,'month');assert.equal(sessionData.mode,'subscription');
+    assert.equal(sessionData.metadata.supabase_user_id,USER);assert.equal(sessionData.locale,'fr');
+    assert.equal(sessionData.wallet_options.link.display,'never');
+  }
 });

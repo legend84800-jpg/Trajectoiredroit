@@ -56,7 +56,7 @@
       const price=config.formules[el.dataset.price].prix;
       el.textContent=price?euros(price):'Tarif à confirmer';el.classList.toggle('awaiting',!price);
     });
-    document.querySelectorAll('[data-choisir]').forEach(button=>{button.disabled=!config.formules[button.dataset.choisir].prix;});
+    document.querySelectorAll('[data-choisir]').forEach(button=>{button.disabled=!config.abonnementsOuverts||!config.formules[button.dataset.choisir].prix;});
     renderState();
   }
   function choose(code,scroll=true){
@@ -66,7 +66,7 @@
     $('choixDetail').textContent=plan.prix?`${euros(plan.prix)} par mois · 60 réponses par période mensuelle`:'Le tarif est en cours de validation.';
     $('choixCompte').textContent=session?'L’abonnement sera lié à ton compte connecté.':'Connecte-toi avant le paiement pour retrouver tes réponses dans ton espace.';
     $('payer').textContent=session?'Continuer vers le paiement':'Me connecter pour continuer';
-    $('payer').disabled=!plan.prix;
+    $('payer').disabled=!config.abonnementsOuverts||!plan.prix;
     message('paiementMessage','');
     if(scroll)$('choix').scrollIntoView({block:'center',behavior:'smooth'});
   }
