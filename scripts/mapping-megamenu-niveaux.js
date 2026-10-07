@@ -14,7 +14,6 @@ const NIVEAUX = {
       { nom: "Relations internationales", href: "relations-internationales-l1.html" },
       { nom: "Droit des personnes", href: "droit-des-personnes-l1.html" },
       { nom: "Droit de la famille", href: "droit-de-la-famille-l1.html" },
-      { nom: "Droit pénal général (L1 S2)", href: "droit-penal-general-l1.html" },
     ],
   },
   L2: {
