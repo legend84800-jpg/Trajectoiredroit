@@ -100,9 +100,9 @@ test('le chargement public des tarifs survit à la première notification de ses
   vm.runInNewContext(lire('assets/js/portalis.js'),{document,location,localStorage:storage,sessionStorage:storage,AbortController,URLSearchParams,Intl,console,
     setTimeout,clearTimeout,window:{supabase:{createClient:()=>sb},location},fetch:async(_url,options)=>{
       await new Promise(resolve=>setTimeout(resolve,15));aborted=options.signal.aborted;
-      if(aborted)throw new Error('aborted');return{ok:true,json:async()=>({formules:Object.fromEntries(['portalis','classique','pro'].map(code=>[code,{prix:900,nom:code,recharges:{}}]))})};
+      if(aborted)throw new Error('aborted');return{ok:true,json:async()=>({abonnementsOuverts:true,formules:Object.fromEntries(['portalis','classique','pro'].map(code=>[code,{prix:900,nom:code,recharges:{}}]))})};
     }});
-  await new Promise(resolve=>setTimeout(resolve,30));assert.equal(aborted,false);assert.match(prices[0].textContent,/9/);assert.equal(node('paiementMessage').hidden,true);
+  await new Promise(resolve=>setTimeout(resolve,30));assert.equal(aborted,false);assert.match(prices[0].textContent,/9/);assert.equal(node('paiementMessage').hidden,true);assert.ok(choices.every(button=>!button.disabled));
 });
 test('un retour Checkout appartenant à un autre compte ne peut pas être synchronisé',async()=>{
   const billing=require('../api/_portalis-billing');
@@ -151,7 +151,7 @@ test('une offre fermée ne crée aucun paiement même avec un compte confirmé',
   assert.equal(r.statusCode,503);assert.equal(r.payload.code,'offre_en_preparation');
 });
 test('le paiement utilise le tarif mensuel serveur et le propriétaire confirmé',async()=>{
-  for(const [formule,montant] of [['portalis',700],['classique',1200],['pro',1700]]){
+  for(const [formule,montant] of [['portalis',800],['classique',1200],['pro',1800]]){
     let priceData,sessionData;
     const stripe={
       customers:{create:async()=>({id:'cus_fixture'})},
@@ -171,5 +171,27 @@ test('le paiement utilise le tarif mensuel serveur et le propriétaire confirmé
     assert.equal(priceData.recurring.interval,'month');assert.equal(sessionData.mode,'subscription');
     assert.equal(sessionData.metadata.supabase_user_id,USER);assert.equal(sessionData.locale,'fr');
     assert.equal(sessionData.wallet_options.link.display,'never');
+  }
+});
+
+test('les recharges utilisent leur prix serveur et restent liées à la formule active',async()=>{
+  for(const [formule,nombre,montant] of [['portalis',20,300],['portalis',60,800],['classique',20,400],['classique',60,1100],['pro',20,600],['pro',60,1600]]){
+    let priceData,sessionData;const stripe={
+      products:{create:async()=>({id:'prod_fixture'})},
+      prices:{list:async()=>({data:[]}),create:async data=>{priceData=data;return{id:'price_fixture'};}},
+      checkout:{sessions:{create:async data=>{sessionData=data;return{url:'https://checkout.stripe.com/c/pay/fixture'};}}}
+    };
+    let active=formule;
+    const checkout=charger('api/_portalis-checkout.js',{
+      './_portalis-store':{...require('../api/_portalis-store'),authentifier:async()=>({id:USER}),
+        service:async()=>({json:async()=>[{stripe_customer_id:'cus_fixture'}]}),rpc:async()=>({actif:true,formule:active})},
+      './_stripe':{creerClientStripe:()=>stripe}
+    }).checkout;
+    const r=res();await checkout({headers:{}},r,{type:'portalis_recharge',formule,nombre,prix:1,supabaseUserId:ID});
+    assert.equal(r.statusCode,200);assert.equal(priceData.unit_amount,montant);assert.equal(priceData.currency,'eur');
+    assert.equal(priceData.recurring,undefined);assert.equal(sessionData.mode,'payment');
+    assert.equal(sessionData.metadata.nombre,String(nombre));assert.equal(sessionData.metadata.supabase_user_id,USER);
+    active='autre';const refuse=res();await checkout({headers:{}},refuse,{type:'portalis_recharge',formule,nombre});
+    assert.equal(refuse.statusCode,403);assert.equal(refuse.payload.code,'abonnement_requis');
   }
 });
