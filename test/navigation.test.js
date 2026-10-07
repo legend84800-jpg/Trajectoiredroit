@@ -18,7 +18,7 @@ function extraire(html, debut, fin) {
   return html.slice(positionDebut, positionFin + fin.length);
 }
 
-test('les pages françaises partagent cinq familles de navigation', () => {
+test('les pages françaises partagent cinq familles de navigation avec Portalis dans Par format', () => {
   assert.ok(pages.length >= 247, `Le contrôle doit couvrir au moins 247 pages, ${pages.length} trouvées`);
 
   for (const { nom, html } of pages) {
@@ -26,6 +26,8 @@ test('les pages françaises partagent cinq familles de navigation', () => {
     const familles = nav.match(/<div class="nav-item\b/g) || [];
 
     assert.equal(familles.length, 5, `${nom} doit avoir cinq familles`);
+    const formats = extraire(nav, '<div class="megamenu__niveau-col megamenu__niveau-col--formats">', '</div>\n            <div class="megamenu__niveau-col">');
+    assert.match(formats, /href="portalis\.html" role="menuitem"/, `${nom} doit proposer Portalis dans Par format`);
     assert.match(nav, />Fiches\s*</, `${nom} doit proposer Fiches`);
     assert.match(nav, />Cours particuliers\s*</, `${nom} doit proposer Cours particuliers`);
     assert.match(nav, />Stage en direct\s*</, `${nom} doit proposer Stage en direct`);
@@ -80,13 +82,14 @@ test('Fiches montre les cinq Packs Ultra et Ressources accueille le quiz', () =>
 test('le menu mobile reprend les cinq familles avec divulgation progressive', () => {
   for (const { nom, html } of pages) {
     const navMobile = extraire(html, '<nav class="mobile-nav"', '</nav>');
+    assert.match(navMobile, /mobile-nav__format" href="portalis\.html"/, `${nom} doit proposer Portalis parmi les formats sur mobile`);
     const groupes = navMobile.match(/<details class="mobile-nav__group/g) || [];
 
     assert.equal(groupes.length, 3, `${nom} doit regrouper Fiches, Ressources et À propos`);
     assert.match(navMobile, /<details class="mobile-nav__group[^>]*" open>/, `${nom} doit montrer les formats dès l'ouverture du menu`);
     assert.match(navMobile, />Choisir un format</, `${nom} doit nommer clairement le premier groupe`);
     assert.match(navMobile, /href="formations\.html#comparatif"[^>]*>Comparer tous les formats</, `${nom} doit donner un accès direct au comparatif`);
-    assert.equal((navMobile.match(/mobile-nav__format-icon/g) || []).length, 7, `${nom} doit illustrer les six formats et le Pack Ultra, sans l'offre retirée`);
+    assert.equal((navMobile.match(/mobile-nav__format-icon/g) || []).length, 8, `${nom} doit illustrer les sept formats et le Pack Ultra, sans l'offre retirée`);
     assert.match(navMobile, /mobile-nav__format--featured[^>]*href="pack-ultra\.html#pack-ultra"/, `${nom} doit mettre le Pack Ultra en avant`);
     assert.match(navMobile, /href="cours-fiches\.html"[^>]*><span[^>]*>🎓<\/span><span>Cours complets<\/span>/, `${nom} doit illustrer les cours complets`);
     assert.match(navMobile, /href="formations\.html"[^>]*><span[^>]*>📄<\/span><span>Fiches complètes<\/span>/, `${nom} doit conserver les fiches complètes`);
