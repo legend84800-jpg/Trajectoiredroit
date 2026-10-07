@@ -491,11 +491,11 @@
   "juridiction": "Cour de cassation, chambre criminelle",
   "date": "25 octobre 1962",
   "matiere": "penal-l1s2",
-  "histoire": "Un homme conçoit le projet de faire tuer le fils adoptif de son amie. Il recrute un exécutant, lui remet des fonds et lui donne ses instructions, la manière de procéder et le moment choisi. L'homme sollicité accepte en apparence, mais il n'a jamais eu l'intention de tuer, et il révèle tout à la victime désignée, avec laquelle il organise une fausse disparition pour toucher malgré tout la récompense. Aucune agression n'a donc jamais lieu, et la justice doit dire si le commanditaire peut être puni.",
+  "histoire": "Un médecin proche d'une dame conçoit le projet de faire tuer le fils adoptif de cette dame. Il recrute un hôtelier, lui verse un premier acompte, lui désigne la victime et fixe avec lui le moment, le lieu et les modalités du crime. L'hôtelier accepte en apparence, mais il n'a jamais eu l'intention de tuer. Il avertit la victime désignée, organise avec elle un simulacre d'enlèvement et encaisse ainsi le reste de la somme promise. Aucune agression n'a donc jamais lieu, et la justice doit dire si le commanditaire peut être puni.",
   "question": "Qu'ont décidé les juges ?",
   "options": [
    "Le commanditaire est puni pour tentative, la remise de fonds et d'instructions constituant un commencement d'exécution.",
-   "Le commanditaire échappe à toute peine, ses actes restant de simples actes préparatoires dès lors que l'exécutant s'est abstenu d'agir, et aucune complicité n'étant punissable en l'absence de fait principal punissable.",
+   "Le commanditaire échappe à toute peine, ses actes n'ayant pas un lien assez direct et immédiat avec l'action de tuer pour constituer un commencement d'exécution, et aucune complicité n'étant punissable en l'absence de fait principal punissable.",
    "Le commanditaire est puni comme complice, la provocation au meurtre suffisant même sans fait principal.",
    "Le commanditaire est puni pour association de malfaiteurs, le pacte criminel étant établi."
   ],
@@ -623,7 +623,7 @@
    "Aucune infraction ne peut être retenue, car on ne peut pas tuer une personne déjà morte.",
    "Seules des violences peuvent être poursuivies, l'homicide supposant une victime vivante au moment des coups.",
    "La qualification dépend de la possibilité concrète du résultat, appréciée souverainement par les juges du fond.",
-   "La tentative d'homicide volontaire est caractérisée, le décès antérieur de la victime, circonstance indépendante de la volonté de l'auteur, ne retirant rien à son intention de tuer ni au commencement d'exécution."
+   "À supposer établi que l'auteur la croyait vivante et voulait la tuer, la tentative d'homicide volontaire est caractérisée même si la victime était déjà décédée, ce décès étant une circonstance indépendante de la volonté de l'auteur."
   ],
   "correct": 3,
   "revelation": "C'est l'arrêt Perdereau, rendu par la chambre criminelle de la Cour de cassation le 16 janvier 1986. Il consacre la répression de l'infraction impossible, dans le prolongement de l'arrêt Fleury de 1928 sur le moyen inefficace. La solution reste appliquée aujourd'hui sous l'article 121-5 du Code pénal.",
