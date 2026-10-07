@@ -56,6 +56,9 @@
     .compte-introduction{color:#475569}
     .compte-box{background:#fff;border:1px solid #E2E8F0;border-radius:18px;box-shadow:0 12px 40px rgba(15,23,42,.07);padding:30px}
     .compte-box + .compte-box{margin-top:20px}
+    .compte-portalis{display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:20px;align-items:center}
+    .compte-portalis img{display:block;width:100%;height:auto}
+    @media(max-width:480px){.compte-portalis{grid-template-columns:1fr}.compte-portalis img{width:110px;justify-self:end}}
     .compte-box h2{font-family:"Spectral",Georgia,serif;font-size:1.3rem;margin:0 0 6px}
     .compte-box p{color:#64748B;margin:0 0 18px}
     .compte-etat{display:none}
@@ -442,10 +445,13 @@
               </div>
             </div>
 
-            <div class="compte-box">
+            <div class="compte-box compte-portalis">
+              <div>
               <h2>Portalis IA</h2>
               <p>Retrouve ta formule, tes réponses disponibles et tes exercices dans ton espace.</p>
               <a class="btn btn--primary" href="portalis.html#espace">Ouvrir Portalis IA</a>
+              </div>
+              <img src="assets/portalis-ia-robot-juriste.webp" alt="" width="768" height="1152" loading="lazy" decoding="async">
             </div>
 
             <div class="compte-box">
