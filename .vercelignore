@@ -1,1 +1,10 @@
 cloud-secrets
+
+.impeccable/
+PRODUCT.md
+DESIGN.md
+CLAUDE.md
+supabase/
+test/
+seo-reports/
+brouillons/

@@ -942,6 +942,17 @@ async function handler(req, res) {
     return;
   }
 
+  try {
+    if (await require("./_portalis-billing").evenementPortalis(stripe, evt)) {
+      res.status(200).json({ recu: true });
+      return;
+    }
+  } catch (e) {
+    console.error("Portalis synchronisation", { code: e.message });
+    res.status(500).json({ erreur: "Synchronisation temporairement impossible" });
+    return;
+  }
+
   if (evt.type === "customer.subscription.created" || evt.type === "customer.subscription.updated" || evt.type === "customer.subscription.deleted") {
     try {
       await synchroniserAbonnement(evt.data.object);

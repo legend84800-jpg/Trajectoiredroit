@@ -1,0 +1,47 @@
+-- Vérification réelle dans une transaction intégralement annulée.
+begin;
+insert into auth.users(id,email) values ('10000000-0000-4000-8000-000000000001','portalis-fixture@example.invalid');
+do $$
+declare u uuid:='10000000-0000-4000-8000-000000000001'; d uuid:='20000000-0000-4000-8000-000000000001'; s jsonb;
+begin
+  perform portalis_synchroniser(u,'cus_fixture','sub_fixture','portalis','actif',now()-interval '1 day',now()+interval '29 days',false,1);
+  if (portalis_etat(u)->>'actif')::boolean then raise exception 'activation sans facture'; end if;
+  perform portalis_crediter_periode(u,'sub_fixture','in_fixture','portalis',now()-interval '1 day',now()+interval '29 days');
+  s:=portalis_reserver(u,d,'hash');
+  if s->>'code'<>'reservee' then raise exception 'réservation'; end if;
+  if portalis_reserver(u,'20000000-0000-4000-8000-000000000002','hash')->>'code'<>'en_cours' then raise exception 'concurrence'; end if;
+  if (portalis_etat(u)->>'restant')::integer<>59 then raise exception 'compteur'; end if;
+  if not portalis_echouer(u,d) then raise exception 'remboursement'; end if;
+  if portalis_echouer(u,d) then raise exception 'double remboursement'; end if;
+  if (portalis_etat(u)->>'restant')::integer<>60 then raise exception 'solde remboursé'; end if;
+  perform portalis_crediter_periode(u,'sub_fixture','in_fixture','portalis',now()-interval '1 day',now()+interval '29 days');
+  if (select count(*) from portalis_periodes where user_id=u)<>1 then raise exception 'facture dupliquée'; end if;
+  d:='20000000-0000-4000-8000-000000000003';
+  perform portalis_reserver(u,d,'hash');
+  if not portalis_terminer(u,d,'Une réponse complète et suffisamment longue pour le test.',100,100) then raise exception 'fin'; end if;
+  if portalis_reserver(u,d,'hash')->>'code'<>'deja_terminee' then raise exception 'rejeu'; end if;
+  if portalis_echouer(u,d) then raise exception 'remboursement après réussite'; end if;
+  if portalis_reserver(u,d,'autre')->>'code'<>'demande_invalide' then raise exception 'empreinte'; end if;
+  update portalis_periodes set utilise=60 where user_id=u;
+  if portalis_reserver(u,'20000000-0000-4000-8000-000000000004','hash')->>'code'<>'quota_epuise' then raise exception 'dépassement'; end if;
+  perform portalis_crediter_recharge(u,'cs_fixture','portalis',20);
+  perform portalis_crediter_recharge(u,'cs_fixture','portalis',20);
+  perform portalis_crediter_recharge(u,'cs_pro_fixture','pro',60);
+  d:='20000000-0000-4000-8000-000000000005';
+  perform portalis_reserver(u,d,'hash');
+  if (portalis_etat(u)->>'recharges')::integer<>19 then raise exception 'recharge utilisée'; end if;
+  perform portalis_echouer(u,d);
+  if (portalis_etat(u)->>'recharges')::integer<>20 then raise exception 'recharge remboursée'; end if;
+  update portalis_periodes set debut=now()-interval '31 days',fin=now()-interval '1 day' where user_id=u;
+  perform portalis_crediter_periode(u,'sub_fixture','in_fixture_2','portalis',now()-interval '1 day',now()+interval '29 days');
+  s:=portalis_etat(u);
+  if (s->>'restant')::integer<>60 or (s->>'recharges')::integer<>20 then raise exception 'renouvellement'; end if;
+  perform portalis_synchroniser(u,'cus_fixture','sub_fixture','portalis','actif',now()-interval '1 day',now()+interval '29 days',true,1);
+  if not (portalis_etat(u)->>'actif')::boolean then raise exception 'résiliation immédiate'; end if;
+  perform portalis_synchroniser(u,'cus_fixture','sub_ancien','portalis','annule',now()-interval '32 days',now()-interval '2 days',false,0);
+  if not (portalis_etat(u)->>'actif')::boolean then raise exception 'événement ancien'; end if;
+  if has_function_privilege('authenticated','public.portalis_reserver(uuid,uuid,text)','execute') then raise exception 'RPC publique'; end if;
+  if has_table_privilege('anon','public.portalis_demandes','select') then raise exception 'données publiques'; end if;
+end $$;
+select 'quotas, factures, recharges, remboursements, rejeux, renouvellement et droits vérifiés' as resultat;
+rollback;

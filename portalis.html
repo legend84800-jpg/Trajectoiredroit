@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Portalis pour travailler tes exercices de droit. Trois formules mensuelles, 60 réponses incluses et des documents jusqu’à 15 pages.">
+  <meta name="referrer" content="no-referrer">
+  <title>Portalis · Tes exercices de droit | Trajectoire Droit</title>
+  <link rel="canonical" href="https://trajectoiredroit.com/portalis.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/portalis.css?v=063aa912">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="assets/js/portalis.js?v=bb9fc77e" defer></script>
+</head>
+<body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
+  <header class="header">
+    <a class="brand" href="/" aria-label="Accueil Trajectoire Droit"><img src="assets/logo-tjd.svg" alt="Trajectoire Droit" width="180" height="38"></a>
+    <nav aria-label="Navigation Portalis"><a href="#formules">Les formules</a><a href="#espace">Mon espace</a></nav>
+    <a class="account" href="mon-compte.html">Mon compte</a>
+  </header>
+  <main id="contenu">
+    <section class="intro">
+      <h1>Portalis</h1>
+      <p class="standfirst">Ton exercice, repris avec la méthode.</p>
+      <p>Ajoute ton sujet ou ton arrêt pour obtenir un corrigé structuré. Choisis la profondeur de réflexion selon le travail que tu veux mener.</p>
+      <a href="#espace" class="text-link">Accéder à mon espace</a>
+    </section>
+    <section id="formules" class="plans-section" aria-label="Les trois formules mensuelles">
+      <div class="plans">
+        <article class="plan"><p class="plan-level">Réflexion rapide</p><h2>Portalis</h2><p class="plan-description">Le premier niveau de réflexion, pour travailler un dossier simple.</p><p class="price"><strong data-price="portalis">Tarif à confirmer</strong><span>par mois</span></p><p class="plan-volume">60 réponses par mois</p><button type="button" class="button" data-choisir="portalis" disabled>Choisir Portalis</button></article>
+        <article class="plan plan-classique"><p class="plan-level">Réflexion standard</p><h2>Portalis Classique</h2><p class="plan-description">Une réflexion intermédiaire pour examiner les difficultés de ton dossier.</p><p class="price"><strong data-price="classique">Tarif à confirmer</strong><span>par mois</span></p><p class="plan-volume">60 réponses par mois</p><button type="button" class="button" data-choisir="classique" disabled>Choisir Classique</button></article>
+        <article class="plan plan-pro"><p class="plan-level">Réflexion approfondie</p><h2>Portalis Pro</h2><p class="plan-description">Le niveau de réflexion le plus élevé pour reprendre un dossier complexe.</p><p class="price"><strong data-price="pro">Tarif à confirmer</strong><span>par mois</span></p><p class="plan-volume">60 réponses par mois</p><button type="button" class="button" data-choisir="pro" disabled>Choisir Pro</button></article>
+      </div>
+      <p class="terms">Abonnement mensuel · Résiliation depuis ton espace, avec accès jusqu’à la fin de la période payée.</p>
+      <div class="common"><strong>Les mêmes outils dans chaque formule</strong><span>Fiche d’arrêt</span><span>Commentaire d’arrêt</span><span>Cas pratique</span><span>Dissertation</span></div>
+      <p class="common-note">Chaque formule accepte jusqu’à 15 pages et 30 000 caractères par demande, espaces compris. Tous les documents sont comptés ensemble.</p>
+      <div id="choix" class="choice" hidden><div><h3 id="choixNom"></h3><p id="choixDetail"></p><p id="choixCompte"></p><label class="terms-check"><input type="checkbox" id="conditions"> J’accepte les <a href="cgu.html#portalis">conditions de vente de Portalis</a>.</label></div><button id="payer" type="button" class="button">Continuer vers le paiement</button></div>
+      <p id="paiementMessage" class="message" role="status" hidden></p>
+    </section>
+    <section id="espace" class="workspace" tabindex="-1">
+      <div class="section-head"><div><h2>Sur quel exercice travailles-tu ?</h2></div><a id="connexion" class="button button-outline" href="mon-compte.html?retour=portalis">Me connecter</a></div>
+      <p id="etat" class="workspace-state" role="status">Connecte-toi pour retrouver ton abonnement et tes réponses disponibles.</p>
+      <div id="abonnement" class="subscription" hidden><div><strong id="formuleActive"></strong><p id="quota"></p><p id="renouvellement"></p></div><button id="gerer" class="text-button" type="button">Gérer mon abonnement</button></div>
+      <form id="exerciceForm" class="editor">
+        <fieldset id="champs" disabled>
+          <label for="exercice">L’exercice</label>
+          <select id="exercice"><option value="fiche">Fiche d’arrêt</option><option value="commentaire">Commentaire d’arrêt</option><option value="cas">Cas pratique</option><option value="dissertation">Dissertation</option></select>
+          <label for="texte">Ton texte ou ton sujet</label>
+          <textarea id="texte" rows="9" maxlength="30000" placeholder="Colle ton arrêt, ton cas pratique ou ton sujet de dissertation."></textarea>
+          <div class="editor-tools"><label class="upload" for="pdf">Ajouter un PDF <span>20 Mo maximum</span><input type="file" id="pdf" accept="application/pdf,.pdf"></label><p id="volume">0 / 30 000 caractères · 0 / 15 pages</p></div>
+          <ul id="documents" class="documents" aria-label="Documents ajoutés"></ul>
+          <label for="question">Ta consigne <span class="optional">facultatif, 2 000 caractères maximum</span></label>
+          <textarea id="question" rows="2" maxlength="2000" placeholder="Précise les points que tu veux travailler ou ajoute la consigne de ton chargé de TD."></textarea>
+          <p class="editor-note">Une réponse terminée utilise un crédit, y compris pour une nouvelle question sur le même document. Les pages du texte collé sont estimées à partir de sa longueur.</p>
+          <p class="editor-note">Le texte de ta demande est envoyé à Anthropic pour préparer la réponse. <a href="confidentialite.html#portalis">Voir le traitement de tes documents</a>.</p>
+          <button id="generer" type="submit" class="button">Travailler mon exercice</button>
+        </fieldset>
+        <p id="travailMessage" class="message" role="status" hidden></p>
+      </form>
+      <article id="resultat" class="result" hidden tabindex="-1"><div class="result-head"><h3>Ta réponse</h3><button id="copier" class="text-button" type="button">Copier la réponse</button></div><div id="reponse" class="answer-copy"></div><p class="result-note">Compare le corrigé à ton cours et vérifie les références avant de reprendre les passages qui t’aident.</p></article>
+      <div id="recharges" class="recharges" hidden><div><h3>Besoin de réponses supplémentaires ?</h3><p>Ajoute une recharge ponctuelle. Son solde reste disponible avec la même formule active.</p></div><div class="recharge-actions"><button type="button" class="button button-outline" data-recharge="20"></button><button type="button" class="button button-outline" data-recharge="60"></button></div></div>
+    </section>
+    <section class="questions" aria-label="Questions sur Portalis"><h2>Avant de choisir ta formule</h2>
+      <details><summary>Qu’est-ce qui change entre les formules ?</summary><p>Le niveau de réflexion est plus élevé avec Classique, puis avec Pro. Chaque formule donne accès aux mêmes exercices et aux 60 réponses mensuelles, avec les mêmes limites de documents. Tu peux ainsi choisir une réflexion plus poussée pour un dossier complexe. Vérifie le résultat avec ton cours, quelle que soit la formule.</p></details>
+      <details><summary>Quand mes 60 réponses se renouvellent-elles ?</summary><p>Elles se renouvellent au début de chaque nouvelle période mensuelle payée. Les réponses mensuelles inutilisées ne sont pas reportées. Les recharges restent séparées et sont utilisées après les réponses incluses.</p></details>
+      <details><summary>Que se passe-t-il si une réponse échoue ?</summary><p>Le crédit réservé est restitué si la réponse ne se termine pas. Si ta connexion coupe après la génération, ton espace peut récupérer la réponse pendant 24 heures.</p></details>
+      <details><summary>Puis-je importer plusieurs documents ?</summary><p>Oui, dans la limite de 15 pages et 30 000 caractères pour l’ensemble de la demande. Chaque PDF peut peser jusqu’à 20 Mo et doit contenir du texte lisible, sans mot de passe, car Portalis lit le texte du fichier.</p><p>Le texte importé expire après une heure. Tu dois alors importer le document à nouveau pour préparer une autre réponse.</p></details>
+      <details><summary>Comment résilier ?</summary><p>Le bouton « Gérer mon abonnement » ouvre ton espace de facturation. Tu peux y résilier le renouvellement et conserver l’accès jusqu’à la fin de la période déjà payée.</p></details>
+    </section>
+  </main>
+  <footer><a href="/"><img src="assets/logo-tjd.svg" alt="Trajectoire Droit" width="180" height="38"></a><a href="mon-compte.html">Mon compte</a><a href="cgu.html">Conditions de vente</a><a href="confidentialite.html">Confidentialité</a></footer>
+  <noscript><p class="noscript">Active JavaScript pour accéder à ton espace et choisir un abonnement.</p></noscript>
+</body>
+</html>

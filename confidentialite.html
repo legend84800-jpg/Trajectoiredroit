@@ -395,12 +395,20 @@
             <p>Données de compte et achats : <strong>5 ans</strong> après la dernière interaction. Réponses facultatives après achat : <strong>12 mois</strong>, puis suppression lors de la purge quotidienne. Données de facturation : <strong>10 ans</strong> (obligation comptable). Données de navigation via Matomo : <strong>13 mois</strong>, puis suppression automatique. Données de navigation et publicitaires (Google Analytics, pixel Meta) : conservées selon la durée fixée par ces outils, puis supprimées automatiquement.</p>
           </section>
 
+          <section id="portalis">
+            <h2 class="h3">Tes documents dans Portalis</h2>
+            <p>Les textes et les consignes que tu fournis servent à préparer ta réponse. Ils sont envoyés à l’API d’Anthropic.</p><p>Le PDF importé est lu sur notre serveur, puis son fichier est supprimé. Le texte extrait reste disponible pendant une heure pour préparer ton exercice. Le nettoyage des fichiers restants et des textes expirés s’effectue chaque heure.</p>
+            <p>Une réponse reste récupérable dans ton espace pendant 24 heures. Elle est ensuite retirée de notre stockage lors du nettoyage horaire.</p><p>Nous conservons les compteurs et les traces de paiement nécessaires au fonctionnement de ton abonnement. Les durées appliquées par Anthropic sont décrites dans sa <a href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data" target="_blank" rel="noopener">politique de conservation des données de l’API</a>.</p>
+          </section>
+
           <section>
             <h2 class="h3">6. Partage des données</h2>
             <p>Tes données ne sont <strong>jamais revendues</strong>. Les seuls sous-traitants sont :</p>
             <ul style="margin:0; padding-left:20px; color:var(--body)">
               <li><strong>Vercel</strong> (hébergement), États-Unis, conforme au Data Privacy Framework.</li>
               <li><strong>Stripe</strong> (paiements), conforme PCI-DSS niveau 1.</li>
+              <li><strong>Supabase</strong> pour les comptes, les quotas et le stockage temporaire des documents Portalis.</li>
+              <li><strong>Anthropic</strong> pour préparer les réponses Portalis à partir des textes et des consignes fournis.</li>
               <li><strong>Brevo</strong> (newsletter), France.</li>
               <li><strong>Matomo</strong> (mesure d'audience), hébergé sur notre propre serveur en France, aucune donnée transmise à un tiers.</li>
               <li><strong>Google Analytics</strong> (mesure d'audience), Irlande / États-Unis, conforme au Data Privacy Framework.</li>

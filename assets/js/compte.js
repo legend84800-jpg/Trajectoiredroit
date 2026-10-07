@@ -196,6 +196,14 @@
           connexionError.style.display = "none";
           connexionSuccess.style.display = "none";
           afficherEtat("etatConnecte");
+          var retour = new URLSearchParams(window.location.search);
+          if (retour.get("retour") === "portalis") {
+            var formule = retour.get("formule");
+            var choix = ["portalis", "classique", "pro"].includes(formule)
+              ? "?formule=" + encodeURIComponent(formule) : "";
+            window.location.assign("portalis.html" + choix + "#espace");
+            return;
+          }
           await chargerAchats(session.access_token, generation);
         } catch (e){
           if (generation !== generationSession) return;

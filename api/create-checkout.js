@@ -64,7 +64,7 @@ function normaliserAttemptTimestamp(valeur) {
 async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "https://trajectoiredroit.com");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
   if (req.method === "OPTIONS") { res.status(200).end(); return; }
   if (req.method !== "POST") { res.status(405).json({ erreur: "Méthode non autorisée", code: "methode_non_autorisee" }); return; }
@@ -73,10 +73,9 @@ async function handler(req, res) {
   if (typeof corps === "string") { try { corps = JSON.parse(corps); } catch { corps = {}; } }
   corps = corps || {};
 
-  // L'offre retirée ne doit plus créer de souscription depuis une page en cache.
-  // Les Packs Ultra en plusieurs fois passent par produitId et echeances.
-  if (corps.mode === "subscription") {
-    res.status(410).json({ erreur: "Portalis a été retiré du site.", code: "offre_retiree" });
+  if (corps.mode === "subscription" || corps.type === "portalis_recharge" || corps.type === "portal") {
+    res.setHeader("Cache-Control", "no-store");
+    await require("./_portalis-checkout").checkout(req, res, corps);
     return;
   }
 
@@ -87,45 +86,6 @@ async function handler(req, res) {
   const attemptTimestamp = normaliserAttemptTimestamp(corps.attemptCreatedAt);
 
   const origin = "https://trajectoiredroit.com";
-
-  // Portail client Stripe (gérer/résilier l'abonnement Portalis).
-  if (corps.type === "portal") {
-    const supabaseUserId = typeof corps.supabaseUserId === "string" ? corps.supabaseUserId.trim() : "";
-    if (!supabaseUserId) { res.status(400).json({ erreur: "Compte manquant", code: "compte_manquant" }); return; }
-
-    let abonnement;
-    try {
-      const lignes = await selectionner(
-        "abonnements",
-        `user_id=eq.${encodeURIComponent(supabaseUserId)}&select=stripe_customer_id&limit=1`
-      );
-      abonnement = lignes[0];
-    } catch (e) {
-      console.error("create-checkout (portal) erreur Supabase:", e.message);
-      res.status(500).json({ erreur: "Erreur interne", code: "supabase" });
-      return;
-    }
-    if (!abonnement || !abonnement.stripe_customer_id) {
-      res.status(400).json({ erreur: "Aucun abonnement trouvé pour ce compte", code: "abonnement_absent" });
-      return;
-    }
-
-    try {
-      const sessionPortail = await stripe.billingPortal.sessions.create({
-        customer: abonnement.stripe_customer_id,
-        return_url: `${origin}/mon-compte.html`,
-      });
-      res.status(200).json({ url: sessionPortail.url });
-    } catch (e) {
-      console.error("create-checkout (portal) erreur Stripe", {
-        attemptId,
-        stripeCode: e && e.code ? e.code : "inconnu",
-        stripeType: e && e.type ? e.type : "inconnu",
-      });
-      res.status(502).json({ erreur: "Erreur Stripe", code: "stripe" });
-    }
-    return;
-  }
 
   // Panier multi-produits (chantier 5.12, ajouté le 21/09/2026). Reçoit { produitIds: [...] }
   // au lieu de { produitId, bumpId? }. Reste une branche séparée, retournée avant la validation

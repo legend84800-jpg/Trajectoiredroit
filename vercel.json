@@ -1,6 +1,7 @@
 {
+  "crons": [{ "path": "/api/generer?action=nettoyer", "schedule": "37 * * * *" }],
   "functions": {
-    "api/generer.js": { "maxDuration": 60 },
+    "api/generer.js": { "maxDuration": 120, "includeFiles": "api/_portalis-pdf-worker.js" },
     "api/personnaliser-pdf.py": {
       "maxDuration": 60,
       "excludeFiles": "{.env,.env.*,node_modules/**,.git/**,.vercel/**,.claude/**,assets/**,test/**,jeu/**,scripts/**,supabase/**,**/*.html,**/*.js,**/*.json,**/*.md,**/*.txt,**/*.css,**/*.map,**/*.png,**/*.jpg,**/*.svg,**/*.ico,**/*.xml,**/*.pdf,.DS_Store}"
@@ -45,7 +46,7 @@
       ]
     },
     {
-      "source": "/mon-compte.html",
+      "source": "/(mon-compte|portalis).html",
       "headers": [
         { "key": "Cache-Control", "value": "private, no-store, max-age=0" },
         { "key": "Referrer-Policy", "value": "no-referrer" }
@@ -55,12 +56,12 @@
   "redirects": [
     {
       "source": "/outil-fiche-arret.html",
-      "destination": "/methode-fiche-arret.html",
+      "destination": "/portalis.html",
       "permanent": true
     },
     {
       "source": "/outil-fiche-arret",
-      "destination": "/methode-fiche-arret.html",
+      "destination": "/portalis.html",
       "permanent": true
     },
     {
