@@ -20,7 +20,7 @@ async function configurationPortail(stripe) {
   const found=configs.data.find(c=>c.metadata?.portalis==='v1');
   if(found) return found.id;
   const config=await stripe.billingPortal.configurations.create({metadata:{portalis:'v1'},
-    business_profile:{headline:'Ton abonnement Portalis'},
+    business_profile:{headline:'Ton abonnement Portalis IA'},
     features:{customer_update:{enabled:false},invoice_history:{enabled:true},payment_method_update:{enabled:true},
       subscription_cancel:{enabled:true,mode:'at_period_end'},subscription_update:{enabled:false}}},
     {idempotencyKey:'portalis-portal-v1'});
@@ -29,7 +29,7 @@ async function configurationPortail(stripe) {
 async function checkout(req,res,body) {
   try {
     const user=await authentifier(req);
-    if(!ABONNEMENTS_OUVERTS&&body.type!=='portal') throw new ErreurPortalis('offre_en_preparation','Les abonnements Portalis seront disponibles prochainement.',503);
+    if(!ABONNEMENTS_OUVERTS&&body.type!=='portal') throw new ErreurPortalis('offre_en_preparation','Les abonnements Portalis IA seront disponibles prochainement.',503);
 
     const stripe=creerClientStripe(process.env.STRIPE_SECRET_KEY);
     const rows=await (await service(`/rest/v1/abonnements?user_id=eq.${user.id}&select=stripe_customer_id,stripe_subscription_id&limit=1`)).json();

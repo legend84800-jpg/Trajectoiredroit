@@ -40,7 +40,7 @@
       state?.statut==='impaye'?'Ton paiement doit être régularisé. Ouvre la gestion de ton abonnement.':'Choisis une formule pour commencer à travailler ton exercice.';
     if(state?.formule){
       const plan=config?.formules?.[state.formule];
-      $('formuleActive').textContent=plan?.nom||'Portalis';
+      $('formuleActive').textContent=plan?.nom||'Portalis IA';
       $('quota').textContent=compteurEnAttente?'Le compteur doit être actualisé. Recharge la page pour le vérifier.':actif?`${state.restant} réponses incluses restantes sur 60 · ${state.recharges} réponses en recharge`:'Abonnement inactif';
       const date=state.renouvellement?new Date(state.renouvellement).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}):'';
       $('renouvellement').textContent=date?(state.resilieFin?'Accès jusqu’au ':'Prochain renouvellement le ')+date:'';
@@ -177,7 +177,7 @@
   $('exerciceForm').addEventListener('submit',async event=>{
     event.preventDefault();const v=volume();if(!state?.actif||working||importing||v.chars<20||v.chars>30000||v.pages>15)return;
     const current=epoch,id=crypto.randomUUID();working=true;savePending(id);renderState();renderDocuments();
-    $('resultat').hidden=true;message('travailMessage','Portalis travaille sur ton exercice. Garde cette page ouverte pendant la préparation de la réponse.');
+    $('resultat').hidden=true;message('travailMessage','Portalis IA travaille sur ton exercice. Garde cette page ouverte pendant la préparation de la réponse.');
     try{
       const result=await api('/api/generer',{action:'generer',demandeId:id,exercice:$('exercice').value,texte:$('texte').value,question:$('question').value,documents:documents.map(d=>d.id)});
       if(current!==epoch)return;clearPending();if(result.etat)state=result.etat;compteurEnAttente=!result.etat;renderAnswer(result.reponse);message('travailMessage','Ta réponse est prête. Un crédit a été utilisé.');
@@ -188,7 +188,7 @@
     }finally{if(current===epoch){working=false;renderState();renderDocuments();volume();}}
   });
   $('copier').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(answer);$('copier').textContent='Réponse copiée';setTimeout(()=>{$('copier').textContent='Copier la réponse';},2000);}catch(_){message('travailMessage','Sélectionne le texte de la réponse pour le copier.',true);}});
-  api('/api/generer?action=configuration').then(data=>{config=data;renderConfig();const initial=new URLSearchParams(location.search).get('formule');if(initial)choose(initial,false);}).catch(error=>{console.warn('Portalis configuration',error.message);message('paiementMessage','Les formules n’ont pas pu être chargées. Actualise la page.',true);});
+  api('/api/generer?action=configuration').then(data=>{config=data;renderConfig();const initial=new URLSearchParams(location.search).get('formule');if(initial)choose(initial,false);}).catch(error=>{console.warn('Portalis IA configuration',error.message);message('paiementMessage','Les formules n’ont pas pu être chargées. Actualise la page.',true);});
   sb.auth.onAuthStateChange((_event,next)=>{setTimeout(()=>changeSession(next),0);});
   sb.auth.getSession().then(result=>changeSession(result.data.session));
   volume();

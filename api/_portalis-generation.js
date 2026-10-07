@@ -48,7 +48,7 @@ async function anthropic(endpoint,payload,timeout) {
 async function generer(body,user) {
   const preparation=await preparer(body,user);
   const state=await rpc('portalis_etat',{p_user:user});
-  if (!state.actif) throw new ErreurPortalis('abonnement_requis','Choisis une formule pour utiliser Portalis.',403);
+  if (!state.actif) throw new ErreurPortalis('abonnement_requis','Choisis une formule pour utiliser Portalis IA.',403);
   const compte=await anthropic('/count_tokens',{model:MODELE,system:preparation.system,messages:preparation.messages},15000);
   if (!Number.isInteger(compte.input_tokens)||compte.input_tokens>LIMITES.jetonsEntree)
     throw new ErreurPortalis('volume','Cet exercice est trop dense. Retire une partie du texte.');

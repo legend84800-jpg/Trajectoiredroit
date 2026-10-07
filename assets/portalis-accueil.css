@@ -1,0 +1,30 @@
+/* Bloc Portalis IA repris du premier aperçu du 6 octobre 2026. */
+.portalis-home { padding:70px 0; scroll-margin-top:155px; background:#fff; color:#0f172a; }
+.portalis-home * { box-sizing:border-box; }
+.portalis-home .container { width:calc(100% - 40px); max-width:1200px; margin-inline:auto; }
+.portalis-home .ph-panel { background:#eef1f8; border:1px solid #dde3f1; border-radius:22px; padding:44px 50px; }
+.portalis-home .ph-split { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(250px,.8fr); align-items:center; gap:65px; }
+.portalis-home .ph-copy { max-width:570px; }
+.portalis-home .ph-brand { display:block; font-family:var(--font-display); font-size:29px; line-height:1.2; font-weight:600; color:#1a2851; margin-bottom:18px; }
+.portalis-home h2 { font-size:clamp(30px,3.25vw,44px); line-height:1.15; font-weight:600; letter-spacing:-.5px; margin:0 0 20px; color:#1a2851; }
+.portalis-home p { font-size:17px; line-height:1.65; margin:0 0 20px; color:#475569; }
+.portalis-home .ph-copy p { max-width:560px; }
+.portalis-home .ph-button { display:inline-flex; gap:14px; justify-content:center; align-items:center; min-height:48px; padding:12px 24px; background:#1a2851; border:1px solid #1a2851; border-radius:10px; font-weight:650; color:#fff; font-size:16px; text-decoration:none; }
+.portalis-home .ph-button:hover { background:#34467f; }
+.portalis-home a:focus-visible { outline:3px solid #8a6a1c; outline-offset:4px; }
+.portalis-home .ph-price { border-left:1px solid #c2cce6; padding-left:45px; text-align:left; }
+.portalis-home .ph-price p { font-size:16px; margin:0 0 12px; }
+.portalis-home .ph-amount { display:block; font-family:var(--font-display); font-size:76px; font-weight:600; line-height:1.08; letter-spacing:-2px; color:#1a2851; }
+.portalis-home .ph-amount small { font:500 18px var(--font-body); letter-spacing:0; }
+.portalis-home .ph-price .ph-allowance { margin:15px 0 0; font-size:16px; color:#1a2851; }
+.portalis-home .ph-price .ph-limits { font-size:14px; margin:16px 0 0; color:#53617a; }
+@media(max-width:800px) {
+  .portalis-home { padding:45px 0; scroll-margin-top:105px; }
+  .portalis-home .ph-split { grid-template-columns:1fr; gap:30px; }
+  .portalis-home .ph-panel { padding:28px 24px; }
+  .portalis-home .ph-brand { font-size:25px; margin-bottom:15px; }
+  .portalis-home h2 { font-size:32px; }
+  .portalis-home p { font-size:16px; }
+  .portalis-home .ph-price { border-left:0; border-top:1px solid #c2cce6; padding:23px 0 0; }
+  .portalis-home .ph-amount { font-size:64px; }
+}
