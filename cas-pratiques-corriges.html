@@ -95,6 +95,7 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
   <link rel="stylesheet" href="assets/style.css?v=75daa2b3">
+  <link rel="stylesheet" href="assets/css/offres-corriges.css?v=d7bc5f81">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
@@ -411,6 +412,9 @@
       </div>
     </section>
 
+    <!-- lot-b-2026-10-10:corrige-offert-haut -->
+    <div class="container container--narrow"><div data-tjd-corrige-offert data-matiere=""></div></div>
+
     <!-- Exemple repris du corrigé existant d'introduction au droit L1 -->
     <section class="section--sm" id="exemple-loyaute-preuve" aria-labelledby="titre-exemple-loyaute">
       <div class="container container--narrow">
@@ -430,10 +434,53 @@
           <h3 style="margin:24px 0 12px">Conclusion</h3>
           <p data-corrige-source="conclusion" style="line-height:1.8;margin-bottom:16px"><strong>L'enregistrement de la caméra cachée est irrecevable</strong>, car la surveillance était clandestine et l'historique de la messagerie permettait de prouver les envois sans filmer la salariée.</p>
         </article>
-        <div style="margin-top:24px;padding:clamp(18px,4vw,28px);border:1px solid var(--border);border-radius:var(--r-lg)">
-          <h3 style="margin:0 0 12px">Le stage de Toussaint pour travailler ta méthode</h3>
-          <p data-demonstration-stage style="line-height:1.8;margin-bottom:20px">Pendant le stage de Toussaint, nous travaillons la méthode du cas pratique sur des exercices corrigés ensemble en direct. Tu t'entraînes ainsi à rédiger ton raisonnement à partir d'un énoncé. Les trois séances durent huit heures au total, du 27 au 29 octobre 2026. Le programme détaille également les horaires, pour que tu puisses vérifier tes disponibilités avant de réserver.</p>
-          <a class="btn btn--primary" data-demonstration-cta href="stage-methode.html" style="max-width:100%;white-space:normal;text-align:center">Voir le programme du stage · 176 €</a>
+      </div>
+    </section>
+
+    <!-- lot-b-2026-10-10:recueils -->
+    <section class="section--sm" id="recueils-cas-pratiques" aria-labelledby="titre-recueils">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card recueil-choix">
+          <div class="conversion-offer__visual">
+            <img id="recueilCouverture" src="assets/covers/exercices-20260923/cas-pratique-intro-droit-l1.webp" alt="Couverture du recueil Cas pratiques corrigés Introduction au droit L1 S1" loading="lazy" width="1200" height="675" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">Le recueil de ta matière en PDF</p>
+            <h2 class="conversion-offer__title" id="titre-recueils">Les cas pratiques corrigés de ta matière, à 14,99 €</h2>
+            <p class="conversion-offer__summary">Chaque recueil contient de 10 à 15 cas pratiques corrigés du début à la fin, puis 3 à 6 sujets construits comme un partiel, où plusieurs thèmes du programme se mélangent dans le même énoncé. Tu choisis ta matière dans la liste, et le PDF arrive par email juste après le paiement.</p>
+            <label class="recueil-choix__label" for="choixRecueil">Ta matière</label>
+            <select class="form__select recueil-choix__select" id="choixRecueil">
+              <optgroup label="L1">
+                <option value="cas-pratique-intro-droit-l1" data-nom="Cas pratiques corrigés Introduction au droit L1 S1" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier" selected>Introduction au droit L1 S1 · 14,99 €</option>
+                <option value="cas-pratique-personnes-l1" data-nom="Cas pratiques corrigés Droit des personnes L1" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit des personnes L1 · 14,99 €</option>
+                <option value="cas-pratique-famille-l1-s2" data-nom="Cas pratiques corrigés Droit de la famille L1 S2" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit de la famille L1 S2 · 14,99 €</option>
+                <option value="cas-pratique-penal-general-l1" data-nom="Cas pratiques corrigés Droit pénal général L1 S2" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit pénal général L1 S2 · 14,99 €</option>
+              </optgroup>
+              <optgroup label="L2">
+                <option value="cas-pratique-da-l2-s1" data-nom="Cas pratiques corrigés Droit administratif L2 S1" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit administratif L2 S1 · 14,99 €</option>
+                <option value="cas-pratique-da-l2-s2" data-nom="Cas pratiques corrigés Droit administratif L2 S2" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit administratif L2 S2 · 14,99 €</option>
+                <option value="cas-pratique-contrats-l2-s1" data-nom="Cas pratiques corrigés Droit des contrats L2 S1" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit des contrats L2 S1 · 14,99 €</option>
+                <option value="cas-pratique-obligations-l2-s2" data-nom="Cas pratiques corrigés Droit des obligations L2 S2" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit des obligations L2 S2 · 14,99 €</option>
+                <option value="cas-pratique-penal-l2-s1" data-nom="Cas pratiques corrigés Droit pénal L2 S1" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit pénal L2 S1 · 14,99 €</option>
+                <option value="cas-pratique-biens-l2" data-nom="Cas pratiques corrigés Droit des biens L2" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit des biens L2 · 14,99 €</option>
+              </optgroup>
+              <optgroup label="L3">
+                <option value="cas-pratique-commercial-l3-s1" data-nom="Cas pratiques corrigés Droit commercial L3 S1" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit commercial L3 S1 · 14,99 €</option>
+                <option value="cas-pratique-commercial-l3-s2" data-nom="Cas pratiques corrigés Droit commercial L3 S2" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit commercial L3 S2 · 14,99 €</option>
+                <option value="cas-pratique-contrats-speciaux-l3" data-nom="Cas pratiques corrigés Contrats spéciaux L3" data-prix="14,99 €" data-detail="15 cas pratiques et 6 sujets de partiel corrigés en entier">Contrats spéciaux L3 · 14,99 €</option>
+                <option value="cas-pratique-societes-l3" data-nom="Cas pratiques corrigés Droit des sociétés L3" data-prix="14,99 €" data-detail="12 cas pratiques et 4 sujets de partiel corrigés en entier">Droit des sociétés L3 · 14,99 €</option>
+                <option value="cas-pratique-societes-l3-s2" data-nom="Cas pratiques corrigés Droit des sociétés L3 S2" data-prix="14,99 €" data-detail="12 cas pratiques et 4 sujets de partiel corrigés en entier">Droit des sociétés L3 S2 · 14,99 €</option>
+                <option value="cas-pratique-travail-l3" data-nom="Cas pratiques corrigés Droit du travail L3" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit du travail L3 · 14,99 €</option>
+                <option value="cas-pratique-procedure-penale-l3" data-nom="Cas pratiques corrigés Procédure pénale L3" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Procédure pénale L3 · 14,99 €</option>
+              </optgroup>
+            </select>
+            <p class="recueil-choix__detail" id="detailRecueil">10 cas pratiques et 3 sujets de partiel corrigés en entier</p>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--lg recueil-choix__cta" id="boutonRecueil" data-tjd-produit="cas-pratique-intro-droit-l1">Acheter le recueil · 14,99 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement Stripe · accès à vie · mises à jour incluses · garantie satisfait ou remboursé sous 7 jours</p>
+            <p class="recueil-choix__packs"><a href="#packs-cas-pratiques">Les packs</a>, plus bas, réunissent tous les recueils de ton année de licence pour environ 25 % de moins qu'à l'unité.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -513,7 +560,7 @@
     </section>
 
     <!-- vague-cro-2026-09-21:encart-produit-packs -->
-    <section class="section section--alt">
+    <section class="section section--alt" id="packs-cas-pratiques">
       <div class="container container--narrow">
         <h2 class="h2 text-center" style="margin-bottom:8px">Le pack complet, tous les cas pratiques de ton année</h2>
         <p class="lead text-center" style="max-width:620px; margin:0 auto 28px">Ces corrigés gratuits montrent la méthode. Les packs réunissent tous les cas pratiques rédigés de ton année, classés par matière, pour environ 25 % de moins qu'à l'unité.</p>
@@ -550,6 +597,17 @@
       </div>
     </section>
 
+    <!-- lot-b-2026-10-10:stage-deplace -->
+    <section class="section--sm">
+      <div class="container container--narrow">
+        <div style="margin-top:0;padding:clamp(18px,4vw,28px);border:1px solid var(--border);border-radius:var(--r-lg)">
+          <h3 style="margin:0 0 12px">Le stage de Toussaint pour travailler ta méthode</h3>
+          <p data-demonstration-stage style="line-height:1.8;margin-bottom:20px">Pendant le stage de Toussaint, nous travaillons la méthode du cas pratique sur des exercices corrigés ensemble en direct. Tu t'entraînes ainsi à rédiger ton raisonnement à partir d'un énoncé. Les trois séances durent huit heures au total, du 27 au 29 octobre 2026. Le programme détaille également les horaires, pour que tu puisses vérifier tes disponibilités avant de réserver.</p>
+          <a class="btn btn--primary" data-demonstration-cta href="stage-methode.html" style="max-width:100%;white-space:normal;text-align:center">Voir le programme du stage · 176 €</a>
+        </div>
+      </div>
+    </section>
+
     <!-- COMMENT PROGRESSER -->
     <section class="section section--alt">
       <div class="container container--narrow">
@@ -571,6 +629,9 @@
       </div>
     </section>
 
+    <!-- lot-b-2026-10-10:corrige-offert-fin -->
+    <div class="container container--narrow"><div data-tjd-corrige-offert data-matiere=""></div></div>
+
     <section class="section section--dark">
       <div class="container container--narrow text-center">
         <h2 class="h2" style="color:#fff">Toute ta matière, déjà fichée et prête à devenir une majeure.</h2>
@@ -580,6 +641,15 @@
     </section>
 
   </main>
+
+  <!-- lot-b-2026-10-10:sticky-mobile -->
+  <div class="sticky-cta-bar" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Cas pratiques corrigés en PDF</strong>
+      <small>Le recueil de ta matière · 14,99 €</small>
+    </div>
+    <a class="btn btn--primary" href="#recueils-cas-pratiques">Choisir ma matière</a>
+  </div>
 
   <footer class="site-footer">
     <div class="container">
@@ -628,7 +698,8 @@
     </div>
   </div>
 
-  <script src="assets/js/achat.js?v=6abaead2" defer></script>
+  <script src="assets/js/achat.js?v=2fa394eb" defer></script>
+  <script src="assets/js/corrige-offert.js?v=09d4a095" defer></script>
   <script src="assets/js/main.js?v=4b8ba62a" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
@@ -651,5 +722,50 @@
   </script>
   <script src="assets/js/cookie-consent.js?v=fd545d49" defer></script>
   <script src="assets/js/demonstrations.js?v=2f4f5879" defer></script>
+  <script>
+  /* lot B 10/10/2026 : le bouton d'achat suit la matière choisie. achat.js lit data-tjd-produit au moment du clic. */
+  (function () {
+    function init() {
+      var choix = document.getElementById('choixRecueil');
+      var bouton = document.getElementById('boutonRecueil');
+      if (!choix || !bouton) return;
+      var detail = document.getElementById('detailRecueil');
+      var couverture = document.getElementById('recueilCouverture');
+      function dansPanier(id) {
+        try { return (JSON.parse(localStorage.getItem('tjd_panier') || '[]') || []).some(function (a) { return a && a.id === id; }); }
+        catch (_) { return false; }
+      }
+      function appliquer() {
+        var option = choix.options[choix.selectedIndex];
+        var ancien = bouton.getAttribute('data-tjd-produit');
+        var id = option.value;
+        bouton.setAttribute('data-tjd-produit', id);
+        bouton.textContent = 'Acheter le recueil · ' + option.getAttribute('data-prix');
+        if (detail) detail.textContent = option.getAttribute('data-detail');
+        if (couverture) {
+          couverture.src = 'assets/covers/exercices-20260923/' + id + '.webp';
+          couverture.alt = 'Couverture du recueil ' + option.getAttribute('data-nom');
+        }
+        // Le lien « Ajouter au panier » posé par achat.js suit aussi la matière choisie.
+        var lien = bouton.parentElement && bouton.parentElement.querySelector('[data-tjd-panier-lien]');
+        if (lien) {
+          lien.setAttribute('data-tjd-panier-lien', id);
+          lien.dataset.produitId = id;
+          lien.dataset.nom = option.getAttribute('data-nom');
+          var deja = dansPanier(id);
+          lien.disabled = deja;
+          lien.innerHTML = deja ? 'Déjà dans ton panier ✓' : '+ <span class="tjd-panier-lien__full">Ajouter au panier</span><span class="tjd-panier-lien__short">Panier</span>';
+        }
+        if (ancien !== id) {
+          try { if (window._paq && !(window.tjdEstTestInterne && window.tjdEstTestInterne())) window._paq.push(['trackEvent', 'Ecommerce', 'ChoixRecueil', id]); } catch (_) {}
+        }
+      }
+      choix.addEventListener('change', appliquer);
+      appliquer();
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+  })();
+  </script>
 </body>
 </html>

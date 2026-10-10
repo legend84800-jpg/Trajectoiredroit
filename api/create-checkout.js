@@ -31,7 +31,7 @@ const CHAMP_EMAILS = {
   key: "emails",
   type: "dropdown",
   optional: true,
-  label: { type: "custom", custom: "Révisions et offres par email" },
+  label: { type: "custom", custom: "Conseils de révision et offres par email" },
   dropdown: {
     default_value: "oui",
     options: [
@@ -43,6 +43,98 @@ const CHAMP_EMAILS = {
 const donneesProduit = (p, estStage) => (estStage || nombreFichiers(p) === 0
   ? { name: p.nom }
   : { name: p.nom, description: descriptionLivraison(p) });
+
+// Garantie réussite (décision de Julien du 10/10/2026, conditions détaillées sur
+// garantie-reussite.html). Affichée sous le bouton Payer de Stripe, en plus du
+// message sur l'adresse email. Le stage en est exclu et garde son propre texte.
+// Stripe limite chaque texte personnalisé à 1 200 caractères.
+const URL_GARANTIE = "https://trajectoiredroit.com/garantie-reussite.html";
+const TEXTE_GARANTIE = "Si tu n'as pas la moyenne à l'examen, je te rembourse, à condition "
+  + "d'avoir acheté au moins 14 jours avant l'examen. "
+  + `[Lire les conditions de la garantie](${URL_GARANTIE})`;
+const avecGarantie = (customText) => ({ ...(customText || {}), after_submit: { message: TEXTE_GARANTIE } });
+
+// Codes promo (chantier conversion du 10/10/2026). Le champ « Ajouter un code
+// promotionnel » de Stripe poussait les étudiants à chercher un code sur Google.
+// Il reste donc masqué, sauf dans deux cas :
+//   - le lien du site porte ?code=XXX (email J+8 avec le code POSTA-xxxx, code
+//     ambassadeur) : le code actif est appliqué d'office, et s'il est introuvable
+//     le champ revient pour que l'étudiant le saisisse lui-même ;
+//   - le visiteur a déjà acheté (clé posée par merci-achat.html), parce qu'il peut
+//     avoir reçu son code personnel par email.
+// Le lien de récupération d'un panier abandonné garde le champ, comme avant.
+const CODE_PROMO_VALIDE = /^[A-Za-z0-9_-]{3,40}$/;
+function lireCodePromo(valeur) {
+  if (typeof valeur !== "string") return "";
+  const code = valeur.trim();
+  return CODE_PROMO_VALIDE.test(code) ? code : "";
+}
+
+async function chercherCodePromo(stripe, code) {
+  if (!code) return null;
+  try {
+    const liste = await stripe.promotionCodes.list({ code, active: true, limit: 1 });
+    const promo = liste && Array.isArray(liste.data) ? liste.data[0] : null;
+    return promo && promo.id ? promo : null;
+  } catch (e) {
+    console.error("create-checkout recherche du code promo impossible", {
+      stripeCode: e && e.code ? e.code : "inconnu",
+    });
+    return null;
+  }
+}
+
+// Renvoie les paramètres Checkout avec soit la remise appliquée (discounts), soit
+// le champ code promo affiché ou masqué. Stripe refuse discounts et
+// allow_promotion_codes dans la même session.
+function appliquerCodePromo(params, { promo, codeDemande, dejaAcheteur }) {
+  const suite = { ...params };
+  if (promo) {
+    delete suite.allow_promotion_codes;
+    suite.discounts = [{ promotion_code: promo.id }];
+    suite.metadata = { ...suite.metadata, codePromoLien: String(promo.code || codeDemande).slice(0, 40) };
+    // Stripe refuse aussi discounts avec le champ code promo du lien de récupération.
+    if (suite.after_expiration && suite.after_expiration.recovery) {
+      const recovery = { ...suite.after_expiration.recovery };
+      delete recovery.allow_promotion_codes;
+      suite.after_expiration = { ...suite.after_expiration, recovery };
+    }
+    return suite;
+  }
+  delete suite.discounts;
+  suite.allow_promotion_codes = Boolean(codeDemande) || dejaAcheteur;
+  return suite;
+}
+
+// Crée la session. Si Stripe refuse la remise (code expiré ou épuisé entre la
+// recherche et la création), la session repart sans remise, avec le champ affiché.
+async function creerSessionAvecRepli(stripe, params, cle) {
+  if (!params.discounts) {
+    return stripe.checkout.sessions.create(avecImagesProduits(params), { idempotencyKey: cle });
+  }
+  try {
+    return await stripe.checkout.sessions.create(avecImagesProduits(params), { idempotencyKey: `${cle}-remise` });
+  } catch (e) {
+    if (!e || e.type !== "StripeInvalidRequestError") throw e;
+    console.error("create-checkout remise refusée, repli sur le champ code promo", {
+      stripeCode: e.code ? e.code : "inconnu",
+      stripeMessage: typeof e.message === "string" ? e.message.slice(0, 200) : "",
+    });
+    const repli = { ...params, allow_promotion_codes: true };
+    delete repli.discounts;
+    if (repli.metadata) {
+      repli.metadata = { ...repli.metadata };
+      delete repli.metadata.codePromoLien;
+    }
+    if (repli.after_expiration && repli.after_expiration.recovery) {
+      repli.after_expiration = {
+        ...repli.after_expiration,
+        recovery: { ...repli.after_expiration.recovery, allow_promotion_codes: true },
+      };
+    }
+    return stripe.checkout.sessions.create(avecImagesProduits(repli), { idempotencyKey: `${cle}-repli` });
+  }
+}
 
 
 function normaliserAttemptId(valeur) {
@@ -143,12 +235,12 @@ async function handler(req, res) {
         },
         quantity: 1,
       })),
-      custom_text: { submit: { message: messagePaiement(produitsPanier.map(({ produit }) => produit)) } },
+      custom_text: avecGarantie({ submit: { message: messagePaiement(produitsPanier.map(({ produit }) => produit)) } }),
       custom_fields: [CHAMP_EMAILS],
       mode: "payment",
       locale: "fr",
       wallet_options: { link: { display: "never" } },
-      allow_promotion_codes: true,
+      allow_promotion_codes: false,
       consent_collection: { promotions: "auto" },
       success_url: `${origin}/merci-achat.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: pageActuellePanier ? `${origin}/${pageActuellePanier}` : `${origin}/formations.html`,
@@ -190,11 +282,15 @@ async function handler(req, res) {
     if (utmCampaignPanier) paramsPanier.metadata.utmCampaign = utmCampaignPanier;
     if (utmContentPanier) paramsPanier.metadata.utmContent = utmContentPanier;
 
+    const codeDemandePanier = lireCodePromo(corps.code);
+    const paramsPanierFinaux = appliquerCodePromo(paramsPanier, {
+      promo: await chercherCodePromo(stripe, codeDemandePanier),
+      codeDemande: codeDemandePanier,
+      dejaAcheteur: corps.dejaAcheteur === true,
+    });
+
     try {
-      const sessionPanier = await stripe.checkout.sessions.create(
-        avecImagesProduits(paramsPanier),
-        { idempotencyKey: `checkout-panier-${attemptId}` }
-      );
+      const sessionPanier = await creerSessionAvecRepli(stripe, paramsPanierFinaux, `checkout-panier-${attemptId}`);
       res.status(200).json({
         url: sessionPanier.url,
         sessionId: sessionPanier.id,
@@ -306,9 +402,10 @@ async function handler(req, res) {
     mode: "payment",
     locale: "fr",
     wallet_options: { link: { display: "never" } },
-    // La remise post-achat concerne les fiches et formations numériques. Le stage
-    // reste exclu, car il correspond à une place limitée dans une session datée.
-    allow_promotion_codes: produitId !== "stage-methode",
+    // Champ code promo masqué par défaut, ouvert plus bas selon le lien et l'historique
+    // d'achat. Le stage reste exclu, car il correspond à une place limitée dans une
+    // session datée.
+    allow_promotion_codes: false,
     // Stripe affiche une case facultative pour les communications promotionnelles
     // quand le contexte juridique du client l'exige. Le webhook ajoute ensuite à
     // la liste marketing Brevo uniquement les personnes qui ont donné cet accord.
@@ -345,12 +442,13 @@ async function handler(req, res) {
   };
 
   // Stripe génère à l'expiration un lien de récupération sécurisé, valable
-  // 30 jours. Les stages datés et les tests internes restent exclus.
+  // 30 jours. Les stages datés et les tests internes restent exclus. Le lien de
+  // récupération garde le champ code promo, comme avant le 10/10/2026.
   if (autoriserRelance) {
     params.after_expiration = {
       recovery: {
         enabled: true,
-        allow_promotion_codes: params.allow_promotion_codes,
+        allow_promotion_codes: true,
       },
     };
   }
@@ -414,11 +512,24 @@ async function handler(req, res) {
   const cleBase = nombreEcheances ? `checkout-${attemptId}-x${nombreEcheances}` : `checkout-${attemptId}`;
   const cleIdempotence = cadeau ? `${cleBase}-cadeau` : cleBase;
 
+  // Le paiement en plusieurs fois garde son champ fermé (un code ne réduirait que la
+  // première échéance) et le stage n'accepte aucun code. Le cadeau d'un parent
+  // garde son propre message, sans la garantie rédigée pour l'étudiant.
+  let paramsSession = paramsFinaux;
+  if (!contientStage && !nombreEcheances) {
+    const codeDemande = lireCodePromo(corps.code);
+    paramsSession = appliquerCodePromo(paramsFinaux, {
+      promo: await chercherCodePromo(stripe, codeDemande),
+      codeDemande,
+      dejaAcheteur: corps.dejaAcheteur === true,
+    });
+  }
+  if (!contientStage && !cadeau) {
+    paramsSession = { ...paramsSession, custom_text: avecGarantie(paramsSession.custom_text) };
+  }
+
   try {
-    const sessionCheckout = await stripe.checkout.sessions.create(
-      avecImagesProduits(paramsFinaux),
-      { idempotencyKey: cleIdempotence }
-    );
+    const sessionCheckout = await creerSessionAvecRepli(stripe, paramsSession, cleIdempotence);
     res.status(200).json({
       url: sessionCheckout.url,
       sessionId: sessionCheckout.id,
@@ -437,4 +548,11 @@ async function handler(req, res) {
 }
 
 module.exports = handler;
-module.exports._test = { normaliserAttemptId, normaliserAttemptTimestamp };
+module.exports._test = {
+  normaliserAttemptId,
+  normaliserAttemptTimestamp,
+  lireCodePromo,
+  appliquerCodePromo,
+  TEXTE_GARANTIE,
+  CHAMP_EMAILS,
+};

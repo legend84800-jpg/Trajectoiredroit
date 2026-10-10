@@ -1,0 +1,19 @@
+/* Offres des pages de corrigés gratuits et du hub cas-pratiques-corriges (chantier conversion, lot B, 10/10/2026). */
+
+/* Encart placé dans la zone protégée d'un corrigé : on neutralise les marges des paragraphes du corrigé. */
+.corrige-protege .article-produit-inline p { margin: 0 0 4px; line-height: 1.35; }
+.corrige-protege .article-produit-inline .article-produit-inline__meta { margin: 0; }
+.offre-corrige-milieu { margin: 28px 0; flex-wrap: wrap; }
+/* La ligne de garantie ajoutée par achat.js passe sous le bouton, sur toute la largeur. */
+.offre-corrige-milieu > .tjd-garantie { flex: 1 0 100%; margin: 4px 0 0; }
+.offre-corrige-milieu .article-produit-inline__body { flex: 1 1 260px; }
+.offre-corrige-fin { padding: 8px 0 32px; }
+.offre-corrige-fin .conversion-offer { padding: 0 0 12px; }
+
+/* Bloc de choix du recueil sur cas-pratiques-corriges.html */
+.recueil-choix__label { display: block; margin: 0 0 6px; font-weight: 700; color: var(--navy); font-size: .92rem; }
+.recueil-choix__select { max-width: 460px; margin: 0 0 10px; }
+.recueil-choix__detail { margin: 0 0 16px; color: var(--muted); font-size: .88rem; }
+.recueil-choix__cta { max-width: 100%; white-space: normal; }
+.recueil-choix__packs { margin: 14px 0 0; font-size: .9rem; color: var(--body); }
+html[data-theme="dark"] .recueil-choix__label { color: #E2ECF8; }

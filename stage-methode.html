@@ -842,7 +842,7 @@
   </div>
 
   <script src="assets/js/main.js?v=4b8ba62a" defer></script>
-  <script src="assets/js/achat.js?v=6abaead2"></script>
+  <script src="assets/js/achat.js?v=2fa394eb"></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
   (function(){
@@ -894,7 +894,7 @@
         new FormData(sf).forEach(function (v, k) { corps[k] = v; });
 
         // Identifiants Meta transmis uniquement si le visiteur a accepté les cookies,
-        // même logique que assets/js/achat.js?v=6abaead2 pour tous les autres produits du site.
+        // même logique que assets/js/achat.js pour tous les autres produits du site.
         if (localStorage.getItem('tjd_consent') === 'granted') {
           var fbp = lireCookie('_fbp');
           var fbc = lireCookie('_fbc');

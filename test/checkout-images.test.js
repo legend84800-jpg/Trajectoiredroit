@@ -44,7 +44,7 @@ async function capturerCheckout(executer) {
     assert.equal(params.custom_fields.length, 1);
     assert.deepEqual(params.custom_fields[0], {
       key: "emails", type: "dropdown", optional: true,
-      label: { type: "custom", custom: "Révisions et offres par email" },
+      label: { type: "custom", custom: "Conseils de révision et offres par email" },
       dropdown: { default_value: "oui", options: [
         { label: "Oui", value: "oui" }, { label: "Non merci", value: "non" },
       ] },

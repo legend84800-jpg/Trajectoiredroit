@@ -149,7 +149,8 @@ test("le panier réunit plusieurs produits dans une seule session, dédoublonné
   assert.equal(paramsCrees.line_items.length, 2, "dédoublonné, sans le stage");
   assert.equal(paramsCrees.metadata.produitIds, "fiche-da-l2-s1,maj-penal-l2-s1");
   assert.equal(paramsCrees.metadata.panier, "1");
-  assert.equal(paramsCrees.allow_promotion_codes, true);
+  // Champ code promo masqué sans code ni achat passé (10/10/2026), gardé sur la récupération.
+  assert.equal(paramsCrees.allow_promotion_codes, false);
   assert.match(paramsCrees.success_url, /^https:\/\/trajectoiredroit\.com\/merci-achat\.html\?session_id=/);
   assert.deepEqual(paramsCrees.wallet_options, { link: { display: "never" } });
   assert.deepEqual(paramsCrees.consent_collection, { promotions: "auto" });
@@ -259,7 +260,7 @@ test("la protection PDF n'ajoute aucun champ au parcours Checkout", async () => 
   assert.deepEqual(paramsCrees.custom_fields.map((c) => c.key), ["emails"]);
   assert.equal(paramsCrees.custom_fields[0].dropdown.default_value, "oui");
   assert.equal(paramsCrees.custom_fields[0].optional, true);
-  assert.equal(paramsCrees.custom_fields[0].label.custom, "Révisions et offres par email");
+  assert.equal(paramsCrees.custom_fields[0].label.custom, "Conseils de révision et offres par email");
   assert.deepEqual(paramsCrees.custom_fields[0].dropdown.options, [{ label: "Oui", value: "oui" }, { label: "Non merci", value: "non" }]);
   // Seul le rappel de livraison par email est affiché, jamais de mention de licence.
   assert.doesNotMatch(JSON.stringify(paramsCrees.custom_text || {}), /licence/i);
@@ -771,4 +772,188 @@ test("l'accord pour les emails suit le choix prérempli de la page de paiement",
   assert.equal(accordEmails({ custom_fields: [] }), false);
   assert.equal(accordEmails({ consent: { promotions: "opt_in" } }), true);
   assert.equal(accordEmails({ consent: { promotions: "opt_out" }, custom_fields: [] }), false);
+});
+
+// ===== Codes promo masqués par défaut et garantie sur l'écran Stripe (10/10/2026) =====
+
+async function creerCheckoutAvecStripeFactice(corps, { promos = [], refuserRemise = false } = {}) {
+  const stripeModule = require("../api/_stripe");
+  const creerOriginal = stripeModule.creerClientStripe;
+  const appels = { create: [], list: [] };
+  stripeModule.creerClientStripe = () => ({
+    promotionCodes: {
+      list: async (params) => {
+        appels.list.push(params);
+        return { data: promos.filter((p) => p.code.toLowerCase() === String(params.code).toLowerCase()) };
+      },
+    },
+    checkout: {
+      sessions: {
+        create: async (params, options) => {
+          appels.create.push({ params, options });
+          if (refuserRemise && params.discounts) {
+            const erreur = new Error("This promotion code cannot be redeemed.");
+            erreur.type = "StripeInvalidRequestError";
+            erreur.code = "promotion_code_invalid";
+            throw erreur;
+          }
+          return { id: "cs_test_code", url: "https://checkout.stripe.com/c/pay/code" };
+        },
+      },
+    },
+  });
+  const cheminModule = require.resolve("../api/create-checkout");
+  delete require.cache[cheminModule];
+  const handler = require("../api/create-checkout");
+  const ancienneCle = process.env.STRIPE_SECRET_KEY;
+  process.env.STRIPE_SECRET_KEY = "sk_test_factice";
+  const res = reponseFactice();
+  try {
+    await handler({
+      method: "POST",
+      body: { attemptId: "code-1234567890123456", pageActuelle: "formations.html", ...corps },
+    }, res);
+  } finally {
+    stripeModule.creerClientStripe = creerOriginal;
+    delete require.cache[cheminModule];
+    if (ancienneCle === undefined) delete process.env.STRIPE_SECRET_KEY;
+    else process.env.STRIPE_SECRET_KEY = ancienneCle;
+  }
+  const dernier = appels.create[appels.create.length - 1];
+  return { res, appels, params: dernier && dernier.params, options: dernier && dernier.options };
+}
+
+const PROMO_POSTA = { id: "promo_test_posta", code: "POSTA-1A2B3C4D" };
+
+test("sans code ni achat passé, le champ code promo disparaît mais reste sur le lien de récupération", async () => {
+  const { res, appels, params, options } = await creerCheckoutAvecStripeFactice({ produitId: "fiche-da-l2-s1" });
+  assert.equal(res.statusCode, 200);
+  assert.equal(appels.list.length, 0);
+  assert.equal(params.allow_promotion_codes, false);
+  assert.equal(params.discounts, undefined);
+  assert.deepEqual(params.after_expiration, { recovery: { enabled: true, allow_promotion_codes: true } });
+  assert.equal(options.idempotencyKey, "checkout-code-1234567890123456");
+});
+
+test("un code actif venu du lien est appliqué d'office, sans champ ni conflit avec la récupération", async () => {
+  const { appels, params, options } = await creerCheckoutAvecStripeFactice(
+    { produitId: "fiche-da-l2-s1", code: "posta-1a2b3c4d" },
+    { promos: [PROMO_POSTA] }
+  );
+  assert.deepEqual(appels.list[0], { code: "posta-1a2b3c4d", active: true, limit: 1 });
+  assert.deepEqual(params.discounts, [{ promotion_code: "promo_test_posta" }]);
+  assert.equal("allow_promotion_codes" in params, false);
+  assert.deepEqual(params.after_expiration, { recovery: { enabled: true } });
+  assert.equal(params.metadata.codePromoLien, "POSTA-1A2B3C4D");
+  assert.equal(options.idempotencyKey, "checkout-code-1234567890123456-remise");
+});
+
+test("un code introuvable fait revenir le champ code promo", async () => {
+  const { appels, params } = await creerCheckoutAvecStripeFactice({ produitId: "fiche-da-l2-s1", code: "BIDON-2026" });
+  assert.equal(appels.list.length, 1);
+  assert.equal(params.discounts, undefined);
+  assert.equal(params.allow_promotion_codes, true);
+});
+
+test("un code mal formé est ignoré sans appel à Stripe", async () => {
+  const { appels, params } = await creerCheckoutAvecStripeFactice({ produitId: "fiche-da-l2-s1", code: "<script>" });
+  assert.equal(appels.list.length, 0);
+  assert.equal(params.allow_promotion_codes, false);
+});
+
+test("un visiteur qui a déjà acheté garde le champ code promo", async () => {
+  const { params } = await creerCheckoutAvecStripeFactice({ produitId: "fiche-da-l2-s1", dejaAcheteur: true });
+  assert.equal(params.allow_promotion_codes, true);
+  const { params: chaineNonBooleenne } = await creerCheckoutAvecStripeFactice({ produitId: "fiche-da-l2-s1", dejaAcheteur: "1" });
+  assert.equal(chaineNonBooleenne.allow_promotion_codes, false);
+});
+
+test("une remise refusée par Stripe repart sans remise, avec le champ affiché", async () => {
+  const { appels, params, options, res } = await creerCheckoutAvecStripeFactice(
+    { produitId: "fiche-da-l2-s1", code: "POSTA-1A2B3C4D" },
+    { promos: [PROMO_POSTA], refuserRemise: true }
+  );
+  assert.equal(res.statusCode, 200);
+  assert.equal(appels.create.length, 2);
+  assert.equal(params.discounts, undefined);
+  assert.equal(params.allow_promotion_codes, true);
+  assert.equal(params.metadata.codePromoLien, undefined);
+  assert.deepEqual(params.after_expiration, { recovery: { enabled: true, allow_promotion_codes: true } });
+  assert.equal(options.idempotencyKey, "checkout-code-1234567890123456-repli");
+});
+
+test("le panier suit la même logique de code promo", async () => {
+  const sansCode = await creerCheckoutAvecStripeFactice({ produitIds: ["fiche-da-l2-s1", "maj-penal-l2-s1"] });
+  assert.equal(sansCode.params.allow_promotion_codes, false);
+  assert.equal(sansCode.options.idempotencyKey, "checkout-panier-code-1234567890123456");
+  const avecCode = await creerCheckoutAvecStripeFactice(
+    { produitIds: ["fiche-da-l2-s1", "maj-penal-l2-s1"], code: "POSTA-1A2B3C4D" },
+    { promos: [PROMO_POSTA] }
+  );
+  assert.deepEqual(avecCode.params.discounts, [{ promotion_code: "promo_test_posta" }]);
+  assert.equal("allow_promotion_codes" in avecCode.params, false);
+  const acheteur = await creerCheckoutAvecStripeFactice({ produitIds: ["fiche-da-l2-s1"], dejaAcheteur: true });
+  assert.equal(acheteur.params.allow_promotion_codes, true);
+});
+
+test("le stage ignore tout code et garde son propre texte, sans garantie", async () => {
+  const supabaseModule = require("../api/_supabase");
+  const selectionnerOriginal = supabaseModule.selectionner;
+  supabaseModule.selectionner = async () => [];
+  let resultat;
+  try {
+    resultat = await creerCheckoutAvecStripeFactice(
+      { produitId: "stage-methode", code: "POSTA-1A2B3C4D", dejaAcheteur: true },
+      { promos: [PROMO_POSTA] }
+    );
+  } finally {
+    supabaseModule.selectionner = selectionnerOriginal;
+  }
+  assert.equal(resultat.appels.list.length, 0);
+  assert.equal(resultat.params.allow_promotion_codes, false);
+  assert.equal(resultat.params.discounts, undefined);
+  assert.equal(resultat.params.custom_text, undefined);
+});
+
+test("le paiement en plusieurs fois n'accepte aucun code mais affiche la garantie", async () => {
+  const { appels, params } = await creerCheckoutAvecStripeFactice(
+    { produitId: "pack-ultra-l1-s1", echeances: 2, code: "POSTA-1A2B3C4D" },
+    { promos: [PROMO_POSTA] }
+  );
+  assert.equal(appels.list.length, 0);
+  assert.equal(params.mode, "subscription");
+  assert.equal(params.allow_promotion_codes, false);
+  assert.equal(params.discounts, undefined);
+  assert.match(params.custom_text.submit.message, /Tu paies/);
+  assert.match(params.custom_text.after_submit.message, /garantie-reussite\.html/);
+});
+
+test("l'écran Stripe garde le message sur l'email et ajoute la garantie dans les limites de Stripe", async () => {
+  const { TEXTE_GARANTIE, CHAMP_EMAILS } = require("../api/create-checkout")._test;
+  const unique = await creerCheckoutAvecStripeFactice({ produitId: "fiche-da-l2-s1" });
+  const pack = await creerCheckoutAvecStripeFactice({ produitId: "pack-matiere-da-l2" });
+  const panier = await creerCheckoutAvecStripeFactice({ produitIds: ["fiche-da-l2-s1"] });
+  for (const { params } of [unique, pack, panier]) {
+    assert.match(params.custom_text.submit.message, /^Vérifie ton adresse email/);
+    assert.equal(params.custom_text.after_submit.message, TEXTE_GARANTIE);
+    for (const { message } of Object.values(params.custom_text)) assert.ok(message.length <= 1200);
+  }
+  assert.match(TEXTE_GARANTIE, /\[[^\]]+\]\(https:\/\/trajectoiredroit\.com\/garantie-reussite\.html\)/);
+  assert.match(TEXTE_GARANTIE, /14 jours/);
+  assert.doesNotMatch(TEXTE_GARANTIE, /[–—]/);
+  assert.equal(CHAMP_EMAILS.key, "emails");
+  assert.deepEqual(CHAMP_EMAILS.dropdown.options.map((o) => o.value), ["oui", "non"]);
+  assert.equal(CHAMP_EMAILS.dropdown.default_value, "oui");
+  assert.ok(CHAMP_EMAILS.label.custom.length <= 50);
+});
+
+test("achat.js transmet le code du lien et l'achat passé, merci-achat les met à jour", () => {
+  const achat = fs.readFileSync(path.join(RACINE, "assets/js/achat.js"), "utf8");
+  const merci = fs.readFileSync(path.join(RACINE, "merci-achat.html"), "utf8");
+  assert.match(achat, /get\('code'\)/);
+  assert.equal(achat.split("ajouterCodePromo(corps);").length - 1, 2, "les deux voies d'achat transmettent le code");
+  assert.match(achat, /30 \* 24 \* 60 \* 60 \* 1000/);
+  assert.match(achat, /garantie-reussite\.html/);
+  assert.match(merci, /localStorage\.setItem\('tjd_deja_acheteur', '1'\)/);
+  assert.match(merci, /localStorage\.removeItem\('tjd_code_promo'\)/);
 });

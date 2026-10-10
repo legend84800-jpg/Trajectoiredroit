@@ -49,6 +49,7 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
   <link rel="stylesheet" href="assets/style.css?v=75daa2b3">
+  <link rel="stylesheet" href="assets/css/offre-matiere.css?v=500d6381">
 
   <script type="application/ld+json">
   {
@@ -85,7 +86,7 @@
       {
         "@type": "Product",
         "name": "Fiche complète de droit administratif L2, semestre 1",
-        "description": "Fiche complète de droit administratif L2 semestre 1, 128 pages, dualisme juridictionnel, principe de légalité, sources du droit administratif, organisation administrative.",
+        "description": "Fiche complète de droit administratif L2 semestre 1, 129 pages, dualisme juridictionnel, principe de légalité, sources du droit administratif, organisation administrative.",
         "image": "https://trajectoiredroit.com/assets/covers/fiche-da-l2-s1.jpg?v=dossier-universitaire-20260915",
         "brand": { "@type": "Brand", "name": "TrajectoireDroit" },
         "offers": {
@@ -467,16 +468,11 @@
         </div>
         <h1 class="h1" style="margin-bottom:18px">Droit administratif L2 : le cours, les fiches et les grands arrêts à connaître</h1>
         <p class="lead">Le droit administratif L2 regroupe les règles qui encadrent l'action de l'administration et les recours qu'on peut exercer contre elle. Tu y étudies par exemple l'acte administratif et le service public, mais aussi la police administrative et la responsabilité de l'État.</p>
-        <p class="lead">En deuxième année, le droit administratif fait peur à beaucoup d'étudiants. On te demande d'apprendre des centaines d'arrêts par cœur, souvent sans te montrer la logique qui les relie. Pourtant, ta note dépend surtout de cette logique. L'erreur la plus fréquente consiste à faire des fiches qui alignent seulement les arrêts, puis à les apprendre les uns après les autres, sans lien entre eux. Avec cette façon de travailler, la note tombe presque toujours en dessous de la moyenne. Cette page te donne le programme complet du S1 et du S2, avec les grands arrêts à connaître. Tu y trouves ensuite la méthode du cas pratique, puis une façon de réviser qui te donne un plan clair pour tout le semestre.</p>
-
-        <div class="hero__cta" style="margin-top:24px">
-          <a class="btn btn--primary btn--lg" href="#fiches">Voir la fiche de droit administratif →</a>
-          <a class="btn btn--outline btn--lg" href="#arrets">Aller aux grands arrêts</a>
-        </div>
       </div>
     </section>
 
-    <section class="conversion-offer" aria-labelledby="offre-admin-titre">
+    <!-- lot-e:offre-principale -->
+    <section class="conversion-offer offre-matiere" id="offre" aria-labelledby="offre-admin-titre">
       <div class="container">
         <div class="conversion-offer__card">
           <div class="conversion-offer__visual">
@@ -485,18 +481,30 @@
           <div>
             <p class="conversion-offer__eyebrow">La fiche complète de la matière</p>
             <h2 class="conversion-offer__title" id="offre-admin-titre">Droit administratif L2, prêt à réviser</h2>
-            <p class="conversion-offer__summary"><strong>237 pages sur les deux semestres.</strong> Le S1 explique d'où vient le droit administratif et quel juge le fait appliquer. Il présente aussi le principe de légalité avec ses sources, puis l'organisation de l'administration. Le S2 étudie ensuite l'action de l'administration, d'abord le service public et la police, puis ses actes et ses contrats. Il se termine par sa responsabilité et par le contentieux, c'est-à-dire les recours devant le juge administratif.</p>
+            <div class="offre-matiere__options" aria-label="Choisir ton support de Droit administratif L2">
+              <div class="offre-matiere__option offre-matiere__option--fiche">
+                <p class="offre-matiere__label">La fiche complète, un PDF par semestre</p>
+                <p class="offre-matiere__prix">14,99 € <small>par semestre</small></p>
+                <p class="offre-matiere__detail">129 pages pour le S1 et 110 pages pour le S2, en PDF.</p>
+                <button type="button" class="apercu-link" data-apercu='["assets/apercus/da-l2-s1-zoom.webp", "assets/apercus/da-l2-s1-1.webp", "assets/apercus/da-l2-s1-2.webp"]' data-apercu-title="Droit administratif · L2 S1 · Fiche complète" data-apercu-price="14,99 €" data-apercu-cta="fiche-da-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Aperçu du S1</button><button type="button" class="apercu-link" data-apercu='["assets/apercus/admin-l2-s2-zoom.webp", "assets/apercus/admin-l2-s2-1.webp", "assets/apercus/admin-l2-s2-2.webp"]' data-apercu-title="Droit administratif · L2 S2 · Fiche complète" data-apercu-price="14,99 €" data-apercu-cta="fiche-da-l2-s2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Aperçu du S2</button>
+                <div class="offre-matiere__fiches"><button type="button" class="btn btn--primary" data-tjd-produit="fiche-da-l2-s1">Semestre 1 · 14,99 €</button><button type="button" class="btn btn--outline" data-tjd-produit="fiche-da-l2-s2">Semestre 2 · 14,99 €</button></div>
+              </div>
+              <div class="offre-matiere__option offre-matiere__option--pack">
+                <p class="offre-matiere__label">Le pack Droit administratif L2</p>
+                <p class="offre-matiere__prix"><s>79,94 €</s>29,98 €</p>
+                <p class="offre-matiere__detail">Si tu achètes ces produits un par un, ils te coûtent 79,94 €.</p>
+                <ul class="offre-matiere__contenu"><li><span>Les fiches complètes S1 et S2</span><span>29,98 €</span></li><li><span>Les flashcards et QCM des deux semestres</span><span>19,98 €</span></li><li><span>Les cas pratiques corrigés S1 et S2</span><span>29,98 €</span></li><li><span>Les fiches d'arrêt</span><span>incluses</span></li></ul>
+                <button type="button" class="btn btn--outline" data-tjd-produit="pack-matiere-da-l2">Acheter le pack · 29,98 €</button>
+              </div>
+            </div>
+            <p class="conversion-offer__summary"><strong>239 pages sur les deux semestres.</strong> Le S1 explique d'où vient le droit administratif et quel juge le fait appliquer. Il présente aussi le principe de légalité avec ses sources, puis l'organisation de l'administration. Le S2 étudie ensuite l'action de l'administration, d'abord le service public et la police, puis ses actes et ses contrats. Il se termine par sa responsabilité et par le contentieux, c'est-à-dire les recours devant le juge administratif.</p>
             <ul class="conversion-offer__benefits">
               <li>Les arrêts replacés dans leur contexte</li>
               <li>Des schémas et des cartes mentales</li>
               <li>Un PDF reçu juste après le paiement</li>
             </ul>
-            <div class="conversion-offer__choices" aria-label="Choisir la fiche de droit administratif">
-              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-da-l2-s1">Semestre 1 · 14,99 €</button>
-              <button type="button" class="btn btn--outline" data-tjd-produit="fiche-da-l2-s2">Semestre 2 · 14,99 €</button>
-              <button type="button" class="btn btn--outline" data-tjd-produit="pack-l2">Toute la L2 · 79 €</button>
-            </div>
             <p class="conversion-offer__note">Paiement Stripe · accès à vie · mises à jour incluses · garantie satisfait ou remboursé sous 7 jours</p>
+            <div data-tjd-avis data-matiere="da-l2"></div>
             <section class="conversion-reviews" data-review-slot="droit-administratif" aria-label="Avis d'élèves">
               <p class="conversion-reviews__title">Ils révisent avec mes fiches</p>
               <div class="conversion-reviews__grid">
@@ -523,45 +531,23 @@
         </div>
       </div>
     </section>
+    <section class="section offre-matiere-suite" style="padding-top:8px">
+      <div class="container container--narrow">
+        <p class="lead">En deuxième année, le droit administratif fait peur à beaucoup d'étudiants. On te demande d'apprendre des centaines d'arrêts par cœur, souvent sans te montrer la logique qui les relie. Pourtant, ta note dépend surtout de cette logique. L'erreur la plus fréquente consiste à faire des fiches qui alignent seulement les arrêts, puis à les apprendre les uns après les autres, sans lien entre eux. Avec cette façon de travailler, la note tombe presque toujours en dessous de la moyenne. Cette page te donne le programme complet du S1 et du S2, avec les grands arrêts à connaître. Tu y trouves ensuite la méthode du cas pratique, puis une façon de réviser qui te donne un plan clair pour tout le semestre.</p>
+
+        <div class="hero__cta" style="margin-top:24px">
+          <a class="btn btn--outline btn--lg" href="#arrets">Aller aux grands arrêts</a>
+        </div>
+      </div>
+    </section>
 
     <!-- CTA INTERMÉDIAIRE -->
     <section class="section section--alt" id="fiches">
       <div class="container container--narrow text-center">
         <h2 class="h2">Le résumé complet du cours de droit administratif L2 en PDF</h2>
-        <p class="lead" style="max-width:620px; margin:14px auto 28px">La fiche reprend en détail tout ce qui est sur cette page, avec les schémas et les arrêts replacés dans leur contexte. Elle est mise en couleur sur 237 pages pour les deux semestres, écrites pour se lire facilement et se retenir vite. Tu y as accès à vie, et les mises à jour sont comprises.</p>
-        <div class="grid-2" style="gap:20px; max-width:760px; margin:0 auto 24px">
-          <div class="card card--product">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-da-l2-s1.webp?v=dossier-universitaire-20260915" alt="Couverture de la fiche Droit admin (S1)" loading="lazy" width="960" height="540" decoding="async"></div>
-            <div class="product__body">
-            <h3 style="margin-top:0">Droit admin (S1) · 128 p.</h3>
-            <p style="color:var(--body); font-size:.95rem">Le S1 explique la naissance du droit administratif et le rôle du juge administratif, puis le principe de légalité et l'organisation de l'administration.</p>
-            <button type="button" class="apercu-link" data-apercu='["assets/apercus/da-l2-s1-zoom.webp", "assets/apercus/da-l2-s1-1.webp", "assets/apercus/da-l2-s1-2.webp"]' data-apercu-title="Droit administratif · L2 S1 · Fiche complète" data-apercu-price="14,99 €" data-apercu-cta="fiche-da-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-            <p style="font-family:var(--font-display); font-size:1.6rem; font-weight:700; margin:6px 0">14,99 €</p>
-            <label style="display:flex; gap:8px; align-items:flex-start; font-size:.83rem; color:var(--body); text-align:left; margin:0 0 12px; cursor:pointer">
-              <input type="checkbox" id="bump-da-s1" style="margin-top:3px">
-              <span>Ajouter aussi le <strong>Semestre 2</strong> (+14,99 €), un seul paiement</span>
-            </label>
-            <button type="button" class="btn btn--primary btn--full" data-tjd-produit="fiche-da-l2-s1" data-tjd-bump="fiche-da-l2-s2" data-tjd-bump-checkbox="bump-da-s1">Acheter S1 · 14,99 €</button>
-            <p style="font-size:.78rem; color:var(--muted); text-align:center; margin:8px 0 0">Tu reçois le PDF complet par email, dès le paiement validé.</p>
-          </div>
-          </div>
-          <div class="card card--product">
-            <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-da-l2-s2.webp?v=dossier-universitaire-20260915" alt="Couverture de la fiche Droit admin (S2)" loading="lazy" width="960" height="540" decoding="async"></div>
-            <div class="product__body">
-            <h3 style="margin-top:0">Droit admin (S2) · 110 p.</h3>
-            <p style="color:var(--body); font-size:.95rem">Le S2 couvre le service public et la police administrative, puis les actes et les contrats de l'administration, jusqu'à sa responsabilité et au contentieux.</p>
-            <button type="button" class="apercu-link" data-apercu='["assets/apercus/admin-l2-s2-zoom.webp", "assets/apercus/admin-l2-s2-1.webp", "assets/apercus/admin-l2-s2-2.webp"]' data-apercu-title="Droit administratif · L2 S2 · Fiche complète" data-apercu-price="14,99 €" data-apercu-cta="fiche-da-l2-s2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
-            <p style="font-family:var(--font-display); font-size:1.6rem; font-weight:700; margin:6px 0">14,99 €</p>
-            <label style="display:flex; gap:8px; align-items:flex-start; font-size:.83rem; color:var(--body); text-align:left; margin:0 0 12px; cursor:pointer">
-              <input type="checkbox" id="bump-da-s2" style="margin-top:3px">
-              <span>Ajouter aussi le <strong>Semestre 1</strong> (+14,99 €), un seul paiement</span>
-            </label>
-            <button type="button" class="btn btn--primary btn--full" data-tjd-produit="fiche-da-l2-s2" data-tjd-bump="fiche-da-l2-s1" data-tjd-bump-checkbox="bump-da-s2">Acheter S2 · 14,99 €</button>
-            <p style="font-size:.78rem; color:var(--muted); text-align:center; margin:8px 0 0">Tu reçois le PDF complet par email, dès le paiement validé.</p>
-          </div>
-          </div>
-        </div>
+        <p class="lead" style="max-width:620px; margin:14px auto 28px">La fiche reprend en détail tout ce qui est sur cette page, avec les schémas et les arrêts replacés dans leur contexte. Elle est mise en couleur sur 239 pages pour les deux semestres, écrites pour se lire facilement et se retenir vite. Tu y as accès à vie, et les mises à jour sont comprises.</p>
         <p style="font-size:.92rem; color:var(--body)">Tu prends toute la L2 ? Le <a href="formations.html">pack Licence 2</a> réunit le droit administratif, le civil et le pénal à prix réduit.</p>
+        <p style="margin:0 0 8px"><button type="button" class="btn btn--outline btn--sm" data-tjd-produit="pack-l2">Pack L2 · 79 €</button></p>
         <div class="card" id="fiche-ou-cours" style="max-width:760px; margin:28px auto 0; text-align:left; padding:24px">
           <h3 style="margin-top:0">Fiche complète ou cours complet&nbsp;?</h3>
           <div class="grid-2" style="gap:20px">
@@ -574,18 +560,9 @@
               <p style="color:var(--body); font-size:.93rem; margin:0 0 8px">Le cours complet reprend le même programme et développe chaque chapitre jusqu'au bout. Il fait une fois et demie à deux fois la longueur de la fiche, car il détaille les mécanismes avec des schémas complets et explique l'histoire des grands arrêts. Tu maîtrises donc la leçon de A à Z. Il te sert aussi pour tes devoirs maison. En effet, pour une dissertation, un commentaire d'arrêt ou un commentaire de texte, tu y trouves déjà les arguments et les exemples dont ta copie a besoin.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/cours-da-l2-s1-zoom.webp", "assets/apercus/cours-da-l2-s1-1.webp", "assets/apercus/cours-da-l2-s1-2.webp"]' data-apercu-title="Droit administratif · L2 S1 · Cours complet" data-apercu-sub="Extraits réels du cours complet" data-apercu-price="19,99 €" data-apercu-cta="cours-fiche-da-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu du cours complet (S1)</button>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/cours-da-l2-s2-zoom.webp", "assets/apercus/cours-da-l2-s2-1.webp", "assets/apercus/cours-da-l2-s2-2.webp"]' data-apercu-title="Droit administratif · L2 S2 · Cours complet" data-apercu-sub="Extraits réels du cours complet" data-apercu-price="19,99 €" data-apercu-cta="cours-fiche-da-l2-s2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu du cours complet (S2)</button>
-
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-top:1px solid var(--blue-100)">
-              <span style="font-size:.9rem; color:var(--body)">Semestre 1</span>
-              <button type="button" class="btn btn--outline btn--sm" data-tjd-produit="cours-fiche-da-l2-s1">Acheter · 19,99 €</button>
-            </div>
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-top:1px solid var(--blue-100)">
-              <span style="font-size:.9rem; color:var(--body)">Semestre 2</span>
-              <button type="button" class="btn btn--outline btn--sm" data-tjd-produit="cours-fiche-da-l2-s2">Acheter · 19,99 €</button>
-            </div>
             </div>
           </div>
-          <p style="color:var(--muted); font-size:.85rem; margin:14px 0 0">Le pack matière à 29,98 € contient la fiche complète, et le cours complet s'achète à part.</p>
+          <p style="color:var(--muted); font-size:.85rem; margin:14px 0 0">Le cours complet se vend à part, à 19,99 € par semestre. Tu le trouves <a href="#tout-pour-ta-matiere">plus bas, avec les autres formats de la matière</a>.</p>
         </div>
       </div>
     </section>
@@ -693,8 +670,8 @@
     <section class="section" id="tout-pour-ta-matiere">
       <div class="container container--narrow">
         <h2 class="h2 text-center">Tout pour Droit administratif L2</h2>
-        <p class="lead text-center" style="max-width:620px; margin:0 auto 28px">Tu peux prendre le format qui correspond à ta façon de réviser, ou le pack matière complet, qui en réunit plusieurs à prix réduit.</p>
-        <div class="grid-3" style="gap:20px">
+        <p class="lead text-center" style="max-width:620px; margin:0 auto 28px">Ces formats s'ajoutent à la fiche complète. Ils s'achètent à part, en dehors du pack de la matière.</p>
+        <div class="grid-2" style="gap:20px">
       <div class="card">
         <h3 style="margin-top:0">Majeure préparée</h3>
         <p style="color:var(--body); font-size:.9rem; margin-bottom:0">Les règles de droit sont déjà rédigées. Tu les apprends pour les poser directement dans la majeure de ton cas pratique, la partie où tu énonces la règle avant de l'appliquer aux faits.</p>
@@ -722,14 +699,6 @@
           <span style="font-size:.9rem; color:var(--body)">Semestre 2</span>
           <button type="button" class="btn btn--outline btn--sm" data-tjd-produit="cours-fiche-da-l2-s2">Acheter · 19,99 €</button>
         </div>
-      </div>
-      <div class="card" style="border-color:var(--blue-600); border-width:2px">
-        <img src="assets/covers/pack-matiere-da-l2.jpg?v=captures-reelles-20260912" alt="Coffret Droit administratif L2, couverture Trajectoire Droit" loading="lazy" style="display:block; width:100%; aspect-ratio:16 / 9; object-fit:cover; border-radius:10px; margin-bottom:14px">
-        <img src="assets/covers/pack-matiere-da-l2.webp?v=captures-reelles-20260912" alt="Coffret Droit administratif L2, couverture Trajectoire Droit" loading="lazy" style="display:block; width:100%; aspect-ratio:16 / 9; object-fit:cover; border-radius:10px; margin-bottom:14px" width="960" height="540" decoding="async">
-        <span class="badge badge--popular" style="margin-bottom:8px">Meilleure offre</span>
-        <h3 style="margin-top:0">Pack Droit administratif · L2 S1 + S2</h3>
-        <p style="color:var(--body); font-size:.9rem">Le pack contient les fiches S1 et S2 avec leurs flashcards et QCM. Tu reçois aussi les fiches d'arrêt et deux cas pratiques corrigés. Les cours complets et les majeures préparées s'achètent à part.</p>
-        <button type="button" class="btn btn--primary btn--full" data-tjd-produit="pack-matiere-da-l2">Acheter le pack · 29,98 €</button>
       </div>
         </div>
       </div>
@@ -906,7 +875,7 @@
       <div class="container container--narrow text-center">
         <h2 class="h2" style="color:#fff">Le droit administratif devient clair avec la bonne fiche.</h2>
         <p class="lead" style="color:rgba(255,255,255,.85); max-width:560px; margin:16px auto 32px">La fiche complète reprend tout ce que tu viens de lire, en détail et expliqué simplement. Elle couvre les deux semestres, tu y as accès à vie et les mises à jour sont incluses.</p>
-        <a class="btn btn--primary btn--lg" href="#fiches">Voir la fiche de droit administratif</a>
+        <a class="btn btn--primary btn--lg" href="#offre">Voir la fiche de droit administratif</a>
         <p style="margin-top:18px"><a href="droit-constitutionnel-l1.html" style="color:rgba(255,255,255,.8)">Tu cherches plutôt le droit constitutionnel L1 ? C'est par ici →</a></p>
       </div>
     </section>
@@ -1018,17 +987,17 @@
   <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
     <div class="sticky-cta-bar__text">
       <strong>Choisis ton droit administratif L2</strong>
-      <small>S1, S2 ou toute la L2</small>
+      <small>S1, S2 ou le pack de la matière</small>
     </div>
-    <div class="sticky-cta-bar__choices" aria-label="Achat rapide droit administratif">
+    <div class="sticky-cta-bar__choices" aria-label="Achat rapide Droit administratif L2">
       <button type="button" class="btn btn--primary" data-tjd-produit="fiche-da-l2-s1">S1 · 14,99 €</button>
       <button type="button" class="btn btn--outline" data-tjd-produit="fiche-da-l2-s2">S2 · 14,99 €</button>
-      <button type="button" class="btn btn--outline" data-tjd-produit="pack-l2">Pack L2 · 79 €</button>
+      <button type="button" class="btn btn--outline" data-tjd-produit="pack-matiere-da-l2">Pack · 29,98 €</button>
     </div>
   </div>
 
   <script src="assets/js/main.js?v=4b8ba62a" defer></script>
-  <script src="assets/js/achat.js?v=6abaead2" defer></script>
+  <script src="assets/js/achat.js?v=2fa394eb" defer></script>
   <script src="assets/js/lead-sample.js?v=2fb15f79" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
@@ -1049,6 +1018,7 @@
     var fallback = setTimeout(loadChatbot, 4000);
   })();
   </script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
   <script src="assets/js/cookie-consent.js?v=fd545d49" defer></script>
 </body>
 </html>

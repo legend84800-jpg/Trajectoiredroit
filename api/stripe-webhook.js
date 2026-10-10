@@ -151,7 +151,7 @@ function deduireMatiere(nomProduit) {
 // Crée ou met à jour le contact acheteur dans Brevo, avec ses derniers achats en
 // attributs et un ajout à la liste Clients, pour ouvrir la porte à une séquence
 // post-achat (relance J+3, demande d'avis J+7) sans dépendre du formulaire lead magnet.
-async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, accordPromotionnel, remisePostAchat) {
+async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, accordPromotionnel, remisePostAchat, sessionId) {
   const noms = produits.map((p) => p.nom).join(" + ");
   const matiere = produits.length ? deduireMatiere(produits[0].nom) : "";
 
@@ -165,6 +165,8 @@ async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, a
       DATE_DERNIER_ACHAT: new Date().toISOString().slice(0, 10),
     },
   };
+  // Lien de l'email de demande d'avis J+7 (donner-mon-avis.html?session_id=…).
+  if (sessionId) payload.attributes.DERNIERE_SESSION = sessionId;
 
   if (remisePostAchat) {
     payload.attributes.CODE_REMISE_POST_ACHAT = remisePostAchat.code;
@@ -900,7 +902,8 @@ async function traiterAchatPaye(session, contexte) {
       montantEuros,
       contexte.brevoKey,
       accordPromotionnel,
-      remisePostAchat
+      remisePostAchat,
+      session.id
     );
   } catch (e) {
     console.error("Erreur création contact Brevo:", e.message);

@@ -1,0 +1,103 @@
+/* Bloc d'achat principal des pages matière (chantier conversion du 10/10/2026, lot E).
+   S'appuie sur .conversion-offer de style.css et n'ajoute que le choix fiche / pack. */
+.offre-matiere { padding-top: 6px; }
+.offre-matiere .conversion-offer__card { align-items: start; }
+.offre-matiere__meta {
+  margin: 0 0 16px;
+  color: var(--body);
+  font-size: .95rem;
+  line-height: 1.5;
+}
+.offre-matiere__meta strong { color: var(--navy); }
+.offre-matiere__options {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 14px;
+  align-items: stretch;
+}
+.offre-matiere__option {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--blue-100);
+  border-radius: 14px;
+  background: var(--white);
+}
+.offre-matiere__option--fiche {
+  border: 2px solid var(--blue-600);
+}
+.offre-matiere__label {
+  margin: 0;
+  color: var(--navy);
+  font-weight: 800;
+  font-size: .95rem;
+}
+.offre-matiere__prix {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--navy);
+}
+.offre-matiere__prix s {
+  margin-right: 8px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration-thickness: 2px;
+}
+.offre-matiere__detail {
+  margin: 0;
+  color: var(--body);
+  font-size: .85rem;
+  line-height: 1.45;
+}
+.offre-matiere__contenu {
+  margin: 2px 0 4px;
+  padding: 0;
+  list-style: none;
+  font-size: .86rem;
+  color: var(--body);
+}
+.offre-matiere__contenu li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 5px 0;
+  border-top: 1px solid var(--blue-100);
+}
+.offre-matiere__contenu li span:last-child {
+  white-space: nowrap;
+  color: var(--muted);
+}
+.offre-matiere__option .btn { width: 100%; margin-top: auto; }
+.offre-matiere__option .apercu-link { align-self: flex-start; }
+.offre-matiere__fiches { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+.offre-matiere__fiches .btn { margin-top: 0; }
+.offre-matiere [data-tjd-avis]:empty { display: none; }
+.offre-matiere [data-tjd-avis] { margin-top: 16px; }
+.offre-matiere-suite { padding-top: 8px; }
+
+@media (max-width: 760px) {
+  .offre-matiere__options { grid-template-columns: 1fr; }
+  .offre-matiere .conversion-offer__visual { max-width: 220px; }
+}
+
+html[data-theme="dark"] .offre-matiere__option { background: #1A2840; border-color: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .offre-matiere__option--fiche { border-color: #7BA5E8; }
+html[data-theme="dark"] .offre-matiere__contenu li { border-top-color: rgba(255,255,255,0.08); }
+html[data-theme="dark"] .offre-matiere__prix s { color: #8FA8CC; }
+.offre-matiere__options--seul { grid-template-columns: minmax(0, 420px); }
+.offre-matiere__prix small { font-family: var(--font-body); font-size: .8rem; font-weight: 600; color: var(--muted); }
+.offre-matiere__bump {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin: 2px 0 4px;
+  font-size: .83rem;
+  color: var(--body);
+  cursor: pointer;
+}
+.offre-matiere__options { margin-bottom: 16px; }

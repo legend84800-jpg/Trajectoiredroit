@@ -33,6 +33,47 @@
     }
   }
 
+  // Codes promo (chantier conversion du 10/10/2026). Le champ code promo de Stripe
+  // est masqué par défaut. Un lien du site qui porte ?code=XXX (email J+8, lien
+  // ambassadeur) garde le code 30 jours pour l'appliquer d'office au paiement, et un
+  // visiteur qui a déjà acheté (clé posée par merci-achat.html) garde le champ.
+  var CLE_CODE_PROMO = 'tjd_code_promo';
+  var CLE_DEJA_ACHETEUR = 'tjd_deja_acheteur';
+  var DUREE_CODE_PROMO = 30 * 24 * 60 * 60 * 1000;
+  var CODE_PROMO_VALIDE = /^[A-Za-z0-9_-]{3,40}$/;
+
+  function memoriserCodePromo() {
+    try {
+      var code = (new URLSearchParams(window.location.search).get('code') || '').trim();
+      if (!CODE_PROMO_VALIDE.test(code)) return;
+      localStorage.setItem(CLE_CODE_PROMO, JSON.stringify({ code: code, expire: Date.now() + DUREE_CODE_PROMO }));
+    } catch (_) { /* stockage indisponible : le champ code promo reviendra côté Stripe */ }
+  }
+  memoriserCodePromo();
+
+  function lireCodePromo() {
+    try {
+      var brut = localStorage.getItem(CLE_CODE_PROMO);
+      if (!brut) return '';
+      var donnees = JSON.parse(brut);
+      if (!donnees || !CODE_PROMO_VALIDE.test(donnees.code || '') || !(donnees.expire > Date.now())) {
+        localStorage.removeItem(CLE_CODE_PROMO);
+        return '';
+      }
+      return donnees.code;
+    } catch (_) { return ''; }
+  }
+
+  function estDejaAcheteur() {
+    try { return localStorage.getItem(CLE_DEJA_ACHETEUR) === '1'; } catch (_) { return false; }
+  }
+
+  function ajouterCodePromo(corps) {
+    var code = lireCodePromo();
+    if (code) corps.code = code;
+    if (estDejaAcheteur()) corps.dejaAcheteur = true;
+  }
+
   function typeAppareil() {
     var largeur = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     if (largeur < 768) return 'mobile';
@@ -149,6 +190,7 @@
     corps.viewport = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
       + 'x' + Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
     corps.internalTest = estTestInterne();
+    ajouterCodePromo(corps);
     var referrerSession = sessionStorage.getItem('tjd_referrer');
     if (referrerSession) corps.referrer = referrerSession;
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (cle) {
@@ -286,6 +328,80 @@
     document.addEventListener('DOMContentLoaded', initReassurance);
   } else {
     initReassurance();
+  }
+
+  // Garantie réussite (décision de Julien du 10/10/2026) : une ligne discrète sous
+  // chaque bloc d'achat, une seule fois par bloc, avec le lien vers les conditions.
+  // Le stage et Portalis en sont exclus, comme la barre d'achat collante (trop
+  // étroite) et la modale d'aperçu. Style injecté ici pour ne pas toucher style.css.
+  var TEXTE_GARANTIE = 'Si tu n’as pas la moyenne à l’examen, je te rembourse. ';
+  var LIEN_GARANTIE = '/garantie-reussite.html';
+  var SELECTEUR_BLOC_ACHAT = '[data-tjd-bloc-achat], .product__body, .conversion-offer__choices, .article-produit-inline, .article-pack, .card';
+
+  function produitAvecGarantie(produitId) {
+    return !!produitId && produitId !== 'stage-methode' && produitId.indexOf('portalis') !== 0;
+  }
+
+  function injecterStyleGarantie() {
+    if (document.getElementById('tjdGarantieStyle')) return;
+    var style = document.createElement('style');
+    style.id = 'tjdGarantieStyle';
+    style.textContent =
+      '.tjd-garantie{display:flex;align-items:flex-start;gap:6px;margin:10px 0 0;' +
+      'font-size:.8rem;line-height:1.45;opacity:.8;text-align:left}' +
+      '.tjd-garantie--centre{justify-content:center;text-align:center}' +
+      '.tjd-garantie svg{flex:0 0 auto;margin-top:2px}' +
+      '.tjd-garantie a{color:inherit;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}' +
+      '.tjd-garantie a:hover{opacity:1}';
+    document.head.appendChild(style);
+  }
+
+  function creerLigneGarantie() {
+    var p = document.createElement('p');
+    p.className = 'tjd-garantie';
+    p.innerHTML =
+      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>' +
+      '<span></span>';
+    var texte = p.querySelector('span');
+    texte.appendChild(document.createTextNode(TEXTE_GARANTIE));
+    var lien = document.createElement('a');
+    lien.href = LIEN_GARANTIE;
+    lien.textContent = 'Lire les conditions';
+    texte.appendChild(lien);
+    return p;
+  }
+
+  function initGarantie() {
+    if (/(^|\/)(portalis|stage-methode|merci-stage)[^/]*\.html$/.test(window.location.pathname)) return;
+    var styleInjecte = false;
+    document.querySelectorAll('[data-tjd-produit]').forEach(function (btn) {
+      if (!produitAvecGarantie(btn.getAttribute('data-tjd-produit'))) return;
+      if (btn.id === 'apercuCta' || btn.closest('.sticky-cta-bar, [data-tjd-sans-garantie], #tjdPanierBackdrop')) return;
+      var bloc = btn.closest(SELECTEUR_BLOC_ACHAT) || btn.parentElement;
+      if (!bloc || bloc.getAttribute('data-tjd-garantie') === '1') return;
+      bloc.setAttribute('data-tjd-garantie', '1');
+      if (!styleInjecte) { injecterStyleGarantie(); styleInjecte = true; }
+      var ligne = creerLigneGarantie();
+      // Les choix en ligne (boutons côte à côte) reçoivent la mention juste après la
+      // rangée. Les cartes la reçoivent tout en bas, sous le dernier bouton.
+      var apres = bloc.classList.contains('conversion-offer__choices');
+      // L'encart d'article est une rangée flex (vignette, texte, boutons) : la mention
+      // va sous le texte, sinon elle devient une 4e colonne et écrase le texte.
+      var corpsEncart = bloc.classList.contains('article-produit-inline')
+        ? bloc.querySelector('.article-produit-inline__body') : null;
+      if (corpsEncart) bloc = corpsEncart;
+      var conteneur = apres ? bloc.parentElement : bloc;
+      try {
+        if (conteneur && window.getComputedStyle(conteneur).textAlign === 'center') ligne.classList.add('tjd-garantie--centre');
+      } catch (_) {}
+      if (apres) bloc.insertAdjacentElement('afterend', ligne);
+      else bloc.appendChild(ligne);
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGarantie);
+  } else {
+    initGarantie();
   }
 
   // ===== PANIER MULTI-PRODUITS (chantier 5.12, ajouté le 21/09/2026) =====
@@ -562,6 +678,7 @@
     corps.viewport = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
       + 'x' + Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
     corps.internalTest = estTestInterne();
+    ajouterCodePromo(corps);
     var referrerSession = sessionStorage.getItem('tjd_referrer');
     if (referrerSession) corps.referrer = referrerSession;
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (cle) {

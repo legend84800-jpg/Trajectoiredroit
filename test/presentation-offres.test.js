@@ -27,9 +27,13 @@ test("un même produit garde le même titre précis dans tous les aperçus", () 
 test("les quatorze packs matière distinguent contenu livré et formats séparés", () => {
   for (const [slug, matiere] of Object.entries(MATIERES).filter(([,m]) => m.packMatiere)) {
     const html = fs.readFileSync(path.join(ROOT, `${slug}.html`), "utf8");
-    const { titre, description } = presentationPackMatiere(matiere);
-    assert.ok(html.includes(`<h3 style="margin-top:0">${titre}</h3>`), slug);
-    assert.ok(html.includes(description), slug);
+    const { description } = presentationPackMatiere(matiere);
+    // Depuis le 10/10/2026, le pack est présenté dans le bloc d'offre principal
+    // (offre-matiere), avec son prix barré et la liste de ce qu'il contient.
+    const option = html.match(/<div class="offre-matiere__option offre-matiere__option--pack">[\s\S]*?<\/div>/)?.[0] || "";
+    assert.ok(option.includes(`data-tjd-produit="${matiere.packMatiere.id}"`), slug);
+    assert.match(option, /<s>[0-9]+,[0-9]{2} €<\/s>/, slug);
+    assert.match(option, /offre-matiere__contenu/, slug);
     assert.ok(description.includes("s'achètent à part"));
     const fichiers = PRODUITS[matiere.packMatiere.id].blobs;
     assert.ok(fichiers.every((url) => !/\/(cours-|maj-)/.test(url)), slug);
