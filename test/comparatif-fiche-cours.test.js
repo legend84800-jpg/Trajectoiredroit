@@ -13,10 +13,12 @@ for (const page of pages) {
     for (const format of ['fiche', 'cours']) {
       const file = `assets/apercus/comparatif-dol-${format}-20261002.png`;
       assert.ok(fs.existsSync(path.join(root, file)));
-      assert.ok(html.includes(`src="${file}" width="1203" height="1700" loading="lazy" decoding="async"`));
-      assert.ok(html.includes(`href="${file}" target="_blank" rel="noopener"`));
+      // Un ?v= de cache peut suivre le fichier quand l'extrait est régénéré (08/10/2026).
+      const fichier = file.replace(/[.?]/g, (c) => `\\${c}`);
+      assert.match(html, new RegExp(`src="${fichier}(\\?v=[0-9]+)?" width="1203" height="1700" loading="lazy" decoding="async"`));
+      assert.match(html, new RegExp(`href="${fichier}(\\?v=[0-9]+)?" target="_blank" rel="noopener"`));
     }
-    assert.ok(html.includes('157 pages au total, extrait p. 67'));
+    assert.ok(html.includes('171 pages au total, extrait p. 74'));
     assert.ok(html.includes('273 pages au total, extrait p. 119'));
     assert.match(html, /format-comparison__price">14,99 €/);
     assert.match(html, /format-comparison__price">19,99 €/);
