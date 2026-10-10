@@ -320,6 +320,67 @@ async function avisPublies({ produit, matiere }, dep) {
   }));
 }
 
+// Demande d'avis J+7, lancée chaque jour par le cron Vercel (vercel.json).
+// Elle vise les achats payés il y a entre 7 et 8 jours, hors tests, hors stage,
+// hors acheteurs qui ont répondu « Non merci » au choix « emails » du paiement,
+// et hors sessions qui ont déjà un avis. Une fenêtre de 24 h par passage
+// quotidien garantit un seul envoi par commande.
+const TEMPLATE_DEMANDE_AVIS = 31;
+
+function refuseEmails(session) {
+  const champ = (session.custom_fields || []).find((c) => c.key === "emails");
+  return Boolean(champ && champ.dropdown && champ.dropdown.value === "non");
+}
+
+async function listerSessionsJ7(maintenant) {
+  const stripe = creerClientStripe(process.env.STRIPE_SECRET_KEY);
+  const fin = Math.floor(maintenant / 1000) - 7 * 24 * 3600;
+  const sessions = [];
+  for await (const s of stripe.checkout.sessions.list({ created: { gte: fin - 24 * 3600, lt: fin }, limit: 100 })) {
+    sessions.push(s);
+  }
+  return sessions;
+}
+
+async function envoyerDemandeAvis(destinataire, session, brevoKey) {
+  const noms = produitsDeSession(session).map((id) => PRODUITS[id].nom).join(" + ");
+  const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "api-key": brevoKey, accept: "application/json" },
+    body: JSON.stringify({
+      templateId: TEMPLATE_DEMANDE_AVIS,
+      sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
+      replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
+      to: [{ email: destinataire }],
+      params: { SESSION: session.id, PRODUIT: noms },
+      tags: ["demande-avis-j7"],
+    }),
+  });
+  if (!resp.ok) throw new Error(`Brevo ${resp.status}: ${await resp.text()}`);
+}
+
+async function relancerAvis(dep, options = {}) {
+  const sessions = await (dep.listerSessionsJ7 || listerSessionsJ7)(options.maintenant || Date.now());
+  const bilan = { examinees: sessions.length, envoyees: 0, ignorees: 0, erreurs: 0 };
+  for (const session of sessions) {
+    const meta = session.metadata || {};
+    const email = emailBeneficiaire(session);
+    if (!sessionEligible(session) || modeSession(session) === "test" || meta.brand === "trajectoire_philo"
+      || meta.cadeauEmail || refuseEmails(session) || !email || await avisExistant(session.id, dep)) {
+      bilan.ignorees++;
+      continue;
+    }
+    try {
+      await (dep.envoyerDemandeAvis || envoyerDemandeAvis)(dep.destinataireForce || email, session, process.env.BREVO_API_KEY);
+      bilan.envoyees++;
+    } catch (e) {
+      bilan.erreurs++;
+      console.error("demande d'avis:", e && e.message ? e.message : "erreur inconnue");
+    }
+  }
+  return bilan;
+}
+
 function lireCorps(req) {
   let corps = req.body;
   if (typeof corps === "string") { try { corps = JSON.parse(corps); } catch { corps = {}; } }
@@ -332,6 +393,15 @@ async function handler(req, res, dependances) {
   const identifiantValide = (v) => typeof v === "string" && /^[a-z0-9-]{2,80}$/.test(v);
 
   try {
+    if (req.method === "GET" && (req.query || {}).action === "relance") {
+      const attendu = process.env.CRON_SECRET;
+      if (!attendu || (req.headers && req.headers.authorization) !== `Bearer ${attendu}`) {
+        res.status(401).json({ erreur: "Non autorisé" });
+        return;
+      }
+      res.status(200).json(await relancerAvis(dep));
+      return;
+    }
     if (req.method === "GET") {
       const { session_id: sessionId, produit, matiere } = req.query || {};
       if (sessionId) {
@@ -378,6 +448,8 @@ async function handler(req, res, dependances) {
 module.exports = (req, res) => handler(req, res);
 module.exports._test = {
   handler,
+  relancerAvis,
+  refuseEmails,
   matiereDepuisProduit,
   citationsPourMatiere,
   contexteFicheOfferte,

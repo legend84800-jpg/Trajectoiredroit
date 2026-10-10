@@ -1,5 +1,5 @@
 {
-  "crons": [{ "path": "/api/generer?action=nettoyer", "schedule": "37 * * * *" }],
+  "crons": [{ "path": "/api/generer?action=nettoyer", "schedule": "37 * * * *" }, { "path": "/api/avis?action=relance", "schedule": "0 16 * * *" }],
   "functions": {
     "api/generer.js": { "maxDuration": 120, "includeFiles": "api/_portalis-pdf-worker.js" },
     "api/personnaliser-pdf.py": {
