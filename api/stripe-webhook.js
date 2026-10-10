@@ -875,7 +875,9 @@ async function traiterAchatPaye(session, contexte) {
     }
   }
 
-  if (session.metadata && session.metadata.consentMarketing === "1" && montantEuros !== "?") {
+  if (session.livemode !== false && session.metadata
+    && session.metadata.internalTest !== "1" && session.metadata.source !== "test_interne"
+    && session.metadata.consentMarketing === "1" && Number(montantEuros) > 0) {
     try {
       await operations.envoyerAchatMeta({
         email,

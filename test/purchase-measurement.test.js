@@ -50,3 +50,17 @@ test('un achat confirmé transmet son montant et son produit une seule fois', ()
   assert.equal(m.commandes[0][0], 'trackEcommerceOrder');
   assert.equal(m.commandes[0][2], 79);
 });
+
+test('GA4 et Matomo excluent le drapeau serveur et les accès gratuits', () => {
+  for (const achat of [
+    { montant: 79, devise: 'EUR', internalTest: true },
+    { montant: 0, devise: 'EUR' },
+    { montant: null, devise: 'EUR' },
+  ]) {
+    const m = mesures(false);
+    m.envoyer(achat);
+    assert.equal(m.evenements.length, 0);
+    assert.equal(m.commandes.length, 0);
+    assert.equal(m.stockage.size, 0);
+  }
+});

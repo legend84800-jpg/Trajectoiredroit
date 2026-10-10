@@ -54,6 +54,9 @@ async function handler(req, res) {
         : (data.amount_total != null ? data.amount_total / 100 : null),
       devise: (data.currency || "eur").toUpperCase(),
       produitIds,
+      // Le drapeau Stripe suit l'achat même si la page s'ouvre sur un autre appareil.
+      internalTest: data.livemode === false
+        || !!(data.metadata && (data.metadata.internalTest === "1" || data.metadata.source === "test_interne")),
       // Pack offert par un parent : merci-achat.html adapte son message, sans
       // jamais renvoyer l'adresse de l'étudiant au navigateur.
       cadeau: !!(data.metadata && data.metadata.cadeauEmail),

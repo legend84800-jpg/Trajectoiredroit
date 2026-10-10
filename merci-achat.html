@@ -595,7 +595,7 @@
     var dejaEnvoye = sessionStorage.getItem('tjd_purchase_envoye_' + sessionId);
 
     function envoyerMesures(d) {
-      if (window.tjdTestInterne || dejaEnvoye) return;
+      if (window.tjdTestInterne || dejaEnvoye || !d || d.internalTest || !(d.montant > 0)) return;
       sessionStorage.setItem('tjd_purchase_envoye_' + sessionId, '1');
       dejaEnvoye = true;
 
@@ -693,7 +693,8 @@
     }
 
     function envoyerMetaSiPret() {
-      if (metaEnvoye || !donneesSession || typeof window.fbq !== 'function') return;
+      if (window.tjdTestInterne || metaEnvoye || !donneesSession || donneesSession.internalTest
+        || !(donneesSession.montant > 0) || typeof window.fbq !== 'function') return;
       metaEnvoye = true;
       fbq('track', 'Purchase', { value: donneesSession.montant, currency: donneesSession.devise || 'EUR' }, { eventID: sessionId });
     }
