@@ -145,6 +145,34 @@ Tu reçois cet email parce que tu as demandé ce corrigé sur trajectoiredroit.c
   return { sujet, html, texte };
 }
 
+// Attributs lus par le premier email de la séquence de bienvenue Brevo.
+function attributsCorrige(matiere) {
+  const produit = PRODUITS[matiere];
+  const compte = CORRIGES_OFFERTS[matiere];
+  return {
+    SOURCE: "corrige-offert",
+    MATIERE: matiere,
+    CORRIGE_MATIERE: produit.nom.replace(/^Cas pratiques corrigés /, ""),
+    CORRIGE_PDF: urlPdf(matiere),
+    CORRIGE_RECUEIL: produit.nom,
+    CORRIGE_CAS: String(compte.cas),
+    CORRIGE_PARTIELS: String(compte.partiels),
+    CORRIGE_PRIX: euros(produit.prix),
+  };
+}
+
+async function contactDejaDansListe(email, apiKey) {
+  const listId = parseInt(process.env.BREVO_LIST_ID || "", 10);
+  if (Number.isNaN(listId)) return true;
+  const resp = await fetch(`https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`, {
+    headers: { "api-key": apiKey, accept: "application/json" },
+  });
+  if (resp.status === 404) return false;
+  if (!resp.ok) return true; // Dans le doute, l'email transactionnel garantit la livraison.
+  const contact = await resp.json().catch(() => ({}));
+  return Array.isArray(contact.listIds) && contact.listIds.includes(listId);
+}
+
 async function inscrireContact(email, attributs, apiKey) {
   const payload = { email, updateEnabled: true, attributes: attributs };
   const listId = parseInt(process.env.BREVO_LIST_ID || "", 10);
@@ -246,14 +274,20 @@ async function handler(req, res) {
       return;
     }
 
-    const inscription = await inscrireContact(email, { SOURCE: "corrige-offert", MATIERE: matiere }, apiKey);
+    // Un nouvel inscrit entre dans la liste des leads, ce qui déclenche la séquence
+    // de bienvenue Brevo (« Automatisation #1 »). Son premier email affiche le
+    // corrigé quand SOURCE vaut corrige-offert, grâce aux attributs CORRIGE_*.
+    // Un contact déjà dans la liste ne relance pas la séquence : il reçoit donc
+    // le corrigé par l'email transactionnel, comme avant.
+    const dejaInscrit = await contactDejaDansListe(email, apiKey);
+    const inscription = await inscrireContact(email, attributsCorrige(matiere), apiKey);
     if (!inscription.ok) {
       console.error("Brevo error:", inscription.status, inscription.detail);
       res.status(502).json({ error: "Inscription impossible pour le moment." });
       return;
     }
 
-    await envoyerCorrigeOffert(email, matiere, apiKey);
+    if (dejaInscrit) await envoyerCorrigeOffert(email, matiere, apiKey);
     res.status(200).json({ ok: true, envoye: true });
   } catch (err) {
     console.error("lead handler error:", err);
@@ -265,3 +299,4 @@ module.exports = handler;
 module.exports.CORRIGES_OFFERTS = CORRIGES_OFFERTS;
 module.exports.construireEmailCorrigeOffert = construireEmailCorrigeOffert;
 module.exports.urlPdf = urlPdf;
+module.exports.attributsCorrige = attributsCorrige;
