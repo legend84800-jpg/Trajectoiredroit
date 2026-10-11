@@ -11,6 +11,7 @@ const PRODUITS = require("./_produits");
 const { upsert, insererSiAbsent, supprimer } = require("./_supabase");
 const { construireLiensTelechargement } = require("./_liens-telechargement");
 const { creerClientStripe } = require("./_stripe");
+const { diagnostiquerRelance } = require("./_relance-diagnostic");
 const { bornerAbonnement } = require("./_echeances");
 const {
   cadeauDepuisMetadata,
@@ -313,6 +314,8 @@ async function envoyerRelancePanier(email, produits, checkoutUrl, brevoKey, opti
     const err = await resp.text();
     throw new Error(`Brevo ${resp.status}: ${err}`);
   }
+  const resultat = await resp.json();
+  return { messageId: resultat.messageId || "" };
 }
 
 // Panier abandonné : la session expire à H+1. Stripe fournit son lien de
@@ -324,48 +327,53 @@ async function gererPanierAbandonne(sessionEvenement, brevoKey, stripe, origin, 
   const envoyer = operations.envoyer || ((email, produits, url, options) => envoyerRelancePanier(email, produits, url, brevoKey, options));
   const session = await recuperer(sessionEvenement.id);
   const metadata = session.metadata || {};
-  const produitIdsRaw = metadata.produitIds;
-  const email = session.customer_details && session.customer_details.email;
-  const checkoutUrl = session.after_expiration
-    && session.after_expiration.recovery
-    && session.after_expiration.recovery.url;
-  const accordPromotionnel = accordEmails(session);
-  const eligible = metadata.reminderPlan === "h1-h24-v1"
-    && metadata.source === "site"
-    && metadata.internalTest !== "1"
-    && !session.recovered_from;
-  if (!eligible || !produitIdsRaw || !email || !accordPromotionnel || !checkoutUrl) {
-    console.log(`[PANIER ABANDONNÉ] ignoré, session=${session.id}`);
-    return { ignore: "non-eligible" };
+  const diagnostic = diagnostiquerRelance(session);
+  if (session.recovered_from) diagnostic.raisons.push("session-recuperee");
+  diagnostic.eligible = diagnostic.raisons.length === 0;
+  // Ne modifier aucune session d'une autre marque ou d'un essai interne.
+  const tracable = metadata.source === "site" && metadata.internalTest !== "1"
+    && metadata.brand !== "trajectoire_philo" && metadata.produitIds;
+  const trace = async champs => {
+    if (tracable) await mettreAJour(session.id, { metadata: champs });
+  };
+  const diagnosticMetadata = {
+    rappelDiagnostic: diagnostic.eligible ? "eligible" : diagnostic.raisons.join(","),
+    rappelDiagnosticAt: new Date().toISOString(),
+  };
+  if (!diagnostic.eligible) {
+    await trace(diagnosticMetadata);
+    console.log("[PANIER ABANDONNÉ] ignoré", { raisons: diagnostic.raisons });
+    const ignore = diagnostic.raisons.includes("vente-suspendue") ? "vente-suspendue"
+      : diagnostic.raisons.includes("produit-inconnu") ? "produit-inconnu" : "non-eligible";
+    return { ignore, raisons: diagnostic.raisons };
   }
-
-  const produitIds = produitIdsRaw.split(",").map(s => s.trim()).filter(Boolean);
-  const produitsAbandonnes = produitIds.map(id => PRODUITS[id]).filter(Boolean);
-  if (!produitsAbandonnes.length || produitsAbandonnes.length !== produitIds.length) {
-    return { ignore: "produit-inconnu" };
-  }
-  if (produitsAbandonnes.some(produit => produit.venteSuspendue)) {
-    return { ignore: "vente-suspendue" };
-  }
+  const { email, url: checkoutUrl, produits: produitsAbandonnes } = diagnostic;
+  const produitIds = metadata.produitIds.split(",").map(s => s.trim()).filter(Boolean);
 
   if (metadata.rappelH1Status !== "sent") {
-    await envoyer(email, produitsAbandonnes, checkoutUrl, {
-      etape: "h1",
-      sessionOrigine: session.id,
-    });
-    await mettreAJour(session.id, { metadata: { rappelH1Status: "sent" } });
+    try {
+      const resultat = await envoyer(email, produitsAbandonnes, checkoutUrl, { etape: "h1", sessionOrigine: session.id });
+      await mettreAJour(session.id, { metadata: { ...diagnosticMetadata, rappelH1Status: "sent",
+        rappelH1AcceptedAt: new Date().toISOString(), rappelH1MessageId: resultat?.messageId || "", rappelH1Error: "" } });
+    } catch (error) {
+      await trace({ ...diagnosticMetadata, rappelH1Error: "send-or-record-failed" });
+      throw error;
+    }
   }
 
   const batchId = uuidRelance(session.id, "h24-batch");
   if (metadata.rappelH24Status !== "scheduled") {
     const dateH24 = new Date((session.created + 24 * 3600) * 1000).toISOString();
-    await envoyer(email, produitsAbandonnes, checkoutUrl, {
-      etape: "h24",
-      sessionOrigine: session.id,
-      scheduledAt: dateH24,
-      batchId,
-    });
-    await mettreAJour(session.id, { metadata: { rappelH24Status: "scheduled", rappelH24BatchId: batchId } });
+    try {
+      const resultat = await envoyer(email, produitsAbandonnes, checkoutUrl, {
+        etape: "h24", sessionOrigine: session.id, scheduledAt: dateH24, batchId,
+      });
+      await mettreAJour(session.id, { metadata: { ...diagnosticMetadata, rappelH24Status: "scheduled", rappelH24BatchId: batchId,
+        rappelH24ScheduledAt: dateH24, rappelH24MessageId: resultat?.messageId || "", rappelH24Error: "" } });
+    } catch (error) {
+      await trace({ ...diagnosticMetadata, rappelH24Error: "send-or-record-failed" });
+      throw error;
+    }
   }
   console.log(`[PANIER ABANDONNÉ] rappels préparés pour ${produitIds.join("+")}, session=${session.id}`);
   return { traite: true, batchId };

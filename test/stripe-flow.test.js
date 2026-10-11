@@ -455,6 +455,7 @@ test("le panier abandonné prépare une seule relance H+1 et une seule relance H
   const session = {
     id: "cs_test_abandon",
     mode: "payment",
+    status: "expired",
     created: 1_900_000_000,
     metadata: {
       produitIds: "fiche-da-l2-s1",

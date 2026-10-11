@@ -202,6 +202,7 @@ test("un ancien paiement L3 S2 reste livrable, sans relance pour cette offre sus
   const session = {
     id: "cs_test_l3_s2_suspendu",
     mode: "payment",
+    status: "expired",
     created: Math.floor(Date.now() / 1000),
     metadata: { produitIds: "pack-ultra-l3-s2", reminderPlan: "h1-h24-v1", source: "site", internalTest: "0" },
     customer_details: { email: "client@example.com" },
@@ -210,7 +211,9 @@ test("un ancien paiement L3 S2 reste livrable, sans relance pour cette offre sus
   };
   const resultat = await gererPanierAbandonne(session, "brevo_test", {}, "https://trajectoiredroit.com", {
     recuperer: async () => session,
+    mettreAJour: async () => {},
     envoyer: async () => { throw new Error("Relance interdite"); },
   });
-  assert.deepEqual(resultat, { ignore: "vente-suspendue" });
+  assert.equal(resultat.ignore, "vente-suspendue");
+  assert.ok(resultat.raisons.includes("vente-suspendue"));
 });
