@@ -11,6 +11,7 @@
 // à savoir le premier cas pratique du recueil, publié sur R2 sous tjd/corrige-offert/<id>.pdf.
 
 const PRODUITS = require("./_produits");
+const { attributsExercice, suggestionEmail, emailDepuisAttributs } = require('./_corriges-exercices');
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const R2_PUBLIC = "https://pub-45b53167be7548aca62650d34a771b47.r2.dev";
@@ -78,75 +79,7 @@ function urlPdf(matiere) {
 // Textes passés par redaction-julien (checklist, passe adversariale, vale,
 // verificateur_anti_ia.py, verificateur_style_positif.py) le 10/10/2026.
 function construireEmailCorrigeOffert(matiere) {
-  const produit = PRODUITS[matiere];
-  const compte = CORRIGES_OFFERTS[matiere];
-  const nomRecueil = produit.nom;
-  const nomMatiere = nomRecueil.replace(/^Cas pratiques corrigés /, "");
-  const prix = euros(produit.prix);
-  const lienPdf = urlPdf(matiere);
-  const lienRecueil = urlRecueil(matiere);
-
-  const sujet = `Ton cas pratique corrigé de ${nomMatiere}`;
-  const html = `
-<!DOCTYPE html>
-<html lang="fr">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#f5f5f5;font-family:sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;padding:40px 0;">
-    <tr><td align="center">
-      <table width="560" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:8px;overflow:hidden;max-width:100%;">
-        <tr><td style="background:#1a237e;padding:24px 32px;">
-          <p style="margin:0;color:#fff;font-size:22px;font-weight:700;">TrajectoireDroit</p>
-        </td></tr>
-        <tr><td style="padding:32px;">
-          <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 24px;">Ton cas pratique corrigé de ${nomMatiere}</p>
-          <p style="font-size:15px;color:#333;margin:0 0 24px;">
-            Tu as demandé un cas pratique corrigé de <strong>${nomMatiere}</strong> sur TrajectoireDroit, et le voici. Le PDF contient l'énoncé et son corrigé complet.
-          </p>
-          <a href="${lienPdf}" style="display:inline-block;margin:0 0 24px;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;font-family:sans-serif;font-size:14px;">
-            Télécharger mon cas pratique corrigé
-          </a>
-          <p style="font-size:15px;color:#333;margin:0 0 24px;">
-            Le lien reste valable, donc tu peux garder cet email pour retrouver le PDF plus tard.
-          </p>
-          <p style="font-size:15px;color:#333;margin:0 0 24px;">
-            Le mieux est de traiter d'abord l'énoncé seul, au brouillon, avant de lire le corrigé. En comparant ensuite les deux, tu vois tout de suite les arguments que tu avais trouvés et ceux qui te manquaient.
-          </p>
-          <p style="font-size:13px;color:#555;margin:0 0 24px;">
-            Ce cas pratique vient du recueil <strong>${nomRecueil}</strong>. Le recueil complet réunit ${compte.cas} cas pratiques, dont celui qui est offert, mais aussi ${compte.partiels} sujets type partiel. Tous sont corrigés avec la même méthode. Tu disposes donc de ${compte.cas - 1} autres cas et de ${compte.partiels} sujets de partiel pour t'entraîner sur les autres thèmes du cours. Tu peux voir <a href="${lienRecueil.replace(/&/g, '&amp;')}" style="color:#1a237e;">le recueil complet</a>, qui coûte ${prix}.
-          </p>
-          <p style="font-size:13px;color:#555;margin:0 0 24px;">
-            Si une question te bloque dans le corrigé, tu peux répondre directement à cet email, car je reçois moi-même les réponses.
-          </p>
-          <p style="font-size:15px;color:#1a237e;font-weight:700;margin:0;">Julien</p>
-        </td></tr>
-        <tr><td style="background:#f0f0f0;padding:16px 32px;">
-          <p style="font-size:12px;color:#999;margin:0;">Tu reçois cet email parce que tu as demandé ce corrigé sur trajectoiredroit.com.</p>
-        </td></tr>
-      </table>
-    </td></tr>
-  </table>
-</body>
-</html>`;
-
-  const texte = `Tu as demandé un cas pratique corrigé de ${nomMatiere} sur TrajectoireDroit, et le voici. Le PDF contient l'énoncé et son corrigé complet.
-
-Télécharger mon cas pratique corrigé : ${lienPdf}
-
-Le lien reste valable, donc tu peux garder cet email pour retrouver le PDF plus tard.
-
-Le mieux est de traiter d'abord l'énoncé seul, au brouillon, avant de lire le corrigé. En comparant ensuite les deux, tu vois tout de suite les arguments que tu avais trouvés et ceux qui te manquaient.
-
-Ce cas pratique vient du recueil ${nomRecueil}. Le recueil complet réunit ${compte.cas} cas pratiques, dont celui qui est offert, mais aussi ${compte.partiels} sujets type partiel. Tous sont corrigés avec la même méthode. Tu disposes donc de ${compte.cas - 1} autres cas et de ${compte.partiels} sujets de partiel pour t'entraîner sur les autres thèmes du cours. Tu peux voir le recueil complet, qui coûte ${prix}.
-${lienRecueil}
-
-Si une question te bloque dans le corrigé, tu peux répondre directement à cet email, car je reçois moi-même les réponses.
-
-Julien, TrajectoireDroit
-
-Tu reçois cet email parce que tu as demandé ce corrigé sur trajectoiredroit.com.`;
-
-  return { sujet, html, texte };
+  return emailDepuisAttributs(attributsCorrige(matiere));
 }
 
 // Attributs lus par le premier email de la séquence de bienvenue Brevo.
@@ -200,7 +133,6 @@ async function inscrireContact(email, attributs, apiKey) {
 }
 
 async function envoyerCorrigeOffert(email, matiere, apiKey) {
-  const contenu = construireEmailCorrigeOffert(matiere);
   const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
     headers: { "Content-Type": "application/json", "api-key": apiKey, accept: "application/json" },
@@ -210,9 +142,7 @@ async function envoyerCorrigeOffert(email, matiere, apiKey) {
       // L'email invite à répondre : sans ce replyTo, la réponse partirait vers
       // contact@trajectoiredroit.com, jamais lue par Julien.
       replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
-      subject: contenu.sujet,
-      htmlContent: contenu.html,
-      textContent: contenu.texte,
+      templateId: 33,
       tags: ["corrige-offert", matiere],
     }),
   });
@@ -250,6 +180,27 @@ async function handler(req, res) {
       return;
     }
 
+    const proposition = suggestionEmail(email);
+    if ((avecMatiere || body.exercice) && proposition && body.confirmerDomaine !== true) {
+      return res.status(409).json({ error: 'Vérifie le domaine de ton adresse email.', suggestion: proposition });
+    }
+    if (body.exercice) {
+      const attributs = attributsExercice(String(body.exercice));
+      if (!attributs) return res.status(400).json({ error: 'Exercice inconnu.' });
+      if (typeof body.site === 'string' && body.site.trim()) return res.status(200).json({ ok: true });
+      if (limiteAtteinte(ipVisiteur(req)) || limiteAtteinte('email:' + email)) return res.status(429).json({ error: 'Trop de demandes. Réessaie dans quelques minutes.' });
+      const dejaInscrit = await contactDejaDansListe(email, apiKey);
+      const inscription = await inscrireContact(email, attributs, apiKey);
+      if (!inscription.ok) return res.status(502).json({ error: 'Inscription impossible pour le moment.' });
+      // Nouveau contact : une seule livraison par le scénario de bienvenue.
+      // Déjà abonné : le scénario ne redémarre pas, on livre son nouvel exercice.
+      if (dejaInscrit) {
+        const resp = await fetch('https://api.brevo.com/v3/smtp/email', { method:'POST',headers:{'Content-Type':'application/json','api-key':apiKey},
+          body:JSON.stringify({sender:{name:'Trajectoire Droit',email:'contact@trajectoiredroit.com'},to:[{email}],replyTo:{email:'julien.prof1@gmail.com',name:'Julien'},templateId:33,tags:['corrige-exercice',String(body.exercice)]})});
+        if (!resp.ok) throw new Error('Livraison Brevo impossible');
+      }
+      return res.status(200).json({ok:true,envoye:true});
+    }
     if (!avecMatiere) {
       const inscription = await inscrireContact(email, { SOURCE: source }, apiKey);
       if (inscription.ok) {

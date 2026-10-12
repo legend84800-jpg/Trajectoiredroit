@@ -125,6 +125,7 @@
   }
 
   function monter(bloc) {
+    if (bloc.hasAttribute('data-exercice')) return;
     if (bloc.getAttribute('data-tjd-co-pret') === '1') return;
     bloc.setAttribute('data-tjd-co-pret', '1');
     compteur += 1;
@@ -186,6 +187,7 @@
     form.appendChild(rgpd);
 
     var statut = el('p', { 'class': 'tjd-co__statut', role: 'status', 'aria-live': 'polite' });
+    var domaineConfirme = '';
     form.appendChild(statut);
 
     carte.appendChild(form);
@@ -212,11 +214,12 @@
       fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, source: sourcePage, matiere: matiere, site: champPiege.value })
+        body: JSON.stringify({ email: email, source: sourcePage, matiere: matiere, site: champPiege.value, confirmerDomaine: domaineConfirme === email })
       }).then(function (reponse) {
         return reponse.json().catch(function () { return {}; }).then(function (donnees) {
           if (!reponse.ok) {
             var e = new Error('lead');
+            e.suggestion = donnees.suggestion;
             e.message429 = reponse.status === 429 && donnees && donnees.error;
             throw e;
           }
@@ -235,6 +238,13 @@
         bouton.textContent = TEXTES.bouton;
         statut.className = 'tjd-co__statut tjd-co__statut--erreur';
         statut.textContent = (erreur && erreur.message429) || TEXTES.erreur;
+        if (erreur && erreur.suggestion) {
+          statut.textContent = 'Le domaine de ton adresse ressemble à une faute de frappe. Tu peux choisir l’adresse à utiliser. ';
+          var corriger = el('button', {type:'button'}, 'Utiliser '+erreur.suggestion), garder = el('button', {type:'button'}, 'Garder mon adresse');
+          corriger.addEventListener('click', function(){input.value=erreur.suggestion;domaineConfirme='';form.requestSubmit();});
+          garder.addEventListener('click', function(){domaineConfirme=input.value.trim().toLowerCase();form.requestSubmit();});
+          statut.appendChild(corriger);statut.appendChild(garder);
+        }
       });
     });
   }

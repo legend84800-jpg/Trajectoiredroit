@@ -164,6 +164,13 @@ async function handler(req, res) {
   let corps = req.body;
   if (typeof corps === "string") { try { corps = JSON.parse(corps); } catch { corps = {}; } }
   corps = corps || {};
+  if (typeof corps.code === 'string' && corps.code.trim().toUpperCase() === 'CORRIGE10') {
+    const ids = Array.isArray(corps.produitIds) ? corps.produitIds : [corps.produitId, corps.bumpId].filter(Boolean);
+    if (!ids.length || ids.some(id => typeof id !== 'string' || !/^(cas-pratique-|commentaire-arret-|dissertation-)/.test(id) || !PRODUITS[id])) {
+      return res.status(400).json({ erreur: 'Le code CORRIGE10 s’applique aux recueils de corrigés.', code: 'remise_corriges' });
+    }
+  }
+
 
   if (corps.mode === "subscription" || corps.type === "portalis_recharge" || corps.type === "portal") {
     res.setHeader("Cache-Control", "no-store");
