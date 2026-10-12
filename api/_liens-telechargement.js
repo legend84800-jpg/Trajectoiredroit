@@ -88,16 +88,19 @@ function construireLiensTelechargement(
   const DUREE_MIN_VIDEO_SECONDES = 6 * 60 * 60;
   return produit.blobs.map((blobUrl, i) => {
     const estVideo = /\.mp4$/i.test(blobUrl);
-    const dureeEffective = estVideo ? Math.max(dureeSecondes, DUREE_MIN_VIDEO_SECONDES) : dureeSecondes;
+    const estAudio = /\.m4a$/i.test(blobUrl);
+    const dureeEffective = estVideo || estAudio ? Math.max(dureeSecondes, DUREE_MIN_VIDEO_SECONDES) : dureeSecondes;
     const expiry = Math.floor(Date.now() / 1000) + dureeEffective;
     const sig = genererToken(produitId, i, expiry, secret, sessionId);
     const sessionParam = sessionId ? `&sid=${encodeURIComponent(sessionId)}` : "";
     const url = `${origin}/api/telecharger?id=${encodeURIComponent(produitId)}&b=${i}&exp=${expiry}&sig=${sig}${sessionParam}`;
-    const brut = blobUrl.split("/").pop().replace(/\.(pdf|apkg|mp4)$/i, "");
+    const brut = blobUrl.split("/").pop().replace(/\.(pdf|apkg|mp4|m4a)$/i, "");
     const annexe = libelleAnnexe(brut, suffixes);
     let nom = annexe || libelleFichierPrincipal(produit.nom);
     const composant = produit.blobsMeta && produit.blobsMeta[i];
-    if (composant) {
+    if (composant && composant.libelle) {
+      nom = composant.libelle;
+    } else if (composant) {
       nom = annexe ? `${composant.nom} · ${annexe}` : composant.nom;
     } else if (produitId.startsWith("pack-") && !produitId.startsWith("pack-flashcards-qcm-")) {
       const produitSource = PRODUITS_PAR_FICHIER.get(blobUrl);
@@ -113,7 +116,8 @@ function construireLiensTelechargement(
         nom = `${format} · ${matiere.nom.replace(/^Flashcards \+ QCM /, "")}`;
       }
     }
-    return { nom, url, type: estVideo ? "video" : "pdf", ...(composant ? { groupe: composant.nom } : {}) };
+    const type = estVideo ? "video" : estAudio ? "audio" : "pdf";
+    return { nom, url, type, ...(composant ? { groupe: composant.nom } : {}) };
   });
 }
 

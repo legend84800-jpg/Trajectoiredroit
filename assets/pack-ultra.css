@@ -217,6 +217,7 @@ html[data-theme="dark"] .ultra-card__split-btn { color: #e8d9a8; }
 .ultra-resource--commentaire { --resource-accent: #98513b; --resource-bg: #fff0e9; }
 .ultra-resource--cas { --resource-accent: #3d6d32; --resource-bg: #f0f8e9; }
 .ultra-resource--dissertation { --resource-accent: #4c559a; --resource-bg: #f0f1ff; }
+.ultra-resource--podcast { --resource-accent: #1f6f78; --resource-bg: #e8f6f6; }
 .ultra-inclusions__action {
   display: flex;
   align-items: center;
@@ -476,6 +477,7 @@ html[data-theme="dark"] .ultra-resource--flashcards { --resource-accent: #a7def1
 html[data-theme="dark"] .ultra-resource--commentaire { --resource-accent: #f0baa1; --resource-bg: #462e29; }
 html[data-theme="dark"] .ultra-resource--cas { --resource-accent: #bce4a3; --resource-bg: #2b4029; }
 html[data-theme="dark"] .ultra-resource--dissertation { --resource-accent: #c7ccff; --resource-bg: #2a3150; }
+html[data-theme="dark"] .ultra-resource--podcast { --resource-accent: #9fe0e6; --resource-bg: #1d3d41; }
 html[data-theme="dark"] .ultra-inclusions > p { color: #d0d7e4; }
 html[data-theme="dark"] .ultra-inclusions__title { color: #f6f3ea; }
 html[data-theme="dark"] .ultra-inclusions__semestre,

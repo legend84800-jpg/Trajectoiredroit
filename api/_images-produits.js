@@ -196,6 +196,15 @@ const VISUELS = {
   "pack-ultra-l2-s2": "assets/covers/pack-ultra-l2-s2.webp",
   "pack-ultra-l3-s1": "assets/covers/pack-ultra-l3-s1.webp",
   "pack-ultra-l3-s2": "assets/covers/pack-ultra-l3-s2.webp",
+  "audio-video-intro-droit-l1": "assets/covers/audio-video/audio-video-intro-droit-l1.jpg",
+  "audio-video-hist-droit-l1": "assets/covers/audio-video/audio-video-hist-droit-l1.jpg",
+  "audio-video-personnes-l1": "assets/covers/audio-video/audio-video-personnes-l1.jpg",
+  "audio-video-relations-internationales-l1": "assets/covers/audio-video/audio-video-relations-internationales-l1.jpg",
+  "audio-video-constit-l1-s1": "assets/covers/audio-video/audio-video-constit-l1-s1.jpg",
+  "audio-video-constit-l1-s2": "assets/covers/audio-video/audio-video-constit-l1-s2.jpg",
+  "audio-video-famille-l1-s2": "assets/covers/audio-video/audio-video-famille-l1-s2.jpg",
+  "audio-video-hist-institutions-l1": "assets/covers/audio-video/audio-video-hist-institutions-l1.jpg",
+  "audio-video-penal-general-l1": "assets/covers/audio-video/audio-video-penal-general-l1.jpg",
   "stage-methode": "assets/julien.jpg",
 };
 

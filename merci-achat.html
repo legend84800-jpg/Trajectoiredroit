@@ -145,20 +145,20 @@
             <div class="megamenu__packs">
               <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
               <div class="megamenu__packs-grid">
-                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 239 € au lieu de 424,69 €, 44 % d’économie">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 549,64 €, 53 % d’économie">
                   <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
                   <span class="megamenu__pack-tile-body">
-                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-44 %</span></span>
-                    <span class="megamenu__pack-tile-meta">31 ressources</span>
-                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">424,69 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-53 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">549,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
                   </span>
                 </a>
-                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 22 ressources, 199 € au lieu de 309,78 €, 36 % d’économie">
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 409,74 €, 44 % d’économie">
                   <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
                   <span class="megamenu__pack-tile-body">
-                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-36 %</span></span>
-                    <span class="megamenu__pack-tile-meta">22 ressources</span>
-                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">309,78 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-44 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">409,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
                   </span>
                 </a>
                 <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 28 ressources, 229 € au lieu de 399,72 €, 43 % d’économie">
@@ -549,6 +549,16 @@
       statusEyebrow.textContent = 'Achat confirmé';
       statusTitle.textContent = 'Ton PDF arrive par email';
       statusMessage.textContent = 'Paiement reçu. Dans quelques secondes, tu reçois un email avec le lien de téléchargement. Vérifie ta boîte de réception et ton dossier spam si tu ne le vois pas.';
+      // Podcasts et vidéos seuls : rien ne se télécharge, tout se lance depuis Mon compte.
+      var ids = (d && d.produitIds) || [];
+      if (ids.length && ids.every(function (id) { return id.indexOf('audio-video-') === 0; })) {
+        statusTitle.textContent = 'Tes podcasts et tes vidéos sont prêts';
+        statusMessage.textContent = "Paiement reçu. Tu les retrouves dès maintenant dans ton espace Mon compte, avec l'adresse email utilisée pour cet achat.";
+        document.querySelector('#purchaseSteps ol').innerHTML =
+          '<li>Tu reçois un email de <strong>contact@trajectoiredroit.com</strong> qui confirme ton achat.</li>' +
+          '<li>Tu te connectes à ton espace <a href="mon-compte.html">Mon compte</a> avec l\'adresse email utilisée pour cet achat.</li>' +
+          '<li>Chaque leçon y apparaît avec son podcast et sa vidéo, que tu lances directement sur ton téléphone ou sur ton ordinateur.</li>';
+      }
       // Pack offert depuis parents.html : la page s'adresse au parent, qui a payé,
       // et le pack est parti chez l'étudiant.
       if (d && d.cadeau) {

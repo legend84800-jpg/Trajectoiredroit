@@ -82,17 +82,17 @@ test("le paiement en 3 fois ouvre un abonnement mensuel sans relance ni code pro
   const { params, options } = appels[0];
   assert.equal(params.mode, "subscription");
   assert.equal(params.line_items.length, 1);
-  assert.equal(params.line_items[0].price_data.unit_amount, 7966);
+  assert.equal(params.line_items[0].price_data.unit_amount, 8633);
   assert.deepEqual(params.line_items[0].price_data.recurring, { interval: "month" });
   assert.equal(params.payment_intent_data, undefined);
   assert.equal(params.after_expiration, undefined);
   assert.equal(params.allow_promotion_codes, false);
   assert.equal(params.metadata.echeances, "3");
-  assert.equal(params.metadata.montantTotal, "23898");
+  assert.equal(params.metadata.montantTotal, "25899");
   assert.equal(params.metadata.reminderPlan, "none");
   assert.equal(params.metadata.produitIds, "pack-ultra-l1-s1");
   assert.equal(params.subscription_data.metadata.echeances, "3");
-  assert.match(params.custom_text.submit.message, /79,66 € aujourd'hui, puis 79,66 €/);
+  assert.match(params.custom_text.submit.message, /86,33 € aujourd'hui, puis 86,33 €/);
   assert.equal(options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012-x3");
 });
 

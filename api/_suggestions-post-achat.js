@@ -10,6 +10,7 @@ const FAMILLES = [
   { prefixe: "Pack ", famille: "pack", priorite: 1 },
   { prefixe: "Cours complet", famille: "cours-complet", priorite: 2 },
   { prefixe: "Fiche complète", famille: "fiche-complete", priorite: 3 },
+  { prefixe: "Podcasts et vidéos", famille: "podcasts-videos", priorite: 3 },
   { prefixe: "Majeures préparées", famille: "majeure", priorite: 4 },
   { prefixe: "Flashcards + QCM", famille: "flashcards-qcm", priorite: 5 },
   { prefixe: "Fiches d'arrêt", famille: "fiche-arret", priorite: 6 },
@@ -24,7 +25,7 @@ function analyserProduit(id, nom) {
   const famille = match ? match.famille : "autre";
   const priorite = match ? match.priorite : 9;
   const matiere = nom
-    .replace(/^(Pack |Cours complet |Fiche complète |Majeures préparées |Flashcards \+ QCM |Fiches d'arrêt |Commentaires d'arrêt |Cas pratiques corrigés |Dissertations corrigées |Fiche de citations )/, "")
+    .replace(/^(Pack |Cours complet |Fiche complète |Majeures préparées |Flashcards \+ QCM |Fiches d'arrêt |Commentaires d'arrêt |Cas pratiques corrigés |Dissertations corrigées |Fiche de citations |Podcasts et vidéos )/, "")
     .replace(/\s*\(.*$/, "")
     .replace(/\s+S[12]$/i, "")
     .replace(/\s*complet$/i, "")

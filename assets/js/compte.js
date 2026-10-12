@@ -145,9 +145,17 @@
             }
             return "<div style=\"margin:6px 0\">" +
               "<div style=\"font-size:14px; margin-bottom:4px\">" + echapperCompte(f.nom) + "</div>" +
-              "<video controls controlsList=\"nodownload noremoteplayback\" disablePictureInPicture oncontextmenu=\"return false\" style=\"width:100%; max-width:480px; border-radius:8px; display:block\">" +
+              "<video controls preload=\"none\" controlsList=\"nodownload noremoteplayback\" disablePictureInPicture oncontextmenu=\"return false\" style=\"width:100%; max-width:480px; border-radius:8px; display:block\">" +
                 "<source src=\"" + f.url + "\" type=\"video/mp4\">" +
               "</video>" + rectification +
+            "</div>";
+          }
+          if (f.type === "audio") {
+            return "<div style=\"margin:6px 0\">" +
+              "<div style=\"font-size:14px; margin-bottom:4px\">" + echapperCompte(f.nom) + "</div>" +
+              "<audio controls preload=\"none\" controlsList=\"nodownload\" oncontextmenu=\"return false\" style=\"width:100%; max-width:480px; display:block\">" +
+                "<source src=\"" + f.url + "\" type=\"audio/mp4\">" +
+              "</audio>" +
             "</div>";
           }
           return "<a class=\"btn btn--outline btn--sm\" href=\"" + f.url + "\" style=\"margin:4px 6px 0 0\">Télécharger " + echapperCompte(f.nom) + "</a>";

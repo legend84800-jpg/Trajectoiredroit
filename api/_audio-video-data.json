@@ -1,0 +1,1172 @@
+{
+ "intro-droit-l1": {
+  "unites": [
+   {
+    "unit": "U01",
+    "titre": "La définition de la règle de droit",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U01-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U01-video.mp4"
+   },
+   {
+    "unit": "U02",
+    "titre": "La distinction de la règle de droit avec les autres règles sociales",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U02-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U02-video.mp4"
+   },
+   {
+    "unit": "U03",
+    "titre": "Les différentes branches du droit",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U03-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U03-video.mp4"
+   },
+   {
+    "unit": "U04",
+    "titre": "L'organisation des juridictions",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U04-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U04-video.mp4"
+   },
+   {
+    "unit": "U05",
+    "titre": "Les sources écrites internes",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U05-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U05-video.mp4"
+   },
+   {
+    "unit": "U06",
+    "titre": "Les sources internationales et européennes",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U06-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U06-video.mp4"
+   },
+   {
+    "unit": "U07",
+    "titre": "Les sources non écrites du droit objectif",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U07-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U07-video.mp4"
+   },
+   {
+    "unit": "U08",
+    "titre": "La hiérarchie des normes",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U08-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U08-video.mp4"
+   },
+   {
+    "unit": "U09",
+    "titre": "L'interprétation du droit",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U09-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U09-video.mp4"
+   },
+   {
+    "unit": "U10",
+    "titre": "L'application de la loi dans le temps",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U10-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U10-video.mp4"
+   },
+   {
+    "unit": "U11",
+    "titre": "L'application de la loi dans l'espace",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U11-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U11-video.mp4"
+   },
+   {
+    "unit": "U12",
+    "titre": "Les actes juridiques",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U12-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U12-video.mp4"
+   },
+   {
+    "unit": "U13",
+    "titre": "Les faits juridiques",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U13-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U13-video.mp4"
+   },
+   {
+    "unit": "U14",
+    "titre": "Les droits patrimoniaux",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U14-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U14-video.mp4"
+   },
+   {
+    "unit": "U15",
+    "titre": "Les droits extrapatrimoniaux",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U15-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U15-video.mp4"
+   },
+   {
+    "unit": "U16",
+    "titre": "L'objet et la charge de la preuve",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U16-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U16-video.mp4"
+   },
+   {
+    "unit": "U17",
+    "titre": "Les modes de preuve",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U17-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U17-video.mp4"
+   },
+   {
+    "unit": "U18",
+    "titre": "L'admissibilité et la force probante",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U18-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U18-video.mp4"
+   },
+   {
+    "unit": "U19",
+    "titre": "Les personnes physiques et morales (notion)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U19-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U19-video.mp4"
+   },
+   {
+    "unit": "U20",
+    "titre": "Le droit de propriété et les choses",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U20-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/intro-droit-l1-616abed158182db6/U20-video.mp4"
+   }
+  ]
+ },
+ "hist-droit-l1": {
+  "unites": [
+   {
+    "unit": "U01",
+    "titre": "Qu'est-ce que l'histoire des institutions ?",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U01-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U01-video.mp4"
+   },
+   {
+    "unit": "U02",
+    "titre": "La royauté et la naissance de la République romaine",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U02-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U02-video.mp4"
+   },
+   {
+    "unit": "U03",
+    "titre": "Les institutions de la République romaine",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U03-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U03-video.mp4"
+   },
+   {
+    "unit": "U04",
+    "titre": "Du Principat au Dominat : l'Empire romain",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U04-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U04-video.mp4"
+   },
+   {
+    "unit": "U05",
+    "titre": "L'héritage politique et juridique de Rome",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U05-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U05-video.mp4"
+   },
+   {
+    "unit": "U06",
+    "titre": "Les Mérovingiens : le pouvoir personnel et patrimonial",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U06-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U06-video.mp4"
+   },
+   {
+    "unit": "U07",
+    "titre": "Les Carolingiens : la restauration impériale et la théocratie",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U07-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U07-video.mp4"
+   },
+   {
+    "unit": "U08",
+    "titre": "La dislocation carolingienne et la naissance de la féodalité",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U08-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U08-video.mp4"
+   },
+   {
+    "unit": "U09",
+    "titre": "La société féodale : vassalité, fief, hommage",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U09-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U09-video.mp4"
+   },
+   {
+    "unit": "U10",
+    "titre": "La seigneurie et la privatisation de la justice",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U10-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U10-video.mp4"
+   },
+   {
+    "unit": "U11",
+    "titre": "L'Église médiévale : sacre, réforme grégorienne, droit canonique",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U11-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U11-video.mp4"
+   },
+   {
+    "unit": "U12",
+    "titre": "L'affirmation de la souveraineté royale",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U12-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U12-video.mp4"
+   },
+   {
+    "unit": "U13",
+    "titre": "Les lois fondamentales du royaume",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U13-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U13-video.mp4"
+   },
+   {
+    "unit": "U14",
+    "titre": "L'administration royale : Conseil, baillis, sénéchaux",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U14-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U14-video.mp4"
+   },
+   {
+    "unit": "U15",
+    "titre": "La justice royale et les Parlements",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U15-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U15-video.mp4"
+   },
+   {
+    "unit": "U16",
+    "titre": "Les États généraux et la représentation",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U16-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U16-video.mp4"
+   },
+   {
+    "unit": "U17",
+    "titre": "La théorie de l'absolutisme royal",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U17-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U17-video.mp4"
+   },
+   {
+    "unit": "U18",
+    "titre": "Le roi législateur et les grandes ordonnances",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U18-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U18-video.mp4"
+   },
+   {
+    "unit": "U19",
+    "titre": "L'administration de la monarchie absolue",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U19-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U19-video.mp4"
+   },
+   {
+    "unit": "U20",
+    "titre": "Contre-pouvoirs et contestation jusqu'à 1789",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U20-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-droit-l1-9641053343225530/U20-video.mp4"
+   }
+  ]
+ },
+ "personnes-l1": {
+  "unites": [
+   {
+    "unit": "U01",
+    "titre": "La naissance et la personnalité juridique",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U01-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U01-video.mp4"
+   },
+   {
+    "unit": "U02",
+    "titre": "Le statut juridique de l'enfant à naître",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U02-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U02-video.mp4"
+   },
+   {
+    "unit": "U03",
+    "titre": "La mort",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U03-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U03-video.mp4"
+   },
+   {
+    "unit": "U04",
+    "titre": "La mort incertaine, absence et disparition",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U04-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U04-video.mp4"
+   },
+   {
+    "unit": "U05",
+    "titre": "L'état civil",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U05-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U05-video.mp4"
+   },
+   {
+    "unit": "U06",
+    "titre": "Le nom et le prénom",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U06-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U06-video.mp4"
+   },
+   {
+    "unit": "U07",
+    "titre": "Le domicile",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U07-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U07-video.mp4"
+   },
+   {
+    "unit": "U08",
+    "titre": "Le sexe et l'identité de genre",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U08-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U08-video.mp4"
+   },
+   {
+    "unit": "U09",
+    "titre": "La nationalité",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U09-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U09-video.mp4"
+   },
+   {
+    "unit": "U10",
+    "titre": "Dignité, inviolabilité, non-patrimonialité",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U10-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U10-video.mp4"
+   },
+   {
+    "unit": "U11",
+    "titre": "Don d'organes et expérimentation",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U11-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U11-video.mp4"
+   },
+   {
+    "unit": "U12",
+    "titre": "PMA, GPA et filiation",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U12-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U12-video.mp4"
+   },
+   {
+    "unit": "U13",
+    "titre": "IVG et fin de vie",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U13-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U13-video.mp4"
+   },
+   {
+    "unit": "U14",
+    "titre": "Droit au respect de la vie privée",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U14-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U14-video.mp4"
+   },
+   {
+    "unit": "U15",
+    "titre": "Droit à l'image, à la voix et à la sépulture",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U15-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U15-video.mp4"
+   },
+   {
+    "unit": "U16",
+    "titre": "Honneur et présomption d'innocence",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U16-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U16-video.mp4"
+   },
+   {
+    "unit": "U17",
+    "titre": "Droit à l'oubli et mémoire numérique",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U17-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U17-video.mp4"
+   },
+   {
+    "unit": "U18",
+    "titre": "La capacité juridique",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U18-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U18-video.mp4"
+   },
+   {
+    "unit": "U19",
+    "titre": "La protection du mineur",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U19-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U19-video.mp4"
+   },
+   {
+    "unit": "U20",
+    "titre": "Sauvegarde, curatelle et tutelle",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U20-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U20-video.mp4"
+   },
+   {
+    "unit": "U21",
+    "titre": "Mandat de protection future et habilitation familiale",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U21-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U21-video.mp4"
+   },
+   {
+    "unit": "U22",
+    "titre": "Les personnes morales",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U22-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/personnes-l1-666e0f3b9be31a10/U22-video.mp4"
+   }
+  ]
+ },
+ "relations-internationales-l1": {
+  "unites": [
+   {
+    "unit": "U01",
+    "titre": "La notion de relations internationales et de société internationale",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U01-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U01-video.mp4"
+   },
+   {
+    "unit": "U02",
+    "titre": "Les grandes théories des relations internationales",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U02-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U02-video.mp4"
+   },
+   {
+    "unit": "U03",
+    "titre": "Les facteurs des relations internationales",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U03-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U03-video.mp4"
+   },
+   {
+    "unit": "U04",
+    "titre": "Histoire des relations internationales, des origines à 1945",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U04-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U04-video.mp4"
+   },
+   {
+    "unit": "U05",
+    "titre": "Histoire des relations internationales, de 1945 à nos jours",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U05-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U05-video.mp4"
+   },
+   {
+    "unit": "U06",
+    "titre": "L'État et ses éléments constitutifs",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U06-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U06-video.mp4"
+   },
+   {
+    "unit": "U07",
+    "titre": "La souveraineté de l'État",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U07-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U07-video.mp4"
+   },
+   {
+    "unit": "U08",
+    "titre": "La reconnaissance et les mutations de l'État",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U08-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U08-video.mp4"
+   },
+   {
+    "unit": "U09",
+    "titre": "Les organisations internationales",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U09-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U09-video.mp4"
+   },
+   {
+    "unit": "U10",
+    "titre": "L'ONU et le système onusien",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U10-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U10-video.mp4"
+   },
+   {
+    "unit": "U11",
+    "titre": "Les organisations régionales",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U11-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U11-video.mp4"
+   },
+   {
+    "unit": "U12",
+    "titre": "Les acteurs non étatiques",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U12-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U12-video.mp4"
+   },
+   {
+    "unit": "U13",
+    "titre": "La diplomatie et les relations diplomatiques",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U13-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U13-video.mp4"
+   },
+   {
+    "unit": "U14",
+    "titre": "Les sources du droit international",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U14-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U14-video.mp4"
+   },
+   {
+    "unit": "U15",
+    "titre": "Le règlement pacifique des différends",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U15-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U15-video.mp4"
+   },
+   {
+    "unit": "U16",
+    "titre": "La sécurité collective et le maintien de la paix",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U16-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U16-video.mp4"
+   },
+   {
+    "unit": "U17",
+    "titre": "La guerre et le recours à la force",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U17-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U17-video.mp4"
+   },
+   {
+    "unit": "U18",
+    "titre": "Le droit des conflits armés et le désarmement",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U18-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U18-video.mp4"
+   },
+   {
+    "unit": "U19",
+    "titre": "La mondialisation et la gouvernance mondiale",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U19-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/relations-internationales-l1-77e12eae046a45d1/U19-video.mp4"
+   }
+  ]
+ },
+ "constit-l1-s1": {
+  "unites": [
+   {
+    "unit": "U01",
+    "titre": "Qu'est-ce que le droit constitutionnel ?",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U01-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U01-video.mp4"
+   },
+   {
+    "unit": "U02",
+    "titre": "La méthode du droit constitutionnel",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U02-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U02-video.mp4"
+   },
+   {
+    "unit": "U03",
+    "titre": "Les composantes de l'État",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U03-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U03-video.mp4"
+   },
+   {
+    "unit": "U04",
+    "titre": "L'État unitaire",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U04-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U04-video.mp4"
+   },
+   {
+    "unit": "U05",
+    "titre": "L'État fédéral",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U05-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U05-video.mp4"
+   },
+   {
+    "unit": "U06",
+    "titre": "L'État régional",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U06-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U06-video.mp4"
+   },
+   {
+    "unit": "U07",
+    "titre": "La notion de souveraineté",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U07-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U07-video.mp4"
+   },
+   {
+    "unit": "U08",
+    "titre": "Les modes d'exercice du pouvoir",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U08-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U08-video.mp4"
+   },
+   {
+    "unit": "U09",
+    "titre": "La Constitution",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U09-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U09-video.mp4"
+   },
+   {
+    "unit": "U10",
+    "titre": "La hiérarchie des normes",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U10-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U10-video.mp4"
+   },
+   {
+    "unit": "U11",
+    "titre": "Le bloc de constitutionnalité",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U11-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U11-video.mp4"
+   },
+   {
+    "unit": "U12",
+    "titre": "La révision de la Constitution",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U12-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U12-video.mp4"
+   },
+   {
+    "unit": "U13",
+    "titre": "Le contrôle politique de la Constitution",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U13-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U13-video.mp4"
+   },
+   {
+    "unit": "U14",
+    "titre": "Le contrôle juridictionnel de la Constitution",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U14-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U14-video.mp4"
+   },
+   {
+    "unit": "U15",
+    "titre": "La démocratie (notion)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U15-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U15-video.mp4"
+   },
+   {
+    "unit": "U16",
+    "titre": "Le suffrage et les modes de scrutin",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U16-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U16-video.mp4"
+   },
+   {
+    "unit": "U17",
+    "titre": "La séparation des pouvoirs",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U17-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U17-video.mp4"
+   },
+   {
+    "unit": "U18",
+    "titre": "Le régime présidentiel",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U18-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U18-video.mp4"
+   },
+   {
+    "unit": "U19",
+    "titre": "Le régime parlementaire",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U19-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U19-video.mp4"
+   },
+   {
+    "unit": "U20",
+    "titre": "Les États-Unis",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U20-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U20-video.mp4"
+   },
+   {
+    "unit": "U21",
+    "titre": "Le Royaume-Uni",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U21-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U21-video.mp4"
+   },
+   {
+    "unit": "U22",
+    "titre": "De la Révolution à l'Empire",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U22-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U22-video.mp4"
+   },
+   {
+    "unit": "U23",
+    "titre": "De la Restauration au Second Empire",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U23-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U23-video.mp4"
+   },
+   {
+    "unit": "U24",
+    "titre": "La IIIe République",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U24-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U24-video.mp4"
+   },
+   {
+    "unit": "U25",
+    "titre": "La IVe République",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U25-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s1-0f448659a37a1152/U25-video.mp4"
+   }
+  ]
+ },
+ "constit-l1-s2": {
+  "unites": [
+   {
+    "unit": "U01",
+    "titre": "L'échec de la IVe République et la crise de mai 1958",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U01-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U01-video.mp4"
+   },
+   {
+    "unit": "U02",
+    "titre": "L'élaboration et l'adoption de la Constitution du 4 octobre 1958",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U02-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U02-video.mp4"
+   },
+   {
+    "unit": "U03",
+    "titre": "Les principes fondateurs et la nature juridique du régime",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U03-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U03-video.mp4"
+   },
+   {
+    "unit": "U04",
+    "titre": "Le statut du Président de la République",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U04-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U04-video.mp4"
+   },
+   {
+    "unit": "U05",
+    "titre": "Les pouvoirs propres du Président de la République",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U05-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U05-video.mp4"
+   },
+   {
+    "unit": "U06",
+    "titre": "Les pouvoirs partagés et le contreseing",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U06-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U06-video.mp4"
+   },
+   {
+    "unit": "U07",
+    "titre": "La responsabilité du Président de la République",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U07-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U07-video.mp4"
+   },
+   {
+    "unit": "U08",
+    "titre": "L'organisation et la composition du Gouvernement",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U08-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U08-video.mp4"
+   },
+   {
+    "unit": "U09",
+    "titre": "Les pouvoirs et le fonctionnement du Gouvernement",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U09-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U09-video.mp4"
+   },
+   {
+    "unit": "U10",
+    "titre": "Le couple exécutif : cohabitation et fait majoritaire",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U10-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U10-video.mp4"
+   },
+   {
+    "unit": "U11",
+    "titre": "La composition et l'organisation du Parlement",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U11-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U11-video.mp4"
+   },
+   {
+    "unit": "U12",
+    "titre": "Le statut du parlementaire et les sessions",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U12-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U12-video.mp4"
+   },
+   {
+    "unit": "U13",
+    "titre": "Le domaine de la loi et le domaine réglementaire (art. 34 et 37)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U13-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U13-video.mp4"
+   },
+   {
+    "unit": "U14",
+    "titre": "La procédure législative ordinaire et les procédures spéciales",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U14-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U14-video.mp4"
+   },
+   {
+    "unit": "U15",
+    "titre": "La fonction de contrôle du Parlement",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U15-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U15-video.mp4"
+   },
+   {
+    "unit": "U16",
+    "titre": "Les rapports de responsabilité gouvernementale (49-1, 49-2, 49-3, dissolution)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U16-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U16-video.mp4"
+   },
+   {
+    "unit": "U17",
+    "titre": "Origine et évolution du rôle du Conseil constitutionnel",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U17-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U17-video.mp4"
+   },
+   {
+    "unit": "U18",
+    "titre": "Composition, statut et attributions du Conseil constitutionnel",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U18-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U18-video.mp4"
+   },
+   {
+    "unit": "U19",
+    "titre": "Le bloc de constitutionnalité",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U19-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U19-video.mp4"
+   },
+   {
+    "unit": "U20",
+    "titre": "Le contrôle a priori de constitutionnalité (DC)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U20-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U20-video.mp4"
+   },
+   {
+    "unit": "U21",
+    "titre": "La QPC : procédure, objet et effets",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U21-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U21-video.mp4"
+   },
+   {
+    "unit": "U22",
+    "titre": "La procédure de révision constitutionnelle (art. 89 vs art. 11)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U22-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U22-video.mp4"
+   },
+   {
+    "unit": "U23",
+    "titre": "Les grandes révisions de la Ve République",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U23-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U23-video.mp4"
+   },
+   {
+    "unit": "U24",
+    "titre": "Constitution et droit supranational (UE, CEDH)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U24-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/constit-l1-s2-24c43e0c58b56f69/U24-video.mp4"
+   }
+  ]
+ },
+ "famille-l1-s2": {
+  "unites": [
+   {
+    "unit": "U01",
+    "titre": "Les fiançailles et la liberté du mariage",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U01-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U01-video.mp4"
+   },
+   {
+    "unit": "U02",
+    "titre": "Les conditions de fond du mariage",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U02-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U02-video.mp4"
+   },
+   {
+    "unit": "U03",
+    "titre": "Les conditions de forme et la célébration du mariage",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U03-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U03-video.mp4"
+   },
+   {
+    "unit": "U04",
+    "titre": "Les nullités du mariage et le mariage putatif",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U04-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U04-video.mp4"
+   },
+   {
+    "unit": "U05",
+    "titre": "Les devoirs personnels entre époux",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U05-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U05-video.mp4"
+   },
+   {
+    "unit": "U06",
+    "titre": "La contribution aux charges et la solidarité ménagère",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U06-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U06-video.mp4"
+   },
+   {
+    "unit": "U07",
+    "titre": "La protection du logement familial",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U07-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U07-video.mp4"
+   },
+   {
+    "unit": "U08",
+    "titre": "Le concubinage",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U08-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U08-video.mp4"
+   },
+   {
+    "unit": "U09",
+    "titre": "Le pacte civil de solidarité",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U09-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U09-video.mp4"
+   },
+   {
+    "unit": "U10",
+    "titre": "Le divorce par consentement mutuel",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U10-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U10-video.mp4"
+   },
+   {
+    "unit": "U11",
+    "titre": "Les divorces contentieux",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U11-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U11-video.mp4"
+   },
+   {
+    "unit": "U12",
+    "titre": "La procédure du divorce contentieux (réforme 2021)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U12-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U12-video.mp4"
+   },
+   {
+    "unit": "U13",
+    "titre": "Les conséquences du divorce",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U13-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U13-video.mp4"
+   },
+   {
+    "unit": "U14",
+    "titre": "La séparation de corps",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U14-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U14-video.mp4"
+   },
+   {
+    "unit": "U15",
+    "titre": "Les principes communs du droit de la filiation",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U15-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U15-video.mp4"
+   },
+   {
+    "unit": "U16",
+    "titre": "L'établissement non contentieux de la filiation",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U16-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U16-video.mp4"
+   },
+   {
+    "unit": "U17",
+    "titre": "Les actions relatives à la filiation",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U17-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U17-video.mp4"
+   },
+   {
+    "unit": "U18",
+    "titre": "La PMA et l'établissement de la filiation (loi bioéthique 2021)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U18-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U18-video.mp4"
+   },
+   {
+    "unit": "U19",
+    "titre": "La gestation pour autrui et la jurisprudence",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U19-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U19-video.mp4"
+   },
+   {
+    "unit": "U20",
+    "titre": "L'adoption plénière et l'adoption simple (réforme 2022)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U20-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U20-video.mp4"
+   },
+   {
+    "unit": "U21",
+    "titre": "L'autorité parentale",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U21-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U21-video.mp4"
+   },
+   {
+    "unit": "U22",
+    "titre": "L'obligation alimentaire et le nom de l'enfant",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U22-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/famille-l1-s2-cd189a5aa8a99705/U22-video.mp4"
+   }
+  ]
+ },
+ "hist-institutions-l1": {
+  "unites": [
+   {
+    "unit": "U01",
+    "titre": "1789 : la rupture révolutionnaire et les principes nouveaux",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U01-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U01-video.mp4"
+   },
+   {
+    "unit": "U02",
+    "titre": "La monarchie constitutionnelle : la Constitution de 1791",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U02-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U02-video.mp4"
+   },
+   {
+    "unit": "U03",
+    "titre": "La Première République : la Convention et la Constitution de 1793",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U03-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U03-video.mp4"
+   },
+   {
+    "unit": "U04",
+    "titre": "Le Directoire : la Constitution de l'an III (1795)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U04-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U04-video.mp4"
+   },
+   {
+    "unit": "U05",
+    "titre": "Le Consulat et l'Empire : la concentration du pouvoir",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U05-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U05-video.mp4"
+   },
+   {
+    "unit": "U06",
+    "titre": "La construction de l'État administratif napoléonien",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U06-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U06-video.mp4"
+   },
+   {
+    "unit": "U07",
+    "titre": "La Restauration et la Charte de 1814",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U07-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U07-video.mp4"
+   },
+   {
+    "unit": "U08",
+    "titre": "La Monarchie de Juillet et le parlementarisme (1830-1848)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U08-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U08-video.mp4"
+   },
+   {
+    "unit": "U09",
+    "titre": "La Deuxième République et le suffrage universel (1848)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U09-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U09-video.mp4"
+   },
+   {
+    "unit": "U10",
+    "titre": "Le Second Empire : de l'autoritaire au libéral (1852-1870)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U10-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U10-video.mp4"
+   },
+   {
+    "unit": "U11",
+    "titre": "La fondation de la Troisième République et les lois de 1875",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U11-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U11-video.mp4"
+   },
+   {
+    "unit": "U12",
+    "titre": "La pratique parlementaire de la Troisième République",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U12-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U12-video.mp4"
+   },
+   {
+    "unit": "U13",
+    "titre": "La construction de l'État républicain et des libertés",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U13-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U13-video.mp4"
+   },
+   {
+    "unit": "U14",
+    "titre": "Le régime de Vichy : la parenthèse autoritaire (1940-1944)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U14-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U14-video.mp4"
+   },
+   {
+    "unit": "U15",
+    "titre": "La Libération et le Gouvernement provisoire (1944-1946)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U15-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U15-video.mp4"
+   },
+   {
+    "unit": "U16",
+    "titre": "La Quatrième République (1946-1958)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U16-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U16-video.mp4"
+   },
+   {
+    "unit": "U17",
+    "titre": "La naissance de la Cinquième République (1958 à nos jours)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U17-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/hist-institutions-l1-93aa75911624a7ba/U17-video.mp4"
+   }
+  ]
+ },
+ "penal-general-l1": {
+  "unites": [
+   {
+    "unit": "U01",
+    "titre": "La notion de droit pénal et ses branches",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U01-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U01-video.mp4"
+   },
+   {
+    "unit": "U02",
+    "titre": "L'histoire du droit pénal",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U02-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U02-video.mp4"
+   },
+   {
+    "unit": "U03",
+    "titre": "Les sources du droit pénal",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U03-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U03-video.mp4"
+   },
+   {
+    "unit": "U04",
+    "titre": "Le principe de légalité criminelle (fondements)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U04-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U04-video.mp4"
+   },
+   {
+    "unit": "U05",
+    "titre": "Les corollaires du principe de légalité",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U05-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U05-video.mp4"
+   },
+   {
+    "unit": "U06",
+    "titre": "L'application de la loi pénale dans le temps",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U06-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U06-video.mp4"
+   },
+   {
+    "unit": "U07",
+    "titre": "L'application de la loi pénale dans l'espace",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U07-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U07-video.mp4"
+   },
+   {
+    "unit": "U08",
+    "titre": "La classification des infractions",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U08-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U08-video.mp4"
+   },
+   {
+    "unit": "U09",
+    "titre": "L'élément légal de l'infraction",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U09-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U09-video.mp4"
+   },
+   {
+    "unit": "U10",
+    "titre": "L'élément matériel et la tentative",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U10-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U10-video.mp4"
+   },
+   {
+    "unit": "U11",
+    "titre": "L'élément moral de l'infraction",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U11-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U11-video.mp4"
+   },
+   {
+    "unit": "U12",
+    "titre": "Le principe de personnalité et la responsabilité du fait personnel",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U12-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U12-video.mp4"
+   },
+   {
+    "unit": "U13",
+    "titre": "La complicité",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U13-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U13-video.mp4"
+   },
+   {
+    "unit": "U14",
+    "titre": "La responsabilité pénale des personnes morales",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U14-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U14-video.mp4"
+   },
+   {
+    "unit": "U15",
+    "titre": "Les causes objectives d'irresponsabilité (faits justificatifs)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U15-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U15-video.mp4"
+   },
+   {
+    "unit": "U16",
+    "titre": "Les causes subjectives d'irresponsabilité (non-imputabilité)",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U16-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U16-video.mp4"
+   },
+   {
+    "unit": "U17",
+    "titre": "La notion et la classification des peines",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U17-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U17-video.mp4"
+   },
+   {
+    "unit": "U18",
+    "titre": "La détermination et la personnalisation de la peine",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U18-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U18-video.mp4"
+   },
+   {
+    "unit": "U19",
+    "titre": "L'exécution et l'aménagement de la peine",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U19-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U19-video.mp4"
+   },
+   {
+    "unit": "U20",
+    "titre": "L'extinction de la peine",
+    "audio": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U20-podcast.m4a",
+    "video": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/av/penal-general-l1-ca46d4cd97d42ade/U20-video.mp4"
+   }
+  ]
+ }
+}

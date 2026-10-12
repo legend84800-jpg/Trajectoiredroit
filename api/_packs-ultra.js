@@ -4,8 +4,8 @@
 // Les références sans semestre explicite sont rattachées ci-dessous par matière.
 
 const DEFINITIONS = {
-  "pack-ultra-l1-s1": { nom: "Le Pack Ultra L1 semestre 1", prix: 23900, attendus: 31 },
-  "pack-ultra-l1-s2": { nom: "Le Pack Ultra L1 semestre 2", prix: 19900, attendus: 22 },
+  "pack-ultra-l1-s1": { nom: "Le Pack Ultra L1 semestre 1", prix: 25900, attendus: 36 },
+  "pack-ultra-l1-s2": { nom: "Le Pack Ultra L1 semestre 2", prix: 22900, attendus: 26 },
   "pack-ultra-l2-s1": { nom: "Le Pack Ultra L2 semestre 1", prix: 22900, attendus: 28 },
   "pack-ultra-l2-s2": { nom: "Le Pack Ultra L2 semestre 2", prix: 20900, attendus: 27 },
   "pack-ultra-l3-s1": { nom: "Le Pack Ultra L3 semestre 1", prix: 29900, attendus: 37 },
@@ -54,10 +54,11 @@ function construireProduits(catalogue) {
     const blobsMeta = [];
     for (const reference of inclus) {
       const produit = catalogue[reference];
-      for (const url of produit.blobs) {
+      produit.blobs.forEach((url, index) => {
+        const libelle = produit.blobsMeta && produit.blobsMeta[index] && produit.blobsMeta[index].libelle;
         blobs.push(url);
-        blobsMeta.push({ reference, nom: produit.nom });
-      }
+        blobsMeta.push(libelle ? { reference, nom: produit.nom, libelle } : { reference, nom: produit.nom });
+      });
     }
     packs[id] = { nom: definition.nom, prix: definition.prix, inclus, blobs, blobsMeta };
     if (definition.venteSuspendue) packs[id].venteSuspendue = true;
