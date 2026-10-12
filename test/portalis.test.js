@@ -16,6 +16,40 @@ function charger(file,stubs,globals={}){
   vm.runInNewContext(lire(file),{require:requireStub,module,console:{error(){},log(){}},Buffer,AbortSignal,URLSearchParams,setTimeout,clearTimeout,process:{env:{ANTHROPIC_API_KEY:'fixture'}},...globals});
   return module.exports;
 }
+function chargerStore(fetch){
+  return charger('api/_portalis-store.js',{}, {fetch,process:{env:{
+    SUPABASE_URL:'https://supabase.example.test',SUPABASE_SERVICE_ROLE_KEY:'fixture'
+  }}});
+}
+test('les RPC sans résultat acceptent HTTP 204 et conservent les résultats JSON',async()=>{
+  const responses=[new Response(null,{status:204}),new Response('false'),new Response('true'),new Response('{"actif":true,"restant":60}'),new Response('')];
+  const store=chargerStore(async()=>responses.shift());
+  assert.equal(await store.rpc('portalis_synchroniser',{}),null);
+  assert.equal(await store.rpc('portalis_echouer',{}),false);
+  assert.equal(await store.rpc('portalis_terminer',{}),true);
+  assert.equal((await store.rpc('portalis_etat',{})).restant,60);
+  await assert.rejects(store.rpc('portalis_etat',{}),{name:'SyntaxError'});
+});
+test('un paiement Pro crédite sa période après une synchronisation HTTP 204',async()=>{
+  const calls=[];
+  const store=chargerStore(async(url,options)=>{
+    calls.push({name:url.split('/').pop(),args:JSON.parse(options.body)});
+    return new Response(null,{status:204});
+  });
+  const billing=charger('api/_portalis-billing.js',{'./_portalis-store':store});
+  const metadata={portalis:'abonnement',supabase_user_id:USER,formule:'pro'};
+  const stripe={
+    checkout:{sessions:{retrieve:async()=>({metadata,payment_status:'paid',subscription:'sub_fixture',customer:'cus_fixture'})}},
+    subscriptions:{retrieve:async()=>({id:'sub_fixture',metadata,status:'active',customer:'cus_fixture',created:1760000000,
+      latest_invoice:'in_fixture',items:{data:[{current_period_start:1760000000,current_period_end:1762592000}]}})},
+    invoices:{retrieve:async()=>({id:'in_fixture',subscription:'sub_fixture',status:'paid',currency:'eur',amount_paid:1800,
+      billing_reason:'subscription_create',lines:{data:[{amount:1800,period:{start:1760000000,end:1762592000}}]}})}
+  };
+  assert.equal(await billing.synchroniserSession(stripe,'cs_live_fixture',USER),true);
+  assert.deepEqual(calls.map(call=>call.name),['portalis_synchroniser','portalis_crediter_periode']);
+  assert.equal(calls[1].args.p_formule,'pro');
+  assert.equal(calls[1].args.p_facture,'in_fixture');
+});
 test('les anciens liens conduisent à Portalis et le compte retrouve son espace',()=>{
   const redirects=JSON.parse(lire('vercel.json')).redirects;
   for(const source of ['/outil-fiche-arret.html','/outil-fiche-arret'])assert.equal(redirects.find(r=>r.source===source).destination,'/portalis.html');

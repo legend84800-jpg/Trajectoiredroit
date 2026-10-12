@@ -20,9 +20,11 @@ async function service(path, options={}) {
   return response;
 }
 async function rpc(name, args) {
-  return (await service(`/rest/v1/rpc/${name}`,{
+  const response=await service(`/rest/v1/rpc/${name}`,{
     method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(args)
-  })).json();
+  });
+  // PostgREST renvoie HTTP 204 pour les fonctions SQL qui retournent void.
+  return response.status===204?null:response.json();
 }
 async function documents(user,ids) {
   if (!ids.length) return [];
