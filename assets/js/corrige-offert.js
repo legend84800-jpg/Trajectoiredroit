@@ -41,7 +41,7 @@
     email: 'Ton email',
     bouton: 'Recevoir le corrigé',
     envoi: 'Envoi…',
-    rgpd: 'En validant, tu reçois ce corrigé et les emails de Trajectoire Droit. Tu peux te désinscrire en un clic.',
+    rgpd: 'En validant, tu reçois ce corrigé et les emails de Trajectoire Droit.',
     rgpdLien: 'Politique de confidentialité',
     succesTitre: 'C’est envoyé.',
     succes: 'Le PDF part à l’adresse {email}. Si tu ne le vois pas d’ici quelques minutes, il se trouve sans doute dans les spams ou dans l’onglet Promotions.',

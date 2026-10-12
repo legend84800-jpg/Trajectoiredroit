@@ -10,7 +10,7 @@
     var input=el('input',{'class':'tjd-co__champ',type:'email',required:'',autocomplete:'email',placeholder:'ton@email.com'});label.appendChild(input);form.appendChild(label);
     var piege=el('input',{type:'text',name:'site',tabindex:'-1',autocomplete:'off','class':'tjd-co__piege','aria-hidden':'true'});form.appendChild(piege);
     var button=el('button',{type:'submit','class':'tjd-co__bouton'},'M’inscrire et recevoir ce corrigé');form.appendChild(button);
-    form.appendChild(el('p',{'class':'tjd-co__rgpd'},'Tu reçois ce corrigé et les emails de Trajectoire Droit. Tu peux te désinscrire en un clic.'));
+    form.appendChild(el('p',{'class':'tjd-co__rgpd'},'Tu reçois ce corrigé et les emails de Trajectoire Droit.'));
     form.appendChild(el('a',{href:'/confidentialite.html','class':'tjd-co__rgpd'},'Politique de confidentialité'));
     var status=el('p',{role:'status','aria-live':'polite','class':'tjd-co__statut'});form.appendChild(status);
     var confirme='';input.addEventListener('input',function(){confirme='';status.textContent='';});

@@ -18,14 +18,14 @@ test('la suite du corrigé gratuit désigne le même recueil et son prix actuel'
     assert.equal(url.searchParams.get('utm_source'), null);
     assert.equal(offre.prix, produits[offre.id].prix);
     const email = lead.construireEmailCorrigeOffert(offre.id);
-    assert.ok(email.texte.includes(`${offre.cas - 1} autres cas`));
-    assert.ok(email.texte.includes(`matiere=${offre.id}`));
+    assert.ok(email.texte.includes(`${offre.cas + offre.partiels} exercices corrigés`));
+    assert.ok(email.texte.includes(`produit=${offre.id}`));
   }
 });
 
 test('l’attribution de l’email subsiste après navigation et atteint les données d’achat', () => {
   const mail = lead.construireEmailCorrigeOffert('cas-pratique-contrats-l2-s1');
-  const lien = mail.texte.split('\n').find(l => l.startsWith('https://trajectoiredroit.com/cas-pratiques-corriges'));
+  const lien = mail.texte.split('\n').find(l => l.startsWith('https://trajectoiredroit.com/corriges'));
   const url = new URL(lien);
   const stockage = () => { const data = new Map(); return {getItem:k=>data.get(k)||null,setItem:(k,v)=>data.set(k,String(v)),removeItem:k=>data.delete(k)}; };
   const window = {location:{search:url.search,pathname:url.pathname},sessionStorage:stockage(),localStorage:stockage()};
