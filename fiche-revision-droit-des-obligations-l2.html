@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Fiche de révision droit des obligations L2 : PDF S1 et S2</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Fiche de révision de droit des obligations L2 en PDF : programme des deux semestres, articles à citer, deux tableaux comparatifs, cinq arrêts et un cas corrigé.">
+  <link rel="canonical" href="https://trajectoiredroit.com/fiche-revision-droit-des-obligations-l2.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Fiche de révision droit des obligations L2 : PDF S1 et S2">
+  <meta property="og:description" content="Fiche de révision de droit des obligations L2 en PDF : programme des deux semestres, articles à citer, deux tableaux comparatifs, cinq arrêts et un cas corrigé.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/fiche-revision-droit-des-obligations-l2.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/fiche-revision-droit-des-obligations-l2.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Fiche de révision droit des obligations L2 : programme, articles et décisions à connaître",
+      "description": "Fiche de révision de droit des obligations L2 en PDF : programme des deux semestres, articles à citer, deux tableaux comparatifs, cinq arrêts et un cas corrigé.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-10-12",
+      "dateModified": "2026-10-12",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Droit des obligations L2"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/fiche-revision-droit-des-obligations-l2.webp",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/fiche-revision-droit-des-obligations-l2.html"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Fiche de révision droit des obligations L2",
+          "item": "https://trajectoiredroit.com/fiche-revision-droit-des-obligations-l2.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Que faut-il réviser en droit des obligations en L2 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le programme se compose de deux blocs, le droit des contrats et la responsabilité civile. En effet, le droit des contrats va de la formation à l'inexécution, avec la réforme de 2016, et la responsabilité civile se complète par les quasi-contrats. Ces blocs se partagent cependant différemment entre les deux semestres selon la faculté, et certains cours y ajoutent aussi le régime général de l'obligation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelle différence entre la responsabilité contractuelle et la responsabilité délictuelle ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La responsabilité contractuelle sanctionne l'inexécution d'un contrat (art. 1231-1), alors que la responsabilité délictuelle répare un dommage causé hors de tout contrat (art. 1240 et suivants). La première suppose une mise en demeure, sauf inexécution définitive (art. 1231), et limite la réparation aux dommages prévisibles (art. 1231-3), sauf faute lourde ou dolosive. Entre cocontractants, le principe du non-cumul interdit de choisir le terrain délictuel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels numéros d'articles ont changé avec la réforme de 2016 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "L'ordonnance du 10 février 2016, entrée en vigueur le 1er octobre 2016, a réorganisé le droit des obligations dans le Code civil et en a changé les numéros. L'ancien article 1134 est devenu l'article 1103, l'ancien article 1147 est devenu l'article 1231-1, et les anciens articles 1382, 1383 et 1384 sont devenus les articles 1240, 1241 et 1242."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Un parent chez qui l'enfant n'habite pas habituellement répond-il de ses dommages ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, s'il exerce conjointement l'autorité parentale. L'Assemblée plénière l'a jugé le 28 juin 2024, et la loi du 23 juin 2025 a repris cette solution à l'article 1242, alinéa 4. Les parents sont solidairement responsables, sauf si l'enfant a été confié à un tiers par une décision administrative ou judiciaire."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Existe-t-il une fiche PDF de droit des obligations pour la L2 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La fiche complète du semestre 1 compte 171 pages et celle du semestre 2 en compte 97, chacune à 14,99 €. Le pack Licence 2 regroupe sept fiches complètes, dont celles des deux semestres de droit des obligations, pour 79 €."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=75daa2b3">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 239 € au lieu de 424,69 €, 44 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-44 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">424,69 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 22 ressources, 199 € au lieu de 309,78 €, 36 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-36 %</span></span>
+                    <span class="megamenu__pack-tile-meta">22 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">309,78 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 28 ressources, 229 € au lieu de 399,72 €, 43 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-43 %</span></span>
+                    <span class="megamenu__pack-tile-meta">28 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,72 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 27 ressources, 209 € au lieu de 369,73 €, 43 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-43 %</span></span>
+                    <span class="megamenu__pack-tile-meta">27 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">369,73 €</span><span class="megamenu__pack-tile-price">209 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 37 ressources, 299 € au lieu de 519,63 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">37 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">519,63 €</span><span class="megamenu__pack-tile-price">299 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -14 %</em></strong><small>890 € · 89 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+        <div class="nav-item has-dropdown">
+          <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>Stage en direct
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <div class="stage-teaser">
+              <button type="button" class="dropdown__item stage-teaser__trigger" aria-expanded="false" aria-controls="stageTeaserPanel">
+                <span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg></span>
+                <span class="stage-teaser__main">
+                  <strong>Stage de méthode en direct</strong>
+                  <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+                  <span class="stage-teaser__countdown"></span>
+                </span>
+              </button>
+              <div class="stage-teaser__panel" id="stageTeaserPanel">
+                <p>Trois séances en direct, 8 h au total pour 176 €, pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un sujet travaillé à chaque fois. La prochaine session a lieu les 27, 28 et 29 octobre, pendant les vacances de la Toussaint. Plus que 3 places.</p>
+              </div>
+            </div>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="stage-methode.html">Voir toutes les infos et réserver →</a>
+          </div>
+        </div>
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+    <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
+      <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>
+      <span class="mobile-nav__stage-main">
+        <span class="mobile-nav__stage-title">Stage en direct</span>
+        <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+        <span class="stage-teaser__countdown"></span>
+      </span>
+    </a>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow text-center">
+        <h1 class="h1">La fiche de révision de droit des obligations L2</h1>
+        <p class="lead">Le droit des obligations en L2 se divise en deux blocs, le contrat puis la responsabilité civile, et chaque faculté les répartit à sa façon sur l'année. Le droit des contrats suit la vie du contrat, de la négociation à l'inexécution. La responsabilité civile explique quand et comment on répare un dommage, puis viennent les quasi-contrats. La réforme de 2016 a changé les numéros, donc tu cites 1103 et 1231-1 là où les anciens arrêts écrivent 1134 et 1147.</p>
+        <div class="hero__cta flex flex--center" style="margin-top:24px">
+          <a class="btn btn--primary btn--lg" href="#decisions">Voir les décisions à connaître →</a>
+          <a class="btn btn--outline btn--lg" href="#programme">Le programme des deux semestres</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <p style="color:var(--body); line-height:1.75">Une bonne fiche de révision de droit des obligations s'appuie sur les numéros d'articles de la réforme de 2016. Le correcteur attend par exemple l'article 1103 pour la force obligatoire du contrat et l'article 1240 pour la faute. La matière demande aussi de choisir le bon terrain avant d'appliquer une règle, car un dommage causé par l'inexécution d'un contrat et un dommage causé hors contrat relèvent de textes différents.</p>
+        <p style="color:var(--body); line-height:1.75">Je suis Julien, professeur de droit, et j'ai rédigé les fiches complètes de la matière en croisant les cours de fac et les dossiers de mes élèves. Tu vois ici le programme d'un coup d'œil, puis tu vérifies chaque point dans ton cours et dans ton code annoté. Pour approfondir, la page <a href="droit-des-obligations-l2.html">droit des obligations L2</a> détaille la responsabilité civile, celle sur le <a href="droit-des-contrats-l2.html">droit des contrats L2</a> reprend la réforme de 2016, et le guide pour <a href="comment-reviser-le-droit-des-obligations-l2.html">réviser le droit des obligations en L2</a> t'aide à organiser ton travail.</p>
+      </div>
+    </section>
+
+    <!-- vague2:encart-produit -->
+    <section class="conversion-offer" aria-labelledby="choix-fiche-obligations-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/fiche-obligations-l2-s2.webp?v=dossier-universitaire-20260915" alt="Fiche complète de droit des obligations L2 S2, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">Fiche complète de droit des obligations L2</p>
+            <h2 class="conversion-offer__title" id="choix-fiche-obligations-titre">Les deux semestres, du contrat à la responsabilité civile</h2>
+            <p class="conversion-offer__summary">La fiche du semestre 1 compte 171 pages et suit le contrat de sa formation jusqu'à son inexécution. La fiche du semestre 2 compte 97 pages et traite de la responsabilité civile, puis des quasi-contrats. Chacune reprend les articles, les arrêts et les schémas de chaque chapitre.</p>
+            <ul class="conversion-offer__benefits">
+              <li>Un PDF par semestre, avec le plan détaillé</li>
+              <li>Articles et arrêts de chaque chapitre</li>
+              <li>Téléchargement immédiat</li>
+            </ul>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-obligations-l2-s2">Fiche S2 · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="fiche-contrats-l2-s1">Fiche S1 · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-l2">Pack Licence 2 · 79 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
+            <section class="conversion-reviews" data-review-slot="droit-obligations" aria-label="Avis d'élèves">
+              <p class="conversion-reviews__title">Ils révisent avec mes fiches</p>
+              <div class="conversion-reviews__grid">
+                <article class="conversion-review" aria-label="Avis de Thomas, étudiant en L2">
+                  <blockquote><p>À la base, je cherchais surtout des fiches pour gagner du temps parce que mes cours étaient énormes et que je passais des soirées entières à essayer de les résumer. J’en avais déjà testé plusieurs, mais je finissais toujours par retourner dans mon cours pour vérifier ce qui manquait.<br><br>Là, les fiches sont assez complètes pour réviser directement dessus, tout en restant agréables à lire. Au bout de quelques semaines, j’ai quasiment arrêté de faire mes propres résumés et je les utilisais avant les TD, puis pour préparer mes partiels.<br><br>J’ai gagné un temps énorme pendant le semestre, et rien que pour ça, je les rachèterais sans hésiter.</p></blockquote>
+                  <footer><strong>Thomas</strong><span class="conversion-review__rating" aria-hidden="true">★★★★★</span><span class="conversion-review__level">L2</span></footer>
+                </article>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="programme">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quel est le programme de droit des obligations en L2 ?</h2>
+        <p class="lead" style="margin-bottom:24px">Les intitulés varient d'une fac à l'autre. Certaines placent le contrat au premier semestre et la responsabilité civile au second, d'autres répartissent ces blocs autrement. Les deux fiches complètes suivent ce découpage, avec cinq thèmes de fond au premier semestre et sept au second.</p>
+        <h3 style="margin:0 0 12px">Semestre 1, le droit des contrats</h3>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">L'introduction au droit des contrats</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Tu commences par les sources des obligations, à savoir l'acte juridique, le fait juridique et la loi (art. 1100 à 1100-2), puis par la définition du contrat (art. 1101). Tu classes ensuite les contrats, par exemple synallagmatiques ou unilatéraux, à titre onéreux ou gratuit. Les principes directeurs, c'est-à-dire la liberté contractuelle, la force obligatoire et la bonne foi, terminent ce thème avec l'application de la réforme de 2016 dans le temps.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">La formation du contrat</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Les négociations viennent d'abord. Elles sont libres, mais la bonne foi les encadre (art. 1112), et l'obligation d'information s'y ajoute (art. 1112-1). Tu étudies ensuite la rencontre de l'offre et de l'acceptation (art. 1113), les contrats entre absents et le contrat électronique. Le thème s'achève avec le pacte de préférence (art. 1123) et la promesse unilatérale (art. 1124).</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">La validité du contrat</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">L'article 1128 fixe les conditions de validité du contrat. Le consentement vient d'abord, avec les vices que sont l'erreur, le dol et la violence. La capacité et la représentation viennent ensuite, puis le contenu licite et certain, avec le déséquilibre significatif (art. 1171). La forme complète ces conditions. La sanction est la nullité quand une condition manquait à la formation, et la caducité quand un élément essentiel disparaît ensuite.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Les effets du contrat</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Ce thème commence par l'interprétation du contrat. Il traite ensuite de la force obligatoire (art. 1103), qui reste la règle, mais l'imprévision (art. 1195) permet de demander une renégociation quand un changement imprévisible rend l'exécution excessivement onéreuse. L'effet relatif du contrat (art. 1199) et son opposabilité aux tiers suivent, avec la stipulation pour autrui, qui donne un droit à un tiers. Le porte-fort et la simulation viennent en dernier.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">L'inexécution du contrat</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Quand un débiteur n'exécute pas son obligation, le créancier dispose des sanctions de l'article 1217. Il peut d'abord suspendre sa propre obligation (exception d'inexécution) ou exiger l'exécution forcée en nature. De plus, il peut réduire le prix ou provoquer la résolution du contrat. La responsabilité contractuelle et la clause pénale (art. 1231-5) permettent ensuite de réparer le dommage causé par l'inexécution.</p>
+          </div>
+        </div>
+        <h3 style="margin:28px 0 12px">Semestre 2, la responsabilité civile et les quasi-contrats</h3>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">L'introduction à la responsabilité civile</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La responsabilité civile oblige à réparer le dommage causé à autrui. Tu étudies ses fonctions, qui consistent à réparer et à prévenir, et parfois à punir, puis ses fondements, qui sont la faute, le risque et la garantie. La frontière entre responsabilité contractuelle et extracontractuelle appartient aussi à ce thème, avec le principe du non-cumul et l'arrêt du 6 octobre 2006.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Les conditions communes de la responsabilité</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Toute responsabilité suppose un fait générateur, un dommage et un lien de causalité entre les deux. Tu distingues d'abord le dommage du préjudice, puis tu étudies les caractères du préjudice réparable, qui doit être personnel, certain, direct et légitime. La nomenclature Dintilhac classe ensuite les préjudices corporels. La causalité et ses théories complètent ce thème, avec les causes d'exonération, c'est-à-dire la force majeure, le fait d'un tiers et la faute de la victime.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">La responsabilité du fait personnel</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La faute civile comprend un élément matériel, qui peut être une action ou une abstention. En pratique, le juge l'apprécie en comparant la conduite de la personne à celle d'une personne raisonnable. Son élément moral, c'est-à-dire la conscience de ses actes, ne conditionne plus la réparation. En effet, depuis l'arrêt Derguini de l'Assemblée plénière du 9 mai 1984, la Cour de cassation retient la faute d'un enfant sans rechercher s'il discernait les conséquences de ses actes. De même, l'article 414-3 maintient l'obligation de réparer à la charge de celui qui a causé un dommage sous l'empire d'un trouble mental. Enfin, les degrés de faute, de la faute simple à la faute intentionnelle, et l'abus de droit complètent ce thème.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">La responsabilité du fait des choses</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">L'article 1242, alinéa 1, rend le gardien d'une chose responsable du dommage qu'elle cause. Tu apprends la définition de la garde, qui repose sur l'usage, la direction et le contrôle, puis la distinction entre la garde de la structure et la garde du comportement, et le transfert de la garde. Les animaux (art. 1243) et les bâtiments en ruine (art. 1244) suivent, puis l'articulation de ces règles avec la loi Badinter et avec le régime des produits défectueux.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">La responsabilité du fait d'autrui</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Ce thème commence par la responsabilité des parents (art. 1242, alinéa 4), qui pèse depuis 2024 sur les deux parents séparés lorsqu'ils exercent l'autorité parentale. Les commettants viennent ensuite, et leur préposé bénéficie d'une immunité tant qu'il reste dans les limites de sa mission. Le principe général de responsabilité du fait d'autrui, posé par l'arrêt Blieck de 1991, s'ajoute en outre à ces textes, car il vise celui qui organise et contrôle à titre permanent le mode de vie d'autrui. Les artisans et les instituteurs viennent en dernier.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Les régimes spéciaux de responsabilité</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Quatre régimes spéciaux suivent leurs propres règles. La loi du 5 juillet 1985 organise d'abord l'indemnisation des victimes d'accidents de la circulation. Les articles 1245 et suivants régissent ensuite les produits défectueux, et une directive européenne de 2024, que la France doit transposer au plus tard le 9 décembre 2026, refond ce régime pour les produits mis sur le marché après cette date. L'article 1253 consacre aussi, depuis la loi du 15 avril 2024, la responsabilité de plein droit pour trouble anormal de voisinage. Enfin, la loi du 4 mars 2002 encadre la responsabilité médicale.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Les quasi-contrats</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Un quasi-contrat est un fait purement volontaire dont résulte un engagement de celui qui en profite sans y avoir droit, et parfois un engagement de son auteur envers autrui (art. 1300). Dans la gestion d'affaires (art. 1301), le gérant doit gérer avec les soins d'une personne raisonnable, et le maître de l'affaire doit alors lui rembourser ses dépenses (art. 1301-2). Le paiement de l'indu oblige ensuite à restituer ce qui a été reçu sans être dû (art. 1302). Enfin, l'enrichissement injustifié ouvre une action subsidiaire (art. 1303 et 1303-3).</p>
+          </div>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:20px">Certaines facultés ajoutent à ce semestre le régime général de l'obligation, c'est-à-dire les modalités, la transmission et l'extinction des obligations. Si ton cours le contient, complète ta fiche avec les pages sur <a href="la-cession-de-creance-et-la-subrogation.html">la cession de créance et la subrogation</a> et sur <a href="la-compensation-extinction-des-obligations.html">la compensation</a>.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quels articles connaître en droit des obligations ?</h2>
+        <p class="lead" style="margin-bottom:16px">Ces articles reviennent régulièrement dans les sujets. Tu les cites avec leur numéro actuel, car le correcteur attribue plus facilement les points à un raisonnement qui s'appuie sur le texte.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; border-collapse:collapse; color:var(--body)">
+          <tbody>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1101</th><td style="padding:10px 14px; line-height:1.65">Le contrat est un accord de volontés entre deux ou plusieurs personnes, destiné à créer, modifier, transmettre ou éteindre des obligations.</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1103 et 1104</th><td style="padding:10px 14px; line-height:1.65">Les contrats légalement formés tiennent lieu de loi à ceux qui les ont faits (art. 1103). Ils doivent être négociés, formés et exécutés de bonne foi, et cette exigence est d'ordre public (art. 1104).</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1112 et 1112-1</th><td style="padding:10px 14px; line-height:1.65">Les négociations sont libres, mais elles doivent respecter la bonne foi. En cas de faute, la réparation ne compense ni les avantages attendus du contrat non conclu, ni la perte de chance de les obtenir (art. 1112). Celui qui connaît une information déterminante doit la donner à l'autre partie, si elle l'ignore légitimement ou fait confiance à son cocontractant, sauf pour l'estimation de la valeur de la prestation (art. 1112-1).</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1128</th><td style="padding:10px 14px; line-height:1.65">Un contrat est valable s'il réunit le consentement des parties, leur capacité de contracter et un contenu licite et certain.</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1130</th><td style="padding:10px 14px; line-height:1.65">L'erreur, le dol et la violence vicient le consentement quand, sans eux, l'une des parties n'aurait pas contracté ou aurait contracté à des conditions substantiellement différentes. Le juge apprécie ce caractère déterminant selon les personnes et les circonstances.</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1132 et 1136</th><td style="padding:10px 14px; line-height:1.65">L'erreur annule le contrat quand elle porte sur les qualités essentielles de la prestation ou, dans un contrat conclu en considération de la personne, sur celles du cocontractant (art. 1134), à moins qu'elle soit inexcusable (art. 1132). Une erreur sur la valeur, c'est-à-dire une appréciation économique inexacte, ne suffit pas à annuler le contrat (art. 1136).</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1137 et 1138</th><td style="padding:10px 14px; line-height:1.65">Le dol est le fait d'obtenir le consentement de l'autre par des manœuvres ou des mensonges. La dissimulation intentionnelle d'une information dont on sait le caractère déterminant en est aussi un. Taire son estimation de la valeur de la prestation ne constitue pas un dol (art. 1137). Le dol est aussi constitué quand il émane du représentant, du gérant d'affaires, du préposé ou du porte-fort du contractant, ou d'un tiers de connivence (art. 1138).</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1170 et 1171</th><td style="padding:10px 14px; line-height:1.65">Une clause qui prive de sa substance l'obligation essentielle du débiteur est réputée non écrite (art. 1170). Dans un contrat d'adhésion, la clause non négociable, déterminée à l'avance, qui crée un déséquilibre significatif est elle aussi réputée non écrite, sans que le juge apprécie l'objet principal du contrat ni l'adéquation du prix (art. 1171).</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1195</th><td style="padding:10px 14px; line-height:1.65">Quand un changement de circonstances, imprévisible lors de la conclusion du contrat, rend l'exécution excessivement onéreuse pour une partie qui n'avait pas accepté d'en assumer le risque, elle peut demander une renégociation et continue d'exécuter pendant ce temps. En cas de refus ou d'échec de la renégociation, les parties peuvent convenir de la résolution ou demander ensemble l'adaptation au juge. À défaut d'accord dans un délai raisonnable, le juge peut, à la demande d'une partie, réviser le contrat ou y mettre fin.</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1217</th><td style="padding:10px 14px; line-height:1.65">Le créancier peut refuser d'exécuter ou suspendre sa propre obligation, poursuivre l'exécution forcée en nature, obtenir une réduction du prix, provoquer la résolution ou demander réparation. Les sanctions compatibles se cumulent, et des dommages et intérêts peuvent toujours s'y ajouter.</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1224</th><td style="padding:10px 14px; line-height:1.65">La résolution résulte d'une clause résolutoire ou, en cas d'inexécution suffisamment grave, d'une notification du créancier au débiteur ou d'une décision de justice.</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1231-1 et 1231-3</th><td style="padding:10px 14px; line-height:1.65">Le débiteur est condamné à des dommages et intérêts pour inexécution ou retard, sauf s'il prouve que la force majeure l'a empêché d'exécuter (art. 1231-1). Il ne répond que des dommages prévus ou prévisibles lors de la conclusion du contrat, sauf faute lourde ou dolosive (art. 1231-3).</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1240 et 1241</th><td style="padding:10px 14px; line-height:1.65">Tout fait de l'homme qui cause un dommage à autrui oblige celui par la faute duquel il est arrivé à le réparer (art. 1240). Chacun répond aussi du dommage causé par sa négligence ou son imprudence (art. 1241).</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1242, alinéa 1</th><td style="padding:10px 14px; line-height:1.65">On répond du dommage causé par son propre fait, mais aussi de celui qui est causé par le fait des personnes dont on doit répondre ou des choses que l'on a sous sa garde.</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1242, alinéas 4 et 5</th><td style="padding:10px 14px; line-height:1.65">Les parents qui exercent l'autorité parentale sont, de plein droit, solidairement responsables du dommage causé par leurs enfants mineurs, sauf si l'enfant a été confié à un tiers par une décision administrative ou judiciaire (rédaction issue de la loi du 23 juin 2025). Les commettants répondent du dommage causé par leurs préposés dans les fonctions auxquelles ils les ont employés.</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1243 et 1244</th><td style="padding:10px 14px; line-height:1.65">Le propriétaire d'un animal, ou celui qui s'en sert pendant qu'il est à son usage, répond du dommage que l'animal cause, même égaré ou échappé (art. 1243). Le propriétaire d'un bâtiment répond du dommage causé par sa ruine, quand elle vient d'un défaut d'entretien ou d'un vice de construction (art. 1244).</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1245 et 1245-3</th><td style="padding:10px 14px; line-height:1.65">Le producteur répond du dommage causé par un défaut de son produit, qu'il soit ou non lié par un contrat avec la victime (art. 1245). Un produit est défectueux quand il n'offre pas la sécurité à laquelle on peut légitimement s'attendre (art. 1245-3).</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1253</th><td style="padding:10px 14px; line-height:1.65">Le propriétaire, le locataire, l'occupant, le titulaire d'un droit d'exploiter le fonds ou le maître d'ouvrage qui est à l'origine d'un trouble excédant les inconvénients normaux de voisinage répond de plein droit du dommage qui en résulte. Sous réserve de l'article L. 311-1-1 du Code rural, il échappe à cette responsabilité quand le trouble provient d'activités antérieures à l'acte qui a transféré la propriété ou la jouissance du bien à la victime, ou à son entrée en possession s'il n'y a pas d'acte. Ces activités doivent être conformes aux lois et aux règlements, et poursuivies dans les mêmes conditions ou dans des conditions nouvelles qui n'aggravent pas le trouble.</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1301 et 1302-1</th><td style="padding:10px 14px; line-height:1.65">Celui qui, sans y être tenu, gère sciemment et utilement l'affaire d'autrui, à l'insu ou sans opposition du maître de l'affaire, a les obligations d'un mandataire (art. 1301). Celui qui reçoit par erreur ou sciemment ce qui ne lui est pas dû doit le restituer (art. 1302-1).</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Art. 1303</th><td style="padding:10px 14px; line-height:1.65">Celui qui bénéficie d'un enrichissement injustifié au détriment d'autrui lui doit une indemnité égale à la moindre des deux valeurs, celle de l'enrichissement et celle de l'appauvrissement. Cette action reste subsidiaire (art. 1303-3).</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Responsabilité contractuelle ou extracontractuelle, que retenir ?</h2>
+        <p class="lead" style="margin-bottom:16px">Cette comparaison revient dans de nombreux cas pratiques, puisque le terrain choisi change les articles que tu cites. Tu peux la recopier sur ta fiche, puis l'enrichir avec les arrêts de ton cours.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; border-collapse:collapse; color:var(--body)">
+          <tbody>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Le terrain</th><td style="padding:10px 14px; line-height:1.65">La responsabilité contractuelle sanctionne l'inexécution d'un contrat valable (art. 1217 et 1231-1). La responsabilité extracontractuelle répare un dommage causé en dehors de tout contrat, sur le fondement des articles 1240 et suivants. Entre deux cocontractants, le principe du non-cumul impose le terrain contractuel pour un dommage né de l'inexécution.</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">La mise en demeure</th><td style="padding:10px 14px; line-height:1.65">En matière contractuelle, les dommages et intérêts ne sont dus qu'après une mise en demeure, sauf inexécution définitive (art. 1231). En matière extracontractuelle, la victime demande réparation sans mise en demeure préalable.</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">L'étendue de la réparation</th><td style="padding:10px 14px; line-height:1.65">Le débiteur contractuel répond des dommages prévus ou prévisibles lors de la conclusion du contrat, sauf faute lourde ou dolosive (art. 1231-3). L'auteur d'un fait dommageable hors contrat répond du dommage qu'il a causé, sans cette limite de prévisibilité.</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Qui peut agir</th><td style="padding:10px 14px; line-height:1.65">Le contrat ne crée d'obligations qu'entre les parties, donc en principe seul le cocontractant peut en demander l'exécution (art. 1199). Un tiers à qui le manquement contractuel cause un dommage peut agir sur le terrain délictuel (Ass. plén., 6 octobre 2006).</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">La prescription</th><td style="padding:10px 14px; line-height:1.65">Les deux actions se prescrivent par cinq ans à compter du jour où le titulaire du droit a connu ou aurait dû connaître les faits (art. 2224). Pour un dommage corporel, le délai est de dix ans à compter de la consolidation, et de vingt ans pour des tortures, des actes de barbarie, ou des violences et agressions sexuelles commises contre un mineur (art. 2226).</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">La page <a href="responsabilite-civile-l2.html">responsabilité civile L2</a> reprend chaque régime avec ses conditions, et celle sur <a href="la-faute-civile-droit-des-obligations.html">la faute civile</a> détaille le premier fait générateur de ce tableau.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Erreur, dol ou violence, que retenir ?</h2>
+        <p class="lead" style="margin-bottom:16px">Les trois vices du consentement mènent à la même sanction, mais chacun a ses conditions. Ce tableau les compare sur quatre points.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; border-collapse:collapse; color:var(--body)">
+          <tbody>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Ce que la loi vise</th><td style="padding:10px 14px; line-height:1.65">L'erreur est une fausse représentation des qualités essentielles de la prestation ou, dans un contrat conclu en considération de la personne, de celles du cocontractant (art. 1132 à 1134). Le dol est une tromperie volontaire, par manœuvres, mensonges ou dissimulation d'une information déterminante (art. 1137). La violence est une contrainte qui inspire la crainte d'un mal considérable (art. 1140), ou l'abus de l'état de dépendance du cocontractant pour en tirer un avantage manifestement excessif (art. 1143).</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Les limites</th><td style="padding:10px 14px; line-height:1.65">Une erreur inexcusable n'annule pas le contrat (art. 1132), et une erreur sur la valeur non plus (art. 1136). Le dol échappe à ces limites, car l'erreur qu'il provoque est toujours excusable et peut porter sur la valeur (art. 1139). La menace d'une voie de droit constitue une violence seulement si elle est détournée de son but ou sert à obtenir un avantage manifestement excessif (art. 1141).</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">La sanction</th><td style="padding:10px 14px; line-height:1.65">Les trois vices rendent le contrat nul de nullité relative (art. 1131). La partie lésée peut aussi demander réparation de son dommage selon le droit commun de la responsabilité extracontractuelle (art. 1178).</td></tr>
+          <tr><th scope="row" style="text-align:left; white-space:nowrap; padding:10px 14px; vertical-align:top">Le délai</th><td style="padding:10px 14px; line-height:1.65">La prescription de cinq ans (art. 2224) commence à la découverte de l'erreur ou du dol, ou le jour où la violence a cessé (art. 1144).</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Pour chaque vice, la page sur <a href="les-vices-du-consentement.html">les vices du consentement</a> te donne des exemples de jurisprudence.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="decisions">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quelles décisions connaître en droit des obligations ?</h2>
+        <p class="lead" style="margin-bottom:24px">Cinq décisions reviennent dans de nombreux sujets, trois pour le contrat et la frontière des responsabilités, deux pour la responsabilité civile. Trois d'entre elles sont aujourd'hui reprises par un article du Code civil, à savoir l'article 1112, l'article 1170 et l'article 1242, alinéa 4.</p>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Rupture des pourparlers · Cass. com., 26 novembre 2003, Manoukian, n° 00-10.243</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Des actionnaires de la société Stuck négocient la vente de leurs actions avec la société Alain Manoukian. Pendant que les discussions se poursuivent, ils promettent les mêmes actions à une autre société et n'en informent Manoukian que quatorze jours plus tard. La chambre commerciale juge cette rupture fautive, car les cédants ont négocié en parallèle et de mauvaise foi. La réparation couvre cependant les frais de la négociation et les études préalables. Elle exclut les gains que le contrat aurait rapportés, ainsi que la perte de chance de les obtenir. L'article 1112 reprend aujourd'hui cette solution. Tu la retrouves dans l'<a href="arret-manoukian-explique.html">arrêt Manoukian expliqué</a>.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Clause limitative de responsabilité · Cass. com., 22 octobre 1996, Chronopost, n° 93-18.632</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La société Banchereau confie à Chronopost, à deux reprises, un pli contenant une soumission à une adjudication. Chronopost s'était engagée à le livrer le lendemain avant midi, mais le pli arrive en retard. Elle invoque alors la clause du contrat qui limite l'indemnité du retard au prix du transport. La chambre commerciale juge cette clause réputée non écrite, car Chronopost, spécialiste du transport rapide, a manqué à son obligation essentielle et la clause contredit la portée de son engagement. L'article 1170 reprend aujourd'hui cette idée. L'<a href="arret-chronopost-explique.html">arrêt Chronopost expliqué</a> la détaille.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Action d'un tiers au contrat · Ass. plén., 6 octobre 2006, Boot Shop, n° 05-13.255</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Des propriétaires louent un immeuble commercial à la société Myr'Ho, qui confie la gérance de son fonds de commerce à la société Boot Shop. Boot Shop reproche aux bailleurs un défaut d'entretien des locaux, mais aucun contrat ne la lie à eux. L'Assemblée plénière rejette le pourvoi des bailleurs et juge que le tiers à un contrat peut invoquer, sur le fondement de la responsabilité délictuelle, un manquement contractuel dès lors que ce manquement lui a causé un dommage. Le tiers n'a donc pas à prouver une faute distincte du manquement au contrat. Cette solution porte le nom d'invocabilité du manquement contractuel par les tiers.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Responsabilité du fait des choses · Ch. réunies, 13 février 1930, Jand'heur</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Le 22 avril 1926, un camion de la société Aux Galeries Belfortaises renverse et blesse la mineure Lise Jand'heur. La cour d'appel de Lyon refuse d'appliquer l'article 1384, alinéa 1, car le camion se déplaçait sous l'impulsion et la direction de l'homme, sans vice propre prouvé. Elle exige donc que la victime prouve une faute du conducteur. Les Chambres réunies cassent pourtant cet arrêt le 13 février 1930. Elles jugent que la loi ne distingue pas selon que la chose est actionnée ou non par la main de l'homme, et qu'un vice propre à la chose n'est pas nécessaire, puisque l'article 1384, devenu l'article 1242, alinéa 1, fait dépendre la responsabilité de la garde de la chose. Le gardien est ainsi présumé responsable, et il ne se libère qu'en prouvant un cas fortuit, une force majeure ou une cause étrangère qui ne lui est pas imputable. La preuve qu'il n'a commis aucune faute ne suffit donc pas. Le détail se trouve dans l'<a href="arret-jandheur-1930-explique.html">arrêt Jand'heur expliqué</a>.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Responsabilité des parents · Ass. plén., 28 juin 2024, n° 22-84.760</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Un mineur est reconnu coupable d'avoir détruit un bois par incendie. Ses parents sont divorcés, et sa résidence est fixée chez sa mère. La cour d'appel écarte la responsabilité civile du père, parce que la convention de divorce fixait la résidence de l'enfant chez la mère. L'Assemblée plénière casse pourtant cette décision. Elle juge en effet que la cohabitation de l'enfant avec ses parents découle de l'exercice conjoint de l'autorité parentale, et qu'elle ne cesse que si une décision administrative ou judiciaire confie l'enfant à un tiers. Les deux parents sont donc solidairement responsables. La loi du 23 juin 2025 a repris cette solution à l'article 1242, alinéa 4. L'<a href="arret-bertrand-1997-explique.html">arrêt Bertrand expliqué</a> prolonge ce sujet.</p>
+          </div>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">D'autres arrêts complètent cette liste. L'<a href="arret-franck-1941-explique.html">arrêt Franck</a> précise la définition de la garde, tandis que l'arrêt Oxygène liquide (Civ. 2e, 5 janvier 1956) distingue la garde de la structure de la garde du comportement. L'<a href="arret-costedoat-2000-explique.html">arrêt Costedoat</a> écarte la responsabilité envers les tiers du préposé qui reste dans les limites de sa mission. Enfin, l'<a href="arret-desmares-1982-explique.html">arrêt Desmares</a> (Civ. 2e, 21 juillet 1982) n'admettait l'exonération du gardien que par la force majeure, mais la deuxième chambre civile a admis une exonération partielle pour faute de la victime le 6 avril 1987.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Un exemple de cas pratique en droit des obligations</h2>
+        <p class="lead" style="margin-bottom:16px">Ce mini cas pratique porte sur le trouble anormal de voisinage, que l'article 1253 du Code civil régit depuis la loi du 15 avril 2024. Le corrigé suit le syllogisme, de la majeure à la conclusion.</p>
+        <div class="card" style="padding:22px 24px">
+          <p style="margin-top:0; color:var(--body); line-height:1.7"><strong>Énoncé.</strong> En septembre 2024, Nadia achète une maison à Albi, voisine de l'atelier de menuiserie de Gaspard, qui en est propriétaire. Cet atelier fonctionne depuis 2009. Jusqu'au printemps 2026, il travaillait de 8 h à 18 h avec une seule scie. Gaspard installe alors une seconde scie à ruban et fait désormais tourner l'atelier jusqu'à 22 h, sans enfreindre aucune règle de la réglementation. Nadia dort mal, et elle doit annuler les réservations de sa chambre d'hôtes, ce qui lui fait perdre des revenus. Elle demande donc réparation à Gaspard, mais celui-ci répond que son atelier existait avant son arrivée.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Problème de droit.</strong> Un voisin dont l'activité existait avant l'arrivée de la victime échappe-t-il à toute responsabilité lorsqu'il a modifié les conditions de cette activité ?</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Majeure.</strong> D'après l'article 1253, alinéa 1, le propriétaire d'un fonds qui est à l'origine d'un trouble excédant les inconvénients normaux de voisinage répond de plein droit du dommage qui en résulte, sans que la victime ait à prouver une faute. L'alinéa 2 écarte toutefois cette responsabilité quand le trouble provient d'activités antérieures à l'acte qui a transféré la propriété à la victime. En outre, ces activités doivent être conformes aux lois et aux règlements, et se poursuivre dans les mêmes conditions ou dans des conditions nouvelles qui n'aggravent pas le trouble anormal.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Mineure.</strong> Gaspard est propriétaire de l'atelier, donc il entre dans le champ de l'article 1253. Nadia doit d'abord établir que le fonctionnement de l'atelier jusqu'à 22 h avec une seconde scie dépasse les inconvénients normaux de voisinage, par exemple avec des relevés de bruit. Le juge apprécie ce caractère anormal selon les circonstances. Gaspard invoque ensuite l'exception d'antériorité. L'atelier existe depuis 2009, donc avant l'achat de Nadia en septembre 2024, et il respecte la réglementation, même après l'installation de la seconde scie. Deux conditions sont ainsi remplies. La troisième manque, car la seconde scie et les horaires prolongés sont des conditions nouvelles qui aggravent le trouble. Gaspard ne peut donc pas invoquer l'ancienneté de son atelier.</p>
+          <p style="margin-bottom:0; color:var(--body); line-height:1.7"><strong>Conclusion.</strong> Si le juge retient un trouble anormal, Gaspard répond de plein droit du dommage de Nadia. Les réservations annulées de sa chambre d'hôtes peuvent justifier l'indemnisation de sa perte de revenus, à condition qu'elle prouve le lien entre ces annulations et le trouble.</p>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Pour t'entraîner sur un sujet de contrats, l'<a href="exemple-cas-pratique-corrige-contrats.html">exemple de cas pratique corrigé en droit des contrats</a> prolonge cette page, et la <a href="methode-cas-pratique.html">méthode du cas pratique</a> détaille chaque étape.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quelles erreurs coûtent le plus de points ?</h2>
+        <p class="lead" style="margin-bottom:24px">Quatre erreurs coûtent régulièrement des points. Relis ta fiche pour t'assurer que tu ne les commets pas.</p>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Citer les anciens numéros d'articles</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Beaucoup d'arrêts et de manuels anciens citent l'article 1134 pour la force obligatoire, l'article 1147 pour l'inexécution, les articles 1382 et 1383 pour la faute et l'article 1384 pour le fait des choses et d'autrui. Depuis la réforme du 10 février 2016, ces numéros sont devenus 1103, 1231-1, 1240, 1241 et 1242. Dans ta copie, tu écris le numéro actuel, et tu gardes l'ancien pour les arrêts qui l'emploient.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Exiger la cohabitation pour la responsabilité des parents</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Un cours ancien lie la cohabitation à la résidence habituelle fixée par un juge. Pourtant, l'Assemblée plénière a changé cette lecture le 28 juin 2024, et la loi du 23 juin 2025 a réécrit l'article 1242, alinéa 4. Les deux parents qui exercent l'autorité parentale répondent donc solidairement, sauf si l'enfant a été confié à un tiers par une décision administrative ou judiciaire. L'enfant peut aussi n'avoir commis aucune faute, puisqu'il suffit qu'un dommage soit directement causé par son fait (Ass. plén., 13 décembre 2002, n° 00-13.787).</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Choisir librement entre responsabilité contractuelle et délictuelle</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Le cocontractant qui subit un dommage du fait de l'inexécution agit sur le terrain contractuel (art. 1231-1). Il ne peut pas se placer sur celui de l'article 1240 pour échapper aux limites du contrat, comme la prévisibilité de l'article 1231-3 ou une clause limitative. Le tiers à qui ce manquement cause un dommage dispose en revanche du terrain délictuel, depuis l'arrêt du 6 octobre 2006.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Annuler un contrat pour une erreur sur la valeur</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Un acheteur qui a payé trop cher parce qu'il a mal évalué le bien ne peut pas invoquer l'erreur, car l'article 1136 écarte l'erreur sur la valeur. Il faut une erreur sur les qualités essentielles de la prestation (art. 1132). Le dol fait exception, puisque l'erreur provoquée par un dol est toujours excusable et peut porter sur la valeur (art. 1139).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Dans quel ordre réviser le droit des obligations ?</h2>
+        <p style="color:var(--body); line-height:1.75">Au contrat, tu commences par les articles 1101, 1103 et 1104, car toute la suite s'appuie sur eux. La formation et la validité viennent ensuite, puis les effets et l'inexécution, dans l'ordre du programme. Pour chaque notion, tu notes l'article applicable et sa sanction. Les pages consacrées à <a href="la-formation-du-contrat-offre-et-acceptation.html">l'offre et l'acceptation</a> et à <a href="la-resolution-du-contrat.html">la résolution du contrat</a> t'aident à approfondir ces étapes, et celle sur <a href="l-exception-d-inexecution.html">l'exception d'inexécution</a> prolonge le thème des sanctions.</p>
+        <p style="color:var(--body); line-height:1.75">En responsabilité civile, tu révises d'abord les conditions communes, c'est-à-dire le dommage, le lien de causalité et les causes d'exonération, puis la faute de l'article 1240. Les régimes du fait des choses, du fait d'autrui et les régimes spéciaux se retiennent avec un tableau qui indique pour chacun le texte, la personne responsable et ce qui l'exonère. Les quasi-contrats se révisent en dernier, car la gestion d'affaires, l'indu et l'enrichissement injustifié se retiennent par leurs conditions (art. 1301 à 1303-3). La page sur <a href="force-majeure-contrat-article-1218.html">la force majeure</a> et celle sur <a href="loi-badinter-accident-circulation.html">la loi Badinter</a> complètent cette révision, et le <a href="stage-methode.html">stage de méthode</a> t'entraîne à rédiger des cas pratiques. Si tu prépares aussi le droit administratif, la <a href="fiche-revision-droit-administratif-l2.html">fiche de révision de droit administratif L2</a> reprend le même format, avec ses sept thèmes et ses grands arrêts.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="faq">
+      <div class="container container--narrow">
+        <h2 class="h2 text-center" style="margin-bottom:32px">Questions fréquentes sur le droit des obligations en L2</h2>
+        <div class="accordion">
+          <details class="accordion__item" open><summary><h3>Que faut-il réviser en droit des obligations en L2 ?</h3></summary><div class="accordion__body">Le programme se compose de deux blocs, le droit des contrats et la responsabilité civile. En effet, le droit des contrats va de la formation à l'inexécution, avec la réforme de 2016, et la responsabilité civile se complète par les quasi-contrats. Ces blocs se partagent cependant différemment entre les deux semestres selon la faculté, et certains cours y ajoutent aussi le régime général de l'obligation.</div></details>
+          <details class="accordion__item"><summary><h3>Quelle différence entre la responsabilité contractuelle et la responsabilité délictuelle ?</h3></summary><div class="accordion__body">La responsabilité contractuelle sanctionne l'inexécution d'un contrat (art. 1231-1), alors que la responsabilité délictuelle répare un dommage causé hors de tout contrat (art. 1240 et suivants). La première suppose une mise en demeure, sauf inexécution définitive (art. 1231), et limite la réparation aux dommages prévisibles (art. 1231-3), sauf faute lourde ou dolosive. Entre cocontractants, le principe du non-cumul interdit de choisir le terrain délictuel.</div></details>
+          <details class="accordion__item"><summary><h3>Quels numéros d'articles ont changé avec la réforme de 2016 ?</h3></summary><div class="accordion__body">L'ordonnance du 10 février 2016, entrée en vigueur le 1er octobre 2016, a réorganisé le droit des obligations dans le Code civil et en a changé les numéros. L'ancien article 1134 est devenu l'article 1103, l'ancien article 1147 est devenu l'article 1231-1, et les anciens articles 1382, 1383 et 1384 sont devenus les articles 1240, 1241 et 1242.</div></details>
+          <details class="accordion__item"><summary><h3>Un parent chez qui l'enfant n'habite pas habituellement répond-il de ses dommages ?</h3></summary><div class="accordion__body">Oui, s'il exerce conjointement l'autorité parentale. L'Assemblée plénière l'a jugé le 28 juin 2024, et la loi du 23 juin 2025 a repris cette solution à l'article 1242, alinéa 4. Les parents sont solidairement responsables, sauf si l'enfant a été confié à un tiers par une décision administrative ou judiciaire.</div></details>
+          <details class="accordion__item"><summary><h3>Existe-t-il une fiche PDF de droit des obligations pour la L2 ?</h3></summary><div class="accordion__body">La fiche complète du semestre 1 compte 171 pages et celle du semestre 2 en compte 97, chacune à 14,99 €. Le pack Licence 2 regroupe sept fiches complètes, dont celles des deux semestres de droit des obligations, pour 79 €.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="author-box">
+          <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+          <div>
+            <p class="author-box__name">Julien</p>
+            <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+            <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">162 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- fin-article:pack-ultra -->
+    <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
+      <div class="container">
+        <p class="article-pack-ligne__texte">Le Pack Ultra L2 S2 réunit les 27 ressources de ton second semestre de L2 pour 209 €, la fiche de droit des obligations L2 comprise. <a href="pack-ultra.html#pack-ultra-l2-s2">Voir le contenu du pack →</a></p>
+        <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (fiche revision droit des obligations L2)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit des obligations L2 S2 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-obligations-l2-s2">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=2fa394eb" defer></script>
+
+
+  <script src="assets/js/main.js?v=4b8ba62a" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=70097293';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=fd545d49" defer></script>
+</body>
+</html>
