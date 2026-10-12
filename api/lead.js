@@ -14,8 +14,11 @@ const PRODUITS = require("./_produits");
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const R2_PUBLIC = "https://pub-45b53167be7548aca62650d34a771b47.r2.dev";
-const URL_RECUEILS =
-  "https://trajectoiredroit.com/cas-pratiques-corriges.html?utm_source=brevo&utm_medium=email&utm_campaign=corrige-offert";
+function urlRecueil(matiere) {
+  const params = new URLSearchParams({ matiere, utm_source: 'brevo', utm_medium: 'email',
+    utm_campaign: 'corrige-offert', utm_content: 'recueil-' + matiere });
+  return 'https://trajectoiredroit.com/cas-pratiques-corriges.html?' + params.toString() + '#recueils-cas-pratiques';
+}
 
 // Liste blanche des matières, avec le contenu de chaque recueil compté dans le PDF
 // vendu le 10/10/2026 (signets « Cas pratique n » et « Partiel n »).
@@ -81,6 +84,7 @@ function construireEmailCorrigeOffert(matiere) {
   const nomMatiere = nomRecueil.replace(/^Cas pratiques corrigés /, "");
   const prix = euros(produit.prix);
   const lienPdf = urlPdf(matiere);
+  const lienRecueil = urlRecueil(matiere);
 
   const sujet = `Ton cas pratique corrigé de ${nomMatiere}`;
   const html = `
@@ -109,7 +113,7 @@ function construireEmailCorrigeOffert(matiere) {
             Le mieux est de traiter d'abord l'énoncé seul, au brouillon, avant de lire le corrigé. En comparant ensuite les deux, tu vois tout de suite les arguments que tu avais trouvés et ceux qui te manquaient.
           </p>
           <p style="font-size:13px;color:#555;margin:0 0 24px;">
-            Ce cas pratique vient du recueil <strong>${nomRecueil}</strong>. Le recueil complet réunit ${compte.cas} cas pratiques et ${compte.partiels} sujets type partiel, tous corrigés avec la même méthode. Il coûte ${prix}, et tu peux le voir sur <a href="${URL_RECUEILS}" style="color:#1a237e;">la page des cas pratiques corrigés</a> si tu veux t'entraîner sur les autres thèmes du cours.
+            Ce cas pratique vient du recueil <strong>${nomRecueil}</strong>. Le recueil complet réunit ${compte.cas} cas pratiques, dont celui qui est offert, mais aussi ${compte.partiels} sujets type partiel. Tous sont corrigés avec la même méthode. Tu disposes donc de ${compte.cas - 1} autres cas et de ${compte.partiels} sujets de partiel pour t'entraîner sur les autres thèmes du cours. Tu peux voir <a href="${lienRecueil.replace(/&/g, '&amp;')}" style="color:#1a237e;">le recueil complet</a>, qui coûte ${prix}.
           </p>
           <p style="font-size:13px;color:#555;margin:0 0 24px;">
             Si une question te bloque dans le corrigé, tu peux répondre directement à cet email, car je reçois moi-même les réponses.
@@ -133,8 +137,8 @@ Le lien reste valable, donc tu peux garder cet email pour retrouver le PDF plus 
 
 Le mieux est de traiter d'abord l'énoncé seul, au brouillon, avant de lire le corrigé. En comparant ensuite les deux, tu vois tout de suite les arguments que tu avais trouvés et ceux qui te manquaient.
 
-Ce cas pratique vient du recueil ${nomRecueil}. Le recueil complet réunit ${compte.cas} cas pratiques et ${compte.partiels} sujets type partiel, tous corrigés avec la même méthode. Il coûte ${prix}, et tu peux le voir sur la page des cas pratiques corrigés si tu veux t'entraîner sur les autres thèmes du cours.
-${URL_RECUEILS}
+Ce cas pratique vient du recueil ${nomRecueil}. Le recueil complet réunit ${compte.cas} cas pratiques, dont celui qui est offert, mais aussi ${compte.partiels} sujets type partiel. Tous sont corrigés avec la même méthode. Tu disposes donc de ${compte.cas - 1} autres cas et de ${compte.partiels} sujets de partiel pour t'entraîner sur les autres thèmes du cours. Tu peux voir le recueil complet, qui coûte ${prix}.
+${lienRecueil}
 
 Si une question te bloque dans le corrigé, tu peux répondre directement à cet email, car je reçois moi-même les réponses.
 

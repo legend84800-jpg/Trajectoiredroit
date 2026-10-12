@@ -100,6 +100,29 @@
   }
 
   var compteur = 0;
+  var cataloguePromesse;
+  function catalogue() {
+    if (!cataloguePromesse) cataloguePromesse = fetch('/api/corriges-offerts')
+      .then(function (r) { if (!r.ok) throw new Error('catalogue'); return r.json(); })
+      .then(function (d) { return Array.isArray(d.offres) ? d.offres : []; })
+      .catch(function () { return []; });
+    return cataloguePromesse;
+  }
+
+  function montrerSuite(bloc, id) {
+    bloc.setAttribute('data-matiere-suite', id);
+    catalogue().then(function (offres) {
+      if (bloc.getAttribute('data-matiere-suite') !== id) return;
+      var offre = offres.find(function (o) { return o.id === id; });
+      bloc.innerHTML = '';
+      bloc.hidden = !offre;
+      if (!offre) return;
+      bloc.appendChild(el('h3', { 'class': 'tjd-co__titre' }, 'Pour continuer en ' + offre.matiere));
+      bloc.appendChild(el('p', { 'class': 'tjd-co__intro' }, 'Le PDF offert contient un cas pratique, avec son énoncé et son corrigé complet.'));
+      bloc.appendChild(el('p', { 'class': 'tjd-co__intro' }, 'Le recueil complet réunit ' + offre.cas + ' cas pratiques, dont celui qui est offert, et ' + offre.partiels + ' sujets de partiel. Tous sont corrigés avec la même méthode. Tu disposes donc de ' + (offre.cas - 1) + ' autres cas et de ' + offre.partiels + ' sujets de partiel pour t’entraîner sur les autres thèmes du cours.'));
+      bloc.appendChild(el('a', { href: offre.url, 'class': 'tjd-co__bouton', style: 'text-align:center;text-decoration:none' }, 'Voir le recueil complet · ' + (offre.prix / 100).toFixed(2).replace('.', ',') + ' €'));
+    });
+  }
 
   function monter(bloc) {
     if (bloc.getAttribute('data-tjd-co-pret') === '1') return;
@@ -107,6 +130,9 @@
     compteur += 1;
     var uid = 'tjd-co-' + compteur;
     var preselection = bloc.getAttribute('data-matiere') || '';
+    if (!preselection) {
+      try { preselection = new URLSearchParams(window.location.search).get('matiere') || ''; } catch (_) {}
+    }
     var sourcePage = bloc.getAttribute('data-source')
       || ('corrige-offert-' + (window.location.pathname.split('/').pop().replace('.html', '') || 'accueil'));
 
@@ -163,6 +189,11 @@
     form.appendChild(statut);
 
     carte.appendChild(form);
+    var suite = el('section', { 'class': 'tjd-co__suite', style: 'margin-top:22px;padding-top:18px;border-top:1px solid var(--gold-line,#C9A961)' });
+    suite.hidden = true;
+    carte.appendChild(suite);
+    select.addEventListener('change', function () { montrerSuite(suite, select.value); });
+    if (trouvee) montrerSuite(suite, select.value);
     bloc.innerHTML = '';
     bloc.appendChild(carte);
 

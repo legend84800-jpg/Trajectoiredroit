@@ -451,7 +451,7 @@
             <label class="recueil-choix__label" for="choixRecueil">Ta matière</label>
             <select class="form__select recueil-choix__select" id="choixRecueil">
               <optgroup label="L1">
-                <option value="cas-pratique-intro-droit-l1" data-nom="Cas pratiques corrigés Introduction au droit L1 S1" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier" selected>Introduction au droit L1 S1 · 14,99 €</option>
+                <option value="cas-pratique-intro-droit-l1" data-nom="Cas pratiques corrigés Introduction au droit L1 S1" data-prix="14,99 €" data-detail="11 cas pratiques et 3 sujets de partiel corrigés en entier" selected>Introduction au droit L1 S1 · 14,99 €</option>
                 <option value="cas-pratique-personnes-l1" data-nom="Cas pratiques corrigés Droit des personnes L1" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit des personnes L1 · 14,99 €</option>
                 <option value="cas-pratique-famille-l1-s2" data-nom="Cas pratiques corrigés Droit de la famille L1 S2" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit de la famille L1 S2 · 14,99 €</option>
                 <option value="cas-pratique-penal-general-l1" data-nom="Cas pratiques corrigés Droit pénal général L1 S2" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit pénal général L1 S2 · 14,99 €</option>
@@ -474,7 +474,7 @@
                 <option value="cas-pratique-procedure-penale-l3" data-nom="Cas pratiques corrigés Procédure pénale L3" data-prix="14,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Procédure pénale L3 · 14,99 €</option>
               </optgroup>
             </select>
-            <p class="recueil-choix__detail" id="detailRecueil">10 cas pratiques et 3 sujets de partiel corrigés en entier</p>
+            <p class="recueil-choix__detail" id="detailRecueil">11 cas pratiques et 3 sujets de partiel corrigés en entier</p>
             <div class="conversion-offer__choices">
               <button type="button" class="btn btn--primary btn--lg recueil-choix__cta" id="boutonRecueil" data-tjd-produit="cas-pratique-intro-droit-l1">Acheter le recueil · 14,99 €</button>
             </div>
@@ -699,7 +699,7 @@
   </div>
 
   <script src="assets/js/achat.js?v=2fa394eb" defer></script>
-  <script src="assets/js/corrige-offert.js?v=09d4a095" defer></script>
+  <script src="assets/js/corrige-offert.js?v=fae61338" defer></script>
   <script src="assets/js/main.js?v=4b8ba62a" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
@@ -761,6 +761,10 @@
         }
       }
       choix.addEventListener('change', appliquer);
+      try {
+        var matiereDemandee = new URLSearchParams(window.location.search).get('matiere');
+        if (matiereDemandee && Array.prototype.some.call(choix.options, function (option) { return option.value === matiereDemandee; })) choix.value = matiereDemandee;
+      } catch (_) {}
       appliquer();
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
