@@ -16,10 +16,20 @@ const { lireCadeauFormulaire, appliquerCadeauCheckout } = require("./_cadeau");
 // reste alors la seule information visible sur la livraison. Le texte suit le
 // nombre réel de fichiers envoyés (fiche, plan, cartes mentales, Anki, pack).
 const nombreFichiers = (p) => (Array.isArray(p.blobs) ? p.blobs.length : 0);
-const descriptionLivraison = (p) => (nombreFichiers(p) > 1
+// Les Packs Ultra et les podcasts et vidéos se retrouvent dans Mon compte, jamais
+// en pièces jointes de l'email : le texte de Stripe le dit tel quel.
+const estPackUltra = (p) => Array.isArray(p.inclus) && Array.isArray(p.blobsMeta);
+const livreDansCompte = (p) => !!p.mediaEnLigne || estPackUltra(p);
+const descriptionLivraison = (p) => (p.mediaEnLigne
+  ? "Tu retrouves chaque leçon en podcast et en vidéo dans ton espace Mon compte dès que le paiement est validé, et tu y gardes l'accès à vie."
+  : estPackUltra(p)
+    ? "Tu retrouves toutes les ressources du pack dans ton espace Mon compte dès que le paiement est validé, et tu y gardes l'accès à vie."
+    : nombreFichiers(p) > 1
   ? `Tu reçois ${nombreFichiers(p)} fichiers par email dès que le paiement est validé, et tu les gardes à vie avec leurs mises à jour.`
   : "Le PDF arrive par email dès que le paiement est validé, et tu le gardes à vie avec ses mises à jour.");
-const messagePaiement = (produits) => (produits.reduce((n, p) => n + nombreFichiers(p), 0) > 1
+const messagePaiement = (produits) => (produits.length && produits.every(livreDansCompte)
+  ? "Vérifie ton adresse email, car c'est avec elle que tu te connectes ensuite à ton espace Mon compte."
+  : produits.reduce((n, p) => n + nombreFichiers(p), 0) > 1
   ? "Vérifie ton adresse email, car tes fichiers y sont envoyés juste après le paiement."
   : "Vérifie ton adresse email, car ton PDF y est envoyé juste après le paiement.");
 // Stripe ne propose sa case d'accord promotionnel qu'aux entreprises et aux clients
