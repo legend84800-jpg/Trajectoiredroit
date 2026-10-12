@@ -130,11 +130,24 @@
         var fichiers = a.produits.reduce(function(acc, p){ return acc.concat(p.fichiers); }, []);
         function rendreFichier(f){
           if (f.type === "video") {
+            var rectification = "";
+            var parametresReplay = new URLSearchParams(String(f.url).split("?")[1] || "");
+            if (parametresReplay.get("id") === "stage-methode-replay-sept2026") {
+              var texteRectification = parametresReplay.get("b") === "1"
+                ? "À partir de 20 minutes, distingue la preuve illicite, qui contrevient à une règle de droit, de la preuve déloyale, qui dépend du procédé utilisé pour l’obtenir. Dans le divorce, l’article 259-1 du Code civil exclut les preuves obtenues par violence ou fraude. Ainsi, l’agenda arraché pendant une altercation doit être écarté sur ce fondement. La seule atteinte à la vie privée ne permet pas, en revanche, d’écarter les messages sans examiner leur mode d’obtention."
+                : parametresReplay.get("b") === "2"
+                  ? "Dans le passage vers 31 minutes, le président de la République est garant de l’indépendance de l’autorité judiciaire selon l’article 64 de la Constitution. L’article 56 fonde ses nominations au Conseil constitutionnel. De plus, sa qualité de chef des armées, prévue par l’article 15, doit être distinguée du régime de contreseing applicable à chaque acte."
+                  : "";
+              if (texteRectification) {
+                rectification = "<div class=\"replay-rectification\" style=\"max-width:480px; padding:12px; margin:8px 0; border-left:3px solid #8b1538; background:#f7f4f2; font-size:14px; line-height:1.6\">" +
+                  "<strong>Précisions sur le passage filmé</strong><p style=\"margin:6px 0 0\">" + echapperCompte(texteRectification) + "</p></div>";
+              }
+            }
             return "<div style=\"margin:6px 0\">" +
               "<div style=\"font-size:14px; margin-bottom:4px\">" + echapperCompte(f.nom) + "</div>" +
               "<video controls controlsList=\"nodownload noremoteplayback\" disablePictureInPicture oncontextmenu=\"return false\" style=\"width:100%; max-width:480px; border-radius:8px; display:block\">" +
                 "<source src=\"" + f.url + "\" type=\"video/mp4\">" +
-              "</video>" +
+              "</video>" + rectification +
             "</div>";
           }
           return "<a class=\"btn btn--outline btn--sm\" href=\"" + f.url + "\" style=\"margin:4px 6px 0 0\">Télécharger " + echapperCompte(f.nom) + "</a>";

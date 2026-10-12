@@ -108,6 +108,26 @@ function browser(options={}) {
 function session(email='falsifie@example.invalid',token='session-factice') {return {access_token:token,user:{id:'identite-locale',email}};}
 function achats(nom) {return {ok:true,status:200,json:async()=>({achats:[{date:'2026-10-01',produits:[{nom,fichiers:[]}]}]})};}
 
+test('les replays de septembre conservent leurs lecteurs et affichent les rectifications des séances concernées', async()=>{
+  const fichiers=[0,1,2].map(b=>({nom:'le replay séance '+(b+1),type:'video',url:'https://trajectoiredroit.com/api/telecharger?id=stage-methode-replay-sept2026&b='+b+'&exp=123&sig=factice'}));
+  const b=browser({session:session(),fetch:async()=>({ok:true,status:200,json:async()=>({achats:[{date:'2026-09-06',produits:[{nom:'Replays du stage',fichiers}]}]})})});
+  await b.flush();
+  const html=b.elements.achatsListe.innerHTML;
+  assert.equal((html.match(/<video /g)||[]).length,3);
+  assert.equal((html.match(/replay-rectification/g)||[]).length,2);
+  assert.match(html,/article 259-1/);
+  assert.match(html,/article 64/);
+  for(const f of fichiers) assert.ok(html.includes(f.url));
+});
+
+test('une autre vidéo conserve son lecteur sans recevoir les corrections du stage de septembre',async()=>{
+  const fichiers=[{nom:'Vidéo',type:'video',url:'https://trajectoiredroit.com/api/telecharger?id=autre-produit&b=1'}];
+  const b=browser({session:session(),fetch:async()=>({ok:true,status:200,json:async()=>({achats:[{date:'2026-10-01',produits:[{nom:'Autre ressource',fichiers}]}]})})});
+  await b.flush();
+  assert.match(b.elements.achatsListe.innerHTML,/<video /);
+  assert.doesNotMatch(b.elements.achatsListe.innerHTML,/replay-rectification/);
+});
+
 test('la demande de code ne connecte pas et ignore les paramètres de redirection de la page',async()=>{
   const b=browser();await b.flush();b.elements.connexionEmail.value='titulaire@example.invalid';
   await b.elements.connexionForm.listeners.submit({preventDefault(){}});
