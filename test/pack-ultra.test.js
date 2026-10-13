@@ -59,7 +59,7 @@ test("la page dédiée montre seulement les cinq packs en vente et leurs ressour
     const bloc = html.split(debut)[1]?.split("</details>")[0];
     assert.ok(bloc, id);
     assert.equal((bloc.match(/<li class="ultra-resource ultra-resource--/g) || []).length, DEFINITIONS[id].attendus, id);
-    assert.equal((bloc.match(/<span class="ultra-resource__type">/g) || []).length, DEFINITIONS[id].attendus, id);
+    assert.equal((bloc.match(/<span class="ultra-resource__type(?: sr-only)?">/g) || []).length, DEFINITIONS[id].attendus, id);
     assert.equal(html.includes(`data-tjd-produit="${id}"`), DEFINITIONS[id].prix !== null, id);
     if (DEFINITIONS[id].prix !== null) {
       const prixAffiche = `${DEFINITIONS[id].prix / 100} €`;
@@ -69,7 +69,7 @@ test("la page dédiée montre seulement les cinq packs en vente et leurs ressour
       assert.ok(carte.includes(`class="ultra-card__comparison">Total à l’unité : <span class="ultra-card__unit-total">${totalAffiche}</span></span>`), id);
       assert.ok(carte.includes(`class="ultra-card__saving">${pourcentage} % d’économie</span>`), id);
       assert.ok(carte.includes(`class="ultra-card__price">${prixAffiche}</span>`), id);
-      assert.ok(bloc.includes(`<span>${prixAffiche}</span>`), id);
+      assert.ok(bloc.includes(`href="#${id}">Voir le prix et les options de paiement</a>`), id);
     }
   }
 });
@@ -80,7 +80,8 @@ test("le sommaire par matière classe toutes les ressources des cinq semestres",
     const debut = `<details class="ultra-inclusions__item" id="pack-ultra-detail-${semestre}">`;
     const bloc = html.split(debut)[1]?.split("</details>")[0];
     assert.ok(bloc, semestre);
-    const titres = [...bloc.matchAll(/<li class="ultra-resource [^"]+"><span class="ultra-resource__type">[^<]+<\/span> ([^<]+)<\/li>/g)].map(match => match[1]);
+    const titres = [...bloc.matchAll(/<li class="ultra-resource [^"]+"(?: data-resource-title="([^"]+)")?>([\s\S]*?)<\/li>/g)].map(match =>
+      match[1] || match[2].match(/<span class="ultra-resource__type">[^<]+<\/span> ([^<]+)/)[1]);
     const quantites = new Map(matieres.map(([nom]) => [nom, 0]));
     for (const titre of titres) {
       const matiere = classerRessource(semestre, titre);

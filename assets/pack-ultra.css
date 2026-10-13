@@ -1,4 +1,4 @@
-/* Cartes de la collection Pack Ultra sur la page d'accueil. */
+/* Présentation, ressources et offres de la page Pack Ultra. */
 .ultra-section {
   background: linear-gradient(160deg, #f7f5f0 0%, #fff 64%);
 }
@@ -8,6 +8,14 @@
   text-align: center;
 }
 .ultra-heading .lead { margin-top: 12px; }
+.ultra-offers { margin-top: 64px; border-top: 1px solid #d9dce4; padding-top: 38px; scroll-margin-top: 100px; }
+.ultra-offers h2 {
+  margin: 0;
+  color: #1a2851;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  line-height: 1.2;
+}
 .ultra-grid {
   display: flex;
   flex-wrap: wrap;
@@ -24,6 +32,7 @@
   border-radius: 16px;
   background: #fff;
   box-shadow: 0 12px 30px rgba(15, 26, 53, .08);
+  scroll-margin-top: 110px;
 }
 .ultra-card__cover {
   position: relative;
@@ -91,9 +100,7 @@ html[data-theme="dark"] .ultra-card__split { color: #c5cbd8; }
 html[data-theme="dark"] .ultra-parents a { color: #e8d9a8; }
 .ultra-explainer {
   max-width: 780px;
-  margin: 52px auto 0;
-  border-top: 1px solid #d9dce4;
-  padding-top: 30px;
+  margin: 0 auto;
   color: #4f5a70;
   line-height: 1.7;
 }
@@ -218,6 +225,22 @@ html[data-theme="dark"] .ultra-card__split-btn { color: #e8d9a8; }
 .ultra-resource--cas { --resource-accent: #3d6d32; --resource-bg: #f0f8e9; }
 .ultra-resource--dissertation { --resource-accent: #4c559a; --resource-bg: #f0f1ff; }
 .ultra-resource--podcast { --resource-accent: #1f6f78; --resource-bg: #e8f6f6; }
+.ultra-resource__subject { display: block; margin-bottom: 10px; color: #1a2851; font-weight: 800; }
+.ultra-media { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.ultra-media__card {
+  min-width: 0;
+  border: 1px solid var(--media-border);
+  border-radius: 12px;
+  padding: 20px;
+  background: var(--media-bg);
+  color: var(--media-accent);
+}
+.ultra-media__card--video { --media-accent: #293f7d; --media-bg: #eef2fc; --media-border: #c7d3ed; }
+.ultra-media__card--podcast { --media-accent: #176c5a; --media-bg: #eaf8f3; --media-border: #b9dfd2; }
+.ultra-media__icon { display: block; margin-bottom: 14px; }
+.ultra-media__title { margin: 0 0 10px; color: inherit; font-family: var(--font-body); font-size: 1.15rem; font-weight: 800; line-height: 1.25; }
+.ultra-media__card p { margin: 0; color: #37445e; font-size: .91rem; line-height: 1.55; }
+.ultra-inclusions__item li.ultra-resource--media { border: 0; padding: 12px 0; background: transparent; }
 .ultra-inclusions__action {
   display: flex;
   align-items: center;
@@ -368,11 +391,20 @@ html[data-theme="dark"] .ultra-card__split-btn { color: #e8d9a8; }
   overflow-wrap: anywhere;
 }
 .ultra-inclusions__ressources .ultra-resource__type { font-size: .83rem; }
+.ultra-inclusions__ressources li.ultra-resource--media {
+  grid-column: 1 / -1;
+  display: block;
+  border: 0;
+  padding: 0;
+  margin-bottom: 6px;
+  background: transparent;
+}
+.ultra-inclusions__ressources .ultra-resource__subject { display: none; }
 .ultra-inclusions__pied {
   display: flex;
   align-items: flex-end;
   gap: 17px;
-  margin-top: auto;
+  margin-top: 24px;
   border-top: 1px solid #dce3ee;
   padding-top: 24px;
 }
@@ -445,11 +477,20 @@ html[data-theme="dark"] .ultra-card__split-btn { color: #e8d9a8; }
   .ultra-inclusions__semestre { flex: 0 0 170px; scroll-snap-align: start; }
   .ultra-inclusions__contenu { padding: 19px 16px; }
   .ultra-inclusions__ressources { grid-template-columns: minmax(0, 1fr); gap: 9px; }
+  .ultra-media { grid-template-columns: minmax(0, 1fr); }
+  .ultra-media__card { padding: 18px; }
+  .ultra-offers { margin-top: 44px; padding-top: 28px; }
   .ultra-inclusions__pied { align-items: center; gap: 12px; }
   .ultra-inclusions__tarif { margin-right: auto; }
   .ultra-inclusions__achat { width: 100%; }
 }
 html[data-theme="dark"] .ultra-section { background: #111d35; }
+html[data-theme="dark"] .ultra-offers { border-color: #415371; }
+html[data-theme="dark"] .ultra-offers h2,
+html[data-theme="dark"] .ultra-resource__subject { color: #f6f3ea; }
+html[data-theme="dark"] .ultra-media__card--video { --media-accent: #bdcdf8; --media-bg: #253657; --media-border: #526b9c; }
+html[data-theme="dark"] .ultra-media__card--podcast { --media-accent: #94e5d0; --media-bg: #1b403b; --media-border: #3c776b; }
+html[data-theme="dark"] .ultra-media__card p { color: #d0d7e4; }
 html[data-theme="dark"] .ultra-card { background: #1b2945; border-color: #415371; }
 html[data-theme="dark"] .ultra-card__title,
 html[data-theme="dark"] .ultra-card__price { color: #f6f3ea; }
@@ -502,4 +543,5 @@ html[data-theme="dark"] .ultra-inclusions__semestre-meta,
 html[data-theme="dark"] .ultra-inclusions__matiere-meta,
 html[data-theme="dark"] .ultra-inclusions__pied { border-color: #415371; }
 html[data-theme="dark"] .ultra-inclusions__ressources li { background: var(--resource-bg, #223452); border-color: #415371; border-left-color: var(--resource-accent, #9cb4e2); color: #e7ecf5; }
+html[data-theme="dark"] .ultra-inclusions li.ultra-resource--media { border: 0; background: transparent; }
 html[data-theme="dark"] .ultra-inclusions__economie { background: #245d45; color: #e1ffed; }

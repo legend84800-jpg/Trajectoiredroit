@@ -97,7 +97,7 @@
       const autres = { nom: 'Autres ressources', couleur: COULEURS[6], ressources: [] };
       source.querySelectorAll('li.ultra-resource').forEach(li => {
         const type = li.querySelector('.ultra-resource__type');
-        const titre = li.textContent.slice(type.textContent.length).trim();
+        const titre = li.dataset.resourceTitle || li.textContent.slice(type.textContent.length).trim();
         const nom = classerRessource(semestre, titre);
         const matiere = matieres.find(item => item.nom === nom) || autres;
         matiere.ressources.push(li);
@@ -107,9 +107,6 @@
         source, id, semestre, matieres,
         libelle: source.querySelector('summary span:first-child').textContent.trim(),
         nombre: source.querySelector('summary span:last-child').textContent.trim(),
-        prix: carte.querySelector('.ultra-card__price').textContent.trim(),
-        total: carte.querySelector('.ultra-card__unit-total').textContent.trim(),
-        economie: carte.querySelector('.ultra-card__saving').textContent.trim(),
         produit: 'pack-ultra-' + semestre,
       };
     });
@@ -139,16 +136,8 @@
     const liste = element('ul', 'ultra-inclusions__ressources');
     const pied = element('div', 'ultra-inclusions__pied');
     const note = element('p', 'ultra-inclusions__autres');
-    const prix = element('div', 'ultra-inclusions__tarif');
-    const prixInitial = element('span', 'ultra-inclusions__prix-initial');
-    const ancienPrix = element('s');
-    prixInitial.append('Total à l’unité : ', ancienPrix);
-    const prixPack = element('strong', 'ultra-inclusions__prix-pack');
-    prix.append(prixInitial, prixPack);
-    const economie = element('span', 'ultra-inclusions__economie');
-    const achat = element('button', 'btn btn--primary ultra-inclusions__achat', 'Acheter ce pack');
-    achat.type = 'button';
-    pied.append(note, prix, economie, achat);
+    const achat = element('a', 'btn btn--primary ultra-inclusions__achat', 'Voir le prix et les options de paiement');
+    pied.append(note, achat);
     contenu.append(titreMatiere, metaMatiere, liste, pied);
     disposition.append(sommaire, contenu);
     experience.append(semestres, disposition);
@@ -169,7 +158,9 @@
       contenu.setAttribute('aria-labelledby', boutons[indice].id);
       titreMatiere.textContent = matiere.nom;
       metaMatiere.textContent = nombreRessources(matiere.ressources.length) + ' comprise' + (matiere.ressources.length > 1 ? 's' : '') + ' dans le Pack Ultra ' + pack.libelle;
-      liste.replaceChildren(...matiere.ressources.map(li => li.cloneNode(true)));
+      const medias = matiere.ressources.filter(li => li.classList.contains('ultra-resource--media'));
+      const documents = matiere.ressources.filter(li => !li.classList.contains('ultra-resource--media'));
+      liste.replaceChildren(...medias.concat(documents).map(li => li.cloneNode(true)));
       note.textContent = 'Le pack comprend aussi les ' + (pack.matieres.length - 1) + ' autres matières.';
     }
 
@@ -196,10 +187,7 @@
         bouton.addEventListener('click', () => afficherMatiere(position));
         matieres.append(bouton);
       });
-      ancienPrix.textContent = pack.total;
-      prixPack.textContent = pack.prix;
-      economie.textContent = pack.economie;
-      achat.dataset.tjdProduit = pack.produit;
+      achat.href = '#' + pack.produit;
       afficherMatiere(matiereActive[pack.semestre] || 0);
       if (modifierAdresse) history.replaceState(null, '', '#' + pack.id);
     }
