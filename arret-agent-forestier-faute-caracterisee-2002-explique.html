@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#1A2851">
+  <title>Arrêt du 13 novembre 2002 sur la faute caractérisée de l&#x27;agent forestier expliqué</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="L&#x27;arrêt du 13 novembre 2002 (Cass. crim., n° 01-88.643) approuve la condamnation d&#x27;un agent de l&#x27;ONF qui avait vu un tronc dangereux sans agir. Je t&#x27;explique les faits, la faute caractérisée de la loi Fauchon et ce qu&#x27;il faut citer en copie.">
+  <link rel="canonical" href="https://trajectoiredroit.com/arret-agent-forestier-faute-caracterisee-2002-explique.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="L&#x27;arrêt de 2002 sur l&#x27;agent forestier et la faute caractérisée, expliqué simplement">
+  <meta property="og:description" content="L&#x27;arrêt du 13 novembre 2002 expliqué pas à pas, de l&#x27;accident dans la forêt communale jusqu&#x27;à l&#x27;affaire AZF de 2019.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/cours-contrats-hero.jpg">
+  <meta property="og:url" content="https://trajectoiredroit.com/arret-agent-forestier-faute-caracterisee-2002-explique.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "L'arrêt du 13 novembre 2002 sur la faute caractérisée de l'agent forestier, expliqué simplement",
+        "description": "L'arrêt rendu le 13 novembre 2002 par la chambre criminelle de la Cour de cassation (pourvoi n° 01-88.643), expliqué pas à pas, des faits jusqu'à l'affaire AZF de 2019 sur la faute caractérisée.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-10-15",
+        "dateModified": "2026-10-15",
+        "image": "https://trajectoiredroit.com/assets/cours-contrats-hero.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": {
+            "@type": "EducationalOrganization",
+            "name": "TrajectoireDroit"
+          }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+          }
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Faute caractérisée, causalité indirecte, droit pénal"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://trajectoiredroit.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://trajectoiredroit.com/blog.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Arrêt du 13 novembre 2002, agent forestier",
+            "item": "https://trajectoiredroit.com/arret-agent-forestier-faute-caracterisee-2002-explique.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Que dit l'arrêt du 13 novembre 2002 en une phrase ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La chambre criminelle de la Cour de cassation approuve la condamnation pour homicide involontaire d'un agent technique de l'Office national des forêts qui avait constaté le danger d'un tronc d'arbre en équilibre instable et n'avait pris aucune mesure, parce que son inaction constitue une faute caractérisée."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Pourquoi la causalité indirecte exige-t-elle une faute plus grave qu'une simple imprudence ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La loi du 10 juillet 2000 a voulu réduire les poursuites contre les décideurs publics, sans affaiblir la répression en matière de sécurité routière et d'accidents du travail. C'est pourquoi l'alinéa 4 de l'article 121-3 exige, pour l'auteur indirect, une violation manifestement délibérée d'une obligation de sécurité ou une faute caractérisée, alors qu'une simple imprudence suffit pour l'auteur direct."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quelle différence entre la faute délibérée et la faute caractérisée ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La faute délibérée est la violation manifestement délibérée d'une obligation particulière de prudence ou de sécurité prévue par la loi ou le règlement, c'est-à-dire le non-respect conscient d'une règle écrite qui impose un comportement déterminé. La faute caractérisée se reconnaît en revanche à la gravité de la défaillance et au risque d'une particulière gravité que l'auteur ne pouvait ignorer, même s'il n'a enfreint volontairement aucune règle écrite. Dans l'affaire de l'agent forestier, les juges retiennent cette seconde faute."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cet arrêt est-il toujours d'actualité ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, car l'alinéa 4 de l'article 121-3 du Code pénal conserve la rédaction de la loi du 10 juillet 2000 que l'arrêt applique. De plus, le 17 décembre 2019, dans l'affaire AZF, la Cour de cassation a repris la notion de faute caractérisée et jugé qu'elle peut résulter de l'accumulation de plusieurs manquements."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment citer cet arrêt en copie ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tu cites « Cass. crim., 13 novembre 2002, n° 01-88.643 », publié au Bulletin criminel (Bull. crim. 2002, n° 204). Tu précises qu'il s'agit d'un rejet et que la cour d'appel de Lyon avait statué le 8 novembre 2001."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=75daa2b3">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d’arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 549,64 €, 53 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-53 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">549,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 409,74 €, 44 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-44 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">409,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 28 ressources, 229 € au lieu de 399,72 €, 43 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-43 %</span></span>
+                    <span class="megamenu__pack-tile-meta">28 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,72 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 27 ressources, 209 € au lieu de 369,73 €, 43 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-43 %</span></span>
+                    <span class="megamenu__pack-tile-meta">27 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">369,73 €</span><span class="megamenu__pack-tile-price">209 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 37 ressources, 299 € au lieu de 519,63 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">37 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">519,63 €</span><span class="megamenu__pack-tile-price">299 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span><span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Pack 10 séances <em>· -14 %</em></strong><small>890 € · 89 €/h</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>Stage en direct
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <div class="stage-teaser">
+              <button type="button" class="dropdown__item stage-teaser__trigger" aria-expanded="false" aria-controls="stageTeaserPanel">
+                <span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg></span>
+                <span class="stage-teaser__main">
+                  <strong>Stage de méthode en direct</strong>
+                  <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+                  <span class="stage-teaser__countdown"></span>
+                </span>
+              </button>
+              <div class="stage-teaser__panel" id="stageTeaserPanel">
+                <p>Trois séances en direct, 8 h au total pour 176 €, pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un sujet travaillé à chaque fois. La prochaine session a lieu les 27, 28 et 29 octobre, pendant les vacances de la Toussaint. Plus que 3 places.</p>
+              </div>
+            </div>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="stage-methode.html">Voir toutes les infos et réserver →</a>
+          </div>
+        </div>
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+    <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
+      <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>
+      <span class="mobile-nav__stage-main">
+        <span class="mobile-nav__stage-title">Stage en direct</span>
+        <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+        <span class="stage-teaser__countdown"></span>
+      </span>
+    </a>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO ARTICLE -->
+    <article>
+    <section class="article-hero">
+      <div class="container container--narrow">
+        <nav class="article-breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/">Accueil</a> · <a href="blog.html">Blog</a> · <span>Faute caractérisée</span>
+        </nav>
+        <div class="post-meta">
+          <span class="post-meta__cat">Droit pénal · L2</span>
+          <span class="post-meta__dot"></span>
+          <span>21 min de lecture</span>
+          <span class="post-meta__dot"></span>
+          <span>Mis à jour le 15 octobre 2026</span>
+        </div>
+        <h1 class="article-hero__title">L&#x27;arrêt du 13 novembre 2002 sur la faute caractérisée de l&#x27;agent forestier, expliqué simplement</h1>
+        <p class="article-hero__standfirst">Le 13 novembre 2002, la chambre criminelle de la Cour de cassation (pourvoi n° 01-88.643) rejette le pourvoi d&#x27;un agent technique de l&#x27;Office national des forêts condamné pour homicide involontaire. Cet agent avait constaté qu&#x27;un tronc d&#x27;arbre risquait de rouler et n&#x27;avait rien fait pendant plusieurs heures, jusqu&#x27;à la mort d&#x27;un enfant de huit ans. La Cour approuve les juges d&#x27;appel d&#x27;y voir une faute caractérisée, qui suffit à le condamner alors qu&#x27;il n&#x27;a pas causé directement le décès.</p>
+        <div class="article-author">
+          <img class="article-author__avatar" src="assets/julien-sm.webp" alt="Julien, professeur de droit">
+          <div>
+            <div class="article-author__name">Julien</div>
+            <div class="article-author__role">Master II de droit pénal, Panthéon-Assas · Major de promo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:36px">
+      <div class="container container--narrow">
+
+        <!-- SOMMAIRE -->
+        <nav class="toc" aria-label="Sommaire">
+          <p class="toc__title">Dans cet article</p>
+          <ol>
+            <li><a href="#essentiel">Que dit l&#x27;arrêt du 13 novembre 2002 sur l&#x27;agent forestier ?</a></li>
+            <li><a href="#faits">Les faits, un tronc d&#x27;arbre en équilibre instable dans une forêt communale</a></li>
+            <li><a href="#procedure">La procédure et le pourvoi d&#x27;Alain X...</a></li>
+            <li><a href="#probleme">Le problème de droit</a></li>
+            <li><a href="#solution">La solution de la chambre criminelle</a></li>
+            <li><a href="#sens">Pourquoi la Cour approuve-t-elle la condamnation de l&#x27;agent technique ?</a></li>
+            <li><a href="#portee">Qu&#x27;apporte l&#x27;arrêt du 13 novembre 2002 au droit pénal ?</a></li>
+            <li><a href="#critique">Les limites et les critiques de cette solution</a></li>
+            <li><a href="#copie">Comment utiliser l&#x27;arrêt de l&#x27;agent forestier en cas pratique et en dissertation ?</a></li>
+            <li><a href="#erreurs">Les confusions fréquentes autour de cet arrêt</a></li>
+            <li><a href="#faq">Questions fréquentes</a></li>
+          </ol>
+        </nav>
+
+        <div class="prose">
+
+          <h2 id="essentiel">Que dit l'arrêt du 13 novembre 2002 sur l'agent forestier ?</h2>
+          <p>L'arrêt du 13 novembre 2002 montre à quelle condition on peut condamner pour <strong>homicide involontaire</strong> une personne qui n'a pas causé directement le décès. Il faut une <strong>faute caractérisée</strong>, et la Cour de cassation approuve les juges d'avoir vu une telle faute dans l'inaction d'un agent forestier qui avait remarqué le danger et n'avait pris aucune mesure.</p>
+          <p>Un homicide involontaire est un décès que personne n'a voulu, causé par une imprudence ou une négligence. Depuis la loi Fauchon du 10 juillet 2000, l'article 121-3 du Code pénal distingue deux situations selon le <strong>lien de causalité</strong>, c'est-à-dire le lien entre le comportement de l'auteur et le dommage. Quand l'auteur a causé le dommage directement, par exemple le conducteur qui renverse un piéton, une simple faute d'imprudence suffit pour le condamner. Quand il a seulement créé la situation qui a permis le dommage, ou n'a pas pris les mesures qui l'auraient évité, la causalité est <strong>indirecte</strong>, et le texte exige alors une faute plus grave, que l'on appelle une <strong>faute qualifiée</strong>.</p>
+          <p>Cette faute plus grave prend deux formes. La première est la violation manifestement délibérée d'une obligation particulière de prudence ou de sécurité prévue par la loi ou le règlement, c'est-à-dire le non-respect conscient d'une règle écrite qui impose un comportement déterminé. La seconde est la faute caractérisée, que l'alinéa 4 décrit comme « une faute caractérisée et qui exposait autrui à un risque d'une particulière gravité qu'elles ne pouvaient ignorer », le mot « elles » désignant les personnes physiques. Dans cette affaire, les juges retiennent la seconde forme, car l'arrêt parle d'une « faute caractérisée ».</p>
+
+          <div class="key-callout">
+            <div class="key-callout__label"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg>La règle à garder en tête</div>
+            <p>La chambre criminelle approuve la cour d'appel de Lyon d'avoir appliqué l'alinéa 4 de l'article 121-3 à un agent de surveillance qui avait constaté un danger sans prendre aucune mesure. L'arrêt fournit donc un exemple de faute caractérisée commise par inaction, que tu cites à côté du texte du Code pénal. Il rejette le pourvoi, c'est-à-dire qu'il laisse en place la condamnation de l'agent à cinq mois d'emprisonnement avec sursis, une peine dont l'exécution est suspendue.</p>
+          </div>
+
+          <div class="case-timeline">
+            <div class="case-timeline__step">
+              <div class="case-timeline__dot"></div>
+              <div class="case-timeline__date">8 avril 1996</div>
+              <div class="case-timeline__label">L'accident</div>
+              <p class="case-timeline__text">Dans une forêt communale, un tronc de 12,60 mètres bascule et écrase un enfant de huit ans.</p>
+            </div>
+            <div class="case-timeline__step">
+              <div class="case-timeline__dot"></div>
+              <div class="case-timeline__date">10 juillet 2000</div>
+              <div class="case-timeline__label">La loi Fauchon</div>
+              <p class="case-timeline__text">Le législateur exige une faute plus grave pour condamner celui qui n'a causé le dommage qu'indirectement.</p>
+            </div>
+            <div class="case-timeline__step">
+              <div class="case-timeline__dot"></div>
+              <div class="case-timeline__date">8 novembre 2001, Lyon</div>
+              <div class="case-timeline__label">La condamnation</div>
+              <p class="case-timeline__text">La cour d'appel condamne l'agent technique et l'artisan à cinq mois d'emprisonnement avec sursis chacun.</p>
+            </div>
+            <div class="case-timeline__step">
+              <div class="case-timeline__dot"></div>
+              <div class="case-timeline__date">13 novembre 2002</div>
+              <div class="case-timeline__label">Le rejet du pourvoi</div>
+              <p class="case-timeline__text">La chambre criminelle rejette les pourvois et confirme la condamnation de l'agent technique.</p>
+            </div>
+          </div>
+
+          <!-- vague2:encart-produit -->
+<div class="article-produit-inline">
+  <img class="article-produit-inline__thumb" src="assets/apercus/vignettes/penal-l2-s1.webp" width="60" height="80" alt="Aperçu de la fiche Droit pénal L2" loading="lazy">
+  <div class="article-produit-inline__body">
+    <p class="article-produit-inline__label">Fiche complète</p>
+    <p class="article-produit-inline__title">Droit pénal L2</p>
+    <p class="article-produit-inline__meta">Tout le cours en PDF, dont le chapitre sur les infractions non intentionnelles et la loi Fauchon · <strong>14,99 €</strong></p>
+  </div>
+  <div class="article-produit-inline__actions">
+    <button type="button" class="apercu-link" data-apercu='["assets/apercus/penal-l2-s1-zoom.webp", "assets/apercus/penal-l2-s1-1.webp", "assets/apercus/penal-l2-s1-2.webp"]' data-apercu-title="Droit pénal · L2 S1 · Fiche complète" data-apercu-price="14,99 €" data-apercu-cta="fiche-penal-l2-s1">Voir un aperçu</button>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-penal-l2-s1">Acheter · 14,99 €</button>
+  </div>
+</div>
+
+          <h2 id="faits">Les faits, un tronc d'arbre en équilibre instable dans une forêt communale</h2>
+          <p>Le lundi 8 avril 1996, jour férié, un couple se rend l'après-midi dans une forêt communale avec six enfants, dont son fils de huit ans. Ce couple est titulaire d'un droit d'<strong>affouage</strong>, c'est-à-dire du droit, pour les habitants d'une commune, de prendre du bois de chauffage dans la forêt communale. Les lots de bois venaient d'être distribués aux bénéficiaires.</p>
+          <p>Pendant que les adultes s'occupent de leurs affaires, quatre enfants vont jouer à quelques dizaines de mètres, sur un tronc d'arbre abattu long de 12,60 mètres. Ce tronc, que l'on appelle une <strong>grume</strong>, repose en oblique sur deux autres grumes posées au sol, parallèlement l'une à l'autre. Il bascule, roule sur environ cinq mètres en contrebas et écrase le garçon, qui meurt dans la soirée.</p>
+          <p>Deux hommes sont poursuivis pour homicide involontaire. <strong>Michel Y...</strong> est un artisan à qui l'Office national des forêts (ONF) avait confié des travaux de bûcheronnage, c'est-à-dire l'abattage des arbres, et de débardage, c'est-à-dire la sortie du bois hors de la coupe. On lui reproche d'avoir mal disposé les trois grumes. <strong>Alain X...</strong> est agent technique de l'ONF, chargé par la commune de l'exploitation de la forêt. On lui reproche en revanche de n'avoir pris aucune précaution et de n'avoir averti personne du danger.</p>
+          <p>Les juges retiennent plusieurs faits sur Alain X... D'après l'article 4 du cahier des clauses générales du contrat conclu avec l'artisan, il est « responsable de la surveillance de la coupe ». Il est aussi chargé du cubage, c'est-à-dire de la mesure du volume du bois. Le jour même, vers midi, il constate que la grume n° 238 est dangereuse, et il recommande à la personne qui l'accompagne de ne pas rester en aval du tronc, c'est-à-dire en contrebas. Il sait pourtant que les lots d'affouage viennent d'être distribués et que certains bénéficiaires peuvent venir ramasser du bois ce jour férié. Malgré ce constat, il ne prend aucune disposition.</p>
+          <p>La cour d'appel ajoute, d'après les motifs que reproduit le moyen annexé à l'arrêt (le texte des arguments du pourvoi), que cette inaction a duré plus de cinq heures et qu'Alain X... aurait pu rejoindre son service pour confectionner une pancarte ou un panneau et le mettre en place. Les juges trouvent aussi surprenant qu'un professionnel n'ait jamais songé à se munir de cartons et de marqueurs pour signaler un danger sur-le-champ.</p>
+
+          <h2 id="procedure">La procédure et le pourvoi d'Alain X...</h2>
+          <p>Le 8 novembre 2001, la cour d'appel de Lyon (4e chambre) déclare les deux hommes coupables d'homicide involontaire et condamne chacun à cinq mois d'emprisonnement avec sursis. Sur les intérêts civils, c'est-à-dire les indemnités dues à la famille de l'enfant, la même décision déclare aussi Alain X... entièrement responsable, avec Michel Y..., des conséquences dommageables de l'accident.</p>
+          <p>Les deux hommes forment un pourvoi en cassation, c'est-à-dire qu'ils demandent à la Cour de cassation de vérifier si les juges de Lyon ont bien appliqué la loi. Michel Y... ne présente aucun moyen, c'est-à-dire aucun argument de droit, et la Cour ne discute donc que celui d'Alain X... Ce moyen unique adresse trois reproches à la cour d'appel.</p>
+          <ul>
+            <li><strong>Une contradiction.</strong> Les juges ont écrit que tout profane, et à plus forte raison un professionnel, voyait aisément le danger de la grume, puis que les lieux ne présentaient aucun danger. Selon le pourvoi, ces deux phrases s'excluent.</li>
+            <li><strong>Un danger évident.</strong> Si le danger était évident, tout profane pouvait le connaître, y compris les parents, et Alain X... n'avait donc pas à le signaler.</li>
+            <li><strong>Une faute des parents.</strong> Face à une grume en équilibre instable, les parents devaient empêcher leurs enfants de jouer dessus, et leur défaillance serait à l'origine de l'accident.</li>
+          </ul>
+
+          <h2 id="probleme">Le problème de droit</h2>
+          <p><strong>Un agent de surveillance qui avait constaté le danger d'un tronc instable sans prendre aucune mesure, alors que la chute du tronc a une autre cause directe, commet-il une faute caractérisée au sens de l'article 121-3, alinéa 4, du Code pénal, de sorte qu'il peut être condamné pour homicide involontaire ?</strong></p>
+
+          <h2 id="solution">La solution de la chambre criminelle</h2>
+          <p>La chambre criminelle rejette les pourvois. Elle juge que la cour d'appel a, « sans se contredire », justifié sa décision au regard des articles 121-3, alinéa 4, et 221-6 du Code pénal. L'article 221-6 définit l'homicide involontaire, et l'article 121-3 fixe la faute exigée.</p>
+
+          <div class="citation-box">
+            <p class="citation-box__label">Le passage où la Cour approuve le raisonnement des juges de Lyon</p>
+            <blockquote>« Attendu que, pour déclarer Alain X... coupable des faits reprochés, les juges retiennent qu'il était responsable de la surveillance de la coupe ; que, chargé des opérations de cubage, il avait constaté le 8 avril, vers midi, le danger que représentait la grume en équilibre instable et recommandé à la personne qui l'accompagnait de ne pas rester en aval du tronc ; que, malgré ce constat, et bien que sachant que les lots d'affouage venaient d'être distribués et que certains bénéficiaires profiteraient du 8 avril, jour férié, pour ramasser du bois, il n'avait pris aucune disposition ; que les juges en déduisent que l'inertie du prévenu constitue, de la part d'un agent technique forestier, une faute caractérisée dont il n'ignorait pas qu'elle exposait autrui à un risque d'une particulière gravité [...] Attendu qu'en l'état de ces énonciations procédant de son appréciation souveraine, la cour d'appel a, sans se contredire, justifié sa décision au regard des articles 121-3, alinéa 4, et 221-6 du Code pénal. »</blockquote>
+            <cite>Cass. crim., 13 novembre 2002, n° 01-88.643, publié au Bulletin</cite>
+          </div>
+
+          <p>Dans cette affaire, la Cour de cassation s'en tient à un contrôle de la motivation. Elle vérifie que les juges de Lyon ont appuyé leur décision sur des faits constatés et sur les bons textes. L'appréciation des faits reste à ces juges, ce que l'arrêt appelle leur « appréciation souveraine ».</p>
+
+          <h2 id="sens">Pourquoi la Cour approuve-t-elle la condamnation de l'agent technique ?</h2>
+          <p>La Cour approuve la condamnation parce que l'agent technique, auteur indirect du dommage, a commis une faute caractérisée en restant inactif alors qu'il connaissait le danger. Ce raisonnement se déroule en quatre temps. Les trois premiers suivent l'ordre de l'article 121-3, et le dernier traite l'argument tiré de la faute des parents.</p>
+          <p><strong>Premier temps, le lien de causalité.</strong> D'après les motifs de la cour d'appel que reproduit le moyen, la cause directe de la mort est le renversement de la grume, que ni l'artisan ni l'agent technique n'ont provoqué directement. Tous deux ont pourtant contribué au dommage. L'artisan a mal disposé les grumes, donc il a « créé ou contribué à créer la situation qui a permis la réalisation du dommage ». L'agent technique n'a rien fait pour signaler le danger ou le supprimer, donc il n'a « pas pris les mesures permettant de l'éviter ». Chacun des deux hommes illustre ainsi l'une des deux hypothèses de l'alinéa 4. La causalité est indirecte, et une simple imprudence ne suffit plus pour les condamner.</p>
+          <p>Le même jour, la chambre criminelle a jugé une autre affaire où la causalité était au contraire directe (pourvoi n° 01-88.462). Une pédiatre avait pris en charge un nouveau-né après un accouchement aux forceps, et les juges de Grenoble avaient relevé une faute en relation de causalité directe avec le décès de l'enfant. La Cour a rejeté le pourvoi en relevant que la pédiatre n'avait pas accompli les « diligences normales » que sa mission exigeait, c'est-à-dire les démarches qu'on attend normalement d'un médecin dans sa situation. Cette formule est celle de l'alinéa 3, qui définit la faute simple. La pédiatre pouvait donc être condamnée pour une faute simple, alors que l'agent forestier ne pouvait l'être que pour une faute plus grave.</p>
+          <p><strong>Deuxième temps, la faute exigée.</strong> Puisque la causalité est indirecte, il faut soit la violation manifestement délibérée d'une obligation particulière de sécurité prévue par la loi ou le règlement, soit une faute caractérisée. Les juges choisissent la seconde voie.</p>
+          <p><strong>Troisième temps, la faute caractérisée.</strong> Cette faute a deux éléments, la gravité de la défaillance et la connaissance du risque, que le texte exprime par les mots « qu'elles ne pouvaient ignorer ».</p>
+          <ul>
+            <li><strong>La gravité de la défaillance.</strong> Alain X... est chargé de surveiller la coupe et il reste inactif pendant plus de cinq heures, alors que la cour d'appel relève qu'il pouvait confectionner une pancarte pour signaler le danger. Selon le passage cité plus haut, « l'inertie » d'un agent technique forestier constitue une faute caractérisée, et la Cour approuve cette déduction des juges.</li>
+            <li><strong>La connaissance du risque.</strong> Il avait en effet lui-même constaté le danger et mis en garde la personne qui l'accompagnait. La cour d'appel y voit la preuve qu'il avait conscience du risque, c'est-à-dire du risque d'être écrasé par un tronc de plusieurs mètres. De plus, il savait que les lots venaient d'être distribués et que des habitants viendraient en forêt ce jour férié.</li>
+          </ul>
+          <p><strong>Quatrième temps, la faute des parents.</strong> Le pourvoi soutient que les parents devaient surveiller leurs enfants et que les juges se contredisent. La Cour écarte pourtant ce reproche en s'appuyant sur l'« appréciation souveraine » des juges de Lyon. Ces juges ont relevé que les parents ignoraient l'existence du tas de grumes et se trouvaient au bord d'un chemin sans danger en temps normal. Les parents n'avaient donc pas à surveiller leurs enfants à chaque instant, en l'absence de travaux ou de signalisation de danger.</p>
+          <p>La Cour répond à la contradiction par les seuls mots « sans se contredire ». La lecture des motifs montre ensuite que les deux phrases parlent de deux choses différentes. La première concerne la grume, dont un professionnel voyait le danger. La seconde concerne en revanche le chemin, qui paraissait sans risque à des parents qui ne savaient pas qu'un tronc instable se trouvait à côté.</p>
+
+          <!-- vague2:encart-lead -->
+          <div class="inline-capture">
+            <p class="inline-capture__title">Tu retiens mal les arrêts de droit pénal ?</p>
+            <p class="inline-capture__text">Mon guide gratuit « Réviser le droit sans s'épuiser » explique comment réviser un arrêt en le reliant à la règle qu'il applique, afin de le retrouver facilement en copie. Tu le reçois par email, contre ton adresse.</p>
+            <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST">
+              <input type="email" name="email" required placeholder="ton@email.com" aria-label="Email">
+              <input type="hidden" name="_subject" value="Lead magnet (article agent forestier faute caracterisee)">
+              <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+              <button class="btn btn--primary" type="submit">Recevoir mon guide →</button>
+            </form>
+          </div>
+
+          <h2 id="portee">Qu'apporte l'arrêt du 13 novembre 2002 au droit pénal ?</h2>
+          <p>L'arrêt donne un exemple de faute caractérisée commise par une personne qui surveille un lieu ou une activité et qui ne fait rien malgré un danger qu'elle a constaté. Il montre aussi que la loi Fauchon laisse subsister la condamnation de celui qui connaît le risque et n'agit pas.</p>
+          <p>La loi du 10 juillet 2000 a été votée pour réduire les poursuites dirigées contre les décideurs publics, comme les élus locaux, sans affaiblir la répression en matière de sécurité routière et d'accidents du travail. Selon les magistrats de la chambre criminelle Bruno Cotte et Dominique Guihal, elle a remplacé l'<strong>équivalence des conditions</strong> par une exigence de faute qualifiée pour l'auteur indirect. Dans l'ancienne conception, toute action ou omission sans laquelle l'accident ne serait pas arrivé engageait la responsabilité de son auteur, même de loin.</p>
+          <p>Le texte appliqué dans cette affaire est postérieur à l'accident de 1996, car la loi a été votée en 2000, avant l'arrêt d'appel de 2001. L'article 112-1 du Code pénal permet cette application, puisque, d'après lui, une loi nouvelle moins sévère s'applique aux faits commis avant son entrée en vigueur, tant qu'ils n'ont pas été jugés définitivement. Le sommaire précise d'ailleurs que les articles 121-3 et 221-6 sont appliqués dans leur rédaction issue de la loi du 10 juillet 2000. Ce sommaire est le court résumé qui accompagne l'arrêt dans le Bulletin criminel, le recueil officiel des arrêts publiés de la chambre criminelle.</p>
+          <p>Bruno Cotte et Dominique Guihal rangent l'arrêt parmi les décisions qui traitent comme auteurs indirects les agents de surveillance et de contrôle. Ils citent à côté de lui l'arrêt du 15 octobre 2002, qui concerne un instructeur de compagnie aérienne ayant déclaré apte au pilotage un commandant de bord dont il connaissait l'insuffisance professionnelle. Dans les deux cas, la personne poursuivie connaissait le danger et n'a pas agi en conséquence.</p>
+          <p>La Cour de cassation a prolongé cette logique ensuite. Le 17 décembre 2019, dans l'affaire de l'explosion de l'usine AZF à Toulouse (pourvoi n° 17-87.465), elle juge que la cour d'appel « n'avait pas à rechercher si chaque manquement pris individuellement exposait autrui à un risque d'une particulière gravité que le prévenu ne pouvait ignorer ». Une faute caractérisée peut donc résulter de l'accumulation de plusieurs manquements, sans qu'il faille démontrer que chacun, pris isolément, expose à un tel risque. Dans la même décision, elle écarte l'argument selon lequel l'alinéa 4 de l'article 121-3 serait trop vague, car ce texte « est rédigé en termes suffisamment clairs et précis pour que son interprétation se fasse sans risque d'arbitraire ».</p>
+          <p>Le texte reste applicable. Le Code pénal en vigueur reproduit toujours l'alinéa 4 dans la rédaction de la loi du 10 juillet 2000. L'article 221-6 punit aujourd'hui l'homicide involontaire de trois ans d'emprisonnement et de 45 000 euros d'amende, et de cinq ans et 75 000 euros en cas de violation manifestement délibérée d'une obligation particulière de prudence ou de sécurité.</p>
+          <p>Ma page sur <a href="la-responsabilite-penale-des-personnes-morales.html">la responsabilité pénale des personnes morales</a> explique pourquoi une société peut être condamnée pour une simple négligence alors que son dirigeant ne répond que d'une faute qualifiée. Ma fiche sur <a href="arret-cousinet-1967-explique.html">l'arrêt Cousinet</a> traite une autre infraction involontaire, celle d'un homme qui blesse sans le vouloir en repoussant un agresseur ivre, et la Cour juge que la légitime défense ne peut pas la justifier.</p>
+
+          <h2 id="critique">Les limites et les critiques de cette solution</h2>
+          <p>La première critique porte sur l'inégalité des effets de la loi de 2000. Lors d'un colloque organisé au Sénat en 2010, Henri Blondet, conseiller à la chambre criminelle, constate que les décideurs publics paraissent continuer à bénéficier des effets de la loi, alors que la pression pénale reste constante pour les automobilistes et les dirigeants d'entreprise, comme pour les professionnels de santé. L'agent technique de cette affaire occupe un poste de terrain, alors que la loi visait surtout les décideurs. Il reste pourtant un auteur indirect. La loi de 2000 exige donc aussi pour lui une faute plus grave qu'une imprudence ordinaire, et les juges la trouvent dans l'inaction prolongée d'un agent de surveillance qui connaissait le risque.</p>
+          <p>La condition de connaissance du risque pose ensuite une difficulté de preuve. Bruno Cotte et Dominique Guihal relèvent que la formule selon laquelle l'auteur ne pouvait ignorer le risque se lit de deux façons. Soit la connaissance est exigée de la personne en raison de ses fonctions, soit elle doit être démontrée par des signalements ou des avertissements. Dans cette affaire, les deux lectures mènent au même résultat, car l'agent surveillait la coupe et avait en plus mis lui-même en garde la personne qui l'accompagnait. L'arrêt laisse donc sans réponse la question d'un agent de surveillance qui n'aurait rien constaté du tout.</p>
+          <p>Robert Finielz, avocat général à la chambre criminelle, note dans le même colloque que cette condition aurait pu permettre au chef d'entreprise d'échapper à la condamnation. La chambre criminelle a pourtant réaffirmé le 12 janvier 2010 que la connaissance du risque découle des fonctions du chef d'entreprise et se déduit du seul fait qu'il a commis la faute reprochée. J'en tire que, pour le chef d'entreprise, la condition de connaissance se confond avec la faute elle-même, et qu'elle ne permet donc plus d'échapper à la condamnation.</p>
+          <p>La frontière entre cause directe et cause indirecte soulève enfin des débats. Le professeur Yves Mayaud écrit en 2002, dans la Revue de science criminelle, que cette distinction « ne relève pas toujours de l'évidence ». Bruno Cotte et Dominique Guihal décrivent en effet deux conceptions de la causalité directe. La première, que retient la circulaire du 11 octobre 2000 (un texte du ministère de la Justice qui explique la loi aux magistrats), limite la causalité directe à la personne qui a elle-même frappé la victime ou contrôlé l'objet qui l'a frappée. La seconde, la causalité adéquate, que la jurisprudence admet également, retient le facteur qui contenait en lui-même, de manière prévisible, la probabilité du résultat.</p>
+          <p>Un arrêt du 29 avril 2003 (pourvoi n° 01-88.592) donne un exemple de causalité adéquate. Le conducteur d'un poids lourd roule trop vite et perd le contrôle de son véhicule. Des sacs mal arrimés s'éventrent et leur poudre forme un nuage qui aveugle d'autres automobilistes, d'où une série de collisions. La chambre criminelle y a vu une conséquence directe de l'excès de vitesse. L'affaire de la forêt communale est au contraire un cas simple, puisque la cour d'appel identifie clairement la cause directe, le renversement de la grume.</p>
+          <p>Je n'ai pas trouvé de note de doctrine consacrée à cet arrêt seul, et les analyses de cette partie viennent de bilans de la jurisprudence sur la loi Fauchon. Leurs auteurs citent l'arrêt comme exemple, sans le commenter longuement.</p>
+
+          <h2 id="copie">Comment utiliser l'arrêt de l'agent forestier en cas pratique et en dissertation ?</h2>
+          <p><strong>Dans un cas pratique.</strong> Tu cites cet arrêt quand l'énoncé met en scène une personne chargée de surveiller ou d'entretenir un lieu, qui a constaté un danger sans agir, puis une victime qui meurt ou qui est blessée. Le raisonnement part de l'article 221-6, qui définit l'homicide involontaire et renvoie à l'article 121-3. Il établit ensuite le lien de causalité. La circulaire du 11 octobre 2000 décrit ce lien comme direct quand la personne a elle-même frappé ou heurté la victime, ou contrôlé le mouvement de l'objet qui l'a frappée. Elle le décrit comme indirect quand la personne a seulement créé la situation ou n'a pas pris les mesures qui l'auraient évité.</p>
+          <p>Si la causalité est indirecte, tu cherches d'abord une obligation particulière de sécurité, prévue par la loi ou le règlement, que la personne a violée de façon manifestement délibérée. À défaut, tu examines la faute caractérisée et tu cites l'arrêt du 13 novembre 2002, qui montre qu'un agent de surveillance ayant constaté le danger et resté inactif commet cette faute. Pour la peine, l'article 221-6 la porte à cinq ans d'emprisonnement et 75 000 euros d'amende en cas de violation manifestement délibérée.</p>
+          <p><strong>Dans une dissertation.</strong> L'arrêt sert d'illustration pour un sujet sur la responsabilité pénale en cas de faute non intentionnelle, car il montre la loi de 2000 appliquée à l'accident de la forêt communale. Yves Mayaud écrit en 2005, dans la Revue de science criminelle, que « le lien de causalité est devenu, depuis la loi du 10 juillet 2000, le noeud gordien de la responsabilité pénale en matière non intentionnelle ». Autrement dit, la question de la causalité est devenue le point le plus difficile à démêler dans ces affaires. Les actes du colloque du Sénat tenu en 2006 citent ce passage. Tu peux construire un plan en deux temps, d'abord la graduation des fautes selon la causalité que la loi de 2000 a instaurée, puis la répression qui subsiste pour celui qui connaît le risque, avec l'arrêt de 2002 et l'arrêt AZF de 2019.</p>
+          <p>Tu trouves la méthode complète sur ma page sur <a href="methode-cas-pratique.html">le cas pratique</a> et sur celle de <a href="methode-dissertation-juridique.html">la dissertation juridique</a>. Ma page sur <a href="methode-fiche-arret.html">la fiche d'arrêt</a> explique l'étape qui précède toujours le raisonnement rédigé. Tu peux aussi retrouver les autres décisions de la matière dans <a href="fiche-arrets.html">toutes les fiches d'arrêt</a>.</p>
+
+          <h2 id="erreurs">Les confusions fréquentes autour de cet arrêt</h2>
+          <ul>
+            <li><strong>Confondre cet arrêt avec celui du même jour.</strong> Le 13 novembre 2002, la chambre criminelle a rendu un autre arrêt (n° 01-88.462) sur une pédiatre, avec une causalité directe. Les deux portent la même date, donc vérifie le numéro de pourvoi avant de citer, celui de l'agent forestier étant le n° 01-88.643.</li>
+            <li><strong>Écrire que l'agent a causé directement la mort.</strong> La cause directe est le renversement de la grume, et la Cour approuve un raisonnement en causalité indirecte, qui impose une faute qualifiée.</li>
+            <li><strong>Croire qu'avoir vu le danger suffit.</strong> La faute caractérisée suppose une défaillance d'une certaine gravité, ici plus de cinq heures d'inaction d'un agent de surveillance qui disposait de moyens simples d'après la cour d'appel, et un risque d'une particulière gravité que l'auteur ne pouvait ignorer. La conscience du danger est l'un des deux éléments.</li>
+            <li><strong>Présenter l'arrêt comme celui qui crée la faute caractérisée.</strong> La notion vient de la loi du 10 juillet 2000, et l'arrêt de 2002 l'applique à un agent de surveillance.</li>
+            <li><strong>Citer comme attendu le sommaire du Bulletin.</strong> Un attendu est un paragraphe de la décision qui commence par « Attendu que ». Le sommaire qui accompagne l'arrêt écrit notamment que l'agent « a causé indirectement le décès de la victime en ne prenant pas les mesures permettant d'éviter le dommage ». Ce sommaire résume l'arrêt après coup, c'est pourquoi le passage à citer est celui de la partie consacrée à la solution, qui reproduit le texte des juges.</li>
+            <li><strong>Oublier la date du texte appliqué.</strong> La loi de 2000, moins sévère que l'ancien texte, s'applique à un accident de 1996, en vertu de l'article 112-1 du Code pénal.</li>
+          </ul>
+
+          <h2 id="faq">Questions fréquentes</h2>
+          <div class="accordion">
+            <details class="accordion__item" open><summary><h3>Que dit l&#x27;arrêt du 13 novembre 2002 en une phrase ?</h3></summary><div class="accordion__body">La chambre criminelle de la Cour de cassation approuve la condamnation pour homicide involontaire d&#x27;un agent technique de l&#x27;Office national des forêts qui avait constaté le danger d&#x27;un tronc d&#x27;arbre en équilibre instable et n&#x27;avait pris aucune mesure, parce que son inaction constitue une faute caractérisée.</div></details>
+            <details class="accordion__item"><summary><h3>Pourquoi la causalité indirecte exige-t-elle une faute plus grave qu&#x27;une simple imprudence ?</h3></summary><div class="accordion__body">La loi du 10 juillet 2000 a voulu réduire les poursuites contre les décideurs publics, sans affaiblir la répression en matière de sécurité routière et d&#x27;accidents du travail. C&#x27;est pourquoi l&#x27;alinéa 4 de l&#x27;article 121-3 exige, pour l&#x27;auteur indirect, une violation manifestement délibérée d&#x27;une obligation de sécurité ou une faute caractérisée, alors qu&#x27;une simple imprudence suffit pour l&#x27;auteur direct.</div></details>
+            <details class="accordion__item"><summary><h3>Quelle différence entre la faute délibérée et la faute caractérisée ?</h3></summary><div class="accordion__body">La faute délibérée est la violation manifestement délibérée d&#x27;une obligation particulière de prudence ou de sécurité prévue par la loi ou le règlement, c&#x27;est-à-dire le non-respect conscient d&#x27;une règle écrite qui impose un comportement déterminé. La faute caractérisée se reconnaît en revanche à la gravité de la défaillance et au risque d&#x27;une particulière gravité que l&#x27;auteur ne pouvait ignorer, même s&#x27;il n&#x27;a enfreint volontairement aucune règle écrite. Dans l&#x27;affaire de l&#x27;agent forestier, les juges retiennent cette seconde faute.</div></details>
+            <details class="accordion__item"><summary><h3>Cet arrêt est-il toujours d&#x27;actualité ?</h3></summary><div class="accordion__body">Oui, car l&#x27;alinéa 4 de l&#x27;article 121-3 du Code pénal conserve la rédaction de la loi du 10 juillet 2000 que l&#x27;arrêt applique. De plus, le 17 décembre 2019, dans l&#x27;affaire AZF, la Cour de cassation a repris la notion de faute caractérisée et jugé qu&#x27;elle peut résulter de l&#x27;accumulation de plusieurs manquements.</div></details>
+            <details class="accordion__item"><summary><h3>Comment citer cet arrêt en copie ?</h3></summary><div class="accordion__body">Tu cites « Cass. crim., 13 novembre 2002, n° 01-88.643 », publié au Bulletin criminel (Bull. crim. 2002, n° 204). Tu précises qu&#x27;il s&#x27;agit d&#x27;un rejet et que la cour d&#x27;appel de Lyon avait statué le 8 novembre 2001.</div></details>
+          </div>
+
+          <!-- offre-fin-fiche-arret -->
+          <aside class="conversion-offer" aria-label="La fiche complète de la matière, Droit pénal L2, semestre 1" data-offre-fin-arret="fiche-penal-l2-s1">
+            <div class="conversion-offer__card">
+              <div class="conversion-offer__visual">
+                <img src="assets/covers/fiche-penal-l2-s1.webp?v=dossier-universitaire-20260915" alt="Couverture de la fiche complète Droit pénal L2, semestre 1" loading="lazy" width="960" height="540" decoding="async">
+              </div>
+              <div>
+                <p class="conversion-offer__eyebrow">La fiche complète de la matière</p>
+                <p class="conversion-offer__title">Droit pénal L2, semestre 1</p>
+                <p class="conversion-offer__summary">Le semestre 1 reprend tout le droit pénal général, de la classification des infractions jusqu'aux causes qui font échapper l'auteur à sa responsabilité. Chaque notion qui tombe en copie, comme la tentative ou la complicité, a son propre chapitre avec les arrêts qui la fixent.</p>
+                <div class="conversion-offer__choices">
+                  <button type="button" class="btn btn--primary" data-tjd-produit="fiche-penal-l2-s1">Acheter · 14,99 €</button>
+                  <button type="button" class="apercu-link" data-apercu='["assets/apercus/penal-l2-s1-zoom.webp", "assets/apercus/penal-l2-s1-1.webp", "assets/apercus/penal-l2-s1-2.webp"]' data-apercu-title="Droit pénal · L2 S1 · Fiche complète" data-apercu-price="14,99 €" data-apercu-cta="fiche-penal-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
+                </div>
+                <p class="conversion-offer__note">Paiement Stripe · accès à vie · mises à jour incluses · garantie satisfait ou remboursé sous 7 jours</p>
+              </div>
+            </div>
+          </aside>
+          <!-- BLOC AUTEUR -->
+          <div class="author-box">
+            <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+            <div>
+              <p class="author-box__name">Julien</p>
+              <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+              <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">162 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques), et tu peux aussi réserver mes cours particuliers.</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section section--dark">
+      <div class="container container--narrow text-center">
+        <h2 class="h2" style="color:#fff">Les grands arrêts de droit pénal L2 se retrouvent sur une seule page.</h2>
+        <p class="lead" style="color:rgba(255,255,255,.85); max-width:560px; margin:16px auto 32px">Ma page de droit pénal L2 présente chaque grand arrêt de la matière avec la règle qu'il applique, et elle renvoie vers sa fiche. Tu peux ainsi réviser la faute non intentionnelle à côté de la légitime défense et des autres thèmes du semestre.</p>
+        <a class="btn btn--primary btn--lg" href="droit-penal-l2.html">Voir la page de droit pénal L2</a>
+        <p style="margin-top:18px"><a href="blog.html" style="color:rgba(255,255,255,.8)">← Revenir au blog</a></p>
+      </div>
+    </section>
+    </article>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="majeures-preparees.html">Majeures préparées</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a><a href="blog.html">Blog</a><a href="methode-cas-pratique.html">Méthode du cas pratique</a><a href="fiche-arrets.html">Fiche d'arrêt</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+  <!-- vague2:sticky-bar -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit pénal L2 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-penal-l2-s1">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=2fa394eb" defer></script>
+
+
+  <script src="assets/js/main.js?v=4b8ba62a" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=70097293';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=fd545d49" defer></script>
+</body>
+</html>
