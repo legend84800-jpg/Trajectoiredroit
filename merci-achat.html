@@ -437,10 +437,24 @@
             <p style="margin:14px 0 0; font-size:.82rem; color:var(--muted)">Évite d'indiquer ton nom ou tes coordonnées dans les champs libres. Tes réponses ne sont pas ajoutées à ton compte. <a href="confidentialite.html">Comment elles sont utilisées</a>.</p>
           </div>
 
+          <div class="card" id="remiseCard" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center; border:2px solid var(--gold, #c9a227)" hidden>
+            <h2 class="h4" style="margin-top:0">Ton code de 15 % pour ta prochaine commande</h2>
+            <p style="margin:8px 0 12px; font-size:1.35rem; font-weight:700; letter-spacing:.06em"><span id="remiseCode"></span></p>
+            <p style="margin:0 0 8px; font-size:.95rem">Ce code personnel te donne 15 % de remise sur ta prochaine commande, quel que soit le document que tu choisis. Il reste valable jusqu'au <span id="remiseDate"></span> et sert une seule fois.</p>
+            <p style="margin:0; font-size:.9rem; color:var(--muted)">Si tu commandes depuis ce téléphone ou cet ordinateur, il s'applique tout seul au moment du paiement. Tu le retrouves aussi dans ton espace <a href="mon-compte.html">Mon compte</a>, ce qui te permet de l'utiliser depuis un autre appareil.</p>
+          </div>
+
           <div class="card" id="suggestionsCard" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center; display:none">
-            <h2 class="h4" style="margin-top:0" id="suggestionsTitre">Complète ta matière</h2>
-            <p style="margin:8px 0 16px; font-size:.95rem">Voici les autres ressources qui complètent ce que tu viens d'acheter dans cette matière.</p>
+            <h2 class="h4" style="margin-top:0" id="suggestionsTitre">Ce qui complète ton achat</h2>
+            <p style="margin:8px 0 16px; font-size:.95rem" id="suggestionsIntro">Je te propose ces documents à partir de ce que tu viens d'acheter.</p>
             <div id="suggestionsListe" style="display:flex; flex-direction:column; gap:10px; text-align:left"></div>
+          </div>
+
+          <div class="card" id="emailsCard" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center" hidden>
+            <h2 class="h4" style="margin-top:0">Les conseils de révision par email</h2>
+            <p style="margin:8px 0 16px; font-size:.95rem">Je t'envoie de temps en temps un conseil de méthode tiré de mes cours, par exemple la façon de rédiger la mineure d'un cas pratique. Ces emails t'indiquent aussi les documents qui complètent ta matière, et tu peux te désinscrire en un clic depuis chacun d'eux.</p>
+            <button type="button" class="btn btn--secondary" id="emailsBouton">Je veux les recevoir</button>
+            <p id="emailsStatut" role="status" aria-live="polite" style="margin:12px 0 0; font-size:.92rem"></p>
           </div>
 
           <div class="card" id="suggestionsFallback" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center">
@@ -544,6 +558,9 @@
         localStorage.setItem('tjd_deja_acheteur', '1');
         localStorage.removeItem('tjd_code_promo');
       } catch (_) {}
+      // Depuis le 14/10/2026, le code personnel de 15 % est mémorisé pour
+      // s'appliquer tout seul au paiement suivant (voir achat.js).
+      memoriserRemise(d && d.remise);
       document.title = 'Achat confirmé · TrajectoireDroit';
       statusIcon.textContent = '✅';
       statusEyebrow.textContent = 'Achat confirmé';
@@ -630,20 +647,53 @@
       }
     }
 
-    // Suggestions de compléments (vague 2.6) : affichées une seule fois, la page
-    // n'appelant /api/session-info que 1 ou 2 fois selon le chargement de fbq.
+    function memoriserRemise(remise) {
+      if (!remise || !remise.code) return;
+      try {
+        var expire = remise.expireLe ? remise.expireLe * 1000 : Date.now() + 15 * 24 * 3600 * 1000;
+        localStorage.setItem('tjd_code_promo', JSON.stringify({ code: remise.code, expire: expire }));
+      } catch (_) {}
+      document.getElementById('remiseCode').textContent = remise.code;
+      document.getElementById('remiseDate').textContent = remise.dateFin || '';
+      document.getElementById('remiseCard').hidden = false;
+    }
+
+    function euros(centimes) {
+      return (centimes / 100).toFixed(2).replace('.', ',') + ' €';
+    }
+
+    var LIBELLES_RAISON = {
+      'pack': 'Le pack de la matière',
+      'meme-matiere': 'Même matière',
+      'autre-matiere': 'Même format, autre matière',
+      'semestre-suivant': 'Semestre suivant'
+    };
+
+    // Suggestions de compléments (version 2 du 14/10/2026) : affichées une seule
+    // fois, avec le prix après la remise de 15 % quand l'acheteur a un code.
     var suggestionsAffichees = false;
-    function afficherSuggestions(suggestions) {
+    function afficherSuggestions(suggestions, remise) {
       if (suggestionsAffichees || !suggestions || !suggestions.length) return;
       suggestionsAffichees = true;
       var carte = document.getElementById('suggestionsCard');
       var liste = document.getElementById('suggestionsListe');
       var fallback = document.getElementById('suggestionsFallback');
+      var pourcentage = remise && remise.pourcentage ? remise.pourcentage : 0;
+      if (pourcentage) {
+        document.getElementById('suggestionsIntro').textContent =
+          "Je te propose ces documents à partir de ce que tu viens d'acheter. Ton code de 15 % est déjà appliqué aux prix affichés.";
+      }
       liste.innerHTML = suggestions.map(function (s) {
-        var prix = (s.prix / 100).toFixed(2).replace('.', ',') + ' €';
+        var prixRemise = pourcentage ? Math.round(s.prix * (100 - pourcentage) / 100) : s.prix;
+        var prixTexte = pourcentage
+          ? '<s style="opacity:.7; font-weight:400">' + euros(s.prix) + '</s> ' + euros(prixRemise)
+          : euros(s.prix);
+        var libelle = LIBELLES_RAISON[s.raison] || '';
         return '<div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-top:1px solid var(--blue-100)">' +
-          '<span style="font-size:.92rem; color:var(--body)">' + s.nom + '</span>' +
-          '<button type="button" class="btn btn--primary btn--sm" data-tjd-produit="' + s.id + '">Acheter · ' + prix + '</button>' +
+          '<span style="font-size:.92rem; color:var(--body)">' +
+            (libelle ? '<span style="display:block; font-size:.75rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)">' + libelle + '</span>' : '') +
+            s.nom + '</span>' +
+          '<button type="button" class="btn btn--primary btn--sm" style="white-space:nowrap" data-tjd-produit="' + s.id + '">Acheter · ' + prixTexte + '</button>' +
         '</div>';
       }).join('');
       carte.style.display = 'block';
@@ -708,6 +758,31 @@
       retour.hidden = false;
     }
 
+    // Un acheteur qui a refusé ou ignoré les emails sur Stripe peut les accepter
+    // ici, d'un clic : il rejoint alors la séquence après achat de Brevo.
+    function afficherAccordEmails(d) {
+      if (!d || d.emailsAcceptes || d.cadeau || d.internalTest) return;
+      var carte = document.getElementById('emailsCard');
+      var bouton = document.getElementById('emailsBouton');
+      var statut = document.getElementById('emailsStatut');
+      carte.hidden = false;
+      bouton.addEventListener('click', function () {
+        bouton.disabled = true;
+        fetch('/api/session-info', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ session_id: sessionId, action: 'emails' })
+        }).then(function (r) {
+          if (!r.ok) throw new Error('inscription');
+          bouton.hidden = true;
+          statut.textContent = 'C\u2019est noté. Le premier conseil arrive dans quelques jours.';
+        }).catch(function () {
+          bouton.disabled = false;
+          statut.textContent = 'L\u2019inscription n\u2019a pas fonctionné. Tu peux réessayer dans un instant.';
+        });
+      });
+    }
+
     function envoyerMetaSiPret() {
       if (window.tjdTestInterne || metaEnvoye || !donneesSession || donneesSession.internalTest
         || !(donneesSession.montant > 0) || typeof window.fbq !== 'function') return;
@@ -728,7 +803,8 @@
           afficherAchatConfirme();
           envoyerMesures(d);
           afficherRetourSiEligible(d);
-          afficherSuggestions(d && d.suggestions);
+          afficherSuggestions(d && d.suggestions, d && d.remise);
+          afficherAccordEmails(d);
           envoyerMetaSiPret();
         })
         .catch(function (erreur) {

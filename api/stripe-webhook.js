@@ -97,46 +97,7 @@ async function envoyerAchatMeta({ email, montantEuros, produitIds, sessionId, fb
 // La réinscription contrôlée à cette liste ouvre ou redémarre la séquence
 // post-achat à chaque nouveau paiement.
 const BREVO_LISTE_CLIENTS = 7;
-const COUPON_REMISE_POST_ACHAT = "remise-post-achat-15";
-
-function formaterDateRemise(timestamp) {
-  return new Intl.DateTimeFormat("fr-FR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "Europe/Paris",
-  }).format(new Date(timestamp * 1000));
-}
-
-// Chaque acheteur consentant reçoit un code personnel. Il est créé dès l'achat,
-// puis l'email J+8 lui laisse encore sept jours pour l'utiliser.
-async function creerRemisePostAchat(sessionId, stripe) {
-  const expiresAt = Math.floor(Date.now() / 1000) + (15 * 24 * 60 * 60);
-  const suffixe = crypto.createHash("sha256").update(sessionId).digest("hex").slice(0, 8).toUpperCase();
-  const code = `POSTA-${suffixe}`;
-  const params = {
-    code,
-    active: true,
-    expires_at: expiresAt,
-    max_redemptions: 1,
-    promotion: { type: "coupon", coupon: COUPON_REMISE_POST_ACHAT },
-    metadata: { campaign: "post-achat-brevo", checkout_session: sessionId },
-  };
-
-  try {
-    const promotion = await stripe.promotionCodes.create(params, {
-      idempotencyKey: `remise-${sessionId}`,
-    });
-    return { code: promotion.code, dateFin: formaterDateRemise(promotion.expires_at) };
-  } catch (e) {
-    if (e && e.code === "resource_already_exists") {
-      const liste = await stripe.promotionCodes.list({ code, limit: 1 });
-      const promo = liste.data && liste.data[0];
-      if (promo) return { code: promo.code, dateFin: formaterDateRemise(promo.expires_at) };
-    }
-    throw e;
-  }
-}
+const { creerRemisePostAchat } = require("./_remise-post-achat");
 
 // Le nom d'un produit suit toujours "Famille Matière [Semestre]" (ex: "Fiche complète
 // Droit administratif L2 S1") : on retire juste le préfixe de famille pour ne garder
@@ -152,7 +113,7 @@ function deduireMatiere(nomProduit) {
 // Crée ou met à jour le contact acheteur dans Brevo, avec ses derniers achats en
 // attributs et un ajout à la liste Clients, pour ouvrir la porte à une séquence
 // post-achat (relance J+3, demande d'avis J+7) sans dépendre du formulaire lead magnet.
-async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, accordPromotionnel, remisePostAchat, sessionId) {
+async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, accordPromotionnel, remisePostAchat, sessionId, options = {}) {
   const noms = produits.map((p) => p.nom).join(" + ");
   const matiere = produits.length ? deduireMatiere(produits[0].nom) : "";
 
@@ -168,6 +129,12 @@ async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, a
   };
   // Lien de l'email de demande d'avis J+7 (donner-mon-avis.html?session_id=…).
   if (sessionId) payload.attributes.DERNIERE_SESSION = sessionId;
+  // Identifiants achetés : le lien de l'email J+8 ouvre complements.html avec
+  // les suggestions calculées pour cet achat précis.
+  if (Array.isArray(options.produitIds) && options.produitIds.length) {
+    payload.attributes.PRODUITS_ACHETES = options.produitIds.join(",");
+  }
+  if (options.origineAccord) payload.attributes.ORIGINE_ACCORD_EMAILS = options.origineAccord;
 
   if (remisePostAchat) {
     payload.attributes.CODE_REMISE_POST_ACHAT = remisePostAchat.code;
@@ -892,8 +859,12 @@ async function traiterAchatPaye(session, contexte) {
     }
   }
 
+  // Depuis le 14/10/2026, chaque acheteur reçoit son code de 15 % (affiché sur la
+  // page de remerciement et dans Mon compte). Seuls les tests internes en sont exclus.
+  const estTestInterne = session.livemode === false || !!(session.metadata
+    && (session.metadata.internalTest === "1" || session.metadata.source === "test_interne"));
   let remisePostAchat = null;
-  if (accordPromotionnel && !estStage) {
+  if (!estStage && !estTestInterne && Number(montantEuros) > 0) {
     try {
       remisePostAchat = await operations.creerRemisePostAchat(session.id, contexte.stripe);
     } catch (e) {
@@ -927,7 +898,11 @@ async function traiterAchatPaye(session, contexte) {
       contexte.brevoKey,
       accordPromotionnel,
       remisePostAchat,
-      session.id
+      session.id,
+      {
+        produitIds: produitsAchetes.map(p => p.id),
+        origineAccord: accordPromotionnel ? "paiement-stripe" : undefined,
+      }
     );
   } catch (e) {
     console.error("Erreur création contact Brevo:", e.message);
@@ -1044,6 +1019,13 @@ async function handler(req, res) {
 
 handler.config = { api: { bodyParser: false } };
 module.exports = handler;
+// Réutilisé par api/session-info.js quand un acheteur accepte les emails depuis
+// la page de remerciement.
+module.exports.partage = {
+  accordEmails,
+  creerContactBrevoAchat,
+  reinscrireAcheteurBrevo,
+};
 module.exports._test = {
   accordEmails,
   traiterAchatPaye,

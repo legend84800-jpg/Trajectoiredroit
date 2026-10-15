@@ -6,6 +6,7 @@
 const PRODUITS = require("./_produits");
 const { utilisateurDepuisJWT, selectionner } = require("./_supabase");
 const { construireLiensTelechargement } = require("./_liens-telechargement");
+const { suggererComplements } = require("./_suggestions-post-achat");
 
 const DUREE_LIEN_SECONDES = 15 * 60;
 
@@ -76,5 +77,30 @@ module.exports = async (req, res) => {
     return { date: ligne.cree_le, sessionId: ligne.session_id, produits };
   });
 
-  res.status(200).json({ achats });
+  // Depuis le 14/10/2026 : compléments calculés sur tout l'historique d'achats, et
+  // code de 15 % du dernier achat s'il peut encore servir (affiché dans Mon compte).
+  const idsPossedes = [...new Set(lignes.flatMap((ligne) => ligne.produit_ids || []))];
+  let suggestions = [];
+  try {
+    suggestions = suggererComplements(idsPossedes, 4);
+  } catch (e) {
+    console.error("mes-telechargements suggestions indisponibles:", e.message);
+  }
+
+  let remise = null;
+  const quinzeJours = 15 * 24 * 60 * 60 * 1000;
+  const dernier = lignes.find((ligne) => /^cs_live_/.test(ligne.session_id || "")
+    && Date.parse(ligne.cree_le) > Date.now() - quinzeJours);
+  if (dernier && process.env.STRIPE_SECRET_KEY) {
+    try {
+      const { lireRemiseActive } = require("./_remise-post-achat");
+      const { creerClientStripe } = require("./_stripe");
+      const trouvee = await lireRemiseActive(dernier.session_id, creerClientStripe(process.env.STRIPE_SECRET_KEY));
+      if (trouvee) remise = { code: trouvee.code, dateFin: trouvee.dateFin, expireLe: trouvee.expireLe, pourcentage: trouvee.pourcentage };
+    } catch (e) {
+      console.error("mes-telechargements remise indisponible:", e && e.code ? e.code : "erreur inconnue");
+    }
+  }
+
+  res.status(200).json({ achats, suggestions, remise });
 };

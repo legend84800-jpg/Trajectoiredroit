@@ -454,6 +454,13 @@
               <img src="assets/portalis-ia-robot-juriste.webp" alt="" width="768" height="1152" loading="lazy" decoding="async">
             </div>
 
+            <div class="compte-box" id="complementsBox" hidden>
+              <h2>Pour compléter tes révisions</h2>
+              <p style="margin:0 0 8px">Je te propose ces documents à partir de ceux que tu as déjà achetés.</p>
+              <p id="compteRemise" style="margin:0 0 8px; padding:10px 12px; border:2px solid var(--gold, #c9a227); border-radius:10px" hidden>Ton code <strong id="compteRemiseCode"></strong> te donne 15 % de remise jusqu'au <span id="compteRemiseDate"></span>. Il s'applique tout seul à ton prochain paiement depuis cet appareil.</p>
+              <div id="complementsListe"></div>
+            </div>
+
             <div class="compte-box">
               <h2>Historique d'achats</h2>
               <ul class="achats-liste" id="achatsListe"></ul>
@@ -498,7 +505,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="assets/js/main.js?v=4b8ba62a" defer></script>
-  <script src="assets/js/compte.js?v=a02feabb" defer></script>
+  <script src="assets/js/compte.js?v=9187c07f" defer></script>
+  <script src="assets/js/achat.js?v=2fa394eb" defer></script>
   <script src="assets/js/cookie-consent.js?v=fd545d49" defer></script>
 </body>
 </html>

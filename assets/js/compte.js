@@ -78,11 +78,46 @@
       achatsListe.innerHTML = "";
       achatsVide.textContent = "Aucun achat pour l'instant.";
       achatsVide.style.display = "none";
+      var boite = document.getElementById("complementsBox");
+      if (boite) boite.hidden = true;
     }
 
     function afficherEtat(id){
       [etatChargement, etatConnexion, etatConnecte].forEach(function(el){ el.classList.remove("is-active"); });
       document.getElementById(id).classList.add("is-active");
+    }
+
+    // Compléments et code de 15 % (14/10/2026) : le code est aussi mémorisé dans ce
+    // navigateur, pour s'appliquer tout seul au paiement suivant (voir achat.js).
+    var LIBELLES_RAISON = {
+      "pack": "Le pack de la matière",
+      "meme-matiere": "Même matière",
+      "autre-matiere": "Même format, autre matière",
+      "semestre-suivant": "Semestre suivant"
+    };
+    function afficherComplements(suggestions, remise){
+      var boite = document.getElementById("complementsBox");
+      var liste = document.getElementById("complementsListe");
+      if (!boite || !liste) return;
+      if (!suggestions || !suggestions.length){ boite.hidden = true; return; }
+      function euros(c){ return (c / 100).toFixed(2).replace(".", ",") + " €"; }
+      function echapper(t){ return String(t).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
+      var pct = remise && remise.pourcentage ? remise.pourcentage : 0;
+      if (remise && remise.code){
+        try { localStorage.setItem("tjd_code_promo", JSON.stringify({ code: remise.code, expire: remise.expireLe * 1000 })); } catch (_) {}
+        document.getElementById("compteRemiseCode").textContent = remise.code;
+        document.getElementById("compteRemiseDate").textContent = remise.dateFin || "";
+        document.getElementById("compteRemise").hidden = false;
+      }
+      liste.innerHTML = suggestions.map(function(s){
+        var prix = pct ? "<s style=\"opacity:.7; font-weight:400\">" + euros(s.prix) + "</s> " + euros(Math.round(s.prix * (100 - pct) / 100)) : euros(s.prix);
+        var libelle = LIBELLES_RAISON[s.raison] || "";
+        return "<div style=\"display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-top:1px solid var(--blue-100)\">" +
+          "<span style=\"font-size:.92rem\">" + (libelle ? "<span style=\"display:block; font-size:.75rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)\">" + libelle + "</span>" : "") + echapper(s.nom) + "</span>" +
+          "<button type=\"button\" class=\"btn btn--primary btn--sm\" style=\"white-space:nowrap\" data-tjd-produit=\"" + echapper(s.id) + "\">Acheter · " + prix + "</button>" +
+        "</div>";
+      }).join("");
+      boite.hidden = false;
     }
 
     // Accès à vie en self-service : régénère des liens de téléchargement signés
@@ -113,6 +148,7 @@
         return;
       }
       var achats = (rep.ok && data.achats) || [];
+      afficherComplements(data && data.suggestions, data && data.remise);
       if (!achats.length){
         achatsVide.style.display = "block";
         achatsListe.innerHTML = "";
