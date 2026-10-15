@@ -48,19 +48,28 @@ async function creerRemisePostAchat(sessionId, stripe) {
     metadata: { campaign: "post-achat-brevo", checkout_session: sessionId },
   };
 
+  // Le webhook et la page de remerciement peuvent tous deux demander le code :
+  // celui qui arrive en second relit le code existant au lieu d'en recréer un.
+  const existant = await chercherCode(code, stripe);
+  if (existant) return decrireRemise(existant);
+
   try {
     const promotion = await stripe.promotionCodes.create(params, {
       idempotencyKey: `remise-${sessionId}`,
     });
     return decrireRemise(promotion);
   } catch (e) {
-    if (e && e.code === "resource_already_exists") {
-      const liste = await stripe.promotionCodes.list({ code, limit: 1 });
-      const promo = liste.data && liste.data[0];
-      if (promo) return decrireRemise(promo);
-    }
+    // Code déjà créé entre-temps, ou clé d'idempotence déjà employée avec une
+    // autre date d'expiration : le code existe, on le relit.
+    const promo = await chercherCode(code, stripe).catch(() => null);
+    if (promo) return decrireRemise(promo);
     throw e;
   }
+}
+
+async function chercherCode(code, stripe) {
+  const liste = await stripe.promotionCodes.list({ code, limit: 1 });
+  return (liste && liste.data && liste.data[0]) || null;
 }
 
 // Retrouve un code POSTA s'il existe encore et peut servir, sans le créer.

@@ -608,6 +608,7 @@ test("la remise post-achat est personnelle, unique, valable 15 jours et reliée 
   let appel;
   const stripe = {
     promotionCodes: {
+      list: async () => ({ data: [] }),
       create: async (params, options) => {
         appel = { params, options };
         return { code: params.code, expires_at: params.expires_at };

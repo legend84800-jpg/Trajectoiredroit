@@ -92,3 +92,26 @@ test("les pages de remerciement, de compléments et Mon compte mémorisent le co
   const compte = fs.readFileSync(path.join(RACINE, "assets", "js", "compte.js"), "utf8");
   assert.match(compte, /tjd_code_promo/);
 });
+
+test("un code déjà créé par le webhook est relu au lieu d'être recréé", async () => {
+  let crees = 0;
+  const existant = { code: remise.codeRemisePourSession("cs_live_deja"), expires_at: Math.floor(Date.now() / 1000) + 3600, active: true };
+  const stripe = { promotionCodes: {
+    list: async () => ({ data: [existant] }),
+    create: async () => { crees += 1; throw new Error("ne doit pas être appelé"); },
+  } };
+  const r = await remise.creerRemisePostAchat("cs_live_deja", stripe);
+  assert.equal(r.code, existant.code);
+  assert.equal(crees, 0);
+});
+
+test("une clé d'idempotence déjà employée retombe sur le code existant", async () => {
+  let lectures = 0;
+  const code = remise.codeRemisePourSession("cs_live_course");
+  const stripe = { promotionCodes: {
+    list: async () => { lectures += 1; return { data: lectures === 1 ? [] : [{ code, expires_at: Math.floor(Date.now() / 1000) + 3600 }] }; },
+    create: async () => { const e = new Error("Keys for idempotent requests can only be used with the same parameters"); e.type = "StripeIdempotencyError"; throw e; },
+  } };
+  const r = await remise.creerRemisePostAchat("cs_live_course", stripe);
+  assert.equal(r.code, code);
+});
