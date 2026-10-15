@@ -438,7 +438,13 @@
     };
     function euros(c) { return (c / 100).toFixed(2).replace('.', ',') + ' €'; }
     function echapper(t) { return String(t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-    if (!ids) { vide.hidden = false; return; }
+    // Contact Brevo antérieur au 14/10/2026, sans liste d'achats : la page des
+    // formations garde le code, qui s'applique au paiement.
+    if (!ids) {
+      if (/^POSTA-[A-Za-z0-9]{8}$/.test(code)) { window.location.replace('formations.html?code=' + encodeURIComponent(code)); return; }
+      vide.hidden = false;
+      return;
+    }
     var url = '/api/session-info?ids=' + encodeURIComponent(ids) + (code ? '&code=' + encodeURIComponent(code) : '');
     fetch(url).then(function (r) { return r.ok ? r.json() : { suggestions: [] }; }).then(function (d) {
       var remise = d && d.remise;
