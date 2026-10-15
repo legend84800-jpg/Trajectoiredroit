@@ -42,11 +42,14 @@ async function executerPanier(panne) {
   };
   const panier = JSON.stringify([{ id: 'fiche-da-l2-s1', nom: 'Fiche DA', prixCentimes: 1499 }]);
   const localStorage = {
-    getItem: (cle) => cle === 'tjd_panier' ? panier : null,
+    // Visiteur qui a déjà donné son adresse avant un paiement : l'étape email est sautée.
+    getItem: (cle) => cle === 'tjd_panier' ? panier
+      : cle === 'tjd_email_achat' ? JSON.stringify({ email: 'etudiant@example.invalid', accord: true }) : null,
     setItem: () => {},
   };
-  const fetch = async (url) => {
+  const fetch = async (url, options) => {
     appels.push(`requete:${url}`);
+    if (options && options.body) appels.push(`corps:${options.body}`);
     return { ok: true, json: async () => ({ url: 'https://checkout.stripe.com/test' }) };
   };
 
@@ -111,9 +114,13 @@ async function executerAchatDirect(panne) {
     documentElement: { clientWidth: 390, clientHeight: 800 },
     querySelectorAll: () => [bouton],
   };
-  const localStorage = { getItem: () => null, setItem: () => {} };
-  const fetch = async (url) => {
+  const localStorage = {
+    getItem: (cle) => cle === 'tjd_email_achat' ? JSON.stringify({ email: 'etudiant@example.invalid', accord: false }) : null,
+    setItem: () => {},
+  };
+  const fetch = async (url, options) => {
     appels.push(`requete:${url}`);
+    if (options && options.body) appels.push(`corps:${options.body}`);
     return { ok: true, json: async () => ({ url: 'https://checkout.stripe.com/test' }) };
   };
   vm.runInNewContext(source, {
@@ -160,4 +167,15 @@ test('la page du stage conserve sa redirection par rappel immédiat', () => {
   window.tjdMesurerCheckout('CheckoutCree', 'stage-methode', () => appels.push('redirige'));
   assert.deepEqual(appels, ['ga4', 'matomo', 'redirige']);
   assert.ok(!appels.includes('attente'));
+});
+
+test("l'adresse donnée avant le paiement part avec la demande de session, avec l'accord de rappel", async () => {
+  const panier = await executerPanier();
+  const corpsPanier = JSON.parse(panier.appels.find((a) => String(a).startsWith('corps:')).slice(6));
+  assert.equal(corpsPanier.emailAchat, 'etudiant@example.invalid');
+  assert.equal(corpsPanier.accordRelance, true);
+  const direct = await executerAchatDirect();
+  const corpsDirect = JSON.parse(direct.appels.find((a) => String(a).startsWith('corps:')).slice(6));
+  assert.equal(corpsDirect.emailAchat, 'etudiant@example.invalid');
+  assert.equal(corpsDirect.accordRelance, undefined);
 });

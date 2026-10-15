@@ -163,6 +163,37 @@ function normaliserAttemptTimestamp(valeur) {
   return maintenant;
 }
 
+// Relance de panier (décision de Julien du 15/10/2026). Les 13 derniers abandons
+// réels n'avaient aucune adresse : l'étudiant quittait Stripe avant de la taper.
+// Le site demande donc l'adresse juste avant la redirection, avec une case non
+// cochée pour accepter le rappel. L'adresse préremplit Stripe ; l'accord est
+// gardé en metadata et lu par api/_relance-diagnostic.js.
+// Un essai réel reste possible en mode test interne, uniquement vers l'adresse
+// de Julien : la session expire alors à 31 minutes, le minimum de Stripe.
+const EMAIL_ESSAI_RELANCE = "julien.prof1@gmail.com";
+const EMAIL_VALIDE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function lireEmailAchat(valeur) {
+  if (typeof valeur !== "string") return "";
+  const email = valeur.trim().toLowerCase().slice(0, 200);
+  return EMAIL_VALIDE.test(email) ? email : "";
+}
+
+function reglerRelance(params, { emailAchat, accordRelance, internalTest, contientStage }) {
+  const suite = { ...params, metadata: { ...params.metadata } };
+  if (emailAchat && !suite.customer_email) suite.customer_email = emailAchat;
+  const accord = !!(accordRelance && emailAchat);
+  if (accord) suite.metadata.accordRelance = "1";
+  const essai = internalTest && accord && emailAchat === EMAIL_ESSAI_RELANCE && !contientStage;
+  if (essai) {
+    suite.metadata.relanceTest = "1";
+    suite.metadata.reminderPlan = "h1-h24-v1";
+    suite.expires_at = Math.floor(Date.now() / 1000) + 31 * 60;
+    suite.after_expiration = { recovery: { enabled: true, allow_promotion_codes: true } };
+  }
+  return suite;
+}
+
 async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "https://trajectoiredroit.com");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -299,8 +330,14 @@ async function handler(req, res) {
     if (utmCampaignPanier) paramsPanier.metadata.utmCampaign = utmCampaignPanier;
     if (utmContentPanier) paramsPanier.metadata.utmContent = utmContentPanier;
 
+    const paramsPanierRelance = reglerRelance(paramsPanier, {
+      emailAchat: lireEmailAchat(corps.emailAchat),
+      accordRelance: corps.accordRelance === true,
+      internalTest: internalTestPanier,
+      contientStage: false,
+    });
     const codeDemandePanier = lireCodePromo(corps.code);
-    const paramsPanierFinaux = appliquerCodePromo(paramsPanier, {
+    const paramsPanierFinaux = appliquerCodePromo(paramsPanierRelance, {
       promo: await chercherCodePromo(stripe, codeDemandePanier),
       codeDemande: codeDemandePanier,
       dejaAcheteur: corps.dejaAcheteur === true,
@@ -533,9 +570,17 @@ async function handler(req, res) {
   // première échéance) et le stage n'accepte aucun code. Le cadeau d'un parent
   // garde son propre message, sans la garantie rédigée pour l'étudiant.
   let paramsSession = paramsFinaux;
+  if (!contientStage && !cadeau) {
+    paramsSession = reglerRelance(paramsSession, {
+      emailAchat: lireEmailAchat(corps.emailAchat),
+      accordRelance: corps.accordRelance === true,
+      internalTest,
+      contientStage: contientStage || !!nombreEcheances,
+    });
+  }
   if (!contientStage && !nombreEcheances) {
     const codeDemande = lireCodePromo(corps.code);
-    paramsSession = appliquerCodePromo(paramsFinaux, {
+    paramsSession = appliquerCodePromo(paramsSession, {
       promo: await chercherCodePromo(stripe, codeDemande),
       codeDemande,
       dejaAcheteur: corps.dejaAcheteur === true,
@@ -572,4 +617,7 @@ module.exports._test = {
   appliquerCodePromo,
   TEXTE_GARANTIE,
   CHAMP_EMAILS,
+  lireEmailAchat,
+  reglerRelance,
+  EMAIL_ESSAI_RELANCE,
 };

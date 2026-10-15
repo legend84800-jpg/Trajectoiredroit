@@ -221,6 +221,11 @@ async function envoyerRelancePanier(email, produits, checkoutUrl, brevoKey, opti
     ? `Tu avais commencé à commander <strong>${nomsHtml}</strong> hier, mais le paiement n'a pas été terminé. Le nouveau lien sécurisé reste disponible.`
     : `Tu avais commencé à commander <strong>${nomsHtml}</strong>, mais le paiement n'a pas été terminé. Un nouveau lien sécurisé est prêt.`;
   const bouton = estH24 ? "Reprendre mon achat" : "Reprendre mon paiement";
+  // Rappel demandé avant le paiement : le message dit pourquoi il arrive et
+  // combien il en reste (décision du 15/10/2026, deux emails au maximum).
+  const pourquoi = estH24
+    ? "Tu as demandé ce rappel au moment de commander. C'est le dernier pour cette commande."
+    : "Tu as demandé ce rappel au moment de commander. Tu recevras un second et dernier rappel demain.";
 
   const html = `
 <!DOCTYPE html>
@@ -242,6 +247,7 @@ async function envoyerRelancePanier(email, produits, checkoutUrl, brevoKey, opti
           <p style="font-size:13px;color:#777;margin:24px 0 0;">
             Une question avant d'acheter ? Réponds directement à cet email.
           </p>
+          <p style="font-size:12px;color:#999;margin:12px 0 0;">${pourquoi}</p>
         </td></tr>
         <tr><td style="background:#f0f0f0;padding:16px 32px;">
           <p style="font-size:12px;color:#999;margin:0;">TrajectoireDroit, la référence francophone en droit</p>
@@ -252,7 +258,7 @@ async function envoyerRelancePanier(email, produits, checkoutUrl, brevoKey, opti
 </body>
 </html>`;
 
-  const texte = `${titre}\n\nTu avais commencé à commander ${noms}, mais le paiement n'a pas été terminé.\n\n${bouton}\n${checkoutUrl}\n\nUne question avant d'acheter ? Réponds directement à cet email.`;
+  const texte = `${titre}\n\nTu avais commencé à commander ${noms}, mais le paiement n'a pas été terminé.\n\n${bouton}\n${checkoutUrl}\n\nUne question avant d'acheter ? Réponds directement à cet email.\n\n${pourquoi}`;
 
   const payload = {
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
@@ -354,6 +360,22 @@ async function annulerRelancePlanifiee(sessionOrigine, brevoKey) {
   });
   if (resp.ok || resp.status === 404) return;
   throw new Error(`Brevo annulation relance ${resp.status}`);
+}
+
+// Un étudiant relancé peut revenir sur le site et payer par une nouvelle session,
+// sans passer par le lien de récupération. On annule alors le rappel du lendemain
+// de ses paniers expirés depuis moins de 30 heures, retrouvés par son adresse.
+async function annulerRelancesParEmail(email, sessionPayeeId, stripe, brevoKey) {
+  const cible = String(email || "").trim().toLowerCase();
+  if (!cible) return 0;
+  const depuis = Math.floor(Date.now() / 1000) - 30 * 3600;
+  const liste = await stripe.checkout.sessions.list({ limit: 100, created: { gte: depuis } });
+  const aAnnuler = (liste.data || []).filter((x) => x.id !== sessionPayeeId
+    && x.status === "expired"
+    && (x.metadata || {}).rappelH24Status === "scheduled"
+    && String((x.customer_details && x.customer_details.email) || x.customer_email || "").toLowerCase() === cible);
+  for (const x of aAnnuler) await annulerRelancePlanifiee(x.id, brevoKey);
+  return aAnnuler.length;
 }
 
 // Récupère le code textuel d'un promotion code Stripe (ex: "LYON3JULIE")
@@ -731,6 +753,7 @@ async function traiterAchatPaye(session, contexte) {
     reinscrireAcheteurBrevo,
     recupererCodePromo,
     annulerRelancePlanifiee,
+    annulerRelancesParEmail,
     bornerAbonnement,
   };
 
@@ -916,6 +939,15 @@ async function traiterAchatPaye(session, contexte) {
     }
   }
 
+  if (typeof operations.annulerRelancesParEmail === "function" && contexte.stripe) {
+    try {
+      const annulees = await operations.annulerRelancesParEmail(email, session.id, contexte.stripe, contexte.brevoKey);
+      if (annulees) console.log(`[PANIER ABANDONNÉ] ${annulees} rappel(s) du lendemain annulé(s) après paiement, session=${session.id}`);
+    } catch (e) {
+      console.error("Erreur annulation des rappels par adresse:", e.message);
+    }
+  }
+
   return { traite: true };
 }
 
@@ -1027,6 +1059,7 @@ module.exports.partage = {
   reinscrireAcheteurBrevo,
 };
 module.exports._test = {
+  annulerRelancesParEmail,
   accordEmails,
   traiterAchatPaye,
   donneesAchat,
