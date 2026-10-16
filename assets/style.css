@@ -5538,6 +5538,8 @@ html[data-theme="dark"] .article-produit-inline { background: rgba(94,139,218,0.
   nav[aria-label="Fil d'Ariane"] a { display: inline-block; padding: 10px 0; }
   .ultra-card__foot > a { display: inline-block; padding: 10px 0; }
   .compare-table a { display: inline-block; padding: 6px 0; }
+  a.tjd-co__rgpd, .tjd-co__rgpd a { padding: 8px 0; }
+  .format-comparison__catalogue { display: inline-block; padding-top: 10px; padding-bottom: 10px; }
 
   /* Étiquettes descendues sous 12px, illisibles au soleil. */
   .post-card__cat, .post-card__badge, .post-meta__cat, .key-callout__label,

@@ -240,7 +240,9 @@
         // au-dessus du bandeau (hauteur variable selon le texte) pour ne jamais
         // recouvrir ses boutons Accepter/Refuser.
         if (bannerBlocking && delaiDepasse) {
-          fab.style.bottom = (banner.getBoundingClientRect().height + 32) + "px";
+          // Mesuré depuis le haut réel du bandeau : il peut lui-même être relevé
+          // au-dessus de la barre d'achat, sa seule hauteur ne suffit donc pas.
+          fab.style.bottom = (window.innerHeight - banner.getBoundingClientRect().top + 12) + "px";
           // Dès que le visiteur répond enfin au bandeau, on rend la main à la
           // position normale (classe CSS .tjd-fab / .tjd-fab--raised).
           var mo = new MutationObserver(function () {
