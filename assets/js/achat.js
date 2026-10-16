@@ -694,6 +694,19 @@
       '<span>Panier</span><span class="tjd-panier-fab__badge" id="tjdPanierBadge">0</span>';
     document.body.appendChild(fab);
 
+    // Le bouton panier se posait sur la barre d'achat collante et masquait son texte
+    // (audit mobile du 15/10/2026) : il se cale au-dessus d'elle quand elle est affichée.
+    var barreCollante = document.querySelector('.sticky-cta-bar, .sticky-cta');
+    if (barreCollante) {
+      var panierCaler = function () {
+        var visible = getComputedStyle(barreCollante).display !== 'none';
+        fab.style.bottom = visible ? (barreCollante.getBoundingClientRect().height + 12) + 'px' : '';
+      };
+      panierCaler();
+      window.addEventListener('resize', panierCaler);
+      if (typeof ResizeObserver === 'function') new ResizeObserver(panierCaler).observe(barreCollante);
+    }
+
     var backdrop = document.createElement('div');
     backdrop.id = 'tjdPanierBackdrop';
     backdrop.innerHTML =

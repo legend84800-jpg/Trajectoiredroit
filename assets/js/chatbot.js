@@ -33,6 +33,15 @@
   body:has(#exitModal.open) .tjd-fab{opacity:0!important;pointer-events:none!important}
   .tjd-fab svg{width:28px;height:28px}
   .tjd-fab__dot{position:absolute;top:6px;right:6px;width:12px;height:12px;border-radius:50%;background:#C9A961;border:2px solid #1A2851}
+  /* Téléphone (audit du 15/10/2026) : la bulle de 60px recouvrait en permanence la fin des lignes
+     de texte et le bord des boutons. Plus petite, collée au bord, et masquée pendant la lecture
+     vers le bas ; elle revient dès que le visiteur remonte. */
+  @media(max-width:768px){
+    .tjd-fab{right:12px;width:52px;height:52px}
+    .tjd-fab svg{width:24px;height:24px}
+    .tjd-fab__dot{top:4px;right:4px;width:11px;height:11px}
+    .tjd-fab.tjd-fab--visible.tjd-fab--lecture{opacity:0;pointer-events:none;transform:translateY(14px)}
+  }
   .tjd-panel{position:fixed;right:20px;bottom:20px;z-index:9999;width:380px;max-width:calc(100vw - 32px);height:560px;
     max-height:calc(100vh - 40px);background:#fff;border-radius:18px;box-shadow:0 24px 60px rgba(15,26,53,.32);
     display:none;flex-direction:column;overflow:hidden;font-family:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
@@ -205,7 +214,8 @@
       var syncFabOffset = function () {
         var visible = getComputedStyle(stickyBar).display !== "none";
         fab.classList.toggle("tjd-fab--raised", visible);
-        fab.style.bottom = visible ? (stickyBar.getBoundingClientRect().height + 32) + "px" : "";
+        var ecart = window.innerWidth <= 768 ? 12 : 32;
+        fab.style.bottom = visible ? (stickyBar.getBoundingClientRect().height + ecart) + "px" : "";
       };
       syncFabOffset();
       window.addEventListener("resize", syncFabOffset);
@@ -247,6 +257,16 @@
       setTimeout(revealFabWhenSafe, 400);
     }
     setTimeout(revealFabWhenSafe, 2500);
+
+    // Lecture sur téléphone : la bulle s'efface quand on descend dans la page, revient quand on remonte.
+    var dernierY = window.scrollY;
+    window.addEventListener("scroll", function () {
+      var y = window.scrollY;
+      if (window.innerWidth > 768) { fab.classList.remove("tjd-fab--lecture"); dernierY = y; return; }
+      if (y > dernierY + 6 && y > 240) fab.classList.add("tjd-fab--lecture");
+      else if (y < dernierY - 6) fab.classList.remove("tjd-fab--lecture");
+      dernierY = y;
+    }, { passive: true });
 
     // Panneau
     panel = el("div", "tjd-panel");
