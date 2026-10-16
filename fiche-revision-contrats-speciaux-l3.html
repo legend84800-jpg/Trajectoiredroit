@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Fiche de révision contrats spéciaux L3, vente et bail (PDF)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Fiche de révision de contrats spéciaux L3 en PDF, avec les cinq thèmes du programme, les articles du code civil, des arrêts vérifiés et un cas pratique corrigé.">
+  <link rel="canonical" href="https://trajectoiredroit.com/fiche-revision-contrats-speciaux-l3.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Fiche de révision contrats spéciaux L3, vente et bail (PDF)">
+  <meta property="og:description" content="Fiche de révision de contrats spéciaux L3 en PDF, avec les cinq thèmes du programme, les articles du code civil, des arrêts vérifiés et un cas pratique corrigé.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/fiche-revision-contrats-speciaux-l3.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/fiche-revision-contrats-speciaux-l3.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Fiche de révision contrats spéciaux L3, articles, arrêts et cas pratique corrigé",
+        "description": "Fiche de révision de contrats spéciaux L3 en PDF, avec les cinq thèmes du programme, les articles du code civil, des arrêts vérifiés et un cas pratique corrigé.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-10-16",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": {
+            "@type": "EducationalOrganization",
+            "name": "TrajectoireDroit"
+          }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+          }
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Contrats spéciaux L3"
+        },
+        "image": "https://trajectoiredroit.com/assets/blog/fiche-revision-contrats-speciaux-l3.webp",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://trajectoiredroit.com/fiche-revision-contrats-speciaux-l3.html"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://trajectoiredroit.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Fiche de révision contrats spéciaux L3",
+            "item": "https://trajectoiredroit.com/fiche-revision-contrats-speciaux-l3.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Que faut-il réviser en contrats spéciaux en L3 ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La fiche complète organise le programme en cinq thèmes. Le premier explique comment qualifier un contrat, et le deuxième couvre toute la vente, de la promesse aux garanties. Le troisième traite du bail et du prêt, et le quatrième des contrats de service, c'est-à-dire l'entreprise, le mandat et le dépôt. Le cinquième réunit la distribution, la transaction et les contrats aléatoires. Ton enseignant peut retirer ou ajouter des contrats, donc tu compares cette liste avec le plan de ton cours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quelle différence entre vice caché et garantie légale de conformité ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le vice caché est un défaut qui rend la chose impropre à son usage, et l'acheteur peut l'invoquer dans les deux ans à compter de sa découverte, même quand il achète à un particulier, selon les articles 1641 et suivants du code civil. La garantie légale de conformité relève du code de la consommation et protège seulement le consommateur qui achète à un professionnel. Elle dure deux ans, et le défaut est présumé exister dès la délivrance pendant vingt-quatre mois, ou douze mois pour un bien d'occasion. Entre particuliers, l'acheteur peut aussi invoquer la délivrance non conforme de l'article 1604 quand la chose livrée diffère de celle qui était convenue."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment qualifier un contrat dans un cas pratique ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tu cherches l'obligation principale des parties. Si l'une livre une chose et l'autre la paie, c'est une vente au sens de l'article 1582. Si l'une fait jouir l'autre d'une chose pendant un certain temps moyennant un prix, c'est un bail d'après l'article 1709. Si l'une fait quelque chose pour l'autre moyennant un prix, l'article 1710 parle de louage d'ouvrage, que l'on appelle contrat d'entreprise. Le juge restitue cette qualification même quand les parties ont choisi un autre nom, en application de l'article 12 du code de procédure civile, sauf si elles l'ont lié par un accord exprès sur des droits dont elles ont la libre disposition."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Un vendeur peut-il écarter la garantie des vices cachés par une clause ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'article 1643 permet de stipuler que le vendeur ne sera obligé à aucune garantie, mais il réserve cette possibilité au vendeur qui ignorait le vice. D'après l'article 1645, le vendeur qui connaissait le vice doit la restitution du prix et tous les dommages-intérêts. Dans un cas pratique, tu cherches donc d'abord si le vendeur connaissait le défaut. Un vendeur professionnel est censé le connaître, comme l'a jugé la première chambre civile de la Cour de cassation le 9 octobre 1979."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Existe-t-il une fiche PDF de contrats spéciaux pour la L3 ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La fiche complète de contrats spéciaux L3 compte 150 pages et coûte 14,99 €. Elle est vendue seule ou dans le Pack Licence 3, qui réunit cinq fiches de troisième année pour 58 €. Le Pack Contrats spéciaux L3 ajoute à la fiche les flashcards et QCM, les fiches d'arrêt et les cas pratiques corrigés pour 29,98 €. La page sur les contrats spéciaux en L3 présente tous ces supports, et le catalogue des formations réunit toutes les fiches."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=2d752479">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 549,64 €, 53 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-53 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">549,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 409,74 €, 44 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-44 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">409,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 524,67 €, 51 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-51 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">524,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 444,70 €, 46 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-46 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">444,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 644,58 €, 49 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-49 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">644,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -14 %</em></strong><small>890 € · 89 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+        <div class="nav-item has-dropdown">
+          <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>Stage en direct
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <div class="stage-teaser">
+              <button type="button" class="dropdown__item stage-teaser__trigger" aria-expanded="false" aria-controls="stageTeaserPanel">
+                <span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg></span>
+                <span class="stage-teaser__main">
+                  <strong>Stage de méthode en direct</strong>
+                  <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+                  <span class="stage-teaser__countdown"></span>
+                </span>
+              </button>
+              <div class="stage-teaser__panel" id="stageTeaserPanel">
+                <p>Trois séances en direct, 8 h au total pour 176 €, pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un sujet travaillé à chaque fois. La prochaine session a lieu les 27, 28 et 29 octobre, pendant les vacances de la Toussaint. Plus que 3 places.</p>
+              </div>
+            </div>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="stage-methode.html">Voir toutes les infos et réserver →</a>
+          </div>
+        </div>
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+    <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
+      <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>
+      <span class="mobile-nav__stage-main">
+        <span class="mobile-nav__stage-title">Stage en direct</span>
+        <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+        <span class="stage-teaser__countdown"></span>
+      </span>
+    </a>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+    <main>
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow text-center">
+        <h1 class="h1">La fiche de révision de contrats spéciaux L3 en PDF</h1>
+        <p class="lead">Les contrats spéciaux de L3 étudient un par un les contrats les plus courants, à commencer par la vente et le bail. Pour chacun, tu retiens la définition du code civil et les obligations de chaque partie, puis les arrêts qui ont précisé la règle. Tu révises cinq thèmes, en commençant par la qualification du contrat, car chaque qualification entraîne l'application de règles différentes.</p>
+        <div class="hero__cta flex flex--center" style="margin-top:24px">
+          <a class="btn btn--primary btn--lg" href="#articles">Voir les articles à retenir →</a>
+          <a class="btn btn--outline btn--lg" href="#programme">Le programme en cinq thèmes</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <p style="color:var(--body); line-height:1.75">Prenons un acte intitulé « bail » qui prévoit qu'à la fin des versements, l'occupant devient propriétaire de la chose. Le juge regarde alors le contenu de l'acte, car l'article 12 du code de procédure civile lui impose de donner aux actes leur exacte qualification, sans s'arrêter à la dénomination proposée par les parties. Comme l'obligation principale consiste ici à transférer une propriété, le juge peut y voir une vente payée en plusieurs fois et lui appliquer le régime de la vente. Tu commences ainsi chaque cas pratique par cette qualification, et la fiche complète t'entraîne à la faire dans chaque chapitre.</p>
+        <p style="color:var(--body); line-height:1.75">Je suis Julien, professeur de droit. La fiche complète de cette matière est mon travail, car je l'ai rédigée en croisant mes cours de fac et les dossiers de mes élèves. Avant de les citer ici, j'ai donc relu chaque article dans le code et chaque arrêt dans son texte intégral. Pour approfondir, tu peux lire la page sur <a href="contrats-speciaux-l3.html">les contrats spéciaux en L3</a>, qui présente la matière et ses supports. En revanche, la théorie générale du contrat, que tu as vue en deuxième année, se révise sur la page <a href="droit-des-contrats-l2.html">droit des contrats L2</a>.</p>
+      </div>
+    </section>
+
+    <!-- vague2:encart-produit -->
+    <section class="conversion-offer" aria-labelledby="choix-fiche-contrats-speciaux-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/fiche-contrats-speciaux-l3.webp?v=dossier-universitaire-20260915" alt="Fiche complète de contrats spéciaux L3, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">Fiche complète de contrats spéciaux L3</p>
+            <h2 class="conversion-offer__title" id="choix-fiche-contrats-speciaux-titre">Tout le programme de la matière en 150 pages</h2>
+            <p class="conversion-offer__summary">La fiche couvre les cinq thèmes du programme et ses vingt et un chapitres, de la qualification du contrat à la transaction et aux contrats aléatoires. Elle reprend les articles du code civil et les arrêts à connaître, avec des tableaux comparatifs et des citations à apprendre.</p>
+            <ul class="conversion-offer__benefits">
+              <li>Un PDF de 150 pages, envoyé par email dès le paiement</li>
+              <li>Les articles du code civil et les arrêts, avec leurs citations à apprendre</li>
+              <li>Accès à vie et mises à jour comprises</li>
+            </ul>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-contrats-speciaux-l3">Fiche · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-matiere-contrats-speciaux-l3">Pack Contrats spéciaux L3 · 29,98 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-l3">Pack Licence 3 · 58 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
+            <div data-tjd-avis data-matiere="contrats-speciaux-l3"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="programme">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quel est le programme de contrats spéciaux en L3 ?</h2>
+        <p class="lead" style="margin-bottom:24px">Les intitulés varient d'une fac à l'autre, et certains contrats, comme le contrat de travail, relèvent d'autres matières. La fiche complète suit cinq thèmes et vingt et un chapitres, dont un chapitre 15 bis sur les garanties de la construction, et tu compares cette liste avec le plan de ton enseignant.</p>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Introduction aux contrats spéciaux et qualification du contrat (chapitre 1)</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Le premier réflexe d'un cas pratique de contrats spéciaux est la qualification. Selon l'article 1105 du code civil, tous les contrats suivent des règles générales, qu'ils aient ou non une dénomination propre, et ces règles générales s'appliquent sous réserve des règles particulières à chaque contrat. Pour un contrat nommé, comme la vente ou le bail, tu cherches d'abord la règle spéciale que le code prévoit pour lui, et à défaut tu appliques le droit commun des contrats. Un contrat que la loi n'a pas spécialement réglementé reste valable grâce à la liberté contractuelle, que l'article 1102 reconnaît dans les limites fixées par la loi, et il suit alors le droit commun.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Plusieurs textes s'appliquent en même temps. Le code civil reste le texte central, et ses articles sur la vente et le bail datent pour l'essentiel de 1804. Le code de la consommation s'y ajoute quand un professionnel vend à un consommateur, avec une garantie légale de conformité issue de l'ordonnance du 29 septembre 2021. La Convention de Vienne du 11 avril 1980 régit en outre certaines ventes internationales de marchandises. Une commission de la Chancellerie a préparé une réforme des contrats spéciaux, mais cette réforme n'est pas entrée en vigueur. Dans une copie, tu appliques le droit actuel, et tu cites la réforme seulement en perspective, à la fin de ton raisonnement.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">La vente, de l'accord à l'exécution (chapitres 2 à 10)</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Le contrat de vente se forme par un simple accord. D'après l'article 1583, la propriété est acquise à l'acheteur à l'égard du vendeur dès que les parties sont convenues de la chose et du prix, même si la chose n'est pas livrée et si le prix n'est pas payé. Le transfert de propriété emporte transfert des risques selon l'article 1196, mais le vendeur en retrouve la charge à partir de sa mise en demeure de délivrer, c'est-à-dire de la demande formelle de livrer la chose. Tu places ainsi le transfert de propriété au jour de l'accord entre les parties. Les parties elles-mêmes, la nature des choses ou la loi peuvent toutefois le différer, par exemple quand la chose n'existe pas encore.</p>
+            <p style="color:var(--body); line-height:1.7">Avant la vente, l'article 1112 laisse les négociations libres, mais il impose la bonne foi. En effet, la faute commise pendant la négociation oblige à réparer le préjudice subi, sans que cette réparation compense la perte des avantages attendus du contrat non conclu, ni la perte de chance de les obtenir.</p>
+            <p style="color:var(--body); line-height:1.7">L'article 1123 définit le pacte de préférence comme l'engagement de proposer prioritairement à son bénéficiaire de traiter avec lui, si l'on décide de contracter. L'article 1124 définit la promesse unilatérale comme le contrat par lequel le promettant accorde au bénéficiaire le droit d'opter pour un contrat dont les éléments essentiels sont déjà déterminés. De plus, il prévoit que la révocation de la promesse pendant le temps laissé pour opter n'empêche pas la formation du contrat promis. Enfin, l'article 1589 assimile à une vente la promesse de vente par laquelle les deux parties s'engagent, c'est-à-dire lorsqu'il y a consentement réciproque sur la chose et sur le prix.</p>
+            <p style="color:var(--body); line-height:1.7">L'article 1594 permet à tous ceux auxquels la loi ne l'interdit pas d'acheter ou de vendre. L'article 1591 veut que le prix soit déterminé et désigné par les parties, et l'article 1592 permet de le laisser à l'estimation d'un tiers. Dans un contrat cadre, c'est-à-dire un accord qui fixe les caractéristiques générales de relations contractuelles futures, l'article 1164 permet de convenir qu'une seule partie fixera le prix, à charge d'en motiver le montant en cas de contestation.</p>
+            <p style="color:var(--body); line-height:1.7">Pour un immeuble, le vendeur lésé de plus de sept douzièmes peut demander la rescision, c'est-à-dire l'annulation de la vente, d'après l'article 1674. L'article 1598 permet de vendre tout ce qui est dans le commerce, sauf prohibition par des lois particulières. L'article 1599 prévoit enfin que la vente de la chose d'autrui est nulle, et qu'elle peut donner lieu à des dommages-intérêts quand l'acheteur ignorait que la chose appartenait à un autre.</p>
+            <p style="color:var(--body); line-height:1.7">Le vendeur doit ensuite délivrer la chose, que l'article 1604 définit comme son transport en la puissance et possession de l'acheteur, avec ses accessoires d'après l'article 1615. Quand le retard ne vient que du vendeur, l'acheteur choisit entre la résolution de la vente, c'est-à-dire sa disparition faute d'exécution, et sa mise en possession, selon l'article 1610. De son côté, l'acheteur paie le prix au jour et au lieu réglés par la vente, et à défaut au lieu et dans le temps où se fait la délivrance, d'après les articles 1650 et 1651.</p>
+            <p style="color:var(--body); line-height:1.7">Le vendeur doit enfin deux garanties, la possession paisible de la chose et l'absence de défauts cachés, comme le dit l'article 1625. La garantie d'éviction protège l'acheteur contre celui qui lui conteste la chose. L'article 1626 la rend obligatoire même sans stipulation, et l'article 1628 maintient la garantie du fait personnel du vendeur malgré toute clause contraire. La chambre commerciale de la Cour de cassation l'applique dans son arrêt du 31 janvier 2006, rendu sous le numéro 05-10.116. Une personne qui avait cédé des marques demandait ensuite leur déchéance, et la Cour juge cette demande irrecevable, car elle reviendrait à évincer l'acquéreur. La garantie des vices cachés de l'article 1641 et la garantie de conformité du code de la consommation complètent ce thème.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Le code civil prévoit aussi des ventes spéciales. L'article 1601-1 définit la vente d'immeuble à construire comme celle par laquelle le vendeur s'oblige à édifier un immeuble dans un délai déterminé par le contrat, à terme ou en l'état futur d'achèvement. Dans ce dernier cas, selon l'article 1601-3, l'acquéreur devient propriétaire des ouvrages au fur et à mesure de leur construction. L'article 1659 permet enfin de stipuler une faculté de rachat, c'est-à-dire le droit pour le vendeur de reprendre la chose vendue, moyennant la restitution du prix principal et le remboursement prévu à l'article 1673.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Le bail et le prêt, les contrats relatifs à l'usage d'une chose (chapitres 11 à 14)</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Selon l'article 1709, le louage des choses est le contrat par lequel une partie s'oblige à faire jouir l'autre d'une chose pendant un certain temps, moyennant un prix. L'article 1714 permet de louer par écrit ou verbalement, sauf règles particulières pour certains baux, comme les baux ruraux, et le bail d'habitation relève en outre de la loi du 6 juillet 1989.</p>
+            <p style="color:var(--body); line-height:1.7">Le bailleur a d'abord des obligations. D'après l'article 1719, il doit délivrer la chose, et un logement décent s'il s'agit de l'habitation principale du locataire, puis l'entretenir en état de servir et en faire jouir paisiblement le preneur, c'est-à-dire le locataire. De son côté, le preneur a deux obligations principales, c'est-à-dire user de la chose raisonnablement, suivant la destination prévue par le bail ou présumée d'après les circonstances, et payer le loyer aux termes convenus, comme le prévoit l'article 1728.</p>
+            <p style="color:var(--body); line-height:1.7">L'article 1732 rend le locataire responsable des dégradations ou des pertes qui arrivent pendant sa jouissance, à moins qu'il prouve qu'elles ont eu lieu sans sa faute. L'article 1733 le rend aussi responsable de l'incendie, sauf s'il prouve un cas fortuit, un vice de construction ou un feu communiqué par une maison voisine, ou encore une force majeure, c'est-à-dire un événement qui échappe à son contrôle, qu'il ne pouvait pas raisonnablement prévoir et dont il ne pouvait pas éviter les effets. De plus, l'article 1717 permet au preneur de sous-louer, et même de céder son bail, si le contrat ne le lui interdit pas. Enfin, l'article 1741 règle l'extinction du bail, qui se résout par la perte de la chose louée et par le défaut respectif du bailleur et du preneur de remplir leurs engagements.</p>
+            <p style="color:var(--body); line-height:1.7">L'article 1874 distingue deux prêts. Dans le prêt à usage, l'emprunteur reçoit une chose pour s'en servir et doit la rendre après usage, et l'article 1876 ajoute que ce prêt est essentiellement gratuit. Dans le prêt de consommation, l'emprunteur reçoit des choses qui se consomment par l'usage, par exemple de l'argent, et il en rend autant de même espèce et qualité. L'article 1893 le rend alors propriétaire de la chose prêtée, et c'est pour lui qu'elle périt, de quelque manière que cette perte arrive. L'article 1905 permet de stipuler des intérêts, et l'article 1907 impose que le taux conventionnel soit fixé par écrit.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Par un arrêt du 28 mars 2000, rendu sous le numéro 97-21.422, la première chambre civile de la Cour de cassation juge que le prêt consenti par un professionnel du crédit n'est pas un contrat réel, c'est-à-dire un contrat qui ne se forme que par la remise de la chose. Dans cette affaire, l'emprunteur avait accepté le financement d'un matériel agricole, puis il est mort avant le versement des fonds. La Cour rejette le pourvoi du prêteur, qui reste tenu de payer la somme convenue, puisque l'accord de volonté l'y oblige. Tu cites cet arrêt dès qu'un énoncé décrit un prêt bancaire accepté mais pas encore versé. La page sur <a href="arret-pret-professionnel-2000-explique.html">l'arrêt du 28 mars 2000</a> détaille cette affaire.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">L'entreprise, le mandat et le dépôt, les contrats de service (chapitres 15 à 17, dont 15 bis)</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">L'article 1710 définit le contrat d'entreprise, que le code civil appelle louage d'ouvrage, comme le contrat par lequel une partie s'engage à faire quelque chose pour l'autre moyennant un prix convenu. L'entrepreneur peut fournir seulement son travail ou aussi la matière, selon l'article 1787. Dans le second cas, la perte de la chose avant sa livraison est pour l'entrepreneur, que le texte appelle l'ouvrier, sauf si le client était en demeure de la recevoir, d'après l'article 1788. Face à un artisan qui fabrique un meuble, tu cherches ainsi d'abord qui fournit la matière, car la perte avant livraison ne revient pas à la même personne.</p>
+            <p style="color:var(--body); line-height:1.7">Pour la construction d'un bâtiment à forfait, c'est-à-dire pour un prix global fixé d'avance, l'article 1793 interdit à l'entrepreneur de réclamer une augmentation de prix, que ce soit pour la hausse de la main-d'œuvre ou des matériaux ou pour des changements au plan convenu, sauf si le client les a autorisés par écrit et si le prix en a été convenu. L'article 1794 permet au client de résilier le marché à forfait par sa seule volonté, en dédommageant l'entrepreneur y compris de ce qu'il aurait pu gagner.</p>
+            <p style="color:var(--body); line-height:1.7">Après la réception des travaux, c'est-à-dire l'acte par lequel le client accepte l'ouvrage avec ou sans réserves, trois garanties s'appliquent. D'abord, l'article 1792-6 oblige l'entrepreneur à la garantie de parfait achèvement pendant un an, c'est-à-dire à réparer les désordres que le client a signalés. Ensuite, l'article 1792-3 garantit pendant au moins deux ans le bon fonctionnement des éléments d'équipement dissociables de l'ouvrage. Enfin, l'article 1792 rend le constructeur responsable de plein droit des dommages qui compromettent la solidité de l'ouvrage ou le rendent impropre à sa destination, et l'article 1792-4-1 l'en décharge après dix ans à compter de la réception.</p>
+            <p style="color:var(--body); line-height:1.7">Selon l'article 1984, le mandat est l'acte par lequel une personne donne à une autre le pouvoir de faire quelque chose pour elle et en son nom, et le contrat ne se forme que par l'acceptation du mandataire. L'article 1986 le rend en outre gratuit sauf convention contraire. L'article 1988 indique qu'un mandat conçu en termes généraux n'embrasse que les actes d'administration. Pour aliéner, c'est-à-dire transférer la propriété d'un bien, par exemple le vendre, pour hypothéquer, c'est-à-dire garantir une dette par un immeuble, ou pour tout autre acte de propriété, il faut en revanche un mandat exprès.</p>
+            <p style="color:var(--body); line-height:1.7">Le mandataire répond du dol et des fautes de sa gestion, avec une responsabilité appliquée moins rigoureusement quand le mandat est gratuit, comme l'indique l'article 1992. Le mandant, de son côté, exécute les engagements pris dans les limites du pouvoir donné, et en principe il ne répond de ce qui dépasse ce pouvoir que s'il le ratifie, c'est-à-dire s'il l'approuve après coup, expressément ou tacitement, d'après l'article 1998. L'article 1156 réserve toutefois le cas du tiers qui a légitimement cru aux pouvoirs du mandataire. Le mandant peut enfin révoquer la procuration quand bon lui semble, selon l'article 2004.</p>
+            <p style="color:var(--body); line-height:1.7">L'article 1915 définit le dépôt comme l'acte par lequel on reçoit la chose d'autrui, à charge de la garder et de la restituer en nature, et l'article 1917 ajoute que le dépôt proprement dit est essentiellement gratuit. Le dépositaire apporte à la chose les mêmes soins qu'à ses propres choses d'après l'article 1927, avec plus de rigueur notamment s'il a stipulé un salaire, comme le prévoit l'article 1928. Il rend ensuite la chose même qu'il a reçue, selon l'article 1932, et il doit la remettre dès que le déposant la réclame, sauf saisie ou opposition à la restitution, d'après l'article 1944. Enfin, l'article 1952 fait répondre les hôteliers, comme dépositaires, des vêtements, bagages et objets apportés dans leur établissement par le voyageur qui loge chez eux.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Par un arrêt du 14 octobre 2010, rendu sous le numéro 09-16.967, la première chambre civile de la Cour de cassation juge que le dépositaire doit, en cas de perte ou de détérioration, prouver qu'il y est étranger. En effet, par principe, le fait du dépositaire ou de la personne qui travaille pour lui ne peut pas constituer la force majeure. Dans cette affaire, des marchandises stockées dans un entrepôt avaient brûlé dans un incendie criminel, mais la cour d'appel avait retenu la force majeure sans relever que l'incendie venait d'une personne étrangère à l'entreprise du dépositaire. La Cour de cassation casse cet arrêt.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Distribution, transaction et contrats aléatoires (chapitres 18 à 20)</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">L'article 1111 définit le contrat cadre comme l'accord par lequel les parties conviennent des caractéristiques générales de leurs relations futures, et les contrats d'application en précisent les modalités d'exécution. Cette technique sert aux contrats de distribution, où un fournisseur et un distributeur organisent leurs échanges sur la durée. L'article L330-1 du code de commerce limite à dix ans la clause d'exclusivité par laquelle l'acheteur s'engage à ne pas utiliser d'objets semblables ou complémentaires venant d'un autre fournisseur.</p>
+            <p style="color:var(--body); line-height:1.7">Pour la franchise, l'article L330-3 prévoit que celui qui met à disposition un nom commercial, une marque ou une enseigne en exigeant une exclusivité ou une quasi-exclusivité, comme un franchiseur, doit remettre au candidat un document d'information et le projet de contrat vingt jours au moins avant la signature. Enfin, l'article L442-1, II, engage la responsabilité de celui qui met fin, même partiellement, à une relation commerciale établie sans préavis écrit tenant compte notamment de sa durée. Un préavis de dix-huit mois écarte la responsabilité pour durée insuffisante.</p>
+            <p style="color:var(--body); line-height:1.7">L'article 2044 définit la transaction comme le contrat par lequel les parties, par des concessions réciproques, terminent une contestation née ou préviennent une contestation à naître, et il exige un écrit. L'article 2052 pose que la transaction fait obstacle à une action en justice entre les parties qui aurait le même objet.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">L'article 1108 qualifie d'aléatoire le contrat dont les effets, quant aux avantages et aux pertes, dépendent d'un événement incertain que les parties acceptent. La rente viagère en est un exemple, c'est-à-dire une somme versée régulièrement jusqu'à la mort d'une personne, et elle peut être constituée à titre onéreux, par exemple en échange d'un immeuble, d'après l'article 1968. L'article 1979 oblige le débiteur à servir la rente pendant toute la vie de la personne désignée dans le contrat, même si la rente devient très lourde à payer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="articles">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quels articles du code civil retenir, contrat par contrat ?</h2>
+        <p class="lead" style="margin-bottom:16px">Ces articles servent de majeure dans un cas pratique. Tu peux les recopier sur ta fiche, puis les compléter avec ceux que ton enseignant cite en cours.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; min-width:760px; border-collapse:collapse; color:var(--body)">
+          <thead>
+          <tr><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Article</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Ce qu'il dit</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">À quoi il sert</th></tr>
+          </thead>
+          <tbody>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1105</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Les règles générales s'appliquent à tous les contrats, sous réserve des règles particulières à chacun.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Qualifier d'abord, puis appliquer la règle spéciale avant le droit commun.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1583</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">La vente est parfaite et la propriété est acquise à l'acheteur, à l'égard du vendeur, dès l'accord sur la chose et le prix.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Dater le transfert de propriété entre les parties.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1591</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le prix est déterminé et désigné par les parties.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Contrôler le prix, avec l'estimation par un tiers de l'article 1592.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1599</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">La vente de la chose d'autrui est nulle, et elle peut donner lieu à des dommages-intérêts si l'acheteur l'ignorait.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Vente par un vendeur qui n'est pas propriétaire.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1604</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">La délivrance est le transport de la chose en la puissance et possession de l'acheteur.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Première obligation du vendeur.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1626</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le vendeur garantit de droit l'éviction, même sans stipulation.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Un tiers conteste la propriété à l'acheteur.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1628</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le vendeur reste tenu de son fait personnel, et toute convention contraire est nulle.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Clause de non-garantie.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1641</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Garantie des défauts cachés qui rendent la chose impropre à l'usage ou diminuent tellement cet usage que l'acheteur ne l'aurait pas acquise ou en aurait donné un moindre prix.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Vice caché.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1644</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'acheteur choisit entre rendre la chose et récupérer le prix, ou garder la chose et obtenir une partie du prix.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Sanction du vice caché.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1648</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'action est intentée dans les deux ans à compter de la découverte du vice.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Délai de la garantie.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1709</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le louage des choses fait jouir l'autre partie d'une chose pendant un certain temps, moyennant un prix.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Qualifier le bail.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1719</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le bailleur délivre la chose (et un logement décent pour l'habitation principale), l'entretient et en fait jouir paisiblement le preneur.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Obligations du bailleur.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1732</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le preneur répond des dégradations ou des pertes qui arrivent pendant sa jouissance, sauf s'il prouve qu'elles ont eu lieu sans sa faute.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Responsabilité du locataire.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1875 et 1876</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le prêt à usage livre une chose pour s'en servir, à charge de la rendre, et il est essentiellement gratuit.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Qualifier le prêt à usage.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1892 et 1893</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le prêt de consommation oblige à rendre autant de même espèce et qualité, et l'emprunteur devient propriétaire.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Prêt d'argent, perte de la chose.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1710</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le louage d'ouvrage oblige à faire quelque chose pour l'autre, moyennant un prix convenu.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Qualifier le contrat d'entreprise.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1792</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le constructeur est responsable de plein droit des dommages qui compromettent la solidité de l'ouvrage ou le rendent impropre à sa destination.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Garantie décennale.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1984</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le mandat donne à une personne le pouvoir de faire quelque chose pour le mandant et en son nom, et il se forme par l'acceptation du mandataire.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Qualifier le mandat.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1988</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Un mandat en termes généraux n'embrasse que les actes d'administration, et un acte de propriété exige un mandat exprès.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Étendue des pouvoirs du mandataire.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article 1915</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le dépôt consiste à recevoir la chose d'autrui, à charge de la garder et de la restituer en nature.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Qualifier le dépôt.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p  style="margin-top:16px; color:var(--body); line-height:1.75">Pour la lésion dans la vente d'immeuble, tu compares l'article 1674 avec la règle générale de l'article 1168, que la page sur <a href="la-lesion-en-droit-des-contrats.html">la lésion en droit des contrats</a> explique. Le mandat apparent, qui engage le mandant au-delà de ses pouvoirs réels, fait l'objet de la page sur <a href="la-representation-en-droit-des-contrats.html">la représentation en droit des contrats</a>.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Comment distinguer les principaux contrats nommés ?</h2>
+        <p class="lead" style="margin-bottom:16px">Chaque contrat se reconnaît à son obligation principale. Le tableau donne cette obligation pour chacun, puis indique s'il se fait moyennant un prix, et ce qu'il fait de la chose ou du pouvoir. Ces trois points servent à qualifier.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; min-width:820px; border-collapse:collapse; color:var(--body)">
+          <thead>
+          <tr><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Contrat</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Obligation principale</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Prix ou gratuité</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Ce que le contrat fait de la chose ou du pouvoir</th></tr>
+          </thead>
+          <tbody>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Vente (articles 1582 et 1583)</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'un livre une chose, l'autre la paie.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Moyennant un prix.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'acheteur devient propriétaire dès l'accord.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Bail (article 1709)</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Faire jouir l'autre d'une chose pendant un certain temps.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Moyennant un prix, le loyer.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le bailleur garde la propriété, le preneur jouit de la chose.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Prêt à usage (articles 1875 et 1876)</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Livrer une chose pour s'en servir, à charge de la rendre.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Essentiellement gratuit.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'emprunteur rend la chose elle-même.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Prêt de consommation (articles 1892 et 1893)</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Livrer des choses qui se consomment par l'usage, à charge d'en rendre autant de même espèce et qualité.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Des intérêts peuvent être stipulés (article 1905).</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'emprunteur devient propriétaire et supporte la perte.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Dépôt (articles 1915 et 1917)</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Recevoir la chose d'autrui, à charge de la garder et de la restituer en nature.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le dépôt proprement dit est essentiellement gratuit.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le déposant garde la propriété, le dépositaire rend la chose même (article 1932).</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Mandat (articles 1984 et 1986)</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Recevoir le pouvoir de faire quelque chose pour le mandant et en son nom.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Gratuit s'il n'y a pas de convention contraire.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le mandataire agit au nom du mandant, qui répond de ce qui entre dans son pouvoir.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Entreprise (articles 1710 et 1788)</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Faire quelque chose pour l'autre.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Moyennant un prix convenu.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Si l'entrepreneur fournit la matière, la perte avant livraison est pour lui.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Pour mémoriser ce tableau, tu relis une colonne à la fois. Dans la colonne du prix, tu vois que le prêt à usage et le dépôt proprement dit sont gratuits par nature, que le mandat l'est par défaut, et que le prêt de consommation peut comporter des intérêts. La vente, le bail et l'entreprise se font en revanche moyennant un prix. Dans la dernière colonne, tu retrouves ainsi ce que chacun reçoit ou doit rendre, ce qui t'aide à distinguer les contrats qui transfèrent la propriété de ceux qui donnent seulement l'usage d'une chose ou rendent un service.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Éviction, vices cachés ou conformité, quelle garantie invoquer ?</h2>
+        <p class="lead" style="margin-bottom:16px">Un acheteur mécontent dispose de plusieurs fondements, dont un seul est réservé au consommateur, la garantie légale de conformité. Tu choisis donc d'abord le bon fondement, car chacun a ses propres conditions et son propre délai.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; min-width:900px; border-collapse:collapse; color:var(--body)">
+          <thead>
+          <tr><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Garantie</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Ce que l'acheteur reproche</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Qui l'invoque et contre qui</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Délai et sanction</th></tr>
+          </thead>
+          <tbody>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Éviction (articles 1625 à 1630)</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Un tiers conteste à l'acheteur la propriété ou la possession de la chose.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'acheteur contre son vendeur. La garantie est due de droit, même sans stipulation, et le vendeur reste tenu de son fait personnel malgré toute clause (articles 1626 et 1628).</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'acheteur évincé obtient la restitution du prix, des fruits, des frais et des dommages-intérêts (article 1630). L'action se prescrit, c'est-à-dire qu'elle ne peut plus être exercée au bout de cinq ans (article 2224), qui courent à partir de l'éviction (article 2233).</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Vices cachés (articles 1641 à 1649)</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Un défaut caché de la chose, qui la rend impropre à l'usage ou diminue tellement cet usage que l'acheteur ne l'aurait pas acquise ou en aurait donné un moindre prix.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'acheteur contre son vendeur. Le sous-acquéreur, c'est-à-dire le dernier acheteur de la chaîne, agit aussi directement contre le fabricant ou un vendeur antérieur.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Deux ans à compter de la découverte du vice (article 1648), dans la limite de vingt ans à compter de la vente conclue par la partie recherchée (article 2232). L'acheteur choisit entre rendre la chose et récupérer le prix, ou garder la chose et obtenir une réduction (article 1644). Les dommages-intérêts s'ajoutent si le vendeur connaissait le vice (article 1645).</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Conformité (articles L217-1 et suivants du code de la consommation)</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le bien ne correspond pas au contrat ou aux critères légaux de conformité (articles L217-4 et L217-5).</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Seulement le consommateur contre un vendeur professionnel (article L217-1).</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">La garantie couvre les défauts apparus dans les deux ans de la délivrance (article L217-3). Pendant vingt-quatre mois, douze pour un bien d'occasion, le défaut est présumé exister dès la délivrance, sauf preuve contraire (article L217-7). Le consommateur choisit entre la réparation et le remplacement (article L217-9), faits dans un délai raisonnable de trente jours au maximum (article L217-10), puis il peut obtenir une réduction du prix ou la résolution du contrat (article L217-14). L'action du consommateur se prescrit selon le droit commun, soit cinq ans (article 2224), à compter du jour où il connaît le défaut (article L217-3).</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Pour un acheteur qui n'est pas consommateur, la garantie des vices cachés est l'unique fondement possible quand le défaut rend la chose impropre à sa destination normale. La première chambre civile de la Cour de cassation le juge le 14 mai 1996 pour des tuiles qui se dégradaient anormalement, et elle écarte l'erreur comme la non-conformité. L'acheteur reste ainsi soumis au délai de l'article 1648, qui était alors un bref délai et qui est aujourd'hui de deux ans. Le consommateur dispose en plus de la garantie de conformité, dont l'article L217-5 couvre l'usage habituellement attendu du bien. La troisième chambre civile rappelle le 25 janvier 2012 qu'une cour d'appel doit constater cette exclusivité avant de confondre la délivrance conforme avec le vice caché. Quand le vendeur livre une chose différente de celle qui était convenue, y compris entre particuliers, l'action pour délivrance non conforme de l'article 1604 reste en revanche ouverte, avec la prescription de cinq ans de l'article 2224.</p>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Dans un arrêt du 14 décembre 2004, la première chambre civile distingue aussi le vice caché de l'erreur sur une qualité substantielle. Un tableau acheté comme l'œuvre d'une artiste célèbre était en réalité attribué à un autre peintre. Cette erreur ne compromet pas l'usage normal de la chose, donc elle n'est pas un vice caché. Elle affecte en effet la formation du contrat, ce qui exclut aussi la délivrance non conforme, qui concerne l'exécution.</p>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Pour le caractère caché du vice, l'Assemblée plénière du 27 octobre 2006 censure une cour d'appel qui reprochait à des acheteurs de ne pas avoir fait constater par un homme de l'art l'état de la charpente et de la toiture d'une maison, car cette cour ajoutait à la loi une condition qu'elle ne prévoit pas. La page sur <a href="garantie-conformite-vices-caches-voiture-occasion.html">la garantie à invoquer pour une voiture d'occasion en panne</a> applique ce choix à un cas concret.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="decisions">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quelles décisions retenir en contrats spéciaux ?</h2>
+        <p class="lead" style="margin-bottom:24px">Cinq décisions éclairent la vente, le contrat cadre et le mandat. Tu retiens pour chacune les faits, puis la règle que la Cour de cassation en tire.</p>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Prix du contrat cadre · Assemblée plénière de la Cour de cassation, 1er décembre 1995, n° 91-15.578</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Une entreprise conclut un contrat de location-entretien d'une installation téléphonique, moyennant une redevance indexée, et les modifications de l'installation sont à sa charge selon le tarif en vigueur. Le loueur résilie le contrat parce que la redevance n'est plus payée. L'entreprise demande alors l'annulation du contrat pour indétermination du prix, et la cour d'appel l'annule. L'Assemblée plénière casse cet arrêt. Elle juge que, lorsqu'une convention prévoit la conclusion de contrats ultérieurs, l'indétermination du prix de ces contrats dans la convention initiale n'affecte pas la validité de celle-ci, sauf dispositions légales particulières. L'abus dans la fixation du prix donne seulement lieu à résiliation ou indemnisation. Si le loueur facture ensuite les modifications à un tarif abusif, le juge peut accorder une indemnité ou prononcer la résiliation, sans annuler le contrat initial.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Tu cites cet arrêt pour le prix d'un contrat cadre. L'article 1164 du code civil pose aujourd'hui une règle voisine, et la page sur <a href="arret-fixation-prix-1995-explique.html">la fixation unilatérale du prix dans le contrat cadre</a> détaille l'affaire.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Promesse unilatérale de vente · Chambre civile 3 de la Cour de cassation, 23 juin 2021, n° 20-17.554</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Une promesse unilatérale de vente d'un appartement est signée le 1er avril 1999. L'option ne peut être levée qu'au décès de la précédente propriétaire, qui s'est réservé un droit d'habitation. La promettante se rétracte le 17 février 2010, puis les bénéficiaires lèvent l'option le 8 janvier 2011, après ce décès, et demandent la réalisation de la vente.</p>
+            <p style="color:var(--body); line-height:1.7">Jusqu'alors, la Cour de cassation jugeait que la levée de l'option après la rétractation du promettant ne réalisait pas la rencontre des volontés. La vente ne pouvait pas être imposée au promettant, qui devait seulement des dommages-intérêts, et l'arrêt Consorts Cruz du 15 décembre 1993 en est l'exemple. La troisième chambre civile change de position et rejette le pourvoi de la promettante, car elle juge que le promettant s'oblige définitivement à vendre dès la conclusion de l'avant-contrat, sans possibilité de rétractation, sauf stipulation contraire. La vente est donc parfaite lorsque les bénéficiaires lèvent l'option.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Pour les promesses conclues depuis le 1er octobre 2016, l'article 1124 du code civil dit déjà que la révocation de la promesse pendant le temps laissé pour opter n'empêche pas la formation du contrat promis. La page sur <a href="promesse-unilaterale-de-vente-article-1124.html">la promesse unilatérale de vente</a> reprend cette règle.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Vice caché dans une chaîne de ventes · Chambre civile 1 de la Cour de cassation, 9 octobre 1979, n° 78-12.502</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Un automobiliste achète une Lamborghini d'occasion à un garagiste. Dix jours plus tard, il a un accident causé par la rupture d'une pièce de la suspension arrière, due à un vice de construction que le constructeur avait lui-même reconnu. La cour d'appel condamne le constructeur et l'importateur sur le terrain de la responsabilité quasi-délictuelle, mais elle met le garagiste hors de cause, car elle ne trouve pas la preuve qu'il connaissait le vice. La première chambre civile casse cet arrêt sur deux points.</p>
+            <p style="color:var(--body); line-height:1.7">D'abord, le sous-acquéreur, c'est-à-dire l'acheteur qui n'a pas contracté avec le fabricant, dispose d'une action directe contre le fabricant ou un vendeur intermédiaire pour la garantie du vice caché qui affecte la chose dès sa fabrication. Il peut ainsi les poursuivre sans passer par chaque vendeur de la chaîne, et cette action est de nature contractuelle. Les juges devaient alors vérifier si l'action avait été intentée dans le délai prévu par la loi, qui est aujourd'hui de deux ans. Ensuite, le garagiste est censé connaître le vice dont la voiture est atteinte, parce qu'il est un vendeur professionnel. Tu cites cet arrêt dès qu'un cas pratique oppose le dernier acheteur d'une chaîne au fabricant.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">L'Assemblée plénière du 7 février 1986 juge de même que le sous-acquéreur dispose contre le fabricant d'une action contractuelle directe, fondée cette fois sur la non-conformité de la chose livrée et soumise au délai de droit commun.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Délais de la garantie des vices cachés · Chambre mixte de la Cour de cassation, 21 juillet 2023, n° 21-15.809 et n° 20-10.763</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Deux arrêts du même jour fixent les délais de l'action. Dans le premier, n° 21-15.809, le cessionnaire de la créance d'une société agroalimentaire poursuit le fournisseur de poches de conditionnement défectueuses. Un expert est désigné avant le procès, et l'assignation au fond arrive plus de deux ans après la saisine du juge, mais moins de deux ans après le dépôt du rapport. La Chambre mixte constate que la Cour de cassation qualifiait le délai de l'article 1648 tantôt de forclusion, c'est-à-dire de délai qui ne peut en principe ni être interrompu ni être suspendu, tantôt de prescription. Elle retient une solution unique. Le délai de deux ans est un délai de prescription, qui peut ainsi être interrompu, et que l'article 2239 suspend quand le juge ordonne une expertise avant tout procès.</p>
+            <p style="color:var(--body); line-height:1.7">Dans le second arrêt, n° 20-10.763, un constructeur agit contre son fournisseur et contre le fabricant de plaques de couverture livrées en 2003. La Chambre mixte casse l'arrêt de la cour d'appel, car celle-ci avait appliqué le délai de cinq ans de l'article L110-4 du code de commerce. Elle juge que l'action en garantie des vices cachés ne peut plus être encadrée que par le délai de vingt ans de l'article 2232, qui court à compter du jour de la vente conclue par la partie recherchée en garantie.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Les deux ans de l'article 1648 courent, eux, à compter de la découverte du vice et, pour l'action récursoire, c'est-à-dire celle d'un vendeur poursuivi qui se retourne contre son propre vendeur, à compter de l'assignation. Tu retiens ainsi deux calculs, les deux ans depuis la découverte et les vingt ans depuis la vente. Pour le détail du délai de vingt ans, tu peux lire la page sur <a href="arret-vices-caches-delai-2023-explique.html">l'arrêt du 21 juillet 2023 sur le délai de la garantie des vices cachés</a>, qui porte sur un autre arrêt rendu le même jour.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Mandat apparent · Assemblée plénière de la Cour de cassation, 13 décembre 1962, n° 57-11.569</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Le président-directeur général d'une banque signe seul, au nom de la banque, un cautionnement solidaire de 700 000 francs au profit de l'Administration des Domaines, pour garantir une société de récupération d'épaves. Les statuts de la banque exigent pourtant la signature de deux mandataires habilités. Quand l'Administration demande l'exécution du cautionnement, la banque refuse alors de payer, car elle soutient que cet engagement ne lui est pas opposable. La cour d'appel la condamne en retenant un mandat apparent, et l'Assemblée plénière rejette le pourvoi.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Elle juge que le mandant peut être engagé sur le fondement d'un mandat apparent, même sans faute qui lui soit reprochée, si la croyance du tiers à l'étendue des pouvoirs du mandataire est légitime. Cette croyance est légitime quand les circonstances autorisaient le tiers à ne pas vérifier les limites exactes de ces pouvoirs. Tu rapproches cette solution de l'article 1998, qui limite en principe le mandant aux engagements conformes au pouvoir donné, et tu lis la page sur <a href="arret-mandat-apparent-1962-explique.html">l'arrêt du 13 décembre 1962</a> pour le détail.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cas-pratique">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Un cas pratique corrigé sur une trottinette électrique à la batterie défectueuse</h2>
+        <p class="lead" style="margin-bottom:16px">Cet exemple applique les garanties de la vente à une chaîne de contrats. Pour chaque question, la correction pose d'abord la règle dans la majeure, puis l'applique aux faits dans la mineure, avant de conclure.</p>
+
+        <div class="card" style="padding:22px 24px">
+          <p style="margin-top:0; color:var(--body); line-height:1.7"><strong>Énoncé.</strong> Le 12 mars 2025, Inès Garnier, infirmière à Nantes, achète 450 € une trottinette électrique d'occasion à Hugo Marchetti, un particulier, après avoir lu son annonce sur un site de petites annonces. Comme l'annonce porte la mention « vendue en l'état, sans garantie », Inès l'accepte. Hugo avait acheté la trottinette neuve en mars 2023 au magasin Au Roulant Nantais, un commerçant spécialisé dans la vente de trottinettes électriques, qui la tenait de son fabricant, la société Akerlis, laquelle vend ses trottinettes à des magasins spécialisés. Hugo s'en est servi sans problème pendant deux ans et ne connaissait aucun défaut.</p>
+          <p style="color:var(--body); line-height:1.7">Début septembre 2025, la batterie ne tient plus que quelques minutes. Inès mandate alors un expert, sans saisir le juge, et celui-ci conclut le 14 janvier 2026 que plusieurs cellules avaient dès leur fabrication un défaut impossible à voir sans démontage. Inès ne savait rien de la cause avant ce rapport. Elle veut obtenir réparation de son préjudice. Hugo lui répond que la trottinette était vendue sans garantie, et le magasin lui répond qu'il n'a jamais rien vendu à Inès. Quelles actions Inès peut-elle exercer, et jusqu'à quand ?</p>
+          <p style="color:var(--body); line-height:1.7; margin-top:20px"><strong>Question 1. Inès peut-elle invoquer la garantie des vices cachés contre Hugo ?</strong></p>
+          <p style="color:var(--body); line-height:1.7"><strong>Majeure.</strong> Selon l'article 1641 du code civil, le vendeur est tenu de la garantie à raison des défauts cachés de la chose vendue qui la rendent impropre à l'usage auquel on la destine. Il faut donc un défaut caché, présent au moment de la vente, et assez grave pour rendre la chose impropre à son usage ou en diminuer fortement l'usage. L'article 1642 écarte les vices apparents, que l'acheteur a pu constater lui-même. Ces règles s'appliquent aux ventes entre particuliers comme aux autres ventes, hors ventes par autorité de justice d'après l'article 1649. En revanche, la garantie légale de conformité du code de la consommation s'applique seulement aux ventes entre un vendeur professionnel et un consommateur, d'après l'article L217-1.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Mineure.</strong> Hugo est un particulier, donc le code de la consommation ne s'applique pas et Inès agit sur le fondement de l'article 1641. Le défaut des cellules était impossible à voir sans démontage, ce qui le rend caché. Il existait dès la fabrication, c'est-à-dire avant la vente du 12 mars 2025. Il rend en outre la batterie quasi inutilisable, puisqu'elle ne tient plus que quelques minutes, et la trottinette devient ainsi impropre à son usage. Les trois conditions, défaut caché, antérieur à la vente et assez grave, sont remplies.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Conclusion.</strong> La garantie des vices cachés s'applique à la vente entre Inès et Hugo.</p>
+          <p style="color:var(--body); line-height:1.7; margin-top:20px"><strong>Question 2. La mention « vendue en l'état, sans garantie » protège-t-elle Hugo ?</strong></p>
+          <p style="color:var(--body); line-height:1.7"><strong>Majeure.</strong> Selon l'article 1643, le vendeur est tenu des vices cachés même s'il ne les connaissait pas, sauf s'il a stipulé qu'il ne serait obligé à aucune garantie. Cet article réserve en effet cette stipulation au vendeur qui ignorait le vice. D'après l'article 1645, le vendeur qui connaissait les vices de la chose doit en revanche, outre la restitution du prix, tous les dommages-intérêts.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Mineure.</strong> D'après l'énoncé, Hugo ne connaissait aucun défaut, et il est donc un vendeur qui ignorait le vice. La mention de l'annonce, acceptée par Inès, est alors une stipulation de non-garantie valable à l'égard de Hugo.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Conclusion.</strong> Inès ne peut pas obtenir de garantie de la part de Hugo, car l'énoncé établit qu'il ignorait le défaut.</p>
+          <p style="color:var(--body); line-height:1.7; margin-top:20px"><strong>Question 3. Inès peut-elle agir contre le magasin et contre le fabricant ?</strong></p>
+          <p style="color:var(--body); line-height:1.7"><strong>Majeure.</strong> L'action directe dont dispose le sous-acquéreur contre le fabricant ou un vendeur intermédiaire, pour la garantie du vice caché qui affecte la chose dès sa fabrication, est de nature contractuelle, comme l'a jugé la première chambre civile de la Cour de cassation le 9 octobre 1979. Le vendeur professionnel est en outre présumé connaître les vices de la chose qu'il vend. La chambre commerciale juge le 17 janvier 2024 que cette présomption est irréfragable, c'est-à-dire qu'elle n'admet pas la preuve contraire, à condition que le vendeur vende habituellement ce type de bien. L'article 1645 lui fait alors devoir tous les dommages-intérêts.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Mineure.</strong> Inès est la dernière acheteuse d'une chaîne qui part du fabricant, passe par le magasin, puis par Hugo. Le défaut remonte à la fabrication des cellules. Le magasin a donc tort de répondre qu'il n'a rien vendu à Inès, puisque l'action directe permet à Inès d'agir contre lui sans passer par Hugo. Le magasin vend habituellement des trottinettes électriques, et la société Akerlis les vend habituellement à des magasins spécialisés, si bien que l'un et l'autre sont des vendeurs professionnels présumés connaître le vice. La mention « vendue en l'état, sans garantie » de l'annonce lie seulement Hugo et Inès, et elle ne protège ni le magasin ni le fabricant.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Conclusion.</strong> Inès peut agir directement contre le magasin ou contre la société Akerlis, et leur demander la réparation de son préjudice.</p>
+          <p style="color:var(--body); line-height:1.7; margin-top:20px"><strong>Question 4. Jusqu'à quand Inès peut-elle agir ?</strong></p>
+          <p style="color:var(--body); line-height:1.7"><strong>Majeure.</strong> L'article 1648 impose d'intenter l'action résultant des vices rédhibitoires dans un délai de deux ans à compter de la découverte du vice. Par un arrêt du 21 juillet 2023, la Chambre mixte de la Cour de cassation a jugé que ce délai est un délai de prescription, que l'article 2239 suspend donc quand le juge fait droit à une demande d'expertise présentée avant tout procès. En outre, par un second arrêt du même jour, elle a jugé que l'action ne peut pas dépasser le délai de vingt ans de l'article 2232, et ce délai court à compter de la vente conclue par la partie recherchée en garantie.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Mineure.</strong> Inès ignorait la cause du défaut avant le rapport de l'expert du 14 janvier 2026, donc la découverte du vice date de ce jour et le délai de deux ans se termine le 14 janvier 2028. Un juge pourrait toutefois faire partir le délai de la panne de septembre 2025, ce qui ramènerait l'échéance à septembre 2027. L'expert a en outre été mandaté par Inès sans saisir le juge. Son expertise n'est pas une mesure que le juge a accordée, et elle ne suspend pas le délai. Le délai de vingt ans court à partir de la vente conclue par chaque vendeur recherché, et il ne pose aucun problème ici, puisque toutes les ventes en cause datent de moins de vingt ans.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Conclusion.</strong> Inès doit assigner au plus tard le 14 janvier 2028 et, par prudence, avant septembre 2027. Si elle demande une expertise judiciaire avant le procès et que le juge l'accorde, le délai est suspendu, et selon l'article 2239 il recommence à courir pour au moins six mois après l'exécution de la mesure.</p>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Pour t'entraîner sur la méthode, la page sur <a href="methode-cas-pratique.html">la méthode du cas pratique</a> détaille les cinq étapes, et <a href="cas-pratiques-corriges.html">les cas pratiques corrigés</a> réunissent les exercices par matière.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quelles erreurs coûtent le plus de points ?</h2>
+        <p class="lead" style="margin-bottom:24px">Ces cinq confusions font perdre des points dans les copies de contrats spéciaux.</p>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Confondre vice caché et garantie légale de conformité</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Les articles 1641 et suivants du code civil traitent du vice caché, qui protège l'acheteur même quand il achète à un particulier. En revanche, la garantie légale de conformité du code de la consommation protège seulement le consommateur qui achète à un professionnel. Dans un cas pratique entre deux particuliers, invoquer l'article L217-3 fait donc perdre les points de la question. Entre un professionnel et un consommateur, tu retiens que la garantie dure deux ans, et que le défaut est présumé exister dès la délivrance pendant vingt-quatre mois, douze mois pour un bien d'occasion.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Croire qu'une clause de non-garantie écarte toutes les garanties</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">L'article 1627 permet aux parties de convenir que le vendeur ne sera soumis à aucune garantie, mais l'article 1628 maintient la garantie du fait personnel du vendeur et déclare nulle toute convention contraire. Même avec une clause de non-garantie, l'article 1629 oblige le vendeur à restituer le prix à l'acheteur évincé, sauf si l'acheteur a connu le danger de l'éviction lors de la vente ou a acheté à ses périls et risques. Pour les vices cachés, l'article 1643 réserve la clause au vendeur qui ignorait le vice.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Confondre prêt à usage et prêt de consommation</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Dans le prêt à usage, l'emprunteur rend la chose elle-même, comme le dit l'article 1875. Dans le prêt de consommation, il rend en effet autant de même espèce et qualité d'après l'article 1892, et l'article 1893 le rend propriétaire de la chose prêtée, si bien que la perte est pour lui, de quelque manière qu'elle arrive. L'emprunteur d'une somme d'argent qui se fait voler son portefeuille doit donc rendre la somme.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Écrire que le mandant répond de tout ce que fait le mandataire</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">D'après l'article 1989, le mandataire ne peut rien faire au-delà de ce qui est porté dans son mandat. Le mandant ne répond donc en principe de ce qui dépasse ce pouvoir que s'il le ratifie expressément ou tacitement, selon l'article 1998. Le mandat apparent est en revanche l'exception que l'article 1156 prévoit quand le tiers a légitimement cru aux pouvoirs du mandataire, après l'arrêt de l'Assemblée plénière de la Cour de cassation du 13 décembre 1962. Tu cherches d'abord le pouvoir réel donné au mandataire, puis la croyance du tiers.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Appliquer une réforme qui n'est pas en vigueur</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Une copie qui applique les nouveaux articles proposés par la commission comme s'ils étaient en vigueur donne une règle fausse. Tu appliques les articles actuels du code civil, et tu mentionnes la réforme seulement en perspective.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Dans quel ordre réviser les contrats spéciaux ?</h2>
+        <p style="color:var(--body); line-height:1.75">La qualification vient en premier, car chaque cas pratique de la matière l'exige. L'article 1105 et la recherche de l'obligation principale donnent ce réflexe. Ensuite, tu étudies la vente en détail, parce que le bail, le mandat ou le prêt se comparent souvent à elle. Dans la vente, tu retiens dans l'ordre le prix, la délivrance, puis les trois garanties avec leurs délais.</p>
+        <p style="color:var(--body); line-height:1.75">Après la vente, tu passes aux contrats d'usage, c'est-à-dire le bail et les deux prêts, puis aux contrats de service, à savoir l'entreprise, le mandat et le dépôt. Certains enseignants insistent surtout sur la vente et sur le contrat d'entreprise, et tu adaptes alors l'ordre à leur plan. La distribution, la transaction et les contrats aléatoires passent en dernier. </p>
+        <p style="color:var(--body); line-height:1.75">Pour chaque contrat, tu notes sa définition. Ensuite, tu relèves les obligations de chaque partie, puis la sanction d'un manquement et la fin du contrat. Les cas pratiques, comme celui de la trottinette, terminent la révision, car le correcteur attend que tu appliques la règle aux faits de l'énoncé. Selon ta faculté, l'examen peut aussi comporter des questions de cours ou des QCM, que tu prépares avec les définitions et les conditions notées dans ta fiche. La page sur <a href="contrats-speciaux-l3.html">les contrats spéciaux en L3</a> présente les autres supports de la matière.</p>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container container--narrow">
+        <h2 class="h2 text-center" style="margin-bottom:32px">Questions fréquentes sur les contrats spéciaux en L3</h2>
+        <div class="accordion">
+          <details class="accordion__item" open><summary><h3>Que faut-il réviser en contrats spéciaux en L3 ?</h3></summary><div class="accordion__body">La fiche complète organise le programme en cinq thèmes. Le premier explique comment qualifier un contrat, et le deuxième couvre toute la vente, de la promesse aux garanties. Le troisième traite du bail et du prêt, et le quatrième des contrats de service, c'est-à-dire l'entreprise, le mandat et le dépôt. Le cinquième réunit la distribution, la transaction et les contrats aléatoires. Ton enseignant peut retirer ou ajouter des contrats, donc tu compares cette liste avec le plan de ton cours.</div></details>
+          <details class="accordion__item"><summary><h3>Quelle différence entre vice caché et garantie légale de conformité ?</h3></summary><div class="accordion__body">Le vice caché est un défaut qui rend la chose impropre à son usage, et l'acheteur peut l'invoquer dans les deux ans à compter de sa découverte, même quand il achète à un particulier, selon les articles 1641 et suivants du code civil. La garantie légale de conformité relève du code de la consommation et protège seulement le consommateur qui achète à un professionnel. Elle dure deux ans, et le défaut est présumé exister dès la délivrance pendant vingt-quatre mois, ou douze mois pour un bien d'occasion. Entre particuliers, l'acheteur peut aussi invoquer la délivrance non conforme de l'article 1604 quand la chose livrée diffère de celle qui était convenue.</div></details>
+          <details class="accordion__item"><summary><h3>Comment qualifier un contrat dans un cas pratique ?</h3></summary><div class="accordion__body">Tu cherches l'obligation principale des parties. Si l'une livre une chose et l'autre la paie, c'est une vente au sens de l'article 1582. Si l'une fait jouir l'autre d'une chose pendant un certain temps moyennant un prix, c'est un bail d'après l'article 1709. Si l'une fait quelque chose pour l'autre moyennant un prix, l'article 1710 parle de louage d'ouvrage, que l'on appelle contrat d'entreprise. Le juge restitue cette qualification même quand les parties ont choisi un autre nom, en application de l'article 12 du code de procédure civile, sauf si elles l'ont lié par un accord exprès sur des droits dont elles ont la libre disposition.</div></details>
+          <details class="accordion__item"><summary><h3>Un vendeur peut-il écarter la garantie des vices cachés par une clause ?</h3></summary><div class="accordion__body">L'article 1643 permet de stipuler que le vendeur ne sera obligé à aucune garantie, mais il réserve cette possibilité au vendeur qui ignorait le vice. D'après l'article 1645, le vendeur qui connaissait le vice doit la restitution du prix et tous les dommages-intérêts. Dans un cas pratique, tu cherches donc d'abord si le vendeur connaissait le défaut. Un vendeur professionnel est censé le connaître, comme l'a jugé la première chambre civile de la Cour de cassation le 9 octobre 1979.</div></details>
+          <details class="accordion__item"><summary><h3>Existe-t-il une fiche PDF de contrats spéciaux pour la L3 ?</h3></summary><div class="accordion__body">La fiche complète de contrats spéciaux L3 compte 150 pages et coûte 14,99 €. Elle est vendue seule ou dans le Pack Licence 3, qui réunit cinq fiches de troisième année pour 58 €. Le Pack Contrats spéciaux L3 ajoute à la fiche les flashcards et QCM, les fiches d'arrêt et les cas pratiques corrigés pour 29,98 €. La page sur <a href="contrats-speciaux-l3.html">les contrats spéciaux en L3</a> présente tous ces supports, et <a href="formations.html">le catalogue des formations</a> réunit toutes les fiches.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="author-box">
+          <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+          <div>
+            <p class="author-box__name">Julien</p>
+            <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+            <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">162 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- fin-article:pack-ultra -->
+    <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
+      <div class="container">
+        <p class="article-pack-ligne__texte">Le Pack Ultra L3 S1 réunit les 42 ressources de ton semestre de L3 pour 329 €, la fiche de contrats spéciaux L3 comprise. <a href="pack-ultra.html#pack-ultra-l3-s1">Voir le contenu du pack →</a></p>
+        <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (fiche revision contrats speciaux L3)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Contrats spéciaux L3 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-contrats-speciaux-l3">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=28e5a166" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=4b8ba62a" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=a4e01c99" defer></script>
+</body>
+</html>
