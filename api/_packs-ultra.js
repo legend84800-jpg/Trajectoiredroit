@@ -6,10 +6,10 @@
 const DEFINITIONS = {
   "pack-ultra-l1-s1": { nom: "Le Pack Ultra L1 semestre 1", prix: 25900, attendus: 36 },
   "pack-ultra-l1-s2": { nom: "Le Pack Ultra L1 semestre 2", prix: 22900, attendus: 26 },
-  "pack-ultra-l2-s1": { nom: "Le Pack Ultra L2 semestre 1", prix: 22900, attendus: 28 },
-  "pack-ultra-l2-s2": { nom: "Le Pack Ultra L2 semestre 2", prix: 20900, attendus: 27 },
-  "pack-ultra-l3-s1": { nom: "Le Pack Ultra L3 semestre 1", prix: 29900, attendus: 37 },
-  "pack-ultra-l3-s2": { nom: "Le Pack Ultra L3 semestre 2", prix: 19900, attendus: 5, venteSuspendue: true },
+  "pack-ultra-l2-s1": { nom: "Le Pack Ultra L2 semestre 1", prix: 25900, attendus: 33 },
+  "pack-ultra-l2-s2": { nom: "Le Pack Ultra L2 semestre 2", prix: 23900, attendus: 30 },
+  "pack-ultra-l3-s1": { nom: "Le Pack Ultra L3 semestre 1", prix: 32900, attendus: 42 },
+  "pack-ultra-l3-s2": { nom: "Le Pack Ultra L3 semestre 2", prix: 19900, attendus: 6, venteSuspendue: true },
 };
 
 const RATTACHEMENTS_ANNUELS = {

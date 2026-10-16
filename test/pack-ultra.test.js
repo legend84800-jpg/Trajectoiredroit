@@ -151,7 +151,7 @@ test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async
   assert.equal(appels[0].line_items[0].price_data.unit_amount, 25900);
   assert.equal(appels[0].metadata.produitIds, "pack-ultra-l1-s1");
   assert.equal(appels[0].cancel_url, "https://trajectoiredroit.com/pack-ultra.html#pack-ultra-l1-s1");
-  assert.equal(appels[1].line_items[0].price_data.unit_amount, 20900);
+  assert.equal(appels[1].line_items[0].price_data.unit_amount, 23900);
   assert.equal(appels[1].metadata.produitIds, "pack-ultra-l2-s2");
   assert.equal(appels[1].cancel_url, "https://trajectoiredroit.com/#pack-ultra-detail-l2-s2");
 });

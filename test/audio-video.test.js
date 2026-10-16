@@ -10,7 +10,7 @@ const { construireLiensTelechargement } = require("../api/_liens-telechargement"
 const IDS = Object.keys(DONNEES).map((slug) => `audio-video-${slug}`);
 
 test("chaque option podcasts et vidéos contient un podcast et une vidéo par leçon", () => {
-  assert.equal(IDS.length, 9);
+  assert.equal(IDS.length, 23);
   for (const id of IDS) {
     const produit = PRODUITS[id];
     const lecons = DONNEES[id.replace("audio-video-", "")].unites.length;
@@ -20,7 +20,8 @@ test("chaque option podcasts et vidéos contient un podcast et une vidéo par le
     assert.equal(produit.blobs.length, lecons * 2, id);
     assert.equal(produit.blobsMeta.length, produit.blobs.length, id);
     produit.blobs.forEach((url, i) => assert.match(url, i % 2 ? /\/U\d+-video\.mp4$/ : /\/U\d+-podcast\.m4a$/, id));
-    assert.match(produit.nom, /^Podcasts et vidéos .+ L1/, id);
+    assert.match(produit.nom, /^Podcasts et vidéos .+ L[123]/, id);
+    assert.ok(produit.blobsMeta.every((m) => !/ d [a-z]| l [a-z]|responsabilite /.test(m.libelle)), id);
     assert.ok(IMAGES_PRODUITS[id], id);
     assert.ok(fs.existsSync(path.join(__dirname, "..", IMAGES_PRODUITS[id].replace("https://trajectoiredroit.com/", ""))), id);
   }
@@ -38,8 +39,8 @@ test("Mon compte reçoit un lecteur audio et un lecteur vidéo nommés par leço
   assert.ok(exp - Date.now() / 1000 > 5 * 3600, "un podcast doit rester lisible plusieurs heures");
 });
 
-test("les Packs Ultra L1 incluent les podcasts et gardent le nom de chaque leçon", () => {
-  for (const [pack, attendus] of [["pack-ultra-l1-s1", 5], ["pack-ultra-l1-s2", 4]]) {
+test("les Packs Ultra incluent les podcasts et gardent le nom de chaque leçon", () => {
+  for (const [pack, attendus] of [["pack-ultra-l1-s1", 5], ["pack-ultra-l1-s2", 4], ["pack-ultra-l2-s1", 5], ["pack-ultra-l2-s2", 3], ["pack-ultra-l3-s1", 5], ["pack-ultra-l3-s2", 1]]) {
     const inclus = PRODUITS[pack].inclus.filter((id) => id.startsWith("audio-video-"));
     assert.equal(inclus.length, attendus, pack);
     const liens = construireLiensTelechargement(pack, PRODUITS[pack], "secret", "https://trajectoiredroit.com", 900, {});
@@ -48,12 +49,9 @@ test("les Packs Ultra L1 incluent les podcasts et gardent le nom de chaque leço
     assert.ok(audio.every((l) => /^Leçon \d+, .+ · podcast$/.test(l.nom)), pack);
     assert.ok(audio.every((l) => l.groupe.startsWith("Podcasts et vidéos")), pack);
   }
-  for (const id of ["pack-ultra-l2-s1", "pack-ultra-l2-s2", "pack-ultra-l3-s1"]) {
-    assert.ok(!PRODUITS[id].inclus.some((ref) => ref.startsWith("audio-video-")), id);
-  }
 });
 
-test("chaque page matière L1 propose l'option avec un extrait et le bon bouton", () => {
+test("chaque page matière propose l'option avec un extrait et le bon bouton", () => {
   const pages = {
     "introduction-au-droit-l1.html": ["intro-droit-l1"],
     "histoire-du-droit-l1.html": ["hist-droit-l1"],
@@ -63,6 +61,16 @@ test("chaque page matière L1 propose l'option avec un extrait et le bon bouton"
     "droit-de-la-famille-l1.html": ["famille-l1-s2"],
     "histoire-des-institutions-l1.html": ["hist-institutions-l1"],
     "droit-penal-general-l1.html": ["penal-general-l1"],
+    "droit-administratif-l2.html": ["da-l2-s1", "da-l2-s2"],
+    "droit-des-contrats-l2.html": ["contrats-l2-s1"],
+    "droit-des-obligations-l2.html": ["obligations-l2-s2"],
+    "droit-penal-l2.html": ["penal-l2-s1"],
+    "droit-des-biens-l2.html": ["biens-l2"],
+    "droit-commercial-l3.html": ["commercial-l3-s1"],
+    "droit-des-societes-l3.html": ["societes-l3-s1", "societes-l3-s2"],
+    "contrats-speciaux-l3.html": ["contrats-speciaux-l3"],
+    "droit-du-travail-l3.html": ["travail-l3-s1"],
+    "procedure-penale-l3.html": ["procedure-penale-l3"],
   };
   for (const [page, slugs] of Object.entries(pages)) {
     const html = fs.readFileSync(path.join(__dirname, "..", page), "utf8");

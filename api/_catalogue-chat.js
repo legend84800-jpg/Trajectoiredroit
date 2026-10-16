@@ -46,7 +46,7 @@ majeures-preparees.html — majeures préparées PDF (la règle de droit conditi
 revisions.html — fiches d'arrêt par matière (${prixTexte(ficheArret)}, ${ficheArret.length} matières) et fiches de citations par matière (${prixTexte(citations)}, ${citations.length} matières), plus les packs annuels
 flashcards-qcm.html — flashcards + QCM par matière avec deck Anki inclus (${prixTexte(flashcards)}, ${flashcards.length} matières)
 corriges.html — cas pratiques corrigés (${casPratique.length} matières), commentaires d'arrêt corrigés (${commentaire.length} matières) et dissertations corrigées (${dissertation.length} matières), ${prixTexte(exercices)} chacun, plus des packs annuels par année
-pages matière de L1 (#podcasts-videos) — podcasts et vidéos par matière de L1, un podcast et une vidéo par leçon du cours, écoutés depuis Mon compte (${prixTexte(podcasts)}, ${podcasts.length} options), inclus dans les Packs Ultra L1
+pages matière de L1, L2 et L3 (#podcasts-videos) — podcasts et vidéos par matière, un podcast et une vidéo par leçon du cours, écoutés depuis Mon compte (${prixTexte(podcasts)}, ${podcasts.length} options), inclus dans les Packs Ultra des cinq semestres vendus
 cours-particuliers.html — cours particuliers de droit en visio avec Julien, 98 €/h
 stage-methode.html — stage de méthode en direct, ${euros(PRODUITS["stage-methode"].prix)}
 quiz-methode.html — quiz gratuit en 3 minutes pour voir où on perd des points (sans inscription)`;

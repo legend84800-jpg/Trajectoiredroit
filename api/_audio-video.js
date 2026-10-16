@@ -2,7 +2,8 @@
 // du cours, écoutés et regardés en ligne depuis Mon compte (jamais envoyés par
 // email, car une matière compte une quarantaine de fichiers). Les fichiers sont
 // sur R2 sous un dossier au nom aléatoire. Les données (titres, adresses) sont
-// dans _audio-video-data.json, produit par le script d'envoi vers R2.
+// dans _audio-video-data.json, produit par le script d'envoi vers R2. Le champ « nom »
+// de ces données remplace l'intitulé de la fiche complète quand il existe.
 
 const DONNEES = require("./_audio-video-data.json");
 
@@ -18,7 +19,7 @@ function construireProduits(catalogue) {
   const produits = {};
   for (const [slug, donnees] of Object.entries(DONNEES)) {
     const id = `audio-video-${slug}`;
-    const nom = `Podcasts et vidéos ${nomMatiere(slug, catalogue)}`;
+    const nom = `Podcasts et vidéos ${donnees.nom || nomMatiere(slug, catalogue)}`;
     const blobs = [];
     const blobsMeta = [];
     donnees.unites.forEach((unite, index) => {

@@ -547,7 +547,7 @@ html[data-theme="dark"] .ultra-inclusions li.ultra-resource--media { border: 0; 
 html[data-theme="dark"] .ultra-inclusions__economie { background: #245d45; color: #e1ffed; }
 
 /* Podcasts et vidéos de L1 : bandeau sous le titre, section d'écoute, extraits par matière, valeur sur les cartes */
-.ultra-audio-bandeau { margin: 24px auto 0; max-width: 640px; border: 1px solid #b9dfd2; border-radius: 14px; padding: 18px 20px; background: #eaf8f3; }
+.ultra-audio-bandeau { margin: 24px auto 0; max-width: 760px; border: 1px solid #b9dfd2; border-radius: 14px; padding: 18px 20px; background: #eaf8f3; }
 .ultra-audio-bandeau__texte { margin: 0 0 12px; color: #1f3d36; font-weight: 600; line-height: 1.5; }
 .ultra-audio-bandeau__chiffres { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 0 0 16px; padding: 0; list-style: none; }
 .ultra-audio-bandeau__chiffres li { display: flex; flex-direction: column; gap: 2px; border: 1px solid #b9dfd2; border-radius: 10px; padding: 8px 14px; background: #fff; color: #37445e; font-size: .88rem; }
@@ -559,7 +559,7 @@ html[data-theme="dark"] .ultra-inclusions__economie { background: #245d45; color
 .ultra-podcasts__extrait { margin: 20px 0; border: 1px solid rgba(26, 35, 126, .12); border-radius: 12px; padding: 18px; background: #fff; }
 .ultra-podcasts__extrait audio { display: block; width: 100%; margin-bottom: 14px; }
 .ultra-podcasts__extrait video { display: block; width: 100%; border-radius: 8px; }
-.ultra-podcasts__packs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.ultra-podcasts__packs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
 .ultra-podcasts__pack { display: flex; flex-direction: column; gap: 2px; border: 1px solid #b9dfd2; border-radius: 12px; padding: 14px 16px; background: #eaf8f3; color: #37445e; font-size: .9rem; line-height: 1.45; text-decoration: none; }
 .ultra-podcasts__pack strong { color: #1a2851; font-family: var(--font-display); font-size: 1.15rem; }
 .ultra-podcasts__pack:hover, .ultra-podcasts__pack:focus-visible { border-color: #176c5a; }
@@ -569,7 +569,7 @@ html[data-theme="dark"] .ultra-inclusions__economie { background: #245d45; color
 .ultra-card__bonus { margin: 10px 0 0; border-radius: 10px; padding: 9px 11px; background: #eaf8f3; color: #176c5a; font-size: .86rem; font-weight: 600; line-height: 1.45; }
 @media (max-width: 620px) {
   .ultra-audio-bandeau { padding: 16px; }
-  .ultra-audio-bandeau__chiffres li { flex: 1 1 100%; }
+  .ultra-audio-bandeau__chiffres li { flex: 1 1 calc(50% - 5px); padding: 8px 10px; font-size: .82rem; }
   .ultra-audio-bandeau__actions .btn { width: 100%; }
   .ultra-podcasts { margin-top: 32px; }
   .ultra-podcasts__packs { grid-template-columns: minmax(0, 1fr); }

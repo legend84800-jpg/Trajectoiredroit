@@ -178,8 +178,8 @@ test("un cadeau payé en 3 fois reste un abonnement borné et garde le cadeau", 
   assert.equal(params.metadata.cadeauPrenom, undefined);
   assert.equal(params.subscription_data.metadata.cadeau, "1");
   assert.equal(params.subscription_data.metadata.echeances, "3");
-  assert.match(params.custom_text.submit.message, /99,66 € aujourd'hui/);
-  assert.match(params.custom_text.submit.message, /298,98 € au total/);
+  assert.match(params.custom_text.submit.message, /109,66 € aujourd'hui/);
+  assert.match(params.custom_text.submit.message, /328,98 € au total/);
   assert.match(params.custom_text.submit.message, /etudiant@example\.com dès le premier paiement\./);
   assert.ok(!/tu reçois/i.test(params.custom_text.submit.message));
 });
