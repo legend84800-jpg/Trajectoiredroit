@@ -262,11 +262,24 @@
         '<button type="button" class="btn btn--sm cookie-choice cookie-choice--accept" data-cookie-accept>Accepter les cookies</button>' +
       '</div>';
 
-    if (document.querySelector(".sticky-cta-bar, .sticky-cta")) {
+    var barreAchat = document.querySelector(".sticky-cta-bar, .sticky-cta");
+    if (barreAchat) {
       banner.classList.add("cookie-banner--above-sticky");
     }
 
     document.body.appendChild(banner);
+
+    // Hauteur réelle de la barre d'achat (62 à 110px selon la page) plutôt qu'un
+    // forfait de 98px, et rien du tout quand la barre est masquée (ordinateur).
+    if (barreAchat) {
+      var calerBandeau = function () {
+        var visible = getComputedStyle(barreAchat).display !== "none";
+        banner.style.bottom = (visible ? barreAchat.getBoundingClientRect().height + 10 : 12) + "px";
+      };
+      calerBandeau();
+      window.addEventListener("resize", calerBandeau);
+      if (typeof ResizeObserver === "function") new ResizeObserver(calerBandeau).observe(barreAchat);
+    }
 
     banner.querySelector("[data-cookie-accept]").addEventListener("click", function () {
       savePreferences({ analytics: true, advertising: true });

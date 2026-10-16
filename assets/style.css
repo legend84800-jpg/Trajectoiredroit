@@ -5510,6 +5510,40 @@ html[data-theme="dark"] .article-produit-inline { background: rgba(94,139,218,0.
   .footer-grid > div:has(> h4):not(:has(form, input, p)) > a { padding: 8px 0; line-height: 1.3; }
 }
 
+/* ----- Défauts mineurs, deuxième passe du 15/10/2026 ----- */
+/* Frise des pages d'arrêt, passée en colonne sous 720px : chaque point se calait
+   sur la frise entière (étape en position static), les quatre points
+   s'empilaient donc au même endroit, à moitié hors de l'écran. */
+@media (max-width: 720px) {
+  .case-timeline__step { position: relative; }
+  .case-timeline__dot { left: -26px; top: 3px; }
+}
+@media (max-width: 760px) {
+  /* Bandeau cookies : texte des boutons à 10px et cibles de 32px. Carte un
+     peu plus large, boutons lisibles et assez hauts pour le pouce. */
+  .cookie-banner { width: calc(100% - 24px); max-width: 420px; padding: 10px 12px; }
+  .cookie-banner h2 { font-size: .86rem; }
+  .cookie-banner .cookie-choice { min-height: 40px; font-size: .74rem; line-height: 1.2; }
+
+  /* Champs de saisie à 16px : en dessous, Safari iPhone zoome la page au
+     moment où l'étudiant touche le champ. */
+  input[type="email"], input[type="text"], input[type="search"], input[type="tel"],
+  input[type="password"], input[type="number"], input:not([type]), textarea, select { font-size: 16px; }
+
+  /* Case « Ajouter aussi le semestre » des pages matière : 13px, dure à cocher. */
+  input[type="checkbox"][id^="bump-"] { width: 20px; height: 20px; flex: 0 0 20px; }
+
+  /* Cibles tactiles encore trop petites. */
+  .urgency-banner__close { width: 40px; height: 40px; right: 4px; }
+  nav[aria-label="Fil d'Ariane"] a { display: inline-block; padding: 10px 0; }
+  .ultra-card__foot > a { display: inline-block; padding: 10px 0; }
+  .compare-table a { display: inline-block; padding: 6px 0; }
+
+  /* Étiquettes descendues sous 12px, illisibles au soleil. */
+  .post-card__cat, .post-card__badge, .post-meta__cat, .key-callout__label,
+  .article-produit-inline__label, .fiche-preview__badge { font-size: .76rem; }
+}
+
 /* Bouton panier flottant (achat.js) : plus compact sur téléphone. Sa hauteur
    au-dessus de la barre d'achat est calculée en JS (panierCaler). */
 @media (max-width: 760px) {
