@@ -78,6 +78,7 @@ function construireLiensTelechargement(
     anki: "le deck Anki",
     cartesmentales: "la carte mentale",
     plan: "le plan",
+    exercice: "l’exercice",
     "seance-1": "le replay séance 1",
     "seance-2": "le replay séance 2",
     "seance-3": "le replay séance 3",

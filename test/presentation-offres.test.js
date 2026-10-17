@@ -49,7 +49,7 @@ test("les neuf listes annuelles repliées correspondent aux fichiers réellement
     for (const [bloc, id] of html.matchAll(/<details\b[^>]*data-pack-inclus="([^"]+)"[^>]*>[\s\S]*?<\/details>/g)) {
       assert.doesNotMatch(bloc.split(">")[0], /\bopen\b/);
       const attendus = PRODUITS[id].blobs.map((url) => url.split("/").pop())
-        .filter((f) => /\.pdf$/.test(f) && !/-plan|-cartesmentales/.test(f)).map((f) => f.slice(0, -4));
+        .filter((f) => /\.pdf$/.test(f) && !/-plan|-cartesmentales|-exercice/.test(f)).map((f) => f.slice(0, -4));
       const annonces = [...bloc.matchAll(/data-produit-inclus="([^"]+)"/g)].map((m) => m[1]);
       assert.deepEqual(annonces, attendus, `${fichier}, ${id}`);
       assert.ok(bloc.includes(`Voir les ${attendus.length} `), id);

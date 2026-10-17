@@ -151,20 +151,12 @@
     if (apresMesure) apresMesure();
   }
 
-  // Adresse email demandée juste avant Stripe (relance de panier du 15/10/2026).
-  // Elle préremplit la page de paiement, qui la reprend telle quelle. La case de
-  // rappel reste décochée par défaut : sans elle, aucun email de relance ne part.
-  // Le choix est gardé dans ce navigateur pour ne pas reposer la question.
-  var CLE_EMAIL_ACHAT = 'tjd_email_achat';
-  var CLE_EMAIL_PASSE = 'tjd_email_achat_passe';
+  // Email facultatif, intégré à la page. Aucun écran intermédiaire avant Stripe.
+  // Seule une case cochée pendant cette visite autorise les deux rappels.
   var EMAIL_ACHAT_VALIDE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  function lireEmailAchatMemorise() {
-    try {
-      var d = JSON.parse(localStorage.getItem(CLE_EMAIL_ACHAT) || 'null');
-      return d && EMAIL_ACHAT_VALIDE.test(d.email || '') ? d : null;
-    } catch (_) { return null; }
-  }
+  var emailAchatSaisi = '';
+  var accordRappelSaisi = false;
+  var numeroBlocEmail = 0;
 
   function mesurerEmailAvantPaiement(action) {
     try {
@@ -172,83 +164,68 @@
     } catch (_) {}
   }
 
-  function injecterStyleEmailAchat() {
-    if (document.getElementById('tjdEmailAchatStyle')) return;
-    var style = document.createElement('style');
-    style.id = 'tjdEmailAchatStyle';
-    style.textContent =
-      '.tjd-email-achat{position:fixed;inset:0;z-index:10050;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(15,23,42,.55)}' +
-      '.tjd-email-achat__boite{background:var(--surface,#fff);color:var(--body,#1f2937);width:100%;max-width:440px;border-radius:14px;padding:22px 20px 18px;box-shadow:0 20px 50px rgba(0,0,0,.25);position:relative}' +
-      '.tjd-email-achat__titre{font-family:Spectral,Georgia,serif;font-size:1.35rem;margin:0 32px 8px 0;color:var(--heading,#1A2851)}' +
-      '.tjd-email-achat__texte{font-size:.93rem;margin:0 0 12px;line-height:1.5}' +
-      '.tjd-email-achat input[type=email]{width:100%;box-sizing:border-box;font-size:16px;padding:11px 12px;border:1px solid #cbd5e1;border-radius:10px;margin:0 0 6px}' +
-      '.tjd-email-achat__erreur{color:#b91c1c;font-size:.85rem;min-height:1.1em;margin:0 0 8px}' +
-      '.tjd-email-achat__case{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;line-height:1.45;margin:0 0 14px;cursor:pointer}' +
-      '.tjd-email-achat__case input{margin-top:3px;width:18px;height:18px;flex:0 0 auto}' +
-      '.tjd-email-achat__valider{width:100%}' +
-      '.tjd-email-achat__passer{display:block;margin:10px auto 0;background:none;border:0;color:var(--muted,#64748b);font-size:.85rem;text-decoration:underline;cursor:pointer}' +
-      '.tjd-email-achat__note{font-size:.78rem;color:var(--muted,#64748b);margin:12px 0 0;line-height:1.45}' +
-      '.tjd-email-achat__fermer{position:absolute;top:10px;right:12px;background:none;border:0;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--muted,#64748b)}';
-    document.head.appendChild(style);
+  function creerBlocEmailAchat() {
+    if (!document.getElementById('tjdEmailAchatStyle')) {
+      var style = document.createElement('style');
+      style.id = 'tjdEmailAchatStyle';
+      style.textContent = '.tjd-email-inline{margin:14px 0;width:100%;max-width:440px;text-align:left;font-size:.85rem;line-height:1.45;color:var(--body,#1f2937)}' +
+        '.tjd-email-inline__label{display:block;font-weight:600;margin-bottom:5px}' +
+        '.tjd-email-inline input[type=email]{box-sizing:border-box;width:100%;padding:9px 11px;border:1px solid #cbd5e1;border-radius:8px;background:var(--surface,#fff);color:inherit;font-size:16px}' +
+        '.tjd-email-inline__case{display:flex;align-items:flex-start;gap:8px;margin-top:8px;font-size:.8rem;cursor:pointer}' +
+        '.tjd-email-inline__case input{width:16px;height:16px;flex:0 0 auto;margin-top:2px}' +
+        '.tjd-email-inline__note{margin:5px 0 0;color:var(--muted,#64748b);font-size:.76rem}.tjd-email-inline__erreur:empty{display:none}' +
+        '.tjd-email-inline__erreur{color:#b91c1c;margin:5px 0 0;font-size:.78rem}';
+      document.head.appendChild(style);
+    }
+    var id = 'tjdEmailFacultatif' + (++numeroBlocEmail);
+    var bloc = document.createElement('div');
+    bloc.className = 'tjd-email-inline';
+    bloc.innerHTML = '<label class="tjd-email-inline__label" for="' + id + '">Ton email, facultatif</label>' +
+      '<input type="email" id="' + id + '" autocomplete="email" inputmode="email" placeholder="ton@email.com" aria-describedby="' + id + 'Note ' + id + 'Erreur">' +
+      '<label class="tjd-email-inline__case"><input type="checkbox" data-tjd-accord-rappel><span>Je souhaite recevoir jusqu’à deux rappels si mon paiement reste en attente.</span></label>' +
+      '<p class="tjd-email-inline__note" id="' + id + 'Note">Tu peux aussi saisir ton adresse sur Stripe. <a href="confidentialite.html">Confidentialité</a></p>' +
+      '<p class="tjd-email-inline__erreur" id="' + id + 'Erreur" role="status"></p>';
+    var champ = bloc.querySelector('input[type=email]');
+    var caseRappel = bloc.querySelector('[data-tjd-accord-rappel]');
+    champ.value = emailAchatSaisi;
+    caseRappel.checked = accordRappelSaisi;
+    function synchroniser() {
+      emailAchatSaisi = champ.value.trim().toLowerCase();
+      accordRappelSaisi = caseRappel.checked;
+      document.querySelectorAll('.tjd-email-inline').forEach(function (autre) {
+        if (autre === bloc) return;
+        autre.querySelector('input[type=email]').value = emailAchatSaisi;
+        autre.querySelector('[data-tjd-accord-rappel]').checked = accordRappelSaisi;
+      });
+    }
+    champ.addEventListener('input', synchroniser);
+    caseRappel.addEventListener('change', synchroniser);
+    champ.addEventListener('blur', function () {
+      bloc.querySelector('.tjd-email-inline__erreur').textContent = emailAchatSaisi && !EMAIL_ACHAT_VALIDE.test(emailAchatSaisi)
+        ? 'Cette adresse semble incomplète. Tu pourras la saisir sur Stripe.' : '';
+    });
+    return bloc;
   }
 
-  function demanderEmailAvantPaiement(suite) {
-    var memorise = lireEmailAchatMemorise();
-    if (memorise) { suite({ email: memorise.email, accord: memorise.accord === true }); return; }
-    try { if (sessionStorage.getItem(CLE_EMAIL_PASSE) === '1') { suite({}); return; } } catch (_) {}
-
-    injecterStyleEmailAchat();
-    var fond = document.createElement('div');
-    fond.className = 'tjd-email-achat';
-    fond.innerHTML =
-      '<div class="tjd-email-achat__boite" role="dialog" aria-modal="true" aria-labelledby="tjdEmailAchatTitre">' +
-        '<button type="button" class="tjd-email-achat__fermer" aria-label="Fermer">×</button>' +
-        '<h2 class="tjd-email-achat__titre" id="tjdEmailAchatTitre">Ton adresse email</h2>' +
-        '<p class="tjd-email-achat__texte">Ton PDF part à cette adresse juste après le paiement. Vérifie bien l’orthographe, car la page de paiement reprend cette adresse telle quelle.</p>' +
-        '<form novalidate>' +
-          '<input type="email" name="email" autocomplete="email" inputmode="email" placeholder="ton@email.com" required aria-describedby="tjdEmailAchatErreur">' +
-          '<p class="tjd-email-achat__erreur" id="tjdEmailAchatErreur" role="alert"></p>' +
-          '<label class="tjd-email-achat__case"><input type="checkbox" name="accord"><span>Si je ne termine pas mon paiement, je veux recevoir au maximum deux rappels par email, avec le lien pour le reprendre.</span></label>' +
-          '<button type="submit" class="btn btn--primary tjd-email-achat__valider">Continuer vers le paiement</button>' +
-        '</form>' +
-        '<button type="button" class="tjd-email-achat__passer">Saisir mon adresse sur la page de paiement</button>' +
-        '<p class="tjd-email-achat__note">Ton adresse sert à t’envoyer ton achat et, si tu as coché la case, ces deux rappels. <a href="confidentialite.html">Confidentialité</a></p>' +
-      '</div>';
-    document.body.appendChild(fond);
-    var formulaire = fond.querySelector('form');
-    var champ = formulaire.querySelector('input[type=email]');
-    var erreur = fond.querySelector('.tjd-email-achat__erreur');
-    var termine = false;
-
-    function fermer(choix, action) {
-      if (termine) return;
-      termine = true;
-      document.removeEventListener('keydown', surTouche);
-      fond.remove();
-      mesurerEmailAvantPaiement(action);
-      suite(choix);
+  function initEmailAchat() {
+    var boutons = document.querySelectorAll('main [data-tjd-produit]');
+    for (var i = 0; i < boutons.length; i++) {
+      var bouton = boutons[i];
+      var produit = bouton.getAttribute('data-tjd-produit') || '';
+      if (produit === 'stage-methode' || produit.indexOf('portalis') === 0 || bouton.closest('.sticky-cta-bar,table')) continue;
+      var ancre = bouton.closest('.offre-matiere__fiches,.conversion-offer__choices') || bouton;
+      ancre.insertAdjacentElement('beforebegin', creerBlocEmailAchat());
+      break;
     }
-    function surTouche(e) { if (e.key === 'Escape') fermer(null, 'ferme'); }
-    document.addEventListener('keydown', surTouche);
-    fond.addEventListener('click', function (e) { if (e.target === fond) fermer(null, 'ferme'); });
-    fond.querySelector('.tjd-email-achat__fermer').addEventListener('click', function () { fermer(null, 'ferme'); });
-    fond.querySelector('.tjd-email-achat__passer').addEventListener('click', function () {
-      try { sessionStorage.setItem(CLE_EMAIL_PASSE, '1'); } catch (_) {}
-      fermer({}, 'passe');
-    });
-    formulaire.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var email = (champ.value || '').trim().toLowerCase();
-      if (!EMAIL_ACHAT_VALIDE.test(email)) {
-        erreur.textContent = 'Cette adresse email semble incomplète.';
-        champ.focus();
-        return;
-      }
-      var accord = formulaire.querySelector('input[name=accord]').checked;
-      try { localStorage.setItem(CLE_EMAIL_ACHAT, JSON.stringify({ email: email, accord: accord })); } catch (_) {}
-      fermer({ email: email, accord: accord }, accord ? 'saisi-avec-rappel' : 'saisi-sans-rappel');
-    });
-    setTimeout(function () { try { champ.focus(); } catch (_) {} }, 30);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initEmailAchat);
+  else initEmailAchat();
+
+  function demanderEmailAvantPaiement(suite) {
+    var email = EMAIL_ACHAT_VALIDE.test(emailAchatSaisi) ? emailAchatSaisi : '';
+    var accord = !!(email && accordRappelSaisi);
+    mesurerEmailAvantPaiement(email ? (accord ? 'inline-avec-rappel' : 'inline-sans-rappel') : 'direct-sans-email');
+    suite(email ? { email: email, accord: accord } : {});
   }
 
   function tjdAcheter(produitId, btnEl) {
@@ -298,7 +275,7 @@
       if (val) corps[cle] = val;
     });
 
-    // Relance de panier (15/10/2026) : l'adresse est demandée avant Stripe, avec
+    // L’adresse facultative préremplit Stripe, avec
     // une case non cochée pour accepter le rappel si le paiement n'est pas terminé.
     demanderEmailAvantPaiement(function (choix) {
       if (!choix) return;
@@ -719,6 +696,7 @@
         '<p class="tjd-panier-note">Un seul paiement Stripe pour tout le panier · PDF reçus par email juste après</p>' +
       '</div>';
     document.body.appendChild(backdrop);
+    document.getElementById('tjdPanierCta').insertAdjacentElement('beforebegin', creerBlocEmailAchat());
 
     fab.addEventListener('click', function () {
       panierRendreListe();
