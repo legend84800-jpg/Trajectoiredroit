@@ -1,3 +1,4 @@
+const attributionAtelier = require("./_atelier-attribution");
 // Crée une session Stripe Checkout pour un produit TJD, avec order bump optionnel.
 // Reçoit { produitId, bumpId?, attemptId? } en POST. Retourne { url } pour rediriger le client.
 // Garde le portail Stripe des anciens abonnements (type: "portal"), afin de rester
@@ -294,6 +295,7 @@ async function handler(req, res) {
       cancel_url: pageActuellePanier ? `${origin}/${pageActuellePanier}` : `${origin}/formations.html`,
       expires_at: attemptTimestamp + 3600,
       metadata: {
+        ...attributionAtelier(corps),
         produitIds: idsAchetesPanier.join(","),
         attemptId,
         source: internalTestPanier ? "test_interne" : "site",
@@ -474,6 +476,7 @@ async function handler(req, res) {
       custom_fields: [CHAMP_EMAILS],
     }),
     metadata: {
+      ...attributionAtelier(corps),
       produitIds: idsAchetes.join(","),
       attemptId,
       source: internalTest ? "test_interne" : "site",

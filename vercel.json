@@ -1,7 +1,19 @@
 {
-  "crons": [{ "path": "/api/generer?action=nettoyer", "schedule": "37 * * * *" }, { "path": "/api/avis?action=relance", "schedule": "0 16 * * *" }],
+  "crons": [
+    {
+      "path": "/api/generer?action=nettoyer",
+      "schedule": "37 * * * *"
+    },
+    {
+      "path": "/api/avis?action=relance",
+      "schedule": "0 16 * * *"
+    }
+  ],
   "functions": {
-    "api/generer.js": { "maxDuration": 120, "includeFiles": "api/_portalis-pdf-worker.js" },
+    "api/generer.js": {
+      "maxDuration": 120,
+      "includeFiles": "api/_portalis-pdf-worker.js"
+    },
     "api/personnaliser-pdf.py": {
       "maxDuration": 60,
       "excludeFiles": "{.env,.env.*,node_modules/**,.git/**,.vercel/**,.claude/**,assets/**,test/**,jeu/**,scripts/**,supabase/**,**/*.html,**/*.js,**/*.json,**/*.md,**/*.txt,**/*.css,**/*.map,**/*.png,**/*.jpg,**/*.svg,**/*.ico,**/*.xml,**/*.pdf,.DS_Store}"
@@ -36,20 +48,32 @@
     {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
       ]
     },
     {
       "source": "/assets/js/achat.js",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=0, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=0, must-revalidate"
+        }
       ]
     },
     {
       "source": "/(mon-compte|portalis).html",
       "headers": [
-        { "key": "Cache-Control", "value": "private, no-store, max-age=0" },
-        { "key": "Referrer-Policy", "value": "no-referrer" }
+        {
+          "key": "Cache-Control",
+          "value": "private, no-store, max-age=0"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        }
       ]
     }
   ],
@@ -73,6 +97,28 @@
       "source": "/newsletter",
       "destination": "https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==",
       "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/f/:path*",
+      "destination": "https://stats.trajectoiredroit.com/f/:path*"
+    },
+    {
+      "source": "/public/:path*",
+      "destination": "https://stats.trajectoiredroit.com/public/:path*"
+    },
+    {
+      "source": "/learn/:path*",
+      "destination": "https://stats.trajectoiredroit.com/learn/:path*"
+    },
+    {
+      "source": "/members/:path*",
+      "destination": "https://stats.trajectoiredroit.com/members/:path*"
+    },
+    {
+      "source": "/r/:path*",
+      "destination": "https://stats.trajectoiredroit.com/r/:path*"
     }
   ]
 }
