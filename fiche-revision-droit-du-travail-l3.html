@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Fiche de révision droit du travail L3, programme et PDF</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Fiche de révision de droit du travail L3 en PDF, avec les cinq thèmes, les articles du Code du travail, les délais, des arrêts relus et un cas pratique corrigé.">
+  <link rel="canonical" href="https://trajectoiredroit.com/fiche-revision-droit-du-travail-l3.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Fiche de révision droit du travail L3, programme et PDF">
+  <meta property="og:description" content="Fiche de révision de droit du travail L3 en PDF, avec les cinq thèmes, les articles du Code du travail, les délais, des arrêts relus et un cas pratique corrigé.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/fiche-revision-droit-du-travail-l3.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/fiche-revision-droit-du-travail-l3.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Fiche de révision droit du travail L3, articles, délais, arrêts et cas pratique corrigé",
+        "description": "Fiche de révision de droit du travail L3 en PDF, avec les cinq thèmes, les articles du Code du travail, les délais, des arrêts relus et un cas pratique corrigé.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-10-18",
+        "dateModified": "2026-10-18",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": {
+            "@type": "EducationalOrganization",
+            "name": "TrajectoireDroit"
+          }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+          }
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Droit du travail L3"
+        },
+        "image": "https://trajectoiredroit.com/assets/blog/fiche-revision-droit-du-travail-l3.webp",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://trajectoiredroit.com/fiche-revision-droit-du-travail-l3.html"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://trajectoiredroit.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Fiche de révision droit du travail L3",
+            "item": "https://trajectoiredroit.com/fiche-revision-droit-du-travail-l3.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Que faut-il réviser en droit du travail en L3 ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La fiche complète organise le programme en cinq thèmes. Le premier présente la notion de droit du travail, le lien de subordination et les sources du droit. Le deuxième traite de la formation du contrat, car il présente d'abord le CDI et sa période d'essai, puis le CDD, avant d'aborder les clauses du contrat. Le troisième étudie l'exécution du contrat, depuis les pouvoirs de l'employeur jusqu'à la santé au travail, en passant par le temps de travail et la modification du contrat. Le quatrième porte sur la rupture du contrat, du licenciement à la rupture conventionnelle, et le cinquième sur la prescription des actions. Ton enseignant peut toutefois réserver certains sujets aux relations collectives, donc tu compares cette liste avec le plan de ton cours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment savoir si une personne est salariée ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le juge cherche un lien de subordination, c'est-à-dire un travail exécuté sous l'autorité d'un employeur qui donne des ordres, contrôle l'exécution et sanctionne les manquements, d'après l'arrêt Société générale du 13 novembre 1996. Il regarde les conditions de fait de l'activité, car le titre du contrat ne suffit pas, comme la chambre sociale l'a rappelé dans l'arrêt Take Eat Easy. Une personne immatriculée comme indépendante est présumée ne pas être salariée selon l'article L8221-6, mais l'existence d'un contrat de travail peut être établie si elle fournit ses prestations dans un lien de subordination juridique permanente."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quelle indemnité pour un licenciement sans cause réelle et sérieuse ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le juge octroie une indemnité comprise entre le minimum et le maximum du tableau de l'article L1235-3, selon l'ancienneté en années complètes. Pour dix ans d'ancienneté, elle va de trois à dix mois de salaire brut, et le maximum atteint vingt mois à partir de vingt-neuf ans. En revanche, si le licenciement est frappé d'une des nullités que l'article L1235-3-1 énumère, comme le harcèlement ou la discrimination, le barème ne s'applique pas. L'indemnité ne peut alors pas être inférieure aux salaires des six derniers mois, lorsque le salarié ne demande pas la poursuite de son contrat ou que sa réintégration est impossible."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Dans quel délai agir devant le conseil de prud'hommes ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le délai dépend de l'action. D'après l'article L1471-1, une action portant sur l'exécution du contrat se prescrit par deux ans, alors qu'une action portant sur la rupture se prescrit par douze mois à compter de la notification. L'action en paiement du salaire se prescrit en revanche par trois ans selon l'article L3245-1, et l'action en réparation d'une discrimination par cinq ans à compter de sa révélation selon l'article L1134-5. Enfin, la contestation d'une rupture conventionnelle doit être formée dans les douze mois de l'homologation, d'après l'article L1237-14. Tu identifies donc d'abord la nature de l'action, puis son point de départ."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Existe-t-il une fiche PDF de droit du travail pour la L3 ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La fiche complète de droit du travail L3 compte plus de cent pages et coûte 14,99 €. Elle est vendue seule ou dans le Pack Licence 3, qui réunit cinq fiches de troisième année pour 58 €. De plus, le Pack Droit du travail L3 ajoute à la fiche les flashcards et QCM, les fiches d'arrêt et les cas pratiques corrigés pour 29,98 €. La page sur le droit du travail en L3 présente ainsi tous ces supports, et le catalogue des formations réunit toutes les fiches."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=2d752479">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 549,64 €, 53 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-53 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">549,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 409,74 €, 44 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-44 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">409,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 524,67 €, 51 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-51 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">524,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 444,70 €, 46 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-46 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">444,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 644,58 €, 49 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-49 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">644,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -14 %</em></strong><small>890 € · 89 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+        <div class="nav-item has-dropdown">
+          <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>Stage en direct
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <div class="stage-teaser">
+              <button type="button" class="dropdown__item stage-teaser__trigger" aria-expanded="false" aria-controls="stageTeaserPanel">
+                <span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg></span>
+                <span class="stage-teaser__main">
+                  <strong>Stage de méthode en direct</strong>
+                  <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+                  <span class="stage-teaser__countdown"></span>
+                </span>
+              </button>
+              <div class="stage-teaser__panel" id="stageTeaserPanel">
+                <p>Trois séances en direct, 8 h au total pour 176 €, pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un sujet travaillé à chaque fois. La prochaine session a lieu les 27, 28 et 29 octobre, pendant les vacances de la Toussaint. Plus que 3 places.</p>
+              </div>
+            </div>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="stage-methode.html">Voir toutes les infos et réserver →</a>
+          </div>
+        </div>
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+    <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
+      <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>
+      <span class="mobile-nav__stage-main">
+        <span class="mobile-nav__stage-title">Stage en direct</span>
+        <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+        <span class="stage-teaser__countdown"></span>
+      </span>
+    </a>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+    <main>
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow text-center">
+        <h1 class="h1">La fiche de révision de droit du travail L3 en PDF</h1>
+        <p class="lead">La fiche de révision de droit du travail L3 suit cinq thèmes, de l'introduction à la matière jusqu'à la prescription des actions, en passant par la formation du contrat, son exécution et sa rupture. Tu y retrouves ainsi les articles du Code du travail à connaître et un tableau des délais. Cinq décisions relues dans leur texte et un cas pratique corrigé sur l'inaptitude après un accident du travail complètent en outre la page. La fiche complète, de plus de cent pages, coûte 14,99 €.</p>
+        <div class="hero__cta flex flex--center" style="margin-top:24px">
+          <a class="btn btn--primary btn--lg" href="#articles">Voir les articles à retenir →</a>
+          <a class="btn btn--outline btn--lg" href="#programme">Le programme en cinq thèmes</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <p style="color:var(--body); line-height:1.75">Un cas pratique de droit du travail commence souvent par une question de qualification. Tu te demandes d'abord si la personne est vraiment salariée, puis quel texte s'applique à la situation que l'énoncé décrit. Prenons un coursier à vélo qui facture ses livraisons à une plateforme et qui travaille pour elle tous les soirs. S'il est salarié, l'article L1232-1 du Code du travail impose une cause réelle et sérieuse pour mettre fin à la relation, et la plateforme doit suivre la procédure de licenciement. S'il est indépendant, aucune de ces règles ne s'applique à la fin de la relation. Tu commences donc chaque exercice par cette qualification, et la fiche complète te la fait pratiquer dès le premier chapitre.</p>
+        <p style="color:var(--body); line-height:1.75">Je suis Julien, professeur de droit. La fiche complète de cette matière est mon travail, car je l'ai rédigée en croisant mes cours de fac et les dossiers de mes élèves. De plus, j'ai relu chaque article du Code du travail cité sur cette page dans sa version en vigueur, et j'ai lu chaque arrêt dans son texte intégral. Pour approfondir, tu peux lire la page sur <a href="droit-du-travail-l3.html">le droit du travail en L3</a>, qui présente la matière et ses supports. Deux pages détaillent des points voisins, celle sur <a href="licenciement-absence-prolongee-remplacement-definitif.html">le licenciement pour absence prolongée</a> et celle sur <a href="rupture-conventionnelle-indemnite-minimale-inaptitude.html">l'indemnité minimale d'une rupture conventionnelle</a>.</p>
+      </div>
+    </section>
+
+    <!-- vague2:encart-produit -->
+    <section class="conversion-offer" aria-labelledby="choix-fiche-droit-du-travail-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/fiche-travail-l3-s1.webp?v=dossier-universitaire-20260915" alt="Fiche complète de droit du travail L3, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">Fiche complète de droit du travail L3</p>
+            <h2 class="conversion-offer__title" id="choix-fiche-droit-du-travail-titre">Tout le programme de la matière en plus de cent pages</h2>
+            <p class="conversion-offer__summary">La fiche couvre les cinq parties du programme et ses vingt-cinq chapitres, de la définition du droit du travail à la prescription des actions. Elle reprend les articles du Code du travail et les arrêts à connaître, avec des tableaux comparatifs et des citations à apprendre.</p>
+            <ul class="conversion-offer__benefits">
+              <li>Un PDF de plus de cent pages, envoyé par email dès le paiement</li>
+              <li>Les articles du Code du travail et les arrêts, avec leurs citations à apprendre</li>
+              <li>Accès à vie et mises à jour comprises</li>
+            </ul>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-travail-l3-s1">Fiche · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-matiere-travail-l3">Pack Droit du travail L3 · 29,98 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-l3">Pack Licence 3 · 58 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
+            <div data-tjd-avis data-matiere="travail-l3"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="programme">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quel est le programme de droit du travail en L3 ?</h2>
+        <p class="lead" style="margin-bottom:24px">Les intitulés varient d'une fac à l'autre, et certains enseignants réservent les relations collectives à un autre semestre. La fiche complète compte vingt et un chapitres numérotés et quatre chapitres complémentaires, numérotés 10 bis, 10 ter, 12 bis et 12 ter, soit vingt-cinq chapitres répartis en cinq thèmes. Tu compares cette liste avec le plan de ton cours.</p>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Introduction au droit du travail (chapitres 1 et 2)</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Le droit du travail régit le travail qu'une personne accomplit pour le compte d'un employeur et sous son autorité. Le salarié est toujours une personne physique, et la matière le protège parce que le contrat de travail met face à face deux parties de force inégale. La notion qui ouvre le programme est donc le lien de subordination. Dans l'arrêt <a href="arret-societe-generale-1996-explique.html">Société générale du 13 novembre 1996</a>, la chambre sociale de la Cour de cassation le définit comme l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné. Cette définition est née d'un litige avec l'Urssaf, qui voulait soumettre à cotisations les honoraires versés à des conférenciers extérieurs. En effet, le thème de leurs interventions et leur rémunération étaient convenus avec la banque, et ils ne recevaient aucun ordre ni aucun contrôle. La Cour en a donc conclu qu'ils n'étaient pas subordonnés. Cette définition revient dans chaque cas pratique de qualification, par exemple pour un coursier ou un chauffeur de plateforme.</p>
+            <p style="color:var(--body); line-height:1.7">Un travailleur qui tire tous ses revenus d'un seul client dépend économiquement de lui. La jurisprudence le qualifie de salarié lorsqu'il se trouve dans une subordination juridique, c'est-à-dire sous des ordres, avec un contrôle de l'exécution et un pouvoir de sanction. La page sur l'<a href="arret-bardou-1931-explique.html">arrêt Bardou de 1931</a> présente l'origine de cette distinction.</p>
+            <p style="color:var(--body); line-height:1.7">En cas de litige, le conseil de prud'hommes règle d'abord les différends par la conciliation, puis il juge quand la conciliation n'a pas abouti, d'après l'article L1411-1 du Code du travail. L'article L1421-1 le qualifie de juridiction paritaire, c'est-à-dire composée d'un nombre égal de salariés et d'employeurs. Quand les voix se partagent, l'affaire revient devant le même bureau de jugement, que préside alors un juge du tribunal judiciaire, selon l'article L1454-2.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Les sources du droit du travail sont nombreuses, et plusieurs s'appliquent en même temps au contrat. Les conventions collectives et les accords peuvent contenir des stipulations plus favorables aux salariés que la loi, d'après l'article L2251-1, mais ils ne peuvent pas déroger aux dispositions d'ordre public. Depuis les ordonnances de 2017, l'accord d'entreprise l'emporte en principe sur la convention de branche, selon l'article L2253-3. L'article L2253-1 réserve toutefois à la branche plusieurs matières, comme les salaires minima hiérarchiques, les classifications ou l'égalité professionnelle entre les femmes et les hommes. L'article L2253-2 lui permet en outre de verrouiller quatre autres matières, par exemple la prévention des effets de l'exposition aux facteurs de risques professionnels, si la convention de branche le stipule expressément. Dans les matières des deux listes, l'accord d'entreprise peut toutefois prévoir des stipulations différentes quand il assure des garanties au moins équivalentes. Dans un cas pratique, tu identifies donc d'abord la matière en cause, car la réponse change selon qu'elle figure ou non dans l'une de ces listes.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">La formation du contrat de travail (chapitres 3 à 8)</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Aucun texte ne définit le contrat de travail, et la qualification du contrat de travail repose sur trois éléments que la jurisprudence retient. Il faut d'abord une prestation de travail contre une rémunération. Le lien de subordination s'y ajoute ensuite et distingue le salarié du travailleur indépendant. Les parties ne peuvent pas écarter cette qualification par une simple étiquette.</p>
+            <p style="color:var(--body); line-height:1.7">Dans l'arrêt du 28 novembre 2018 (n° 17-20.079) sur la société Take Eat Easy, la chambre sociale rappelle que « l'existence d'une relation de travail ne dépend ni de la volonté exprimée par les parties ni de la dénomination qu'elles ont donnée à leur convention mais des conditions de fait dans lesquelles est exercée l'activité des travailleurs ». Le coursier avait signé un contrat de prestation de services et s'était inscrit comme auto-entrepreneur. L'application disposait pourtant d'un système de géolocalisation qui suivait sa position en temps réel, et la société pouvait le sanctionner par des pénalités appelées strikes. La Cour de cassation casse l'arrêt de la cour d'appel de Paris, qui n'avait pas tiré les conséquences de ses propres constatations. La géolocalisation en temps réel et le pouvoir de sanction montrent en effet un pouvoir de direction et de contrôle de l'exécution de la prestation, c'est-à-dire un lien de subordination. L'affaire est renvoyée devant la cour d'appel de Paris, autrement composée.</p>
+            <p style="color:var(--body); line-height:1.7">Le 4 mars 2020 (n° 19-13.316), la chambre sociale rejette le pourvoi d'Uber contre l'arrêt de la cour d'appel de Paris, qui avait requalifié en contrat de travail la relation entre la plateforme et l'un de ses chauffeurs. Elle approuve en effet la cour d'appel d'avoir relevé que le chauffeur ne se constituait aucune clientèle propre, ne fixait pas librement ses tarifs et ne choisissait pas librement son itinéraire, et qu'il pouvait être déconnecté temporairement après trois refus de course. Le <a href="commentaire-arret-uber-2020-corrige.html">commentaire corrigé de l'arrêt Uber</a> reprend ce raisonnement. Le travail au sein d'un service organisé constitue ainsi un indice de subordination, lorsque la plateforme en détermine unilatéralement les conditions d'exécution.</p>
+            <p style="color:var(--body); line-height:1.7">Deux familles de présomptions jouent en sens inverse. L'article L8221-6 présume non liées à leur donneur d'ordre par un contrat de travail les personnes immatriculées comme indépendantes, par exemple au registre du commerce et des sociétés ou auprès des Urssaf, mais l'existence d'un contrat de travail peut être établie quand elles fournissent leurs prestations dans un lien de subordination juridique permanente. L'article L8221-6-1 présume de la même façon travailleur indépendant celui dont les conditions de travail sont définies exclusivement par lui-même ou par le contrat qui les fixe avec son donneur d'ordre. La loi présume au contraire que la convention est un contrat de travail dans trois professions, quand les conditions propres à chacune sont réunies.</p>
+            <ul style="color:var(--body); line-height:1.7; margin:0 0 12px 20px; padding:0"><li style="margin-bottom:6px">Le journaliste professionnel, quand une entreprise de presse s'assure son concours moyennant rémunération, d'après l'article L7112-1.</li><li style="margin-bottom:6px">L'artiste du spectacle, tant qu'il n'exerce pas son activité dans des conditions impliquant son inscription au registre du commerce et des sociétés, d'après l'article L7121-3.</li><li style="margin-bottom:6px">Le mannequin, d'après l'article L7123-3.</li></ul>
+            <p style="color:var(--body); line-height:1.7">L'article L7313-1 pose une règle plus forte pour le voyageur, représentant ou placier, car sa convention de représentation avec un employeur est un contrat de travail quelles que soient ses stipulations. Quand l'employeur a dissimulé l'emploi du salarié, l'article L8223-1 accorde à celui-ci, en cas de rupture, une indemnité forfaitaire égale à six mois de salaire.</p>
+            <p style="color:var(--body); line-height:1.7">Pendant le recrutement, l'employeur ne peut demander au candidat que des informations qui ont un lien direct et nécessaire avec l'emploi proposé ou avec l'évaluation de ses aptitudes, et le candidat répond de bonne foi, d'après l'article L1221-6. L'embauche suppose ensuite une déclaration nominative de l'employeur auprès des organismes de protection sociale, selon l'article L1221-10. L'article L1132-1 interdit d'écarter une personne d'une procédure de recrutement en raison, par exemple, de son origine ou de son sexe. La preuve est aménagée par l'article L1134-1. Le candidat ou le salarié présente des éléments de fait laissant supposer une discrimination, puis la partie défenderesse doit prouver que sa décision est justifiée par des éléments objectifs étrangers à toute discrimination. L'article L1133-1 réserve les différences de traitement qui répondent à une exigence professionnelle essentielle et déterminante, à condition que l'objectif soit légitime et l'exigence proportionnée. Dans un cas pratique de recrutement, tu vérifies d'abord le lien entre l'information demandée et l'emploi, puis tu cherches le critère prohibé.</p>
+            <p style="color:var(--body); line-height:1.7">Dans l'arrêt Ponsolle du 29 octobre 1996 (n° 92-43.680), une secrétaire de direction réclamait un rappel de salaire parce qu'une autre secrétaire, au même coefficient, faisait le même travail pour une rémunération plus élevée. L'employeur invoquait l'ancienneté, mais une prime d'ancienneté distincte du salaire de base la prenait déjà en compte. La chambre sociale rappelle la règle « à travail égal, salaire égal » et juge que l'employeur doit assurer l'égalité de rémunération entre tous les salariés de l'un ou l'autre sexe, pour autant qu'ils se trouvent dans une situation identique. Pour l'égalité entre les femmes et les hommes, l'article L3221-2 impose la même rémunération pour un même travail ou un travail de valeur égale.</p>
+            <p style="color:var(--body); line-height:1.7">Le contrat à durée indéterminée est la forme normale et générale de la relation de travail, d'après l'article L1221-2. Il peut comporter une période d'essai, mais l'article L1221-23 précise que l'essai et sa possibilité de renouvellement ne se présument pas, car ils doivent être expressément stipulés dans la lettre d'engagement ou dans le contrat. La durée maximale de l'essai est de deux mois pour les ouvriers et les employés, de trois mois pour les agents de maîtrise et les techniciens et de quatre mois pour les cadres, d'après l'article L1221-19. L'essai ne se renouvelle qu'une fois, et seulement si un accord de branche étendu le prévoit. Renouvellement compris, il ne dépasse en outre pas quatre, six ou huit mois selon la catégorie, d'après l'article L1221-21.</p>
+            <p style="color:var(--body); line-height:1.7">Ces durées ont un caractère impératif selon l'article L1221-22, c'est pourquoi seules des durées plus courtes peuvent être fixées, par un accord collectif conclu après la loi du 25 juin 2008 ou par la lettre d'engagement ou le contrat. La loi du 9 mars 2023 a supprimé, à compter du 9 septembre 2023, l'exception qui permettait aux accords de branche conclus avant 2008 de prévoir des durées plus longues. Dans un énoncé, tu vérifies donc que l'essai est écrit et que sa durée respecte le maximum de la catégorie.</p>
+            <p style="color:var(--body); line-height:1.7">Le contrat à durée déterminée reste une exception. En effet, l'article L1242-1 interdit qu'il ait pour objet ou pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise, et l'article L1242-2 énumère les cas de recours, comme le remplacement d'un salarié absent ou l'accroissement temporaire de l'activité. À défaut de stipulation d'une convention de branche, l'article L1242-8-1 limite sa durée totale à dix-huit mois, renouvellements compris, avec des durées de neuf ou de vingt-quatre mois dans certains cas, et l'article L1243-13-1 le rend renouvelable deux fois. Sauf accord des parties, l'article L1243-1 n'admet la rupture avant le terme que pour faute grave, force majeure ou inaptitude constatée par le médecin du travail. Le salarié peut toutefois le rompre quand il justifie d'un contrat à durée indéterminée, selon l'article L1243-2.</p>
+            <p style="color:var(--body); line-height:1.7">À la fin du contrat, le salarié a droit à une indemnité de fin de contrat égale à 10 % de la rémunération totale brute, d'après l'article L1243-8, quand les relations de travail ne se poursuivent pas par un contrat à durée indéterminée. L'article L1243-10 écarte toutefois cette indemnité dans plusieurs cas, par exemple quand le salarié refuse un contrat à durée indéterminée pour le même emploi ou un emploi similaire, assorti d'une rémunération au moins équivalente, ou quand la rupture anticipée vient de son initiative, de sa faute grave ou d'une force majeure. Enfin, un contrat conclu en méconnaissance de plusieurs règles que la loi énumère est réputé à durée indéterminée selon l'article L1245-1, et l'article L1245-2 accorde alors au salarié une indemnité d'au moins un mois de salaire. L'affaire est portée directement devant le bureau de jugement, qui statue dans le mois de sa saisine. Quand un énoncé décrit des CDD qui se suivent, tu cherches d'abord le cas de recours, puis la durée totale.</p>
+            <p style="color:var(--body); line-height:1.7">Le travail temporaire repose sur deux contrats pour chaque mission, d'après l'article L1251-1. Le contrat de mise à disposition lie l'entreprise de travail temporaire à l'entreprise utilisatrice, et le contrat de mission lie cette même entreprise de travail temporaire au salarié, dont elle reste donc l'employeur. Le contrat à temps partiel est de son côté un contrat écrit, qui mentionne notamment la durée du travail prévue et sa répartition entre les jours de la semaine ou les semaines du mois, d'après l'article L3123-6. De plus, à défaut d'accord de branche étendu, la durée minimale est de vingt-quatre heures par semaine, selon l'article L3123-27, sauf les dérogations de l'article L3123-7, par exemple une durée plus courte fixée à la demande écrite et motivée du salarié pour faire face à des contraintes personnelles.</p>
+            <p style="color:var(--body); line-height:1.7">Le contrat contient parfois des clauses qui limitent la liberté du salarié. Par exemple, la clause de mobilité doit définir de façon précise sa zone géographique d'application, et elle ne peut pas donner à l'employeur le pouvoir d'en étendre unilatéralement la portée. En effet, la chambre sociale l'a jugé le 7 juin 2006 (n° 04-45.846) à propos d'un salarié licencié pour avoir refusé une mutation en région Rhône-Alpes, alors que son contrat visait seulement la zone d'activité de son employeur en Alsace-Lorraine. De plus, la clause de non-concurrence n'est licite que si elle remplit des conditions cumulatives.</p>
+            <ul style="color:var(--body); line-height:1.7; margin:0 0 12px 20px; padding:0"><li style="margin-bottom:6px">Elle est indispensable à la protection des intérêts légitimes de l'entreprise.</li><li style="margin-bottom:6px">Elle est limitée dans le temps et dans l'espace.</li><li style="margin-bottom:6px">Elle tient compte des spécificités de l'emploi du salarié.</li><li style="margin-bottom:6px">Elle comporte l'obligation pour l'employeur de verser au salarié une contrepartie financière.</li></ul>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La chambre sociale a réuni ces conditions le 10 juillet 2002 (n° 00-45.135), et elle avait posé la première le 19 novembre 1996 (n° 94-19.404).</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">L'exécution du contrat de travail (chapitres 9 à 13, bis et ter compris)</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">L'employeur organise le travail et donne des ordres au salarié, mais ce pouvoir rencontre les libertés du salarié. L'article L1121-1 pose en effet la limite générale. Nul ne peut apporter aux droits des personnes et aux libertés individuelles et collectives des restrictions qui ne seraient pas justifiées par la nature de la tâche à accomplir ni proportionnées au but recherché. Le règlement intérieur est également obligatoire dans les entreprises d'au moins cinquante salariés, d'après l'article L1311-2, au terme d'un délai de douze mois à compter de la date à laquelle ce seuil a été atteint. L'article L1321-1 limite en outre son contenu à trois sujets. Dans un cas pratique, tu appliques le test de l'article L1121-1 à toute mesure qui touche à la vie personnelle du salarié.</p>
+            <ul style="color:var(--body); line-height:1.7; margin:0 0 12px 20px; padding:0"><li style="margin-bottom:6px">Les mesures d'application de la réglementation en matière de santé et de sécurité.</li><li style="margin-bottom:6px">Les conditions dans lesquelles les salariés participent, à la demande de l'employeur, au rétablissement de conditions de travail protectrices de leur santé et de leur sécurité.</li><li style="margin-bottom:6px">Les règles générales et permanentes relatives à la discipline, notamment la nature et l'échelle des sanctions.</li></ul>
+            <p style="color:var(--body); line-height:1.7">L'article L1321-3 interdit en outre au règlement intérieur de contenir des dispositions contraires aux lois et aux accords collectifs. Il lui interdit aussi les restrictions aux libertés qui ne respectent pas le test de l'article L1121-1, ainsi que les dispositions discriminatoires. L'article L1321-2 lui impose en revanche de rappeler les droits de la défense des salariés, les règles sur le harcèlement moral et sexuel et sur les agissements sexistes, et l'existence du dispositif de protection des lanceurs d'alerte. L'article L1321-2-1 permet enfin d'y inscrire une clause de neutralité, à condition que ses restrictions soient justifiées par l'exercice d'autres libertés et droits fondamentaux ou par les nécessités du bon fonctionnement de l'entreprise, et qu'elles soient proportionnées au but recherché.</p>
+            <p style="color:var(--body); line-height:1.7">Le salarié garde sa vie privée au temps et au lieu de travail. Dans l'<a href="arret-nikon.html">arrêt Nikon du 2 octobre 2001</a>, la chambre sociale juge que l'employeur ne peut pas prendre connaissance des messages personnels émis et reçus par le salarié grâce à l'outil informatique de l'entreprise, même s'il a interdit une utilisation non professionnelle de l'ordinateur. L'employeur avait découvert ces messages dans un fichier intitulé « personnel ». Les dossiers et fichiers que le salarié crée grâce à l'outil professionnel sont en revanche présumés professionnels, sauf si le salarié les identifie comme personnels, de sorte que l'employeur peut y accéder hors sa présence. La chambre sociale l'a jugé le 18 octobre 2006 (n° 04-48.025). Tu cherches donc d'abord si le fichier était identifié comme personnel.</p>
+            <p style="color:var(--body); line-height:1.7">Une preuve obtenue de façon déloyale, comme un enregistrement clandestin, n'est plus écartée automatiquement depuis l'arrêt de l'Assemblée plénière du 22 décembre 2023. Dans un procès civil, le juge doit en effet mettre en balance le droit à la preuve et les droits qui s'y opposent. Ainsi, la production de la preuve doit être indispensable à l'exercice du droit à la preuve, et l'atteinte aux autres droits doit rester strictement proportionnée au but poursuivi.</p>
+            <p style="color:var(--body); line-height:1.7">Une sanction est toute mesure, autre que les observations verbales, que l'employeur prend à la suite d'un agissement qu'il considère comme fautif, d'après l'article L1331-1. L'article L1331-2 interdit d'ailleurs les amendes et les autres sanctions pécuniaires, et l'article L1332-1 interdit toute sanction sans que le salarié soit informé, dans le même temps et par écrit, des griefs retenus contre lui. L'employeur n'a pas besoin de convoquer le salarié pour un avertissement ou une mesure de même nature sans incidence sur la présence, la fonction, la carrière ou la rémunération. Pour toute autre sanction, en revanche, il convoque le salarié à un entretien, où celui-ci peut se faire assister par une personne de son choix appartenant au personnel de l'entreprise. La sanction ne peut intervenir moins de deux jours ouvrables, ni plus d'un mois après le jour fixé pour l'entretien, selon l'article L1332-2.</p>
+            <p style="color:var(--body); line-height:1.7">Plusieurs délais limitent aussi les poursuites. En effet, d'après l'article L1332-4, aucun fait fautif ne peut donner lieu à lui seul à des poursuites disciplinaires au-delà de deux mois à compter du jour où l'employeur en a eu connaissance, sauf si des poursuites pénales ont été engagées dans ce délai. De plus, l'article L1332-5 interdit d'invoquer à l'appui d'une nouvelle sanction une sanction antérieure de plus de trois ans à l'engagement des poursuites disciplinaires. Enfin, quand les faits rendent indispensable une mise à pied conservatoire à effet immédiat, l'article L1332-3 interdit toute sanction définitive avant d'avoir respecté la procédure de l'article L1332-2.</p>
+            <p style="color:var(--body); line-height:1.7">La durée légale du travail effectif est de trente-cinq heures par semaine pour les salariés à temps complet, d'après l'article L3121-27. En effet, l'article L3121-1 définit le travail effectif comme le temps pendant lequel le salarié est à la disposition de l'employeur et se conforme à ses directives sans pouvoir vaquer librement à des occupations personnelles. Selon l'article L3121-28, toute heure accomplie au-delà de la durée légale est donc une heure supplémentaire, qui ouvre droit à une majoration salariale ou, le cas échéant, à un repos compensateur équivalent. À défaut d'accord, la majoration est de 25 % pour chacune des huit premières heures supplémentaires et de 50 % pour les suivantes, d'après l'article L3121-36, et l'article D3121-24 fixe le contingent annuel à deux cent vingt heures par salarié. Des plafonds protègent en outre la santé du salarié.</p>
+            <ul style="color:var(--body); line-height:1.7; margin:0 0 12px 20px; padding:0"><li style="margin-bottom:6px">La durée quotidienne de travail effectif ne dépasse pas dix heures en principe, d'après l'article L3121-18.</li><li style="margin-bottom:6px">La durée hebdomadaire ne dépasse pas quarante-huit heures selon l'article L3121-20, et sa moyenne sur douze semaines consécutives ne dépasse pas quarante-quatre heures selon l'article L3121-22.</li><li style="margin-bottom:6px">Le salarié bénéficie d'un repos quotidien de onze heures consécutives, d'après l'article L3131-1.</li><li style="margin-bottom:6px">Il est interdit de faire travailler un même salarié plus de six jours par semaine, d'après l'article L3132-1.</li></ul>
+            <p style="color:var(--body); line-height:1.7">Quand un salarié réclame des heures supplémentaires, la preuve se partage. En effet, l'employeur fournit au juge les éléments qui justifient les horaires effectivement réalisés, d'après l'article L3171-4, et le juge forme sa conviction au vu de ces éléments et de ceux du salarié. Dans l'arrêt du 22 décembre 2023, l'Assemblée plénière précise de plus que le salarié doit présenter des éléments suffisamment précis pour permettre à l'employeur d'y répondre. Elle casse ainsi l'arrêt d'une cour d'appel qui avait écarté des relevés d'heures établis par ordinateur au motif qu'aucun autre élément ne les corroborait, car cette cour avait fait peser la charge de la preuve sur le seul salarié. Dans un énoncé, tu cherches quels éléments le salarié produit avant de répartir la charge de la preuve.</p>
+            <p style="color:var(--body); line-height:1.7">Le forfait en jours est limité à deux cent dix-huit jours par an, d'après l'article L3121-64. En revanche, l'article L3121-58 ne l'ouvre qu'à deux catégories de salariés, d'une part aux cadres qui disposent d'une autonomie dans l'organisation de leur emploi du temps et dont les fonctions ne les conduisent pas à suivre l'horaire collectif de leur atelier, de leur service ou de leur équipe, et d'autre part aux salariés dont la durée du travail ne peut être prédéterminée et qui disposent d'une réelle autonomie. Enfin, l'accord collectif doit organiser le suivi régulier de la charge de travail du salarié.</p>
+            <p style="color:var(--body); line-height:1.7">Le salaire se paie une fois par mois, d'après l'article L3242-1, et le salarié qui le demande reçoit un acompte correspondant, pour une quinzaine, à la moitié de la rémunération mensuelle. Ce paiement mensuel connaît des exceptions, notamment pour les salariés travaillant à domicile et pour les saisonniers. L'article L3251-1 interdit en outre à l'employeur de compenser par une retenue sur salaire les sommes que le salarié lui doit pour des fournitures diverses. L'article L3251-2 admet pourtant cette compensation pour les outils et instruments nécessaires au travail, pour les matières ou matériaux dont le salarié a la charge et l'usage et pour les sommes avancées afin de les acquérir. Quand l'énoncé évoque une retenue sur la paie, tu vérifies donc la nature de la somme retenue.</p>
+            <p style="color:var(--body); line-height:1.7">Pour modifier le contrat, l'employeur a besoin de l'accord du salarié. Un simple changement des conditions de travail relève en revanche de son pouvoir de direction. Ainsi, la chambre sociale juge dans l'arrêt Le Berre du 10 juillet 1996 (n° 93-41.137) que le refus de continuer le travail après un changement des conditions de travail décidé dans l'exercice du pouvoir de direction constitue, en principe, une faute grave que l'employeur doit sanctionner par un licenciement. Un salarié d'une compagnie d'assurance, attaché d'inspection, avait perdu une mission d'organisation confiée à titre provisoire et conservait ses fonctions d'attaché titulaire. Il a refusé ce changement et cessé de travailler, mais l'employeur ne l'a pas licencié. La Cour juge donc que le contrat n'a pas été rompu et que le salarié ne peut réclamer aucune indemnité. La chambre sociale a nuancé cette formule le 23 janvier 2008 (n° 07-40.522). À propos d'une clause de mobilité, elle juge en effet que le refus du salarié constitue en principe un manquement à ses obligations contractuelles, mais qu'il ne caractérise pas à lui seul une faute grave.</p>
+            <p style="color:var(--body); line-height:1.7">Pour le lieu de travail, la chambre sociale a jugé le 4 mai 1999 (n° 97-40.576) que le changement doit être apprécié de manière objective, et que le juge doit donc chercher si le nouveau lieu se situe dans un secteur géographique différent de l'ancien. Quand la modification repose sur un motif économique, l'article L1222-6 impose en outre une proposition par lettre recommandée avec avis de réception. Le salarié dispose d'un mois à compter de la réception de la lettre pour faire connaître son refus, ou de quinze jours en cas de redressement ou de liquidation judiciaire, et il est réputé avoir accepté s'il ne répond pas.</p>
+            <p style="color:var(--body); line-height:1.7">L'article L1226-7 suspend le contrat du salarié victime d'un accident du travail, autre qu'un accident de trajet, ou d'une maladie professionnelle pendant l'arrêt de travail, et la durée de la suspension compte pour tous les avantages liés à l'ancienneté. Au cours de cette suspension, l'employeur ne peut rompre le contrat que s'il justifie d'une faute grave du salarié ou de son impossibilité de maintenir le contrat pour un motif étranger à l'accident ou à la maladie, selon l'article L1226-9, et l'article L1226-13 déclare nulle toute rupture prononcée en méconnaissance de cette règle. L'article L1225-4 prévoit la même exception pour la salariée enceinte, mais la rupture ne peut alors ni prendre effet ni être notifiée pendant les périodes de suspension du contrat. Le licenciement d'une salariée est de plus annulé quand elle envoie à son employeur, dans les quinze jours de la notification, un certificat médical justifiant qu'elle est enceinte, d'après l'article L1225-5, sauf si le licenciement repose sur une faute grave non liée à la grossesse ou sur l'impossibilité de maintenir le contrat pour un motif étranger à la grossesse.</p>
+            <p style="color:var(--body); line-height:1.7">Le salarié acquiert deux jours et demi ouvrables de congé par mois de travail effectif chez le même employeur, dans la limite de trente jours ouvrables, d'après l'article L3141-3. Pendant longtemps, ce texte a pourtant fermé ce droit aux salariés en arrêt maladie non professionnel, car il le subordonne à l'exécution d'un travail effectif. La chambre sociale en a écarté partiellement l'application le 13 septembre 2023, en se fondant sur l'article 31, paragraphe 2, de la Charte des droits fondamentaux de l'Union européenne, qui garantit à tout travailleur une période annuelle de congés payés. La loi du 22 avril 2024 a ensuite fixé le régime actuel.</p>
+            <p style="color:var(--body); line-height:1.7">Ainsi, pendant un arrêt pour maladie non professionnelle, le salarié acquiert deux jours ouvrables par mois, dans la limite de vingt-quatre jours ouvrables par période de référence, d'après l'article L3141-5-1. De plus, quand la maladie ou l'accident l'a empêché de prendre ses congés, il dispose d'une période de report de quinze mois, qui débute en principe à la date à laquelle il reçoit, après sa reprise, les informations que la loi prévoit, selon l'article L3141-19-1.</p>
+            <p style="color:var(--body); line-height:1.7">Le harcèlement moral suppose des agissements répétés qui ont pour objet ou pour effet une dégradation des conditions de travail susceptible de porter atteinte aux droits et à la dignité du salarié, d'altérer sa santé ou de compromettre son avenir professionnel, d'après l'article L1152-1. La preuve est en effet aménagée par l'article L1154-1. Le salarié présente des éléments de fait laissant supposer l'existence d'un harcèlement, puis la partie défenderesse doit prouver que ces agissements ne sont pas constitutifs d'un harcèlement et que sa décision est justifiée par des éléments objectifs étrangers à tout harcèlement. De plus, toute rupture du contrat prononcée en méconnaissance de cette interdiction est nulle, d'après l'article L1152-3. La <a href="le-harcelement-moral-au-travail.html">page sur le harcèlement moral au travail</a> détaille ces conditions.</p>
+            <p style="color:var(--body); line-height:1.7">L'article L1153-1 définit de son côté le harcèlement sexuel par des propos ou des comportements à connotation sexuelle ou sexiste répétés, qui portent atteinte à la dignité du salarié en raison de leur caractère dégradant ou humiliant ou qui créent contre lui une situation intimidante, hostile ou offensante. Il est également constitué quand le salarié subit de tels propos de plusieurs personnes, qui agissent de manière concertée ou à l'instigation de l'une d'elles, même si chacune n'a pas agi de façon répétée, ou quand plusieurs personnes agissent successivement en sachant que leurs comportements forment une répétition. Le texte assimile enfin au harcèlement sexuel toute forme de pression grave, même non répétée, exercée dans le but réel ou apparent d'obtenir un acte de nature sexuelle, que cet acte soit recherché au profit de l'auteur des faits ou d'un tiers.</p>
+            <p style="color:var(--body); line-height:1.7">L'employeur prend les mesures nécessaires pour assurer la sécurité et protéger la santé physique et mentale des travailleurs, d'après l'article L4121-1. Il met en œuvre ces mesures sur le fondement des principes généraux de prévention de l'article L4121-2. Dans l'arrêt Air France du 25 novembre 2015, la chambre sociale juge en effet que l'employeur ne méconnaît pas son obligation légale quand il justifie avoir pris toutes les mesures prévues par ces deux articles. Tu cites donc ces deux articles ensemble quand l'énoncé reproche à l'employeur un manquement à la sécurité.</p>
+            <p style="color:var(--body); line-height:1.7">Quand le salarié est victime d'un accident du travail ou d'une maladie professionnelle, tu examines aussi la faute inexcusable de l'employeur. En effet, dans l'arrêt amiante du 28 février 2002 (n° 99-17.201), la chambre sociale juge que le manquement à l'obligation de sécurité a le caractère d'une faute inexcusable, au sens de l'article L452-1 du Code de la sécurité sociale, lorsque l'employeur avait ou aurait dû avoir conscience du danger auquel le salarié était exposé et qu'il n'a pas pris les mesures nécessaires pour l'en préserver. Cet arrêt parle d'une obligation de sécurité de résultat. Dans l'arrêt Air France de 2015, la chambre sociale vérifie en revanche que l'employeur a pris toutes les mesures prévues par les articles L4121-1 et L4121-2.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">L'article L1224-1 organise enfin le sort des contrats quand l'employeur change. Lorsque survient une modification dans la situation juridique de l'employeur, notamment par succession, vente, fusion, transformation du fonds ou mise en société de l'entreprise, tous les contrats de travail en cours au jour de la modification subsistent entre le nouvel employeur et le personnel de l'entreprise.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">La rupture du contrat de travail (chapitres 14 à 20)</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Le principe figure à l'article L1232-1 du Code du travail. Tout licenciement pour motif personnel est motivé et justifié par une cause réelle et sérieuse. L'employeur qui envisage de licencier convoque d'abord le salarié à un entretien préalable, par lettre recommandée ou par lettre remise en main propre contre décharge, et l'article L1232-2 interdit de tenir l'entretien moins de cinq jours ouvrables après la présentation ou la remise de la lettre. L'article L1232-3 précise que, pendant l'entretien, l'employeur indique les motifs de la décision envisagée et recueille les explications du salarié. L'employeur notifie ensuite sa décision par lettre recommandée avec avis de réception. Selon l'article L1232-6, cette lettre énonce le ou les motifs et ne peut pas être expédiée moins de deux jours ouvrables après la date prévue de l'entretien.</p>
+            <p style="color:var(--body); line-height:1.7">L'article L1235-2 ajoute que la lettre, précisée le cas échéant par l'employeur, fixe les limites du litige en ce qui concerne les motifs. Une insuffisance de motivation reste toutefois sans effet sur la cause du licenciement quand le salarié n'a pas demandé de précisions, car elle ne prive pas à elle seule le licenciement de cause réelle et sérieuse. Elle ouvre alors droit à une indemnité qui ne peut pas excéder un mois de salaire.</p>
+            <p style="color:var(--body); line-height:1.7">Le licenciement disciplinaire sanctionne une faute, et le degré de la faute change les droits du salarié. Le salarié licencié pour faute grave perd le préavis et l'indemnité de licenciement, d'après les articles L1234-1 et L1234-9. Dans l'arrêt du 18 octobre 2006 (n° 04-48.025), la chambre sociale approuve une cour d'appel d'avoir retenu une faute grave contre un salarié qui avait crypté son poste informatique sans autorisation, alors qu'il avait déjà fait l'objet d'une mise en garde au sujet de ses manipulations sur son ordinateur, parce que son comportement rendait impossible le maintien des relations contractuelles pendant la durée du préavis. La faute lourde suppose en plus l'intention de nuire à l'employeur. Dans l'arrêt du 22 octobre 2015 (n° 14-11.801), la chambre sociale précise que cette intention implique la volonté du salarié de porter préjudice à l'employeur dans la commission du fait fautif, et qu'elle ne résulte pas de la seule commission d'un acte préjudiciable à l'entreprise.</p>
+            <p style="color:var(--body); line-height:1.7">L'insuffisance professionnelle se distingue de la faute. Dans la partie de l'arrêt du 31 mars 1998 (n° 95-45.639) qui rejette le moyen de l'employeur, la chambre sociale approuve la cour d'appel d'avoir rattaché les erreurs commises par le salarié à son insuffisance professionnelle, puisqu'elles ne procédaient d'aucune mauvaise volonté délibérée, et d'en avoir déduit qu'elles ne pouvaient constituer une faute grave. Une insuffisance professionnelle sans mauvaise volonté délibérée ne constitue donc pas une faute grave.</p>
+            <p style="color:var(--body); line-height:1.7">La vie personnelle du salarié reste en principe à l'abri du licenciement. L'article L1132-1 interdit en effet de licencier un salarié en raison notamment de ses mœurs, de son orientation sexuelle ou de ses convictions religieuses. Dans l'arrêt du 17 avril 1991 (n° 90-42.636), la chambre sociale casse l'arrêt qui avait validé le licenciement d'un aide-sacristain, engagé par une association religieuse, après la révélation de son homosexualité. Les textes alors en vigueur interdisaient de congédier un salarié pour le seul motif tiré de ses mœurs ou de ses convictions religieuses, et la cour d'appel s'était bornée à mettre en cause ses mœurs sans constater d'agissements du salarié qui auraient créé un trouble caractérisé au sein de l'association. La chambre sociale rappelle qu'un licenciement peut reposer sur une cause objective fondée sur le comportement du salarié qui, compte tenu de la nature de ses fonctions et de la finalité propre de l'entreprise, a créé un trouble caractérisé en son sein. Tu cherches donc dans l'énoncé un comportement du salarié et son effet sur l'entreprise.</p>
+            <p style="color:var(--body); line-height:1.7">Certains salariés bénéficient d'une protection particulière contre le licenciement. Le licenciement d'un délégué syndical ne peut intervenir qu'après autorisation de l'inspecteur du travail, d'après l'article L2411-3, et l'article L2411-5 prévoit la même règle pour un membre élu de la délégation du personnel du comité social et économique, titulaire ou suppléant. Le licenciement envisagé d'un membre élu est soumis à l'avis du comité, et l'employeur adresse la demande d'autorisation à l'inspecteur du travail, d'après l'article L2421-3. Le même article permet toutefois à l'employeur, en cas de faute grave, de prononcer une mise à pied immédiate dans l'attente de la décision, mais cette mise à pied est annulée si le licenciement est refusé. La protection se prolonge enfin après le mandat, pendant douze mois pour un ancien délégué syndical qui a exercé ses fonctions au moins un an et pendant les six premiers mois qui suivent l'expiration du mandat pour un ancien membre élu du comité.</p>
+            <p style="color:var(--body); line-height:1.7">L'inaptitude relève d'un autre régime. Le médecin du travail déclare le salarié inapte à son poste quand il constate qu'aucune mesure d'aménagement, d'adaptation ou de transformation du poste n'est possible et que l'état de santé justifie un changement de poste, d'après l'article L4624-4. L'employeur doit alors proposer au salarié un autre emploi approprié à ses capacités. L'article L1226-2 impose cette obligation après une maladie ou un accident non professionnel, et l'article L1226-10 l'impose également après un accident du travail ou une maladie professionnelle. Le texte à citer dépend donc de l'origine de l'inaptitude, et le cas pratique corrigé plus bas applique le second régime.</p>
+            <p style="color:var(--body); line-height:1.7">Le licenciement pour motif économique est effectué pour un ou plusieurs motifs non inhérents à la personne du salarié, qui résultent d'une suppression ou d'une transformation d'emploi ou d'une modification, refusée par le salarié, d'un élément essentiel du contrat, d'après l'article L1233-3. Ces motifs sont consécutifs notamment à des difficultés économiques, à des mutations technologiques, à une réorganisation nécessaire à la sauvegarde de la compétitivité ou à la cessation d'activité de l'entreprise. Une baisse significative des commandes ou du chiffre d'affaires est constituée dès lors que sa durée, en comparaison avec la même période de l'année précédente, atteint un seuil qui varie avec la taille de l'entreprise.</p>
+            <ul style="color:var(--body); line-height:1.7; margin:0 0 12px 20px; padding:0"><li style="margin-bottom:6px">Un trimestre pour une entreprise de moins de onze salariés.</li><li style="margin-bottom:6px">Deux trimestres consécutifs pour une entreprise d'au moins onze salariés et de moins de cinquante salariés.</li><li style="margin-bottom:6px">Trois trimestres consécutifs pour une entreprise d'au moins cinquante salariés et de moins de trois cents salariés.</li><li style="margin-bottom:6px">Quatre trimestres consécutifs pour une entreprise de trois cents salariés et plus.</li></ul>
+            <p style="color:var(--body); line-height:1.7">Les difficultés s'apprécient au niveau de l'entreprise si elle n'appartient pas à un groupe. Dans le cas contraire, elles s'apprécient au niveau du secteur d'activité commun à cette entreprise et aux entreprises du groupe établies sur le territoire national. L'article L1233-4 interdit ensuite de licencier tant que tous les efforts de formation et d'adaptation n'ont pas été réalisés et que le reclassement est possible sur les emplois disponibles, situés sur le territoire national dans l'entreprise ou dans les autres entreprises du groupe. Les offres de reclassement sont en effet écrites et précises. Enfin, dans les entreprises d'au moins cinquante salariés, un licenciement qui concerne au moins dix salariés dans une même période de trente jours oblige l'employeur à établir un plan de sauvegarde de l'emploi, d'après l'article L1233-61. Tu commences par vérifier la taille de l'entreprise, car elle fixe la durée de la baisse du chiffre d'affaires.</p>
+            <p style="color:var(--body); line-height:1.7">Quand le licenciement n'a pas de cause réelle et sérieuse, le juge peut proposer la réintégration. Si l'une ou l'autre des parties la refuse, il octroie alors une indemnité comprise entre le minimum et le maximum que fixe le tableau de l'article L1235-3. Pour dix ans d'ancienneté, elle va par exemple de trois à dix mois de salaire brut, et le maximum atteint vingt mois à partir de vingt-neuf ans d'ancienneté. Dans une entreprise de moins de onze salariés, des minima plus bas s'appliquent en revanche.</p>
+            <p style="color:var(--body); line-height:1.7">Le barème a été examiné au regard de deux textes internationaux. Dans l'arrêt du 11 mai 2022 n° 21-14.490, la chambre sociale le juge compatible avec l'article 10 de la convention n° 158 de l'Organisation internationale du travail. Elle casse en outre l'arrêt d'une cour d'appel qui avait alloué à une salariée 32 000 €, au-delà du maximum du barème. Le juge doit en effet seulement apprécier la situation concrète du salarié pour fixer l'indemnité entre le minimum et le maximum du texte. Dans l'arrêt n° 21-15.247, rendu le même jour, elle retient que l'article 24 de la Charte sociale européenne n'a pas d'effet direct dans un litige entre particuliers.</p>
+            <p style="color:var(--body); line-height:1.7">L'article L1235-3-1 écarte toutefois le barème quand le licenciement est frappé de l'une des nullités qu'il énumère, par exemple la violation d'une liberté fondamentale, le harcèlement moral ou sexuel ou la discrimination. Lorsque le salarié ne demande pas la poursuite de son contrat ou que sa réintégration est impossible, l'indemnité ne peut alors pas être inférieure aux salaires des six derniers mois. Une irrégularité de procédure, pour un licenciement qui repose sur une cause réelle et sérieuse, ouvre au contraire droit à une indemnité qui ne peut pas dépasser un mois de salaire, d'après l'article L1235-2. Tu lis la ligne du tableau qui correspond à l'ancienneté en années complètes, puis tu qualifies le vice du licenciement avant de choisir entre le barème et le plancher de six mois.</p>
+            <p style="color:var(--body); line-height:1.7">Le salarié peut aussi prendre l'initiative de la rupture. Dans l'arrêt du 25 juin 2003 (n° 01-42.335) qui fonde le régime de la prise d'acte, la chambre sociale juge que la rupture prononcée par un salarié en raison de faits qu'il reproche à son employeur produit les effets d'un licenciement sans cause réelle et sérieuse si les faits la justifiaient, et ceux d'une démission dans le cas contraire. Elle précise toutefois aujourd'hui que la prise d'acte permet de rompre le contrat en cas de manquement suffisamment grave de l'employeur empêchant la poursuite du contrat, d'après l'arrêt du 26 mars 2014 (n° 12-23.634). Le salarié peut aussi demander que sa prise d'acte produise les effets d'un licenciement nul, par exemple pour discrimination. Dans l'arrêt du 14 novembre 2024 (n° 23-17.917), la chambre sociale casse ainsi l'arrêt d'une cour d'appel qui avait rejeté cette demande, alors que le salarié présentait des éléments de fait relatifs à des agissements discriminatoires. Le juge devait donc rechercher si l'employeur prouvait que ces agissements étaient justifiés par des éléments objectifs étrangers à toute discrimination.</p>
+            <p style="color:var(--body); line-height:1.7">Le même jour que l'arrêt de 2003, la chambre sociale a jugé que l'employeur qui prend l'initiative de rompre le contrat de travail, ou qui le considère comme rompu du fait du salarié, doit mettre en œuvre la procédure de licenciement, faute de quoi la rupture s'analyse en un licenciement sans cause réelle et sérieuse (n° 01-41.150). Le salarié peut aussi demander au juge de prononcer la résiliation judiciaire du contrat aux torts de l'employeur. Il reste alors dans l'entreprise pendant l'instance, ce qui limite le risque de se retrouver démissionnaire. Tu apprécies donc d'abord si les manquements reprochés à l'employeur sont établis et assez graves pour empêcher la poursuite du contrat.</p>
+            <p style="color:var(--body); line-height:1.7">L'abandon de poste a un régime légal depuis la loi du 21 décembre 2022. D'après l'article L1237-1-1, le salarié qui a abandonné volontairement son poste et ne reprend pas le travail après avoir été mis en demeure de justifier son absence et de reprendre son poste est alors présumé démissionnaire à l'expiration du délai que l'employeur lui a fixé. La mise en demeure se fait par lettre recommandée ou remise en main propre contre décharge, mais l'article R1237-13 interdit de fixer un délai inférieur à quinze jours à compter de sa présentation. Le salarié qui conteste cette présomption saisit ensuite directement le bureau de jugement du conseil de prud'hommes, qui statue au fond dans un délai d'un mois. Le <a href="cas-pratique-corrige-abandon-de-poste.html">cas pratique corrigé sur l'abandon de poste</a> applique ce mécanisme. Tu vérifies la date de présentation de la mise en demeure avant de compter les quinze jours.</p>
+            <p style="color:var(--body); line-height:1.7">La rupture conventionnelle résulte d'une convention signée par les parties. D'après l'article L1237-11, elle est exclusive du licenciement et de la démission, et aucune des parties ne peut l'imposer. L'article L1237-13 interdit également de fixer une indemnité spécifique inférieure à l'indemnité légale de licenciement, et il donne à chaque partie quinze jours calendaires à compter de la signature pour se rétracter. Ensuite, la partie la plus diligente demande l'homologation à l'autorité administrative, qui dispose de quinze jours ouvrables pour répondre. Si elle ne notifie rien dans ce délai, l'homologation est alors réputée acquise, d'après l'article L1237-14. Le même article donne enfin compétence au conseil de prud'hommes pour tout litige sur la convention ou sur l'homologation, et le recours doit être formé avant l'expiration d'un délai de douze mois à compter de l'homologation. Les quinze jours de rétractation viennent donc en premier, puis les quinze jours d'instruction de l'administration.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Au départ du salarié, l'employeur délivre un certificat de travail, d'après l'article L1234-19. Le reçu pour solde de tout compte fait l'inventaire des sommes versées au salarié lors de la rupture. Le salarié peut le dénoncer dans les six mois qui suivent sa signature, mais il devient libératoire pour l'employeur, pour les sommes qui y sont mentionnées, une fois ce délai écoulé, selon l'article L1234-20. Pour terminer un litige de rupture sans attendre le jugement, les parties peuvent en outre convenir devant le bureau de conciliation et d'orientation d'une indemnité forfaitaire fixée par un barème. L'article L1235-1 prévoit ce barème, que l'article D1235-21 chiffre à deux mois de salaire pour moins d'un an d'ancienneté et jusqu'à vingt-quatre mois à partir de trente ans d'ancienneté.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Le contentieux et la prescription (chapitre 21)</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">L'article L1471-1 fixe les deux délais de droit commun du contentieux du travail. Ainsi, toute action portant sur l'exécution du contrat de travail se prescrit par deux ans à compter du jour où celui qui l'exerce a connu ou aurait dû connaître les faits lui permettant d'exercer son droit, alors que toute action portant sur la rupture du contrat se prescrit par douze mois à compter de la notification de la rupture. Plusieurs règles spéciales écartent toutefois ces deux délais. Ils ne s'appliquent pas aux actions en réparation d'un dommage corporel causé à l'occasion de l'exécution du contrat, aux actions en paiement ou en répétition du salaire ni aux actions exercées en application des articles L1132-1, L1152-1 et L1153-1. Ils laissent également subsister les délais plus courts que le Code du travail prévoit lui-même, comme celui de douze mois de l'article L1237-14 pour contester une rupture conventionnelle.</p>
+            <p style="color:var(--body); line-height:1.7">L'action en paiement du salaire se prescrit par trois ans à compter du jour où celui qui l'exerce a connu ou aurait dû connaître les faits qui lui permettent d'agir, d'après l'article L3245-1. Ce texte contient un second mécanisme, car la demande ne peut porter que sur les sommes dues au titre des trois dernières années à compter de ce jour, ou, lorsque le contrat est rompu, sur les sommes dues au titre des trois années qui précèdent la rupture. Un salarié qui découvre qu'une prime annuelle ne lui a jamais été versée depuis dix ans peut donc agir dans les trois ans de sa découverte, mais il ne récupère que les trois dernières années de prime. L'action en réparation d'un préjudice de discrimination se prescrit par cinq ans à compter de la révélation de la discrimination, et les dommages et intérêts réparent l'entier préjudice pendant toute sa durée, d'après l'article L1134-5. Tu calcules séparément le délai pour agir et le montant que le salarié peut réclamer.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Pour contester un licenciement économique, l'article L1235-7 donne douze mois à compter de la dernière réunion du comité social et économique ou, si le salarié exerce son droit individuel à contester le licenciement, à compter de sa notification. L'adhésion au contrat de sécurisation professionnelle emporte rupture du contrat, et l'article L1233-67 prévoit que toute contestation de cette rupture ou de son motif se prescrit par douze mois à compter de l'adhésion, à condition que la proposition du contrat de sécurisation mentionne ce délai.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Modification du contrat ou changement des conditions de travail ?</h2>
+        <p class="lead" style="margin-bottom:24px">Le tableau classe les situations que tu rencontres le plus souvent. Pour chacune, tu retiens la qualification et ce qui se passe quand le salarié refuse, car la réponse à un cas pratique sur un changement de poste ou de lieu en dépend.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; min-width:760px; border-collapse:collapse; color:var(--body)">
+          <thead>
+          <tr><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Situation</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Qualification</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Si le salarié refuse</th></tr>
+          </thead>
+          <tbody>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Le lieu de travail change à l'intérieur du même secteur géographique</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Changement des conditions de travail, que l'employeur impose dans l'exercice de son pouvoir de direction.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le refus de continuer le travail constitue en principe un manquement que l'employeur doit sanctionner par un licenciement, et l'arrêt Le Berre du 10 juillet 1996 y voyait une faute grave. La chambre sociale a nuancé ce point le 23 janvier 2008, car le refus ne caractérise pas à lui seul une faute grave.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Le lieu de travail change vers un autre secteur géographique, sans clause de mobilité valable</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Modification du contrat de travail, qui exige l'accord du salarié. Le juge apprécie le changement de lieu de manière objective, comme la chambre sociale l'a jugé le 4 mai 1999.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le salarié peut refuser, puisque l'employeur lui demande plus que son pouvoir de direction ne le permet.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">La mutation s'appuie sur une clause de mobilité</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Mise en œuvre d'une clause qui n'est valable que si elle définit de façon précise sa zone géographique et ne laisse pas à l'employeur le pouvoir de l'étendre seul.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Si la clause est trop vague, le licenciement fondé sur le refus est sans cause réelle et sérieuse, comme la chambre sociale l'a jugé le 7 juin 2006. Si la clause est valable et que la mutation reste dans sa zone, le changement relève du pouvoir de direction, et le salarié qui refuse s'expose à un licenciement, comme dans l'arrêt Le Berre.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Le salarié perd une mission confiée à titre provisoire et garde ses fonctions de titulaire</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Changement des conditions de travail, comme dans l'arrêt Le Berre.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Sans licenciement, le contrat n'est pas rompu et le salarié qui cesse de travailler ne peut réclamer aucune indemnité.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">L'employeur propose une modification du contrat pour un motif économique</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Modification d'un élément essentiel du contrat, soumise à la procédure de l'article L1222-6.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le salarié dispose d'un mois à compter de la réception de la lettre pour faire connaître son refus, ou de quinze jours en redressement ou en liquidation judiciaire. S'il ne répond pas, il est réputé avoir accepté.</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </section>
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quels modes de rupture retenir, et avec quels effets ?</h2>
+        <p class="lead" style="margin-bottom:24px">Le tableau range les sept modes que tu rencontres le plus souvent. La question à poser dans un cas pratique est toujours la même, à savoir qui a pris l'initiative de la rupture et ce que le juge peut en tirer.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; min-width:900px; border-collapse:collapse; color:var(--body)">
+          <thead>
+          <tr><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Mode de rupture</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Qui l'initie</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Texte ou décision</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Ce que tu retiens</th></tr>
+          </thead>
+          <tbody>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Licenciement pour motif personnel</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'employeur</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1232-1</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Il faut une cause réelle et sérieuse, un entretien préalable et une lettre motivée. Sans cause réelle et sérieuse, l'indemnité se situe entre le minimum et le maximum du barème de l'article L1235-3. Si le licenciement est frappé d'une des nullités que l'article L1235-3-1 énumère, elle ne peut pas être inférieure aux salaires des six derniers mois, lorsque le salarié ne demande pas la poursuite de son contrat ou que sa réintégration est impossible.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Licenciement pour motif économique</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'employeur</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles L1233-3 et L1233-4</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Il faut un motif économique et un reclassement recherché sur le territoire national, dans l'entreprise et dans le groupe. Le plan de sauvegarde de l'emploi s'impose à partir de dix licenciements en trente jours dans une entreprise d'au moins cinquante salariés, d'après l'article L1233-61.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Licenciement pour inaptitude</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'employeur</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles L1226-2 et L1226-10</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'employeur propose un autre emploi approprié aux capacités du salarié, sauf mention expresse de l'avis du médecin du travail qui l'en dispense. L'origine professionnelle de l'inaptitude ouvre droit à des indemnités majorées, d'après l'article L1226-14.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Prise d'acte</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le salarié</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Chambre sociale, 25 juin 2003, 26 mars 2014 et 14 novembre 2024</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le manquement de l'employeur doit être assez grave pour empêcher la poursuite du contrat. La rupture produit alors les effets d'un licenciement sans cause réelle et sérieuse, et ceux d'une démission dans le cas contraire. Le salarié peut aussi demander les effets d'un licenciement nul, par exemple pour discrimination.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Résiliation judiciaire</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le salarié, par une demande au conseil de prud'hommes</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Demande aux torts de l'employeur</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le salarié reste dans l'entreprise pendant l'instance, donc il ne risque pas de se retrouver démissionnaire si le juge rejette sa demande.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Démission présumée après abandon de poste</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le salarié absent</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles L1237-1-1 et R1237-13</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'employeur met en demeure le salarié de justifier son absence et de reprendre son poste, dans un délai d'au moins quinze jours. Le salarié qui conteste saisit directement le bureau de jugement.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Rupture conventionnelle</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'employeur et le salarié d'un commun accord</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles L1237-11 à L1237-14</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Une convention signée, quinze jours calendaires de rétractation, quinze jours ouvrables d'instruction par l'administration et douze mois pour contester après l'homologation.</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="articles">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Les articles du Code du travail à retenir</h2>
+        <p class="lead" style="margin-bottom:24px">Ces articles servent de majeure dans un cas pratique. Tu peux les recopier sur ta fiche, puis les compléter avec ceux que ton enseignant cite en cours.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; min-width:760px; border-collapse:collapse; color:var(--body)">
+          <thead>
+          <tr><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Article</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Ce qu'il dit</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">À quoi il sert</th></tr>
+          </thead>
+          <tbody>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L1221-2</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le contrat de travail à durée indéterminée est la forme normale et générale de la relation de travail.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Poser le principe du CDI.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L1221-23</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">La période d'essai et la possibilité de la renouveler ne se présument pas et doivent être expressément stipulées.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Vérifier qu'un essai existe.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L1121-1</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Nul ne peut apporter aux droits et libertés des personnes des restrictions qui ne seraient pas justifiées par la nature de la tâche ni proportionnées au but recherché.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Tester toute atteinte aux libertés du salarié.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Articles L1132-1 et L1134-1</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'article L1132-1 interdit la discrimination, et l'article L1134-1 aménage la preuve entre le demandeur et le défendeur.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Traiter une discrimination à l'embauche ou en cours de contrat.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Articles L1242-1 et L1242-2</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Un CDD ne peut pas pourvoir durablement un emploi permanent et il n'est permis que dans les cas que la loi énumère.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Contrôler le recours au CDD.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Articles L1245-1 et L1245-2</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le contrat conclu en méconnaissance de certaines règles est réputé à durée indéterminée, et le salarié obtient une indemnité d'au moins un mois de salaire.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Demander la requalification.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L1331-1</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">La sanction est toute mesure, autre que les observations verbales, prise à la suite d'un agissement considéré comme fautif.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Qualifier une mesure de l'employeur.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L1332-2</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Entretien préalable, sauf pour un avertissement ou une sanction de même nature sans incidence sur la présence, la fonction, la carrière ou la rémunération, puis sanction motivée entre deux jours ouvrables et un mois après le jour fixé pour l'entretien.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Contrôler la procédure disciplinaire.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L1332-4</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Les poursuites disciplinaires se prescrivent par deux mois à compter de la connaissance du fait par l'employeur.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Vérifier le délai des poursuites.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Articles L1152-1 et L1154-1</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le harcèlement moral suppose des agissements répétés, et la preuve se partage entre le salarié et la partie défenderesse.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Traiter un harcèlement.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Articles L3121-27 et L3121-28</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">La durée légale est de trente-cinq heures par semaine, et toute heure au-delà est une heure supplémentaire.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Qualifier les heures de travail.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L3171-4</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'employeur fournit au juge les éléments qui justifient les horaires, et le juge forme sa conviction au vu des éléments des deux parties.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Prouver des heures supplémentaires.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Articles L3141-3 et L3141-5-1</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le salarié acquiert deux jours et demi ouvrables de congé par mois de travail, et deux jours ouvrables par mois pendant un arrêt pour maladie non professionnelle.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Calculer les congés payés.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L1225-4</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">La salariée enceinte est protégée contre la rupture pendant sa grossesse, ses congés de maternité, les congés payés pris juste après et les dix semaines suivantes, sauf faute grave sans lien avec la grossesse ou impossibilité de maintenir le contrat pour un motif étranger à la grossesse.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Contrôler le licenciement d'une salariée enceinte.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Articles L2411-3, L2411-5 et L2421-3</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le licenciement d'un délégué syndical ou d'un membre élu du comité social et économique ne peut intervenir qu'après autorisation de l'inspecteur du travail, et le comité donne d'abord son avis sur le licenciement d'un membre élu.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Traiter le licenciement d'un représentant du personnel.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Articles L3242-1 et L3251-1</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le salaire se paie une fois par mois, avec un acompte à la demande du salarié, et l'employeur ne peut pas compenser par une retenue sur salaire les sommes qu'un salarié lui doit pour des fournitures diverses.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Contrôler le paiement du salaire et les retenues.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L4121-1</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'employeur prend les mesures nécessaires pour assurer la sécurité et protéger la santé physique et mentale des travailleurs.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Engager la responsabilité de l'employeur en matière de santé.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L1224-1</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">En cas de modification dans la situation juridique de l'employeur, les contrats de travail en cours subsistent avec le nouvel employeur.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Traiter la vente ou la fusion d'une entreprise.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L1232-1</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Tout licenciement pour motif personnel est motivé et justifié par une cause réelle et sérieuse.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Contrôler le fond d'un licenciement.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Articles L1232-2 et L1232-6</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Convocation à un entretien préalable au moins cinq jours ouvrables avant, puis lettre expédiée au moins deux jours ouvrables après l'entretien.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Contrôler la procédure de licenciement.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Articles L1233-3 et L1233-4</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le motif économique suppose une cause économique et un effet sur l'emploi, et le reclassement doit être recherché avant le licenciement.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Contrôler un licenciement économique.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L1235-3</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le juge octroie une indemnité comprise entre un minimum et un maximum, selon l'ancienneté, si le licenciement n'a pas de cause réelle et sérieuse.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Chiffrer l'indemnité de droit commun.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L1235-3-1</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le barème ne s'applique pas aux licenciements frappés d'une des nullités que le texte énumère, qui ouvrent droit à une indemnité d'au moins six mois de salaire.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Chiffrer l'indemnité d'un licenciement nul.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Articles L1226-10 à L1226-12</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Après un accident du travail, l'employeur propose un emploi approprié, ou il justifie par écrit de l'impossibilité de le faire.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Contrôler le reclassement d'un salarié inapte.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Articles L1226-14 et L1226-15</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'inaptitude d'origine professionnelle ouvre droit à une indemnité compensatrice et à une indemnité spéciale, sauf refus abusif du reclassement, et la méconnaissance du reclassement à une indemnité d'au moins six mois de salaire.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Chiffrer les sommes dues après une inaptitude.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L1237-1-1</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le salarié qui abandonne son poste et ne le reprend pas après une mise en demeure est présumé démissionnaire.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Traiter un abandon de poste.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Articles L1237-11 et L1237-13</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">La rupture conventionnelle est signée par les deux parties, avec quinze jours de rétractation, et ne peut être imposée.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Contrôler une rupture conventionnelle.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L1471-1</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Les actions sur l'exécution du contrat se prescrivent par deux ans, et les actions sur la rupture par douze mois.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Calculer un délai pour agir.</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Article L3245-1</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'action en paiement du salaire se prescrit par trois ans, et la demande porte sur les trois dernières années.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Chiffrer un rappel de salaire.</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </section>
+    <section class="section section--alt" id="delais">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Les délais à connaître en droit du travail</h2>
+        <p class="lead" style="margin-bottom:24px">Les cas pratiques de la matière contiennent des dates, et chacune déclenche un délai. Ce tableau réunit les durées et les délais de procédure, de l'essai jusqu'à la prescription des actions, et tu peux le recopier tel quel sur ta fiche de révision.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; min-width:760px; border-collapse:collapse; color:var(--body)">
+          <thead>
+          <tr><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Situation</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Délai à retenir</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Texte</th></tr>
+          </thead>
+          <tbody>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Durée maximale de la période d'essai</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Deux mois pour les ouvriers et employés, trois mois pour les agents de maîtrise et techniciens, quatre mois pour les cadres.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1221-19</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Renouvellement de la période d'essai</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Une seule fois, si un accord de branche étendu le prévoit, avec un total de quatre, six ou huit mois selon la catégorie.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1221-21</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Prévenance quand l'employeur rompt un essai d'au moins une semaine</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Vingt-quatre heures avant huit jours de présence, quarante-huit heures jusqu'à un mois, deux semaines après un mois et un mois après trois mois.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1221-25</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Durée maximale du CDD</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Dix-huit mois à défaut de stipulation de branche, neuf mois en attente d'un recrutement en CDI, vingt-quatre mois dans les cas que la loi prévoit.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1242-8-1</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Modification du contrat pour motif économique</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Un mois à compter de la réception de la lettre pour refuser, ou quinze jours en redressement ou en liquidation judiciaire.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1222-6</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Entretien préalable au licenciement</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Pas avant cinq jours ouvrables après la présentation de la lettre de convocation.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1232-2</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Envoi de la lettre de licenciement</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Pas avant deux jours ouvrables après la date prévue de l'entretien.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1232-6</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Sanction disciplinaire après l'entretien</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Pas avant deux jours ouvrables et au plus tard un mois après le jour fixé pour l'entretien.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1332-2</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Poursuites disciplinaires</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Deux mois à compter du jour où l'employeur a connu le fait fautif.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1332-4</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Sanctions anciennes invocables</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Une sanction antérieure de plus de trois ans à l'engagement des poursuites disciplinaires ne peut plus être invoquée à l'appui d'une nouvelle sanction.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1332-5</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Certificat de grossesse après un licenciement</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Quinze jours à compter de la notification du licenciement, sauf faute grave non liée à la grossesse.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1225-5</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Salaire après l'examen de reprise d'un salarié inapte</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Si le salarié n'est ni reclassé ni licencié un mois après l'examen, l'employeur reprend le paiement du salaire.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles L1226-4 et L1226-11</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Mise en demeure après un abandon de poste</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Un délai d'au moins quinze jours à compter de la présentation de la mise en demeure.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article R1237-13</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Rupture conventionnelle</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Quinze jours calendaires de rétractation, quinze jours ouvrables d'instruction, douze mois pour contester après l'homologation.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles L1237-13 et L1237-14</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Report des congés après une maladie</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Quinze mois à compter de la réception des informations que la loi prévoit après la reprise.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L3141-19-1</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Dénonciation du solde de tout compte</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Six mois à compter de la signature du reçu.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1234-20</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Protection après un mandat</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Douze mois pour un ancien délégué syndical qui a exercé ses fonctions au moins un an, six premiers mois après l'expiration du mandat pour un ancien membre élu du comité social et économique.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles L2411-3 et L2411-5</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Action sur l'exécution du contrat</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Deux ans à compter du jour où le demandeur a connu ou aurait dû connaître les faits.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1471-1</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Action sur la rupture du contrat</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Douze mois à compter de la notification de la rupture.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1471-1</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Action en paiement du salaire</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Trois ans, avec une demande limitée aux trois dernières années.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L3245-1</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Action en réparation d'une discrimination</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Cinq ans à compter de la révélation de la discrimination.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1134-5</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Contestation d'un licenciement économique</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Douze mois à compter de la dernière réunion du comité social et économique ou de la notification, selon le cas.</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article L1235-7</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="decisions">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Cinq décisions à connaître en droit du travail</h2>
+        <p class="lead" style="margin-bottom:24px">Cinq décisions illustrent la matière, de la définition du lien de subordination jusqu'aux congés payés pendant un arrêt maladie. Pour chacune, tu retiens d'abord les faits, puis la règle que la Cour de cassation en tire.</p>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Lien de subordination · Chambre sociale de la Cour de cassation, 13 novembre 1996, n° 94-13.187</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">À la suite d'un contrôle, l'Urssaf réintègre dans l'assiette des cotisations dues par la Société générale, pour les années 1984 et 1985, plusieurs sommes. Elles comprennent une gratification versée, lors d'un hold-up, aux salariés qui avaient subi des violences physiques ou eu une attitude spécifique pour protéger les valeurs de la banque, des compléments de retraite et les honoraires versés à des conférenciers et à des intervenants extérieurs à l'entreprise. La banque conteste ce redressement, mais la cour d'appel de Bordeaux le maintient pour les honoraires, parce que les prestations de ces intervenants s'effectuaient dans le cadre d'un service organisé.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La chambre sociale casse l'arrêt sur ce seul point. Elle rappelle que le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné. Elle ajoute que le travail au sein d'un service organisé peut constituer un indice du lien de subordination lorsque l'employeur détermine unilatéralement les conditions d'exécution du travail. La cour d'appel avait pourtant relevé que le thème des interventions et leur rémunération étaient convenus avec les intéressés, et que ceux-ci n'étaient soumis à aucun ordre, à aucune directive ni à aucun contrôle. Elle n'avait donc pas tiré les conséquences de ses propres constatations, et la Cour de cassation juge qu'il n'y a pas lieu à redressement pour ces honoraires. Tu retiens de cet arrêt la définition et la méthode, car le service organisé reste un simple indice. La page sur <a href="arret-societe-generale-1996-explique.html">l'arrêt du 13 novembre 1996</a> reprend l'affaire.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Changement des conditions de travail · Chambre sociale de la Cour de cassation, 10 juillet 1996, n° 93-41.137 (arrêt Le Berre)</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Un salarié est engagé le 1er janvier 1987 par la société GAN-Vie comme attaché d'inspection et titularisé le 1er mars 1988. Le 11 juin 1990, il accepte une mission d'organisation confiée à titre provisoire, avec une amélioration de sa rémunération en fonction des résultats. Par une lettre du 6 mars 1991, l'employeur lui annonce que ses résultats n'atteignent pas les normes demandées, qu'il est déchargé de sa mission et qu'il continue à exercer les fonctions d'attaché d'inspection titulaire. Le salarié refuse ce reclassement et cesse son activité le 26 mars 1991, mais l'employeur ne le licencie pas. Il saisit alors le conseil de prud'hommes pour obtenir une indemnité de préavis, une indemnité de licenciement et une indemnité pour licenciement sans cause réelle et sérieuse. La cour d'appel de Rennes le déboute.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La chambre sociale rejette le pourvoi en substituant un motif à celui de la cour d'appel. Elle juge que le refus par un salarié de continuer le travail ou de le reprendre après un changement de ses conditions de travail, décidé par l'employeur dans l'exercice de son pouvoir de direction, constitue en principe une faute grave qu'il appartient à l'employeur de sanctionner par un licenciement. L'employeur n'avait pas licencié le salarié. Le contrat n'a donc pas été rompu, et le salarié ne peut réclamer aucune indemnité. La chambre sociale a nuancé cette formule le 23 janvier 2008 (n° 07-40.522). À propos d'une clause de mobilité, elle juge en effet que le refus du salarié constitue en principe un manquement à ses obligations contractuelles, mais il ne caractérise pas à lui seul une faute grave. Cette décision sert dans un énoncé où le salarié refuse un changement et où l'employeur ne réagit pas. Tu qualifies d'abord le changement imposé, puisque la règle vise seulement les changements des conditions de travail.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Clause de non-concurrence · Chambre sociale de la Cour de cassation, 10 juillet 2002, n° 00-45.135</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Un agent producteur est engagé le 1er décembre 1993 par une société d'assurance. Le 7 mars 1995, l'employeur lui ordonne de remettre son matériel professionnel et de cesser d'exécuter le contrat, en lui reprochant de s'être introduit irrégulièrement, en août 1994, dans le bureau de son supérieur. Le salarié saisit le conseil de prud'hommes, notamment d'une demande de dommages-intérêts au titre de la clause de non-concurrence de son contrat. La cour d'appel de Reims juge cette clause licite et régulière, alors qu'elle ne comportait aucune contrepartie financière, ce qui était conforme à la convention collective applicable.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La chambre sociale casse l'arrêt sur ce seul point et renvoie l'affaire devant la cour d'appel de Metz, au visa du principe de libre exercice d'une activité professionnelle et de l'article L120-2 de l'ancien Code du travail, devenu l'article L1121-1. Elle pose en effet la règle suivante : « une clause de non-concurrence n'est licite que si elle est indispensable à la protection des intérêts légitimes de l'entreprise, limitée dans le temps et dans l'espace, qu'elle tient compte des spécificités de l'emploi du salarié et comporte l'obligation pour l'employeur de verser au salarié une contrepartie financière, ces conditions étant cumulatives ». Une clause sans contrepartie financière est donc illicite, même quand la convention collective applicable n'en prévoit pas. La page sur <a href="arret-non-concurrence-2002-explique.html">l'arrêt du 10 juillet 2002</a> détaille l'affaire.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Obligation de sécurité · Chambre sociale de la Cour de cassation, 25 novembre 2015, n° 14-24.444 (arrêt Air France)</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Un salarié engagé par Air Inter, puis repris par Air France, est chef de cabine de première classe sur les vols long-courriers. Le 11 septembre 2001, il se trouve en escale à New York et il est témoin des attentats contre le World Trade Center. Le 24 avril 2006, alors qu'il part rejoindre son bord, il est pris d'une crise de panique qui donne lieu à un arrêt de travail. Il saisit le conseil de prud'hommes le 19 décembre 2008 d'une demande de dommages-intérêts pour manquement de son employeur à son obligation de sécurité après les attentats. Air France le licencie le 15 septembre 2011, parce qu'il ne s'est pas présenté à la visite médicale prévue pour statuer sur son aptitude à occuper un poste au sol.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La chambre sociale juge que ne méconnaît pas son obligation légale de prendre les mesures nécessaires pour assurer la sécurité et protéger la santé des travailleurs l'employeur qui justifie avoir pris toutes les mesures prévues par les articles L4121-1 et L4121-2 du Code du travail. Elle approuve la cour d'appel d'avoir constaté que la compagnie avait fait accueillir l'équipage, au retour de New York, par l'ensemble du personnel médical mobilisé pour assurer une présence jour et nuit et orienter éventuellement vers des consultations psychiatriques. Le salarié avait de plus été déclaré apte lors de quatre visites médicales entre 2002 et 2005 et il avait exercé ses fonctions sans difficulté jusqu'en avril 2006, alors que les éléments médicaux produits dataient de 2008 et n'avaient pas de lien avec les événements. La chambre sociale casse en revanche l'arrêt sur le licenciement, parce que la cour d'appel n'avait pas répondu aux conclusions du salarié qui invoquaient le règlement intérieur de l'entreprise, et elle renvoie l'affaire devant la cour d'appel de Paris, autrement composée. À la fin de sa réponse au premier moyen, elle emploie encore les mots « obligation de sécurité de résultat ».</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Congés payés pendant un arrêt maladie · Chambre sociale de la Cour de cassation, 13 septembre 2023, n° 22-17.340, 22-17.341 et 22-17.342</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Trois salariés de la société Transdev saisissent le conseil de prud'hommes de demandes au titre des congés payés qu'ils soutiennent avoir acquis pendant la suspension de leur contrat de travail, à la suite d'un arrêt de travail pour maladie non professionnelle. La cour d'appel de Reims leur donne raison par trois arrêts du 6 avril 2022. L'employeur forme un pourvoi contre ces trois arrêts.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La chambre sociale rejette les pourvois. Elle constate que l'article L3141-3 ne permet pas, pour un salarié dont le contrat est suspendu par un arrêt de maladie non professionnelle, une interprétation conforme au droit de l'Union européenne. Comme le litige oppose un salarié à un employeur qui a la qualité de particulier, il appartient au juge national d'assurer la protection juridique que garantit l'article 31, paragraphe 2, de la Charte des droits fondamentaux de l'Union européenne, qui reconnaît à tout travailleur une période annuelle de congés payés. Elle écarte donc partiellement l'application de l'article L3141-3 et juge que les salariés ont acquis des droits à congé payé pendant la suspension de leur contrat pour maladie non professionnelle. La loi du 22 avril 2024 a ensuite organisé ce droit. Elle limite l'acquisition à deux jours ouvrables par mois pendant l'arrêt, dans la limite de vingt-quatre jours ouvrables par période de référence.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section--alt" id="cas-pratique">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Un cas pratique corrigé sur l'inaptitude après un accident du travail</h2>
+        <p class="lead" style="margin-bottom:16px">Ce cas pratique porte sur l'inaptitude d'une salariée après un accident du travail. Il oblige à relier le reclassement, le calcul des indemnités et les délais de la procédure. Chaque question de la correction suit le même chemin, avec une règle dans la majeure, son application aux faits dans la mineure, puis une conclusion.</p>
+
+        <div class="card" style="padding:22px 24px">
+          <p style="margin-top:0; color:var(--body); line-height:1.7"><strong>Énoncé.</strong> Le 3 mars 2017, Solène Caradec est embauchée en contrat à durée indéterminée comme cariste par la société Ravinel Logistique, qui emploie 230 salariés dans un entrepôt près de Vannes. Son salaire mensuel brut est de 2 150 €. Le 14 janvier 2026, une palette mal calée lui tombe sur l'épaule. La caisse primaire d'assurance maladie reconnaît un accident du travail, et Solène reste en arrêt jusqu'au 29 mai 2026. Le 2 juin 2026, le médecin du travail l'examine à la reprise. Après une étude de son poste et un échange avec l'employeur, il la déclare inapte à son poste de cariste. Son avis précise qu'elle peut occuper un emploi sans port de charges ni conduite d'engins, par exemple un emploi de bureau, avec une formation. L'avis ne mentionne pas que tout maintien dans un emploi serait gravement préjudiciable à sa santé, ni que son état de santé ferait obstacle à tout reclassement.</p>
+          <p style="color:var(--body); line-height:1.7">Ravinel Logistique appartient à un groupe dont fait partie la société Ravinel Transports, installée à Rennes. Les deux sociétés partagent la même direction et font régulièrement tourner leur personnel entre Vannes et Rennes. Ravinel Transports recherche alors un agent d'administration des ventes, un emploi de bureau. Le 12 juin 2026, la directrice des ressources humaines de Ravinel Logistique écrit à Solène que l'entreprise ne peut pas la reclasser, faute de poste de cariste adapté à Vannes. Elle n'a interrogé aucune autre société du groupe. Solène reçoit le 22 juin une convocation à un entretien préalable, qui se tient le 1er juillet. La lettre de licenciement pour inaptitude et impossibilité de reclassement est expédiée le 10 juillet 2026. L'employeur verse à Solène l'indemnité légale de licenciement, mais aucun salaire depuis l'examen de reprise et aucune autre somme. Solène se demande si Ravinel Logistique a respecté son obligation de reclassement, puis quelles sommes elle peut réclamer.</p>
+          <p style="color:var(--body); line-height:1.7; margin-top:20px"><strong>Question 1. Ravinel Logistique a-t-elle respecté son obligation de reclassement ?</strong></p>
+          <p style="color:var(--body); line-height:1.7"><strong>Majeure.</strong> Les règles protectrices des victimes d'un accident du travail s'appliquent dès lors que l'inaptitude a, au moins partiellement, pour origine cet accident et que l'employeur avait connaissance de cette origine au moment du licenciement, comme la chambre sociale l'a jugé le 18 septembre 2024 (n° 22-17.737).</p>
+          <p style="color:var(--body); line-height:1.7">Quand un salarié victime d'un accident du travail est déclaré inapte par le médecin du travail à reprendre l'emploi qu'il occupait, l'article L1226-10 du Code du travail oblige l'employeur à lui proposer un autre emploi approprié à ses capacités. Cet emploi se cherche dans l'entreprise ou dans les entreprises du groupe auquel elle appartient, situées sur le territoire national et dont l'organisation, les activités ou le lieu d'exploitation assurent la permutation de tout ou partie du personnel. La proposition prend en compte, après avis du comité social et économique, les conclusions écrites du médecin du travail et ses indications sur les capacités du salarié, y compris son aptitude à bénéficier d'une formation. L'emploi proposé est en outre aussi comparable que possible à l'emploi précédent. L'article L1226-12 ajoute que l'employeur qui se trouve dans l'impossibilité de proposer un autre emploi fait connaître par écrit au salarié les motifs qui s'opposent au reclassement. Il ne peut toutefois rompre le contrat que dans trois situations, à savoir s'il justifie de cette impossibilité, si le salarié refuse l'emploi proposé ou si l'avis du médecin du travail mentionne expressément que tout maintien du salarié dans l'emploi serait gravement préjudiciable à sa santé ou que son état de santé fait obstacle à tout reclassement.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Mineure.</strong> L'accident du 14 janvier 2026 est un accident du travail que la caisse primaire d'assurance maladie a reconnu. L'inaptitude constatée le 2 juin 2026, à l'examen qui suit l'arrêt de travail provoqué par cet accident, en découle, et l'employeur connaissait cette origine, puisque la caisse a reconnu l'accident et qu'il a échangé avec le médecin du travail à cette occasion. Le régime protecteur de l'article L1226-10 s'applique donc. Le médecin du travail a déclaré Solène inapte après une étude de poste et un échange avec l'employeur, mais l'énoncé ne dit pas si Solène a participé à cet échange, que l'article L4624-4 prévoit avec le salarié et l'employeur, et tu signales ce silence. De plus, l'avis ne contient aucune des deux mentions qui dispensent l'employeur de chercher un reclassement.</p>
+          <p style="color:var(--body); line-height:1.7">Ravinel Logistique devait donc chercher un emploi compatible avec les indications du médecin, à Vannes comme dans les autres sociétés du groupe situées en France. L'avis évoque une formation, et le médecin du travail doit donner des indications sur l'aptitude du salarié à en bénéficier, si bien que l'employeur devait aussi envisager un emploi accessible après une formation. La société Ravinel Transports, à Rennes, recherchait un agent d'administration des ventes, un emploi de bureau qui correspond aux indications du médecin. De plus, les deux sociétés font tourner leur personnel entre leurs sites, ce qui remplit la condition de permutation. La directrice des ressources humaines a constaté seulement l'absence de poste de cariste à Vannes et elle n'a interrogé aucune autre société du groupe. Sa lettre du 12 juin 2026 donne bien des motifs par écrit, mais ils ne démontrent pas l'impossibilité de reclasser Solène, puisqu'un emploi compatible existait dans le groupe. Personne n'a proposé d'emploi à Solène, donc elle n'en a refusé aucun. L'énoncé ne dit rien de la consultation du comité social et économique, que l'article L1226-10 prévoit pour la proposition de reclassement, et tu signales ce silence dans ta copie. Si cette consultation n'a pas eu lieu, le licenciement est prononcé en méconnaissance de l'article L1226-10, ce que sanctionne l'article L1226-15.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Conclusion.</strong> Ravinel Logistique n'a donc pas respecté son obligation de reclassement. En effet, elle ne se trouve dans aucune des trois situations qui autorisent la rupture selon l'article L1226-12. Elle ne justifie d'aucune impossibilité de proposer un emploi, car Ravinel Transports recherchait un agent d'administration des ventes. Solène n'a refusé aucune proposition, et l'avis du médecin ne contient aucune mention de dispense. Les délais de la procédure du licenciement pour motif personnel, que l'article L1226-12 rend applicable, ont en revanche été respectés, car l'entretien du 1er juillet s'est tenu plus de cinq jours ouvrables après la convocation du 22 juin et la lettre est partie le 10 juillet, plus de deux jours ouvrables après l'entretien.</p>
+          <p style="color:var(--body); line-height:1.7; margin-top:20px"><strong>Question 2. Quelles sommes Solène peut-elle réclamer ?</strong></p>
+          <p style="color:var(--body); line-height:1.7"><strong>Majeure.</strong> L'article L1226-11 impose à l'employeur de verser au salarié déclaré inapte le salaire correspondant à l'emploi qu'il occupait avant la suspension de son contrat, dès l'expiration d'un délai d'un mois à compter de la date de l'examen médical de reprise, quand le salarié n'est ni reclassé ni licencié. Quand l'employeur rompt le contrat dans l'un des trois cas que prévoit le deuxième alinéa de l'article L1226-12, à savoir l'impossibilité de proposer un emploi, le refus du salarié ou la mention expresse de dispense dans l'avis du médecin, l'article L1226-14 ouvre en outre droit à une indemnité compensatrice d'un montant égal à celui de l'indemnité compensatrice de préavis de l'article L1234-5, ainsi qu'à une indemnité spéciale de licenciement qui est, sauf dispositions conventionnelles plus favorables, égale au double de l'indemnité de l'article L1234-9. Ces indemnités ne sont toutefois pas dues quand l'employeur établit que le refus du reclassement proposé par le salarié est abusif. Elles se calculent, comme celles de l'article L1226-15, sur la base du salaire moyen que le salarié aurait perçu au cours des trois derniers mois s'il avait continué à travailler au poste qu'il occupait avant la suspension de son contrat, d'après l'article L1226-16. Quand le licenciement est prononcé en méconnaissance des articles L1226-10 à L1226-12, l'article L1226-15 permet enfin au tribunal de proposer la réintégration. Si l'une ou l'autre des parties la refuse, le juge octroie alors une indemnité qu'il fixe conformément à l'article L1235-3-1, donc d'au moins six mois de salaire, et qui se cumule avec les indemnités de l'article L1226-14.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Mineure.</strong> L'examen de reprise a eu lieu le 2 juin 2026, et le délai d'un mois prend fin le 2 juillet à minuit. À l'expiration de ce délai, Solène n'était ni reclassée ni licenciée, puisque la lettre de licenciement est du 10 juillet. Ravinel Logistique devait donc lui verser son salaire de cariste à partir du 3 juillet et jusqu'à la rupture du contrat. De plus, l'employeur a rompu le contrat en invoquant l'impossibilité de reclasser Solène, si bien que l'article L1226-14 s'applique. L'indemnité compensatrice est égale à l'indemnité de préavis. Avec plus de deux ans d'ancienneté, le préavis est de deux mois d'après l'article L1234-1, sauf dispositions conventionnelles ou contractuelles plus favorables, soit 4 300 € pour un salaire de 2 150 €.</p>
+          <p style="color:var(--body); line-height:1.7">L'ancienneté de Solène inclut la période de suspension pour accident du travail, d'après l'article L1226-7. Elle atteint donc neuf ans et quatre mois à la rupture du contrat. L'énoncé ne donne que la date d'expédition de la lettre, le 10 juillet 2026, alors que la rupture date de sa notification, c'est-à-dire de sa première présentation à Solène, quelques jours plus tard, ce qui ne change pas le nombre de mois complets. L'article L1226-4 prend en compte le préavis non exécuté dans le calcul de l'indemnité de licenciement seulement pour l'inaptitude non professionnelle, et tu arrêtes donc ici l'ancienneté à la rupture.</p>
+          <p style="color:var(--body); line-height:1.7">L'indemnité légale de licenciement est d'un quart de mois de salaire par année d'ancienneté jusqu'à dix ans, selon l'article R1234-2, et elle se calcule proportionnellement au nombre de mois complets pour une année incomplète, d'après l'article R1234-1. Le salaire mensuel de Solène, 2 150 €, sert de base de calcul d'après l'article L1226-16, et l'indemnité légale s'élève ainsi à 2 150 € × 1/4 × 112/12, soit environ 5 017 €. L'indemnité spéciale en est le double, soit environ 10 033 €. Ravinel Logistique a déjà versé l'indemnité légale, mais il reste environ 5 017 € à payer sur l'indemnité spéciale.</p>
+          <p style="color:var(--body); line-height:1.7">Le licenciement méconnaît enfin les articles L1226-10 à L1226-12, si bien que l'article L1226-15 permet au tribunal de proposer la réintégration. En cas de refus de l'une ou l'autre des parties, Solène obtient en outre une indemnité d'au moins six mois de salaire, soit au moins 12 900 €, qui se cumule avec les indemnités de l'article L1226-14.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Conclusion.</strong> Solène peut donc réclamer ses salaires à partir du 3 juillet 2026 jusqu'à la rupture, le complément de l'indemnité spéciale de licenciement, soit environ 5 017 €, et l'indemnité compensatrice de 4 300 €. Elle peut aussi demander une indemnité d'au moins 12 900 € pour un licenciement prononcé sans respecter le reclassement, ou sa réintégration si le tribunal la propose et que les deux parties l'acceptent. Ces montants supposent toutefois un salaire de référence de 2 150 € et l'absence de dispositions conventionnelles plus favorables, que tu vérifies dans la convention collective applicable.</p>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Pour t'entraîner sur la méthode, la page sur <a href="methode-cas-pratique.html">la méthode du cas pratique</a> détaille les cinq étapes, et <a href="cas-pratiques-corriges.html">les cas pratiques corrigés</a> réunissent les exercices par matière.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quelles erreurs coûtent le plus de points ?</h2>
+        <p class="lead" style="margin-bottom:24px">Ces cinq confusions font perdre des points dans les copies de droit du travail.</p>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Confondre la dépendance économique et le lien de subordination</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Un coursier qui travaille chaque soir pour la même plateforme dépend d'elle économiquement. Il devient salarié quand il travaille sous l'autorité d'un employeur qui donne des ordres, contrôle l'exécution et peut sanctionner, comme la chambre sociale le juge dans l'arrêt Société générale. Dans l'arrêt Take Eat Easy, elle déduit un pouvoir de direction et de contrôle de la géolocalisation en temps réel, et elle relève aussi un pouvoir de sanction. Le juge regarde les conditions de fait dans lesquelles l'activité s'exerce, quel que soit le titre que les parties ont donné au contrat, par exemple prestation de services. Dans un énoncé, tu cherches donc les ordres, le contrôle et la sanction avant d'écrire que la personne est salariée.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Appliquer le barème de l'article L1235-3 à un licenciement nul</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Le barème de l'article L1235-3 s'applique au licenciement qui n'a pas de cause réelle et sérieuse. L'article L1235-3-1 l'écarte quand le licenciement est frappé de l'une des nullités qu'il énumère, par exemple la violation d'une liberté fondamentale, le harcèlement moral ou sexuel, la discrimination ou la violation de la protection de la salariée enceinte. Si le salarié ne demande pas la poursuite de son contrat ou si sa réintégration est impossible, l'indemnité est alors d'au moins six mois de salaire. Une irrégularité de procédure qui accompagne un licenciement justifié se répare au contraire par une indemnité d'un mois de salaire au maximum, d'après l'article L1235-2. Tu qualifies donc le vice du licenciement avant de chiffrer une indemnité, car ces trois situations conduisent à trois montants différents.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Croire que le salarié peut toujours refuser un changement imposé par l'employeur</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Le salarié peut refuser une modification de son contrat, mais le refus d'un simple changement des conditions de travail constitue en principe un manquement, que l'arrêt Le Berre qualifie de faute grave et que l'arrêt du 23 janvier 2008 refuse de qualifier ainsi à lui seul. Pour un changement de lieu, la chambre sociale demande au juge de chercher si le nouveau lieu se situe dans un secteur géographique différent de l'ancien, comme elle l'a jugé le 4 mai 1999. Pour une clause de mobilité, elle vérifie que la zone géographique est définie de façon précise, comme dans l'arrêt du 7 juin 2006. Tu écris donc ces vérifications dans ta mineure avant de conclure sur la faute.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Calculer une prescription sans distinguer le type d'action</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Les actions sur l'exécution du contrat se prescrivent par deux ans et celles sur la rupture par douze mois, d'après l'article L1471-1. Le Code du travail prévoit d'autres délais, par exemple trois ans pour le salaire et cinq ans pour la discrimination. La contestation d'une rupture conventionnelle se prescrit aussi par douze mois, mais à compter de l'homologation. Dans un cas pratique sur un rappel de salaire, la demande ne porte en outre que sur les trois dernières années, ce qui limite le montant même quand l'action est recevable. Tu identifies donc la nature de l'action avant de choisir le délai, puis tu cherches son point de départ.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Citer une règle ancienne ou attribuer une décision à la mauvaise formation</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Plusieurs règles ont changé récemment. En effet, la loi du 9 mars 2023 a supprimé, à compter du 9 septembre 2023, l'exception qui permettait à un accord de branche conclu avant 2008 de prévoir un essai plus long. De plus, la loi du 21 décembre 2022 a créé la présomption de démission après un abandon de poste. Le salarié acquiert aussi des congés payés pendant un arrêt maladie depuis l'arrêt du 13 septembre 2023 et la loi du 22 avril 2024, et une preuve déloyale peut être admise depuis l'arrêt de l'Assemblée plénière du 22 décembre 2023. Les deux arrêts du 11 mai 2022 sur le barème sont en revanche des arrêts de la chambre sociale, car l'Assemblée plénière a seulement rendu à ce sujet deux avis le 17 juillet 2019, que ces arrêts citent. Tu vérifies donc la date des faits et la formation de la Cour avant de citer une décision.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Dans quel ordre réviser le droit du travail ?</h2>
+        <p style="color:var(--body); line-height:1.75">La qualification vient en premier, parce que tout le reste en dépend. Tu apprends d'abord la définition du lien de subordination, les décisions Société générale et Take Eat Easy, puis les présomptions des articles L8221-6 et L7112-1. Tu passes ensuite aux contrats, en commençant par le CDI et sa période d'essai, puisque chaque contrat précaire se juge par rapport à la règle du CDI, puis en étudiant le CDD et les clauses du contrat.</p>
+        <p style="color:var(--body); line-height:1.75">L'exécution du contrat vient après. Tu commences par les pouvoirs de l'employeur et leurs limites, c'est-à-dire l'article L1121-1 et le règlement intérieur, puis la discipline. Tu étudies ensuite le temps de travail, qui donne beaucoup de calculs, puis la modification du contrat, la suspension et la santé au travail. La rupture se révise en dernier, car elle réutilise toutes les notions précédentes. Pour chaque mode de rupture, tu notes d'abord le texte et les conditions. Tu retiens enfin la sanction et son montant, parce que les cas pratiques te demandent souvent de chiffrer.</p>
+        <p style="color:var(--body); line-height:1.75">Tu apprends le tableau des délais en dernier, comme une fiche de mémorisation, puisque les cas pratiques de droit du travail contiennent des dates à traiter. Le cas pratique sur l'inaptitude termine la révision, puisqu'il oblige à relier le reclassement, les indemnités et les délais. Selon ta faculté, l'examen peut toutefois prendre la forme d'un commentaire d'arrêt ou d'une dissertation. Un commentaire peut porter sur l'une des décisions de cette page, et une dissertation sur la notion de lien de subordination ou sur la place de l'accord collectif à côté de la loi. La page sur <a href="droit-du-travail-l3.html">le droit du travail en L3</a> présente les autres supports de la matière.</p>
+      </div>
+    </section>
+    <section class="section" id="faq">
+      <div class="container container--narrow">
+        <h2 class="h2 text-center" style="margin-bottom:32px">Questions fréquentes sur le droit du travail en L3</h2>
+        <div class="accordion">
+          <details class="accordion__item" open><summary><h3>Que faut-il réviser en droit du travail en L3 ?</h3></summary><div class="accordion__body">La fiche complète organise le programme en cinq thèmes. Le premier présente la notion de droit du travail, le lien de subordination et les sources du droit. Le deuxième traite de la formation du contrat, car il présente d'abord le CDI et sa période d'essai, puis le CDD, avant d'aborder les clauses du contrat. Le troisième étudie l'exécution du contrat, depuis les pouvoirs de l'employeur jusqu'à la santé au travail, en passant par le temps de travail et la modification du contrat. Le quatrième porte sur la rupture du contrat, du licenciement à la rupture conventionnelle, et le cinquième sur la prescription des actions. Ton enseignant peut toutefois réserver certains sujets aux relations collectives, donc tu compares cette liste avec le plan de ton cours.</div></details>
+          <details class="accordion__item"><summary><h3>Comment savoir si une personne est salariée ?</h3></summary><div class="accordion__body">Le juge cherche un lien de subordination, c'est-à-dire un travail exécuté sous l'autorité d'un employeur qui donne des ordres, contrôle l'exécution et sanctionne les manquements, d'après l'arrêt Société générale du 13 novembre 1996. Il regarde les conditions de fait de l'activité, car le titre du contrat ne suffit pas, comme la chambre sociale l'a rappelé dans l'arrêt Take Eat Easy. Une personne immatriculée comme indépendante est présumée ne pas être salariée selon l'article L8221-6, mais l'existence d'un contrat de travail peut être établie si elle fournit ses prestations dans un lien de subordination juridique permanente.</div></details>
+          <details class="accordion__item"><summary><h3>Quelle indemnité pour un licenciement sans cause réelle et sérieuse ?</h3></summary><div class="accordion__body">Le juge octroie une indemnité comprise entre le minimum et le maximum du tableau de l'article L1235-3, selon l'ancienneté en années complètes. Pour dix ans d'ancienneté, elle va de trois à dix mois de salaire brut, et le maximum atteint vingt mois à partir de vingt-neuf ans. En revanche, si le licenciement est frappé d'une des nullités que l'article L1235-3-1 énumère, comme le harcèlement ou la discrimination, le barème ne s'applique pas. L'indemnité ne peut alors pas être inférieure aux salaires des six derniers mois, lorsque le salarié ne demande pas la poursuite de son contrat ou que sa réintégration est impossible.</div></details>
+          <details class="accordion__item"><summary><h3>Dans quel délai agir devant le conseil de prud'hommes ?</h3></summary><div class="accordion__body">Le délai dépend de l'action. D'après l'article L1471-1, une action portant sur l'exécution du contrat se prescrit par deux ans, alors qu'une action portant sur la rupture se prescrit par douze mois à compter de la notification. L'action en paiement du salaire se prescrit en revanche par trois ans selon l'article L3245-1, et l'action en réparation d'une discrimination par cinq ans à compter de sa révélation selon l'article L1134-5. Enfin, la contestation d'une rupture conventionnelle doit être formée dans les douze mois de l'homologation, d'après l'article L1237-14. Tu identifies donc d'abord la nature de l'action, puis son point de départ.</div></details>
+          <details class="accordion__item"><summary><h3>Existe-t-il une fiche PDF de droit du travail pour la L3 ?</h3></summary><div class="accordion__body">La fiche complète de droit du travail L3 compte plus de cent pages et coûte 14,99 €. Elle est vendue seule ou dans le Pack Licence 3, qui réunit cinq fiches de troisième année pour 58 €. De plus, le Pack Droit du travail L3 ajoute à la fiche les flashcards et QCM, les fiches d'arrêt et les cas pratiques corrigés pour 29,98 €. La page sur <a href="droit-du-travail-l3.html">le droit du travail en L3</a> présente ainsi tous ces supports, et <a href="formations.html">le catalogue des formations</a> réunit toutes les fiches.</div></details>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="author-box">
+          <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+          <div>
+            <p class="author-box__name">Julien</p>
+            <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+            <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">162 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- fin-article:pack-ultra -->
+    <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
+      <div class="container">
+        <p class="article-pack-ligne__texte">Le Pack Ultra L3 S1 réunit les 42 ressources de ton semestre de L3 pour 329 €, la fiche de droit du travail L3 comprise. <a href="pack-ultra.html#pack-ultra-l3-s1">Voir le contenu du pack →</a></p>
+        <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (fiche revision droit du travail L3)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit du travail L3 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-travail-l3-s1">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=8c547dfb" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=4b8ba62a" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=a4e01c99" defer></script>
+</body>
+</html>
