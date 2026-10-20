@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Fiche de révision de procédure pénale L3, programme et PDF</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Fiche de révision de procédure pénale L3 en PDF, avec les sept thèmes, les articles du Code, les durées de garde à vue, des arrêts et un cas pratique corrigé.">
+  <link rel="canonical" href="https://trajectoiredroit.com/fiche-revision-procedure-penale-l3.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Fiche de révision de procédure pénale L3, programme et PDF">
+  <meta property="og:description" content="Fiche de révision de procédure pénale L3 en PDF, avec les sept thèmes, les articles du Code, les durées de garde à vue, des arrêts et un cas pratique corrigé.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/fiche-revision-procedure-penale-l3.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/fiche-revision-procedure-penale-l3.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Fiche de révision procédure pénale L3, articles, durées de garde à vue et cas pratique corrigé",
+        "description": "Fiche de révision de procédure pénale L3 en PDF, avec les sept thèmes, les articles du Code, les durées de garde à vue, des arrêts et un cas pratique corrigé.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-10-20",
+        "dateModified": "2026-10-20",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": {
+            "@type": "EducationalOrganization",
+            "name": "TrajectoireDroit"
+          }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+          }
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Procédure pénale L3"
+        },
+        "image": "https://trajectoiredroit.com/assets/blog/fiche-revision-procedure-penale-l3.webp",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://trajectoiredroit.com/fiche-revision-procedure-penale-l3.html"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://trajectoiredroit.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Fiche de révision procédure pénale L3",
+            "item": "https://trajectoiredroit.com/fiche-revision-procedure-penale-l3.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Que faut-il réviser en procédure pénale en L3 ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La fiche complète suit 25 chapitres, que cette page regroupe en sept thèmes, de l'introduction générale aux voies de recours. Pour chaque thème, tu retiens les articles du Code de procédure pénale et les délais, puis tu apprends quelques décisions, comme l'arrêt du 15 avril 2011 sur l'avocat en garde à vue. Ton enseignant peut toutefois ordonner ces thèmes autrement. Tu compares donc cette liste avec le plan de ton cours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quelle différence entre l'audition libre et la garde à vue ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dans l'audition libre, la personne soupçonnée peut quitter à tout moment les locaux, selon l'article 61-1. La garde à vue est une mesure de contrainte, décidée par un officier de police judiciaire sous le contrôle de l'autorité judiciaire. Elle suppose des raisons plausibles de soupçonner un crime ou un délit puni d'emprisonnement, et elle doit être l'unique moyen d'atteindre l'un des objectifs de l'article 62-2."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Combien de temps dure une garde à vue ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En droit commun, une garde à vue dure 24 heures, et le procureur peut la prolonger de 24 heures, soit 48 heures au maximum, d'après l'article 63. La durée maximale est de 72 heures pour les délits de l'article 706-73-1. Elle monte à 96 heures pour les infractions de l'article 706-73 et à 144 heures en cas de risque sérieux d'action terroriste imminente. Les prolongations au-delà de 48 heures sont autorisées par le juge des libertés et de la détention ou par le juge d'instruction."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Dans quel délai faire appel d'un jugement correctionnel ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'appel d'un jugement correctionnel contradictoire se forme dans les 10 jours du prononcé, d'après l'article 498. Lorsqu'une partie fait appel dans ce délai, les autres parties disposent de 5 jours supplémentaires, selon l'article 500, ce qui fait un délai global de 15 jours. En cas de condamnation, l'article 505 laisse 20 jours au procureur général. Le pourvoi en cassation contre la décision de la cour d'appel se forme ensuite dans les 10 jours francs du prononcé, d'après l'article 568."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Existe-t-il une fiche PDF de procédure pénale pour la L3 ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La fiche complète de procédure pénale L3 compte 125 pages et coûte 14,99 €. Elle est vendue seule ou dans le Pack Licence 3, qui réunit cinq fiches de troisième année pour 58 €. Le cours complet de 252 pages, qui développe chaque chapitre, coûte en revanche 19,99 €. La page de la matière présente ce programme, et le catalogue des formations réunit toutes les fiches."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=2d752479">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 549,64 €, 53 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-53 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">549,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 409,74 €, 44 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-44 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">409,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 524,67 €, 51 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-51 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">524,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 444,70 €, 46 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-46 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">444,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 644,58 €, 49 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-49 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">644,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -14 %</em></strong><small>890 € · 89 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+        <div class="nav-item has-dropdown">
+          <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>Stage en direct
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <div class="stage-teaser">
+              <button type="button" class="dropdown__item stage-teaser__trigger" aria-expanded="false" aria-controls="stageTeaserPanel">
+                <span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg></span>
+                <span class="stage-teaser__main">
+                  <strong>Stage de méthode en direct</strong>
+                  <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+                  <span class="stage-teaser__countdown"></span>
+                </span>
+              </button>
+              <div class="stage-teaser__panel" id="stageTeaserPanel">
+                <p>Trois séances en direct, 8 h au total pour 176 €, pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un sujet travaillé à chaque fois. La prochaine session a lieu les 27, 28 et 29 octobre, pendant les vacances de la Toussaint. Plus que 3 places.</p>
+              </div>
+            </div>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="stage-methode.html">Voir toutes les infos et réserver →</a>
+          </div>
+        </div>
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+    <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
+      <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>
+      <span class="mobile-nav__stage-main">
+        <span class="mobile-nav__stage-title">Stage en direct</span>
+        <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+        <span class="stage-teaser__countdown"></span>
+      </span>
+    </a>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+    <main>
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow text-center">
+        <h1 class="h1">La fiche de révision de procédure pénale L3 en PDF</h1>
+        <p class="lead">La fiche de révision de procédure pénale L3 suit le procès dans l'ordre où il se déroule, de l'enquête de police jusqu'au jugement et à ses recours. Elle se découpe en sept thèmes, de l'introduction générale aux voies de recours. Pour chacun, tu retiens les articles du Code de procédure pénale qui s'appliquent et, quand la loi en fixe un, le délai à respecter.</p>
+        <div class="hero__cta flex flex--center" style="margin-top:24px">
+          <a class="btn btn--primary btn--lg" href="#garde-a-vue">Voir les durées de garde à vue →</a>
+          <a class="btn btn--outline btn--lg" href="#programme">Le programme en sept thèmes</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <p style="color:var(--body); line-height:1.75">Prenons Étienne, soupçonné d'avoir revendu des ordinateurs volés, que des policiers placent en garde à vue un lundi à 8 h. L'officier de police judiciaire qui décide la mesure informe aussitôt le procureur de la République et notifie à Étienne ses droits, dont celui d'être assisté par un avocat, conformément aux articles 63 et 63-1 du Code de procédure pénale. Le mardi à 8 h, les 24 heures sont écoulées. L'article 63 permet alors au procureur d'accorder 24 heures de plus, par une autorisation écrite et motivée. Il faut que le délit soit puni d'au moins un an d'emprisonnement et que la prolongation soit l'unique moyen d'atteindre l'un des objectifs de l'article 62-2, par exemple poursuivre des investigations qui exigent la présence d'Étienne. Le mercredi à 8 h, Étienne est libéré ou présenté au procureur, qui choisit alors entre poursuivre, proposer une alternative aux poursuites ou classer l'affaire, selon l'article 40-1.</p>
+        <p style="color:var(--body); line-height:1.75">Je suis Julien, professeur de droit. J'ai rédigé la fiche complète de cette matière à partir de mes cours de fac et des dossiers de mes élèves. Pour cette page, j'ai vérifié chaque article dans le Code de procédure pénale en vigueur, car une référence fausse te ferait perdre des points à l'examen. J'ai aussi relu les décisions de la Cour de cassation et du Conseil constitutionnel dans leur texte. Pour approfondir, la page sur <a href="procedure-penale-l3.html">la procédure pénale en L3</a> présente la matière et ses supports. Ensuite, pour t'entraîner, <a href="cas-pratique-corrige-procedure-penale.html">le cas pratique corrigé de procédure pénale</a> traite une garde à vue et ses nullités, et <a href="la-garde-a-vue-duree-et-droits.html">la page sur la garde à vue</a> reprend la durée et les droits de la personne gardée à vue.</p>
+      </div>
+    </section>
+
+    <!-- vague2:encart-produit -->
+    <section class="conversion-offer" aria-labelledby="choix-fiche-procedure-penale-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/fiche-procedure-penale-l3.webp?v=dossier-universitaire-20260915" alt="Fiche complète de procédure pénale L3, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">Fiche complète de procédure pénale L3</p>
+            <h2 class="conversion-offer__title" id="choix-fiche-procedure-penale-titre">Tout le programme de la matière en 125 pages</h2>
+            <p class="conversion-offer__summary">La fiche suit les 25 chapitres du programme, de la notion de procédure pénale jusqu'aux voies de recours extraordinaires. Elle reprend les articles du Code de procédure pénale et les décisions à connaître, avec des tableaux de synthèse et des citations à apprendre.</p>
+            <ul class="conversion-offer__benefits">
+              <li>Un PDF de 125 pages, envoyé par email dès le paiement</li>
+              <li>Les articles du Code de procédure pénale et les décisions à connaître, avec leurs citations à apprendre</li>
+              <li>Accès à vie et mises à jour comprises</li>
+            </ul>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-procedure-penale-l3">Fiche complète · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="cours-fiche-procedure-penale-l3">Cours complet · 19,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-l3">Pack Licence 3 · 58 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
+            <div data-tjd-avis data-matiere="procedure-penale-l3"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="programme">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quel est le programme de procédure pénale en L3 ?</h2>
+        <p class="lead" style="margin-bottom:24px">Les intitulés varient d'une fac à l'autre, mais le plan suit presque toujours la chronologie du procès. La fiche complète compte 125 pages et 25 chapitres, que cette page regroupe en sept thèmes pour réviser vite. Tu peux comparer chaque thème avec le plan de ton cours.</p>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Introduction générale à la procédure pénale · chapitres 1 à 3</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">La procédure pénale fixe les règles du procès, du soupçon jusqu'à la condamnation ou à la relaxe. Le droit pénal de fond dit en revanche ce qui est puni et de quelle peine. Le procès suit quatre temps. L'enquête rassemble d'abord les preuves, puis la poursuite décide de saisir un juge. L'instruction approfondit ensuite les affaires graves ou complexes, et le jugement tranche.</p>
+            <p style="color:var(--body); line-height:1.7">L'ordonnance criminelle de 1670 organise un procès inquisitoire, c'est-à-dire conduit par un magistrat qui cherche lui-même la vérité, de façon écrite et secrète. La Révolution lui substitue en 1791 un procès public, jugé avec un jury. Le Code d'instruction criminelle de 1808 combine ensuite les deux modèles. La phase préparatoire reste inquisitoire, et le jugement est public et contradictoire, ce qui signifie que chaque partie peut discuter les preuves de l'autre. Le Code de procédure pénale, en vigueur depuis le 2 mars 1959, conserve cette structure mixte.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Pour les sources, retiens l'article préliminaire du Code, qui exige une procédure équitable et contradictoire, et l'article 34 de la Constitution, qui confie à la loi les règles de la procédure pénale. Depuis 2010, la question prioritaire de constitutionnalité permet de contester une loi déjà en vigueur, et le Conseil constitutionnel a ainsi censuré la garde à vue de droit commun. La Convention européenne des droits de l'homme s'applique aussi, avec l'article 5 sur la liberté et l'article 6 sur le procès équitable. Enfin, l'article 112-2 du Code pénal applique immédiatement aux infractions déjà commises les lois qui fixent les formes de la procédure.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Les principes directeurs du procès pénal · chapitres 4 à 7</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">L'article préliminaire pose les garanties générales. La procédure doit être équitable et contradictoire, et elle sépare les autorités qui poursuivent de celles qui jugent. Toute personne suspectée ou poursuivie est présumée innocente tant que sa culpabilité n'est pas établie, ce que l'article 9 de la Déclaration de 1789 et l'article 6, paragraphe 2, de la Convention européenne affirment également. Dès lors, l'accusation doit prouver la culpabilité, et le doute profite à la personne poursuivie.</p>
+            <p style="color:var(--body); line-height:1.7">Le procès équitable de l'article 6 de la Convention exige d'abord un tribunal indépendant et impartial. Le jugement doit en outre intervenir dans un délai raisonnable, et le débat doit se tenir à armes égales. L'impartialité se juge sur deux plans. L'impartialité subjective porte sur ce que le juge pense réellement, et l'impartialité objective sur l'apparence que présente le tribunal. Les arrêts Piersack c. Belgique de 1982 et De Cubber c. Belgique de 1984 illustrent la seconde, car un magistrat ne peut pas juger une affaire dans laquelle il est déjà intervenu, comme responsable du parquet qui la traitait ou comme juge d'instruction. Tu cites ces deux arrêts dans un sujet sur l'impartialité.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">En matière pénale, la preuve est libre en principe. L'article 427 permet d'établir les infractions par tout mode de preuve, hors les cas où la loi en dispose autrement. Un témoignage, un enregistrement ou une trace informatique peuvent ainsi servir de preuve. Le juge décide d'après son intime conviction, mais il s'appuie uniquement sur les preuves apportées au cours des débats et discutées contradictoirement. Le droit à la sûreté protège la liberté individuelle. L'article 66 de la Constitution confie la protection de cette liberté à l'autorité judiciaire, et le juge des libertés et de la détention, créé par la loi du 15 juin 2000, statue sur les mesures qui privent une personne de sa liberté, comme la détention provisoire.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Les acteurs de la procédure · chapitres 8 à 10</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">L'article 31 confie au ministère public, ou parquet, l'exercice de l'action publique et le soin de requérir l'application de la loi. Il s'organise en hiérarchie. Un procureur de la République exerce près chaque tribunal judiciaire et un procureur général près chaque cour d'appel. Le garde des Sceaux, ministre de la justice, se trouve au sommet. Depuis la loi du 25 juillet 2013, l'article 30 l'autorise à adresser aux procureurs des instructions générales, c'est-à-dire des consignes de politique pénale qui s'appliquent à tous les dossiers, mais lui interdit toute instruction dans une affaire individuelle. Dans ta copie, tu distingues les orientations générales que fixe le garde des Sceaux, qui n'intervient pas dans un dossier individuel, de l'instruction écrite que le procureur général peut adresser à un procureur dans un dossier précis. L'article 33 impose enfin au procureur de prendre des réquisitions écrites conformes aux instructions qu'il reçoit, mais il développe librement ses observations orales à l'audience, d'où la formule « la plume est serve, mais la parole est libre ».</p>
+            <p style="color:var(--body); line-height:1.7">L'article 14 charge la police judiciaire de constater les infractions, d'en rassembler les preuves et d'en rechercher les auteurs tant qu'aucune information n'est ouverte, et l'article 12 la place sous la direction du procureur de la République. La police administrative prévient en revanche les troubles à l'ordre public. L'article 16 donne la qualité d'officier de police judiciaire à certains gradés, et cet officier accomplit les actes qui touchent aux libertés, comme le placement en garde à vue. Enfin, l'agent de police judiciaire, que vise l'article 20, le seconde.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La personne poursuivie change de nom selon l'étape. Elle est suspecte pendant l'enquête, mise en examen ou témoin assistée pendant l'instruction, prévenue devant le tribunal correctionnel et accusée devant la cour d'assises. Ses droits augmentent à mesure que les soupçons se précisent. Par ailleurs, la victime ne devient une partie au procès qu'en se constituant partie civile, selon l'article 2, et elle demande alors la réparation de son dommage. Le parquet continue d'exercer l'action publique, qui tend à la peine.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">L'enquête de police · chapitres 11 à 14</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Deux cadres d'enquête coexistent. L'enquête de flagrance suppose un crime ou un délit qui se commet actuellement ou qui vient de se commettre. Il y a aussi flagrance lorsque, dans un temps très voisin de l'action, la personne soupçonnée est poursuivie par la clameur publique, c'est-à-dire par les cris de la foule qui la désigne. La flagrance existe encore lorsque la personne est trouvée, dans ce même temps, avec des objets ou des traces qui laissent penser qu'elle a participé à l'infraction. L'article 53 donne cette définition. Dans un énoncé, tu compares l'heure des faits et celle de l'intervention des policiers pour savoir si la flagrance s'applique. L'enquête de flagrance dure 8 jours, et le procureur peut toutefois la prolonger de 8 jours pour un crime ou un délit puni d'au moins 5 ans d'emprisonnement, lorsque des investigations ne peuvent pas être différées. Elle ouvre en outre des pouvoirs renforcés, comme la perquisition au domicile des personnes qui paraissent avoir participé à un crime ou détenir des objets relatifs aux faits, que permet l'article 56. L'article 67 étend ces pouvoirs aux délits flagrants punis d'emprisonnement.</p>
+            <p style="color:var(--body); line-height:1.7">L'enquête préliminaire est le cadre de droit commun, selon l'article 75. L'article 75-3 plafonne sa durée à 2 ans à compter du premier acte d'audition libre, de garde à vue ou de perquisition visant une personne, y compris si cet acte a eu lieu pendant une enquête de flagrance. Le procureur peut la prolonger une fois d'un an, par une autorisation écrite et motivée, puis à titre exceptionnel d'un an encore, renouvelable une fois, selon les modalités de l'article 77-2. Pour la criminalité organisée et le terrorisme, les délais de 2 ans et d'un an deviennent 3 ans et 2 ans. Ce plafond est sanctionné, car tout acte d'enquête concernant la personne après l'expiration de ces délais est nul, c'est-à-dire annulé et inutilisable.</p>
+            <p style="color:var(--body); line-height:1.7">Dans ce cadre, l'article 76 exige l'assentiment exprès de la personne pour une perquisition, donné par une déclaration écrite de sa main. Toutefois, si l'enquête porte sur un crime ou un délit puni d'au moins 3 ans d'emprisonnement, le juge des libertés et de la détention peut autoriser la perquisition sans cet assentiment, à la requête du procureur. De plus, les perquisitions ne peuvent pas commencer avant 6 heures ni après 21 heures, sauf réclamation faite de l'intérieur du domicile ou exception prévue par la loi, et l'article 59 prescrit cette règle sous peine d'annulation de l'acte. Le suspect peut aussi être entendu librement, sans contrainte, d'après l'article 61-1. Il doit alors être informé de l'infraction qui lui est reprochée, de son droit de quitter à tout moment les locaux, de son droit de se taire et, si l'infraction est punie d'emprisonnement, de son droit à l'assistance d'un avocat.</p>
+            <p style="color:var(--body); line-height:1.7">La réquisition à personne qualifiée permet de faire procéder à un examen technique ou scientifique, et l'article 60 prévoit que la personne requise prête en principe serment. La géolocalisation permet de suivre en temps réel une personne, un véhicule ou un objet à l'insu de son propriétaire, notamment lorsque l'enquête porte sur un crime ou sur un délit puni d'au moins 3 ans d'emprisonnement, selon l'article 230-32. Le procureur l'autorise pour 15 jours consécutifs si l'enquête porte sur un crime ou sur une infraction des articles 706-73 et 706-73-1, et pour 8 jours dans les autres cas. Ensuite, l'article 230-33 prévoit que le juge des libertés et de la détention l'autorise pour un mois renouvelable. Depuis la loi du 20 novembre 2023, ce juge ou le juge d'instruction peut aussi autoriser, d'après l'article 230-34-1, l'activation à distance d'un appareil électronique, aux seules fins de localiser son propriétaire, pour un crime ou un délit puni d'au moins 5 ans d'emprisonnement.</p>
+            <p style="color:var(--body); line-height:1.7">Les interceptions de correspondances captent le contenu des communications. Dans une instruction, l'article 100 permet au juge d'instruction de les prescrire pour un crime ou pour un délit puni d'au moins 3 ans d'emprisonnement. En flagrance ou en enquête préliminaire, la loi est en revanche plus restrictive. Le juge des libertés et de la détention peut les autoriser à la requête du procureur, et l'article 706-95 les ouvre pour la criminalité organisée des articles 706-73 et 706-73-1, pour un mois renouvelable une fois, tandis que l'article 74-2 les ouvre aussi pour retrouver une personne en fuite. L'article 706-80 permet également aux officiers de police judiciaire d'étendre à l'ensemble du territoire leurs opérations de surveillance, après en avoir informé le procureur et sauf opposition de ce magistrat. L'article 706-81 confie l'autorisation de l'infiltration au procureur ou au juge d'instruction, et l'article 706-95-12 celle de la sonorisation au juge des libertés et de la détention ou au juge d'instruction. L'agent infiltré peut utiliser une identité d'emprunt, mais l'article 706-81 frappe de nullité les actes qui constituent une incitation ayant déterminé la commission d'infractions.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Le suspect dispose aussi d'un accès au dossier de l'enquête. Il peut demander au procureur de le consulter lorsqu'il a été entendu ou perquisitionné il y a plus d'un an, ou lorsqu'un moyen de communication au public porte atteinte à sa présomption d'innocence, d'après l'article 77-2. Le procureur peut toutefois refuser pendant 6 mois au maximum, ou pendant un an pour la criminalité organisée et le terrorisme, si l'enquête est toujours en cours et si la communication risque de nuire à l'efficacité des investigations.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Le déclenchement des poursuites · chapitres 15 à 17</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Le procureur de la République reçoit les plaintes et apprécie la suite à leur donner. Il choisit ainsi, selon le principe de l'opportunité des poursuites que pose l'article 40-1, entre engager des poursuites, mettre en œuvre une procédure alternative aux poursuites ou classer sans suite. Les alternatives de l'article 41-1 vont de l'avertissement pénal probatoire, qui a remplacé le rappel à la loi depuis le 1er janvier 2023, jusqu'à la médiation entre l'auteur et la victime, en passant par la réparation du dommage. En outre, tant que l'action publique n'a pas été mise en mouvement, l'article 41-2 autorise le procureur à proposer une composition pénale à la personne physique qui reconnaît avoir commis un délit puni de 5 ans d'emprisonnement au maximum. Elle peut consister, par exemple, à payer une amende, sans procès.</p>
+            <p style="color:var(--body); line-height:1.7">La comparution sur reconnaissance préalable de culpabilité, que l'on appelle le plaider-coupable, permet enfin au procureur de proposer une peine à la personne qui reconnaît les faits, selon l'article 495-7. La convention judiciaire d'intérêt public, que prévoit l'article 41-1-2, est réservée aux personnes morales mises en cause pour certains délits, comme la corruption ou la fraude fiscale, et elle impose notamment le versement d'une amende d'intérêt public.</p>
+            <p style="color:var(--body); line-height:1.7">L'article 6 prévoit que l'action publique s'éteint par la mort du prévenu, par la prescription et par l'amnistie. L'abrogation de la loi pénale, la chose jugée et l'exécution d'une composition pénale l'éteignent également. Le paiement d'une amende forfaitaire produit le même effet pour les contraventions que fixe un décret, d'après l'article 529, et pour les délits que la loi désigne, d'après l'article 495-17. La victime peut de son côté mettre elle-même l'action publique en mouvement par une plainte avec constitution de partie civile, c'est-à-dire une demande d'ouvrir une information adressée directement au juge d'instruction, d'après l'article 85. Cette plainte n'est recevable que si le procureur a fait savoir qu'il n'engagerait pas de poursuites, ou si 3 mois se sont écoulés depuis le dépôt de la plainte. Cette condition ne s'applique pas à un crime, à un délit de presse ni à certains délits électoraux.</p>
+            <p style="color:var(--body); line-height:1.7">L'article 2 donne l'action civile à tous ceux qui ont personnellement souffert du dommage directement causé par l'infraction, et l'article 3 la rend recevable pour tous les chefs de dommages, matériels, corporels ou moraux. L'article 2-1 permet aussi à certaines associations de l'exercer, par exemple celles qui combattent le racisme lorsqu'elles sont déclarées depuis au moins 5 ans à la date des faits. Pour un délit, la victime peut se constituer partie civile à l'audience même, selon l'article 418. Elle exerce l'action civile devant la juridiction pénale en même temps que l'action publique. Elle peut aussi la porter séparément devant la juridiction civile, qui attend alors, pour juger, que l'action publique mise en mouvement soit jugée définitivement, d'après l'article 4. L'article 10 soumet l'action civile aux règles de prescription de l'action publique devant le juge pénal, et à celles du Code civil devant le juge civil. En outre, lorsque le ministère public a engagé les poursuites ou que le juge d'instruction a renvoyé l'affaire, le tribunal qui relaxe pour une infraction non intentionnelle reste compétent, selon l'article 470-1, pour accorder réparation à la partie civile qui le demande avant la clôture des débats.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La victime choisit ainsi entre la voie civile et la voie pénale, et ce choix l'engage. En effet, l'article 5 interdit à la partie qui a exercé son action devant la juridiction civile de la porter ensuite devant la juridiction répressive, sauf si le ministère public a saisi la juridiction répressive avant qu'un jugement sur le fond ait été rendu au civil. Une victime qui assigne d'abord l'auteur devant le tribunal civil ne peut donc plus se constituer partie civile devant le tribunal correctionnel. On appelle cette règle electa una via, « une voie a été choisie ». Quand l'énoncé montre une victime qui a déjà saisi le tribunal civil, tu conclus qu'elle ne peut plus se constituer partie civile devant le juge pénal, sauf si le ministère public avait déjà saisi ce juge. L'article 85 réserve toutefois le cas de la victime qui a agi au civil pendant les 3 mois suivant sa plainte, puis se désiste de l'instance civile pour se constituer partie civile devant le juge d'instruction.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">L'instruction préparatoire · chapitres 18 à 21</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">L'article 79 rend l'instruction obligatoire pour un crime, facultative pour un délit sauf dispositions spéciales, et possible pour une contravention si le procureur la requiert. Le juge d'instruction ne peut informer que s'il est saisi. L'article 80 prévoit le réquisitoire du procureur de la République, c'est-à-dire une demande écrite d'ouvrir l'information, et l'article 85 la plainte avec constitution de partie civile. L'article 81 impose en outre au juge d'instruire à charge et à décharge. Si des faits non visés au réquisitoire parviennent à sa connaissance, l'article 80 lui impose de les communiquer au procureur, qui peut notamment prendre un réquisitoire supplétif pour que le juge informe aussi sur ces faits.</p>
+            <p style="color:var(--body); line-height:1.7">Avant de mettre en examen une personne qui n'a pas déjà été entendue comme témoin assisté, le juge procède à son interrogatoire de première comparution. L'article 116 l'oblige à lui faire connaître chacun des faits dont il est saisi, avec leur qualification juridique. Ensuite, la mise en examen suppose des indices graves ou concordants, selon l'article 80-1, et le juge doit avoir entendu les observations de la personne, ou l'avoir mise en mesure de les présenter, avec l'assistance de son avocat. Dans un énoncé, les indices graves ou concordants sont le premier point que tu vérifies avant de conclure à une mise en examen. Une personne nommément visée par un réquisitoire et non mise en examen est entendue comme témoin assisté, selon l'article 113-1. Le juge peut aussi déléguer des actes à un officier de police judiciaire par commission rogatoire, mais les articles 151 et 152 lui laissent les interrogatoires et les confrontations des personnes mises en examen.</p>
+            <p style="color:var(--body); line-height:1.7">Pendant l'instruction, la personne mise en examen demeure libre, parce qu'elle est présumée innocente, comme le prévoit l'article 137. L'article 138 permet au juge d'instruction ou au juge des libertés et de la détention de la placer sous contrôle judiciaire lorsqu'elle encourt une peine d'emprisonnement correctionnel ou une peine plus grave. Si le contrôle judiciaire ne suffit pas, l'article 142-5 autorise l'assignation à résidence avec surveillance électronique lorsqu'elle encourt au moins 2 ans d'emprisonnement. Le juge des libertés et de la détention n'ordonne la détention provisoire qu'à titre exceptionnel, car elle prive la personne de sa liberté avant tout jugement. Elle suppose d'abord que la personne encoure une peine criminelle ou une peine correctionnelle d'au moins 3 ans, comme l'exige l'article 143-1, sauf si la personne se soustrait volontairement aux obligations de son contrôle judiciaire. L'article 144 exige ensuite qu'elle soit l'unique moyen d'atteindre l'un des objectifs qu'il énumère, par exemple conserver les preuves, empêcher une pression sur les témoins ou garantir le maintien de la personne à la disposition de la justice. Une détention suivie d'un non-lieu, d'une relaxe ou d'un acquittement définitif ouvre en principe droit, selon l'article 149, à la réparation intégrale du préjudice.</p>
+            <p style="color:var(--body); line-height:1.7">Une nullité efface un acte irrégulier et empêche de s'en servir, par exemple un interrogatoire mené sans avocat. Les articles 171 et 802 la réservent aux irrégularités qui ont porté atteinte aux intérêts de la partie concernée. La chambre de l'instruction traite ces nullités, et l'article 191 la compose d'un président et de deux conseillers. La personne mise en examen dispose de 6 mois à compter de la notification de sa mise en examen pour soulever les nullités des actes antérieurs, selon l'article 173-1. La loi du 23 juillet 2026 ramène toutefois ce délai à 4 mois. Il court de la remise de la première copie du dossier, lorsque la personne l'a demandée dans les 7 jours francs de la mise en examen, et sinon de la notification de la mise en examen. En outre, il s'applique aux requêtes déposées à partir du 23 octobre 2026.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Quand l'information paraît terminée, le juge communique le dossier au procureur et en avise en même temps les parties et leurs avocats, selon l'article 175. Il rend ensuite une ordonnance de règlement, qui peut prendre trois formes. Le non-lieu arrête la procédure faute de charges suffisantes, d'après l'article 177. Le renvoi saisit le tribunal de police ou le tribunal correctionnel pour une contravention ou un délit, selon les articles 178 et 179. Pour un crime, la mise en accusation saisit la cour d'assises, d'après l'article 181. Lorsque le crime est puni de 15 ou 20 ans de réclusion criminelle, l'article 181-1 prévoit toutefois la mise en accusation devant la cour criminelle départementale, sauf s'il existe un coaccusé qui ne remplit pas cette condition.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Le jugement et les voies de recours · chapitres 22 à 25</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Le tribunal compétent dépend de la gravité de l'infraction. L'article 521 attribue les contraventions au tribunal de police, et l'article 381 attribue les délits au tribunal correctionnel. Le tribunal correctionnel siège avec un président et deux juges, d'après l'article 398, mais un seul magistrat juge les délits de la liste de l'article 398-1, lorsqu'ils sont punis de 5 ans d'emprisonnement au maximum. Pour les crimes, la cour d'assises réunit un président et deux assesseurs, selon l'article 248, avec six jurés en premier ressort et neuf en appel, selon l'article 296. Toutefois, pour les crimes punis de 15 ou de 20 ans de réclusion criminelle, les articles 380-16 et 380-17 confient le jugement des majeurs en premier ressort à la cour criminelle départementale, sauf s'il existe un coaccusé qui ne remplit pas ces conditions. Cette cour siège sans jury, avec un président et quatre assesseurs. La loi du 23 juillet 2026 a en outre étendu sa compétence aux accusés en état de récidive légale.</p>
+            <p style="color:var(--body); line-height:1.7">Le tribunal correctionnel est saisi de plusieurs façons. En effet, l'article 388 énumère la comparution volontaire des parties, la citation, la convocation par procès-verbal, la comparution immédiate et le renvoi ordonné par la juridiction d'instruction. L'article 390-1 assimile à une citation à personne la convocation en justice notifiée au prévenu sur instructions du procureur, par exemple par un officier de police judiciaire. Dans la convocation par procès-verbal, l'article 394 permet au procureur d'inviter la personne déférée à comparaître dans un délai de 10 jours au moins, sauf renonciation de sa part en présence de son avocat, et de 6 mois au maximum. Enfin, la comparution immédiate suppose, selon l'article 395, que le délit soit puni d'au moins 2 ans d'emprisonnement, ou d'au moins 6 mois en cas de délit flagrant.</p>
+            <p style="color:var(--body); line-height:1.7">L'article 495 permet aussi au procureur de recourir à l'ordonnance pénale, c'est-à-dire à une procédure sans audience, pour un délit simple et établi de la liste de l'article 398-1, hors atteintes à l'intégrité des personnes. Le président du tribunal statue alors sans débat préalable, par une relaxe ou par une condamnation à une amende dont le montant maximal est la moitié de l'amende encourue, sans dépasser 5 000 €, selon l'article 495-1. L'article 495-3 laisse au prévenu 45 jours à compter de la notification de l'ordonnance pour former opposition, ce qui ouvre un débat public devant le tribunal correctionnel.</p>
+            <p style="color:var(--body); line-height:1.7">À l'audience de jugement, les débats sont publics, sauf huis clos ordonné par un jugement motivé, et l'article 400 impose que le jugement sur le fond soit toujours prononcé en audience publique. Le juge décide d'après son intime conviction, mais l'article 485 exige que son jugement contienne des motifs et un dispositif. En cas de condamnation, l'article 365-1 oblige la cour d'assises à motiver son arrêt en énonçant les principaux éléments à charge qui l'ont convaincue.</p>
+            <p style="color:var(--body); line-height:1.7">L'appel d'un jugement correctionnel appartient au prévenu et au ministère public. D'après l'article 497, la partie civile et la personne civilement responsable peuvent aussi l'exercer, mais pour leurs seuls intérêts civils. L'article 498 fixe à 10 jours à compter du prononcé le délai d'appel d'un jugement contradictoire, et l'article 500 accorde alors 5 jours de plus aux autres parties, dans un délai global de 15 jours. En cas de condamnation, l'article 505 laisse au procureur général 20 jours à compter du prononcé. L'article 515 interdit à la cour d'aggraver le sort de l'appelant sur son seul appel. L'article 380-1 ouvre aussi l'appel contre les arrêts de condamnation d'une cour d'assises en premier ressort, porté devant une autre cour d'assises ou devant la même cour autrement composée, et l'article 380-9 le soumet à un délai de 10 jours à compter du prononcé. Le pourvoi en cassation se forme dans les 10 jours francs du prononcé de la décision attaquée, selon l'article 568. Un délai franc ne compte ni le jour du prononcé ni le dernier jour.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Deux recours rouvrent une condamnation définitive. La révision, que prévoit l'article 622, s'ouvre à la personne reconnue coupable d'un crime ou d'un délit lorsqu'un fait nouveau ou un élément inconnu de la juridiction, de nature à établir son innocence ou à faire naître un doute sur sa culpabilité, apparaît après la condamnation. En revanche, le réexamen suit un arrêt de la Cour européenne qui constate une violation de la Convention, et il se demande dans l'année qui suit cet arrêt, d'après l'article 622-1. Ces deux recours ne profitent qu'au condamné, car la chose jugée protège les acquittements définitifs. Pour une question sur la chose jugée, l'article 368 te sert de référence. Il interdit de reprendre ou d'accuser une personne légalement acquittée à raison des mêmes faits, même sous une qualification différente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="etapes">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Que retenir à chaque étape du procès, de l'enquête au recours ?</h2>
+        <p class="lead" style="margin-bottom:16px">De l'enquête à l'appel, chaque étape du procès a son autorité de décision, son texte de référence et sa durée.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; min-width:860px; border-collapse:collapse; color:var(--body)">
+          <thead>
+          <tr><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Étape</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Qui décide</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Texte</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Durée ou règle à retenir</th></tr>
+          </thead>
+          <tbody>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Enquête de flagrance</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'officier de police judiciaire, sous le contrôle du procureur</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article 53</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">8 jours, prolongeables de 8 jours pour un crime ou un délit puni d'au moins 5 ans d'emprisonnement</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Enquête préliminaire</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">La police judiciaire, sous la direction du procureur</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles 75 et 75-3</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">2 ans à compter du premier acte visant une personne, prolongeables d'un an</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Garde à vue</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'officier de police judiciaire, sous le contrôle du procureur</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles 62-2 et 63</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">24 heures, prolongeables de 24 heures</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Choix de la suite</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le procureur de la République</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article 40-1</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Poursuivre, proposer une alternative aux poursuites ou classer sans suite</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Instruction</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le juge d'instruction</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles 79 à 81</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Obligatoire pour un crime, facultative pour un délit</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Détention provisoire</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le juge des libertés et de la détention</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles 143-1, 144 et 145-1</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Peine criminelle ou correctionnelle d'au moins 3 ans. 4 mois en matière correctionnelle, avec des prolongations exceptionnelles de 4 mois dans les autres cas, un an au maximum (2 ans si un fait a été commis hors du territoire national)</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Clôture de l'instruction</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le juge d'instruction</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles 175 à 181-1</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Non-lieu, renvoi devant le tribunal ou mise en accusation devant la cour d'assises ou la cour criminelle départementale</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Jugement</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le tribunal de police, le tribunal correctionnel, la cour d'assises ou la cour criminelle départementale</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles 521, 381, 231 et 380-16</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Les contraventions, les délits, puis les crimes selon leur peine</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Appel</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">La cour d'appel ou une autre cour d'assises</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles 498, 500 et 380-9</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">10 jours à compter du prononcé, puis 5 jours de plus pour les autres parties en matière correctionnelle</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Tu peux recopier ce tableau dans ta fiche et le compléter avec les distinctions de ton cours. Ensuite, tu le refais de mémoire, colonne par colonne, jusqu'à retrouver sans erreur chaque autorité et chaque délai.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="garde-a-vue">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Combien de temps dure une garde à vue, et qui la prolonge ?</h2>
+        <p class="lead" style="margin-bottom:16px">La durée dépend de l'infraction. Le droit commun donne 48 heures, et trois régimes plus longs existent pour la criminalité organisée et le terrorisme.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; min-width:780px; border-collapse:collapse; color:var(--body)">
+          <thead>
+          <tr><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Régime</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Durée maximale</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Qui autorise les prolongations</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Texte</th></tr>
+          </thead>
+          <tbody>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Droit commun</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">48 heures</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le procureur de la République, par une autorisation écrite et motivée, pour un crime ou un délit puni d'au moins un an d'emprisonnement</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article 63</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Délits de criminalité organisée de l'article 706-73-1</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">72 heures</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">À titre exceptionnel, une troisième période de 24 heures, autorisée par le juge des libertés et de la détention à la requête du procureur, ou par le juge d'instruction, après présentation de la personne à ce magistrat</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article 706-88-3, issu de la loi du 18 août 2026</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Crimes et délits de l'article 706-73</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">96 heures</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le juge des libertés et de la détention ou le juge d'instruction, par deux prolongations de 24 heures ou par une seule de 48 heures</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article 706-88</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Terrorisme, en cas de risque sérieux d'une action imminente ou de coopération internationale</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">144 heures</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le juge des libertés et de la détention, à la requête du procureur, ou le juge d'instruction, par une prolongation de 24 heures après la 96e heure, renouvelable une fois</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article 706-88-1</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">La garde à vue suppose trois conditions, que tu vérifies dans chaque cas pratique. Il faut d'abord des raisons plausibles de soupçonner que la personne a commis ou tenté de commettre un crime ou un délit puni d'emprisonnement. La garde à vue doit ensuite constituer l'unique moyen d'atteindre l'un des six objectifs de l'article 62-2, par exemple permettre les investigations qui exigent la présence de la personne ou empêcher qu'elle se concerte avec d'éventuels complices. Elle suppose enfin une contrainte, car la personne qui reste libre de partir relève de l'audition libre de l'article 61-1.</p>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">L'article 63-1 impose d'informer immédiatement la personne gardée à vue de ses droits. Elle peut ainsi, d'après l'article 63-2, faire prévenir un proche et son employeur et, d'après l'article 63-3, demander un examen médical. Elle peut aussi se taire lors de ses auditions. L'article 63-3-1 lui permet en outre de demander l'assistance d'un avocat, et l'article 63-4 limite à 30 minutes au maximum l'entretien confidentiel avec lui. Depuis la loi du 22 avril 2024, l'article 63-4-2 exige la présence de l'avocat demandé à chaque audition sur les faits, sauf renonciation expresse de la personne, mentionnée au procès-verbal.</p>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Cette présence connaît toutefois des exceptions. En droit commun, le procureur peut, à titre exceptionnel et pour des raisons impérieuses tenant aux circonstances de l'enquête, la différer pendant 12 heures au maximum. Le juge des libertés et de la détention peut, sur requête du procureur, la différer jusqu'à la 24e heure lorsque l'infraction est punie d'au moins 5 ans d'emprisonnement. L'article 63-4-2-1 permet aussi au procureur de décider une audition immédiate, sans attendre l'avocat, si elle est indispensable pour éviter de compromettre sérieusement la procédure ou pour prévenir une atteinte grave à la vie, à la liberté ou à l'intégrité physique d'une personne. Pour les infractions de l'article 706-73, l'article 706-88 permet en outre de différer l'intervention de l'avocat jusqu'à 48 heures, ou jusqu'à 72 heures pour certaines d'entre elles. La garde à vue doit enfin respecter la dignité de la personne, selon l'article 63-5, et l'article 64-1 impose l'enregistrement audiovisuel des auditions des personnes gardées à vue pour un crime, réalisées dans les locaux de la police ou de la gendarmerie.</p>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Les contrôles et les vérifications d'identité sont plus brefs que la garde à vue. L'article 78-2 permet aux policiers d'inviter une personne à justifier de son identité lorsqu'il existe une raison plausible de la soupçonner d'avoir commis une infraction, entre autres cas. Si elle refuse ou ne peut pas justifier de son identité, l'article 78-3 autorise alors, en cas de nécessité, une vérification d'identité avec une rétention de 4 heures au maximum, ou de 8 heures à Mayotte et en Guyane. Cette rétention a pour seul but d'établir l'identité. La garde à vue sert au contraire à enquêter sur un crime ou un délit. La page sur <a href="le-controle-d-identite-en-procedure-penale.html">le contrôle d'identité en procédure pénale</a> détaille ses différents cadres.</p>
+      </div>
+    </section>
+
+    <section class="section" id="prescription">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quels sont les délais de prescription de l'action publique ?</h2>
+        <p class="lead" style="margin-bottom:16px">La prescription éteint l'action publique lorsque le délai arrive à son terme sans acte d'enquête ni de poursuite qui l'ait interrompu. Dans un énoncé, tu cherches d'abord quand le délai commence, puis quel acte a pu l'interrompre.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; min-width:740px; border-collapse:collapse; color:var(--body)">
+          <thead>
+          <tr><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Infraction</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Délai</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Point de départ</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Texte</th></tr>
+          </thead>
+          <tbody>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Contravention</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">1 an</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le jour où l'infraction a été commise</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article 9</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Délit</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">6 ans</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le jour où l'infraction a été commise</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article 8</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Crime</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">20 ans, 30 ans pour certains crimes, aucun délai pour le génocide et les crimes contre l'humanité</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le jour où l'infraction a été commise</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article 7</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Infraction occulte ou dissimulée</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">6 ans pour un délit, 20 ans pour un crime</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Le jour où l'infraction est apparue et a pu être constatée, sans pouvoir dépasser 12 ans pour un délit et 30 ans pour un crime à compter de la commission</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article 9-1</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Une infraction est occulte lorsque ses éléments constitutifs empêchent de la connaître, pour la victime comme pour l'autorité judiciaire. Elle est dissimulée lorsque son auteur accomplit délibérément une manœuvre caractérisée pour en empêcher la découverte, par exemple en falsifiant des écritures comptables. L'article 9-1 traite ces deux situations de la même façon. Les articles 7 et 8 prévoient par ailleurs des délais plus longs pour certaines infractions commises sur des mineurs, calculés à partir de la majorité de la victime.</p>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">L'article 9-2 prévoit qu'un acte d'enquête du ministère public, un procès-verbal d'un officier de police judiciaire qui tend à la recherche des auteurs, un acte d'instruction ou un jugement même non définitif interrompt la prescription et fait courir un nouveau délai d'une durée égale au délai initial. L'article 9-3 suspend en revanche le délai lorsqu'un obstacle de droit, c'est-à-dire prévu par la loi, ou un obstacle de fait insurmontable et assimilable à la force majeure rend impossible la mise en mouvement ou l'exercice de l'action publique.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="recours">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quelle voie de recours choisir contre une décision pénale ?</h2>
+        <p class="lead" style="margin-bottom:16px">Appel, pourvoi en cassation, révision et réexamen n'obéissent pas aux mêmes délais.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; min-width:820px; border-collapse:collapse; color:var(--body)">
+          <thead>
+          <tr><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Voie de recours</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Contre quelle décision</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Délai</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Règle à retenir</th></tr>
+          </thead>
+          <tbody>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Appel correctionnel</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Un jugement du tribunal correctionnel</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">10 jours à compter du prononcé, puis 5 jours de plus pour les autres parties, dans un délai global de 15 jours. 20 jours pour le procureur général en cas de condamnation (articles 498, 500 et 505)</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Sur le seul appel du prévenu, la cour ne peut pas aggraver son sort (article 515)</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Appel criminel</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Un arrêt de condamnation de la cour d'assises en premier ressort</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">10 jours à compter du prononcé (article 380-9)</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">L'affaire est rejugée par une autre cour d'assises, ou par la même cour autrement composée (article 380-1)</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Pourvoi en cassation</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Une décision rendue en dernier ressort</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">10 jours francs après le prononcé (article 568)</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">La Cour de cassation contrôle le droit appliqué par les juges et ne rejuge pas les faits</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Révision</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Une condamnation définitive d'un crime ou d'un délit</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Aucun délai fixé par l'article 622</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Un fait nouveau ou un élément inconnu doit être de nature à établir l'innocence du condamné ou à faire naître un doute sur sa culpabilité</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Réexamen</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Une condamnation définitive</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">1 an à compter de l'arrêt de la Cour européenne (article 622-1)</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">La Cour européenne doit avoir constaté une violation de la Convention, dont les conséquences durent pour le condamné</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Dans un cas pratique, tu commences par la date du prononcé et par la nature de la décision, car ces deux informations déterminent le recours ouvert et son délai.</p>
+      </div>
+    </section>
+
+    <section class="section" id="reformes">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quelles réformes récentes faut-il connaître ?</h2>
+        <p class="lead" style="margin-bottom:16px">La procédure pénale change souvent, et deux des lois du tableau datent de 2026.</p>
+        <div style="overflow-x:auto">
+        <table style="width:100%; min-width:780px; border-collapse:collapse; color:var(--body)">
+          <thead>
+          <tr><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Loi</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Ce qu'elle change</th><th scope="col" style="text-align:left; padding:10px 14px; vertical-align:bottom">Articles</th></tr>
+          </thead>
+          <tbody>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Loi du 14 avril 2011</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Réécriture de la garde à vue, après la décision du Conseil constitutionnel du 30 juillet 2010 et l'arrêt Salduz</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles 62-2 à 63-4</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Loi du 22 décembre 2021</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Garanties de l'article préliminaire, plafonnement de la durée de l'enquête préliminaire, remplacement du rappel à la loi par l'avertissement pénal probatoire</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Article préliminaire, articles 75-3 et 41-1</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Loi du 20 novembre 2023</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Aménagement de la durée de l'enquête préliminaire et nouvelles conditions d'accès au dossier du suspect</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles 75-3 et 77-2</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Loi du 22 avril 2024</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Présence de l'avocat demandé aux auditions de la garde à vue, sauf renonciation expresse, applicable depuis le 1er juillet 2024</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles 63-2 à 63-4-2-1</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Loi du 23 juillet 2026</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Cour criminelle départementale ouverte aux accusés en état de récidive légale, délai initial de détention provisoire avant la comparution devant cette cour porté à 12 mois, avec une seule prolongation de 6 mois, délai des requêtes en nullité ramené à 4 mois et délai de citation devant le tribunal correctionnel porté à 15 jours, ces deux délais s'appliquant à compter du 23 octobre 2026</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles 380-16, 181-1 et 181-2, 173-1 et 552</td></tr>
+          <tr><th scope="row" style="text-align:left; padding:10px 14px; vertical-align:top">Loi du 18 août 2026</th><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Garde à vue de 72 heures pour les délits de criminalité organisée de l'article 706-73-1, et modification de la liste des délits jugés par un juge unique</td><td style="padding:10px 14px; line-height:1.65; vertical-align:top">Articles 706-88-3 et 398-1</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Les délais de nullité et de citation modifiés par la loi du 23 juillet 2026 s'appliquent à compter du 23 octobre 2026. Pendant ta révision, tu vérifies sur Légifrance la date d'entrée en vigueur de l'article que tu veux citer.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="decisions">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quelles décisions faut-il citer en procédure pénale ?</h2>
+        <p class="lead" style="margin-bottom:24px">Cinq décisions couvrent la garde à vue, le parquet et la preuve.</p>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Conseil constitutionnel, 30 juillet 2010, n° 2010-14/22 QPC, garde à vue</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Saisi par des questions prioritaires de constitutionnalité, le Conseil constitutionnel juge contraires à la Constitution les articles 62, 63, 63-1 et 77 du Code de procédure pénale, ainsi que les six premiers alinéas de l'article 63-4, qui régissaient la garde à vue de droit commun. Il retient deux motifs. La garde à vue peut d'abord être décidée et prolongée quelle que soit la gravité des faits. L'article 63-4 ne permet pas non plus à la personne interrogée alors qu'elle est retenue contre sa volonté de bénéficier de l'assistance effective d'un avocat. Il relève en outre que la personne gardée à vue n'est pas informée de son droit de garder le silence. Il se fonde sur les articles 9 et 16 de la Déclaration de 1789 et reporte toutefois l'abrogation au 1er juillet 2011, ce qui laisse au législateur le temps de réécrire le régime.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Cette décision sert dans une question sur la QPC, car elle montre comment un justiciable peut obtenir la censure d'une loi ancienne, et dans une question sur l'avocat en garde à vue, avec l'arrêt Salduz.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Assemblée plénière, 15 avril 2011, n° 10-30.313, avocat et garde à vue</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">La Cour européenne a jugé dans l'arrêt Salduz c. Turquie, le 27 novembre 2008, qu'une personne gardée à vue doit en règle générale pouvoir bénéficier de l'assistance d'un avocat dès le début de la mesure et pendant ses interrogatoires. En janvier 2010, une femme kényane en situation irrégulière est placée en garde à vue à 8 h 15. Les gendarmes l'entendent de 9 h 45 à 10 h 10, puis de 10 h 25 à 10 h 55, mais la procédure n'indique pas à quelle heure elle s'est entretenue avec l'avocat de permanence. Le premier président de la cour d'appel en déduit que la garde à vue est irrégulière, et il refuse donc de prolonger sa rétention. L'Assemblée plénière rejette le pourvoi du procureur général. En effet, les États adhérents à la Convention doivent respecter les décisions de la Cour européenne, sans attendre d'être attaqués devant elle ni d'avoir modifié leur législation.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Dans un sujet sur l'influence de la Cour européenne, cet arrêt montre qu'un juge français applique sa jurisprudence sans attendre le législateur. La page sur <a href="arret-garde-a-vue-avocat-2011-explique.html">cet arrêt du 15 avril 2011</a> le détaille.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Cour européenne, Moulin c. France, 23 novembre 2010, et chambre criminelle, 15 décembre 2010, n° 10-83.674</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Dans l'arrêt Moulin c. France, la Cour européenne examine le cas d'une avocate arrêtée à Orléans le 13 avril 2005, placée en garde à vue, puis conduite à Toulouse, où la mesure se poursuit. Elle est présentée le 15 avril au procureur adjoint de Toulouse, qui ordonne son incarcération en vue de son transfert à Orléans, et elle comparaît devant les juges d'instruction d'Orléans le 18 avril, plus de 5 jours après son arrestation. La Cour constate ainsi une violation de l'article 5, paragraphe 3, parce que les membres du parquet ne présentent pas l'indépendance à l'égard du pouvoir exécutif qui définit un magistrat au sens de cet article.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La chambre criminelle en tire les conséquences le 15 décembre 2010, dans une affaire de violences avec une carabine à air comprimé. Elle affirme que le ministère public ne présente pas les garanties d'indépendance et d'impartialité requises par l'article 5, paragraphe 3, et qu'il est partie poursuivante. Elle rejette pourtant le pourvoi, parce que l'intéressé a été libéré après une garde à vue de 25 heures et 5 minutes, une durée compatible avec l'exigence de brièveté de ce texte. Ces deux décisions servent lorsque le sujet porte sur le statut du parquet, qui est une autorité judiciaire selon le droit français et une partie poursuivante selon la Cour européenne.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Chambre criminelle, 27 février 1996, n° 95-81.366, la loyauté de la preuve</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Un conseiller régional signale aux enquêteurs qu'un médecin lui aurait proposé, contre de l'argent, d'intervenir auprès de son gendre, juge d'instruction, pour que le gendre ne l'implique pas dans une affaire. À la demande du conseiller, les policiers enregistrent deux conversations téléphoniques entre les deux hommes, puis assistent à la remise d'un million de francs avant d'interpeller le médecin. La chambre d'accusation annule les enregistrements, parce que l'article 100 réserve au juge d'instruction le pouvoir de prescrire l'interception de correspondances, puis elle annule la procédure qui les suit, à l'exception d'un procès-verbal d'audition de témoin. La chambre criminelle rejette les pourvois. Elle retient que l'interpellation a procédé d'une machination de nature à déterminer les agissements délictueux du médecin, et que ce stratagème a porté atteinte à la loyauté des preuves.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Cette décision illustre la différence entre la provocation à la preuve, qui consiste à constater une infraction déjà décidée, et la provocation à l'infraction, qui fait naître l'idée de la commettre. Seule la seconde est déloyale.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">La preuve apportée par un particulier, chambre criminelle du 11 juin 2002 et assemblées plénières de 2017 et de 2023</h3>
+            <p style="margin-top:0; color:var(--body); line-height:1.7">Des membres de SOS Racisme organisent un testing à l'entrée de discothèques, c'est-à-dire que des personnes d'origines différentes se présentent pour constater un refus d'entrée discriminatoire, et la cour d'appel écarte cette preuve parce qu'elle serait déloyale. Le 11 juin 2002, la chambre criminelle casse cette décision en ce qu'elle déboute l'association de ses demandes, car aucune disposition légale ne permet au juge répressif d'écarter les moyens de preuve produits par les parties au seul motif qu'ils auraient été obtenus de façon illicite ou déloyale. Il lui appartient seulement d'en apprécier la valeur probante après une discussion contradictoire. La chambre criminelle renvoie l'affaire devant la cour d'appel de Lyon.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">L'Assemblée plénière rappelle le 10 novembre 2017, par l'arrêt n° 17-82.028, que le principe de loyauté s'impose, lui, aux agents de l'autorité publique. Dans cette affaire de chantage, elle rejette le pourvoi parce que les policiers n'ont accompli aucun acte pour obtenir les enregistrements clandestins faits par l'avocat du plaignant. Le 22 décembre 2023, par l'arrêt n° 20-20.648, elle reprend ces deux règles, mais juge qu'au civil, une preuve illicite ou déloyale n'est plus écartée automatiquement, car le juge met en balance le droit à la preuve et les droits opposés. Tu identifies qui a recueilli la preuve et devant quel juge elle est produite.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cas-pratique">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Un exemple de cas pratique corrigé, prescription et appel</h2>
+        <p class="lead" style="margin-bottom:16px">Ce cas associe la prescription de l'action publique et les voies de recours. Tu peux répondre sur ta feuille avant de lire le corrigé.</p>
+        <div class="card" style="padding:22px 24px">
+          <p style="margin-top:0; color:var(--body); line-height:1.7"><strong>Énoncé.</strong> De mars 2017 à octobre 2018, Valérie Marchand, comptable de l'entreprise de menuiserie Lefèvre à Cholet, vire 62 000 € de l'entreprise sur son compte personnel et falsifie les relevés bancaires pour que l'écart reste invisible. Un repreneur découvre la fraude lors d'un audit, le 14 janvier 2025. L'entreprise dépose donc plainte le 3 février 2025, puis le procureur ouvre une enquête préliminaire. Valérie est ensuite citée devant le tribunal correctionnel pour abus de confiance, et l'entreprise se constitue partie civile. Le 5 mars 2026, le tribunal prononce en sa présence un jugement contradictoire. Il la condamne à 10 mois d'emprisonnement avec sursis et à verser 62 000 € de dommages et intérêts. Valérie fait appel le 12 mars 2026. En revanche, à cette date, ni le procureur ni l'entreprise n'ont fait appel. Valérie se demande si la cour d'appel pourrait prononcer une peine ferme.</p>
+          <p style="color:var(--body); line-height:1.7; margin-top:20px"><strong>Question 1. L'action publique était-elle prescrite lorsque le procureur a poursuivi Valérie ?</strong></p>
+          <p style="color:var(--body); line-height:1.7"><strong>Majeure.</strong> L'abus de confiance est un délit. L'article 8 du Code de procédure pénale fixe donc à 6 années révolues le délai de prescription de son action publique, à compter du jour où l'infraction a été commise. Toutefois, l'article 9-1 fait courir le délai de prescription d'une infraction occulte ou dissimulée à compter du jour où l'infraction est apparue et a pu être constatée dans des conditions permettant la mise en mouvement ou l'exercice de l'action publique. Ce délai ne peut pas pour autant excéder 12 années révolues pour un délit, à compter du jour où l'infraction a été commise. Une infraction est dissimulée lorsque son auteur accomplit délibérément toute manœuvre caractérisée tendant à en empêcher la découverte. Ensuite, l'article 9-2 prévoit que la prescription est interrompue par tout acte d'enquête du ministère public et par tout procès-verbal d'un officier de police judiciaire tendant effectivement à la recherche et à la poursuite des auteurs de l'infraction. Les actes du ministère public ou de la partie civile qui tendent à la mise en mouvement de l'action publique, comme la citation devant le tribunal correctionnel, produisent le même effet. Chaque acte fait courir un nouveau délai de même durée.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Mineure.</strong> Le dernier détournement date d'octobre 2018. Selon le délai de droit commun, l'action publique aurait donc été prescrite en octobre 2024, avant la plainte du 3 février 2025. Valérie a toutefois falsifié les relevés bancaires pour que l'écart ne se voie pas, ce qui constitue une manœuvre délibérée et caractérisée pour empêcher la découverte du détournement. L'infraction est donc dissimulée. Le délai de 6 ans court seulement à partir du 14 janvier 2025, jour où la fraude est apparue et a pu être constatée. Le plafond de 12 ans se calcule pour chaque détournement. Celui du premier, en mars 2017, n'expire qu'en mars 2029, donc bien après la plainte. De plus, l'enquête préliminaire ouverte après la plainte, puis la citation devant le tribunal, ont interrompu la prescription.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Conclusion.</strong> L'action publique n'était pas prescrite. Le tribunal pouvait donc juger Valérie le 5 mars 2026.</p>
+          <p style="color:var(--body); line-height:1.7; margin-top:20px"><strong>Question 2. L'appel de Valérie est-il recevable, et la cour d'appel peut-elle prononcer une peine ferme ?</strong></p>
+          <p style="color:var(--body); line-height:1.7"><strong>Majeure.</strong> L'article 497 permet notamment au prévenu et au procureur de la République de faire appel. L'article 498 fixe à 10 jours à compter du prononcé le délai d'appel d'un jugement contradictoire, et l'article 801 proroge au premier jour ouvrable suivant un délai qui expirerait un samedi, un dimanche ou un jour férié. Lorsqu'une partie fait appel dans ces délais, l'article 500 accorde aux autres parties un délai supplémentaire de 5 jours pour interjeter appel. La chambre criminelle compte ces 5 jours dans un délai global de 15 jours à compter du prononcé, par exemple dans son arrêt du 22 mars 2017. De plus, en cas de condamnation, l'article 505 permet au procureur général d'appeler dans les 20 jours du prononcé. Enfin, l'article 515 permet à la cour, sur l'appel du ministère public, de confirmer le jugement ou de l'infirmer dans un sens favorable ou défavorable au prévenu. Sur le seul appel du prévenu, du civilement responsable ou de la partie civile, elle ne peut pas aggraver le sort de l'appelant.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Mineure.</strong> Le jugement est contradictoire et Valérie était présente au prononcé. Son appel du 12 mars 2026 intervient 7 jours après le 5 mars, donc dans le délai de 10 jours, et il est recevable. L'appel de l'entreprise ne permettrait pas d'aggraver la peine, car il ne porterait que sur ses intérêts civils, selon l'article 497. En revanche, le procureur peut encore appeler. Son délai de 10 jours expire le dimanche 15 mars et se prolonge jusqu'au lundi 16 mars. Le délai global de 15 jours de l'article 500 court jusqu'au vendredi 20 mars, et le procureur général peut appeler jusqu'au mercredi 25 mars 2026. Tant que ni le procureur ni le procureur général n'a fait appel, l'appel de Valérie reste le seul appel pénal, et la cour d'appel ne peut ni remplacer le sursis par une peine ferme, ni augmenter la durée de la peine. Si le procureur ou le procureur général fait appel, la cour retrouve au contraire le pouvoir de modifier la peine dans un sens défavorable à Valérie.</p>
+          <p style="color:var(--body); line-height:1.7"><strong>Conclusion.</strong> L'appel de Valérie est donc recevable. La cour d'appel ne peut pas prononcer une peine ferme tant que le ministère public n'a pas lui-même fait appel, car l'article 515 protège l'appelant seul. Elle le peut seulement si le procureur fait appel au plus tard le 20 mars, ou si le procureur général fait appel au plus tard le 25 mars. Valérie peut se protéger, mais seulement en partie. Si elle se désiste de son appel principal dans les formes de la déclaration d'appel et au moins deux mois avant l'audience, l'article 500-1 rend caducs les appels incidents, y compris celui du ministère public formé dans le délai de l'article 500. Il laisse en revanche subsister l'appel du procureur formé dans ses 10 jours, et celui du procureur général sur l'article 505, sauf s'ils précisent qu'il s'agit d'un appel incident. Avant de maintenir son appel, elle doit mesurer le risque d'un appel du ministère public.</p>
+        </div>
+        <p style="color:var(--body); line-height:1.75; margin-top:16px">Pour t'entraîner sur la méthode, la page sur <a href="methode-cas-pratique.html">la méthode du cas pratique</a> détaille les étapes, et <a href="cas-pratiques-corriges.html">les cas pratiques corrigés</a> réunissent les exercices par matière.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quelles erreurs coûtent le plus de points ?</h2>
+        <p class="lead" style="margin-bottom:24px">Voici cinq confusions à éviter en procédure pénale. Tu peux comparer chacune avec ce que ta propre fiche écrit sur le même point.</p>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Confondre l'audition libre et la garde à vue</h3>
+            <p style="margin-bottom:0; margin-top:0; color:var(--body); line-height:1.7">Dans l'audition libre, l'article 61-1 laisse la personne quitter à tout moment les locaux, mais la garde à vue la maintient à la disposition des enquêteurs sous contrainte, d'après l'article 62-2. Cette contrainte déclenche donc les règles de durée, le contrôle du procureur et les droits de l'article 63-1. Dans un cas pratique, la question « la personne pouvait-elle partir ? » détermine le régime applicable.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Écrire que le procureur est une autorité judiciaire sans préciser en quel sens</h3>
+            <p style="margin-bottom:0; margin-top:0; color:var(--body); line-height:1.7">En droit français, les magistrats du parquet appartiennent à l'autorité judiciaire de l'article 66 de la Constitution. Pourtant, pour la Cour européenne, qui apprécie l'indépendance à l'égard du pouvoir exécutif, le procureur n'est pas un magistrat au sens de l'article 5, paragraphe 3, de la Convention, comme le juge l'arrêt Moulin c. France. Tu précises si la question se place en droit français ou devant la Cour européenne, car la réponse change selon le point de vue.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Annuler automatiquement un acte irrégulier</h3>
+            <p style="margin-bottom:0; margin-top:0; color:var(--body); line-height:1.7">Les articles 171 et 802 réservent la nullité à l'irrégularité qui a porté atteinte aux intérêts de la partie qu'elle concerne. Dans certains cas, la jurisprudence présume cette atteinte, et la partie n'a pas à la prouver. Devant le tribunal correctionnel, par exemple, l'article 406 impose d'informer le prévenu de son droit de se taire, et la chambre criminelle juge que l'oubli lui fait nécessairement grief. En garde à vue, tu discutes en revanche l'atteinte portée à la défense, comme pour un dépassement de quelques minutes de la durée autorisée. Dans ta copie, tu nommes l'irrégularité, puis le préjudice qu'elle cause à la personne concernée, sauf lorsque la jurisprudence le présume.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Appliquer une loi de procédure comme une loi pénale de fond</h3>
+            <p style="margin-bottom:0; margin-top:0; color:var(--body); line-height:1.7">Une loi pénale de fond plus sévère ne s'applique qu'aux faits commis après son entrée en vigueur. Les lois qui fixent les modalités des poursuites et les formes de la procédure s'appliquent en revanche immédiatement aux infractions déjà commises, d'après l'article 112-2 du Code pénal. Une personne placée en garde à vue après une réforme de ce régime relève donc du nouveau régime, même si les faits sont plus anciens. Quand la prescription n'est pas encore acquise, les lois qui la modifient s'appliquent aussi immédiatement, d'après le même article.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Confondre l'action publique et l'action civile</h3>
+            <p style="margin-bottom:0; margin-top:0; color:var(--body); line-height:1.7">L'action publique est exercée par le ministère public au nom de la société, et elle tend à la peine. L'action civile appartient à la victime, et l'article 2 la destine à la réparation de son dommage. L'article 85 permet à la victime de mettre l'action publique en mouvement par une plainte avec constitution de partie civile, mais l'article 31 laisse au ministère public le soin de requérir l'application de la loi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Dans quel ordre réviser la procédure pénale ?</h2>
+        <p style="color:var(--body); line-height:1.75">La matière suit le procès, et ta révision peut suivre le même ordre. Je te conseille de commencer par les quatre temps du procès et par les principes directeurs, parce qu'ils reviennent dans chaque chapitre, puis d'apprendre les acteurs. Tu abordes ensuite l'enquête, avec la garde à vue, qui demande à elle seule le plus de numéros d'articles et de durées. Les poursuites, l'instruction et le jugement viennent après, dans l'ordre du tableau des étapes.</p>
+        <p style="color:var(--body); line-height:1.75">Quand tu as vu les sept thèmes, tu t'entraînes sur un cas pratique, comme celui de Valérie ci-dessus, parce que le correcteur attend une majeure, une mineure et une conclusion pour chaque question. Pour répartir ton travail sur plusieurs semaines, la page sur <a href="comment-reviser-le-droit.html">la méthode de révision du droit</a> propose un planning que tu adaptes à cette matière. Si tu veux le programme complet et les citations à apprendre, la fiche complète te les donne chapitre par chapitre. Tu peux également consulter <a href="la-mise-en-examen-et-l-instruction-penale.html">la page sur la mise en examen et l'instruction</a>, qui détaille cette phase.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="faq">
+      <div class="container container--narrow">
+        <h2 class="h2 text-center" style="margin-bottom:32px">Questions sur la fiche de révision de procédure pénale L3</h2>
+        <div class="accordion">
+          <details class="accordion__item" open><summary><h3>Que faut-il réviser en procédure pénale en L3 ?</h3></summary><div class="accordion__body">La fiche complète suit 25 chapitres, que cette page regroupe en sept thèmes, de l'introduction générale aux voies de recours. Pour chaque thème, tu retiens les articles du Code de procédure pénale et les délais, puis tu apprends quelques décisions, comme l'arrêt du 15 avril 2011 sur l'avocat en garde à vue. Ton enseignant peut toutefois ordonner ces thèmes autrement. Tu compares donc cette liste avec le plan de ton cours.</div></details>
+          <details class="accordion__item"><summary><h3>Quelle différence entre l'audition libre et la garde à vue ?</h3></summary><div class="accordion__body">Dans l'audition libre, la personne soupçonnée peut quitter à tout moment les locaux, selon l'article 61-1. La garde à vue est une mesure de contrainte, décidée par un officier de police judiciaire sous le contrôle de l'autorité judiciaire. Elle suppose des raisons plausibles de soupçonner un crime ou un délit puni d'emprisonnement, et elle doit être l'unique moyen d'atteindre l'un des objectifs de l'article 62-2.</div></details>
+          <details class="accordion__item"><summary><h3>Combien de temps dure une garde à vue ?</h3></summary><div class="accordion__body">En droit commun, une garde à vue dure 24 heures, et le procureur peut la prolonger de 24 heures, soit 48 heures au maximum, d'après l'article 63. La durée maximale est de 72 heures pour les délits de l'article 706-73-1. Elle monte à 96 heures pour les infractions de l'article 706-73 et à 144 heures en cas de risque sérieux d'action terroriste imminente. Les prolongations au-delà de 48 heures sont autorisées par le juge des libertés et de la détention ou par le juge d'instruction.</div></details>
+          <details class="accordion__item"><summary><h3>Dans quel délai faire appel d'un jugement correctionnel ?</h3></summary><div class="accordion__body">L'appel d'un jugement correctionnel contradictoire se forme dans les 10 jours du prononcé, d'après l'article 498. Lorsqu'une partie fait appel dans ce délai, les autres parties disposent de 5 jours supplémentaires, selon l'article 500, ce qui fait un délai global de 15 jours. En cas de condamnation, l'article 505 laisse 20 jours au procureur général. Le pourvoi en cassation contre la décision de la cour d'appel se forme ensuite dans les 10 jours francs du prononcé, d'après l'article 568.</div></details>
+          <details class="accordion__item"><summary><h3>Existe-t-il une fiche PDF de procédure pénale pour la L3 ?</h3></summary><div class="accordion__body">La fiche complète de procédure pénale L3 compte 125 pages et coûte 14,99 €. Elle est vendue seule ou dans le Pack Licence 3, qui réunit cinq fiches de troisième année pour 58 €. Le cours complet de 252 pages, qui développe chaque chapitre, coûte en revanche 19,99 €. <a href="procedure-penale-l3.html">La page de la matière</a> présente ce programme, et <a href="formations.html">le catalogue des formations</a> réunit toutes les fiches.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="author-box">
+          <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+          <div>
+            <p class="author-box__name">Julien</p>
+            <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+            <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">162 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- fin-article:pack-ultra -->
+    <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
+      <div class="container">
+        <p class="article-pack-ligne__texte">Le Pack Ultra L3 S1 réunit les 42 ressources de ton semestre de L3 pour 329 €, la fiche de procédure pénale L3 comprise. <a href="pack-ultra.html#pack-ultra-l3-s1">Voir le contenu du pack →</a></p>
+        <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (fiche revision procedure penale L3)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Procédure pénale L3 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-procedure-penale-l3">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=8c547dfb" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=4b8ba62a" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=a4e01c99" defer></script>
+</body>
+</html>
