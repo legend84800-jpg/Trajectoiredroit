@@ -7,6 +7,7 @@
   var META_PIXEL_ID = "1736839687358457";
   var activePreferences = null;
   var lastFocusedElement = null;
+  var behaviorScript = null;
 
   function safeGet(key) {
     try {
@@ -39,6 +40,7 @@
           return {
             analytics: parsed.analytics,
             advertising: parsed.advertising,
+            behavior: parsed.behavior === true,
           };
         }
       } catch (error) {
@@ -48,12 +50,65 @@
 
     var legacy = safeGet(LEGACY_KEY);
     if (legacy === "granted") {
-      return { analytics: true, advertising: true };
+      return { analytics: true, advertising: true, behavior: false };
     }
     if (legacy === "denied") {
-      return { analytics: false, advertising: false };
+      return { analytics: false, advertising: false, behavior: false };
     }
     return null;
+  }
+
+  function behaviorPageAllowed() {
+    try {
+      var address = new URL(window.location.href);
+      if (address.protocol !== "https:" || !/^(www\.)?trajectoiredroit\.com$/.test(address.hostname)) return false;
+      if (address.searchParams.has("atelier_test") || address.searchParams.get("tjd_test") === "1") return false;
+      if (address.searchParams.get("tjd_test") !== "0" &&
+          (window.tjdTestInterne || safeGet("tjd_internal_test") === "1")) return false;
+      var pathname = decodeURIComponent(address.pathname);
+      return !/^\/(?:portalis|mon-compte|connexion|merci(?:-[^/]*)?|donner-mon-avis|complements)(?:\.html)?\/?$/i.test(pathname) &&
+        !/^\/(?:api|members|learn)(?:\/|$)/i.test(pathname);
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function syncBehavior() {
+    var allowed = activePreferences && activePreferences.behavior && behaviorPageAllowed();
+    var tracker = window.AtelierComportement;
+    if (!allowed) {
+      if (tracker && typeof tracker.stop === "function") {
+        try { tracker.stop(); } catch (error) {}
+      }
+      return;
+    }
+    if (tracker && typeof tracker.start === "function") {
+      try {
+        var starting = tracker.start();
+        if (starting && typeof starting.catch === "function") starting.catch(function () {});
+      } catch (error) {}
+      return;
+    }
+    if (behaviorScript) return;
+    var script = document.createElement("script");
+    behaviorScript = script;
+    script.src = "/comportement/tracker.js";
+    script.async = true;
+    script.referrerPolicy = "no-referrer";
+    script.onload = function () {
+      // Le choix peut avoir changé pendant le téléchargement du script.
+      if (window.AtelierComportement && typeof window.AtelierComportement.start === "function") {
+        syncBehavior();
+      } else {
+        behaviorScript = null;
+        script.remove();
+      }
+    };
+    script.onerror = function () {
+      behaviorScript = null;
+      script.remove();
+    };
+    (document.head || document.body).appendChild(script);
   }
 
   function loadMetaPixel() {
@@ -79,6 +134,7 @@
     activePreferences = {
       analytics: Boolean(preferences.analytics),
       advertising: Boolean(preferences.advertising),
+      behavior: preferences.behavior === true,
     };
 
     if (typeof window.gtag === "function") {
@@ -95,6 +151,14 @@
     } else if (window.fbq) {
       window.fbq("consent", "revoke");
     }
+    window.dispatchEvent(new CustomEvent("tjd:consent", {
+      detail: { preferences: {
+        analytics: activePreferences.analytics,
+        advertising: activePreferences.advertising,
+        behavior: activePreferences.behavior,
+      } },
+    }));
+    syncBehavior();
   }
 
   function savePreferences(preferences) {
@@ -102,6 +166,7 @@
       version: STORAGE_VERSION,
       analytics: Boolean(preferences.analytics),
       advertising: Boolean(preferences.advertising),
+      behavior: preferences.behavior === true,
       updatedAt: new Date().toISOString(),
     };
 
@@ -157,6 +222,13 @@
           '</div>' +
           '<div class="cookie-preference">' +
             '<div class="cookie-preference__copy">' +
+              '<h3>Relecture de navigation masquée</h3>' +
+              '<p>Atelier Comportement enregistre tes clics et le défilement des pages pour repérer les difficultés de navigation. Les textes saisis sont masqués, et les espaces privés sont exclus.</p>' +
+            '</div>' +
+            '<button type="button" class="cookie-switch" role="switch" aria-checked="false" data-cookie-switch="behavior" aria-label="Autoriser la relecture de navigation masquée"><span aria-hidden="true"></span></button>' +
+          '</div>' +
+          '<div class="cookie-preference">' +
+            '<div class="cookie-preference__copy">' +
               '<h3>Publicité personnalisée</h3>' +
               '<p>Le pixel Meta mesure nos campagnes et permet d’adapter les publicités qui te sont présentées.</p>' +
             '</div>' +
@@ -181,7 +253,7 @@
     });
 
     dialog.querySelector("[data-cookie-essential]").addEventListener("click", function () {
-      savePreferences({ analytics: false, advertising: false });
+      savePreferences({ analytics: false, advertising: false, behavior: false });
       dialog.close();
       closeBanner();
     });
@@ -190,6 +262,7 @@
       savePreferences({
         analytics: dialog.querySelector('[data-cookie-switch="analytics"]').getAttribute("aria-checked") === "true",
         advertising: dialog.querySelector('[data-cookie-switch="advertising"]').getAttribute("aria-checked") === "true",
+        behavior: dialog.querySelector('[data-cookie-switch="behavior"]').getAttribute("aria-checked") === "true",
       });
       dialog.close();
       closeBanner();
@@ -214,10 +287,12 @@
     var preferences = activePreferences || readPreferences() || {
       analytics: false,
       advertising: false,
+      behavior: false,
     };
 
     setSwitchState(dialog.querySelector('[data-cookie-switch="analytics"]'), preferences.analytics);
     setSwitchState(dialog.querySelector('[data-cookie-switch="advertising"]'), preferences.advertising);
+    setSwitchState(dialog.querySelector('[data-cookie-switch="behavior"]'), preferences.behavior);
     lastFocusedElement = trigger || document.activeElement;
 
     if (typeof dialog.showModal === "function") {
@@ -254,7 +329,7 @@
       '<div class="cookie-banner__content">' +
         '<p class="cookie-banner__eyebrow">Tes données, ton choix</p>' +
         '<h2 id="cookieBannerTitle">Choisis les cookies que tu acceptes</h2>' +
-        '<p class="cookie-banner__text" id="cookieBannerDescription">Les cookies optionnels nous aident à mesurer l’utilisation du site et nos publicités. <a href="confidentialite.html#cookies">En savoir plus</a></p>' +
+        '<p class="cookie-banner__text" id="cookieBannerDescription">Selon ton choix, nous mesurons l’utilisation du site et nos publicités. La relecture masquée des clics et du défilement nous aide aussi à repérer les difficultés de navigation. <a href="confidentialite.html#cookies">En savoir plus</a></p>' +
       '</div>' +
       '<div class="cookie-banner__actions">' +
         '<button type="button" class="btn btn--sm cookie-choice cookie-choice--preferences" data-cookie-preferences>Modifier mes préférences</button>' +
@@ -282,12 +357,12 @@
     }
 
     banner.querySelector("[data-cookie-accept]").addEventListener("click", function () {
-      savePreferences({ analytics: true, advertising: true });
+      savePreferences({ analytics: true, advertising: true, behavior: true });
       closeBanner();
     });
 
     banner.querySelector("[data-cookie-essential]").addEventListener("click", function () {
-      savePreferences({ analytics: false, advertising: false });
+      savePreferences({ analytics: false, advertising: false, behavior: false });
       closeBanner();
     });
 
@@ -302,20 +377,31 @@
     }, 900);
   }
 
-  var storedPreferences = readPreferences();
-  if (storedPreferences) applyPreferences(storedPreferences);
-
-  document.addEventListener("DOMContentLoaded", function () {
-    addManageLink();
-    if (!storedPreferences) createBanner();
-  });
-
   window.tjdCookieConsent = {
     getPreferences: function () {
-      return activePreferences || readPreferences();
+      var preferences = activePreferences || readPreferences();
+      return preferences ? {
+        analytics: preferences.analytics,
+        advertising: preferences.advertising,
+        behavior: preferences.behavior,
+      } : null;
     },
     openPreferences: function () {
       openPreferences(document.activeElement);
     },
   };
+
+  var storedPreferences = readPreferences();
+  if (storedPreferences) applyPreferences(storedPreferences);
+
+  window.addEventListener("storage", function (event) {
+    if (event.key === STORAGE_KEY || event.key === LEGACY_KEY || event.key === null) {
+      applyPreferences(readPreferences() || { analytics: false, advertising: false, behavior: false });
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    addManageLink();
+    if (!storedPreferences) createBanner();
+  });
 })();

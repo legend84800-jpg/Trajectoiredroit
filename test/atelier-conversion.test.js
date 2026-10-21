@@ -8,7 +8,7 @@ test('La marque Checkout appartient au serveur et les champs non déclarés rest
 });
 test('Les seules routes publiques Atelier traversent la passerelle, les API existantes restent sur le site',()=>{
  const config=require('../vercel.json');
- assert.deepEqual(config.rewrites.map(r=>r.source),['/f/:path*','/public/:path*','/learn/:path*','/members/:path*','/r/:path*']);
+ assert.deepEqual(config.rewrites.map(r=>r.source),['/comportement/:path*','/f/:path*','/public/:path*','/learn/:path*','/members/:path*','/r/:path*']);
  for(const r of config.rewrites)assert.equal(r.destination,'https://stats.trajectoiredroit.com'+r.source);
  assert.ok(!config.rewrites.some(r=>r.source.startsWith('/api') || r.source==='/(.*)'));
 });

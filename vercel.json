@@ -101,6 +101,10 @@
   ],
   "rewrites": [
     {
+      "source": "/comportement/:path*",
+      "destination": "https://stats.trajectoiredroit.com/comportement/:path*"
+    },
+    {
       "source": "/f/:path*",
       "destination": "https://stats.trajectoiredroit.com/f/:path*"
     },
