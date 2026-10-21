@@ -337,6 +337,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/stage-methode-replay-sept2026-seance-3.mp4"] },
 
   // Commentaires d'arrêt unitaires, 4,99 € (test des pages d'arrêts du 20/10/2026)
+  "coma-bardou-1931": { nom: "Commentaire corrigé de l'arrêt Bardou (1931)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-bardou-1931.pdf"] },
   "coma-non-concurrence-2002": { nom: "Commentaire corrigé de l'arrêt du 10 juillet 2002 (clause de non-concurrence)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-non-concurrence-2002.pdf"] },
   "coma-perdereau-1986": { nom: "Commentaire corrigé de l'arrêt Perdereau (1986)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-perdereau-1986.pdf"] },
   "coma-bowater-1986": { nom: "Commentaire corrigé de l'arrêt Bowater (1986)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-bowater-1986.pdf"] },
