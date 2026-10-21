@@ -337,6 +337,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/stage-methode-replay-sept2026-seance-3.mp4"] },
 
   // Commentaires d'arrêt unitaires, 4,99 € (test des pages d'arrêts du 20/10/2026)
+  "coma-solidarite-commerciale-1920": { nom: "Commentaire corrigé de l'arrêt du 20 octobre 1920 (solidarité commerciale)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-solidarite-commerciale-1920.pdf"] },
   "coma-bac-eloka-1921": { nom: "Commentaire corrigé de l'arrêt Bac d'Eloka (1921)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-bac-eloka-1921.pdf"] },
   "coma-bardou-1931": { nom: "Commentaire corrigé de l'arrêt Bardou (1931)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-bardou-1931.pdf"] },
   "coma-non-concurrence-2002": { nom: "Commentaire corrigé de l'arrêt du 10 juillet 2002 (clause de non-concurrence)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-non-concurrence-2002.pdf"] },
