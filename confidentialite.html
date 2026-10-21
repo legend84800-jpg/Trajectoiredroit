@@ -370,6 +370,7 @@
               <li><strong>Données de facturation</strong> : adresse, moyen de paiement (gérées exclusivement par Stripe, jamais stockées par TrajectoireDroit).</li>
               <li><strong>Données de connexion et publicitaires</strong> : adresse IP, type de navigateur, pages visitées, utilisées aussi pour te proposer des publicités ciblées (Google Analytics et pixel Meta), uniquement si tu donnes ton accord.</li>
               <li><strong>Données pédagogiques</strong> : niveau d'études, matière, contexte (cours particuliers uniquement).</li>
+              <li><strong>Les mesures de navigation consenties</strong> portent sur les pages publiques parcourues et leur utilisation. La section « Cookies » précise les données relevées par Atelier Comportement.</li>
               <li><strong>Réponses facultatives après un achat</strong> : le motif de l'achat et le résultat recherché, associés à un identifiant de commande haché et au type de document acheté. Cette table ne contient ni ton nom ni ton email.</li>
               <li><strong>Avis après un achat</strong> : si tu laisses un avis, j'enregistre ta note et ton texte. Le formulaire demande aussi ton prénom et ton niveau d'études, qui s'affichent à côté de l'avis. L'avis reste enfin relié à ta commande, ce qui garantit qu'il vient d'une personne qui a réellement acheté le produit.</li>
             </ul>
@@ -383,6 +384,7 @@
               <li>Envoyer la newsletter, uniquement si tu t'y es inscrit. Après un achat, t'envoyer aussi des conseils de révision et des offres sur des produits comparables, sauf si tu as choisi « Non merci » sur la page de paiement. Chaque email contient un lien pour te désinscrire en un clic.</li>
               <li>Si tu coches la case prévue juste avant le paiement, t'envoyer au maximum deux rappels quand ton paiement n'a pas été terminé, avec le lien pour le reprendre. Un rappel part environ une heure après, puis un autre le lendemain, et ils s'arrêtent dès que tu as payé.</li>
               <li>Améliorer le site via des statistiques anonymes.</li>
+              <li>Avec ton accord pour la relecture masquée, repérer les difficultés de navigation, comparer les étapes entre les pages publiques et les boutons utilisés, puis vérifier les corrections apportées au site.</li>
               <li>Répondre aux demandes de cours particuliers.</li>
               <li>Publier sur le site les avis des acheteurs, avec leur prénom et leur niveau, puis leur envoyer la fiche de citations offerte en remerciement.</li>
               <li>Comprendre ce qui amène les étudiants à acheter une fiche et ce qu'ils espèrent faire avec elle, pour adapter les documents et leur présentation.</li>
@@ -398,7 +400,7 @@
           <section>
             <h2 class="h3">5. Durée de conservation</h2>
             <p>Données de compte et achats : <strong>5 ans</strong> après la dernière interaction. Réponses facultatives après achat : <strong>12 mois</strong>, puis suppression lors de la purge quotidienne. Avis : conservés tant qu'ils sont publiés, et retirés dès que tu le demandes par email. Données de facturation : <strong>10 ans</strong> (obligation comptable). Données de navigation via Matomo : <strong>13 mois</strong>, puis suppression automatique. Données de navigation et publicitaires (Google Analytics, pixel Meta) : conservées selon la durée fixée par ces outils, puis supprimées automatiquement.</p>
-            <p>Les relectures masquées d’Atelier Comportement sont conservées pendant <strong>30 jours</strong>, puis supprimées automatiquement. Tu peux aussi demander leur suppression en écrivant à <a href="mailto:julien.prof1@gmail.com">julien.prof1@gmail.com</a>.</p>
+            <p>Les visites masquées et leurs mesures de navigation dans Atelier Comportement sont conservées pendant <strong>30 jours</strong>, puis supprimées automatiquement. Tu peux aussi demander leur suppression en écrivant à <a href="mailto:julien.prof1@gmail.com">julien.prof1@gmail.com</a>.</p>
           </section>
 
           <section id="portalis">
@@ -433,12 +435,16 @@
             <h2 class="h3">8. Cookies</h2>
             <p>Le site utilise Google Analytics pour mesurer son audience et le pixel Meta pour mesurer ses campagnes publicitaires. Ces services optionnels utilisent des traceurs seulement selon les choix que tu enregistres dans la bannière. Tu peux tout accepter, conserver uniquement les cookies essentiels ou autoriser chaque service séparément.</p>
             <p>Ton choix reste modifiable à tout moment grâce au lien <strong>Gérer mes cookies</strong> présent dans le pied de page. Le nouveau réglage remplace immédiatement le précédent sur ce navigateur.</p>
-            <p>Si tu autorises la <strong>relecture de navigation masquée</strong>, Atelier Comportement enregistre tes clics et le défilement des pages publiques pour comprendre les difficultés de navigation. Il reconstitue ainsi le passage d’une page à l’autre avec un code de visite créé au hasard. La relecture masque les textes des pages et ceux des formulaires, car l’observation porte sur les déplacements et les clics. Les espaces de compte et Portalis sont exclus, comme les pages de confirmation d’achat ou d’avis.</p>
+            <p>Si tu autorises la <strong>relecture de navigation masquée</strong>, Atelier Comportement enregistre tes clics et le défilement des pages publiques pour comprendre les difficultés de navigation. Il mesure aussi le temps pendant lequel les bandes verticales de la page restent affichées, uniquement quand l’onglet est visible. Il reconstitue ainsi le passage d’une page à l’autre avec un code de visite créé au hasard et limité à trente minutes. Ce code relie les pages de la visite, puis une nouvelle visite reçoit un autre code.</p>
+            <p>La provenance de la visite est ramenée à une catégorie, comme Google, une newsletter, un réseau social ou un assistant de recherche. Le relevé conserve aussi la famille de navigateur et de système d’exploitation, par exemple Chrome et Windows. Si le lien utilisé correspond à une campagne de communication préparée à l’avance, le relevé conserve son code public. Les paramètres ajoutés aux adresses des pages sont retirés des chemins enregistrés, car l’analyse porte sur les pages publiques parcourues.</p>
+            <p>Les mesures de performance sont des nombres qui décrivent l’affichage du contenu principal (LCP), la réaction après une interaction (INP) et les déplacements de la mise en page (CLS). Les erreurs techniques peuvent conserver leur classe, le chemin public du fichier de script et le numéro de ligne ou de colonne. Ces mesures aident à rechercher un chargement lent ou un bouton qui répond mal.</p>
+            <p>Le relevé peut aussi compter les clics sur un téléchargement, un lien externe ou un lien de contact, ainsi que le départ vers une page de paiement. Ces événements décrivent l’utilisation des liens. La confirmation d’un achat reste mesurée dans les outils de paiement.</p>
+            <p>La relecture masque les textes des pages, et les champs des formulaires sont bloqués avant l’envoi. L’observation porte ainsi sur les déplacements, les clics et les mesures techniques. Les espaces de compte et Portalis sont exclus, comme les pages de confirmation d’achat ou d’avis.</p>
             <p>Ce choix reste distinct de Google Analytics et de la publicité. Tu peux donc autoriser la relecture seule dans tes préférences. Si tu retires ton accord, l’enregistrement s’arrête et les observations encore présentes dans ton navigateur sont effacées. Les observations déjà reçues sont toutefois conservées pendant 30 jours au maximum.</p>
             <p>Le site utilise aussi Matomo, un outil de mesure d'audience hébergé sur notre propre serveur et non chez Google. Il ne pose aucun cookie sur ton navigateur et ne transmet aucune donnée à un tiers, ce qui lui permet de fonctionner sans ton accord, conformément aux règles de la CNIL (l'autorité qui protège les données personnelles en France) pour ce type d'outil. Cet outil nous sert uniquement à savoir combien de personnes visitent le site et quelles pages elles lisent, sans jamais savoir qui tu es.</p>
           </section>
 
-          <p class="text-muted" style="font-size:.85rem; margin-top:24px">Dernière mise à jour, 20 octobre 2026.</p>
+          <p class="text-muted" style="font-size:.85rem; margin-top:24px">Dernière mise à jour, 21 octobre 2026.</p>
         </article>
       </div>
     </section>
