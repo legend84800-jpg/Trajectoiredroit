@@ -187,6 +187,18 @@ test('la relecture seule reste indépendante de Google et Meta puis s’arrête 
   assert.equal(b.preferences().behavior, false);
 });
 
+test('le rapprochement des achats attend le choix actualisé et conserve les anciens choix de navigation', () => {
+  const b=browser({stored:{version:2,analytics:true,advertising:false,behavior:true}});
+  assert.equal(b.preferences().behavior,true);
+  assert.equal(b.preferences().analytics,true);
+  assert.equal(b.window.tjdCookieConsent.allowsPurchaseLink(),false);
+  b.customize({behavior:true});
+  assert.equal(b.window.tjdCookieConsent.allowsPurchaseLink(),true);
+  assert.equal(JSON.parse(b.storage.get('tjd_consent_v2')).behaviorPurchaseVersion,3);
+  b.customize({behavior:false});
+  assert.equal(b.window.tjdCookieConsent.allowsPurchaseLink(),false);
+});
+
 test('un retrait depuis un autre onglet et la suppression du stockage arrêtent le traceur', () => {
   let stops = 0;
   const b = browser({ stored: { version: 2, analytics: true, advertising: false, behavior: true }, tracker: { start() {}, stop() { stops++; } } });

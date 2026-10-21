@@ -1,6 +1,14 @@
 /* Intégration paiement TJD (Stripe). Gère tous les boutons [data-tjd-produit] du site. */
 (function () {
   var TEXTES_ORIGINAUX = {};
+  function ajouterRecuComportement(corps) {
+    delete corps.comportementReceipt;
+    try {
+      if (estTestInterne() || window.tjdCookieConsent?.getPreferences()?.behavior !== true || window.tjdCookieConsent?.allowsPurchaseLink?.() !== true) return;
+      var recu = window.AtelierComportement?.getPurchaseReceipt?.();
+      if (typeof recu === 'string' && /^acb3\.[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\.\d{10}\.\d{10}\.[A-Za-z0-9_-]{43}$/.test(recu)) corps.comportementReceipt = recu;
+    } catch (_) { /* Le paiement reste disponible lorsque le relevé est absent. */ }
+  }
 
   // Ouvre dès le chargement la connexion vers Stripe sur les pages qui vendent,
   // pour que la page de paiement s'affiche plus vite après le clic sur Acheter.
@@ -305,6 +313,7 @@
 
       btnEl.disabled = true;
       btnEl.textContent = 'Chargement…';
+      ajouterRecuComportement(corps);
       fetch('/api/create-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -814,6 +823,7 @@
       }
     } catch (_) {}
 
+    ajouterRecuComportement(corps);
     fetch('/api/create-checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

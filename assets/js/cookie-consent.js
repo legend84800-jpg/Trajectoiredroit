@@ -6,6 +6,7 @@
   var STORAGE_VERSION = 2;
   var META_PIXEL_ID = "1736839687358457";
   var activePreferences = null;
+  var purchaseLinkAllowed = false;
   var lastFocusedElement = null;
   var behaviorScript = null;
 
@@ -41,6 +42,7 @@
             analytics: parsed.analytics,
             advertising: parsed.advertising,
             behavior: parsed.behavior === true,
+            behaviorPurchaseVersion: parsed.behaviorPurchaseVersion === 3 ? 3 : 0,
           };
         }
       } catch (error) {
@@ -131,6 +133,7 @@
   }
 
   function applyPreferences(preferences) {
+    purchaseLinkAllowed = preferences.behavior === true && preferences.behaviorPurchaseVersion === 3;
     activePreferences = {
       analytics: Boolean(preferences.analytics),
       advertising: Boolean(preferences.advertising),
@@ -168,6 +171,7 @@
       advertising: Boolean(preferences.advertising),
       behavior: preferences.behavior === true,
       updatedAt: new Date().toISOString(),
+      behaviorPurchaseVersion: 3,
     };
 
     safeSet(STORAGE_KEY, JSON.stringify(normalized));
@@ -223,7 +227,7 @@
           '<div class="cookie-preference">' +
             '<div class="cookie-preference__copy">' +
               '<h3>Relecture de navigation masquée</h3>' +
-              '<p>Atelier Comportement enregistre tes clics et le défilement des pages pour repérer les difficultés de navigation. Les textes saisis sont masqués, et les espaces privés sont exclus.</p>' +
+              '<p>Atelier Comportement enregistre tes clics et le défilement des pages pour repérer les difficultés de navigation. Il peut aussi relier cette visite à son achat confirmé par Stripe avec une référence temporaire. Les textes saisis sont masqués, et les espaces privés sont exclus.</p>' +
             '</div>' +
             '<button type="button" class="cookie-switch" role="switch" aria-checked="false" data-cookie-switch="behavior" aria-label="Autoriser la relecture de navigation masquée"><span aria-hidden="true"></span></button>' +
           '</div>' +
@@ -329,7 +333,7 @@
       '<div class="cookie-banner__content">' +
         '<p class="cookie-banner__eyebrow">Tes données, ton choix</p>' +
         '<h2 id="cookieBannerTitle">Choisis les cookies que tu acceptes</h2>' +
-        '<p class="cookie-banner__text" id="cookieBannerDescription">Selon ton choix, nous mesurons l’utilisation du site et nos publicités. La relecture masquée des clics et du défilement nous aide aussi à repérer les difficultés de navigation. <a href="confidentialite.html#cookies">En savoir plus</a></p>' +
+        '<p class="cookie-banner__text" id="cookieBannerDescription">Selon ton choix, nous mesurons l’utilisation du site et nos publicités. La relecture masquée des clics et du défilement nous aide aussi à repérer les difficultés de navigation et à relier une visite à son achat confirmé. <a href="confidentialite.html#cookies">En savoir plus</a></p>' +
       '</div>' +
       '<div class="cookie-banner__actions">' +
         '<button type="button" class="btn btn--sm cookie-choice cookie-choice--preferences" data-cookie-preferences>Modifier mes préférences</button>' +
@@ -378,6 +382,7 @@
   }
 
   window.tjdCookieConsent = {
+    allowsPurchaseLink: function () { return purchaseLinkAllowed && activePreferences?.behavior === true; },
     getPreferences: function () {
       var preferences = activePreferences || readPreferences();
       return preferences ? {
