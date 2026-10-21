@@ -12,6 +12,9 @@
 
 const PRODUITS = require("./_produits");
 const { attributsExercice, suggestionEmail, emailDepuisAttributs } = require('./_corriges-exercices');
+// Plan du commentaire offert sur les pages d'arrêts les plus vues (test du 20/10/2026).
+// Liste blanche écrite par livrables/automatisation/test-arrets-conversion-2026-10-20/generer_liste_plans.py.
+const PLANS = require('./_plans-commentaires.json');
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const R2_PUBLIC = "https://pub-45b53167be7548aca62650d34a771b47.r2.dev";
@@ -152,6 +155,72 @@ async function envoyerCorrigeOffert(email, matiere, apiKey) {
   }
 }
 
+function planValide(plan) {
+  return typeof plan === "string" && Object.prototype.hasOwnProperty.call(PLANS, plan)
+    && Boolean(PRODUITS[PLANS[plan].produit]);
+}
+
+function urlCommentaire(plan) {
+  const params = new URLSearchParams({ utm_source: 'brevo', utm_medium: 'email',
+    utm_campaign: 'plan-commentaire', utm_content: plan });
+  return 'https://trajectoiredroit.com/' + PLANS[plan].page + '?' + params.toString() + '#commentaire-corrige';
+}
+
+// Attributs lus par le premier email de la séquence de bienvenue Brevo (branche
+// SOURCE == "plan-commentaire" du modèle 1) et par l'email transactionnel ci-dessous.
+function attributsPlan(plan) {
+  const x = PLANS[plan];
+  return {
+    SOURCE: "plan-commentaire",
+    PLAN_SLUG: plan,
+    PLAN_ARRET: x.arret,
+    PLAN_PDF: x.pdf,
+    PLAN_URL: urlCommentaire(plan),
+    PLAN_PAGES: String(x.pages),
+    PLAN_PRIX: euros(PRODUITS[x.produit].prix),
+  };
+}
+
+// Textes passés par redaction-julien (checklist, passe adversariale, vale,
+// verificateur_anti_ia.py, verificateur_style_positif.py) le 20/10/2026.
+function construireEmailPlan(a) {
+  const paragraphes = [
+    "Salut,",
+    `Tu as demandé le plan du commentaire de ${a.PLAN_ARRET}. Tu y trouves d'abord la problématique et la solution du juge, avec l'annonce du plan. Les deux parties suivent, chacune avec le paragraphe qui explique ce qu'elle démontre.`,
+    { lien: a.PLAN_PDF, texte: "Télécharger le plan" },
+    "Pour t'en servir avant ton TD, tu peux rédiger toi-même une sous-partie à partir de son titre. Tu verras ainsi quels arrêts et quels articles tu sais déjà utiliser pour la défendre.",
+    `Le commentaire rédigé en entier fait ${a.PLAN_PAGES} pages, avec le texte intégral de la décision. Il coûte ${a.PLAN_PRIX}, et tu le trouves sur la page de l'arrêt.`,
+    { lien: a.PLAN_URL, texte: "Voir le commentaire rédigé" },
+    "Si tu as une question sur le plan, tu peux répondre à cet email. Je lis moi-même les réponses.",
+    "Julien",
+  ];
+  const esc = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const html = '<html lang="fr"><body style="font:16px Arial;line-height:1.6;max-width:580px;margin:30px auto;padding:20px">'
+    + paragraphes.map(p => typeof p === "string" ? '<p>' + esc(p) + '</p>'
+      : '<p><a href="' + esc(p.lien) + '" style="color:#1A2851;font-weight:bold">' + esc(p.texte) + '</a></p>').join('')
+    + '</body></html>';
+  const texte = paragraphes.map(p => typeof p === "string" ? p : p.texte + "\n" + p.lien).join("\n\n");
+  return { sujet: `Ton plan du commentaire de ${a.PLAN_ARRET}`, html, texte };
+}
+
+async function envoyerPlan(email, plan, apiKey) {
+  const contenu = construireEmailPlan(attributsPlan(plan));
+  const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "api-key": apiKey, accept: "application/json" },
+    body: JSON.stringify({
+      sender: { name: "Trajectoire Droit", email: "contact@trajectoiredroit.com" },
+      to: [{ email }],
+      replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
+      subject: contenu.sujet,
+      htmlContent: contenu.html,
+      textContent: contenu.texte,
+      tags: ["plan-commentaire", plan],
+    }),
+  });
+  if (!resp.ok) throw new Error(`Brevo ${resp.status}: ${await resp.text()}`);
+}
+
 function ipVisiteur(req) {
   const brut = (req.headers && (req.headers["x-forwarded-for"] || req.headers["x-real-ip"])) || "";
   return String(brut).split(",")[0].trim() || "inconnue";
@@ -200,6 +269,28 @@ async function handler(req, res) {
         if (!resp.ok) throw new Error('Livraison Brevo impossible');
       }
       return res.status(200).json({ok:true,envoye:true});
+    }
+    if (body.plan !== undefined && body.plan !== null && body.plan !== "") {
+      const plan = String(body.plan).trim();
+      if (!planValide(plan)) return res.status(400).json({ error: "Plan inconnu." });
+      if (proposition && body.confirmerDomaine !== true) {
+        return res.status(409).json({ error: 'Vérifie le domaine de ton adresse email.', suggestion: proposition });
+      }
+      if (typeof body.site === "string" && body.site.trim()) return res.status(200).json({ ok: true });
+      if (limiteAtteinte(ipVisiteur(req)) || limiteAtteinte("email:" + email)) {
+        return res.status(429).json({ error: "Trop de demandes. Réessaie dans quelques minutes." });
+      }
+      // Même logique que le corrigé offert : un nouvel inscrit reçoit le plan par le
+      // premier email de la séquence de bienvenue, un contact déjà inscrit par un
+      // email transactionnel, car la séquence ne redémarre pas pour lui.
+      const dejaInscrit = await contactDejaDansListe(email, apiKey);
+      const inscription = await inscrireContact(email, attributsPlan(plan), apiKey);
+      if (!inscription.ok) {
+        console.error("Brevo error:", inscription.status, inscription.detail);
+        return res.status(502).json({ error: "Inscription impossible pour le moment." });
+      }
+      if (dejaInscrit) await envoyerPlan(email, plan, apiKey);
+      return res.status(200).json({ ok: true, envoye: true });
     }
     if (!avecMatiere) {
       const inscription = await inscrireContact(email, { SOURCE: source }, apiKey);
@@ -255,3 +346,5 @@ module.exports.CORRIGES_OFFERTS = CORRIGES_OFFERTS;
 module.exports.construireEmailCorrigeOffert = construireEmailCorrigeOffert;
 module.exports.urlPdf = urlPdf;
 module.exports.attributsCorrige = attributsCorrige;
+module.exports.attributsPlan = attributsPlan;
+module.exports.construireEmailPlan = construireEmailPlan;

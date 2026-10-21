@@ -1,0 +1,51 @@
+{
+  "manoukian": {
+    "arret": "l'arrêt Manoukian",
+    "produit": "coma-manoukian-2003",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-manoukian-2003.pdf",
+    "page": "arret-manoukian-explique.html",
+    "pages": 12
+  },
+  "maison-de-la-poesie-2012": {
+    "arret": "l'arrêt Maison de la Poésie",
+    "produit": "coma-maison-de-la-poesie-2012",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-maison-de-la-poesie-2012.pdf",
+    "page": "arret-maison-de-la-poesie-2012-explique.html",
+    "pages": 12
+  },
+  "narcy-1963": {
+    "arret": "l'arrêt Narcy",
+    "produit": "coma-narcy-1963",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-narcy-1963.pdf",
+    "page": "arret-narcy-1963-explique.html",
+    "pages": 14
+  },
+  "galopin-2004": {
+    "arret": "l'arrêt Galopin",
+    "produit": "coma-galopin-2004",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-galopin-2004.pdf",
+    "page": "arret-galopin-2004-explique.html",
+    "pages": 10
+  },
+  "bowater-1986": {
+    "arret": "l'arrêt Bowater",
+    "produit": "coma-bowater-1986",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-bowater-1986.pdf",
+    "page": "arret-bowater-1986-explique.html",
+    "pages": 13
+  },
+  "perdereau-1986": {
+    "arret": "l'arrêt Perdereau",
+    "produit": "coma-perdereau-1986",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-perdereau-1986.pdf",
+    "page": "arret-perdereau-1986-explique.html",
+    "pages": 9
+  },
+  "non-concurrence-2002": {
+    "arret": "l'arrêt du 10 juillet 2002",
+    "produit": "coma-non-concurrence-2002",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-non-concurrence-2002.pdf",
+    "page": "arret-non-concurrence-2002-explique.html",
+    "pages": 10
+  }
+}

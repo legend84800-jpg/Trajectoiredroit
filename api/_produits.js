@@ -336,6 +336,15 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/stage-methode-replay-sept2026-seance-2.mp4",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/stage-methode-replay-sept2026-seance-3.mp4"] },
 
+  // Commentaires d'arrêt unitaires, 4,99 € (test des pages d'arrêts du 20/10/2026)
+  "coma-non-concurrence-2002": { nom: "Commentaire corrigé de l'arrêt du 10 juillet 2002 (clause de non-concurrence)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-non-concurrence-2002.pdf"] },
+  "coma-perdereau-1986": { nom: "Commentaire corrigé de l'arrêt Perdereau (1986)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-perdereau-1986.pdf"] },
+  "coma-bowater-1986": { nom: "Commentaire corrigé de l'arrêt Bowater (1986)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-bowater-1986.pdf"] },
+  "coma-galopin-2004": { nom: "Commentaire corrigé de l'arrêt Galopin (2004)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-galopin-2004.pdf"] },
+  "coma-narcy-1963": { nom: "Commentaire corrigé de l'arrêt Narcy (1963)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-narcy-1963.pdf"] },
+  "coma-maison-de-la-poesie-2012": { nom: "Commentaire corrigé de l'arrêt Maison de la Poésie (2012)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-maison-de-la-poesie-2012.pdf"] },
+  "coma-manoukian-2003": { nom: "Commentaire corrigé de l'arrêt Manoukian (2003)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-manoukian-2003.pdf"] },
+
   // Packs annuels Flashcards + QCM avec decks Anki
   "pack-flashcards-qcm-l1": { nom: "Pack annuel Flashcards + QCM L1", prix: 6000, blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/flashcards-qcm-intro-droit-l1-flashcards.pdf",
