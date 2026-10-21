@@ -54,5 +54,12 @@
     "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-non-concurrence-2002.pdf",
     "page": "arret-non-concurrence-2002-explique.html",
     "pages": 10
+  },
+  "bac-eloka": {
+    "arret": "l'arrêt Bac d'Eloka",
+    "produit": "coma-bac-eloka-1921",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-bac-eloka-1921.pdf",
+    "page": "arret-bac-eloka-explique.html",
+    "pages": 12
   }
 }

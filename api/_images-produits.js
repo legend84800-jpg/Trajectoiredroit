@@ -47,6 +47,7 @@ const VISUELS = {
   "commentaire-arret-personnes-l1": "assets/covers/exercices-20260923/commentaire-arret-personnes-l1.webp",
   "commentaire-arret-societes-l3-s1": "assets/covers/exercices-20260923/commentaire-arret-societes-l3-s1.webp",
   "commentaire-arret-travail-l3-s1": "assets/covers/exercices-20260923/commentaire-arret-travail-l3-s1.webp",
+  "coma-bac-eloka-1921": "assets/apercus/commentaires-unitaires/coma-bac-eloka-1921-carte.webp",
   "coma-bardou-1931": "assets/apercus/commentaires-unitaires/coma-bardou-1931-carte.webp",
   "coma-non-concurrence-2002": "assets/apercus/commentaires-unitaires/coma-non-concurrence-2002-carte.webp",
   "coma-perdereau-1986": "assets/apercus/commentaires-unitaires/coma-perdereau-1986-carte.webp",
