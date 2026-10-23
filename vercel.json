@@ -78,6 +78,7 @@
     }
   ],
   "redirects": [
+    { "source": "/images", "destination": "/droit-des-contrats-en-images.html?utm_source=video&utm_medium=voix&utm_campaign=cours-images-contrats", "permanent": false },
     {
       "source": "/stage-methode.html",
       "destination": "/formations.html",
