@@ -20,7 +20,9 @@ test("un même produit garde le même titre précis dans tous les aperçus", () 
       controles++;
     }
   }
-  assert.ok(controles >= 271);
+  // 262 depuis le 22/10/2026 : douze aperçus de la fiche Contrats L2 S1 ont
+  // laissé place à ceux du cours en images, testé jusqu'au 13/11/2026.
+  assert.ok(controles >= 262);
   assert.equal(libelleApercu("produit-inconnu"), null);
 });
 

@@ -30,12 +30,18 @@ const RATTACHEMENTS_GENERIQUES = {
   "pack-ultra-l3-s2": [],
 };
 
+// Produits vendus seuls pendant leur test, hors de toute composition de pack.
+// Le cours en images est testé du 24/10 au 13/11/2026, son entrée dans le
+// Pack Ultra L2 S1 se décide au bilan.
+const HORS_PACKS = new Set(["cours-images-contrats-l2-s1"]);
+
 function referencesPour(packId, catalogue) {
   const semestre = packId.slice(-5);
   const rattachements = RATTACHEMENTS_ANNUELS[packId];
   const generiques = RATTACHEMENTS_GENERIQUES[packId];
   return Object.keys(catalogue).filter((id) => {
     if (id.startsWith("pack-") || id.startsWith("stage-") || id === "stage-methode") return false;
+    if (HORS_PACKS.has(id)) return false;
     if (id.includes(`-${semestre}`)) return true;
     if (rattachements.some((matiere) => id.endsWith(`-${matiere}`))) return true;
     return generiques.includes(id);

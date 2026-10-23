@@ -64,6 +64,7 @@ const VISUELS = {
   "cours-fiche-constit-l1-s1": "assets/covers/cours-fiche-constit-l1-s1.webp?v=cours-2a-20260921",
   "cours-fiche-constit-l1-s2": "assets/covers/cours-fiche-constit-l1-s2.webp?v=cours-2a-20260921",
   "cours-fiche-contrats-l2-s1": "assets/covers/cours-fiche-contrats-l2-s1.webp?v=cours-2a-20260921",
+  "cours-images-contrats-l2-s1": "assets/covers/cours-images-contrats-l2-s1.webp",
   "cours-fiche-contrats-speciaux-l3": "assets/covers/cours-fiche-contrats-speciaux-l3.webp?v=cours-2a-20260921",
   "cours-fiche-da-l2-s1": "assets/covers/cours-fiche-da-l2-s1.webp?v=cours-2a-20260921",
   "cours-fiche-da-l2-s2": "assets/covers/cours-fiche-da-l2-s2.webp?v=cours-2a-20260921",
