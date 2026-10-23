@@ -152,6 +152,7 @@
             <div class="megamenu__niveau-col megamenu__niveau-col--formats">
               <div class="megamenu__niveau-head"><strong>Par format</strong></div>
               <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
               <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
               <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
               <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
@@ -327,6 +328,7 @@
         <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
         <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
         <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
         <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
         <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
         <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
@@ -391,7 +393,15 @@
       .cim-galerie button { all:unset; cursor:zoom-in; display:block; width:100% }
       .cim-galerie figcaption { font-size:.88rem; color:var(--body); margin-top:8px }
       .cim-couleurs { display:grid; gap:8px; margin:16px 0 0; padding:0; list-style:none }
+      .cim-avant { display:grid; grid-template-columns:1fr minmax(0,420px); gap:36px; align-items:start; margin-top:24px }
+      .cim-avant__label { font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:0 0 8px }
+      .cim-avant blockquote { margin:0 0 20px; padding:16px 20px; border-left:4px solid #1f7a3a; background:var(--slate-50); border-radius:8px }
+      .cim-avant blockquote p { margin:0 0 8px }
+      .cim-avant__image { margin:0 }
+      .cim-avant__image button { all:unset; cursor:zoom-in; display:block; width:100% }
+      .cim-avant__image img { width:100%; height:auto; border-radius:10px; border:1px solid var(--border); display:block; box-shadow:0 8px 24px rgba(15,23,42,.10) }
       @media (max-width: 860px) {
+        .cim-avant { grid-template-columns:1fr; gap:24px }
         .cim-hero, .cim-page { grid-template-columns:1fr; gap:24px }
         .cim-hero__visuel { order:-1 }
         .cim-galerie { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px }
@@ -428,21 +438,47 @@
       </div>
     </section>
 
+    <section class="section section--alt" id="methode-julien">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:16px">Comment j'ai construit ce cours</h2>
+        <p>J'ai appliqué dans ce cours tous les principes que j'utilise pour faire une fiche impeccable. D'abord, chaque élément a sa couleur. Les articles du Code civil apparaissent en vert et les arrêts en violet. De plus, les titres sont en rouge et en bleu, ce qui te permet de savoir à tout moment où tu te trouves dans le plan.</p>
+        <p>Ensuite, les puces suivent toujours la même hiérarchie. Les numéros et les lettres dans des cercles rouges annoncent les étapes ou les formes d'une notion, et un petit carré signale un cas particulier, une distinction ou une limite. Les mots ET et OU te disent si les conditions s'additionnent ou si une seule suffit. Les images servent justement à rendre ce code couleur et ces puces encore plus lisibles, puisque chaque bloc de texte a sa scène juste à côté.</p>
+        <p>Enfin, tout est expliqué de manière pédagogue, comme si un élève de 14 ans devait pouvoir comprendre. Chaque terme technique est donc traduit en mots courants, et chaque règle est suivie d'un exemple qui montre à quoi elle sert.</p>
+        <p>J'ai mis dans ce cours tout mon savoir. J'ai été major puis vice-major de ma promotion à Panthéon-Assas, et je donne chaque jour des cours à des étudiants en droit. Pour construire chaque page, je suis donc parti des difficultés qu'ils rencontrent en TD et en partiel.</p>
+      </div>
+    </section>
+
+    <section class="section" id="avant-apres">
+      <div class="container">
+        <h2 class="h2" style="margin-bottom:8px">L'article 1137 seul, puis la page 46 du cours</h2>
+        <p style="max-width:760px">Voici la même règle, le dol, d'abord telle que le Code civil l'écrit, puis telle que tu la retrouves dans le cours.</p>
+        <div class="cim-avant">
+          <div class="cim-avant__texte">
+            <p class="cim-avant__label">Ce que dit le Code civil</p>
+            <blockquote>
+              <p><strong>Article 1137.</strong> Le dol est le fait pour un contractant d'obtenir le consentement de l'autre par des manœuvres ou des mensonges.</p>
+              <p>Constitue également un dol la dissimulation intentionnelle par l'un des contractants d'une information dont il sait le caractère déterminant pour l'autre partie.</p>
+              <p>Néanmoins, ne constitue pas un dol le fait pour une partie de ne pas révéler à son cocontractant son estimation de la valeur de la prestation.</p>
+            </blockquote>
+            <p>L'article donne la règle en trois phrases. Pour l'appliquer dans un cas pratique, il faut pourtant savoir reconnaître chacune des formes du dol. La page 46 les sépare donc en trois blocs, reliés par OU pour montrer qu'une seule suffit.</p>
+            <p>Chaque forme a ensuite sa scène. Dans la première, le garagiste fabrique un faux carnet d'entretien. Dans la deuxième, il affirme que le moteur a été refait alors que c'est faux. Dans la troisième, il cache la rouille sous la carrosserie. Le dernier bloc donne enfin la limite de l'alinéa 3, avec l'arrêt Baldus qui l'a inspirée.</p>
+          </div>
+          <figure class="cim-avant__image">
+            <p class="cim-avant__label">Ce que tu trouves page 46</p>
+            <button type="button" data-apercu='["assets/apercus/cours-images-contrats-l2-s1/page-046.webp"]' data-apercu-title="Page 46 · Le dol, le procédé trompeur" data-apercu-sub="Pages réelles du cours en images" data-apercu-price="19,99 €" data-apercu-cta="cours-images-contrats-l2-s1"><img src="assets/apercus/cours-images-contrats-l2-s1/page-046.webp" alt="Page 46 du cours, les trois formes du dol et la limite du silence sur la valeur" width="760" height="1074" loading="lazy" decoding="async"></button>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <section class="section section--alt" id="une-page">
       <div class="container">
-        <h2 class="h2" style="margin-bottom:24px">Comment une page du cours est construite</h2>
+        <h2 class="h2" style="margin-bottom:24px">Une page du cours, bloc par bloc</h2>
         <div class="cim-page">
           <img src="assets/apercus/cours-images-contrats-l2-s1/page-040.webp" alt="Page 40 du cours, l'erreur sur les qualités essentielles et l'erreur-obstacle" width="760" height="1074" loading="lazy" decoding="async">
           <div>
             <p>Prenons la page 40, qui porte sur l'erreur sur les qualités essentielles. Le titre en haut de la page te situe dans le plan du cours, ici dans l'erreur puis dans sa caractérisation. Le premier bloc donne ensuite la règle du contrat conclu en considération de la personne, avec l'article 1134 du Code civil.</p>
             <p>À côté de cette règle, la scène montre une cliente qui choisit un avocat pour sa compétence en droit fiscal. Cette compétence a donc été déterminante de son consentement, et une erreur sur ce point peut permettre d'annuler le contrat si les autres conditions de l'erreur sont réunies. Le bloc suivant explique cet exemple en deux phrases, puis le dernier bloc t'apprend à reconnaître l'erreur-obstacle, avec deux situations dessinées côte à côte. Dans la première, chacun pense conclure un contrat différent, car l'un croit vendre alors que l'autre croit recevoir un prêt. Dans la seconde, chacun pense à un bien différent, puisque l'un vend la parcelle A et que l'autre croit acheter la parcelle B.</p>
-            <p>Toutes les pages utilisent les mêmes couleurs, ce qui te permet de repérer tout de suite les articles et les arrêts quand tu relis.</p>
-            <ul class="cim-couleurs">
-              <li><strong style="color:#1f7a3a">En vert</strong>, les articles du Code civil.</li>
-              <li><strong style="color:#6b3fa0">En violet</strong>, les arrêts de jurisprudence.</li>
-              <li><strong style="color:#b42318">En rouge et en bleu</strong>, les titres et les intitulés des conditions.</li>
-              <li><strong>ET</strong> et <strong>OU</strong>, pour savoir si les conditions s'additionnent ou si une seule suffit.</li>
-            </ul>
           </div>
         </div>
       </div>
