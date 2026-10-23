@@ -1,6 +1,68 @@
 /* Intégration paiement TJD (Stripe). Gère tous les boutons [data-tjd-produit] du site. */
 (function () {
   var TEXTES_ORIGINAUX = {};
+  var CLES_ATTRIBUTION_PUBLICATION = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+  var CLE_ATTRIBUTION_PUBLICATION = 'tjd_attribution';
+  var DUREE_ATTRIBUTION_PUBLICATION = 30 * 24 * 60 * 60 * 1000;
+  var REFERENCE_PUBLICATION = /^diffusion\.[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\.[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+  var attributionPublicationEnMemoire = null;
+
+  function lireAttributionPublication() {
+    var contact;
+    try { contact = JSON.parse(localStorage.getItem(CLE_ATTRIBUTION_PUBLICATION) || 'null'); }
+    catch (_) { contact = attributionPublicationEnMemoire; }
+    if (!contact || typeof contact !== 'object' || typeof contact.ts !== 'number'
+      || !Number.isFinite(contact.ts) || Date.now() - contact.ts < 0
+      || Date.now() - contact.ts >= DUREE_ATTRIBUTION_PUBLICATION) return null;
+    return contact;
+  }
+
+  function memoriserAttributionPublication() {
+    var params;
+    try { params = new URLSearchParams(window.location.search); } catch (_) { return; }
+    var porteUtm = CLES_ATTRIBUTION_PUBLICATION.some(function (cle) { return !!params.get(cle); });
+    if (!porteUtm && !params.has('ap_ref')) return;
+    var reference = params.get('ap_ref') || '';
+    var referenceValide = reference.length === 83 && REFERENCE_PUBLICATION.test(reference);
+    var contact = lireAttributionPublication();
+    if (porteUtm || referenceValide) {
+      // Le dernier lien de campagne remplace le contact précédent, avec ses seuls UTM.
+      contact = {
+        landing_page: window.location.pathname.replace(/^\//, '') || '/',
+        referrer: (document.referrer || '').slice(0, 200),
+        ts: Date.now()
+      };
+      CLES_ATTRIBUTION_PUBLICATION.forEach(function (cle) {
+        var valeur = params.get(cle);
+        if (valeur) contact[cle] = valeur.slice(0, 100);
+        try {
+          if (contact[cle]) sessionStorage.setItem('tjd_' + cle, contact[cle]);
+          else sessionStorage.removeItem('tjd_' + cle);
+        } catch (_) {}
+      });
+      try {
+        sessionStorage.setItem('tjd_landing_page', contact.landing_page);
+        if (contact.referrer) sessionStorage.setItem('tjd_referrer', contact.referrer);
+        else sessionStorage.removeItem('tjd_referrer');
+      } catch (_) {}
+    }
+    if (!contact) return;
+    delete contact.atelierPublicationRef;
+    if (referenceValide) contact.atelierPublicationRef = reference;
+    attributionPublicationEnMemoire = contact;
+    try { localStorage.setItem(CLE_ATTRIBUTION_PUBLICATION, JSON.stringify(contact)); } catch (_) {}
+  }
+  memoriserAttributionPublication();
+
+  function ajouterAttributionPublication(corps) {
+    var contact = lireAttributionPublication();
+    if (!contact || typeof contact.atelierPublicationRef !== 'string' || contact.atelierPublicationRef.length !== 83
+      || !REFERENCE_PUBLICATION.test(contact.atelierPublicationRef)) return;
+    // Un autre onglet ou une page sans achat.js peut avoir reçu une nouvelle campagne.
+    if (!CLES_ATTRIBUTION_PUBLICATION.every(function (cle) { return (contact[cle] || '') === (corps[cle] || ''); })) return;
+    corps.atelierPublicationRef = contact.atelierPublicationRef;
+  }
+
   function ajouterRecuComportement(corps) {
     delete corps.comportementReceipt;
     try {
@@ -205,6 +267,7 @@
       var val = sessionStorage.getItem('tjd_' + cle);
       if (val) corps[cle] = val;
     });
+    ajouterAttributionPublication(corps);
 
     lancerPaiement();
 
@@ -715,6 +778,7 @@
       var val = sessionStorage.getItem('tjd_' + cle);
       if (val) corps[cle] = val;
     });
+    ajouterAttributionPublication(corps);
 
     try {
       if (!estTestInterne() && typeof window.gtag === 'function') {
