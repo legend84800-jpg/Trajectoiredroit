@@ -92,7 +92,6 @@
     { t: 'Meilleures ventes', u: 'top-ventes.html', c: 'Produit' },
     { t: 'Majeures préparées', u: 'majeures-preparees.html', c: 'Produit' },
     { t: 'Cours particuliers de droit en visio', u: 'cours-particuliers.html', c: 'Produit' },
-    { t: 'Stage de méthode en direct', u: 'stage-methode.html', c: 'Produit' },
     { t: 'Introduction au droit L1', u: 'introduction-au-droit-l1.html', c: 'Matière' },
     { t: 'Droit constitutionnel L1', u: 'droit-constitutionnel-l1.html', c: 'Matière' },
     { t: 'Droit des personnes L1', u: 'droit-des-personnes-l1.html', c: 'Matière' },
@@ -853,23 +852,6 @@
       item._closeTimer = setTimeout(function () { item.classList.remove('open'); }, 300);
     });
   });
-
-  // ----- 7c. Carte "Stage en direct" : mention fixe (desktop + mobile) + accordéon desktop -----
-  var stageCountdownEls = document.querySelectorAll('.stage-teaser__countdown');
-  if (stageCountdownEls.length) {
-    stageCountdownEls.forEach(function (el) { el.textContent = 'Plus que 5 jours'; });
-  }
-  var stageTeaser = document.querySelector('.stage-teaser__trigger');
-  if (stageTeaser) {
-    var stagePanel = document.getElementById(stageTeaser.getAttribute('aria-controls'));
-    if (stagePanel) {
-      stageTeaser.addEventListener('click', function (e) {
-        e.preventDefault();
-        var open = stagePanel.classList.toggle('is-open');
-        stageTeaser.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-    }
-  }
 
   // Click extérieur ferme tous les dropdowns
   document.addEventListener('click', function (e) {

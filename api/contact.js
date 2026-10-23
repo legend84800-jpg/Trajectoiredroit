@@ -1,3 +1,5 @@
+import produits from './_produits.js';
+
 // Endpoint serverless Vercel — reçoit les demandes de cours particulier et
 // les inscriptions au stage, envoie un email transactionnel à Julien via
 // l'API Brevo. Fusion de contact-cours.js et contact-stage.js pour rester
@@ -51,6 +53,10 @@ export default async function handler(req, res) {
   }
 
   const type = body.type === 'stage' ? 'stage' : 'cours';
+  if (type === 'stage' && produits['stage-methode'].venteSuspendue) {
+    return res.status(410).json({ error: 'Les inscriptions sont fermées.', code: 'inscriptions_fermees' });
+  }
+
 
   // Un seul \n possible dans les champs sur une ligne (nom, email, whatsapp, niveau,
   // formule) : sans ça une valeur avec retour à la ligne peut injecter un en-tête

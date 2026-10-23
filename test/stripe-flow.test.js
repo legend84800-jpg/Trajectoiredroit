@@ -1,3 +1,10 @@
+
+async function avecStageOuvert(operation) {
+  const stage = require('../api/_produits')['stage-methode'];
+  const suspendu = stage.venteSuspendue;
+  stage.venteSuspendue = false;
+  try { return await operation(); } finally { stage.venteSuspendue = suspendu; }
+}
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
@@ -115,7 +122,7 @@ test("la création Checkout conserve le garde-fou Stripe et l'idempotence", asyn
   assert.equal(appel.options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012");
 });
 
-test("le panier réunit plusieurs produits dans une seule session, dédoublonnés et sans le stage", async () => {
+test("le panier réunit plusieurs produits dans une seule session, dédoublonnés et sans le stage", async () => avecStageOuvert(async () => {
   const stripeModule = require("../api/_stripe");
   const creerOriginal = stripeModule.creerClientStripe;
   let paramsCrees;
@@ -157,9 +164,9 @@ test("le panier réunit plusieurs produits dans une seule session, dédoublonné
   assert.deepEqual(paramsCrees.after_expiration, {
     recovery: { enabled: true, allow_promotion_codes: true },
   });
-});
+}));
 
-test("un panier vide ou sans produit connu est refusé avant tout appel Stripe", async () => {
+test("un panier vide ou sans produit connu est refusé avant tout appel Stripe", async () => avecStageOuvert(async () => {
   const stripeModule = require("../api/_stripe");
   const creerOriginal = stripeModule.creerClientStripe;
   let appele = false;
@@ -187,7 +194,7 @@ test("un panier vide ou sans produit connu est refusé avant tout appel Stripe",
   assert.equal(appele, false);
   assert.equal(res.statusCode, 400);
   assert.equal(res.payload.code, "panier_invalide");
-});
+}));
 
 test("une erreur Stripe renvoie un code stable sans exposer son message", async () => {
   const stripeModule = require("../api/_stripe");
@@ -631,7 +638,7 @@ test("la remise post-achat est personnelle, unique, valable 15 jours et reliée 
   assert.ok(appel.params.expires_at <= apres + (15 * 24 * 60 * 60));
 });
 
-test("un stage daté ne reçoit pas de lien de récupération de 30 jours", async () => {
+test("un stage daté ne reçoit pas de lien de récupération de 30 jours", async () => avecStageOuvert(async () => {
   const stripeModule = require("../api/_stripe");
   const supabaseModule = require("../api/_supabase");
   const creerOriginal = stripeModule.creerClientStripe;
@@ -666,7 +673,7 @@ test("un stage daté ne reçoit pas de lien de récupération de 30 jours", asyn
   assert.equal(paramsCrees.metadata.reminderPlan, "none");
   assert.equal(paramsCrees.after_expiration, undefined);
   assert.equal(paramsCrees.allow_promotion_codes, false);
-});
+}));
 
 test("un paiement récupéré annule le rappel H+24 et reste attribué à la relance", async () => {
   const { traiterAchatPaye } = require("../api/stripe-webhook")._test;
@@ -898,7 +905,7 @@ test("le panier suit la même logique de code promo", async () => {
   assert.equal(acheteur.params.allow_promotion_codes, true);
 });
 
-test("le stage ignore tout code et garde son propre texte, sans garantie", async () => {
+test("le stage ignore tout code et garde son propre texte, sans garantie", async () => avecStageOuvert(async () => {
   const supabaseModule = require("../api/_supabase");
   const selectionnerOriginal = supabaseModule.selectionner;
   supabaseModule.selectionner = async () => [];
@@ -915,7 +922,7 @@ test("le stage ignore tout code et garde son propre texte, sans garantie", async
   assert.equal(resultat.params.allow_promotion_codes, false);
   assert.equal(resultat.params.discounts, undefined);
   assert.equal(resultat.params.custom_text, undefined);
-});
+}));
 
 test("le paiement en plusieurs fois n'accepte aucun code mais affiche la garantie", async () => {
   const { appels, params } = await creerCheckoutAvecStripeFactice(
@@ -958,4 +965,18 @@ test("achat.js transmet le code du lien et l'achat passé, merci-achat les met �
   assert.match(achat, /garantie-reussite\.html/);
   assert.match(merci, /localStorage\.setItem\('tjd_deja_acheteur', '1'\)/);
   assert.match(merci, /localStorage\.removeItem\('tjd_code_promo'\)/);
+});
+
+
+test("le stage en réserve refuse les ventes seules, en panier et en complément", async () => {
+  for (const corps of [
+    { produitId: "stage-methode" },
+    { produitIds: ["fiche-da-l2-s1", "stage-methode"] },
+    { produitId: "fiche-da-l2-s1", bumpId: "stage-methode" },
+  ]) {
+    const { res, appels } = await creerCheckoutAvecStripeFactice(corps);
+    assert.equal(res.statusCode, 400);
+    assert.equal(res.payload.code, "produit_indisponible");
+    assert.equal(appels.create.length, 0, "aucune session de paiement créée");
+  }
 });

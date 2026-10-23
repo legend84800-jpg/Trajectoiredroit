@@ -18,19 +18,19 @@ function extraire(html, debut, fin) {
   return html.slice(positionDebut, positionFin + fin.length);
 }
 
-test('les pages françaises partagent cinq familles de navigation avec Portalis dans Par format', () => {
+test('les pages françaises partagent quatre familles de navigation avec Portalis dans Par format', () => {
   assert.ok(pages.length >= 247, `Le contrôle doit couvrir au moins 247 pages, ${pages.length} trouvées`);
 
   for (const { nom, html } of pages) {
     const nav = extraire(html, '<nav class="primary-nav"', '</nav>');
     const familles = nav.match(/<div class="nav-item\b/g) || [];
 
-    assert.equal(familles.length, 5, `${nom} doit avoir cinq familles`);
+    assert.equal(familles.length, 4, `${nom} doit avoir quatre familles`);
     const formats = extraire(nav, '<div class="megamenu__niveau-col megamenu__niveau-col--formats">', '</div>\n            <div class="megamenu__niveau-col">');
     assert.match(formats, /href="portalis\.html" role="menuitem"/, `${nom} doit proposer Portalis dans Par format`);
     assert.match(nav, />Fiches\s*</, `${nom} doit proposer Fiches`);
     assert.match(nav, />Cours particuliers\s*</, `${nom} doit proposer Cours particuliers`);
-    assert.match(nav, />Stage en direct\s*</, `${nom} doit proposer Stage en direct`);
+    assert.doesNotMatch(nav, /stage-methode|Stage en direct/, `${nom} doit retirer le stage`);
     assert.match(nav, />Ressources\s*</, `${nom} doit proposer Ressources`);
     assert.match(nav, />À propos\s*</, `${nom} doit proposer À propos`);
     assert.doesNotMatch(nav, />Méthode\s*</, `${nom} ne doit plus afficher Méthode au premier niveau`);
@@ -79,7 +79,7 @@ test('Fiches montre les cinq Packs Ultra et Ressources accueille le quiz', () =>
   }
 });
 
-test('le menu mobile reprend les cinq familles avec divulgation progressive', () => {
+test('le menu mobile reprend les quatre familles avec divulgation progressive', () => {
   for (const { nom, html } of pages) {
     const navMobile = extraire(html, '<nav class="mobile-nav"', '</nav>');
     assert.match(navMobile, /mobile-nav__format" href="portalis\.html"/, `${nom} doit proposer Portalis parmi les formats sur mobile`);
@@ -95,7 +95,7 @@ test('le menu mobile reprend les cinq familles avec divulgation progressive', ()
     assert.match(navMobile, /href="formations\.html"[^>]*><span[^>]*>📄<\/span><span>Fiches complètes<\/span>/, `${nom} doit conserver les fiches complètes`);
     assert.match(navMobile, /href="revisions\.html"[^>]*><span[^>]*>📜<\/span><span>Fiches d[’']arrêt et citations<\/span>/, `${nom} doit conserver les fiches d'arrêt et les citations sur mobile`);
     assert.match(navMobile, /mobile-nav__top-link[^>]*href="cours-particuliers\.html"/, `${nom} doit garder les cours en accès direct`);
-    assert.match(navMobile, /mobile-nav__stage[^>]*data-stage-link/, `${nom} doit garder le stage en accès direct`);
+    assert.doesNotMatch(navMobile, /stage-methode|mobile-nav__stage/, `${nom} doit retirer le stage sur mobile`);
     assert.match(navMobile, />Ressources</, `${nom} doit proposer Ressources sur mobile`);
     assert.match(navMobile, />À propos</, `${nom} doit proposer À propos sur mobile`);
     assert.equal((navMobile.match(/mobile-nav__item-icon/g) || []).length, 13, `${nom} doit illustrer Ressources et À propos`);

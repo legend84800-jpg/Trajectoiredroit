@@ -79,6 +79,16 @@
   ],
   "redirects": [
     {
+      "source": "/stage-methode.html",
+      "destination": "/formations.html",
+      "permanent": false
+    },
+    {
+      "source": "/stage-methode",
+      "destination": "/formations.html",
+      "permanent": false
+    },
+    {
       "source": "/outil-fiche-arret.html",
       "destination": "/portalis.html",
       "permanent": true

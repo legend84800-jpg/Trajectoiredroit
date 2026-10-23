@@ -3,6 +3,7 @@ const path = require('path');
 
 const RACINE = path.resolve(__dirname, '..');
 const MODE_VERIFICATION = process.argv.includes('--check');
+const STAGE_ACTIF = !require('../api/_produits')['stage-methode'].venteSuspendue;
 
 const fichiers = fs.readdirSync(RACINE)
   .filter((nom) => nom.endsWith('.html'))
@@ -181,7 +182,7 @@ function normaliserStageEtAPropos(nav, fichier) {
   nav = retirerBlocs(nav, blocsStage, /Item\s*:\s*Stage/i);
 
   let blocRessources = trouverBlocDiv(nav, nav.indexOf('dropdown--resources'));
-  if (blocRessources) {
+  if (blocRessources && STAGE_ACTIF) {
     blocRessources = inclureCommentaire(nav, blocRessources, /Item\s*:\s*Ressources/i);
     blocRessources = inclureIndentation(nav, blocRessources);
     nav = insererAvantBloc(nav, blocRessources, menuStage(stageActif));
@@ -191,7 +192,7 @@ function normaliserStageEtAPropos(nav, fichier) {
   if (blocsCours.length !== 1) {
     const coursActif = fichier === 'cours-particuliers.html' || blocsCours.some((bloc) => bloc.texte.includes('aria-current="page"'));
     nav = retirerBlocs(nav, blocsCours, /Item\s*:\s*Cours/i);
-    let blocStage = trouverBlocDiv(nav, nav.indexOf('href="stage-methode.html"'));
+    let blocStage = trouverBlocDiv(nav, nav.indexOf(STAGE_ACTIF ? 'href="stage-methode.html"' : 'dropdown--resources'));
     if (blocStage) {
       blocStage = inclureIndentation(nav, blocStage);
       nav = insererAvantBloc(nav, blocStage, menuCoursParticuliers(coursActif));
@@ -290,14 +291,14 @@ function menuMobile(fichier) {
       </div>
     </details>
     ${lienMobile('cours-particuliers.html', '<svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span>', fichier, 'mobile-nav__top-link')}
-    <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link${attributActif(fichier === 'stage-methode.html')}>
+    ${STAGE_ACTIF ? `<a href="stage-methode.html" class="mobile-nav__stage" data-stage-link${attributActif(fichier === 'stage-methode.html')}>
       <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>
       <span class="mobile-nav__stage-main">
         <span class="mobile-nav__stage-title">Stage en direct</span>
         <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
         <span class="stage-teaser__countdown"></span>
       </span>
-    </a>
+    </a>` : ''}
     <details class="mobile-nav__group${groupeRessources}">
       <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
       <div class="mobile-nav__subnav">
