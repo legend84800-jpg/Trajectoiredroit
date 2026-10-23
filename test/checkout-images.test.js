@@ -41,14 +41,8 @@ async function capturerCheckout(executer) {
       assert.equal(params.custom_fields, undefined, "le stage conserve son parcours sans champ d'emails");
       return params;
     }
-    assert.equal(params.custom_fields.length, 1);
-    assert.deepEqual(params.custom_fields[0], {
-      key: "emails", type: "dropdown", optional: true,
-      label: { type: "custom", custom: "Conseils de révision et offres par email" },
-      dropdown: { default_value: "oui", options: [
-        { label: "Oui", value: "oui" }, { label: "Non merci", value: "non" },
-      ] },
-    }, "le choix d'emails reste seul et facultatif, sur tous les parcours");
+    assert.equal(params.custom_fields, undefined, "les coordonnées natives Stripe suffisent au paiement");
+    assert.equal(params.consent_collection, undefined, "le choix commercial se fait après paiement");
     return params;
   };
   try {

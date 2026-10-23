@@ -103,7 +103,7 @@ test("la création Checkout conserve le garde-fou Stripe et l'idempotence", asyn
   assert.equal(appels.length, 2);
   assert.deepEqual(appels[0], appels[1]);
   const appel = appels[0];
-  assert.deepEqual(appel.params.consent_collection, { promotions: "auto" });
+  assert.equal(appel.params.consent_collection, undefined);
   assert.equal(appel.params.payment_method_types, undefined);
   assert.equal(appel.params.locale, "fr");
   assert.deepEqual(appel.params.wallet_options, { link: { display: "never" } });
@@ -160,7 +160,7 @@ test("le panier réunit plusieurs produits dans une seule session, dédoublonné
   assert.equal(paramsCrees.allow_promotion_codes, false);
   assert.match(paramsCrees.success_url, /^https:\/\/trajectoiredroit\.com\/merci-achat\.html\?session_id=/);
   assert.deepEqual(paramsCrees.wallet_options, { link: { display: "never" } });
-  assert.deepEqual(paramsCrees.consent_collection, { promotions: "auto" });
+  assert.equal(paramsCrees.consent_collection, undefined);
   assert.deepEqual(paramsCrees.after_expiration, {
     recovery: { enabled: true, allow_promotion_codes: true },
   });
@@ -263,12 +263,9 @@ test("la protection PDF n'ajoute aucun champ au parcours Checkout", async () => 
     else process.env.STRIPE_SECRET_KEY = ancienneCle;
   }
 
-  // Seul le choix « emails » (prérempli sur oui) est ajouté, jamais le champ de licence retiré le 31/08.
-  assert.deepEqual(paramsCrees.custom_fields.map((c) => c.key), ["emails"]);
-  assert.equal(paramsCrees.custom_fields[0].dropdown.default_value, "oui");
-  assert.equal(paramsCrees.custom_fields[0].optional, true);
-  assert.equal(paramsCrees.custom_fields[0].label.custom, "Conseils de révision et offres par email");
-  assert.deepEqual(paramsCrees.custom_fields[0].dropdown.options, [{ label: "Oui", value: "oui" }, { label: "Non merci", value: "non" }]);
+  // La licence reprend les coordonnées Stripe, sans champ commercial ajouté.
+  assert.equal(paramsCrees.custom_fields, undefined);
+  assert.equal(paramsCrees.consent_collection, undefined);
   // Seul le rappel de livraison par email est affiché, jamais de mention de licence.
   assert.doesNotMatch(JSON.stringify(paramsCrees.custom_text || {}), /licence/i);
   assert.match(paramsCrees.custom_text.submit.message, /email/);
@@ -540,10 +537,10 @@ test("une session interne reste identifiable et ne peut pas déclencher de relan
   assert.equal(paramsCrees.after_expiration, undefined);
 });
 
-test("le flux Stripe garde le consentement, les moyens dynamiques et la récupération native", () => {
+test("le flux Stripe garde les moyens dynamiques et la récupération native, avec le choix commercial après achat", () => {
   const checkout = fs.readFileSync(path.join(RACINE, "api/create-checkout.js"), "utf8");
   const webhook = fs.readFileSync(path.join(RACINE, "api/stripe-webhook.js"), "utf8");
-  assert.match(checkout, /consent_collection:\s*\{\s*promotions:\s*"auto"\s*\}/);
+  assert.doesNotMatch(checkout, /consent_collection\s*:/);
   assert.match(checkout, /after_expiration\s*=\s*\{/);
   assert.doesNotMatch(checkout, /payment_method_types\s*:/);
   assert.doesNotMatch(webhook, /payment_method_types\s*:/);
@@ -938,7 +935,7 @@ test("le paiement en plusieurs fois n'accepte aucun code mais affiche la garanti
 });
 
 test("l'écran Stripe garde le message sur l'email et ajoute la garantie dans les limites de Stripe", async () => {
-  const { TEXTE_GARANTIE, CHAMP_EMAILS } = require("../api/create-checkout")._test;
+  const { TEXTE_GARANTIE } = require("../api/create-checkout")._test;
   const unique = await creerCheckoutAvecStripeFactice({ produitId: "fiche-da-l2-s1" });
   const pack = await creerCheckoutAvecStripeFactice({ produitId: "pack-matiere-da-l2" });
   const panier = await creerCheckoutAvecStripeFactice({ produitIds: ["fiche-da-l2-s1"] });
@@ -950,10 +947,10 @@ test("l'écran Stripe garde le message sur l'email et ajoute la garantie dans le
   assert.match(TEXTE_GARANTIE, /\[[^\]]+\]\(https:\/\/trajectoiredroit\.com\/garantie-reussite\.html\)/);
   assert.match(TEXTE_GARANTIE, /14 jours/);
   assert.doesNotMatch(TEXTE_GARANTIE, /[–—]/);
-  assert.equal(CHAMP_EMAILS.key, "emails");
-  assert.deepEqual(CHAMP_EMAILS.dropdown.options.map((o) => o.value), ["oui", "non"]);
-  assert.equal(CHAMP_EMAILS.dropdown.default_value, "oui");
-  assert.ok(CHAMP_EMAILS.label.custom.length <= 50);
+  for (const { params } of [unique, pack, panier]) {
+    assert.equal(params.custom_fields, undefined);
+    assert.equal(params.consent_collection, undefined);
+  }
 });
 
 test("achat.js transmet le code du lien et l'achat passé, merci-achat les met à jour", () => {

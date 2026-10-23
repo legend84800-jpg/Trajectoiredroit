@@ -33,24 +33,6 @@ const messagePaiement = (produits) => (produits.length && produits.every(livreDa
   : produits.reduce((n, p) => n + nombreFichiers(p), 0) > 1
   ? "Vérifie ton adresse email, car tes fichiers y sont envoyés juste après le paiement."
   : "Vérifie ton adresse email, car ton PDF y est envoyé juste après le paiement.");
-// Stripe ne propose sa case d'accord promotionnel qu'aux entreprises et aux clients
-// américains : elle ne s'affiche jamais pour un étudiant français. Pour écrire aux
-// acheteurs sur des produits analogues (article L34-5 du Code des postes et des
-// communications électroniques), la page de paiement les informe et leur laisse
-// refuser dès l'achat, grâce à ce choix prérempli sur « oui ».
-const CHAMP_EMAILS = {
-  key: "emails",
-  type: "dropdown",
-  optional: true,
-  label: { type: "custom", custom: "Conseils de révision et offres par email" },
-  dropdown: {
-    default_value: "oui",
-    options: [
-      { label: "Oui", value: "oui" },
-      { label: "Non merci", value: "non" },
-    ],
-  },
-};
 const donneesProduit = (p, estStage) => (estStage || nombreFichiers(p) === 0
   ? { name: p.nom }
   : { name: p.nom, description: descriptionLivraison(p) });
@@ -285,12 +267,10 @@ async function handler(req, res) {
         quantity: 1,
       })),
       custom_text: avecGarantie({ submit: { message: messagePaiement(produitsPanier.map(({ produit }) => produit)) } }),
-      custom_fields: [CHAMP_EMAILS],
       mode: "payment",
       locale: "fr",
       wallet_options: { link: { display: "never" } },
       allow_promotion_codes: false,
-      consent_collection: { promotions: "auto" },
       success_url: `${origin}/merci-achat.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: pageActuellePanier ? `${origin}/${pageActuellePanier}` : `${origin}/formations.html`,
       expires_at: attemptTimestamp + 3600,
@@ -462,10 +442,6 @@ async function handler(req, res) {
     // d'achat. Le stage reste exclu, car il correspond à une place limitée dans une
     // session datée.
     allow_promotion_codes: false,
-    // Stripe affiche une case facultative pour les communications promotionnelles
-    // quand le contexte juridique du client l'exige. Le webhook ajoute ensuite à
-    // la liste marketing Brevo uniquement les personnes qui ont donné cet accord.
-    consent_collection: { promotions: "auto" },
     success_url: `${origin}/${pageSucces}?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: pageActuelle ? `${origin}/${pageActuelle}` : `${origin}/formations.html`,
     // L'expiration à H+1 déclenche le webhook de panier abandonné. Stripe fournit
@@ -473,7 +449,6 @@ async function handler(req, res) {
     expires_at: attemptTimestamp + 3600,
     ...(contientStage ? {} : {
       custom_text: { submit: { message: messagePaiement(bump ? [produit, bump] : [produit]) } },
-      custom_fields: [CHAMP_EMAILS],
     }),
     metadata: {
       ...attributionAtelier(corps),
@@ -619,7 +594,6 @@ module.exports._test = {
   lireCodePromo,
   appliquerCodePromo,
   TEXTE_GARANTIE,
-  CHAMP_EMAILS,
   lireEmailAchat,
   reglerRelance,
   EMAIL_ESSAI_RELANCE,

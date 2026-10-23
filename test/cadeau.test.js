@@ -157,7 +157,7 @@ test("la session Stripe d'un cadeau porte l'étudiant en metadata et parle au pa
   Object.values(params.metadata).forEach((valeur) => assert.ok(String(valeur).length <= 500));
   assert.equal(params.payment_intent_data.metadata.cadeau, "1");
   assert.equal(params.customer_email, undefined, "l'email de l'étudiant ne préremplit jamais celui du payeur");
-  assert.equal(params.custom_fields[0].key, "emails", "le choix « emails » reste posé au parent");
+  assert.equal(params.custom_fields, undefined, "le cadeau garde les champs natifs du paiement");
   assert.match(params.custom_text.submit.message, /lea\.martin@example\.com/);
   assert.match(params.custom_text.submit.message, /Vous recevez/);
   assert.match(params.line_items[0].price_data.product_data.description, /^Cadeau pour lea\.martin@example\.com/);

@@ -6,10 +6,10 @@ const vm = require('node:vm');
 
 const fichier = path.join(__dirname, '..', 'assets', 'js', 'achat.js');
 const source = fs.readFileSync(fichier, 'utf8');
-const sourceTest = source.replace(/\}\)\(\);\s*$/, 'window.__payerPanier = panierCheckout;\nwindow.__renseignerEmail = function(email, accord) { emailAchatSaisi = email; accordRappelSaisi = accord; };\n})();');
+const sourceTest = source.replace(/\}\)\(\);\s*$/, 'window.__payerPanier = panierCheckout;\n})();');
 assert.notEqual(sourceTest, source, 'Le test doit accéder au vrai flux du panier');
 
-async function executerPanier(panne, email, accord = false) {
+async function executerPanier(panne) {
   const appels = [];
   const bouton = { textContent: 'Passer au paiement', disabled: false };
   const gtag = (_type, evenement) => {
@@ -57,7 +57,6 @@ async function executerPanier(panne, email, accord = false) {
     window, document, localStorage, sessionStorage: { getItem: () => null },
     fetch, gtag, URLSearchParams, alert: () => appels.push('alerte'),
   });
-  if (email !== undefined) window.__renseignerEmail(email, accord);
   window.__payerPanier();
   await new Promise(setImmediate);
   return { appels, bouton };
@@ -80,7 +79,7 @@ for (const panne of ['ga4', 'matomo']) {
   });
 }
 
-async function executerAchatDirect(panne, email, accord = false) {
+async function executerAchatDirect(panne) {
   const appels = [];
   const bouton = {
     textContent: 'Acheter · 19,99 €', disabled: false,
@@ -128,7 +127,6 @@ async function executerAchatDirect(panne, email, accord = false) {
     window, document, localStorage, sessionStorage: { getItem: () => null },
     fetch, gtag, URLSearchParams, alert: () => appels.push('alerte'),
   });
-  if (email !== undefined) window.__renseignerEmail(email, accord);
   window.tjdAcheter('fiche-da-l2-s1', bouton);
   await new Promise(setImmediate);
   return { appels, bouton };
@@ -171,29 +169,16 @@ test('la page du stage conserve sa redirection par rappel immédiat', () => {
   assert.ok(!appels.includes('attente'));
 });
 
-test("l'adresse donnée avant le paiement part avec la demande de session, avec l'accord de rappel", async () => {
-  const panier = await executerPanier(undefined, 'etudiant@example.invalid', true);
-  const corpsPanier = JSON.parse(panier.appels.find((a) => String(a).startsWith('corps:')).slice(6));
-  assert.equal(corpsPanier.emailAchat, 'etudiant@example.invalid');
-  assert.equal(corpsPanier.accordRelance, true);
-  const direct = await executerAchatDirect(undefined, 'etudiant@example.invalid', false);
-  const corpsDirect = JSON.parse(direct.appels.find((a) => String(a).startsWith('corps:')).slice(6));
-  assert.equal(corpsDirect.emailAchat, 'etudiant@example.invalid');
-  assert.equal(corpsDirect.accordRelance, undefined);
+test("le panier et l'achat direct ouvrent Stripe sans demander d'adresse ni d'accord de rappel sur le site", async () => {
+  for (const executer of [executerAchatDirect, executerPanier]) {
+    const resultat = await executer();
+    const corps = JSON.parse(resultat.appels.find(a => String(a).startsWith('corps:')).slice(6));
+    assert.equal(corps.emailAchat, undefined);
+    assert.equal(corps.accordRelance, undefined);
+    assert.equal(resultat.appels.at(-1), 'redirige:https://checkout.stripe.com/test');
+    assert.ok(!resultat.appels.includes('attente'));
+  }
 });
-
-for (const email of ['', 'adresse-incomplete']) {
-  test(`un email facultatif vide ou incomplet laisse passer immédiatement sur Stripe (${email || 'vide'})`, async () => {
-    for (const executer of [executerAchatDirect, executerPanier]) {
-      const resultat = await executer(undefined, email, true);
-      const corps = JSON.parse(resultat.appels.find(a => String(a).startsWith('corps:')).slice(6));
-      assert.equal(corps.emailAchat, undefined);
-      assert.equal(corps.accordRelance, undefined);
-      assert.equal(resultat.appels.at(-1), 'redirige:https://checkout.stripe.com/test');
-      assert.ok(!resultat.appels.includes('attente'));
-    }
-  });
-}
 
 test('un ancien accord mémorisé ne coche pas le choix de rappel de la nouvelle visite', async () => {
   const resultat = await executerPanier();
