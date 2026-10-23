@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#1A2851">
+  <title>Arrêt Uber, 4 mars 2020, un chauffeur de plateforme salarié</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="L'arrêt Uber du 4 mars 2020 (n° 19-13.316) approuve la requalification d'un chauffeur de plateforme en salarié. Faits, solution, portée et critiques.">
+  <link rel="canonical" href="https://trajectoiredroit.com/arret-uber-2020-explique.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="L'arrêt Uber du 4 mars 2020, pourquoi un chauffeur de plateforme peut être salarié">
+  <meta property="og:description" content="Un chauffeur de plateforme peut être salarié. L'arrêt Uber est expliqué pas à pas, avec la portée et les critiques de la solution.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/cours-contrats-hero.jpg">
+  <meta property="og:url" content="https://trajectoiredroit.com/arret-uber-2020-explique.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "L'arrêt Uber du 4 mars 2020, le chauffeur de plateforme et le lien de subordination",
+        "description": "L'arrêt rendu le 4 mars 2020 par la chambre sociale de la Cour de cassation (pourvoi n° 19-13.316), expliqué pas à pas. La Cour approuve la cour d'appel qui a jugé qu'un chauffeur de la plateforme Uber est lié à elle par un contrat de travail.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-10-23",
+        "dateModified": "2026-10-23",
+        "image": "https://trajectoiredroit.com/assets/cours-contrats-hero.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": {
+            "@type": "EducationalOrganization",
+            "name": "TrajectoireDroit"
+          }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+          }
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Lien de subordination, travail par plateforme"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://trajectoiredroit.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://trajectoiredroit.com/blog.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Arrêt Uber, 4 mars 2020",
+            "item": "https://trajectoiredroit.com/arret-uber-2020-explique.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quelle définition du lien de subordination la Cour applique-t-elle dans l'arrêt Uber ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Elle reprend celle de l'arrêt Société générale de 1996. Le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné. Le travail au sein d'un service organisé peut être un indice de subordination, quand l'employeur fixe seul les conditions d'exécution."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qui a requalifié le contrat du chauffeur, la cour d'appel ou la Cour de cassation ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La cour d'appel de Paris a jugé, par son arrêt du 10 janvier 2019, que le contrat de partenariat était un contrat de travail. La Cour de cassation rejette le pourvoi d'Uber et approuve cette décision."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quelle différence y a-t-il entre l'arrêt Uber et l'arrêt Take Eat Easy ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dans l'arrêt Take Eat Easy du 28 novembre 2018, la Cour de cassation casse, en raison de la géolocalisation et du pouvoir de sanction, l'arrêt qui refusait de requalifier un livreur à vélo. Dans l'arrêt Uber, elle rejette le pourvoi de la plateforme et juge que la subordination existe pendant les connexions, même si aucune sanction ne punit l'absence de connexion."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "L'arrêt Uber est-il toujours d'actualité ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, pour la définition du lien de subordination, que la Cour de cassation applique toujours. Le résultat dépend en revanche des faits. Le 9 juillet 2025 (pourvoi n° 24-13.504), elle rejette le pourvoi d'un autre chauffeur d'Uber, parce que la cour d'appel avait écarté la subordination au vu de constatations différentes. La directive européenne 2024/2831 du 23 octobre 2024 doit en outre être transposée au plus tard le 2 décembre 2026."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment citer l'arrêt Uber en copie ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tu écris « Cass. soc., 4 mars 2020, n° 19-13.316, Uber » et tu précises ce qu'il juge. Un chauffeur de plateforme est salarié quand la plateforme exerce sur lui les pouvoirs de l'employeur. Tu ajoutes que la Cour de cassation rejette le pourvoi contre l'arrêt de la cour d'appel de Paris du 10 janvier 2019."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=2d752479">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 549,64 €, 53 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-53 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">549,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 409,74 €, 44 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-44 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">409,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 524,67 €, 51 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-51 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">524,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 444,70 €, 46 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-46 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">444,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 644,58 €, 49 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-49 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">644,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span><span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Pack 10 séances <em>· -14 %</em></strong><small>890 € · 89 €/h</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="stage-methode.html" class="nav-item__link nav-item__link--stage" data-stage-link aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>Stage en direct
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <div class="stage-teaser">
+              <button type="button" class="dropdown__item stage-teaser__trigger" aria-expanded="false" aria-controls="stageTeaserPanel">
+                <span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg></span>
+                <span class="stage-teaser__main">
+                  <strong>Stage de méthode en direct</strong>
+                  <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+                  <span class="stage-teaser__countdown"></span>
+                </span>
+              </button>
+              <div class="stage-teaser__panel" id="stageTeaserPanel">
+                <p>Trois séances en direct, 8 h au total pour 176 €, pour reprendre la fiche d'arrêt, le commentaire d'arrêt, le cas pratique et la dissertation, avec un sujet travaillé à chaque fois. La prochaine session a lieu les 27, 28 et 29 octobre, pendant les vacances de la Toussaint. Plus que 3 places.</p>
+              </div>
+            </div>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="stage-methode.html">Voir toutes les infos et réserver →</a>
+          </div>
+        </div>
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+    <a href="stage-methode.html" class="mobile-nav__stage" data-stage-link>
+      <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-live"/></svg>
+      <span class="mobile-nav__stage-main">
+        <span class="mobile-nav__stage-title">Stage en direct</span>
+        <span class="stage-teaser__price"><span class="stage-teaser__price-old">93 € de l'heure</span><span class="stage-teaser__price-row"><span class="stage-teaser__price-new">22 € de l'heure</span><span class="stage-teaser__badge">-76 %</span></span></span>
+        <span class="stage-teaser__countdown"></span>
+      </span>
+    </a>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO ARTICLE -->
+    <article>
+    <section class="article-hero">
+      <div class="container container--narrow">
+        <nav class="article-breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/">Accueil</a> · <a href="blog.html">Blog</a> · <span>Arrêt Uber, 4 mars 2020</span>
+        </nav>
+        <div class="post-meta">
+          <span class="post-meta__cat">Droit du travail · L3</span>
+          <span class="post-meta__dot"></span>
+          <span>18 min de lecture</span>
+          <span class="post-meta__dot"></span>
+          <span>Mis à jour le 23 octobre 2026</span>
+        </div>
+        <h1 class="article-hero__title">L'arrêt Uber, 4 mars 2020, la requalification d'un chauffeur de plateforme</h1>
+        <p class="article-hero__standfirst">Le 4 mars 2020 (pourvoi n° 19-13.316), la chambre sociale de la Cour de cassation rejette le recours d'Uber, appelé pourvoi. Elle approuve la cour d'appel d'avoir jugé qu'un chauffeur de la plateforme était lié à elle par un contrat de travail, en appliquant la définition classique du lien de subordination. Selon la cour d'appel, la plateforme fixait les tarifs et l'itinéraire, et pouvait déconnecter le chauffeur après plusieurs refus de courses.</p>
+        <div class="article-author">
+          <img class="article-author__avatar" src="assets/julien-sm.webp" alt="Julien, professeur de droit">
+          <div>
+            <div class="article-author__name">Julien</div>
+            <div class="article-author__role">Master II de droit pénal, Panthéon-Assas · Major de promo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:36px">
+      <div class="container container--narrow">
+
+        <nav class="toc" aria-label="Sommaire">
+          <p class="toc__title">Dans cet article</p>
+          <ol>
+            <li><a href="#essentiel">Que dit l'arrêt Uber du 4 mars 2020 ?</a></li>
+            <li><a href="#faits">Les faits, un chauffeur dont Uber ferme le compte</a></li>
+            <li><a href="#procedure">La procédure et le pourvoi</a></li>
+            <li><a href="#probleme">Le problème de droit</a></li>
+            <li><a href="#solution">La solution de la Cour de cassation</a></li>
+            <li><a href="#sens">Pourquoi la liberté de se connecter ne suffit-elle pas à exclure le salariat ?</a></li>
+            <li><a href="#portee">La portée de l'arrêt, avant et après 2020</a></li>
+            <li><a href="#critique">Les arguments pour et contre la solution</a></li>
+            <li><a href="#copie">Comment utiliser cet arrêt dans une copie</a></li>
+            <li><a href="#erreurs">Les erreurs à éviter avec cet arrêt</a></li>
+            <li><a href="#faq">Questions fréquentes</a></li>
+          </ol>
+        </nav>
+
+        <div class="prose">
+
+          <h2 id="essentiel">Que dit l'arrêt Uber du 4 mars 2020 ?</h2>
+          <p>Le 4 mars 2020, la chambre sociale de la Cour de cassation, celle qui juge les litiges de travail, rejette le pourvoi d'Uber, c'est-à-dire le recours qu'Uber avait formé. Cette décision approuve ainsi la cour d'appel d'avoir jugé qu'un chauffeur qui travaille par la plateforme était lié à elle par un <strong>contrat de travail</strong>. Elle applique la définition du lien de subordination posée en 1996 par l'arrêt Société générale, sans la modifier. Le lien de subordination est la situation d'une personne qui travaille sous les ordres de quelqu'un qui peut la contrôler et la sanctionner.</p>
+          <p>Le chauffeur s'était pourtant déclaré <strong>travailleur indépendant</strong>, c'est-à-dire quelqu'un qui travaille pour son propre compte, sans employeur. La cour d'appel a jugé ce statut <strong>fictif</strong>, car les faits montraient une autre réalité. Selon elle, Uber donnait des directives, en contrôlait l'exécution et sanctionnait le chauffeur, et la Cour de cassation approuve ce raisonnement.</p>
+          <p>C'est la deuxième décision de la chambre sociale sur le travail par plateforme numérique, après l'arrêt Take Eat Easy du 28 novembre 2018. Elle est rendue en formation plénière de chambre, c'est-à-dire avec davantage de magistrats que d'ordinaire. Dans la mention FP-P+B+R+I placée en tête de l'arrêt, FP désigne cette formation et P la publication au Bulletin des arrêts, le recueil officiel des décisions les plus importantes. B, R et I annoncent la reprise dans le Bulletin d'information, dans le Rapport annuel et sur le site internet de la Cour, soit la diffusion la plus large qui existait alors.</p>
+
+          <div class="key-callout">
+            <div class="key-callout__label"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg>L'idée à garder de cet arrêt</div>
+            <p>Pour savoir si une relation de travail est un contrat de travail, le juge examine les <strong>conditions réelles</strong> dans lesquelles la personne travaille, même si le contrat s'intitule « partenariat » et même si elle est inscrite à un registre professionnel. Cette inscription crée une présomption, une idée que la loi tient pour vraie tant que personne ne prouve le contraire, et les faits peuvent la renverser. Dans cette affaire, la cour d'appel a constaté que le chauffeur, dès qu'il se connecte, <strong>intègre un service organisé par Uber</strong>, c'est-à-dire un service dont Uber fixe seule les règles de fonctionnement. La liberté de choisir ses horaires laisse donc le salariat possible.</p>
+          </div>
+
+          <!-- vague2:encart-produit -->
+<div class="article-produit-inline">
+  <img class="article-produit-inline__thumb" src="assets/apercus/vignettes/travail-l3-s1.webp" width="60" height="80" alt="Aperçu de la fiche Droit du travail L3" loading="lazy">
+  <div class="article-produit-inline__body">
+    <p class="article-produit-inline__label">Fiche complète</p>
+    <p class="article-produit-inline__title">Droit du travail L3</p>
+    <p class="article-produit-inline__meta">Tout le cours en PDF, avec cet arrêt et tous les autres · <strong>14,99 €</strong></p>
+  </div>
+  <div class="article-produit-inline__actions">
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-travail-l3-s1">Acheter · 14,99 €</button>
+    <a class="article-produit-inline__more" href="droit-du-travail-l3.html#fiches">Voir la fiche →</a>
+  </div>
+</div>
+
+          <h2 id="faits">Les faits, un chauffeur dont Uber ferme le compte</h2>
+          <p>À partir du 12 octobre 2016, un chauffeur, que l'arrêt désigne par la seule initiale F, conduit des clients grâce à la plateforme numérique d'Uber. Il a signé un formulaire d'enregistrement de partenariat avec <strong>Uber BV</strong>, une société de droit néerlandais qui exploite l'application. Avant de commencer, il a loué une voiture auprès d'un partenaire d'Uber et s'est enregistré en tant qu'indépendant au répertoire Sirene, qui recense les entreprises, avec l'activité de transport de voyageurs par taxis.</p>
+          <p>La cour d'appel ajoute qu'il a dû s'inscrire au registre des métiers pour devenir partenaire d'Uber. Elle relève aussi qu'il a d'abord travaillé sous la licence d'une société partenaire d'Uber, Hinter France. En effet, il n'avait pas encore sa propre carte professionnelle de VTC (voiture de transport avec chauffeur), obtenue le 7 décembre 2016.</p>
+          <p>Selon l'article L. 8221-6 du Code du travail, les personnes inscrites sur certains registres professionnels sont <strong>présumées ne pas être liées à leur donneur d'ordre, c'est-à-dire la personne ou l'entreprise pour qui elles travaillent, par un contrat de travail</strong>. Le chauffeur doit donc prouver qu'il se trouve en réalité dans une situation de salarié.</p>
+          <p>À partir d'avril 2017, Uber BV désactive définitivement son compte. Le chauffeur ne peut plus conduire par l'application et il saisit ensuite la justice.</p>
+
+          <h2 id="procedure">La procédure et le pourvoi</h2>
+          <p>Le chauffeur saisit le conseil de prud'hommes, la juridiction qui juge les litiges nés d'un contrat de travail. Il demande la <strong>requalification</strong> de sa relation avec Uber, c'est-à-dire que le juge donne à ce contrat sa vraie nature, quel que soit le nom que les parties lui ont donné, et il réclame aussi des rappels de salaire et des indemnités de rupture.</p>
+          <p>Le 10 janvier 2019, la cour d'appel de Paris, qui rejuge l'affaire après un premier jugement, infirme ce jugement de première instance et le remplace par une autre décision. Elle juge que le contrat de partenariat est un contrat de travail, puis elle renvoie l'affaire devant le conseil de prud'hommes de Paris. Le conseil de prud'hommes de Paris devra fixer les sommes dues. Il pourra notamment accorder des dommages-intérêts, une somme qui répare le préjudice du chauffeur, par exemple celui d'un licenciement sans motif sérieux. Uber France et Uber BV forment alors un pourvoi en cassation, c'est-à-dire un recours devant la Cour de cassation.</p>
+          <p>Un syndicat, la CGT-FO, intervient aussi devant la Cour de cassation, et la Cour déclare son intervention irrecevable, ce qui signifie qu'elle refuse de l'examiner. En effet, à ce stade, un tiers peut seulement venir appuyer une des parties, et à condition d'avoir un intérêt à défendre ses propres droits selon les articles 327 et 330 du Code de procédure civile. Le syndicat n'en justifiait aucun dans ce litige.</p>
+          <p>Les sociétés Uber présentent un moyen unique, c'est-à-dire un seul argument de droit, découpé en plusieurs points appelés branches. Elles soutiennent d'abord que le contrat laisse le chauffeur libre. Il choisit quand et où il se connecte et il peut refuser les courses. La plateforme se rémunère seulement par des frais sur les courses effectuées, sans redevance fixe, et le chauffeur peut travailler en même temps avec d'autres applications. Il serait donc libre de ne jamais travailler pour Uber et de ne jamais rester à sa disposition.</p>
+          <p>Uber ajoute que la présomption de l'article L. 8221-6 n'est renversée qu'en cas de lien de subordination juridique permanente, et que la cour d'appel n'a pas recherché si ces éléments, pris ensemble, excluaient une telle subordination. Le moyen compte douze branches. Certaines défendent la géolocalisation, un suivi de la position du chauffeur par l'application, qui ne servirait qu'à mettre en relation le chauffeur et le client. D'autres soutiennent que le tarif calculé à la distance et à la durée ne constitue pas un ordre.</p>
+
+          <h2 id="probleme">Le problème de droit</h2>
+          <p><strong>Un travailleur qui passe par une plateforme numérique, qui choisit ses jours et ses heures de connexion, mais dont la plateforme fixe les tarifs et les conditions d'exécution, se trouve-t-il dans un lien de subordination qui renverse la présomption de non-salariat et fait de lui un salarié ?</strong></p>
+
+          <h2 id="solution">La solution de la Cour de cassation</h2>
+          <p>La chambre sociale rejette le pourvoi. Son raisonnement, dans la partie intitulée « Réponse de la Cour », suit trois étapes. Elle rappelle d'abord la présomption de non-salariat, qui peut être renversée quand la personne fournit ses prestations dans des conditions qui la placent dans un lien de subordination juridique permanente à l'égard du donneur d'ordre, puis elle reprend la définition du lien de subordination en renvoyant à l'arrêt Société générale.</p>
+
+          <div class="citation-box">
+            <p class="citation-box__label">La définition du lien de subordination et l'indice du service organisé</p>
+            <blockquote>« Selon la jurisprudence constante de la Cour (Soc., 13 nov. 1996, n° 94-13187, Bull. V n° 386, Société générale), le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné. Selon cette même jurisprudence, peut constituer un indice de subordination le travail au sein d'un service organisé lorsque l'employeur en détermine unilatéralement les conditions d'exécution. »</blockquote>
+            <cite>Cass. soc., 4 mars 2020, n° 19-13.316 (Uber), points 8 et 9</cite>
+          </div>
+
+          <p>Troisième étape, la Cour vérifie que la cour d'appel a tiré les bonnes conséquences de ce qu'elle avait constaté. Les juges du fond, à savoir le conseil de prud'hommes et la cour d'appel, jugent les faits, alors que la Cour de cassation contrôle seulement que la loi leur a été correctement appliquée. Les faits qui figurent dans cette partie de l'arrêt sont ceux que la <strong>cour d'appel</strong> a relevés. Quatre séries de constatations fondent la décision.</p>
+          <ul>
+            <li><strong>Un service créé et organisé par Uber.</strong> Le chauffeur a intégré un service de transport qui n'existe que grâce à la plateforme. Il ne se constitue aucune clientèle propre et Uber décide des conditions de la prestation.</li>
+            <li><strong>Des tarifs et un itinéraire imposés.</strong> L'algorithme de la plateforme, c'est-à-dire le programme informatique qui calcule le prix, fixe celui de la course et impose un itinéraire. Le contrat prévoit une correction du tarif si le chauffeur choisit un « itinéraire inefficace », et le chauffeur a présenté devant les juges plusieurs corrections de tarif que la plateforme lui avait appliquées.</li>
+            <li><strong>Un contrôle de l'acceptation des courses.</strong> Selon le chauffeur, qui n'a pas été démenti, l'application lui envoie après trois refus le message « Êtes-vous encore là ? ». Le chauffeur dispose de huit secondes pour accepter une course et ne connaît pas toujours la destination avant de répondre.</li>
+            <li><strong>Un pouvoir de sanction.</strong> Uber peut déconnecter temporairement le chauffeur à partir de trois refus de courses. Elle peut aussi lui retirer l'accès à son compte quand son taux d'annulation dépasse la limite fixée, ou quand des utilisateurs signalent des « comportements problématiques ». Pour la cour d'appel, il importe peu que les faits reprochés soient établis ou que la sanction soit proportionnée, car il suffit qu'Uber puisse sanctionner.</li>
+          </ul>
+          <p>De cet ensemble, la cour d'appel a déduit que le statut de travailleur indépendant du chauffeur était fictif et qu'Uber BV « lui avait adressé des directives, en avait contrôlé l'exécution et avait exercé un pouvoir de sanction ». La Cour de cassation juge cette décision conforme à la loi, ou, selon l'expression consacrée, légalement justifiée, et rejette le pourvoi. Elle juge inopérantes, c'est-à-dire sans effet sur la solution, les septième, neuvième et douzième branches du moyen.</p>
+
+          <h2 id="sens">Pourquoi la liberté de se connecter ne suffit-elle pas à exclure le salariat ?</h2>
+          <p>Le choix des jours et des heures de travail laisse possible une relation de travail subordonnée, car le chauffeur qui se connecte intègre un service organisé par Uber, selon la cour d'appel approuvée par la Cour de cassation.</p>
+          <p>Prenons d'abord le travail indépendant. Un plombier indépendant choisit ses clients et fixe le prix de son devis. Il décide aussi lui-même comment mener son chantier. La note explicative, le document que la Cour publie pour présenter sa décision, retient ces mêmes marques d'indépendance. Or le chauffeur de l'arrêt dépend d'Uber sur chacune de ces marques. En effet, il n'a pas de clientèle propre et il accepte parfois une course sans en connaître la destination. De plus, le prix est calculé par la plateforme, et l'itinéraire lui est imposé.</p>
+          <p>Ensuite, la Cour applique à ces faits les trois pouvoirs de l'employeur. Le <strong>pouvoir de donner des ordres</strong> se voit dans l'itinéraire imposé et dans le tarif corrigé quand le chauffeur s'en écarte, corrections que l'arrêt range aussi parmi les sanctions. Le <strong>pouvoir de contrôle</strong> passe par la surveillance de l'acceptation des courses, avec le message envoyé après trois refus. Le <strong>pouvoir de sanction</strong> s'exerce par la déconnexion temporaire et par la perte possible du compte.</p>
+          <p>Uber objecte aussi que le chauffeur ne lui doit rien tant qu'il ne se connecte pas. Selon la note explicative, la Cour juge que le chauffeur est subordonné pendant qu'il est connecté. Le juge examine donc le temps de connexion, même si le chauffeur n'a aucune obligation de se connecter et si aucune sanction ne punit l'absence de connexion.</p>
+          <p>La note explicative invoque aussi le droit de l'Union européenne. Dans l'arrêt Allonby du 13 janvier 2004, la Cour de justice de l'Union européenne, qui est la juridiction chargée d'interpréter ce droit, juge qu'une personne reste un travailleur même si son indépendance n'existe que sur le papier, et même si elle n'a pas l'obligation d'accepter les missions proposées.</p>
+          <p>Enfin, la chambre sociale refuse d'adopter un autre critère que certains auteurs proposaient, celui de la <strong>dépendance économique</strong>. Ce critère aurait fait du salarié toute personne qui tire l'essentiel de ses revenus d'un seul donneur d'ordre. La Cour garde la subordination juridique, comme elle le faisait déjà dans <a href="arret-bardou-1931-explique.html">l'arrêt Bardou de 1931</a>.</p>
+          <p>La note explicative donne deux raisons. D'abord, le droit de l'Union appuie cette solution. Il donne à la notion de travailleur un sens autonome. Autrement dit, il la définit lui-même, sans renvoyer au droit de chaque État. Dans l'arrêt Fenoll du 26 mars 2015, la Cour de justice de l'Union européenne la définit de manière proche de la subordination. Ensuite, le Conseil constitutionnel s'est référé à la subordination juridique dans sa décision du 20 décembre 2019.</p>
+
+          <!-- vague2:encart-lead -->
+          <div class="inline-capture">
+            <p class="inline-capture__title">Pour préparer ton partiel de droit du travail</p>
+            <p class="inline-capture__text">Mon guide gratuit « Réviser le droit sans s'épuiser » explique comment répartir les grands arrêts sur tout le semestre. Tu les apprends ainsi au fur et à mesure, bien avant la veille du partiel.</p>
+            <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST">
+              <input type="email" name="email" required placeholder="ton@email.com" aria-label="Email">
+              <input type="hidden" name="_subject" value="Lead magnet (article arrêt Uber 2020)">
+              <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+              <button class="btn btn--primary" type="submit">Recevoir mon guide →</button>
+            </form>
+          </div>
+
+          <h2 id="portee">La portée de l'arrêt, avant et après 2020</h2>
+          <p>Cet arrêt prolonge une ligne de jurisprudence, c'est-à-dire un ensemble de décisions des juges sur un même sujet, qui part de 1931. Bardou avait posé que le salariat suppose un lien de subordination juridique et que la dépendance économique ne suffit pas. L'<a href="arret-societe-generale-1996-explique.html">arrêt Société générale de 1996</a> a donné le contenu de cette subordination avec les trois pouvoirs. L'arrêt Uber reprend ensuite cette définition pour un chauffeur de plateforme.</p>
+          <p>La Cour de cassation avait déjà rendu une première décision sur ce sujet, l'arrêt <strong>Take Eat Easy</strong> du 28 novembre 2018 (pourvoi n° 17-20.079). Un coursier à vélo demandait lui aussi la requalification de son contrat. La Cour avait cassé, c'est-à-dire annulé, l'arrêt de la cour d'appel. La cour d'appel refusait la subordination, alors qu'elle constatait deux faits. L'application était dotée d'un système de géolocalisation, qui permettait à la société de suivre le coursier en temps réel, et la société disposait d'un pouvoir de sanction.</p>
+          <p>Les deux plateformes diffèrent sur la contrainte de connexion. Chez Take Eat Easy, le coursier s'inscrivait à des créneaux de travail et recevait des pénalités appelées « strikes » quand il manquait un créneau. Uber laisse le chauffeur libre de ne pas se connecter, mais la Cour juge que la subordination existe pendant les connexions.</p>
+          <p>Dix semaines avant l'arrêt Uber, le législateur est intervenu. La loi d'orientation des mobilités du 24 décembre 2019 permettait aux plateformes de VTC et de livraison d'établir une <strong>charte de responsabilité sociale</strong>, c'est-à-dire un document où elles fixent leurs engagements envers les travailleurs. Le texte voté ajoutait que, si l'administration validait officiellement cette charte, le respect de ses engagements ne pourrait pas caractériser un lien de subordination. Ce passage aurait empêché le juge de requalifier la relation à cause d'engagements que la plateforme avait elle-même rédigés.</p>
+          <p>Par sa décision du 20 décembre 2019 (n° 2019-794 DC), le Conseil constitutionnel a censuré ces mots pour <strong>incompétence négative</strong>. Cette expression désigne le cas où le législateur n'a pas exercé toute sa compétence et en a laissé une partie à d'autres.</p>
+          <p>Le champ d'application du droit du travail relève de la loi. Une plateforme ne peut donc pas écrire elle-même la liste des éléments que le juge devra ignorer pour caractériser un contrat de travail. Le juge conserve ainsi son pouvoir de requalification. La cour d'appel de Paris l'avait déjà exercé dans l'affaire Uber le 10 janvier 2019, et la Cour de cassation approuve son arrêt le 4 mars 2020, soit deux mois et demi après la décision du Conseil constitutionnel.</p>
+          <p>Depuis, le législateur a organisé le dialogue social des travailleurs indépendants des plateformes. Une ordonnance du 21 avril 2021, c'est-à-dire un texte pris par le gouvernement avec l'accord du Parlement et ratifié en 2022, a créé l'Autorité des relations sociales des plateformes d'emploi. Ces travailleurs gardent le statut d'indépendant, et la loi leur donne des représentants.</p>
+          <p>La décision ne concerne que la relation d'un seul chauffeur. Les autres doivent donc saisir le juge pour obtenir la même qualification. Ils peuvent ensuite réclamer les droits attachés au salariat, comme les heures supplémentaires ou les congés payés. Selon Le Monde du droit, les entreprises concurrentes des plateformes pourraient aussi s'appuyer sur la décision pour invoquer une concurrence déloyale, c'est-à-dire un comportement qui fausse la compétition entre entreprises. L'URSSAF, l'organisme qui collecte les cotisations sociales, pourrait également réclamer des cotisations.</p>
+          <p>Le droit français ne connaît que deux statuts, celui de salarié et celui d'indépendant, comme le rappelle la note explicative de la Cour. En revanche, d'autres pays ont une catégorie intermédiaire. Au Royaume-Uni, la Cour suprême a jugé le 19 février 2021, dans l'affaire Uber BV contre Aslam, que des chauffeurs d'Uber étaient des « workers », une catégorie située entre le salarié (« employee ») et l'indépendant.</p>
+          <p>À l'échelle européenne, la directive (UE) 2024/2831 du 23 octobre 2024, un texte européen qui fixe un résultat à atteindre, que chaque État inscrit dans son droit, prévoit une présomption de relation de travail que la plateforme peut renverser. Les États membres doivent la transposer, c'est-à-dire l'intégrer dans leur droit national, au plus tard le 2 décembre 2026.</p>
+          <p>Le 9 juillet 2025 (pourvoi n° 24-13.504), la chambre sociale, réunie en formation restreinte, c'est-à-dire avec moins de magistrats que pour l'arrêt de 2020, rejette le pourvoi d'un chauffeur qui demandait la requalification de sa relation avec Uber. Elle reprend la définition de 1996 et l'indice du service organisé.</p>
+          <p>La cour d'appel de Paris avait admis que le chauffeur était intégré dans un service organisé, mais elle avait retenu d'autres faits que ceux de 2020. Selon elle, les chauffeurs pouvaient travailler par d'autres applications ou en dehors de toute application. Ils disposaient de quinze secondes pour accepter une course et pouvaient se reconnecter presque immédiatement après une déconnexion. La cour d'appel a aussi relevé que la fixation du prix par la plateforme est prévue par la loi, et que l'application avait été adaptée depuis juillet 2020 à la loi d'orientation des mobilités. La Cour juge que la cour d'appel a pu en déduire l'absence de subordination. La définition est la même qu'en 2020, mais les faits constatés diffèrent, et la qualification retenue est donc inverse.</p>
+
+          <h2 id="critique">Les arguments pour et contre la solution</h2>
+                    <p>La solution se défend d'abord par sa continuité. La Cour garde la définition de 1996 telle quelle. Elle applique aussi une idée ancienne, celle selon laquelle l'existence d'une relation de travail dépend des conditions réelles du travail, quels que soient les mots écrits dans le contrat. Sans cette idée, il suffirait à une entreprise d'appeler « partenaire » celui qu'elle fait travailler pour éviter le droit du travail.</p>
+          <p>Les faits la soutiennent aussi. Un travailleur dont la plateforme fixe le prix et l'itinéraire, et qui n'a pas de clientèle propre, ressemble davantage à un salarié qu'à un entrepreneur.</p>
+          <p>Cette solution peut en revanche être critiquée sur le temps de connexion. L'argument principal d'Uber était que le chauffeur ne doit rien à la plateforme quand il ne se connecte pas. La Cour y répond en isolant les périodes de connexion. L'arrêt ne dit rien de la situation du chauffeur hors connexion, par exemple de sa rémunération ou de son temps de travail à ce moment-là.</p>
+          <p>Les trois pouvoirs de 1996 supposent un employeur qui donne des ordres. Or, ici, les ordres et les contrôles passent par l'application. Elle impose l'itinéraire et corrige le tarif, puis elle envoie un message après trois refus. Certaines sanctions peuvent en outre venir de signalements d'utilisateurs. La cour d'appel y a vu des directives, un contrôle et un pouvoir de sanction d'Uber BV, et la Cour de cassation l'approuve, si bien que la définition de 1996 s'applique même quand ces pouvoirs s'exercent par un algorithme.</p>
+          <p>L'arrêt juge un seul chauffeur, au vu des faits constatés pour Uber. Une autre plateforme, dont l'algorithme et les sanctions fonctionnent autrement, peut être jugée différemment.</p>
+
+          <h2 id="copie">Comment utiliser cet arrêt dans une copie</h2>
+          <p><strong>Dans un cas pratique.</strong> Tu cites cet arrêt dès que l'énoncé présente une personne qui travaille par une plateforme avec le statut d'indépendant et qui veut être reconnue comme salariée. Tu commences par la présomption de l'article L. 8221-6 du Code du travail, puis tu rappelles la définition du lien de subordination, et tu l'appliques aux faits en cherchant tour à tour les ordres, le contrôle et les sanctions.</p>
+          <p>Par exemple, un livreur choisit ses horaires, mais la plateforme fixe le prix de chaque course et le déconnecte après trois refus. Tu conclus que le livreur intègre un service organisé par la plateforme et que son statut d'indépendant est fictif, comme l'a jugé la cour d'appel de Paris, approuvée par la Cour de cassation en 2020.</p>
+          <p><strong>Dans une dissertation.</strong> L'arrêt montre qu'un critère posé en 1996, avant l'existence des applications de transport, s'applique à un chauffeur de plateforme. Tu l'emploies sur un sujet qui porte sur la qualification du contrat de travail ou sur la distinction entre salarié et indépendant, et tu le complètes avec la directive européenne de 2024.</p>
+          <p><strong>Dans un commentaire d'arrêt.</strong> J'ai rédigé un <a href="commentaire-arret-uber-2020-corrige.html">commentaire corrigé complet de cet arrêt</a>, avec l'introduction, puis le plan et son développement. Pour la méthode générale, tu peux relire ma page sur <a href="methode-fiche-arret.html">la fiche d'arrêt</a>.</p>
+
+          <h2 id="erreurs">Les erreurs à éviter avec cet arrêt</h2>
+          <ul>
+            <li><strong>Écrire que la Cour de cassation a requalifié le contrat.</strong> La cour d'appel de Paris a requalifié. La Cour de cassation rejette le pourvoi d'Uber et approuve cette décision. L'affaire est d'ailleurs renvoyée devant le conseil de prud'hommes pour fixer les sommes dues.</li>
+            <li><strong>Attribuer à la Cour de cassation les faits de l'affaire.</strong> Dans la « Réponse de la Cour », les points 10 à 14 rapportent les constatations de la cour d'appel, avec des verbes comme retenir ou constater. Les points 7 à 9 et 15 contiennent en revanche le raisonnement propre de la Cour de cassation. Pour savoir qui s'exprime, tu peux aussi regarder les rubriques. « Faits et procédure » présente l'affaire et « Énoncé du moyen » donne les arguments du pourvoi.</li>
+            <li><strong>Croire que tous les travailleurs de plateformes sont salariés.</strong> L'arrêt juge un chauffeur, au vu des faits constatés. Un autre travailleur peut rester indépendant si la plateforme ne fixe pas ses conditions de travail.</li>
+            <li><strong>Confondre Uber avec Take Eat Easy.</strong> L'arrêt Take Eat Easy de 2018 concerne un livreur à vélo et se termine par une cassation. L'arrêt Uber de 2020 concerne un chauffeur et rejette le pourvoi de la plateforme.</li>
+            <li><strong>Citer la dépendance économique comme critère.</strong> La Cour refuse ce critère et applique la subordination juridique.</li>
+            <li><strong>Oublier la présomption de non-salariat.</strong> Le chauffeur était inscrit à un registre professionnel (la cour d'appel parle du registre des métiers), donc la présomption de l'article L. 8221-6 s'appliquait. La première étape du raisonnement consiste à montrer que cette présomption est renversée.</li>
+          </ul>
+
+          <h2 id="faq">Questions fréquentes</h2>
+          <div class="accordion">
+            <details class="accordion__item" open><summary><h3>Quelle définition du lien de subordination la Cour applique-t-elle dans l'arrêt Uber ?</h3></summary><div class="accordion__body">Elle reprend celle de l'arrêt Société générale de 1996. Le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné. Le travail au sein d'un service organisé peut être un indice de subordination, quand l'employeur fixe seul les conditions d'exécution.</div></details>
+            <details class="accordion__item"><summary><h3>Qui a requalifié le contrat du chauffeur, la cour d'appel ou la Cour de cassation ?</h3></summary><div class="accordion__body">La cour d'appel de Paris a jugé, par son arrêt du 10 janvier 2019, que le contrat de partenariat était un contrat de travail. La Cour de cassation rejette le pourvoi d'Uber et approuve cette décision.</div></details>
+            <details class="accordion__item"><summary><h3>Quelle différence y a-t-il entre l'arrêt Uber et l'arrêt Take Eat Easy ?</h3></summary><div class="accordion__body">Dans l'arrêt Take Eat Easy du 28 novembre 2018, la Cour de cassation casse, en raison de la géolocalisation et du pouvoir de sanction, l'arrêt qui refusait de requalifier un livreur à vélo. Dans l'arrêt Uber, elle rejette le pourvoi de la plateforme et juge que la subordination existe pendant les connexions, même si aucune sanction ne punit l'absence de connexion.</div></details>
+            <details class="accordion__item"><summary><h3>L'arrêt Uber est-il toujours d'actualité ?</h3></summary><div class="accordion__body">Oui, pour la définition du lien de subordination, que la Cour de cassation applique toujours. Le résultat dépend en revanche des faits. Le 9 juillet 2025 (pourvoi n° 24-13.504), elle rejette le pourvoi d'un autre chauffeur d'Uber, parce que la cour d'appel avait écarté la subordination au vu de constatations différentes. La directive européenne 2024/2831 du 23 octobre 2024 doit en outre être transposée au plus tard le 2 décembre 2026.</div></details>
+            <details class="accordion__item"><summary><h3>Comment citer l'arrêt Uber en copie ?</h3></summary><div class="accordion__body">Tu écris « Cass. soc., 4 mars 2020, n° 19-13.316, Uber » et tu précises ce qu'il juge. Un chauffeur de plateforme est salarié quand la plateforme exerce sur lui les pouvoirs de l'employeur. Tu ajoutes que la Cour de cassation rejette le pourvoi contre l'arrêt de la cour d'appel de Paris du 10 janvier 2019.</div></details>
+          </div>
+
+          </div>
+
+          <!-- offre-fin-fiche-arret -->
+          <aside class="conversion-offer" aria-label="La fiche complète de la matière, Droit du travail L3, semestre 1" data-offre-fin-arret="fiche-travail-l3-s1">
+            <div class="conversion-offer__card">
+              <div class="conversion-offer__visual">
+                <img src="assets/covers/fiche-travail-l3-s1.webp?v=dossier-universitaire-20260915" alt="Couverture de la fiche complète Droit du travail L3, semestre 1" loading="lazy" width="960" height="540" decoding="async">
+              </div>
+              <div>
+                <p class="conversion-offer__eyebrow">La fiche complète de la matière</p>
+                <p class="conversion-offer__title">Droit du travail L3, semestre 1</p>
+                <p class="conversion-offer__summary">Le semestre 1 suit la relation de travail de l'embauche jusqu'à la rupture, en passant par le pouvoir de l'employeur et la durée du travail. Chaque forme de rupture a son chapitre, du licenciement pour motif personnel jusqu'à la rupture conventionnelle.</p>
+                <div class="conversion-offer__choices">
+                  <button type="button" class="btn btn--primary" data-tjd-produit="fiche-travail-l3-s1">Acheter · 14,99 €</button>
+                  <button type="button" class="apercu-link" data-apercu='["assets/apercus/travail-l3-s1-zoom.webp", "assets/apercus/travail-l3-s1-1.webp", "assets/apercus/travail-l3-s1-2.webp"]' data-apercu-title="Droit du travail · L3 S1 · Fiche complète" data-apercu-price="14,99 €" data-apercu-cta="fiche-travail-l3-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
+                </div>
+                <p class="conversion-offer__note">Paiement Stripe · accès à vie · mises à jour incluses · garantie satisfait ou remboursé sous 7 jours</p>
+              </div>
+            </div>
+          </aside>
+          <!-- BLOC AUTEUR -->
+          <div class="author-box">
+            <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+            <div>
+              <p class="author-box__name">Julien</p>
+              <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+              <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">162 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques), et tu peux aussi réserver mes cours particuliers.</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section section--dark">
+      <div class="container container--narrow text-center">
+        <h2 class="h2" style="color:#fff">Le lien de subordination est au programme de tous les cours de droit du travail.</h2>
+        <p class="lead" style="color:rgba(255,255,255,.85); max-width:560px; margin:16px auto 32px">Ma fiche de droit du travail L3 suit le contrat de travail depuis sa qualification jusqu'à sa rupture. Chaque notion y est définie avec un exemple, puis reliée aux arrêts à citer en cas pratique comme en dissertation, dont celui-ci.</p>
+        <a class="btn btn--primary btn--lg" href="droit-du-travail-l3.html">Voir la fiche de droit du travail L3</a>
+        <p style="margin-top:18px"><a href="blog.html" style="color:rgba(255,255,255,.8)">← Revenir au blog</a></p>
+      </div>
+    </section>
+    </article>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="majeures-preparees.html">Majeures préparées</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a><a href="blog.html">Blog</a><a href="methode-cas-pratique.html">Méthode du cas pratique</a><a href="fiche-arrets.html">Fiche d'arrêt</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+  <!-- vague2:sticky-bar -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit du travail L3 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-travail-l3-s1">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=22c78133" defer></script>
+
+
+  <script src="assets/js/main.js?v=4b8ba62a" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>
