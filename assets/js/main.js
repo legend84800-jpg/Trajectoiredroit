@@ -567,6 +567,11 @@
   // chaque page garde exactement son affichage codé en dur. Le compte à rebours
   // n'apparaît que si le fichier donne une vraie échéance ("compte_a_rebours_fin"),
   // jamais un faux compte à rebours qui repart à chaque visite.
+  // Le fichier peut aussi porter une liste "periodes" écrite à l'avance : la page
+  // affiche celle dont les dates (debut, fin) contiennent le jour, pour que la
+  // bascule tombe à minuit et pas à l'heure où la routine tourne.
+  // Les clics du bandeau et du bouton collant partent dans Matomo (catégorie
+  // "saison", libellé = id de la période) pour mesurer ce que la période rapporte.
   (function () {
     if (!window.fetch || !window.JSON) return;
     var chemin = window.location.pathname;
@@ -597,6 +602,11 @@
     }
     function lireSession(cle) { try { return sessionStorage.getItem(cle); } catch (e) { return null; } }
     function ecrireSession(cle) { try { sessionStorage.setItem(cle, '1'); } catch (e) {} }
+    function suivreClic(lien, action, idPeriode) {
+      lien.addEventListener('click', function () {
+        if (window._paq) window._paq.push(['trackEvent', 'saison', action, idPeriode]);
+      });
+    }
 
     function bandeau(b, idPeriode) {
       var header = document.querySelector('.site-header');
@@ -617,6 +627,7 @@
       banner.id = 'urgencyBanner';
       var a = el('a', 'urgency-banner__link');
       a.href = lien;
+      suivreClic(a, 'clic-bandeau', idPeriode);
       var dot = el('span', 'urgency-banner__dot');
       dot.setAttribute('aria-hidden', 'true');
       a.appendChild(dot);
@@ -718,7 +729,7 @@
       if (reassurance && h.masquer_reassurance_pdf === true) reassurance.hidden = true;
     }
 
-    function boutonCollant(c) {
+    function boutonCollant(c, idPeriode) {
       if (!c || !pageDans(c.pages)) return;
       var barre = document.getElementById('stickyCta');
       if (!barre || !texte(c.titre) || !texte(c.libelle) || !lienSur(c.lien)) return;
@@ -730,18 +741,36 @@
       if (petit && texte(c.sous_titre)) petit.textContent = c.sous_titre;
       lien.textContent = c.libelle;
       lien.href = c.lien;
+      suivreClic(lien, 'clic-bouton-collant', idPeriode);
     }
 
     fetch('/assets/data/saison.json', { cache: 'no-cache' })
       .then(function (r) { if (!r.ok) throw new Error('saison ' + r.status); return r.json(); })
       .then(function (s) {
-        if (!s || !s.periode || !texte(s.periode.id) || !texte(s.periode.fin)) return;
-        // Période terminée sans mise à jour du fichier : on revient à l'affichage par défaut.
-        var fin = new Date(s.periode.fin + 'T23:59:59').getTime();
-        if (isNaN(fin) || Date.now() > fin) return;
-        try { bandeau(s.bandeau, s.periode.id); } catch (e) {}
-        try { zoneAccueil(s.accueil); } catch (e) {}
-        try { boutonCollant(s.bouton_collant); } catch (e) {}
+        if (!s) return;
+        // Une période vaut si elle a un id et une fin pas encore passée, et que son
+        // début (facultatif) est atteint. Aucune période en cours : affichage par défaut.
+        function enCours(p) {
+          if (!p || !texte(p.id) || !texte(p.fin)) return false;
+          var fin = new Date(p.fin + 'T23:59:59').getTime();
+          var debut = texte(p.debut) ? new Date(p.debut + 'T00:00:00').getTime() : 0;
+          var maintenant = Date.now();
+          return !isNaN(fin) && !isNaN(debut) && maintenant >= debut && maintenant <= fin;
+        }
+        var choix = null;
+        if (s.periodes && s.periodes.length) {
+          for (var i = 0; i < s.periodes.length; i++) {
+            var p = s.periodes[i];
+            if (p && enCours(p.periode)) { choix = p; break; }
+          }
+        } else if (enCours(s.periode)) {
+          choix = s;
+        }
+        if (!choix) return;
+        var id = choix.periode.id;
+        try { bandeau(choix.bandeau, id); } catch (e) {}
+        try { zoneAccueil(choix.accueil); } catch (e) {}
+        try { boutonCollant(choix.bouton_collant, id); } catch (e) {}
       })
       .catch(function () {});
   })();
