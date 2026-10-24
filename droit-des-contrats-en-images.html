@@ -400,7 +400,18 @@
       .cim-avant__image { margin:0 }
       .cim-avant__image button { all:unset; cursor:zoom-in; display:block; width:100% }
       .cim-avant__image img { width:100%; height:auto; border-radius:10px; border:1px solid var(--border); display:block; box-shadow:0 8px 24px rgba(15,23,42,.10) }
+      .cim-avis { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:22px; align-items:start }
+      .cim-avis__carte { margin:0; padding:18px 20px; border:1px solid var(--border); border-radius:12px; background:var(--white) }
+      .cim-avis__tete { display:flex; align-items:center; gap:10px; margin-bottom:10px }
+      .cim-avis__tete strong { display:block; color:var(--ink) }
+      .cim-avis__tete small { display:block; font-size:.78rem; color:var(--muted) }
+      .cim-avis__initiale { width:38px; height:38px; border-radius:50%; color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:700; flex:none }
+      .cim-avis__etoiles { margin-left:auto; color:#C49A4A; font-size:.9rem; letter-spacing:1px; white-space:nowrap }
+      .cim-avis blockquote { margin:0; font-size:.95rem; line-height:1.6; color:var(--body) }
+      .cim-avis__suite { margin-top:22px }
+      .cim-avis__suite summary { cursor:pointer; font-weight:600; color:var(--blue-700) }
       @media (max-width: 860px) {
+        .cim-avis { grid-template-columns:1fr }
         .cim-avant { grid-template-columns:1fr; gap:24px }
         .cim-hero, .cim-page { grid-template-columns:1fr; gap:24px }
         .cim-hero__visuel { order:-1 }
@@ -425,6 +436,7 @@
             <h1 class="h1" style="margin-bottom:16px">Le droit des contrats en images</h1>
             <p class="lead">Ce cours reprend tout le programme de droit des contrats du premier semestre de L2, de l'introduction jusqu'à l'inexécution, en 109 pages illustrées. Sur chaque page, la règle est écrite avec son article, puis une scène dessinée te montre la situation à laquelle elle s'applique. Tu retiens ainsi chaque règle avec la scène qui l'illustre, ce qui t'aide à la retrouver le jour du partiel.</p>
             <div class="cim-prix"><strong>19,99 €</strong><span class="cim-note">PDF de 109 pages, avec le plan détaillé du cours en bonus</span></div>
+            <p class="cim-note" style="margin:0 0 4px"><a href="#avis" style="color:inherit"><span style="color:#C49A4A">★★★★★</span> 23 avis d'élèves</a></p>
             <div class="cim-actions">
               <button type="button" class="btn btn--primary" data-tjd-produit="cours-images-contrats-l2-s1">Acheter le cours · 19,99 €</button>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/cours-images-contrats-l2-s1/page-002.webp", "assets/apercus/cours-images-contrats-l2-s1/page-014.webp", "assets/apercus/cours-images-contrats-l2-s1/page-040.webp", "assets/apercus/cours-images-contrats-l2-s1/page-090.webp", "assets/apercus/cours-images-contrats-l2-s1/page-103.webp"]' data-apercu-title="Le droit des contrats en images · L2 S1" data-apercu-price="19,99 €" data-apercu-cta="cours-images-contrats-l2-s1" data-apercu-sub="Pages réelles du cours en images"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir des pages du cours</button>
@@ -435,6 +447,112 @@
             <img src="assets/covers/cours-images-contrats-l2-s1.webp" alt="Trois pages du cours Le droit des contrats en images, la couverture, l'erreur sur les qualités essentielles et les sanctions de l'inexécution" width="960" height="540" fetchpriority="high" decoding="async">
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="avis" style="border-top:1px solid var(--border)">
+      <div class="container">
+        <h2 class="h2" style="margin-bottom:8px">Ce qu'en disent mes élèves</h2>
+        <p class="cim-note" style="max-width:760px">J'ai recueilli ces avis auprès de mes élèves de L2 qui ont travaillé avec le cours en octobre 2026. Je les publie tous, sans en écarter aucun. Ils ne passent par aucune plateforme de vérification d'avis.</p>
+        <div class="cim-avis">
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#1F3A6E" aria-hidden="true">L</span><span><strong>Léa</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Au début, je me demandais si les dessins allaient m&#x27;aider ou juste prendre de la place. Puis j&#x27;ai repris le chapitre sur l&#x27;erreur avec les fiches ouvertes à côté de mon CM. J&#x27;avais appris les définitions, mais dès qu&#x27;on changeait les faits en TD, j&#x27;hésitais sur la règle à appliquer. Avec les exemples, j&#x27;ai compris pourquoi certaines erreurs permettaient d&#x27;annuler le contrat. Depuis, je reviens aux pages sur lesquelles j&#x27;ai encore des hésitations. Je suis contente d&#x27;avoir essayé ce format.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#A52E3B" aria-hidden="true">T</span><span><strong>Thomas</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Enfin compris la différence entre le pacte de préférence et la promesse. J&#x27;avais relu mon cours plusieurs fois et je continuais à confondre. Les exemples avec la vente m&#x27;ont aidé.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#1f7a3a" aria-hidden="true">J</span><span><strong>Julie</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>La scène avec le traiteur qui ne vient pas au mariage m&#x27;a aidée à comprendre la mise en demeure. Je m&#x27;en souvenais encore en reprenant mes notes le lendemain.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#6b3fa0" aria-hidden="true">S</span><span><strong>Sarah</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Je suis la licence à distance, donc je passe déjà beaucoup de temps devant des pages de cours. J&#x27;apprécie de pouvoir reprendre un chapitre sous cette forme. Certaines pages sont chargées, je les agrandis sur mon ordinateur pour lire les détails. En revanche, j&#x27;aime avoir l&#x27;explication et la situation sur la même page. La partie sur les sanctions m&#x27;aide à distinguer les cas où le contrat prend fin de ceux où on demande qu&#x27;il soit exécuté. J&#x27;ai encore besoin de m&#x27;entraîner sur les cas pratiques, mais je comprends mieux le cours quand je les prépare.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#C49A4A" aria-hidden="true">L</span><span><strong>Louis</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Je pensais avoir compris la nullité jusqu&#x27;à notre TD. J&#x27;ai donc repris les pages sur les sanctions et les restitutions pour voir ce que chaque personne devait rendre. Les exemples m&#x27;ont permis de corriger des erreurs dans ma préparation. Je garde ces pages ouvertes quand je reprends le TD, parce que j&#x27;hésite encore sur les restitutions.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#0E5A6E" aria-hidden="true">H</span><span><strong>Hugo</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Je retrouve vite les articles grâce au vert, et les titres permettent de revenir au bon passage. Je m&#x27;en sers quand je prépare mes TD. Ça m&#x27;évite de chercher dans toutes mes notes pour une condition que j&#x27;ai oubliée.</blockquote>
+          </figure>
+        </div>
+        <details class="cim-avis__suite">
+          <summary>Lire les 23 avis</summary>
+          <div class="cim-avis">
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#1F3A6E" aria-hidden="true">C</span><span><strong>Camille</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Je mélangeais tout entre créancier et débiteur dès que les deux personnes avaient une obligation. Avec les scènes de vente, j&#x27;arrive à me représenter qui doit quoi. Ça paraît basique, mais j&#x27;en avais besoin avant de reprendre la suite du cours.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#A52E3B" aria-hidden="true">Y</span><span><strong>Yanis</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Les exemples en images m&#x27;aident beaucoup à retenir. Je retrouve la scène quand je relis mon cours.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#1f7a3a" aria-hidden="true">I</span><span><strong>Inès</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>J&#x27;adore le format !! Les explications restent détaillées et les images me donnent envie de continuer à lire.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#6b3fa0" aria-hidden="true">M</span><span><strong>Maxime</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Ça change de mes fiches habituelles. Je retiens mieux avec les situations dessinées.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#C49A4A" aria-hidden="true">C</span><span><strong>Chloé</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>La partie sur la commande en ligne est super bien expliquée. Je savais qu&#x27;il y avait plusieurs étapes, mais je mélangeais leur ordre. Avec les écrans dessinés, je comprends ce qu&#x27;on fait à chaque clic.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#0E5A6E" aria-hidden="true">A</span><span><strong>Adam</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>J&#x27;utilise les fiches après le CM pour reprendre ce que j&#x27;ai compris de travers. Les explications sur l&#x27;offre et l&#x27;acceptation m&#x27;ont été utiles, parce que j&#x27;avais du mal avec les délais. Je revois les pages, puis j&#x27;essaie de refaire les exemples sans regarder. C&#x27;est plus facile pour moi de repérer ce que j&#x27;ai oublié comme ça.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#1F3A6E" aria-hidden="true">M</span><span><strong>Manon</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Les fiches sont belles et j&#x27;arrive à suivre les explications. Merci beaucoup !</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#A52E3B" aria-hidden="true">E</span><span><strong>Emma</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>J&#x27;ai l&#x27;habitude de refaire toutes mes fiches moi-même et j&#x27;y passe beaucoup de temps. Du coup, je peux commencer à revoir le chapitre directement. Je garde quand même mes notes à côté pour ajouter les remarques de notre prof. Les pages sur les vices du consentement me servent souvent, car je mélange encore certaines conditions quand je fais les exercices. Avec les exemples, je retrouve plus facilement celle que je suis en train de vérifier. Le document est long, donc je travaille par chapitre. Pour l&#x27;instant, cette façon de faire me convient.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#1f7a3a" aria-hidden="true">N</span><span><strong>Nassim</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>J&#x27;aime bien que les exceptions soient expliquées aussi. Dans mes propres fiches, j&#x27;avais tendance à garder la règle et à résumer le reste trop vite. Je m&#x27;en suis rendu compte en comparant avec celles-ci.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#6b3fa0" aria-hidden="true">N</span><span><strong>Nathan</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>J&#x27;ai enfin une explication du cours que j&#x27;arrive à retenir. Je recommande.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#C49A4A" aria-hidden="true">C</span><span><strong>Clara</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Les images m&#x27;aident quand je ferme la fiche et que j&#x27;essaie de me rappeler le cours. Je revois la scène, puis je cherche la règle qui allait avec. Parfois j&#x27;ai retenu l&#x27;exemple et j&#x27;ai oublié une condition, donc je retourne la vérifier. Je préfère travailler comme ça plutôt que relire plusieurs fois la même page de mon CM. Je m&#x27;en sers presque tous les soirs en ce moment.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#0E5A6E" aria-hidden="true">M</span><span><strong>Mehdi</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>J&#x27;avais du mal à comprendre pourquoi un tiers pouvait parfois intervenir alors qu&#x27;il n&#x27;avait pas signé le contrat. J&#x27;ai donc repris les explications et les exemples du chapitre. C&#x27;est beaucoup plus clair pour moi maintenant. En plus, je peux revenir sur une question précise sans reprendre tout le document.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#1F3A6E" aria-hidden="true">L</span><span><strong>Lucie</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Je révise sur tablette et le format me plaît beaucoup. J&#x27;agrandis la partie que je veux revoir et je prends mes notes à côté.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#A52E3B" aria-hidden="true">P</span><span><strong>Paul</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Je redouble ma L2 et les contrats me posent encore des difficultés. J&#x27;avais passé beaucoup de temps à apprendre des définitions l&#x27;année dernière, puis j&#x27;avais bloqué sur les exercices. Cette fois, je reprends les chapitres avec les exemples des fiches avant de préparer mes TD. Ça m&#x27;oblige à vérifier si je comprends ce que la règle change pour les personnes. La partie sur l&#x27;inexécution me sert déjà beaucoup. Du coup, je prends mon temps sur chaque sanction, parce que j&#x27;avais tendance à les confondre. Je suis content d&#x27;avoir une autre manière de revoir la matière.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#1f7a3a" aria-hidden="true">A</span><span><strong>Amina</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Les explications restent accessibles même quand le chapitre devient plus difficile. J&#x27;avais besoin qu&#x27;on reprenne les termes et qu&#x27;on me montre une situation pour comprendre. Je m&#x27;en suis servie pour revoir la capacité, et j&#x27;ai pu compléter mes notes en sachant ce que j&#x27;écrivais.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#6b3fa0" aria-hidden="true">R</span><span><strong>Romain</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Bon support pour reprendre les notions après le cours. Les articles réunis à la fin me servent aussi quand je révise.</blockquote>
+          </figure>
+          <figure class="cim-avis__carte">
+            <div class="cim-avis__tete"><span class="cim-avis__initiale" style="background:#C49A4A" aria-hidden="true">J</span><span><strong>Jade</strong><small>Élève de L2</small></span><span class="cim-avis__etoiles" aria-label="5 étoiles sur 5">★★★★★</span></div>
+            <blockquote>Je connaissais déjà les fiches classiques et j&#x27;étais curieuse de voir cette version. Je passe davantage de temps sur les exemples avec les images, parce que je comprends mieux la situation. Ensuite, je retourne au texte pour vérifier les conditions. Je m&#x27;en sers plusieurs fois dans la semaine, surtout pour les points sur lesquels j&#x27;hésite en TD. Je recommande vivement.</blockquote>
+          </figure>
+          </div>
+        </details>
       </div>
     </section>
 
