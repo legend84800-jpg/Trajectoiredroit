@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Sujets de droit constitutionnel L1 semestre 1 avec corrigé</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Sujets de droit constitutionnel L1 semestre 1 : douze sujets par thème, une dissertation corrigée, six questions de cours corrigées et les erreurs à éviter.">
+  <link rel="canonical" href="https://trajectoiredroit.com/sujets-droit-constitutionnel-l1.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sujets de droit constitutionnel L1 semestre 1 avec corrigé">
+  <meta property="og:description" content="Sujets de droit constitutionnel L1 semestre 1 : douze sujets par thème, une dissertation corrigée, six questions de cours corrigées et les erreurs à éviter.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/sujets-droit-constitutionnel-l1.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/sujets-droit-constitutionnel-l1.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Sujets de droit constitutionnel L1 semestre 1, avec une dissertation corrigée en entier",
+      "description": "Sujets de droit constitutionnel L1 semestre 1 : douze sujets par thème, une dissertation corrigée, six questions de cours corrigées et les erreurs à éviter.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-10-24",
+      "dateModified": "2026-10-24",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Sujets de droit constitutionnel L1 semestre 1"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/sujets-droit-constitutionnel-l1.webp",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/sujets-droit-constitutionnel-l1.html"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sujets de droit constitutionnel L1 semestre 1",
+          "item": "https://trajectoiredroit.com/sujets-droit-constitutionnel-l1.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quels types de sujets tombent en droit constitutionnel L1 au premier semestre ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Quatre formes reviennent, la dissertation, le commentaire de texte, le commentaire de décision et les questions de cours. À Assas, en janvier 2019, les étudiants choisissaient entre une dissertation et un commentaire de Jellinek. Ton chargé de TD t'indique le format de ton examen, car chaque faculté combine ces formes à sa façon."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que contient le programme de droit constitutionnel du premier semestre ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ma fiche complète compte dix-neuf chapitres, du droit constitutionnel et de sa méthode jusqu'à l'histoire constitutionnelle de la IVe République. Certaines facultés étudient la Ve République dès le premier semestre, et d'autres la gardent pour le semestre suivant. Le plan de ton cours te dit dans quel cas tu te trouves."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Où trouver des sujets corrigés de droit constitutionnel L1 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cette page propose douze sujets avec leurs pistes, une dissertation corrigée en entier et six questions de cours. Le TD de droit constitutionnel L1 apporte en plus une dissertation corrigée sur le référendum, et le recueil de dix dissertations du semestre 1 complète ces exemples."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Faut-il connaître les auteurs comme Montesquieu, Locke ou Carré de Malberg ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, pour leurs idées principales et à l'endroit où elles servent ton raisonnement. Locke et Montesquieu s'utilisent pour la séparation des pouvoirs, et Carré de Malberg pour la définition de l'État. Tu cites l'idée avec le titre de l'ouvrage, par exemple le Second traité du gouvernement civil de Locke ou De l'esprit des lois de Montesquieu, et tu laisses de côté la biographie de l'auteur."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Une dissertation de droit constitutionnel doit-elle contenir une délimitation du sujet ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, dans la méthode que j'enseigne, la délimitation est la troisième étape de l'introduction. Elle compte surtout quand le sujet compare des pays ou des époques, comme « La Constitution doit-elle toujours être écrite ? ». Deux ou trois phrases suffisent, et l'exemple de délimitation du sujet montre comment les écrire."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=2d752479">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 549,64 €, 53 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-53 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">549,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 409,74 €, 44 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-44 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">409,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 524,67 €, 51 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-51 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">524,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 444,70 €, 46 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-46 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">444,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 644,58 €, 49 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-49 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">644,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -14 %</em></strong><small>890 € · 89 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow text-center">
+        <h1 class="h1">Sujets de droit constitutionnel L1 semestre 1, avec une dissertation corrigée en entier</h1>
+        <p class="lead" style="max-width:720px; margin-left:auto; margin-right:auto">Les sujets de droit constitutionnel L1 semestre 1 portent sur l'État et la Constitution. Ils prennent la forme d'une dissertation, d'un commentaire de texte ou de décision, ou de questions de cours. Tu trouves ici douze sujets classés par thème, avec ce que la copie doit traiter pour chacun. Une dissertation est corrigée en entier, et six questions de cours montrent le niveau de détail attendu.</p>
+        <div class="hero__cta flex flex--center" style="margin-top:24px">
+          <a class="btn btn--primary btn--lg" href="#banque">Voir les douze sujets →</a>
+          <a class="btn btn--outline btn--lg" href="#dissertation">La dissertation corrigée</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <p style="color:var(--body); line-height:1.75">Les sujets changent d'une faculté à l'autre, mais ils reprennent souvent les mêmes thèmes.</p>
+        <p style="color:var(--body); line-height:1.75">Le correcteur regarde d'abord si ton introduction définit les mots du sujet, puis si ton plan répond à la question posée. Tu prépares donc les définitions des notions et quelques textes à citer, comme l'article 16 de la Déclaration de 1789 ou l'article 3 de la Constitution de 1958. Si ta faculté étudie déjà la Ve République au premier semestre, le <a href="td-droit-constitutionnel-l1-corrige.html">TD de droit constitutionnel L1 corrigé</a> propose en plus une dissertation sur le référendum.</p>
+      </div>
+    </section>
+
+    <!-- offre du PDF correspondant -->
+    <section class="conversion-offer" aria-labelledby="choix-dissertations-constit-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/exercices-20260923/dissertation-constit-l1-s1.webp" alt="Couverture du recueil de dix dissertations corrigées de droit constitutionnel L1 S1, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">Les dissertations corrigées du semestre 1</p>
+            <h2 class="conversion-offer__title" id="choix-dissertations-constit-titre">Droit constitutionnel L1 S1, dix dissertations corrigées en 53 pages</h2>
+            <p class="conversion-offer__summary">Chaque sujet commence par une page de décorticage, qui sert de brouillon. J'y analyse les mots clés, puis je nomme les deux idées qui s'opposent dans le sujet. Ce brouillon se termine par la problématique (la question à laquelle la copie répond) et par le plan. La copie modèle vient ensuite, avec une introduction et un plan en deux parties. Les dix sujets du recueil sont différents des douze sujets de cette page.</p>
+            <ul class="conversion-offer__benefits">
+              <li>Dix sujets corrigés, du brouillon à la copie rédigée</li>
+              <li>Une problématique et un plan au brouillon écrits pour chaque sujet</li>
+              <li>Accès à vie et mises à jour comprises</li>
+            </ul>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="dissertation-constit-l1-s1">Dissertations · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="fiche-constit-l1-s1">Fiche complète · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-l1">Pack Licence 1 · 87 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
+            <div data-tjd-avis data-matiere="constit-l1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMME ET FORMES -->
+    <section class="section" id="programme">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quels sujets tombent en droit constitutionnel au premier semestre ?</h2>
+        <p class="lead" style="margin-bottom:20px">Au premier semestre, tu étudies l'État et la Constitution, puis la manière dont le pouvoir est partagé entre les institutions. Les sujets suivent ce programme, sous quatre formes d'exercice.</p>
+        <p style="margin-bottom:6px; color:var(--body); line-height:1.75">Ma fiche complète du semestre compte dix-neuf chapitres. Les deux premiers définissent le droit constitutionnel et sa méthode, et je regroupe ici les dix-sept autres en cinq thèmes.</p>
+        <ul style="color:var(--body); line-height:1.75; margin:0 0 14px; padding-left:22px">
+          <li>L'État : ses éléments et ses formes (unitaire, fédérale, régionale), puis la souveraineté.</li>
+          <li>La Constitution : sa notion, sa place face aux autres règles de droit, puis sa révision et son contrôle.</li>
+          <li>La démocratie : les modes d'exercice du pouvoir et le suffrage, avec les modes de scrutin.</li>
+          <li>Les pouvoirs : la séparation des pouvoirs et les régimes parlementaire et présidentiel, avec les exemples des États-Unis et du Royaume-Uni.</li>
+          <li>L'histoire constitutionnelle : de la Révolution au Second Empire, puis la IIIe et la IVe République.</li>
+        </ul>
+        <p style="color:var(--body); line-height:1.75">En janvier 2019, les étudiants de première année de licence à l'université Panthéon-Assas (centre de Melun) avaient le choix entre une dissertation et un commentaire. La dissertation portait sur « Avons-nous besoin de la notion de souveraineté pour définir l'État ? ». Le commentaire portait sur un extrait de Georg Jellinek, <em>L'État moderne et son droit</em> (1911), qui oppose l'État centralisé à l'État décentralisé. Les étudiants en traitaient donc un seul, en trois heures et sans aucun document.</p>
+        <div class="grid-2" style="gap:18px; margin-top:20px">
+          <div class="card"><h3 style="margin-top:0">La dissertation</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">Le sujet est une question ou une notion en quelques mots, comme « La souveraineté ». La copie comprend une introduction en sept étapes, puis un plan en deux parties qui répond à la question. La <a href="methode-dissertation-juridique.html">méthode de la dissertation juridique</a> détaille chaque étape.</p></div>
+          <div class="card"><h3 style="margin-top:0">Le commentaire de texte</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">Le sujet donne un extrait d'un auteur ou d'un texte de loi, par exemple l'article 16 de la Déclaration de 1789. Tu trouves la thèse de l'auteur (l'idée qu'il défend), puis tu la discutes avec ton cours.</p></div>
+          <div class="card"><h3 style="margin-top:0">Le commentaire de décision</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">Le sujet donne une décision du Conseil constitutionnel, comme celle du 16 juillet 1971. Ce Conseil vérifie qu'une loi respecte la Constitution, ce que l'on appelle le contrôle de constitutionnalité des lois. Ta copie présente les faits, puis explique ce que la décision change pour ce contrôle.</p></div>
+          <div class="card"><h3 style="margin-top:0">Les questions de cours</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">Chaque question demande une définition ou une distinction en quelques lignes. Six questions corrigées figurent plus bas.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BANQUE DE SUJETS -->
+    <section class="section section--alt" id="banque">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Douze sujets de droit constitutionnel L1, thème par thème</h2>
+        <p class="lead" style="margin-bottom:20px">Pour chaque sujet, tu vois la forme de l'exercice et ce que la copie doit développer. Ces douze sujets sont différents de ceux du recueil de dix dissertations, qui porte par exemple sur la révision de la Constitution et sur la justice constitutionnelle. La dissertation corrigée plus bas est un treizième sujet.</p>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)">
+                <th style="padding:10px 12px">Le sujet</th>
+                <th style="padding:10px 12px">La forme</th>
+                <th style="padding:10px 12px">Ce que la copie traite</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:rgba(37,99,235,.06)"><td colspan="3" style="padding:10px 12px; font-weight:700">L'État et la souveraineté</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« Avons-nous besoin de la notion de souveraineté pour définir l'État ? » (sujet posé à Assas en janvier 2019)</td><td style="padding:10px 12px; vertical-align:top">Dissertation</td><td style="padding:10px 12px; vertical-align:top">Tu pars de la définition de l'État par trois éléments (le territoire, la population et un pouvoir organisé), puis de celle de Carré de Malberg, qui y voit une puissance supérieure qui commande et qui contraint les membres du groupe. Tu juges ensuite si cette puissance doit être souveraine pour qu'il y ait un État.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« L'État unitaire est-il nécessairement centralisé ? »</td><td style="padding:10px 12px; vertical-align:top">Dissertation</td><td style="padding:10px 12px; vertical-align:top">Un État unitaire possède un seul pouvoir politique. La centralisation concerne la façon dont l'État répartit les décisions entre le niveau national et les collectivités locales. L'article 1er de la Constitution dit que l'organisation de la France « est décentralisée ».</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« Nation et peuple »</td><td style="padding:10px 12px; vertical-align:top">Dissertation sur une notion en deux mots</td><td style="padding:10px 12px; vertical-align:top">L'article 3 de la Déclaration de 1789 place la souveraineté dans la nation, et l'article 3 de la Constitution de 1958 dit qu'elle appartient au peuple. Tu définis les deux mots, puis tu montres comment le texte actuel les relie.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« Les rapports entre les pouvoirs publics sous la IIIe République »</td><td style="padding:10px 12px; vertical-align:top">Dissertation d'histoire constitutionnelle</td><td style="padding:10px 12px; vertical-align:top">Les lois constitutionnelles de 1875 organisent les rapports entre le Président de la République et les deux chambres. Par exemple, l'article 5 de la loi du 25 février 1875 permet au Président de dissoudre la Chambre des députés (mettre fin à son mandat avant la date prévue) avec l'avis favorable du Sénat. L'article 6 rend les ministres responsables devant les chambres, ce qui permet aux chambres de les obliger à démissionner. Tu étudies ces textes, puis l'usage qui en a été fait.</td></tr>
+              <tr style="background:rgba(37,99,235,.06)"><td colspan="3" style="padding:10px 12px; font-weight:700">La Constitution</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« Qu'est-ce qu'une Constitution ? »</td><td style="padding:10px 12px; vertical-align:top">Dissertation sur une définition</td><td style="padding:10px 12px; vertical-align:top">Tu distingues la Constitution formelle de la Constitution matérielle, définies dans l'introduction de la dissertation corrigée plus bas. L'article 16 de la Déclaration de 1789 te donne un critère de contenu à discuter.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Commentaire de l'article 16 de la Déclaration des droits de l'homme et du citoyen de 1789</td><td style="padding:10px 12px; vertical-align:top">Commentaire de texte</td><td style="padding:10px 12px; vertical-align:top">Le texte dit que « toute société dans laquelle la garantie des droits n'est pas assurée, ni la séparation des pouvoirs déterminée, n'a point de Constitution ». Tu expliques ces deux conditions, puis tu discutes si elles suffisent à définir une Constitution.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« Le bloc de constitutionnalité est-il une création du juge ? »</td><td style="padding:10px 12px; vertical-align:top">Dissertation</td><td style="padding:10px 12px; vertical-align:top">Le Préambule de la Constitution de 1958, texte placé en tête de la Constitution, renvoie à d'autres textes, que la question de cours sur le bloc de constitutionnalité énumère. Tu montres comment le Conseil constitutionnel a décidé, le 16 juillet 1971, d'appliquer ce Préambule comme une règle obligatoire.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« La Constitution est-elle toujours au sommet de la hiérarchie des normes ? »</td><td style="padding:10px 12px; vertical-align:top">Dissertation</td><td style="padding:10px 12px; vertical-align:top">L'article 55 de la Constitution donne aux traités régulièrement ratifiés « une autorité supérieure à celle des lois », à condition que l'autre État signataire applique aussi le traité. Tu examines si cette règle place aussi les traités au-dessus de la Constitution.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Décision du Conseil constitutionnel du 16 juillet 1971, <em>Liberté d'association</em></td><td style="padding:10px 12px; vertical-align:top">Commentaire de décision</td><td style="padding:10px 12px; vertical-align:top">La décision porte sur une loi qui complète la loi du 1er juillet 1901 sur les associations. Tu présentes ce que le Conseil juge, puis la valeur qu'il donne au Préambule. La <a href="decision-liberte-association-1971-expliquee.html">décision Liberté d'association de 1971</a> est expliquée à part.</td></tr>
+              <tr style="background:rgba(37,99,235,.06)"><td colspan="3" style="padding:10px 12px; font-weight:700">La démocratie</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« Le suffrage universel est-il un droit ou une fonction ? »</td><td style="padding:10px 12px; vertical-align:top">Dissertation</td><td style="padding:10px 12px; vertical-align:top">L'article 3 de la Constitution dit que le suffrage (le vote) est « toujours universel, égal et secret » et que sont électeurs, « dans les conditions déterminées par la loi », « tous les nationaux français majeurs des deux sexes ». Tu te demandes si voter est un droit que chaque citoyen détient ou une fonction que la loi confie aux électeurs. La question de cours sur la souveraineté nationale et la souveraineté populaire t'aide à répondre.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« La démocratie semi-directe est-elle un compromis entre démocratie directe et démocratie représentative ? »</td><td style="padding:10px 12px; vertical-align:top">Dissertation</td><td style="padding:10px 12px; vertical-align:top">L'article 3 de la Constitution dit que le peuple exerce la souveraineté « par ses représentants et par la voie du référendum ». Le référendum est un vote direct des électeurs sur un texte. Les deux modes d'exercice figurent donc dans le texte, et tu défends ensuite que leur combinaison forme un compromis, ou un système à part.</td></tr>
+              <tr style="background:rgba(37,99,235,.06)"><td colspan="3" style="padding:10px 12px; font-weight:700">Les pouvoirs et les régimes politiques</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« Régime parlementaire et régime présidentiel : une distinction encore utile ? »</td><td style="padding:10px 12px; vertical-align:top">Dissertation</td><td style="padding:10px 12px; vertical-align:top">Les deux régimes se distinguent par les moyens d'action de l'exécutif et du Parlement l'un sur l'autre, détaillés dans les questions de cours. Tu compares la France et les États-Unis, puis tu juges si cette distinction décrit encore la réalité.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75">Tu trouves aussi, gratuitement, la <a href="dissertation-separation-des-pouvoirs-corrige.html">dissertation corrigée sur la séparation des pouvoirs</a>. Quand un sujet cite un article ou une décision, tu commences ton brouillon par ce texte, parce qu'il indique les deux idées qui s'opposent dans le sujet.</p>
+      </div>
+    </section>
+
+    <!-- DISSERTATION CORRIGÉE -->
+    <section class="section" id="dissertation">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Dissertation corrigée : « La Constitution doit-elle toujours être écrite ? »</h2>
+        <p class="lead" style="margin-bottom:24px">Ce sujet de première année demande de définir la Constitution, puis de comparer la France avec le Royaume-Uni et Israël. Au brouillon, tu analyses d'abord les mots du sujet, ce que j'appelle le décorticage. Tu écris ensuite l'introduction et le plan.</p>
+        <h3 style="margin-top:0; margin-bottom:12px">Le décorticage du sujet</h3>
+        <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:28px">
+          <div class="card" style="padding:22px 24px">
+            <h4 style="margin-top:0; margin-bottom:8px">Les termes du sujet</h4>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Le mot « Constitution » a un sens formel et un sens matériel, que l'étape 2 de l'introduction définit. Une Constitution « écrite » est rédigée dans un ou plusieurs documents officiels, comme les trois lois constitutionnelles de 1875. Les mots « doit-elle toujours » demandent si l'écrit est obligatoire dans tous les cas, et un seul État dont la Constitution n'est pas entièrement écrite suffit pour répondre non.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h4 style="margin-top:0; margin-bottom:8px">La tension du sujet</h4>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">L'écrit donne une règle connue de tous et placée au-dessus des lois, ce qui paraît indispensable pour limiter le pouvoir. Le Royaume-Uni vit toutefois avec des règles que personne n'a rédigées, et les Constitutions écrites elles-mêmes se complètent par la pratique et par le juge.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:0; margin-bottom:12px">L'introduction rédigée en sept étapes</h3>
+        <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:28px">
+          <div class="card" style="padding:22px 24px">
+            <h4 style="margin-top:0; margin-bottom:8px">1. L'accroche</h4>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">En 1803, dans l'affaire <em>Marbury contre Madison</em>, John Marshall, président de la Cour suprême des États-Unis, pose cette question (traduction libre) : « À quoi bon limiter les pouvoirs, et à quoi bon consigner cette limite par écrit, si ceux qu'elle doit retenir peuvent la franchir à tout moment ? » Pour lui, l'écrit rend la limite visible et permet de faire écarter la loi qui la dépasse.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h4 style="margin-top:0; margin-bottom:8px">2. La présentation du sujet et la définition des termes</h4>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La Constitution a deux sens. Au sens formel, elle forme un texte supérieur aux lois, que seule une procédure spéciale permet de réviser. Au sens matériel, elle regroupe les règles qui organisent le pouvoir, quelle que soit leur source. L'article 16 de la Déclaration des droits de l'homme et du citoyen de 1789 retient un critère de contenu, puisqu'il dit que toute société dans laquelle la garantie des droits n'est pas assurée, ni la séparation des pouvoirs déterminée, n'a point de Constitution. Une Constitution écrite se trouve dans un ou plusieurs textes officiels. En revanche, une Constitution coutumière repose en partie sur des règles que personne n'a rédigées, par exemple des usages que les responsables politiques respectent.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h4 style="margin-top:0; margin-bottom:8px">3. La délimitation du sujet</h4>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Ce sujet conduit à comparer la France avec le Royaume-Uni et Israël. La copie évoque le contenu des Constitutions et leur révision pour montrer le rôle de l'écrit, et elle laisse le reste à d'autres sujets. Les États-Unis apparaissent pour la Constitution de 1787 et pour la décision de 1803.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h4 style="margin-top:0; margin-bottom:8px">4. Le contexte et le rappel historique</h4>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">L'idée d'une Constitution rédigée dans un document propre s'impose à la fin du XVIIIe siècle. En effet, les États-Unis rédigent leur Constitution fédérale en 1787, puis la France se donne sa première Constitution écrite le 3 septembre 1791, avec la Déclaration de 1789 placée en tête. Le Royaume-Uni garde en revanche une Constitution faite de lois votées au fil des siècles, auxquelles s'ajoutent des décisions de justice et des usages. En France, enfin, le texte en vigueur est la Constitution du 4 octobre 1958. Son Préambule renvoie à d'autres textes, que le Conseil constitutionnel applique aussi.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h4 style="margin-top:0; margin-bottom:8px">5. L'intérêt du sujet</h4>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">La plupart des États ont aujourd'hui un texte constitutionnel, ce qui rend la question utile pour comprendre leurs institutions. Sur le plan théorique, le sujet oblige à dire à quoi sert l'écrit.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h4 style="margin-top:0; margin-bottom:8px">6. La problématique</h4>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Dès lors, l'écrit est-il la condition pour qu'une Constitution limite réellement le pouvoir, ou seulement la technique la plus répandue pour y parvenir ?</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h4 style="margin-top:0; margin-bottom:8px">7. L'annonce de plan</h4>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Une Constitution peut exister sans être entièrement écrite (I). Mais l'écrit reste une garantie solide contre les décisions prises sans règle, à condition que la pratique et le juge l'accompagnent (II).</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:0; margin-bottom:12px">Le plan détaillé et la copie rédigée</h3>
+        <div class="card" style="padding:22px 24px; margin-bottom:20px">
+          <h4 style="margin-top:0; margin-bottom:8px">I. Une Constitution peut exister sans être entièrement écrite</h4>
+          <p style="margin-bottom:12px; color:var(--body); line-height:1.7; font-style:italic">Pour cette partie, tu pars de l'article 16 de la Déclaration de 1789, puis tu cherches un État dont la Constitution repose sur des règles non écrites.</p>
+          <p style="margin-bottom:12px; color:var(--body); line-height:1.7"><strong>A. La Constitution se reconnaît à son contenu et peut être écrite en plusieurs textes.</strong> L'article 16 de la Déclaration de 1789 retient deux conditions de contenu, la garantie des droits et la séparation des pouvoirs. Ainsi, une société qui ne les remplit pas n'a point de Constitution. Le critère porte donc sur le contenu, quelle que soit la forme du texte.</p>
+          <p style="margin-bottom:12px; color:var(--body); line-height:1.7">Israël a une Constitution écrite par morceaux. En 1950, la Knesset, son Parlement, a décidé de construire la Constitution par chapitres, chacun adopté sous la forme d'une loi fondamentale. Ensuite, dans l'arrêt <em>United Mizrahi Bank</em> du 9 novembre 1995, la Cour suprême d'Israël a admis que la Knesset adopte les lois fondamentales avec un statut constitutionnel, supérieur aux lois ordinaires. La Cour peut donc écarter une loi ordinaire qui contredit une loi fondamentale, comme celles de 1992 sur les droits de la personne.</p>
+          <p style="margin-bottom:12px; color:var(--body); line-height:1.7"><strong>B. Le Royaume-Uni appuie sa Constitution sur des règles non écrites.</strong> Le Royaume-Uni n'a pas de document constitutionnel unique. Sa Constitution rassemble toutefois des lois, comme la déclaration des droits de 1689 (<em>Bill of Rights</em>) ou la loi de 1998 sur les droits de l'homme (<em>Human Rights Act</em>). Elle comprend aussi des décisions de justice et des conventions, c'est-à-dire des usages que les responsables politiques respectent sans qu'un juge les impose. Par exemple, le monarque donne en pratique son accord aux lois votées par le Parlement. Il nomme aussi Premier ministre la personne qui a le soutien de la Chambre des communes, l'assemblée élue par les citoyens, le plus souvent le chef du parti majoritaire.</p>
+          <p style="margin-bottom:12px; color:var(--body); line-height:1.7">À la fin du XIXe siècle, le juriste Dicey a distingué ces conventions des lois, parce que seules les lois sont appliquées par les tribunaux.</p>
+          <p style="margin-bottom:0; color:var(--body); line-height:1.7">Les juges britanniques appliquent pourtant les principes de cette Constitution. Ainsi, le 24 septembre 2019, dans l'affaire <em>Miller</em>, la Cour suprême du Royaume-Uni a jugé à l'unanimité de ses onze juges que la prorogation du Parlement était nulle. Une prorogation met fin à la session en cours, et les deux chambres ne siègent plus jusqu'à la session suivante. Le Premier ministre avait conseillé à la reine d'en décider une. Or cette interruption, prévue pour durer cinq semaines, empêchait le Parlement de siéger sans raison valable. La Cour a rappelé que le Parlement fait la loi et contrôle le gouvernement, et qu'un Premier ministre ne peut pas l'écarter de ce rôle sans motif sérieux.</p>
+        </div>
+        <div class="card" style="padding:22px 24px; margin-bottom:20px">
+          <h4 style="margin-top:0; margin-bottom:8px">II. L'écrit reste une garantie solide, à condition de l'accompagner</h4>
+          <p style="margin-bottom:12px; color:var(--body); line-height:1.7; font-style:italic">Tu montres d'abord ce que l'écrit apporte, puis ce que la pratique et le juge ajoutent.</p>
+          <p style="margin-bottom:12px; color:var(--body); line-height:1.7"><strong>A. L'écrit fixe la limite et la place au-dessus des lois.</strong> Dans l'affaire <em>Marbury contre Madison</em>, la Cour suprême des États-Unis juge qu'une loi contraire à la Constitution est nulle, et elle appuie ce raisonnement sur le caractère écrit de la Constitution. L'écrit permet aussi de protéger la limite par une révision difficile, comme en France avec l'article 89. L'Assemblée nationale et le Sénat doivent voter le même texte. Ensuite, les citoyens l'approuvent par référendum. Pour un projet de révision, le Président peut choisir à la place de réunir les députés et les sénateurs en une seule assemblée, le Congrès, qui adopte alors la révision à la majorité des trois cinquièmes des suffrages exprimés.</p>
+          <p style="margin-bottom:12px; color:var(--body); line-height:1.7">Une Constitution de ce type s'appelle rigide. La Constitution britannique est au contraire souple, parce que le Parlement la modifie par une loi ordinaire, comme avec la loi de 1998 sur les droits de l'homme.</p>
+          <p style="margin-bottom:12px; color:var(--body); line-height:1.7"><strong>B. L'application de l'écrit dépend de la pratique et du juge.</strong> L'article 20 de la Constitution de 1958 confie au Gouvernement la conduite de la politique de la nation. Mais en temps normal, quand une majorité de l'Assemblée nationale le soutient, le Président fixe en pratique les grandes orientations de cette politique. Une cohabitation est une période où le Président et la majorité de l'Assemblée nationale viennent de camps opposés. La France en a connu trois entre 1986 et 2002. En revanche, pendant ces périodes, le Premier ministre dirige la politique de la nation, comme l'article 20 le prévoit.</p>
+          <p style="margin-bottom:12px; color:var(--body); line-height:1.7">En 1962, le général de Gaulle veut faire élire le Président au suffrage universel direct, par tous les électeurs. Or l'article 89 prévoit que le Parlement vote d'abord toute révision de la Constitution. Le général de Gaulle choisit l'article 11, qui permet de soumettre une loi directement au référendum, et les électeurs approuvent le texte. Dans sa décision du 6 novembre 1962, le Conseil constitutionnel se déclare incompétent pour contrôler cette loi, car le peuple l'a adoptée lui-même et elle exprime directement la souveraineté nationale. Une pratique que le juge refuse de contrôler peut ainsi faire évoluer le sens d'un texte écrit.</p>
+          <p style="margin-bottom:0; color:var(--body); line-height:1.7">Le Conseil constitutionnel complète aussi le texte écrit. Le 16 juillet 1971, il juge contraires à la Constitution des dispositions d'une loi sur les associations, parce qu'elles violent la liberté d'association, un principe que le Préambule réaffirme. Il donne ainsi une valeur obligatoire à ce Préambule, qui renvoie à d'autres textes comme la Déclaration de 1789. La Constitution que le juge applique dépasse donc les articles de 1958.</p>
+        </div>
+        <div class="card" style="padding:22px 24px; margin-bottom:20px">
+          <h4 style="margin-top:0; margin-bottom:8px">La conclusion rédigée</h4>
+          <p style="margin-bottom:0; color:var(--body); line-height:1.7">Une Constitution peut exister sans être entièrement écrite. La Constitution britannique repose en partie sur des conventions que personne n'a rédigées, et ses juges en appliquent les principes. L'écrit reste pourtant un moyen solide de fixer la limite du pouvoir et de la placer au-dessus de la loi, à condition que la pratique et le juge l'appliquent. La France a d'ailleurs choisi l'écrit en 2005 pour protéger un droit nouveau, en rattachant au Préambule de sa Constitution la Charte de l'environnement de 2004.</p>
+        </div>
+        
+        <p style="margin-top:22px; color:var(--body); line-height:1.75">Pour voir la même construction appliquée à un autre sujet, tu peux lire la <a href="exemple-dissertation-juridique-corrigee.html">dissertation juridique corrigée sur la jurisprudence</a>. Pour comprendre l'étape de délimitation, l'<a href="delimiter-le-sujet-dissertation-juridique.html">exemple de délimitation du sujet en droit</a> la détaille.</p>
+      </div>
+    </section>
+
+    <!-- QUESTIONS DE COURS -->
+    <section class="section section--alt" id="questions">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Six questions de cours corrigées en quelques lignes</h2>
+        <p class="lead" style="margin-bottom:24px">Chaque réponse tient en quelques lignes, avec l'article ou l'auteur à citer.</p>
+        <div class="grid-2" style="gap:18px">
+          <div class="card"><h3 style="margin-top:0">Quels sont les éléments constitutifs de l'État ?</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">L'État repose sur un territoire, une population et un pouvoir politique organisé, que l'on appelle la puissance publique. Carré de Malberg décrit ce pouvoir comme une puissance supérieure qui commande et qui contraint les membres du groupe. Il juge le mot souveraineté justifié pour la France, mais contestable pour définir tout État, car certains États, comme les États membres d'une fédération, ne sont pas souverains.</p></div>
+          <div class="card"><h3 style="margin-top:0">Quelle différence y a-t-il entre souveraineté nationale et souveraineté populaire ?</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">La souveraineté est le pouvoir suprême de décider. Pour la souveraineté nationale, défendue par Sieyès, ce pouvoir appartient à la nation, c'est-à-dire à l'ensemble du pays pris comme un tout, qui l'exerce par ses représentants. En revanche, la souveraineté populaire s'inspire de Rousseau. Elle appartient à l'ensemble des citoyens, de sorte que chacun peut prendre part aux décisions, par exemple en votant directement une loi.</p><p style="margin:10px 0 0; color:var(--body); line-height:1.7">La souveraineté nationale fait du vote une fonction, c'est-à-dire une mission que la nation confie aux citoyens. La souveraineté populaire en fait un droit que chaque citoyen détient. L'article 3 de la Constitution de 1958 combine les deux, puisqu'il dit que « la souveraineté nationale appartient au peuple » et que le peuple l'exerce « par ses représentants et par la voie du référendum ».</p></div>
+          <div class="card"><h3 style="margin-top:0">Qu'est-ce que la hiérarchie des normes ?</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">La hiérarchie des normes classe les règles de droit selon leur force, chaque règle devant respecter celles qui sont placées au-dessus d'elle. En France, la Constitution et le bloc de constitutionnalité viennent en premier. Les traités viennent ensuite, puis les lois, puis les règlements (les décisions de l'administration, comme un décret du Premier ministre ou un arrêté d'un ministre). Un arrêté qui contredit un décret est donc illégal, parce que le décret l'emporte sur l'arrêté. La page sur la <a href="la-hierarchie-des-normes.html">hiérarchie des normes</a> détaille chaque niveau.</p></div>
+          <div class="card"><h3 style="margin-top:0">Quels textes forment le bloc de constitutionnalité ?</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">Le bloc de constitutionnalité est l'ensemble des textes que le Conseil constitutionnel applique pour vérifier qu'une loi respecte la Constitution. Il comprend la Constitution de 1958 et son Préambule, qui renvoie à la Déclaration de 1789, au Préambule de 1946 et à la Charte de l'environnement de 2004. Le Préambule de 1946 mentionne en outre les principes fondamentaux reconnus par les lois de la République (des principes posés par des lois républicaines antérieures à 1946). Le Conseil constitutionnel les identifie au fil de ses décisions. Dans sa décision du 16 juillet 1971, il a ainsi reconnu le premier d'entre eux, la liberté d'association. Le détail figure dans l'explication du <a href="bloc-de-constitutionnalite-explique.html">bloc de constitutionnalité</a>.</p></div>
+          <div class="card"><h3 style="margin-top:0">Quelle différence y a-t-il entre un régime parlementaire et un régime présidentiel ?</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">Dans un régime parlementaire, le Gouvernement est responsable devant le Parlement, ce qui signifie que le Parlement peut voter contre lui et l'obliger à démissionner. En retour, l'exécutif (le chef de l'État et le Gouvernement) peut dissoudre l'assemblée élue, c'est-à-dire mettre fin à son mandat avant la date prévue. En France, l'article 20 prévoit la responsabilité du Gouvernement et l'article 12 la dissolution de l'Assemblée nationale par le Président de la République. Dans un régime présidentiel, au contraire, comme aux États-Unis, le Président et le Congrès américain (le Parlement des États-Unis) gardent chacun leur mandat jusqu'à son terme, même en cas de désaccord politique. Une procédure de destitution, appelée impeachment, permet de retirer son mandat au Président, mais elle est réservée à des fautes graves.</p></div>
+          <div class="card"><h3 style="margin-top:0">Quelle différence y a-t-il entre un État unitaire et un État fédéral ?</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">L'État unitaire possède un seul pouvoir politique et une seule Constitution, comme la France. Dans un État fédéral, comme aux États-Unis, plusieurs États fédérés (les États membres de la fédération) ont chacun leur propre Constitution et participent aux décisions de l'État fédéral, notamment par une chambre qui les représente. Face aux autres pays, l'ensemble forme en principe un seul État.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ERREURS CLASSIQUES -->
+    <section class="section" id="erreurs">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:24px">Les erreurs classiques qui coûtent des points</h2>
+        <div class="grid-2" style="gap:18px">
+          <div class="card"><h3 style="margin-top:0">Réciter le cours au lieu de répondre au sujet</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">Un sujet sur l'écriture de la Constitution te demande des exemples qui montrent ce que l'écrit change. Tu supprimes le reste, par exemple la liste des pouvoirs du Président.</p></div>
+          <div class="card"><h3 style="margin-top:0">Attribuer le <em>Léviathan</em> à Locke</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">Hobbes a écrit le <em>Léviathan</em> en 1651 pour défendre un pouvoir souverain unique. Locke a exposé la théorie des trois pouvoirs, législatif, exécutif et fédératif, dans le <em>Second traité du gouvernement civil</em> (1690). Le pouvoir fédératif désigne la conduite des relations avec l'étranger. Montesquieu retient en revanche le législatif, l'exécutif et le judiciaire.</p></div>
+          <div class="card"><h3 style="margin-top:0">Appeler « cour » le Comité constitutionnel de 1946</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">La Constitution de 1946 crée un Comité constitutionnel, qui est un organe politique. Le Conseil constitutionnel de 1958 se présente lui-même comme une juridiction, et il s'appelle conseil. Tu écris donc « Comité » pour 1946 et « Conseil » pour 1958.</p></div>
+          <div class="card"><h3 style="margin-top:0">Écrire que le Royaume-Uni n'a pas de Constitution</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">Le Royaume-Uni a une Constitution, faite de lois et de décisions de justice auxquelles s'ajoutent des conventions. Si tu écris le contraire, ta copie confond Constitution et document unique, et elle passe à côté du sujet « La Constitution doit-elle toujours être écrite ? ».</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S'ENTRAÎNER -->
+    <section class="section section--alt" id="entrainement">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Comment t'entraîner avec ces sujets ?</h2>
+        <p class="lead" style="margin-bottom:20px">Tu choisis un sujet du tableau et tu commences par le brouillon, comme dans la dissertation corrigée.</p>
+        <p style="color:var(--body); line-height:1.75">Au brouillon, tu écris d'abord les termes du sujet et sa délimitation. Tu notes ensuite la tension du sujet, puis la problématique et le plan en deux parties, avant de rédiger l'introduction. Tu t'exerces sans tes notes et en trois heures, comme à l'examen d'Assas décrit plus haut.</p>
+        <p style="color:var(--body); line-height:1.75">Tu compares ensuite ton brouillon avec la copie corrigée, étape par étape. Si ton plan répond à une autre question que celle du sujet, tu reviens à la délimitation, car une délimitation mal posée fait traiter une autre question.</p>
+        <p style="color:var(--body); line-height:1.75">Je te conseille aussi de tenir un carnet d'erreurs. Pour chaque matière ou chaque méthode, tu y écris ce que tu as raté et le conseil à appliquer la prochaine fois. Après un sujet de cette page, tu y notes par exemple un article oublié ou une notion mal définie, puis tu relis le carnet avant de refaire un exercice.</p>
+        <p style="color:var(--body); line-height:1.75">Pour trouver d'autres sujets, l'espace numérique de ta faculté et les redoublants de ta promotion gardent souvent les annales des années précédentes.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container container--narrow">
+        <h2 class="h2 text-center" style="margin-bottom:32px">Questions fréquentes sur les sujets de droit constitutionnel L1</h2>
+        <div class="accordion">
+          <details class="accordion__item" open><summary><h3>Quels types de sujets tombent en droit constitutionnel L1 au premier semestre ?</h3></summary><div class="accordion__body">Quatre formes reviennent, la dissertation, le commentaire de texte, le commentaire de décision et les questions de cours. À Assas, en janvier 2019, les étudiants choisissaient entre une dissertation et un commentaire de Jellinek. Ton chargé de TD t'indique le format de ton examen, car chaque faculté combine ces formes à sa façon.</div></details>
+          <details class="accordion__item"><summary><h3>Que contient le programme de droit constitutionnel du premier semestre ?</h3></summary><div class="accordion__body">Ma fiche complète compte dix-neuf chapitres, du droit constitutionnel et de sa méthode jusqu'à l'histoire constitutionnelle de la IVe République. Certaines facultés étudient la Ve République dès le premier semestre, et d'autres la gardent pour le semestre suivant. Le plan de ton cours te dit dans quel cas tu te trouves.</div></details>
+          <details class="accordion__item"><summary><h3>Où trouver des sujets corrigés de droit constitutionnel L1 ?</h3></summary><div class="accordion__body">Cette page propose douze sujets avec leurs pistes, une dissertation corrigée en entier et six questions de cours. Le <a href="td-droit-constitutionnel-l1-corrige.html">TD de droit constitutionnel L1</a> apporte en plus une dissertation corrigée sur le référendum, et le recueil de dix dissertations du semestre 1 complète ces exemples.</div></details>
+          <details class="accordion__item"><summary><h3>Faut-il connaître les auteurs comme Montesquieu, Locke ou Carré de Malberg ?</h3></summary><div class="accordion__body">Oui, pour leurs idées principales et à l'endroit où elles servent ton raisonnement. Locke et Montesquieu s'utilisent pour la séparation des pouvoirs, et Carré de Malberg pour la définition de l'État. Tu cites l'idée avec le titre de l'ouvrage, par exemple le <em>Second traité du gouvernement civil</em> de Locke ou <em>De l'esprit des lois</em> de Montesquieu, et tu laisses de côté la biographie de l'auteur.</div></details>
+          <details class="accordion__item"><summary><h3>Une dissertation de droit constitutionnel doit-elle contenir une délimitation du sujet ?</h3></summary><div class="accordion__body">Oui, dans la méthode que j'enseigne, la délimitation est la troisième étape de l'introduction. Elle compte surtout quand le sujet compare des pays ou des époques, comme « La Constitution doit-elle toujours être écrite ? ». Deux ou trois phrases suffisent, et l'<a href="delimiter-le-sujet-dissertation-juridique.html">exemple de délimitation du sujet</a> montre comment les écrire.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAILLAGE -->
+    <section class="section section--alt" id="corriges">
+      <div class="container container--narrow text-center">
+        <h2 class="h2">Pour continuer avec le droit constitutionnel</h2>
+        <p class="lead">Tu peux lire une dissertation corrigée de plus, puis revoir le programme du semestre.</p>
+        <div style="max-width:680px;margin:24px auto 0;display:grid;gap:12px">
+          <a class="btn btn--outline btn--full" href="dissertation-separation-des-pouvoirs-corrige.html">Dissertation corrigée · la séparation des pouvoirs</a>
+          <a class="btn btn--outline btn--full" href="td-droit-constitutionnel-l1-corrige.html">TD de droit constitutionnel corrigé · le référendum</a>
+        </div>
+        <p style="margin-top:18px"><a href="droit-constitutionnel-l1.html">Revoir tout le cours de droit constitutionnel L1 →</a></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="author-box">
+          <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+          <div>
+            <p class="author-box__name">Julien</p>
+            <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+            <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">162 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- fin-article:pack-ultra -->
+    <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
+      <div class="container">
+        <p class="article-pack-ligne__texte">Le Pack Ultra L1 S1 réunit les 36 ressources de ton premier semestre de L1 pour 259 €, la fiche de droit constitutionnel L1 S1 comprise. <a href="pack-ultra.html#pack-ultra-l1-s1">Voir le contenu du pack →</a></p>
+        <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (sujets droit constitutionnel L1)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit constitutionnel L1 S1 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-constit-l1-s1">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=c83cad1e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=342ec727" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>
