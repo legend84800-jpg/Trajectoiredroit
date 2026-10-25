@@ -5,6 +5,7 @@
   var CLE_ATTRIBUTION_PUBLICATION = 'tjd_attribution';
   var DUREE_ATTRIBUTION_PUBLICATION = 30 * 24 * 60 * 60 * 1000;
   var REFERENCE_PUBLICATION = /^diffusion\.[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\.[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+  var REFERENCE_ORIENTATION = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
   var attributionPublicationEnMemoire = null;
 
   function lireAttributionPublication() {
@@ -21,11 +22,13 @@
     var params;
     try { params = new URLSearchParams(window.location.search); } catch (_) { return; }
     var porteUtm = CLES_ATTRIBUTION_PUBLICATION.some(function (cle) { return !!params.get(cle); });
-    if (!porteUtm && !params.has('ap_ref')) return;
+    if (!porteUtm && !params.has('ap_ref') && !params.has('oq_ref')) return;
     var reference = params.get('ap_ref') || '';
     var referenceValide = reference.length === 83 && REFERENCE_PUBLICATION.test(reference);
+    var orientation = params.get('oq_ref') || '';
+    var orientationValide = params.getAll('oq_ref').length === 1 && orientation.length === 36 && REFERENCE_ORIENTATION.test(orientation);
     var contact = lireAttributionPublication();
-    if (porteUtm || referenceValide) {
+    if (porteUtm || referenceValide || orientationValide) {
       // Le dernier lien de campagne remplace le contact précédent, avec ses seuls UTM.
       contact = {
         landing_page: window.location.pathname.replace(/^\//, '') || '/',
@@ -48,19 +51,32 @@
     }
     if (!contact) return;
     delete contact.atelierPublicationRef;
+    delete contact.atelierOrientationRef;
     if (referenceValide) contact.atelierPublicationRef = reference;
+    if (orientationValide) contact.atelierOrientationRef = orientation;
     attributionPublicationEnMemoire = contact;
     try { localStorage.setItem(CLE_ATTRIBUTION_PUBLICATION, JSON.stringify(contact)); } catch (_) {}
   }
   memoriserAttributionPublication();
+  var contactAttributionAuChargement = lireAttributionPublication();
+  var signatureContactAuChargement = signatureContactAttribution(contactAttributionAuChargement);
+
+  function signatureContactAttribution(contact) {
+    if (!contact) return '';
+    return JSON.stringify([contact.ts, contact.landing_page || '', contact.referrer || '',
+      contact.atelierPublicationRef || '', contact.atelierOrientationRef || '',
+      contact.utm_source || '', contact.utm_medium || '', contact.utm_campaign || '', contact.utm_content || '']);
+  }
 
   function ajouterAttributionPublication(corps) {
     var contact = lireAttributionPublication();
-    if (!contact || typeof contact.atelierPublicationRef !== 'string' || contact.atelierPublicationRef.length !== 83
-      || !REFERENCE_PUBLICATION.test(contact.atelierPublicationRef)) return;
-    // Un autre onglet ou une page sans achat.js peut avoir reçu une nouvelle campagne.
+    if (!contact || signatureContactAttribution(contact) !== signatureContactAuChargement) return;
+    // Une autre page peut avoir reçu un nouveau contact, même avec des UTM identiques.
     if (!CLES_ATTRIBUTION_PUBLICATION.every(function (cle) { return (contact[cle] || '') === (corps[cle] || ''); })) return;
-    corps.atelierPublicationRef = contact.atelierPublicationRef;
+    if (typeof contact.atelierPublicationRef === 'string' && contact.atelierPublicationRef.length === 83
+      && REFERENCE_PUBLICATION.test(contact.atelierPublicationRef)) corps.atelierPublicationRef = contact.atelierPublicationRef;
+    if (typeof contact.atelierOrientationRef === 'string' && contact.atelierOrientationRef.length === 36
+      && REFERENCE_ORIENTATION.test(contact.atelierOrientationRef)) corps.atelierOrientationRef = contact.atelierOrientationRef;
   }
 
   function ajouterRecuComportement(corps) {

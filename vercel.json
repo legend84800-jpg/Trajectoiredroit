@@ -75,10 +75,23 @@
           "value": "no-referrer"
         }
       ]
+    },
+    {
+      "source": "/avis/forms/:path*",
+      "headers": [
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(self), microphone=(self), geolocation=()"
+        }
+      ]
     }
   ],
   "redirects": [
-    { "source": "/images", "destination": "/droit-des-contrats-en-images.html?utm_source=video&utm_medium=voix&utm_campaign=cours-images-contrats", "permanent": false },
+    {
+      "source": "/images",
+      "destination": "/droit-des-contrats-en-images.html?utm_source=video&utm_medium=voix&utm_campaign=cours-images-contrats",
+      "permanent": false
+    },
     {
       "source": "/stage-methode.html",
       "destination": "/formations.html",
@@ -111,6 +124,10 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/avis/:path*",
+      "destination": "https://stats.trajectoiredroit.com/avis/:path*"
+    },
     {
       "source": "/comportement/:path*",
       "destination": "https://stats.trajectoiredroit.com/comportement/:path*"

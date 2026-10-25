@@ -5,6 +5,9 @@ module.exports = function attributionAtelier(corps = {}) {
   if (typeof corps.atelierPublicationRef === 'string' && corps.atelierPublicationRef.length === 83 && /^diffusion\.[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\.[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(corps.atelierPublicationRef)) {
     result.atelierPublicationRef = corps.atelierPublicationRef;
   }
+  if (typeof corps.atelierOrientationRef === 'string' && corps.atelierOrientationRef.length === 36 && /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(corps.atelierOrientationRef)) {
+    result.atelierOrientationRef = corps.atelierOrientationRef;
+  }
   if (typeof corps.comportementReceipt === 'string' && /^acb3\.[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\.\d{10}\.\d{10}\.[A-Za-z0-9_-]{43}$/.test(corps.comportementReceipt)) {
     result.comportementReceipt = corps.comportementReceipt;
   }

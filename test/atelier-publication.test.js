@@ -200,12 +200,13 @@ test('Checkout direct et panier reçoivent la référence dans Stripe avec les v
         json(corps) { this.corps = corps; return this; },
       };
       await handler({ method: 'POST', body: {
-        ...selection, ...UTM, atelierPublicationRef: REF, atelierBrand: 'philo',
+        ...selection, ...UTM, atelierPublicationRef: REF, atelierOrientationRef: 'ff97fcb1-c90b-44c5-9a8d-3b1794fa4ca1', atelierBrand: 'philo',
         attemptId: 'test-publication-123456789', unit_amount: 1,
       } }, res);
       assert.equal(res.statusCode, 200);
       const params = appels.at(-1);
       assert.equal(params.metadata.atelierPublicationRef, REF);
+      assert.equal(params.metadata.atelierOrientationRef, 'ff97fcb1-c90b-44c5-9a8d-3b1794fa4ca1');
       assert.equal(params.metadata.atelierBrand, 'tjd');
       assert.equal(params.metadata.utmSource, UTM.utm_source);
       assert.equal(params.metadata.utmMedium, UTM.utm_medium);
@@ -220,5 +221,89 @@ test('Checkout direct et panier reçoivent la référence dans Stripe avec les v
     delete require.cache[chemin];
     if (ancienneCle === undefined) delete process.env.STRIPE_SECRET_KEY;
     else process.env.STRIPE_SECRET_KEY = ancienneCle;
+  }
+});
+
+const ORIENTATION_REF = 'ff97fcb1-c90b-44c5-9a8d-3b1794fa4ca1';
+const AUTRE_ORIENTATION_REF = 'ce32bbd0-9ddb-4543-91f9-e6c910b2d7f9';
+const requeteOrientation = (reference = ORIENTATION_REF, utm = UTM, publication) => '?' + new URLSearchParams({ ...utm, oq_ref: reference, ...(publication ? { ap_ref: publication } : {}) });
+
+test('la référence d’orientation rejoint le paiement direct et le panier avec les UTM du contact', async () => {
+  for (const panier of [false, true]) {
+    const corps = await navigateur().page(requeteOrientation()).payer(panier);
+    assert.equal(corps.atelierOrientationRef, ORIENTATION_REF);
+    assert.equal(corps.atelierPublicationRef, undefined);
+    for (const [cle, valeur] of Object.entries(UTM)) assert.equal(corps[cle], valeur);
+    assert.equal(corps.produitId || corps.produitIds[0], 'fiche-da-l2-s1');
+  }
+});
+
+test('orientation et publication coexistent lorsqu’elles proviennent du même lien', async () => {
+  const browser = navigateur();
+  browser.page(requeteOrientation(ORIENTATION_REF, UTM, REF));
+  const corps = await browser.page('', '/formations.html').payer();
+  assert.equal(corps.atelierOrientationRef, ORIENTATION_REF);
+  assert.equal(corps.atelierPublicationRef, REF);
+});
+
+test('l’orientation survit trente jours aux pages et sessions sans renouveler son âge', async () => {
+  const browser = navigateur();
+  browser.page(requeteOrientation());
+  const initial = JSON.parse(browser.localStorage.getItem('tjd_attribution'));
+  browser.avancer(29); browser.nouvelleSession();
+  let corps = await browser.page('', '/formations.html').payer(true);
+  assert.equal(corps.atelierOrientationRef, ORIENTATION_REF);
+  assert.equal(JSON.parse(browser.localStorage.getItem('tjd_attribution')).ts, initial.ts);
+  browser.avancer(1); corps = await browser.page('', '/formations.html').payer();
+  assert.equal(corps.atelierOrientationRef, undefined);
+});
+
+test('le dernier lien d’orientation remplace le contact avec ses seuls UTM', async () => {
+  const browser = navigateur(); browser.page(requeteOrientation(ORIENTATION_REF, UTM, REF));
+  const corps = await browser.page(requeteOrientation(AUTRE_ORIENTATION_REF, {}), '/formations.html').payer();
+  assert.equal(corps.atelierOrientationRef, AUTRE_ORIENTATION_REF);
+  assert.equal(corps.atelierPublicationRef, undefined);
+  assert.equal(corps.landingPage, 'formations.html');
+  for (const cle of Object.keys(UTM)) assert.equal(corps[cle], undefined);
+});
+
+test('une nouvelle campagne efface l’orientation sur une page avec ou sans achat.js', async () => {
+  for (const achat of [false, true]) {
+    const browser = navigateur(); browser.page(requeteOrientation());
+    browser.page('?' + new URLSearchParams(UTM), '/article.html', achat);
+    const corps = await browser.page('', '/formations.html').payer();
+    assert.equal(corps.atelierOrientationRef, undefined);
+  }
+});
+
+test('une orientation d’un autre onglet ne se greffe pas au paiement ouvert, même avec les mêmes UTM', async () => {
+  for (const nouvelleReference of [requeteOrientation(AUTRE_ORIENTATION_REF), requete(AUTRE_REF)]) {
+    const browser = navigateur(), ancien = browser.page(requeteOrientation());
+    browser.nouvelleSession(); browser.page(nouvelleReference);
+    const corps = await ancien.payer();
+    assert.equal(corps.atelierOrientationRef, undefined);
+    assert.equal(corps.atelierPublicationRef, undefined);
+    assert.equal(corps.utm_campaign, UTM.utm_campaign);
+  }
+});
+
+test('un lien d’orientation accepte uniquement un UUIDv4 minuscule et unique', async () => {
+  const invalides = ['', ORIENTATION_REF.toUpperCase(), ORIENTATION_REF + '\n', ORIENTATION_REF.replace('-44c5-', '-14c5-'), ORIENTATION_REF.replace('-9a8d-', '-7a8d-'), 'not-an-id'];
+  for (const reference of invalides) {
+    const browser = navigateur(); browser.page(requeteOrientation());
+    const corps = await browser.page(requeteOrientation(reference)).payer();
+    assert.equal(corps.atelierOrientationRef, undefined);
+  }
+  const double = requeteOrientation() + '&oq_ref=' + AUTRE_ORIENTATION_REF;
+  assert.equal((await navigateur().page(double).payer()).atelierOrientationRef, undefined);
+});
+
+test('le serveur conserve seulement un UUIDv4 d’orientation strict et la marque TJD', () => {
+  const attribution = require('../api/_atelier-attribution');
+  assert.deepEqual(attribution({ atelierOrientationRef: ORIENTATION_REF, atelierPublicationRef: REF, atelierBrand: 'philo' }), {
+    atelierBrand: 'tjd', atelierOrientationRef: ORIENTATION_REF, atelierPublicationRef: REF,
+  });
+  for (const reference of ['', ORIENTATION_REF.toUpperCase(), ORIENTATION_REF + '\n', ORIENTATION_REF.replace('-44c5-', '-14c5-'), [ORIENTATION_REF], { value: ORIENTATION_REF }]) {
+    assert.deepEqual(attribution({ atelierOrientationRef: reference }), { atelierBrand: 'tjd' });
   }
 });
