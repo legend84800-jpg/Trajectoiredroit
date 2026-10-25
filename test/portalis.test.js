@@ -80,25 +80,71 @@ test('une réponse tronquée restitue la réservation et ne se termine jamais',a
   const calls=[];
   const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[],rpc:async(name)=>{
     calls.push(name);if(name==='portalis_etat')return{actif:true};if(name==='portalis_reserver')return{code:'reservee',formule:'portalis'};return true;
-  }}},{fetch:async url=>({ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:100}:{stop_reason:'max_tokens',content:[{type:'text',text:'Une réponse coupée qui ne doit pas être facturée.'}],usage:{input_tokens:100,output_tokens:3000}}})});
+  }}},{fetch:async url=>({ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:100}:{stop_reason:'max_tokens',content:[{type:'thinking',thinking:'Réflexion privée.'},{type:'text',text:'Une réponse coupée qui ne doit pas être facturée.'}],usage:{input_tokens:100,output_tokens:3000}}})});
   await assert.rejects(generation.generer({exercice:'cas',demandeId:ID,texte:'Un sujet suffisamment long pour être traité.'},USER),{code:'generation_echouee'});
   assert.ok(calls.includes('portalis_echouer'));assert.ok(!calls.includes('portalis_terminer'));
 });
-test('le serveur choisit le niveau de réflexion et les plafonds de la formule payée',async()=>{
-  const calls=[],payloads=[];
-  const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[],rpc:async(name)=>{
-    calls.push(name);if(name==='portalis_etat')return{actif:true};if(name==='portalis_reserver')return{code:'reservee',formule:'classique'};return true;
-  }}},{fetch:async(url,options)=>{payloads.push(JSON.parse(options.body));return{ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:100}:{stop_reason:'end_turn',content:[{type:'text',text:'Une réponse complète et utile pour cet exercice.'}],usage:{input_tokens:100,output_tokens:300}}};}});
-  await generation.generer({exercice:'cas',demandeId:ID,texte:'Un sujet suffisamment long pour être traité.',formule:'pro',effort:'max',max_tokens:99999},USER);
-  assert.equal(payloads[1].model,'claude-sonnet-5-5');assert.equal(payloads[1].output_config.effort,'medium');assert.equal(payloads[1].max_tokens,5000);
-  assert.ok(calls.includes('portalis_terminer'));assert.ok(!calls.includes('portalis_echouer'));
+test('les douze combinaisons utilisent le budget et l’effort de la formule réservée',async t=>{
+  const {budgetSortie}=require('../api/_portalis-config');
+  const systemes=new Map();
+  for(const exercice of ['fiche','commentaire','cas','dissertation'])for(const [formule,effort,index] of [['portalis','low',0],['classique','medium',1],['pro','high',2]])await t.test(`${exercice} ${formule}`,async()=>{
+    const calls=[],payloads=[],timeouts=[];
+    const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[],rpc:async(name)=>{
+      calls.push(name);if(name==='portalis_etat')return{actif:true};if(name==='portalis_reserver')return{code:'reservee',formule};return true;
+    }}},{AbortSignal:{timeout:ms=>{timeouts.push(ms);return undefined;}},fetch:async(url,options)=>{payloads.push(JSON.parse(options.body));return{ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:100}:{stop_reason:'end_turn',content:[{type:'thinking',thinking:'Réflexion privée.'},{type:'text',text:'Une première partie complète pour cet exercice.'},{type:'redacted_thinking',data:'fixture'},{type:'text',text:'Une seconde partie qui termine la réponse.'}],usage:{input_tokens:100,output_tokens:300}}};}});
+    const result=await generation.generer({exercice,demandeId:ID,texte:'Un sujet suffisamment long pour être traité.',formule:'pro',effort:'max',max_tokens:99999},USER);
+    const budget=(exercice==='fiche'?[6000,8000,10000]:[12000,14000,24000])[index];
+    assert.equal(budgetSortie(exercice,formule),budget);
+    assert.equal(payloads[1].model,'claude-sonnet-5-5');assert.equal(payloads[1].output_config.effort,effort);assert.equal(payloads[1].max_tokens,budget);
+    assert.equal(payloads[1].system,payloads[0].system);assert.deepEqual(payloads[1].messages,payloads[0].messages);
+    if(systemes.has(exercice))assert.equal(payloads[1].system,systemes.get(exercice));else systemes.set(exercice,payloads[1].system);
+    assert.doesNotMatch(payloads[1].system,/900\s*mots/i);assert.deepEqual(timeouts,[15000,162000]);
+    assert.equal(result.reponse,'Une première partie complète pour cet exercice.\n\nUne seconde partie qui termine la réponse.');
+    assert.ok(calls.includes('portalis_terminer'));assert.ok(!calls.includes('portalis_echouer'));
+  });
+  assert.throws(()=>budgetSortie('inconnu','pro'),{message:'configuration_budget'});
+  assert.throws(()=>budgetSortie('cas','inconnu'),{message:'configuration_budget'});
 });
-test('un dossier trop dense est rejeté avant réservation et génération',async()=>{
-  const calls=[];
-  const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[],rpc:async name=>{calls.push(name);return{actif:true};}}},
-    {fetch:async()=>({ok:true,json:async()=>({input_tokens:20001})})});
-  await assert.rejects(generation.generer({exercice:'cas',demandeId:ID,texte:'Un sujet suffisamment long pour être traité.'},USER),{code:'volume'});
-  assert.deepEqual(calls,['portalis_etat']);
+test('le dossier conserve les documents dans l’ordre demandé, les pages connues et la date UTC',async()=>{
+  const id2='20000000-0000-4000-8000-000000000002';
+  const anciens={id:ID,pages:2,texte:'Un ancien PDF sans séparateur de pages.',cree_le:new Date().toISOString()};
+  const recent={id:id2,pages:2,texte:'Première page du PDF récent.\fSeconde page du PDF récent.',cree_le:new Date().toISOString()};
+  const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[anciens,recent]}});
+  const body={exercice:'cas',demandeId:ID,texte:'Le sujet saisi par l’étudiant.',question:'Que faut-il en déduire ?',documents:[id2,ID]};
+  const result=await generation.preparer(body,USER),message=result.messages[0].content;
+  assert.match(message,/<date_preparation_utc>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z<\/date_preparation_utc>/);
+  assert.ok(message.indexOf('origine="texte_saisi"')<message.indexOf(`id="${id2}"`));
+  assert.ok(message.indexOf(`id="${id2}"`)<message.indexOf(`id="${ID}"`));
+  assert.match(message,/<page numero="1">\nPremière page du PDF récent\./);
+  assert.match(message,/<page numero="2">\nSeconde page du PDF récent\./);
+  assert.doesNotMatch(message,/\f/);
+  const ancien=message.slice(message.indexOf(`<document origine="pdf" id="${ID}"`),message.indexOf('</dossier>'));
+  assert.match(ancien,/pages="2"/);assert.doesNotMatch(ancien,/<page /);
+  assert.equal((message.match(/<document /g)||[]).length,3);
+  assert.equal((await generation.preparer(body,USER)).empreinte,result.empreinte);
+});
+test('les limites portent sur le texte brut et conservent les frontières des pages vides',async()=>{
+  const doc={id:ID,pages:3,texte:'a'.repeat(14999)+'\f'+'b'.repeat(14999)+'\f',cree_le:new Date().toISOString()};
+  const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[doc]}});
+  const body={exercice:'fiche',demandeId:ID,documents:[ID]};
+  const result=await generation.preparer(body,USER);
+  assert.ok(result.messages[0].content.length>30000);assert.match(result.messages[0].content,/<page numero="3">\n\n<\/page>/);
+  doc.texte+='x';await assert.rejects(generation.preparer(body,USER),{code:'caracteres'});
+  const config=require('../api/_portalis-config');
+  assert.equal(config.LIMITES.reponses,60);assert.equal(config.LIMITES.pages,15);assert.equal(config.LIMITES.caracteres,30000);assert.equal(config.LIMITES.jetonsEntree,20000);
+  assert.deepEqual(Object.values(config.FORMULES).map(p=>p.prix),[800,1200,1800]);
+  assert.equal(JSON.parse(lire('vercel.json')).functions['api/generer.js'].maxDuration,240);
+});
+test('la borne de 20 000 jetons et les comptes non entiers sont vérifiés avant réservation',async t=>{
+  for(const inputTokens of [20000,20001,19999.5,'20000',null])await t.test(String(inputTokens),async()=>{
+    const calls=[],urls=[];
+    const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[],rpc:async name=>{
+      calls.push(name);if(name==='portalis_etat')return{actif:true};if(name==='portalis_reserver')return{code:'reservee',formule:'portalis'};return true;
+    }}},{fetch:async url=>{urls.push(url);return{ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:inputTokens}:{stop_reason:'end_turn',content:[{type:'text',text:'Une réponse complète et utile pour cet exercice.'}],usage:{input_tokens:inputTokens,output_tokens:300}}};}});
+    const promise=generation.generer({exercice:'cas',demandeId:ID,texte:'Un sujet suffisamment long pour être traité.'},USER);
+    if(inputTokens===20000){await promise;assert.ok(calls.includes('portalis_reserver'));assert.equal(urls.length,2);}
+    else{await assert.rejects(promise,{code:'volume'});assert.deepEqual(calls,['portalis_etat']);assert.equal(urls.length,1);}
+  });
 });
 test('un compteur indisponible après réussite ne rembourse pas une réponse déjà enregistrée',async()=>{
   let statuses=0;const calls=[];
@@ -145,18 +191,27 @@ test('un retour Checkout appartenant à un autre compte ne peut pas être synchr
 });
 test('le résultat du modèle est affiché comme texte et les sessions suivent le choix de persistance',()=>{
   const js=lire('assets/js/portalis.js');new vm.Script(js);
-  assert.doesNotMatch(js,/innerHTML|insertAdjacentHTML/);assert.match(js,/\.textContent=block/);
+  assert.doesNotMatch(js,/innerHTML|insertAdjacentHTML/);
+  const {rendreMarkdown,delaiRequete}=require('../assets/js/portalis');
+  const doc={createTextNode:text=>({tag:'#text',textContent:text}),createElement:tag=>({tag,style:{},children:[],append(...nodes){this.children.push(...nodes);},replaceChildren(){this.children=[];}})};
+  const parent=doc.createElement('section');
+  rendreMarkdown(parent,'## Une solution expliquée\n\nUn **principe précis** et son *application*.\n\n1. Une condition\n2. Une conséquence\n\n<script>alert(1)</script>',doc);
+  const all=[];function visit(node){all.push(node);for(const child of node.children||[])visit(child);}visit(parent);
+  assert.ok(all.some(node=>/^h[1-6]$/.test(node.tag)));assert.ok(all.some(node=>node.tag==='strong'&&node.textContent==='principe précis'));
+  assert.ok(all.some(node=>node.tag==='em'&&node.textContent==='application'));assert.equal(all.filter(node=>node.tag==='li').length,2);
+  assert.ok(all.some(node=>node.tag==='#text'&&node.textContent==='<script>alert(1)</script>'));assert.ok(!all.some(node=>node.tag==='script'));
+  assert.equal(delaiRequete({action:'generer'}),225000);assert.equal(delaiRequete({action:'importer'}),115000);
   assert.match(js,/tjd-compte-rester-connecte/);assert.match(js,/sessionStorage/);
   const account=lire('assets/js/compte.js');new vm.Script(account);
   for(const [,id]of account.matchAll(/document\.getElementById\("([^"]+)"\)/g))assert.ok(lire('mon-compte.html').includes(`id="${id}"`),id);
 });
-function pdfFixture(pages){
+function pdfFixture(pages,vides=[]){
   const objects=['<< /Type /Catalog /Pages 2 0 R >>',''];
   const kids=[];
   for(let i=0;i<pages;i++){
     const num=objects.length+1;kids.push(`${num} 0 R`);
     objects.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 600 800] /Resources << /Font << /F1 ${3+pages*2} 0 R >> >> /Contents ${num+1} 0 R >>`);
-    const text='BT /F1 12 Tf 40 740 Td (Document juridique de test suffisamment long.) Tj ET';
+    const text=vides.includes(i+1)?'':`BT /F1 12 Tf 40 740 Td (Document juridique de test suffisamment long. Page ${i+1}.) Tj ET`;
     objects.push(`<< /Length ${Buffer.byteLength(text)} >>\nstream\n${text}\nendstream`);
   }
   objects[1]=`<< /Type /Pages /Kids [${kids.join(' ')}] /Count ${pages} >>`;
@@ -171,6 +226,10 @@ function pdfFixture(pages){
 test('le lecteur PDF accepte 15 pages et refuse 16 pages dans le worker isolé',async()=>{
   const {extrairePDF}=require('../api/_portalis-generation');
   const doc=await extrairePDF(pdfFixture(15));assert.equal(doc.pages,15);assert.ok(doc.texte.length>20);
+  assert.equal(doc.texte.split('\f').length,15);assert.doesNotMatch(doc.texte,/<page /);
+  assert.match(doc.texte.split('\f')[0],/Page 1\./);assert.match(doc.texte.split('\f')[14],/Page 15\./);
+  const vide=await extrairePDF(pdfFixture(3,[1,3]));
+  assert.equal(vide.texte.split('\f').length,3);assert.equal(vide.texte.split('\f')[0],'');assert.equal(vide.texte.split('\f')[2],'');assert.match(vide.texte.split('\f')[1],/Page 2\./);
   await assert.rejects(extrairePDF(pdfFixture(16)),{message:'pages'});
 });
 

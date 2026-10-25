@@ -7,8 +7,8 @@ const {parentPort,workerData}=require('node:worker_threads');
       isEvalSupported:false,maxImageSize:16000000,useSystemFonts:false,disableFontFace:true
     });
     if (pdf.numPages>15) throw new Error('pages');
-    const result=await extractText(pdf,{mergePages:true});
-    const text=result.text.trim();
+    const result=await extractText(pdf,{mergePages:false});
+    const text=result.text.map(page=>page.trim()).join('\f');
     if (text.length>30000) throw new Error('caracteres');
     if (text.length<20) throw new Error('sans_texte');
     parentPort.postMessage({pages:pdf.numPages,texte:text});

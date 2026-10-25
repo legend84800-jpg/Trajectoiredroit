@@ -1,5 +1,51 @@
 (function(){
   'use strict';
+  function delaiRequete(body){return body?.action==='generer'?225000:115000;}
+  function texteInline(parent,text,doc){
+    const marqueurs=/\*\*([^*\n]+)\*\*|\*([^*\n]+)\*|`([^`\n]+)`/g;
+    let debut=0,match;
+    while((match=marqueurs.exec(text))){
+      if(match.index>debut)parent.append(doc.createTextNode(text.slice(debut,match.index)));
+      const node=doc.createElement(match[1]!==undefined?'strong':match[2]!==undefined?'em':'code');
+      node.textContent=match[1]??match[2]??match[3];parent.append(node);debut=marqueurs.lastIndex;
+    }
+    if(debut<text.length)parent.append(doc.createTextNode(text.slice(debut)));
+  }
+  function rendreMarkdown(parent,text,doc){
+    parent.replaceChildren();
+    let paragraphe=[],listes=[];
+    function finirParagraphe(){
+      if(!paragraphe.length)return;
+      const p=doc.createElement('p');p.style.whiteSpace='pre-line';texteInline(p,paragraphe.join('\n'),doc);parent.append(p);paragraphe=[];
+    }
+    for(const ligne of String(text).replace(/\r\n?/g,'\n').split('\n')){
+      if(!ligne.trim()){finirParagraphe();continue;}
+      const titre=ligne.match(/^ {0,3}(#{1,6})\s+(.+?)\s*#*$/);
+      if(titre){
+        finirParagraphe();listes=[];
+        const h=doc.createElement('h'+Math.min(6,titre[1].length+3));texteInline(h,titre[2],doc);parent.append(h);continue;
+      }
+      const puce=ligne.match(/^(\s*)([-+*]|\d+[.)])\s+(.+)$/);
+      if(puce){
+        finirParagraphe();
+        const retrait=puce[1].replace(/\t/g,'    ').length,tag=/^\d/.test(puce[2])?'ol':'ul';
+        while(listes.length&&retrait<listes[listes.length-1].retrait)listes.pop();
+        if(listes.length&&retrait===listes[listes.length-1].retrait&&tag!==listes[listes.length-1].tag)listes.pop();
+        let liste=listes[listes.length-1];
+        if(!liste||retrait>liste.retrait){
+          const node=doc.createElement(tag),support=liste?.dernier||parent;
+          if(tag==='ol')node.start=parseInt(puce[2],10);
+          support.append(node);liste={node,retrait,tag,dernier:null};listes.push(liste);
+        }
+        const li=doc.createElement('li');li.style.whiteSpace='pre-line';texteInline(li,puce[3],doc);liste.node.append(li);liste.dernier=li;continue;
+      }
+      const retrait=ligne.match(/^\s*/)[0].replace(/\t/g,'    ').length,liste=listes[listes.length-1];
+      if(liste&&retrait>liste.retrait){texteInline(liste.dernier,'\n'+ligne.trim(),doc);continue;}
+      listes=[];paragraphe.push(ligne);
+    }
+    finirParagraphe();
+  }
+  if(typeof module==='object'&&module.exports){module.exports={rendreMarkdown,delaiRequete};return;}
   const $=id=>document.getElementById(id);
   const euros=cents=>new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:2}).format(cents/100);
   const sessionKey='sb-ksqkhktcdgwrmzfcfjoe-auth-token';
@@ -19,7 +65,7 @@
   function message(id,text,error=false){const el=$(id);el.textContent=text||'';el.hidden=!text;el.classList.toggle('error',error);}
   async function api(path,body){
     const controller=new AbortController();if(!path.includes('action=configuration'))controllers.add(controller);
-    const timer=setTimeout(()=>controller.abort(),115000);
+    const timer=setTimeout(()=>controller.abort(),delaiRequete(body));
     try{
       const response=await fetch(path,{method:body?'POST':'GET',cache:'no-store',signal:controller.signal,
         headers:{'Content-Type':'application/json',...(session?{Authorization:`Bearer ${session.access_token}`}:{})},
@@ -92,16 +138,8 @@
     });
   }
   function renderAnswer(text){
-    answer=text;$('reponse').replaceChildren();
-    // Le texte du modèle n'est jamais interprété comme du HTML.
-    text.split(/\n\s*\n/).forEach(block=>{
-      const lines=block.split('\n');
-      if(lines.length===1&&/^#{1,6}\s/.test(block)){
-        const h=document.createElement('h4');h.textContent=block.replace(/^#{1,6}\s+/,'').replace(/\*\*/g,'');$('reponse').append(h);
-      }else{
-        const p=document.createElement('p');p.style.whiteSpace='pre-line';p.textContent=block.replace(/^#{1,6}\s+/gm,'').replace(/\*\*/g,'');$('reponse').append(p);
-      }
-    });$('resultat').hidden=false;$('resultat').focus({preventScroll:true});$('resultat').scrollIntoView({block:'start',behavior:'smooth'});
+    answer=text;rendreMarkdown($('reponse'),text,document);
+    $('resultat').hidden=false;$('resultat').focus({preventScroll:true});$('resultat').scrollIntoView({block:'start',behavior:'smooth'});
   }
   function pendingKey(){return userId?`tjd-portalis-demande-${userId}`:null;}
   function savePending(id){try{sessionStorage.setItem(pendingKey(),id);}catch(_){}}
