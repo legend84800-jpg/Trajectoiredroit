@@ -1,13 +1,50 @@
 (function(){
   'use strict';
   function delaiRequete(body){return body?.action==='generer'?225000:115000;}
-  function texteInline(parent,text,doc){
-    const marqueurs=/\*\*([^*\n]+)\*\*|\*([^*\n]+)\*|`([^`\n]+)`/g;
+  function lireLien(text,debut){
+    let position=debut+1,titre='',adresse='',profondeur=1;
+    while(position<text.length&&text[position]!==']'&&text[position]!=='\n'){
+      if(text[position]==='\\'&&/[\\`*_{}\[\]()!#+\-.>|]/.test(text[position+1]||'')){
+        titre+=text.slice(position,position+2);position+=2;continue;
+      }
+      titre+=text[position++];
+    }
+    if(text.slice(position,position+2)!=='](')return null;
+    position+=2;
+    while(position<text.length&&profondeur){
+      const caractere=text[position++];
+      if(/[\s\u0000-\u001f\u007f<>\\]/.test(caractere))return null;
+      if(caractere==='(')profondeur++;
+      if(caractere===')'){profondeur--;if(!profondeur)break;}
+      adresse+=caractere;
+    }
+    if(profondeur||!/^https?:\/\//i.test(adresse))return null;
+    try{
+      const url=new URL(adresse);
+      if(!['http:','https:'].includes(url.protocol)||!url.hostname||url.username||url.password)return null;
+      return {titre,adresse:url.href,fin:position};
+    }catch(_){return null;}
+  }
+  function texteInline(parent,text,doc,liens=true){
+    const marqueurs=/\\([\\`*_{}\[\]()!#+\-.>|])|\*\*([^*\n]+)\*\*|\*([^*\n]+)\*|`([^`\n]+)`|\[/g;
     let debut=0,match;
     while((match=marqueurs.exec(text))){
       if(match.index>debut)parent.append(doc.createTextNode(text.slice(debut,match.index)));
-      const node=doc.createElement(match[1]!==undefined?'strong':match[2]!==undefined?'em':'code');
-      node.textContent=match[1]??match[2]??match[3];parent.append(node);debut=marqueurs.lastIndex;
+      if(match[1]!==undefined)parent.append(doc.createTextNode(match[1]));
+      else if(match[0]==='['){
+        const lien=liens&&lireLien(text,match.index);
+        if(lien){
+          const node=doc.createElement('a');node.href=lien.adresse;node.target='_blank';node.rel='noopener noreferrer';
+          texteInline(node,lien.titre,doc,false);parent.append(node);marqueurs.lastIndex=lien.fin;
+        }else parent.append(doc.createTextNode('['));
+      }else{
+        const node=doc.createElement(match[2]!==undefined?'strong':match[3]!==undefined?'em':'code');
+        const contenu=match[2]??match[3]??match[4];
+        if(match[4]!==undefined)node.textContent=contenu;
+        else texteInline(node,contenu,doc,liens);
+        parent.append(node);
+      }
+      debut=marqueurs.lastIndex;
     }
     if(debut<text.length)parent.append(doc.createTextNode(text.slice(debut)));
   }

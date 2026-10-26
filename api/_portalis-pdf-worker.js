@@ -13,5 +13,5 @@ const {parentPort,workerData}=require('node:worker_threads');
     if (text.length<20) throw new Error('sans_texte');
     parentPort.postMessage({pages:pdf.numPages,texte:text});
   } catch(error) { parentPort.postMessage({erreur:error.message}); }
-  finally { if(pdf) await pdf.destroy(); }
+  finally { if(pdf) { try { await pdf.loadingTask.destroy(); } catch(_) {} } }
 })();

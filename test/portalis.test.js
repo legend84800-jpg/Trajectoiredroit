@@ -88,6 +88,40 @@ test('une réponse tronquée restitue la réservation et ne se termine jamais',a
   await assert.rejects(generation.generer({exercice:'cas',demandeId:ID,texte:'Un sujet suffisamment long pour être traité.'},USER),{code:'generation_echouee'});
   assert.ok(calls.includes('portalis_echouer'));assert.ok(!calls.includes('portalis_terminer'));
 });
+test('une recherche en pause reprend sous la même réservation et enregistre les usages cumulés',async()=>{
+  const calls=[],payloads=[];
+  const pause={stop_reason:'pause_turn',content:[{type:'server_tool_use',id:'srv1',name:'web_search',input:{query:'article 1117 Legifrance'}},
+    {type:'web_search_tool_result',tool_use_id:'srv1',content:[{type:'web_search_result',url:'https://www.legifrance.gouv.fr/',encrypted_content:'contenu-prive'}]}],
+    usage:{input_tokens:100,output_tokens:50,server_tool_use:{web_search_requests:1}}};
+  const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[],rpc:async(name,args)=>{
+    calls.push({name,args});if(name==='portalis_etat')return{actif:true};if(name==='portalis_reserver')return{code:'reservee',formule:'portalis'};return true;
+  }}},{fetch:async(url,options)=>{
+    const p=JSON.parse(options.body);payloads.push(p);
+    return{ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:100}:payloads.length===2?pause:
+      {stop_reason:'end_turn',content:[{type:'text',text:'La règle est expliquée avec sa source officielle.',citations:[{type:'web_search_result_location',title:'Légifrance',url:'https://www.legifrance.gouv.fr/'}]}],usage:{input_tokens:200,output_tokens:80}}};
+  }});
+  const result=await generation.generer({exercice:'cas',demandeId:ID,texte:'Un sujet de droit des contrats suffisamment long.'},USER);
+  assert.equal(calls.filter(c=>c.name==='portalis_reserver').length,1);
+  assert.equal(calls.filter(c=>c.name==='portalis_terminer').length,1);
+  assert.ok(!calls.some(c=>c.name==='portalis_echouer'));
+  assert.deepEqual(payloads[2].messages.at(-1).content,pause.content);
+  assert.equal(payloads[2].tools[0].max_uses,4);
+  const termine=calls.find(c=>c.name==='portalis_terminer').args;
+  assert.equal(termine.p_entree,300);assert.equal(termine.p_sortie,130);
+  assert.match(result.reponse,/\[Légifrance\]\(https:\/\/www\.legifrance\.gouv\.fr\/\)/);
+  assert.equal(termine.p_reponse,result.reponse);
+});
+test('une recherche qui reste en pause restitue un seul crédit et conserve aucune réponse partielle',async()=>{
+  const calls=[];
+  const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[],rpc:async(name)=>{
+    calls.push(name);if(name==='portalis_etat')return{actif:true};if(name==='portalis_reserver')return{code:'reservee',formule:'portalis'};return true;
+  }}},{fetch:async url=>({ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:100}:
+    {stop_reason:'pause_turn',content:[{type:'text',text:'Une analyse provisoire en cours de recherche.'}],usage:{input_tokens:20,output_tokens:10}}})});
+  await assert.rejects(generation.generer({exercice:'cas',demandeId:ID,texte:'Un sujet juridique suffisamment long pour être traité.'},USER),{code:'generation_echouee'});
+  assert.equal(calls.filter(n=>n==='portalis_reserver').length,1);
+  assert.equal(calls.filter(n=>n==='portalis_echouer').length,1);
+  assert.ok(!calls.includes('portalis_terminer'));
+});
 test('les douze combinaisons utilisent le budget et l’effort de la formule réservée',async t=>{
   const {budgetSortie}=require('../api/_portalis-config');
   const systemes=new Map();
@@ -102,7 +136,8 @@ test('les douze combinaisons utilisent le budget et l’effort de la formule ré
     assert.equal(payloads[1].model,'claude-sonnet-5-5');assert.equal(payloads[1].output_config.effort,effort);assert.equal(payloads[1].max_tokens,budget);
     assert.equal(payloads[1].system,payloads[0].system);assert.deepEqual(payloads[1].messages,payloads[0].messages);
     if(systemes.has(exercice))assert.equal(payloads[1].system,systemes.get(exercice));else systemes.set(exercice,payloads[1].system);
-    assert.doesNotMatch(payloads[1].system,/900\s*mots/i);assert.deepEqual(timeouts,[15000,162000]);
+    assert.doesNotMatch(payloads[1].system,/900\s*mots/i);assert.equal(timeouts[0],15000);assert.ok(timeouts[1]>0&&timeouts[1]<=162000);
+    assert.equal(payloads[0].tools,undefined);assert.equal(payloads[1].tools[0].name,'web_search');
     assert.equal(result.reponse,'Une première partie complète pour cet exercice.\n\nUne seconde partie qui termine la réponse.');
     assert.ok(calls.includes('portalis_terminer'));assert.ok(!calls.includes('portalis_echouer'));
   });
@@ -197,7 +232,7 @@ test('le résultat du modèle est affiché comme texte et les sessions suivent l
   const js=lire('assets/js/portalis.js');new vm.Script(js);
   assert.doesNotMatch(js,/innerHTML|insertAdjacentHTML/);
   const {rendreMarkdown,delaiRequete}=require('../assets/js/portalis');
-  const doc={createTextNode:text=>({tag:'#text',textContent:text}),createElement:tag=>({tag,style:{},children:[],append(...nodes){this.children.push(...nodes);},replaceChildren(){this.children=[];}})};
+  const doc={createTextNode:text=>({tag:'#text',textContent:text}),createElement:tag=>({tag,style:{},children:[],append(...nodes){this.children.push(...nodes);},replaceChildren(){this.children=[];},get textContent(){return this.children.map(n=>n.textContent).join('');},set textContent(text){this.children=[{tag:'#text',textContent:text}];}})};
   const parent=doc.createElement('section');
   rendreMarkdown(parent,'## Une solution expliquée\n\nUn **principe précis** et son *application*.\n\n1. Une condition\n2. Une conséquence\n\n<script>alert(1)</script>',doc);
   const all=[];function visit(node){all.push(node);for(const child of node.children||[])visit(child);}visit(parent);
