@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Le Code civil de 1804 : histoire, plan et rédacteurs (L1)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Le Code civil de 1804 en L1 : ses rédacteurs, son adoption en 36 lois et ses réformes, avec un plan de dissertation et un extrait de Portalis à commenter.">
+  <link rel="canonical" href="https://trajectoiredroit.com/le-code-civil-de-1804.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Le Code civil de 1804 : histoire, plan et rédacteurs (L1)">
+  <meta property="og:description" content="Le Code civil de 1804 en L1 : ses rédacteurs, son adoption en 36 lois et ses réformes, avec un plan de dissertation et un extrait de Portalis à commenter.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/le-code-civil-de-1804.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/le-code-civil-de-1804.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Le Code civil de 1804 : histoire, rédacteurs et plan",
+        "description": "Le Code civil de 1804 en L1 : ses rédacteurs, son adoption en 36 lois et ses réformes, avec un plan de dissertation et un extrait de Portalis à commenter.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-10-26",
+        "dateModified": "2026-10-26",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": {
+            "@type": "EducationalOrganization",
+            "name": "TrajectoireDroit"
+          }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+          }
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Le Code civil de 1804"
+        },
+        "image": "https://trajectoiredroit.com/assets/blog/le-code-civil-de-1804.webp",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://trajectoiredroit.com/le-code-civil-de-1804.html"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://trajectoiredroit.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Le Code civil de 1804",
+            "item": "https://trajectoiredroit.com/le-code-civil-de-1804.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quand le Code civil de 1804 a-t-il été voté et promulgué ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La loi du 30 ventôse an XII, votée le 21 mars 1804, réunit les 36 lois votées depuis mars 1803 et forme le Code civil des Français. Il est promulgué (rendu exécutoire par le Premier consul) le 31 mars 1804, soit le 10 germinal an XII."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qui a rédigé le Code civil de 1804 ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tronchet, Portalis, Bigot de Préameneu et Maleville écrivent le projet au sein d'une commission nommée en août 1800, que Tronchet préside. Le Conseil d'État discute ensuite le projet, souvent sous la présidence de Bonaparte."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Pourquoi appelle-t-on le Code civil « Code Napoléon » ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le Code est lié à Bonaparte, qui préside environ la moitié des séances consacrées au projet et devient l'empereur Napoléon Ier en 1804. On le surnomme rapidement Code Napoléon, et ce nom devient celui du Code en 1807."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le Code civil de 1804 est-il toujours en vigueur ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, mais beaucoup de ses articles ont changé. L'article 544 sur la propriété date de 1804, alors que le droit des contrats a été refait en 2016."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t=localStorage.getItem('tjd-theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=2d752479">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 549,64 €, 53 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-53 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">549,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 409,74 €, 44 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-44 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">409,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 524,67 €, 51 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-51 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">524,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 444,70 €, 46 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-46 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">444,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 644,58 €, 49 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-49 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">644,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -14 %</em></strong><small>890 € · 89 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>162 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow text-center">
+        <h1 class="h1">Le Code civil de 1804 : histoire, rédacteurs et plan</h1>
+        <p class="lead" style="max-width:720px; margin-left:auto; margin-right:auto">Le Code civil de 1804 est le recueil de droit privé formé par la loi du 21 mars 1804, qui réunit 36 lois. Une commission de quatre juristes, Tronchet, Portalis, Bigot de Préameneu et Maleville, en a rédigé le projet à partir de l'ancien droit (le droit d'avant 1789) et des lois de la Révolution. Il compte 2 281 articles, répartis en trois livres sur les personnes, les biens et les manières d'acquérir la propriété.</p>
+        <div class="hero__cta flex flex--center" style="margin-top:24px">
+          <a class="btn btn--primary btn--lg" href="#redacteurs">Voir les quatre rédacteurs →</a>
+          <a class="btn btn--outline btn--lg" href="#examen">Le plan de dissertation</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <p style="color:var(--body); line-height:1.75">Le Code civil traite du droit privé, c'est-à-dire des règles qui organisent les relations entre particuliers, comme la famille ou la propriété. Il peut tomber à l'examen sous trois formes. Une question de cours te demande d'abord qui l'a rédigé et comment il a été adopté. Une dissertation pose ensuite une question comme « Le Code civil de 1804 est-il un code révolutionnaire ? ». Enfin, un commentaire de texte porte sur un extrait du Discours préliminaire, par lequel Portalis, l'un des rédacteurs, a présenté le projet en 1801.</p>
+      </div>
+    </section>
+
+    <!-- offre du PDF correspondant -->
+    <section class="conversion-offer" aria-labelledby="choix-histoire-droit-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/fiche-hist-droit-l1.webp" alt="Couverture de la fiche complète Histoire du droit L1 S1, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">Histoire du droit et des institutions en L1</p>
+            <h2 class="conversion-offer__title" id="choix-histoire-droit-titre">Histoire du droit L1 S1, la fiche complète de 136 pages</h2>
+            <p class="conversion-offer__summary">Le Code civil de 1804 reprend des catégories et un plan venus de Rome, que les juristes Domat et Pothier avaient remis en ordre. C'est pourquoi la fiche de 136 pages relie Rome au Code civil au chapitre 5 (page 32) et présente Domat et Pothier au chapitre 18 (page 120). Elle suit en vingt chapitres l'histoire du droit et de l'État, de la royauté romaine à la fin de l'Ancien Régime. La fiche d'histoire des institutions (semestre 2, 96 pages) replace ensuite le Code dans l'État de Napoléon.</p>
+            <ul class="conversion-offer__benefits">
+              <li>Une carte de plan en tête de chaque chapitre</li>
+              <li>Les textes et les auteurs à citer pour chaque époque</li>
+              <li>Un PDF reçu juste après le paiement</li>
+            </ul>
+            <div class="conversion-offer__choices" aria-label="Choisir le produit d'histoire du droit">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-hist-droit-l1">Histoire du droit L1 S1 · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="fiche-hist-institutions-l1">Histoire des institutions L1 S2 · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-l1">Pack Licence 1 · 87 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement Stripe · accès à vie · mises à jour incluses · garantie satisfait ou remboursé sous 7 jours</p>
+            <div data-tjd-avis data-matiere="hist-droit-l1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTEXTE -->
+    <section class="section" id="contexte">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Pourquoi la France avait-elle besoin d'un Code civil en 1800 ?</h2>
+        <p class="lead" style="margin-bottom:20px">Avant la Révolution, les règles civiles changeaient du nord au sud du royaume.</p>
+        <p style="color:var(--body); line-height:1.75">Au nord, des coutumes (des règles locales nées de l'usage) organisaient la famille et la transmission des biens. Au sud, on appliquait surtout le droit romain, qu'on appelait le droit écrit, car il figurait dans les recueils de l'empereur Justinien. Quelques ordonnances royales (des lois du roi), comme celles de 1731 sur les donations et de 1735 sur les testaments, valaient pour tout le royaume.</p>
+        <p style="color:var(--body); line-height:1.75">La Révolution française veut un droit civil commun à tous les Français. En effet, l'Assemblée constituante décide dès 1790 de faire un code de lois civiles communes à tout le royaume. Cambacérès présente ensuite un premier projet le 9 août 1793 et un deuxième le 9 septembre 1794. Un troisième suit en 1796. Aucun n'aboutit. La Convention adopte seulement les dix premiers articles du deuxième, et le troisième est abandonné. Bonaparte, qui veut unifier le droit, relance donc la codification après le coup d'État du 18 brumaire (novembre 1799).</p>
+      </div>
+    </section>
+
+    <!-- RÉDACTEURS -->
+    <section class="section section--alt" id="redacteurs">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Qui a rédigé le Code civil de 1804 ?</h2>
+        <p class="lead" style="margin-bottom:20px">En août 1800, par un arrêté du 24 thermidor an VIII (une décision du gouvernement), Bonaparte, Premier consul (le chef du gouvernement) depuis 1799 et futur empereur Napoléon Ier, nomme une commission de quatre juristes.</p>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)">
+                <th style="padding:10px 12px">Le rédacteur</th>
+                <th style="padding:10px 12px">Son droit d'origine</th>
+                <th style="padding:10px 12px">Son rôle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Tronchet</td><td style="padding:10px 12px; vertical-align:top">Les pays de coutumes</td><td style="padding:10px 12px; vertical-align:top">Président de la commission</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Portalis</td><td style="padding:10px 12px; vertical-align:top">Les pays de droit écrit</td><td style="padding:10px 12px; vertical-align:top">Auteur du Discours préliminaire</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Bigot de Préameneu</td><td style="padding:10px 12px; vertical-align:top">Les pays de coutumes</td><td style="padding:10px 12px; vertical-align:top">Membre de la commission</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Maleville</td><td style="padding:10px 12px; vertical-align:top">Les pays de droit écrit</td><td style="padding:10px 12px; vertical-align:top">Secrétaire de la commission</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75">Deux des quatre juristes connaissent les coutumes et deux le droit écrit, si bien que chaque tradition est représentée dans la commission. Cambacérès, l'auteur de trois projets de la Révolution, suit de près les travaux. Les juristes travaillent quatre mois selon Maleville, puis la commission présente son projet en janvier 1801, avec le Discours préliminaire que Portalis écrit au nom des quatre.</p>
+        <p style="color:var(--body); line-height:1.75">Bonaparte intervient surtout au Conseil d'État (l'organe qui prépare les textes du gouvernement), qui discute le projet en une centaine de séances à partir de juillet 1801. Il préside environ la moitié des séances consacrées au Code, et Cambacérès le remplace quand il est absent.</p>
+        <p style="color:var(--body); line-height:1.75">À la question « Qui est l'auteur du Code civil ? », tu réponds par la commission de quatre juristes, puis tu précises le rôle de Bonaparte au Conseil d'État.</p>
+      </div>
+    </section>
+
+    <!-- ADOPTION -->
+    <section class="section" id="adoption">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Comment le Code civil a-t-il été adopté, étape par étape ?</h2>
+        <p class="lead" style="margin-bottom:20px">Le Code est voté titre par titre (un titre est une subdivision du Code), puis réuni en un seul texte le 21 mars 1804.</p>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)">
+                <th style="padding:10px 12px">L'étape</th>
+                <th style="padding:10px 12px">La date</th>
+                <th style="padding:10px 12px">Ce qui se passe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">La rédaction</td><td style="padding:10px 12px; vertical-align:top">Août 1800 à janvier 1801</td><td style="padding:10px 12px; vertical-align:top">La commission écrit le projet en quatre mois selon Maleville, l'un des rédacteurs, et le présente en janvier 1801.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Les observations et la discussion</td><td style="padding:10px 12px; vertical-align:top">1801, puis à partir de juillet 1801</td><td style="padding:10px 12px; vertical-align:top">Le Tribunal de cassation (le nom que portait alors la Cour de cassation) et les tribunaux d'appel donnent leurs observations. Le Conseil d'État supprime ensuite presque entièrement le livre préliminaire de Portalis, jugé plus philosophique que juridique.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">La résistance des assemblées</td><td style="padding:10px 12px; vertical-align:top">Décembre 1801</td><td style="padding:10px 12px; vertical-align:top">Les tribuns du Tribunat (qui discute les projets de loi) reprochent aux juristes de s'être trop inspirés de l'ancien droit. Le Corps législatif (qui les vote) rejette de justesse le projet de titre préliminaire sur la publication et l'application des lois.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">La reprise en main</td><td style="padding:10px 12px; vertical-align:top">1802</td><td style="padding:10px 12px; vertical-align:top">Un sénatus-consulte de mars 1802 (une décision du Sénat) organise le renouvellement du Corps législatif et du Tribunat, et les membres sortants sont choisis parmi les opposants au lieu d'être tirés au sort, ce qui permet à Bonaparte de soumettre les assemblées.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Le vote des 36 lois</td><td style="padding:10px 12px; vertical-align:top">Mars 1803 à mars 1804</td><td style="padding:10px 12px; vertical-align:top">Chaque titre devient une loi, soit 36 lois. La première, votée le 5 mars 1803 et promulguée (rendue exécutoire par le Premier consul) le 15 mars 1803, fixe le titre préliminaire de six articles.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">La réunion en un code</td><td style="padding:10px 12px; vertical-align:top">21 mars 1804 (30 ventôse an XII)</td><td style="padding:10px 12px; vertical-align:top">Une loi réunit les 36 lois en un seul recueil, le Code civil des Français, qui compte 2 281 articles. Il est promulgué le 31 mars 1804.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75">Les articles 2 à 6 du Code actuel viennent encore de la loi de 1803. Le Code prend ensuite le nom de Code Napoléon en 1807.</p>
+      </div>
+    </section>
+
+    <!-- PLAN -->
+    <section class="section section--alt" id="plan">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quel est le plan du Code civil de 1804 ?</h2>
+        <p class="lead" style="margin-bottom:20px">Le Code s'ouvre sur un titre préliminaire de six articles, puis se divise en trois livres.</p>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)">
+                <th style="padding:10px 12px">La partie</th>
+                <th style="padding:10px 12px">Son intitulé de 1804</th>
+                <th style="padding:10px 12px">Ce qu'on y trouve</th>
+                <th style="padding:10px 12px">Titres</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Titre préliminaire</td><td style="padding:10px 12px; vertical-align:top">De la publication, des effets et de l'application des lois en général</td><td style="padding:10px 12px; vertical-align:top">La publication des lois, leur non-rétroactivité (article 2), le devoir de juger (article 4), l'interdiction de juger par règle générale (article 5) et l'ordre public (article 6).</td><td style="padding:10px 12px; vertical-align:top">1</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Livre I</td><td style="padding:10px 12px; vertical-align:top">Des personnes</td><td style="padding:10px 12px; vertical-align:top">Les droits civils (les droits des relations privées, comme se marier ou hériter, par opposition aux droits politiques), l'état civil (les registres des naissances, mariages et décès), le mariage, le divorce, la filiation (le lien juridique entre un enfant et ses parents), l'adoption, la puissance paternelle (l'autorité parentale d'aujourd'hui), la tutelle et la majorité.</td><td style="padding:10px 12px; vertical-align:top">11</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Livre II</td><td style="padding:10px 12px; vertical-align:top">Des biens et des différentes modifications de la propriété</td><td style="padding:10px 12px; vertical-align:top">La distinction des biens, la propriété, l'usufruit (le droit de jouir d'un bien dont un autre est propriétaire, à condition de le conserver) et les servitudes.</td><td style="padding:10px 12px; vertical-align:top">4</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Livre III</td><td style="padding:10px 12px; vertical-align:top">Des différentes manières dont on acquiert la propriété</td><td style="padding:10px 12px; vertical-align:top">Les successions, les donations et testaments, les contrats, les engagements sans convention (dont la responsabilité), le contrat de mariage, la vente, le louage (la location d'une chose ou d'un travail), la société, le cautionnement, les hypothèques et la prescription.</td><td style="padding:10px 12px; vertical-align:top">20</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75">On retrouve dans ce plan celui des Institutes de Gaius et de Justinien (des manuels de droit romain), qui traitaient des personnes et des choses, puis des actions en justice. Le Code laisse de côté les actions, que le Code de procédure civile de 1806 régit à part. Il range les contrats dans le troisième livre, parmi les manières d'acquérir la propriété, et il traite donc le contrat comme un moyen d'acquérir un bien. Tu peux approfondir ce lien avec la <a href="dissertation-heritage-droit-romain-corrigee.html">dissertation corrigée sur l'héritage du droit romain</a>, qui développe la filiation entre le droit romain et le Code.</p>
+        <p style="color:var(--body); line-height:1.75">Le Code actuel compte cinq livres. Un livre IV sur les sûretés (les garanties de paiement, comme la caution ou l'hypothèque), détaché du livre III en 2006, et un livre V sur Mayotte s'ajoutent aux trois livres de 1804.</p>
+      </div>
+    </section>
+
+    <!-- PRINCIPES -->
+    <section class="section" id="principes">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quels principes le Code pose-t-il, et que reste-t-il de ses articles de 1804 ?</h2>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)">
+                <th style="padding:10px 12px">Le domaine</th>
+                <th style="padding:10px 12px">Le texte de 1804</th>
+                <th style="padding:10px 12px">Aujourd'hui</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">La propriété</td><td style="padding:10px 12px; vertical-align:top">Article 544 : « La propriété est le droit de jouir et disposer des choses de la manière la plus absolue, pourvu qu'on n'en fasse pas un usage prohibé par les lois ou par les règlements. »</td><td style="padding:10px 12px; vertical-align:top">L'article reste en vigueur dans son texte de 1804.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">L'égalité civile</td><td style="padding:10px 12px; vertical-align:top">Article 8 : « Tout Français jouira des droits civils. »</td><td style="padding:10px 12px; vertical-align:top">L'article 8 énonce toujours cette règle.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Le contrat</td><td style="padding:10px 12px; vertical-align:top">Article 1134, alinéa 1 : « Les conventions légalement formées tiennent lieu de loi à ceux qui les ont faites. »</td><td style="padding:10px 12px; vertical-align:top">Article 1103 depuis l'ordonnance du 10 février 2016 : « Les contrats légalement formés tiennent lieu de loi à ceux qui les ont faits. »</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">La responsabilité</td><td style="padding:10px 12px; vertical-align:top">Article 1382 : « Tout fait quelconque de l'homme, qui cause à autrui un dommage, oblige celui par la faute duquel il est arrivé, à le réparer. »</td><td style="padding:10px 12px; vertical-align:top">Article 1240 depuis la même ordonnance, qui reprend la même règle.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">La famille</td><td style="padding:10px 12px; vertical-align:top">Article 213 : « Le mari doit protection à sa femme, la femme obéissance à son mari. »</td><td style="padding:10px 12px; vertical-align:top">La loi du 18 février 1938 met fin à l'incapacité de la femme mariée (elle ne pouvait ni agir en justice ni passer seule la plupart des actes sur ses biens). L'article 213 actuel, issu de la loi du 4 juin 1970, prévoit que « Les époux assurent ensemble la direction morale et matérielle de la famille. »</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Le travail</td><td style="padding:10px 12px; vertical-align:top">Article 1781 : le maître (l'employeur) est cru sur son affirmation pour le montant des gages (la rémunération), pour le paiement de l'année écoulée et pour les acomptes de l'année en cours.</td><td style="padding:10px 12px; vertical-align:top">Cet article a été abrogé, c'est-à-dire supprimé.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75">Le Code pose l'égalité civile et la liberté de contracter, mais la famille reste organisée autour du mari et du père, ce qui limite l'égalité de l'article 8.</p>
+        <p style="color:var(--body); line-height:1.75">Environ 1 200 des 2 281 articles de 1804 existaient encore en 2004 sous leur forme d'origine, selon la bibliothèque du Sénat. D'après le texte consolidé (à jour) de juillet 2026, environ 500 des 2 899 articles en vigueur gardent leur rédaction de 1803 ou de 1804, soit moins d'un sur cinq.</p>
+      </div>
+    </section>
+
+    <!-- COMPROMIS -->
+    <section class="section section--alt" id="compromis">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Pourquoi dit-on que le Code civil de 1804 est un compromis ?</h2>
+        <p class="lead" style="margin-bottom:20px">Les rédacteurs décrivent eux-mêmes leur méthode dans le Discours préliminaire.</p>
+        <div class="card" style="padding:20px 24px; margin:0 0 22px; background:var(--amber-50, #fdf6e3); border-left:4px solid var(--amber-500, #d4a017)">
+          <strong>Citation à apprendre.</strong> <span style="color:var(--body)">« Nous avons fait, s'il est permis de s'exprimer ainsi, une transaction entre le droit écrit et les coutumes toutes les fois qu'il nous a été possible de concilier leurs dispositions, ou de les modifier les unes par les autres, sans rompre l'unité du système, et sans choquer l'esprit général. » Portalis, Discours préliminaire, 1801.</span>
+        </div>
+        <p style="color:var(--body); line-height:1.75">Une transaction est un accord où chacun cède une part de ses prétentions. Pour le Code civil, les deux parties sont le droit écrit du sud et les coutumes du nord.</p>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)">
+                <th style="padding:10px 12px">L'héritage</th>
+                <th style="padding:10px 12px">Ce que le Code en reprend</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Le droit romain</td><td style="padding:10px 12px; vertical-align:top">Le plan en personnes et en choses, et des catégories comme la propriété, le contrat, les obligations et les successions.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Les ordonnances et les traités de juristes</td><td style="padding:10px 12px; vertical-align:top">Des dispositions des ordonnances de 1731 (donations) et de 1735 (testaments), et les traités du juriste Pothier, dont les rédacteurs s'inspirent beaucoup.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Les coutumes</td><td style="padding:10px 12px; vertical-align:top">La communauté de biens entre époux (un régime où une grande partie des biens du couple appartient aux deux), qui s'applique quand les époux n'ont rien prévu par contrat.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">La Révolution</td><td style="padding:10px 12px; vertical-align:top">L'égalité civile (article 8), l'état civil tenu par des agents publics et le divorce.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75">Le régime de biens des époux (la manière dont ils organisent leurs biens) illustre ce compromis. En effet, Portalis rappelle que « Le régime des dots était celui des pays de droit écrit. La communauté était en usage dans les pays coutumiers. » La dot désignait les biens que la femme apportait au mariage et que le mari administrait. Le projet laisse donc les futurs époux choisir leur régime par contrat, mais il leur applique la communauté lorsqu'ils n'ont rien prévu.</p>
+        <p style="color:var(--body); line-height:1.75">Le Code rompt pourtant formellement avec l'ancien droit. L'article 7 de la loi du 30 ventôse an XII dispose que les lois romaines, les ordonnances, les coutumes et les autres textes anciens « cessent d'avoir force de loi générale ou particulière » dans les matières que le Code règle. Mais beaucoup de leurs règles se retrouvent dans les articles du Code.</p>
+      </div>
+    </section>
+
+    <!-- DEPUIS 1804 -->
+    <section class="section" id="depuis">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Qu'est-ce qui a changé depuis 1804 ?</h2>
+        <p class="lead" style="margin-bottom:20px">Le Code civil de 1804 est toujours en vigueur, mais ses articles ont été réformés les uns après les autres.</p>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)">
+                <th style="padding:10px 12px">Le sujet</th>
+                <th style="padding:10px 12px">En 1804</th>
+                <th style="padding:10px 12px">Les réformes principales</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Le divorce</td><td style="padding:10px 12px; vertical-align:top">Admis, pour faute ou par consentement mutuel, sous des conditions strictes.</td><td style="padding:10px 12px; vertical-align:top">Aboli par la loi du 8 mai 1816, rétabli pour faute seulement par la loi du 27 juillet 1884, puis réformé par la loi du 11 juillet 1975, qui rétablit le consentement mutuel.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">La femme mariée</td><td style="padding:10px 12px; vertical-align:top">Elle doit obéissance à son mari (article 213) et ne peut ni agir en justice ni passer seule la plupart des actes sur ses biens.</td><td style="padding:10px 12px; vertical-align:top">Loi du 18 février 1938 (fin de l'incapacité), loi du 13 juillet 1965 (la femme gère ses biens propres et travaille sans l'accord de son mari), loi du 4 juin 1970 (direction commune de la famille).</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">La filiation</td><td style="padding:10px 12px; vertical-align:top">Les enfants nés hors mariage sont moins bien traités que les enfants légitimes (nés dans le mariage).</td><td style="padding:10px 12px; vertical-align:top">Loi du 3 janvier 1972, qui pose le principe d'une égalité entre enfants légitimes et enfants naturels, puis ordonnance du 4 juillet 2005, en vigueur le 1er juillet 2006.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">La <a href="la-prescription-en-droit.html">prescription</a> (le délai au-delà duquel on ne peut plus agir en justice)</td><td style="padding:10px 12px; vertical-align:top">Trente ans en droit commun (article 2262).</td><td style="padding:10px 12px; vertical-align:top">Loi du 17 juin 2008, qui fixe à cinq ans le délai des actions personnelles ou mobilières (article 2224).</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Les contrats</td><td style="padding:10px 12px; vertical-align:top">Les articles 1101 à 1369.</td><td style="padding:10px 12px; vertical-align:top">Ordonnance du 10 février 2016, qui refait le droit des contrats, le régime général des obligations et la preuve, et renumérote les articles.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- POSTÉRITÉ -->
+    <section class="section section--alt" id="posterite">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Le Code civil de 1804 a-t-il influencé d'autres pays ?</h2>
+        <p class="lead" style="margin-bottom:20px">Le Code s'impose d'abord dans les pays conquis par la France, puis d'autres pays s'en inspirent.</p>
+        <p style="color:var(--body); line-height:1.75">Dès 1804, il s'applique à la rive gauche du Rhin, à la Belgique et au Luxembourg, alors annexés à la France. La Belgique le garde ensuite pendant plus de cent ans en le modifiant à peine. La Louisiane adopte un code civil largement inspiré du modèle français, et le Québec fait de même en 1866. En revanche, le Japon adopte en 1898 un code qui s'inspire surtout du projet de code civil allemand, et dans une moindre mesure du Code civil français.</p>
+      </div>
+    </section>
+
+    <!-- EXAMEN -->
+    <section class="section" id="examen">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Comment traiter le Code civil de 1804 à l'examen ?</h2>
+        <h3 style="margin-top:24px">Un plan de dissertation sur « Le Code civil de 1804 est-il un code révolutionnaire ? »</h3>
+        <p style="color:var(--body); line-height:1.75">Au brouillon, tu pars d'abord des mots du sujet, comme dans la <a href="methode-dissertation-juridique.html">méthode de la dissertation juridique</a>. Le Code civil de 1804 désigne le texte réuni par la loi du 21 mars 1804, tandis qu'un code révolutionnaire prolonge les principes de 1789, comme l'égalité. Ainsi, la problématique (la question à laquelle la copie répond) découle de ces définitions. Le Code civil prolonge-t-il la Révolution ou recompose-t-il l'ancien droit ?</p>
+        <ul style="color:var(--body); line-height:1.75; margin:0 0 14px; padding-left:22px">
+          <li><strong>I. Un code qui fixe des acquis de la Révolution.</strong> A. L'égalité civile et la propriété individuelle (articles 8 et 544). B. L'état civil tenu par des agents publics et le divorce admis.</li>
+          <li><strong>II. Un code qui garde beaucoup de l'ancien droit.</strong> A. Le compromis entre droit écrit et coutumes. B. Une famille hiérarchisée autour du mari (article 213) et un employeur cru sur parole (article 1781).</li>
+        </ul>
+        <p style="color:var(--body); line-height:1.75">La partie I s'appuie sur les articles 8 et 544 du tableau des principes et sur la ligne « La Révolution » du tableau des héritages. La partie II s'appuie sur la citation de Portalis, puis sur les articles 213 et 1781. Ton chargé de TD (l'enseignant qui anime tes séances de travaux dirigés) peut toutefois en attendre un autre plan.</p>
+        <h3 style="margin-top:24px">Un extrait du Discours préliminaire à commenter</h3>
+        <p style="color:var(--body); line-height:1.75">Le passage de Portalis sur le juge se retrouve en partie dans les articles 4 et 5 du Code. Portalis définit d'abord l'interprétation par voie d'autorité (résoudre les doutes par des règlements ou des dispositions générales), puis il affirme : « Ce mode d'interprétation est le seul qui soit interdit au juge. » Il ajoute ensuite : « Quand la loi est claire, il faut la suivre ; quand elle est obscure, il faut en approfondir les dispositions. Si l'on manque de loi, il faut consulter l'usage ou l'équité. »</p>
+        <p style="color:var(--body); line-height:1.75">Le mot « préliminaire » désigne trois textes différents, le Discours préliminaire (le discours de présentation du projet), le livre préliminaire de Portalis (presque entièrement supprimé) et le titre préliminaire du Code (six articles, conservé). Ce dernier contient les articles 4 et 5. L'article 4 oblige le juge à trancher même quand la loi se tait, reste obscure ou paraît insuffisante, sous peine de poursuites pour déni de justice (le refus de juger). Il ne mentionne pourtant ni l'usage ni l'équité. L'article 5 défend aux juges de prononcer par voie de disposition générale et réglementaire, et le juge ne peut donc ni refuser de juger ni poser une règle générale pour l'avenir.</p>
+        <p style="color:var(--body); line-height:1.75">Un extrait du Discours se commente en commençant par le dater (janvier 1801) et par nommer son auteur, puis en cherchant les articles du Code qui reprennent l'idée. La <a href="methode-du-commentaire-de-texte-juridique.html">méthode du commentaire de texte juridique</a> applique ces étapes à un autre passage du même discours, celui où Portalis recommande d'être sobre de nouveautés.</p>
+      </div>
+    </section>
+
+    <!-- ERREURS -->
+    <section class="section section--alt" id="erreurs">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quelles erreurs font perdre des points sur le Code civil de 1804 ?</h2>
+        <div class="grid-2" style="gap:18px; margin-top:20px">
+          <div class="card"><h3 style="margin-top:0">Attribuer le Code à Napoléon seul</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">Une commission de quatre juristes écrit le projet, et Bonaparte intervient surtout au Conseil d'État.</p></div>
+          <div class="card"><h3 style="margin-top:0">Dater tout le Code au 21 mars 1804</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">Les 36 lois sont votées entre mars 1803 et mars 1804. Le 21 mars 1804 est la date de la loi qui les réunit en un seul Code, et la promulgation de ce Code date du 31 mars 1804.</p></div>
+          <div class="card"><h3 style="margin-top:0">Présenter le Code comme une table rase (un droit entièrement nouveau)</h3><p style="margin-bottom:0; color:var(--body); line-height:1.7">Les rédacteurs parlent eux-mêmes d'une transaction entre le droit écrit et les coutumes. Tu montres ce que le Code garde de l'ancien droit et ce qu'il prend à la Révolution.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container container--narrow">
+        <h2 class="h2 text-center" style="margin-bottom:32px">Questions fréquentes sur le Code civil de 1804</h2>
+        <div class="accordion">
+          <details class="accordion__item" open><summary><h3>Quand le Code civil de 1804 a-t-il été voté et promulgué ?</h3></summary><div class="accordion__body">La loi du 30 ventôse an XII, votée le 21 mars 1804, réunit les 36 lois votées depuis mars 1803 et forme le Code civil des Français. Il est promulgué (rendu exécutoire par le Premier consul) le 31 mars 1804, soit le 10 germinal an XII.</div></details>
+          <details class="accordion__item"><summary><h3>Qui a rédigé le Code civil de 1804 ?</h3></summary><div class="accordion__body">Tronchet, Portalis, Bigot de Préameneu et Maleville écrivent le projet au sein d'une commission nommée en août 1800, que Tronchet préside. Le Conseil d'État discute ensuite le projet, souvent sous la présidence de Bonaparte.</div></details>
+          <details class="accordion__item"><summary><h3>Pourquoi appelle-t-on le Code civil « Code Napoléon » ?</h3></summary><div class="accordion__body">Le Code est lié à Bonaparte, qui préside environ la moitié des séances consacrées au projet et devient l'empereur Napoléon Ier en 1804. On le surnomme rapidement Code Napoléon, et ce nom devient celui du Code en 1807.</div></details>
+          <details class="accordion__item"><summary><h3>Le Code civil de 1804 est-il toujours en vigueur ?</h3></summary><div class="accordion__body">Oui, mais beaucoup de ses articles ont changé. L'article 544 sur la propriété date de 1804, alors que le droit des contrats a été refait en 2016.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAILLAGE -->
+    <section class="section section--alt" id="corriges">
+      <div class="container container--narrow text-center">
+        <h2 class="h2">Pour continuer avec l'histoire du droit</h2>
+        <div style="max-width:680px;margin:24px auto 0;display:grid;gap:12px">
+          <a class="btn btn--outline btn--full" href="fiche-revision-histoire-du-droit-l1.html">Fiche de révision d'histoire du droit L1</a>
+          <a class="btn btn--outline btn--full" href="sujets-histoire-du-droit-l1.html">Sujets d'histoire du droit L1 corrigés</a>
+        </div>
+        <p style="margin-top:18px"><a href="histoire-du-droit-l1.html">Revoir tout le cours d'histoire du droit L1 →</a></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="author-box">
+          <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+          <div>
+            <p class="author-box__name">Julien</p>
+            <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+            <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">162 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- fin-article:pack-ultra -->
+    <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
+      <div class="container">
+        <p class="article-pack-ligne__texte">Le Pack Ultra L1 S1 réunit les 36 ressources de ton premier semestre de L1 pour 259 €, la fiche d'histoire du droit L1 comprise. <a href="pack-ultra.html#pack-ultra-l1-s1">Voir le contenu du pack →</a></p>
+        <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (le Code civil de 1804)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Histoire du droit L1 S1 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-hist-droit-l1">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=c83cad1e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=342ec727" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>
