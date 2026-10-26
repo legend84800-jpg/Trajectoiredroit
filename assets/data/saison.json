@@ -1,18 +1,37 @@
 {
   "_mode_emploi": "Fichier unique de la bascule saisonnière, lu par assets/js/main.js (section 4). Mis à jour chaque lundi par la routine bascule-saisonniere-tjd. Si ce fichier manque, est mal formé ou si periode.fin est passée, le site garde son affichage par défaut. Tout texte ici est lu par des étudiants et passe par le skill redaction-julien. Compte à rebours seulement vers une date réelle (compte_a_rebours_fin au format ISO), sinon null. Le bandeau s'affiche seulement sur les pages de bandeau.afficher_sur (accueil et pages methode-*, décision du 01/10/2026 pour laisser les pages de vente à la fiche à 14,99 €), un « * » final vaut préfixe. Format avancé (main.js depuis le 23/10/2026) : une liste « periodes » à la racine, chaque élément portant ses propres periode, bandeau, accueil et bouton_collant ; la page affiche le premier élément dont debut et fin contiennent le jour, ce qui fait basculer à minuit sans attendre la routine. Sans liste, l'ancien format à une seule période reste lu, debut compris. Les clics du bandeau et du bouton collant partent dans Matomo, catégorie « saison », actions « clic-bandeau » et « clic-bouton-collant », libellé = periode.id.",
   "periode": {
-    "id": "2026-s1-td-notes",
-    "nom": "TD notés et méthode",
-    "debut": "2026-09-28",
-    "fin": "2026-10-25"
+    "id": "2026-s1-cours-images-contrats",
+    "nom": "Test du cours en images de droit des contrats",
+    "debut": "2026-10-26",
+    "fin": "2026-11-13"
   },
   "bandeau": {
-    "actif": false,
+    "actif": true,
+    "etiquette_forte": "Le droit des contrats en images",
+    "etiquette": ", cours de L2 S1 en 109 pages",
+    "puce": "19,99 €, plan détaillé en bonus",
+    "bouton": "Voir le cours",
+    "lien": "droit-des-contrats-en-images.html",
+    "compte_a_rebours_fin": null,
+    "compte_a_rebours_libelle": null,
+    "masquer_sur": [
+      "droit-des-contrats-en-images",
+      "parents"
+    ],
     "afficher_sur": [
       "accueil",
       "methode-*"
     ]
   },
   "accueil": null,
-  "bouton_collant": null
+  "bouton_collant": {
+    "pages": [
+      "accueil"
+    ],
+    "titre": "Le droit des contrats en images",
+    "sous_titre": "109 pages, 19,99 €",
+    "libelle": "Voir le cours →",
+    "lien": "droit-des-contrats-en-images.html"
+  }
 }
