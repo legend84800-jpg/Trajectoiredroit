@@ -9,6 +9,10 @@ const USER='10000000-0000-4000-8000-000000000001';
 const ID='20000000-0000-4000-8000-000000000001';
 const res=()=>({headers:{},setHeader(n,v){this.headers[n]=v;},status(c){this.statusCode=c;return this;},json(p){this.payload=p;return this;},end(){}});
 function charger(file,stubs,globals={}){
+  if(file==='api/_portalis-generation.js'&&!Object.hasOwn(stubs,'./_portalis-corpus')) {
+    const corpus=require('../api/_portalis-corpus');
+    stubs={...stubs,'./_portalis-corpus':{...corpus,rechercher:async()=>({version:'fixture-vide',passages:[]})}};
+  }
   const module={exports:{}};
   const realRequire=require('node:module').createRequire(path.join(root,file));
   const requireStub=name=>Object.hasOwn(stubs,name)?stubs[name]:realRequire(name);
