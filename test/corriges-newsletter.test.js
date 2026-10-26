@@ -34,7 +34,5 @@ test('inscription, correction confirmée et livraison à un abonné existant',as
   appels=[];res=response();await handler({method:'POST',body:{email:'eleve@gmail.com',exercice:'inconnu'}},res);assert.equal(res.statusCode,400);assert.equal(appels.length,0);
  }finally{global.fetch=ancienFetch;if(ancienneCle===undefined)delete process.env.BREVO_API_KEY;else process.env.BREVO_API_KEY=ancienneCle;if(ancienneListe===undefined)delete process.env.BREVO_LIST_ID;else process.env.BREVO_LIST_ID=ancienneListe;}
 });
-test('la remise de corrigés refuse un achat de fiche',async()=>{
- const h=require('../api/create-checkout');const r={setHeader(){},status(c){this.code=c;return this;},json(d){this.data=d;return this;}};
- await h({method:'POST',body:{produitId:'fiche-intro-droit-l1',code:'CORRIGE10'}},r);assert.equal(r.code,400);assert.equal(r.data.code,'remise_corriges');
-});
+// Les règles de prix de CORRIGE10 et le passage à un autre format sont exercés
+// par checkout-corrige10.test.js avec la création Stripe entièrement simulée.

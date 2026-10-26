@@ -1,6 +1,36 @@
 /* Intégration paiement TJD (Stripe). Gère tous les boutons [data-tjd-produit] du site. */
 (function () {
   var TEXTES_ORIGINAUX = {};
+  // Le stockage du navigateur peut être refusé ou plein. Les données utiles au
+  // paiement restent alors en mémoire dans cette page, sans inventer de consentement.
+  var STOCKAGE_EN_MEMOIRE = { localStorage: {}, sessionStorage: {} };
+
+  function lireStockage(type, cle) {
+    if (Object.prototype.hasOwnProperty.call(STOCKAGE_EN_MEMOIRE[type], cle)) {
+      return STOCKAGE_EN_MEMOIRE[type][cle];
+    }
+    try {
+      return (type === 'localStorage' ? localStorage : sessionStorage).getItem(cle);
+    } catch (_) { return null; }
+  }
+
+  function ecrireStockage(type, cle, valeur) {
+    try {
+      (type === 'localStorage' ? localStorage : sessionStorage).setItem(cle, valeur);
+      delete STOCKAGE_EN_MEMOIRE[type][cle];
+      return true;
+    } catch (_) {
+      STOCKAGE_EN_MEMOIRE[type][cle] = String(valeur);
+      return false;
+    }
+  }
+
+  function retirerStockage(type, cle) {
+    try {
+      (type === 'localStorage' ? localStorage : sessionStorage).removeItem(cle);
+      delete STOCKAGE_EN_MEMOIRE[type][cle];
+    } catch (_) { STOCKAGE_EN_MEMOIRE[type][cle] = null; }
+  }
   var CLES_ATTRIBUTION_PUBLICATION = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
   var CLE_ATTRIBUTION_PUBLICATION = 'tjd_attribution';
   var DUREE_ATTRIBUTION_PUBLICATION = 30 * 24 * 60 * 60 * 1000;
@@ -10,7 +40,7 @@
 
   function lireAttributionPublication() {
     var contact;
-    try { contact = JSON.parse(localStorage.getItem(CLE_ATTRIBUTION_PUBLICATION) || 'null'); }
+    try { contact = JSON.parse(lireStockage('localStorage', CLE_ATTRIBUTION_PUBLICATION) || 'null'); }
     catch (_) { contact = attributionPublicationEnMemoire; }
     if (!contact || typeof contact !== 'object' || typeof contact.ts !== 'number'
       || !Number.isFinite(contact.ts) || Date.now() - contact.ts < 0
@@ -39,14 +69,14 @@
         var valeur = params.get(cle);
         if (valeur) contact[cle] = valeur.slice(0, 100);
         try {
-          if (contact[cle]) sessionStorage.setItem('tjd_' + cle, contact[cle]);
-          else sessionStorage.removeItem('tjd_' + cle);
+          if (contact[cle]) ecrireStockage('sessionStorage', 'tjd_' + cle, contact[cle]);
+          else retirerStockage('sessionStorage', 'tjd_' + cle);
         } catch (_) {}
       });
       try {
-        sessionStorage.setItem('tjd_landing_page', contact.landing_page);
-        if (contact.referrer) sessionStorage.setItem('tjd_referrer', contact.referrer);
-        else sessionStorage.removeItem('tjd_referrer');
+        ecrireStockage('sessionStorage', 'tjd_landing_page', contact.landing_page);
+        if (contact.referrer) ecrireStockage('sessionStorage', 'tjd_referrer', contact.referrer);
+        else retirerStockage('sessionStorage', 'tjd_referrer');
       } catch (_) {}
     }
     if (!contact) return;
@@ -55,7 +85,7 @@
     if (referenceValide) contact.atelierPublicationRef = reference;
     if (orientationValide) contact.atelierOrientationRef = orientation;
     attributionPublicationEnMemoire = contact;
-    try { localStorage.setItem(CLE_ATTRIBUTION_PUBLICATION, JSON.stringify(contact)); } catch (_) {}
+    try { ecrireStockage('localStorage', CLE_ATTRIBUTION_PUBLICATION, JSON.stringify(contact)); } catch (_) {}
   }
   memoriserAttributionPublication();
   var contactAttributionAuChargement = lireAttributionPublication();
@@ -107,9 +137,9 @@
   function estTestInterne() {
     try {
       var parametre = new URLSearchParams(window.location.search).get('tjd_test');
-      if (parametre === '1') localStorage.setItem('tjd_internal_test', '1');
-      if (parametre === '0') localStorage.removeItem('tjd_internal_test');
-      return localStorage.getItem('tjd_internal_test') === '1'
+      if (parametre === '1') ecrireStockage('localStorage', 'tjd_internal_test', '1');
+      if (parametre === '0') retirerStockage('localStorage', 'tjd_internal_test');
+      return lireStockage('localStorage', 'tjd_internal_test') === '1'
         || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
         || window.location.protocol === 'file:';
     } catch (_) {
@@ -132,18 +162,18 @@
     try {
       var code = (new URLSearchParams(window.location.search).get('code') || '').trim();
       if (!CODE_PROMO_VALIDE.test(code)) return;
-      localStorage.setItem(CLE_CODE_PROMO, JSON.stringify({ code: code, expire: Date.now() + DUREE_CODE_PROMO }));
-    } catch (_) { /* stockage indisponible : le champ code promo reviendra côté Stripe */ }
+      ecrireStockage('localStorage', CLE_CODE_PROMO, JSON.stringify({ code: code, expire: Date.now() + DUREE_CODE_PROMO }));
+    } catch (_) { /* Le code reste utilisable dans cette page si le stockage est indisponible. */ }
   }
   memoriserCodePromo();
 
   function lireCodePromo() {
     try {
-      var brut = localStorage.getItem(CLE_CODE_PROMO);
+      var brut = lireStockage('localStorage', CLE_CODE_PROMO);
       if (!brut) return '';
       var donnees = JSON.parse(brut);
       if (!donnees || !CODE_PROMO_VALIDE.test(donnees.code || '') || !(donnees.expire > Date.now())) {
-        localStorage.removeItem(CLE_CODE_PROMO);
+        retirerStockage('localStorage', CLE_CODE_PROMO);
         return '';
       }
       return donnees.code;
@@ -151,11 +181,12 @@
   }
 
   function estDejaAcheteur() {
-    try { return localStorage.getItem(CLE_DEJA_ACHETEUR) === '1'; } catch (_) { return false; }
+    try { return lireStockage('localStorage', CLE_DEJA_ACHETEUR) === '1'; } catch (_) { return false; }
   }
 
-  function ajouterCodePromo(corps) {
-    var code = lireCodePromo();
+  function ajouterCodePromo(corps, codeContextuel) {
+    var code = typeof codeContextuel === 'string' && CODE_PROMO_VALIDE.test(codeContextuel)
+      ? codeContextuel : lireCodePromo();
     if (code) corps.code = code;
     if (estDejaAcheteur()) corps.dejaAcheteur = true;
   }
@@ -257,7 +288,7 @@
     if (echeances === 2 || echeances === 3) corps.echeances = echeances;
     corps.attemptId = creerAttemptId();
     corps.attemptCreatedAt = Math.floor(Date.now() / 1000);
-    if (localStorage.getItem('tjd_consent') === 'granted') {
+    if (lireStockage('localStorage', 'tjd_consent') === 'granted') {
       var fbp = lireCookie('_fbp');
       var fbc = lireCookie('_fbc');
       if (fbp) corps.fbp = fbp;
@@ -267,7 +298,7 @@
 
     // Attribution capturée par main.js à la première page vue de la session,
     // pour relier chaque vente à sa page et sa source d'origine.
-    corps.landingPage = sessionStorage.getItem('tjd_landing_page') || window.location.pathname.replace(/^\//, '');
+    corps.landingPage = lireStockage('sessionStorage', 'tjd_landing_page') || window.location.pathname.replace(/^\//, '');
     // Page réellement en cours au moment du clic (peut différer de la landing page
     // si le visiteur a navigué avant d'acheter) : sert de cancel_url pour ne pas
     // renvoyer tout le monde vers formations.html en cas d'abandon du paiement.
@@ -276,11 +307,11 @@
     corps.viewport = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
       + 'x' + Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
     corps.internalTest = estTestInterne();
-    ajouterCodePromo(corps);
-    var referrerSession = sessionStorage.getItem('tjd_referrer');
+    ajouterCodePromo(corps, btnEl.getAttribute('data-tjd-code'));
+    var referrerSession = lireStockage('sessionStorage', 'tjd_referrer');
     if (referrerSession) corps.referrer = referrerSession;
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (cle) {
-      var val = sessionStorage.getItem('tjd_' + cle);
+      var val = lireStockage('sessionStorage', 'tjd_' + cle);
       if (val) corps[cle] = val;
     });
     ajouterAttributionPublication(corps);
@@ -325,7 +356,7 @@
         .then(function (d) {
           if (d.url) {
             try {
-              if (!estTestInterne() && localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
+              if (!estTestInterne() && lireStockage('localStorage', 'tjd_consent') === 'granted' && typeof window.fbq === 'function') {
                 fbq('track', 'InitiateCheckout', { content_ids: [produitId], content_type: 'product' });
               }
             } catch (_) {}
@@ -502,10 +533,11 @@
   // comportement. Le panier est une deuxième voie, pour l'élève qui veut
   // plusieurs matières choisies sur plusieurs pages en un seul paiement.
   var CLE_PANIER = 'tjd_panier';
+  var panierSansConservation = false;
 
   function panierLire() {
     try {
-      var brut = localStorage.getItem(CLE_PANIER);
+      var brut = lireStockage('localStorage', CLE_PANIER);
       var liste = brut ? JSON.parse(brut) : [];
       return Array.isArray(liste) ? liste.filter(function (a) {
         return a && typeof a.id === 'string' && typeof a.prixCentimes === 'number';
@@ -514,7 +546,7 @@
   }
 
   function panierEcrire(liste) {
-    try { localStorage.setItem(CLE_PANIER, JSON.stringify(liste)); } catch (_) { /* localStorage indisponible (navigation privée) : le panier reste en mémoire le temps de la page */ }
+    panierSansConservation = !ecrireStockage('localStorage', CLE_PANIER, JSON.stringify(liste));
     panierRafraichir();
   }
 
@@ -535,7 +567,7 @@
   }
 
   window.tjdPanierVider = function () {
-    try { localStorage.removeItem(CLE_PANIER); } catch (_) {}
+    try { retirerStockage('localStorage', CLE_PANIER); } catch (_) {}
     panierRafraichir();
   };
 
@@ -696,6 +728,7 @@
         '<div class="tjd-panier-total" id="tjdPanierTotal" hidden><span>Total</span><span id="tjdPanierTotalMontant"></span></div>' +
         '<button type="button" class="tjd-panier-cta" id="tjdPanierCta">Passer au paiement</button>' +
         '<p class="tjd-panier-note">Un seul paiement Stripe pour tout le panier · PDF reçus par email juste après</p>' +
+        '<p class="tjd-panier-note" id="tjdPanierTemporaire" hidden>Ce panier reste disponible tant que tu gardes cette page ouverte.</p>' +
       '</div>';
     document.body.appendChild(backdrop);
 
@@ -714,6 +747,8 @@
 
   function panierRendreListe() {
     var liste = panierLire();
+    var precisionConservation = document.getElementById('tjdPanierTemporaire');
+    if (precisionConservation) precisionConservation.hidden = !liste.length || !panierSansConservation;
     var conteneur = document.getElementById('tjdPanierListe');
     var totalBloc = document.getElementById('tjdPanierTotal');
     var cta = document.getElementById('tjdPanierCta');
@@ -774,24 +809,24 @@
     var corps = { produitIds: liste.map(function (a) { return a.id; }) };
     corps.attemptId = creerAttemptId();
     corps.attemptCreatedAt = Math.floor(Date.now() / 1000);
-    if (localStorage.getItem('tjd_consent') === 'granted') {
+    if (lireStockage('localStorage', 'tjd_consent') === 'granted') {
       var fbp = lireCookie('_fbp');
       var fbc = lireCookie('_fbc');
       if (fbp) corps.fbp = fbp;
       if (fbc) corps.fbc = fbc;
       corps.consentMarketing = true;
     }
-    corps.landingPage = sessionStorage.getItem('tjd_landing_page') || window.location.pathname.replace(/^\//, '');
+    corps.landingPage = lireStockage('sessionStorage', 'tjd_landing_page') || window.location.pathname.replace(/^\//, '');
     corps.pageActuelle = window.location.pathname.replace(/^\//, '') + window.location.hash;
     corps.deviceType = typeAppareil();
     corps.viewport = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
       + 'x' + Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
     corps.internalTest = estTestInterne();
     ajouterCodePromo(corps);
-    var referrerSession = sessionStorage.getItem('tjd_referrer');
+    var referrerSession = lireStockage('sessionStorage', 'tjd_referrer');
     if (referrerSession) corps.referrer = referrerSession;
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (cle) {
-      var val = sessionStorage.getItem('tjd_' + cle);
+      var val = lireStockage('sessionStorage', 'tjd_' + cle);
       if (val) corps[cle] = val;
     });
     ajouterAttributionPublication(corps);
@@ -825,7 +860,7 @@
       .then(function (d) {
         if (!d.url) throw creerErreurCheckout('URL Stripe absente', 'reponse_incomplete', 200);
         try {
-          if (!estTestInterne() && localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
+          if (!estTestInterne() && lireStockage('localStorage', 'tjd_consent') === 'granted' && typeof window.fbq === 'function') {
             fbq('track', 'InitiateCheckout', { content_ids: liste.map(function (a) { return a.id; }), content_type: 'product' });
           }
         } catch (_) {}

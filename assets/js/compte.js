@@ -112,9 +112,10 @@
       liste.innerHTML = suggestions.map(function(s){
         var prix = pct ? "<s style=\"opacity:.7; font-weight:400\">" + euros(s.prix) + "</s> " + euros(Math.round(s.prix * (100 - pct) / 100)) : euros(s.prix);
         var libelle = LIBELLES_RAISON[s.raison] || "";
+        var codeBouton = remise && remise.code ? " data-tjd-code=\"" + echapper(remise.code) + "\"" : "";
         return "<div style=\"display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; padding:12px 0; border-top:1px solid var(--blue-100)\">" +
           "<span style=\"flex:1 1 100%; font-size:.92rem\">" + (libelle ? "<span style=\"display:block; font-size:.75rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)\">" + libelle + "</span>" : "") + echapper(s.nom) + "</span>" +
-          "<button type=\"button\" class=\"btn btn--primary btn--sm\" style=\"white-space:nowrap\" data-tjd-produit=\"" + echapper(s.id) + "\">Acheter · " + prix + "</button>" +
+          "<button type=\"button\" class=\"btn btn--primary btn--sm\" style=\"white-space:nowrap\" data-tjd-produit=\"" + echapper(s.id) + "\"" + codeBouton + ">Acheter · " + prix + "</button>" +
         "</div>";
       }).join("");
       boite.hidden = false;

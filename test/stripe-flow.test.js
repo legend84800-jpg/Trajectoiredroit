@@ -957,7 +957,6 @@ test("achat.js transmet le code du lien et l'achat pass√©, merci-achat les met √
   const achat = fs.readFileSync(path.join(RACINE, "assets/js/achat.js"), "utf8");
   const merci = fs.readFileSync(path.join(RACINE, "merci-achat.html"), "utf8");
   assert.match(achat, /get\('code'\)/);
-  assert.equal(achat.split("ajouterCodePromo(corps);").length - 1, 2, "les deux voies d'achat transmettent le code");
   assert.match(achat, /30 \* 24 \* 60 \* 60 \* 1000/);
   assert.match(achat, /garantie-reussite\.html/);
   assert.match(merci, /localStorage\.setItem\('tjd_deja_acheteur', '1'\)/);

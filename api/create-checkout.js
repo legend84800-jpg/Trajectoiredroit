@@ -66,9 +66,14 @@ function lireCodePromo(valeur) {
 async function chercherCodePromo(stripe, code) {
   if (!code) return null;
   try {
-    const liste = await stripe.promotionCodes.list({ code, active: true, limit: 1 });
+    const options = { code, active: true, limit: 1 };
+    if (code.toUpperCase() === "CORRIGE10") options.expand = ["data.promotion.coupon"];
+    const liste = await stripe.promotionCodes.list(options);
     const promo = liste && Array.isArray(liste.data) ? liste.data[0] : null;
-    return promo && promo.id ? promo : null;
+    if (!promo || !promo.id || promo.active === false) return null;
+    if (promo.expires_at && promo.expires_at <= Math.floor(Date.now() / 1000)) return null;
+    if (promo.max_redemptions && promo.times_redeemed >= promo.max_redemptions) return null;
+    return promo;
   } catch (e) {
     console.error("create-checkout recherche du code promo impossible", {
       stripeCode: e && e.code ? e.code : "inconnu",
@@ -96,6 +101,84 @@ function appliquerCodePromo(params, { promo, codeDemande, dejaAcheteur }) {
   }
   delete suite.discounts;
   suite.allow_promotion_codes = Boolean(codeDemande) || dejaAcheteur;
+  return suite;
+}
+
+function estRecueilCorrige(id) {
+  return typeof id === "string" && /^(cas-pratique-|commentaire-arret-|dissertation-)/.test(id)
+    && Boolean(PRODUITS[id]);
+}
+
+// Checkout applique un coupon à la session entière. Dans un panier mixte, le
+// prix des seuls recueils est donc réduit côté serveur, après lecture du coupon.
+// Les autres lignes et les identifiants utilisés pour livrer restent identiques.
+function couponCorrigeUtilisable(promo) {
+  if (!promo || promo.active !== true || promo.customer || promo.customer_account) return false;
+  const coupon = promo.promotion?.coupon || promo.coupon;
+  if (!coupon || typeof coupon !== "object" || coupon.valid !== true || coupon.percent_off !== 10
+    || coupon.amount_off != null || coupon.applies_to?.products?.length) return false;
+  if (coupon.redeem_by && coupon.redeem_by <= Math.floor(Date.now() / 1000)) return false;
+  if (coupon.max_redemptions && coupon.times_redeemed >= coupon.max_redemptions) return false;
+  const restrictions = promo.restrictions || {};
+  return !restrictions.first_time_transaction && restrictions.minimum_amount == null;
+}
+
+async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande, dejaAcheteur }) {
+  const codeCorrige = codeDemande.toUpperCase() === "CORRIGE10";
+  const eligibles = ids.map(estRecueilCorrige);
+  // Un code de corrigé mémorisé n'empêche jamais l'achat d'un autre format.
+  if (codeCorrige && !eligibles.some(Boolean)) {
+    return appliquerCodePromo(params, { promo: null, codeDemande: "", dejaAcheteur });
+  }
+  const promo = await chercherCodePromo(stripe, codeDemande);
+  if (!codeCorrige || eligibles.every(Boolean)) {
+    return appliquerCodePromo(params, { promo, codeDemande, dejaAcheteur });
+  }
+  if (!couponCorrigeUtilisable(promo)) {
+    return appliquerCodePromo(params, { promo: null, codeDemande: "", dejaAcheteur });
+  }
+
+  let montantRemise = 0;
+  const lignes = params.line_items.map((ligne, index) => {
+    if (!eligibles[index]) return ligne;
+    const prix = ligne.price_data.unit_amount;
+    const remise = Math.round(prix * 10 / 100);
+    montantRemise += remise * ligne.quantity;
+    const donnees = ligne.price_data.product_data;
+    const precision = "Le prix de ce recueil comprend la réduction de 10 % du code CORRIGE10.";
+    return {
+      ...ligne,
+      price_data: {
+        ...ligne.price_data,
+        unit_amount: prix - remise,
+        product_data: { ...donnees, description: [donnees.description, precision].filter(Boolean).join(" ") },
+      },
+    };
+  });
+  const metadataRemise = {
+    codePromoLien: "CORRIGE10",
+    codePromoMode: "prix-recueils",
+    codePromoPromotion: promo.id,
+    codePromoMontantCentimes: String(montantRemise),
+    codePromoProduits: ids.filter((_, index) => eligibles[index]).join(",").slice(0, 500),
+  };
+  const suite = {
+    ...params,
+    line_items: lignes,
+    allow_promotion_codes: false,
+    metadata: { ...params.metadata, ...metadataRemise },
+    payment_intent_data: {
+      ...params.payment_intent_data,
+      metadata: { ...params.payment_intent_data?.metadata, ...metadataRemise },
+    },
+  };
+  delete suite.discounts;
+  if (suite.after_expiration?.recovery) {
+    suite.after_expiration = {
+      ...suite.after_expiration,
+      recovery: { ...suite.after_expiration.recovery, allow_promotion_codes: false },
+    };
+  }
   return suite;
 }
 
@@ -188,12 +271,6 @@ async function handler(req, res) {
   let corps = req.body;
   if (typeof corps === "string") { try { corps = JSON.parse(corps); } catch { corps = {}; } }
   corps = corps || {};
-  if (typeof corps.code === 'string' && corps.code.trim().toUpperCase() === 'CORRIGE10') {
-    const ids = Array.isArray(corps.produitIds) ? corps.produitIds : [corps.produitId, corps.bumpId].filter(Boolean);
-    if (!ids.length || ids.some(id => typeof id !== 'string' || !/^(cas-pratique-|commentaire-arret-|dissertation-)/.test(id) || !PRODUITS[id])) {
-      return res.status(400).json({ erreur: 'Le code CORRIGE10 s’applique aux recueils de corrigés.', code: 'remise_corriges' });
-    }
-  }
 
 
   if (corps.mode === "subscription" || corps.type === "portalis_recharge" || corps.type === "portal") {
@@ -319,8 +396,9 @@ async function handler(req, res) {
       contientStage: false,
     });
     const codeDemandePanier = lireCodePromo(corps.code);
-    const paramsPanierFinaux = appliquerCodePromo(paramsPanierRelance, {
-      promo: await chercherCodePromo(stripe, codeDemandePanier),
+    const paramsPanierFinaux = await appliquerCodePromoAuxProduits(paramsPanierRelance, {
+      stripe,
+      ids: idsAchetesPanier,
       codeDemande: codeDemandePanier,
       dejaAcheteur: corps.dejaAcheteur === true,
     });
@@ -558,8 +636,9 @@ async function handler(req, res) {
   }
   if (!contientStage && !nombreEcheances) {
     const codeDemande = lireCodePromo(corps.code);
-    paramsSession = appliquerCodePromo(paramsSession, {
-      promo: await chercherCodePromo(stripe, codeDemande),
+    paramsSession = await appliquerCodePromoAuxProduits(paramsSession, {
+      stripe,
+      ids: idsAchetes,
       codeDemande,
       dejaAcheteur: corps.dejaAcheteur === true,
     });
