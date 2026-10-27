@@ -724,6 +724,30 @@ test("un webhook rejoué ne renvoie pas le PDF", async () => {
   assert.equal(emails, 1);
 });
 
+test("une commande gratuite confirmée livre le bon PDF une seule fois et garde le montant zéro", async () => {
+  const { traiterAchatPaye } = require("../api/stripe-webhook")._test;
+  const session = { ...sessionPayee("cs_test_mathilde_livraison"), status: "complete", payment_status: "no_payment_required", amount_total: 0 };
+  let achat;
+  let livraisons = 0;
+  const operations = operationsFactices({
+    insererSiAbsent: async (_table, donnees) => {
+      if (achat) return [];
+      achat = donnees;
+      return [{ id: 1 }];
+    },
+    envoyerEmail: async (_email, produits, liens) => {
+      livraisons += 1;
+      assert.equal(produits[0].nom, "Fiche complète Droit administratif L2 S1");
+      assert.ok(liens.length > 0);
+    },
+  });
+  const contexte = { operations, stripe: {}, brevoKey: "brevo_test", downloadSecret: "secret_test", origin: "https://trajectoiredroit.com" };
+  assert.equal((await traiterAchatPaye(session, contexte)).traite, true);
+  assert.equal((await traiterAchatPaye(session, contexte)).dejaTraite, true);
+  assert.equal(livraisons, 1);
+  assert.equal(achat.montant, 0);
+});
+
 test("un échec de livraison libère le verrou pour le rejeu Stripe", async () => {
   const { traiterAchatPaye } = require("../api/stripe-webhook")._test;
   let reserve = false;

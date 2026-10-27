@@ -11,6 +11,7 @@ const { selectionner } = require("./_supabase");
 const { creerClientStripe, INTEGRATION_IDS } = require("./_stripe");
 const { nombreEcheancesValide, versCheckoutEcheances, montantEcheance } = require("./_echeances");
 const { lireCadeauFormulaire, appliquerCadeauCheckout } = require("./_cadeau");
+const { CODE_MATHILDE, lireCadeauMathilde, avecProduitCadeauMathilde } = require("./_cadeau-mathilde");
 
 // Textes affichés par Stripe sur la page de paiement des produits livrés par email.
 // Sur mobile, Stripe replie le récapitulatif : le message sous le bouton Payer
@@ -123,7 +124,12 @@ function couponCorrigeUtilisable(promo) {
   return !restrictions.first_time_transaction && restrictions.minimum_amount == null;
 }
 
-async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande, dejaAcheteur }) {
+async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande, dejaAcheteur, promoMathilde }) {
+  if (codeDemande.toUpperCase() === CODE_MATHILDE) {
+    return appliquerCodePromo(avecProduitCadeauMathilde(params, PRODUITS[ids[0]]), {
+      promo: promoMathilde, codeDemande, dejaAcheteur,
+    });
+  }
   const codeCorrige = codeDemande.toUpperCase() === "CORRIGE10";
   const eligibles = ids.map(estRecueilCorrige);
   // Un code de corrigé mémorisé n'empêche jamais l'achat d'un autre format.
@@ -192,6 +198,7 @@ async function creerSessionAvecRepli(stripe, params, cle) {
     return await stripe.checkout.sessions.create(avecImagesProduits(params), { idempotencyKey: `${cle}-remise` });
   } catch (e) {
     if (!e || e.type !== "StripeInvalidRequestError") throw e;
+    if (params.metadata?.codePromoLien === CODE_MATHILDE) throw e;
     console.error("create-checkout remise refusée, repli sur le champ code promo", {
       stripeCode: e.code ? e.code : "inconnu",
       stripeMessage: typeof e.message === "string" ? e.message.slice(0, 200) : "",
@@ -272,6 +279,11 @@ async function handler(req, res) {
   if (typeof corps === "string") { try { corps = JSON.parse(corps); } catch { corps = {}; } }
   corps = corps || {};
 
+  const cadeauMathilde = lireCadeauMathilde(corps, PRODUITS);
+  if (cadeauMathilde?.erreur) {
+    res.status(400).json(cadeauMathilde);
+    return;
+  }
 
   if (corps.mode === "subscription" || corps.type === "portalis_recharge" || corps.type === "portal") {
     res.setHeader("Cache-Control", "no-store");
@@ -282,6 +294,11 @@ async function handler(req, res) {
   const stripeKey = process.env.STRIPE_SECRET_KEY;
   if (!stripeKey) { res.status(500).json({ erreur: "Configuration Stripe manquante", code: "configuration" }); return; }
   const stripe = creerClientStripe(stripeKey);
+  const promoMathilde = cadeauMathilde ? await chercherCodePromo(stripe, CODE_MATHILDE) : null;
+  if (cadeauMathilde && !promoMathilde) {
+    res.status(400).json({ erreur: "Le code MATHILDE est épuisé ou indisponible.", code: "cadeau_indisponible" });
+    return;
+  }
   const attemptId = normaliserAttemptId(corps.attemptId);
   const attemptTimestamp = normaliserAttemptTimestamp(corps.attemptCreatedAt);
 
@@ -401,6 +418,7 @@ async function handler(req, res) {
       ids: idsAchetesPanier,
       codeDemande: codeDemandePanier,
       dejaAcheteur: corps.dejaAcheteur === true,
+      promoMathilde,
     });
 
     try {
@@ -641,6 +659,7 @@ async function handler(req, res) {
       ids: idsAchetes,
       codeDemande,
       dejaAcheteur: corps.dejaAcheteur === true,
+      promoMathilde,
     });
   }
   if (!contientStage && !cadeau) {

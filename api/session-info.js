@@ -170,7 +170,8 @@ async function handler(req, res) {
   try {
     const stripe = creerClientStripe(stripeKey);
     const data = await stripe.checkout.sessions.retrieve(session_id);
-    if (data.payment_status !== "paid") {
+    if (data.payment_status !== "paid"
+      && !require("./_commande-confirmee").commandeGratuiteConfirmee(data)) {
       res.status(404).json({ erreur: "Session introuvable ou non payée" });
       return;
     }

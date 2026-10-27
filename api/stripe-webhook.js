@@ -1025,7 +1025,8 @@ async function handler(req, res) {
   }
 
   const session = evt.data.object;
-  if (evt.type === "checkout.session.completed" && session.payment_status !== "paid") {
+  if (evt.type === "checkout.session.completed" && session.payment_status !== "paid"
+    && !require("./_commande-confirmee").commandeGratuiteConfirmee(session)) {
     console.log(`[PAIEMENT EN ATTENTE] session=${session.id}`);
     res.status(200).json({ recu: true });
     return;
