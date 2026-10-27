@@ -46,7 +46,7 @@ function versCheckoutEcheances(params, produit, nombre) {
       product_data: {
         name: `${produit.nom}, paiement en ${nombre} fois`,
         ...(Array.isArray(produit.blobs) && produit.blobs.length > 0
-          ? { description: `Tu reçois ${produit.blobs.length} fichiers par email dès le premier paiement, et tu les gardes à vie avec leurs mises à jour.` }
+          ? { description: `Tu reçois les ${produit.blobs.length} fichiers par email dès le premier paiement, et tu les gardes à vie avec leurs mises à jour.` }
           : {}),
       },
     },

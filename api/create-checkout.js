@@ -26,7 +26,7 @@ const descriptionLivraison = (p) => (p.mediaEnLigne
   : estPackUltra(p)
     ? "Tu retrouves toutes les ressources du pack dans ton espace Mon compte dès que le paiement est validé, et tu y gardes l'accès à vie."
     : nombreFichiers(p) > 1
-  ? `Tu reçois ${nombreFichiers(p)} fichiers par email dès que le paiement est validé, et tu les gardes à vie avec leurs mises à jour.`
+  ? `Tu reçois les ${nombreFichiers(p)} fichiers par email dès que le paiement est validé, et tu les gardes à vie avec leurs mises à jour.`
   : "Le PDF arrive par email dès que le paiement est validé, et tu le gardes à vie avec ses mises à jour.");
 const messagePaiement = (produits) => (produits.length && produits.every(livreDansCompte)
   ? "Vérifie ton adresse email, car c'est avec elle que tu te connectes ensuite à ton espace Mon compte."
