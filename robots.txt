@@ -3,5 +3,6 @@ Allow: /
 Disallow: /assets/partials/
 Disallow: /brouillons/
 Disallow: /api/
+Allow: /api/contact
 
 Sitemap: https://trajectoiredroit.com/sitemap.xml
