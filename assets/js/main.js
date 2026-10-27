@@ -784,7 +784,11 @@
   //   - mobile (pas de mouseleave) : remontée rapide vers le haut (signal d'abandon,
   //     on referme l'onglet ou revient en arrière) OU 60 secondes sans interaction
   var modal = document.getElementById('exitModal');
-  if (modal && !sessionStorage.getItem('exitShown')) {
+  var exitShown = false;
+  if (modal) {
+    try { exitShown = Boolean(sessionStorage.getItem('exitShown')); } catch (_) {}
+  }
+  if (modal && !exitShown) {
     var triggered = false;
     var pageLoadedAt = Date.now();
     var minTimeMs = 15000;   // 15 s minimum (abaissé le 21/09/2026, C5 : 77% de rebond et 92s de session moyenne empêchaient le seuil de 30s de s'armer pour la majorité du trafic)
@@ -810,7 +814,7 @@
       if (triggered) return;
       triggered = true;
       modal.classList.add('open');
-      sessionStorage.setItem('exitShown', '1');
+      try { sessionStorage.setItem('exitShown', '1'); } catch (_) {}
     }
 
     function onMouseLeave(e) {
