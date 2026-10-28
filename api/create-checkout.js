@@ -11,7 +11,7 @@ const { selectionner } = require("./_supabase");
 const { creerClientStripe, INTEGRATION_IDS } = require("./_stripe");
 const { nombreEcheancesValide, versCheckoutEcheances, montantEcheance } = require("./_echeances");
 const { lireCadeauFormulaire, appliquerCadeauCheckout } = require("./_cadeau");
-const { CODE_MATHILDE, lireCadeauMathilde, avecProduitCadeauMathilde } = require("./_cadeau-mathilde");
+const { codeCadeauEleve, lireCadeauEleve, avecProduitCadeauEleve } = require("./_cadeau-eleve");
 
 // Textes affichés par Stripe sur la page de paiement des produits livrés par email.
 // Sur mobile, Stripe replie le récapitulatif : le message sous le bouton Payer
@@ -124,10 +124,11 @@ function couponCorrigeUtilisable(promo) {
   return !restrictions.first_time_transaction && restrictions.minimum_amount == null;
 }
 
-async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande, dejaAcheteur, promoMathilde }) {
-  if (codeDemande.toUpperCase() === CODE_MATHILDE) {
-    return appliquerCodePromo(avecProduitCadeauMathilde(params, PRODUITS[ids[0]]), {
-      promo: promoMathilde, codeDemande, dejaAcheteur,
+async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande, dejaAcheteur, promoCadeauEleve }) {
+  const codeCadeau = codeCadeauEleve(codeDemande);
+  if (codeCadeau) {
+    return appliquerCodePromo(avecProduitCadeauEleve(params, PRODUITS[ids[0]], codeCadeau), {
+      promo: promoCadeauEleve, codeDemande, dejaAcheteur,
     });
   }
   const codeCorrige = codeDemande.toUpperCase() === "CORRIGE10";
@@ -198,7 +199,7 @@ async function creerSessionAvecRepli(stripe, params, cle) {
     return await stripe.checkout.sessions.create(avecImagesProduits(params), { idempotencyKey: `${cle}-remise` });
   } catch (e) {
     if (!e || e.type !== "StripeInvalidRequestError") throw e;
-    if (params.metadata?.codePromoLien === CODE_MATHILDE) throw e;
+    if (codeCadeauEleve(params.metadata?.codePromoLien)) throw e;
     console.error("create-checkout remise refusée, repli sur le champ code promo", {
       stripeCode: e.code ? e.code : "inconnu",
       stripeMessage: typeof e.message === "string" ? e.message.slice(0, 200) : "",
@@ -279,9 +280,9 @@ async function handler(req, res) {
   if (typeof corps === "string") { try { corps = JSON.parse(corps); } catch { corps = {}; } }
   corps = corps || {};
 
-  const cadeauMathilde = lireCadeauMathilde(corps, PRODUITS);
-  if (cadeauMathilde?.erreur) {
-    res.status(400).json(cadeauMathilde);
+  const cadeauEleve = lireCadeauEleve(corps, PRODUITS);
+  if (cadeauEleve?.erreur) {
+    res.status(400).json(cadeauEleve);
     return;
   }
 
@@ -294,9 +295,9 @@ async function handler(req, res) {
   const stripeKey = process.env.STRIPE_SECRET_KEY;
   if (!stripeKey) { res.status(500).json({ erreur: "Configuration Stripe manquante", code: "configuration" }); return; }
   const stripe = creerClientStripe(stripeKey);
-  const promoMathilde = cadeauMathilde ? await chercherCodePromo(stripe, CODE_MATHILDE) : null;
-  if (cadeauMathilde && !promoMathilde) {
-    res.status(400).json({ erreur: "Le code MATHILDE est épuisé ou indisponible.", code: "cadeau_indisponible" });
+  const promoCadeauEleve = cadeauEleve ? await chercherCodePromo(stripe, cadeauEleve.code) : null;
+  if (cadeauEleve && !promoCadeauEleve) {
+    res.status(400).json({ erreur: `Le code ${cadeauEleve.code} est épuisé ou indisponible.`, code: "cadeau_indisponible" });
     return;
   }
   const attemptId = normaliserAttemptId(corps.attemptId);
@@ -418,7 +419,7 @@ async function handler(req, res) {
       ids: idsAchetesPanier,
       codeDemande: codeDemandePanier,
       dejaAcheteur: corps.dejaAcheteur === true,
-      promoMathilde,
+      promoCadeauEleve,
     });
 
     try {
@@ -659,7 +660,7 @@ async function handler(req, res) {
       ids: idsAchetes,
       codeDemande,
       dejaAcheteur: corps.dejaAcheteur === true,
-      promoMathilde,
+      promoCadeauEleve,
     });
   }
   if (!contientStage && !cadeau) {
