@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Exemple de question de droit : 5 décisions et la méthode</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Comment trouver et formuler la question de droit d'un arrêt : cinq exemples tirés de vraies décisions, quatre gestes de méthode et les erreurs vues en copie.">
+  <link rel="canonical" href="https://trajectoiredroit.com/question-de-droit-exemple.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Exemple de question de droit : 5 décisions et la méthode">
+  <meta property="og:description" content="Comment trouver et formuler la question de droit d'un arrêt : cinq exemples tirés de vraies décisions, quatre gestes de méthode et les erreurs vues en copie.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/question-de-droit-exemple.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/question-de-droit-exemple.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Exemple de question de droit : comment la trouver et la formuler",
+        "description": "Comment trouver et formuler la question de droit d'un arrêt : cinq exemples tirés de vraies décisions, quatre gestes de méthode et les erreurs vues en copie.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-10-29",
+        "dateModified": "2026-10-29",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": {
+            "@type": "EducationalOrganization",
+            "name": "TrajectoireDroit"
+          }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+          }
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Question de droit d'un arrêt"
+        },
+        "image": "https://trajectoiredroit.com/assets/blog/question-de-droit-exemple.webp",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://trajectoiredroit.com/question-de-droit-exemple.html"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://trajectoiredroit.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Question de droit : exemples",
+            "item": "https://trajectoiredroit.com/question-de-droit-exemple.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quelle différence entre question de droit, problème de droit et problématique ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dans une fiche d'arrêt, la question de droit et le problème de droit désignent la même chose. La problématique, en revanche, est la question à laquelle répond tout ton commentaire d'arrêt ou toute ta dissertation. La fiche pilote juge possible d'appeler la problématique « question de droit », mais préfère un nom différent pour éviter les confusions. Dans mes notes, une seule question joue également ce rôle en commentaire."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Faut-il écrire la question de droit sous la forme d'une question fermée ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dans ma méthode, oui. La question doit appeler « oui » ou « non », ce qui t'oblige à choisir ce que le juge a tranché. Pour la problématique d'un commentaire, des formes comme « dans quelle mesure » ou « à quelles conditions » restent possibles."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Faut-il citer un article dans la question de droit ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dans une fiche d'arrêt, la question nomme en principe la notion en jeu, comme la vie privée, et le numéro de l'article reste dans la solution. Dans un cas pratique, elle annonce le fondement juridique, car une question trop vague ne dit pas à ta majeure quelle règle chercher."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=2d752479">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 549,64 €, 53 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-53 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">549,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 409,74 €, 44 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-44 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">409,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 524,67 €, 51 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-51 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">524,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 444,70 €, 46 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-46 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">444,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 644,58 €, 49 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-49 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">644,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>164 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow text-center">
+        <h1 class="h1">Exemple de question de droit : comment la trouver et la formuler</h1>
+        <p class="lead" style="max-width:720px; margin-left:auto; margin-right:auto">La question de droit est la question juridique, posée en termes généraux, que le juge tranche dans sa décision. Tu la formules en une phrase qui pose une question, sans nom propre ni détail des faits, en partant de la réponse du juge dans une fiche d'arrêt et des faits dans un cas pratique. Un exemple de question de droit, tiré d'un arrêt de 2002, est « Un employeur peut-il prouver la faute d'un salarié par une filature qui porte atteinte à sa vie privée ? »</p>
+        <div class="hero__cta flex flex--center" style="margin-top:24px">
+          <a class="btn btn--primary btn--lg" href="#decisions">Voir les cinq décisions →</a>
+          <a class="btn btn--outline btn--lg" href="#erreurs">Les erreurs en copie</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <p style="color:var(--body); line-height:1.75">Je suis Julien, professeur de droit. La question de droit se lit à un endroit différent dans chaque type de décision. Sa formulation change un peu selon l'exercice, et elle montre au correcteur si tu as compris la décision.</p>
+        <p style="color:var(--body); line-height:1.75">La méthode vient de mes notes de cours et de TD, et d'une fiche pilote (un guide de méthode) du commentaire d'arrêt de Tarek El Ghadban, maître de conférences à l'université du Caire, publiée sur le site idai.pantheonsorbonne.fr.</p>
+      </div>
+    </section>
+
+    <!-- offre du PDF correspondant -->
+    <section class="conversion-offer" aria-labelledby="choix-fiches-arret-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/fiche-arret-intro-droit-l1.webp?v=collection-graphique-20260921" alt="Couverture des fiches d'arrêt d'introduction au droit L1, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">Les fiches d'arrêt du semestre 1</p>
+            <h2 class="conversion-offer__title" id="choix-fiches-arret-titre">Introduction au droit L1, quinze fiches d'arrêt en 85 pages</h2>
+            <p class="conversion-offer__summary">Chaque fiche présente l'arrêt et ses faits, puis retrace la procédure et les arguments des parties (les moyens). Elle formule ensuite le problème de droit dans sa propre rubrique, avant de donner la solution de la Cour et sa portée, c'est-à-dire ce que l'arrêt a changé en droit. Un tableau en tête du document réunit les quinze problèmes de droit avec leurs solutions.</p>
+            <ul class="conversion-offer__benefits">
+              <li>Quinze arrêts du programme d'introduction au droit, de Boudier à Cesareo</li>
+              <li>Un problème de droit rédigé pour chaque arrêt, dans une rubrique à part</li>
+              <li>Accès à vie et mises à jour comprises</li>
+            </ul>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-arret-intro-droit-l1">Fiches d'arrêt · 9,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="fiche-intro-droit-l1">Fiche complète · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-l1">Pack fiches L1 · 87 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
+            <div data-tjd-avis data-matiere="intro-droit-l1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DÉFINITION -->
+    <section class="section" id="definition">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Qu'est-ce qu'une question de droit ?</h2>
+        <p class="lead" style="margin-bottom:20px">C'est la question juridique sur laquelle le juge doit se prononcer pour trancher le litige.</p>
+        <p style="color:var(--body); line-height:1.75">Prenons l'arrêt de la chambre sociale (celle du droit du travail) de la Cour de cassation du 26 novembre 2002. Une salariée d'un laboratoire pharmaceutique est licenciée pour faute grave (une faute qui rend impossible de la garder, même pendant le préavis). Son employeur lui reproche de fausses déclarations d'activité et de frais, découvertes après un contrôle de son supérieur hiérarchique, qui s'est posté près de chez elle.</p>
+        <p style="color:var(--body); line-height:1.75">Cette affaire soulève deux questions. La première porte sur les faits (« Cette salariée a-t-elle fait de fausses déclarations ? »). La cour d'appel y a répondu en examinant le dossier, car la Cour de cassation vérifie la bonne application du droit et laisse les faits aux juges du fond (le tribunal et la cour d'appel). La seconde, en revanche, porte sur une règle (« Un employeur peut-il prouver la faute d'un salarié par une filature qui porte atteinte à sa vie privée ? »). La Cour de cassation tranche donc cette seconde question, et tu l'écris dans la rubrique « problème de droit » de ta fiche d'arrêt.</p>
+        <p style="color:var(--body); line-height:1.75">Dans une fiche d'arrêt, « question de droit » et « problème de droit » désignent la même chose. En commentaire d'arrêt, cette question ouvre l'introduction, et la fiche pilote y ajoute une problématique, c'est-à-dire la question à laquelle répond tout le commentaire. En dissertation, aucune décision ne sert de sujet, donc tu poses seulement une problématique, comme l'explique la <a href="methode-dissertation-juridique.html">méthode de la dissertation juridique</a>.</p>
+      </div>
+    </section>
+
+    <!-- OÙ LA LIRE -->
+    <section class="section section--alt" id="decisions">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Où se lit la question de droit dans une décision de justice ?</h2>
+        <p class="lead" style="margin-bottom:20px">Le tableau reprend cinq décisions relues dans leur texte officiel, avec le passage où je lis la question et la formulation que j'en tire.</p>
+        <p style="margin-bottom:6px; color:var(--body); line-height:1.75">Ce tableau emploie quelques mots de procédure.</p>
+        <ul style="color:var(--body); line-height:1.8; margin:0 0 18px; padding-left:22px">
+          <li>Le <strong>pourvoi en cassation</strong> désigne le recours qui porte une décision devant la Cour de cassation, et le <strong>demandeur au pourvoi</strong> est celui qui l'a formé. Quand le pourvoi réussit, la Cour casse (annule) la décision attaquée, sinon elle le rejette.</li>
+          <li>Le <strong>moyen</strong> est l'argument de droit que présente le demandeur au pourvoi (à ne pas confondre avec un moyen de preuve, qui sert à prouver un fait), et une <strong>branche</strong> en est une subdivision.</li>
+          <li>Le <strong>visa</strong> est la liste des textes sur lesquels la Cour s'appuie, introduite par « Vu ».</li>
+          <li>Le <strong>chapeau</strong> est le paragraphe où la Cour énonce la règle qu'elle applique, juste après le visa.</li>
+          <li>Dans les deux décisions administrative et constitutionnelle du tableau, les <strong>considérants</strong> sont les paragraphes qui commencent par « Considérant que ».</li>
+          <li>Le <strong>recours pour excès de pouvoir</strong> demande au juge administratif d'annuler un acte de l'administration parce qu'il est illégal.</li>
+        </ul>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)">
+                <th style="padding:10px 12px">La décision</th>
+                <th style="padding:10px 12px">Le passage où je lis la question</th>
+                <th style="padding:10px 12px">La question de droit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)">
+                <td style="padding:10px 12px; vertical-align:top"><strong>Cass. soc., 26 novembre 2002</strong>, n° 00-42.401<br>Cassation, avec un visa et un chapeau</td>
+                <td style="padding:10px 12px; vertical-align:top">Le chapeau, juste après le visa, juge qu'« une filature organisée par l'employeur pour contrôler et surveiller l'activité d'un salarié constitue un moyen de preuve illicite dès lors qu'elle implique nécessairement une atteinte à la vie privée de ce dernier, insusceptible d'être justifiée, eu égard à son caractère disproportionné, par les intérêts légitimes de l'employeur ». Comme l'arrêt ne reproduit pas l'argument du pourvoi, je déduis le désaccord de ce que la cour d'appel écarte, soit « le moyen tiré du caractère illicite du contrôle de l'activité de la salariée », alors que la Cour de cassation lui reproche d'avoir retenu un rapport dressé à la suite d'une filature.</td>
+                <td style="padding:10px 12px; vertical-align:top">« Un employeur peut-il prouver la faute d'un salarié par une filature qui porte atteinte à sa vie privée ? »</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)">
+                <td style="padding:10px 12px; vertical-align:top"><strong>Cass. soc., 4 mars 2020</strong>, n° 19-13.316<br>Arrêt Uber, rejet, rubriques numérotées</td>
+                <td style="padding:10px 12px; vertical-align:top">La rubrique « Énoncé du moyen » donne l'argument des demandeurs, qui reprochent à l'arrêt « de dire que le contrat […] est un contrat de travail ». La « Réponse de la Cour » rappelle l'article L. 8221-6 du Code du travail, qui présume qu'un travailleur immatriculé comme indépendant n'a pas de contrat de travail, puis la définition du lien de subordination (le pouvoir de donner des ordres, d'en contrôler l'exécution et de sanctionner les manquements) et l'indice du service organisé.</td>
+                <td style="padding:10px 12px; vertical-align:top">« Un travailleur immatriculé comme indépendant est-il lié par un contrat de travail à la plateforme qui l'intègre dans un service qu'elle organise ? »</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)">
+                <td style="padding:10px 12px; vertical-align:top"><strong>Cass. crim., 16 janvier 1986</strong>, n° 85-95.461<br>Arrêt Perdereau, cassation partielle</td>
+                <td style="padding:10px 12px; vertical-align:top">Le moyen, reproduit en tête de l'arrêt, soutient que « ne sauraient constituer une tentative d'homicide les violences portées, même avec l'intention de donner la mort, la victime étant déjà décédée ». La Cour répond par un « Attendu que » (le début d'un paragraphe de motivation) : « à supposer établi que » l'auteur, croyant la victime encore en vie, ait exercé des violences dans l'intention de la tuer, « il n'importe, pour que soit caractérisée la tentative d'homicide volontaire, que la victime fût déjà décédée ».</td>
+                <td style="padding:10px 12px; vertical-align:top">« Peut-il y avoir tentative d'homicide volontaire quand l'auteur frappe, en la croyant vivante, une victime déjà morte ? »</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)">
+                <td style="padding:10px 12px; vertical-align:top"><strong>CE, Ass., 17 février 1950</strong>, n° 86949<br>Arrêt Dame Lamotte, considérants</td>
+                <td style="padding:10px 12px; vertical-align:top">Faute de rubrique de moyens, je lis les considérants. L'un d'eux donne l'argument du ministre, pour qui la réclamation ne pouvait pas être examinée « en vertu de l'article 4 de la loi du 23 mai 1943 », selon lequel l'octroi de la concession « ne peut faire l'objet d'aucun recours administratif ou judiciaire ». Le Conseil d'État répond que le recours pour excès de pouvoir « est ouvert même sans texte contre tout acte administratif ».</td>
+                <td style="padding:10px 12px; vertical-align:top">« Une loi qui interdit tout recours contre un acte administratif empêche-t-elle aussi le recours pour excès de pouvoir devant le Conseil d'État ? »</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)">
+                <td style="padding:10px 12px; vertical-align:top"><strong>Cons. const., 15 janvier 1975</strong>, n° 74-54 DC<br>Décision IVG, considérants numérotés</td>
+                <td style="padding:10px 12px; vertical-align:top">Les formules « en premier lieu » (considérant 2) et « en second lieu » (considérant 8) ouvrent chacune une question. Le considérant 7 répond à la première : « il n'appartient pas au Conseil constitutionnel […] d'examiner la conformité d'une loi aux stipulations d'un traité ou d'un accord international ».</td>
+                <td style="padding:10px 12px; vertical-align:top">« La supériorité des traités sur les lois permet-elle au Conseil constitutionnel de vérifier, avant la promulgation, qu'une loi respecte un traité ? »</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75">Dans mes cours, je te laisse deux minutes pour tenter ta propre question, même imparfaite, puis nous la corrigeons ensemble. Tu peux faire pareil avec ce tableau en cachant la dernière colonne, puis comparer ta question à la mienne.</p>
+      </div>
+    </section>
+
+    <!-- LES QUATRE GESTES -->
+    <section class="section" id="methode">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:24px">Comment formuler la question de droit en quatre gestes ?</h2>
+        <div class="card" style="padding:22px 24px">
+          <h3 style="margin-top:0; margin-bottom:8px">1. La solution d'abord</h3>
+          <p style="margin-bottom:0; color:var(--body); line-height:1.7">Tu lis d'abord les motifs de la Cour (ses raisons) et son dispositif (la décision finale, après « Par ces motifs »), parce que la réponse à ta question doit être ce que la Cour a décidé. En 2002, la Cour casse l'arrêt d'appel, car l'employeur ne pouvait pas retenir une faute grave sur un rapport dressé à la suite d'une filature.</p>
+        </div>
+        <div class="card" style="padding:22px 24px">
+          <h3 style="margin-top:0; margin-bottom:8px">2. Le désaccord ensuite</h3>
+          <p style="margin-bottom:0; color:var(--body); line-height:1.7">Le problème de droit correspond généralement au désaccord entre les deux thèses en présence. Ici, la salariée soutient que le contrôle est illicite, et la cour d'appel écarte cet argument en jugeant que le rapport autorisait l'employeur à vérifier les comptes rendus de sa salariée. La Cour de cassation, elle, juge la filature illicite.</p>
+        </div>
+        <div class="card" style="padding:22px 24px">
+          <h3 style="margin-top:0; margin-bottom:8px">3. Des faits à la règle</h3>
+          <p style="margin-bottom:0; color:var(--body); line-height:1.7">Tu remplaces les noms par des qualités juridiques, et la salariée devient un salarié, son laboratoire un employeur. Chaque circonstance reçoit ensuite le nom de la notion qu'elle illustre. Par exemple, le supérieur posté près du domicile réalise une filature, et cette filature porte atteinte à la vie privée. La question ne doit être ni trop générale ni trop spéciale.</p>
+        </div>
+        <div class="card" style="padding:22px 24px">
+          <h3 style="margin-top:0; margin-bottom:8px">4. Une phrase fermée</h3>
+          <p style="margin-bottom:0; color:var(--body); line-height:1.7">La question tient en une seule phrase, dont la réponse est « oui » ou « non ». Tu la relis ensuite en cachant les faits, car une question qui se comprend sans eux est terminée.</p>
+        </div>
+        <h3 style="margin:32px 0 8px">Cinq formulations pour la même filature, et celle que je retiens</h3>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)">
+                <th style="padding:10px 12px">La formulation</th>
+                <th style="padding:10px 12px">Ce qu'elle donne</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« Cette salariée a-t-elle fait de fausses déclarations ? »</td><td style="padding:10px 12px; vertical-align:top">Les juges du fond ont déjà tranché cette question de fait, et la Cour de cassation n'y répond pas.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« Un employeur peut-il surveiller ses salariés ? »</td><td style="padding:10px 12px; vertical-align:top">Cette question couvre toute la surveillance alors que l'arrêt juge un seul moyen de preuve.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« Le supérieur hiérarchique de la salariée pouvait-il se poster près de chez elle pour la contrôler ? »</td><td style="padding:10px 12px; vertical-align:top">La réponse à cette question ne servirait à aucun autre cas, puisqu'elle reprend les circonstances de l'affaire.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« Une filature qui porte atteinte à la vie privée est-elle un moyen de preuve illicite ? »</td><td style="padding:10px 12px; vertical-align:top">Les mots « moyen de preuve illicite » viennent de la conclusion du chapeau, donc la réponse « oui » se lit déjà dans la question.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>« Un employeur peut-il prouver la faute d'un salarié par une filature qui porte atteinte à sa vie privée ? »</strong></td><td style="padding:10px 12px; vertical-align:top">Cette question reste générale grâce à ses qualités juridiques (un employeur, un salarié) et nomme la notion en jeu (la vie privée). La Cour y répond « non » en 2002.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75">Tu trouves la question en partant du chapeau de la Cour et de sa règle, puis en remplaçant les mots de sa conclusion par ceux de la situation (« prouver la faute »), afin que la réponse ne figure pas dans la question.</p>
+        <p style="color:var(--body); line-height:1.75">Depuis l'assemblée plénière (la formation la plus solennelle de la Cour de cassation) du 22 décembre 2023, une preuve obtenue de façon déloyale n'est plus écartée d'office dans un procès civil, car le juge la met en balance avec le droit à la preuve, comme le détaille la <a href="methode-fiche-arret.html">méthode de la fiche d'arrêt</a>. Mes notes retiennent aussi une autre formulation valable, qui parle d'une preuve « recevable pour fonder un licenciement ».</p>
+      </div>
+    </section>
+
+    <!-- SELON L'EXERCICE -->
+    <section class="section section--alt" id="exercices">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:24px">Comment la question de droit change-t-elle selon l'exercice ?</h2>
+        <div class="card" style="padding:22px 24px">
+          <h3 style="margin-top:0; margin-bottom:8px">La fiche d'arrêt</h3>
+          <p style="margin-bottom:0; color:var(--body); line-height:1.7">Le problème de droit vient avant la solution, une fois que tu as exposé l'affaire et les arguments des parties. Mes notes admettent la forme interrogative et l'amorce « Il est donc question de savoir si… ». Une amorce comme « La Cour devait décider si… » convient aussi.</p>
+        </div>
+        <div class="card" style="padding:22px 24px">
+          <h3 style="margin-top:0; margin-bottom:8px">Le commentaire d'arrêt</h3>
+          <p style="color:var(--body); line-height:1.7">Dans mes notes, l'introduction d'un commentaire pose une seule question, celle que la Cour a tranchée, et le correcteur y voit si tu as compris la décision. La fiche pilote ajoute une problématique, plus large, qui annonce ce que tout le commentaire démontre. Ton chargé de TD indique le schéma qu'il attend.</p>
+          <p style="margin-bottom:0; color:var(--body); line-height:1.7">La fiche pilote relie aussi la forme de la problématique au plan. Ainsi, une question introduite par « dans quelle mesure » convient à un plan dialectique, qui confronte deux positions. En revanche, une question introduite par « en quoi » ou « comment » convient à un plan analytique, qui découpe le sujet en aspects complémentaires. Pour l'arrêt de 2002, une problématique possible est « Dans quelle mesure un employeur peut-il contrôler l'activité d'un salarié sans porter atteinte à sa vie privée ? ». Elle élargit la question de droit, qui demande si une filature peut prouver une faute. Le <a href="commentaire-arret-uber-2020-corrige.html">commentaire corrigé de l'arrêt Uber</a> montre ensuite une introduction complète, et la <a href="methode-commentaire-arret.html">méthode du commentaire d'arrêt</a> reprend tout l'exercice.</p>
+        </div>
+        <div class="card" style="padding:22px 24px">
+          <h3 style="margin-top:0; margin-bottom:8px">Le cas pratique</h3>
+          <p style="color:var(--body); line-height:1.7">Prenons un exemple inventé. Camille achète à un brocanteur un tableau présenté comme l'œuvre d'un peintre du XIXe siècle. Un an plus tard, un expert établit qu'il s'agit d'une copie, et Camille veut donc faire annuler la vente. Aucune décision ne te donne la question, et l'énoncé pose souvent une question de fait, comme « Camille peut-elle annuler la vente ? ». La qualification juridique consiste d'abord à ranger les faits dans une catégorie, ici une vente. La question générale, qui nomme la règle en cause, s'écrit ensuite, et la <a href="methode-cas-pratique.html">méthode du cas pratique</a> détaille les autres étapes.</p>
+          <div style="overflow-x:auto; margin-bottom:14px">
+            <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+              <thead>
+                <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)">
+                  <th style="padding:10px 12px">La formulation</th>
+                  <th style="padding:10px 12px">Ce qu'elle donne</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« Camille peut-elle annuler la vente ? »</td><td style="padding:10px 12px; vertical-align:top">Cette question porte sur la personne et ne nomme aucune règle, donc la majeure (la règle de droit que tu rappelles avant de l'appliquer aux faits) n'a pas de point de départ.</td></tr>
+                <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">« Peut-on annuler un contrat à cause d'une découverte postérieure à sa conclusion ? »</td><td style="padding:10px 12px; vertical-align:top">Cette question place le problème au mauvais moment. L'erreur est un vice du consentement, qui fausse l'accord donné le jour de la vente, avant la découverte de la copie. L'article 1130 du Code civil va dans ce sens, puisqu'il apprécie le caractère déterminant de l'erreur (celle sans laquelle l'acheteur n'aurait pas acheté) selon « les circonstances dans lesquelles le consentement a été donné ».</td></tr>
+                <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>« Une erreur sur l'authenticité d'un tableau est-elle une erreur sur les qualités essentielles de la prestation, qui permet d'annuler la vente ? »</strong></td><td style="padding:10px 12px; vertical-align:top">Elle retient le fondement juridique, à savoir l'erreur sur les qualités essentielles, et elle se comprend sans relire les faits.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-bottom:0; color:var(--body); line-height:1.7">Cette dernière question guide ta majeure. L'article 1132 du Code civil fait de l'erreur une cause d'annulation du contrat (la nullité) lorsqu'elle porte sur « les qualités essentielles de la prestation due ». Il excepte toutefois l'erreur inexcusable, celle que la personne qui se trompe aurait dû éviter. L'article 1133 définit en outre ces qualités comme celles qui ont été « expressément ou tacitement convenues et en considération desquelles les parties ont contracté ».</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLUSIEURS QUESTIONS -->
+    <section class="section" id="plusieurs">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:20px">Que faire quand un arrêt tranche plusieurs questions de droit ?</h2>
+                <p style="color:var(--body); line-height:1.75">L'arrêt Perdereau le montre. La chambre d'accusation de la cour d'appel de Paris, qui décidait alors du renvoi devant la cour d'assises (la juridiction des crimes), avait renvoyé un homme pour tentative d'homicide volontaire, alors que, selon l'arrêt attaqué, la victime était déjà morte. La chambre criminelle de la Cour de cassation répond d'abord à la quatrième branche du moyen. Si l'auteur croyait la victime encore en vie et voulait la tuer, la tentative existe même si elle était déjà morte, à supposer ces faits établis. Elle casse pourtant l'arrêt en ce qui concerne le demandeur, pour une autre raison. Les motifs mentionnent des coups de bouteille et un lien torsadé, le dispositif des coups de barre de fer, et cette contradiction revient à ne pas motiver la décision.</p>
+        <p style="color:var(--body); line-height:1.75">Deux questions de droit se posent donc dans cet arrêt. L'une porte sur la tentative. L'autre porte sur la motivation et demande si la contradiction entre les motifs et le dispositif d'un arrêt suffit à le faire casser. Dans une fiche d'arrêt, tu notes les deux dans l'ordre de l'arrêt, et tu indiques laquelle explique la cassation. Dans un commentaire, en revanche, je retiendrais comme question principale celle qui fait l'intérêt de la décision, ici l'infraction impossible (celle que son auteur ne pouvait pas commettre), et la seconde prendrait place dans l'exposé de la solution.</p>
+        <p style="color:var(--body); line-height:1.75">La décision du Conseil constitutionnel de 1975 répond elle aussi à deux questions, la première sur la compétence du Conseil à l'égard des traités (considérants 2 à 7) et la seconde sur la conformité de la loi à la Constitution (considérants 8 à 11).</p>
+      </div>
+    </section>
+
+    <!-- ERREURS CLASSIQUES -->
+    <section class="section section--alt" id="erreurs">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:24px">Quelles erreurs fait-on en copie sur la question de droit ?</h2>
+        <div class="card" style="padding:22px 24px">
+          <h3 style="margin-top:0; margin-bottom:8px">Une problématique qui donne déjà la réponse</h3>
+          <p style="margin-bottom:0; color:var(--body); line-height:1.7">Une problématique de commentaire comme « Les juges se sont alors demandés si… », dont la suite expose déjà la réponse, a reçu en L3 une remarque en marge, car la phrase était affirmative alors qu'une problématique pose une question. La tienne doit rester une question, du type « Dans quelle mesure… ? » ou « À quelles conditions… ? ».</p>
+        </div>
+        <div class="card" style="padding:22px 24px">
+          <h3 style="margin-top:0; margin-bottom:8px">Une question sans fondement juridique</h3>
+          <p style="margin-bottom:0; color:var(--body); line-height:1.7">Si ta question de cas pratique est « L'associé peut-il faire interdire l'usage de son nom par la société ? », elle ne dit pas quelle règle appliquer. Deux fondements sont pourtant en jeu, l'usurpation du nom de famille (son appropriation par un tiers) d'une part et la responsabilité civile pour utilisation commerciale fautive (qui suppose une confusion dommageable) d'autre part. Ta question doit annoncer ces deux fondements, car ta majeure rappellera la règle de chacun.</p>
+        </div>
+        <div class="card" style="padding:22px 24px">
+          <h3 style="margin-top:0; margin-bottom:8px">Une question qui rate l'apport de l'arrêt</h3>
+          <p style="margin-bottom:0; color:var(--body); line-height:1.7">Pour l'arrêt de la deuxième chambre civile du 19 juin 2003, une fiche d'étudiant posait « Y avait-il un lien de causalité direct entre l'accident et le préjudice ? ». Une boulangère, blessée dans un accident, avait laissé son commerce de boulangerie inexploité, et la cour d'appel lui reprochait de ne pas l'avoir fait exploiter par un tiers. Le chapeau de la Cour de cassation énonce pourtant que « la victime n'est pas tenue de limiter son préjudice dans l'intérêt du responsable ». La question de droit demande donc si une victime doit limiter son préjudice dans l'intérêt de l'auteur de l'accident. Le lien de causalité (le lien entre l'accident et le dommage) n'apparaît que dans la suite, comme conséquence de ce principe.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container container--narrow">
+        <h2 class="h2 text-center" style="margin-bottom:32px">Questions fréquentes sur la question de droit</h2>
+        <div class="accordion">
+          <details class="accordion__item" open><summary><h3>Quelle différence entre question de droit, problème de droit et problématique ?</h3></summary><div class="accordion__body">Dans une fiche d'arrêt, la question de droit et le problème de droit désignent la même chose. La problématique, en revanche, est la question à laquelle répond tout ton commentaire d'arrêt ou toute ta dissertation. La fiche pilote juge possible d'appeler la problématique « question de droit », mais préfère un nom différent pour éviter les confusions. Dans mes notes, une seule question joue également ce rôle en commentaire.</div></details>
+          <details class="accordion__item"><summary><h3>Faut-il écrire la question de droit sous la forme d'une question fermée ?</h3></summary><div class="accordion__body">Dans ma méthode, oui. La question doit appeler « oui » ou « non », ce qui t'oblige à choisir ce que le juge a tranché. Pour la problématique d'un commentaire, des formes comme « dans quelle mesure » ou « à quelles conditions » restent possibles.</div></details>
+          <details class="accordion__item"><summary><h3>Faut-il citer un article dans la question de droit ?</h3></summary><div class="accordion__body">Dans une fiche d'arrêt, la question nomme en principe la notion en jeu, comme la vie privée, et le numéro de l'article reste dans la solution. Dans un cas pratique, elle annonce le fondement juridique, car une question trop vague ne dit pas à ta majeure quelle règle chercher.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAILLAGE -->
+    <section class="section section--alt" id="corriges">
+      <div class="container container--narrow text-center">
+        <h2 class="h2">Pour voir la question de droit dans une décision complète</h2>
+        <p class="lead">Quatre des cinq décisions du tableau ont leur propre page sur le site.</p>
+        <div style="max-width:680px;margin:24px auto 0;display:grid;gap:12px">
+          <a class="btn btn--outline btn--full" href="arret-uber-2020-explique.html">Arrêt Uber (2020) expliqué</a>
+          <a class="btn btn--outline btn--full" href="arret-dame-lamotte-explique.html">Arrêt Dame Lamotte (1950) expliqué</a>
+          <a class="btn btn--outline btn--full" href="arret-perdereau-1986-explique.html">Arrêt Perdereau (1986) expliqué</a>
+          <a class="btn btn--outline btn--full" href="decision-ivg-1975-expliquee.html">Décision IVG (1975) expliquée</a>
+        </div>
+        <p style="margin-top:18px"><a href="introduction-au-droit-l1.html">Voir le programme d'introduction au droit L1 →</a></p>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="author-box">
+          <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+          <div>
+            <p class="author-box__name">Julien</p>
+            <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+            <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">164 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- fin-article:pack-ultra -->
+    <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
+      <div class="container">
+        <p class="article-pack-ligne__texte">Le Pack Ultra L1 S1 réunit les 36 ressources de ton premier semestre de L1 pour 259 €, la fiche d'introduction au droit L1 comprise. <a href="pack-ultra.html#pack-ultra-l1-s1">Voir le contenu du pack →</a></p>
+        <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (question de droit exemple)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Introduction au droit L1 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-intro-droit-l1">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=4208e0da" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=a2fde785" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>
