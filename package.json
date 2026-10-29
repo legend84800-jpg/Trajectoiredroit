@@ -2,6 +2,7 @@
   "name": "trajectoire-droit",
   "private": true,
   "scripts": {
+    "build": "node scripts/synchroniser-presentations-catalogue.js --check && node scripts/generer-index-recherche.js",
     "test": "node --test"
   },
   "dependencies": {

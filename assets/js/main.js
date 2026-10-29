@@ -81,174 +81,121 @@
   document.body.insertBefore(skip, document.body.firstChild);
 })();
 
+/* Fenêtres superposées. Le clavier reste dans la fenêtre ouverte, puis revient
+   au bouton qui l'a ouverte. Les aperçus agrandis conservent leur fenêtre parente. */
+window.tjdDialogues = (function () {
+  var pile = [];
+  function controles(noeud) {
+    return Array.prototype.filter.call(noeud.querySelectorAll('a[href], button, input, select, textarea, [tabindex]'), function (el) {
+      return !el.disabled && el.getAttribute('tabindex') !== '-1' && !el.hidden && el.getClientRects().length > 0;
+    });
+  }
+  function ouvrir(noeud, premier, declencheur) {
+    if (pile.some(function (etat) { return etat.noeud === noeud; })) return;
+    var etat = { noeud: noeud, retour: declencheur || document.activeElement, overflow: document.body.style.overflow, inert: noeud.inert, cache: noeud.getAttribute('aria-hidden'), voisins: [] };
+    noeud.inert = false; noeud.removeAttribute('aria-hidden');
+    Array.prototype.forEach.call(document.body.children, function (voisin) {
+      if (voisin === noeud || voisin.contains(noeud)) return;
+      etat.voisins.push({ noeud: voisin, inert: voisin.inert, cache: voisin.getAttribute('aria-hidden') });
+      voisin.inert = true;
+      voisin.setAttribute('aria-hidden', 'true');
+    });
+    pile.push(etat);
+    noeud.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    (premier || controles(noeud)[0] || noeud).focus();
+    document.dispatchEvent(new CustomEvent('tjd:dialogue'));
+  }
+  function fermer(noeud) {
+    var position = pile.findIndex(function (etat) { return etat.noeud === noeud; });
+    if (position < 0) return;
+    while (pile.length > position) {
+      var etat = pile.pop();
+      etat.noeud.classList.remove('open');
+      etat.noeud.inert = etat.inert;
+      if (etat.cache === null) etat.noeud.removeAttribute('aria-hidden');
+      else etat.noeud.setAttribute('aria-hidden', etat.cache);
+      etat.voisins.forEach(function (voisin) {
+        voisin.noeud.inert = voisin.inert;
+        if (voisin.cache === null) voisin.noeud.removeAttribute('aria-hidden');
+        else voisin.noeud.setAttribute('aria-hidden', voisin.cache);
+      });
+      document.body.style.overflow = etat.overflow;
+      if (etat.retour && etat.retour.isConnected) etat.retour.focus();
+    }
+    document.dispatchEvent(new CustomEvent('tjd:dialogue'));
+  }
+  document.addEventListener('keydown', function (e) {
+    var etat = pile[pile.length - 1];
+    if (!etat) return;
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      fermer(etat.noeud);
+    } else if (e.key === 'Tab') {
+      var liste = controles(etat.noeud);
+      var premier = liste[0], dernier = liste[liste.length - 1];
+      if (!premier) { e.preventDefault(); etat.noeud.focus(); return; }
+      if (e.shiftKey && (document.activeElement === premier || !etat.noeud.contains(document.activeElement))) {
+        e.preventDefault(); dernier.focus();
+      } else if (!e.shiftKey && (document.activeElement === dernier || !etat.noeud.contains(document.activeElement))) {
+        e.preventDefault(); premier.focus();
+      }
+    }
+  });
+  document.addEventListener('focusin', function (e) {
+    var etat = pile[pile.length - 1];
+    if (etat && !etat.noeud.contains(e.target)) (controles(etat.noeud)[0] || etat.noeud).focus();
+  });
+  return { ouvrir: ouvrir, fermer: fermer, estOuvert: function () { return pile.length > 0; } };
+})();
+
 /* ----- RECHERCHE SITE-WIDE -----
-   Index statique (pas de backend de recherche), injecté sur toutes les pages
-   via main.js pour ne pas éditer 75 fichiers. Bouton loupe dans le header,
-   recherche instantanée par titre/mots-clés. */
+   Le moteur et son index se chargent seulement à la première recherche. */
 (function () {
-  var INDEX = [
-    { t: 'Accueil', u: '/', c: 'Page' },
-    { t: 'Catalogue des fiches complètes, L1 L2 L3', u: 'formations.html', c: 'Produit' },
-    { t: 'Meilleures ventes', u: 'top-ventes.html', c: 'Produit' },
-    { t: 'Majeures préparées', u: 'majeures-preparees.html', c: 'Produit' },
-    { t: 'Cours particuliers de droit en visio', u: 'cours-particuliers.html', c: 'Produit' },
-    { t: 'Introduction au droit L1', u: 'introduction-au-droit-l1.html', c: 'Matière' },
-    { t: 'Droit constitutionnel L1', u: 'droit-constitutionnel-l1.html', c: 'Matière' },
-    { t: 'Droit des personnes L1', u: 'droit-des-personnes-l1.html', c: 'Matière' },
-    { t: 'Droit de la famille L1', u: 'droit-de-la-famille-l1.html', c: 'Matière' },
-    { t: 'Droit pénal général L1', u: 'droit-penal-general-l1.html', c: 'Matière' },
-    { t: 'Histoire du droit L1', u: 'histoire-du-droit-l1.html', c: 'Matière' },
-    { t: 'Histoire des institutions L1', u: 'histoire-des-institutions-l1.html', c: 'Matière' },
-    { t: 'Relations internationales L1', u: 'relations-internationales-l1.html', c: 'Matière' },
-    { t: 'Droit administratif L2', u: 'droit-administratif-l2.html', c: 'Matière' },
-    { t: 'Droit des contrats L2', u: 'droit-des-contrats-l2.html', c: 'Matière' },
-    { t: 'Droit des obligations L2', u: 'droit-des-obligations-l2.html', c: 'Matière' },
-    { t: 'Droit des biens L2', u: 'droit-des-biens-l2.html', c: 'Matière' },
-    { t: 'Droit pénal L2', u: 'droit-penal-l2.html', c: 'Matière' },
-    { t: 'Droit commercial L3', u: 'droit-commercial-l3.html', c: 'Matière' },
-    { t: 'Droit des sociétés L3', u: 'droit-des-societes-l3.html', c: 'Matière' },
-    { t: 'Droit du travail L3', u: 'droit-du-travail-l3.html', c: 'Matière' },
-    { t: 'Contrats spéciaux L3', u: 'contrats-speciaux-l3.html', c: 'Matière' },
-    { t: 'Procédure pénale L3', u: 'procedure-penale-l3.html', c: 'Matière' },
-    { t: 'Méthode du cas pratique', u: 'methode-cas-pratique.html', c: 'Méthode' },
-    { t: "Méthode du commentaire d'arrêt", u: 'methode-commentaire-arret.html', c: 'Méthode' },
-    { t: 'Méthode de la dissertation juridique', u: 'methode-dissertation-juridique.html', c: 'Méthode' },
-    { t: "Méthode de la fiche d'arrêt", u: 'methode-fiche-arret.html', c: 'Méthode' },
-    { t: 'Quiz : teste ta méthode', u: 'quiz-methode.html', c: 'Outil gratuit' },
-    { t: 'Quiz : quel métier du droit te correspond ?', u: 'quiz-metier-droit.html', c: 'Outil gratuit' },
-    { t: 'Toutes les ressources gratuites', u: 'ressources-gratuites.html', c: 'Outil gratuit' },
-    { t: 'Arrêt Blanco expliqué', u: 'arret-blanco-explique.html', c: 'Arrêt expliqué' },
-    { t: 'Arrêt Benjamin expliqué', u: 'arret-benjamin-explique.html', c: 'Arrêt expliqué' },
-    { t: 'Arrêt Cadot expliqué', u: 'arret-cadot-explique.html', c: 'Arrêt expliqué' },
-    { t: 'Arrêt Dame Lamotte expliqué', u: 'arret-dame-lamotte-explique.html', c: 'Arrêt expliqué' },
-    { t: "Arrêt Bac d'Eloka expliqué", u: 'arret-bac-eloka-explique.html', c: 'Arrêt expliqué' },
-    { t: 'Arrêt GISTI 1978 expliqué', u: 'arret-gisti-1978-explique.html', c: 'Arrêt expliqué' },
-    { t: 'Arrêt Nicolo expliqué', u: 'arret-nicolo-explique.html', c: 'Arrêt expliqué' },
-    { t: 'Arrêt Nikon expliqué', u: 'arret-nikon.html', c: 'Arrêt expliqué' },
-    { t: "Bibliothèque des arrêts expliqués", u: 'arrets-expliques.html', c: 'Page' },
-    { t: "Commentaire d'arrêt corrigé : Blieck (1991)", u: 'commentaire-arret-blieck-1991-corrige.html', c: 'Corrigé' },
-    { t: "Commentaire d'arrêt corrigé : Clément-Bayard", u: 'commentaire-arret-clement-bayard-corrige.html', c: 'Corrigé' },
-    { t: "Commentaire d'arrêt corrigé : Odièvre (2003)", u: 'commentaire-arret-odievre-2003-corrige.html', c: 'Corrigé' },
-    { t: "Commentaire d'arrêt corrigé : Uber (2020)", u: 'commentaire-arret-uber-2020-corrige.html', c: 'Corrigé' },
-    { t: 'Dissertation corrigée : droit et morale', u: 'dissertation-droit-et-morale-corrige.html', c: 'Corrigé' },
-    { t: 'Dissertation corrigée : fonctions de la responsabilité civile', u: 'dissertation-fonctions-responsabilite-civile-corrige.html', c: 'Corrigé' },
-    { t: 'Dissertation corrigée : la séparation des pouvoirs', u: 'dissertation-separation-des-pouvoirs-corrige.html', c: 'Corrigé' },
-    { t: 'Cas pratique corrigé : droit civil L1, la loi dans le temps', u: 'cas-pratique-corrige-droit-civil-l1.html', c: 'Corrigé' },
-    { t: 'Cas pratique corrigé : dol et réticence dolosive', u: 'cas-pratique-dol-reticence-dolosive-corrige.html', c: 'Corrigé' },
-    { t: 'Cas pratique corrigé : la légitime défense', u: 'cas-pratique-legitime-defense-corrige.html', c: 'Corrigé' },
-    { t: 'Cas pratique corrigé : responsabilité sans faute', u: 'cas-pratique-responsabilite-sans-faute-corrige.html', c: 'Corrigé' },
-    { t: 'Annales corrigées de droit civil L1', u: 'annales-corrigees-droit-civil-l1.html', c: 'Corrigé' },
-    { t: "Galop d'essai en droit, méthode et exemple corrigé", u: 'galop-d-essai-droit.html', c: 'Corrigé' },
-    { t: 'La clause pénale, article 1231-5', u: 'clause-penale-contrat-article-1231-5.html', c: 'Notion' },
-    { t: 'Comment réviser le droit administratif L2', u: 'comment-reviser-le-droit-administratif-l2.html', c: 'Notion' },
-    { t: 'Différence contravention, délit et crime', u: 'contravention-delit-crime.html', c: 'Notion' },
-    { t: 'La force majeure, article 1218', u: 'force-majeure-contrat-article-1218.html', c: 'Notion' },
-    { t: 'La cause en droit des contrats', u: 'la-cause-en-droit.html', c: 'Notion' },
-    { t: 'La faute civile en droit des obligations', u: 'la-faute-civile-droit-des-obligations.html', c: 'Notion' },
-    { t: 'La hiérarchie des normes, la pyramide de Kelsen', u: 'la-hierarchie-des-normes.html', c: 'Notion' },
-    { t: 'Les vices du consentement : erreur, dol, violence', u: 'les-vices-du-consentement.html', c: 'Notion' },
-    { t: 'La notion de service public', u: 'notion-service-public-droit-administratif.html', c: 'Notion' },
-    { t: 'Obligation de moyen ou de résultat', u: 'obligation-de-moyen-et-de-resultat.html', c: 'Notion' },
-    { t: "Le recours pour excès de pouvoir", u: 'recours-exces-de-pouvoir-droit-administratif.html', c: 'Notion' },
-    { t: 'Responsabilité civile L2', u: 'responsabilite-civile-l2.html', c: 'Notion' },
-    { t: 'Fiche de révision droit administratif L2', u: 'fiche-revision-droit-administratif-l2.html', c: 'Notion' },
-    { t: "Méthode de la fiche d'arrêt (exemples rédigés)", u: 'fiche-arrets.html', c: 'Méthode' },
-    { t: 'Témoignages, 149 avis 5/5', u: 'temoignages.html', c: 'Page' },
-    { t: 'FAQ', u: 'faq.html', c: 'Page' },
-    { t: 'À propos de Julien', u: 'a-propos.html', c: 'Page' },
-    { t: 'Le blog du droit', u: 'blog.html', c: 'Page' }
-  ];
-
-  function normalize(s) {
-    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  }
-
-  function buildUI() {
-    var trigger = document.createElement('button');
-    trigger.type = 'button';
-    trigger.className = 'search-trigger';
-    trigger.setAttribute('aria-label', 'Rechercher sur le site');
-    trigger.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
-
+  var chargement = null;
+  function initialiser() {
     var host = document.querySelector('.site-header__cta');
-    if (host) host.insertBefore(trigger, host.firstChild);
-
-    var overlay = document.createElement('div');
-    overlay.className = 'search-overlay';
-    overlay.setAttribute('role', 'dialog');
-    overlay.setAttribute('aria-modal', 'true');
-    overlay.setAttribute('aria-label', 'Recherche');
-    overlay.innerHTML =
-      '<div class="search-panel">' +
-      '<div class="search-panel__head">' +
-      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
-      '<input type="text" class="search-panel__input" placeholder="Cherche parmi 70+ matières, arrêts et corrigés…" aria-label="Rechercher">' +
-      '<button type="button" class="search-panel__close" aria-label="Fermer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
-      '</div>' +
-      '<div class="search-panel__results" id="searchResults"></div>' +
-      '</div>';
-    document.body.appendChild(overlay);
-
-    var input = overlay.querySelector('.search-panel__input');
-    var results = overlay.querySelector('#searchResults');
-    var closeBtn = overlay.querySelector('.search-panel__close');
-
-    function render(items, query) {
-      if (!query) { results.innerHTML = ''; return; }
-      if (!items.length) {
-        results.innerHTML = '<p class="search-panel__empty">Rien ne correspond à « ' + query.replace(/</g, '&lt;') + ' ». Essaie le nom d’une matière ou d’un arrêt.</p>';
-        return;
-      }
-      results.innerHTML = items.slice(0, 12).map(function (item) {
-        return '<a class="search-result" href="' + item.u + '">' +
-          '<span class="search-result__cat">' + item.c + '</span>' +
-          '<span class="search-result__title">' + item.t + '</span>' +
-          '</a>';
-      }).join('');
+    if (!host) return;
+    var trigger = document.createElement('button');
+    trigger.type = 'button'; trigger.className = 'search-trigger';
+    trigger.setAttribute('aria-label', 'Rechercher sur le site');
+    trigger.setAttribute('aria-haspopup', 'dialog');
+    trigger.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+    host.insertBefore(trigger, host.firstChild);
+    function ouvrir() {
+      if (window.tjdOuvrirRecherche) { window.tjdOuvrirRecherche(); return; }
+      if (chargement) return;
+      trigger.setAttribute('aria-busy', 'true');
+      chargement = document.createElement('script');
+      chargement.src = '/assets/js/recherche.js?v=ad9631be';
+      chargement.onload = function () {
+        trigger.removeAttribute('aria-busy');
+        var erreur = document.querySelector('.search-load-error'); if (erreur) erreur.remove();
+        if (window.tjdOuvrirRecherche) window.tjdOuvrirRecherche();
+      };
+      chargement.onerror = function () {
+        trigger.removeAttribute('aria-busy'); chargement.remove(); chargement = null;
+        var ancien = document.querySelector('.search-load-error');
+        if (ancien) ancien.remove();
+        var message = document.createElement('p'); message.className = 'search-load-error'; message.setAttribute('role', 'status');
+        message.appendChild(document.createTextNode('La recherche est indisponible. '));
+        var lien = document.createElement('a'); lien.href = '/formations.html'; lien.textContent = 'Ouvrir le catalogue';
+        message.appendChild(lien); host.appendChild(message);
+      };
+      document.body.appendChild(chargement);
     }
-
-    function search(query) {
-      var q = normalize(query);
-      if (!q) return [];
-      return INDEX.filter(function (item) { return normalize(item.t).indexOf(q) !== -1 || normalize(item.c).indexOf(q) !== -1; });
-    }
-
-    function open() {
-      overlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      input.value = '';
-      results.innerHTML = '';
-      setTimeout(function () { input.focus(); }, 50);
-    }
-    function close() {
-      overlay.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    trigger.addEventListener('click', open);
-    closeBtn.addEventListener('click', close);
-    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    trigger.addEventListener('click', ouvrir);
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && overlay.classList.contains('open')) close();
-      if ((e.key === '/' || (e.key === 'k' && (e.metaKey || e.ctrlKey))) && !overlay.classList.contains('open') && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-        e.preventDefault();
-        open();
-      }
-    });
-    input.addEventListener('input', function () { render(search(input.value), input.value); });
-    input.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') {
-        var first = results.querySelector('.search-result');
-        if (first) window.location.href = first.getAttribute('href');
+      var actif = document.activeElement;
+      var tag = actif && actif.tagName;
+      if ((e.key === '/' || (e.key === 'k' && (e.metaKey || e.ctrlKey))) && !window.tjdDialogues.estOuvert() && tag !== 'INPUT' && tag !== 'TEXTAREA' && !(actif && actif.isContentEditable)) {
+        e.preventDefault(); ouvrir();
       }
     });
   }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', buildUI);
-  } else {
-    buildUI();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialiser);
+  else initialiser();
 })();
 
 /* ----- APERÇU PDF (modale) -----
@@ -267,6 +214,7 @@
     modal.setAttribute('role', 'dialog');
     modal.setAttribute('aria-modal', 'true');
     modal.setAttribute('aria-labelledby', 'apercuTitle');
+    modal.setAttribute('tabindex', '-1');
     modal.innerHTML =
       '<div class="apercu-panel">' +
       '<div class="apercu-head">' +
@@ -274,7 +222,7 @@
       '<button class="apercu-close" data-apercu-close aria-label="Fermer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
       '</div>' +
       '<div class="apercu-imgs" id="apercuImgs"></div>' +
-      '<p class="apercu-hint">Touche une page pour l’agrandir.</p>' +
+      '<p class="apercu-hint">Tu peux agrandir chaque page.</p>' +
       '<div class="apercu-foot">' +
       '<span class="price" id="apercuPrice"></span>' +
       '<a class="btn btn--primary" id="apercuCta" href="#" target="_blank" rel="noopener">Acheter la fiche</a>' +
@@ -289,28 +237,30 @@
     viewer.setAttribute('role', 'dialog');
     viewer.setAttribute('aria-modal', 'true');
     viewer.setAttribute('aria-label', 'Page agrandie');
+    viewer.setAttribute('tabindex', '-1');
     viewer.innerHTML =
       '<button class="apercu-zoom__close" aria-label="Fermer l’agrandissement"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
       '<div class="apercu-zoom__scroll"><img alt=""></div>' +
-      '<p class="apercu-zoom__hint">Fais glisser pour lire toute la page.</p>';
+      '<p class="apercu-zoom__hint">Fais défiler l’image pour lire toute la page.</p>';
     document.body.appendChild(viewer);
     var viewerImg = viewer.querySelector('img');
     var viewerScroll = viewer.querySelector('.apercu-zoom__scroll');
-    function openViewer(im) {
+    function openViewer(im, bouton) {
       viewerImg.src = im.src;
       viewerImg.alt = im.alt;
       viewer.classList.toggle('apercu-zoom--detail', im.getAttribute('data-detail') === '1');
-      viewer.classList.add('open');
+      window.tjdDialogues.ouvrir(viewer, viewer.querySelector('.apercu-zoom__close'), bouton);
       viewerScroll.scrollTop = 0;
       viewerScroll.scrollLeft = 0;
-      if (window.gtag) gtag('event', 'apercu_zoom', { image: im.src.split('/').pop() });
+      try { if (window.gtag) gtag('event', 'apercu_zoom', { image: im.src.split('/').pop() }); } catch (_) {}
     }
-    function closeViewer() { viewer.classList.remove('open'); }
+    function closeViewer() { window.tjdDialogues.fermer(viewer); }
     viewer.querySelector('.apercu-zoom__close').addEventListener('click', closeViewer);
 
     var imgsBox = document.getElementById('apercuImgs');
     imgsBox.addEventListener('click', function (e) {
-      if (e.target.tagName === 'IMG') openViewer(e.target);
+      var bouton = e.target.closest('.apercu-page');
+      if (bouton) openViewer(bouton.querySelector('img'), bouton);
     });
 
     function open(btn) {
@@ -331,37 +281,98 @@
       }
       cta.textContent = price ? ('Acheter · ' + price) : 'Acheter la fiche';
       imgsBox.innerHTML = '';
-      imgs.forEach(function (src) {
+      imgs.forEach(function (src, position) {
         var im = document.createElement('img');
         var detail = /-zoom\.(jpg|webp|png)$/.test(src);
         im.src = src; im.loading = 'lazy';
-        im.alt = detail ? 'Gros plan sur une page' : 'Page extraite du document';
+        im.alt = detail ? 'Gros plan sur une page' : 'Extrait ' + (position + 1) + ' du document';
         if (detail) im.setAttribute('data-detail', '1');
-        imgsBox.appendChild(im);
+        var bouton = document.createElement('button'); bouton.type = 'button'; bouton.className = 'apercu-page';
+        bouton.setAttribute('aria-label', 'Agrandir l’extrait ' + (position + 1));
+        bouton.appendChild(im); imgsBox.appendChild(bouton);
       });
       imgsBox.scrollTop = 0;
-      modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      if (window.gtag) gtag('event', 'apercu_open', { matiere: btn.getAttribute('data-apercu-title') || '' });
+      window.tjdDialogues.ouvrir(modal, modal.querySelector('.apercu-close'), btn);
+      try { if (window.gtag) gtag('event', 'apercu_open', { matiere: btn.getAttribute('data-apercu-title') || '' }); } catch (_) {}
     }
-    function close() {
-      modal.classList.remove('open');
-      document.body.style.overflow = '';
-    }
+    function close() { window.tjdDialogues.fermer(modal); }
     triggers.forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
     modal.addEventListener('click', function (e) {
       if (e.target === modal || e.target.closest('[data-apercu-close]')) close();
     });
-    document.addEventListener('keydown', function (e) {
-      if (e.key !== 'Escape') return;
-      if (viewer.classList.contains('open')) closeViewer(); else close();
-    });
+
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
   }
+})();
+
+/* Sur téléphone, la barre basse laisse la place aux choix déjà visibles.
+   Sa hauteur réelle réserve l'espace nécessaire lorsque les textes reviennent à la ligne. */
+(function () {
+  function initialiser() {
+    var barres = Array.prototype.slice.call(document.querySelectorAll('.sticky-cta-bar, .sticky-cta'));
+    if (!barres.length) return;
+    var media = window.matchMedia('(max-width: 768px)');
+    var visibles = new Set();
+    var attente = false;
+    function actualiser() {
+      attente = false;
+      var suspendre = media.matches && (visibles.size > 0 || window.tjdDialogues.estOuvert() ||
+        !!document.querySelector('#mobileNav.open, #tjdPanierBackdrop.open, #exitModal.open, .cookie-banner--visible'));
+      var hauteur = 0;
+      barres.forEach(function (barre) {
+        if (barre.classList.contains('tjd-sticky-suspended') !== suspendre) barre.classList.toggle('tjd-sticky-suspended', suspendre);
+        if (getComputedStyle(barre).display !== 'none') hauteur = Math.max(hauteur, barre.getBoundingClientRect().height);
+      });
+      var valeur = Math.ceil(hauteur) + 'px';
+      if (document.documentElement.style.getPropertyValue('--tjd-sticky-height') !== valeur) document.documentElement.style.setProperty('--tjd-sticky-height', valeur);
+    }
+    function programmer() {
+      if (attente) return;
+      attente = true;
+      (window.requestAnimationFrame || function (fn) { setTimeout(fn, 16); })(actualiser);
+    }
+    var observation = typeof IntersectionObserver === 'function' ? new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (entree) {
+        if (entree.isIntersecting && (entree.target === bandeau || entree.intersectionRatio >= 0.5)) visibles.add(entree.target); else visibles.delete(entree.target);
+      });
+      programmer();
+    }, { threshold: [0, 0.5] }) : null;
+    var bandeau = null;
+    function observerBandeau() {
+      var nouveau = document.getElementById('urgencyBanner');
+      if (nouveau === bandeau) return;
+      if (bandeau) { if (observation) observation.unobserve(bandeau); visibles.delete(bandeau); }
+      bandeau = nouveau;
+      if (bandeau && observation) observation.observe(bandeau);
+      programmer();
+    }
+    if (observation) {
+      document.querySelectorAll('main [data-tjd-produit], .site-footer').forEach(function (element) {
+        if (!element.closest('.sticky-cta-bar, .sticky-cta')) observation.observe(element);
+      });
+      observerBandeau();
+    }
+    if (typeof ResizeObserver === 'function') {
+      var tailles = new ResizeObserver(programmer);
+      barres.forEach(function (barre) { tailles.observe(barre); });
+    }
+    if (typeof MutationObserver === 'function') new MutationObserver(function (mutations) {
+      if (mutations.some(function (mutation) {
+        return mutation.target === document.body || (mutation.target.matches && mutation.target.matches('#mobileNav, #urgencyBanner, #tjdPanierBackdrop, #exitModal, .cookie-banner'));
+      })) { observerBandeau(); programmer(); }
+    }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'hidden'] });
+    document.addEventListener('tjd:dialogue', programmer);
+    window.addEventListener('tjd:consent', programmer);
+    window.addEventListener('resize', programmer, { passive: true });
+    if (media.addEventListener) media.addEventListener('change', programmer);
+    actualiser();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialiser);
+  else initialiser();
 })();
 
 /* ----- CARROUSEL D'APERÇU PRODUIT (page d'accueil) -----
@@ -1036,11 +1047,13 @@
     // savoir dans Brevo quelle page capture vraiment des leads.
     var pageActuelle = window.location.pathname.split('/').pop().replace('.html', '') || 'accueil';
     function trackLead() {
-      if (localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
-        fbq('track', 'Lead');
-      }
-      if (typeof window.gtag === 'function') gtag('event', 'generate_lead', { source: pageActuelle });
-      if (window._paq) window._paq.push(['trackEvent', 'Lead', 'Inscription', pageActuelle]);
+      // L'inscription est déjà enregistrée. Une mesure refusée conserve donc
+      // la confirmation et le téléchargement prévus pour le visiteur.
+      try {
+        if (localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') fbq('track', 'Lead');
+      } catch (_) {}
+      try { if (typeof window.gtag === 'function') gtag('event', 'generate_lead', { source: pageActuelle }); } catch (_) {}
+      try { if (window._paq) window._paq.push(['trackEvent', 'Lead', 'Inscription', pageActuelle]); } catch (_) {}
     }
     function echec() {
       if (btn) { btn.disabled = false; btn.innerHTML = btn.dataset.label || 'S’inscrire'; }

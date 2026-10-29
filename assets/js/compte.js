@@ -72,10 +72,23 @@
     var achatsListe        = document.getElementById("achatsListe");
     var achatsVide         = document.getElementById("achatsVide");
     var generationSession = 0;
+    var achatsOutils       = document.getElementById("achatsOutils");
+    var achatsRecherche    = document.getElementById("achatsRecherche");
+    var achatsProduit      = document.getElementById("achatsProduit");
+    var achatsSemestre     = document.getElementById("achatsSemestre");
+    var achatsReinitialiser = document.getElementById("achatsReinitialiser");
+    var achatsResultat     = document.getElementById("achatsResultat");
+    var achatsCourants = [];
 
     function effacerAchats(){
       compteEmail.textContent = "";
       achatsListe.innerHTML = "";
+      achatsCourants = [];
+      if (achatsOutils) achatsOutils.hidden = true;
+      if (achatsRecherche) achatsRecherche.value = "";
+      if (achatsProduit) { achatsProduit.innerHTML = ""; achatsProduit.value = ""; }
+      if (achatsSemestre) { achatsSemestre.innerHTML = ""; achatsSemestre.value = ""; }
+      if (achatsResultat) achatsResultat.textContent = "";
       achatsVide.textContent = "Aucun achat pour l'instant.";
       achatsVide.style.display = "none";
       var boite = document.getElementById("complementsBox");
@@ -86,6 +99,88 @@
       [etatChargement, etatConnexion, etatConnecte].forEach(function(el){ el.classList.remove("is-active"); });
       document.getElementById(id).classList.add("is-active");
     }
+
+    function texteRecherche(valeur){
+      return String(valeur || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    }
+    function echapperFiltre(valeur){
+      return String(valeur).replace(/[&<>"']/g, function(c){
+        return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
+      });
+    }
+    function semestresExplicites(produit, fichier){
+      var texte = texteRecherche([produit.id, produit.nom, fichier && fichier.nom, fichier && fichier.groupe].join(" "));
+      var semestres = [];
+      var motif = /(?:^|[^a-z0-9])s(?:emestre)?[ _-]*([12])(?=$|[^0-9])/g;
+      var trouve;
+      while ((trouve = motif.exec(texte)) !== null) {
+        if (semestres.indexOf(trouve[1]) === -1) semestres.push(trouve[1]);
+      }
+      return semestres;
+    }
+    function preparerFiltresAchats(){
+      if (!achatsOutils) return;
+      var noms = [];
+      var semestres = [];
+      var sansSemestre = false;
+      achatsCourants.forEach(function(achat){
+        (achat.produits || []).forEach(function(produit){
+          if (produit.nom && noms.indexOf(produit.nom) === -1) noms.push(produit.nom);
+          var fichiers = produit.fichiers && produit.fichiers.length ? produit.fichiers : [null];
+          fichiers.forEach(function(fichier){
+            if (fichier && fichier.groupe && noms.indexOf(fichier.groupe) === -1) noms.push(fichier.groupe);
+            var explicites = semestresExplicites(produit, fichier);
+            if (!explicites.length) sansSemestre = true;
+            explicites.forEach(function(semestre){ if (semestres.indexOf(semestre) === -1) semestres.push(semestre); });
+          });
+        });
+      });
+      noms.sort(function(a,b){ return a.localeCompare(b,"fr"); });
+      if (achatsProduit) achatsProduit.innerHTML = '<option value="">Tous les produits et matières</option>' + noms.map(function(nom){
+        return '<option value="' + echapperFiltre(nom) + '">' + echapperFiltre(nom) + '</option>';
+      }).join("");
+      if (achatsSemestre) achatsSemestre.innerHTML = '<option value="">Tous les semestres</option>' + semestres.sort().map(function(semestre){
+        return '<option value="' + semestre + '">Semestre ' + semestre + '</option>';
+      }).join("") + (sansSemestre ? '<option value="non-precise">Sans semestre indiqué</option>' : "");
+      achatsOutils.hidden = !achatsCourants.length;
+    }
+    function afficherAchatsFiltres(){
+      var mots = texteRecherche(achatsRecherche && achatsRecherche.value).trim().split(/\s+/).filter(Boolean);
+      var choixProduit = achatsProduit && achatsProduit.value || "";
+      var choixSemestre = achatsSemestre && achatsSemestre.value || "";
+      var achats = achatsCourants.reduce(function(resultat, achat){
+        var produits = (achat.produits || []).reduce(function(liste, produit){
+          function correspond(fichier){
+            if (choixProduit && choixProduit !== produit.nom && (!fichier || choixProduit !== fichier.groupe)) return false;
+            var semestres = semestresExplicites(produit, fichier);
+            if (choixSemestre === "non-precise" && semestres.length) return false;
+            if (choixSemestre && choixSemestre !== "non-precise" && semestres.indexOf(choixSemestre) === -1) return false;
+            var texte = texteRecherche([produit.id, produit.nom, fichier && fichier.nom, fichier && fichier.groupe].join(" "));
+            return mots.every(function(mot){ return texte.indexOf(mot) !== -1; });
+          }
+          var fichiers = (produit.fichiers || []).filter(correspond);
+          if (fichiers.length || (!(produit.fichiers || []).length && correspond(null))) {
+            liste.push(Object.assign({}, produit, { fichiers: fichiers }));
+          }
+          return liste;
+        }, []);
+        if (produits.length) resultat.push(Object.assign({}, achat, { produits: produits }));
+        return resultat;
+      }, []);
+      if (achatsResultat) achatsResultat.textContent = achatsCourants.length
+        ? achats.length + (achats.length === 1 ? " achat affiché sur " : " achats affichés sur ") + achatsCourants.length
+        : "";
+      afficherAchats(achats);
+    }
+    [achatsRecherche, achatsProduit, achatsSemestre].forEach(function(champ){
+      if (champ) champ.addEventListener(champ === achatsRecherche ? "input" : "change", afficherAchatsFiltres);
+    });
+    if (achatsReinitialiser) achatsReinitialiser.addEventListener("click", function(){
+      if (achatsRecherche) achatsRecherche.value = "";
+      if (achatsProduit) achatsProduit.value = "";
+      if (achatsSemestre) achatsSemestre.value = "";
+      afficherAchatsFiltres();
+    });
 
     // Compléments et code de 15 % (14/10/2026) : le code est aussi mémorisé dans ce
     // navigateur, pour s'appliquer tout seul au paiement suivant (voir achat.js).
@@ -146,10 +241,21 @@
         achatsVide.style.display = "block";
         achatsVide.textContent = "Impossible de charger tes achats pour l'instant. Réessaie dans un instant.";
         achatsListe.innerHTML = "";
+        achatsCourants = [];
+        if (achatsOutils) achatsOutils.hidden = true;
+        if (achatsResultat) achatsResultat.textContent = "";
         return;
       }
-      var achats = (rep.ok && data.achats) || [];
+      achatsCourants = (rep.ok && data.achats) || [];
       afficherComplements(data && data.suggestions, data && data.remise);
+      preparerFiltresAchats();
+      afficherAchatsFiltres();
+    }
+
+    function afficherAchats(achats){
+      achatsVide.textContent = achatsCourants.length
+        ? "Aucun achat ne correspond à ces filtres. Tu peux les effacer pour tout retrouver."
+        : "Aucun achat pour l'instant.";
       if (!achats.length){
         achatsVide.style.display = "block";
         achatsListe.innerHTML = "";

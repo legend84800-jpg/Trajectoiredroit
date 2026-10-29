@@ -592,7 +592,7 @@ const PRODUITS = {
 
   // Packs (chaque fiche est livrée avec son plan et ses cartes mentales, comme à l'unité)
   "pack-l1": {
-    nom: "Pack Fiches L1 intégral (8 matières)",
+    nom: "Pack Fiches L1 (9 fiches)",
     prix: 8700,
     blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-intro-droit-l1.pdf",
@@ -619,6 +619,9 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-relations-internationales-l1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-relations-internationales-l1-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-relations-internationales-l1-cartesmentales.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1-plan.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-penal-general-l1-cartesmentales.pdf",
     ],
   },
   "pack-l2": {
@@ -649,7 +652,7 @@ const PRODUITS = {
     ],
   },
   "pack-l3": {
-    nom: "Pack Fiches L3 intégral (5 matières)",
+    nom: "Pack Fiches L3 (6 fiches)",
     prix: 5800,
     blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-commercial-l3-s1.pdf",
@@ -667,10 +670,12 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-procedure-penale-l3.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-procedure-penale-l3-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-procedure-penale-l3-cartesmentales.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s2.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s2-plan.pdf",
     ],
   },
   "pack-complet": {
-    nom: "Pack Fiches L1+L2+L3 intégral (20 fiches)",
+    nom: "Pack Fiches L1+L2+L3 (21 fiches)",
     prix: 17900,
     blobs: [
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-intro-droit-l1.pdf",
@@ -733,6 +738,8 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-procedure-penale-l3.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-procedure-penale-l3-plan.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-procedure-penale-l3-cartesmentales.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s2.pdf",
+      "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-societes-l3-s2-plan.pdf",
     ],
   },
 

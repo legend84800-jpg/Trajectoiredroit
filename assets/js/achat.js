@@ -41,7 +41,8 @@
     var minuteur;
     var message = bouton.parentNode && bouton.parentNode.querySelector('.tjd-checkout-message');
     if (message) message.remove();
-    BOUTONS_PAIEMENT.push({ bouton: bouton, texte: texteInitial });
+    bouton.tjdPaiementEnCours = true;
+    if (!BOUTONS_PAIEMENT.some(function (entree) { return entree.bouton === bouton; })) BOUTONS_PAIEMENT.push({ bouton: bouton, texte: texteInitial });
     var requete = Promise.resolve().then(function () { return fetch('/api/create-checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -64,9 +65,11 @@
       })
     ]) : requete;
     return attente.then(function (donnees) {
+      bouton.tjdPaiementEnCours = false;
       if (minuteur) clearTimeout(minuteur);
       return donnees;
     }, function (erreur) {
+      bouton.tjdPaiementEnCours = false;
       if (minuteur) clearTimeout(minuteur);
       throw erreur;
     });
@@ -75,6 +78,7 @@
   if (window.addEventListener) window.addEventListener('pageshow', function (evenement) {
     if (!evenement.persisted) return;
     BOUTONS_PAIEMENT.forEach(function (entree) {
+      entree.bouton.tjdPaiementEnCours = false;
       entree.bouton.disabled = false;
       entree.bouton.textContent = entree.texte;
     });
@@ -350,7 +354,7 @@
   function tjdAcheter(produitId, btnEl) {
     if (!btnEl) btnEl = document.querySelector('[data-tjd-produit="' + produitId + '"]');
     if (!btnEl) return;
-    if (btnEl.disabled) return;
+    if (btnEl.disabled || btnEl.tjdPaiementEnCours) return;
     var idx = produitId + '-' + Array.from(document.querySelectorAll('[data-tjd-produit="' + produitId + '"]')).indexOf(btnEl);
     TEXTES_ORIGINAUX[idx] = TEXTES_ORIGINAUX[idx] || btnEl.textContent.trim();
 
@@ -788,10 +792,14 @@
 
     var backdrop = document.createElement('div');
     backdrop.id = 'tjdPanierBackdrop';
+    backdrop.setAttribute('role', 'dialog');
+    backdrop.setAttribute('aria-modal', 'true');
+    backdrop.setAttribute('aria-labelledby', 'tjdPanierTitre');
+    backdrop.setAttribute('tabindex', '-1');
     backdrop.innerHTML =
       '<div class="tjd-panier-panel">' +
-        '<button type="button" class="tjd-panier-panel__close" data-tjd-panier-fermer aria-label="Fermer">✕</button>' +
-        '<h2 class="tjd-panier-panel__titre">Ton panier</h2>' +
+        '<button type="button" class="tjd-panier-panel__close" data-tjd-panier-fermer aria-label="Fermer le panier">✕</button>' +
+        '<h2 class="tjd-panier-panel__titre" id="tjdPanierTitre">Ton panier</h2>' +
         '<div class="tjd-panier-liste" id="tjdPanierListe"></div>' +
         '<div class="tjd-panier-total" id="tjdPanierTotal" hidden><span>Total</span><span id="tjdPanierTotalMontant"></span></div>' +
         '<button type="button" class="tjd-panier-cta" id="tjdPanierCta">Passer au paiement</button>' +
@@ -800,15 +808,59 @@
       '</div>';
     document.body.appendChild(backdrop);
 
-    fab.addEventListener('click', function () {
+    var dialogueCommun = null, retourFocus = null, overflowAvant = '', voisins = [];
+    var fermerBouton = backdrop.querySelector('[data-tjd-panier-fermer]');
+    function controles() {
+      return Array.prototype.filter.call(backdrop.querySelectorAll('button, a[href], [tabindex]'), function (element) {
+        return !element.disabled && element.getAttribute('tabindex') !== '-1' && element.getClientRects().length > 0;
+      });
+    }
+    function ouvrir() {
+      if (backdrop.classList.contains('open')) return;
       panierRendreListe();
+      retourFocus = document.activeElement || fab;
+      dialogueCommun = window.tjdDialogues && typeof window.tjdDialogues.ouvrir === 'function' && typeof window.tjdDialogues.fermer === 'function' ? window.tjdDialogues : null;
+      if (dialogueCommun) { dialogueCommun.ouvrir(backdrop, fermerBouton, retourFocus); return; }
+      overflowAvant = document.body.style.overflow;
+      voisins = [];
+      Array.prototype.forEach.call(document.body.children, function (element) {
+        if (element === backdrop || element.contains(backdrop)) return;
+        voisins.push({ element: element, inert: element.inert, cache: element.getAttribute('aria-hidden') });
+        element.inert = true; element.setAttribute('aria-hidden', 'true');
+      });
       backdrop.classList.add('open');
-    });
+      document.body.style.overflow = 'hidden';
+      (fermerBouton || backdrop).focus();
+    }
+    function fermer() {
+      if (!backdrop.classList.contains('open')) return;
+      if (dialogueCommun) { dialogueCommun.fermer(backdrop); return; }
+      backdrop.classList.remove('open');
+      voisins.forEach(function (voisin) {
+        voisin.element.inert = voisin.inert;
+        if (voisin.cache === null) voisin.element.removeAttribute('aria-hidden');
+        else voisin.element.setAttribute('aria-hidden', voisin.cache);
+      });
+      voisins = [];
+      document.body.style.overflow = overflowAvant;
+      if (retourFocus && retourFocus.isConnected) retourFocus.focus();
+    }
+    fab.addEventListener('click', ouvrir);
     backdrop.addEventListener('click', function (e) {
-      if (e.target === backdrop || e.target.closest('[data-tjd-panier-fermer]')) backdrop.classList.remove('open');
+      if (e.target === backdrop || e.target.closest('[data-tjd-panier-fermer]')) fermer();
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') backdrop.classList.remove('open');
+      if (!backdrop.classList.contains('open') || dialogueCommun) return;
+      if (e.key === 'Escape') { e.preventDefault(); fermer(); }
+      else if (e.key === 'Tab') {
+        var liste = controles(), premier = liste[0], dernier = liste[liste.length - 1];
+        if (!premier) { e.preventDefault(); backdrop.focus(); }
+        else if (e.shiftKey && (document.activeElement === premier || !backdrop.contains(document.activeElement))) { e.preventDefault(); dernier.focus(); }
+        else if (!e.shiftKey && (document.activeElement === dernier || !backdrop.contains(document.activeElement))) { e.preventDefault(); premier.focus(); }
+      }
+    });
+    document.addEventListener('focusin', function (e) {
+      if (backdrop.classList.contains('open') && !dialogueCommun && !backdrop.contains(e.target)) (controles()[0] || backdrop).focus();
     });
     document.getElementById('tjdPanierCta').addEventListener('click', panierCheckout);
   }
@@ -834,8 +886,9 @@
     }).join('');
     document.getElementById('tjdPanierTotalMontant').textContent = centimesVersEuro(panierTotalCentimes());
     totalBloc.hidden = false;
-    cta.disabled = false;
+    cta.disabled = !!cta.tjdPaiementEnCours;
     conteneur.querySelectorAll('[data-tjd-panier-retirer]').forEach(function (btn) {
+      btn.disabled = !!cta.tjdPaiementEnCours;
       btn.addEventListener('click', function () {
         panierRetirer(btn.getAttribute('data-tjd-panier-retirer'));
         panierRendreListe();
@@ -863,7 +916,8 @@
   }
 
   function panierCheckout() {
-    if (document.getElementById('tjdPanierCta').disabled) return;
+    var bouton = document.getElementById('tjdPanierCta');
+    if (bouton.disabled || bouton.tjdPaiementEnCours) return;
     var liste = panierLire();
     if (!liste.length) return;
     panierLancerPaiement(liste);
@@ -874,6 +928,8 @@
     var texteOriginal = cta.textContent;
     cta.disabled = true;
     cta.textContent = 'Chargement…';
+    var lignes = document.getElementById('tjdPanierListe');
+    if (lignes && lignes.querySelectorAll) lignes.querySelectorAll('[data-tjd-panier-retirer]').forEach(function (btn) { btn.disabled = true; });
 
     var corps = { produitIds: liste.map(function (a) { return a.id; }) };
     corps.attemptId = creerAttemptId();
@@ -936,6 +992,7 @@
         messagePaiement(cta, erreur);
         cta.disabled = false;
         cta.textContent = texteOriginal;
+        if (lignes && lignes.querySelectorAll) lignes.querySelectorAll('[data-tjd-panier-retirer]').forEach(function (btn) { btn.disabled = false; });
       });
   }
 

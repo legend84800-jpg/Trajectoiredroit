@@ -5,6 +5,7 @@ const path = require("node:path");
 const PRODUITS = require("../api/_produits");
 const { MATIERES } = require("../scripts/mapping-matieres");
 const { libelleApercu, presentationPackMatiere } = require("../scripts/libelles-offres");
+const { synchroniser, verifierPrix, presentationPack } = require("../scripts/synchroniser-presentations-catalogue");
 const ROOT = path.join(__dirname, "..");
 
 test("un même produit garde le même titre précis dans tous les aperçus", () => {
@@ -44,7 +45,7 @@ test("les quatorze packs matière distinguent contenu livré et formats séparé
   }
 });
 
-test("les neuf listes annuelles repliées correspondent aux fichiers réellement livrés", () => {
+test("les dix listes annuelles repliées correspondent aux fichiers réellement livrés", () => {
   let controles = 0;
   for (const fichier of ["formations.html", "cours-fiches.html", "majeures-preparees.html"]) {
     const html = fs.readFileSync(path.join(ROOT, fichier), "utf8");
@@ -58,7 +59,24 @@ test("les neuf listes annuelles repliées correspondent aux fichiers réellement
       controles++;
     }
   }
-  assert.equal(controles, 9);
+  assert.equal(controles, 10);
+});
+
+test("les présentations générées restent à jour avec le catalogue de livraison", () => {
+  for (const fichier of ["index.html", "formations.html", "cours-fiches.html"]) {
+    const html = fs.readFileSync(path.join(ROOT, fichier), "utf8");
+    assert.ok(synchroniser(html, fichier) === html, `${fichier}, présentation à régénérer`);
+    assert.deepEqual(verifierPrix(html, fichier), [], fichier);
+  }
+  const licence = presentationPack("pack-complet");
+  assert.equal(licence.nombre, 21);
+  assert.equal(licence.totalPdf, 62);
+  assert.match(licence.description, /cartes mentales de 20 fiches/);
+});
+
+test("le contrôle signale un montant de bouton différent du prix réellement encaissé", () => {
+  const html = '<button data-tjd-produit="pack-l1">Acheter le pack · 0,01 €</button>';
+  assert.equal(verifierPrix(html, "exemple.html").length, 1);
 });
 
 test("le pack Cours L2 annonce neuf cours et les annexes effectivement livrées", () => {

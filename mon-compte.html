@@ -41,7 +41,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
   <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=2d752479">
+  <link rel="stylesheet" href="assets/style.css?v=6a441fef">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
@@ -74,6 +74,19 @@
     .achats-liste li:last-child{border-bottom:none}
     .achats-liste .achat-date{color:#94A3B8;font-size:.82rem}
     .achats-vide{color:#94A3B8;font-size:.92rem;text-align:center;padding:20px 0}
+    .compte-achats-outils{display:grid;gap:12px;margin:20px 0}
+    .compte-achats-outils[hidden]{display:none}
+    .compte-achats-outils label{display:flex;flex-direction:column;gap:6px;font-size:.9rem;font-weight:600;color:var(--navy)}
+    .compte-achats-filtres{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+    .compte-achats-outils input,.compte-achats-outils select{width:100%;min-width:0;min-height:44px;border:1px solid #64748B;border-radius:8px;padding:10px;background:#fff;color:#0F172A;font:inherit;font-weight:400}
+    .compte-achats-outils input:focus-visible,.compte-achats-outils select:focus-visible{outline:3px solid #2563EB;outline-offset:2px}
+    .compte-achats-outils .compte-achats-resultat{margin:0;font-size:.85rem}
+    .compte-achats-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    @media(max-width:480px){.compte-achats-filtres{grid-template-columns:1fr}}
+    html[data-theme="dark"] .compte-achats-outils label{color:#D9E5F7}
+    html[data-theme="dark"] .compte-achats-outils input,html[data-theme="dark"] .compte-achats-outils select{background:#122030;color:#F1F5F9;border-color:#8395AF}
+    html[data-theme="dark"] .compte-achats-outils input:focus-visible,html[data-theme="dark"] .compte-achats-outils select:focus-visible{outline-color:#7BA5E8}
+
     .pack-ultra-downloads{width:100%;display:grid;gap:8px;margin-top:8px}
     .pack-ultra-downloads details{border:1px solid #d9deea;border-radius:8px;padding:10px 12px}
     .pack-ultra-downloads summary{cursor:pointer;font-weight:700;color:#1a2851}
@@ -436,6 +449,24 @@
 
             <div class="compte-box">
               <h2>Historique d'achats</h2>
+              <p>Tu peux rechercher une matière ou le nom d'un document. Pour un Pack Ultra, le filtre reprend les matières de ton pack.</p>
+              <div class="compte-achats-outils" id="achatsOutils" hidden>
+                <label for="achatsRecherche">Rechercher dans mes achats
+                  <input type="search" id="achatsRecherche" placeholder="Une matière ou un document" autocomplete="off" aria-controls="achatsListe">
+                </label>
+                <div class="compte-achats-filtres">
+                  <label for="achatsProduit">Produit ou matière
+                    <select id="achatsProduit" aria-controls="achatsListe"><option value="">Tous les produits et matières</option></select>
+                  </label>
+                  <label for="achatsSemestre">Semestre
+                    <select id="achatsSemestre" aria-controls="achatsListe"><option value="">Tous les semestres</option></select>
+                  </label>
+                </div>
+                <div class="compte-achats-actions">
+                  <p class="compte-achats-resultat" id="achatsResultat" role="status" aria-live="polite" aria-atomic="true"></p>
+                  <button type="button" class="btn btn--ghost btn--sm" id="achatsReinitialiser">Effacer les filtres</button>
+                </div>
+              </div>
               <ul class="achats-liste" id="achatsListe"></ul>
               <p class="achats-vide" id="achatsVide" style="display:none">Aucun achat pour l'instant.</p>
             </div>
@@ -477,9 +508,9 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <script src="assets/js/main.js?v=a2fde785" defer></script>
-  <script src="assets/js/compte.js?v=0c2ecfc5" defer></script>
-  <script src="assets/js/achat.js?v=4208e0da" defer></script>
+  <script src="assets/js/main.js?v=da4d9620" defer></script>
+  <script src="assets/js/compte.js?v=3aa13d45" defer></script>
+  <script src="assets/js/achat.js?v=60767dcf" defer></script>
   <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
 </body>
 </html>
