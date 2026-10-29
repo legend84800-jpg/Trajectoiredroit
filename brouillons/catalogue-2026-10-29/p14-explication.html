@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>P14, le déplacement des filtres et des fiches</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#f4f2ed;color:#1a2851;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.5}main{max-width:1120px;margin:0 auto;padding:32px 28px 60px}h1,h2,h3,p{margin-top:0}h1{font-family:Georgia,serif;font-size:clamp(28px,3.6vw,43px);line-height:1.12;max-width:900px;margin-bottom:14px}h2{font-size:25px;margin-bottom:14px}h3{font-size:18px;margin-bottom:8px}.tag{display:inline-block;font-size:12px;font-weight:750;letter-spacing:.07em;text-transform:uppercase;border:1px solid #b8c2d6;border-radius:99px;padding:5px 11px;margin-bottom:15px}.intro{max-width:850px;color:#47536d;margin-bottom:22px}.schema{display:grid;grid-template-columns:1fr 1fr;gap:24px;position:relative}.column{border:1px solid #d2d8e2;border-radius:17px;background:#fff;padding:18px}.column--proposed{border-color:#5574ad;box-shadow:0 5px 20px #1a28510a}.column-head{margin-bottom:14px;border-bottom:1px solid #e2e5eb;padding-bottom:13px}.column-head h2{font-size:22px;margin-bottom:3px}.column-head p{font-size:14px;color:#5b667b;margin-bottom:0}.flow{list-style:none;padding:0;margin:0;display:grid;gap:8px}.flow li{min-height:66px;display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid #e3e6ec;border-radius:10px;background:#f8f9fb}.num{flex:0 0 27px;width:27px;height:27px;border-radius:50%;background:#e5e9ef;color:#566178;text-align:center;line-height:27px;font-size:12px;font-weight:700}.flow strong{font-size:15px;display:block}.flow small{display:block;color:#657087;font-size:12px}.flow .search{background:#e9f2ff;border:2px solid #2c62a9}.search .num{background:#2c62a9;color:#fff}.search strong,.search small{color:#1c4c86}.flow .catalogue{background:#fff5d9;border:2px solid #b48721}.catalogue .num{background:#a77d1b;color:#fff}.catalogue strong,.catalogue small{color:#785810}.move{margin-left:auto;align-self:center;font-size:10px;font-weight:800;text-transform:uppercase;padding:4px 6px;border-radius:5px;background:#2c62a9;color:#fff;max-width:92px;text-align:center;line-height:1.2}.catalogue .move{background:#a77d1b}.column-links{display:block;margin-top:15px;border-radius:8px;padding:10px 13px;background:#1a2851;color:#fff;text-decoration:none;font-size:14px;font-weight:650;text-align:center}.column-links:hover{background:#2d467a}.note{font-size:13px;color:#647087;margin:13px 1px 27px}.impact{background:#fff;border-left:4px solid #b48721;border-radius:0 10px 10px 0;padding:17px 20px;margin-bottom:30px}.impact p{margin:0;color:#47536d}.features{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:18px}.feature{background:#fff;border:1px solid #d9dfe9;border-radius:12px;padding:20px}.feature p{font-size:15px;color:#4c5870;margin-bottom:0}.example{display:flex;align-items:center;gap:8px;margin:15px 0 13px;flex-wrap:wrap;font-size:13px;font-weight:650}.chip{padding:5px 10px;border-radius:99px;border:1px solid #c2cde0;background:#f4f7fc}.chip--selected{background:#1a2851;color:#fff;border-color:#1a2851}.count{padding:6px 10px;border-radius:6px;background:#edf3fc;color:#2a4d80}.reset{padding:6px 10px;border-radius:6px;border:1px solid #8c9bb8;background:#fff;color:#1a2851}.links{margin-top:22px;font-size:14px}.links a{color:#275c9c;font-weight:650}a:focus-visible{outline:3px solid #b48721;outline-offset:4px}.sources{font-size:12px;color:#728097;margin-top:30px;border-top:1px solid #d9dfe9;padding-top:16px}@media(max-width:700px){main{padding:23px 15px 40px}.schema{gap:10px}.column{padding:11px}.column-head h2{font-size:18px}.flow li{padding:9px 7px;gap:7px;min-height:86px}.flow strong{font-size:13px}.flow small{font-size:11px}.num{flex-basis:21px;width:21px;height:21px;line-height:21px;font-size:11px}.move{display:none}.features{grid-template-columns:1fr}.column-links{font-size:12px;padding:10px 7px}.column-head p{font-size:12px}}
+  </style>
+</head>
+<body>
+<main>
+  <span class="tag">P14 · Proposition privée</span>
+  <h1>La recherche et les fiches passeraient avant les packs.</h1>
+  <p class="intro">Le changement concerne l’ordre des blocs de la page Fiches. Dans la proposition, l’étudiant pourrait chercher sa matière juste après la présentation, puis lire les offres groupées plus bas.</p>
+  <div class="schema" aria-label="Ordre actuel et ordre proposé des blocs de la page Fiches">
+    <section class="column" aria-labelledby="actuel">
+      <header class="column-head"><h2 id="actuel">Aujourd’hui</h2><p>Les offres groupées arrivent d’abord.</p></header>
+      <ol class="flow">
+        <li><span class="num">1</span><div><strong>Présentation des fiches</strong><small>Le texte qui ouvre la page</small></div></li>
+        <li><span class="num">2</span><div><strong>Présentation des formules</strong><small>Achat à l’unité et offres groupées</small></div></li>
+        <li><span class="num">3</span><div><strong>Packs par année</strong><small>Avec les avis d’élèves</small></div></li>
+        <li><span class="num">4</span><div><strong>Présentation du pack L2</strong><small>L’explication du pack de deuxième année</small></div></li>
+        <li class="search"><span class="num">5</span><div><strong>Recherche et filtres</strong><small>Le visiteur choisit son niveau et sa matière.</small></div></li>
+        <li class="catalogue"><span class="num">6</span><div><strong>Fiches à l’unité</strong><small>Les cartes des matières</small></div></li>
+        <li><span class="num">7</span><div><strong>Comparaison et suite de la page</strong><small>Guides par matière et questions fréquentes</small></div></li>
+      </ol>
+      <a class="column-links" href="../../formations.html#a-l-unite" target="_blank" rel="noopener">Ouvrir le catalogue actuel ↗</a>
+    </section>
+    <section class="column column--proposed" aria-labelledby="propose">
+      <header class="column-head"><h2 id="propose">Avec P14</h2><p>La recherche arrive juste après la présentation.</p></header>
+      <ol class="flow">
+        <li><span class="num">1</span><div><strong>Présentation des fiches</strong><small>Le texte qui ouvre la page</small></div></li>
+        <li class="search"><span class="num">2</span><div><strong>Recherche et filtres</strong><small>Le visiteur choisit son niveau et sa matière.</small></div><span class="move">Déplacés ici</span></li>
+        <li class="catalogue"><span class="num">3</span><div><strong>Fiches à l’unité</strong><small>Les cartes des matières</small></div><span class="move">Déplacées ici</span></li>
+        <li><span class="num">4</span><div><strong>Présentation des formules</strong><small>Achat à l’unité et offres groupées</small></div></li>
+        <li><span class="num">5</span><div><strong>Packs par année</strong><small>Avec les avis d’élèves</small></div></li>
+        <li><span class="num">6</span><div><strong>Présentation du pack L2</strong><small>L’explication du pack de deuxième année</small></div></li>
+        <li><span class="num">7</span><div><strong>Comparaison et suite de la page</strong><small>Guides par matière et questions fréquentes</small></div></li>
+      </ol>
+      <a class="column-links" href="fiches-filtres-en-haut.html#a-l-unite" target="_blank" rel="noopener">Ouvrir le catalogue proposé ↗</a>
+    </section>
+  </div>
+  <p class="note">Les colonnes se lisent du haut vers le bas. Le bleu indique la recherche et les filtres, et le doré indique le catalogue. La taille des rectangles sert au schéma.</p>
+  <aside class="impact"><h3>Le choix à faire</h3><p>L’étudiant atteindrait les cartes des matières juste après les filtres. Les packs seraient présentés après ces fiches. Ils seraient donc moins visibles au début de la page.</p></aside>
+  <section aria-labelledby="usage"><h2 id="usage">Les autres fonctions proposées</h2>
+    <div class="features">
+      <article class="feature"><h3>Le niveau reste choisi</h3><div class="example"><span class="chip">Fiches · L2</span><span aria-hidden="true">→</span><span class="chip chip--selected">Cours · L2</span></div><p>Un étudiant choisit L2 sur les fiches, puis ouvre les cours. L2 reste sélectionné, donc il retrouve directement les cours de deuxième année.</p></article>
+      <article class="feature"><h3>Le nombre de résultats s’affiche</h3><div class="example"><span class="count">Résultats de la recherche</span></div><p>Après une recherche sur les contrats, le compteur indique combien de supports restent affichés. L’étudiant voit ainsi si sa recherche a trouvé plusieurs ressources ou une seule.</p></article>
+      <article class="feature"><h3>La recherche peut être remise à zéro</h3><div class="example"><span class="reset">Réinitialiser</span></div><p>Le bouton Réinitialiser vide la recherche et remet tous les niveaux à l’écran. L’étudiant peut donc repartir sur l’ensemble des matières.</p></article>
+    </div>
+    <p class="links">Tu peux essayer ces fonctions dans <a href="fiches-filtres-en-haut.html#a-l-unite" target="_blank" rel="noopener">l’aperçu des fiches</a>, puis passer à <a href="cours-filtres-harmonises.html#grille-cours-fiches" target="_blank" rel="noopener">l’aperçu des cours</a>.</p>
+  </section>
+  <p class="sources">Ordre vérifié dans formations.html et dans l’aperçu des fiches du 29 octobre 2026. Les deux liens ouvrent les pages complètes pour vérifier le déplacement.</p>
+</main>
+</body>
+</html>

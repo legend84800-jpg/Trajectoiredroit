@@ -1,6 +1,6 @@
 # Améliorations de Trajectoire Droit du 29 octobre 2026
 
-Publication finale vérifiée sur le site public. Les lignes « Ensemble final » désignent les changements publiés dans cette livraison. P11, P12 et P14 restent des aperçus, afin de choisir leur présentation avant de modifier les pages publiques.
+Les améliorations validées sont publiées sur le site. Après examen des aperçus, Julien a retenu P11, appliqué dans le commit `ee7f3ca1`. Il a écarté P12 et demandé un aperçu plus lisible de P14.
 
 | Proposition | Application retenue | État |
 |---|---|---|
@@ -12,10 +12,10 @@ Publication finale vérifiée sur le site public. Les lignes « Ensemble final �
 | P8 | Bandeau mobile lisible en entier et barres fixes coordonnées | Ensemble final |
 | P9 | Carte de réservation retirée de l’accueil, cours particuliers toujours accessibles dans le menu et leur page | Ensemble final |
 | P10 | Confirmation du guide conservée quand l’inscription réussit, même si la mesure échoue ou si le stockage est refusé | Ensemble final |
-| P11 | Accueil raccourci avec les formules remontées et les répétitions retirées | Aperçu seulement |
-| P12 | Paragraphe de présentation ajouté sous le titre actuel | Aperçu seulement |
+| P11 | Accueil raccourci avec les formules remontées et les répétitions retirées | Publié après validation |
+| P12 | Paragraphe de présentation proposé sous le titre actuel | Écarté par Julien |
 | P13 | Comparateur organisé autour de six besoins, avec les prix du catalogue | Ensemble final |
-| P14 | Filtres avant les packs et présentation harmonisée entre fiches et cours | Aperçu seulement |
+| P14 | Filtres avant les packs et présentation harmonisée entre fiches et cours | Nouvel aperçu explicatif, décision en attente |
 | P15 | Quatre aperçus et sommaires des fiches et cours de finances publiques et de philosophie du droit | Ensemble final |
 | P16 | Sommaires dans les quatre méthodes, avec les développements et les exemples conservés | Ensemble final |
 | P17 | Inventaire des ressources gratuites corrigé et guides existants reliés | Ensemble final |
@@ -35,9 +35,9 @@ P25 couvre les comparateurs et les présentations des packs contrôlés. La cent
 
 ## Vérifications et publications
 
-À ce stade, 438 tests réussissent. Le contrôle de santé examine également 323 produits et 468 liens. Les contrôles de recherche et de Mon compte couvrent notamment les filtres et les changements de session. Les résultats de vente après publication restent à mesurer.
+À ce stade, 438 tests réussissent. Le contrôle de santé examine également 323 produits et 469 liens. Les contrôles de recherche et de Mon compte couvrent notamment les filtres et les changements de session. Les résultats de vente après publication restent à mesurer.
 
-Le fichier principal passe de 53 505 à 52 055 octets. Sa version compressée gzip passe de 15 615 à 15 511 octets. De plus, l’index rassemble 349 pages et représente environ 80 ko, chargés seulement pour la recherche. Ces chiffres décrivent les fichiers. Le temps de chargement réel reste donc à mesurer.
+Le fichier principal passe de 53 505 à 52 055 octets. Sa version compressée gzip passe de 15 615 à 15 511 octets. De plus, l’index rassemble 350 pages et représente environ 80 ko, chargés seulement pour la recherche. Ces chiffres décrivent les fichiers. Le temps de chargement réel reste donc à mesurer.
 
 La correction Stripe est publiée dans le commit `72240cba`. P24 est également publié dans le commit `5131e20f`, depuis le chat `01a1895a`. L’ensemble final est publié dans les commits `b2b694c3` et `88ff7a1c`. Le déploiement Vercel est prêt et le domaine public affiche donc les nouvelles compositions des packs. L’ouverture de Stripe a été vérifiée depuis cette version, sans finaliser de commande.
 
@@ -52,7 +52,7 @@ Le titre « Le support dépend du travail que tu dois faire » devient « Les fo
 ## Aperçus à consulter
 
 - [P11, accueil raccourci](index-p11.html)
-- [P12, présentation sous le titre](index-p12.html)
+- [P12, proposition écartée](index-p12.html)
 - [Mon compte avec des achats fictifs](compte-exemple.html)
-- [P14, filtres des fiches avant les packs](../catalogue-2026-10-29/fiches-filtres-en-haut.html) et [filtres harmonisés des cours](../catalogue-2026-10-29/cours-filtres-harmonises.html)
+- [P14, déplacement expliqué](../catalogue-2026-10-29/p14-explication.html), puis [filtres des fiches avant les packs](../catalogue-2026-10-29/fiches-filtres-en-haut.html) et [filtres harmonisés des cours](../catalogue-2026-10-29/cours-filtres-harmonises.html)
 - [Vue commune des aperçus](index.html)
