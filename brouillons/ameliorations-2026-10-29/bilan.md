@@ -1,6 +1,6 @@
 # Améliorations de Trajectoire Droit du 29 octobre 2026
 
-Publication finale en cours. Les lignes « Ensemble final » désignent les changements préparés pour cette publication. P11, P12 et P14 restent des aperçus, afin de choisir leur présentation avant de modifier les pages publiques.
+Publication finale vérifiée sur le site public. Les lignes « Ensemble final » désignent les changements publiés dans cette livraison. P11, P12 et P14 restent des aperçus, afin de choisir leur présentation avant de modifier les pages publiques.
 
 | Proposition | Application retenue | État |
 |---|---|---|
@@ -35,11 +35,13 @@ P25 couvre les comparateurs et les présentations des packs contrôlés. La cent
 
 ## Vérifications et publications
 
-À ce stade, 433 tests réussissent. Le contrôle de santé examine également 323 produits et 468 liens. Les contrôles de recherche et de Mon compte couvrent notamment les filtres et les changements de session. Les résultats de vente après publication restent à mesurer.
+À ce stade, 438 tests réussissent. Le contrôle de santé examine également 323 produits et 468 liens. Les contrôles de recherche et de Mon compte couvrent notamment les filtres et les changements de session. Les résultats de vente après publication restent à mesurer.
 
-Le fichier principal passe de 53 505 à 52 055 octets. Sa version compressée gzip passe de 15 615 à 15 513 octets. De plus, l’index rassemble 349 pages et représente environ 80 ko, chargés seulement pour la recherche. Ces chiffres décrivent les fichiers. Le temps de chargement réel reste donc à mesurer.
+Le fichier principal passe de 53 505 à 52 055 octets. Sa version compressée gzip passe de 15 615 à 15 511 octets. De plus, l’index rassemble 349 pages et représente environ 80 ko, chargés seulement pour la recherche. Ces chiffres décrivent les fichiers. Le temps de chargement réel reste donc à mesurer.
 
-La correction Stripe est publiée dans le commit `72240cba`. P24 est déjà publié dans le commit `5131e20f`, depuis le chat `01a1895a`. La publication de l’ensemble final reste en cours.
+La correction Stripe est publiée dans le commit `72240cba`. P24 est également publié dans le commit `5131e20f`, depuis le chat `01a1895a`. L’ensemble final est publié dans les commits `b2b694c3` et `88ff7a1c`. Le déploiement Vercel est prêt et le domaine public affiche donc les nouvelles compositions des packs. L’ouverture de Stripe a été vérifiée depuis cette version, sans finaliser de commande.
+
+Le dossier `build/site-public` contient les fichiers servis aux visiteurs. Les sources des fonctions du serveur restent dans leur dossier séparé.
 
 ## Deux corrections de rédaction
 
