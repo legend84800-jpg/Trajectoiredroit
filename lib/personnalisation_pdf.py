@@ -279,9 +279,16 @@ def verifier_session_payee(session: dict, produit_id: str = PRODUIT_PILOTE) -> N
         session.get("mode") == "subscription"
         and str((session.get("metadata") or {}).get("echeances") or "") in {"2", "3"}
     )
+    commande_gratuite_confirmee = (
+        session.get("payment_status") == "no_payment_required"
+        and type(session.get("amount_total")) in (int, float)
+        and session.get("amount_total") == 0
+        and session.get("status") == "complete"
+        and session.get("mode") == "payment"
+    )
     if (
         (session.get("mode") != "payment" and not en_plusieurs_fois)
-        or session.get("payment_status") != "paid"
+        or not (session.get("payment_status") == "paid" or commande_gratuite_confirmee)
     ):
         raise PermissionError("Paiement non confirmé")
     produit_ids = ((session.get("metadata") or {}).get("produitIds") or "").split(",")

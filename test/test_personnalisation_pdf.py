@@ -65,6 +65,67 @@ def session_payee() -> dict:
 
 
 class PersonnalisationPdfTest(unittest.TestCase):
+    def test_commande_gratuite_terminee_accepte_le_pdf(self):
+        for montant in (0, 0.0):
+            with self.subTest(montant=montant):
+                session = dict(
+                    session_payee(),
+                    status="complete",
+                    payment_status="no_payment_required",
+                    amount_total=montant,
+                )
+                verifier_session_payee(session)
+
+    def test_commande_gratuite_incomplete_ou_invalide_est_refusee(self):
+        complete = dict(
+            session_payee(),
+            status="complete",
+            payment_status="no_payment_required",
+            amount_total=0,
+        )
+        valeurs_refusees = (
+            {"payment_status": "unpaid"},
+            {"payment_status": None},
+            {"status": "open"},
+            {"status": "expired"},
+            {"status": None},
+            {"amount_total": 499},
+            {"amount_total": -1},
+            {"amount_total": "0"},
+            {"amount_total": None},
+            {"amount_total": False},
+            {"mode": "subscription"},
+            {
+                "mode": "subscription",
+                "metadata": {"produitIds": PRODUIT_PILOTE, "echeances": "3"},
+            },
+            {"mode": "setup"},
+            {"mode": None},
+        )
+        for surcharge in valeurs_refusees:
+            with self.subTest(surcharge=surcharge):
+                with self.assertRaises(PermissionError):
+                    verifier_session_payee(dict(complete, **surcharge))
+        for champ in ("mode", "status", "payment_status", "amount_total"):
+            with self.subTest(champ_absent=champ):
+                session = dict(complete)
+                del session[champ]
+                with self.assertRaises(PermissionError):
+                    verifier_session_payee(session)
+
+    def test_produit_absent_refuse_pour_commande_payee_ou_gratuite(self):
+        payee = session_payee()
+        gratuite = dict(
+            payee,
+            status="complete",
+            payment_status="no_payment_required",
+            amount_total=0,
+        )
+        for session in (payee, gratuite):
+            with self.subTest(statut=session["payment_status"]):
+                with self.assertRaises(PermissionError):
+                    verifier_session_payee(session, "produit-absent")
+
     def test_signature_liee_a_la_commande(self):
         secret = "secret-de-test"
         expiration = 2_000_000_000
