@@ -69,7 +69,7 @@ async function chercherCodePromo(stripe, code) {
   try {
     const options = { code, active: true, limit: 1 };
     if (code.toUpperCase() === "CORRIGE10") options.expand = ["data.promotion.coupon"];
-    const liste = await stripe.promotionCodes.list(options);
+    const liste = await stripe.promotionCodes.list(options, { timeout: 8000, maxNetworkRetries: 0 });
     const promo = liste && Array.isArray(liste.data) ? liste.data[0] : null;
     if (!promo || !promo.id || promo.active === false) return null;
     if (promo.expires_at && promo.expires_at <= Math.floor(Date.now() / 1000)) return null;
@@ -193,10 +193,10 @@ async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande,
 // recherche et la création), la session repart sans remise, avec le champ affiché.
 async function creerSessionAvecRepli(stripe, params, cle) {
   if (!params.discounts) {
-    return stripe.checkout.sessions.create(avecImagesProduits(params), { idempotencyKey: cle });
+    return stripe.checkout.sessions.create(avecImagesProduits(params), { idempotencyKey: cle, timeout: 12000, maxNetworkRetries: 0 });
   }
   try {
-    return await stripe.checkout.sessions.create(avecImagesProduits(params), { idempotencyKey: `${cle}-remise` });
+    return await stripe.checkout.sessions.create(avecImagesProduits(params), { idempotencyKey: `${cle}-remise`, timeout: 12000, maxNetworkRetries: 0 });
   } catch (e) {
     if (!e || e.type !== "StripeInvalidRequestError") throw e;
     if (codeCadeauEleve(params.metadata?.codePromoLien)) throw e;
@@ -216,7 +216,7 @@ async function creerSessionAvecRepli(stripe, params, cle) {
         recovery: { ...repli.after_expiration.recovery, allow_promotion_codes: true },
       };
     }
-    return stripe.checkout.sessions.create(avecImagesProduits(repli), { idempotencyKey: `${cle}-repli` });
+    return stripe.checkout.sessions.create(avecImagesProduits(repli), { idempotencyKey: `${cle}-repli`, timeout: 12000, maxNetworkRetries: 0 });
   }
 }
 

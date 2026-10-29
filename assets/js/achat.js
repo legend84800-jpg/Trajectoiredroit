@@ -1,6 +1,85 @@
 /* Intégration paiement TJD (Stripe). Gère tous les boutons [data-tjd-produit] du site. */
 (function () {
   var TEXTES_ORIGINAUX = {};
+  var TENTATIVES_PAIEMENT = {};
+  var BOUTONS_PAIEMENT = [];
+  var ATTENTE_PAIEMENT_MS = 30000;
+
+  function preparerTentative(corps, cle) {
+    var copie = Object.assign({}, corps);
+    delete copie.attemptId;
+    delete copie.attemptCreatedAt;
+    var empreinte = JSON.stringify(copie);
+    var precedente = TENTATIVES_PAIEMENT[cle];
+    if (precedente && precedente.empreinte === empreinte && Date.now() - precedente.date < 600000) {
+      return precedente.corps;
+    }
+    TENTATIVES_PAIEMENT[cle] = { empreinte: empreinte, corps: corps, date: Date.now() };
+    return corps;
+  }
+
+  function messagePaiement(bouton, erreur) {
+    if (!document.createElement || !bouton.parentNode) {
+      alert('Le paiement est momentanément indisponible. Tu peux réessayer.');
+      return;
+    }
+    var message = bouton.parentNode.querySelector('.tjd-checkout-message');
+    if (!message) {
+      message = document.createElement('p');
+      message.className = 'tjd-checkout-message';
+      message.setAttribute('role', 'alert');
+      message.style.cssText = 'font-size:.9rem;line-height:1.5;margin:10px 0;color:var(--ink,#17223b)';
+      bouton.insertAdjacentElement('afterend', message);
+    }
+    message.textContent = erreur && erreur.tjdType === 'delai'
+      ? 'L’ouverture du paiement prend trop de temps. Tu peux réessayer.'
+      : 'Le paiement est momentanément indisponible. Tu peux réessayer.';
+  }
+
+  function demanderPaiement(corps, bouton, texteInitial) {
+    var controle = typeof AbortController === 'function' ? new AbortController() : null;
+    var minuteur;
+    var message = bouton.parentNode && bouton.parentNode.querySelector('.tjd-checkout-message');
+    if (message) message.remove();
+    BOUTONS_PAIEMENT.push({ bouton: bouton, texte: texteInitial });
+    var requete = Promise.resolve().then(function () { return fetch('/api/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(corps),
+      signal: controle ? controle.signal : undefined
+    }); }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (d) {
+        if (!r.ok) throw creerErreurCheckout(d.erreur || 'Création du paiement impossible', d.code || 'http', r.status);
+        if (!d.url) throw creerErreurCheckout('URL Stripe absente', 'reponse_incomplete', 200);
+        return d;
+      });
+    });
+    var attente = typeof setTimeout === 'function' ? Promise.race([
+      requete,
+      new Promise(function (_, rejeter) {
+        minuteur = setTimeout(function () {
+          rejeter(creerErreurCheckout('Délai du paiement dépassé', 'delai', 0));
+          if (controle) controle.abort();
+        }, ATTENTE_PAIEMENT_MS);
+      })
+    ]) : requete;
+    return attente.then(function (donnees) {
+      if (minuteur) clearTimeout(minuteur);
+      return donnees;
+    }, function (erreur) {
+      if (minuteur) clearTimeout(minuteur);
+      throw erreur;
+    });
+  }
+
+  if (window.addEventListener) window.addEventListener('pageshow', function (evenement) {
+    if (!evenement.persisted) return;
+    BOUTONS_PAIEMENT.forEach(function (entree) {
+      entree.bouton.disabled = false;
+      entree.bouton.textContent = entree.texte;
+    });
+    BOUTONS_PAIEMENT = [];
+  });
   // Le stockage du navigateur peut être refusé ou plein. Les données utiles au
   // paiement restent alors en mémoire dans cette page, sans inventer de consentement.
   var STOCKAGE_EN_MEMOIRE = { localStorage: {}, sessionStorage: {} };
@@ -271,6 +350,7 @@
   function tjdAcheter(produitId, btnEl) {
     if (!btnEl) btnEl = document.querySelector('[data-tjd-produit="' + produitId + '"]');
     if (!btnEl) return;
+    if (btnEl.disabled) return;
     var idx = produitId + '-' + Array.from(document.querySelectorAll('[data-tjd-produit="' + produitId + '"]')).indexOf(btnEl);
     TEXTES_ORIGINAUX[idx] = TEXTES_ORIGINAUX[idx] || btnEl.textContent.trim();
 
@@ -315,6 +395,8 @@
       if (val) corps[cle] = val;
     });
     ajouterAttributionPublication(corps);
+    ajouterRecuComportement(corps);
+    corps = preparerTentative(corps, idx);
 
     lancerPaiement();
 
@@ -337,22 +419,7 @@
 
       btnEl.disabled = true;
       btnEl.textContent = 'Chargement…';
-      ajouterRecuComportement(corps);
-      fetch('/api/create-checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(corps)
-      })
-        .then(function (r) {
-          return r.json().catch(function () { return {}; }).then(function (d) {
-            if (!r.ok) throw creerErreurCheckout(
-              d.erreur || 'Création du paiement impossible',
-              d.code || 'http',
-              r.status
-            );
-            return d;
-          });
-        })
+      demanderPaiement(corps, btnEl, TEXTES_ORIGINAUX[idx])
         .then(function (d) {
           if (d.url) {
             try {
@@ -361,6 +428,7 @@
               }
             } catch (_) {}
             mesurerCheckout('CheckoutCree', produitId);
+            delete TENTATIVES_PAIEMENT[idx];
             window.location.assign(d.url);
           }
           else {
@@ -372,7 +440,7 @@
             type: erreur && erreur.tjdType ? erreur.tjdType : 'reseau',
             statut: erreur && Number.isInteger(erreur.tjdStatut) ? erreur.tjdStatut : 0
           });
-          alert('Le paiement ne peut pas être ouvert pour le moment. Réessaie dans quelques secondes.');
+          messagePaiement(btnEl, erreur);
           btnEl.disabled = false;
           btnEl.textContent = TEXTES_ORIGINAUX[idx] || 'Acheter';
         });
@@ -795,6 +863,7 @@
   }
 
   function panierCheckout() {
+    if (document.getElementById('tjdPanierCta').disabled) return;
     var liste = panierLire();
     if (!liste.length) return;
     panierLancerPaiement(liste);
@@ -846,17 +915,8 @@
     } catch (_) {}
 
     ajouterRecuComportement(corps);
-    fetch('/api/create-checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(corps)
-    })
-      .then(function (r) {
-        return r.json().catch(function () { return {}; }).then(function (d) {
-          if (!r.ok) throw creerErreurCheckout(d.erreur || 'Création du paiement impossible', d.code || 'http', r.status);
-          return d;
-        });
-      })
+    corps = preparerTentative(corps, 'panier');
+    demanderPaiement(corps, cta, texteOriginal)
       .then(function (d) {
         if (!d.url) throw creerErreurCheckout('URL Stripe absente', 'reponse_incomplete', 200);
         try {
@@ -865,6 +925,7 @@
           }
         } catch (_) {}
         mesurerCheckout('CheckoutCree', 'panier');
+        delete TENTATIVES_PAIEMENT.panier;
         window.location.assign(d.url);
       })
       .catch(function (erreur) {
@@ -872,7 +933,7 @@
           type: erreur && erreur.tjdType ? erreur.tjdType : 'reseau',
           statut: erreur && Number.isInteger(erreur.tjdStatut) ? erreur.tjdStatut : 0
         });
-        alert('Le paiement ne peut pas être ouvert pour le moment. Réessaie dans quelques secondes.');
+        messagePaiement(cta, erreur);
         cta.disabled = false;
         cta.textContent = texteOriginal;
       });
