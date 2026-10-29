@@ -1,6 +1,6 @@
 # Améliorations de Trajectoire Droit du 29 octobre 2026
 
-Les améliorations validées sont publiées sur le site. Après examen des aperçus, Julien a retenu P11, appliqué dans le commit `ee7f3ca1`. Il a écarté P12 et demandé un aperçu plus lisible de P14.
+Les améliorations validées sont publiées sur le site. Après examen des aperçus, Julien a retenu P11 et P14. Il a écarté P12.
 
 | Proposition | Application retenue | État |
 |---|---|---|
@@ -15,7 +15,7 @@ Les améliorations validées sont publiées sur le site. Après examen des aper�
 | P11 | Accueil raccourci avec les formules remontées et les répétitions retirées | Publié après validation |
 | P12 | Paragraphe de présentation proposé sous le titre actuel | Écarté par Julien |
 | P13 | Comparateur organisé autour de six besoins, avec les prix du catalogue | Ensemble final |
-| P14 | Filtres avant les packs et présentation harmonisée entre fiches et cours | Nouvel aperçu explicatif, décision en attente |
+| P14 | Filtres avant les packs, recherche combinée, niveau conservé entre fiches et cours, compteur et réinitialisation | Publié après validation |
 | P15 | Quatre aperçus et sommaires des fiches et cours de finances publiques et de philosophie du droit | Ensemble final |
 | P16 | Sommaires dans les quatre méthodes, avec les développements et les exemples conservés | Ensemble final |
 | P17 | Inventaire des ressources gratuites corrigé et guides existants reliés | Ensemble final |
@@ -35,7 +35,7 @@ P25 couvre les comparateurs et les présentations des packs contrôlés. La cent
 
 ## Vérifications et publications
 
-À ce stade, 438 tests réussissent. Le contrôle de santé examine également 323 produits et 469 liens. Les contrôles de recherche et de Mon compte couvrent notamment les filtres et les changements de session. Les résultats de vente après publication restent à mesurer.
+À ce stade, 444 tests réussissent. Le contrôle de santé examine également 323 produits et 469 liens. Les contrôles de recherche et de Mon compte couvrent notamment les filtres et les changements de session. Les résultats de vente après publication restent à mesurer.
 
 Le fichier principal passe de 53 505 à 52 055 octets. Sa version compressée gzip passe de 15 615 à 15 511 octets. De plus, l’index rassemble 350 pages et représente environ 80 ko, chargés seulement pour la recherche. Ces chiffres décrivent les fichiers. Le temps de chargement réel reste donc à mesurer.
 
@@ -43,16 +43,21 @@ La correction Stripe est publiée dans le commit `72240cba`. P24 est également 
 
 Le dossier `build/site-public` contient les fichiers servis aux visiteurs. Les sources des fonctions du serveur restent dans leur dossier séparé.
 
-## Deux corrections de rédaction
+P11 est publié dans le commit `ee7f3ca1`. P14 est appliqué avec `14b05f46`, puis les liens d’arrivée au catalogue sont ajustés dans `6b5fcc5c`.
+
+## Corrections de rédaction
 
 Le bouton « Voir un extrait de mes fiches » devient « Voir un extrait de majeure préparée ». Le libellé désigne ainsi le format du document montré.
 
 Le titre « Le support dépend du travail que tu dois faire » devient « Les formats que tu peux utiliser à distance ». Il nomme les supports présentés dans les cartes qui suivent.
 
-## Aperçus à consulter
+Le catalogue est désormais placé plus haut, donc le renvoi « juste en dessous » a été remplacé par un lien vers les fiches à l’unité.
+
+## Versions à consulter
 
 - [P11, accueil raccourci](index-p11.html)
 - [P12, proposition écartée](index-p12.html)
 - [Mon compte avec des achats fictifs](compte-exemple.html)
-- [P14, déplacement expliqué](../catalogue-2026-10-29/p14-explication.html), puis [filtres des fiches avant les packs](../catalogue-2026-10-29/fiches-filtres-en-haut.html) et [filtres harmonisés des cours](../catalogue-2026-10-29/cours-filtres-harmonises.html)
+- [P14, catalogue des fiches publié](../../formations.html#a-l-unite) et [catalogue des cours publié](../../cours-fiches.html#grille-cours-fiches)
+- [Schéma du déplacement P14](../catalogue-2026-10-29/p14-explication.html), puis [filtres des fiches avant les packs](../catalogue-2026-10-29/fiches-filtres-en-haut.html) et [filtres harmonisés des cours](../catalogue-2026-10-29/cours-filtres-harmonises.html)
 - [Vue commune des aperçus](index.html)
