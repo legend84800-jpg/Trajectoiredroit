@@ -1,0 +1,36 @@
+.compare-table--besoins thead th { background: #1A2851; color: #fff; border-bottom: 0; }
+.compare-table--besoins tbody tr:nth-child(1) { --need-rgb: 36 78 146; --need-ink: #244E92; --need-light: #ABCBFF; }
+.compare-table--besoins tbody tr:nth-child(2) { --need-rgb: 33 105 115; --need-ink: #216973; --need-light: #8BD6DF; }
+.compare-table--besoins tbody tr:nth-child(3) { --need-rgb: 138 35 65; --need-ink: #8A2341; --need-light: #FFB1C7; }
+.compare-table--besoins tbody tr:nth-child(4) { --need-rgb: 39 98 63; --need-ink: #27623F; --need-light: #A1D9B4; }
+.compare-table--besoins tbody tr:nth-child(5) { --need-rgb: 128 92 26; --need-ink: #805C1A; --need-light: #EDCE8D; }
+.compare-table--besoins tbody tr:nth-child(6) { --need-rgb: 52 70 127; --need-ink: #34467F; --need-light: #C0CBFF; }
+.compare-table--besoins tbody th {
+  color: var(--need-ink); background: rgb(var(--need-rgb) / .12);
+  border-left: 4px solid var(--need-ink);
+}
+.compare-table--besoins td { background: rgb(var(--need-rgb) / .025); }
+.compare-table--besoins tbody a {
+  color: var(--need-ink); font-weight: 600; text-decoration: underline;
+  text-decoration-color: rgb(var(--need-rgb) / .4); text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.compare-table--besoins tbody a:hover { text-decoration-color: currentColor; text-decoration-thickness: 2px; }
+.compare-table--besoins tbody a:focus-visible { outline: 2px solid var(--need-ink); outline-offset: 4px; }
+.compare-needs__supports li { flex-wrap: wrap; gap: 5px 10px; }
+.compare-needs__price {
+  display: inline-block; padding: 3px 8px; border-radius: 6px; white-space: normal;
+  background: rgb(var(--need-rgb) / .09); color: var(--need-ink);
+  font-weight: 600; font-variant-numeric: tabular-nums;
+}
+html[data-theme="dark"] .compare-table--besoins tbody tr { --need-ink: var(--need-light); }
+html[data-theme="dark"] .compare-table--besoins tbody th { background: rgb(var(--need-rgb) / .22); }
+html[data-theme="dark"] .compare-table--besoins tbody a { text-decoration-color: currentColor; }
+html[data-theme="dark"] .compare-needs__price { background: rgb(var(--need-rgb) / .24); }
+html[data-theme="dark"] .compare-needs__note { color: var(--body); }
+@media (max-width: 768px) {
+  .compare-table--besoins tr { border-left: 4px solid var(--need-ink); }
+  .compare-table--besoins th:first-child { background: transparent; }
+  .compare-table--besoins td { background: transparent; }
+  html[data-theme="dark"] .compare-table--besoins tbody th { background: transparent; }
+}
