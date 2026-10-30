@@ -73,11 +73,11 @@ def encart(n, phrase):
   <div class="article-produit-inline__body">
     <p class="article-produit-inline__label">Cours en images</p>
     <p class="article-produit-inline__title"><a href="droit-des-contrats-en-images.html">Le droit des contrats en images</a></p>
-    <p class="article-produit-inline__meta">{meta} · <strong>19,99 €</strong></p>
+    <p class="article-produit-inline__meta">{meta} · <strong>9,99 €</strong></p>
   </div>
   <div class="article-produit-inline__actions">
-    <button type="button" class="apercu-link" data-apercu='{apercu(n)}' data-apercu-title="Le droit des contrats en images · L2 S1" data-apercu-sub="Pages réelles du cours en images" data-apercu-price="19,99 €" data-apercu-cta="{ID}">{voir}</button>
-    <button type="button" class="btn btn--primary" data-tjd-produit="{ID}">Acheter · 19,99 €</button>
+    <button type="button" class="apercu-link" data-apercu='{apercu(n)}' data-apercu-title="Le droit des contrats en images · L2 S1" data-apercu-sub="Pages réelles du cours en images" data-apercu-price="9,99 €" data-apercu-cta="{ID}">{voir}</button>
+    <button type="button" class="btn btn--primary" data-tjd-produit="{ID}">Acheter · 9,99 €</button>
   </div>
 </div>'''
 
@@ -96,8 +96,8 @@ def offre_fin(n, phrase, indent):
       <p class="conversion-offer__title">Le droit des contrats en images, L2 semestre 1</p>
       <p class="conversion-offer__summary">Ce cours reprend le droit des contrats de L2 S1 en 109 pages illustrées, de la formation du contrat jusqu'à son inexécution. Chaque règle y est écrite avec son article du Code civil, puis une scène dessinée montre la situation à laquelle elle s'applique.{complement}</p>
       <div class="conversion-offer__choices">
-        <button type="button" class="btn btn--primary" data-tjd-produit="{ID}">Acheter · 19,99 €</button>
-        <button type="button" class="apercu-link" data-apercu='{apercu(n)}' data-apercu-title="Le droit des contrats en images · L2 S1" data-apercu-sub="Pages réelles du cours en images" data-apercu-price="19,99 €" data-apercu-cta="{ID}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir des pages</button>
+        <button type="button" class="btn btn--primary" data-tjd-produit="{ID}">Acheter · 9,99 €</button>
+        <button type="button" class="apercu-link" data-apercu='{apercu(n)}' data-apercu-title="Le droit des contrats en images · L2 S1" data-apercu-sub="Pages réelles du cours en images" data-apercu-price="9,99 €" data-apercu-cta="{ID}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir des pages</button>
         <button type="button" class="btn btn--outline btn--sm" data-tjd-produit="fiche-contrats-l2-s1">Fiche complète · 14,99 €</button>
       </div>
       <p class="conversion-offer__note">Paiement Stripe · PDF envoyé par email dès le paiement · garantie satisfait ou remboursé sous 7 jours</p>
@@ -108,10 +108,10 @@ def offre_fin(n, phrase, indent):
 
 
 STICKY = '''<div class="sticky-cta-bar__text">
-      <strong>Le droit des contrats en images · 19,99 €</strong>
+      <strong>Le droit des contrats en images · 9,99 €</strong>
       <small>Cours en images · 109 pages</small>
     </div>
-    <button type="button" class="btn btn--primary" data-tjd-produit="cours-images-contrats-l2-s1">Acheter · 19,99 €</button>'''
+    <button type="button" class="btn btn--primary" data-tjd-produit="cours-images-contrats-l2-s1">Acheter · 9,99 €</button>'''
 
 # Un encart produit de la fiche Contrats, sans jamais déborder sur un titre,
 # une section ou un autre encart.

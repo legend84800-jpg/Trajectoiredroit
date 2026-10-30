@@ -7,7 +7,7 @@
 
 const DONNEES = require("./_audio-video-data.json");
 
-const PRIX_OPTION = 2499;
+const PRIX_OPTION = 999;
 
 function nomMatiere(slug, catalogue) {
   const fiche = catalogue[`fiche-${slug}`];

@@ -15,7 +15,7 @@ test("chaque option podcasts et vidéos contient un podcast et une vidéo par le
     const produit = PRODUITS[id];
     const lecons = DONNEES[id.replace("audio-video-", "")].unites.length;
     assert.ok(produit, id);
-    assert.equal(produit.prix, 2499, id);
+    assert.equal(produit.prix, 999, id);
     assert.equal(produit.mediaEnLigne, true, id);
     assert.equal(produit.blobs.length, lecons * 2, id);
     assert.equal(produit.blobsMeta.length, produit.blobs.length, id);
@@ -24,6 +24,52 @@ test("chaque option podcasts et vidéos contient un podcast et une vidéo par le
     assert.ok(produit.blobsMeta.every((m) => !/ d [a-z]| l [a-z]|responsabilite /.test(m.libelle)), id);
     assert.ok(IMAGES_PRODUITS[id], id);
     assert.ok(fs.existsSync(path.join(__dirname, "..", IMAGES_PRODUITS[id].replace("https://trajectoiredroit.com/", ""))), id);
+  }
+});
+
+test("Checkout transmet les nouveaux prix audio et image pour un achat direct, un panier ou une option ajoutée", async () => {
+  const stripeModule = require("../api/_stripe");
+  const creerOriginal = stripeModule.creerClientStripe;
+  const cheminModule = require.resolve("../api/create-checkout");
+  const ancienneCle = process.env.STRIPE_SECRET_KEY;
+  const appels = [];
+  stripeModule.creerClientStripe = () => ({ checkout: { sessions: { create: async (params) => {
+    appels.push(params);
+    return { id: "cs_test_audio_video", url: "https://checkout.stripe.com/c/pay/test" };
+  } } } });
+  process.env.STRIPE_SECRET_KEY = "sk_test_factice";
+  delete require.cache[cheminModule];
+  try {
+    const handler = require("../api/create-checkout");
+    const id = "audio-video-constit-l1-s1";
+    const imageId = "cours-images-contrats-l2-s1";
+    const cas = [
+      { corps: { produitId: id }, ids: [id], prix: [999] },
+      { corps: { produitId: imageId }, ids: [imageId], prix: [999] },
+      { corps: { produitIds: [id, imageId] }, ids: [id, imageId], prix: [999, 999] },
+      { corps: { produitId: "fiche-constit-l1-s1", bumpId: id }, ids: ["fiche-constit-l1-s1", id], prix: [PRODUITS["fiche-constit-l1-s1"].prix, 999] },
+    ];
+    for (const [index, exemple] of cas.entries()) {
+      const res = {
+        statusCode: 200,
+        setHeader() {},
+        status(code) { this.statusCode = code; return this; },
+        json(payload) { this.payload = payload; return this; },
+      };
+      await handler({ method: "POST", body: { ...exemple.corps, attemptId: `audio-video-prix-test-${index}` } }, res);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.payload.sessionId, "cs_test_audio_video");
+      const params = appels[index];
+      assert.equal(params.mode, "payment");
+      assert.equal(params.metadata.produitIds, exemple.ids.join(","));
+      assert.deepEqual(params.line_items.map((ligne) => ligne.price_data.unit_amount), exemple.prix);
+      assert.ok(params.line_items.every((ligne) => ligne.price_data.currency === "eur" && ligne.quantity === 1 && !ligne.price));
+    }
+  } finally {
+    stripeModule.creerClientStripe = creerOriginal;
+    delete require.cache[cheminModule];
+    if (ancienneCle === undefined) delete process.env.STRIPE_SECRET_KEY;
+    else process.env.STRIPE_SECRET_KEY = ancienneCle;
   }
 });
 

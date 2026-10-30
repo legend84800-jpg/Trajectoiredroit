@@ -348,8 +348,8 @@ const PRODUITS = {
   "coma-maison-de-la-poesie-2012": { nom: "Commentaire corrigé de l'arrêt Maison de la Poésie (2012)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-maison-de-la-poesie-2012.pdf"] },
   "coma-manoukian-2003": { nom: "Commentaire corrigé de l'arrêt Manoukian (2003)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-manoukian-2003.pdf"] },
 
-  // Cours en images, 19,99 €
-  "cours-images-contrats-l2-s1": { nom: "Le droit des contrats en images · Droit des obligations L2 S1", prix: 1999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-images-contrats-l2-s1.pdf",
+  // Cours en images, 9,99 €
+  "cours-images-contrats-l2-s1": { nom: "Le droit des contrats en images · Droit des obligations L2 S1", prix: 999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-images-contrats-l2-s1.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-images-contrats-l2-s1-plan.pdf"] },
 
   // Packs annuels Flashcards + QCM avec decks Anki
