@@ -27,7 +27,7 @@ test("chaque option podcasts et vidéos contient un podcast et une vidéo par le
   }
 });
 
-test("Checkout transmet les nouveaux prix audio et image pour un achat direct, un panier ou une option ajoutée", async () => {
+test("Checkout conserve le cours en images à 19,99 € et facture les podcasts et vidéos à 9,99 €", async () => {
   const stripeModule = require("../api/_stripe");
   const creerOriginal = stripeModule.creerClientStripe;
   const cheminModule = require.resolve("../api/create-checkout");
@@ -45,8 +45,8 @@ test("Checkout transmet les nouveaux prix audio et image pour un achat direct, u
     const imageId = "cours-images-contrats-l2-s1";
     const cas = [
       { corps: { produitId: id }, ids: [id], prix: [999] },
-      { corps: { produitId: imageId }, ids: [imageId], prix: [999] },
-      { corps: { produitIds: [id, imageId] }, ids: [id, imageId], prix: [999, 999] },
+      { corps: { produitId: imageId }, ids: [imageId], prix: [1999] },
+      { corps: { produitIds: [id, imageId] }, ids: [id, imageId], prix: [999, 1999] },
       { corps: { produitId: "fiche-constit-l1-s1", bumpId: id }, ids: ["fiche-constit-l1-s1", id], prix: [PRODUITS["fiche-constit-l1-s1"].prix, 999] },
     ];
     for (const [index, exemple] of cas.entries()) {
