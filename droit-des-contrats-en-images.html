@@ -415,7 +415,16 @@
         .cim-avis { grid-template-columns:1fr }
         .cim-avant { grid-template-columns:1fr; gap:24px }
         .cim-hero, .cim-page { grid-template-columns:1fr; gap:24px }
-        .cim-hero__visuel { order:-1 }
+        .cim-hero { gap:16px }
+        .cim-hero__texte { display:contents }
+        .cim-hero__texte > * { order:8 }
+        .cim-hero__texte > .cim-hero__badges { order:0; margin-bottom:0 !important }
+        .cim-hero__texte > h1 { order:1; margin-bottom:0 !important }
+        .cim-hero__visuel { order:2 }
+        .cim-hero__texte > .cim-prix { order:3; margin:0 }
+        .cim-hero__texte > .cim-hero__avis { order:4; margin:0 !important }
+        .cim-hero__texte > .cim-actions { order:5; margin:0 }
+        .cim-hero__texte > .cim-hero__livraison { order:6; margin:0 }
         .cim-galerie { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px }
       }
     </style>
@@ -430,19 +439,19 @@
     <section class="section" style="padding-top:28px" id="offre">
       <div class="container">
         <div class="cim-hero">
-          <div>
-            <div class="flex" style="gap:8px; margin-bottom:16px">
+          <div class="cim-hero__texte">
+            <div class="flex cim-hero__badges" style="gap:8px; margin-bottom:16px">
               <span class="badge">Licence 2</span><span class="badge">Semestre 1</span><span class="badge">Nouveau</span>
             </div>
             <h1 class="h1" style="margin-bottom:16px">Le droit des contrats en images</h1>
             <p class="lead">Ce cours reprend tout le programme de droit des contrats du premier semestre de L2, de l'introduction jusqu'à l'inexécution, en 109 pages illustrées. Sur chaque page, la règle est écrite avec son article, puis une scène dessinée te montre la situation à laquelle elle s'applique. Tu retiens ainsi chaque règle avec la scène qui l'illustre, ce qui t'aide à la retrouver le jour du partiel.</p>
             <div class="cim-prix"><strong>19,99 €</strong><span class="cim-note">PDF de 109 pages, avec le plan détaillé du cours en bonus</span></div>
-            <p class="cim-note" style="margin:0 0 4px"><a href="#avis" style="color:inherit"><span style="color:#C49A4A">★★★★★</span> 23 avis d'élèves</a></p>
+            <p class="cim-note cim-hero__avis" style="margin:0 0 4px"><a href="#avis" style="color:inherit"><span style="color:#C49A4A">★★★★★</span> 23 avis d'élèves</a></p>
             <div class="cim-actions">
               <button type="button" class="btn btn--primary" data-tjd-produit="cours-images-contrats-l2-s1">Acheter le cours · 19,99 €</button>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/cours-images-contrats-l2-s1/page-002.webp", "assets/apercus/cours-images-contrats-l2-s1/page-014.webp", "assets/apercus/cours-images-contrats-l2-s1/page-040.webp", "assets/apercus/cours-images-contrats-l2-s1/page-090.webp", "assets/apercus/cours-images-contrats-l2-s1/page-103.webp"]' data-apercu-title="Le droit des contrats en images · L2 S1" data-apercu-price="19,99 €" data-apercu-cta="cours-images-contrats-l2-s1" data-apercu-sub="Pages réelles du cours en images"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir des pages du cours</button>
             </div>
-            <p class="cim-note">Le PDF arrive par email dès le paiement, et tu le retrouves ensuite dans ton espace <a href="mon-compte.html">Mon compte</a>.</p>
+            <p class="cim-note cim-hero__livraison">Le PDF arrive par email dès le paiement, et tu le retrouves ensuite dans ton espace <a href="mon-compte.html">Mon compte</a>.</p>
           </div>
           <div class="cim-hero__visuel">
             <img src="assets/covers/cours-images-contrats-l2-s1.webp" alt="Trois pages du cours Le droit des contrats en images, la couverture, l'erreur sur les qualités essentielles et les sanctions de l'inexécution" width="960" height="540" fetchpriority="high" decoding="async">
@@ -791,6 +800,7 @@
 
   <script src="assets/js/main.js?v=da4d9620" defer></script>
   <script src="assets/js/achat.js?v=60767dcf" defer></script>
+  <script src="assets/js/cours-images-contrats.js?v=1" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
   (function(){
