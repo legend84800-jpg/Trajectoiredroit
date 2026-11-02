@@ -13,6 +13,7 @@
 
 const { suggererComplements } = require("./_suggestions-post-achat");
 const { creerClientStripe } = require("./_stripe");
+const { construireLiensTelechargement } = require("./_liens-telechargement");
 
 const NOMBRE_SUGGESTIONS = 4;
 const ID_PRODUIT_VALIDE = /^[a-z0-9-]{2,80}$/;
@@ -52,6 +53,28 @@ function remiseApplicable(data, produitIds) {
     && !(data.metadata && data.metadata.cadeauEmail)
     && !produitIds.includes("stage-methode")
     && Number(data.amount_total) > 0;
+}
+
+// Depuis le 02/11/2026, la page de remerciement affiche aussi les boutons de
+// téléchargement. Deux acheteurs n'avaient rien reçu : un mail classé en
+// indésirables chez iCloud, et un autre refusé par un serveur qui bloquait l'IP
+// partagée de Brevo. Mêmes liens signés que l'email, valables 2 heures.
+const DUREE_LIENS_PAGE_SECONDES = 2 * 3600;
+
+function liensPageRemerciement(data, produitIds) {
+  const secret = process.env.DOWNLOAD_SECRET;
+  if (!secret || (data.metadata && data.metadata.cadeauEmail)) return [];
+  const PRODUITS = require("./_produits");
+  let liens = [];
+  for (const id of produitIds) {
+    const produit = PRODUITS[id];
+    if (!produit || id === "stage-methode" || !Array.isArray(produit.blobs) || !produit.blobs.length) continue;
+    if ((Array.isArray(produit.inclus) && Array.isArray(produit.blobsMeta)) || produit.mediaEnLigne) continue;
+    liens = liens.concat(construireLiensTelechargement(
+      id, produit, secret, "https://trajectoiredroit.com", DUREE_LIENS_PAGE_SECONDES, { sessionId: data.id }
+    ));
+  }
+  return liens.map(({ nom, url, type }) => ({ nom, url, type }));
 }
 
 async function lireOuCreerRemise(data, produitIds, stripe) {
@@ -188,6 +211,8 @@ async function handler(req, res) {
     // échéances, pas la seule première mensualité encaissée par Checkout.
     const montantTotalEcheances = Number(data.metadata && data.metadata.montantTotal);
     const remise = await lireOuCreerRemise(data, produitIds, stripe);
+    // La réponse porte des liens de téléchargement signés, jamais mis en cache.
+    if (res.setHeader) res.setHeader("Cache-Control", "private, no-store");
     res.status(200).json({
       montant: montantTotalEcheances > 0
         ? montantTotalEcheances / 100
@@ -202,6 +227,7 @@ async function handler(req, res) {
       suggestions: cadeau ? [] : suggererComplements(produitIds, NOMBRE_SUGGESTIONS),
       remise: remise ? { code: remise.code, dateFin: remise.dateFin, expireLe: remise.expireLe, pourcentage: remise.pourcentage } : null,
       emailsAcceptes: cadeau ? true : emailsAcceptes(data),
+      liens: liensPageRemerciement(data, produitIds),
     });
   } catch (e) {
     if (e && (e.code === "resource_missing" || e.statusCode === 404)) {
@@ -214,4 +240,4 @@ async function handler(req, res) {
 }
 
 module.exports = handler;
-module.exports._test = { modeDepuisCle, sessionCompatibleAvecCle, remiseApplicable };
+module.exports._test = { modeDepuisCle, sessionCompatibleAvecCle, remiseApplicable, liensPageRemerciement };

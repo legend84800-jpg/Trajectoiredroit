@@ -356,6 +356,13 @@
             </ol>
           </div>
 
+          <div class="card" id="purchaseDownloads" hidden style="margin-top:40px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center; padding:28px 32px">
+            <h2 class="h4" style="margin-top:0">Tes fichiers</h2>
+            <p style="margin:8px 0 0; color:var(--body)">Chaque bouton ouvre ton PDF à ton nom, prêt à être enregistré sur ton ordinateur ou ton téléphone.</p>
+            <div id="purchaseDownloadsList" style="display:flex; flex-direction:column; gap:12px; margin-top:20px"></div>
+            <p style="margin:16px 0 0; font-size:.9rem; color:var(--body)">Ces boutons restent valables 2 heures. Ensuite, tu retrouves tes fichiers dans ton espace <a href="mon-compte.html">Mon compte</a>, avec l'adresse email utilisée pour cet achat.</p>
+          </div>
+
           <div class="card" id="purchaseSteps" style="margin-top:40px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; padding:28px 32px">
             <h2 class="h4" style="margin-top:0">Ce qui se passe maintenant</h2>
             <ol style="margin:16px 0 0; padding-left:20px; line-height:1.9; color:var(--text)">
@@ -540,6 +547,24 @@
       statusEyebrow.textContent = 'Achat confirmé';
       statusTitle.textContent = 'Ton PDF arrive par email';
       statusMessage.textContent = 'Paiement reçu. Dans quelques secondes, tu reçois un email avec le lien de téléchargement. Vérifie ta boîte de réception et ton dossier spam si tu ne le vois pas.';
+      // Depuis le 02/11/2026, les fichiers se téléchargent aussi depuis cette page,
+      // pour qu'un email classé en indésirables ou refusé ne bloque plus l'acheteur.
+      var liens = (d && Array.isArray(d.liens)) ? d.liens.filter(function (l) { return l && l.url && l.type !== 'video' && l.type !== 'audio'; }) : [];
+      if (liens.length && !(d && d.cadeau)) {
+        var liste = document.getElementById('purchaseDownloadsList');
+        liste.textContent = '';
+        liens.forEach(function (l) {
+          var a = document.createElement('a');
+          a.className = 'btn btn--primary';
+          a.href = l.url;
+          a.rel = 'nofollow noreferrer';
+          a.textContent = 'Télécharger ' + l.nom;
+          liste.appendChild(a);
+        });
+        document.getElementById('purchaseDownloads').hidden = false;
+        statusTitle.textContent = 'Tes fichiers sont prêts';
+        statusMessage.textContent = 'Paiement reçu. Tu peux télécharger tes fichiers juste en dessous, et tu reçois aussi un email avec les mêmes liens.';
+      }
       // Podcasts et vidéos seuls : rien ne se télécharge, tout se lance depuis Mon compte.
       var ids = (d && d.produitIds) || [];
       if (ids.length && ids.every(function (id) { return id.indexOf('audio-video-') === 0; })) {
