@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Délégation de service public : définition et exemples (L2)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Délégation de service public : définition, différence avec le marché public, concession, affermage, biens de retour, recours, cas résolu et huit arrêts relus.">
+  <link rel="canonical" href="https://trajectoiredroit.com/la-delegation-de-service-public.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Délégation de service public : définition et exemples (L2)">
+  <meta property="og:description" content="Délégation de service public : définition, différence avec le marché public, concession, affermage, biens de retour, recours, cas résolu et huit arrêts relus.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/la-delegation-de-service-public.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/la-delegation-de-service-public.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "La délégation de service public : définition, formes et différence avec le marché public",
+        "description": "Délégation de service public : définition, différence avec le marché public, concession, affermage, biens de retour, recours, cas résolu et huit arrêts relus.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-11-01",
+        "dateModified": "2026-11-01",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": {
+            "@type": "EducationalOrganization",
+            "name": "TrajectoireDroit"
+          }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+          }
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "La délégation de service public (DSP)"
+        },
+        "image": "https://trajectoiredroit.com/assets/blog/la-delegation-de-service-public.webp",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://trajectoiredroit.com/la-delegation-de-service-public.html"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://trajectoiredroit.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "La délégation de service public",
+            "item": "https://trajectoiredroit.com/la-delegation-de-service-public.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quelle est la différence entre une DSP et une concession ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La concession est le contrat défini par l'article L. 1121-1 du Code de la commande publique. L'entreprise y reçoit le droit d'exploiter un service ou un ouvrage et supporte le risque d'exploitation. La DSP est la concession de services qui a pour objet un service public et qu'une collectivité conclut (article L. 1121-3). Toute DSP est donc une concession, mais une concession de travaux ou une concession de l'État n'est pas une DSP."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quelle est la différence entre une DSP et un marché public ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dans un marché public, la collectivité paie un prix (article L. 1111-1) et garde le risque d'exploitation. Dans une DSP, l'entreprise se rémunère sur l'exploitation du service et supporte ce risque (article L. 1121-1)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quelle est la durée d'une DSP ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La durée d'une concession est toujours limitée, et la collectivité la fixe selon la nature et le montant des prestations ou des investissements demandés (article L. 3114-7). Pour l'eau potable, l'assainissement et les déchets, elle ne dépasse pas vingt ans, sauf examen préalable des raisons du dépassement par le directeur départemental des finances publiques (articles L. 3114-8 et D. 3114-3). Au-delà de cinq ans, elle ne dépasse pas le temps que le concessionnaire peut raisonnablement escompter pour amortir ses investissements, avec un rendement de l'argent investi (article R. 3114-2)."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=6a441fef">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 474,64 €, 45 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-45 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">474,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 349,74 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">349,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 449,67 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">449,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 399,70 €, 40 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-40 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 569,58 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">569,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>164 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow text-center">
+        <h1 class="h1">La délégation de service public : définition, formes et différence avec le marché public</h1>
+        <p class="lead" style="max-width:720px; margin-left:auto; margin-right:auto">Une délégation de service public (DSP) est un contrat par lequel une collectivité territoriale (une commune, un département ou une région) confie la gestion d'un service public à une entreprise. L'entreprise se rémunère sur l'exploitation du service et en supporte le risque de perte, alors que dans un marché public la collectivité paie un prix et garde ce risque. Le Code de la commande publique la définit comme une concession de services portant sur un service public (article L. 1121-3).</p>
+        <div class="hero__cta flex flex--center" style="margin-top:24px">
+          <a class="btn btn--primary btn--lg" href="#marche">Voir la différence avec le marché public →</a>
+          <a class="btn btn--outline btn--lg" href="#cas">Résoudre le cas de l'eau potable</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <p style="color:var(--body); line-height:1.75">Je suis Julien, professeur de droit. Avant ton TD, tu trouves ici la définition à écrire en copie et la façon de la distinguer d'un marché public, avec un cas résolu sur l'eau potable. Comme le vocabulaire (DSP, concession, affermage) change d'un cours à l'autre, j'ai relu le texte des articles en vigueur et celui de huit décisions du Conseil d'État.</p>
+      </div>
+    </section>
+
+    <!-- offre du PDF correspondant -->
+    <section class="conversion-offer" aria-labelledby="offre-fiche-da-s2-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/fiche-da-l2-s2.webp?v=dossier-universitaire-20260915" alt="Couverture de la fiche complète de droit administratif L2 semestre 2, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">La fiche complète de droit administratif L2, semestre 2</p>
+            <h2 class="conversion-offer__title" id="offre-fiche-da-s2-titre">Un chapitre sur les modes de gestion du service public, délégation comprise, et trois chapitres sur les contrats administratifs</h2>
+            <p class="conversion-offer__summary">Le chapitre 4 explique comment une collectivité gère un service public, par exemple en le déléguant à une entreprise. Les chapitres 16 à 18 portent sur les contrats administratifs, de leurs types jusqu'aux litiges qu'ils provoquent.</p>
+            <ul class="conversion-offer__benefits">
+              <li>La fiche fait 108 pages, avec un plan détaillé et des cartes mentales</li>
+              <li>Le pack complet (29,98 €) réunit les deux semestres de droit administratif, avec les flashcards, les fiches d'arrêt et les cas pratiques corrigés</li>
+              <li>Accès à vie et mises à jour comprises</li>
+            </ul>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-da-l2-s2">Fiche complète S2 · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-matiere-da-l2">Pack complet · 29,98 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
+            <div data-tjd-avis data-matiere="da-l2"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DÉFINITION -->
+            <section class="section" id="definition">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Qu'est-ce qu'une délégation de service public ?</h2>
+        <p class="lead" style="margin-bottom:20px">C'est un contrat qui réunit trois éléments, que tu vérifies un par un avant de le qualifier.</p>
+        <p style="color:var(--body); line-height:1.75">Le Code général des collectivités territoriales (CGCT) autorise une commune, un département ou une région à confier la gestion d'un service public dont elle a la responsabilité à une entreprise, publique ou privée, par une convention de délégation de service public (article L. 1411-1). L'article L. 1121-3 du Code de la commande publique (CCP) définit ensuite cette convention. Le CGCT appelle l'entreprise le délégataire et la collectivité l'autorité délégante (articles L. 1411-4 et R. 2224-18), alors que le CCP les appelle le concessionnaire et l'autorité concédante. Tu emploies donc les mots du code que tu cites.</p>
+        <ul style="color:var(--body); line-height:1.8; margin:0 0 18px; padding-left:22px">
+          <li><strong>Un contrat conclu par une collectivité.</strong> Son signataire est une collectivité territoriale, un établissement public local ou un groupement, par exemple une commune ou un syndicat de communes (article L. 1121-3). Le contrat de concession est aussi conclu par écrit (article L. 3114-1).</li>
+          <li><strong>Un service public confié.</strong> Le <a href="notion-service-public-droit-administratif.html">service public</a> reste de la responsabilité de la collectivité, par exemple la distribution de l'eau potable ou un réseau de transport, mais l'entreprise le gère à sa place.</li>
+          <li><strong>Un risque d'exploitation transféré.</strong> L'entreprise reçoit le droit d'exploiter le service (article L. 1121-1). La collectivité peut aussi lui verser une somme, par exemple une partie du prix des abonnements de transport scolaire dans l'arrêt Vendée, à condition que l'entreprise garde le risque de perdre de l'argent. Elle assume ce risque quand, dans des conditions d'exploitation normales, elle n'est pas assurée d'amortir les investissements ou les coûts qu'elle a supportés pour exploiter le service, c'est-à-dire de les récupérer peu à peu grâce à ses recettes. La perte possible doit être sérieuse, car le code exige « une réelle exposition aux aléas du marché » (aux hasards de la demande).</li>
+        </ul>
+        <p style="color:var(--body); line-height:1.75">Par exemple, une entreprise facture les habitants d'une commune pour leur eau potable. Si la consommation baisse, la commune ne rembourse pas la perte, donc le risque est transféré et le contrat est une délégation de service public.</p>
+      </div>
+    </section>
+
+    <!-- VOCABULAIRE -->
+            <section class="section section--alt" id="vocabulaire">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">DSP ou concession, quel mot écrire en copie ?</h2>
+        <p class="lead" style="margin-bottom:20px">Tu écris DSP pour la concession de services qui a pour objet un service public et qu'une collectivité conclut, et concession dans les autres cas.</p>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)"><th style="padding:10px 12px">Date</th><th style="padding:10px 12px">Texte</th><th style="padding:10px 12px">Ce qu'il apporte</th></tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>11 décembre 2001</strong></td><td style="padding:10px 12px; vertical-align:top">La loi MURCEF</td><td style="padding:10px 12px; vertical-align:top">Elle inscrit dans le CGCT une définition de la DSP, avec une rémunération « substantiellement liée aux résultats de l'exploitation du service », c'est-à-dire pour une part importante. Le Conseil d'État reprend ces mots en 2008 dans l'arrêt Département de la Vendée.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>2014 à 2019</strong></td><td style="padding:10px 12px; vertical-align:top">La directive 2014/23/UE, l'ordonnance n° 2016-65 du 29 janvier 2016, puis le CCP</td><td style="padding:10px 12px; vertical-align:top">L'Union européenne fixe des règles communes pour les concessions, puis l'ordonnance les reprend en droit français. Le code, en vigueur depuis le 1er avril 2019, réunit ces règles et définit la concession par le transfert d'un risque lié à l'exploitation (articles L. 1121-1 et L. 1121-3).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75">D'abord, la DSP existe toujours, puisque l'article L. 1411-1 du CGCT et l'article L. 1121-3 du CCP emploient encore ces mots, et une copie qui écrit qu'elle a disparu en 2016 se trompe. Ensuite, une concession dont l'objet principal est de construire un ouvrage reste une concession de travaux (articles L. 1121-2 et L. 1121-4). Quand l'État concède un service public, tu écris concession de services, puisque l'article L. 1121-3 réserve le nom de DSP aux autorités locales.</p>
+      </div>
+    </section>
+
+    <!-- FORMES -->
+            <section class="section" id="formes">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Concession, affermage, régie intéressée : quelles différences ?</h2>
+        <p class="lead" style="margin-bottom:20px">Ces trois formes se distinguent par la personne qui finance les ouvrages et par la manière dont l'entreprise est payée.</p>
+        <p style="color:var(--body); line-height:1.75">Le CCP emploie seulement le mot concession. Le CGCT cite pourtant le contrat d'affermage (article L. 2221-1) et la régie intéressée (article R. 2222-5), et ces trois noms reviennent dans les énoncés.</p>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)"><th style="padding:10px 12px">Forme</th><th style="padding:10px 12px">Qui finance les ouvrages</th><th style="padding:10px 12px">Comment l'entreprise est payée</th><th style="padding:10px 12px">Exemple</th></tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>La concession classique</strong></td><td style="padding:10px 12px; vertical-align:top">L'entreprise finance et construit les installations.</td><td style="padding:10px 12px; vertical-align:top">Elle encaisse les tarifs payés par les usagers.</td><td style="padding:10px 12px; vertical-align:top">Un parking municipal</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>L'affermage</strong></td><td style="padding:10px 12px; vertical-align:top">La collectivité finance les ouvrages et les remet à l'entreprise.</td><td style="padding:10px 12px; vertical-align:top">Elle encaisse les tarifs payés par les usagers et verse à la collectivité une redevance, un loyer pour exploiter les ouvrages.</td><td style="padding:10px 12px; vertical-align:top">La distribution d'eau d'une commune</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>La régie intéressée</strong></td><td style="padding:10px 12px; vertical-align:top">La collectivité finance le service et en garde la responsabilité financière.</td><td style="padding:10px 12px; vertical-align:top">La collectivité lui verse une rémunération avec une part variable liée aux résultats.</td><td style="padding:10px 12px; vertical-align:top">Le palais des spectacles d'une commune</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75">Dans la régie intéressée, l'entreprise s'appelle le régisseur intéressé (article R. 2222-5). La collectivité lui verse une part fixe et une part variable liée aux résultats, et le contrat est une délégation quand cette part variable fait peser un risque réel sur l'entreprise. Ainsi, dans l'arrêt Beauvais, qui porte sur le palais des spectacles de la commune (Conseil d'État, 19 novembre 2010, n° 320169), la part variable dépend de l'écart entre le budget prévu et le budget réalisé, et la rémunération totale peut être inférieure aux dépenses d'exploitation. Le Conseil d'État juge que le contrat est bien une délégation de service public, car la société supporte un risque d'exploitation.</p>
+        <p style="color:var(--body); line-height:1.75">Dans la gérance, le gérant reçoit un prix de la collectivité, alors que le concessionnaire se rémunère sur l'exploitation. Dans l'arrêt Guilherand-Granges (Conseil d'État, 7 avril 1999, n° 156008), une compagnie gère l'eau potable et l'assainissement d'une commune par des « traités de gérance ». Elle reçoit, pour l'eau potable, une part fixe pour la location des compteurs et, pour l'eau potable comme pour l'assainissement, une part proportionnelle au volume d'eau. Le Conseil d'État y voit des marchés publics, car cette rémunération est un prix versé par la commune, quelle que soit la qualification choisie par les parties. Un prix qui varie avec les quantités peut ainsi rester un prix de marché.</p>
+      </div>
+    </section>
+
+    <!-- MARCHÉ PUBLIC -->
+            <section class="section section--alt" id="marche">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Comment distinguer une délégation de service public d'un marché public ?</h2>
+        <p class="lead" style="margin-bottom:20px">Tu cherches qui supporte le risque d'exploitation.</p>
+        <p style="color:var(--body); line-height:1.75">Le CCP définit le marché comme un contrat conclu par un acheteur pour répondre à ses besoins, « en contrepartie d'un prix ou de tout équivalent » (article L. 1111-1). Dans un marché, la collectivité paie l'entreprise pour une prestation et garde le risque d'un service moins utilisé que prévu. Dans une concession, l'entreprise reçoit le droit d'exploiter le service et porte ce risque à la place de la collectivité (article L. 1121-1).</p>
+        <p style="color:var(--body); line-height:1.75">Pour qualifier un contrat à l'examen, tu poses trois questions à l'énoncé.</p>
+        <ol style="color:var(--body); line-height:1.8; margin:0 0 18px; padding-left:22px">
+          <li>D'où viennent les recettes de l'entreprise, des usagers, de la collectivité ou des deux ?</li>
+          <li>Si le service est moins utilisé que prévu, qui perd de l'argent ?</li>
+          <li>Dans des conditions d'exploitation normales, l'entreprise est-elle sûre de récupérer ses investissements ou ses coûts ?</li>
+        </ol>
+        <p style="color:var(--body); line-height:1.75">Quatre arrêts montrent comment le Conseil d'État distinguait déjà ces deux contrats avant le code.</p>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)"><th style="padding:10px 12px">Décision</th><th style="padding:10px 12px">Les faits</th><th style="padding:10px 12px">La solution</th></tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>Conseil d'État, 15 avril 1996, Préfet des Bouches-du-Rhône, Commune de Lambesc (n° 168325)</strong></td><td style="padding:10px 12px; vertical-align:top">Une commune confie à une entreprise la collecte des ordures ménagères et la gestion de la décharge communale, et lui verse un prix. Le préfet demande la suspension de l'exécution de la délibération du conseil municipal et du contrat.</td><td style="padding:10px 12px; vertical-align:top">La rémunération n'est pas substantiellement assurée par les résultats de l'exploitation, donc le contrat est un marché public. La commune n'a pas respecté les règles des marchés, et le Conseil d'État annule la délibération et le contrat.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>Conseil d'État, 30 juin 1999, SMITOM du Centre-Ouest seine-et-marnais (n° 198147)</strong></td><td style="padding:10px 12px; vertical-align:top">Un syndicat de traitement des ordures ménagères prépare une délégation sous forme de régie intéressée. L'entreprise recevrait un prix du syndicat et des recettes variables (vente de l'énergie, déchets d'autres usagers, recettes liées aux performances).</td><td style="padding:10px 12px; vertical-align:top">Les recettes autres que le prix représentent environ 30 % de l'ensemble. Le Conseil d'État juge la rémunération substantiellement assurée par les résultats de l'exploitation et retient une délégation.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>Conseil d'État, 7 novembre 2008, Département de la Vendée (n° 291794)</strong></td><td style="padding:10px 12px; vertical-align:top">Un département confie par délégation le transport régulier de voyageurs, scolaires compris. Il paie environ 80 % du coût des abonnements de transport scolaire à la place des familles, et le transport scolaire fournit environ 93 % des recettes de l'entreprise.</td><td style="padding:10px 12px; vertical-align:top">La cour administrative d'appel de Nantes avait seulement regardé la part payée par les familles et concluait à un marché. Le Conseil d'État annule son arrêt. La somme versée par le département varie avec le nombre d'élèves, donc elle compte aussi comme une rémunération liée aux résultats de l'exploitation. L'entreprise peut en outre supporter jusqu'à 30 % de l'éventuel déficit, après déduction d'une subvention initiale du département. Le contrat est une délégation, et la demande des entreprises écartées est rejetée.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>Conseil d'État, 5 juin 2009, Société Avenance-Enseignement et Santé (n° 298641)</strong></td><td style="padding:10px 12px; vertical-align:top">Une commune confie la restauration scolaire et municipale à une société, dans un contrat que la société présente comme un affermage. La société perçoit surtout des redevances auprès des usagers, et la commune verse par subvention la différence avec un prix unitaire des repas, fixé sur une base de 303 000 repas par an et réajusté si le nombre de repas s'écarte de plus de 5 %.</td><td style="padding:10px 12px; vertical-align:top">Le nombre d'usagers reste à peu près stable d'une année sur l'autre et le prix est réajusté, donc l'entreprise n'a pas de réel risque d'exploitation. Le contrat est un marché public, même si la société le présente comme un affermage.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75">Ces arrêts datent d'avant le CCP et emploient l'ancien critère, celui d'une rémunération « substantiellement assurée » ou « substantiellement liée » aux résultats de l'exploitation. Dans Vendée et dans Avenance, le Conseil d'État regarde pourtant déjà qui garde le risque d'exploitation, ce que l'article L. 1121-1 énonce maintenant en toutes lettres.</p>
+        <p style="color:var(--body); line-height:1.75">Dans Vendée, le département finance environ 80 % du coût des abonnements et le contrat est pourtant une délégation. Dans Avenance, les usagers paient des redevances et le contrat est un marché. La qualification dépend donc de la perte que l'entreprise peut subir si le service est moins utilisé que prévu, quelle que soit la personne qui paie, et un prix qui varie avec l'usage, comme dans Guilherand-Granges, ne suffit pas à transférer ce risque, alors que dans Vendée la part du déficit que l'entreprise peut supporter montre le risque réel. Les pourcentages mesurent chacun autre chose, car SMITOM compte environ 30 % de recettes autres que le prix et Vendée jusqu'à 30 % du déficit, et le code ne fixe aucun pourcentage. En commentaire d'arrêt, tu relèves ce chiffre et la phrase du Conseil d'État qui fonde la qualification, comme le détaille ma <a href="methode-commentaire-arret.html">méthode du commentaire d'arrêt</a>.</p>
+      </div>
+    </section>
+
+    <!-- CAS RÉSOLU -->
+            <section class="section" id="cas">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Cas résolu : une commune et son eau potable</h2>
+        <p class="lead" style="margin-bottom:20px">Quand ton énoncé confie le même service de deux façons, tu qualifies chaque contrat séparément.</p>
+        <p style="color:var(--body); line-height:1.75">Une commune de 12 000 habitants confie la distribution de son eau potable à une entreprise. Le réseau de canalisations et le château d'eau existent déjà et appartiennent à la commune. Dans une première version du contrat, l'entreprise entretient le réseau et relève les compteurs. Elle facture les habitants et garde le produit des factures, puis elle verse chaque année une redevance à la commune. En outre, la commune ne lui garantit aucune recette. Dans une seconde version, l'entreprise fait le même travail, mais la commune lui verse 300 000 euros par an et encaisse elle-même les factures. Ces deux contrats sont-ils des délégations de service public ?</p>
+        <p style="color:var(--body); line-height:1.75">La majeure est la règle de droit, reformulée condition par condition à partir des articles. La mineure applique ensuite chaque condition aux faits de l'énoncé, avec des connecteurs d'ordre comme d'abord et ensuite. Ma <a href="methode-cas-pratique.html">méthode du cas pratique</a> détaille ces deux étapes.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>La majeure.</strong> D'après les articles L. 1121-3 et L. 1121-1 du CCP, la DSP réunit trois conditions. D'abord, c'est un contrat conclu par une collectivité territoriale. Ensuite, il a pour objet la gestion d'un service public. Enfin, l'entreprise supporte un risque lié à l'exploitation, autrement dit, dans des conditions d'exploitation normales, elle n'est pas assurée d'amortir ses investissements ou ses coûts, et sa perte possible n'est pas théorique. En contrepartie, elle reçoit le droit d'exploiter le service. Le marché public est conclu en contrepartie d'un prix ou de tout équivalent (article L. 1111-1).</p>
+        <p style="color:var(--body); line-height:1.75"><strong>La mineure, première version.</strong> D'abord, la commune est une collectivité territoriale et elle signe le contrat. De plus, l'objet du contrat est un service public dont la commune a la responsabilité, car elle est compétente pour distribuer l'eau potable (article L. 2224-7-1 du CGCT) et le code parle de « services publics d'eau et d'assainissement » (article L. 2224-11). Enfin, l'entreprise se paie sur les factures des habitants. Si la consommation baisse, ses recettes baissent aussi et la commune ne compense pas la perte. Cette perte est sérieuse, car l'entreprise peut ne pas couvrir ses coûts, et elle supporte alors le risque d'exploitation. Les trois conditions sont remplies. Le contrat est une DSP, plus précisément un affermage, puisque la commune possède déjà le réseau et que l'entreprise lui verse une redevance.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>La mineure, seconde version.</strong> Les deux premières conditions sont remplies comme dans la première version, car la même commune conclut le contrat pour le même service. En revanche, elle verse 300 000 euros par an et encaisse elle-même les factures. L'entreprise reçoit cette somme quelle que soit la consommation, et aucun risque d'exploitation ne lui est transféré. Le contrat répond de plus à un besoin de la commune en contrepartie d'un prix, comme dans l'arrêt Lambesc où la commune versait un prix pour la collecte des ordures. C'est un marché public, proche de la gérance de l'arrêt Guilherand-Granges.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>La conclusion.</strong> Seule la première version est une délégation de service public. Elle est soumise aux règles des concessions, donc sa durée est limitée. Pour l'eau potable, cette durée ne dépasse pas vingt ans, sauf si l'État examine d'abord les raisons du dépassement (article L. 3114-8). La seconde version est un marché public.</p>
+      </div>
+    </section>
+
+    <!-- EXÉCUTION -->
+            <section class="section section--alt" id="execution">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quelles règles s'appliquent à une DSP pendant son exécution ?</h2>
+        <p class="lead" style="margin-bottom:20px">Le contrat est <a href="difference-acte-unilateral-contrat-administratif.html">administratif</a>, donc la collectivité garde des pouvoirs spéciaux sur le concessionnaire.</p>
+        <p style="color:var(--body); line-height:1.75">L'article L. 6 du CCP prévoit que les contrats du code conclus par une personne morale de droit public sont des contrats administratifs, sauf exceptions qu'il précise. Il énumère cinq règles propres à ces contrats, que le code applique au concessionnaire.</p>
+        <ol style="color:var(--body); line-height:1.8; margin:0 0 18px; padding-left:22px">
+          <li><strong>Le contrôle.</strong> La collectivité contrôle l'exécution du contrat. Chaque année, le concessionnaire lui remet un rapport qui contient notamment les comptes de toutes les opérations et une analyse de la qualité du service (articles L. 6, 1° et L. 3131-5).</li>
+          <li><strong>La continuité.</strong> Le contrat respecte le principe de continuité du service public, qui veut que le service fonctionne de façon régulière (article L. 6, 2°).</li>
+          <li><strong>L'imprévision.</strong> Un événement extérieur aux parties, imprévisible, bouleverse temporairement l'équilibre du contrat. Le concessionnaire qui continue d'exécuter le contrat a droit à une indemnité (article L. 6, 3°).</li>
+          <li><strong>La modification unilatérale.</strong> La collectivité peut aussi modifier le contrat sans l'accord du concessionnaire, tant qu'elle ne bouleverse pas son équilibre (article L. 6, 4°). Le concessionnaire reçoit alors une indemnisation, sauf si le contrat prévoit autre chose. Une seconde limite s'ajoute aux modifications décidées sans nouvelle mise en concurrence (sans rouvrir la candidature aux autres entreprises), car l'article L. 3135-1 interdit qu'elles changent la nature globale du contrat.</li>
+          <li><strong>La résiliation.</strong> La collectivité peut mettre fin au contrat avant son terme pour un motif d'intérêt général, et le concessionnaire a droit à une indemnisation, sauf si le contrat prévoit autre chose (articles L. 6, 5° et L. 3136-3, 2°). Elle peut aussi le résilier en cas de faute d'une gravité suffisante du concessionnaire (article L. 3136-3, 1°).</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- BIENS DE RETOUR -->
+            <section class="section" id="biens">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Qu'est-ce qu'un bien de retour dans une DSP ?</h2>
+        <p class="lead" style="margin-bottom:20px">C'est un bien que le concessionnaire finance et dont le service a besoin, et qui revient à la collectivité.</p>
+        <p style="color:var(--body); line-height:1.75">L'article L. 3132-4 du CCP classe les biens du service. Quand ton énoncé demande qui garde le château d'eau à la fin du contrat, tu cherches d'abord si ce bien est nécessaire au service.</p>
+        <ul style="color:var(--body); line-height:1.8; margin:0 0 18px; padding-left:22px">
+          <li><strong>Les biens de retour.</strong> Ce sont les biens, meubles ou immeubles, qui résultent des investissements du concessionnaire et qui sont nécessaires au fonctionnement du service public, comme un château d'eau construit par l'entreprise. Si le contrat ne dit rien, la collectivité en est propriétaire dès la construction.</li>
+          <li><strong>Les biens de reprise.</strong> Ce sont des biens que la collectivité n'a pas remis au concessionnaire et qui ne sont pas indispensables au service. Ils appartiennent à l'entreprise, sauf clause contraire, mais le contrat peut prévoir que la collectivité les reprend à la fin du contrat, moyennant un prix ou gratuitement.</li>
+          <li><strong>Les biens propres.</strong> Ce sont les biens du concessionnaire qui ne sont ni des biens de retour ni des biens de reprise, et qui restent la propriété du concessionnaire.</li>
+        </ul>
+        <p style="color:var(--body); line-height:1.75">Le Conseil d'État avait posé la règle des biens de retour avant le code, dans l'arrêt Commune de Douai (Assemblée, 21 décembre 2012, n° 342788), à propos d'une concession de distribution d'électricité. Il avait ajouté qu'à la fin du contrat, les biens que l'entreprise a déjà amortis reviennent gratuitement à la collectivité.</p>
+        <p style="color:var(--body); line-height:1.75">Quand la collectivité résilie le contrat avant son terme, le concessionnaire a droit à une indemnité pour les biens qu'il n'a pas pu amortir en entier (article L. 3136-10). Le code reprend ici la solution de l'arrêt Douai. L'indemnité est égale à la valeur nette comptable de ces biens, c'est-à-dire à ce qu'ils valent encore dans les comptes de l'entreprise, ou à celle qui résulterait d'un amortissement sur la durée du contrat quand l'amortissement a été calculé sur une durée plus longue. Elle ne peut pas dépasser ce montant. Par exemple, dans un autre contrat, un château d'eau d'un million d'euros est amorti de façon régulière sur vingt ans, la durée du contrat, et les deux règles donnent alors le même résultat. Si la commune résilie après quinze ans, il reste 250 000 euros à amortir, et l'indemnité est égale à cette somme.</p>
+      </div>
+    </section>
+
+    <!-- ATTRIBUTION ET RECOURS -->
+            <section class="section section--alt" id="attribution">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Comment se déroule la passation d'une DSP, puis comment la contester ?</h2>
+        <p class="lead" style="margin-bottom:20px">La passation est la procédure qui mène à la signature du contrat. La collectivité décide d'abord du principe de la délégation, puis elle organise la mise en concurrence des entreprises, que la loi Sapin de 1993 a rendue obligatoire pour les DSP. Des tiers peuvent ensuite contester le contrat signé.</p>
+        <ol style="color:var(--body); line-height:1.8; margin:0 0 18px; padding-left:22px">
+          <li>La commission consultative des services publics locaux donne son avis sur le projet. Une commune de plus de 10 000 habitants doit en créer une, comme les départements et les régions (article L. 1413-1 du CGCT).</li>
+          <li>L'assemblée délibérante, c'est-à-dire le conseil municipal, départemental ou régional, se prononce sur le principe de la délégation au vu d'un rapport qui présente les caractéristiques des prestations que le délégataire devra assurer (article L. 1411-4).</li>
+          <li>La collectivité annonce publiquement son projet pour que plusieurs entreprises puissent candidater, selon une procédure de publicité et de mise en concurrence qu'elle organise librement, dans le respect du CCP (article L. 3121-1).</li>
+          <li>Une seconde commission, présidée par l'autorité qui signe la convention et composée d'élus de l'assemblée, analyse les candidatures et établit la liste des candidats admis à présenter une offre. Au vu de son avis, l'autorité qui signe la convention peut négocier avec une ou plusieurs entreprises qui ont remis une offre, puis elle présente son choix à l'assemblée (article L. 1411-5). L'assemblée se prononce deux mois au moins après que la commission a été saisie (article L. 1411-7).</li>
+        </ol>
+        <p style="color:var(--body); line-height:1.75">Une entreprise qui avait intérêt à conclure le contrat et qui risque d'être lésée par un manquement à la mise en concurrence peut saisir le président du tribunal administratif avant la signature, par le référé précontractuel, une procédure d'urgence devant un juge unique qui permet de faire corriger la mise en concurrence. L'article L. 551-1 du Code de justice administrative le prévoit pour les contrats qui ont pour objet, entre autres, « la délégation d'un service public », et le préfet peut aussi agir (article L. 551-10). Après la signature, en revanche, le référé contractuel est ouvert aux mêmes personnes, mais seulement pour des manquements limités, comme l'absence de toute mesure de publicité (articles L. 551-13 et L. 551-18). De plus, il est fermé à celle qui a déjà agi en référé précontractuel quand la collectivité a respecté la suspension de la signature et la décision du juge (article L. 551-14).</p>
+        <p style="color:var(--body); line-height:1.75">Après la signature, un tiers (une personne étrangère au contrat) peut encore attaquer le contrat. Dans l'arrêt Département de Tarn-et-Garonne (Conseil d'État, Assemblée, 4 avril 2014, n° 358994), le Conseil d'État juge que tout tiers à un contrat administratif peut en contester la validité devant le juge du contrat (le juge administratif saisi du litige), s'il est susceptible d'être lésé de façon suffisamment directe et certaine par la passation du contrat ou par ses clauses. En outre, les membres de l'assemblée délibérante et le préfet disposent du même recours. Il se forme dans un délai de deux mois à partir des mesures de publicité appropriées, notamment un avis qui annonce la conclusion du contrat et dit comment le consulter.</p>
+        <p style="color:var(--body); line-height:1.75">Dans une copie, tu cherches d'abord qui attaque le contrat. Un tiers ordinaire invoque seulement les vices liés directement à son intérêt lésé, ou ceux d'une gravité telle que le juge les relève de lui-même, alors que les membres de l'assemblée et le préfet peuvent invoquer tout moyen. Selon la gravité des vices, le juge laisse le contrat se poursuivre, invite les parties à le régulariser, le résilie ou, pour un contenu illicite, un vice de consentement ou un autre vice d'une particulière gravité, l'annule. L'affaire concernait la location de voitures de fonction d'un département, mais la solution s'applique à tout contrat administratif, donc à une DSP.</p>
+      </div>
+    </section>
+
+            <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container container--narrow">
+        <h2 class="h2 text-center" style="margin-bottom:32px">Questions fréquentes sur la délégation de service public</h2>
+        <div class="accordion">
+          <details class="accordion__item" open><summary><h3>Quelle est la différence entre une DSP et une concession ?</h3></summary><div class="accordion__body">La concession est le contrat défini par l'article L. 1121-1 du Code de la commande publique. L'entreprise y reçoit le droit d'exploiter un service ou un ouvrage et supporte le risque d'exploitation. La DSP est la concession de services qui a pour objet un service public et qu'une collectivité conclut (article L. 1121-3). Toute DSP est donc une concession, mais une concession de travaux ou une concession de l'État n'est pas une DSP.</div></details>
+          <details class="accordion__item"><summary><h3>Quelle est la différence entre une DSP et un marché public ?</h3></summary><div class="accordion__body">Dans un marché public, la collectivité paie un prix (article L. 1111-1) et garde le risque d'exploitation. Dans une DSP, l'entreprise se rémunère sur l'exploitation du service et supporte ce risque (article L. 1121-1).</div></details>
+          <details class="accordion__item"><summary><h3>Quelle est la durée d'une DSP ?</h3></summary><div class="accordion__body">La durée d'une concession est toujours limitée, et la collectivité la fixe selon la nature et le montant des prestations ou des investissements demandés (article L. 3114-7). Pour l'eau potable, l'assainissement et les déchets, elle ne dépasse pas vingt ans, sauf examen préalable des raisons du dépassement par le directeur départemental des finances publiques (articles L. 3114-8 et D. 3114-3). Au-delà de cinq ans, elle ne dépasse pas le temps que le concessionnaire peut raisonnablement escompter pour amortir ses investissements, avec un rendement de l'argent investi (article R. 3114-2).</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAILLAGE -->
+    <section class="section section--alt" id="aller-plus-loin">
+      <div class="container container--narrow text-center">
+        <h2 class="h2">Pour aller plus loin en droit administratif</h2>
+        <div style="max-width:680px;margin:24px auto 0;display:grid;gap:12px">
+          <a class="btn btn--outline btn--full" href="notion-service-public-droit-administratif.html">La notion de service public : critères Narcy et APREI</a>
+          <a class="btn btn--outline btn--full" href="difference-acte-unilateral-contrat-administratif.html">Acte unilatéral et contrat administratif : la différence</a>
+          <a class="btn btn--outline btn--full" href="droit-administratif-l2.html">Droit administratif L2 · fiches et grands arrêts</a>
+        </div>
+        <p style="margin-top:18px"><a href="formations.html">Comparer toutes les fiches complètes →</a></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="author-box">
+          <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+          <div>
+            <p class="author-box__name">Julien</p>
+            <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+            <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">164 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- fin-article:pack-ultra -->
+    <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
+      <div class="container">
+        <p class="article-pack-ligne__texte">Le Pack Ultra L2 S2 réunit les 30 ressources de ton second semestre de L2 pour 239 €, la fiche de droit administratif L2 comprise. <a href="pack-ultra.html#pack-ultra-l2-s2">Voir le contenu du pack →</a></p>
+        <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (délégation de service public)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit administratif L2 · 14,99 €</strong>
+      <small>Fiche complète S2 · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-da-l2-s2">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=60767dcf" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=da4d9620" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>
