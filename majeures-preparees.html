@@ -130,6 +130,12 @@
     .extrait-majeure img { display:block; width:100%; height:auto; border-radius:var(--r-lg); border:1px solid var(--border); box-shadow:var(--sh-2); background:#fff }
     .extrait-majeure figcaption { margin-top:8px; font-size:.85rem; color:var(--muted) }
     .card--product.hors-niveau { display:none !important }
+    .majeure-choisie { max-width:380px; margin:18px auto 4px; text-align:left }
+    .majeure-choisie__label { margin:0 0 8px; font-size:.78rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gold, #C9A961); text-align:center }
+    .pack-niveau { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; max-width:760px; margin:0 auto 22px; padding:14px 16px; background:var(--gold-bg, #FBF8EE); border:1px solid var(--gold-line, #C9A961); border-radius:var(--r-md, 12px); text-align:left }
+    .pack-niveau p { margin:0; flex:1 1 260px; color:var(--body); line-height:1.5 }
+    .pack-niveau strong { color:var(--navy) }
+    .pack-niveau .btn { flex:0 0 auto }
     #packs-majeures .grid-3.un-seul { grid-template-columns:minmax(0, 380px); justify-content:center }
     .preuves-majeures { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px; max-width:860px; margin:22px auto 0; text-align:left }
     .preuves-majeures blockquote { margin:0; padding:16px 18px; border-left:3px solid var(--gold-line); border-radius:var(--r-md); background:var(--white); color:var(--body); font-size:.95rem; line-height:1.6 }
@@ -395,7 +401,7 @@
       <div class="container container--narrow text-center">
         <span class="eyebrow">De la L1 à la L3, en PDF</span>
         <h1 class="h1" style="margin-top:12px">Majeures préparées, la règle de droit déjà rédigée pour tes cas pratiques.</h1>
-        <p class="lead">Dans un cas pratique, la majeure est la partie où tu exposes la règle de droit, avant de l'appliquer aux faits dans la mineure. Dans ces PDF, chaque majeure est déjà rédigée condition par condition, avec ses articles et ses arrêts. Pour ton prochain TD, tu pars donc de la règle exacte et tu passes ton temps à vérifier chaque condition dans les faits de l'énoncé. Au partiel, tu connais déjà la règle, puisque tu l'as appliquée à chaque TD du semestre.</p>
+        <p class="lead">Dans un cas pratique, la majeure est la partie où tu exposes la règle de droit, avant de l'appliquer aux faits dans la mineure. Dans ces PDF, chaque majeure est déjà rédigée condition par condition, avec ses articles et ses arrêts.</p>
         <div class="niveaux" role="group" aria-label="Choisir ton année">
           <span class="niveaux__label">Ton année</span>
           <div class="niveaux__onglets">
@@ -405,10 +411,12 @@
             <button type="button" class="niveau-onglet" data-niveau-onglet="TOUT" aria-pressed="true">Toutes<small>18 matières</small></button>
           </div>
         </div>
+        <div id="majeure-choisie" class="majeure-choisie" hidden><p class="majeure-choisie__label">Ta matière</p></div>
         <figure class="extrait-majeure">
           <img id="extraitMajeureImg" src="assets/apercus/maj-da-l2-s1-zoom.webp" alt="Extrait de la majeure 6 de Droit administratif L2 S1, sur le contrôle de conventionnalité, avec sa première condition" width="1101" height="917" fetchpriority="high" decoding="async">
           <figcaption id="extraitMajeureLegende">Extrait réel, Droit administratif L2 S1, majeure 6 sur le contrôle de conventionnalité.</figcaption>
         </figure>
+        <div data-tjd-pdf-offert="matiere" data-titre="Un cas pratique corrigé offert, en PDF" data-texte="Tu choisis ta matière, et je t&#x27;envoie par email un cas pratique corrigé. Tu y vois chaque majeure appliquée aux faits de l&#x27;énoncé, comme on l&#x27;attend de toi au partiel." data-bouton="Recevoir le corrigé"></div>
       </div>
     </section>
 
@@ -469,6 +477,7 @@
     <section class="section" id="grille-majeures" style="padding-top:16px">
       <div class="container">
         <h2 class="h2 text-center" style="margin-bottom:18px">Les majeures à l'unité, 14,99 € la matière</h2>
+        <div id="packNiveau" class="pack-niveau" hidden></div>
         <div class="filtre-recherche">
           <svg class="filtre-recherche__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input type="search" data-filtre-recherche="#grille-majeures .grid-3" placeholder="Cherche ta matière (ex : contrats, administratif, L2...)" aria-label="Rechercher une matière">
@@ -812,6 +821,31 @@
       if (grillePacks) grillePacks.classList.toggle('un-seul', niveau !== 'TOUT');
       var e = extraits[niveau] || extraits.L2;
       if (img && img.getAttribute('src') !== e[0]) { img.src = e[0]; img.alt = e[1]; legende.textContent = e[2]; }
+      bandeauPack(niveau);
+    }
+    /* Au-dessus de la grille filtrée, le pack de l'année reste à portée de clic */
+    function bandeauPack(niveau){
+      var zone = document.getElementById('packNiveau');
+      var pack = document.querySelector('#packs-majeures .card--product[data-niveau="' + niveau + '"]');
+      if (!zone) return;
+      if (!pack) { zone.hidden = true; zone.innerHTML = ''; return; }
+      var bouton = pack.querySelector('[data-tjd-produit]');
+      var prix = pack.querySelector('.product__price'), ancien = pack.querySelector('.product__price-old');
+      var contenu = pack.querySelector('.product__meta span');
+      zone.innerHTML = '';
+      var texte = document.createElement('p');
+      var fort = document.createElement('strong');
+      fort.textContent = 'Toute ta ' + niveau + ' en un seul achat.';
+      texte.appendChild(fort);
+      texte.appendChild(document.createTextNode(' Le pack réunit ' + contenu.textContent.toLowerCase() + ' pour ' + prix.textContent + ', au lieu de ' + ancien.textContent + ' à l\'unité.'));
+      var achat = document.createElement('button');
+      achat.type = 'button';
+      achat.className = 'btn btn--primary';
+      achat.setAttribute('data-tjd-produit', bouton.getAttribute('data-tjd-produit'));
+      achat.textContent = bouton.textContent;
+      zone.appendChild(texte);
+      zone.appendChild(achat);
+      zone.hidden = false;
     }
     onglets.forEach(function(o){
       o.addEventListener('click', function(){
@@ -823,13 +857,49 @@
           history.replaceState(null, '', url.pathname + url.search);
         } catch (err) {}
         if (window._paq) window._paq.push(['trackEvent', 'Majeures', 'Onglet niveau', niveau]);
-        var cible = document.getElementById('packs-majeures');
+        var cible = document.getElementById('grille-majeures');
         if (cible && niveau !== 'TOUT') cible.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
     var demande = '';
     try { demande = (new URLSearchParams(window.location.search).get('niveau') || '').toUpperCase(); } catch (err) {}
     if (extraits[demande]) appliquer(demande);
+    /* Lien partagé ?produit=maj-... : la matière s'affiche sous les onglets, l'année est présélectionnée */
+    var produit = '';
+    try { produit = new URLSearchParams(window.location.search).get('produit') || ''; } catch (err) {}
+    var bouton = produit && document.querySelector('#grille-majeures [data-tjd-produit="' + produit.replace(/[^a-z0-9-]/g, '') + '"]');
+    var carte = bouton && bouton.closest('.card--product');
+    var choisie = document.getElementById('majeure-choisie');
+    if (carte && choisie) {
+      var copie = carte.cloneNode(true);
+      copie.classList.remove('fade-in', 'hors-niveau');
+      var vignette = copie.querySelector('.product__thumb');
+      if (vignette) vignette.remove();
+      choisie.appendChild(copie);
+      choisie.hidden = false;
+      var niv = carte.getAttribute('data-niveau');
+      if (extraits[niv]) appliquer(niv);
+      if (window._paq) window._paq.push(['trackEvent', 'Majeures', 'Lien matière', produit]);
+      /* La barre fixe du bas propose alors l'achat direct de cette matière */
+      document.addEventListener('DOMContentLoaded', function(){
+        var barre = document.getElementById('stickyCta');
+        var titre = carte.querySelector('.product__title');
+        if (!barre || !titre) return;
+        var fort = barre.querySelector('.sticky-cta-bar__text strong');
+        var petit = barre.querySelector('.sticky-cta-bar__text small');
+        var lien = barre.querySelector('a.btn');
+        if (fort) fort.textContent = titre.textContent.trim();
+        if (petit) petit.textContent = 'Majeures préparées · ' + niv;
+        if (lien) {
+          var achat = document.createElement('button');
+          achat.type = 'button';
+          achat.className = lien.className;
+          achat.setAttribute('data-tjd-produit', bouton.getAttribute('data-tjd-produit'));
+          achat.textContent = bouton.textContent.trim();
+          lien.replaceWith(achat);
+        }
+      });
+    }
   })();
   </script>
   <script>
@@ -861,6 +931,7 @@
     <a class="btn btn--primary" href="#grille-majeures">Voir les majeures →</a>
   </div>
 
+  <script src="/assets/js/pdf-offert.js?v=ee98d119" defer></script>
   <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
 </body>
 </html>
