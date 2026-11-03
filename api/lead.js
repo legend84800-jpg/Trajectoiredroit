@@ -221,6 +221,101 @@ async function envoyerPlan(email, plan, apiKey) {
   if (!resp.ok) throw new Error(`Brevo ${resp.status}: ${await resp.text()}`);
 }
 
+// Fiche d'arrêt offerte en PDF sur les pages « arrêt expliqué » (composant
+// assets/js/pdf-offert.js, 03/11/2026). Liste blanche écrite par
+// livrables/automatisation/pdf-offert-premier-ecran/generer_fiches_arrets.py.
+const FICHES = require('./_fiches-arrets.json');
+
+function ficheValide(fiche) {
+  return typeof fiche === "string" && Object.prototype.hasOwnProperty.call(FICHES, fiche)
+    && Boolean(PRODUITS[FICHES[fiche].produit]);
+}
+function minusculeInitiale(t) {
+  return t.charAt(0).toLowerCase() + t.slice(1);
+}
+// « l'arrêt Dauvin » donne « de l'arrêt Dauvin », « le jugement Ménard » donne « du jugement Ménard ».
+function deNom(nom) {
+  if (/^le /i.test(nom)) return "du " + nom.slice(3);
+  if (/^les /i.test(nom)) return "des " + nom.slice(4);
+  return "de " + nom;
+}
+// « Fiche complète Droit des biens L2 » donne « la fiche complète de droit des biens L2 ».
+function produitDansPhrase(nom) {
+  let m = nom.match(/^Fiche complète (.+)$/);
+  if (m) return { phrase: "la fiche complète de " + minusculeInitiale(m[1]), bouton: "Voir la fiche complète" };
+  m = nom.match(/^Majeures préparées (.+)$/);
+  if (m) return { phrase: "les majeures préparées de " + minusculeInitiale(m[1]), bouton: "Voir les majeures préparées" };
+  const titre = nom.split(" · ")[0];
+  return { phrase: "le cours « " + titre + " »", bouton: "Voir le cours" };
+}
+// « Procédure civile · L3 » donne « procédure civile en L3 ».
+function matiereDansPhrase(m) {
+  const [matiere, niveau] = m.split(" · ");
+  return minusculeInitiale(matiere) + (niveau ? " en " + niveau : "");
+}
+function urlOffreFiche(fiche) {
+  const params = new URLSearchParams({ utm_source: 'brevo', utm_medium: 'email',
+    utm_campaign: 'fiche-arret', utm_content: fiche });
+  return 'https://trajectoiredroit.com/' + FICHES[fiche].page + '?' + params.toString() + '#offre-matiere';
+}
+// Attributs lus par le premier email de la séquence de bienvenue Brevo (branche
+// SOURCE == "fiche-arret" du modèle 1) et par l'email transactionnel ci-dessous.
+function attributsFiche(fiche) {
+  const f = FICHES[fiche];
+  const produit = PRODUITS[f.produit];
+  const p = produitDansPhrase(produit.nom);
+  return {
+    SOURCE: "fiche-arret",
+    MATIERE: f.produit,
+    FICHE_SLUG: fiche,
+    FICHE_DE: deNom(f.arret),
+    FICHE_TITRE: f.titre,
+    FICHE_PDF: f.pdf,
+    FICHE_MATIERE: matiereDansPhrase(f.matiere),
+    FICHE_PRODUIT: p.phrase,
+    FICHE_BOUTON: p.bouton,
+    FICHE_PRIX: euros(produit.prix),
+    FICHE_URL: urlOffreFiche(fiche),
+  };
+}
+// Textes passés par redaction-julien (checklist, passe adversariale, vale,
+// verificateur_anti_ia.py, verificateur_style_positif.py) le 03/11/2026.
+function construireEmailFiche(a) {
+  const paragraphes = [
+    "Salut,",
+    `Tu as demandé la fiche ${a.FICHE_DE}. Le PDF reprend toute l'explication de la page, des faits de l'affaire jusqu'à la façon de t'en servir dans une copie.`,
+    { lien: a.FICHE_PDF, texte: "Télécharger la fiche" },
+    "Pour que la fiche te serve en TD, le mieux est de relire d'abord le problème de droit et la solution, puis de les redire à voix haute sans regarder le PDF. En effet, si tu arrives à expliquer pourquoi le juge a tranché ainsi, tu sais déjà t'en servir dans un cas pratique ou dans un commentaire.",
+    `${a.FICHE_TITRE} fait partie du programme de ${a.FICHE_MATIERE}. Pour réviser toute la matière avant tes partiels, je te conseille donc ${a.FICHE_PRODUIT}, à ${a.FICHE_PRIX}.`,
+    { lien: a.FICHE_URL, texte: a.FICHE_BOUTON },
+    "Si tu as une question sur l'arrêt, tu peux répondre à cet email. Je lis moi-même les réponses.",
+    "Julien",
+  ];
+  const esc = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const html = '<html lang="fr"><body style="font:16px Arial;line-height:1.6;max-width:580px;margin:30px auto;padding:20px">'
+    + paragraphes.map(p => typeof p === "string" ? '<p>' + esc(p) + '</p>'
+      : '<p><a href="' + esc(p.lien) + '" style="color:#1A2851;font-weight:bold">' + esc(p.texte) + '</a></p>').join('')
+    + '</body></html>';
+  const texte = paragraphes.map(p => typeof p === "string" ? p : p.texte + "\n" + p.lien).join("\n\n");
+  return { sujet: `Ta fiche ${a.FICHE_DE}`, html, texte };
+}
+async function envoyerFiche(email, fiche, apiKey) {
+  const contenu = construireEmailFiche(attributsFiche(fiche));
+  const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "api-key": apiKey, accept: "application/json" },
+    body: JSON.stringify({
+      sender: { name: "Trajectoire Droit", email: "contact@trajectoiredroit.com" },
+      to: [{ email }],
+      replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
+      subject: contenu.sujet,
+      htmlContent: contenu.html,
+      textContent: contenu.texte,
+      tags: ["fiche-arret", fiche],
+    }),
+  });
+  if (!resp.ok) throw new Error(`Brevo ${resp.status}: ${await resp.text()}`);
+}
 function ipVisiteur(req) {
   const brut = (req.headers && (req.headers["x-forwarded-for"] || req.headers["x-real-ip"])) || "";
   return String(brut).split(",")[0].trim() || "inconnue";
@@ -269,6 +364,28 @@ async function handler(req, res) {
         if (!resp.ok) throw new Error('Livraison Brevo impossible');
       }
       return res.status(200).json({ok:true,envoye:true});
+    }
+    if (body.fiche !== undefined && body.fiche !== null && body.fiche !== "") {
+      const fiche = String(body.fiche).trim();
+      if (!ficheValide(fiche)) return res.status(400).json({ error: "Fiche inconnue." });
+      if (proposition && body.confirmerDomaine !== true) {
+        return res.status(409).json({ error: 'Vérifie le domaine de ton adresse email.', suggestion: proposition });
+      }
+      if (typeof body.site === "string" && body.site.trim()) return res.status(200).json({ ok: true });
+      if (limiteAtteinte(ipVisiteur(req)) || limiteAtteinte("email:" + email)) {
+        return res.status(429).json({ error: "Trop de demandes. Réessaie dans quelques minutes." });
+      }
+      // Même logique que le plan offert : un nouvel inscrit reçoit la fiche par le
+      // premier email de la séquence de bienvenue, un contact déjà inscrit par un
+      // email transactionnel, car la séquence ne redémarre pas pour lui.
+      const dejaInscrit = await contactDejaDansListe(email, apiKey);
+      const inscription = await inscrireContact(email, attributsFiche(fiche), apiKey);
+      if (!inscription.ok) {
+        console.error("Brevo error:", inscription.status, inscription.detail);
+        return res.status(502).json({ error: "Inscription impossible pour le moment." });
+      }
+      if (dejaInscrit) await envoyerFiche(email, fiche, apiKey);
+      return res.status(200).json({ ok: true, envoye: true });
     }
     if (body.plan !== undefined && body.plan !== null && body.plan !== "") {
       const plan = String(body.plan).trim();
@@ -348,3 +465,5 @@ module.exports.urlPdf = urlPdf;
 module.exports.attributsCorrige = attributsCorrige;
 module.exports.attributsPlan = attributsPlan;
 module.exports.construireEmailPlan = construireEmailPlan;
+module.exports.attributsFiche = attributsFiche;
+module.exports.construireEmailFiche = construireEmailFiche;
