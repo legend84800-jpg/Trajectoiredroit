@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <title>Arrêt du 30 septembre 2013, la discrimination indirecte à l'Opéra</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="L'arrêt du 30 septembre 2013 oblige le juge à chercher une discrimination indirecte, même si l'écart vient d'une autorité administrative.">
+  <link rel="canonical" href="https://trajectoiredroit.com/arret-opera-paris-discrimination-indirecte-2013-explique.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="L'arrêt du 30 septembre 2013, la discrimination indirecte à l'Opéra de Paris">
+  <meta property="og:description" content="Des techniciens partent à 55 ans, d'autres salariés à 60 ans. La Cour de cassation impose d'examiner l'écart au regard du droit de l'Union européenne.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/cours-contrats-hero.jpg">
+  <meta property="og:url" content="https://trajectoiredroit.com/arret-opera-paris-discrimination-indirecte-2013-explique.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "L'arrêt du 30 septembre 2013, la discrimination indirecte à l'Opéra de Paris",
+        "description": "L'arrêt rendu le 30 septembre 2013 par la chambre sociale de la Cour de cassation, sur les pourvois n° 12-14.752 et 12-14.964, impose au juge judiciaire de rechercher une discrimination indirecte fondée sur le sexe, même quand l'écart de traitement vient d'une autorité administrative.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-11-03",
+        "dateModified": "2026-11-03",
+        "image": "https://trajectoiredroit.com/assets/cours-contrats-hero.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": {
+            "@type": "EducationalOrganization",
+            "name": "TrajectoireDroit"
+          }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+          }
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Discrimination indirecte et contrôle du juge judiciaire, droit du travail"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://trajectoiredroit.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://trajectoiredroit.com/blog.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Arrêt du 30 septembre 2013 expliqué",
+            "item": "https://trajectoiredroit.com/arret-opera-paris-discrimination-indirecte-2013-explique.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quel est le problème de droit posé par l'arrêt du 30 septembre 2013 ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La question est de savoir si un juge judiciaire peut écarter la demande de syndicats parce qu'une différence de traitement vient d'une autorité administrative, alors qu'elle peut contredire le droit de l'Union européenne sur l'égalité entre les femmes et les hommes. La chambre sociale de la Cour de cassation répond que le juge doit appliquer ce droit sans l'avis préalable du juge administratif, puis rechercher une discrimination indirecte fondée sur le sexe."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qu'est-ce qu'une discrimination indirecte en droit du travail ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Une discrimination indirecte est une règle ou une pratique qui paraît neutre mais qui désavantage particulièrement des personnes protégées par la loi, par exemple les femmes. L'employeur peut l'écarter en prouvant qu'elle repose sur un but légitime et que le moyen choisi est approprié et nécessaire. L'article L. 1132-1 du Code du travail interdit ces mesures et renvoie à la définition de l'article 1er de la loi du 27 mai 2008."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "L'arrêt du 30 septembre 2013 dit-il que l'Opéra de Paris a discriminé ses salariés ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Non. La Cour de cassation casse l'arrêt de la cour d'appel de Paris parce qu'il a refusé de chercher une discrimination indirecte, puis elle renvoie l'affaire devant la cour d'appel de Versailles. La cour d'appel de Versailles devait donc examiner l'écart d'âge entre les services et la justification que l'Opéra pouvait donner."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "L'arrêt du 30 septembre 2013 est-il toujours d'actualité ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui pour ses deux apports. D'abord, le juge judiciaire applique le droit de l'Union sans l'avis préalable du juge administratif, comme le Tribunal des conflits l'avait déjà admis le 17 octobre 2011 dans l'affaire SCEA du Chéneau. Ensuite, la discrimination indirecte reste définie par la loi du 27 mai 2008, que l'article L. 1132-1 du Code du travail reprend, et par la directive 2006/54/CE du 5 juillet 2006."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment citer l'arrêt du 30 septembre 2013 en copie ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tu écris « Cass. soc., 30 septembre 2013, n° 12-14.752 et 12-14.964, Bull. civ. 2013, V, n° 222 ». Tu précises ensuite la règle utile à ta copie, car l'arrêt a deux apports. Pour un sujet sur la discrimination, tu cites la grille imposée aux juges du fond, alors que pour un sujet sur les ordres de juridiction, tu cites le principe d'effectivité du droit de l'Union."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=6a441fef">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 474,64 €, 45 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-45 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">474,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 349,74 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">349,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 449,67 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">449,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 399,70 €, 40 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-40 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 569,58 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">569,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span><span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>164 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO ARTICLE -->
+    <article>
+    <section class="article-hero">
+      <div class="container container--narrow">
+        <nav class="article-breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/">Accueil</a> · <a href="blog.html">Blog</a> · <span>Arrêt du 30 septembre 2013</span>
+        </nav>
+        <div class="post-meta">
+          <span class="post-meta__cat">Droit du travail · L3</span>
+          <span class="post-meta__dot"></span>
+          <span>25 min de lecture</span>
+          <span class="post-meta__dot"></span>
+          <span>Mis à jour le 3 novembre 2026</span>
+        </div>
+        <h1 class="article-hero__title">L'arrêt du 30 septembre 2013, la discrimination indirecte à l'Opéra de Paris</h1>
+        <p class="article-hero__standfirst">Le 30 septembre 2013, la chambre sociale de la Cour de cassation casse l'arrêt qui refusait de chercher une discrimination dans l'âge de départ à la retraite, fixé à 55 ans pour certains salariés de l'Opéra de Paris et à 60 ans pour d'autres. Elle juge que le juge judiciaire doit appliquer le droit de l'Union européenne et rechercher une discrimination indirecte fondée sur le sexe, même si l'écart vient d'une autorité administrative.</p>
+        <div class="article-author">
+          <img class="article-author__avatar" src="assets/julien-sm.webp" alt="Julien, professeur de droit">
+          <div>
+            <div class="article-author__name">Julien</div>
+            <div class="article-author__role">Master II de droit pénal, Panthéon-Assas · Major de promo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:36px">
+      <div class="container container--narrow">
+
+        <!-- SOMMAIRE -->
+        <nav class="toc" aria-label="Sommaire">
+          <p class="toc__title">Dans cet article</p>
+          <ol>
+            <li><a href="#essentiel">Que dit l'arrêt du 30 septembre 2013 sur la discrimination indirecte ?</a></li>
+            <li><a href="#faits">Les faits, deux âges de départ à la retraite dans le même établissement</a></li>
+            <li><a href="#procedure">La procédure, une cour d'appel qui se dit sans pouvoir sur l'administration</a></li>
+            <li><a href="#arguments">Les arguments des parties, un usage discriminatoire et un juge qui se déclare incompétent</a></li>
+            <li><a href="#probleme">Le problème de droit</a></li>
+            <li><a href="#solution">La solution de la chambre sociale, une cassation fondée sur le droit de l'Union</a></li>
+            <li><a href="#sens">Pourquoi le juge judiciaire doit-il examiner un acte de l'administration ?</a></li>
+            <li><a href="#portee">La portée, du Tribunal des conflits de 2011 à la directive de 2006</a></li>
+            <li><a href="#critique">La critique, une cassation qui ne tranche pas et une notion large</a></li>
+            <li><a href="#copie">Comment utiliser l'arrêt du 30 septembre 2013 dans une copie</a></li>
+            <li><a href="#erreurs">Les erreurs à éviter avec l'arrêt du 30 septembre 2013</a></li>
+            <li><a href="#faq">Questions fréquentes</a></li>
+          </ol>
+        </nav>
+
+        <div class="prose">
+
+          <h2 id="essentiel">Que dit l'arrêt du 30 septembre 2013 sur la discrimination indirecte ?</h2>
+          <p>Le 30 septembre 2013, la <strong>chambre sociale de la Cour de cassation</strong> juge deux choses dans le même arrêt. D'abord, un juge judiciaire qui doit appliquer le droit de l'Union européenne peut contrôler un acte de l'administration sans attendre l'avis du juge administratif. Ensuite, devant une différence de traitement entre deux groupes de salariés de l'Opéra national de Paris, il doit rechercher si elle crée une discrimination indirecte fondée sur le sexe, puis si l'employeur peut la justifier.</p>
+          <p>Un employeur réserve par exemple un avantage aux salariés d'un atelier presque entièrement masculin. Sa règle parle d'atelier, mais presque toutes les femmes de l'entreprise en sont exclues. Cette règle constitue une <strong>discrimination indirecte</strong>, c'est-à-dire une règle ou une pratique qui paraît neutre mais qui désavantage en fait surtout les personnes d'un sexe, d'une origine ou d'un âge.</p>
+          <p>Deux syndicats, SUD et le SNAC FSU Opéra, agissent contre l'Opéra national de Paris et sa caisse de retraite. En effet, les techniciens de plateau peuvent demander leur pension à 55 ans, alors que le décret du 5 avril 1968 fixe l'âge à 60 ans. Les salariés des services habillement et perruques-maquillage n'ont pas cet avantage. C'est pourquoi les syndicats saisissent le juge. La cour d'appel de Paris rejette leurs demandes, mais la Cour de cassation casse son arrêt, qui est alors annulé, sur les pourvois n° 12-14.752 et 12-14.964, et renvoie l'affaire devant la cour d'appel de Versailles, qui la juge de nouveau.</p>
+          <p>L'arrêt est publié au Bulletin des arrêts de la Cour de cassation, sous le numéro 222 de la partie V (chambre sociale) du Bulletin civil de 2013.</p>
+          <div class="key-callout">
+            <div class="key-callout__label"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg>Le litige et la réponse</div>
+            <p>Des techniciens de plateau partent à la retraite à 55 ans, alors que les salariés de l'habillement et des perruques-maquillage attendent 60 ans. La cour d'appel refuse de rechercher si cet écart est discriminatoire, parce qu'il vient d'une autorité administrative dont le juge judiciaire ne contrôle pas les actes. La Cour de cassation répond que le droit de l'Union impose au juge judiciaire d'examiner l'écart, et qu'il doit chercher une discrimination indirecte fondée sur le sexe avant de conclure.</p>
+          </div>
+          <div class="case-timeline">
+            <div class="case-timeline__step">
+              <div class="case-timeline__dot"></div>
+              <div class="case-timeline__date">5 avril 1968</div>
+              <div class="case-timeline__label">Le décret sur le régime de retraite</div>
+              <p class="case-timeline__text">Le décret organise la retraite des personnels de l'Opéra national de Paris. Son article 6 fixe à 60 ans l'âge d'ouverture du droit à pension.</p>
+            </div>
+            <div class="case-timeline__step">
+              <div class="case-timeline__dot"></div>
+              <div class="case-timeline__date">1er septembre 2011</div>
+              <div class="case-timeline__label">L'arrêt de la cour d'appel de Paris</div>
+              <p class="case-timeline__text">La cour d'appel rejette les demandes des deux syndicats. Son arrêt est rectifié le 26 janvier 2012.</p>
+            </div>
+            <div class="case-timeline__step">
+              <div class="case-timeline__dot"></div>
+              <div class="case-timeline__date">30 septembre 2013</div>
+              <div class="case-timeline__label">La cassation</div>
+              <p class="case-timeline__text">La chambre sociale casse l'arrêt de Paris dans toutes ses dispositions et renvoie les parties devant la cour d'appel de Versailles.</p>
+            </div>
+          </div>
+          <!-- vague2:encart-produit -->
+<div class="article-produit-inline">
+  <img class="article-produit-inline__thumb" src="assets/apercus/vignettes/travail-l3-s1.webp" width="60" height="80" alt="Aperçu de la fiche Droit du travail L3" loading="lazy">
+  <div class="article-produit-inline__body">
+    <p class="article-produit-inline__label">Fiche complète</p>
+    <p class="article-produit-inline__title">Droit du travail L3</p>
+    <p class="article-produit-inline__meta">Tout le cours en PDF, avec le chapitre sur l'embauche et l'interdiction des discriminations · <strong>14,99 €</strong></p>
+  </div>
+  <div class="article-produit-inline__actions">
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-travail-l3-s1">Acheter · 14,99 €</button>
+    <a class="article-produit-inline__more" href="droit-du-travail-l3.html#fiches">Voir la fiche →</a>
+  </div>
+</div>
+
+          <h2 id="faits">Les faits, deux âges de départ à la retraite dans le même établissement</h2>
+          <p>Les faits tiennent en peu de lignes dans l'arrêt. On les lit surtout dans les motifs de la cour d'appel, que la Cour résume, et dans les arguments de droit des syndicats, appelés moyens, publiés en annexe de l'arrêt, qui citent ces motifs. L'arrêt donne la nature du litige, mais il ne contient ni la date de la saisine des juges ni le nombre de salariés de chaque service.</p>
+          <p>Le <strong>décret du 5 avril 1968</strong> organise le régime de retraite des personnels de l'Opéra national de Paris, qui dispose d'une <strong>caisse de retraite</strong> propre. L'article 6 de ce décret fixe à 60 ans l'âge d'ouverture du droit à pension, c'est-à-dire l'âge à partir duquel un salarié peut demander à toucher sa retraite. Selon la cour d'appel, ce même article permet à des catégories de personnels, désignées par un arrêté ministériel, de partir avant 60 ans.</p>
+          <p>Selon le moyen du syndicat SUD, il était constant que, depuis trente ans, les personnels des services techniques de plateau, à la seule exception de ceux de l'habillement et des perruques-maquillage, pouvaient faire liquider leur pension dès 55 ans. <strong>Liquider sa pension</strong> signifie la faire calculer pour commencer à la percevoir. Le même moyen ajoute qu'aucun arrêté ministériel ne visait les catégories qui en profitaient, et que ces catégories étaient majoritairement masculines. L'arrêt ne contient en revanche aucun chiffre sur la composition des services, et cette précision reste donc une affirmation du pourvoi.</p>
+          <p>Les motifs de la cour d'appel rapportent aussi des tentatives de rapprochement. Depuis trente ans, des représentants de l'Opéra et de la caisse ont reconnu à plusieurs reprises que le sort des salariés de l'habillement et des perruques-maquillage méritait d'être aligné sur celui d'autres personnels, qui partaient à 55 ans malgré l'absence de tout arrêté ministériel. Pourtant, les démarches faites auprès des ministères pour y parvenir ont été refusées à chaque fois. La cour d'appel ajoute en outre que l'avantage de ces personnels avait été consenti avec l'accord des autorités de tutelle, qui sont les administrations chargées de contrôler la caisse et l'Opéra.</p>
+          <p>Le Syndicat du spectacle Solidaires unitaires et démocratiques, SUD, et le Syndicat national des affaires culturelles FSU Opéra, le SNAC, saisissent la juridiction judiciaire. Un <strong>usage</strong> est une pratique d'un employeur répétée de façon générale, constante et fixe, qui finit par s'imposer à lui comme une règle. Les syndicats demandent d'abord que l'on reconnaisse un usage qui ouvre aux techniciens de plateau le droit à pension à 55 ans, et que l'on constate une rupture d'égalité avec les services habillement et perruques-maquillage. Ils veulent ensuite que l'Opéra et la caisse alignent ces services sur l'âge de 55 ans, avec toutes les conséquences sur les pensions. Selon le moyen du SNAC, ce syndicat demande en outre une astreinte, une somme à payer par jour de retard, et la réparation de son préjudice.</p>
+          <h2 id="procedure">La procédure, une cour d'appel qui se dit sans pouvoir sur l'administration</h2>
+          <p>L'arrêt de la Cour de cassation ne décrit pas la décision de première instance. Les moyens désignent les syndicats comme « appelants », ce qui montre qu'ils ont fait appel d'un jugement dont l'arrêt ne donne ni le contenu ni la date.</p>
+          <p>La <strong>cour d'appel de Paris</strong> rend son arrêt le <strong>1er septembre 2011</strong>, rectifié par un second arrêt du 26 janvier 2012, et elle rejette les demandes des syndicats. Elle écarte d'abord l'usage, attribue ensuite l'écart à la seule autorité administrative, puis juge qu'elle ne peut pas contrôler les actes de cette autorité, comme le montrent l'arrêt de la Cour de cassation et les moyens qui le citent.</p>
+          <ol>
+            <li><strong>L'usage.</strong> Selon la cour d'appel, l'avantage des techniciens de plateau a été consenti avec l'accord des autorités de tutelle. L'Opéra et la caisse ne l'ont pas créé de leur propre initiative, et il ne constitue pas un usage véritable.</li>
+            <li><strong>L'attribution de l'écart.</strong> Faute d'usage, et faute de texte réglementaire pris en application du décret de 1968, la différence de traitement s'explique par un seul acteur. Selon l'arrêt, la cour d'appel retient que l'écart est attribuable à la seule autorité administrative.</li>
+            <li><strong>Le pouvoir du juge.</strong> Le juge judiciaire n'a pas le pouvoir de contrôler les actes de cette autorité. Certes, la cour d'appel reconnaît que l'autorité judiciaire peut constater l'existence d'un usage créé par une personne de droit privé. Mais elle ne retient aucun usage caractérisé, et elle juge donc la demande mal fondée.</li>
+          </ol>
+          <p>Les deux syndicats forment chacun un <strong>pourvoi</strong>, c'est-à-dire un recours devant la Cour de cassation. Cette juridiction contrôle seulement l'application de la règle de droit par la cour d'appel, car les faits ne sont plus discutés devant elle.</p>
+          <h2 id="arguments">Les arguments des parties, un usage discriminatoire et un juge qui se déclare incompétent</h2>
+          <p>Le syndicat SUD, dans le pourvoi n° 12-14.752, et le SNAC, dans le pourvoi n° 12-14.964, présentent chacun un <strong>moyen unique</strong>, c'est-à-dire un argument de droit divisé en <strong>branches</strong>. Celui du syndicat SUD en compte cinq, celui du SNAC sept. Chaque branche reproche une erreur différente à la cour d'appel.</p>
+          <ul>
+            <li><strong>Première branche, l'usage et la discrimination.</strong> Le syndicat soutient qu'une pratique constante, fixe et générale crée un usage, et que le décret de 1968 n'interdit pas à l'Opéra d'accorder mieux que lui. Les techniciens de plateau partent à 55 ans depuis trente ans, sans aucun arrêté qui les vise. La cour d'appel devait donc au moins rechercher si cette pratique était discriminatoire. En écartant la question parce que les autorités de tutelle avaient approuvé la pratique, elle s'est appuyée sur un motif inopérant, qui ne répond pas à la question posée. Le syndicat invoque l'article L. 1132-1 du Code du travail, les directives 2002/73 et 2006/54 et l'article 141 du traité instituant la Communauté européenne, devenu l'article 157 du Traité sur le fonctionnement de l'Union européenne.</li>
+            <li><strong>Deuxième branche, un refus de l'administration jamais constaté.</strong> La cour d'appel affirme que les autorités de tutelle ont refusé de modifier le décret. Elle ne constate pourtant aucune décision de ces autorités, même implicite. Le syndicat en conclut donc qu'elle a privé sa décision de <strong>base légale</strong>, c'est-à-dire que ses constatations ne permettent pas de savoir si la règle de droit a été bien appliquée.</li>
+            <li><strong>Troisième branche, un litige modifié.</strong> Selon l'article 4 du Code de procédure civile, les parties fixent l'objet du litige, et le juge ne peut donc pas le changer. Or ni l'Opéra ni la caisse n'avaient invoqué dans leurs conclusions écrites un refus de l'autorité de tutelle. La cour d'appel l'a pourtant retenu seule.</li>
+            <li><strong>Quatrième branche, un juge judiciaire qui pouvait statuer.</strong> Face à une contestation sérieuse sur la légalité d'un acte administratif, le juge judiciaire doit en principe surseoir à statuer, c'est-à-dire suspendre le procès jusqu'à la décision du juge administratif. Il en va autrement quand il apparaît clairement, au vu d'une jurisprudence établie, que la contestation peut être accueillie. Le syndicat reproche donc à la cour d'appel d'avoir refusé de constater le caractère discriminatoire de la pratique, au seul motif qu'elle n'avait pas le pouvoir de la juger. Il invoque en outre la loi des 16 et 24 août 1790 sur la séparation des autorités judiciaires et administratives.</li>
+            <li><strong>Cinquième branche, au moins suspendre le procès.</strong> À tout le moins, si la cour d'appel s'estimait incompétente pour juger la légalité de la pratique, elle devait suspendre l'instance en application des articles 49, 378 et 379 du Code de procédure civile. Or en rejetant les demandes, elle a mis fin au procès.</li>
+          </ul>
+          <ul>
+            <li><strong>Première branche du SNAC, la norme la plus favorable.</strong> Le SNAC reprend dans ses sept branches plusieurs griefs de SUD et en ajoute d'autres. En cas de conflit entre deux normes, celle qui favorise le plus les salariés s'applique. Des décisions administratives n'empêchent donc pas la naissance d'un usage plus favorable, que les salariés peuvent exiger même contre elles. Le syndicat invoque ce principe et, en outre, l'article 1134 du Code civil, dans sa rédaction d'avant 2016.</li>
+            <li><strong>Deuxième branche, un défaut de motifs.</strong> Selon ce moyen, la cour d'appel affirme que les tentatives faites pour obtenir le même âge de départ pour les salariés de l'habillement et des perruques-maquillage ont toujours été refusées par les autorités de tutelle. Elle n'indique pourtant aucune des décisions administratives qui auraient fait obstacle à leur demande. Selon le syndicat, elle a violé l'article 455 du Code de procédure civile, car ce texte impose de motiver les jugements.</li>
+            <li><strong>Troisième branche, les limites du litige.</strong> Ni l'Opéra ni la caisse ne soutenaient devant la cour d'appel que les autorités de tutelle avaient approuvé le départ à 55 ans des techniciens de plateau. La cour d'appel a méconnu les articles 4 et 7 du Code de procédure civile.</li>
+            <li><strong>Quatrième branche, la jurisprudence établie.</strong> Comme le syndicat SUD, le SNAC soutient que le juge judiciaire n'a pas à suspendre le procès quand la contestation d'un acte administratif peut manifestement être accueillie. La cour d'appel devait donc rechercher si la décision administrative était manifestement illégale.</li>
+            <li><strong>Cinquième branche, la conformité du règlement au traité.</strong> Le juge judiciaire est compétent pour apprécier la conformité d'un règlement au traité. La cour d'appel devait rechercher si les décisions administratives contrevenaient à l'article 157 du Traité sur le fonctionnement de l'Union européenne, qui interdit les discriminations entre hommes et femmes.</li>
+            <li><strong>Sixième branche, le sursis à statuer.</strong> Si la question relevait de la compétence exclusive du juge administratif, la cour d'appel devait donc suspendre le procès pour que les parties puissent saisir ce juge. Elle a pourtant rejeté les demandes à la place. Le syndicat invoque pour cela les articles 49, 378 et 379 du Code de procédure civile.</li>
+            <li><strong>Septième branche, la définition de l'usage.</strong> Une pratique devient un usage quand elle s'applique à tous les salariés concernés, quand elle dure dans le temps et quand ses conditions ne changent pas. Pourtant, la cour d'appel a écarté l'usage sans rechercher si le droit des techniciens de plateau à partir à 55 ans résultait d'une telle pratique. Elle a ainsi privé sa décision de base légale au regard de l'article 1134 du Code civil.</li>
+          </ul>
+          <p>L'arrêt et ses annexes rapportent seulement les moyens des syndicats et les motifs de la cour d'appel, qui donne raison à l'Opéra et à la caisse en jugeant que l'écart vient de l'administration et que le juge judiciaire ne peut pas contrôler ses actes. Les conclusions de l'Opéra et de la caisse n'y figurent pas.</p>
+          <h2 id="probleme">Le problème de droit</h2>
+          <p>Un juge judiciaire saisi par des syndicats peut-il rejeter leurs demandes au motif qu'une différence de traitement entre deux groupes de salariés vient d'une autorité administrative dont il ne contrôle pas les actes, alors que cette différence peut contredire le droit de l'Union européenne sur l'égalité entre les femmes et les hommes ?</p>
+          <p>S'il doit examiner cette différence, quelles questions doit-il se poser pour savoir si elle constitue une discrimination indirecte fondée sur le sexe ?</p>
+          <h2 id="solution">La solution de la chambre sociale, une cassation fondée sur le droit de l'Union</h2>
+          <p>La Cour de cassation joint les deux pourvois, car ils portent sur la même affaire, et les examine ensemble parce que leurs moyens uniques sont comparables. Elle <strong>casse et annule</strong> l'arrêt de la cour d'appel de Paris dans toutes ses dispositions, remet les parties dans l'état où elles se trouvaient avant cet arrêt et les renvoie devant la cour d'appel de Versailles. Elle condamne aussi l'Opéra national de Paris et la caisse de retraite aux frais du procès, et à payer 1 500 euros à chacun des deux syndicats.</p>
+          <p>L'arrêt commence par un <strong>visa</strong>, c'est-à-dire l'indication des textes que la Cour juge violés.</p>
+          <div class="citation-box">
+            <p class="citation-box__label">Les textes visés</p>
+            <blockquote>« Vu <span>l'article 157 du Traité sur le fonctionnement de l'Union européenne, la directive 2006/54/CE du 5 juillet 2006 et l'article L. 1132-1 du code du travail</span> »</blockquote>
+            <cite>Cass. soc., 30 septembre 2013, n° 12-14.752 et 12-14.964</cite>
+          </div>
+          <div class="citation-box">
+            <p class="citation-box__label">Le principe posé</p>
+            <blockquote>« s'agissant du droit de l'Union européenne, dont le respect constitue une obligation, tant en vertu du Traité sur l'Union européenne et du Traité sur le fonctionnement de l'Union européenne qu'en application de l'article 88-1 de la Constitution, il résulte du principe d'effectivité issu des dispositions de ces Traités, telles qu'elles ont été interprétées par la Cour de justice de l'Union européenne, que le juge national chargé d'appliquer les dispositions du droit de l'Union a l'obligation d'en assurer le plein effet en laissant au besoin inappliquée, de sa propre autorité, toute disposition contraire ; qu'à cet effet, il doit pouvoir, en cas de difficulté d'interprétation de ces normes, en saisir lui-même la Cour de justice à titre préjudiciel ou, lorsqu'il s'estime en état de le faire, appliquer le droit de l'Union, sans être tenu de saisir au préalable la juridiction administrative d'une question préjudicielle, dans le cas où serait en cause devant lui, à titre incident, la conformité d'un acte administratif au droit de l'Union européenne »</blockquote>
+            <cite>Cass. soc., 30 septembre 2013, n° 12-14.752 et 12-14.964</cite>
+          </div>
+          <p><strong>Première étape, le juge national doit assurer l'effet du droit de l'Union.</strong> Le <strong>principe d'effectivité</strong> veut que les règles européennes produisent tout leur effet dans chaque pays. La Cour en tire donc une obligation pour le juge. Selon le paragraphe où la Cour explique sa décision, appelé attendu, cette obligation vient des traités européens et de l'article 88-1 de la Constitution. En effet, le juge doit laisser au besoin inappliquée, de lui-même, toute disposition contraire, sans attendre qu'une autre autorité l'y autorise.</p>
+          <p><strong>Deuxième étape, aucune question préalable au juge administratif.</strong> Une <strong>question préjudicielle</strong> est la question qu'un juge saisi d'un procès pose à une autre juridiction avant de statuer, parce qu'elle seule peut y répondre. Quand la conformité d'un acte administratif au droit de l'Union se pose devant lui à titre incident, c'est-à-dire comme une question secondaire du procès, le juge judiciaire a deux possibilités. Il peut interroger directement la Cour de justice de l'Union européenne s'il hésite sur le sens de la règle européenne, ou bien appliquer lui-même cette règle s'il s'estime en état de le faire. Dans les deux cas, il n'a pas à passer d'abord par le juge administratif.</p>
+          <p><strong>Troisième étape, ce que la cour d'appel devait chercher.</strong> La Cour reproche à la cour d'appel de s'être contentée de constater que l'écart vient d'une autorité administrative.</p>
+          <div class="citation-box">
+            <p class="citation-box__label">Ce que la cour d'appel devait rechercher</p>
+            <blockquote>« Qu'en se déterminant comme elle l'a fait, alors qu'<span>il lui appartenait de rechercher si cette pratique de la caisse de retraite ne créait pas une discrimination indirecte en désavantageant particulièrement des personnes d'un sexe par rapport à des personnes de l'autre sexe, et, dans l'affirmative, si elle pouvait être justifiée par des raisons objectives, étrangères à toute discrimination et si le moyen mis en oeuvre était approprié et nécessaire à la réalisation de l'objectif poursuivi</span> »</blockquote>
+            <cite>Cass. soc., 30 septembre 2013, n° 12-14.752 et 12-14.964</cite>
+          </div>
+          <p><strong>Quatrième étape, la cassation.</strong> Dans la suite de cette phrase, la Cour juge que la cour d'appel « s'est prononcée par un motif inopérant » et qu'elle a « privé sa décision de base légale ». Ici, en effet, la cour d'appel n'a pas cherché si l'écart d'âge créait une discrimination indirecte. Son rejet des demandes ne reposait donc sur aucune vérification de ce point.</p>
+          <p><strong>La suite du litige.</strong> La Cour de cassation répond aux deux moyens par le principe d'effectivité et par la recherche d'une discrimination indirecte, sans reprendre leurs branches une à une. Elle laisse donc à la cour de renvoi le soin de dire si l'écart d'âge est une discrimination. En outre, son visa ne contient pas non plus l'article L. 1134-1 du Code du travail, qui organise la preuve.</p>
+          <h2 id="sens">Pourquoi le juge judiciaire doit-il examiner un acte de l'administration ?</h2>
+          <p>Le juge judiciaire ne peut pas refuser d'examiner l'écart au motif qu'il vient d'une autorité administrative, car le droit de l'Union impose d'en assurer le plein effet. Prenons un employeur affilié à un régime de retraite dont les règles viennent d'un décret. Un salarié soutient que ce régime désavantage les femmes. Si le juge judiciaire répondait qu'il ne contrôle pas les décrets, l'employeur échapperait à toute sanction, car la règle contestée viendrait d'une autorité que ce juge ne peut pas examiner. Quand la règle européenne est en cause, le juge doit écarter cette réponse, car le principe d'effectivité l'y oblige. Ainsi, la protection contre les discriminations entre les femmes et les hommes s'applique quel que soit l'auteur de la règle qui les provoque.</p>
+          <p>Depuis la jurisprudence Septfonds de 1923, le juge judiciaire sursoit à statuer quand la légalité d'un acte administratif fait l'objet d'une contestation sérieuse. Le Tribunal des conflits a pourtant assoupli cette règle le 17 octobre 2011. Selon la présentation du Conseil d'État, il a d'abord rappelé que seule la juridiction administrative connaît des recours qui visent à annuler ou à modifier les décisions de l'administration.</p>
+          <p>Il a ensuite admis deux tempéraments. Le juge judiciaire peut statuer sans attendre le juge administratif quand il apparaît manifestement, au vu d'une jurisprudence établie, que la contestation peut être accueillie. Pour le droit de l'Union, il peut même appliquer lui-même la règle européenne ou interroger la Cour de justice, sans l'avis préalable du juge administratif. Cette seconde solution évite que le juge judiciaire saisisse le juge administratif, qui devrait alors saisir à son tour la Cour de justice. Le Conseil d'État rattache le premier tempérament à la bonne administration de la justice. L'arrêt de 2013 applique la seconde solution à un procès de droit du travail. La cour d'appel de Paris avait au contraire écarté tout contrôle, au motif que le juge judiciaire n'a pas le pouvoir de contrôler les actes de l'autorité administrative.</p>
+          <p>Une annonce qui exclut les candidats de plus de trente-cinq ans est une discrimination directe, car elle vise ouvertement un critère protégé. La discrimination indirecte résulte au contraire d'une règle qui paraît neutre. Un employeur exige par exemple une taille minimale de 1,80 mètre pour un poste de bureau. Le texte s'applique à tout le monde de la même façon, mais il écarte en pratique beaucoup plus de femmes que d'hommes. La Cour impose au juge deux questions dans cet ordre, le désavantage d'abord, puis la justification.</p>
+          <ol>
+            <li><strong>Le désavantage.</strong> Le juge vérifie si la règle ou la pratique désavantage particulièrement les personnes d'un sexe par rapport à celles de l'autre. Il compare la composition des deux groupes et les effets de la règle sur chacun.</li>
+            <li><strong>La justification.</strong> Si le désavantage existe, l'employeur peut encore s'en défendre. Il doit montrer que la pratique repose sur des raisons objectives, étrangères à toute discrimination, et que le moyen choisi est approprié et nécessaire pour atteindre son objectif.</li>
+          </ol>
+          <p>Appliquons cette grille à l'Opéra, pour comprendre ce que la cour de renvoi devait examiner. Si le service d'habillement compte surtout des femmes et les services techniques de plateau surtout des hommes, un écart de cinq ans sur l'âge de départ désavantage particulièrement les femmes. L'Opéra devrait alors justifier cet écart. Il pourrait invoquer la pénibilité plus forte du travail de plateau. Le juge examinerait alors si ce but est légitime, puis si réserver l'avantage à tout un service est approprié et nécessaire, alors que certains postes d'habillement sont peut-être aussi fatigants que des postes de plateau. L'arrêt laisse ces points à la cour de renvoi, sans donner de statistiques ni de raisons de ce type.</p>
+          <p>Si la discrimination est établie, l'article L. 1132-4 du Code du travail prévoit que toute disposition ou tout acte pris à l'égard d'un salarié en méconnaissance de l'interdiction des discriminations est nul.</p>
+          <p>L'article L. 1134-1 du Code du travail organise la preuve en deux temps. Le salarié présente d'abord des éléments de fait qui laissent supposer une discrimination, directe ou indirecte. Il appartient ensuite à l'employeur de prouver que sa décision repose sur des éléments objectifs étrangers à toute discrimination. Le visa ne cite pas ce texte. La grille imposée par la Cour suit la même logique, car elle demande d'abord un désavantage, puis une justification.</p>
+          <h2 id="portee">La portée, du Tribunal des conflits de 2011 à la directive de 2006</h2>
+                    <ul>
+            <li><strong>Le 17 octobre 2011, avant l'arrêt.</strong> Dans l'affaire SCEA du Chéneau, des exploitants agricoles contestaient devant le juge judiciaire des cotisations obligatoires versées à une organisation interprofessionnelle. Ils soutenaient que ce dispositif constituait une aide d'État irrégulière, puisqu'il n'avait pas été notifié à la Commission européenne. Le Tribunal des conflits juge alors que, pour le droit de l'Union, le juge judiciaire peut apprécier à titre incident la conformité d'un acte administratif, et qu'il saisit lui-même la Cour de justice s'il hésite sur l'interprétation. La chambre sociale reprend ainsi cette solution en 2013, mais dans un procès de droit du travail.</li>
+            <li><strong>Le 20 octobre 2011, une illustration européenne.</strong> Dans l'affaire Brachner, jugée sous le numéro C-123/10, la Cour de justice de l'Union européenne examine un dispositif autrichien d'augmentation exceptionnelle des pensions de vieillesse. Elle juge qu'un tel dispositif, pourtant neutre dans sa formulation, constitue une discrimination indirecte s'il désavantage en fait un nombre nettement plus élevé de femmes que d'hommes, sauf justification objective. Cet arrêt applique ainsi aux pensions la même logique que la grille de 2013.</li>
+            <li><strong>Le 23 mai 2012, dans l'autre sens.</strong> Dans l'arrêt de Section Fédération Sud Santé Sociaux, le Conseil d'État reprend la même logique pour la question inverse, celle du juge administratif qui interroge le juge judiciaire. Les deux ordres de juridictions appliquent ainsi le même raisonnement, chacun de son côté.</li>
+          </ul>
+          <p>Le droit applicable repose toujours sur les mêmes textes. La loi du 27 mai 2008 définit à son article 1er la discrimination directe et indirecte. L'article L. 1132-1 du Code du travail renvoie à cette définition et interdit toute mesure discriminatoire fondée sur le sexe, comme sur d'autres critères. En outre, la directive 2006/54/CE du 5 juillet 2006 reste la référence européenne sur l'égalité de traitement entre les femmes et les hommes en matière d'emploi. L'arrêt de 2013 conserve donc son utilité pour deux sujets, la discrimination et la place du juge judiciaire dans le contrôle des actes administratifs.</p>
+          <p>L'arrêt <a href="arret-baby-loup-2014-explique.html">Baby Loup</a> traite de la clause de neutralité religieuse et de la discrimination. L'arrêt <a href="arret-jacques-vabre-explique.html">Jacques Vabre</a> montre comment le juge judiciaire écarte une loi contraire à un traité.</p>
+          <h2 id="critique">La critique, une cassation qui ne tranche pas et une notion large</h2>
+          <p>Grâce à cette solution, le juge judiciaire ne peut plus refuser d'examiner une pratique au seul motif qu'une autorité administrative l'a approuvée, car la Cour rappelle que le juge national garantit l'effet du droit de l'Union.</p>
+          <p>Cette cassation laisse cependant l'essentiel de l'affaire à la cour de renvoi, car la Cour de cassation ne dit pas si l'écart d'âge est discriminatoire. Elle décrit en outre la pratique comme celle de la caisse de retraite, alors que les syndicats agissaient aussi contre l'Opéra. Elle ne précise donc pas qui répondrait d'une éventuelle discrimination, de l'employeur, de la caisse ou des deux. La suite donnée à l'affaire devant la cour d'appel de Versailles n'apparaît pas dans l'arrêt.</p>
+          <p>L'attendu de principe commence par les mots « s'agissant du droit de l'Union européenne ». La solution vise donc seulement le contrôle des actes administratifs au regard du droit européen. Pour une règle purement française, par exemple un arrêté contraire à la loi, l'arrêt ne donne aucune indication.</p>
+          <p>La notion de discrimination indirecte est large. Toute règle neutre qui touche davantage les salariés d'un sexe oblige donc l'employeur à se justifier. Une notion aussi large est favorable aux salariés, mais elle impose aux employeurs de mesurer l'effet statistique de chaque avantage qu'ils créent. La limite se trouve dans l'étape de justification, qui permet de conserver une règle fondée sur un but légitime et appliquée par un moyen nécessaire et approprié.</p>
+          <p>Enfin, la preuve du désavantage peut être difficile à rapporter. Selon le pourvoi du syndicat SUD, les catégories qui partaient à 55 ans étaient majoritairement masculines, mais l'arrêt ne contient aucun chiffre. La cour de renvoi devait donc établir la composition de chaque service, ce qui suppose des données que le salarié ne détient pas toujours.</p>
+          <h2 id="copie">Comment utiliser l'arrêt du 30 septembre 2013 dans une copie</h2>
+          <p><strong>Dans une dissertation.</strong> Tu le cites pour un sujet sur l'égalité au travail ou sur la discrimination indirecte, et tu places alors la grille des deux questions dans ta démonstration. Pour un sujet sur le juge national et le droit de l'Union, tu places le principe d'effectivité.</p>
+          <p><strong>Dans un cas pratique.</strong> Prenons une entreprise de transport qui accorde une prime de fin de carrière aux conducteurs de nuit. Presque tous sont des hommes. Les gestionnaires de planning, qui travaillent de jour et sont presque toutes des femmes, n'y ont pas droit. Une gestionnaire saisit le conseil de prud'hommes. Dans la majeure, tu rappelles que l'article L. 1132-1 du Code du travail interdit toute mesure discriminatoire, directe ou indirecte, fondée sur le sexe, au sens de l'article 1er de la loi du 27 mai 2008. Dans la mineure, tu vérifies d'abord le désavantage, à savoir que la règle paraît neutre mais exclut presque toutes les femmes. Ensuite, la justification porte par exemple sur la pénibilité du travail de nuit, et tu demandes si réserver la prime à ces seuls conducteurs est nécessaire. Si l'employeur invoque un acte administratif pour se défendre, tu ajoutes l'arrêt de 2013, qui interdit au juge de s'arrêter à cet argument.</p>
+          <p><strong>Dans un commentaire d'arrêt.</strong> Un premier plan suit les deux apports de l'arrêt, avec l'office du juge face à l'administration dans une première partie, puis la grille de la discrimination indirecte dans la seconde. Un second plan suit en revanche le raisonnement de la Cour sur la discrimination, avec la recherche du désavantage en première partie et la justification de l'employeur en seconde. Dans les deux cas, tu distingues ce que dit la Cour de ce que disent les moyens et la cour d'appel, car les moyens n'engagent pas la Cour.</p>
+          <h2 id="erreurs">Les erreurs à éviter avec l'arrêt du 30 septembre 2013</h2>
+          <ul>
+            <li><strong>Écrire que la Cour juge l'Opéra coupable de discrimination.</strong> La Cour casse pour défaut de base légale et renvoie, car elle indique seulement ce que la cour d'appel devait rechercher, sans conclure.</li>
+            <li><strong>Ne citer l'arrêt que pour la discrimination.</strong> L'attendu de principe porte sur le juge judiciaire et le droit de l'Union. Une copie qui l'oublie laisse de côté l'un des deux apports de l'arrêt.</li>
+            <li><strong>Attribuer à la Cour l'argument de l'usage.</strong> Ces arguments viennent des moyens des syndicats, notamment l'usage et la norme la plus favorable. La Cour n'en reprend aucun.</li>
+            <li><strong>Viser l'article L. 1134-1 comme texte de l'arrêt.</strong> Le visa cite l'article 157 du Traité sur le fonctionnement de l'Union européenne, la directive 2006/54/CE et l'article L. 1132-1. L'article L. 1134-1 sur la preuve n'y figure pas.</li>
+            <li><strong>Oublier que l'arrêt attaqué est double.</strong> La Cour casse l'arrêt de la cour d'appel de Paris du 1er septembre 2011, rectifié par l'arrêt du 26 janvier 2012. Tu cites les deux dates si le sujet l'exige.</li>
+            <li><strong>Étendre la solution au droit interne.</strong> L'attendu vise seulement le droit de l'Union européenne, si bien que le contrôle d'un acte administratif au regard d'une règle purement française reste hors de son champ.</li>
+          </ul>
+
+          <h2 id="faq">Questions fréquentes</h2>
+          <div class="accordion">
+            <details class="accordion__item" open><summary><h3>Quel est le problème de droit posé par l'arrêt du 30 septembre 2013 ?</h3></summary><div class="accordion__body">La question est de savoir si un juge judiciaire peut écarter la demande de syndicats parce qu'une différence de traitement vient d'une autorité administrative, alors qu'elle peut contredire le droit de l'Union européenne sur l'égalité entre les femmes et les hommes. La chambre sociale de la Cour de cassation répond que le juge doit appliquer ce droit sans l'avis préalable du juge administratif, puis rechercher une discrimination indirecte fondée sur le sexe.</div></details>
+            <details class="accordion__item"><summary><h3>Qu'est-ce qu'une discrimination indirecte en droit du travail ?</h3></summary><div class="accordion__body">Une discrimination indirecte est une règle ou une pratique qui paraît neutre mais qui désavantage particulièrement des personnes protégées par la loi, par exemple les femmes. L'employeur peut l'écarter en prouvant qu'elle repose sur un but légitime et que le moyen choisi est approprié et nécessaire. L'article L. 1132-1 du Code du travail interdit ces mesures et renvoie à la définition de l'article 1er de la loi du 27 mai 2008.</div></details>
+            <details class="accordion__item"><summary><h3>L'arrêt du 30 septembre 2013 dit-il que l'Opéra de Paris a discriminé ses salariés ?</h3></summary><div class="accordion__body">Non. La Cour de cassation casse l'arrêt de la cour d'appel de Paris parce qu'il a refusé de chercher une discrimination indirecte, puis elle renvoie l'affaire devant la cour d'appel de Versailles. La cour d'appel de Versailles devait donc examiner l'écart d'âge entre les services et la justification que l'Opéra pouvait donner.</div></details>
+            <details class="accordion__item"><summary><h3>L'arrêt du 30 septembre 2013 est-il toujours d'actualité ?</h3></summary><div class="accordion__body">Oui pour ses deux apports. D'abord, le juge judiciaire applique le droit de l'Union sans l'avis préalable du juge administratif, comme le Tribunal des conflits l'avait déjà admis le 17 octobre 2011 dans l'affaire SCEA du Chéneau. Ensuite, la discrimination indirecte reste définie par la loi du 27 mai 2008, que l'article L. 1132-1 du Code du travail reprend, et par la directive 2006/54/CE du 5 juillet 2006.</div></details>
+            <details class="accordion__item"><summary><h3>Comment citer l'arrêt du 30 septembre 2013 en copie ?</h3></summary><div class="accordion__body">Tu écris « Cass. soc., 30 septembre 2013, n° 12-14.752 et 12-14.964, Bull. civ. 2013, V, n° 222 ». Tu précises ensuite la règle utile à ta copie, car l'arrêt a deux apports. Pour un sujet sur la discrimination, tu cites la grille imposée aux juges du fond, alors que pour un sujet sur les ordres de juridiction, tu cites le principe d'effectivité du droit de l'Union.</div></details>
+          </div>
+
+          <!-- offre-fin-fiche-arret -->
+          <aside class="conversion-offer" aria-label="La fiche complète de la matière, Droit du travail L3, semestre 1" data-offre-fin-arret="fiche-travail-l3-s1">
+            <div class="conversion-offer__card">
+              <div class="conversion-offer__visual">
+                <img src="assets/covers/fiche-travail-l3-s1.webp?v=dossier-universitaire-20260915" alt="Couverture de la fiche complète Droit du travail L3, semestre 1" loading="lazy" width="960" height="540" decoding="async">
+              </div>
+              <div>
+                <p class="conversion-offer__eyebrow">La fiche complète de la matière</p>
+                <p class="conversion-offer__title">Droit du travail L3, semestre 1</p>
+                <p class="conversion-offer__summary">Le semestre 1 suit la relation de travail de l'embauche jusqu'à la rupture, en passant par le pouvoir de l'employeur et la durée du travail. Chaque forme de rupture a son chapitre, du licenciement pour motif personnel jusqu'à la rupture conventionnelle.</p>
+                <div class="conversion-offer__choices">
+                  <button type="button" class="btn btn--primary" data-tjd-produit="fiche-travail-l3-s1">Acheter · 14,99 €</button>
+                  <button type="button" class="apercu-link" data-apercu='["assets/apercus/travail-l3-s1-zoom.webp", "assets/apercus/travail-l3-s1-1.webp", "assets/apercus/travail-l3-s1-2.webp"]' data-apercu-title="Droit du travail · L3 S1 · Fiche complète" data-apercu-price="14,99 €" data-apercu-cta="fiche-travail-l3-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
+                </div>
+                <p class="conversion-offer__note">Paiement Stripe · accès à vie · mises à jour incluses · garantie satisfait ou remboursé sous 7 jours</p>
+              </div>
+            </div>
+          </aside>
+          <!-- BLOC AUTEUR -->
+          <div class="author-box">
+            <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+            <div>
+              <p class="author-box__name">Julien</p>
+              <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+              <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">164 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques), et tu peux aussi réserver mes cours particuliers.</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section section--dark">
+      <div class="container container--narrow text-center">
+        <h2 class="h2" style="color:#fff">Ma fiche de droit du travail L3 explique l'embauche et l'interdiction des discriminations.</h2>
+        <p class="lead" style="color:rgba(255,255,255,.85); max-width:560px; margin:16px auto 32px">Le chapitre 4 traite les critères interdits par l'article L. 1132-1, la différence entre discrimination directe et indirecte et la preuve en deux temps de l'article L. 1134-1.</p>
+        <a class="btn btn--primary btn--lg" href="droit-du-travail-l3.html">Voir la fiche de droit du travail L3</a>
+        <p style="margin-top:18px"><a href="blog.html" style="color:rgba(255,255,255,.8)">← Revenir au blog</a></p>
+      </div>
+    </section>
+        </article>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="majeures-preparees.html">Majeures préparées</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a><a href="blog.html">Blog</a><a href="methode-cas-pratique.html">Méthode du cas pratique</a><a href="fiche-arrets.html">Fiche d'arrêt</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+  <!-- vague2:sticky-bar -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit du travail L3, semestre 1</strong>
+      <small>Fiche complète, chapitre 4</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-travail-l3-s1">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=60767dcf" defer></script>
+
+
+  <script src="assets/js/main.js?v=da4d9620" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>
