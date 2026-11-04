@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Pouvoirs du Président de la République : propres ou partagés</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Les pouvoirs du Président de la République : ceux de l&#x27;article 19 se passent de contreseing, les autres sont contresignés. Tableau, article 16 et cas résolu.">
+  <link rel="canonical" href="https://trajectoiredroit.com/les-pouvoirs-du-president-de-la-republique.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Pouvoirs du Président de la République : propres ou partagés">
+  <meta property="og:description" content="Les pouvoirs du Président de la République : ceux de l&#x27;article 19 se passent de contreseing, les autres sont contresignés. Tableau, article 16 et cas résolu.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/les-pouvoirs-du-president-de-la-republique.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/les-pouvoirs-du-president-de-la-republique.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Les pouvoirs du Président de la République sous la Ve République",
+        "description": "Les pouvoirs du Président de la République : ceux de l'article 19 se passent de contreseing, les autres sont contresignés. Tableau, article 16 et cas résolu.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-11-04",
+        "dateModified": "2026-11-04",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": {
+            "@type": "EducationalOrganization",
+            "name": "TrajectoireDroit"
+          }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+          }
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Les pouvoirs du Président de la République"
+        },
+        "image": "https://trajectoiredroit.com/assets/blog/les-pouvoirs-du-president-de-la-republique.webp",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://trajectoiredroit.com/les-pouvoirs-du-president-de-la-republique.html"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://trajectoiredroit.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Les pouvoirs du Président de la République",
+            "item": "https://trajectoiredroit.com/les-pouvoirs-du-president-de-la-republique.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quels sont les pouvoirs propres du Président de la République ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ce sont les huit actes que l'article 19 dispense de contreseing, dont la nomination du Premier ministre, le référendum, la dissolution et les pouvoirs exceptionnels de l'article 16. Le Président n'a besoin d'aucun contreseing, mais certaines procédures préalables restent obligatoires."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le Président peut-il dissoudre l'Assemblée nationale quand il le veut ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Non. Il décide seul après avoir consulté le Premier ministre et les présidents des assemblées, mais la Constitution lui interdit de dissoudre dans l'année qui suit les élections provoquées par la dissolution précédente, pendant l'intérim et pendant les pouvoirs exceptionnels de l'article 16."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le Président peut-il être poursuivi en justice ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Pendant son mandat, l'article 67 interdit toute action contre lui devant une juridiction ou une autorité administrative française, et la prescription est suspendue. Seul le Parlement réuni en Haute Cour peut le destituer, en cas de manquement à ses devoirs manifestement incompatible avec l'exercice de son mandat (article 68)."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=6a441fef">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 474,64 €, 45 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-45 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">474,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 349,74 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">349,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 449,67 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">449,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 399,70 €, 40 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-40 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 569,58 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">569,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>164 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow text-center">
+        <h1 class="h1">Les pouvoirs du Président de la République sous la Ve République</h1>
+        <p class="lead" style="max-width:720px; margin-left:auto; margin-right:auto">Les pouvoirs du Président de la République se divisent en deux groupes. Les pouvoirs propres, que l'article 19 de la Constitution énumère, se passent de contreseing, c'est-à-dire de la signature d'un ministre. En revanche, tous les autres actes du Président sont contresignés par le Premier ministre, qui en répond devant le Parlement. Le Président lui-même ne répond pas politiquement devant le Parlement.</p>
+        <div class="hero__cta flex flex--center" style="margin-top:24px">
+          <a class="btn btn--primary btn--lg" href="#tableau">Voir le tableau des pouvoirs →</a>
+          <a class="btn btn--outline btn--lg" href="#cas">Résoudre le cas pratique</a>
+        </div>
+        <div data-tjd-pdf-offert="exercice" data-id="td-droit-constitutionnel-l1-corrige" data-titre="Le sujet et son corrigé en PDF" data-texte="Je t&#x27;envoie par email « Le référendum législatif sous la Ve République », avec le sujet et la correction complète. Tu peux ainsi traiter l&#x27;exercice sur papier, puis comparer ta copie avec le corrigé." data-bouton="Recevoir le corrigé"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <p style="color:var(--body); line-height:1.75">En question de cours, il faut classer les pouvoirs du Président, et en dissertation, dire s'il domine le Gouvernement. Dans un cas pratique, tu qualifies un acte, par exemple une dissolution ou un refus de signer une loi, et tu dis si le Président peut le faire seul. Dans les trois cas, la liste de l'article 19 te sert de point de départ, car elle sépare les actes qui exigent un contreseing de ceux qui n'en exigent pas.</p>
+      </div>
+    </section>
+
+    <!-- offre du PDF correspondant -->
+    <section class="conversion-offer" aria-labelledby="offre-fiche-constit-s2-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/fiche-constit-l1-s2.webp?v=dossier-universitaire-20260915" alt="Couverture de la fiche complète de droit constitutionnel L1 semestre 2, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">La fiche complète de droit constitutionnel L1, semestre 2</p>
+            <h2 class="conversion-offer__title" id="offre-fiche-constit-s2-titre">Cinq chapitres sur le Président de la République et le couple exécutif</h2>
+            <p class="conversion-offer__summary">Les chapitres 4 à 7 reprennent le statut du Président, ses pouvoirs propres, ses pouvoirs partagés et sa responsabilité, et le chapitre 10 traite de la cohabitation et du fait majoritaire. Chaque chapitre donne les définitions et les articles à apprendre, et les fiches d'arrêt du pack complet développent Rubin de Servens et Breisacher.</p>
+            <ul class="conversion-offer__benefits">
+              <li>La fiche suit 24 chapitres en cinq thèmes et s'accompagne d'un plan détaillé et de cartes mentales</li>
+              <li>Le pack complet (29,98 € au lieu de 99,92 €) réunit les fiches, les flashcards, les fiches d'arrêt et les dissertations des deux semestres</li>
+              <li>Accès à vie et mises à jour comprises</li>
+            </ul>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-constit-l1-s2">Fiche complète S2 · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-matiere-constit-l1">Pack complet · 29,98 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
+            <div data-tjd-avis data-matiere="constit-l1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTICLE 19 -->
+    <section class="section" id="article-19">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Comment distinguer les pouvoirs propres des pouvoirs partagés ?</h2>
+        <p class="lead" style="margin-bottom:20px">L'article 19 énumère huit actes sans contreseing, et ces actes forment les pouvoirs propres du Président.</p>
+        <ul style="color:var(--body); line-height:1.8; margin:0 0 18px; padding-left:22px">
+          <li>La nomination du Premier ministre, au premier alinéa de l'article 8.</li>
+          <li>Le référendum, à l'article 11.</li>
+          <li>La dissolution de l'Assemblée nationale (la fin anticipée du mandat des députés), à l'article 12.</li>
+          <li>Les pouvoirs exceptionnels, à l'article 16.</li>
+          <li>Les messages au Parlement, à l'article 18.</li>
+          <li>La saisine du Conseil constitutionnel sur un traité (la demande d'examen qui lui est adressée), à l'article 54.</li>
+          <li>La nomination de trois membres du Conseil constitutionnel et de son président, à l'article 56.</li>
+          <li>La saisine du Conseil constitutionnel contre une loi avant sa promulgation (l'acte officiel qui la rend applicable), à l'article 61.</li>
+        </ul>
+        <p style="color:var(--body); line-height:1.75">Tout acte absent de cette liste est contresigné par le Premier ministre et, le cas échéant, par les ministres responsables. Le ministre qui contresigne approuve l'acte et en porte la responsabilité devant le Parlement. Il peut donc refuser de contresigner, ce qui revient à bloquer l'acte. Pour ces actes, le Président partage son pouvoir avec le Gouvernement. Un acte qui aurait dû être contresigné et qui ne l'est pas peut en principe être annulé par le Conseil d'État, si quelqu'un le conteste devant lui. Les pouvoirs propres sont une innovation de la Constitution de 1958, car sous les IIIe et IVe Républiques presque tous les actes du chef de l'État devaient être contresignés.</p>
+        <p style="color:var(--body); line-height:1.75">Pour qualifier un acte présidentiel dans un énoncé, tu cherches d'abord s'il figure dans l'article 19. S'il y figure, le Président se passe de contreseing, mais certaines conditions restent, comme la proposition préalable de l'article 11 ou les consultations de l'article 12. Dans le cas contraire, tu écris que l'acte doit être contresigné, et tu nommes le signataire.</p>
+      </div>
+    </section>
+
+    <!-- TABLEAU -->
+    <section class="section section--alt" id="tableau">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quel pouvoir vient de quel article, avec ou sans contreseing ?</h2>
+        <p class="lead" style="margin-bottom:20px">Les huit actes de l'article 19 se passent de contreseing et tous les autres le demandent, si bien que tu peux qualifier les principaux actes en retrouvant leur ligne.</p>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)"><th style="padding:10px 12px">Article</th><th style="padding:10px 12px">Pouvoir</th><th style="padding:10px 12px">Contreseing</th></tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>5</strong></td><td style="padding:10px 12px; vertical-align:top">Veiller au respect de la Constitution, assurer par son arbitrage le fonctionnement régulier des pouvoirs publics et la continuité de l'État</td><td style="padding:10px 12px; vertical-align:top">Sans objet, c'est un rôle</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>8, alinéa 1er</strong></td><td style="padding:10px 12px; vertical-align:top">Nommer le Premier ministre et mettre fin à ses fonctions quand il présente la démission du Gouvernement</td><td style="padding:10px 12px; vertical-align:top">Non, pouvoir propre</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>8, alinéa 2</strong></td><td style="padding:10px 12px; vertical-align:top">Nommer les autres ministres, sur proposition du Premier ministre</td><td style="padding:10px 12px; vertical-align:top">Oui</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>10</strong></td><td style="padding:10px 12px; vertical-align:top">Promulguer les lois dans les quinze jours, demander une nouvelle délibération</td><td style="padding:10px 12px; vertical-align:top">Oui</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>11</strong></td><td style="padding:10px 12px; vertical-align:top">Soumettre un projet de loi au référendum</td><td style="padding:10px 12px; vertical-align:top">Non, pouvoir propre, sur proposition</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>12</strong></td><td style="padding:10px 12px; vertical-align:top">Dissoudre l'Assemblée nationale</td><td style="padding:10px 12px; vertical-align:top">Non, pouvoir propre</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>13</strong></td><td style="padding:10px 12px; vertical-align:top">Signer les ordonnances et les décrets délibérés en conseil des ministres, nommer aux emplois civils et militaires</td><td style="padding:10px 12px; vertical-align:top">Oui</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>15</strong></td><td style="padding:10px 12px; vertical-align:top">Être le chef des armées et présider les conseils et comités supérieurs de la défense nationale</td><td style="padding:10px 12px; vertical-align:top">Oui pour les actes qui s'y rattachent, car l'article 15 ne figure pas dans l'article 19</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>16</strong></td><td style="padding:10px 12px; vertical-align:top">Exercer les pouvoirs exceptionnels</td><td style="padding:10px 12px; vertical-align:top">Non, pouvoir propre</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>18</strong></td><td style="padding:10px 12px; vertical-align:top">Faire lire un message au Parlement, ou, depuis 2008, s'adresser à lui réuni en Congrès (les deux assemblées ensemble)</td><td style="padding:10px 12px; vertical-align:top">Non, pouvoir propre</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>54 et 61</strong></td><td style="padding:10px 12px; vertical-align:top">Saisir le Conseil constitutionnel d'un traité ou d'une loi</td><td style="padding:10px 12px; vertical-align:top">Non, pouvoir propre</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>56</strong></td><td style="padding:10px 12px; vertical-align:top">Nommer trois membres du Conseil constitutionnel, après avis des commissions, et nommer son président</td><td style="padding:10px 12px; vertical-align:top">Non, pouvoir propre</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75">Les pouvoirs propres forment l'exception, car les actes de gestion courante, comme la promulgation ou les nominations aux emplois civils et militaires, passent tous par la signature du Premier ministre. Le Président dépend du Gouvernement pour la plupart de ses actes, et son rôle dans les faits change avec la majorité de l'Assemblée nationale.</p>
+      </div>
+    </section>
+
+    <!-- POUVOIRS PROPRES -->
+    <section class="section" id="propres">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Que peut faire le Président seul, et jusqu'où ?</h2>
+        <p class="lead" style="margin-bottom:20px">Plusieurs pouvoirs propres s'accompagnent de conditions ou de limites.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>Nommer le Premier ministre.</strong> Aucun vote de l'Assemblée ne précède la nomination (article 8, alinéa 1er), si bien que le Président choisit librement la personne. Il ne peut en revanche mettre fin à ses fonctions que si le Premier ministre présente la démission du Gouvernement. Cette liberté a toutefois une limite, car l'Assemblée nationale peut renverser le Gouvernement par une motion de censure, adoptée à la majorité de ses membres (article 49, alinéa 2). Le Gouvernement doit alors démissionner (article 50), et un Premier ministre que l'Assemblée rejette ne reste donc pas en fonction. Il en va de même quand l'Assemblée désapprouve la déclaration de politique générale du Gouvernement (le discours où le Premier ministre présente sa politique), comme le 8 septembre 2025 pour le Gouvernement de François Bayrou, par 364 voix contre 194. Le Président a nommé Sébastien Lecornu le lendemain.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>Organiser un référendum.</strong> Le Président peut soumettre un projet de loi au peuple (article 11), sur proposition du Gouvernement pendant la durée des sessions ou sur proposition conjointe des deux assemblées. Cette proposition est nécessaire, mais il reste libre de ne pas y donner suite. De plus, le projet de loi doit porter sur l'un de ces trois objets.</p>
+        <ul style="color:var(--body); line-height:1.8; margin:0 0 18px; padding-left:22px">
+          <li>L'organisation des pouvoirs publics.</li>
+          <li>Une réforme relative à la politique économique, sociale ou environnementale de la nation et aux services publics qui y concourent.</li>
+          <li>L'autorisation de ratifier un traité qui n'est pas contraire à la Constitution, mais qui aurait des incidences sur le fonctionnement des institutions.</li>
+        </ul>
+        <p style="color:var(--body); line-height:1.75">Par ailleurs, depuis la révision de 2008, un cinquième des parlementaires soutenu par un dixième des électeurs inscrits peut aussi lancer un référendum, par une proposition de loi que le Conseil constitutionnel contrôle. Si les assemblées ne l'examinent pas dans le délai fixé par la loi organique (une loi qui précise la Constitution), le Président la soumet au référendum.</p>
+        <p style="color:var(--body); line-height:1.75">En 1962, le général de Gaulle a utilisé l'article 11 pour faire adopter par référendum l'élection du Président au suffrage universel direct. Cet usage était contesté, car la révision de la Constitution relève de l'article 89. Le Conseil constitutionnel s'est alors déclaré incompétent pour contrôler cette loi (<a href="decision-loi-referendaire-1962-expliquee.html">décision 62-20 DC du 6 novembre 1962</a>). L'article 61 concerne en effet les lois que vote le Parlement, alors que la loi référendaire exprime directement la souveraineté nationale. Le dernier référendum national date du 29 mai 2005. Celui d'avril 1969, que les électeurs ont rejeté, a conduit le général de Gaulle à démissionner.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>Dissoudre l'Assemblée nationale.</strong> La dissolution met fin avant son terme au mandat des députés, et des élections générales suivent entre vingt et quarante jours après la décision (article 12). On la présente souvent comme la contrepartie de la motion de censure, que l'Assemblée peut voter contre le Gouvernement. Le Président consulte le Premier ministre et les présidents des assemblées, mais il n'est pas tenu de suivre leurs avis. Trois limites s'imposent cependant à lui. D'abord, la Constitution interdit une nouvelle dissolution dans l'année qui suit les élections provoquées par la précédente, et dans un cas pratique, tu compares la date de la dissolution envisagée avec celle des dernières élections. Elle l'interdit ensuite pendant l'intérim, quand le président du Sénat exerce les fonctions d'un Président empêché ou dont le poste est vacant (article 7), puis pendant l'exercice des pouvoirs exceptionnels (article 16). La Ve République compte six dissolutions, de 1962 à 2024. Celles de 1962 et de 1968 ont suivi une crise, la première une motion de censure et la seconde les événements de mai, celles de 1981 et de 1988 ont donné une majorité au Président qui venait d'être élu, et celle de 1997 a donné la majorité à l'opposition.</p>
+        
+        <p style="color:var(--body); line-height:1.75"><strong>Saisir le Conseil constitutionnel et en nommer des membres.</strong> Le Président peut saisir le Conseil pour un contrôle de constitutionnalité d'une loi avant sa promulgation (article 61, alinéa 2), et cette saisine suspend le délai de promulgation (alinéa 4). Il peut aussi lui demander si un traité contient une clause contraire à la Constitution (article 54). Il nomme enfin trois des neuf membres du Conseil et son président (article 56). La nomination de ces trois membres passe pourtant par l'avis public des commissions parlementaires, selon le dernier alinéa de l'article 13. Le Président ne peut pas nommer si les votes négatifs, additionnés dans les deux commissions, atteignent au moins trois cinquièmes des suffrages exprimés. Le 19 février 2025, les commissions ont voté 58 voix contre et 39 voix pour la nomination de Richard Ferrand. Trois cinquièmes de 97 suffrages font 58,2 voix, donc il en fallait 59 pour bloquer, et le Président a nommé Richard Ferrand membre du Conseil le 20 février 2025.</p>
+      </div>
+    </section>
+
+    <!-- POUVOIRS PARTAGÉS -->
+    <section class="section section--alt" id="partages">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Que peut-il faire avec le Premier ministre ?</h2>
+        <p class="lead" style="margin-bottom:20px">Pour tous les autres actes, la signature du Premier ministre complète celle du Président.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>Promulguer les lois.</strong> La promulgation est l'acte officiel qui atteste qu'une loi est définitivement adoptée et qui la rend applicable, et la loi est ensuite publiée. Le Président dispose de quinze jours à compter de la transmission de la loi au Gouvernement (article 10), mais il n'a pas de droit de veto. Face à un Président qui refuse de promulguer, tu réponds donc qu'il peut seulement demander au Parlement une nouvelle délibération (un second examen de la loi), que le Parlement ne peut pas refuser. L'autre possibilité est de saisir le Conseil constitutionnel, ce qui suspend le délai.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>Signer les ordonnances et nommer.</strong> Une ordonnance est un texte que le Gouvernement prend, avec l'autorisation du Parlement, dans une matière qui relève normalement de la loi. D'après l'article 13, le Président signe les ordonnances et les décrets délibérés en conseil des ministres, qu'il préside lui-même (article 9). Pourtant, la signature a déjà servi à bloquer un texte. En 1986, François Mitterrand a ainsi refusé de signer des ordonnances du Gouvernement de Jacques Chirac sur les privatisations, et le Gouvernement a déposé des projets de loi à la place.</p>
+        <p style="color:var(--body); line-height:1.75">Le même article donne au Président le pouvoir de nommer aux emplois civils et militaires de l'État. Pour certains emplois que fixe une loi organique, les commissions des deux assemblées donnent d'abord un avis public, et le même seuil de trois cinquièmes s'applique.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>Réviser la Constitution.</strong> Le Président peut engager la <a href="la-revision-de-la-constitution.html">révision de la Constitution</a> sur proposition du Premier ministre. Les deux assemblées votent le projet en termes identiques, puis le Président le soumet au référendum ou au Congrès (les députés et les sénateurs réunis ensemble), qui l'approuve à la majorité des trois cinquièmes (article 89).</p>
+        <p style="color:var(--body); line-height:1.75"><strong>Traités, armées et grâce.</strong> Le Président négocie et ratifie les traités (article 52). Il est le chef des armées et préside les conseils et comités supérieurs de la défense nationale (article 15). Il peut aussi faire grâce à titre individuel, c'est-à-dire dispenser un condamné de tout ou partie de sa peine (article 17). Aucun de ces articles ne figure dans l'article 19, donc le Premier ministre contresigne les actes qui s'y rattachent. La pratique réserve néanmoins au Président la diplomatie et la défense. On l'appelle le domaine réservé, et aucun article de la Constitution ne le prévoit.</p>
+      </div>
+    </section>
+
+    <!-- ARTICLE 16 -->
+    <section class="section" id="article-16">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">À quelles conditions le Président peut-il utiliser l'article 16 ?</h2>
+        <p class="lead" style="margin-bottom:20px">L'article 16 donne des pouvoirs exceptionnels à deux conditions réunies.</p>
+        <p style="color:var(--body); line-height:1.75">La première condition est une menace grave et immédiate sur l'un de ces quatre objets : les institutions de la République, l'indépendance de la nation, l'intégrité du territoire ou l'exécution des engagements internationaux. La seconde est l'interruption du fonctionnement régulier des pouvoirs publics constitutionnels. Les deux conditions doivent être réunies. De plus, le Président doit consulter officiellement le Premier ministre, les présidents des assemblées et le Conseil constitutionnel, puis informer la nation par un message. Ses mesures doivent viser à rendre aux pouvoirs publics les moyens d'accomplir leur mission. Le Parlement se réunit automatiquement, et l'Assemblée nationale ne peut pas être dissoute.</p>
+        <p style="color:var(--body); line-height:1.75">Depuis 2008, le Conseil constitutionnel contrôle aussi la durée des pouvoirs exceptionnels. En effet, après trente jours, le Conseil constitutionnel peut être saisi par les présidents des assemblées ou par soixante députés ou sénateurs, et il examine si les conditions sont toujours réunies. Au bout de soixante jours, puis à tout moment au-delà, il procède automatiquement à cet examen. Il rend un avis public, qui ne met pas fin aux pouvoirs exceptionnels.</p>
+        <p style="color:var(--body); line-height:1.75">Le Président a utilisé l'article 16 une seule fois depuis 1958, du 23 avril au 29 septembre 1961, au moment du putsch des généraux à Alger. Pour savoir si le juge peut contrôler une mesure prise sous l'article 16, tu distingues la décision d'appliquer l'article 16 des mesures prises ensuite. Dans l'<a href="arret-rubin-de-servens-1962-explique.html">arrêt Rubin de Servens</a> du 2 mars 1962, le Conseil d'État a jugé que la décision de mettre l'article 16 en application est un acte de gouvernement. Ainsi, un tel acte échappe au juge administratif, qui n'en contrôle ni la légalité ni la durée d'application. De même, les mesures prises dans les matières que la Constitution réserve à la loi sont des actes législatifs pendant cette période, et le juge administratif ne les contrôle pas non plus.</p>
+      </div>
+    </section>
+
+    <!-- LA PRATIQUE -->
+    <section class="section section--alt" id="pratique">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Les pouvoirs du Président dépendent-ils de la majorité à l'Assemblée ?</h2>
+        <p class="lead" style="margin-bottom:20px">Oui, car l'article 20 prévoit que le Gouvernement détermine et conduit la politique de la nation et qu'il répond devant l'Assemblée, alors que l'article 6 fait élire le Président au suffrage universel direct.</p>
+        <p style="color:var(--body); line-height:1.75">Quand la majorité parlementaire soutient le Président, on parle de fait majoritaire. Il vient du résultat des élections législatives, et aucun article de la Constitution ne le prévoit. Le Président dirige alors la politique de la nation, et le Premier ministre exécute ses orientations. Quand la majorité de l'Assemblée s'oppose au Président, on parle de cohabitation. La Constitution ne dit rien de ce cas, mais le Président nomme alors un Premier ministre que cette majorité accepte, car l'Assemblée pourrait sinon le renverser par une motion de censure. Le Premier ministre devient ainsi le chef du Gouvernement dans les faits, et le Président garde surtout la diplomatie et la défense. En dissertation, tu opposes le texte, qui confie la conduite de la politique au Gouvernement, à la pratique, où le Président la conduit quand il dispose d'une majorité.</p>
+        <p style="color:var(--body); line-height:1.75">La Ve République a connu trois cohabitations. La première a opposé François Mitterrand et Jacques Chirac de 1986 à 1988, la deuxième François Mitterrand et Édouard Balladur de 1993 à 1995. La troisième, de 1997 à 2002, a opposé Jacques Chirac et Lionel Jospin, car la dissolution de 1997 avait donné la majorité aux adversaires de Chirac. Avant la fin de la troisième, la révision de 2000 a ramené le mandat présidentiel à cinq ans (le quinquennat), et une loi organique de 2001 a placé les élections législatives après l'élection présidentielle. Ces élections rapprochées, jointes au scrutin majoritaire, incitent les électeurs à donner une majorité au nouveau Président, si bien que la cohabitation est devenue improbable. En revanche, après la dissolution du 9 juin 2024, aucun groupe n'a obtenu la majorité, et cette situation reste distincte d'une cohabitation, car aucune majorité hostile au Président n'existe.</p>
+      </div>
+    </section>
+
+    <!-- RESPONSABILITÉ -->
+    <section class="section" id="responsabilite">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Le Président répond-il de ses actes ?</h2>
+        <p class="lead" style="margin-bottom:20px">Pendant son mandat, le Président échappe aux poursuites, et seule la destitution peut sanctionner un manquement à ses devoirs.</p>
+        <p style="color:var(--body); line-height:1.75">Le Président n'est pas responsable politiquement devant le Parlement, puisque la motion de censure vise le Gouvernement (article 49). Depuis la révision du 23 février 2007, l'article 67 pose trois règles. D'abord, le Président n'est pas responsable des actes accomplis en cette qualité, sous réserve de la Cour pénale internationale (article 53-2) et de la destitution (article 68). Ensuite, pendant son mandat, aucune juridiction ni autorité administrative française ne peut le requérir de témoigner ni engager contre lui une action, un acte d'information, d'instruction ou de poursuite. Tous les délais de prescription (le délai au-delà duquel on ne peut plus agir en justice) sont alors suspendus. Enfin, les procédures peuvent reprendre un mois après la fin de ses fonctions.</p>
+        <p style="color:var(--body); line-height:1.75">En revanche, la destitution permet au Parlement de mettre fin au mandat, mais seulement en cas de manquement du Président à ses devoirs manifestement incompatible avec l'exercice de son mandat (article 68). La procédure commence par une proposition de réunir le Parlement en Haute Cour, que chaque assemblée adopte à la majorité des deux tiers, la seconde disposant de quinze jours. Le Parlement ainsi réuni forme la Haute Cour, un organe politique composé des députés et des sénateurs, que préside le président de l'Assemblée nationale. La Haute Cour statue à bulletins secrets dans un délai d'un mois, à la même majorité, et sa décision a un effet immédiat.</p>
+        <p style="color:var(--body); line-height:1.75">Pour un sujet sur le statut pénal du Président, tu compares deux décisions antérieures à 2007, qui interprètent l'ancien article 68. Le 22 janvier 1999, à propos du traité créant la Cour pénale internationale (98-408 DC), le Conseil constitutionnel indique que la responsabilité pénale du Président ne peut, pendant ses fonctions, être mise en cause que devant la Haute Cour de justice. Le 10 octobre 2001, dans l'arrêt Breisacher, l'assemblée plénière de la Cour de cassation (sa formation la plus solennelle) ne se juge pas liée par cette phrase, car la décision de 1999 ne portait que sur ce traité. La Cour juge que le Président ne peut, pendant son mandat, être mis en examen (mis en cause par un juge d'instruction) ni entendu comme témoin assisté (un statut intermédiaire entre le simple témoin et la personne mise en examen). La Haute Cour de justice n'était compétente que pour la haute trahison. Les poursuites pour tous les autres actes devant les juridictions pénales de droit commun ne peuvent donc pas être exercées pendant le mandat, et la prescription est suspendue. Les deux juridictions retiennent donc des solutions différentes, et l'article 67 actuel prévoit une règle proche de celle de la Cour de cassation.</p>
+      </div>
+    </section>
+
+    <!-- CAS RÉSOLU -->
+    <section class="section section--alt" id="cas">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Cas résolu : un Président face à un Gouvernement censuré</h2>
+        <p class="lead" style="margin-bottom:20px">Quand ton énoncé donne des dates, tu les compares aux délais de la Constitution avant de répondre.</p>
+        <p style="color:var(--body); line-height:1.75">Des élections législatives organisées après une dissolution s'achèvent le 30 juin de l'année N. Le 12 février de l'année N+1, l'Assemblée nationale adopte ensuite une motion de censure contre le Gouvernement du Premier ministre Bernard. La Présidente Morel veut alors agir de trois façons, mais la Constitution le lui permet-elle ?</p>
+        <ol style="color:var(--body); line-height:1.8; margin:0 0 18px; padding-left:22px">
+          <li>Nommer aussitôt Garnier comme Premier ministre, sans consulter personne.</li>
+          <li>Dissoudre de nouveau l'Assemblée le 20 février.</li>
+          <li>Refuser de promulguer une loi transmise au Gouvernement le 3 mars, car elle la juge injuste.</li>
+        </ol>
+        <p style="color:var(--body); line-height:1.75"><strong>La nomination.</strong> L'article 19 cite l'alinéa 1er de l'article 8, qui confie la nomination du Premier ministre au Président, et cette nomination se passe donc de contreseing. La Présidente la décide seule, sans vote préalable de l'Assemblée et sans consultation obligatoire, à la différence de la dissolution ou de l'article 16. Garnier restera toutefois en place tant que l'Assemblée ne le censure pas.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>La dissolution.</strong> La dissolution est un pouvoir propre (article 12). Pourtant, d'après l'alinéa 4, une nouvelle dissolution est interdite dans l'année qui suit les élections provoquées par la précédente. Ces élections se sont achevées le 30 juin N, donc la nouvelle dissolution reste interdite jusqu'au 30 juin N+1. Le 20 février se situe dans cette période, et la Présidente ne peut pas dissoudre.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>La promulgation.</strong> D'après l'article 10, le Président promulgue la loi dans les quinze jours de sa transmission, soit au plus tard le 18 mars. En outre, le contreseing du Premier ministre est exigé, car l'article 19 ne cite pas l'article 10. La Présidente dispose alors de deux issues. Elle peut demander une nouvelle délibération, que le Parlement ne peut pas refuser, ou saisir le Conseil constitutionnel (article 61, alinéa 2), ce qui suspend le délai. Un refus pur et simple lui est interdit.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>La conclusion.</strong> La Présidente peut nommer Garnier. Elle ne peut pas dissoudre l'Assemblée le 20 février, et elle doit promulguer la loi dans les quinze jours, sauf nouvelle délibération ou saisine du Conseil constitutionnel.</p>
+      </div>
+    </section>
+
+    <!-- ERREURS -->
+    <section class="section" id="erreurs">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Les erreurs à éviter en copie sur les pouvoirs du Président</h2>
+        <p class="lead" style="margin-bottom:20px">Ces quatre erreurs coûtent des points dans une question de cours comme dans un cas pratique.</p>
+        <ul style="color:var(--body); line-height:1.8; margin:0 0 18px; padding-left:22px">
+          <li><strong>Une liste de pouvoirs propres qui reprend les articles 5, 9 ou 15 ne correspond pas à l'article 19.</strong> L'article 19 énumère huit actes, dont les saisines et la nomination des membres du Conseil constitutionnel (articles 54, 56 et 61). L'article 5 décrit un rôle, et les articles 9 et 15 n'y figurent pas.</li>
+          <li><strong>Le Premier ministre entre en fonction sans vote d'investiture.</strong> Si ta copie exige un vote d'investiture (un vote préalable de l'Assemblée), elle applique la règle de la IVe République, d'avant 1958. En effet, sous la Ve, le Gouvernement entre en fonction dès sa nomination. L'Assemblée peut ensuite le renverser par une motion de censure, ou en désapprouvant sa déclaration de politique générale quand il a engagé sa responsabilité sur elle (article 49, alinéa 1er).</li>
+          <li><strong>Une motion de censure ne peut pas viser le Président.</strong> La motion de censure et l'article 49, alinéa 3, concernent le Gouvernement, car le Premier ministre engage sa responsabilité après délibération du conseil des ministres. Le Président n'est pas responsable politiquement, et le Parlement ne peut le mettre en cause que par la destitution.</li>
+          <li><strong>Le Président ne préside plus le Conseil supérieur de la magistrature (l'organe qui gère la carrière des magistrats) depuis 2008.</strong> Il reste garant de l'indépendance de l'autorité judiciaire (article 64).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--alt" id="faq">
+      <div class="container container--narrow">
+        <h2 class="h2 text-center" style="margin-bottom:32px">Questions fréquentes sur les pouvoirs du Président de la République</h2>
+        <div class="accordion">
+          <details class="accordion__item" open><summary><h3>Quels sont les pouvoirs propres du Président de la République ?</h3></summary><div class="accordion__body">Ce sont les huit actes que l'article 19 dispense de contreseing, dont la nomination du Premier ministre, le référendum, la dissolution et les pouvoirs exceptionnels de l'article 16. Le Président n'a besoin d'aucun contreseing, mais certaines procédures préalables restent obligatoires.</div></details>
+          <details class="accordion__item"><summary><h3>Le Président peut-il dissoudre l'Assemblée nationale quand il le veut ?</h3></summary><div class="accordion__body">Non. Il décide seul après avoir consulté le Premier ministre et les présidents des assemblées, mais la Constitution lui interdit de dissoudre dans l'année qui suit les élections provoquées par la dissolution précédente, pendant l'intérim et pendant les pouvoirs exceptionnels de l'article 16.</div></details>
+          <details class="accordion__item"><summary><h3>Le Président peut-il être poursuivi en justice ?</h3></summary><div class="accordion__body">Pendant son mandat, l'article 67 interdit toute action contre lui devant une juridiction ou une autorité administrative française, et la prescription est suspendue. Seul le Parlement réuni en Haute Cour peut le destituer, en cas de manquement à ses devoirs manifestement incompatible avec l'exercice de son mandat (article 68).</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAILLAGE -->
+    <section class="section" id="aller-plus-loin">
+      <div class="container container--narrow text-center">
+        <h2 class="h2">Pour aller plus loin en droit constitutionnel</h2>
+        <div style="max-width:680px;margin:24px auto 0;display:grid;gap:12px">
+          <a class="btn btn--outline btn--full" href="arret-rubin-de-servens-1962-explique.html">L'arrêt Rubin de Servens : l'article 16 et l'acte de gouvernement</a>
+          <a class="btn btn--outline btn--full" href="decision-loi-referendaire-1962-expliquee.html">La décision de 1962 sur la loi référendaire</a>
+          <a class="btn btn--outline btn--full" href="la-revision-de-la-constitution.html">La révision de la Constitution : procédure et limites</a>
+          <a class="btn btn--outline btn--full" href="td-droit-constitutionnel-l1-corrige.html">TD de droit constitutionnel L1 corrigé : méthode et exemple</a>
+          <a class="btn btn--outline btn--full" href="droit-constitutionnel-l1.html">Droit constitutionnel L1 · fiches et cours</a>
+        </div>
+        <p style="margin-top:18px"><a href="formations.html">Comparer toutes les fiches complètes →</a></p>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <div class="author-box">
+          <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+          <div>
+            <p class="author-box__name">Julien</p>
+            <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+            <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">164 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- fin-article:pack-ultra -->
+    <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
+      <div class="container">
+        <p class="article-pack-ligne__texte">Le Pack Ultra L1 S2 réunit les 26 ressources de ton second semestre de L1 pour 229 €, la fiche de droit constitutionnel L1 comprise. <a href="pack-ultra.html#pack-ultra-l1-s2">Voir le contenu du pack →</a></p>
+        <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (les pouvoirs du Président de la République)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit constitutionnel L1 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-constit-l1-s2">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=60767dcf" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=da4d9620" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=ee98d119" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>
