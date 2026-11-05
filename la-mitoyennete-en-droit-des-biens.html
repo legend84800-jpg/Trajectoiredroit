@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Mitoyenneté en droit des biens : mur, clôture, haie (L2)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Mitoyenneté en droit des biens L2 : présomption de l&#x27;article 653, droits sur le mur, acquisition et abandon, clôture, haie et fossé, avec un cas résolu.">
+  <link rel="canonical" href="https://trajectoiredroit.com/la-mitoyennete-en-droit-des-biens.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Mitoyenneté en droit des biens : mur, clôture, haie (L2)">
+  <meta property="og:description" content="Mitoyenneté en droit des biens L2 : présomption de l&#x27;article 653, droits sur le mur, acquisition et abandon, clôture, haie et fossé, avec un cas résolu.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/la-mitoyennete-en-droit-des-biens.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/la-mitoyennete-en-droit-des-biens.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "La mitoyenneté en droit des biens : mur, clôture, haie et fossé",
+        "description": "Mitoyenneté en droit des biens L2 : présomption de l'article 653, droits sur le mur, acquisition et abandon, clôture, haie et fossé, avec un cas résolu.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-11-05",
+        "dateModified": "2026-11-05",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit pénal à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": {
+            "@type": "EducationalOrganization",
+            "name": "TrajectoireDroit"
+          }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+          }
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "La mitoyenneté en droit des biens"
+        },
+        "image": "https://trajectoiredroit.com/assets/blog/la-mitoyennete-en-droit-des-biens.webp",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://trajectoiredroit.com/la-mitoyennete-en-droit-des-biens.html"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://trajectoiredroit.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "La mitoyenneté en droit des biens",
+            "item": "https://trajectoiredroit.com/la-mitoyennete-en-droit-des-biens.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Peut-on percer une fenêtre dans un mur mitoyen ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Seulement avec l'accord du voisin. L'article 675 du Code civil interdit à l'un des voisins de pratiquer dans le mur mitoyen une fenêtre ou une ouverture sans le consentement de l'autre, même à verre dormant."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qui paie la réparation d'un mur mitoyen ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tous ceux qui ont des droits sur le mur, proportionnellement au droit de chacun, d'après l'article 655. Le copropriétaire qui a rendu les travaux nécessaires par son propre fait les paie seul, comme la Cour de cassation le juge le 19 octobre 2005. Un copropriétaire peut aussi se dispenser de payer en abandonnant sa mitoyenneté, sauf si le mur soutient un de ses bâtiments ou lui procure un avantage particulier, d'après l'article 656."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment prouver qu'un mur n'est pas mitoyen ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il existe trois moyens. Le titre est un acte qui attribue le mur à un seul propriétaire. La marque de non-mitoyenneté de l'article 654 est un signe visible sur le mur, par exemple un sommet droit d'un côté et en pente de l'autre. Enfin, la prescription acquisitive, c'est-à-dire la possession prolongée du mur comme propriétaire, permet aussi de le prouver."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Peut-on rendre mitoyen le mur de son voisin ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, quand le terrain touche le mur. Le propriétaire de ce terrain peut le rendre mitoyen en tout ou en partie, en remboursant la moitié de ce que le mur a coûté et la moitié de la valeur du sol, d'après l'article 661. Un mur qui occupe une partie du terrain voisin ne peut pas devenir mitoyen de cette façon, et l'article 668 interdit cette acquisition pour une haie ou un fossé non mitoyens."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=6a441fef">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 474,64 €, 45 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-45 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">474,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 349,74 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">349,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 449,67 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">449,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 399,70 €, 40 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-40 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 569,58 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">569,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>164 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow text-center">
+        <h1 class="h1">La mitoyenneté en droit des biens : mur, clôture, haie et fossé</h1>
+        <p class="lead" style="max-width:720px; margin-left:auto; margin-right:auto">La mitoyenneté en droit des biens est la copropriété d'un mur, d'une haie ou d'un fossé séparant deux terrains voisins. Le Code civil, aux articles 653 et suivants, tient un mur de séparation pour mitoyen tant qu'un titre ou une marque ne prouve pas le contraire. Chaque voisin paie les réparations proportionnellement à son droit, mais il peut en principe abandonner sa part.</p>
+        <div class="hero__cta flex flex--center" style="margin-top:24px">
+          <a class="btn btn--primary btn--lg" href="#tableau">Voir les droits de chaque voisin →</a>
+          <a class="btn btn--outline btn--lg" href="#cas">Résoudre le cas pratique</a>
+        </div>
+        <div data-tjd-pdf-offert="matiere" data-id="cas-pratique-biens-l2" data-titre="Un cas pratique corrigé en droit des biens L2, en PDF" data-texte="Je t&#x27;envoie par email l&#x27;énoncé et sa correction complète, rédigée comme une copie de partiel. Tu peux ainsi t&#x27;entraîner sur papier, puis comparer ta réponse avec le corrigé." data-bouton="Recevoir le corrigé"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <p style="color:var(--body); line-height:1.75">En licence 2, la mitoyenneté se présente de deux façons à l'examen. D'abord, une question de cours te demande de la définir et de la distinguer de l'indivision et de la servitude. Ensuite, un cas pratique met en scène deux voisins et un mur, par exemple quand l'un veut y percer une fenêtre et que l'autre refuse de payer les réparations. Dans les deux cas, les articles 653 à 670 du Code civil donnent la réponse, sauf pour la fenêtre, qui relève de l'article 675.</p>
+      </div>
+    </section>
+
+    <!-- offre du PDF correspondant -->
+    <section class="conversion-offer" aria-labelledby="offre-fiche-biens-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/fiche-biens-l2.webp?v=dossier-universitaire-20260915" alt="Fiche complète de droit des biens L2, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">Fiche complète de droit des biens L2</p>
+            <h2 class="conversion-offer__title" id="offre-fiche-biens-titre">La mitoyenneté et vingt autres chapitres en 109 pages</h2>
+            <p class="conversion-offer__summary">Le chapitre 21 explique qui est présumé propriétaire du mur, ce que chaque voisin peut y faire, puis comment acquérir ou abandonner la mitoyenneté. Il traite aussi les haies, les fossés et les arbres. Les chapitres 17 à 20 expliquent les servitudes, l'indivision et la copropriété des immeubles bâtis.</p>
+            <ul class="conversion-offer__benefits">
+              <li>Un PDF de 109 pages avec sommaire cliquable</li>
+              <li>Le pack complet (29,98 €) ajoute les flashcards, les QCM, les fiches d'arrêt et les cas pratiques corrigés</li>
+              <li>Accès à vie et mises à jour comprises</li>
+            </ul>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-biens-l2">Fiche · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-matiere-biens-l2">Pack Droit des biens L2 · 29,98 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-l2">Pack Licence 2 · 79 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
+            <div data-tjd-avis data-matiere="biens-l2"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTION -->
+    <section class="section" id="notion">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Qu'est-ce que la mitoyenneté, et en quoi diffère-t-elle d'une servitude ou d'une indivision ?</h2>
+        <p class="lead" style="margin-bottom:20px">La mitoyenneté se distingue de l'indivision parce que personne ne peut demander le partage, et de la servitude parce que les deux voisins sont propriétaires du même mur.</p>
+        <p style="color:var(--body); line-height:1.75">Le jardin de Lucie est séparé de celui de Pierre par un mur de pierre. Quand ce mur est mitoyen, Lucie et Pierre en sont propriétaires ensemble, chacun pour une part, et chacun s'en sert pour son terrain. Les articles 653 à 670 du Code civil fixent donc les règles de cette copropriété pour le mur et pour les autres séparations entre deux terrains. Elle naît d'un accord entre voisins ou de la loi, par exemple quand l'article 661 permet à un voisin d'acquérir la mitoyenneté du mur de l'autre. Elle peut aussi naître de la prescription.</p>
+        <p style="color:var(--body); line-height:1.75">Cette copropriété ressemble à l'indivision, c'est-à-dire à la situation de plusieurs personnes propriétaires ensemble d'un même bien, mais elle en diffère sur le partage. Dans une indivision ordinaire, l'article 815 du Code civil permet en principe à chacun de demander le partage. Dans la mitoyenneté, aucun voisin ne peut le demander, car le mur reste affecté à la séparation des deux terrains. On parle donc de copropriété forcée, parce que le partage est impossible, et de copropriété perpétuelle, parce qu'elle dure aussi longtemps que le mur existe. Pourtant, un voisin peut s'en libérer en abandonnant sa part, dans les cas que l'article 656 prévoit. En question de cours, c'est donc l'impossibilité de demander le partage qui te permet de distinguer les deux notions.</p>
+        <p style="color:var(--body); line-height:1.75">D'après l'article 637, une servitude est une charge imposée sur un terrain pour l'usage et l'utilité d'un autre terrain, qui appartient à un autre propriétaire, comme un droit de passage. Un seul voisin supporte alors la charge, et chacun reste seul propriétaire de son terrain, alors que les deux voisins possèdent le même mur mitoyen. Le Code civil classe pourtant les articles 653 et suivants dans le chapitre des servitudes établies par la loi, à la section « Du mur et du fossé mitoyens », d'où la confusion fréquente entre les deux notions. La page sur <a href="servitude-continue-discontinue-apparente.html">les servitudes continues, discontinues et apparentes</a> détaille ces charges.</p>
+        <p style="color:var(--body); line-height:1.75">Face à cette confusion, la troisième chambre civile de la Cour de cassation juge que la mitoyenneté est un droit de propriété. Dans un arrêt du 20 juillet 1989, elle casse un arrêt d'appel qui voyait dans la mitoyenneté une servitude, en rappelant qu'elle « est un droit de propriété dont deux personnes jouissent en commun ». Elle juge aussi, le 19 février 1985, que ce droit de propriété indivise ne se perd pas par le non-usage, alors que l'article 706 éteint les servitudes après trente ans de non-usage.</p>
+        <p style="color:var(--body); line-height:1.75">Une autre notion voisine est la copropriété des immeubles bâtis, que la loi du 10 juillet 1965 régit. Elle s'applique à un immeuble divisé en lots, dont chacun associe une partie privative et une quote-part des parties communes. La mitoyenneté concerne en revanche deux propriétés distinctes qui partagent un mur, une haie ou un fossé.</p>
+      </div>
+    </section>
+
+    <!-- PRESOMPTION -->
+    <section class="section section--alt" id="presomption">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Comment savoir si un mur de séparation est mitoyen ?</h2>
+        <p class="lead" style="margin-bottom:20px">Pour savoir si un mur est mitoyen, tu cherches d'abord un titre, une marque ou une possession prolongée, avant d'appliquer la présomption de l'article 653.</p>
+        <p style="color:var(--body); line-height:1.75">Une présomption est une règle qui tient un fait pour vrai tant qu'on ne prouve pas l'inverse, et ici le fait présumé est la mitoyenneté. Le voisin qui prétend être seul propriétaire du mur doit donc le prouver. L'article 653 lui laisse deux moyens, un titre ou une marque. Le titre est un acte écrit qui attribue le mur à l'un des voisins, et les juges apprécient sa valeur probante. La marque est un signe visible sur le mur lui-même, par exemple la forme de son sommet, qui montre à quel voisin il appartient.</p>
+        <p style="color:var(--body); line-height:1.75">La prescription acquisitive, qui permet de devenir propriétaire d'un bien en le possédant longtemps, peut aussi établir que le mur appartient à un seul voisin. Elle exige en effet trente ans d'une possession paisible, publique et à titre de propriétaire. L'article 2272 réduit toutefois ce délai à dix ans pour le possesseur qui a acquis de bonne foi, en croyant tenir son droit du vrai propriétaire, et par juste titre, c'est-à-dire par un acte d'acquisition émanant d'une personne qui n'était pas propriétaire. La page sur <a href="possession-detention-precaire-droit-des-biens.html">la différence entre possession et détention précaire</a> explique comment reconnaître une possession qui permet de prescrire.</p>
+        <p style="color:var(--body); line-height:1.75">L'article 653 s'applique à un mur entre deux bâtiments, entre des cours ou des jardins, et même entre des enclos, des terrains clos situés dans les champs. Ainsi, entre deux bâtiments, le mur est présumé mitoyen jusqu'à l'héberge, c'est-à-dire jusqu'à la hauteur du plus bas des deux. Si la maison de Lucie mesure huit mètres et celle de Pierre cinq, le mur qui les sépare est présumé mitoyen sur les cinq premiers mètres. Au-dessus, en revanche, la partie qui ne sert qu'à la maison de Lucie est présumée lui appartenir seule.</p>
+        <p style="color:var(--body); line-height:1.75">La Cour de cassation décide ensuite à quels murs la présomption s'applique. Le 25 octobre 1972, elle approuve des juges d'appel qui écartent la présomption pour un mur séparant un bâtiment et une cour. Le 7 mars 1973, elle juge que la présomption n'a pas lieu quand il n'existe de bâtiment que d'un seul côté du mur.</p>
+        <p style="color:var(--body); line-height:1.75">De même, le 15 juin 1994, elle juge qu'un mur de soutènement, dont la forme et la destination montrent qu'il retient les terres d'un seul terrain, appartient seul à ce propriétaire. Le 5 novembre 2003, elle casse un arrêt qui avait déclaré mitoyen, par la seule présomption, un mur implanté tantôt sur un terrain, tantôt sur l'autre.</p>
+        <p style="color:var(--body); line-height:1.75">L'article 654 décrit les marques de non-mitoyenneté du tableau ci-dessous. Une marque ou une possession prolongée peut écarter la présomption.</p>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)"><th style="padding:10px 12px">Ce que tu observes sur le mur (article 654)</th><th style="padding:10px 12px">Qui est présumé propriétaire</th></tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Le sommet est droit et à plomb de la face du mur d'un côté, et en pente de l'autre</td><td style="padding:10px 12px; vertical-align:top">Le propriétaire du côté de la pente, par où l'eau s'écoule (l'égout)</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Un chaperon (la couverture du sommet) a été posé, dès la construction, d'un seul côté du mur</td><td style="padding:10px 12px; vertical-align:top">Le propriétaire du côté de l'égout</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Des filets ou des corbeaux, des saillies de pierre qui dépassent du mur, ont été posés, dès la construction, d'un seul côté du mur</td><td style="padding:10px 12px; vertical-align:top">Le propriétaire de ce côté</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABLEAU -->
+    <section class="section" id="tableau">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Que peut faire chaque voisin avec le mur mitoyen ?</h2>
+        <p class="lead" style="margin-bottom:20px">Chaque acte sur le mur mitoyen relève d'un article du Code civil, qui dit s'il se fait librement ou avec l'accord du voisin.</p>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)"><th style="padding:10px 12px">Article</th><th style="padding:10px 12px">Acte sur le mur</th><th style="padding:10px 12px">Régime</th></tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>655</strong></td><td style="padding:10px 12px; vertical-align:top">Réparer et reconstruire le mur</td><td style="padding:10px 12px; vertical-align:top">À la charge de tous ceux qui y ont droit, proportionnellement au droit de chacun</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>656</strong></td><td style="padding:10px 12px; vertical-align:top">Abandonner sa part</td><td style="padding:10px 12px; vertical-align:top">Possible pour échapper aux frais, sauf si le mur soutient un bâtiment du copropriétaire ou lui procure un avantage particulier</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>657</strong></td><td style="padding:10px 12px; vertical-align:top">Bâtir contre le mur et y placer des poutres ou des solives (poutres de plancher)</td><td style="padding:10px 12px; vertical-align:top">Possible dans toute l'épaisseur du mur, à 54 millimètres près. Le voisin peut faire réduire la poutre jusqu'à la moitié du mur s'il veut y poser la sienne</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>658 à 660</strong></td><td style="padding:10px 12px; vertical-align:top">Exhausser (surélever) le mur</td><td style="padding:10px 12px; vertical-align:top">Possible aux frais exclusifs de celui qui exhausse, avec reconstruction complète si le mur ne supporte pas l'exhaussement (659). Le voisin peut ensuite en acquérir la mitoyenneté (660)</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>662</strong></td><td style="padding:10px 12px; vertical-align:top">Pratiquer un enfoncement dans le mur ou y appuyer une construction</td><td style="padding:10px 12px; vertical-align:top">Accord du voisin, ou, à son refus, experts qui fixent les moyens pour que la construction ne nuise pas au voisin</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top"><strong>675</strong></td><td style="padding:10px 12px; vertical-align:top">Ouvrir une fenêtre ou une ouverture dans le mur</td><td style="padding:10px 12px; vertical-align:top">Accord du voisin, même pour un verre dormant (une vitre fixe qui ne s'ouvre pas)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--body); line-height:1.75">Dans un cas pratique, tu repères d'abord ce que le voisin veut faire sur le mur, puis l'article qui s'applique. L'article 657 autorise à bâtir contre le mur et à y poser des poutres, et l'article 658 à le surélever. En revanche, dès qu'une construction s'enfonce dans le mur ou s'y appuie, l'article 662 demande l'accord du voisin ou, à son refus, un règlement par experts. Enfin, pour une fenêtre, l'article 675 exige l'accord du voisin.</p>
+        <p style="color:var(--body); line-height:1.75">Les articles 657 et 662 se recoupent, puisque bâtir contre un mur revient souvent à s'y appuyer. Pourtant, le juge peut laisser en place une construction appuyée sur le mur sans l'accord du voisin. Le 16 juin 2004, la Cour de cassation approuve le refus de démolir un bâtiment construit contre un mur mitoyen, alors que la voisine du constructeur invoquait l'article 662. Le bâtiment ne s'appuyait que sur 90 centimètres du mur. L'expert n'avait constaté ni enfoncement ni atteinte à la solidité, et aucune nuisance n'en résultait.</p>
+        <p style="color:var(--body); line-height:1.75">L'exhaussement reste la propriété exclusive de celui qui l'a fait tant que le voisin n'en a pas acquis la mitoyenneté. Ainsi, le 22 mars 2006, la Cour de cassation casse un arrêt qui refusait de démolir un second exhaussement. Une propriétaire avait exhaussé le mur et couvert l'exhaussement par la toiture de son garage, puis ses voisins avaient construit un second exhaussement sur le premier, en découpant cette toiture. La cour d'appel invoquait l'article 660, qui permet d'acquérir la mitoyenneté de l'exhaussement. Mais elle avait relevé elle-même l'atteinte au droit de propriété. La Cour de cassation s'appuie sur l'article 545, qui interdit, sauf pour cause d'utilité publique, de contraindre quelqu'un à céder sa propriété.</p>
+      </div>
+    </section>
+
+    <!-- ACQUISITION ET ABANDON -->
+    <section class="section section--alt" id="acquisition-abandon">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Comment acquérir la mitoyenneté d'un mur, ou l'abandonner ?</h2>
+        <p class="lead" style="margin-bottom:20px">Un voisin peut acquérir la mitoyenneté d'un mur en remboursant le propriétaire, et un copropriétaire peut l'abandonner dans les cas que prévoit le Code civil.</p>
+        <p style="color:var(--body); line-height:1.75">L'article 661 donne à tout propriétaire dont le terrain touche un mur la faculté de le rendre mitoyen, en tout ou en partie. Ce propriétaire rembourse la moitié de ce que le mur a coûté, estimée à la date de l'acquisition d'après l'état du mur. Il rembourse aussi la moitié de la valeur du sol sur lequel le mur est bâti. Si Lucie a construit un mur sur la limite de son terrain, Pierre, dont le terrain touche ce mur, peut donc le rendre mitoyen contre ce remboursement, et Lucie doit l'accepter. Pour appliquer l'article 661, tu cherches d'abord quel voisin possède le terrain qui touche le mur, car lui seul peut l'invoquer.</p>
+        <p style="color:var(--body); line-height:1.75">Cette faculté a été contestée devant le Conseil constitutionnel, qui a jugé l'article 661 conforme à la Constitution le 12 novembre 2010. Le Conseil retient que le droit du propriétaire devient seulement indivis, et que cet accès forcé répond à un motif d'intérêt général, car la mitoyenneté permet de clore et de construire à moindre coût et d'utiliser l'espace de façon rationnelle.</p>
+        <p style="color:var(--body); line-height:1.75">En outre, la Cour de cassation limite de trois façons cette acquisition forcée. Selon un arrêt du 30 juin 1992, le constructeur d'un mur séparatif ne peut pas obliger son voisin à en acquérir la mitoyenneté. Un mur qui dépasse la limite et occupe une partie du terrain voisin ne peut pas non plus devenir mitoyen de cette façon, quel qu'en soit l'auteur, comme elle le juge le 19 février 2014. Enfin, pour la mitoyenneté d'un exhaussement, elle juge le 30 septembre 2021 que la cession a lieu à la date de la demande, à la seule condition que le prix soit payé, sans publication de l'acte au fichier immobilier.</p>
+        <p style="color:var(--body); line-height:1.75">À l'inverse, l'article 656 permet de sortir de la mitoyenneté. Un copropriétaire peut abandonner son droit pour ne plus payer les réparations ni la reconstruction du mur. Il ne le peut pas si le mur soutient un bâtiment qui lui appartient, puisqu'il profite encore du mur. Le mur devient alors la propriété de l'autre voisin.</p>
+        <p style="color:var(--body); line-height:1.75">La Cour de cassation ajoute d'autres cas où l'abandon est refusé. Dans un arrêt du 23 novembre 1976, elle juge qu'un copropriétaire ne peut pas abandonner sa part lorsqu'il retire du mur un avantage particulier, par exemple quand le mur soutient les terres de son propre terrain. Il ne le peut pas non plus pour échapper à des dépenses rendues nécessaires par son fait, comme l'effondrement d'un mur qu'il a mal entretenu. Le 25 septembre 2002, elle refuse l'abandon au syndicat des copropriétaires d'un immeuble, car son mur de soutènement, que les parties avaient convenu de rendre mitoyen, était indispensable à la plate-forme de son terrain de tennis.</p>
+      </div>
+    </section>
+
+    <!-- CLOTURES -->
+    <section class="section" id="clotures">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Les mêmes règles valent-elles pour la clôture, le fossé et la haie ?</h2>
+        <p class="lead" style="margin-bottom:20px">Les règles du mur s'appliquent en grande partie à la clôture, au fossé et à la haie, sauf l'acquisition forcée de l'article 661, que l'article 668 interdit pour la haie et le fossé non mitoyens.</p>
+        <p style="color:var(--body); line-height:1.75">Dans les villes et faubourgs, l'article 663 permet à un propriétaire de contraindre son voisin à contribuer aux constructions et réparations de la clôture qui sépare leurs maisons, cours et jardins. À défaut de règlement ou d'usage, un mur de séparation construit ou rétabli doit mesurer au moins 3,20 mètres, chaperon compris, dans les villes de cinquante mille habitants et plus, et 2,60 mètres dans les autres. Le 19 mars 2008, la Cour de cassation juge qu'un vieux mur situé à environ cinquante centimètres en retrait de la limite ne fait pas obstacle à cette demande, puisqu'aucune clôture n'existe alors sur la limite elle-même. À la campagne, l'article 647 laisse chacun libre de clore son terrain.</p>
+        <p style="color:var(--body); line-height:1.75">L'article 666 applique aussi la présomption aux clôtures. Toute clôture qui sépare deux terrains est réputée mitoyenne, à moins qu'un seul des deux terrains soit clos, ou qu'un titre, la prescription ou une marque prouve le contraire. Pour un fossé, la marque de non-mitoyenneté est en revanche la terre sortie du fossé et déposée d'un seul côté, et le fossé est censé appartenir au propriétaire de ce côté.</p>
+        <p style="color:var(--body); line-height:1.75">Une fois mitoyenne, la clôture s'entretient à frais communs. L'article 667 permet pourtant à chaque voisin d'y échapper en renonçant à la mitoyenneté, sauf si le fossé sert habituellement à l'écoulement des eaux.</p>
+        <p style="color:var(--body); line-height:1.75">Pour la haie et le fossé non mitoyens, l'article 668 interdit au voisin dont le terrain les touche d'obliger leur propriétaire à lui en céder la mitoyenneté. Le copropriétaire d'une haie mitoyenne peut en revanche la détruire jusqu'à la limite de son propre terrain, à condition de construire un mur sur cette limite. L'article 668 donne le même droit au copropriétaire d'un fossé mitoyen qui ne sert qu'à la clôture.</p>
+        <p style="color:var(--body); line-height:1.75">Par ailleurs, l'article 669 partage par moitié les produits d'une haie mitoyenne. Selon l'article 670, les arbres de la haie sont mitoyens comme elle et ceux de la limite entre les deux terrains sont réputés mitoyens, si bien que chaque propriétaire peut exiger qu'ils soient arrachés.</p>
+        <p style="color:var(--body); line-height:1.75">Face à une haie, tu vérifies d'abord qu'elle est plantée sur la limite entre les deux terrains. La Cour de cassation approuve en effet, le 13 février 1970, des juges d'appel qui retiennent qu'une haie n'est mitoyenne que dans ce cas.</p>
+        <p style="color:var(--body); line-height:1.75">Par ailleurs, les articles 671 à 673 concernent les plantations près de la limite, avec ou sans mur mitoyen. Ils fixent les distances à respecter et permettent de faire arracher les arbres trop proches. En outre, le voisin peut faire couper les branches qui avancent chez lui, et il coupe lui-même les racines. Ainsi, à défaut de règlement ou d'usage, l'article 671 impose de planter à deux mètres de la limite lorsque la plantation dépasse deux mètres, et à un demi-mètre dans les autres cas.</p>
+      </div>
+    </section>
+
+    <!-- CAS RESOLU -->
+    <section class="section section--alt" id="cas">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Cas résolu : un mur de jardin, une surélévation et des réparations</h2>
+        <p class="lead" style="margin-bottom:20px">Quand ton énoncé décrit un mur entre deux voisins, tu dis d'abord si le mur est mitoyen, puis tu examines chaque acte.</p>
+        <p style="color:var(--body); line-height:1.75">Un mur de pierre sépare le jardin de Mme Roche de celui de M. Fabre. Aucun titre ne mentionne ce mur, et son sommet est plat des deux côtés, sans chaperon ni saillie de pierre.</p>
+        <ol style="color:var(--body); line-height:1.8; margin:0 0 18px; padding-left:22px">
+          <li>M. Fabre soutient que le mur lui appartient seul, mais il n'invoque ni titre ni possession prolongée.</li>
+          <li>M. Fabre veut surélever le mur d'un mètre pour s'abriter des regards. Or le mur n'est pas assez solide pour supporter cette surélévation.</li>
+          <li>Mme Roche a construit un garage dont la charpente repose sur le mur. Elle refuse de payer la réparation d'une fissure et abandonne sa part du mur.</li>
+        </ol>
+        <p style="color:var(--body); line-height:1.75"><strong>La qualification du mur.</strong> Le mur sépare deux jardins, et l'article 653 le présume mitoyen. M. Fabre doit prouver le contraire, mais l'énoncé ne contient ni titre ni possession prolongée, et le sommet, plat et sans chaperon ni saillie, ne porte aucune marque de l'article 654. Le mur est donc mitoyen.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>La surélévation.</strong> M. Fabre peut exhausser le mur sans l'accord de Mme Roche, mais l'article 658 lui impose de payer seul la dépense et de rembourser à Mme Roche les frais que l'exhaussement lui cause. Comme le mur ne supporte pas cette charge, l'article 659 l'oblige à le reconstruire en entier à ses frais, avec l'excédent d'épaisseur pris sur son terrain. Mme Roche pourra ensuite acquérir la mitoyenneté de la partie surélevée en payant la moitié de la dépense et la valeur de la moitié du sol fourni pour l'excédent d'épaisseur, selon l'article 660.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>L'abandon.</strong> L'article 656 interdit l'abandon quand le mur soutient un bâtiment qui appartient au copropriétaire. En effet, la charpente du garage de Mme Roche repose sur le mur, qui soutient donc un bâtiment lui appartenant. L'abandon est exclu, et elle reste tenue de participer à la réparation de la fissure, proportionnellement à son droit, selon l'article 655.</p>
+        <p style="color:var(--body); line-height:1.75"><strong>La conclusion.</strong> Le mur est mitoyen. M. Fabre peut donc le surélever, à condition de le reconstruire en entier à ses frais. En revanche, Mme Roche ne peut pas abandonner sa part tant que son garage s'appuie sur le mur, et elle doit payer sa part de la réparation de la fissure.</p>
+      </div>
+    </section>
+
+    <!-- ERREURS -->
+    <section class="section" id="erreurs">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Les erreurs à éviter en copie sur la mitoyenneté</h2>
+        <p class="lead" style="margin-bottom:20px">Ces quatre erreurs te font perdre des points dans une question de cours comme dans un cas pratique.</p>
+        <ul style="color:var(--body); line-height:1.8; margin:0 0 18px; padding-left:22px">
+          <li><strong>Appliquer la présomption à toute la hauteur d'un mur entre deux bâtiments inégaux.</strong> L'article 653 présume le mur mitoyen jusqu'à l'héberge, et la partie qui ne sert qu'au bâtiment le plus haut est présumée appartenir à son propriétaire.</li>
+          <li><strong>Citer l'article 662 pour une fenêtre.</strong> L'article 662 vise les enfoncements et les constructions appuyées sur le mur, avec un règlement par experts si le voisin refuse. Une fenêtre relève de l'article 675, qui exige l'accord du voisin sans prévoir d'expertise.</li>
+          <li><strong>Écrire qu'un voisin peut demander le partage du mur mitoyen.</strong> La mitoyenneté est une copropriété forcée et perpétuelle. Le voisin qui ne veut plus du mur abandonne sa part, comme l'article 656 le permet.</li>
+          <li><strong>Oublier les limites de l'abandon.</strong> L'article 656 interdit l'abandon quand le mur soutient un bâtiment du copropriétaire, et la Cour de cassation l'interdit aussi quand il en retire un avantage particulier. Quand un voisin annonce qu'il abandonne sa part, il faut regarder ce que le mur soutient ou retient.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--alt" id="faq">
+      <div class="container container--narrow">
+        <h2 class="h2 text-center" style="margin-bottom:32px">Questions fréquentes sur la mitoyenneté</h2>
+        <div class="accordion">
+          <details class="accordion__item" open><summary><h3>Peut-on percer une fenêtre dans un mur mitoyen ?</h3></summary><div class="accordion__body">Seulement avec l'accord du voisin. L'article 675 du Code civil interdit à l'un des voisins de pratiquer dans le mur mitoyen une fenêtre ou une ouverture sans le consentement de l'autre, même à verre dormant.</div></details>
+          <details class="accordion__item"><summary><h3>Qui paie la réparation d'un mur mitoyen ?</h3></summary><div class="accordion__body">Tous ceux qui ont des droits sur le mur, proportionnellement au droit de chacun, d'après l'article 655. Le copropriétaire qui a rendu les travaux nécessaires par son propre fait les paie seul, comme la Cour de cassation le juge le 19 octobre 2005. Un copropriétaire peut aussi se dispenser de payer en abandonnant sa mitoyenneté, sauf si le mur soutient un de ses bâtiments ou lui procure un avantage particulier, d'après l'article 656.</div></details>
+          <details class="accordion__item"><summary><h3>Comment prouver qu'un mur n'est pas mitoyen ?</h3></summary><div class="accordion__body">Il existe trois moyens. Le titre est un acte qui attribue le mur à un seul propriétaire. La marque de non-mitoyenneté de l'article 654 est un signe visible sur le mur, par exemple un sommet droit d'un côté et en pente de l'autre. Enfin, la prescription acquisitive, c'est-à-dire la possession prolongée du mur comme propriétaire, permet aussi de le prouver.</div></details>
+          <details class="accordion__item"><summary><h3>Peut-on rendre mitoyen le mur de son voisin ?</h3></summary><div class="accordion__body">Oui, quand le terrain touche le mur. Le propriétaire de ce terrain peut le rendre mitoyen en tout ou en partie, en remboursant la moitié de ce que le mur a coûté et la moitié de la valeur du sol, d'après l'article 661. Un mur qui occupe une partie du terrain voisin ne peut pas devenir mitoyen de cette façon, et l'article 668 interdit cette acquisition pour une haie ou un fossé non mitoyens.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAILLAGE -->
+    <section class="section" id="aller-plus-loin">
+      <div class="container container--narrow text-center">
+        <h2 class="h2">Pour aller plus loin en droit des biens</h2>
+        <div class="flex flex--col" style="gap:12px; max-width:560px; margin:24px auto 0">
+          <a class="btn btn--outline btn--full" href="arret-troubles-voisinage-1986-explique.html">L'arrêt de 1986 sur les troubles de voisinage expliqué</a>
+          <a class="btn btn--outline btn--full" href="accession-construction-terrain-autrui.html">Construire sur le terrain d'autrui, l'accession de l'article 555</a>
+          <a class="btn btn--outline btn--full" href="fiche-revision-droit-des-biens-l2.html">Fiche de révision de droit des biens L2 : PDF et programme</a>
+          <a class="btn btn--outline btn--full" href="droit-des-biens-l2.html">Droit des biens L2 · fiches et cours</a>
+        </div>
+        <p style="margin-top:18px"><a href="formations.html">Comparer toutes les fiches complètes →</a></p>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <div class="author-box">
+          <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+          <div>
+            <p class="author-box__name">Julien</p>
+            <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+            <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">164 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- fin-article:pack-ultra -->
+    <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
+      <div class="container">
+        <p class="article-pack-ligne__texte">Le Pack Ultra L2 S2 réunit les 30 ressources de ton second semestre de L2 pour 239 €, la fiche de droit des biens L2 comprise. <a href="pack-ultra.html#pack-ultra-l2-s2">Voir le contenu du pack →</a></p>
+        <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (la mitoyenneté en droit des biens)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit des biens L2 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-biens-l2">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=60767dcf" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=da4d9620" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=ee98d119" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>
