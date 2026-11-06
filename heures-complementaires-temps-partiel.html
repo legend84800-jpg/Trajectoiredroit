@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#1A2851">
+  <title>Heures complémentaires, calcul du dixième et du tiers</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Calcule les heures complémentaires d'un temps partiel. Exemples de contrats de 26 et 30 heures, plafonds, conversion en minutes et majorations du salaire.">
+  <link rel="canonical" href="https://trajectoiredroit.com/heures-complementaires-temps-partiel.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Heures complémentaires, calcul du dixième et du tiers">
+  <meta property="og:description" content="Calcule les heures complémentaires d'un temps partiel. Exemples de contrats de 26 et 30 heures, plafonds, conversion en minutes et majorations du salaire.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/covers/fiche-travail-l3-s1.webp?v=dossier-universitaire-20260915">
+  <meta property="og:url" content="https://trajectoiredroit.com/heures-complementaires-temps-partiel.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Heures complémentaires, calcul du dixième et du tiers",
+      "description": "Calcule les heures complémentaires d'un temps partiel. Exemples de contrats de 26 et 30 heures, plafonds, conversion en minutes et majorations du salaire.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-11-06",
+      "dateModified": "2026-11-06",
+      "mainEntityOfPage": "https://trajectoiredroit.com/heures-complementaires-temps-partiel.html",
+      "image": "https://trajectoiredroit.com/assets/covers/fiche-travail-l3-s1.webp?v=dossier-universitaire-20260915",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "url": "https://trajectoiredroit.com/a-propos.html"
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "Trajectoire Droit",
+        "url": "https://trajectoiredroit.com/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Le dixième de 26 heures fait-il 2 h 06 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le dixième représente 2,6 heures, soit 2 h 36. En effet, les 0,6 heure correspondent à 0,6 × 60 minutes. Tu obtiens donc 36 minutes à ajouter aux deux heures entières."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Un accord autorisant le tiers permet-il d'atteindre 35 heures ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le total doit rester strictement sous le temps complet applicable, même si le tiers est autorisé. Pour un temps complet de 35 heures, un total de 35 heures est donc déjà interdit. Une durée conventionnelle de temps complet inférieure impose ce seuil inférieur."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel taux s'applique au-delà du dixième ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "À défaut de stipulation conventionnelle pertinente, les heures autorisées au-delà du dixième et dans la limite du tiers sont majorées de 25 %. Un accord de branche étendu peut fixer un autre taux, avec un minimum de 10 %. Il faut donc identifier le régime applicable avant de calculer leur rémunération."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://trajectoiredroit.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Heures complémentaires",
+          "item": "https://trajectoiredroit.com/heures-complementaires-temps-partiel.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=6a441fef">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>8 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a href="droit-penal-general-l1.html" role="menuitem">Droit pénal général (S2)</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 474,64 €, 45 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-45 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">474,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 349,74 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">349,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 449,67 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">449,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 399,70 €, 40 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-40 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 569,58 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">569,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span><span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>164 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main id="main-content"><article>
+<section class="article-hero"><div class="container container--narrow">
+<nav class="article-breadcrumb" aria-label="Fil d'Ariane"><a href="/">Accueil</a> · <a href="droit-du-travail-l3.html">Droit du travail L3</a> · <span>Heures complémentaires</span></nav>
+<div class="post-meta"><span class="post-meta__cat">Droit du travail · L3</span><span class="post-meta__dot"></span><span>6 novembre 2026</span></div>
+<h1 class="article-hero__title">Heures complémentaires, calcul du dixième et du tiers</h1>
+<p class="article-hero__standfirst">Les heures complémentaires s'ajoutent à la durée d'un contrat à temps partiel. À défaut d'accord pertinent, leur plafond est le dixième de la durée contractuelle. Un accord peut le porter au tiers, tout en restant strictement sous le temps complet. Pour 26 heures, le dixième fait donc 2 h 36. Le taux de majoration se vérifie ensuite séparément.</p>
+<div class="article-author"><img class="article-author__avatar" src="assets/julien-sm.webp" alt="Julien, professeur de droit"><div><div class="article-author__name">Julien</div><div class="article-author__role">Professeur de droit</div></div></div>
+<div data-tjd-pdf-offert="matiere" data-id="cas-pratique-travail-l3" data-titre="Un cas pratique corrigé de droit du travail" data-texte="Tu reçois un exemple de règle appliquée aux faits, pour travailler le raisonnement dans ta copie." data-bouton="Recevoir le corrigé"></div>
+</div></section>
+<section class="conversion-offer" aria-labelledby="offre-heures-titre"><div class="container container--narrow"><div class="conversion-offer__card"><div class="conversion-offer__visual"><img src="assets/covers/fiche-travail-l3-s1.webp?v=dossier-universitaire-20260915" alt="Couverture de la fiche complète de droit du travail L3" width="960" height="540" decoding="async"></div><div><p class="conversion-offer__eyebrow">La fiche complète de la matière</p><h2 class="conversion-offer__title" id="offre-heures-titre">Le temps partiel dans la fiche de droit du travail L3</h2><p>La fiche reprend les conditions du contrat et le calcul des heures complémentaires. Elle les relie ensuite aux autres chapitres du programme.</p><div class="conversion-offer__choices"><button type="button" class="btn btn--primary" data-tjd-produit="fiche-travail-l3-s1">Acheter la fiche · 14,99 €</button><a class="btn btn--outline" href="droit-du-travail-l3.html#offre">Découvrir le contenu de la fiche</a></div><p class="conversion-offer__note">PDF envoyé par email après le paiement · accès à vie</p><div data-tjd-avis data-matiere="travail-l3"></div></div></div></div></section>
+<section class="section" style="padding-top:36px"><div class="container container--narrow"><nav class="toc" aria-label="Sommaire"><p class="toc__title">Dans cet article</p><ol><li><a href="#definition">Identifier les heures complémentaires</a></li><li><a href="#dixieme">Calculer le dixième et convertir les minutes</a></li><li><a href="#tiers">Appliquer le tiers autorisé</a></li><li><a href="#temps-complet">Vérifier la limite du temps complet</a></li><li><a href="#majoration">Retrouver le taux de majoration</a></li><li><a href="#cas-corrige">Résoudre le cas du contrat de 26 heures</a></li><li><a href="#methode">Présenter le calcul en cas pratique</a></li><li><a href="#faq">Questions fréquentes</a></li></ol></nav><div class="prose">
+<h2 id="definition">À quoi correspondent les heures complémentaires ?</h2>
+<p>Un salarié à temps partiel travaille moins que la durée du temps complet applicable. Son contrat prévoit une durée, par exemple 26 heures par semaine. Lorsqu'il travaille 28 heures au cours d'une semaine soumise à ce décompte, les deux heures ajoutées sont des <strong>heures complémentaires</strong>. Tu pars donc de la durée du contrat pour les compter.</p>
+<p>Les heures supplémentaires correspondent à un autre régime. Elles concernent le dépassement de la durée légale pour un salarié à temps complet. En revanche, les heures complémentaires restent attachées au contrat à temps partiel et doivent respecter leur propre plafond. Dans un cas pratique, tu commences ainsi par identifier le contrat avant de choisir la règle de calcul.</p>
+<p>Les exemples de cette page utilisent une durée contractuelle hebdomadaire et un temps complet fixé à 35 heures. Le contrat peut toutefois fixer une durée mensuelle. Le dixième ou le tiers se calcule alors sur la durée mensuelle prévue au contrat. Tu compares les heures complémentaires accomplies au cours du même mois à ce plafond.</p>
+<p>Un accord collectif conclu sur le fondement de l'article L. 3121-44 peut également fixer une autre période de décompte. Les articles L. 3123-20 et L. 3123-28 reprennent la durée prévue au contrat sur cette période pour calculer les plafonds. Tu dois donc retenir la période applicable avant de commencer le calcul. Le cadre du chapitre se retrouve dans la <a href="fiche-revision-droit-du-travail-l3.html">fiche de révision de droit du travail L3</a>.</p>
+
+<h2 id="dixieme">Comment calculer le dixième de la durée contractuelle ?</h2>
+<p>À défaut de l'accord collectif permettant une autre limite, l'<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019950">article L. 3123-28 du Code du travail</a> limite les heures complémentaires au <strong>dixième de la durée prévue au contrat</strong>. Pour trouver ce dixième, tu divises cette durée par dix. Le résultat indique un nombre d'heures, car le calcul porte sur une durée.</p>
+<p>Pour un contrat de 26 heures, tu calcules donc <strong>26 ÷ 10 = 2,6 heures</strong>. Les deux heures entières sont déjà identifiées. Il reste ensuite à convertir les six dixièmes d'heure en minutes. Une heure contenant 60 minutes, tu multiplies 0,6 par 60 et tu obtiens 36 minutes.</p>
+<p>Le dixième de 26 heures représente ainsi <strong>2 h 36</strong>. Avec ces heures complémentaires, le total atteint 28 h 36. La virgule désigne une fraction d'heure. Elle ne permet pas de lire le nombre de minutes directement, car les minutes se comptent sur une base de soixante.</p>
+<div class="card"><h3>Le calcul à écrire dans ta copie</h3><p>« La durée contractuelle est de 26 heures par semaine. À défaut d'accord modifiant le plafond, les heures complémentaires sont limitées à un dixième de cette durée. Ce dixième représente 2,6 heures, soit 2 h 36. Le total hebdomadaire peut donc atteindre 28 h 36 dans cette hypothèse. »</p></div>
+<p>Cette rédaction donne la règle et son application. De plus, elle permet au correcteur de vérifier la conversion. Si tu écris seulement « 10 % », il manque encore la durée à laquelle tu appliques ce pourcentage et le résultat obtenu.</p>
+
+<h2 id="tiers">Quand la limite peut-elle être portée au tiers ?</h2>
+<p>L'<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019991">article L. 3123-20</a> permet à un accord d'entreprise ou d'établissement de porter la limite des heures complémentaires jusqu'au <strong>tiers de la durée contractuelle</strong>. À défaut d'un tel accord, un accord de branche étendu peut le prévoir. Tu dois donc retrouver le texte applicable avant d'utiliser le tiers.</p>
+<p>Pour 26 heures, le tiers donne 26 ÷ 3, soit 8 heures et deux tiers d'heure. Les deux tiers d'une heure représentent en effet 40 minutes. Le plafond autorisé dans cette hypothèse est donc de <strong>8 h 40 d'heures complémentaires</strong>. Avec les 26 heures prévues au contrat, le total atteint 34 h 40.</p>
+<p>Le dixième et le tiers correspondent à deux plafonds possibles. En revanche, la limite réellement applicable dépend de l'accord. L'existence d'une majoration de salaire ne suffit pas à autoriser le tiers. Tu vérifies d'abord le nombre d'heures permis, puis la rémunération de celles qui sont accomplies.</p>
+<p>Le contrat reste fixé à 26 heures dans les deux hypothèses. La différence vient donc de l'accord applicable.</p>
+<div style="overflow-x:auto"><table><thead><tr><th>Régime applicable</th><th>Heures complémentaires</th><th>Total avec le contrat de 26 h</th></tr></thead><tbody><tr><td>Dixième à défaut d'accord pertinent</td><td>2 h 36</td><td>28 h 36</td></tr><tr><td>Tiers autorisé par l'accord applicable</td><td>8 h 40</td><td>34 h 40</td></tr></tbody></table></div>
+
+<h2 id="temps-complet">Pourquoi un contrat de 30 heures ne permet-il pas d'ajouter dix heures ?</h2>
+<p>L'<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020058">article L. 3123-9</a> pose une autre limite. Les heures complémentaires doivent maintenir la durée accomplie <strong>strictement sous le temps complet applicable</strong>. Le texte vise notamment la durée légale ou, si elle est inférieure, la durée conventionnelle. Le plafond calculé sur le contrat reste donc soumis à ce contrôle.</p>
+<p>Avec un contrat de 30 heures, le dixième représente trois heures. Le total de 33 heures reste donc sous les 35 heures de notre exemple. En revanche, le tiers représenterait dix heures et conduirait à 40 heures. Même lorsqu'un accord autorise le tiers, ce résultat se heurte à la limite du temps complet.</p>
+<p>Une durée de 35 heures atteint déjà le seuil interdit. Ainsi, cinq heures complémentaires ajoutées aux 30 heures du contrat ne respectent pas l'article L. 3123-9 dans cette hypothèse. Avec 4 h 30 complémentaires, le total est en revanche de 34 h 30 et reste sous le temps complet. Il faut encore que ces heures entrent dans le plafond contractuel et conventionnel applicable.</p>
+<p>Le même raisonnement s'applique si une durée conventionnelle de temps complet inférieure à 35 heures gouverne le cas. Tu remplaces alors le seuil de comparaison par cette durée. Le calcul d'un tiers reste une étape arithmétique. Il demande ensuite ce contrôle juridique pour trouver le volume autorisé.</p>
+
+<h2 id="majoration">Comment distinguer le plafond et la majoration du salaire ?</h2>
+<p>Le plafond répond à la question du nombre d'heures autorisées. La <strong>majoration</strong> indique ensuite le supplément de rémunération de chaque heure. Ces deux vérifications portent donc sur des objets différents. Un employeur qui paie les heures plus cher doit encore respecter les limites de durée.</p>
+<p>L'<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019988">article L. 3123-21</a> permet à un accord de branche étendu de fixer le taux de majoration, avec un minimum de 10 %. En revanche, l'accord qui autorise un volume allant jusqu'au tiers relève de L. 3123-20. Tu distingues ainsi le texte qui ouvre un volume d'heures et celui qui fixe le taux payé.</p>
+<p>À défaut de stipulation conventionnelle pertinente, l'<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019947">article L. 3123-29</a> fixe les taux suivants.</p>
+<ul><li>Les heures accomplies dans la limite du dixième sont majorées de <strong>10 %</strong>.</li><li>Les heures accomplies au-delà du dixième et dans la limite du tiers sont majorées de <strong>25 %</strong>.</li></ul>
+<p>La seconde tranche suppose que les heures situées au-delà du dixième soient autorisées. De plus, les deux tranches continuent de respecter la limite du temps complet. Dans ta copie, tu peux donc traiter la durée autorisée avant de calculer les sommes dues.</p>
+
+<p>Le contrôle du plafond permet de relever une irrégularité éventuelle dans le nombre d'heures. Les heures déjà accomplies restent toutefois à rémunérer selon le régime applicable. En effet, l'<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020061">article L. 3123-8</a> prévoit une majoration pour chacune des heures complémentaires accomplies. Tu traites donc séparément le volume autorisé et les sommes dues.</p>
+
+<h2 id="cas-corrige">Un contrat de 26 heures, une semaine de 33 heures</h2>
+<p>Le contrat d'une salariée prévoit 26 heures par semaine. Cette semaine, elle travaille 33 heures. Le cas donne les précisions suivantes.</p>
+<ul><li>Un accord applicable autorise les heures complémentaires jusqu'au tiers.</li><li>Le salaire horaire de base est de 20 euros brut.</li><li>Les taux du Code du travail s'appliquent faute d'accord de branche portant sur leur montant.</li><li>Le temps complet applicable est de 35 heures.</li></ul>
+<h3>Vérifier d'abord le volume accompli</h3>
+<p>La salariée a accompli <strong>33 − 26 = 7 heures complémentaires</strong>. Le tiers des 26 heures autoriserait au maximum 8 h 40 dans notre hypothèse. Les sept heures restent donc sous ce plafond. De plus, le total de 33 heures reste strictement sous le temps complet de 35 heures.</p>
+<h3>Répartir ensuite les heures entre les deux tranches</h3>
+<p>Le dixième des 26 heures représente 2 h 36, soit 2,6 heures. Cette première tranche reçoit donc la majoration de 10 %. Il reste ensuite <strong>7 − 2,6 = 4,4 heures</strong>, soit 4 h 24, au-delà du dixième. Cette seconde tranche reçoit la majoration de 25 %.</p>
+<p>La conversion permet de vérifier le total. En effet, 2 h 36 et 4 h 24 font sept heures. Les minutes de la seconde tranche viennent de 0,4 × 60, soit 24 minutes. Tu peux ainsi contrôler que toutes les heures accomplies ont été réparties une seule fois.</p>
+<h3>Calculer la rémunération de ces heures</h3>
+<p>Une majoration de 10 % porte le taux horaire de 20 euros à <strong>22 euros</strong>. Une majoration de 25 % le porte à <strong>25 euros</strong>. Tu appliques ensuite chaque taux au nombre d'heures de sa tranche.</p>
+<div style="overflow-x:auto"><table><thead><tr><th>Tranche</th><th>Calcul</th><th>Rémunération brute</th></tr></thead><tbody><tr><td>2 h 36, soit 2,6 h, majorées de 10 %</td><td>2,6 × 22 €</td><td>57,20 €</td></tr><tr><td>4 h 24, soit 4,4 h, majorées de 25 %</td><td>4,4 × 25 €</td><td>110 €</td></tr><tr><td>Total des sept heures complémentaires</td><td>57,20 € + 110 €</td><td><strong>167,20 €</strong></td></tr></tbody></table></div>
+<p>Ces 167,20 euros rémunèrent les sept heures complémentaires, majorations comprises. Ils s'ajoutent donc au salaire correspondant aux heures prévues par le contrat. Si la question portait seulement sur le supplément lié aux majorations, il faudrait isoler ce supplément. En effet, la rémunération totale des heures et leur seule majoration correspondent à deux montants différents. La seule majoration représente ici 27,20 euros. Elle s'obtient en retirant aux 167,20 euros les 140 euros que donneraient sept heures payées au taux de base de 20 euros.</p>
+
+<h2 id="methode">Dans quel ordre traiter le cas pratique ?</h2>
+<p>Tu commences par relever la durée contractuelle et la période de décompte. Ensuite, tu recherches l'accord qui permet éventuellement un plafond supérieur au dixième. Tu calcules le volume accompli au-delà du contrat et tu le compares à ce plafond. Enfin, tu vérifies que la durée totale reste strictement sous le temps complet applicable.</p>
+<p>La rémunération vient après ce contrôle. Tu retrouves le taux conventionnel ou les taux supplétifs, puis tu répartis les heures entre les tranches utiles. Cette méthode rend ainsi chaque opération vérifiable. La <a href="methode-cas-pratique.html">méthode du cas pratique juridique</a> t'aide à présenter la règle avant son application aux chiffres du sujet.</p>
+<p>Un aménagement du temps de travail sur une période supérieure à la semaine demande toutefois de reprendre cette période de référence. L'<a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000049130149">arrêt du 7 février 2024, n° 22-17.696</a>, rappelle l'importance de ce cadre dans l'appréciation du temps complet. Les exemples hebdomadaires de cette page annoncent donc leur hypothèse au lieu de généraliser leur calcul à tout dispositif.</p>
+<aside class="card"><h3>Les calculs et les règles dans le même support</h3><p>La <a href="droit-du-travail-l3.html#offre">fiche complète de droit du travail L3</a> reprend le temps partiel avec le reste du programme. Les <a href="majeures-preparees.html?produit=maj-travail-l3-s1">majeures préparées de droit du travail</a> présentent aussi les conditions à exposer dans un cas pratique. Tu peux ainsi choisir un support selon le travail que tu veux approfondir.</p></aside>
+
+<h2 id="faq">Questions fréquentes sur les heures complémentaires</h2>
+<h3>Le dixième de 26 heures fait-il 2 h 06 ?</h3>
+<p>Le dixième représente 2,6 heures, soit 2 h 36. En effet, les 0,6 heure correspondent à 0,6 × 60 minutes. Tu obtiens donc 36 minutes à ajouter aux deux heures entières.</p>
+<h3>Un accord autorisant le tiers permet-il d'atteindre 35 heures ?</h3>
+<p>Le total doit rester strictement sous le temps complet applicable, même si le tiers est autorisé. Pour un temps complet de 35 heures, un total de 35 heures est donc déjà interdit. Une durée conventionnelle de temps complet inférieure impose ce seuil inférieur.</p>
+<h3>Quel taux s'applique au-delà du dixième ?</h3>
+<p>À défaut de stipulation conventionnelle pertinente, les heures autorisées au-delà du dixième et dans la limite du tiers sont majorées de 25 %. Un accord de branche étendu peut fixer un autre taux, avec un minimum de 10 %. Il faut donc identifier le régime applicable avant de calculer leur rémunération.</p>
+
+<h2 id="sources">Les textes utilisés pour ces calculs</h2>
+<p>Les règles ont été vérifiées le 6 novembre 2026. Les dispositions suivantes permettent de retrouver séparément chaque contrôle.</p>
+<ul><li><a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020061">L. 3123-8, la majoration des heures complémentaires accomplies</a>.</li><li><a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020058">L. 3123-9, la limite du temps complet</a>.</li><li><a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019991">L. 3123-20, l'accord qui peut porter le plafond au tiers</a>.</li><li><a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019988">L. 3123-21, le taux fixé par un accord de branche étendu</a>.</li><li><a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019950">L. 3123-28, le dixième à défaut d'accord pertinent</a>.</li><li><a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019947">L. 3123-29, les taux supplétifs de majoration</a>.</li></ul>
+
+</div><p><a href="droit-du-travail-l3.html">Revenir au droit du travail L3</a></p></div></section></article></main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="majeures-preparees.html">Majeures préparées</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a><a href="blog.html">Blog</a><a href="methode-cas-pratique.html">Méthode du cas pratique</a><a href="fiche-arrets.html">Fiche d'arrêt</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (footer)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit du travail L3 · 14,99 €</strong>
+      <small>Fiche complète S1 · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-travail-l3-s1">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=60767dcf" defer></script>
+
+
+  <script src="assets/js/main.js?v=da4d9620" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=ee98d119" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+</body>
+</html>
