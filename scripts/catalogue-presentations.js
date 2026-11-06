@@ -59,12 +59,12 @@ const APERCUS = [
   { id: "cours-complet-philosophie-du-droit-l2-s1", fichier: "cours-complet-philosophie-du-droit-l2-s1.pdf", titre: "Philosophie du droit · L2 S1 · Cours complet", pages: [3, 16, 40], total: 62, sha256: "054ad880461b393a451440828047a129c40dcf3929c2bf13dc67c578e13dfe29", sha256R2: "1a3274400f91ff2694b3fd799c7971c29f9f23f397e51531175c783a73a7bf55", modificationR2: "2026-10-29T00:01:55+00:00", texteLocalIdentique: true },
 ];
 
-// Lecture authentifiée des deux objets livrés, le 29 octobre 2026.
+// Références des extraits du comparateur de formats.
 const COMPARAISON_DOL = [
-  { format: "fiche", produit: "fiche-contrats-l2-s1", cleR2: "tjd/fiche-contrats-l2-s1.pdf", total: 202, pagePDF: 88,
-    sha256PDF: "22ae131343e6e1d1898600a1c303d9d09cbfd04bb6690c556968a8c07bfd3c21", modificationR2: "2026-10-29T03:45:38+00:00",
-    image: "assets/apercus/comparatif-dol-fiche-20261029.png", sha256Image: "9b5f9740a67139cf61019496297b98a0928759ce831c32a370e5f236a349f9c0",
-    alt: "Extrait de la fiche de droit des contrats, page 88 du PDF, avec le début du chapitre sur le dol et ses éléments constitutifs" },
+  { format: "fiche", produit: "fiche-contrats-l2-s1", cleR2: "tjd/fiche-contrats-l2-s1.pdf", total: 208, pagePDF: 92,
+    sha256PDF: "45f05314c67a5e1f78f6a52b1512c0ed5186eaa4bf5d9fa3b50001778aa2d244", modificationR2: "2026-11-06T22:27:42+00:00",
+    image: "assets/apercus/comparatif-dol-fiche-20261106-hierarchie.png", sha256Image: "4d7a7d258aac0e06c3308c3531257ce0b9adf7aaa23a797f3c8de4aac82109ef",
+    alt: "Extrait de la fiche de droit des contrats, page 92 du PDF, avec le début du chapitre sur le dol et ses éléments constitutifs" },
   { format: "cours", produit: "cours-fiche-contrats-l2-s1", cleR2: "tjd/cours-fiche-contrats-l2-s1.pdf", total: 275, pagePDF: 113,
     sha256PDF: "a5c6cd7fab7f0481b0113adc197a3d0a9fdebbe2db7894111d998243379bc18a", modificationR2: "2026-10-29T03:46:08+00:00",
     image: "assets/apercus/comparatif-dol-cours-20261029.png", sha256Image: "f10c410be81942aa4bc8acd375bb923bdfd69bf6f8008dfcf724bcc75e5dfa67",
