@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/portalis.css?v=33c5f12c">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-  <script src="assets/js/portalis.js?v=a508be70" defer></script>
+  <script src="assets/js/portalis.js?v=9976b9a4" defer></script>
 </head>
 <body>
   <a class="skip" href="#contenu">Aller au contenu</a>
@@ -40,7 +40,7 @@
         <article class="plan plan-pro"><p class="plan-level">Réflexion approfondie</p><h2>Portalis IA Pro</h2><p class="plan-description">Le niveau de réflexion le plus élevé pour reprendre un exercice complexe.</p><p class="price"><strong data-price="pro">18 €</strong><span>par mois</span></p><p class="plan-volume">60 réponses par mois</p><button type="button" class="button" data-choisir="pro" disabled>Choisir Pro</button></article>
       </div>
       <p class="terms">Abonnement mensuel · Résiliation depuis ton espace, avec accès jusqu’à la fin de la période payée.</p>
-      <div class="common"><strong>Les mêmes outils dans chaque formule</strong><span>Fiche d’arrêt</span><span>Commentaire d’arrêt</span><span>Commentaire d’arrêt comparé</span><span>Cas pratique</span><span>Dissertation</span></div>
+      <div class="common"><strong>Les mêmes outils dans chaque formule</strong><span>Fiche d’arrêt</span><span>Commentaire d’arrêt</span><span>Cas pratique</span><span>Dissertation</span></div>
       <p class="common-note">Chaque formule accepte jusqu’à 15 pages et 30 000 caractères par demande, espaces compris. Tous les documents sont comptés ensemble.</p>
       <div id="choix" class="choice" hidden><div><h3 id="choixNom"></h3><p id="choixDetail"></p><p id="choixCompte"></p><label class="terms-check"><input type="checkbox" id="conditions"> J’accepte les <a href="cgu.html#portalis">conditions de vente de Portalis IA</a>.</label></div><button id="payer" type="button" class="button">Continuer vers le paiement</button></div>
       <p id="paiementMessage" class="message" role="status" hidden></p>
@@ -52,8 +52,7 @@
       <form id="exerciceForm" class="editor">
         <fieldset id="champs" disabled>
           <label for="exercice">L’exercice</label>
-          <select id="exercice" aria-describedby="commentaireCompareAide"><option value="fiche">Fiche d’arrêt</option><option value="commentaire">Commentaire d’arrêt</option><option value="commentaire-compare">Commentaire d’arrêt comparé</option><option value="cas">Cas pratique</option><option value="dissertation">Dissertation</option></select>
-          <p id="commentaireCompareAide" class="editor-note" hidden>Ajoute les arrêts à comparer pour obtenir un commentaire entièrement rédigé. Tu peux aussi joindre la méthode de ton enseignant pour que le corrigé suive ses consignes.</p>
+          <select id="exercice"><option value="fiche">Fiche d’arrêt</option><option value="commentaire">Commentaire d’arrêt</option><option value="cas">Cas pratique</option><option value="dissertation">Dissertation</option></select>
           <label for="texte">Ton texte ou ton sujet</label>
           <textarea id="texte" rows="9" maxlength="30000" placeholder="Colle ton arrêt, ton cas pratique ou ton sujet de dissertation."></textarea>
           <div class="editor-tools"><label class="upload" for="pdf">Ajouter un PDF <span>20 Mo maximum</span><input type="file" id="pdf" accept="application/pdf,.pdf"></label><p id="volume">0 / 30 000 caractères · 0 / 15 pages</p></div>
@@ -70,7 +69,7 @@
       <div id="recharges" class="recharges" hidden><div><h3>Besoin de réponses supplémentaires ?</h3><p>Ajoute une recharge ponctuelle. Son solde reste disponible avec la même formule active.</p></div><div class="recharge-actions"><button type="button" class="button button-outline" data-recharge="20"></button><button type="button" class="button button-outline" data-recharge="60"></button></div></div>
     </section>
     <section class="questions" aria-label="Questions sur Portalis IA"><h2>Avant de choisir ta formule</h2>
-      <details><summary>Comment Portalis IA prépare-t-il mon corrigé ?</summary><p>Portalis IA suit les méthodes de correction de Trajectoire Droit, adaptées à chaque exercice. Pour un cas pratique, il explique la règle applicable puis l’applique aux faits. Le commentaire d’arrêt part du raisonnement du juge pour en analyser les conséquences. Le commentaire comparé rapproche plusieurs décisions pour expliquer leurs points communs et leurs différences.</p></details>
+      <details><summary>Comment Portalis IA prépare-t-il mon corrigé ?</summary><p>Portalis IA suit les méthodes de correction de Trajectoire Droit, adaptées à chaque exercice. Pour un cas pratique, il explique la règle applicable puis l’applique aux faits. Le commentaire d’arrêt part du raisonnement du juge pour en analyser les conséquences.</p></details>
       <details><summary>Qu’est-ce qui change entre les formules ?</summary><p>Le niveau de réflexion est plus élevé avec Classique, puis avec Pro. Chaque formule donne accès aux mêmes exercices, avec les mêmes limites de documents. Tu peux ainsi choisir une réflexion plus poussée pour un exercice complexe. Vérifie le résultat avec ton cours, quelle que soit la formule.</p></details>
       <details><summary>Quand mes réponses se renouvellent-elles ?</summary><p>Elles se renouvellent au début de chaque nouvelle période mensuelle payée. Les réponses mensuelles inutilisées ne sont pas reportées. Les recharges restent séparées et sont utilisées après les réponses incluses.</p></details>
       <details><summary>Que se passe-t-il si une réponse échoue ?</summary><p>Le crédit réservé est restitué si la réponse ne se termine pas. Si ta connexion coupe après la génération, ton espace peut récupérer la réponse pendant 24 heures.</p></details>
