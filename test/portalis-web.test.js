@@ -22,6 +22,28 @@ test('le module ajoute uniquement la recherche native à la génération et cons
   assert.equal(reponse.reponse,texte);assert.equal(reponse.stop_reason,'end_turn');
   assert.deepEqual(reponse.recherches,{effectuees:0,tentatives:0,reussies:0,erreurs:[]});
 });
+test('les domaines demandés restent appliqués après une pause de la recherche',async()=>{
+  const domaines=['legifrance.gouv.fr','courdecassation.fr'],outils=[];
+  await genererAvecRecherche(async(endpoint,p)=>{
+    outils.push(p.tools[0]);
+    return outils.length===1?{stop_reason:'pause_turn',content:[appel('a'),resultat('a')],usage:{input_tokens:10,output_tokens:20,server_tool_use:{web_search_requests:1}}}:fin();
+  },payload,{allowedDomains:domaines});
+  assert.equal(outils.length,2);
+  for(const outil of outils)assert.deepEqual(outil.allowed_domains,domaines);
+  assert.equal(outils[1].max_uses,4);assert.equal(payload.tools,undefined);
+});
+test('la génération terminée respecte le budget cumulé distinct de la limite demandée à chaque appel',async()=>{
+  const genere=async()=>fin(undefined,{input_tokens:100,output_tokens:1050});
+  assert.equal((await genererAvecRecherche(genere,payload,{budgetTotal:1200})).usage.output_tokens,1050);
+  await assert.rejects(genererAvecRecherche(genere,payload),/reponse_incomplete/);
+  await assert.rejects(genererAvecRecherche(async()=>fin(undefined,{input_tokens:100,output_tokens:1201}),payload,{budgetTotal:1200}),/reponse_incomplete/);
+  const limites=[];
+  const resultat=await genererAvecRecherche(async(endpoint,p)=>{
+    limites.push(p.max_tokens);
+    return limites.length===1?{stop_reason:'pause_turn',content:[appel('a')],usage:{input_tokens:100,output_tokens:950}}:fin(undefined,{input_tokens:100,output_tokens:200});
+  },payload,{budgetTotal:1200});
+  assert.deepEqual(limites,[1000,250]);assert.equal(resultat.usage.output_tokens,1150);
+});
 test('une pause conserve chaque bloc signé et chiffré puis cumule les usages et les textes',async()=>{
   const contenu=Object.freeze([
     Object.freeze({type:'thinking',thinking:'Analyse privée',signature:'SIGNATURE-PRIVEE'}),

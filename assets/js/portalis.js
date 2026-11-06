@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  function delaiRequete(body){return body?.action==='generer'?225000:115000;}
+  function delaiRequete(body){return body?.action==='generer'?(body.exercice==='commentaire-compare'?525000:225000):115000;}
   function lireLien(text,debut){
     let position=debut+1,titre='',adresse='',profondeur=1;
     while(position<text.length&&text[position]!==']'&&text[position]!=='\n'){
@@ -50,12 +50,19 @@
   }
   function rendreMarkdown(parent,text,doc){
     parent.replaceChildren();
-    let paragraphe=[],listes=[];
+    let paragraphe=[],listes=[],citation=[];
     function finirParagraphe(){
       if(!paragraphe.length)return;
       const p=doc.createElement('p');p.style.whiteSpace='pre-line';texteInline(p,paragraphe.join('\n'),doc);parent.append(p);paragraphe=[];
     }
+    function finirCitation(){
+      if(!citation.length)return;
+      const bloc=doc.createElement('blockquote');texteInline(bloc,citation.join('\n'),doc);parent.append(bloc);citation=[];
+    }
     for(const ligne of String(text).replace(/\r\n?/g,'\n').split('\n')){
+      const extrait=ligne.match(/^ {0,3}>\s?(.*)$/);
+      if(extrait){finirParagraphe();listes=[];citation.push(extrait[1]);continue;}
+      finirCitation();
       if(!ligne.trim()){finirParagraphe();continue;}
       const titre=ligne.match(/^ {0,3}(#{1,6})\s+(.+?)\s*#*$/);
       if(titre){
@@ -80,7 +87,7 @@
       if(liste&&retrait>liste.retrait){texteInline(liste.dernier,'\n'+ligne.trim(),doc);continue;}
       listes=[];paragraphe.push(ligne);
     }
-    finirParagraphe();
+    finirParagraphe();finirCitation();
   }
   if(typeof module==='object'&&module.exports){module.exports={rendreMarkdown,delaiRequete};return;}
   const $=id=>document.getElementById(id);
@@ -234,6 +241,15 @@
   });
   $('gerer').addEventListener('click',()=>payment({type:'portal'},$('gerer')));
   document.querySelectorAll('[data-recharge]').forEach(button=>button.addEventListener('click',()=>payment({type:'portalis_recharge',formule:state.formule,nombre:Number(button.dataset.recharge)},button)));
+  function actualiserExercice(){
+    const compare=$('exercice').value==='commentaire-compare';
+    $('commentaireCompareAide').hidden=!compare;
+    $('texte').placeholder=compare?'Colle les textes des arrêts à comparer. Tu peux aussi les ajouter en PDF.':'Colle ton arrêt, ton cas pratique ou ton sujet de dissertation.';
+    $('question').placeholder=compare?'Ajoute les consignes de ton enseignant ou les indications propres au sujet.':'Précise les points que tu veux travailler ou ajoute la consigne de ton chargé de TD.';
+    $('generer').textContent=compare?'Rédiger le commentaire comparé':'Travailler mon exercice';
+  }
+  if(new URLSearchParams(location.search).get('exercice')==='commentaire-compare')$('exercice').value='commentaire-compare';
+  $('exercice').addEventListener('change',actualiserExercice);actualiserExercice();
   $('texte').addEventListener('input',volume);$('question').addEventListener('input',volume);
   $('pdf').addEventListener('change',async()=>{
     const file=$('pdf').files[0];if(!file)return;
@@ -252,7 +268,9 @@
   $('exerciceForm').addEventListener('submit',async event=>{
     event.preventDefault();const v=volume();if(!state?.actif||working||importing||v.chars<20||v.chars>30000||v.pages>15)return;
     const current=epoch,id=crypto.randomUUID();working=true;savePending(id);renderState();renderDocuments();
-    $('resultat').hidden=true;message('travailMessage','Portalis IA travaille sur ton exercice. Garde cette page ouverte pendant la préparation de la réponse.');
+    $('resultat').hidden=true;message('travailMessage',$('exercice').value==='commentaire-compare'?
+      'Portalis IA rédige puis relit ton commentaire comparé. La préparation peut donc prendre plusieurs minutes. Garde cette page ouverte.':
+      'Portalis IA travaille sur ton exercice. Garde cette page ouverte pendant la préparation de la réponse.');
     try{
       const result=await api('/api/generer',{action:'generer',demandeId:id,exercice:$('exercice').value,texte:$('texte').value,question:$('question').value,documents:documents.map(d=>d.id)});
       if(current!==epoch)return;clearPending();if(result.etat)state=result.etat;compteurEnAttente=!result.etat;renderAnswer(result.reponse);message('travailMessage','Ta réponse est prête. Un crédit a été utilisé.');

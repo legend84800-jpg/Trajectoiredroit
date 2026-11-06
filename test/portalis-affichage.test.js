@@ -36,6 +36,14 @@ test('préserve une liste numérotée, ses sous-conditions et la reprise en pros
   assert.equal(ol.children[1].textContent,'La condition suivante');
   assert.equal(p.children[1].textContent,'La conclusion découle de ces faits.');
 });
+test('les motifs cités forment un bloc distinct dont les mots et les balises restent du texte',()=>{
+  const p=rendre('La Cour répond par ces motifs.\n> Une **condition** est recherchée.\n> <script>texte cité</script>\n\nLe raisonnement se poursuit.');
+  assert.deepEqual(p.children.map(n=>n.tag),['p','blockquote','p']);
+  assert.equal(p.children[1].textContent,'Une condition est recherchée.\n<script>texte cité</script>');
+  assert.equal(descendants(p).filter(n=>n.tag==='script').length,0);
+  assert.equal(p.children[2].textContent,'Le raisonnement se poursuit.');
+  assert.equal(rendre('> Une citation en fin de réponse.').children[0].tag,'blockquote');
+});
 
 test('le contenu HTML fourni par le modèle reste du texte jusque dans le gras et les listes',()=>{
   const attaque='<img src=x onerror=alert(1)><script>alert(2)</script>';
@@ -60,6 +68,7 @@ test('garde les marqueurs incomplets lisibles et remplace entièrement une répo
 
 test('accorde 225 secondes à la génération et conserve 115 secondes aux autres actions',()=>{
   assert.equal(delaiRequete({action:'generer'}),225000);
+  assert.equal(delaiRequete({action:'generer',exercice:'commentaire-compare'}),525000);
   for(const body of [undefined,null,{}, {action:'importer'},{action:'upload'},{action:'synchroniser'}])assert.equal(delaiRequete(body),115000);
 });
 

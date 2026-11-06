@@ -7,6 +7,11 @@ const root=path.join(__dirname,'..');
 const lire=f=>fs.readFileSync(path.join(root,f),'utf8');
 const USER='10000000-0000-4000-8000-000000000001';
 const ID='20000000-0000-4000-8000-000000000001';
+function rapportRelecture(payload,corrections=[]){
+  const extrait=payload.messages[0].content.match(/<document[^>]*>\n([\s\S]*?)\n<\/document>/)?.[1];
+  assert.ok(extrait);
+  return {reperes:[{reference:'Décision de test',points:[{statut:'a_rechercher',enonce:'Le sujet doit être examiné.',extrait}]}],corrections,blocages:[]};
+}
 const res=()=>({headers:{},setHeader(n,v){this.headers[n]=v;},status(c){this.statusCode=c;return this;},json(p){this.payload=p;return this;},end(){}});
 function charger(file,stubs,globals={}){
   if(file==='api/_portalis-generation.js'&&!Object.hasOwn(stubs,'./_portalis-corpus')) {
@@ -122,27 +127,101 @@ test('une recherche qui reste en pause restitue un seul crédit et conserve aucu
   assert.equal(calls.filter(n=>n==='portalis_echouer').length,1);
   assert.ok(!calls.includes('portalis_terminer'));
 });
-test('les douze combinaisons utilisent le budget et l’effort de la formule réservée',async t=>{
+test('les quinze combinaisons utilisent les budgets et les efforts de la formule réservée',async t=>{
   const {budgetSortie}=require('../api/_portalis-config');
   const systemes=new Map();
-  for(const exercice of ['fiche','commentaire','cas','dissertation'])for(const [formule,effort,index] of [['portalis','low',0],['classique','medium',1],['pro','high',2]])await t.test(`${exercice} ${formule}`,async()=>{
+  for(const exercice of ['fiche','commentaire','commentaire-compare','cas','dissertation'])for(const [formule,effort,index] of [['portalis','low',0],['classique','medium',1],['pro','high',2]])await t.test(`${exercice} ${formule}`,async()=>{
     const calls=[],payloads=[],timeouts=[];
     const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[],rpc:async(name)=>{
       calls.push(name);if(name==='portalis_etat')return{actif:true};if(name==='portalis_reserver')return{code:'reservee',formule};return true;
-    }}},{AbortSignal:{timeout:ms=>{timeouts.push(ms);return undefined;}},fetch:async(url,options)=>{payloads.push(JSON.parse(options.body));return{ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:100}:{stop_reason:'end_turn',content:[{type:'thinking',thinking:'Réflexion privée.'},{type:'text',text:'Une première partie complète pour cet exercice.'},{type:'redacted_thinking',data:'fixture'},{type:'text',text:'Une seconde partie qui termine la réponse.'}],usage:{input_tokens:100,output_tokens:300}}};}});
+    }}},{AbortSignal:{timeout:ms=>{timeouts.push(ms);return undefined;}},fetch:async(url,options)=>{const p=JSON.parse(options.body);payloads.push(p);return{ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:100}:p.system.includes('# Relecture finale du commentaire comparé')?
+      {stop_reason:'end_turn',content:[{type:'text',text:JSON.stringify(rapportRelecture(p))}],usage:{input_tokens:100,output_tokens:40}}:
+      {stop_reason:'end_turn',content:[{type:'thinking',thinking:'Réflexion privée.'},{type:'text',text:'Une première partie complète pour cet exercice.'},{type:'redacted_thinking',data:'fixture'},{type:'text',text:'Une seconde partie qui termine la réponse.'}],usage:{input_tokens:100,output_tokens:300}}};}});
     const result=await generation.generer({exercice,demandeId:ID,texte:'Un sujet suffisamment long pour être traité.',formule:'pro',effort:'max',max_tokens:99999},USER);
-    const budget=(exercice==='fiche'?[6000,8000,10000]:[12000,14000,24000])[index];
+    const budget=(exercice==='fiche'?[6000,8000,10000]:exercice==='commentaire-compare'?[36000,42000,54000]:[12000,14000,24000])[index];
     assert.equal(budgetSortie(exercice,formule),budget);
-    assert.equal(payloads[1].model,'claude-sonnet-5-5');assert.equal(payloads[1].output_config.effort,effort);assert.equal(payloads[1].max_tokens,budget);
+    const compare=exercice==='commentaire-compare';
+    assert.equal(payloads[1].model,'claude-sonnet-5-5');assert.equal(payloads[1].output_config.effort,effort);assert.equal(payloads[1].max_tokens,compare?(formule==='pro'?18000:12000):budget);
+    if(compare){
+      assert.equal(payloads.length,6);assert.equal(payloads[3].max_tokens,Math.min(20000,budget-300-10000));
+      assert.equal(payloads[5].max_tokens,16000);assert.match(payloads[5].system,/Dernier contrôle de cohérence/);
+      assert.equal(payloads[3].output_config.effort,'low');assert.equal(payloads[5].output_config.effort,'medium');
+      for(const i of [3,5])assert.equal(payloads[i].model,'claude-opus-5-5');
+      assert.equal(calls.filter(n=>n==='portalis_prolonger_relecture').length,2);
+    }
     assert.equal(payloads[1].system,payloads[0].system);assert.deepEqual(payloads[1].messages,payloads[0].messages);
     if(systemes.has(exercice))assert.equal(payloads[1].system,systemes.get(exercice));else systemes.set(exercice,payloads[1].system);
     assert.doesNotMatch(payloads[1].system,/900\s*mots/i);assert.equal(timeouts[0],15000);assert.ok(timeouts[1]>0&&timeouts[1]<=162000);
     assert.equal(payloads[0].tools,undefined);assert.equal(payloads[1].tools[0].name,'web_search');
+    assert.deepEqual(payloads[1].tools[0].allowed_domains,compare?require('../api/_portalis-web').DOMAINES_JURIDIQUES:undefined);
     assert.equal(result.reponse,'Une première partie complète pour cet exercice.\n\nUne seconde partie qui termine la réponse.');
     assert.ok(calls.includes('portalis_terminer'));assert.ok(!calls.includes('portalis_echouer'));
   });
   assert.throws(()=>budgetSortie('inconnu','pro'),{message:'configuration_budget'});
   assert.throws(()=>budgetSortie('cas','inconnu'),{message:'configuration_budget'});
+});
+test('les deux relectures corrigent successivement la copie avant un seul débit et cumulent les usages',async()=>{
+  const calls=[],payloads=[];
+  const brouillon='Les juges ont déjà renvoyé l’affaire. Le vendeur doit encore obtenir le renvoi.';
+  const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[],rpc:async(nom,args)=>{
+    calls.push({nom,args});if(nom==='portalis_etat')return{actif:true};if(nom==='portalis_reserver')return{code:'reservee',formule:'portalis'};return true;
+  }}},{fetch:async(url,options)=>{
+    const p=JSON.parse(options.body);payloads.push(p);
+    return{ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:100}:
+      p.system.includes('# Relecture finale du commentaire comparé')?{stop_reason:'end_turn',content:[{type:'text',text:JSON.stringify(rapportRelecture(p,p.system.includes('Dernier contrôle de cohérence')?
+        [{avant:'Les juges ont déjà renvoyé l’affaire.',apres:'La Cour a renvoyé l’affaire devant le juge compétent.'}]:
+        [{avant:'Le vendeur doit encore obtenir le renvoi.',apres:'Le juge de renvoi doit encore statuer sur la demande du vendeur.'}]))}],usage:{input_tokens:200,output_tokens:70}}:
+      {stop_reason:'end_turn',content:[{type:'text',text:brouillon}],usage:{input_tokens:100,output_tokens:300}}};
+  }});
+  const resultat=await generation.generer({exercice:'commentaire-compare',demandeId:ID,texte:'Les textes de deux décisions suffisamment longs pour ce test.'},USER);
+  assert.equal(calls.filter(c=>c.nom==='portalis_reserver').length,1);assert.equal(calls.filter(c=>c.nom==='portalis_terminer').length,1);
+  assert.ok(!calls.some(c=>c.nom==='portalis_echouer'));assert.match(resultat.reponse,/doit encore statuer sur la demande/);assert.doesNotMatch(resultat.reponse,/obtenir le renvoi/);
+  assert.match(resultat.reponse,/La Cour a renvoyé/);assert.match(payloads[5].messages[0].content,/Le juge de renvoi doit encore statuer/);
+  assert.match(payloads[3].messages[0].content,/<copie_a_relire>/);assert.doesNotMatch(payloads[3].messages[0].content,/<corpus_pedagogique>/);
+  const terme=calls.find(c=>c.nom==='portalis_terminer').args;assert.equal(terme.p_reponse,resultat.reponse);assert.equal(terme.p_entree,500);assert.equal(terme.p_sortie,440);
+});
+test('une relecture inachevée restitue le crédit sans enregistrer le premier texte',async()=>{
+  const calls=[];
+  const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[],rpc:async nom=>{
+    calls.push(nom);if(nom==='portalis_etat')return{actif:true};if(nom==='portalis_reserver')return{code:'reservee',formule:'pro'};return true;
+  }}},{fetch:async(url,options)=>{
+    const p=JSON.parse(options.body);
+    return{ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:100}:
+      p.system.includes('# Relecture finale du commentaire comparé')?{stop_reason:'max_tokens',content:[{type:'text',text:'{"corrections":['}],usage:{input_tokens:100,output_tokens:100}}:
+      {stop_reason:'end_turn',content:[{type:'text',text:'Un premier texte qui attend encore sa vérification.'}],usage:{input_tokens:100,output_tokens:300}}};
+  }});
+  await assert.rejects(generation.generer({exercice:'commentaire-compare',demandeId:ID,texte:'Les textes de deux décisions suffisamment longs pour ce test.'},USER),{code:'generation_echouee'});
+  assert.equal(calls.filter(n=>n==='portalis_reserver').length,1);assert.equal(calls.filter(n=>n==='portalis_echouer').length,1);assert.ok(!calls.includes('portalis_terminer'));
+});
+test('un extrait inventé dans la relecture restitue le crédit et garde la copie hors affichage',async()=>{
+  const calls=[];
+  const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[],rpc:async nom=>{
+    calls.push(nom);if(nom==='portalis_etat')return{actif:true};if(nom==='portalis_reserver')return{code:'reservee',formule:'portalis'};return true;
+  }}},{fetch:async(url,options)=>{
+    const p=JSON.parse(options.body),relecture=p.system.includes('# Relecture finale du commentaire comparé');
+    const rapport=relecture?rapportRelecture(p):null;
+    if(rapport)rapport.reperes[0].points[0].extrait='Un extrait inventé qui apparaît seulement dans la copie.';
+    return{ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:100}:{stop_reason:'end_turn',content:[{type:'text',text:rapport?JSON.stringify(rapport):'Une copie initiale qui attend encore sa relecture.'}],usage:{input_tokens:100,output_tokens:300}}};
+  }});
+  await assert.rejects(generation.generer({exercice:'commentaire-compare',demandeId:ID,texte:'Les textes de deux décisions suffisamment longs pour ce test.'},USER),{code:'generation_echouee'});
+  assert.equal(calls.filter(n=>n==='portalis_echouer').length,1);assert.ok(!calls.includes('portalis_terminer'));
+});
+test('un dernier contrôle interrompu restitue le crédit même après une première relecture terminée',async()=>{
+  const calls=[];
+  let relectures=0;
+  const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[],rpc:async nom=>{
+    calls.push(nom);if(nom==='portalis_etat')return{actif:true};if(nom==='portalis_reserver')return{code:'reservee',formule:'classique'};return true;
+  }}},{fetch:async(url,options)=>{
+    const p=JSON.parse(options.body);
+    if(url.endsWith('count_tokens'))return{ok:true,json:async()=>({input_tokens:100})};
+    const relecture=p.system.includes('# Relecture finale du commentaire comparé');
+    if(relecture)relectures++;
+    return{ok:true,json:async()=>({stop_reason:relectures===2?'max_tokens':'end_turn',
+      content:[{type:'text',text:relecture?JSON.stringify(rapportRelecture(p)):'Une copie qui doit encore recevoir ses deux contrôles.'}],usage:{input_tokens:100,output_tokens:100}})};
+  }});
+  await assert.rejects(generation.generer({exercice:'commentaire-compare',demandeId:ID,texte:'Les textes de deux décisions suffisamment longs pour ce test.'},USER),{code:'generation_echouee'});
+  assert.equal(relectures,2);assert.equal(calls.filter(n=>n==='portalis_prolonger_relecture').length,2);
+  assert.equal(calls.filter(n=>n==='portalis_echouer').length,1);assert.ok(!calls.includes('portalis_terminer'));
 });
 test('le dossier conserve les documents dans l’ordre demandé, les pages connues et la date UTC',async()=>{
   const id2='20000000-0000-4000-8000-000000000002';
@@ -172,7 +251,7 @@ test('les limites portent sur le texte brut et conservent les frontières des pa
   const config=require('../api/_portalis-config');
   assert.equal(config.LIMITES.reponses,60);assert.equal(config.LIMITES.pages,15);assert.equal(config.LIMITES.caracteres,30000);assert.equal(config.LIMITES.jetonsEntree,20000);
   assert.deepEqual(Object.values(config.FORMULES).map(p=>p.prix),[800,1200,1800]);
-  assert.equal(JSON.parse(lire('vercel.json')).functions['api/generer.js'].maxDuration,240);
+  assert.equal(JSON.parse(lire('vercel.json')).functions['api/generer.js'].maxDuration,540);
 });
 test('la borne de 20 000 jetons et les comptes non entiers sont vérifiés avant réservation',async t=>{
   for(const inputTokens of [20000,20001,19999.5,'20000',null])await t.test(String(inputTokens),async()=>{
@@ -227,6 +306,42 @@ test('un retour Checkout appartenant à un autre compte ne peut pas être synchr
   const billing=require('../api/_portalis-billing');
   const stripe={checkout:{sessions:{retrieve:async()=>({metadata:{portalis:'abonnement',supabase_user_id:USER}})}}};
   await assert.rejects(billing.synchroniserSession(stripe,'cs_live_fixture','autre'),{code:'paiement'});
+});
+test('le commentaire comparé transmet les deux décisions et propose le corrigé complet dans le formulaire',async()=>{
+  const nodes=new Map(),posts=[];
+  function node(id){
+    if(!nodes.has(id))nodes.set(id,{id,value:'',hidden:false,disabled:false,textContent:'',style:{},events:{},children:[],classList:{toggle(){}},
+      addEventListener(name,callback){this.events[name]=callback;},replaceChildren(){this.children=[];},append(...children){this.children.push(...children);},focus(){},scrollIntoView(){}});
+    return nodes.get(id);
+  }
+  const state={actif:true,formule:'pro',restant:60,recharges:0};
+  const document={getElementById:node,querySelectorAll:()=>[],createElement:tag=>node('element-'+nodes.size+'-'+tag),createTextNode:text=>({textContent:text})};
+  const storage={getItem(){return null;},setItem(){},removeItem(){}};
+  const location={search:'?exercice=commentaire-compare',pathname:'/portalis.html'};
+  const sb={auth:{onAuthStateChange(){},getSession:async()=>({data:{session:{user:{id:USER},access_token:'fixture'}}})}};
+  vm.runInNewContext(lire('assets/js/portalis.js'),{document,location,localStorage:storage,sessionStorage:storage,AbortController,URLSearchParams,Intl,console,setTimeout,clearTimeout,
+    crypto:{randomUUID:()=>ID},window:{supabase:{createClient:()=>sb},location},fetch:async(url,options)=>{
+      const body=options.body&&JSON.parse(options.body);if(body)posts.push(body);
+      const data=url.includes('configuration')?{formules:{pro:{nom:'Pro',recharges:{}}}}:
+        body?{reponse:'Le commentaire rapproche les motifs des deux décisions.',etat:{...state,restant:59}}:state;
+      return {ok:true,json:async()=>data};
+    }});
+  await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(node('exercice').value,'commentaire-compare');assert.equal(node('commentaireCompareAide').hidden,false);
+  const texte='Premier arrêt. Une première décision et ses motifs.\n\nSecond arrêt. Une autre décision et ses motifs.';
+  node('texte').value=texte;node('question').value='La méthode de mon enseignant figure dans le sujet.';
+  node('exercice').value='commentaire-compare';node('exercice').events.change();
+  assert.equal(node('commentaireCompareAide').hidden,false);
+  assert.equal(node('generer').textContent,'Rédiger le commentaire comparé');
+  assert.match(node('texte').placeholder,/arrêts à comparer/);
+  await node('exerciceForm').events.submit({preventDefault(){}});
+  assert.equal(posts.length,1);assert.equal(posts[0].exercice,'commentaire-compare');assert.equal(posts[0].texte,texte);
+  assert.equal(posts[0].question,node('question').value);assert.equal(node('resultat').hidden,false);
+  assert.match(node('quota').textContent,/59 réponses/);
+  node('exercice').value='commentaire';node('exercice').events.change();
+  assert.equal(node('commentaireCompareAide').hidden,true);assert.equal(node('generer').textContent,'Travailler mon exercice');
+  assert.equal(node('texte').value,texte);
+  assert.match(lire('portalis.html'),/<option value="commentaire-compare">Commentaire d’arrêt comparé<\/option>/);
 });
 test('le résultat du modèle est affiché comme texte et les sessions suivent le choix de persistance',()=>{
   const js=lire('assets/js/portalis.js');new vm.Script(js);

@@ -7,3 +7,5 @@
 .intro{max-width:none;display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:48px;align-items:center}.intro-copy{min-width:0}.intro-copy>p:not(.eyebrow):not(.standfirst){font-size:18px;max-width:640px;color:var(--muted)}.intro-visual{display:flex;justify-content:center;align-items:center}.intro-visual img{display:block;width:100%;height:auto;max-height:420px;object-fit:contain}
 @media(max-width:1000px) and (min-width:761px){.intro{grid-template-columns:minmax(0,1fr) 220px;gap:28px}}
 @media(max-width:760px){.intro{grid-template-columns:1fr;gap:22px}.intro-copy>p:not(.eyebrow):not(.standfirst){font-size:17px}.intro-visual img{width:160px;max-height:240px}}
+
+.answer-copy blockquote{margin:16px 0;padding-left:16px;border-left:3px solid var(--line);white-space:pre-line}

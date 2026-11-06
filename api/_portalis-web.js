@@ -1,4 +1,7 @@
 const OUTIL_WEB=Object.freeze({type:'web_search_20250305',name:'web_search',max_uses:5});
+const DOMAINES_JURIDIQUES=Object.freeze(['legifrance.gouv.fr','courdecassation.fr','conseil-etat.fr','conseil-constitutionnel.fr',
+  'justice.gouv.fr','justice.fr','service-public.gouv.fr','senat.fr','assemblee-nationale.fr','eur-lex.europa.eu',
+  'curia.europa.eu','echr.coe.int','icj-cij.org','dalloz.fr','lextenso.fr','cairn.info','hal.science','persee.fr','openedition.org','theses.fr']);
 const MAX_REPRISES=2;
 const DELAI_TOTAL=162000;
 
@@ -34,10 +37,10 @@ function compteur(valeur) {
 function delaiDepasse() {
   const erreur=new Error('delai');erreur.name='TimeoutError';return erreur;
 }
-async function genererAvecRecherche(anthropic,payload,{timeoutMs=DELAI_TOTAL,maintenant=Date.now}={}) {
+async function genererAvecRecherche(anthropic,payload,{timeoutMs=DELAI_TOTAL,maintenant=Date.now,allowedDomains,budgetTotal=payload?.max_tokens}={}) {
   if(typeof anthropic!=='function'||!payload||!Array.isArray(payload.messages)||
     !Number.isSafeInteger(payload.max_tokens)||payload.max_tokens<1||
-    !Number.isFinite(timeoutMs)||timeoutMs<=0)throw new Error('configuration_recherche');
+    !Number.isFinite(timeoutMs)||timeoutMs<=0||!Number.isSafeInteger(budgetTotal)||budgetTotal<payload.max_tokens)throw new Error('configuration_recherche');
   const limite=Math.min(timeoutMs,DELAI_TOTAL),debut=maintenant();
   const usage={input_tokens:0,output_tokens:0,server_tool_use:{web_search_requests:0}};
   const erreurs=new Set(),appels=new Set(),termines=new Set(),contenus=[];
@@ -45,11 +48,11 @@ async function genererAvecRecherche(anthropic,payload,{timeoutMs=DELAI_TOTAL,mai
   for(let reprise=0;reprise<=MAX_REPRISES;reprise++) {
     const restant=Math.floor(limite-(maintenant()-debut));
     if(restant<=0)throw delaiDepasse();
-    const jetons=payload.max_tokens-usage.output_tokens;
+    const jetons=Math.min(payload.max_tokens,budgetTotal-usage.output_tokens);
     const recherches=OUTIL_WEB.max_uses-Math.max(usage.server_tool_use.web_search_requests,termines.size);
     if(jetons<=0||recherches<=0)throw new Error('reponse_incomplete');
     const resultat=await anthropic('',{...payload,messages,max_tokens:jetons,
-      tools:[{...OUTIL_WEB,max_uses:recherches}]},restant);
+      tools:[{...OUTIL_WEB,max_uses:recherches,...(allowedDomains?.length?{allowed_domains:allowedDomains.slice()}:{})}]},restant);
     if(maintenant()-debut>=limite)throw delaiDepasse();
     if(!resultat||!Array.isArray(resultat.content))throw new Error('reponse_incomplete');
     usage.input_tokens+=compteur(resultat.usage?.input_tokens);
@@ -58,7 +61,7 @@ async function genererAvecRecherche(anthropic,payload,{timeoutMs=DELAI_TOTAL,mai
     for(const cle of ['cache_creation_input_tokens','cache_read_input_tokens']) {
       if(resultat.usage?.[cle]!==undefined)usage[cle]=(usage[cle]||0)+compteur(resultat.usage[cle]);
     }
-    if(usage.output_tokens>payload.max_tokens)throw new Error('reponse_incomplete');
+    if(usage.output_tokens>budgetTotal)throw new Error('reponse_incomplete');
     contenus.push(...resultat.content);
     for(const bloc of resultat.content) {
       if(bloc?.type==='server_tool_use'&&bloc.name==='web_search'&&typeof bloc.id==='string')appels.add(bloc.id);
@@ -82,4 +85,4 @@ async function genererAvecRecherche(anthropic,payload,{timeoutMs=DELAI_TOTAL,mai
   }
   throw new Error('reponse_incomplete');
 }
-module.exports={OUTIL_WEB,MAX_REPRISES,DELAI_TOTAL,genererAvecRecherche,serialiserTexte};
+module.exports={OUTIL_WEB,DOMAINES_JURIDIQUES,MAX_REPRISES,DELAI_TOTAL,genererAvecRecherche,serialiserTexte};

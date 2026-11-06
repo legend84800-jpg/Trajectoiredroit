@@ -1,0 +1,35 @@
+begin;
+do $$
+declare u uuid:=gen_random_uuid(); d uuid:=gen_random_uuid(); s jsonb;
+  suffixe text:=replace(gen_random_uuid()::text,'-','');
+begin
+  insert into auth.users(id,email) values(u,'portalis-relecture-'||suffixe||'@example.invalid');
+  perform portalis_synchroniser(u,'cus_'||suffixe,'sub_'||suffixe,'pro','actif',now()-interval '1 day',now()+interval '29 days',false,1);
+  perform portalis_crediter_periode(u,'sub_'||suffixe,'in_'||suffixe,'pro',now()-interval '1 day',now()+interval '29 days');
+  s:=portalis_reserver(u,d,'empreinte-verification');
+  if s->>'code'<>'reservee' then raise exception 'reservation_verification'; end if;
+  if portalis_prolonger_relecture(gen_random_uuid(),d) then raise exception 'prolongation_autre_compte'; end if;
+  if not portalis_prolonger_relecture(u,d) then raise exception 'prolongation_relecture'; end if;
+  update public.portalis_demandes set cree_le=now()-interval '4 minutes' where id=d;
+  if (portalis_etat(u)->>'restant')::integer<>59 then raise exception 'credit_restitue_pendant_relecture'; end if;
+  if not portalis_terminer(u,d,'Un commentaire complet relu avant son enregistrement.',100,100) then raise exception 'terminaison_relecture'; end if;
+  if (portalis_etat(u)->>'restant')::integer<>59 then raise exception 'debit_relecture'; end if;
+  if portalis_prolonger_relecture(u,d) then raise exception 'prolongation_apres_terminaison'; end if;
+  d:=gen_random_uuid(); perform portalis_reserver(u,d,'expiration-relecture');
+  perform portalis_prolonger_relecture(u,d);
+  update public.portalis_demandes set relecture_expire_le=now()-interval '1 second' where id=d;
+  perform portalis_etat(u);
+  if (select statut from public.portalis_demandes where id=d)<>'echouee' then raise exception 'expiration_relecture'; end if;
+  if (portalis_etat(u)->>'restant')::integer<>59 then raise exception 'restitution_relecture'; end if;
+  if portalis_prolonger_relecture(u,d) then raise exception 'prolongation_apres_echec'; end if;
+  d:=gen_random_uuid(); perform portalis_reserver(u,d,'expiration-ordinaire');
+  update public.portalis_demandes set cree_le=now()-interval '4 minutes' where id=d;
+  if portalis_prolonger_relecture(u,d) then raise exception 'demande_expiree_prolongee'; end if;
+  perform portalis_etat(u);
+  if (portalis_etat(u)->>'restant')::integer<>59 then raise exception 'expiration_ordinaire_modifiee'; end if;
+  if has_function_privilege('anon','public.portalis_prolonger_relecture(uuid,uuid)','execute') then raise exception 'prolongation_anonyme'; end if;
+  if has_function_privilege('authenticated','public.portalis_prolonger_relecture(uuid,uuid)','execute') then raise exception 'prolongation_client'; end if;
+  if not has_function_privilege('service_role','public.portalis_prolonger_relecture(uuid,uuid)','execute') then raise exception 'prolongation_serveur'; end if;
+end $$;
+select 'Réservation prolongée pour la relecture, débit unique et restitutions vérifiés.' as resultat;
+rollback;
