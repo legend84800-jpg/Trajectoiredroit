@@ -65,6 +65,8 @@ Une recherche demandée par une décision reste à effectuer partout où elle ap
 
 Une règle générale est distinguée de son application à une affaire. La croyance particulière d'une personne conserve donc son contenu propre lorsqu'elle sert d'exemple. De plus, une condition de l'erreur porte sur une croyance erronée et déterminante. Le contenu de cette croyance dépend ensuite des faits étudiés. Une précision propre à une affaire peut être rédigée en la rattachant expressément à cette affaire.
 
+Une conviction qui exclut toute possibilité garde ce contenu exact. En effet, la possibilité d'une qualité contredit l'affirmation qu'elle est impossible. Cette possibilité laisse toutefois l'existence réelle de la qualité à établir. La copie conserve donc la différence entre une qualité jugée impossible et une qualité tenue pour absente.
+
 Un effet économique possible peut éclairer l'intérêt de la comparaison. Il reste donc présenté comme une analyse. En revanche, la valeur d'un bien et la raison pour laquelle une partie agit sont rapportées comme des faits seulement lorsqu'une source les établit. Tu reformules ainsi en hypothèse une explication économique que le dossier laisse inconnue.
 
 La connaissance d'une incertitude et l'accord des parties pour en accepter le risque reçoivent un examen distinct. En effet, les constatations des juges permettent d'établir ce que les parties ont accepté. La copie conserve donc l'accord sur le risque comme une condition à établir. De plus, ses conséquences restent limitées à la qualité concernée.
@@ -76,6 +78,21 @@ Dans le format par défaut, le commentaire conserve son introduction complète e
 La copie emploie la troisième personne. Chaque paragraphe montre son lien avec le précédent et les phrases rendent ce rapport visible. Les connecteurs suivent donc le raisonnement, avec des mots courants comme en effet et en revanche. Ils indiquent aussi une conséquence avec ainsi ou donc. De plus introduit un autre argument. Les formulations affirment directement la règle et son effet. Elles emploient s'applique pour en préciser le domaine. Les citations fidèles conservent les mots des décisions.
 
 Tu conserves les passages justes et tout leur développement. Les corrections reprennent donc seulement les segments nécessaires au traitement d'un défaut identifié. De plus, tu vérifies chaque phrase que tu ajoutes avec les mêmes repères. Les remarques de relecture restent internes.
+
+Les exemples suivants montrent deux corrections de raisonnement. Tu appliques leur distinction aux passages concernés de la copie, avec les faits de son dossier.
+
+<exemples_corrections>
+[
+  {
+    "avant": "Si le vendeur a contracté en acceptant le doute, il n'a pas contracté sous une certitude erronée.",
+    "apres": "L'acceptation commune d'un aléa sur l'authenticité fait obstacle à l'erreur relative à cette qualité. En revanche, l'existence d'une conviction erronée reçoit un examen distinct."
+  },
+  {
+    "avant": "Un vendeur peut être sûr qu'un tableau n'est pas de Poussin alors que l'attribution à Poussin reste possible. Cette possibilité peut suffire à rendre sa certitude fausse",
+    "apres": "Un vendeur peut être convaincu qu'un tableau ne peut pas être de Poussin, alors que cette attribution reste possible. Cette possibilité peut rendre erronée sa conviction d'impossibilité, tout en laissant l'auteur réel du tableau à déterminer"
+  }
+]
+</exemples_corrections>
 
 ${FORMAT_RAPPORT}`;
 
@@ -115,7 +132,8 @@ async function relire(anthropic,{message,copie,budget,effort,timeoutMs,modele=MO
   if(!Number.isInteger(compter.input_tokens)||compter.input_tokens<0||compter.input_tokens>LIMITES.jetonsEntreeRelecture)throw Error('volume_relecture');
   const restant=timeoutMs-(Date.now()-debut);
   if(restant<=0||!Number.isInteger(budget)||budget<1)throw Error('delai_relecture');
-  const resultat=await anthropic('',{...payload,max_tokens:budget,thinking:{type:'adaptive'},output_config:{effort}},restant);
+  const output_config={effort,...(finale?{task_budget:{type:'tokens',total:Math.max(24000,compter.input_tokens+12000)}}:{})};
+  const resultat=await anthropic('',{...payload,max_tokens:budget,stream:true,thinking:{type:'adaptive'},output_config},restant);
   if(resultat.stop_reason!=='end_turn')throw Error('relecture_incomplete');
   const brut=(resultat.content||[]).filter(bloc=>bloc.type==='text').map(bloc=>bloc.text).join('\n').trim();
   const json=brut.replace(/^```(?:json)?\s*\n?/i,'').replace(/\n?```$/,'');

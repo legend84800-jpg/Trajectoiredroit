@@ -13,7 +13,7 @@ function formuleValide(v) { return typeof v === "string" && Object.hasOwn(FORMUL
 function budgetSortie(exercice,formule) {
   if (!formuleValide(formule)||!['fiche','commentaire','commentaire-compare','cas','dissertation'].includes(exercice)) throw new Error('configuration_budget');
   const budgets=exercice==='fiche'?{portalis:6000,classique:8000,pro:10000}:
-    exercice==='commentaire-compare'?{portalis:36000,classique:42000,pro:54000}:{portalis:12000,classique:14000,pro:24000};
+    exercice==='commentaire-compare'?{portalis:42000,classique:48000,pro:60000}:{portalis:12000,classique:14000,pro:24000};
   return budgets[formule];
 }
 function configurationPublique() {

@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  function delaiRequete(body){return body?.action==='generer'?(body.exercice==='commentaire-compare'?525000:225000):115000;}
+  function delaiRequete(body){return body?.action==='generer'?(body.exercice==='commentaire-compare'?585000:225000):115000;}
   function lireLien(text,debut){
     let position=debut+1,titre='',adresse='',profondeur=1;
     while(position<text.length&&text[position]!==']'&&text[position]!=='\n'){

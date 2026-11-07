@@ -13,7 +13,7 @@
   ],
   "functions": {
     "api/generer.js": {
-      "maxDuration": 540,
+      "maxDuration": 600,
       "includeFiles": "api/_portalis-pdf-worker.js"
     },
     "api/personnaliser-pdf.py": {

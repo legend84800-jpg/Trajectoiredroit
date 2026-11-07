@@ -68,7 +68,7 @@ test('garde les marqueurs incomplets lisibles et remplace entièrement une répo
 
 test('accorde 225 secondes à la génération et conserve 115 secondes aux autres actions',()=>{
   assert.equal(delaiRequete({action:'generer'}),225000);
-  assert.equal(delaiRequete({action:'generer',exercice:'commentaire-compare'}),525000);
+  assert.equal(delaiRequete({action:'generer',exercice:'commentaire-compare'}),585000);
   for(const body of [undefined,null,{}, {action:'importer'},{action:'upload'},{action:'synchroniser'}])assert.equal(delaiRequete(body),115000);
 });
 
