@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/portalis.css?v=6227ee70">
+  <link rel="stylesheet" href="assets/portalis.css?v=6e8f2a93">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="assets/js/portalis.js?v=08199768" defer></script>
 </head>
@@ -20,6 +20,7 @@
   <a class="skip" href="#contenu">Aller au contenu</a>
   <header class="header">
     <a class="brand" href="/" aria-label="Accueil Trajectoire Droit"><img src="assets/logo-tjd.svg" alt="Trajectoire Droit" width="180" height="38"></a>
+    <span class="header-product">Portalis IA</span>
     <nav aria-label="Navigation Portalis IA"><a href="#formules">Les formules</a><a href="#espace">Mon espace</a></nav>
     <a class="account" href="mon-compte.html">Mon compte</a>
   </header>
@@ -46,37 +47,37 @@
       <p id="paiementMessage" class="message" role="status" hidden></p>
     </section>
     <section id="espace" class="workspace" tabindex="-1">
-      <div class="section-head"><div><h2>Sur quel exercice travailles-tu ?</h2></div><a id="connexion" class="button button-outline" href="mon-compte.html?retour=portalis">Me connecter</a></div>
+      <div class="section-head"><div><h2>Sur quel exercice travailles-tu ?</h2></div><div class="workspace-actions"><img src="assets/portalis-ia-robot-juriste.webp" alt="" width="58" height="87" loading="lazy"><a id="connexion" class="button button-outline" href="mon-compte.html?retour=portalis">Me connecter</a></div></div>
       <p id="etat" class="workspace-state" role="status">Connecte-toi pour retrouver ton abonnement et tes réponses disponibles.</p>
       <div id="abonnement" class="subscription" hidden><div><strong id="formuleActive"></strong><p id="quota"></p><p id="renouvellement"></p></div><button id="gerer" class="text-button" type="button">Gérer mon abonnement</button></div>
       <form id="exerciceForm" class="editor">
         <fieldset class="task-modes" aria-describedby="modeAide">
           <legend>Que souhaites-tu faire ?</legend>
-          <label class="task-mode" for="modeRediger"><input id="modeRediger" name="mode" type="radio" value="rediger" checked><span><strong>Rédiger une copie</strong><span>Tu envoies le sujet pour obtenir un corrigé complet.</span></span></label>
-          <label class="task-mode" for="modeCorriger"><input id="modeCorriger" name="mode" type="radio" value="corriger"><span><strong>Corriger ma copie</strong><span>Tu envoies le sujet et ta copie pour comprendre les reprises à faire.</span></span></label>
+          <label class="task-mode" for="modeRediger"><input id="modeRediger" name="mode" type="radio" value="rediger" checked><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5 4 4M4 20l4-1 12-12a2.8 2.8 0 0 0-4-4L4 15l-1 6Z"/></svg><span><strong>Rédiger une copie</strong><span>Tu envoies le sujet pour obtenir un corrigé complet.</span></span></label>
+          <label class="task-mode" for="modeCorriger"><input id="modeCorriger" name="mode" type="radio" value="corriger"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7M8 8h3M8 12h2m2 4 2.5-.5 7-7a2.1 2.1 0 0 0-3-3l-7 7L11 16Z"/></svg><span><strong>Corriger ma copie</strong><span>Tu envoies le sujet et ta copie pour comprendre les reprises à faire.</span></span></label>
         </fieldset>
         <p id="modeAide" class="editor-note">Choisis ton exercice, puis ajoute le sujet.</p>
         <fieldset id="champs" disabled>
-          <label for="exercice">L’exercice</label>
-          <select id="exercice" aria-describedby="commentaireCompareAide"><option value="fiche">Fiche d’arrêt</option><option value="commentaire">Commentaire d’arrêt</option><option value="commentaire-compare">Commentaire d’arrêt comparé</option><option value="cas">Cas pratique</option><option value="dissertation">Dissertation</option></select>
+          <div class="exercise-row"><div><label for="exercice">L’exercice</label><select id="exercice" aria-describedby="commentaireCompareAide"><option value="fiche">Fiche d’arrêt</option><option value="commentaire">Commentaire d’arrêt</option><option value="commentaire-compare">Commentaire d’arrêt comparé</option><option value="cas">Cas pratique</option><option value="dissertation">Dissertation</option></select></div><p>15 pages et 30 000 caractères par demande.<br> <span class="correction-only">Le sujet et la copie sont comptés ensemble.</span></p></div>
           <p id="commentaireCompareAide" class="editor-note" hidden>Ajoute les arrêts à comparer pour obtenir un commentaire entièrement rédigé. Tu peux aussi joindre la méthode de ton enseignant pour que le corrigé suive ses consignes. Le corrigé est ensuite relu avant son affichage. Sa préparation peut donc prendre plusieurs minutes.</p>
-          <label for="texte" id="texteLabel">Ton texte ou ton sujet</label>
-          <textarea id="texte" rows="9" maxlength="30000" placeholder="Colle ton arrêt, ton cas pratique ou ton sujet de dissertation."></textarea>
-          <div class="editor-tools"><label class="upload" for="pdf"><span id="pdfLabel">Ajouter un PDF</span> <span>20 Mo maximum</span><input type="file" id="pdf" accept="application/pdf,.pdf"></label></div>
-          <ul id="documents" class="documents" aria-label="Documents ajoutés"></ul>
-          <div id="copieZone" hidden>
-            <label for="copie">Ta copie à corriger</label>
-            <p id="copieAide" class="editor-note">Colle ton travail ou ajoute son PDF. Place le sujet dans la zone précédente. Tu peux aussi y joindre le barème et la méthode de ton enseignant.</p>
-            <textarea id="copie" rows="12" maxlength="30000" aria-describedby="copieAide" placeholder="Colle ici la copie que tu as rédigée."></textarea>
-            <div class="editor-tools"><label class="upload" for="pdfCopie">Ajouter le PDF de ma copie <span>20 Mo maximum</span><input type="file" id="pdfCopie" accept="application/pdf,.pdf"></label></div>
-            <ul id="documentsCopie" class="documents" aria-label="Documents de ta copie"></ul>
+          <div class="documents-grid">
+            <div class="document-pane">
+              <label for="texte" id="texteLabel">Ton texte ou ton sujet</label>
+              <textarea id="texte" rows="9" maxlength="30000" placeholder="Colle ton arrêt, ton cas pratique ou ton sujet de dissertation."></textarea>
+              <div class="editor-tools upload-row"><label class="upload" for="pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg><span id="pdfLabel">Ajouter un PDF</span><input type="file" id="pdf" accept="application/pdf,.pdf"></label><span>20 Mo maximum</span></div>
+              <ul id="documents" class="documents" aria-label="Documents ajoutés"></ul>
+            </div>
+            <div id="copieZone" class="document-pane" hidden>
+              <label for="copie">Ta copie à corriger</label>
+              <textarea id="copie" rows="12" maxlength="30000" aria-describedby="copieAide" placeholder="Colle ici la copie que tu as rédigée."></textarea>
+              <div class="editor-tools upload-row"><label class="upload" for="pdfCopie"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>Ajouter le PDF de ma copie<input type="file" id="pdfCopie" accept="application/pdf,.pdf"></label><span>20 Mo maximum</span></div>
+              <ul id="documentsCopie" class="documents" aria-label="Documents de ta copie"></ul>
+            </div>
           </div>
-          <p id="volume" class="editor-volume" aria-live="polite">0 / 30 000 caractères · 0 / 15 pages</p>
-          <label for="question">Ta consigne <span class="optional">facultatif, 2 000 caractères maximum</span></label>
-          <textarea id="question" rows="2" maxlength="2000" placeholder="Précise les points que tu veux travailler ou ajoute la consigne de ton chargé de TD."></textarea>
-          <p class="editor-note">Une réponse terminée utilise un crédit, y compris pour une nouvelle question sur le même document. Le sujet et la copie sont comptés ensemble. Les pages du texte collé sont estimées à partir de sa longueur.</p>
-          <p class="editor-note">Le texte de ta demande est envoyé à Anthropic pour préparer la réponse. <a href="confidentialite.html#portalis">Voir le traitement de tes documents</a>.</p>
-          <button id="generer" type="submit" class="button">Travailler mon exercice</button>
+          <div class="documents-help"><p id="copieAide" class="correction-only">Colle ta copie ou ajoute son PDF. Place le sujet dans « Le sujet et les documents à étudier ». Tu peux aussi y joindre le barème et la méthode de ton enseignant.</p><p id="volume" class="editor-volume" aria-live="polite">0 / 30 000 caractères · 0 / 15 pages</p></div>
+          <div class="instructions"><label for="question">Ta consigne <span class="optional">facultatif, 2 000 caractères maximum</span></label><textarea id="question" rows="2" maxlength="2000" placeholder="Précise les points que tu veux travailler ou ajoute la consigne de ton chargé de TD."></textarea></div>
+          <div class="submit-row"><p class="editor-note">Une réponse terminée utilise un crédit, y compris pour une nouvelle question sur le même document. Les pages du texte collé sont estimées à partir de sa longueur.</p><button id="generer" type="submit" class="button">Travailler mon exercice</button></div>
+          <p class="editor-note privacy">Le texte de ta demande est envoyé à Anthropic pour préparer la réponse. <a href="confidentialite.html#portalis">Voir le traitement de tes documents</a>.</p>
         </fieldset>
         <p id="travailMessage" class="message" role="status" hidden></p>
       </form>
