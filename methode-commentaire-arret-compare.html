@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Commentaire comparé d’arrêts, méthode et exemple expliqué</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="La méthode du commentaire comparé avec Poussin et Fragonard. Prépare les arrêts, construis un plan et développe les motifs sans répéter ton introduction.">
+  <link rel="canonical" href="https://trajectoiredroit.com/methode-commentaire-arret-compare.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Commentaire comparé d’arrêts, méthode et exemple expliqué">
+  <meta property="og:description" content="La méthode du commentaire comparé avec Poussin et Fragonard. Prépare les arrêts, construis un plan et développe les motifs sans répéter ton introduction.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/covers/exercices-20260923/commentaire-arret-contrats-l2-s1.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/methode-commentaire-arret-compare.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Commentaire comparé d’arrêts, méthode et exemple expliqué">
+  <meta name="twitter:description" content="La méthode du commentaire comparé avec Poussin et Fragonard. Prépare les arrêts, construis un plan et développe les motifs sans répéter ton introduction.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/covers/exercices-20260923/commentaire-arret-contrats-l2-s1.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=6a441fef">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style>
+.compare-article{padding-bottom:32px;line-height:1.8}
+.compare-article>section{margin:52px 0}
+.compare-article h2{font-size:clamp(1.5rem,3vw,2rem);line-height:1.25;margin:0 0 20px}
+.compare-article h3{font-size:1.18rem;line-height:1.4;margin:26px 0 12px}
+.compare-article p{margin:0 0 18px}
+.compare-table-wrap{overflow-x:auto;margin:24px 0}
+.compare-table{width:100%;min-width:660px;border-collapse:collapse;font-size:.94rem;line-height:1.6}
+.compare-table caption{text-align:left;font-weight:700;margin-bottom:14px}
+.compare-table th,.compare-table td{padding:16px;border:1px solid #d9e0e8;text-align:left;vertical-align:top}
+.compare-table thead th{background:#0E2A47;color:#fff}
+.compare-table tbody th{width:23%;background:#f2f5f8}
+.compare-example{margin:24px 0;padding:24px;border-left:4px solid #0E2A47;background:#f4f6f9;border-radius:0 12px 12px 0}
+.compare-example p:last-child{margin-bottom:0}
+@media(max-width:600px){.compare-article>section{margin:38px 0}.compare-example{padding:18px}.compare-table th,.compare-table td{padding:12px}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Commentaire comparé d’arrêts, méthode et exemple expliqué", "description": "La méthode du commentaire comparé avec Poussin et Fragonard. Prépare les arrêts, construis un plan et développe les motifs sans répéter ton introduction.", "url": "https://trajectoiredroit.com/methode-commentaire-arret-compare.html", "mainEntityOfPage": "https://trajectoiredroit.com/methode-commentaire-arret-compare.html", "datePublished": "2026-11-07", "dateModified": "2026-11-07", "author": {"@type": "Person", "name": "Julien", "jobTitle": "Professeur de droit", "url": "https://trajectoiredroit.com/a-propos.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://trajectoiredroit.com/"}, {"@type": "ListItem", "position": 2, "name": "Méthodologie juridique", "item": "https://trajectoiredroit.com/methodologie-juridique.html"}, {"@type": "ListItem", "position": 3, "name": "Commentaire comparé", "item": "https://trajectoiredroit.com/methode-commentaire-arret-compare.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il toujours une seule question de droit ?", "acceptedAnswer": {"@type": "Answer", "text": "Une question commune convient lorsque les décisions portent sur la même difficulté. Si leurs questions de droit diffèrent, tu peux présenter chacune avant d’expliquer l’intérêt de leur rapprochement. Tu suis ensuite la présentation demandée par ton enseignant."}}, {"@type": "Question", "name": "Peut-on consacrer une partie à chaque arrêt ?", "acceptedAnswer": {"@type": "Answer", "text": "Le plan doit rendre leur relation visible. Une séparation par arrêt risque de laisser la comparaison à quelques transitions. Un plan construit autour des questions communes permet de développer cette relation dans les sous-parties."}}, {"@type": "Question", "name": "Poussin et Fragonard sont-ils contradictoires ?", "acceptedAnswer": {"@type": "Answer", "text": "Leurs résultats s’expliquent par les questions examinées et les faits retenus. Par exemple, Poussin impose de rechercher la conviction des vendeurs malgré le doute persistant. Fragonard retient une incertitude acceptée par les deux parties et l’absence de preuve de la conviction invoquée. Leur comparaison permet donc de préciser le rôle du doute dans l’erreur."}}]}</script>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 474,64 €, 45 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-45 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">474,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 349,74 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">349,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 449,67 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">449,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 399,70 €, 40 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-40 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 569,58 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">569,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>164 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main id="main">
+  <section class="section--sm" style="padding-top:48px">
+    <div class="container container--narrow">
+      <p class="eyebrow">Méthodologie juridique</p>
+      <h1 class="h1">Le commentaire comparé d’arrêts, avec un exemple expliqué</h1>
+      <p class="lead">Le commentaire comparé d’arrêts explique la relation entre deux décisions de justice. Tu prépares d’abord chaque arrêt, puis tu rapproches leurs raisonnements pour construire ta problématique et ton plan. Chaque sous-partie développe une idée tirée de cette comparaison. La présentation de l’introduction suit ensuite les consignes données par ton enseignant.</p>
+      <p>Avec Poussin et Fragonard, les deux affaires concernent l’auteur d’un tableau. Pourtant, la Cour de cassation casse une décision en 1978 et rejette le pourvoi en 1987. Pour expliquer cette différence, tu dois retrouver ce que les parties croyaient au moment de vendre et ce qu’elles avaient accepté.</p>
+      <div data-tjd-pdf-offert="fiche" data-id="arret-poussin-1978-explique" data-titre="La fiche de l’arrêt Poussin en PDF" data-texte="Retrouve les faits et la procédure, puis la recherche demandée aux juges. Cette fiche t’aide à préparer le premier arrêt avant de le comparer à Fragonard." data-bouton="Recevoir la fiche de Poussin"></div>
+    </div>
+  </section>
+
+  <section class="conversion-offer section--sm" aria-labelledby="offre-compare-titre">
+    <div class="container"><div class="conversion-offer__card">
+      <div class="conversion-offer__visual"><img src="assets/covers/exercices-20260923/commentaire-arret-contrats-l2-s1.webp" alt="Recueil de commentaires d’arrêt corrigés en droit des contrats L2 S1" width="960" height="540" loading="lazy"></div>
+      <div>
+        <p class="conversion-offer__eyebrow">Pour apprendre à expliquer les motifs d’un arrêt</p>
+        <h2 class="h2" id="offre-compare-titre">Les commentaires d’arrêt corrigés en droit des contrats</h2>
+        <p>Le recueil présente des commentaires rédigés en entier. Tu peux ainsi observer la place des définitions et des jurisprudences dans le développement, puis comparer ce travail à ta propre copie.</p>
+        <ul><li>Des introductions rédigées avec les étapes de l’exercice.</li><li>Des développements qui expliquent les règles appliquées par le juge.</li><li>Des connaissances rattachées aux décisions commentées.</li></ul>
+        <p>Ce recueil porte sur les commentaires d’arrêts de contrats. La méthode du commentaire comparé est expliquée ci-dessous.</p>
+        <div class="conversion-offer__choices"><button type="button" class="btn btn--primary" data-tjd-produit="commentaire-arret-contrats-l2-s1">Acheter le recueil · 14,99 €</button><a class="btn btn--outline" href="corriges.html">Voir les recueils par matière</a></div>
+      </div>
+    </div></div>
+  </section>
+
+  <article class="container container--narrow compare-article">
+    <nav class="toc" aria-labelledby="sommaire-compare"><p class="toc__title" id="sommaire-compare">Sommaire</p><ol>
+      <li><a href="#travail-attendu">Le travail attendu dans une comparaison</a></li>
+      <li><a href="#lecture">La préparation de chaque arrêt</a></li>
+      <li><a href="#tableau">Le tableau Poussin et Fragonard</a></li>
+      <li><a href="#problematique">La problématique et le plan comparé</a></li>
+      <li><a href="#introduction">L’introduction et la méthode de ton enseignant</a></li>
+      <li><a href="#developpement">Un paragraphe de comparaison expliqué</a></li>
+      <li><a href="#relecture">La relecture de ta copie</a></li>
+      <li><a href="#questions">Les questions fréquentes</a></li>
+    </ol></nav>
+
+    <section id="travail-attendu">
+      <h2>Que dois-tu expliquer dans un commentaire comparé ?</h2>
+      <p>Tu cherches ce que le rapprochement des décisions permet de comprendre. Par exemple, le second arrêt peut préciser une condition du premier ou en montrer une limite. Il peut aussi appliquer la même règle à des faits différents. Tu identifies donc la relation entre les raisonnements avant de décider comment les répartir dans le plan.</p>
+      <p>La date sert à situer les décisions. Cependant, une décision plus récente peut simplement répondre à une autre situation. En effet, pour parler d’un revirement, tu dois établir que le juge abandonne une solution antérieure sur une même question. Le seul changement de résultat entre les deux affaires laisse encore cette démonstration à faire.</p>
+      <p>Le sens correspond à ce que le juge décide et aux raisons qu’il donne. La valeur conduit ensuite à apprécier la solidité de ce raisonnement avec des arguments juridiques, en le confrontant notamment aux autres décisions de la matière. Enfin, la portée concerne l’apport de l’arrêt et ses conséquences pour d’autres affaires, avec les incertitudes qui subsistent. Tu peux travailler ces trois questions au brouillon, puis placer les réponses dans les sous-parties qui leur conviennent.</p>
+    </section>
+
+    <section id="lecture">
+      <h2>Comment préparer les deux arrêts au brouillon ?</h2>
+      <p>Tu prépares une <a href="methode-fiche-arret.html">fiche d’arrêt pour chaque décision</a>. Cette séparation provisoire permet de garder l’origine de chaque fait et de chaque argument. Tu relèves la demande des parties, puis les réponses des juridictions. Ensuite, tu formules la difficulté juridique à laquelle la Cour répond.</p>
+      <p>À chaque passage, identifie qui parle. Les arguments d’un pourvoi sont ceux de la personne qui conteste la décision. La réponse de la Cour de cassation apparaît ensuite dans ses motifs. Une phrase qui rapporte un argument du demandeur doit donc garder cette attribution dans ta copie.</p>
+      <p>La procédure se reconstruit à partir du texte disponible. Par exemple, un arrêt présenté comme confirmatif indique que la cour d’appel a maintenu la solution du premier jugement. En revanche, si l’extrait reste silencieux sur la première instance, tu conserves cette limite. Dans la fiche d’arrêt, tu conserves les faits et les étapes de procédure que le texte donne. Les connaissances extérieures servent ensuite à expliquer les motifs dans le commentaire.</p>
+      <p>Dans Poussin, distingue surtout la demande d’annulation de la vente et la cassation de la décision d’appel. Les vendeurs veulent faire annuler leur contrat. Cependant, la Cour de cassation contrôle ici le raisonnement suivi pour rejeter cette demande. Elle renvoie ensuite l’affaire pour qu’une recherche manquante soit effectuée.</p>
+    </section>
+
+    <section id="tableau">
+      <h2>Comment comparer Poussin et Fragonard ?</h2>
+      <p>Les deux décisions portent sur l’auteur d’un tableau vendu. Tu peux donc comparer les croyances au moment de la vente, puis le traitement du doute par les juges. Le tableau suivant sert au brouillon. Ses lignes indiquent les questions à développer dans la copie.</p>
+      <div class="compare-table-wrap"><table class="compare-table">
+        <caption>Deux décisions sur l’erreur et l’incertitude concernant l’auteur d’un tableau</caption>
+        <thead><tr><th scope="col">Question à comparer</th><th scope="col">Poussin, 22 février 1978</th><th scope="col">Fragonard, 24 mars 1987</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Quelle attribution accompagne la vente ?</th><td>Un expert attribue le tableau à l’école des Carrache. La Réunion des musées nationaux exerce son droit de préemption, puis le présente comme un original de Poussin.</td><td>Le tableau <em>Le Verrou</em> est vendu en 1933 comme étant « attribué à Fragonard ». Son authenticité est ensuite reconnue.</td></tr>
+          <tr><th scope="row">Que demande-t-on au juge ?</th><td>Les vendeurs demandent la nullité pour erreur sur une qualité du tableau.</td><td>Les héritiers du vendeur demandent la nullité après la reconnaissance de l’authenticité.</td></tr>
+          <tr><th scope="row">Quelle conviction doit être examinée ?</th><td>Les juges doivent rechercher si les vendeurs croyaient, au jour de la vente, que le tableau ne pouvait pas être de Poussin.</td><td>Les héritiers ne prouvent pas que le vendeur avait contracté sous l’empire de la conviction erronée invoquée.</td></tr>
+          <tr><th scope="row">Quelle place occupe l’incertitude ?</th><td>Même si l’auteur reste incertain, les juges doivent rechercher la conviction des vendeurs au jour de la vente.</td><td>Les juges ont retenu un aléa accepté de part et d’autre. L’incertitude sur l’auteur était donc entrée dans le contrat.</td></tr>
+          <tr><th scope="row">Que décide la Cour de cassation ?</th><td>Elle casse pour manque de base légale, car les recherches nécessaires pour justifier le rejet de la demande sont incomplètes. Elle renvoie l’affaire à la cour d’appel d’Amiens.</td><td>Elle rejette le pourvoi. L’authenticité devenue certaine correspond à une issue du risque accepté.</td></tr>
+        </tbody>
+      </table></div>
+      <p>La différence utile concerne donc la conviction à rechercher et l’incertitude acceptée. Dans Fragonard, la mention « attribué à » se lit avec la constatation des juges selon laquelle les deux parties ont accepté l’aléa. Tu dois conserver cette acceptation dans ton explication, car elle justifie l’effet donné à la disparition du doute.</p>
+      <p>Les textes intégraux permettent de contrôler ces deux raisonnements. Tu peux lire <a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000007000241" target="_blank" rel="noopener noreferrer">la décision Poussin de 1978</a> et <a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000007018196" target="_blank" rel="noopener noreferrer">la décision Fragonard de 1987</a>. Elles appliquent l’ancien article 1110 du Code civil. En revanche, les articles 1132 et 1133 actuels permettent ensuite de rapprocher ces apports du droit issu de la réforme de 2016.</p>
+    </section>
+
+    <section id="problematique">
+      <h2>Comment construire une problématique et un plan comparé ?</h2>
+      <p>Tu pars des questions que les décisions permettent de traiter ensemble. Pour Poussin et Fragonard, tu peux demander dans quelles conditions une incertitude sur l’auteur d’un tableau laisse possible une erreur du vendeur ou correspond à un risque accepté. La problématique annonce ainsi la relation que ton développement doit expliquer.</p>
+      <p>Une question commune convient lorsque les décisions répondent à une même difficulté. Si les questions de droit diffèrent, tu les conserves d’abord dans la présentation de chaque arrêt. Tu expliques ensuite l’intérêt de leur rapprochement. Cette méthode garde les particularités des décisions et permet de construire une discussion commune lorsque le sujet le justifie.</p>
+      <p>Le plan se déduit des réponses à démontrer. Dans la première partie, tu expliques d’abord pourquoi l’identité de l’auteur compte dans la décision de vendre. Tu examines ensuite comment la conviction des vendeurs doit être recherchée ou prouvée. Dans la seconde partie, tu identifies l’incertitude acceptée par les parties, puis tu compares les effets du doute sur la demande d’annulation. Les deux arrêts servent à discuter chacune de ces questions.</p>
+      <p>Les titres expriment les idées qui relient les décisions. Par exemple, « La recherche et la preuve de la conviction invoquée » annonce précisément la question discutée. Cette formulation nominale, sans verbe conjugué ni nom d’arrêt, laisse apparaître le raisonnement. Le correcteur peut ainsi comprendre ta démonstration en lisant les titres seuls.</p>
+      <div class="compare-example">
+        <h3>I. L’appréciation de l’erreur à partir de la conviction lors de la vente</h3>
+        <p><strong>A. L’auteur du tableau comme qualité discutée au jour de la vente.</strong> Les deux décisions concernent l’auteur du tableau vendu. Tu peux donc expliquer le rôle de cette qualité dans le consentement et sa différence avec une estimation financière de l’œuvre.</p>
+        <p><strong>B. La recherche et la preuve de la conviction invoquée.</strong> Tu compares donc le manque de recherche relevé en 1978 à l’absence de preuve retenue en 1987. En effet, les tribunaux et les cours d’appel sont les juges du fond. Ils examinent les faits et les preuves, tandis que la Cour de cassation contrôle l’application du droit.</p>
+        <h3>II. La délimitation de l’erreur par le risque accepté</h3>
+        <p><strong>A. L’identification d’une incertitude entrée dans le contrat.</strong> Fragonard établit l’acceptation commune de l’aléa. Ce point se compare à la conviction que les juges doivent rechercher dans Poussin.</p>
+        <p><strong>B. Les effets du doute sur la demande d’annulation.</strong> Le risque accepté explique le maintien de la vente dans Fragonard. En revanche, le doute persistant dans Poussin laisse une recherche à accomplir avant de statuer sur l’erreur invoquée.</p>
+      </div>
+      <p>Ce plan illustre un raisonnement possible à partir de ces motifs. Tu dois toutefois le confronter au sujet exact et aux attentes de ton cours. Les connaissances utiles se choisissent ensuite pour expliquer les questions annoncées par les titres. La <a href="methode-commentaire-arret.html">méthode du commentaire d’arrêt</a> précise comment développer ces connaissances dans une sous-partie.</p>
+    </section>
+
+    <section id="introduction">
+      <h2>Comment rédiger l’introduction sans répéter le développement ?</h2>
+      <p>L’introduction présente les décisions et fait comprendre pourquoi elles sont étudiées ensemble. Tu dois donc répartir les informations entre la présentation de chaque affaire et leur rapprochement. Une question déjà annoncée dans l’introduction peut ensuite être démontrée dans le développement avec les motifs et les connaissances du cours.</p>
+      <p>Les méthodes universitaires varient sur l’organisation de cette introduction. Certaines rapprochent les faits et les procédures dès leur présentation. D’autres demandent deux fiches successives, puis une contextualisation commune. Les consignes de ton enseignant déterminent donc la présentation de ta copie.</p>
+      <p>Tu peux présenter les affaires dans leur ordre chronologique, sauf consigne différente. Chaque étape de l’introduction occupe un alinéa, car cette séparation aide le lecteur à retrouver la progression. Les faits restent brefs, tout en conservant ceux qui expliquent le litige. Tu rassembles ensuite la difficulté commune en une phrase de problématique, ou tu expliques le lien entre les deux questions.</p>
+      <p>Lorsque la méthode suivie autorise une accroche, choisis une phrase précise sur la difficulté étudiée. Par exemple, le doute sur l’auteur d’un tableau peut introduire la question du risque accepté lors de la vente. L’ouverture prépare ainsi la comparaison.</p>
+      <aside class="compare-example" aria-labelledby="variante-titre">
+        <h3 id="variante-titre">Une variante qui demande une contextualisation dans l’introduction</h3>
+        <p>La méthode de Valérie Lasserre étudiée dans le cours prévoit sept étapes. Elle demande notamment de reproduire les motifs mot pour mot et d’exposer l’intérêt de la comparaison en au moins six phrases, dans un passage de dix à quinze lignes sur la copie. Elle autorise également une question commune lorsque les décisions le permettent. Sinon, les deux questions restent présentées.</p>
+<ol class="compare-steps">
+          <li><strong>Présenter les deux décisions.</strong> Tu indiques la chambre et la date de chaque arrêt dans la phrase d’ouverture demandée par l’enseignante.</li>
+          <li><strong>Présenter le premier arrêt.</strong> Tu exposes ses faits, puis sa procédure. Tu précises qui a saisi le juge et quelle réponse chaque juridiction a donnée. Tu conserves donc les seules étapes que le texte permet d’établir.</li>
+          <li><strong>Présenter le second arrêt.</strong> Tu reprends le même travail en distinguant ses parties et ses arguments. Le lecteur peut ainsi identifier ce qui appartient à chaque affaire.</li>
+          <li><strong>Poser les questions de droit.</strong> Tu formules la question de chaque décision. Si elles sont identiques, une question commune les remplace.</li>
+          <li><strong>Présenter les positions de la Cour de cassation.</strong> Tu indiques la cassation ou le rejet. Tu peux ainsi rapprocher la cassation de 1978, qui impose une recherche sur la conviction, du rejet de 1987, justifié notamment par l’aléa accepté. Cette méthode demande ensuite de reproduire les motifs de chaque arrêt mot pour mot.</li>
+          <li><strong>Expliquer l’intérêt de la comparaison.</strong> Le passage comprend au moins six phrases, sur dix à quinze lignes. Tu y situes les enjeux et l’évolution du droit, puis les rapports entre les décisions. Les idées développées doivent donc correspondre aux intitulés du commentaire, avant l’annonce formelle du plan.</li>
+          <li><strong>Annoncer les deux parties.</strong> Tu reprends les mots exacts des titres I et II, que tu peux annoncer dans une phrase impersonnelle. Les sous-parties A et B seront ensuite annoncées dans les chapeaux du développement.</li>
+        </ol>
+        <p>Pour appliquer cette consigne, tu peux expliquer la question qui rapproche les arrêts, puis la différence qui rend leur comparaison utile. Dans notre exemple, les deux affaires concernent l’auteur d’un tableau. Cependant, la conviction à rechercher dans Poussin se distingue de l’incertitude acceptée dans Fragonard. L’introduction annonce cette relation. Les sous-parties doivent ensuite la démontrer. Cette variante prévoit aussi une copie sans conclusion.</p>
+      </aside>
+      <p>Tu évites ainsi de donner deux fois le même développement. Les motifs cités présentent les réponses des juridictions. La contextualisation explique ensuite l’intérêt de les rapprocher. Enfin, le développement examine les raisons et les conséquences de cette relation.</p>
+    </section>
+
+    <section id="developpement">
+      <h2>Comment développer une comparaison dans un paragraphe ?</h2>
+      <p>Une sous-partie commence par les mots des décisions qui éclairent son idée. Tu expliques ensuite ce que chaque juridiction fait, puis tu rapproches les raisonnements. Une connaissance du CM intervient lorsqu’elle permet de comprendre cette relation. Dans le développement, une citation reste brève, entre guillemets, puis reçoit une explication. La reproduction intégrale des motifs prévue par l’enseignante concerne donc l’introduction. L’exemple suivant montre ensuite le passage des motifs à leur commentaire.</p>
+      <blockquote class="compare-example"><p>Dans Poussin, la Cour de cassation reproche aux juges de ne pas avoir recherché la conviction des vendeurs au moment de la vente. Elle exige donc d’examiner ce qu’ils croyaient sur l’auteur du tableau, même si l’authenticité reste discutée. Cette recherche permet de distinguer une attribution tenue pour impossible et une attribution considérée comme incertaine. Fragonard précise ensuite la place de cette incertitude dans le contrat. En effet, les juges ont retenu un aléa accepté par les deux parties. L’aléa désigne ici l’incertitude sur l’auteur du tableau. Les parties avaient accepté de conclure la vente malgré ce doute. Sa disparition ne leur permet donc pas d’invoquer une erreur sur cette même qualité. De plus, les héritiers échouent à prouver la conviction erronée invoquée. Le rejet repose ainsi sur les éléments établis dans cette seconde affaire. La différence entre les résultats se comprend donc à partir des croyances et du risque acceptés lors de la vente.</p></blockquote>
+      <p>Le paragraphe attribue d’abord la recherche à la Cour de cassation. Il explique ensuite ce qu’elle change pour l’examen de l’erreur, puis revient aux motifs de Fragonard. Tu peux poursuivre avec les conditions de l’erreur et le rôle de l’aléa. En revanche, une simple référence aux deux noms d’arrêts laisserait encore cette relation à expliquer.</p>
+      <p>La distinction entre qualité et valeur peut aussi éclairer cette comparaison. Par exemple, l’auteur du tableau est une qualité de l’œuvre. Le prix accepté peut découler de la croyance sur cet auteur. Tu dois donc identifier ce qui a été mal apprécié. Une estimation financière inexacte, prise seule, relève de l’erreur sur la valeur.</p>
+    </section>
+
+    <section id="relecture">
+      <h2>Que vérifier avant de rendre ta copie ?</h2>
+      <p>Relis d’abord tes titres avec les passages qu’ils annoncent. Chaque sous-partie doit avoir une idée comparative identifiable. Si les paragraphes racontent successivement les deux affaires, recherche le lien qui justifie leur présence sous ce titre. Tu peux alors reprendre l’explication à partir des conditions ou des motifs à rapprocher.</p>
+      <p>Tu vérifies ensuite le vocabulaire de la procédure. La cassation de l’arrêt d’appel et l’annulation du contrat correspondent à deux décisions différentes. En effet, dans Poussin, la Cour de cassation impose une recherche et renvoie l’affaire. Dans Fragonard, elle rejette le pourvoi. Ces résultats doivent rester identifiables dans ton introduction et dans ton développement.</p>
+      <p>Enfin, garde les développements qui rendent les connaissances utiles au commentaire. Un arrêt connexe doit être expliqué, puis relié à la décision étudiée. Tu peux ainsi conserver quelques références développées avec leurs faits et leur apport. Le nombre de noms cités dépend de ce qu’ils permettent de démontrer.</p>
+    </section>
+
+    <section id="questions"><h2>Questions fréquentes sur le commentaire comparé</h2>
+      <h3>Faut-il toujours une seule question de droit ?</h3>
+      <p>Une question commune convient lorsque les décisions portent sur la même difficulté. Si leurs questions de droit diffèrent, tu peux présenter chacune avant d’expliquer l’intérêt de leur rapprochement. Tu suis ensuite la présentation demandée par ton enseignant.</p>
+      <h3>Peut-on consacrer une partie à chaque arrêt ?</h3>
+      <p>Le plan doit rendre leur relation visible. Une séparation par arrêt risque de laisser la comparaison à quelques transitions. Un plan construit autour des questions communes permet de développer cette relation dans les sous-parties.</p>
+      <h3>Poussin et Fragonard sont-ils contradictoires ?</h3>
+      <p>Leurs résultats s’expliquent par les questions examinées et les faits retenus. Par exemple, Poussin impose de rechercher la conviction des vendeurs malgré le doute persistant. Fragonard retient une incertitude acceptée par les deux parties et l’absence de preuve de la conviction invoquée. Leur comparaison permet donc de préciser le rôle du doute dans l’erreur.</p>
+    </section>
+
+    <section id="sources"><h2>Sources et prolongements</h2>
+      <p>Cette méthode s’appuie sur les cours de Julien et sur les textes des deux décisions. Les présentations de <a href="https://www.clementfrancois.fr/methodologie-commentaire-darrets-compares/" target="_blank" rel="noopener noreferrer">Clément François sur le commentaire d’arrêts comparés</a> et de <a href="https://blogdroitadministratif.net/2012/01/28/une-methode-du-commentaire-compare-d-arrets/" target="_blank" rel="noopener noreferrer">Jean-Baptiste Chevalier sur le commentaire comparé</a> montrent aussi que l’organisation de l’introduction peut varier. La méthode particulière exposée ci-dessus reste donc distinguée de ces principes généraux.</p>
+      <p>Pour préparer les notions de l’exemple, tu peux lire <a href="arret-poussin-1978-explique.html">l’arrêt Poussin expliqué</a>. Les autres exercices se retrouvent dans la <a href="methodologie-juridique.html">méthodologie juridique</a>, avec les étapes propres à chacun.</p>
+    </section>
+  </article>
+  <section class="section">
+      <div class="container container--narrow">
+        <div class="author-box">
+          <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+          <div>
+            <p class="author-box__name">Julien</p>
+            <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+            <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">164 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  <section class="section article-pack-ligne" aria-label="Supports du semestre"><div class="container"><p class="article-pack-ligne__texte">Tu peux aussi retrouver les supports du semestre dans le <a href="pack-ultra.html#pack-ultra-l2-s1">Pack Ultra L2 S1</a>.</p><p class="article-pack__back"><a href="methodologie-juridique.html">Revenir aux méthodes des exercices</a></p></div></section>
+</main>
+
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Méthode du commentaire comparé d’arrêts">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Méthode du commentaire comparé d’arrêts">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Commentaires de contrats · 14,99 €</strong>
+      <small>Recueil PDF · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="commentaire-arret-contrats-l2-s1">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=60767dcf" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=da4d9620" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=ee98d119" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>
