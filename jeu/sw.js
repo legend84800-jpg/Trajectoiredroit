@@ -1,6 +1,6 @@
 /* Service worker du jeu Cassation. Coquille en cache, données réseau d'abord. */
-var CACHE = "cassation-v1";
-var COQUILLE = ["./", "jeu.css?v=1", "jeu.js?v=1", "manifest.webmanifest"];
+var CACHE = "cassation-v2";
+var COQUILLE = ["./", "jeu.css?v=1", "jeu.js?v=2", "manifest.webmanifest"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(COQUILLE); }).then(function () { return self.skipWaiting(); }));

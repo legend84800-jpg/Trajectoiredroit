@@ -11,6 +11,7 @@
 // à savoir le premier cas pratique du recueil, publié sur R2 sous tjd/corrige-offert/<id>.pdf.
 
 const PRODUITS = require("./_produits");
+const ESSAI = require("./_essai-majeures");
 const { attributsExercice, suggestionEmail, emailDepuisAttributs } = require('./_corriges-exercices');
 // Plan du commentaire offert sur les pages d'arrêts les plus vues (test du 20/10/2026).
 // Liste blanche écrite par livrables/automatisation/test-arrets-conversion-2026-10-20/generer_liste_plans.py.
@@ -113,10 +114,11 @@ async function contactDejaDansListe(email, apiKey) {
   return Array.isArray(contact.listIds) && contact.listIds.includes(listId);
 }
 
-async function inscrireContact(email, attributs, apiKey) {
+async function inscrireContact(email, attributs, apiKey, listes) {
   const payload = { email, updateEnabled: true, attributes: attributs };
   const listId = parseInt(process.env.BREVO_LIST_ID || "", 10);
-  if (!Number.isNaN(listId)) payload.listIds = [listId];
+  if (Array.isArray(listes)) payload.listIds = listes;
+  else if (!Number.isNaN(listId)) payload.listIds = [listId];
 
   const brevoRes = await fetch("https://api.brevo.com/v3/contacts", {
     method: "POST",
@@ -364,6 +366,37 @@ async function handler(req, res) {
         if (!resp.ok) throw new Error('Livraison Brevo impossible');
       }
       return res.status(200).json({ok:true,envoye:true});
+    }
+    if (body.essai !== undefined && body.essai !== null && body.essai !== "") {
+      // Kit d'essai des majeures préparées (07/11/2026), détail dans _essai-majeures.js.
+      const produit = String(body.essai).trim();
+      const choix = ESSAI.essaiValide(produit, body.majeures);
+      if (!choix) return res.status(400).json({ error: "Choisis deux majeures de la matière." });
+      if (proposition && body.confirmerDomaine !== true) {
+        return res.status(409).json({ error: 'Vérifie le domaine de ton adresse email.', suggestion: proposition });
+      }
+      if (typeof body.site === "string" && body.site.trim()) return res.status(200).json({ ok: true, kit: ESSAI.urlKit(produit, choix) });
+      if (limiteAtteinte(ipVisiteur(req)) || limiteAtteinte("email:" + email)) {
+        return res.status(429).json({ error: "Trop de demandes. Réessaie dans quelques minutes." });
+      }
+      let remise = null;
+      try {
+        remise = await ESSAI.creerCode(produit, process.env.STRIPE_SECRET_KEY);
+      } catch (e) {
+        console.error("essai-majeures code Stripe impossible", e && e.code ? e.code : e && e.message);
+      }
+      const attributs = ESSAI.attributsEssai(produit, choix, remise);
+      // Liste 9 « Essai majeures préparées », sans automatisation : l'éditeur Brevo
+      // n'a pas accepté de branche essai dans le premier email de « Automatisation #1 »
+      // (07/11/2026). Le kit et le code partent donc toujours par email transactionnel,
+      // et l'élève ne reçoit pas en plus l'email générique de bienvenue.
+      const inscription = await inscrireContact(email, attributs, apiKey, [ESSAI.LISTE_BREVO]);
+      if (!inscription.ok) {
+        console.error("Brevo error:", inscription.status, inscription.detail);
+        return res.status(502).json({ error: "Inscription impossible pour le moment." });
+      }
+      await ESSAI.envoyerEssai(email, attributs, apiKey);
+      return res.status(200).json({ ok: true, envoye: true, kit: attributs.ESSAI_KIT });
     }
     if (body.fiche !== undefined && body.fiche !== null && body.fiche !== "") {
       const fiche = String(body.fiche).trim();

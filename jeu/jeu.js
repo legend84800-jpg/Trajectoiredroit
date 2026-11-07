@@ -492,6 +492,20 @@
     } else {
       carte.hidden = true;
     }
+    /* Kit d'essai des majeures préparées (07/11/2026) : deux majeures offertes
+       dans la matière jouée, choisies sur majeures-preparees.html. */
+    var MAJEURES = { "intro-droit-l1s1": "maj-intro-droit-l1", "famille-l1s2": "maj-famille-l1-s2", "personnes-l1": "maj-personnes-l1",
+      "contrats-l2s1": "maj-contrats-l2-s1", "da-l2s1": "maj-da-l2-s1", "penal-l2s1": "maj-penal-l2-s1", "obligations-l2s2": "maj-obligations-l2-s2",
+      "da-l2s2": "maj-da-l2-s2", "biens-l2": "maj-biens-l2", "travail-l3s1": "maj-travail-l3-s1", "commercial-l3s1": "maj-commercial-l3-s1",
+      "societes-l3s1": "maj-societes-l3-s1", "contrats-speciaux-l3": "maj-contrats-speciaux-l3" };
+    var maj = MAJEURES[session.slug];
+    if (maj && totalErreurs >= 1) {
+      $("essai-texte").textContent = "Pour revoir les règles de cette matière avant le partiel, je t'offre deux majeures préparées, que tu choisis dans la liste. Chacune est rédigée condition par condition, avec ses articles et ses arrêts, comme la majeure d'un cas pratique.";
+      $("essai-lien").href = "../majeures-preparees.html?produit=" + maj + "&utm_source=jeu&utm_medium=verdict&utm_campaign=essai-majeures#essai-majeures";
+      $("carte-essai").hidden = false;
+    } else {
+      $("carte-essai").hidden = true;
+    }
     $("btn-defi-verdict").textContent = session.mode === "audience" ? "Défier quelqu'un sur cette matière" : "Envoyer le défi (copier le lien)";
     $("partage-verdict-ok").hidden = true;
     montre("ecran-verdict");
