@@ -1,4 +1,4 @@
-const LIMITES = Object.freeze({ reponses: 60, caracteres: 30000, pages: 15, octetsPDF: 20 * 1024 * 1024, jetonsEntree: 20000, jetonsEntreeRelecture: 40000 });
+const LIMITES = Object.freeze({ reponses: 60, caracteres: 30000, pages: 15, octetsPDF: 20 * 1024 * 1024, jetonsEntree: 20000, jetonsEntreeCorrection: 40000, jetonsEntreeRelecture: 40000 });
 // Tarifs mensuels choisis par Julien, exprimés en centimes.
 const FORMULES = Object.freeze({
   portalis: Object.freeze({ nom: "Portalis IA", effort: "low", prix: 800, recharges: {20:300,60:800} }),
@@ -10,9 +10,10 @@ const MODELE = "claude-sonnet-5-5";
 const MODELE_RELECTURE = "claude-opus-5-5";
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 function formuleValide(v) { return typeof v === "string" && Object.hasOwn(FORMULES, v); }
-function budgetSortie(exercice,formule) {
+function budgetSortie(exercice,formule,mode='rediger') {
   if (!formuleValide(formule)||!['fiche','commentaire','commentaire-compare','cas','dissertation'].includes(exercice)) throw new Error('configuration_budget');
-  const budgets=exercice==='fiche'?{portalis:6000,classique:8000,pro:10000}:
+  if(!['rediger','corriger'].includes(mode))throw new Error('configuration_budget');
+  const budgets=mode==='corriger'?{portalis:42000,classique:48000,pro:60000}:exercice==='fiche'?{portalis:6000,classique:8000,pro:10000}:
     exercice==='commentaire-compare'?{portalis:42000,classique:48000,pro:60000}:{portalis:12000,classique:14000,pro:24000};
   return budgets[formule];
 }

@@ -1,6 +1,16 @@
 (function(){
   'use strict';
-  function delaiRequete(body){return body?.action==='generer'?(body.exercice==='commentaire-compare'?585000:225000):115000;}
+  function delaiRequete(body){return body?.action==='generer'?(body.mode==='corriger'||body.exercice==='commentaire-compare'?585000:225000):115000;}
+  function volumeDemande({mode='rediger',texte='',copie='',question='',documents=[]}){
+    const corriger=mode==='corriger',docs=documents.filter(d=>corriger||d.role!=='copie');
+    const sujet=texte.trim().length+docs.filter(d=>d.role!=='copie').reduce((n,d)=>n+d.caracteres,0);
+    const travail=corriger?copie.trim().length+docs.filter(d=>d.role==='copie').reduce((n,d)=>n+d.caracteres,0):0;
+    return {chars:sujet+travail+question.trim().length,pages:Math.ceil(texte.trim().length/2000)+(corriger?Math.ceil(copie.trim().length/2000):0)+docs.reduce((n,d)=>n+d.pages,0),complet:corriger?sujet>=20&&travail>=20:sujet+question.trim().length>=20};
+  }
+  function construireDemande({demandeId,mode='rediger',exercice,texte,copie,question,documents=[]}){
+    return {action:'generer',demandeId,mode,exercice,texte,question,documents:documents.filter(d=>d.role!=='copie').map(d=>d.id),
+      ...(mode==='corriger'?{copie,documentsCopie:documents.filter(d=>d.role==='copie').map(d=>d.id)}:{})};
+  }
   function lireLien(text,debut){
     let position=debut+1,titre='',adresse='',profondeur=1;
     while(position<text.length&&text[position]!==']'&&text[position]!=='\n'){
@@ -89,7 +99,7 @@
     }
     finirParagraphe();finirCitation();
   }
-  if(typeof module==='object'&&module.exports){module.exports={rendreMarkdown,delaiRequete};return;}
+  if(typeof module==='object'&&module.exports){module.exports={rendreMarkdown,delaiRequete,volumeDemande,construireDemande};return;}
   const $=id=>document.getElementById(id);
   const euros=cents=>new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:2}).format(cents/100);
   const sessionKey='sb-ksqkhktcdgwrmzfcfjoe-auth-token';
@@ -105,6 +115,7 @@
   const sb=window.supabase.createClient('https://ksqkhktcdgwrmzfcfjoe.supabase.co','sb_publishable_Ahl2DDtcburQJZl1h2NHZQ_5eKh-isk',
     {auth:{storage:adapter,persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
   let session=null,userId=null,epoch=0,config=null,state=null,selected=null,documents=[],answer='',working=false,importing=false,compteurEnAttente=false;
+  const modeCourant=()=>$('modeCorriger').checked?'corriger':'rediger';
   const controllers=new Set();
   function message(id,text,error=false){const el=$(id);el.textContent=text||'';el.hidden=!text;el.classList.toggle('error',error);}
   async function api(path,body){
@@ -124,9 +135,10 @@
     $('connexion').hidden=!!session;
     $('abonnement').hidden=!state?.formule;
     $('champs').disabled=!actif||working||importing;
+    $('modeRediger').disabled=working||importing;$('modeCorriger').disabled=working||importing;
     $('recharges').hidden=!actif;
     $('etat').textContent=!session?'Connecte-toi pour retrouver ton abonnement et tes réponses disponibles.':
-      actif?'Ton espace est prêt. Ajoute ton document ou colle ton sujet.':
+      actif?'Ton espace est prêt. Choisis de rédiger une copie ou de corriger ton travail.':
       state?.statut==='impaye'?'Ton paiement doit être régularisé. Ouvre la gestion de ton abonnement.':'Choisis une formule pour commencer à travailler ton exercice.';
     if(state?.formule){
       const plan=config?.formules?.[state.formule];
@@ -161,14 +173,13 @@
     if(scroll)$('choix').scrollIntoView({block:'center',behavior:'smooth'});
   }
   function volume(){
-    const chars=$('texte').value.trim().length+$('question').value.trim().length+documents.reduce((n,d)=>n+d.caracteres,0);
-    const pages=Math.ceil($('texte').value.trim().length/2000)+documents.reduce((n,d)=>n+d.pages,0);
+    const {chars,pages,complet}=volumeDemande({mode:modeCourant(),texte:$('texte').value,copie:$('copie').value,question:$('question').value,documents});
     $('volume').textContent=`${new Intl.NumberFormat('fr-FR').format(chars)} / 30 000 caractères · ${pages} / 15 pages`;
-    $('generer').disabled=chars>30000||pages>15||chars<20||working||importing||!state?.actif;
-    return {chars,pages};
+    $('generer').disabled=chars>30000||pages>15||!complet||working||importing||!state?.actif;
+    return {chars,pages,complet};
   }
   function renderDocuments(){
-    $('documents').replaceChildren();
+    $('documents').replaceChildren();$('documentsCopie').replaceChildren();
     documents.forEach(doc=>{
       const li=document.createElement('li'),label=document.createElement('span'),button=document.createElement('button');
       label.textContent=`${doc.nom} · ${doc.pages} page${doc.pages>1?'s':''}`;
@@ -178,7 +189,7 @@
         const current=epoch;button.disabled=true;
         try{await api('/api/generer',{action:'retirer',documentId:doc.id});if(current!==epoch)return;documents=documents.filter(d=>d.id!==doc.id);renderDocuments();volume();}
         catch(error){if(current===epoch){button.disabled=false;message('travailMessage',error.message,true);}}
-      });li.append(label,button);$('documents').append(li);
+      });li.append(label,button);$(doc.role==='copie'?'documentsCopie':'documents').append(li);
     });
   }
   function renderAnswer(text){
@@ -207,7 +218,7 @@
     const current=++epoch;
     controllers.forEach(c=>c.abort());controllers.clear();
     session=next;userId=next?.user?.id||null;state=null;documents=[];answer='';working=false;importing=false;compteurEnAttente=false;
-    $('texte').value='';$('question').value='';$('resultat').hidden=true;$('reponse').replaceChildren();renderDocuments();renderState();volume();message('travailMessage','');
+    $('texte').value='';$('copie').value='';$('question').value='';$('resultat').hidden=true;$('reponse').replaceChildren();renderDocuments();renderState();volume();message('travailMessage','');
     if(selected)choose(selected,false);
     if(!session)return;
     try{
@@ -242,37 +253,51 @@
   $('gerer').addEventListener('click',()=>payment({type:'portal'},$('gerer')));
   document.querySelectorAll('[data-recharge]').forEach(button=>button.addEventListener('click',()=>payment({type:'portalis_recharge',formule:state.formule,nombre:Number(button.dataset.recharge)},button)));
   function actualiserExercice(){
-    const compare=$('exercice').value==='commentaire-compare';
-    $('commentaireCompareAide').hidden=!compare;
+    const compare=$('exercice').value==='commentaire-compare',corriger=modeCourant()==='corriger';
+    $('copieZone').hidden=!corriger;$('commentaireCompareAide').hidden=!compare||corriger;
+    $('modeAide').textContent=corriger?'La correction reprend les passages de ta copie, explique les défauts et propose des réécritures. Elle comprend aussi une note indicative sur 20, avec le détail des points. La préparation peut prendre plusieurs minutes.':'Choisis ton exercice, puis ajoute le sujet.';
+    $('texteLabel').textContent=corriger?'Le sujet et les documents à étudier':'Ton texte ou ton sujet';
+    $('pdfLabel').textContent=corriger?'Ajouter un PDF du sujet':'Ajouter un PDF';
     $('texte').placeholder=compare?'Colle les textes des arrêts à comparer. Tu peux aussi les ajouter en PDF.':'Colle ton arrêt, ton cas pratique ou ton sujet de dissertation.';
-    $('question').placeholder=compare?'Ajoute les consignes de ton enseignant ou les indications propres au sujet.':'Précise les points que tu veux travailler ou ajoute la consigne de ton chargé de TD.';
-    $('generer').textContent=compare?'Rédiger le commentaire comparé':'Travailler mon exercice';
+    $('question').placeholder=corriger?'Ajoute les attentes de ton enseignant et le barème s’il est court. Tu peux joindre les documents plus longs avec le sujet.':compare?'Ajoute les consignes de ton enseignant ou les indications propres au sujet.':'Précise les points que tu veux travailler ou ajoute la consigne de ton chargé de TD.';
+    $('generer').textContent=corriger?'Corriger ma copie':compare?'Rédiger le commentaire comparé':'Rédiger ma copie';
+    volume();
   }
+  const modeLien=new URLSearchParams(location.search).get('mode');
+  let modeSauve;try{modeSauve=sessionStorage.getItem('tjd-portalis-mode');}catch(_){}
+  if((modeLien||modeSauve)==='corriger')$('modeCorriger').checked=true;
+  document.querySelectorAll('input[name="mode"]').forEach(input=>input.addEventListener('change',()=>{
+    try{sessionStorage.setItem('tjd-portalis-mode',modeCourant());}catch(_){}
+    actualiserExercice();
+  }));
   if(new URLSearchParams(location.search).get('exercice')==='commentaire-compare')$('exercice').value='commentaire-compare';
   $('exercice').addEventListener('change',actualiserExercice);actualiserExercice();
-  $('texte').addEventListener('input',volume);$('question').addEventListener('input',volume);
-  $('pdf').addEventListener('change',async()=>{
-    const file=$('pdf').files[0];if(!file)return;
+  $('texte').addEventListener('input',volume);$('copie').addEventListener('input',volume);$('question').addEventListener('input',volume);
+  async function importerPDF(input,role){
+    const file=input.files[0];if(!file)return;
     const current=epoch;
-    if(file.size>20971520||!file.name.toLowerCase().endsWith('.pdf')){message('travailMessage','Choisis un PDF de 20 Mo maximum.',true);$('pdf').value='';return;}
+    if(file.size>20971520||!file.name.toLowerCase().endsWith('.pdf')){message('travailMessage','Choisis un PDF de 20 Mo maximum.',true);input.value='';return;}
     importing=true;renderState();renderDocuments();message('travailMessage','Import et lecture du PDF…');
     try{
       const upload=await api('/api/generer',{action:'upload',nom:file.name,taille:file.size});if(current!==epoch)return;
       const result=await sb.storage.from('portalis-documents').uploadToSignedUrl(upload.chemin,upload.token,file,{contentType:'application/pdf',upsert:false});
       if(result.error)throw new Error('L’import a échoué. Tu peux réessayer.');if(current!==epoch)return;
       const doc=await api('/api/generer',{action:'importer',documentId:upload.id});if(current!==epoch)return;
-      documents.push({...doc,nom:file.name});message('travailMessage','Le PDF est prêt. Vérifie le volume total avant de lancer la réponse.');
+      documents.push({...doc,nom:file.name,role});message('travailMessage','Le PDF est prêt. Vérifie le volume total avant de lancer la réponse.');
     }catch(error){if(current===epoch)message('travailMessage',error.message,true);}
-    finally{if(current===epoch){importing=false;$('pdf').value='';renderDocuments();renderState();volume();}}
-  });
+    finally{if(current===epoch){importing=false;input.value='';renderDocuments();renderState();volume();}}
+  }
+  $('pdf').addEventListener('change',()=>importerPDF($('pdf'),'sujet'));
+  $('pdfCopie').addEventListener('change',()=>importerPDF($('pdfCopie'),'copie'));
   $('exerciceForm').addEventListener('submit',async event=>{
-    event.preventDefault();const v=volume();if(!state?.actif||working||importing||v.chars<20||v.chars>30000||v.pages>15)return;
+    event.preventDefault();const v=volume();if(!state?.actif||working||importing||!v.complet||v.chars>30000||v.pages>15)return;
     const current=epoch,id=crypto.randomUUID();working=true;savePending(id);renderState();renderDocuments();
-    $('resultat').hidden=true;message('travailMessage',$('exercice').value==='commentaire-compare'?
+    $('resultat').hidden=true;message('travailMessage',modeCourant()==='corriger'?
+      'Portalis IA examine ta copie et prépare les explications de sa correction. Le rapport et la note sont ensuite relus. Garde cette page ouverte pendant la préparation.':$('exercice').value==='commentaire-compare'?
       'Portalis IA rédige puis relit ton commentaire comparé. La préparation peut donc prendre plusieurs minutes. Garde cette page ouverte.':
       'Portalis IA travaille sur ton exercice. Garde cette page ouverte pendant la préparation de la réponse.');
     try{
-      const result=await api('/api/generer',{action:'generer',demandeId:id,exercice:$('exercice').value,texte:$('texte').value,question:$('question').value,documents:documents.map(d=>d.id)});
+      const result=await api('/api/generer',construireDemande({demandeId:id,mode:modeCourant(),exercice:$('exercice').value,texte:$('texte').value,copie:$('copie').value,question:$('question').value,documents}));
       if(current!==epoch)return;clearPending();if(result.etat)state=result.etat;compteurEnAttente=!result.etat;renderAnswer(result.reponse);message('travailMessage','Ta réponse est prête. Un crédit a été utilisé.');
     }catch(error){
       if(current!==epoch)return;

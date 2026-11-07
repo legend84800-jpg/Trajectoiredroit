@@ -343,7 +343,7 @@ test('le commentaire comparé transmet les deux décisions et propose le corrig�
   assert.equal(posts[0].question,node('question').value);assert.equal(node('resultat').hidden,false);
   assert.match(node('quota').textContent,/59 réponses/);
   node('exercice').value='commentaire';node('exercice').events.change();
-  assert.equal(node('commentaireCompareAide').hidden,true);assert.equal(node('generer').textContent,'Travailler mon exercice');
+  assert.equal(node('commentaireCompareAide').hidden,true);assert.equal(node('generer').textContent,'Rédiger ma copie');
   assert.equal(node('texte').value,texte);
   assert.match(lire('portalis.html'),/<option value="commentaire-compare">Commentaire d’arrêt comparé<\/option>/);
 });

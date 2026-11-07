@@ -123,22 +123,24 @@ function appliquerCorrections(copie,rapport){
   return texte;
 }
 
-async function relire(anthropic,{message,copie,budget,effort,timeoutMs,modele=MODELE,finale=false}){
+async function relire(anthropic,{message,copie,budget,effort,timeoutMs,modele=MODELE,finale=false,consignes,format,verifierRapport}){
   if(timeoutMs<=0)throw Error('delai_relecture');
   const debut=Date.now();
-  const payload={model:modele,system:finale?CONSIGNES_CONTROLE:CONSIGNES,
+  const payload={model:modele,system:consignes||(finale?CONSIGNES_CONTROLE:CONSIGNES),
     messages:[{role:'user',content:message+'\n\n<copie_a_relire>\n'+copie+'\n</copie_a_relire>'}]};
   const compter=await anthropic('/count_tokens',payload,Math.min(15000,timeoutMs));
   if(!Number.isInteger(compter.input_tokens)||compter.input_tokens<0||compter.input_tokens>LIMITES.jetonsEntreeRelecture)throw Error('volume_relecture');
   const restant=timeoutMs-(Date.now()-debut);
   if(restant<=0||!Number.isInteger(budget)||budget<1)throw Error('delai_relecture');
-  const output_config={effort,...(finale?{task_budget:{type:'tokens',total:Math.max(24000,compter.input_tokens+12000)}}:{})};
+  const output_config={effort,...(format?{format}:{}),...(finale?{task_budget:{type:'tokens',total:Math.max(24000,compter.input_tokens+12000)}}:{})};
   const resultat=await anthropic('',{...payload,max_tokens:budget,stream:true,thinking:{type:'adaptive'},output_config},restant);
   if(resultat.stop_reason!=='end_turn')throw Error('relecture_incomplete');
   const brut=(resultat.content||[]).filter(bloc=>bloc.type==='text').map(bloc=>bloc.text).join('\n').trim();
   const json=brut.replace(/^```(?:json)?\s*\n?/i,'').replace(/\n?```$/,'');
   const rapport=JSON.parse(json);
   verifierReperes(rapport,message);
-  return {reponse:appliquerCorrections(copie,rapport),usage:resultat.usage,corrections:rapport.corrections.length};
+  const reponse=appliquerCorrections(copie,rapport);
+  if(verifierRapport)verifierRapport(rapport,reponse);
+  return {reponse,usage:resultat.usage,corrections:rapport.corrections.length,...(rapport.evaluation?{evaluation:rapport.evaluation}:{})};
 }
 module.exports={CONSIGNES,CONSIGNES_CONTROLE,relire,appliquerCorrections,verifierReperes};
