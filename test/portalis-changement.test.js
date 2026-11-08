@@ -91,3 +91,9 @@ test('un ancien prix affiché ou une page sans le montant confirmé empêche le 
     assert.equal(m.updates.length,0);assert.equal(m.previews.length,0);
   }
 });
+test('un changement expiré peut être repris sans bloquer la période initiale déjà payée',async()=>{
+  const m=montage({sub:{...abonnement(),latest_invoice:{id:'in_expiree',status:'void',billing_reason:'subscription_update'}}});
+  const result=await m.helpers.changerFormule(m.stripe,m.current,m.user,'pro',1000);
+  assert.equal(result.termine,true);assert.equal(m.updates.length,1);
+  assert.match(m.updates[0].extra.idempotencyKey,/in_expiree-pro/);
+});

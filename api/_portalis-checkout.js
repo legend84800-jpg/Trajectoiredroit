@@ -52,7 +52,9 @@ async function changerFormule(stripe,current,user,formule,montantAttendu) {
     throw new ErreurPortalis('changement_en_cours','Un changement attend déjà son paiement dans ton espace de facturation.',409);
   }
   const debut=item.current_period_start||subscription.current_period_start;
-  if(!Number.isInteger(debut)||subscription.latest_invoice?.status!=='paid')
+  const derniere=subscription.latest_invoice;
+  const changementExpire=derniere?.billing_reason==='subscription_update'&&derniere.status==='void';
+  if(!Number.isInteger(debut)||(derniere?.status!=='paid'&&!changementExpire))
     throw new ErreurPortalis('periode_impayee','Le paiement de la période actuelle doit être confirmé avant le changement.',409);
   const details={items:[{id:item.id,price,quantity:1}],proration_behavior:'always_invoice',proration_date:debut};
   const preview=await stripe.invoices.createPreview({subscription:subscription.id,subscription_details:details});
