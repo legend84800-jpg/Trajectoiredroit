@@ -98,7 +98,7 @@ function construireEmailEssai(a) {
     `Tu as choisi deux majeures de ${a.ESSAI_MATIERE}, « ${a.ESSAI_MAJ_A} » et « ${a.ESSAI_MAJ_B} ». Ton kit d'essai les contient en entier, rédigées condition par condition avec leurs articles et leurs arrêts.`
       + (a.ESSAI_CP ? " Tu y trouves aussi un cas pratique corrigé de la matière, où les majeures sont appliquées aux faits de l'énoncé." : ""),
     { lien: a.ESSAI_KIT, texte: "Ouvrir mon kit d'essai" },
-    "Pour t'en servir, le mieux est de prendre un sujet de TD qui porte sur l'une de ces deux majeures, puis d'écrire ta propre majeure sans regarder le kit. Ensuite, tu compares ta version avec celle du kit, condition par condition. Tu repères ainsi tout de suite ce qui manquait dans ta copie, par exemple un article ou une condition que tu avais oubliés.",
+    "Pour t'en servir, le mieux est de prendre un sujet de cas pratique qui porte sur l'une de ces deux majeures. Tu vas voir à quel point c'est simple. Tu auras juste à appliquer les conditions une par une, et ton cas pratique sera impeccable.",
   ];
   if (a.ESSAI_CODE) {
     paragraphes.push(

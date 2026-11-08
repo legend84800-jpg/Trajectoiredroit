@@ -386,11 +386,15 @@ async function handler(req, res) {
         console.error("essai-majeures code Stripe impossible", e && e.code ? e.code : e && e.message);
       }
       const attributs = ESSAI.attributsEssai(produit, choix, remise);
-      // Liste 9 « Essai majeures préparées », sans automatisation : l'éditeur Brevo
-      // n'a pas accepté de branche essai dans le premier email de « Automatisation #1 »
-      // (07/11/2026). Le kit et le code partent donc toujours par email transactionnel,
-      // et l'élève ne reçoit pas en plus l'email générique de bienvenue.
-      const inscription = await inscrireContact(email, attributs, apiKey, [ESSAI.LISTE_BREVO]);
+      // Liste 9 « Essai majeures préparées » pour la mesure, et liste principale
+      // (BREVO_LIST_ID, 3) pour la séquence de bienvenue, décision de Julien du 08/11/2026.
+      // L'éditeur Brevo n'a pas accepté de branche essai dans le premier email de
+      // « Automatisation #1 » (07/11/2026) : l'élève reçoit donc sa branche par défaut
+      // (la fiche des 10 conseils), et le kit et le code partent par email transactionnel.
+      const listePrincipale = parseInt(process.env.BREVO_LIST_ID || "", 10);
+      const listes = [ESSAI.LISTE_BREVO];
+      if (!Number.isNaN(listePrincipale)) listes.push(listePrincipale);
+      const inscription = await inscrireContact(email, attributs, apiKey, listes);
       if (!inscription.ok) {
         console.error("Brevo error:", inscription.status, inscription.detail);
         return res.status(502).json({ error: "Inscription impossible pour le moment." });
