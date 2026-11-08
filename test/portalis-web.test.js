@@ -117,10 +117,10 @@ test('la somme des jetons de sortie conserve le plafond de la formule',async()=>
   assert.equal(n,1);
   await assert.rejects(genererAvecRecherche(async()=>fin(undefined,{input_tokens:1,output_tokens:1001}),payload),/reponse_incomplete/);
 });
-test('le délai est partagé par toutes les reprises et reste plafonné à 162 secondes',async()=>{
+test('le délai est partagé par toutes les reprises et reste plafonné à 720 secondes',async()=>{
   let temps=0,n=0;const delais=[];
-  await assert.rejects(genererAvecRecherche(async(endpoint,p,delai)=>{delais.push(delai);n++;temps+=90000;return {stop_reason:'pause_turn',content:[{type:'text',text:texte}],usage:{input_tokens:1,output_tokens:1}};},payload,{timeoutMs:999999,maintenant:()=>temps}),{name:'TimeoutError'});
-  assert.equal(n,2);assert.deepEqual(delais,[162000,72000]);
+  await assert.rejects(genererAvecRecherche(async(endpoint,p,delai)=>{delais.push(delai);n++;temps+=400000;return {stop_reason:'pause_turn',content:[{type:'text',text:texte}],usage:{input_tokens:1,output_tokens:1}};},payload,{timeoutMs:999999,maintenant:()=>temps}),{name:'TimeoutError'});
+  assert.equal(n,2);assert.deepEqual(delais,[720000,320000]);
 });
 test('une recherche indisponible garde la réponse utile avec un avis et un statut explicite',async()=>{
   const sortie=await genererAvecRecherche(async()=>fin([

@@ -3,7 +3,7 @@ const DOMAINES_JURIDIQUES=Object.freeze(['legifrance.gouv.fr','courdecassation.f
   'justice.gouv.fr','justice.fr','service-public.gouv.fr','senat.fr','assemblee-nationale.fr','eur-lex.europa.eu',
   'curia.europa.eu','echr.coe.int','icj-cij.org','dalloz.fr','lextenso.fr','cairn.info','hal.science','persee.fr','openedition.org','theses.fr']);
 const MAX_REPRISES=2;
-const DELAI_TOTAL=162000;
+const DELAI_TOTAL=720000;
 
 function urlSource(valeur) {
   if(typeof valeur!=='string'||/[\s\u0000-\u001f\u007f]/u.test(valeur))return null;

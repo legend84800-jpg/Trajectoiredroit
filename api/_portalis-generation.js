@@ -4,7 +4,8 @@ const {LIMITES,FORMULES,MODELE,MODELE_RELECTURE,UUID,budgetSortie}=require('./_p
 const {ErreurPortalis,service,rpc,documents,retirerObjet}=require('./_portalis-store');
 const METHODES=require('./_portalis-methodes');
 const {rechercher,formaterCorpus,limiterSelection}=require('./_portalis-corpus');
-const {genererAvecRecherche,DOMAINES_JURIDIQUES}=require('./_portalis-web');
+const {genererAvecRecherche,DOMAINES_JURIDIQUES,DELAI_TOTAL=720000}=require('./_portalis-web');
+const {maintenirReservation}=require('./_portalis-reservation');
 const {relire}=require('./_portalis-relecture');
 const {lireReponse}=require('./_portalis-anthropic');
 const correctionCopie=require('./_portalis-correction');
@@ -65,19 +66,23 @@ async function preparer(body,user) {
     mode,sourcesCopie,sourcesSujet:[...sourcesSujet,question],
     empreinteBase:mode==='corriger'?[mode,body.exercice,texte,copie,question,docs.map(d=>[d.id,d.texte]),docsCopie.map(d=>[d.id,d.texte])]:[body.exercice,texte,question,docs.map(d=>[d.id,d.texte])]},corpus);
 }
-async function anthropic(endpoint,payload,timeout) {
+async function anthropic(endpoint,payload,timeout,signal) {
   const key=process.env.ANTHROPIC_API_KEY;
   if (!key) throw new Error('configuration_modele');
-  const response=await fetch(`https://api.anthropic.com/v1/messages${endpoint}`,{
-    method:'POST',signal:AbortSignal.timeout(timeout),
-    headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01',
-      ...(payload.output_config?.task_budget?{'anthropic-beta':'task-budgets-2026-03-13'}:{})},
-    body:JSON.stringify(payload)
-  });
-  if (!response.ok) throw new Error(`modele_${response.status}`);
-  return lireReponse(response);
+  const signalAppel=signal?AbortSignal.any([AbortSignal.timeout(timeout),signal]):AbortSignal.timeout(timeout);
+  try {
+    const response=await fetch(`https://api.anthropic.com/v1/messages${endpoint}`,{
+      method:'POST',signal:signalAppel,
+      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01',
+        ...(payload.output_config?.task_budget?{'anthropic-beta':'task-budgets-2026-03-13'}:{})},
+      body:JSON.stringify(payload)
+    });
+    if (!response.ok) throw new Error(`modele_${response.status}`);
+    return await lireReponse(response);
+  } catch(error) {if(signalAppel.aborted)throw signalAppel.reason;throw error;}
 }
 async function generer(body,user) {
+  const debut=Date.now();
   let preparation=await preparer(body,user);
   const state=await rpc('portalis_etat',{p_user:user});
   if (!state.actif) throw new ErreurPortalis('abonnement_requis','Choisis une formule pour utiliser Portalis IA.',403);
@@ -97,23 +102,35 @@ async function generer(body,user) {
   if (reservation.code==='deja_terminee') return {reponse:reservation.reponse,etat:await rpc('portalis_etat',{p_user:user})};
   const messages={en_cours:'Une réponse est déjà en cours. Attends sa fin.',quota_epuise:'Tes réponses sont utilisées. Tu peux ajouter une recharge.',pause_temporaire:'Plusieurs demandes ont échoué. Réessaie dans une heure.',demande_expiree:'Cette demande a expiré. Relance-la avec un nouvel identifiant.',abonnement_requis:'Ton abonnement doit être actif.',demande_invalide:'Cet identifiant de demande est déjà utilisé.'};
   if (reservation.code!=='reservee') throw new ErreurPortalis(reservation.code,messages[reservation.code]||'La demande ne peut pas être traitée.',409);
+  const garde=maintenirReservation(()=>rpc('portalis_prolonger_relecture',{p_user:user,p_id:body.demandeId}),{
+    signaler:()=>console.error('Portalis réservation à prolonger',{demandeId:body.demandeId})});
+  let etape='redaction';
+  const appeler=(endpoint,payload,timeout)=>{
+    garde.verifier();
+    const restant=DELAI_TOTAL-(Date.now()-debut);
+    if(restant<=0){const error=new Error('delai_total');error.name='TimeoutError';throw error;}
+    return anthropic(endpoint,payload,Math.max(1,Math.floor(Math.min(timeout,restant))),garde.signal);
+  };
+  const tracer=()=>console.log?.('Portalis étape',{demandeId:body.demandeId,exercice:body.exercice,mode:preparation.mode,formule:reservation.formule,etape,dureeMs:Date.now()-debut});
   try {
+    tracer();
     const plan=FORMULES[reservation.formule];
     const corriger=preparation.mode==='corriger',compare=body.exercice==='commentaire-compare',relecture=compare||corriger,pro=reservation.formule==='pro',budget=budgetSortie(body.exercice,reservation.formule,preparation.mode);
-    const resultat=await genererAvecRecherche(anthropic,{model:MODELE,system:preparation.system,messages:preparation.messages,
-      max_tokens:relecture?(pro?18000:corriger&&reservation.formule==='classique'?14000:12000):budget,...(relecture?{stream:true}:{}),thinking:{type:'adaptive'},
+    const resultat=await genererAvecRecherche(appeler,{model:MODELE,system:preparation.system,messages:preparation.messages,
+      max_tokens:relecture?(pro?18000:corriger&&reservation.formule==='classique'?14000:12000):budget,stream:true,thinking:{type:'adaptive'},
       output_config:{effort:plan.effort,...(corriger&&pro?{task_budget:{type:'tokens',total:Math.max(24000,compte.input_tokens+16000)}}:{})}},
-      {timeoutMs:relecture?(pro?(corriger?162000:150000):corriger&&reservation.formule==='classique'?120000:95000):162000,...(relecture?{allowedDomains:DOMAINES_JURIDIQUES,budgetTotal:budget-20000}:{})});
+      {timeoutMs:Math.min(relecture?400000:DELAI_TOTAL,DELAI_TOTAL-(Date.now()-debut)),...(relecture?{allowedDomains:DOMAINES_JURIDIQUES,budgetTotal:budget-20000}:{})});
     let reponse=resultat.reponse;
     if (resultat.stop_reason!=='end_turn'||reponse.length<20) throw new Error('reponse_incomplete');
     if(corriger)reponse=correctionCopie.retirerEvaluation(reponse);
     let evaluation;
     if(relecture){
       for(const finale of [false,true]){
+        etape=finale?'controle_final':'relecture';tracer();garde.verifier();
         if(!await rpc('portalis_prolonger_relecture',{p_user:user,p_id:body.demandeId}))throw Error('reservation_expiree');
-        const revue=await relire(anthropic,{message:preparation.messageBase,copie:reponse,modele:MODELE_RELECTURE,
+        const revue=await relire(appeler,{message:preparation.messageBase,copie:reponse,modele:MODELE_RELECTURE,
           budget:Math.min(20000,budget-resultat.usage.output_tokens-(finale?0:10000)),
-          effort:finale?'medium':'low',timeoutMs:162000,finale,
+          effort:finale?'medium':'low',timeoutMs:Math.min(180000,DELAI_TOTAL-(Date.now()-debut)),finale,
           ...(corriger?{consignes:correctionCopie.consignesRelecture(METHODES[body.exercice],finale,body.exercice),format:correctionCopie.SCHEMA_RAPPORT,
             ...(finale?{verifierRapport:(rapport,texte)=>{correctionCopie.verifierCitations(texte,preparation.sourcesCopie);correctionCopie.verifierEvaluation(rapport.evaluation,preparation.sourcesSujet);}}:{})}:{})});
         reponse=corriger?correctionCopie.retirerEvaluation(revue.reponse):revue.reponse;
@@ -127,6 +144,7 @@ async function generer(body,user) {
       }
     }
     if(corriger)reponse+='\n\n'+correctionCopie.rendreEvaluation(evaluation,preparation.sourcesSujet);
+    garde.verifier();await garde.arreter();etape='enregistrement';tracer();
     const termine=await rpc('portalis_terminer',{p_user:user,p_id:body.demandeId,p_reponse:reponse,
       p_entree:resultat.usage.input_tokens,p_sortie:resultat.usage.output_tokens});
     if (!termine) throw new Error('reservation_expiree');
@@ -134,10 +152,12 @@ async function generer(body,user) {
     try {etat=await rpc('portalis_etat',{p_user:user});} catch(_) {console.error('Portalis compteur à actualiser');}
     return {reponse,etat};
   } catch(error) {
-    try { await rpc('portalis_echouer',{p_user:user,p_id:body.demandeId}); } catch(_) {}
-    console.error('Portalis génération', {code:error.name==='TimeoutError'?'delai':error.message});
+    const code=error.name==='TimeoutError'?'delai':/^[a-z0-9_]+$/i.test(error.message||'')?error.message:'generation_interrompue';
+    try { await rpc('portalis_echouer',{p_user:user,p_id:body.demandeId}); }catch(_){}
+    try { await rpc('portalis_signaler_echec',{p_user:user,p_id:body.demandeId,p_code:code}); }catch(_){}
+    console.error('Portalis génération', {code,demandeId:body.demandeId,exercice:body.exercice,mode:preparation.mode,formule:reservation.formule,etape,dureeMs:Date.now()-debut});
     throw new ErreurPortalis('generation_echouee','La réponse n’a pas pu être terminée. Le crédit réservé est restitué automatiquement. Tu peux réessayer.',502);
-  }
+  } finally {await garde.arreter();}
 }
 function extrairePDF(buffer) {
   return new Promise((resolve,reject)=>{

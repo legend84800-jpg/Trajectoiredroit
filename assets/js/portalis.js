@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  function delaiRequete(body){return body?.action==='generer'?(body.mode==='corriger'||body.exercice==='commentaire-compare'?585000:225000):115000;}
+  function delaiRequete(body){return body?.action==='generer'?775000:115000;}
   function volumeDemande({mode='rediger',texte='',copie='',question='',documents=[]}){
     const corriger=mode==='corriger',docs=documents.filter(d=>corriger||d.role!=='copie');
     const sujet=texte.trim().length+docs.filter(d=>d.role!=='copie').reduce((n,d)=>n+d.caracteres,0);
@@ -208,7 +208,7 @@
   function savePending(id){try{sessionStorage.setItem(pendingKey(),id);}catch(_){}}
   function clearPending(){try{sessionStorage.removeItem(pendingKey());}catch(_){}}
   async function recover(id,current){
-    for(let n=0;n<24;n++){
+    for(let n=0;n<160;n++){
       if(current!==epoch)return false;
       try{
         const result=await api(`/api/generer?demandeId=${encodeURIComponent(id)}`);

@@ -22,7 +22,7 @@ function charger(file,stubs,globals={}){
   const realRequire=require('node:module').createRequire(path.join(root,file));
   const requireStub=name=>Object.hasOwn(stubs,name)?stubs[name]:realRequire(name);
   requireStub.resolve=realRequire.resolve;
-  vm.runInNewContext(lire(file),{require:requireStub,module,console:{error(){},log(){}},Buffer,AbortSignal,URLSearchParams,setTimeout,clearTimeout,process:{env:{ANTHROPIC_API_KEY:'fixture'}},...globals});
+  vm.runInNewContext(lire(file),{require:requireStub,module,console:{error(...args){if(process.env.DEBUG_PORTALIS_TEST)console.error(...args);},log(){}},Buffer,AbortSignal,URLSearchParams,setTimeout,clearTimeout,process:{env:{ANTHROPIC_API_KEY:'fixture'}},...globals});
   return module.exports;
 }
 function chargerStore(fetch){
@@ -134,14 +134,14 @@ test('les quinze combinaisons utilisent les budgets et les efforts de la formule
     const calls=[],payloads=[],timeouts=[],headers=[];
     const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[],rpc:async(name)=>{
       calls.push(name);if(name==='portalis_etat')return{actif:true};if(name==='portalis_reserver')return{code:'reservee',formule};return true;
-    }}},{AbortSignal:{timeout:ms=>{timeouts.push(ms);return undefined;}},fetch:async(url,options)=>{const p=JSON.parse(options.body);payloads.push(p);headers.push(options.headers);return{ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:100}:p.system.includes('# Relecture finale du commentaire comparé')?
+    }}},{AbortSignal:{timeout:ms=>{timeouts.push(ms);return undefined;},any:signals=>signals.find(Boolean)},fetch:async(url,options)=>{const p=JSON.parse(options.body);payloads.push(p);headers.push(options.headers);return{ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:100}:p.system.includes('# Relecture finale du commentaire comparé')?
       {stop_reason:'end_turn',content:[{type:'text',text:JSON.stringify(rapportRelecture(p))}],usage:{input_tokens:100,output_tokens:40}}:
       {stop_reason:'end_turn',content:[{type:'thinking',thinking:'Réflexion privée.'},{type:'text',text:'Une première partie complète pour cet exercice.'},{type:'redacted_thinking',data:'fixture'},{type:'text',text:'Une seconde partie qui termine la réponse.'}],usage:{input_tokens:100,output_tokens:300}}};}});
     const result=await generation.generer({exercice,demandeId:ID,texte:'Un sujet suffisamment long pour être traité.',formule:'pro',effort:'max',max_tokens:99999},USER);
     const budget=(exercice==='fiche'?[6000,8000,10000]:exercice==='commentaire-compare'?[42000,48000,60000]:[12000,14000,24000])[index];
     assert.equal(budgetSortie(exercice,formule),budget);
     const compare=exercice==='commentaire-compare';
-    assert.equal(payloads[1].stream,compare?true:undefined);
+    assert.equal(payloads[1].stream,true);
     assert.equal(payloads[1].model,'claude-sonnet-5-5');assert.equal(payloads[1].output_config.effort,effort);assert.equal(payloads[1].max_tokens,compare?(formule==='pro'?18000:12000):budget);
     if(compare){
       assert.equal(payloads.length,6);assert.equal(payloads[3].max_tokens,Math.min(20000,budget-300-10000));
@@ -154,7 +154,7 @@ test('les quinze combinaisons utilisent les budgets et les efforts de la formule
     }
     assert.equal(payloads[1].system,payloads[0].system);assert.deepEqual(payloads[1].messages,payloads[0].messages);
     if(systemes.has(exercice))assert.equal(payloads[1].system,systemes.get(exercice));else systemes.set(exercice,payloads[1].system);
-    assert.doesNotMatch(payloads[1].system,/900\s*mots/i);assert.equal(timeouts[0],15000);assert.ok(timeouts[1]>0&&timeouts[1]<=162000);
+    assert.doesNotMatch(payloads[1].system,/900\s*mots/i);assert.equal(timeouts[0],15000);assert.ok(timeouts[1]>0&&timeouts[1]<=720000);
     assert.equal(payloads[0].tools,undefined);assert.equal(payloads[1].tools[0].name,'web_search');
     for(let i=0;i<headers.length-(compare?1:0);i++)assert.equal(headers[i]['anthropic-beta'],undefined);
     assert.deepEqual(payloads[1].tools[0].allowed_domains,compare?require('../api/_portalis-web').DOMAINES_JURIDIQUES:undefined);
@@ -255,7 +255,7 @@ test('les limites portent sur le texte brut et conservent les frontières des pa
   const config=require('../api/_portalis-config');
   assert.equal(config.LIMITES.reponses,60);assert.equal(config.LIMITES.pages,15);assert.equal(config.LIMITES.caracteres,30000);assert.equal(config.LIMITES.jetonsEntree,20000);
   assert.deepEqual(Object.values(config.FORMULES).map(p=>p.prix),[800,1200,1800]);
-  assert.equal(JSON.parse(lire('vercel.json')).functions['api/generer.js'].maxDuration,600);
+  assert.equal(JSON.parse(lire('vercel.json')).functions['api/generer.js'].maxDuration,800);
 });
 test('la borne de 20 000 jetons et les comptes non entiers sont vérifiés avant réservation',async t=>{
   for(const inputTokens of [20000,20001,19999.5,'20000',null])await t.test(String(inputTokens),async()=>{
@@ -358,7 +358,7 @@ test('le résultat du modèle est affiché comme texte et les sessions suivent l
   assert.ok(all.some(node=>/^h[1-6]$/.test(node.tag)));assert.ok(all.some(node=>node.tag==='strong'&&node.textContent==='principe précis'));
   assert.ok(all.some(node=>node.tag==='em'&&node.textContent==='application'));assert.equal(all.filter(node=>node.tag==='li').length,2);
   assert.ok(all.some(node=>node.tag==='#text'&&node.textContent==='<script>alert(1)</script>'));assert.ok(!all.some(node=>node.tag==='script'));
-  assert.equal(delaiRequete({action:'generer'}),225000);assert.equal(delaiRequete({action:'importer'}),115000);
+  assert.equal(delaiRequete({action:'generer'}),775000);assert.equal(delaiRequete({action:'importer'}),115000);
   assert.match(js,/tjd-compte-rester-connecte/);assert.match(js,/sessionStorage/);
   const account=lire('assets/js/compte.js');new vm.Script(account);
   for(const [,id]of account.matchAll(/document\.getElementById\("([^"]+)"\)/g))assert.ok(lire('mon-compte.html').includes(`id="${id}"`),id);

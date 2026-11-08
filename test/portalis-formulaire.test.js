@@ -9,7 +9,7 @@ test('le volume et le contenu envoyé suivent les rôles actifs sans perdre les 
   assert.equal(construireDemande(rediger).copie,undefined);assert.equal(construireDemande(rediger).documentsCopie,undefined);assert.equal(documents.length,2);
   assert.equal(volumeDemande({mode:'corriger',texte:'x'.repeat(30),copie:''}).complet,false);
   assert.equal(volumeDemande({mode:'corriger',texte:'',copie:'x'.repeat(30),question:'Un sujet dans le mauvais champ'}).complet,false);
-  assert.equal(delaiRequete({action:'generer',mode:'corriger',exercice:'fiche'}),585000);
+  assert.equal(delaiRequete({action:'generer',mode:'corriger',exercice:'fiche'}),775000);
 });
 function navigateur({search='?mode=corriger',connecte=true,abonnement}={}){
   const nodes=new Map(),posts=[],stockage=new Map();let changementSession;
