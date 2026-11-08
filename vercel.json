@@ -102,6 +102,8 @@
     }
   ],
   "redirects": [
+    {"source": "/droit-penal-general-L1", "destination": "/droit-penal-general-l1.html", "permanent": true},
+    {"source": "/droit-penal-general-L1.html", "destination": "/droit-penal-general-l1.html", "permanent": true},
     {
       "source": "/images",
       "destination": "/droit-des-contrats-en-images.html?utm_source=video&utm_medium=voix&utm_campaign=cours-images-contrats",
