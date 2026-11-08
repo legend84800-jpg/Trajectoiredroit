@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Sujets de droit de la famille L1 avec corrigé (PDF 2026)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Sujets de droit de la famille L1 : douze sujets par thème, un cas pratique corrigé sur la résidence alternée, cinq questions de cours et la fiche en PDF.">
+  <link rel="canonical" href="https://trajectoiredroit.com/sujets-droit-de-la-famille-l1.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sujets de droit de la famille L1 avec corrigé (PDF 2026)">
+  <meta property="og:description" content="Sujets de droit de la famille L1 : douze sujets par thème, un cas pratique corrigé sur la résidence alternée, cinq questions de cours et la fiche en PDF.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/sujets-droit-de-la-famille-l1.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/sujets-droit-de-la-famille-l1.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sujets de droit de la famille L1 avec corrigé (PDF 2026)">
+  <meta name="twitter:description" content="Sujets de droit de la famille L1 : douze sujets par thème, un cas pratique corrigé sur la résidence alternée, cinq questions de cours et la fiche en PDF.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/sujets-droit-de-la-famille-l1.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Sujets de droit de la famille L1 avec un cas pratique corrigé en entier",
+        "description": "Sujets de droit de la famille L1 : douze sujets par thème, un cas pratique corrigé sur la résidence alternée, cinq questions de cours et la fiche en PDF.",
+        "inLanguage": "fr-FR",
+        "datePublished": "2026-11-08",
+        "dateModified": "2026-11-08",
+        "author": {
+          "@type": "Person",
+          "name": "Julien",
+          "jobTitle": "Professeur de droit",
+          "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+          "url": "https://trajectoiredroit.com/a-propos.html",
+          "worksFor": {
+            "@type": "EducationalOrganization",
+            "name": "TrajectoireDroit"
+          }
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit",
+          "url": "https://trajectoiredroit.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+          }
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Les sujets d'examen de droit de la famille en L1"
+        },
+        "image": "https://trajectoiredroit.com/assets/blog/sujets-droit-de-la-famille-l1.webp",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://trajectoiredroit.com/sujets-droit-de-la-famille-l1.html"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://trajectoiredroit.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Sujets de droit de la famille L1",
+            "item": "https://trajectoiredroit.com/sujets-droit-de-la-famille-l1.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quels sont les sujets de droit de la famille en L1 ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ils suivent les cinq parties du programme de la fiche, du mariage jusqu'aux effets de la filiation. Le format change selon la faculté, entre le cas pratique, la dissertation, le commentaire d'arrêt et la fiche d'arrêt."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le juge peut-il imposer la résidence alternée quand un parent la refuse ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, il peut l'ordonner, y compris à titre provisoire. Selon l'article 373-2-9 du Code civil, en cas de désaccord entre les parents, le juge peut ordonner une résidence en alternance à titre provisoire, puis il statue définitivement au terme de la période qu'il a fixée. Il décide d'après l'intérêt de l'enfant."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quelle durée de séparation faut-il pour divorcer pour altération définitive du lien conjugal ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il faut que les époux vivent séparés depuis un an lors de la demande en divorce (article 238 du Code civil, issu de la loi du 23 mars 2019). Quand le demandeur a saisi le juge sans indiquer ses motifs, le juge apprécie ce délai au jour où il prononce le divorce."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=6a441fef">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 474,64 €, 45 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-45 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">474,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 349,74 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">349,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 449,67 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">449,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 399,70 €, 40 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-40 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 569,58 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">569,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>164 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes vos questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow text-center">
+        <h1 class="h1">Sujets de droit de la famille L1 avec un cas pratique corrigé en entier</h1>
+        <p class="lead" style="max-width:720px; margin-left:auto; margin-right:auto">Les sujets de droit de la famille L1 suivent cinq parties, du mariage aux effets de la filiation, et prennent la forme d'un cas pratique, d'une dissertation, d'un commentaire ou d'une fiche d'arrêt. Tu trouves ici douze sujets classés par thème, puis un cas pratique corrigé en entier sur la résidence alternée de deux enfants. Cinq questions de cours reçoivent ensuite une réponse en quelques lignes.</p>
+        <div class="hero__cta flex flex--center" style="margin-top:24px">
+          <a class="btn btn--primary btn--lg" href="#banque">Voir les douze sujets →</a>
+          <a class="btn btn--outline btn--lg" href="#cas-pratique">Le cas pratique corrigé</a>
+        </div>
+        <div data-tjd-pdf-offert="matiere" data-id="cas-pratique-famille-l1-s2" data-titre="Un cas pratique corrigé en droit de la famille L1, en PDF" data-texte="Je t&#x27;envoie par email l&#x27;énoncé et sa correction complète, rédigée comme une copie de partiel. Tu peux ainsi t&#x27;entraîner sur papier, puis comparer ta réponse avec le corrigé." data-bouton="Recevoir le corrigé"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <p style="color:var(--body); line-height:1.75">Les sujets changent d'une faculté à l'autre, et deux examens récents montrent les formes qu'ils peuvent prendre. À l'université Paris 1 Panthéon-Sorbonne, l'entraînement de L1 du 10 au 12 mai 2023 durait trois heures, avec une copie limitée à 20 000 caractères. L'étudiant choisissait alors entre une dissertation sur les quatre causes de divorce et un sujet composé. Ce sujet composé commençait par une fiche d'arrêt sur 8 points et une question sur 2 points, puis il se terminait par un cas pratique sur 10 points. À l'université de Cergy, en revanche, l'examen de première session durait trois heures, avec le Code civil autorisé. Il proposait une dissertation intitulée « Vérité et filiation », ou bien une fiche d'arrêt sur 6 points, deux questions sur 3 points et un cas pratique sur 11 points.</p>
+        <p style="color:var(--body); line-height:1.75">Un même thème change donc de forme d'un examen à l'autre. Le divorce tombe en dissertation à Paris 1, alors qu'il forme une part importante d'un cas pratique à Cergy. Les <a href="annales-corrigees-droit-civil-l1.html">annales corrigées de droit civil L1</a> complètent cette page, et les <a href="sujets-droit-des-personnes-l1.html">sujets de droit des personnes L1</a> couvrent l'autre semestre de la matière.</p>
+      </div>
+    </section>
+
+    <!-- offre du PDF correspondant -->
+    <section class="conversion-offer" aria-labelledby="offre-fiche-famille-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/fiche-famille-l1-s2.webp?v=dossier-universitaire-20260915" alt="Fiche complète de droit de la famille L1, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">Fiche complète de droit de la famille L1</p>
+            <h2 class="conversion-offer__title" id="offre-fiche-famille-titre">Droit de la famille L1, la fiche complète de plus de 130 pages et ses 22 chapitres</h2>
+            <p class="conversion-offer__summary">La fiche suit les cinq parties du programme, du mariage aux effets de la filiation. Elle donne les articles du Code civil et les principaux arrêts de la matière que tu cites dans tes cas pratiques et tes commentaires.</p>
+            <ul class="conversion-offer__benefits">
+              <li>Un PDF de plus de 130 pages, reçu par email après le paiement</li>
+              <li>Le pack à 29,98 € ajoute les flashcards avec QCM, les fiches d'arrêt et les cas pratiques corrigés</li>
+              <li>Accès à vie et mises à jour comprises</li>
+            </ul>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-famille-l1-s2">Fiche · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-matiere-famille-l1">Pack Droit de la famille L1 · 29,98 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-l1">Pack Licence 1 · 87 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
+            <div data-tjd-avis data-matiere="famille-l1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMME ET FORMES -->
+    <section class="section" id="programme">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Quels sujets tombent en droit de la famille en L1 ?</h2>
+        <p class="lead" style="margin-bottom:20px">Le programme de la fiche suit d'abord la vie du couple, puis celle de l'enfant. Il compte cinq parties, et tes sujets les croisent souvent dans un même cas pratique.</p>
+        <ul style="color:var(--body); line-height:1.75; margin:0 0 14px; padding-left:22px">
+          <li><strong>Le mariage.</strong> Cette partie commence par les fiançailles et les conditions pour se marier. Elle traite ensuite la nullité du mariage, c'est-à-dire son annulation parce qu'une condition manquait au départ, puis les devoirs et les dettes des époux.</li>
+          <li><strong>Les couples non mariés.</strong> Le concubinage est une union de fait, une vie de couple sans mariage ni PACS, que décrit l'article 515-8. Le PACS, ou pacte civil de solidarité, est au contraire un contrat qui organise la vie commune de deux partenaires.</li>
+          <li><strong>La désunion.</strong> La désunion présente les quatre causes de divorce et la procédure à suivre quand les époux ne sont pas d'accord. Elle explique ensuite la prestation compensatoire, une somme qui compense l'écart de niveau de vie que la rupture crée entre les époux.</li>
+          <li><strong>L'établissement de la filiation.</strong> La filiation est le lien juridique entre un enfant et ses parents. La filiation maternelle s'établit par la désignation de la mère dans l'acte de naissance (article 311-25). La filiation paternelle passe d'abord par la présomption de paternité du mari, puis par la reconnaissance. L'adoption crée un autre lien de filiation. Cette partie étudie aussi les actions en contestation, car une filiation établie peut être remise en cause. Enfin, elle traite de la procréation médicalement assistée, une aide médicale pour concevoir un enfant, et de la gestation pour autrui, quand une femme porte un enfant pour un autre.</li>
+          <li><strong>Les effets de la filiation.</strong> L'autorité parentale est l'ensemble des droits et des devoirs des parents envers leur enfant mineur. Elle comprend la résidence de l'enfant, mais cette partie traite aussi de l'obligation alimentaire, c'est-à-dire de l'aide financière que se doivent certains proches, comme les parents et les enfants, puis du nom de l'enfant.</li>
+        </ul>
+        <p style="color:var(--body); line-height:1.75">Le cas pratique revient presque partout, alors que le reste dépend de la faculté. À Cergy, par exemple, un époux veut se remarier alors que son épouse refuse de divorcer. Tu dois donc repérer chaque question de droit avant de traiter les questions l'une après l'autre.</p>
+      </div>
+    </section>
+
+    <!-- BANQUE DE SUJETS -->
+    <section class="section section--alt" id="banque">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Douze sujets de droit de la famille L1, thème par thème</h2>
+        <p class="lead" style="margin-bottom:20px">Onze de ces sujets viennent d'examens ou de séances de TD de faculté, dont trois questions tirées d'un même cas pratique de Cergy, et leur intitulé le précise. Le douzième est au contraire un sujet classique, que j'ai construit d'après l'arrêt du 2 mai 2001. Si ton sujet est un cas pratique, la troisième colonne te donne les textes à sortir avant d'écrire la règle. Le cas pratique corrigé en entier, qui suit, est donc un treizième sujet.</p>
+        <div style="overflow-x:auto; margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.55">
+            <thead>
+              <tr style="text-align:left; border-bottom:2px solid var(--border, #d0d7e2)">
+                <th style="padding:10px 12px">Le sujet</th>
+                <th style="padding:10px 12px">La forme</th>
+                <th style="padding:10px 12px">Les textes et les arrêts à connaître</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:rgba(37,99,235,.06)"><td colspan="3" style="padding:10px 12px; font-weight:700">Le mariage</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Dans l'arrêt de la première chambre civile du 19 décembre 2012, la Cour de cassation approuve l'annulation d'un mariage. Quel critère les juges retiennent-ils, et quelle différence y a-t-il entre intention et consentement ? (séance de TD)</td><td style="padding:10px 12px; vertical-align:top">Questions sur un arrêt</td><td style="padding:10px 12px; vertical-align:top">Le mariage suppose un consentement, selon l'article 146 du Code civil. Dans cet arrêt, la Cour approuve l'annulation du mariage d'une épouse qui s'est mariée dans le but exclusif de prendre le patrimoine de son mari, sans vouloir se soumettre à toutes les obligations de l'union. Elle retient donc le défaut d'intention matrimoniale. En outre, selon l'article 184, les époux, tous ceux qui y ont intérêt et le ministère public (le procureur) peuvent attaquer un tel mariage pendant trente ans.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Un époux fait remplacer la chaudière du logement par un modèle écologique très cher et ne règle pas la facture. Le fournisseur la réclame à sa femme. Est-elle tenue de payer, et peut-elle se faire rembourser ? (Paris 1, mai 2023)</td><td style="padding:10px 12px; vertical-align:top">Cas pratique</td><td style="padding:10px 12px; vertical-align:top">Selon l'article 220, chaque époux peut passer seul les contrats d'entretien du ménage, et l'autre époux doit alors payer la dette avec lui, pour le tout. Cette solidarité disparaît cependant pour une dépense manifestement excessive, au regard du train de vie du ménage et de l'utilité de l'opération. Pour savoir si l'épouse peut se faire rembourser, il faut regarder l'article 214, qui répartit les charges du mariage à proportion des facultés de chacun.</td></tr>
+              <tr style="background:rgba(37,99,235,.06)"><td colspan="3" style="padding:10px 12px; font-weight:700">Les couples non mariés</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Un concubin souscrit seul un abonnement d'électricité, laisse des factures impayées et quitte sa compagne. Elle prend un nouvel abonnement à son nom. Doit-elle payer l'ancien arriéré ? (sujet classique)</td><td style="padding:10px 12px; vertical-align:top">Cas pratique</td><td style="padding:10px 12px; vertical-align:top">Dans l'arrêt du 2 mai 2001, la première chambre civile de la Cour de cassation juge que l'article 220, qui rend les époux solidaires des dettes du ménage, ne s'applique pas aux concubins, parce que le texte ne vise que les époux. Elle casse, c'est-à-dire annule, l'arrêt qui avait condamné la concubine à payer l'arriéré. D'après l'article 515-4, les partenaires d'un PACS sont au contraire solidaires des dettes de la vie courante, sauf dépense manifestement excessive.</td></tr>
+              <tr style="background:rgba(37,99,235,.06)"><td colspan="3" style="padding:10px 12px; font-weight:700">La désunion</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Quel est, de nos jours, l'intérêt de maintenir quatre causes de divorce ? (Paris 1, mai 2023, 3 heures)</td><td style="padding:10px 12px; vertical-align:top">Dissertation</td><td style="padding:10px 12px; vertical-align:top">L'article 229 énumère les quatre causes, à savoir le consentement mutuel, l'acceptation du principe de la rupture, l'altération définitive du lien conjugal et la faute (articles 233, 237 et 242). Un plan peut opposer les causes où les époux s'accordent à celles où l'un impose la rupture à l'autre. Pour chaque cause, il faut retenir son origine, comme la loi du 18 novembre 2016 pour le divorce par acte d'avocat, et son délai, comme l'année de séparation de l'article 238, issue de la loi du 23 mars 2019.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Un époux a quitté le domicile conjugal en 2022 et vit depuis onze mois avec sa collègue, qui attend un enfant. Il veut l'épouser, mais son épouse refuse de divorcer. Quelle cause de divorce peut-il invoquer ? (Cergy)</td><td style="padding:10px 12px; vertical-align:top">Cas pratique</td><td style="padding:10px 12px; vertical-align:top">Le divorce par consentement mutuel et le divorce accepté exigent l'accord de l'épouse, donc l'époux ne peut pas les demander. La faute reste hors de portée, faute de fait imputable à l'épouse dans l'énoncé. En revanche, l'article 238 ouvre le divorce pour altération définitive du lien conjugal quand les époux vivent séparés depuis un an lors de la demande, sans que l'autre ait à y consentir. Parti en 2022, l'époux remplit cette condition, et ses onze mois avec sa collègue ne comptent pas dans ce délai. En outre, la première chambre civile juge le 15 avril 2015 que ce divorce respecte l'article 8 de la Convention européenne des droits de l'homme.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Dans le même énoncé, l'épouse, sans emploi, menace de réclamer 150 000 euros à son mari. De quelle somme s'agit-il, et peut-elle l'obtenir ? (Cergy)</td><td style="padding:10px 12px; vertical-align:top">Cas pratique</td><td style="padding:10px 12px; vertical-align:top">Une prestation compensatoire, que l'article 270 permet au juge d'imposer à un époux, compense autant que possible la disparité que la rupture crée dans les conditions de vie. L'article 271 la fixe selon les besoins de celui qui la reçoit et les ressources de l'autre. L'article 270 prévoit qu'elle prend la forme d'un capital, une somme versée en une fois, dont l'article 274 règle les modalités. Par ailleurs, la première chambre civile déduit des ressources, le 4 juillet 2018, les sommes versées pour l'entretien d'un enfant. Enfin, elle juge le 10 décembre 2025 qu'une différence de situation antérieure au mariage n'autorise pas à refuser la prestation.</td></tr>
+              <tr style="background:rgba(37,99,235,.06)"><td colspan="3" style="padding:10px 12px; font-weight:700">La filiation</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Vérité et filiation (Cergy, première session, 3 heures)</td><td style="padding:10px 12px; vertical-align:top">Dissertation</td><td style="padding:10px 12px; vertical-align:top">La vérité biologique correspond au lien de sang entre l'enfant et ses parents, mais le droit protège aussi la situation familiale d'un enfant quand elle dure depuis longtemps. L'article 311-1 définit la possession d'état comme les faits qui montrent que l'enfant est traité comme tel par sa famille. Quand elle confirme l'acte de naissance ou la reconnaissance pendant au moins cinq ans, l'article 333 interdit à tous de contester la filiation, sauf au ministère public. Une partie du plan peut enfin s'appuyer sur la décision de la première chambre civile du 14 novembre 2024, qui reconnaît en France une filiation établie à l'étranger sans lien biologique.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Dans le même énoncé de Cergy, un ancien compagnon a reconnu l'enfant de la future épouse, qu'il élève depuis deux ans, puis l'enfant qu'elle attend. Peut-elle contester ces deux reconnaissances, et dans quel délai ? (Cergy)</td><td style="padding:10px 12px; vertical-align:top">Cas pratique</td><td style="padding:10px 12px; vertical-align:top">Selon l'article 316, la reconnaissance fait naître la filiation paternelle. Quand la possession d'état est conforme à la reconnaissance, l'article 333 réserve l'action en contestation à l'enfant et à ses parents, ainsi qu'à celui qui se prétend le parent véritable, pendant cinq ans à compter de la fin de cette possession d'état. En revanche, sans possession d'état, l'article 334 ouvre l'action à toute personne qui y a intérêt, dans les dix ans de l'article 321.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Une femme seule conçoit un enfant par procréation médicalement assistée (PMA), avec l'aide d'un donneur. Un ami reconnaît l'enfant. La mère peut-elle contester cette reconnaissance ? (examen de L3 à Paris-Panthéon-Assas)</td><td style="padding:10px 12px; vertical-align:top">Cas pratique</td><td style="padding:10px 12px; vertical-align:top">Selon l'article 342-9, le donneur n'a aucun lien de filiation avec l'enfant. Selon l'article 342-10, la femme non mariée consent devant un notaire, qui l'informe notamment de ce que l'enfant pourra, une fois majeur, obtenir des informations qui n'identifient pas le donneur, puis son identité. Ce consentement interdit toute action pour établir ou contester la filiation, sauf si l'on soutient que l'enfant n'est pas issu de la PMA ou que le consentement a perdu ses effets. Pour la reconnaissance de l'ami, l'article 332 permet de contester la paternité, et les articles 333, 334 et 321 règlent qui peut agir et dans quel délai.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Rédigez la fiche de l'arrêt de la première chambre civile du 14 novembre 2024 sur la filiation établie à l'étranger après une gestation pour autrui (Cergy, 6 points)</td><td style="padding:10px 12px; vertical-align:top">Fiche d'arrêt</td><td style="padding:10px 12px; vertical-align:top">L'article 16-7 du Code civil déclare nulle la gestation pour autrui, convention par laquelle une femme porte un enfant pour un autre. Pourtant, la Cour de cassation juge que l'ordre public international français, c'est-à-dire les valeurs que la France protège même face à un jugement étranger, ne s'oppose pas à l'exequatur, la décision française qui donne force exécutoire à un jugement étranger, ici celui qui a établi une filiation sans lien biologique. Elle casse seulement les effets d'adoption plénière donnés à ce jugement. L'assemblée plénière du 3 juillet 2026 rappelle que le juge doit s'assurer que ce jugement, ou des documents équivalents, constate le consentement de la mère porteuse.</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Commentez l'article 343 du Code civil sur l'adoption demandée par deux époux, deux partenaires ou deux concubins (fascicule de TD, examen 2021-2022)</td><td style="padding:10px 12px; vertical-align:top">Commentaire de texte</td><td style="padding:10px 12px; vertical-align:top">Le texte actuel permet l'adoption à deux époux non séparés de corps, à deux partenaires liés par un PACS ou à deux concubins. Ils doivent prouver une communauté de vie d'au moins un an, ou être âgés l'un et l'autre de plus de vingt-six ans. Ce texte a été modifié par l'ordonnance du 5 octobre 2022, donc la version à commenter dépend de la date du sujet.</td></tr>
+              <tr style="background:rgba(37,99,235,.06)"><td colspan="3" style="padding:10px 12px; font-weight:700">Les effets de la filiation</td></tr>
+              <tr style="border-bottom:1px solid var(--border, #d0d7e2)"><td style="padding:10px 12px; vertical-align:top">Rédigez la fiche de l'arrêt du 14 octobre 2020 sur la résidence alternée de deux enfants, puis expliquez dans quels domaines l'intérêt de l'enfant joue un rôle (Paris 1, mai 2023, 8 et 2 points)</td><td style="padding:10px 12px; vertical-align:top">Fiche d'arrêt et question</td><td style="padding:10px 12px; vertical-align:top">Selon l'article 371-5, un enfant ne doit pas être séparé de ses frères et sœurs, sauf impossibilité ou intérêt contraire de l'enfant. Selon l'article 373-2-6, le juge aux affaires familiales veille spécialement aux intérêts des enfants mineurs. Dans l'arrêt du 14 octobre 2020, la première chambre civile casse la répartition des vacances d'hiver et de printemps, car les enfants, scolarisés dans deux zones de vacances différentes, n'auraient eu aucune possibilité d'être réunis chez l'un ou l'autre de leurs parents pendant ces vacances.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAS PRATIQUE CORRIGÉ -->
+    <section class="section" id="cas-pratique">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Cas pratique corrigé : le juge peut-il ordonner la résidence alternée pour un seul des deux enfants ?</h2>
+        <p class="lead" style="margin-bottom:24px">Ce cas pratique porte sur la résidence des enfants après un divorce.</p>
+        <div class="card" style="padding:22px 24px; margin-bottom:20px">
+          <p style="margin-top:0; margin-bottom:0; color:var(--body); line-height:1.7"><strong>Énoncé.</strong> Agathe Delmas et Rodolphe Lefort ont divorcé en 2023. Ils ont deux enfants, Maël, 13 ans, et Jeanne, 6 ans. Le jugement de divorce a fixé leur résidence chez Agathe, à Rennes, avec un droit de visite et d'hébergement pour Rodolphe un week-end sur deux et la moitié des vacances. Les deux parents exercent ensemble l'autorité parentale. Rodolphe a respecté ce calendrier sans manquer une seule fois. En septembre 2026, il saisit donc le juge aux affaires familiales pour obtenir une résidence alternée, une semaine sur deux chez chacun des parents. Agathe accepte cette alternance pour Maël seulement, car elle juge Jeanne trop jeune. Maël, entendu par le juge à sa demande, accepte de vivre une semaine sur deux chez son père, mais à condition de ne pas être séparé de sa sœur. Par ailleurs, les deux logements se trouvent à vingt minutes l'un de l'autre, dans la même zone de vacances scolaires. <em>Rodolphe peut-il demander cette modification, et le juge peut-il fixer la résidence alternée pour Maël seul ?</em></p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Les faits qualifiés</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Agathe et Rodolphe sont deux parents divorcés qui exercent ensemble l'autorité parentale. Leurs deux enfants sont frère et sœur, et ils sont mineurs puisque Maël a 13 ans et Jeanne 6 ans. Un jugement a fixé la résidence des enfants chez leur mère.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">Le problème de droit</h3>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Un parent peut-il obtenir la modification d'une résidence fixée par un jugement de divorce, et le juge peut-il ordonner la résidence alternée pour un seul enfant quand elle sépare le frère et la sœur une semaine sur deux ?</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">La règle (la majeure)</h3>
+            <p style="color:var(--body); line-height:1.7">Selon l'article 373-2-13 du Code civil, les décisions sur l'exercice de l'autorité parentale peuvent être modifiées ou complétées à tout moment par le juge, à la demande d'un parent ou du ministère public. Ensuite, l'article 373-2-9 permet de fixer la résidence de l'enfant en alternance au domicile de chacun des parents. En cas de désaccord entre les parents, le juge peut ordonner cette alternance à titre provisoire, puis il statue définitivement au terme de la période qu'il a fixée.</p>
+            <p style="color:var(--body); margin-bottom:6px; line-height:1.7">Pour décider, le juge doit prendre notamment en considération, selon l'article 373-2-11, les trois éléments suivants.</p>
+            <ul style="color:var(--body); line-height:1.7; margin:0 0 12px; padding-left:22px">
+              <li>La pratique que les parents avaient précédemment suivie.</li>
+              <li>L'aptitude de chacun des parents à assumer ses devoirs et à respecter les droits de l'autre.</li>
+              <li>Les sentiments exprimés par l'enfant mineur, recueillis selon l'article 388-1.</li>
+            </ul>
+            <p style="color:var(--body); line-height:1.7">Selon l'article 388-1, le mineur capable de discernement, c'est-à-dire assez mûr pour comprendre la situation, doit être entendu s'il le demande. Cette audition ne fait pas de lui une partie à la procédure.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Enfin, l'article 371-5 impose que l'enfant ne soit pas séparé de ses frères et sœurs, sauf si c'est impossible ou si une autre solution sert mieux l'intérêt de l'enfant. La première chambre civile de la Cour de cassation applique ce texte dans l'arrêt du 14 octobre 2020. Elle casse seulement la répartition des vacances d'hiver et de printemps, parce que les enfants, scolarisés dans deux zones de vacances différentes, n'auraient eu aucune possibilité d'être réunis pendant ces vacances.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <h3 style="margin-top:0; margin-bottom:8px">L'application (la mineure)</h3>
+            <p style="color:var(--body); line-height:1.7">Rodolphe peut agir malgré le jugement de 2023, car l'article 373-2-13 permet de modifier à tout moment la décision sur la résidence à la demande d'un parent. Pour savoir si l'alternance convient, le juge regarde d'abord la pratique antérieure, et Rodolphe a respecté son calendrier sans manquer une seule fois. Il regarde ensuite l'aptitude de Rodolphe à assumer ses devoirs, que son respect du calendrier confirme, et la distance de vingt minutes entre les deux logements, qui rend l'alternance matériellement possible.</p>
+            <p style="color:var(--body); line-height:1.7">Ensuite, Maël a demandé à être entendu, donc l'article 388-1 impose son audition. Ses sentiments comptent dans l'appréciation du juge, mais celui-ci garde la décision, car l'article 373-2-11 lui demande seulement de les prendre en considération. De plus, l'article 373-2-9 permet au juge d'ordonner l'alternance malgré le désaccord des parents, et cet article ne fixe aucun âge minimum. Les six ans de Jeanne ne suffisent donc pas à eux seuls à refuser l'alternance.</p>
+            <p style="margin-bottom:0; color:var(--body); line-height:1.7">Il reste à examiner la séparation des enfants une semaine sur deux. Une alternance pour Maël seul sépare les enfants une semaine sur deux, puisque Jeanne resterait chez sa mère pendant que Maël vivrait chez son père. L'article 371-5 interdit cette séparation, sauf si c'est impossible ou si une autre solution sert mieux l'intérêt de l'enfant. Or la séparation n'est pas inévitable ici, car les deux logements sont proches et Maël refuse d'être séparé de sa sœur. Aucun élément de l'énoncé ne montre que séparer Maël et Jeanne serait dans leur intérêt. De plus, l'arrêt de 2020 va dans le même sens, puisque la Cour y sanctionne une répartition des vacances qui privait des enfants de toute possibilité d'être réunis pendant les vacances d'hiver et de printemps.</p>
+          </div>
+          <div class="card" style="padding:22px 24px">
+            <p style="margin-top:0; margin-bottom:0; color:var(--body); line-height:1.7"><strong>La conclusion.</strong> Ainsi, Rodolphe peut demander la modification, puisque la décision de 2023 reste modifiable. Le juge peut ordonner la résidence alternée pour les deux enfants, y compris à titre provisoire, s'il juge que c'est dans leur intérêt. En revanche, il ne doit pas la limiter à Maël, sauf impossibilité ou intérêt contraire, absents ici.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUESTIONS DE COURS -->
+    <section class="section section--alt" id="questions">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Cinq questions de cours corrigées en quelques lignes</h2>
+        <p class="lead" style="margin-bottom:20px">Tu peux d'abord répondre de tête à ces cinq questions, puis comparer ta réponse avec la solution, qui cite les articles et les conditions attendus.</p>
+        <ul style="color:var(--body); line-height:1.75; margin:0; padding-left:22px">
+          <li style="margin-bottom:10px"><strong>Dans quels domaines l'intérêt de l'enfant joue-t-il un rôle ? (Paris 1, 2 points)</strong> L'intérêt de l'enfant s'applique d'abord à l'autorité parentale, que l'article 371-1 définit comme un ensemble de droits et de devoirs ayant pour finalité cet intérêt. Le juge aux affaires familiales le prend ensuite en compte pour régler les questions des enfants mineurs, en veillant spécialement à leurs intérêts, selon l'article 373-2-6. Enfin, il intervient dans l'adoption. Quand l'agrément, c'est-à-dire l'attestation officielle d'aptitude à adopter, a été refusé ou n'a pas été délivré à temps, le tribunal peut prononcer l'adoption d'un pupille de l'État si les adoptants sont aptes à accueillir l'enfant et si l'adoption est conforme à son intérêt (article 353).</li>
+          <li style="margin-bottom:10px"><strong>Quelle différence y a-t-il entre le défaut et le vice du consentement au mariage ? (examen blanc)</strong> Le défaut de consentement signifie qu'il manque l'intention de se marier, par exemple quand un époux refuse de se soumettre aux obligations du mariage. L'article 146 le sanctionne, car le mariage suppose un consentement. Sa nullité absolue permet à tous ceux qui y ont intérêt d'agir pendant trente ans (article 184). Le vice du consentement signifie au contraire que le consentement existe, mais qu'une erreur ou une contrainte l'a faussé (article 180). Sa nullité est relative, donc l'époux dont le consentement a été vicié peut agir pendant cinq ans à compter du mariage (articles 180 et 181). Le ministère public peut aussi agir quand il y a eu contrainte.</li>
+          <li style="margin-bottom:10px"><strong>Quelles sont les quatre causes de divorce ?</strong> L'article 229 les énumère. D'abord, le consentement mutuel permet aux époux de divorcer par un acte signé par leurs avocats et déposé chez un notaire. Ensuite, l'acceptation du principe de la rupture suppose que chaque époux accepte de divorcer sans discuter des raisons, et cette acceptation ne se rétracte pas (article 233). En revanche, l'altération définitive du lien conjugal résulte d'une séparation d'un an lors de la demande, et chacun des époux peut la demander seul (articles 237 et 238). Enfin, la faute suppose une violation grave ou renouvelée des devoirs du mariage qui rend intolérable le maintien de la vie commune (article 242).</li>
+          <li style="margin-bottom:10px"><strong>Qu'est-ce que la possession d'état, et pourquoi limite-t-elle la contestation d'une filiation ?</strong> L'article 311-1 la décrit comme une réunion suffisante de faits qui révèlent le lien de filiation entre une personne et sa famille. Quand cette possession d'état confirme le titre (l'acte de naissance ou la reconnaissance), l'article 333 réserve l'action en contestation à l'enfant et à ses parents, ainsi qu'à celui qui se prétend le parent véritable. Mais il l'interdit à tous, sauf au ministère public, quand la possession d'état a duré au moins cinq ans. Le droit protège ainsi un enfant qui vit depuis cinq ans comme le fils ou la fille de ses parents.</li>
+          <li style="margin-bottom:10px"><strong>Quelle différence y a-t-il entre l'adoption plénière et l'adoption simple ?</strong> L'adoption plénière donne à l'enfant une filiation qui se substitue à sa filiation d'origine, et l'adopté cesse d'appartenir à sa famille d'origine, sous réserve des interdictions de mariage entre proches, selon l'article 356. Elle est irrévocable, selon l'article 359. À l'inverse, l'adoption simple ajoute une filiation à la filiation d'origine, et l'adopté garde tous ses droits dans sa famille d'origine (article 360). L'adoption simple donne aussi à l'adopté le nom de l'adoptant, en plus du sien, selon l'article 363.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ERREURS -->
+    <section class="section" id="erreurs">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:20px">Les erreurs qui font perdre des points en droit de la famille</h2>
+        <ul style="color:var(--body); line-height:1.8; margin:0 0 18px; padding-left:22px">
+          <li><strong>Confondre l'erreur et le défaut de consentement.</strong> Dans l'arrêt du 4 juillet 1995, la cour d'appel annulait un mariage pour défaut de consentement, mais elle retenait en réalité une erreur, et la Cour de cassation a cassé cette décision. La qualification change donc la personne qui peut agir et le délai.</li>
+          <li><strong>Appliquer l'article 220 à des concubins.</strong> La solidarité des dettes du ménage existe entre époux, et l'article 515-4 la prévoit entre partenaires d'un PACS. Pour les concubins, la première chambre civile de la Cour de cassation l'écarte le 2 mai 2001.</li>
+          <li><strong>Compter les prestations familiales comme des revenus de l'époux.</strong> Dans son arrêt du 6 octobre 2010, la première chambre civile de la Cour de cassation juge que les prestations familiales destinées aux enfants ne constituent pas des revenus pour l'époux qui les perçoit. Dans ton cas pratique, tu écartes donc ces prestations des ressources de cet époux pour fixer la prestation compensatoire.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ENTRAÎNEMENT -->
+    <section class="section section--alt" id="entrainement">
+      <div class="container container--narrow">
+        <h2 class="h2" style="margin-bottom:8px">Comment t'entraîner avec ces sujets ?</h2>
+        <p style="color:var(--body); line-height:1.75">Un sujet se travaille en trois temps. D'abord, tu choisis une ligne du tableau et tu masques la troisième colonne. Tu as ensuite vingt minutes pour retrouver seul les articles et les arrêts qui s'appliquent. Enfin, tu compares avec cette colonne et tu notes ce qui te manque, par exemple le numéro d'un article ou la date d'un arrêt. Pour un cas pratique, tu rédiges la règle, puis son application aux faits, avant de conclure, comme dans le cas corrigé.</p>
+        <p style="color:var(--body); line-height:1.75">Les <a href="comment-reviser-le-droit-de-la-famille-l1.html">conseils pour réviser le droit de la famille L1</a> te donnent un calendrier, et la <a href="droit-de-la-famille-l1.html">page de droit de la famille L1</a> présente le programme et la fiche. Pour le divorce, la page sur la <a href="prestation-compensatoire-divorce.html">prestation compensatoire</a> explique ce mécanisme.</p>
+        <h3 style="margin-top:24px">Où trouver des sujets de droit de la famille corrigés en PDF ?</h3>
+        <p style="color:var(--body); line-height:1.75">Je propose plusieurs supports pour cette matière. D'abord, la fiche complète reprend le programme en plus de 130 pages avec les articles et les principaux arrêts. Ensuite, le recueil de cas pratiques corrigés réunit 21 cas pratiques et 3 sujets de type partiel, et les commentaires d'arrêt corrigés traitent dix arrêts de la matière. Chacun de ces trois supports coûte 14,99 €. Le pack à 29,98 € regroupe la fiche et le recueil de cas pratiques, ainsi que les flashcards avec QCM et les fiches d'arrêt.</p>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container container--narrow">
+        <h2 class="h2 text-center" style="margin-bottom:32px">Questions fréquentes sur les sujets de droit de la famille L1</h2>
+        <div class="accordion">
+          <details class="accordion__item" open><summary><h3>Quels sont les sujets de droit de la famille en L1 ?</h3></summary><div class="accordion__body">Ils suivent les cinq parties du programme de la fiche, du mariage jusqu'aux effets de la filiation. Le format change selon la faculté, entre le cas pratique, la dissertation, le commentaire d'arrêt et la fiche d'arrêt.</div></details>
+          <details class="accordion__item"><summary><h3>Le juge peut-il imposer la résidence alternée quand un parent la refuse ?</h3></summary><div class="accordion__body">Oui, il peut l'ordonner, y compris à titre provisoire. Selon l'article 373-2-9 du Code civil, en cas de désaccord entre les parents, le juge peut ordonner une résidence en alternance à titre provisoire, puis il statue définitivement au terme de la période qu'il a fixée. Il décide d'après l'intérêt de l'enfant.</div></details>
+          <details class="accordion__item"><summary><h3>Quelle durée de séparation faut-il pour divorcer pour altération définitive du lien conjugal ?</h3></summary><div class="accordion__body">Il faut que les époux vivent séparés depuis un an lors de la demande en divorce (article 238 du Code civil, issu de la loi du 23 mars 2019). Quand le demandeur a saisi le juge sans indiquer ses motifs, le juge apprécie ce délai au jour où il prononce le divorce.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="author-box">
+          <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+          <div>
+            <p class="author-box__name">Julien</p>
+            <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+            <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">164 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- fin-article:pack-ultra -->
+    <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
+      <div class="container">
+        <p class="article-pack-ligne__texte">Le Pack Ultra L1 S2 réunit les 26 ressources de ton second semestre de L1 pour 229 €, la fiche de droit de la famille L1 comprise. <a href="pack-ultra.html#pack-ultra-l1-s2">Voir le contenu du pack →</a></p>
+        <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
+      </div>
+    </section>
+
+  </main>
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Kit de survie partiels (sujets droit de la famille L1)">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Lead magnet exit-intent (sujets droit de la famille L1)">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit de la famille L1 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-famille-l1-s2">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=60767dcf" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=da4d9620" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=ee98d119" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>
