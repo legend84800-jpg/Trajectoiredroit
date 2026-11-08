@@ -117,7 +117,7 @@ async function generer(body,user) {
     const plan=FORMULES[reservation.formule];
     const corriger=preparation.mode==='corriger',compare=body.exercice==='commentaire-compare',relecture=compare||corriger,pro=reservation.formule==='pro',budget=budgetSortie(body.exercice,reservation.formule,preparation.mode);
     const resultat=await genererAvecRecherche(appeler,{model:MODELE,system:preparation.system,messages:preparation.messages,
-      max_tokens:relecture?(pro?18000:corriger&&reservation.formule==='classique'?14000:12000):budget,stream:true,thinking:{type:'adaptive'},
+      max_tokens:relecture?budget-20000:budget,stream:true,thinking:{type:'adaptive'},
       output_config:{effort:plan.effort,...(corriger&&pro?{task_budget:{type:'tokens',total:Math.max(24000,compte.input_tokens+16000)}}:{})}},
       {timeoutMs:Math.min(relecture?400000:DELAI_TOTAL,DELAI_TOTAL-(Date.now()-debut)),...(relecture?{allowedDomains:DOMAINES_JURIDIQUES,budgetTotal:budget-20000}:{})});
     let reponse=resultat.reponse;
@@ -155,7 +155,7 @@ async function generer(body,user) {
     const code=error.name==='TimeoutError'?'delai':/^[a-z0-9_]+$/i.test(error.message||'')?error.message:'generation_interrompue';
     try { await rpc('portalis_echouer',{p_user:user,p_id:body.demandeId}); }catch(_){}
     try { await rpc('portalis_signaler_echec',{p_user:user,p_id:body.demandeId,p_code:code}); }catch(_){}
-    console.error('Portalis génération', {code,demandeId:body.demandeId,exercice:body.exercice,mode:preparation.mode,formule:reservation.formule,etape,dureeMs:Date.now()-debut});
+    console.error('Portalis génération', {code,...(error.raison?{raison:error.raison}:{}),demandeId:body.demandeId,exercice:body.exercice,mode:preparation.mode,formule:reservation.formule,etape,dureeMs:Date.now()-debut});
     throw new ErreurPortalis('generation_echouee','La réponse n’a pas pu être terminée. Le crédit réservé est restitué automatiquement. Tu peux réessayer.',502);
   } finally {await garde.arreter();}
 }

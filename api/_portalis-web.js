@@ -37,6 +37,7 @@ function compteur(valeur) {
 function delaiDepasse() {
   const erreur=new Error('delai');erreur.name='TimeoutError';return erreur;
 }
+function incomplet(raison) {return Object.assign(new Error('reponse_incomplete'),{raison});}
 async function genererAvecRecherche(anthropic,payload,{timeoutMs=DELAI_TOTAL,maintenant=Date.now,allowedDomains,budgetTotal=payload?.max_tokens}={}) {
   if(typeof anthropic!=='function'||!payload||!Array.isArray(payload.messages)||
     !Number.isSafeInteger(payload.max_tokens)||payload.max_tokens<1||
@@ -50,18 +51,18 @@ async function genererAvecRecherche(anthropic,payload,{timeoutMs=DELAI_TOTAL,mai
     if(restant<=0)throw delaiDepasse();
     const jetons=Math.min(payload.max_tokens,budgetTotal-usage.output_tokens);
     const recherches=OUTIL_WEB.max_uses-Math.max(usage.server_tool_use.web_search_requests,termines.size);
-    if(jetons<=0||recherches<=0)throw new Error('reponse_incomplete');
+    if(jetons<=0||recherches<=0)throw incomplet(jetons<=0?'budget_epuise':'recherches_epuisees');
     const resultat=await anthropic('',{...payload,messages,max_tokens:jetons,
       tools:[{...OUTIL_WEB,max_uses:recherches,...(allowedDomains?.length?{allowed_domains:allowedDomains.slice()}:{})}]},restant);
     if(maintenant()-debut>=limite)throw delaiDepasse();
-    if(!resultat||!Array.isArray(resultat.content))throw new Error('reponse_incomplete');
+    if(!resultat||!Array.isArray(resultat.content))throw incomplet('contenu_absent');
     usage.input_tokens+=compteur(resultat.usage?.input_tokens);
     usage.output_tokens+=compteur(resultat.usage?.output_tokens);
     usage.server_tool_use.web_search_requests+=compteur(resultat.usage?.server_tool_use?.web_search_requests);
     for(const cle of ['cache_creation_input_tokens','cache_read_input_tokens']) {
       if(resultat.usage?.[cle]!==undefined)usage[cle]=(usage[cle]||0)+compteur(resultat.usage[cle]);
     }
-    if(usage.output_tokens>budgetTotal)throw new Error('reponse_incomplete');
+    if(usage.output_tokens>budgetTotal)throw incomplet('budget_depasse');
     contenus.push(...resultat.content);
     for(const bloc of resultat.content) {
       if(bloc?.type==='server_tool_use'&&bloc.name==='web_search'&&typeof bloc.id==='string')appels.add(bloc.id);
@@ -73,13 +74,13 @@ async function genererAvecRecherche(anthropic,payload,{timeoutMs=DELAI_TOTAL,mai
     }
     if(resultat.stop_reason==='end_turn') {
       const texte=contenus.filter(bloc=>bloc?.type==='text'&&typeof bloc.text==='string').map(bloc=>bloc.text).join('\n\n').trim();
-      if(texte.length<20)throw new Error('reponse_incomplete');
+      if(texte.length<20)throw incomplet('texte_absent');
       let reponse=serialiserTexte(contenus);
       if(erreurs.size)reponse+='\n\nLa recherche Internet a rencontré une erreur. Les éléments qui en dépendent restent à vérifier.';
       return {reponse,usage,stop_reason:'end_turn',recherches:{effectuees:usage.server_tool_use.web_search_requests,
         tentatives:appels.size,reussies,erreurs:[...erreurs]}};
     }
-    if(resultat.stop_reason!=='pause_turn'||reprise===MAX_REPRISES)throw new Error('reponse_incomplete');
+    if(resultat.stop_reason!=='pause_turn'||reprise===MAX_REPRISES)throw incomplet(resultat.stop_reason==='pause_turn'?'reprises_epuisees':resultat.stop_reason||'arret_absent');
     // Les blocs signés et chiffrés doivent revenir à Anthropic sans transformation.
     messages=[...messages,{role:'assistant',content:resultat.content}];
   }

@@ -205,3 +205,8 @@ test('une erreur de transport interrompt les reprises et remonte intacte au gest
   await assert.rejects(genererAvecRecherche(async()=>{n++;throw erreur;},payload),e=>e===erreur);
   assert.equal(n,1);
 });
+
+test('une limite de sortie atteinte conserve une cause précise dans le diagnostic',async()=>{
+  await assert.rejects(genererAvecRecherche(async()=>({...fin(),stop_reason:'max_tokens'}),payload),
+    erreur=>erreur.message==='reponse_incomplete'&&erreur.raison==='max_tokens');
+});

@@ -142,7 +142,7 @@ test('les quinze combinaisons utilisent les budgets et les efforts de la formule
     assert.equal(budgetSortie(exercice,formule),budget);
     const compare=exercice==='commentaire-compare';
     assert.equal(payloads[1].stream,true);
-    assert.equal(payloads[1].model,'claude-sonnet-5-5');assert.equal(payloads[1].output_config.effort,effort);assert.equal(payloads[1].max_tokens,compare?(formule==='pro'?18000:12000):budget);
+    assert.equal(payloads[1].model,'claude-sonnet-5-5');assert.equal(payloads[1].output_config.effort,effort);assert.equal(payloads[1].max_tokens,compare?budget-20000:budget);
     if(compare){
       assert.equal(payloads.length,6);assert.equal(payloads[3].max_tokens,Math.min(20000,budget-300-10000));
       assert.equal(payloads[5].max_tokens,20000);assert.match(payloads[5].system,/Dernier contrôle de cohérence/);
@@ -183,6 +183,24 @@ test('les deux relectures corrigent successivement la copie avant un seul débit
   assert.match(resultat.reponse,/La Cour a renvoyé/);assert.match(payloads[5].messages[0].content,/Le juge de renvoi doit encore statuer/);
   assert.match(payloads[3].messages[0].content,/<copie_a_relire>/);assert.doesNotMatch(payloads[3].messages[0].content,/<corpus_pedagogique>/);
   const terme=calls.find(c=>c.nom==='portalis_terminer').args;assert.equal(terme.p_reponse,resultat.reponse);assert.equal(terme.p_entree,500);assert.equal(terme.p_sortie,440);
+});
+test('un commentaire Pro dépassant 18 000 jetons termine ses deux relectures dans le budget de la formule',async()=>{
+  const calls=[];let redactions=0,relectures=0;
+  const generation=charger('api/_portalis-generation.js',{'./_portalis-store':{...require('../api/_portalis-store'),documents:async()=>[],rpc:async(nom,args)=>{
+    calls.push({nom,args});if(nom==='portalis_etat')return{actif:true};if(nom==='portalis_reserver')return{code:'reservee',formule:'pro'};return true;
+  }}},{fetch:async(url,options)=>{
+    const p=JSON.parse(options.body);
+    if(url.endsWith('count_tokens'))return new Response(JSON.stringify({input_tokens:100}));
+    const revue=p.system.includes('# Relecture finale du commentaire comparé');
+    if(revue)relectures++;else redactions++;
+    return new Response(JSON.stringify({stop_reason:!revue&&p.max_tokens<19000?'max_tokens':'end_turn',
+      content:[{type:'text',text:revue?JSON.stringify(rapportRelecture(p)):'Le commentaire complet conserve la comparaison des deux décisions.'}],
+      usage:{input_tokens:100,output_tokens:revue?300:19000}}));
+  }});
+  const r=await generation.generer({demandeId:ID,exercice:'commentaire-compare',texte:'Deux décisions de justice sont fournies pour ce commentaire.',documents:[]},USER);
+  assert.match(r.reponse,/commentaire complet/);assert.equal(redactions,1);assert.equal(relectures,2);
+  assert.equal(calls.filter(c=>c.nom==='portalis_terminer').length,1);assert.ok(!calls.some(c=>c.nom==='portalis_echouer'));
+  assert.equal(calls.find(c=>c.nom==='portalis_terminer').args.p_sortie,19600);
 });
 test('une relecture inachevée restitue le crédit sans enregistrer le premier texte',async()=>{
   const calls=[];
