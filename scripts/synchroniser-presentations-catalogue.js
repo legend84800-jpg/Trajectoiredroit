@@ -79,7 +79,7 @@ function presentationPack(id) {
 }
 
 function renderApercu(item) {
-  const images = item.pages.map((page) => `assets/apercus/catalogue-20261029/${item.id}-p${String(page).padStart(3, "0")}.webp`);
+  const images = item.images || item.pages.map((page) => `assets/apercus/catalogue-20261029/${item.id}-p${String(page).padStart(3, "0")}.webp`);
   return `<button type="button" class="apercu-link" data-apercu='${JSON.stringify(images)}' data-apercu-title="${escape(item.titre)}" data-apercu-sub="Extraits du PDF vendu, pages ${item.pages.join(", ")}" data-apercu-price="${euro(PRODUITS[item.id].prix)}" data-apercu-cta="${item.id}">Voir un aperçu</button>`;
 }
 
@@ -91,7 +91,7 @@ function synchroniser(contenu, fichier) {
   let sortie = contenu.replace(/<!-- catalogue:comparateur:start -->[\s\S]*?<!-- catalogue:comparateur:end -->/g, renderComparateur());
   if (["formations.html", "droit-des-contrats-l2.html"].includes(fichier)) {
     for (const extrait of COMPARAISON_DOL) {
-      sortie = sortie.replace(new RegExp(`assets/apercus/comparatif-dol-${extrait.format}-[0-9]{8}\\.png(?:\\?v=[0-9]+)?`, "g"), extrait.image);
+      sortie = sortie.replace(new RegExp(`assets/apercus/comparatif-dol-${extrait.format}-[0-9]{8}(?:-hierarchie)?\\.png(?:\\?v=[0-9]+)?`, "g"), extrait.image);
       sortie = sortie.replace(new RegExp(`<img\\b[^>]*src="${extrait.image.replace(/\./g, "\\.")}"[^>]*>`, "g"), (image) => image.replace(/alt="[^"]*"/, `alt="${escape(extrait.alt)}"`));
     }
     let numero = 0;
@@ -183,12 +183,12 @@ function main() {
       else erreurs.push(`${fichier}, présentation à régénérer`);
     }
   }
-  for (const item of APERCUS) for (const page of item.pages) {
-    const cible = `assets/apercus/catalogue-20261029/${item.id}-p${String(page).padStart(3, "0")}.webp`;
+  for (const item of APERCUS) for (const [index, page] of item.pages.entries()) {
+    const cible = item.images?.[index] || `assets/apercus/catalogue-20261029/${item.id}-p${String(page).padStart(3, "0")}.webp`;
     if (!fs.existsSync(path.join(ROOT, cible))) erreurs.push(`Aperçu absent, ${cible}`);
   }
   if (erreurs.length) { console.error(erreurs.join("\n")); process.exitCode = 1; }
-  else console.log("Catalogue cohérent, comparateurs, prix des boutons et 12 pages d’aperçu vérifiés.");
+  else console.log("Catalogue cohérent, comparateurs, prix des boutons et pages d’aperçu vérifiés.");
 }
 
 if (require.main === module) main();

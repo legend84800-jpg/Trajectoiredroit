@@ -80,4 +80,28 @@ const SOMMAIRES = {
 };
 for (const apercu of APERCUS) apercu.sommaire = SOMMAIRES[apercu.id];
 
+const { produits: apercusVerifies } = require("./apercus-produits.json");
+for (const item of APERCUS) {
+  const apercu = apercusVerifies[item.id];
+  if (!apercu) continue;
+  item.pages = apercu.variantes[0].pages;
+  item.images = apercu.variantes[0].images;
+  item.total = apercu.pages_pdf;
+  item.sha256 = apercu.sha256;
+  item.sha256R2 = apercu.sha256;
+  delete item.modificationR2;
+}
+for (const extrait of COMPARAISON_DOL) {
+  const apercu = apercusVerifies[extrait.produit];
+  const choix = apercu?.comparaison_dol;
+  if (!choix) continue;
+  extrait.total = apercu.pages_pdf;
+  extrait.pagePDF = choix.page_pdf;
+  extrait.sha256PDF = apercu.sha256;
+  extrait.image = choix.image;
+  extrait.sha256Image = apercu.preuves_images[choix.image].sha256_image;
+  extrait.alt = extrait.alt.replace(/page \d+ du PDF/, `page ${choix.page_pdf} du PDF`);
+  delete extrait.modificationR2;
+}
+
 module.exports = { BESOINS, APERCUS, COMPARAISON_DOL };

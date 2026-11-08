@@ -254,4 +254,15 @@ const REVISION_VERS_MATIERE = {
 
 const PAGES_GENERIQUES = ["comment-reviser-le-droit"];
 
+const { produits: apercusVerifies } = require("./apercus-produits.json");
+for (const matiere of Object.values(MATIERES)) {
+  for (const semestre of matiere.semestres) {
+    const apercu = apercusVerifies[semestre.id];
+    if (apercu) {
+      semestre.apercus = apercu.variantes[0].images;
+      semestre.vignette = apercu.vignette?.image;
+    }
+  }
+}
+
 module.exports = { MATIERES, ARRETS_VERS_MATIERE, REVISION_VERS_MATIERE, PAGES_GENERIQUES };

@@ -9,11 +9,12 @@ Idempotent (marqueurs <!-- fin-article:... -->). Lancer depuis la racine du site
 Sans argument : tous les articles de blog.html (table M). Pour une seule page, même hors blog :
   python3 scripts/fin-article-pack-ultra.py --page ma-page.html --produit contrats --pack l2-s1
 """
-import re, sys
+import re, sys, json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PAGE_ULTRA = (ROOT / "pack-ultra.html").read_text()
+APERCUS_VERIFIES = json.loads((ROOT / "scripts/apercus-produits.json").read_text())["produits"]
 
 # --- Packs Ultra, lus dans pack-ultra.html (prix, description, ressources) ---
 TYPES_PLURIEL = {
@@ -160,13 +161,21 @@ def actions(cle, sid, classe_btn="btn btn--primary"):
 
 def produit(cle):
     """(label, titre, lien, image, meta, prix, bouton)"""
-    if cle in AUTRES: return AUTRES[cle]
+    if cle in AUTRES:
+        infos = list(AUTRES[cle])
+        apercu = APERCUS_VERIFIES.get(ID_PRODUIT.get(cle))
+        if apercu and apercu.get('majeures'):
+            infos[4] = re.sub(r'\b\d+(?= majeures\b)', str(apercu['majeures']), infos[4])
+        return tuple(infos)
     t, lien, img, meta = FICHES[cle]
     return ("Fiche complète", t, lien, img, meta, "14,99 €", "Voir la fiche →")
 
 
 def encart_milieu(cle, sid):
     label, titre, lien, img, meta, prix, bouton = produit(cle)
+    apercu = APERCUS_VERIFIES.get(id_produit(cle, sid))
+    if apercu:
+        img = apercu.get("vignette", {}).get("image") or apercu["variantes"][0]["images"][0]
     lien_detail = f'\n    <a class="article-produit-inline__more" href="{lien}">{bouton}</a>' if id_produit(cle, sid) else ""
     return f'''<!-- fin-article:encart-milieu -->
 <div class="article-produit-inline">

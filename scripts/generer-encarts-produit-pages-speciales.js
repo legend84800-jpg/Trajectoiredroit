@@ -18,7 +18,7 @@ function construireEncart(matiereSlug) {
   const pageMatiere = matiereSlug + ".html";
   if (m.semestres.length === 1) {
     const s = m.semestres[0];
-    const thumb = s.apercus[0] || "";
+    const thumb = s.vignette || s.apercus[0] || "";
     const apercuBtn = s.apercus.length
       ? `<button type="button" class="apercu-link" data-apercu='${JSON.stringify(s.apercus)}' data-apercu-title="${libelleApercu(s.id) || m.nom}" data-apercu-price="${s.prix}" data-apercu-cta="${s.id}">Voir un aperçu</button>`
       : "";
@@ -41,7 +41,7 @@ function construireEncart(matiereSlug) {
     </section>
 `;
   }
-  const thumb = m.semestres[0].apercus[0] || "";
+  const thumb = m.semestres[0].vignette || m.semestres[0].apercus[0] || "";
   return `${MARQUEUR_ENCART}
     <section class="section" style="padding-top:0; padding-bottom:0">
       <div class="container container--narrow">

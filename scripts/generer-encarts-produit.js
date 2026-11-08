@@ -24,7 +24,7 @@ function construireEncart(matiereSlug) {
 
   if (m.semestres.length === 1) {
     const s = m.semestres[0];
-    const thumb = s.apercus[0] || "";
+    const thumb = s.vignette || s.apercus[0] || "";
     const apercuBtn = s.apercus.length
       ? `<button type="button" class="apercu-link" data-apercu='${JSON.stringify(s.apercus)}' data-apercu-title="${libelleApercu(s.id) || m.nom}" data-apercu-price="${s.prix}" data-apercu-cta="${s.id}">Voir un aperçu</button>`
       : "";
@@ -46,7 +46,7 @@ function construireEncart(matiereSlug) {
 
   // Plusieurs semestres (droit administratif L2, droit constitutionnel L1) : on ne devine pas
   // le semestre exact vu depuis l'arrêt, on renvoie vers la section d'achat de la page matière.
-  const thumb = m.semestres[0].apercus[0] || "";
+  const thumb = m.semestres[0].vignette || m.semestres[0].apercus[0] || "";
   return `${MARQUEUR_ENCART}
 <div class="article-produit-inline">
   ${thumb ? `<img class="article-produit-inline__thumb" src="${thumb}" alt="Aperçu de la fiche ${m.nom}" loading="lazy">` : ""}
