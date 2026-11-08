@@ -140,6 +140,11 @@
     $('etat').textContent=!session?'Connecte-toi pour retrouver ton abonnement et tes réponses disponibles.':
       actif?'Ton espace est prêt. Choisis de rédiger une copie ou de corriger ton travail.':
       state?.statut==='impaye'?'Ton paiement doit être régularisé. Ouvre la gestion de ton abonnement.':'Choisis une formule pour commencer à travailler ton exercice.';
+    document.querySelectorAll('[data-choisir]').forEach(button=>{
+      const code=button.dataset.choisir,plan=config?.formules?.[code],actuelle=actif&&state.formule===code;
+      button.disabled=!config?.abonnementsOuverts||!plan?.prix||actuelle;
+      button.textContent=actuelle?'Ta formule actuelle':actif&&plan?.prix>config?.formules?.[state.formule]?.prix?`Passer à ${code==='portalis'?'Portalis IA':code==='classique'?'Classique':'Pro'}`:`Choisir ${code==='portalis'?'Portalis IA':code==='classique'?'Classique':'Pro'}`;
+    });
     if(state?.formule){
       const plan=config?.formules?.[state.formule];
       $('formuleActive').textContent=plan?.nom||'Portalis IA';
@@ -152,6 +157,7 @@
         button.disabled=!price||working||importing;
       });
     }
+    if(selected)choose(selected,false);
   }
   function renderConfig(){
     document.querySelectorAll('[data-price]').forEach(el=>{
@@ -165,10 +171,12 @@
     if(!config?.formules?.[code])return;
     selected=code;const plan=config.formules[code];
     $('choix').hidden=false;$('choixNom').textContent=plan.nom;
-    $('choixDetail').textContent=plan.prix?`${euros(plan.prix)} par mois · 60 réponses par période mensuelle`:'Le tarif est en cours de validation.';
-    $('choixCompte').textContent=session?'L’abonnement sera lié à ton compte connecté.':'Connecte-toi avant le paiement pour retrouver tes réponses dans ton espace.';
-    $('payer').textContent=session?'Continuer vers le paiement':'Me connecter pour continuer';
-    $('payer').disabled=!config.abonnementsOuverts||!plan.prix;
+    const active=config.formules[state?.formule],changement=state?.actif&&active,difference=changement?plan.prix-active.prix:0;
+    const date=state?.renouvellement?new Date(state.renouvellement).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}):'';
+    $('choixDetail').textContent=changement&&difference>0?`${euros(difference)} à payer pour la période en cours. La formule coûte ensuite ${euros(plan.prix)} par mois.`:plan.prix?`${euros(plan.prix)} par mois · 60 réponses par période mensuelle`:'Le tarif est en cours de validation.';
+    $('choixCompte').textContent=changement&&difference>0?`Tes réponses restantes sont conservées. ${state.resilieFin?'Ton accès se termine toujours le ': 'Ton prochain renouvellement reste fixé au '}${date}.`:changement&&difference===0?'Cette formule est déjà active sur ton compte.':changement?'Contacte Julien pour passer à une formule moins chère.':session?'L’abonnement sera lié à ton compte connecté.':'Connecte-toi avant le paiement pour retrouver tes réponses dans ton espace.';
+    $('payer').textContent=session?(changement&&difference>0?`Payer ${euros(difference)} et changer de formule`:'Continuer vers le paiement'):'Me connecter pour continuer';
+    $('payer').disabled=!config.abonnementsOuverts||!plan.prix||(changement&&difference<=0);
     message('paiementMessage','');
     if(scroll)$('choix').scrollIntoView({block:'center',behavior:'smooth'});
   }
@@ -239,8 +247,13 @@
     try{
       const result=await api('/api/create-checkout',{...body,attemptId:crypto.randomUUID()});
       if(current!==epoch)return;
+      if(result.termine){
+        state=result.etat;renderState();volume();
+        message('paiementMessage','Ta nouvelle formule est disponible.');
+        $('espace').scrollIntoView({block:'start',behavior:'smooth'});return;
+      }
       const target=new URL(result.url);
-      if(!['checkout.stripe.com','billing.stripe.com'].includes(target.hostname)||target.protocol!=='https:')throw new Error('Le lien de paiement est invalide.');
+      if(!['checkout.stripe.com','billing.stripe.com','invoice.stripe.com'].includes(target.hostname)||target.protocol!=='https:')throw new Error('Le lien de paiement est invalide.');
       location.assign(target.href);
     }catch(error){if(current===epoch){button.disabled=false;message('paiementMessage',error.message,true);$('paiementMessage').scrollIntoView({block:'center'});}}
   }
@@ -248,7 +261,8 @@
   $('payer').addEventListener('click',()=>{
     if(!session){location.assign(`mon-compte.html?retour=portalis&formule=${encodeURIComponent(selected)}`);return;}
     if(!$('conditions').checked){message('paiementMessage','Accepte les conditions de vente pour continuer.',true);$('conditions').focus();return;}
-    payment({mode:'subscription',formule:selected,accordConditions:true},$('payer'));
+    payment({mode:'subscription',formule:selected,accordConditions:true,
+      ...(state?.actif?{montantChangement:config.formules[selected].prix-config.formules[state.formule].prix}:{})},$('payer'));
   });
   $('gerer').addEventListener('click',()=>payment({type:'portal'},$('gerer')));
   document.querySelectorAll('[data-recharge]').forEach(button=>button.addEventListener('click',()=>payment({type:'portalis_recharge',formule:state.formule,nombre:Number(button.dataset.recharge)},button)));

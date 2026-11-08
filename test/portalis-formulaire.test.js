@@ -11,22 +11,23 @@ test('le volume et le contenu envoyé suivent les rôles actifs sans perdre les 
   assert.equal(volumeDemande({mode:'corriger',texte:'',copie:'x'.repeat(30),question:'Un sujet dans le mauvais champ'}).complet,false);
   assert.equal(delaiRequete({action:'generer',mode:'corriger',exercice:'fiche'}),585000);
 });
-function navigateur({search='?mode=corriger',connecte=true}={}){
+function navigateur({search='?mode=corriger',connecte=true,abonnement}={}){
   const nodes=new Map(),posts=[],stockage=new Map();let changementSession;
   function node(id){
-    if(!nodes.has(id))nodes.set(id,{id,value:'',checked:false,hidden:false,disabled:false,textContent:'',style:{},events:{},children:[],classList:{toggle(){}},
+    if(!nodes.has(id))nodes.set(id,{id,value:'',checked:false,hidden:false,disabled:false,textContent:'',style:{},events:{},dataset:{},children:[],classList:{toggle(){}},
       addEventListener(n,fn){this.events[n]=fn;},replaceChildren(){this.children=[];},append(...a){this.children.push(...a);},focus(){},scrollIntoView(){},setAttribute(){}});
     return nodes.get(id);
   }
   node('modeRediger').checked=true;node('exercice').value='fiche';
-  const session={user:{id:'10000000-0000-4000-8000-000000000001'},access_token:'fixture'},state={actif:true,formule:'classique',restant:60,recharges:0};
-  const document={getElementById:node,querySelectorAll:s=>s==='input[name="mode"]'?[node('modeRediger'),node('modeCorriger')]:[],createElement:tag=>node('element-'+nodes.size+'-'+tag),createTextNode:text=>({textContent:text})};
+  const session={user:{id:'10000000-0000-4000-8000-000000000001'},access_token:'fixture'},state=abonnement||{actif:true,formule:'classique',restant:60,recharges:0};
+  const choix=['portalis','classique','pro'].map(code=>{const n=node('choisir-'+code);n.dataset.choisir=code;return n;});
+  const document={getElementById:node,querySelectorAll:s=>s==='input[name="mode"]'?[node('modeRediger'),node('modeCorriger')]:s==='[data-choisir]'?choix:[],createElement:tag=>node('element-'+nodes.size+'-'+tag),createTextNode:text=>({textContent:text})};
   const storage={getItem:k=>stockage.get(k)||null,setItem:(k,v)=>stockage.set(k,v),removeItem:k=>stockage.delete(k)};
   const sb={auth:{onAuthStateChange(fn){changementSession=fn;},getSession:async()=>({data:{session:connecte?session:null}})}};
   const location={search,pathname:'/portalis.html'};
   vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../assets/js/portalis.js'),'utf8'),{document,location,localStorage:storage,sessionStorage:storage,AbortController,URLSearchParams,Intl,console,setTimeout,clearTimeout,crypto:{randomUUID:()=> '20000000-0000-4000-8000-000000000001'},window:{supabase:{createClient:()=>sb},location},fetch:async(url,options)=>{
     const body=options.body&&JSON.parse(options.body);if(body)posts.push(body);
-    const data=url.includes('configuration')?{formules:{classique:{nom:'Classique',recharges:{}}}}:body?{reponse:'Une correction complète.\n\n## Estimation indicative · 14/20',etat:{...state,restant:59}}:state;
+    const data=url.includes('configuration')?{abonnementsOuverts:true,formules:{portalis:{nom:'Portalis IA',prix:800,recharges:{}},classique:{nom:'Classique',prix:1200,recharges:{}},pro:{nom:'Pro',prix:1800,recharges:{}}}}:url==='/api/create-checkout'?{termine:true,etat:{...state,formule:'pro'}}:body?{reponse:'Une correction complète.\n\n## Estimation indicative · 14/20',etat:{...state,restant:59}}:state;
     return {ok:true,json:async()=>data};
   }});
   return {node,posts,deconnecter:()=>changementSession('SIGNED_OUT',null)};
@@ -48,4 +49,15 @@ test('un visiteur peut découvrir les deux modes avant connexion sans lancer de 
   const {node,posts}=navigateur({connecte:false});await attendre();
   assert.equal(node('modeCorriger').disabled,false);assert.equal(node('champs').disabled,true);assert.equal(node('copieZone').hidden,false);
   await node('exerciceForm').events.submit({preventDefault(){}});assert.equal(posts.length,0);
+});
+test('un abonné voit les 10 euros de différence avant de payer et retrouve ses 53 réponses en Pro',async()=>{
+  const {node,posts}=navigateur({search:'',abonnement:{actif:true,formule:'portalis',restant:53,recharges:0,renouvellement:'2026-12-07T08:41:45Z'}});await attendre();
+  assert.equal(node('choisir-portalis').disabled,true);assert.equal(node('choisir-pro').textContent,'Passer à Pro');
+  node('choisir-pro').events.click();
+  assert.match(node('choixDetail').textContent,/10,00.*période en cours/);assert.match(node('choixDetail').textContent,/18,00.*par mois/);
+  assert.match(node('choixCompte').textContent,/réponses restantes sont conservées/);assert.match(node('choixCompte').textContent,/7 décembre 2026/);
+  node('conditions').checked=true;node('payer').events.click();await attendre();
+  assert.equal(posts.length,1);assert.equal(posts[0].montantChangement,1000);assert.equal(posts[0].formule,'pro');
+  assert.match(node('quota').textContent,/53 réponses/);assert.equal(node('choisir-pro').disabled,true);assert.equal(node('payer').disabled,true);
+  assert.equal(node('paiementMessage').textContent,'Ta nouvelle formule est disponible.');
 });

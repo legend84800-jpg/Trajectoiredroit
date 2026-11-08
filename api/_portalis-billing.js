@@ -3,10 +3,20 @@ const {rpc,ErreurPortalis}=require('./_portalis-store');
 const id=value=>typeof value==='string'?value:value?.id;
 const iso=value=>Number.isFinite(value)?new Date(value*1000).toISOString():null;
 const proprietaire=metadata=>metadata?.portalis==='abonnement'&&UUID.test(metadata.supabase_user_id||'')&&formuleValide(metadata.formule);
+function formuleStripe(subscription) {
+  const item=subscription.items?.data?.[0],price=item?.price;
+  if(!price) return subscription.metadata?.formule;
+  if(subscription.items.data.length!==1||item.quantity!==1||price.currency!=='eur'||price.recurring?.interval!=='month'||price.recurring.interval_count!==1) return null;
+  return Object.keys(FORMULES).find(code=>price.unit_amount===FORMULES[code].prix&&price.lookup_key===`portalis-${code}-mensuel-${FORMULES[code].prix}-v1`)||null;
+}
 async function synchroniser(stripe,subscription) {
   const current=await stripe.subscriptions.retrieve(id(subscription),{expand:['latest_invoice']});
   if (!proprietaire(current.metadata)) return null;
   const item=current.items.data[0];
+  // Le prix reste celui de l'ancienne formule tant que le changement attend son paiement.
+  const formule=formuleStripe(current);
+  if(!formuleValide(formule)) return null;
+  current.metadata={...current.metadata,formule};
   const debut=iso(item?.current_period_start||current.current_period_start);
   const fin=iso(item?.current_period_end||current.current_period_end);
   const statut=current.status==='active'?'actif':['past_due','unpaid'].includes(current.status)?'impaye':'annule';
@@ -77,4 +87,4 @@ async function evenementPortalis(stripe,event) {
   }
   return false;
 }
-module.exports={evenementPortalis,synchroniserSession,crediterFacture,synchroniser};
+module.exports={evenementPortalis,synchroniserSession,crediterFacture,synchroniser,formuleStripe};

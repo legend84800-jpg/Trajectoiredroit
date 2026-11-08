@@ -2,6 +2,7 @@ const {createHash,randomUUID}=require('node:crypto');
 const {ABONNEMENTS_OUVERTS,FORMULES,formuleValide,UUID}=require('./_portalis-config');
 const {authentifier,ErreurPortalis,service,rpc}=require('./_portalis-store');
 const {creerClientStripe}=require('./_stripe');
+const {synchroniser,formuleStripe}=require('./_portalis-billing');
 const ORIGIN='https://trajectoiredroit.com';
 async function prixStripe(stripe,formule,nombre) {
   const plan=FORMULES[formule];
@@ -25,6 +26,47 @@ async function configurationPortail(stripe) {
       subscription_cancel:{enabled:true,mode:'at_period_end'},subscription_update:{enabled:false}}},
     {idempotencyKey:'portalis-portal-v1'});
   return config.id;
+}
+async function changerFormule(stripe,current,user,formule,montantAttendu) {
+  if(!current?.stripe_subscription_id||!current.stripe_customer_id)
+    throw new ErreurPortalis('abonnement_absent','Actualise ton espace pour retrouver ton abonnement.',409);
+  const subscription=await stripe.subscriptions.retrieve(current.stripe_subscription_id,{expand:['latest_invoice']});
+  const customer=typeof subscription.customer==='string'?subscription.customer:subscription.customer?.id;
+  if(customer!==current.stripe_customer_id||subscription.metadata?.supabase_user_id!==user.id||subscription.metadata?.portalis!=='abonnement')
+    throw new ErreurPortalis('abonnement_proprietaire','Cet abonnement appartient à un autre compte.',403);
+  const source=formuleStripe(subscription),item=subscription.items?.data?.[0];
+  if(subscription.status!=='active'||!formuleValide(source))
+    throw new ErreurPortalis('abonnement_requis','Ouvre la gestion de ton abonnement pour vérifier son paiement.',409);
+  if(source===formule) {
+    await synchroniser(stripe,subscription);
+    return {termine:true,etat:await rpc('portalis_etat',{p_user:user.id})};
+  }
+  const difference=FORMULES[formule].prix-FORMULES[source].prix;
+  if(difference<=0) throw new ErreurPortalis('formule_inferieure','Contacte Julien pour passer à une formule moins chère.',409);
+  if(montantAttendu!==difference) throw new ErreurPortalis('prix_a_actualiser','Actualise la page pour vérifier le prix du changement.',409);
+  const price=await prixStripe(stripe,formule);
+  if(subscription.pending_update) {
+    const pending=subscription.pending_update.subscription_items?.[0]?.price;
+    if((typeof pending==='string'?pending:pending?.id)===price&&subscription.latest_invoice?.status==='open'&&subscription.latest_invoice.hosted_invoice_url)
+      return {url:subscription.latest_invoice.hosted_invoice_url};
+    throw new ErreurPortalis('changement_en_cours','Un changement attend déjà son paiement dans ton espace de facturation.',409);
+  }
+  const debut=item.current_period_start||subscription.current_period_start;
+  if(!Number.isInteger(debut)||subscription.latest_invoice?.status!=='paid')
+    throw new ErreurPortalis('periode_impayee','Le paiement de la période actuelle doit être confirmé avant le changement.',409);
+  const details={items:[{id:item.id,price,quantity:1}],proration_behavior:'always_invoice',proration_date:debut};
+  const preview=await stripe.invoices.createPreview({subscription:subscription.id,subscription_details:details});
+  if(preview.currency!=='eur'||preview.amount_due!==difference||preview.total!==difference)
+    throw new ErreurPortalis('montant_changement','Le montant calculé diffère du prix annoncé. Contacte Julien avant de payer.',409);
+  const key=`portalis-changement-${subscription.id}-${subscription.latest_invoice.id}-${formule}`;
+  const updated=await stripe.subscriptions.update(subscription.id,{...details,payment_behavior:'pending_if_incomplete',
+    billing_cycle_anchor:'unchanged',metadata:{...subscription.metadata,formule},expand:['latest_invoice']},{idempotencyKey:key});
+  const fresh=await synchroniser(stripe,updated);
+  if(fresh&&!fresh.pending_update&&formuleStripe(fresh)===formule)
+    return {termine:true,etat:await rpc('portalis_etat',{p_user:user.id})};
+  const invoice=fresh?.latest_invoice||updated.latest_invoice;
+  if(invoice?.hosted_invoice_url) return {url:invoice.hosted_invoice_url};
+  throw new ErreurPortalis('paiement_en_cours','Le changement attend la confirmation du paiement. Actualise ton espace dans un instant.',409);
 }
 async function checkout(req,res,body) {
   try {
@@ -50,7 +92,9 @@ async function checkout(req,res,body) {
       throw new ErreurPortalis('tarif_en_attente','Les tarifs de cette offre sont en cours de validation.',503);
     const state=await rpc('portalis_etat',{p_user:user.id});
     if(recharge&&(!state.actif||state.formule!==formule)) throw new ErreurPortalis('abonnement_requis','La recharge doit correspondre à ton abonnement actif.',403);
-    if(!recharge&&state.actif) throw new ErreurPortalis('abonnement_existant','Tu as déjà un abonnement. Gère-le depuis ton espace.',409);
+    if(!recharge&&state.actif) {
+      res.status(200).json(await changerFormule(stripe,current,user,formule,body.montantChangement)); return;
+    }
     let customer=current?.stripe_customer_id;
     if(!customer) {
       const c=await stripe.customers.create({email:user.email,metadata:{supabase_user_id:user.id}},
@@ -82,4 +126,4 @@ async function checkout(req,res,body) {
     res.status(error.status||502).json({code:error.code||'paiement',erreur:error.status?error.message:'Le paiement est temporairement indisponible. Réessaie dans un instant.'});
   }
 }
-module.exports={checkout,prixStripe,configurationPortail};
+module.exports={checkout,prixStripe,configurationPortail,changerFormule};
