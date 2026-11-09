@@ -35,6 +35,23 @@ def galeries(texte):
     return [attributs(m[0]) for m in TAG.finditer(texte)]
 
 
+def actualiser_pages_cartes(texte, produits, normaliser=False):
+    espaces = r'(?:\s|&nbsp;|&#160;)*'
+    nombre = re.compile(r'(\bPDF' + espaces + r'(?:(?:·|&middot;|&#183;|\||•)' + espaces
+                        + r')?)\d+(' + espaces + r'(?:pp?\.?|pages?)(?![\w.]))', re.I)
+    def carte(match):
+        bloc = match[0]
+        ids = {g.get('data-apercu-cta') for g in galeries(bloc)}
+        if len(ids) != 1:
+            return bloc
+        produit = next(iter(ids))
+        if produit not in produits:
+            return bloc
+        pages = '<PAGES>' if normaliser else str(produits[produit]['pages_pdf'])
+        return nombre.sub(lambda m:m[1] + pages + m[2], bloc)
+    return re.sub(r'<article\b.*?</article>', carte, texte, flags=re.S)
+
+
 def rendre(catalogue, manifest):
     for produit, p in catalogue['produits'].items():
         if produit not in manifest:
@@ -94,6 +111,7 @@ def actualiser(texte, fichier, catalogue):
         comptes[produit] = comptes.get(produit, 0) + 1
         return tag
     texte = TAG.sub(bouton, texte)
+    texte = actualiser_pages_cartes(texte, produits)
     images = catalogue['remplacements_images']
     motif = re.compile('|'.join(re.escape(s) + r'(?:\?v=[\w.-]+)?' for s in sorted(images, key=len, reverse=True)))
     def image(match):
