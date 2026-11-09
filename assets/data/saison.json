@@ -33,5 +33,116 @@
     "sous_titre": "109 pages, 19,99 €",
     "libelle": "Voir le cours →",
     "lien": "droit-des-contrats-en-images.html"
-  }
+  },
+  "periodes": [
+    {
+      "periode": {
+        "id": "2026-s1-cours-images-contrats",
+        "nom": "Test du cours en images de droit des contrats",
+        "debut": "2026-10-26",
+        "fin": "2026-11-13"
+      },
+      "bandeau": {
+        "actif": true,
+        "etiquette_forte": "Le droit des contrats en images",
+        "etiquette": ", cours de L2 S1 en 109 pages",
+        "puce": "19,99 €, plan détaillé en bonus",
+        "bouton": "Voir le cours",
+        "lien": "droit-des-contrats-en-images.html",
+        "compte_a_rebours_fin": null,
+        "compte_a_rebours_libelle": null,
+        "masquer_sur": [
+          "droit-des-contrats-en-images",
+          "parents"
+        ],
+        "afficher_sur": [
+          "accueil",
+          "methode-*"
+        ]
+      },
+      "accueil": null,
+      "bouton_collant": {
+        "pages": [
+          "accueil"
+        ],
+        "titre": "Le droit des contrats en images",
+        "sous_titre": "109 pages, 19,99 €",
+        "libelle": "Voir le cours →",
+        "lien": "droit-des-contrats-en-images.html"
+      }
+    },
+    {
+      "periode": {
+        "id": "2026-s1-pic-cas-pratique-majeures",
+        "nom": "Fin du pic cas pratique, majeures préparées",
+        "debut": "2026-11-14",
+        "fin": "2026-11-15"
+      },
+      "bandeau": {
+        "actif": true,
+        "etiquette_forte": "Les majeures préparées",
+        "etiquette": ", la règle de droit déjà rédigée pour tes cas pratiques",
+        "puce": "14,99 € la matière, en PDF",
+        "bouton": "Voir les majeures",
+        "lien": "majeures-preparees.html",
+        "compte_a_rebours_fin": null,
+        "compte_a_rebours_libelle": null,
+        "masquer_sur": [
+          "majeures-preparees",
+          "parents"
+        ],
+        "afficher_sur": [
+          "accueil",
+          "methode-*"
+        ]
+      },
+      "accueil": null,
+      "bouton_collant": {
+        "pages": [
+          "accueil"
+        ],
+        "titre": "Les majeures préparées",
+        "sous_titre": "14,99 € la matière, en PDF",
+        "libelle": "Voir les majeures →",
+        "lien": "majeures-preparees.html"
+      }
+    },
+    {
+      "periode": {
+        "id": "2026-s1-partiels-decembre",
+        "nom": "Première vague de partiels, fiches complètes et Pack Ultra S1",
+        "debut": "2026-11-16",
+        "fin": "2026-12-13"
+      },
+      "bandeau": {
+        "actif": true,
+        "etiquette_forte": "Les fiches complètes de droit",
+        "etiquette": ", toute la matière du semestre dans un seul PDF pour tes partiels",
+        "puce": "Dès 14,99 €, accès à vie",
+        "bouton": "Voir les fiches",
+        "lien": "formations.html",
+        "compte_a_rebours_fin": null,
+        "compte_a_rebours_libelle": null,
+        "masquer_sur": [
+          "formations",
+          "pack-ultra",
+          "parents"
+        ],
+        "afficher_sur": [
+          "accueil",
+          "methode-*"
+        ]
+      },
+      "accueil": null,
+      "bouton_collant": {
+        "pages": [
+          "accueil"
+        ],
+        "titre": "Le Pack Ultra du semestre 1",
+        "sous_titre": "Payable en 3 fois sans frais, dès 259 €",
+        "libelle": "Voir le pack →",
+        "lien": "pack-ultra.html"
+      }
+    }
+  ]
 }
