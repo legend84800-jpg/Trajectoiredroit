@@ -6,6 +6,7 @@ const textes=[1,2].map(i=>'Les juges examinent le consentement dans la décision
 const urls=[1,2].map(i=>'https://www.legifrance.gouv.fr/juri/id/JURITEXT00000000000'+i);
 const selection=[1,2].map((indice,i)=>({indice,reference:'Cour de cassation, décision du '+indice+' janvier 2020',url:urls[i]}));
 const pages=textes.map((texte,i)=>({type:'web_fetch_tool_result',tool_use_id:'fetch'+i,content:{type:'web_fetch_result',url:urls[i],content:{type:'document',source:{type:'text',data:texte}}}}));
+const article="Article 1133. Version en vigueur depuis le 1er octobre 2016. L'acceptation d'un aléa sur une qualité de la prestation exclut l'erreur relative à cette qualité.";
 test('seuls les textes effectivement récupérés sur un site officiel servent de sujet',()=>{
   const result=decisions.selectionner(selection,pages,2);
   assert.equal(result[0].texte,textes[0]);assert.equal(result[1].url,urls[1]);
@@ -38,7 +39,7 @@ function charger({rechercheErreur=false,dejaTerminee=false}={}){
     './_portalis-relecture':{relire:async(_,params)=>{relectures.push(params);return{reponse:params.copie,usage:{input_tokens:500,output_tokens:100}};}}
   };
   const requireStub=n=>Object.hasOwn(stubs,n)?stubs[n]:real(n);requireStub.resolve=real.resolve;
-  const fetch=async(url,options)=>({ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:1000}:{stop_reason:'end_turn',content:[{type:'text',text:'Le commentaire rédigé compare les deux décisions du sujet.'}],usage:{input_tokens:1000,output_tokens:300}}});
+  const fetch=async(url,options)=>({ok:true,json:async()=>url.endsWith('count_tokens')?{input_tokens:1000}:{stop_reason:'end_turn',content:[{type:'web_fetch_tool_result',tool_use_id:'article',content:{type:'web_fetch_result',url:'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032040841',content:{type:'document',source:{type:'text',data:article}}}},{type:'text',text:'Le commentaire rédigé compare les deux décisions du sujet.'}],usage:{input_tokens:1000,output_tokens:300}}});
   vm.runInNewContext(fs.readFileSync(fichier,'utf8'),{module,require:requireStub,Buffer,AbortSignal,setTimeout,clearTimeout,URLSearchParams,console:{log(){},error(){}},process:{env:{ANTHROPIC_API_KEY:'fixture'}},fetch});
   return{g:module.exports,calls,relectures};
 }
@@ -57,7 +58,7 @@ test('la recherche et les deux relectures utilisent une réservation et enregist
   const {g,calls,relectures}=charger();const result=await g.generer(demande(),USER);
   assert.equal(calls.filter(c=>c.n==='portalis_reserver').length,1);assert.equal(calls.filter(c=>c.n==='portalis_terminer').length,1);
   assert.equal(relectures.length,2);
-  for(const r of relectures)for(const texte of textes)assert.ok(r.message.includes(texte));
+  for(const r of relectures){for(const texte of textes)assert.ok(r.message.includes(texte));assert.ok(r.message.includes(article));assert.ok(r.message.includes('LEGIARTI000032040841'));}
   const args=calls.find(c=>c.n==='portalis_terminer').args;assert.equal(args.p_entree,2700);assert.equal(args.p_sortie,700);
   assert.match(result.reponse,/## Arrêts retrouvés/);assert.ok(result.reponse.includes(urls[0]));assert.ok(result.reponse.includes(urls[1]));
 });

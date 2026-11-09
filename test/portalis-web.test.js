@@ -32,6 +32,17 @@ test('les domaines demandés restent appliqués après une pause de la recherche
   for(const outil of outils)assert.deepEqual(outil.allowed_domains,domaines);
   assert.equal(outils[1].max_uses,4);assert.equal(payload.tools,undefined);
 });
+test('les pages lues accompagnent les citations et sont disponibles pour la relecture',async()=>{
+  const url='https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032040841';
+  const article="Article 1133. Version en vigueur depuis le 1er octobre 2016. L'acceptation d'un aléa sur une qualité de la prestation exclut l'erreur relative à cette qualité.";
+  const doc={type:'web_fetch_tool_result',tool_use_id:'lecture1',content:{type:'web_fetch_result',url,content:{type:'document',title:'Article 1133',source:{type:'text',data:article}}}};
+  const result=await genererAvecRecherche(async(_,p)=>{
+    assert.equal(p.tools[1].name,'web_fetch');assert.deepEqual(p.tools[1].allowed_domains,['legifrance.gouv.fr']);
+    return fin([doc,{type:'text',text:texte,citations:[{type:'char_location',document_index:0,start_char_index:0,end_char_index:50}]}]);
+  },payload,{lireSources:true,allowedDomains:['legifrance.gouv.fr']});
+  assert.deepEqual(result.sources,[{url,titre:'Article 1133',texte:article}]);
+  assert.ok(result.reponse.includes('[Article 1133]('+url+')'));assert.ok(!result.reponse.includes(article));
+});
 test('la génération terminée respecte le budget cumulé distinct de la limite demandée à chaque appel',async()=>{
   const genere=async()=>fin(undefined,{input_tokens:100,output_tokens:1050});
   assert.equal((await genererAvecRecherche(genere,payload,{budgetTotal:1200})).usage.output_tokens,1050);

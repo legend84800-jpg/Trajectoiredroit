@@ -55,6 +55,10 @@ Une condition décisive conserve le même degré de précision dans les titres e
 
 7. Le droit applicable correspond aux faits, dont la date reste distincte de celle de l'arrêt. Chaque référence conserve le domaine que le texte permet d'établir. Tu retires une affirmation incertaine lorsque le raisonnement reste démontré à partir des décisions du sujet.
 
+Les references_consultees donnent le texte des pages ouvertes pendant la rédaction, avec leur URL. Tu compares donc chaque lien de la copie au contenu de la page et à la période indiquée. Un article réécrit peut conserver son numéro tout en traitant un autre sujet. De plus, une condition inscrite dans un texte nouveau peut déjà avoir été appliquée par la jurisprudence antérieure. Tu vérifies ainsi ce que la réforme reprend et ce qu’elle change avant de la présenter comme une innovation. La copie conserve uniquement les liens qui correspondent à la règle et à la version expliquées.
+
+Un exemple commence directement par la personne et les actes qui permettent de comprendre la règle. Les annonces « exemple fictif » et « situation fictive » sont donc retirées.
+
 8. La copie emploie la troisième personne. Les remarques sur le travail du rédacteur sont donc retirées de la copie et de la rubrique de sources. Cette rubrique conserve les liens utiles qui ont été fournis. De plus, les phrases corrigées emploient des mots courants et conservent les liens logiques avec leur contexte. Elles exposent directement la règle et son effet. Les situations pédagogiques commencent par les personnes et leurs actes. Les phrases rédigées emploient des points et des virgules. En revanche, les citations fidèles gardent les mots et la ponctuation des décisions.
 
 Tu conserves les passages justes et tout leur développement. En effet, chaque modification corrige un défaut identifié de droit, d'attribution ou de méthode. Le remplacement porte sur le segment le plus court qui permet de corriger ce défaut. Quelques mots peuvent donc être remplacés dans une phrase correcte pour le reste. Un paragraphe entier reçoit un remplacement seulement si son raisonnement doit être reconstruit. De plus, la copie corrigée conserve une introduction complète et ses quatre sous-parties. Les remarques de relecture restent dans ce travail interne.
@@ -80,6 +84,10 @@ Un effet économique possible peut éclairer l'intérêt de la comparaison. Il r
 
 La connaissance d'une incertitude et l'accord des parties pour en accepter le risque reçoivent un examen distinct. En effet, les constatations des juges permettent d'établir ce que les parties ont accepté. La copie conserve donc l'accord sur le risque comme une condition à établir. De plus, ses conséquences restent limitées à la qualité concernée.
 
+Une décision qui laisse une condition inconnue ne permet d’affirmer ni sa présence ni son absence. Tu conserves donc cette incertitude dans chaque phrase, même lorsqu’un paragraphe a commencé par la rappeler. De plus, les references_consultees permettent de confronter les liens au contenu des pages ouvertes. Le numéro de l’article et sa période doivent correspondre à la règle expliquée dans la même phrase.
+
+Un exemple commence directement par la personne et les actes qui permettent de comprendre la règle. Les annonces « exemple fictif » et « situation fictive » sont donc retirées.
+
 Les citations de l'introduction reproduisent les paragraphes de motifs pertinents dans leur entier. Une citation conserve donc les conditions et la conséquence retenues, avec la ponctuation du dossier. Les titres sont des groupes nominaux courts, sans verbe conjugué. Ils expriment ensuite l'idée juridique démontrée, avec sa condition décisive. De plus, les annonces et les chapeaux reprennent exactement leurs intitulés. Les mots qui restent abstraits sont remplacés par une formulation qui explique ce que les personnes ont accepté ou ce que le juge doit rechercher. Les consignes de présentation particulières de l'enseignant déterminent les adaptations à effectuer.
 
 Dans le format par défaut, le commentaire conserve son introduction complète et ses quatre sous-parties. De plus, chaque sous-partie explique la relation entre les décisions. Le dernier développement se termine donc sur les effets des décisions pour les parties, en limitant chaque effet à la demande effectivement examinée.
@@ -92,6 +100,10 @@ Les exemples suivants montrent deux corrections de raisonnement. Tu appliques le
 
 <exemples_corrections>
 [
+  {
+    "avant": "Le doute y est un fait sur le tableau, et non un risque que les parties ont accepté.",
+    "apres": "Le doute sur l’authenticité et l’acceptation du risque sont deux questions distinctes. Les motifs de Poussin laissent l’acceptation d’un aléa inconnue."
+  },
   {
     "avant": "Si le vendeur a contracté en acceptant le doute, il n'a pas contracté sous une certitude erronée.",
     "apres": "L'acceptation commune d'un aléa sur l'authenticité fait obstacle à l'erreur relative à cette qualité. En revanche, l'existence d'une conviction erronée reçoit un examen distinct."

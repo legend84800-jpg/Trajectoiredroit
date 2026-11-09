@@ -1,4 +1,5 @@
 const OUTIL_WEB=Object.freeze({type:'web_search_20250305',name:'web_search',max_uses:5});
+const OUTIL_LECTURE=Object.freeze({type:'web_fetch_20250910',name:'web_fetch',max_uses:5});
 const DOMAINES_JURIDIQUES=Object.freeze(['legifrance.gouv.fr','courdecassation.fr','conseil-etat.fr','conseil-constitutionnel.fr',
   'justice.gouv.fr','justice.fr','service-public.gouv.fr','senat.fr','assemblee-nationale.fr','eur-lex.europa.eu',
   'curia.europa.eu','echr.coe.int','icj-cij.org','dalloz.fr','lextenso.fr','cairn.info','hal.science','persee.fr','openedition.org','theses.fr']);
@@ -18,13 +19,15 @@ function titreSource(valeur,url) {
   return (titre||new URL(url).hostname).replace(/[\\`*_{}\[\]()!]/g,'\\$&');
 }
 function serialiserTexte(contenu) {
+  const lectures=(Array.isArray(contenu)?contenu:[]).filter(b=>b?.type==='web_fetch_tool_result'&&b.content?.type==='web_fetch_result').map(b=>b.content);
   return (Array.isArray(contenu)?contenu:[]).filter(bloc=>bloc?.type==='text'&&typeof bloc.text==='string').map(bloc=>{
     const liens=[],vus=new Set();
     for(const citation of Array.isArray(bloc.citations)?bloc.citations:[]) {
-      if(citation?.type!=='web_search_result_location')continue;
-      const url=urlSource(citation.url);
+      const lecture=['char_location','page_location','content_block_location'].includes(citation?.type)?lectures[citation.document_index]:null;
+      if(citation?.type!=='web_search_result_location'&&!lecture)continue;
+      const url=urlSource(lecture?.url||citation.url);
       if(!url||vus.has(url))continue;
-      vus.add(url);liens.push(`[${titreSource(citation.title,url)}](${url})`);
+      vus.add(url);liens.push(`[${titreSource(lecture?.content?.title||citation.title,url)}](${url})`);
     }
     return liens.length?bloc.text.replace(/\s*$/u,blancs=>' '+liens.join(', ')+blancs):bloc.text;
   }).reduce((texte,bloc)=>texte+(!texte||!bloc||/\s$/u.test(texte)||/^[\s\p{P}]/u.test(bloc)?'':'\n\n')+bloc,'').trim();
@@ -38,7 +41,17 @@ function delaiDepasse() {
   const erreur=new Error('delai');erreur.name='TimeoutError';return erreur;
 }
 function incomplet(raison) {return Object.assign(new Error('reponse_incomplete'),{raison});}
-async function genererAvecRecherche(anthropic,payload,{timeoutMs=DELAI_TOTAL,maintenant=Date.now,allowedDomains,budgetTotal=payload?.max_tokens}={}) {
+function sourcesLues(contenus){
+  let restant=40000;const sources=[],vus=new Set();
+  for(const bloc of contenus){
+    const doc=bloc?.type==='web_fetch_tool_result'?bloc.content:null,url=urlSource(doc?.url),source=doc?.content?.source;
+    if(doc?.type!=='web_fetch_result'||!url||vus.has(url)||source?.type!=='text'||typeof source.data!=='string'||restant<=0)continue;
+    vus.add(url);const texte=source.data.slice(0,restant);restant-=texte.length;
+    sources.push({url,titre:doc.content.title||'',texte});
+  }
+  return sources;
+}
+async function genererAvecRecherche(anthropic,payload,{timeoutMs=DELAI_TOTAL,maintenant=Date.now,allowedDomains,budgetTotal=payload?.max_tokens,lireSources=false}={}) {
   if(typeof anthropic!=='function'||!payload||!Array.isArray(payload.messages)||
     !Number.isSafeInteger(payload.max_tokens)||payload.max_tokens<1||
     !Number.isFinite(timeoutMs)||timeoutMs<=0||!Number.isSafeInteger(budgetTotal)||budgetTotal<payload.max_tokens)throw new Error('configuration_recherche');
@@ -53,7 +66,8 @@ async function genererAvecRecherche(anthropic,payload,{timeoutMs=DELAI_TOTAL,mai
     const recherches=OUTIL_WEB.max_uses-Math.max(usage.server_tool_use.web_search_requests,termines.size);
     if(jetons<=0||recherches<=0)throw incomplet(jetons<=0?'budget_epuise':'recherches_epuisees');
     const resultat=await anthropic('',{...payload,messages,max_tokens:jetons,
-      tools:[{...OUTIL_WEB,max_uses:recherches,...(allowedDomains?.length?{allowed_domains:allowedDomains.slice()}:{})}]},restant);
+      tools:[{...OUTIL_WEB,max_uses:recherches,...(allowedDomains?.length?{allowed_domains:allowedDomains.slice()}:{})},
+        ...(lireSources?[{...OUTIL_LECTURE,...(allowedDomains?.length?{allowed_domains:allowedDomains.slice()}:{})}]:[])]},restant);
     if(maintenant()-debut>=limite)throw delaiDepasse();
     if(!resultat||!Array.isArray(resultat.content))throw incomplet('contenu_absent');
     usage.input_tokens+=compteur(resultat.usage?.input_tokens);
@@ -77,7 +91,7 @@ async function genererAvecRecherche(anthropic,payload,{timeoutMs=DELAI_TOTAL,mai
       if(texte.length<20)throw incomplet('texte_absent');
       let reponse=serialiserTexte(contenus);
       if(erreurs.size)reponse+='\n\nLa recherche Internet a rencontré une erreur. Les éléments qui en dépendent restent à vérifier.';
-      return {reponse,usage,stop_reason:'end_turn',recherches:{effectuees:usage.server_tool_use.web_search_requests,
+      return {reponse,usage,stop_reason:'end_turn',sources:sourcesLues(contenus),recherches:{effectuees:usage.server_tool_use.web_search_requests,
         tentatives:appels.size,reussies,erreurs:[...erreurs]}};
     }
     if(resultat.stop_reason!=='pause_turn'||reprise===MAX_REPRISES)throw incomplet(resultat.stop_reason==='pause_turn'?'reprises_epuisees':resultat.stop_reason||'arret_absent');
@@ -86,4 +100,4 @@ async function genererAvecRecherche(anthropic,payload,{timeoutMs=DELAI_TOTAL,mai
   }
   throw new Error('reponse_incomplete');
 }
-module.exports={OUTIL_WEB,DOMAINES_JURIDIQUES,MAX_REPRISES,DELAI_TOTAL,genererAvecRecherche,serialiserTexte};
+module.exports={OUTIL_WEB,OUTIL_LECTURE,DOMAINES_JURIDIQUES,MAX_REPRISES,DELAI_TOTAL,genererAvecRecherche,serialiserTexte,sourcesLues};

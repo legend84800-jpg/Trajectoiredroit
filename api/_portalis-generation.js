@@ -138,17 +138,19 @@ async function generer(body,user) {
     const resultat=await genererAvecRecherche(appeler,{model:MODELE,system:preparation.system,messages:preparation.messages,
       max_tokens:relecture?budget-20000-usageRecherche.output_tokens:budget,stream:true,thinking:{type:'adaptive'},
       output_config:{effort:plan.effort,...(corriger&&pro?{task_budget:{type:'tokens',total:Math.max(24000,compte.input_tokens+16000)}}:{})}},
-      {timeoutMs:Math.min(relecture?400000:DELAI_TOTAL,DELAI_TOTAL-(Date.now()-debut)),...(relecture?{allowedDomains:DOMAINES_JURIDIQUES,budgetTotal:budget-20000-usageRecherche.output_tokens}:{})});
+      {timeoutMs:Math.min(relecture?400000:DELAI_TOTAL,DELAI_TOTAL-(Date.now()-debut)),lireSources:compare,...(relecture?{allowedDomains:DOMAINES_JURIDIQUES,budgetTotal:budget-20000-usageRecherche.output_tokens}:{})});
     for(const cle of ['input_tokens','output_tokens'])resultat.usage[cle]+=usageRecherche[cle];
     let reponse=resultat.reponse;
     if (resultat.stop_reason!=='end_turn'||reponse.length<20) throw new Error('reponse_incomplete');
     if(corriger)reponse=correctionCopie.retirerEvaluation(reponse);
+    const references=(resultat.sources||[]).map((s,i)=>`<reference_consultee numero="${i+1}">\n${s.url}\n${s.titre}\n${s.texte}\n</reference_consultee>`).join('\n\n');
+    const dossierRelecture=preparation.messageBase+(references?'\n\n<references_consultees>\n'+references+'\n</references_consultees>':'');
     let evaluation;
     if(relecture){
       for(const finale of [false,true]){
         etape=finale?'controle_final':'relecture';tracer();garde.verifier();
         if(!await rpc('portalis_prolonger_relecture',{p_user:user,p_id:body.demandeId}))throw Error('reservation_expiree');
-        const revue=await relire(appeler,{message:preparation.messageBase,copie:reponse,modele:MODELE_RELECTURE,
+        const revue=await relire(appeler,{message:dossierRelecture,copie:reponse,modele:MODELE_RELECTURE,
           budget:Math.min(20000,budget-resultat.usage.output_tokens-(finale?0:10000)),
           effort:finale?'medium':'low',timeoutMs:Math.min(180000,DELAI_TOTAL-(Date.now()-debut)),finale,
           ...(corriger?{consignes:correctionCopie.consignesRelecture(METHODES[body.exercice],finale,body.exercice),format:correctionCopie.SCHEMA_RAPPORT,
