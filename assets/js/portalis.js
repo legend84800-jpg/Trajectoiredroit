@@ -228,7 +228,7 @@
     const current=++epoch;
     controllers.forEach(c=>c.abort());controllers.clear();
     session=next;userId=next?.user?.id||null;state=null;documents=[];answer='';working=false;importing=false;compteurEnAttente=false;
-    $('texte').value='';$('copie').value='';$('question').value='';$('resultat').hidden=true;$('reponse').replaceChildren();renderDocuments();renderState();volume();message('travailMessage','');
+    $('texte').value='';$('copie').value='';$('question').value='';$('arret1').value='';$('arret2').value='';$('resultat').hidden=true;$('reponse').replaceChildren();renderDocuments();renderState();volume();message('travailMessage','');
     if(selected)choose(selected,false);
     if(!session)return;
     try{

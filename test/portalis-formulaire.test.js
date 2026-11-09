@@ -18,10 +18,10 @@ function navigateur({search='?mode=corriger',connecte=true,abonnement}={}){
       addEventListener(n,fn){this.events[n]=fn;},replaceChildren(){this.children=[];},append(...a){this.children.push(...a);},focus(){},scrollIntoView(){},setAttribute(){}});
     return nodes.get(id);
   }
-  node('modeRediger').checked=true;node('exercice').value='fiche';
+  node('modeRediger').checked=true;node('arretsTexte').checked=true;node('exercice').value='fiche';
   const session={user:{id:'10000000-0000-4000-8000-000000000001'},access_token:'fixture'},state=abonnement||{actif:true,formule:'classique',restant:60,recharges:0};
   const choix=['portalis','classique','pro'].map(code=>{const n=node('choisir-'+code);n.dataset.choisir=code;return n;});
-  const document={getElementById:node,querySelectorAll:s=>s==='input[name="mode"]'?[node('modeRediger'),node('modeCorriger')]:s==='[data-choisir]'?choix:[],createElement:tag=>node('element-'+nodes.size+'-'+tag),createTextNode:text=>({textContent:text})};
+  const document={getElementById:node,querySelectorAll:s=>s==='input[name="mode"]'?[node('modeRediger'),node('modeCorriger')]:s==='input[name="saisieArrets"]'?[node('arretsTexte'),node('arretsNoms')]:s==='[data-choisir]'?choix:[],createElement:tag=>node('element-'+nodes.size+'-'+tag),createTextNode:text=>({textContent:text})};
   const storage={getItem:k=>stockage.get(k)||null,setItem:(k,v)=>stockage.set(k,v),removeItem:k=>stockage.delete(k)};
   const sb={auth:{onAuthStateChange(fn){changementSession=fn;},getSession:async()=>({data:{session:connecte?session:null}})}};
   const location={search,pathname:'/portalis.html'};
@@ -33,6 +33,17 @@ function navigateur({search='?mode=corriger',connecte=true,abonnement}={}){
   return {node,posts,deconnecter:()=>changementSession('SIGNED_OUT',null)};
 }
 const attendre=()=>new Promise(r=>setImmediate(r));
+test('deux noms déclenchent le commentaire comparé sans texte collé et restent propres au compte connecté',async()=>{
+  const {node,posts,deconnecter}=navigateur({search:'?exercice=commentaire-compare'});await attendre();
+  assert.equal(node('choixArrets').hidden,false);assert.equal(node('nomsArrets').hidden,true);
+  node('arretsNoms').checked=true;node('arretsNoms').events.change();assert.equal(node('nomsArrets').hidden,false);
+  node('arret1').value='Poussin';node('arret1').events.input();assert.equal(node('generer').disabled,true);
+  node('arret2').value='Fragonard';node('arret2').events.input();assert.equal(node('generer').disabled,false);
+  node('exercice').value='fiche';node('exercice').events.change();assert.equal(node('choixArrets').hidden,true);assert.equal(node('generer').disabled,true);
+  node('exercice').value='commentaire-compare';node('exercice').events.change();assert.equal(node('generer').disabled,false);
+  await node('exerciceForm').events.submit({preventDefault(){}});assert.equal(posts.length,1);assert.equal(posts[0].texte,'');assert.deepEqual(posts[0].arrets,['Poussin','Fragonard']);assert.match(node('quota').textContent,/59 réponses/);
+  deconnecter();await new Promise(r=>setTimeout(r,5));assert.equal(node('arret1').value,'');assert.equal(node('arret2').value,'');
+});
 test('le formulaire corrige une copie avec son sujet, garde les saisies au changement de mode et débite une seule réponse',async()=>{
   const {node,posts,deconnecter}=navigateur();await attendre();
   assert.equal(node('copieZone').hidden,false);assert.equal(node('generer').textContent,'Corriger ma copie');assert.equal(node('generer').disabled,true);
