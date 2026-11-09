@@ -18,11 +18,11 @@
     },
     "api/personnaliser-pdf.py": {
       "maxDuration": 60,
-      "excludeFiles": "{.env,.env.*,node_modules/**,.git/**,.vercel/**,.claude/**,assets/**,test/**,jeu/**,scripts/**,supabase/**,**/*.html,**/*.js,**/*.json,**/*.md,**/*.txt,**/*.css,**/*.map,**/*.png,**/*.jpg,**/*.svg,**/*.ico,**/*.xml,**/*.pdf,.DS_Store}"
+      "excludeFiles": "{.env,.env.*,node_modules/**,build/**,.git/**,.vercel/**,.claude/**,assets/**,test/**,jeu/**,scripts/**,supabase/**,**/*.html,**/*.js,**/*.json,**/*.md,**/*.txt,**/*.css,**/*.map,**/*.png,**/*.jpg,**/*.svg,**/*.ico,**/*.xml,**/*.pdf,.DS_Store}"
     },
     "api/kit-essai.py": {
       "maxDuration": 30,
-      "excludeFiles": "{.env,.env.*,node_modules/**,.git/**,.vercel/**,.claude/**,assets/**,test/**,jeu/**,scripts/**,supabase/**,**/*.html,**/*.js,**/*.json,**/*.md,**/*.txt,**/*.css,**/*.map,**/*.png,**/*.jpg,**/*.svg,**/*.ico,**/*.xml,**/*.pdf,.DS_Store}"
+      "excludeFiles": "{.env,.env.*,node_modules/**,build/**,.git/**,.vercel/**,.claude/**,assets/**,test/**,jeu/**,scripts/**,supabase/**,**/*.html,**/*.js,**/*.json,**/*.md,**/*.txt,**/*.css,**/*.map,**/*.png,**/*.jpg,**/*.svg,**/*.ico,**/*.xml,**/*.pdf,.DS_Store}"
     }
   },
   "headers": [
