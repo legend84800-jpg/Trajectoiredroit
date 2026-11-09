@@ -12,9 +12,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/portalis.css?v=6e8f2a93">
+  <link rel="stylesheet" href="assets/portalis.css?v=1070b1c7">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-  <script src="assets/js/portalis.js?v=92e93d72" defer></script>
+  <script src="assets/js/portalis.js?v=1a3efbbb" defer></script>
 </head>
 <body>
   <a class="skip" href="#contenu">Aller au contenu</a>
@@ -60,6 +60,18 @@
         <fieldset id="champs" disabled>
           <div class="exercise-row"><div><label for="exercice">L’exercice</label><select id="exercice" aria-describedby="commentaireCompareAide"><option value="fiche">Fiche d’arrêt</option><option value="commentaire">Commentaire d’arrêt</option><option value="commentaire-compare">Commentaire d’arrêt comparé</option><option value="cas">Cas pratique</option><option value="dissertation">Dissertation</option></select></div><p>15 pages et 30 000 caractères par demande.<br> <span class="correction-only">Le sujet et la copie sont comptés ensemble.</span></p></div>
           <p id="commentaireCompareAide" class="editor-note" hidden>Ajoute les arrêts à comparer pour obtenir un commentaire entièrement rédigé. Tu peux aussi joindre la méthode de ton enseignant pour que le corrigé suive ses consignes. Le corrigé est ensuite relu avant son affichage. Sa préparation peut donc prendre plusieurs minutes.</p>
+          <fieldset id="choixArrets" class="task-modes" hidden>
+            <legend>Comment souhaites-tu fournir les arrêts ?</legend>
+            <label class="task-mode" for="arretsTexte"><input id="arretsTexte" name="saisieArrets" type="radio" value="texte" checked><span><strong>Coller les textes ou ajouter un PDF</strong><span>Tu fournis les décisions à comparer.</span></span></label>
+            <label class="task-mode" for="arretsNoms"><input id="arretsNoms" name="saisieArrets" type="radio" value="noms"><span><strong>Donner les noms des arrêts</strong><span>Portalis retrouve leurs textes sur les sites officiels.</span></span></label>
+          </fieldset>
+          <div id="nomsArrets" hidden>
+            <div class="documents-grid">
+              <div class="document-pane"><label for="arret1">Premier arrêt</label><textarea id="arret1" rows="2" maxlength="300" placeholder="Poussin" aria-describedby="nomsArretsAide"></textarea></div>
+              <div class="document-pane"><label for="arret2">Second arrêt</label><textarea id="arret2" rows="2" maxlength="300" placeholder="Fragonard" aria-describedby="nomsArretsAide"></textarea></div>
+            </div>
+            <p id="nomsArretsAide" class="editor-note">Tu peux préciser la date ou le numéro de chaque décision. Portalis recherche les arrêts puis prépare directement le commentaire. Les liens vers les textes retrouvés apparaîtront avec le résultat.</p>
+          </div>
           <div class="documents-grid">
             <div class="document-pane">
               <label for="texte" id="texteLabel">Ton texte ou ton sujet</label>

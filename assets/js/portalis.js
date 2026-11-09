@@ -1,15 +1,16 @@
 (function(){
   'use strict';
   function delaiRequete(body){return body?.action==='generer'?775000:115000;}
-  function volumeDemande({mode='rediger',texte='',copie='',question='',documents=[]}){
+  function volumeDemande({mode='rediger',texte='',copie='',question='',documents=[],arrets=[]}){
     const corriger=mode==='corriger',docs=documents.filter(d=>corriger||d.role!=='copie');
     const sujet=texte.trim().length+docs.filter(d=>d.role!=='copie').reduce((n,d)=>n+d.caracteres,0);
     const travail=corriger?copie.trim().length+docs.filter(d=>d.role==='copie').reduce((n,d)=>n+d.caracteres,0):0;
-    return {chars:sujet+travail+question.trim().length,pages:Math.ceil(texte.trim().length/2000)+(corriger?Math.ceil(copie.trim().length/2000):0)+docs.reduce((n,d)=>n+d.pages,0),complet:corriger?sujet>=20&&travail>=20:sujet+question.trim().length>=20};
+    const sujetComplet=arrets.length?arrets.length>=2&&arrets.every(n=>n.trim().length>=3):corriger?sujet>=20:sujet+question.trim().length>=20;
+    return {chars:sujet+travail+question.trim().length+arrets.reduce((n,s)=>n+s.trim().length,0),pages:Math.ceil(texte.trim().length/2000)+(corriger?Math.ceil(copie.trim().length/2000):0)+docs.reduce((n,d)=>n+d.pages,0),complet:sujetComplet&&(!corriger||travail>=20)};
   }
-  function construireDemande({demandeId,mode='rediger',exercice,texte,copie,question,documents=[]}){
+  function construireDemande({demandeId,mode='rediger',exercice,texte,copie,question,documents=[],arrets=[]}){
     return {action:'generer',demandeId,mode,exercice,texte,question,documents:documents.filter(d=>d.role!=='copie').map(d=>d.id),
-      ...(mode==='corriger'?{copie,documentsCopie:documents.filter(d=>d.role==='copie').map(d=>d.id)}:{})};
+      ...(mode==='corriger'?{copie,documentsCopie:documents.filter(d=>d.role==='copie').map(d=>d.id)}:{}),...(arrets.length?{arrets}:{} )};
   }
   function lireLien(text,debut){
     let position=debut+1,titre='',adresse='',profondeur=1;
@@ -116,6 +117,7 @@
     {auth:{storage:adapter,persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
   let session=null,userId=null,epoch=0,config=null,state=null,selected=null,documents=[],answer='',working=false,importing=false,compteurEnAttente=false;
   const modeCourant=()=>$('modeCorriger').checked?'corriger':'rediger';
+  const arretsCourants=()=>$('exercice').value==='commentaire-compare'&&$('arretsNoms').checked?[$('arret1').value.trim(),$('arret2').value.trim()]:[];
   const controllers=new Set();
   function message(id,text,error=false){const el=$(id);el.textContent=text||'';el.hidden=!text;el.classList.toggle('error',error);}
   async function api(path,body){
@@ -181,7 +183,7 @@
     if(scroll)$('choix').scrollIntoView({block:'center',behavior:'smooth'});
   }
   function volume(){
-    const {chars,pages,complet}=volumeDemande({mode:modeCourant(),texte:$('texte').value,copie:$('copie').value,question:$('question').value,documents});
+    const {chars,pages,complet}=volumeDemande({mode:modeCourant(),texte:$('texte').value,copie:$('copie').value,question:$('question').value,documents,arrets:arretsCourants()});
     $('volume').textContent=`${new Intl.NumberFormat('fr-FR').format(chars)} / 30 000 caractères · ${pages} / 15 pages`;
     $('generer').disabled=chars>30000||pages>15||!complet||working||importing||!state?.actif;
     return {chars,pages,complet};
@@ -268,11 +270,14 @@
   document.querySelectorAll('[data-recharge]').forEach(button=>button.addEventListener('click',()=>payment({type:'portalis_recharge',formule:state.formule,nombre:Number(button.dataset.recharge)},button)));
   function actualiserExercice(){
     const compare=$('exercice').value==='commentaire-compare',corriger=modeCourant()==='corriger';
+    const noms=compare&&$('arretsNoms').checked;
+    $('choixArrets').hidden=!compare;$('nomsArrets').hidden=!noms;
     $('copieZone').hidden=!corriger;$('commentaireCompareAide').hidden=!compare||corriger;
     $('modeAide').textContent=corriger?'La correction reprend les passages de ta copie, explique les défauts et propose des réécritures. Elle comprend aussi une note indicative sur 20, avec le détail des points. La préparation peut prendre plusieurs minutes.':'Choisis ton exercice, puis ajoute le sujet.';
-    $('texteLabel').textContent=corriger?'Le sujet et les documents à étudier':'Ton texte ou ton sujet';
-    $('pdfLabel').textContent=corriger?'Ajouter un PDF du sujet':'Ajouter un PDF';
-    $('texte').placeholder=compare?'Colle les textes des arrêts à comparer. Tu peux aussi les ajouter en PDF.':'Colle ton arrêt, ton cas pratique ou ton sujet de dissertation.';
+    $('texteLabel').textContent=noms?'Documents complémentaires (facultatifs)':corriger?'Le sujet et les documents à étudier':'Ton texte ou ton sujet';
+    $('pdfLabel').textContent=noms?'Ajouter la méthode ou un document':corriger?'Ajouter un PDF du sujet':'Ajouter un PDF';
+    $('texte').rows=noms?4:9;
+    $('texte').placeholder=noms?'Tu peux ajouter la méthode de ton enseignant ou un document utile à la comparaison.':compare?'Colle les textes des arrêts à comparer. Tu peux aussi les ajouter en PDF.':'Colle ton arrêt, ton cas pratique ou ton sujet de dissertation.';
     $('question').placeholder=corriger?'Ajoute les attentes de ton enseignant et le barème s’il est court. Tu peux joindre les documents plus longs avec le sujet.':compare?'Ajoute les consignes de ton enseignant ou les indications propres au sujet.':'Précise les points que tu veux travailler ou ajoute la consigne de ton chargé de TD.';
     $('generer').textContent=corriger?'Corriger ma copie':compare?'Rédiger le commentaire comparé':'Rédiger ma copie';
     volume();
@@ -286,6 +291,8 @@
   }));
   if(new URLSearchParams(location.search).get('exercice')==='commentaire-compare')$('exercice').value='commentaire-compare';
   $('exercice').addEventListener('change',actualiserExercice);actualiserExercice();
+  document.querySelectorAll('input[name="saisieArrets"]').forEach(input=>input.addEventListener('change',actualiserExercice));
+  $('arret1').addEventListener('input',volume);$('arret2').addEventListener('input',volume);
   $('texte').addEventListener('input',volume);$('copie').addEventListener('input',volume);$('question').addEventListener('input',volume);
   async function importerPDF(input,role){
     const file=input.files[0];if(!file)return;
@@ -308,10 +315,10 @@
     const current=epoch,id=crypto.randomUUID();working=true;savePending(id);renderState();renderDocuments();
     $('resultat').hidden=true;message('travailMessage',modeCourant()==='corriger'?
       'Portalis IA examine ta copie et prépare les explications de sa correction. Le rapport et la note sont ensuite relus. Garde cette page ouverte pendant la préparation.':$('exercice').value==='commentaire-compare'?
-      'Portalis IA rédige puis relit ton commentaire comparé. La préparation peut donc prendre plusieurs minutes. Garde cette page ouverte.':
+      arretsCourants().length?'Portalis IA recherche les textes des arrêts, puis rédige et relit ton commentaire comparé. Les liens vers les décisions accompagneront le résultat. Garde cette page ouverte pendant la préparation.':'Portalis IA rédige puis relit ton commentaire comparé. La préparation peut donc prendre plusieurs minutes. Garde cette page ouverte.':
       'Portalis IA travaille sur ton exercice. Garde cette page ouverte pendant la préparation de la réponse.');
     try{
-      const result=await api('/api/generer',construireDemande({demandeId:id,mode:modeCourant(),exercice:$('exercice').value,texte:$('texte').value,copie:$('copie').value,question:$('question').value,documents}));
+      const result=await api('/api/generer',construireDemande({demandeId:id,mode:modeCourant(),exercice:$('exercice').value,texte:$('texte').value,copie:$('copie').value,question:$('question').value,documents,arrets:arretsCourants()}));
       if(current!==epoch)return;clearPending();if(result.etat)state=result.etat;compteurEnAttente=!result.etat;renderAnswer(result.reponse);message('travailMessage','Ta réponse est prête. Un crédit a été utilisé.');
     }catch(error){
       if(current!==epoch)return;
