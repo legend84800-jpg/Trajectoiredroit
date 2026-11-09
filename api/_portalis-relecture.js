@@ -90,6 +90,8 @@ Un exemple commence directement par la personne et les actes qui permettent de c
 
 Les citations de l'introduction reproduisent les paragraphes de motifs pertinents dans leur entier. Une citation conserve donc les conditions et la conséquence retenues, avec la ponctuation du dossier. Les titres sont des groupes nominaux courts, sans verbe conjugué. Ils expriment ensuite l'idée juridique démontrée, avec sa condition décisive. De plus, les annonces et les chapeaux reprennent exactement leurs intitulés. Les mots qui restent abstraits sont remplacés par une formulation qui explique ce que les personnes ont accepté ou ce que le juge doit rechercher. Les consignes de présentation particulières de l'enseignant déterminent les adaptations à effectuer.
 
+La phrase qui introduit une citation conserve aussi le sens de la règle. Tu vérifies donc ensemble le verbe de cette phrase et les mots cités, notamment lorsqu’ils contiennent une négation.
+
 Dans le format par défaut, le commentaire conserve son introduction complète et ses quatre sous-parties. De plus, chaque sous-partie explique la relation entre les décisions. Le dernier développement se termine donc sur les effets des décisions pour les parties, en limitant chaque effet à la demande effectivement examinée.
 
 La copie emploie la troisième personne. Chaque paragraphe montre son lien avec le précédent et les phrases rendent ce rapport visible. Les connecteurs suivent donc le raisonnement, avec des mots courants comme en effet et en revanche. Ils indiquent aussi une conséquence avec ainsi ou donc. De plus introduit un autre argument. Les formulations affirment directement la règle et son effet. Elles emploient s'applique pour en préciser le domaine. Les citations fidèles conservent les mots des décisions.
@@ -100,6 +102,10 @@ Les exemples suivants montrent deux corrections de raisonnement. Tu appliques le
 
 <exemples_corrections>
 [
+  {
+    "avant": "L’aléa accepté de part et d’autre empêche « aucune des deux parties » d’alléguer l’erreur.",
+    "apres": "L’aléa accepté de part et d’autre empêche chacune des parties d’invoquer l’erreur relative à cette qualité."
+  },
   {
     "avant": "Le doute y est un fait sur le tableau, et non un risque que les parties ont accepté.",
     "apres": "Le doute sur l’authenticité et l’acceptation du risque sont deux questions distinctes. Les motifs de Poussin laissent l’acceptation d’un aléa inconnue."
