@@ -7,7 +7,12 @@ const SCHEMA_RAPPORT={type:'json_schema',schema:objet({
   corrections:tableau(objet({avant:chaine,apres:chaine})),blocages:tableau(chaine)
 })};
 const incomplete=raison=>Object.assign(Error('relecture_incomplete'),{raison});
-const REPRISE=`Le premier rapport de relecture contient une erreur indiquée dans le bloc rapport_a_reprendre. Relis donc la copie d’origine et fournis un nouveau rapport complet. Tous les contrôles demandés lors de la première relecture continuent de s’appliquer. Lorsque le dossier permet de corriger un passage, le rapport donne ce remplacement dans corrections. En revanche, un blocage indique une difficulté que les documents disponibles ne permettent pas de résoudre et qui empêche de répondre au sujet. De plus, chaque extrait cité dans le rapport reproduit un passage exact du dossier. Utilise tous tes tokens et toute ta puissance, fais un truc génial.`;
+const REPRISE=`Le premier rapport de relecture contient une erreur indiquée dans le bloc rapport_a_reprendre. Relis donc la copie d’origine et fournis un nouveau rapport complet. Tous les contrôles demandés lors de la première relecture continuent de s’appliquer. Lorsque la raison commence par titre_non_qualifie, vérifie les six titres et donne toutes les corrections nécessaires. Chaque nom d’action reçoit alors son adjectif, avec une qualification justifiée par le développement. Les reprises dans l’annonce du plan et les chapeaux reçoivent les mêmes corrections. Lorsque le dossier permet de corriger un passage, le rapport donne ce remplacement dans corrections. En revanche, un blocage indique une difficulté que les documents disponibles ne permettent pas de résoudre et qui empêche de répondre au sujet. De plus, chaque extrait cité dans le rapport reproduit un passage exact du dossier. Utilise tous tes tokens et toute ta puissance, fais un truc génial.`;
+const REGLE_TITRES=`Chacun des six titres I, A, B, II, A, B commence par un nom d’action immédiatement suivi d’un adjectif qui qualifie cette action. Le développement justifie cet adjectif. En effet, dans « la reconnaissance explicite de l’authenticité comme qualité substantielle », explicite qualifie la reconnaissance et substantielle qualifie la qualité. De plus, une expression composée comme mise en œuvre reçoit l’adjectif après le groupe entier.
+
+Tu vérifies donc séparément les six intitulés, y compris ceux de A et B. Chaque titre forme un groupe nominal court qui nomme une idée juridique précise. Son explication appartient au développement.
+
+L’annonce du plan reprend les mots exacts de I et II et chaque chapeau reprend ceux de ses A et B. Une correction d’intitulé s’applique donc aussi à ces reprises.`;
 const FORMAT_RAPPORT=`Le JSON contient exactement les clés reperes, corrections et blocages, dans cet ordre.
 
 - reperes est un tableau d'objets avec les clés reference et points. reference donne la décision concernée. points contient des objets avec les trois chaînes statut, enonce et extrait. statut prend une des valeurs constate, allegue, a_rechercher ou solution. enonce résume le point retenu. extrait reproduit un passage exact du dossier, avec au moins dix caractères, qui permet de contrôler ce point.
@@ -49,7 +54,7 @@ La présentation en sept étapes du document de cours, avec des motifs intégral
 
 Les quatre sous-parties sont rédigées jusqu’à II.B. Les décisions sont rapprochées dans chacune lorsque le même point y apparaît. En revanche, un motif propre à une décision reçoit une explication de ce qu’il apporte à la comparaison. Les questions que l’autre décision laisse à examiner conservent donc ce statut. Le dernier développement expose les effets des décisions pour les parties avec les conditions établies par le dossier.
 
-6. Les titres suivent exactement les mêmes règles que dans le commentaire classique. Chaque intitulé commence par un nom d’action et reçoit un adjectif que le développement justifie. Il forme donc un groupe nominal court qui nomme une idée juridique précise. Les verbes conjugués et les questions disparaissent des titres, ainsi que les sigles et les noms d’arrêts. De plus, chaque intitulé est affiché seul, car son explication appartient au développement.
+6. Les titres suivent exactement les mêmes règles que dans le commentaire classique. ${REGLE_TITRES} Les verbes conjugués et les questions disparaissent des titres, ainsi que les sigles et les noms d’arrêts.
 
 L’annonce du plan reprend les mots exacts des titres de I et II. Chaque chapeau reprend pour sa part les intitulés de ses A et B. Une correction de titre s’applique donc aussi à sa reprise dans l’annonce ou le chapeau. La présentation conserve les six titres I, A, B, II, A, B.
 
@@ -92,7 +97,11 @@ Une décision qui laisse une condition inconnue ne permet d’affirmer ni sa pr�
 
 Un exemple commence directement par la personne et les actes qui permettent de comprendre la règle. Les annonces « exemple fictif » et « situation fictive » sont donc retirées.
 
-Les citations de l'introduction reproduisent les paragraphes de motifs pertinents dans leur entier. Une citation conserve donc les conditions et la conséquence retenues, avec la ponctuation du dossier. Les titres sont des groupes nominaux courts, sans verbe conjugué. Ils expriment ensuite l'idée juridique démontrée, avec sa condition décisive. De plus, les annonces et les chapeaux reprennent exactement leurs intitulés. Les mots qui restent abstraits sont remplacés par une formulation qui explique ce que les personnes ont accepté ou ce que le juge doit rechercher. Les consignes de présentation particulières de l'enseignant déterminent les adaptations à effectuer.
+Les citations de l'introduction reproduisent les paragraphes de motifs pertinents dans leur entier lorsqu’une consigne particulière de l’enseignant jointe au devoir impose cette présentation. Par défaut, l’introduction suit la méthode classique de la matière avec des motifs fidèlement reformulés. Une citation conserve donc les conditions et la conséquence retenues, avec la ponctuation du dossier.
+
+${REGLE_TITRES}
+
+Les mots qui restent abstraits sont remplacés par une formulation qui explique ce que les personnes ont accepté ou ce que le juge doit rechercher. Les consignes de présentation particulières de l'enseignant déterminent les adaptations à effectuer.
 
 La phrase qui introduit une citation conserve aussi le sens de la règle. Tu vérifies donc ensemble le verbe de cette phrase et les mots cités, notamment lorsqu’ils contiennent une négation.
 
@@ -141,6 +150,18 @@ function verifierReperes(rapport,message){
   }
 }
 
+function verifierTitres(copie){
+  const titres=copie.split(/\r?\n/).map(ligne=>ligne.trim().replace(/^#{1,6}\s+/,'').replace(/\*\*|__/g,''))
+    .map(ligne=>ligne.match(/^(?:II|I|A|B)[.)]\s+(.+?)\s*$/u)).filter(Boolean);
+  for(const [index,titre] of titres.entries()){
+    const contenu=titre[1].replace(/^(?:l['’]|(?:le|la|les)\s+)/iu,'');
+    const action=contenu.match(/^(?:(?:mise en (?:œuvre|oeuvre)|prise en compte|remise en cause|mise à l['’]écart)|[\p{L}-]+)(?:\s+(.+))?$/iu);
+    const suite=action?.[1];
+    if(!suite||/^(?:(?:de|du|des|à|au|aux|en|sur|dans|par|pour|avec|sans|sous)(?:\s|$)|d['’])/iu.test(suite))
+      throw incomplete('titre_non_qualifie_'+(index+1));
+  }
+}
+
 function appliquerCorrections(copie,rapport){
   if(!rapport||!Array.isArray(rapport.corrections)||!Array.isArray(rapport.blocages))throw incomplete('format_rapport');
   if(rapport.blocages.length)throw incomplete('blocages');
@@ -186,6 +207,7 @@ async function relire(anthropic,{message,copie,budget,effort,timeoutMs,modele=MO
       try{rapport=JSON.parse(json);}catch(_){throw incomplete('json');}
       verifierReperes(rapport,message);
       const reponse=appliquerCorrections(copie,rapport);
+      if(!consignes)verifierTitres(reponse);
       if(verifierRapport)verifierRapport(rapport,reponse);
       return {reponse,usage,corrections:rapport.corrections.length,...(rapport.evaluation?{evaluation:rapport.evaluation}:{})};
     }catch(error){
@@ -197,4 +219,4 @@ async function relire(anthropic,{message,copie,budget,effort,timeoutMs,modele=MO
     }
   }
 }
-module.exports={CONSIGNES,CONSIGNES_CONTROLE,SCHEMA_RAPPORT,relire,appliquerCorrections,verifierReperes};
+module.exports={CONSIGNES,CONSIGNES_CONTROLE,SCHEMA_RAPPORT,relire,appliquerCorrections,verifierReperes,verifierTitres};

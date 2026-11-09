@@ -1,5 +1,32 @@
 const test=require('node:test'),assert=require('node:assert/strict');
-const {appliquerCorrections,verifierReperes,relire}=require('../api/_portalis-relecture');
+const {appliquerCorrections,verifierReperes,relire,verifierTitres}=require('../api/_portalis-relecture');
+const titresQualifies=[
+  "## I. L'admission encadrée de l'erreur du vendeur sur l'authenticité",
+  "### A. La reconnaissance légitime de l'authenticité comme qualité substantielle",
+  "### B. L'exigence nécessaire d'une recherche de la conviction du vendeur",
+  "## II. L'exclusion rigoureuse de l'erreur par l'aléa accepté",
+  "### A. La caractérisation précise de l'aléa entré dans le champ contractuel",
+  "### B. Le maintien cohérent de la vente après la dissipation de l'incertitude"
+];
+const titresSansQualification=new Map([
+  [1,"### A. La reconnaissance de l'authenticité comme qualité substantielle invocable par le vendeur"],
+  [2,"### B. L'exigence d'une recherche de la conviction erronée du vendeur"],
+  [4,"### A. La caractérisation de l'aléa entré dans le champ contractuel"],
+  [5,"### B. Le maintien de la vente après la dissipation de l'incertitude"]
+]);
+test('les six titres qualifient leur nom d’action, y compris les sous-parties',()=>{
+  assert.doesNotThrow(()=>verifierTitres(titresQualifies.join('\n\n')));
+  for(const [index,titre] of titresSansQualification){
+    const titres=[...titresQualifies];titres[index]=titre;
+    assert.throws(()=>verifierTitres(titres.join('\n\n')),{message:'relecture_incomplete',raison:'titre_non_qualifie_'+(index+1)});
+  }
+});
+test('la qualification suit le groupe entier d’un nom d’action composé',()=>{
+  for(const action of ['mise en œuvre','mise en oeuvre','prise en compte','remise en cause','mise à l’écart']){
+    assert.doesNotThrow(()=>verifierTitres('**I. La '+action+' limitée de la règle**'));
+    assert.throws(()=>verifierTitres('I. La '+action+' de la règle'),{message:'relecture_incomplete',raison:'titre_non_qualifie_1'});
+  }
+});
 test('les corrections suivent leurs passages exacts et conservent le développement',()=>{
   const texte='Premier paragraphe à conserver.\n\nUn passage à reprendre.\n\nDernier paragraphe à conserver.';
   const resultat=appliquerCorrections(texte,{corrections:[{avant:'Un passage à reprendre.',apres:'Le passage corrigé explique le raisonnement.'}],blocages:[]});
@@ -88,4 +115,23 @@ test('une relecture tronquée garde sa cause précise et ne dépasse pas le budg
   };
   await assert.rejects(relire(anthropic,{message,copie,budget:1500,effort:'low',timeoutMs:15000}),{message:'relecture_incomplete',raison:'max_tokens'});
   assert.equal(appels,1);
+});
+test('un titre encore sans qualification déclenche une reprise de tous les titres et de leurs annonces',async()=>{
+  const titres= titresQualifies.map((titre,index)=>titresSansQualification.get(index)||titre);
+  const texte=titres.join('\n\n');
+  const requetes=[];
+  const anthropic=async(endpoint,payload)=>{
+    if(endpoint==='/count_tokens')return{input_tokens:500};
+    requetes.push(payload);
+    const rapport=rapportValide();
+    rapport.corrections=requetes.length===1?[]:[...titresSansQualification].map(([index,avant])=>({avant,apres:titresQualifies[index]}));
+    return{stop_reason:'end_turn',content:[{type:'text',text:JSON.stringify(rapport)}],usage:{input_tokens:500,output_tokens:500}};
+  };
+  const r=await relire(anthropic,{message,copie:texte,budget:3000,effort:'low',timeoutMs:15000});
+  assert.equal(r.reponse,titresQualifies.join('\n\n'));
+  assert.equal(requetes.length,2);
+  assert.match(requetes[1].messages[0].content,/titre_non_qualifie_2/);
+  assert.match(requetes[1].system,/vérifie les six titres/);
+  assert.match(requetes[1].system,/Les reprises dans l’annonce du plan et les chapeaux/);
+  assert.deepEqual(r.usage,{input_tokens:1000,output_tokens:1000});
 });
