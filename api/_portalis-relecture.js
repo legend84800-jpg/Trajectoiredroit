@@ -1,4 +1,13 @@
 const {LIMITES,MODELE}=require('./_portalis-config');
+const chaine={type:'string'};
+const objet=properties=>({type:'object',properties,required:Object.keys(properties),additionalProperties:false});
+const tableau=items=>({type:'array',items});
+const SCHEMA_RAPPORT={type:'json_schema',schema:objet({
+  reperes:tableau(objet({reference:chaine,points:tableau(objet({statut:{type:'string',enum:['constate','allegue','a_rechercher','solution']},enonce:chaine,extrait:chaine}))})),
+  corrections:tableau(objet({avant:chaine,apres:chaine})),blocages:tableau(chaine)
+})};
+const incomplete=raison=>Object.assign(Error('relecture_incomplete'),{raison});
+const REPRISE=`Le premier rapport de relecture contient une erreur indiquée dans le bloc rapport_a_reprendre. Relis donc la copie d’origine et fournis un nouveau rapport complet. Tous les contrôles demandés lors de la première relecture continuent de s’appliquer. Lorsque le dossier permet de corriger un passage, le rapport donne ce remplacement dans corrections. En revanche, un blocage indique une difficulté que les documents disponibles ne permettent pas de résoudre et qui empêche de répondre au sujet. De plus, chaque extrait cité dans le rapport reproduit un passage exact du dossier. Utilise tous tes tokens et toute ta puissance, fais un truc génial.`;
 const FORMAT_RAPPORT=`Le JSON contient exactement les clés reperes, corrections et blocages, dans cet ordre.
 
 - reperes est un tableau d'objets avec les clés reference et points. reference donne la décision concernée. points contient des objets avec les trois chaînes statut, enonce et extrait. statut prend une des valeurs constate, allegue, a_rechercher ou solution. enonce résume le point retenu. extrait reproduit un passage exact du dossier, avec au moins dix caractères, qui permet de contrôler ce point.
@@ -111,7 +120,8 @@ function verifierReperes(rapport,message){
 }
 
 function appliquerCorrections(copie,rapport){
-  if(!rapport||!Array.isArray(rapport.corrections)||!Array.isArray(rapport.blocages)||rapport.blocages.length)throw Error('relecture_incomplete');
+  if(!rapport||!Array.isArray(rapport.corrections)||!Array.isArray(rapport.blocages))throw incomplete('format_rapport');
+  if(rapport.blocages.length)throw incomplete('blocages');
   let texte=copie;
   for(const correction of rapport.corrections){
     if(!correction||typeof correction.avant!=='string'||!correction.avant||typeof correction.apres!=='string')throw Error('correction_invalide');
@@ -119,7 +129,7 @@ function appliquerCorrections(copie,rapport){
     if(index<0||texte.indexOf(correction.avant,index+1)>=0)throw Error('correction_ambigue');
     texte=texte.slice(0,index)+correction.apres+texte.slice(index+correction.avant.length);
   }
-  if(texte.trim().length<20)throw Error('relecture_incomplete');
+  if(texte.trim().length<20)throw incomplete('texte_absent');
   return texte;
 }
 
@@ -128,19 +138,41 @@ async function relire(anthropic,{message,copie,budget,effort,timeoutMs,modele=MO
   const debut=Date.now();
   const payload={model:modele,system:consignes||(finale?CONSIGNES_CONTROLE:CONSIGNES),
     messages:[{role:'user',content:message+'\n\n<copie_a_relire>\n'+copie+'\n</copie_a_relire>'}]};
-  const compter=await anthropic('/count_tokens',payload,Math.min(15000,timeoutMs));
-  if(!Number.isInteger(compter.input_tokens)||compter.input_tokens<0||compter.input_tokens>LIMITES.jetonsEntreeRelecture)throw Error('volume_relecture');
-  const restant=timeoutMs-(Date.now()-debut);
-  if(restant<=0||!Number.isInteger(budget)||budget<1)throw Error('delai_relecture');
-  const output_config={effort,...(format?{format}:{}),...(finale?{task_budget:{type:'tokens',total:Math.max(24000,compter.input_tokens+12000)}}:{})};
-  const resultat=await anthropic('',{...payload,max_tokens:budget,stream:true,thinking:{type:'adaptive'},output_config},restant);
-  if(resultat.stop_reason!=='end_turn')throw Error('relecture_incomplete');
-  const brut=(resultat.content||[]).filter(bloc=>bloc.type==='text').map(bloc=>bloc.text).join('\n').trim();
-  const json=brut.replace(/^```(?:json)?\s*\n?/i,'').replace(/\n?```$/,'');
-  const rapport=JSON.parse(json);
-  verifierReperes(rapport,message);
-  const reponse=appliquerCorrections(copie,rapport);
-  if(verifierRapport)verifierRapport(rapport,reponse);
-  return {reponse,usage:resultat.usage,corrections:rapport.corrections.length,...(rapport.evaluation?{evaluation:rapport.evaluation}:{})};
+  const usage={input_tokens:0,output_tokens:0};
+  let precedent;
+  for(let essai=0;essai<2;essai++){
+    const restant=()=>timeoutMs-(Date.now()-debut);
+    if(restant()<=0||!Number.isInteger(budget)||budget<1)throw Error('delai_relecture');
+    const requete=precedent?{...payload,system:payload.system+'\n\n'+REPRISE,
+      messages:[{role:'user',content:payload.messages[0].content+'\n\n<rapport_a_reprendre>\n'+precedent+'\n</rapport_a_reprendre>'}]}:payload;
+    const compter=await anthropic('/count_tokens',requete,Math.min(15000,restant()));
+    if(!Number.isInteger(compter.input_tokens)||compter.input_tokens<0||compter.input_tokens>LIMITES.jetonsEntreeRelecture)throw Error('volume_relecture');
+    if(restant()<=0)throw Error('delai_relecture');
+    const output_config={effort,format:format||SCHEMA_RAPPORT,task_budget:{type:'tokens',total:Math.max(24000,compter.input_tokens+12000)}};
+    const resultat=await anthropic('',{...requete,max_tokens:budget-usage.output_tokens,stream:true,thinking:{type:'adaptive'},output_config},restant());
+    for(const cle of ['input_tokens','output_tokens']){
+      const nombre=resultat.usage?.[cle];
+      if(!Number.isSafeInteger(nombre)||nombre<0)throw Error('usage_relecture');
+      usage[cle]+=nombre;
+    }
+    if(usage.output_tokens>budget)throw Error('usage_relecture');
+    let rapport;
+    try{
+      if(resultat.stop_reason!=='end_turn')throw incomplete(resultat.stop_reason||'arret_absent');
+      const brut=(resultat.content||[]).filter(bloc=>bloc.type==='text').map(bloc=>bloc.text).join('\n').trim();
+      const json=brut.replace(/^```(?:json)?\s*\n?/i,'').replace(/\n?```$/,'');
+      try{rapport=JSON.parse(json);}catch(_){throw incomplete('json');}
+      verifierReperes(rapport,message);
+      const reponse=appliquerCorrections(copie,rapport);
+      if(verifierRapport)verifierRapport(rapport,reponse);
+      return {reponse,usage,corrections:rapport.corrections.length,...(rapport.evaluation?{evaluation:rapport.evaluation}:{})};
+    }catch(error){
+      const recuperable=['reperes_absents','reperes_invalides','extrait_absent','correction_invalide','correction_ambigue'].includes(error.message)||
+        (error.message==='relecture_incomplete'&&!['refusal','arret_absent'].includes(error.raison));
+      if(essai||!recuperable||budget-usage.output_tokens<1024||restant()<=0)throw error;
+      precedent=JSON.stringify({code:error.message,raison:error.raison,blocages:rapport?.blocages,corrections:rapport?.corrections}).slice(0,12000);
+      console.warn('Portalis relecture à reprendre',{code:error.message,raison:error.raison,finale});
+    }
+  }
 }
-module.exports={CONSIGNES,CONSIGNES_CONTROLE,relire,appliquerCorrections,verifierReperes};
+module.exports={CONSIGNES,CONSIGNES_CONTROLE,SCHEMA_RAPPORT,relire,appliquerCorrections,verifierReperes};

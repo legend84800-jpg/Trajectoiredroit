@@ -36,3 +36,56 @@ test('la relecture accepte le dossier accompagné de la copie et refuse le dépa
     else{await assert.rejects(traitement,/volume_relecture/);assert.deepEqual(appels,['/count_tokens']);}
   }
 });
+
+const message='La Cour demande de rechercher la conviction du vendeur avant de statuer.';
+const copie='La conviction du vendeur est déjà prouvée. Le juge doit examiner les éléments du dossier.';
+const rapportValide=()=>({reperes:[{reference:'Décision',points:[{statut:'a_rechercher',enonce:'La conviction reste à rechercher.',extrait:message}]}],
+  corrections:[{avant:'La conviction du vendeur est déjà prouvée.',apres:'La conviction du vendeur reste à rechercher.'}],blocages:[]});
+test('un rapport inutilisable est repris sur la copie originale et ses deux usages restent comptés',async()=>{
+  for(const defaut of ['json','blocages','correction_ambigue']){
+    const requetes=[];
+    const anthropic=async(endpoint,payload)=>{
+      if(endpoint==='/count_tokens')return{input_tokens:500};
+      requetes.push(payload);
+      const rapport=rapportValide();
+      if(requetes.length===1){
+        if(defaut==='blocages')rapport.blocages=['Le passage doit être reformulé avant sa livraison.'];
+        if(defaut==='correction_ambigue')rapport.corrections.push({avant:'Un passage absent du texte.',apres:'Une correction.'});
+      }
+      return{stop_reason:'end_turn',content:[{type:'text',text:requetes.length===1&&defaut==='json'?'{"corrections":[':JSON.stringify(rapport)}],usage:{input_tokens:500,output_tokens:700}};
+    };
+    const r=await relire(anthropic,{message,copie,budget:3000,effort:'low',timeoutMs:15000});
+    assert.equal(r.reponse,'La conviction du vendeur reste à rechercher. Le juge doit examiner les éléments du dossier.');
+    assert.deepEqual(r.usage,{input_tokens:1000,output_tokens:1400});
+    assert.deepEqual(requetes.map(p=>p.max_tokens),[3000,2300]);
+    assert.match(requetes[1].messages[0].content,/<rapport_a_reprendre>/);
+    assert.ok(requetes.every(p=>p.messages[0].content.includes(copie)));
+    assert.equal(requetes[0].output_config.format.type,'json_schema');
+  }
+});
+test('un blocage confirmé ou une citation inventée restent des échecs après la reprise',async()=>{
+  for(const defaut of ['blocages','extrait_absent']){
+    let appels=0;
+    const anthropic=async endpoint=>{
+      if(endpoint==='/count_tokens')return{input_tokens:500};
+      appels++;
+      const rapport=rapportValide();
+      if(defaut==='blocages')rapport.blocages=['La seconde décision manque dans le dossier.'];
+      else rapport.reperes[0].points[0].extrait='Cette phrase ne figure dans aucun document du sujet.';
+      return{stop_reason:'end_turn',content:[{type:'text',text:JSON.stringify(rapport)}],usage:{input_tokens:500,output_tokens:500}};
+    };
+    await assert.rejects(relire(anthropic,{message,copie,budget:3000,effort:'low',timeoutMs:15000}),
+      defaut==='blocages'?{message:'relecture_incomplete',raison:'blocages'}:{message:'extrait_absent'});
+    assert.equal(appels,2);
+  }
+});
+test('une relecture tronquée garde sa cause précise et ne dépasse pas le budget pour réessayer',async()=>{
+  let appels=0;
+  const anthropic=async endpoint=>{
+    if(endpoint==='/count_tokens')return{input_tokens:500};
+    appels++;
+    return{stop_reason:'max_tokens',content:[{type:'text',text:'{"reperes":['}],usage:{input_tokens:500,output_tokens:1500}};
+  };
+  await assert.rejects(relire(anthropic,{message,copie,budget:1500,effort:'low',timeoutMs:15000}),{message:'relecture_incomplete',raison:'max_tokens'});
+  assert.equal(appels,1);
+});
