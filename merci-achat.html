@@ -385,13 +385,30 @@
           </div>
 
           <div class="card achat-retour" id="achatRetour" hidden style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; padding:28px 32px">
-            <h2 class="h4" style="margin:0">Ton achat en deux questions</h2>
-            <p style="margin:8px 0 0; color:var(--body)">Tes réponses sont facultatives, et elles m'aident à adapter les fiches aux besoins des étudiants. Ton PDF arrive par email dans tous les cas.</p>
+            <h2 class="h4" style="margin:0">Ton achat et tes révisions</h2>
+            <p style="margin:8px 0 0; color:var(--body)">Tu peux répondre aux questions que tu veux. Tes réponses m'aident à améliorer les supports et à comprendre comment les étudiants me découvrent. Tes documents arrivent par email dans tous les cas.</p>
             <form id="achatRetourForm">
+              <fieldset class="achat-retour__question">
+                <legend>Comment as-tu connu Trajectoire Droit ?</legend>
+                <label class="sr-only" for="achatOrigine">Choisir une réponse</label>
+                <select class="form__input" id="achatOrigine" name="origine">
+                  <option value="">Choisir une réponse (facultatif)</option>
+                  <option value="recherche">Une recherche sur Google ou un autre moteur</option>
+                  <option value="youtube">Une vidéo YouTube</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="facebook">Facebook</option>
+                  <option value="linkedin">LinkedIn</option>
+                  <option value="reddit">Reddit</option>
+                  <option value="email">Un email de Trajectoire Droit</option>
+                  <option value="recommandation">Une recommandation d'un proche ou d'un étudiant</option>
+                  <option value="autre">Autre</option>
+                  <option value="souvenir_inconnu">Je ne sais plus</option>
+                </select>
+              </fieldset>
               <fieldset class="achat-retour__question">
                 <legend>Qu'est-ce qui t'a décidé à acheter aujourd'hui ?</legend>
                 <div class="achat-retour__choix">
-                  <label><input type="radio" name="declencheur" value="td" required> Un TD m'a posé problème</label>
+                  <label><input type="radio" name="declencheur" value="td"> Un TD m'a posé problème</label>
                   <label><input type="radio" name="declencheur" value="note"> J'ai reçu une note qui m'a déçu</label>
                   <label><input type="radio" name="declencheur" value="partiel"> Un partiel approche</label>
                   <label><input type="radio" name="declencheur" value="nouvelle_matiere"> Je commence une nouvelle matière</label>
@@ -405,7 +422,7 @@
               <fieldset class="achat-retour__question">
                 <legend>Qu'aimerais-tu surtout faire grâce à cet achat ?</legend>
                 <div class="achat-retour__choix">
-                  <label><input type="radio" name="resultat" value="comprendre" required> Comprendre mon cours</label>
+                  <label><input type="radio" name="resultat" value="comprendre"> Comprendre mon cours</label>
                   <label><input type="radio" name="resultat" value="exercice"> Réussir un exercice juridique</label>
                   <label><input type="radio" name="resultat" value="partiel"> Réviser pour mon partiel</label>
                   <label><input type="radio" name="resultat" value="temps"> Gagner du temps dans mes révisions</label>
@@ -704,7 +721,7 @@
       fallback.style.display = 'none';
       if (!document.querySelector('script[src*="achat.js"]')) {
         var s = document.createElement('script');
-        s.src = 'assets/js/achat.js?v=60767dcf
+        s.src = 'assets/js/achat.js?v=60767dcf';
         s.defer = true;
         document.body.appendChild(s);
       }
@@ -733,11 +750,17 @@
       boutonRetour.disabled = true;
       statutRetour.textContent = 'Enregistrement en cours…';
       var valeurs = new FormData(formulaireRetour);
+      if (!valeurs.get('origine') && !valeurs.get('declencheur') && !valeurs.get('resultat') && !String(valeurs.get('resultat_precision') || '').trim()) {
+        boutonRetour.disabled = false;
+        statutRetour.textContent = 'Tu peux choisir une réponse ou passer ces questions.';
+        return;
+      }
       fetch('/api/motivation-achat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           session_id: sessionId,
+          origine: valeurs.get('origine'),
           declencheur: valeurs.get('declencheur'),
           declencheur_autre: valeurs.get('declencheur_autre'),
           resultat: valeurs.get('resultat'),
@@ -750,13 +773,13 @@
         statutRetour.textContent = 'Merci pour ta réponse.';
       }).catch(function () {
         boutonRetour.disabled = false;
-        statutRetour.textContent = 'Tes réponses n’ont pas été enregistrées. Tu peux réessayer. Ton PDF arrive par email.';
+        statutRetour.textContent = 'Tes réponses n’ont pas été enregistrées. Tu peux réessayer. Tes documents arrivent par email.';
       });
     });
 
     function afficherRetourSiEligible(d) {
-      if (window.tjdTestInterne || !d || !(d.montant > 0) || !(d.produitIds || []).some(function (id) {
-        return /^(fiche-|maj-)/.test(id);
+      if (window.tjdTestInterne || !d || d.internalTest || d.cadeau || !(d.montant > 0) || !(d.produitIds || []).some(function (id) {
+        return id !== 'stage-methode';
       })) return;
       try { if (sessionStorage.getItem(cleRetour)) return; } catch (_) {}
       retour.hidden = false;

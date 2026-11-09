@@ -1,4 +1,4 @@
-// Une réponse facultative par achat confirmé de fiche ou de majeure.
+// Une réponse facultative par achat confirmé de documents, packs compris.
 // Les réponses sont conservées séparément des coordonnées de l'acheteur.
 const crypto = require("node:crypto");
 const PRODUITS = require("./_produits");
@@ -7,6 +7,11 @@ const { insererSiAbsent } = require("./_supabase");
 
 const DECLENCHEURS = new Set(["td", "note", "partiel", "nouvelle_matiere", "autre"]);
 const RESULTATS = new Set(["comprendre", "exercice", "partiel", "temps", "autre"]);
+const ORIGINES = new Set(["recherche", "youtube", "instagram", "facebook", "linkedin", "reddit", "email", "recommandation", "autre", "souvenir_inconnu"]);
+
+function choixFacultatif(valeur, choix) {
+  return valeur == null || valeur === "" ? null : choix.has(valeur) ? valeur : undefined;
+}
 
 function texteCourt(valeur) {
   if (valeur == null || valeur === "") return null;
@@ -31,14 +36,17 @@ async function handler(req, res) {
   let corps = req.body;
   if (typeof corps === "string") { try { corps = JSON.parse(corps); } catch { corps = {}; } }
   corps = corps || {};
-  const { session_id: sessionId, declencheur, resultat } = corps;
+  const sessionId = corps.session_id;
+  const declencheur = choixFacultatif(corps.declencheur, DECLENCHEURS);
+  const resultat = choixFacultatif(corps.resultat, RESULTATS);
+  const origine = choixFacultatif(corps.origine, ORIGINES);
   const declencheurAutre = texteCourt(corps.declencheur_autre);
   const resultatPrecision = texteCourt(corps.resultat_precision);
   const stripeKey = process.env.STRIPE_SECRET_KEY;
 
-  if (!sessionCompatible(sessionId, stripeKey) || !DECLENCHEURS.has(declencheur)
-      || !RESULTATS.has(resultat) || declencheurAutre === undefined
-      || resultatPrecision === undefined) {
+  if (!sessionCompatible(sessionId, stripeKey) || declencheur === undefined
+      || resultat === undefined || origine === undefined || declencheurAutre === undefined
+      || resultatPrecision === undefined || !(declencheur || resultat || origine || resultatPrecision)) {
     res.status(400).json({ erreur: "Réponse invalide" }); return;
   }
   if (!stripeKey) { res.status(503).json({ erreur: "Service indisponible" }); return; }
@@ -50,8 +58,7 @@ async function handler(req, res) {
       .split(",").map((id) => id.trim()).filter(Boolean);
     if (session.mode !== "payment" || session.payment_status !== "paid"
         || !(session.amount_total > 0) || (session.metadata && session.metadata.internalTest) === "1"
-        || !produitIds.some((id) =>
-          (id.startsWith("fiche-") || id.startsWith("maj-")) && PRODUITS[id])) {
+        || !produitIds.some((id) => id !== "stage-methode" && PRODUITS[id] && (PRODUITS[id].blobs || []).length > 0)) {
       res.status(404).json({ erreur: "Achat éligible introuvable" }); return;
     }
 
@@ -60,6 +67,7 @@ async function handler(req, res) {
       session_hash: sessionHash,
       mode: sessionId.startsWith("cs_live_") ? "live" : "test",
       produit_ids: produitIds.filter((id) => PRODUITS[id]),
+      origine,
       declencheur,
       declencheur_autre: declencheur === "autre" ? declencheurAutre : null,
       resultat,

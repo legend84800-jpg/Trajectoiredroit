@@ -179,6 +179,15 @@
   </script>
   <!-- End Matomo Code -->
 <style>
+#offre .offre-matiere__options{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+#offre .offre-matiere__option--pack{border:2px solid var(--blue-600);background:var(--blue-50,#f2f6ff)}
+#offre .offre-matiere__option--fiche{border:1px solid var(--blue-100)}
+#offre .offre-matiere__avantage{margin:0;font-size:.85rem;line-height:1.5;color:var(--navy);font-weight:600}
+#offre .offre-matiere__contenu li span:last-child{white-space:normal;color:inherit}
+#offre .offre-matiere__option--pack>.btn{margin-top:8px}
+html[data-theme="dark"] #offre .offre-matiere__option--pack{background:#1a2840;border-color:#7ba5e8}
+html[data-theme="dark"] #offre .offre-matiere__option--fiche{border-color:rgba(255,255,255,.1)}
+@media(max-width:760px){#offre .offre-matiere__options{grid-template-columns:1fr}}
 .comparaison-blanco{margin-top:24px}.comparaison-blanco__pages{display:grid;grid-template-columns:1fr 1fr;gap:20px}.comparaison-blanco figure{margin:0;min-width:0}.comparaison-blanco figcaption{margin-bottom:10px;font-size:.88rem}.comparaison-blanco__image{display:block;padding:0;border:1px solid var(--border,#dce2e8);border-radius:8px;background:#fff;overflow:hidden;width:100%;cursor:zoom-in}.comparaison-blanco__image img{display:block;width:100%;height:auto}.comparaison-blanco__image:hover{opacity:.95}@media(max-width:640px){.comparaison-blanco__pages{grid-template-columns:1fr}}
 </style>
 </head>
@@ -452,32 +461,38 @@
       <div class="container">
         <div class="conversion-offer__card">
           <div class="conversion-offer__visual">
-            <img src="assets/covers/fiche-da-l2-s1.webp?v=dossier-universitaire-20260915" alt="Couverture de la fiche complète Droit administratif L2" fetchpriority="high" width="960" height="540" decoding="async">
+            <img src="assets/covers/pack-matiere-da-l2.webp" alt="Pack Droit administratif L2, fiches et exercices des deux semestres" fetchpriority="high" width="960" height="540" decoding="async">
           </div>
           <div>
-            <p class="conversion-offer__eyebrow">La fiche complète de la matière</p>
-            <h2 class="conversion-offer__title" id="offre-admin-titre">Droit administratif L2, prêt à réviser</h2>
+            <p class="conversion-offer__eyebrow">Le pack de la matière, semestres 1 et 2</p>
+            <h2 class="conversion-offer__title" id="offre-admin-titre">Tes fiches et tes exercices de droit administratif L2</h2>
             <div class="offre-matiere__options" aria-label="Choisir ton support de Droit administratif L2">
+              <div class="offre-matiere__option offre-matiere__option--pack">
+                <p class="offre-matiere__label">Le pack Droit administratif L2</p>
+                <p class="offre-matiere__prix">29,98 € <small>les deux semestres</small></p>
+                <p class="offre-matiere__avantage">Au prix des deux fiches complètes seules, tu reçois aussi les supports pour t'entraîner.</p>
+                <ul class="offre-matiere__contenu">
+                  <li><span>Les fiches complètes S1 et S2, avec leurs plans et cartes mentales</span></li>
+                  <li><span>Les cartes de mémorisation et les QCM des deux semestres</span></li>
+                  <li><span>Les cas pratiques corrigés S1 et S2</span></li>
+                  <li><span>Les fiches d'arrêt et leurs plans</span></li>
+                </ul>
+                <p class="offre-matiere__detail">Tu reçois les 17 fichiers du pack par email juste après le paiement.</p>
+                <button type="button" class="btn btn--primary" data-tjd-produit="pack-matiere-da-l2">Acheter le pack · 29,98 €</button>
+              </div>
               <div class="offre-matiere__option offre-matiere__option--fiche">
-                <p class="offre-matiere__label">La fiche complète, un PDF par semestre</p>
+                <p class="offre-matiere__label">Tu préfères la fiche d'un seul semestre ?</p>
                 <p class="offre-matiere__prix">14,99 € <small>par semestre</small></p>
                 <p class="offre-matiere__detail">123 pages pour le S1 et 110 pages pour le S2, en PDF.</p>
                 <button type="button" class="apercu-link" data-apercu='["assets/apercus/lisibilite-20261107/fiche-da-l2-s1/2a6e28c243c2-p090.webp","assets/apercus/lisibilite-20261107/fiche-da-l2-s1/2a6e28c243c2-p120.webp"]' data-apercu-title="Droit administratif · L2 S1 · Fiche complète" data-apercu-price="14,99 €" data-apercu-cta="fiche-da-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Aperçu du S1</button><button type="button" class="apercu-link" data-apercu='["assets/apercus/lisibilite-20261107/fiche-da-l2-s2/87ba77f55395-p019.webp","assets/apercus/lisibilite-20261107/fiche-da-l2-s2/87ba77f55395-p018.webp","assets/apercus/lisibilite-20261107/fiche-da-l2-s2/87ba77f55395-p107.webp","assets/apercus/lisibilite-20261107/fiche-da-l2-s2/87ba77f55395-p082.webp"]' data-apercu-title="Droit administratif · L2 S2 · Fiche complète" data-apercu-price="14,99 €" data-apercu-cta="fiche-da-l2-s2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Aperçu du S2</button>
-                <div class="offre-matiere__fiches"><button type="button" class="btn btn--primary" data-tjd-produit="fiche-da-l2-s1">Semestre 1 · 14,99 €</button><button type="button" class="btn btn--outline" data-tjd-produit="fiche-da-l2-s2">Semestre 2 · 14,99 €</button></div>
-              </div>
-              <div class="offre-matiere__option offre-matiere__option--pack">
-                <p class="offre-matiere__label">Le pack Droit administratif L2</p>
-                <p class="offre-matiere__prix"><s>79,94 €</s>29,98 €</p>
-                <p class="offre-matiere__detail">Si tu achètes ces produits un par un, ils te coûtent 79,94 €.</p>
-                <ul class="offre-matiere__contenu"><li><span>Les fiches complètes S1 et S2</span><span>29,98 €</span></li><li><span>Les flashcards et QCM des deux semestres</span><span>19,98 €</span></li><li><span>Les cas pratiques corrigés S1 et S2</span><span>29,98 €</span></li><li><span>Les fiches d'arrêt</span><span>incluses</span></li></ul>
-                <button type="button" class="btn btn--outline" data-tjd-produit="pack-matiere-da-l2">Acheter le pack · 29,98 €</button>
+                <div class="offre-matiere__fiches"><button type="button" class="btn btn--outline" data-tjd-produit="fiche-da-l2-s1">Semestre 1 · 14,99 €</button><button type="button" class="btn btn--outline" data-tjd-produit="fiche-da-l2-s2">Semestre 2 · 14,99 €</button></div>
               </div>
             </div>
-            <p class="conversion-offer__summary"><strong>233 pages sur les deux semestres.</strong> Le S1 explique d'où vient le droit administratif et quel juge le fait appliquer. Il présente aussi le principe de légalité avec ses sources, puis l'organisation de l'administration. Le S2 étudie ensuite l'action de l'administration, d'abord le service public et la police, puis ses actes et ses contrats. Il se termine par sa responsabilité et par le contentieux, c'est-à-dire les recours devant le juge administratif.</p>
+            <p class="conversion-offer__summary"><strong>Les deux fiches complètes réunissent 233 pages.</strong> Le S1 explique d'où vient le droit administratif et quel juge le fait appliquer. Il présente aussi le principe de légalité avec ses sources, puis l'organisation de l'administration. Le S2 étudie ensuite l'action de l'administration, d'abord le service public et la police, puis ses actes et ses contrats. Il se termine par sa responsabilité et par le contentieux, c'est-à-dire les recours devant le juge administratif.</p>
             <ul class="conversion-offer__benefits">
               <li>Les arrêts replacés dans leur contexte</li>
               <li>Des schémas et des cartes mentales</li>
-              <li>Un PDF reçu juste après le paiement</li>
+              <li>Les documents reçus juste après le paiement</li>
             </ul>
             <p class="conversion-offer__note">Paiement Stripe · accès à vie · mises à jour incluses. Tu disposes de 7 jours pour demander un remboursement si le support ne te convient pas. La garantie liée à l’examen s’y ajoute. <a href="garantie-reussite.html">Voir les deux garanties et leurs conditions</a>.</p>
             <div data-tjd-avis data-matiere="da-l2"></div>
@@ -998,13 +1013,13 @@
   <!-- ===== STICKY CTA (mobile et desktop, visible pendant la lecture de la page) ===== -->
   <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
     <div class="sticky-cta-bar__text">
-      <strong>Choisis ton droit administratif L2</strong>
-      <small>S1, S2 ou le pack de la matière</small>
+      <strong>Pack Droit administratif L2</strong>
+      <small>Les deux semestres et les exercices · 29,98 €</small>
     </div>
     <div class="sticky-cta-bar__choices" aria-label="Achat rapide Droit administratif L2">
-      <button type="button" class="btn btn--primary" data-tjd-produit="fiche-da-l2-s1">S1 · 14,99 €</button>
+      <button type="button" class="btn btn--primary" data-tjd-produit="pack-matiere-da-l2">Pack S1 + S2 · 29,98 €</button>
+      <button type="button" class="btn btn--outline" data-tjd-produit="fiche-da-l2-s1">S1 · 14,99 €</button>
       <button type="button" class="btn btn--outline" data-tjd-produit="fiche-da-l2-s2">S2 · 14,99 €</button>
-      <button type="button" class="btn btn--outline" data-tjd-produit="pack-matiere-da-l2">Pack · 29,98 €</button>
     </div>
   </div>
 

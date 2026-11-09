@@ -2,6 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const vm = require('node:vm');
 
 function res() {
   return { code: 200, body: null, status(code) { this.code = code; return this; }, json(body) { this.body = body; return this; } };
@@ -74,4 +75,65 @@ test('le questionnaire est dans le bloc caché avant confirmation', () => {
   assert.ok(blockStart >= 0 && formIndex > blockStart && (blockEnd < 0 || formIndex < blockEnd));
   assert.match(html, /afficherAchatConfirme\(\);[\s\S]*?afficherRetourSiEligible\(d\)/);
   assert.match(html, /if \(!d \|\| d\.montant == null\) throw new Error\('paiement_non_confirme'\)/);
+});
+
+test('une origine seule suffit après un achat de pack confirmé', async () => {
+  const { response, inserts } = await tester({ ...session, metadata: { produitIds: 'pack-l1' } }, {
+    origine: 'instagram', declencheur: null, resultat: null,
+  });
+  assert.equal(response.code, 200);
+  assert.equal(inserts[0][1].origine, 'instagram');
+  assert.equal(inserts[0][1].declencheur, null);
+  assert.equal(inserts[0][1].resultat, null);
+});
+
+test('les anciennes réponses gardent une origine non renseignée', async () => {
+  const { response, inserts } = await tester(session);
+  assert.equal(response.code, 200);
+  assert.equal(inserts[0][1].origine, null);
+});
+
+test('refuse une origine inconnue et une réponse vide', async () => {
+  for (const corps of [
+    { origine: 'invente' },
+    { origine: ['instagram'] },
+    { origine: '', declencheur: '', resultat: '', resultat_precision: '   ' },
+  ]) {
+    const { response, inserts } = await tester(session, corps);
+    assert.equal(response.code, 400);
+    assert.equal(inserts.length, 0);
+  }
+});
+
+test('la question de découverte reste facultative et les packs peuvent y répondre', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'merci-achat.html'), 'utf8');
+  assert.match(html, /name="origine"/);
+  assert.doesNotMatch(html, /name="(?:origine|declencheur|resultat)"[^>]*required/);
+  assert.match(html, /origine: valeurs\.get\('origine'\)/);
+});
+
+test('les scripts de la page après achat peuvent être exécutés', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'merci-achat.html'), 'utf8');
+  for (const script of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)) {
+    if (/src=|ld\+json/.test(script[1])) continue;
+    assert.doesNotThrow(() => new vm.Script(script[2]));
+  }
+});
+
+test('le navigateur propose le questionnaire pour un pack payé et masque les achats de contrôle', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'merci-achat.html'), 'utf8');
+  const fonction = html.match(/function afficherRetourSiEligible\(d\) \{[\s\S]*?\n    \}/)[0];
+  function visible(data, interne = false) {
+    const contexte = { window: { tjdTestInterne: interne }, sessionStorage: { getItem: () => null },
+      retour: { hidden: true }, cleRetour: 'qa' };
+    vm.createContext(contexte);
+    vm.runInContext(fonction + '; afficherRetourSiEligible(' + JSON.stringify(data) + ');', contexte);
+    return !contexte.retour.hidden;
+  }
+  const pack = { montant: 87, produitIds: ['pack-l1'], internalTest: false, cadeau: false };
+  assert.equal(visible(pack), true);
+  assert.equal(visible(pack, true), false);
+  assert.equal(visible({ ...pack, internalTest: true }), false);
+  assert.equal(visible({ ...pack, montant: 0 }), false);
+  assert.equal(visible({ ...pack, produitIds: ['stage-methode'] }), false);
 });
