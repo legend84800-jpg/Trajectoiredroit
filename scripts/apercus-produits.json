@@ -2778,21 +2778,21 @@
       }
     },
     "maj-travail-l3-s1": {
-      "sha256": "c00d939839ad4c2e3269fa41c65571d540772b510c354ece8e3fa96ddc10abef",
-      "pages_pdf": 156,
+      "sha256": "c663c8ed48f0c8862c6667a0d6815f932fce15f7ae9ba2d9675aa1ec5faa2df0",
+      "pages_pdf": 164,
       "famille": "majeures",
       "fichier_pdf": "maj-travail-l3-s1.pdf",
       "images": [
-        "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p002.webp",
-        "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p003.webp",
-        "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p004.webp",
-        "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p014.webp"
+        "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p002.webp",
+        "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p003.webp",
+        "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p004.webp",
+        "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p015.webp"
       ],
       "pages_images": [
         2,
         3,
         4,
-        14
+        15
       ],
       "variantes": [
         {
@@ -2806,13 +2806,13 @@
             2,
             3,
             4,
-            14
+            15
           ],
           "images": [
-            "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p002.webp",
-            "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p003.webp",
-            "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p004.webp",
-            "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p014.webp"
+            "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p002.webp",
+            "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p003.webp",
+            "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p004.webp",
+            "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p015.webp"
           ],
           "versions_precedentes": [
             [
@@ -2832,39 +2832,45 @@
               "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/01dfc5e15e1e-p003.webp",
               "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/01dfc5e15e1e-p004.webp",
               "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/01dfc5e15e1e-p014.webp"
+            ],
+            [
+              "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p002.webp",
+              "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p003.webp",
+              "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p004.webp",
+              "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p014.webp"
             ]
           ]
         }
       ],
-      "majeures": 49,
+      "majeures": 50,
       "preuves_images": {
-        "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p002.webp": {
+        "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p002.webp": {
           "page_pdf": 2,
-          "sha256_image": "8c94d3aa21da959456095469088c6d938efd7284bc4119287c546b42fc0edbd2",
+          "sha256_image": "da6d0fc50e3b4f3fce7076eedbb6989012e63cab843e5d1926ee961591b0cf70",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p003.webp": {
+        "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p003.webp": {
           "page_pdf": 3,
-          "sha256_image": "55474b228fa8312f571b2fee198ee27738ce971728767d637aa2496fa447c394",
+          "sha256_image": "411decf30e796098aae6c4045980be18b70c1546c8429e3b72bd1f060914b37a",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p004.webp": {
+        "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p004.webp": {
           "page_pdf": 4,
-          "sha256_image": "21dc2d6564b9028ab777f37b089a5324c491c2b52343cf2f7cd9f2ee9890e0f2",
+          "sha256_image": "64f5a4d7f7f7930e24d55a7099fdb260b19082d5a4096a5385b890d946796f60",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p014.webp": {
-          "page_pdf": 14,
-          "sha256_image": "237fdb270fc2b4f42ad2dc3f25b656a33cd51d35d186ca79175c57f803f7021d",
+        "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p015.webp": {
+          "page_pdf": 15,
+          "sha256_image": "530af09c6fefd08f5e372ac64f36a67fa25ec662e7ed3dcede5a60f3c81a877b",
           "dimensions": [
             1429,
             2021
@@ -8679,6 +8685,26 @@
       "produit": "maj-travail-l3-s1",
       "page": 14,
       "image": "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p014.webp"
+    },
+    "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p002.webp": {
+      "produit": "maj-travail-l3-s1",
+      "page": 2,
+      "image": "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p002.webp"
+    },
+    "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p003.webp": {
+      "produit": "maj-travail-l3-s1",
+      "page": 3,
+      "image": "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p003.webp"
+    },
+    "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p004.webp": {
+      "produit": "maj-travail-l3-s1",
+      "page": 4,
+      "image": "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p004.webp"
+    },
+    "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/c00d939839ad-p014.webp": {
+      "produit": "maj-travail-l3-s1",
+      "page": 15,
+      "image": "assets/apercus/travail-20261110/maj-travail-l3-s1/c663c8ed48f0-p015.webp"
     }
   },
   "decomptes": {
