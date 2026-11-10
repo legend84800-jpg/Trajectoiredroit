@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Sujets d&#x27;histoire des institutions L1 avec corrigé 2026</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Douze sujets d&#x27;histoire des institutions L1, six annales et un commentaire de la Charte de 1830 entièrement corrigé. La fiche de 99 pages est proposée en PDF.">
+  <link rel="canonical" href="https://trajectoiredroit.com/sujets-histoire-des-institutions-l1.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sujets d&#x27;histoire des institutions L1 avec corrigé 2026">
+  <meta property="og:description" content="Douze sujets d&#x27;histoire des institutions L1, six annales et un commentaire de la Charte de 1830 entièrement corrigé. La fiche de 99 pages est proposée en PDF.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/sujets-histoire-des-institutions-l1.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/sujets-histoire-des-institutions-l1.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sujets d&#x27;histoire des institutions L1 avec corrigé 2026">
+  <meta name="twitter:description" content="Douze sujets d&#x27;histoire des institutions L1, six annales et un commentaire de la Charte de 1830 entièrement corrigé. La fiche de 99 pages est proposée en PDF.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/sujets-histoire-des-institutions-l1.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Sujets d'histoire des institutions L1 avec un commentaire corrigé",
+      "description": "Douze sujets d'histoire des institutions L1, six annales et un commentaire de la Charte de 1830 entièrement corrigé. La fiche de 99 pages est proposée en PDF.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-11-10",
+      "dateModified": "2026-11-10",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Sujets et commentaire des institutions françaises de 1789 à 1958 en L1"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/sujets-histoire-des-institutions-l1.webp",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/sujets-histoire-des-institutions-l1.html"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sujets d'histoire des institutions L1",
+          "item": "https://trajectoiredroit.com/sujets-histoire-des-institutions-l1.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Ces sujets correspondent-ils à toutes les facultés de droit ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le programme change selon les facultés. Cette page couvre les institutions françaises de 1789 à 1958. Tu compares donc ces bornes à celles de ton cours, puis tu choisis les sujets qui correspondent aux périodes étudiées."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel corrigé d'histoire des institutions est gratuit sur cette page ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La page propose un commentaire entièrement rédigé des articles 12 et 13 de la Charte de 1830. Tu retrouves le texte étudié et l'introduction de la copie. Le développement explique ensuite les compétences du roi et les limites de ses ordonnances."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que contient la fiche d'histoire des institutions en PDF ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La fiche complète compte 99 pages et dix-huit chapitres sur les institutions françaises de 1789 à 1958. Elle est accompagnée de son plan détaillé et de cartes mentales. Le recueil de dix dissertations corrigées s'achète séparément."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Les Français élisent-ils directement le président en 1958 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dans le texte initial de 1958, un collège électoral désigne le président de la République. Ce collège comprend notamment les membres du Parlement et les représentants élus des conseils municipaux. En revanche, la révision de 1962 introduit l'élection au suffrage universel direct. Tu conserves donc le mode d'élection de 1958 lorsque tu commentes un document de cette année."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=6a441fef">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style id="exemples-pedagogiques-page">
+  .prose p.exemple-pedagogique { color: #8A4B20; }
+  html[data-theme="dark"] .prose p.exemple-pedagogique,
+  .section--dark .prose p.exemple-pedagogique { color: #F0BD95; }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 474,64 €, 45 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-45 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">474,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 349,74 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">349,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 449,67 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">449,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 399,70 €, 40 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-40 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 569,58 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">569,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>164 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes tes questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section--sm" style="padding-top:48px">
+      <div class="container container--narrow text-center">
+        <h1 class="h1">Sujets d'histoire des institutions L1 avec un commentaire corrigé</h1>
+        <p class="lead" style="max-width:720px;margin-left:auto;margin-right:auto">Les sujets d'histoire des institutions L1 changent selon le programme de ta faculté. Cette page couvre la France de 1789 à 1958. Tu y trouves douze sujets d'entraînement, dont six tirés d'annales, puis un commentaire entièrement rédigé sur la Charte de 1830. Les questions de cours expliquent ensuite plusieurs distinctions à connaître avant le partiel.</p>
+        <div class="hero__cta flex flex--center" style="margin-top:24px">
+          <a class="btn btn--primary btn--lg" href="#banque">Voir les douze sujets →</a>
+          <a class="btn btn--outline btn--lg" href="#commentaire">Le commentaire corrigé</a>
+        </div>
+        <div data-tjd-pdf-offert="exercice" data-id="dissertation-separation-des-pouvoirs-corrige" data-titre="Une dissertation sur la séparation des pouvoirs, en PDF" data-texte="Je t'envoie par email une dissertation corrigée de droit constitutionnel sur la séparation des pouvoirs. Tu peux ainsi étudier la construction d'une démonstration et la rédaction d'une copie complète." data-bouton="Recevoir la dissertation"></div>
+      </div>
+    </section>
+
+    <section class="conversion-offer" aria-labelledby="offre-histinst-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual"><img src="assets/covers/fiche-hist-institutions-l1.webp?v=dossier-universitaire-20260915" alt="Fiche complète Histoire des institutions L1, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
+          <div>
+            <p class="conversion-offer__eyebrow">Histoire des institutions L1</p>
+            <h2 class="conversion-offer__title" id="offre-histinst-titre">La fiche complète de 99 pages pour préparer tes sujets</h2>
+            <p class="conversion-offer__summary">La fiche explique les institutions françaises de 1789 à 1958, en dix-huit chapitres. Tu retrouves les textes constitutionnels et les définitions nécessaires pour comprendre comment les pouvoirs s'organisent dans chaque régime.</p>
+            <ul class="conversion-offer__benefits">
+              <li>La fiche en PDF, avec son plan détaillé et ses cartes mentales</li>
+              <li>Un recueil séparé de dix dissertations corrigées, avec l'analyse des sujets et les copies rédigées</li>
+              <li>Les fichiers reçus par email après le paiement, avec accès à vie</li>
+            </ul>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-hist-institutions-l1">Acheter la fiche · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="dissertation-hist-institutions-l1">Acheter les dix dissertations · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-l1">Acheter le Pack Licence 1 · 87 €</button>
+            </div>
+            <p class="conversion-offer__note">La fiche et le recueil sont deux produits distincts. Le Pack Licence 1 réunit les neuf fiches complètes de l'année.</p>
+            <div data-tjd-avis data-matiere="hist-institutions-l1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="programme">
+      <div class="container container--narrow prose">
+        <figure style="margin:0 0 32px"><img src="assets/blog/sujets-histoire-des-institutions-l1.webp" srcset="assets/blog/sujets-histoire-des-institutions-l1-640.webp 640w, assets/blog/sujets-histoire-des-institutions-l1.webp 1200w" sizes="(max-width:700px) 100vw, 800px" alt="Banquettes de velours rouge et boiseries dans une salle parlementaire ancienne" width="1200" height="675" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"></figure>
+        <h2 class="h2">Quel programme faut-il réviser avant de choisir un sujet ?</h2>
+        <p>Tu commences par les bornes indiquées dans ton cours. En effet, certaines facultés placent sous le nom d'histoire des institutions des enseignements sur Rome ou le Moyen Âge. Ici, les sujets portent sur les institutions après 1789. Pour les périodes antérieures, tu peux donc utiliser la <a href="sujets-histoire-du-droit-l1.html">banque de sujets d'histoire du droit L1</a>.</p>
+        <p>Le recueil d'annales utilisé pour les six sujets réels porte le nom de Valérie Ménès-Redorat. Ses en-têtes donnent les sessions, mais le document conservé dans mes dossiers ne permet pas d'identifier la faculté. En 2024, l'intitulé annonce une histoire des institutions de 1789 à 1914. Les entraînements proposés complètent donc cette période jusqu'à 1958, conformément au programme de la fiche.</p>
+        <p>La consigne change aussi le travail attendu. Dans les annales d'avril 2023, les étudiants sans TD doivent expliquer l'évolution du pouvoir législatif à l'aide d'extraits constitutionnels. En revanche, pour les étudiants avec TD, les mêmes extraits servent à un commentaire. Tu lis donc la consigne avant de choisir ta méthode, même lorsque les documents sont identiques.</p>
+        <p>De plus, un plan chronologique peut répondre à une dissertation d'histoire. Chaque période doit alors expliquer une transformation liée au sujet. Pour une question sur l'élection du chef de l'État, tu examines qui vote et comment cette désignation donne au dirigeant le soutien politique dont il se réclame. La succession des régimes sert cette explication.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="banque">
+      <div class="container container--narrow prose">
+        <h2 class="h2">Douze sujets d'histoire des institutions pour t'entraîner</h2>
+        <p>Les six premières lignes viennent des annales conservées dans mes dossiers. Leur formulation est résumée lorsque l'épreuve reproduit un texte long. Les six suivantes sont en revanche des entraînements proposés à partir du programme. Tu peux préparer une réponse au brouillon, puis vérifier les passages de ton cours indiqués dans la troisième colonne.</p>
+        <div style="overflow-x:auto">
+          <table class="table" style="width:100%;min-width:640px">
+            <thead><tr><th scope="col">Sujet et provenance</th><th scope="col">Exercice</th><th scope="col">Ce que tu dois expliquer</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1. Le gouvernement révolutionnaire dans le rapport de Robespierre du 25 décembre 1793.</strong><br>Annale, mai 2018.</td><td>Commentaire de texte.</td><td>Le texte distingue le gouvernement qui établit la République de celui qui la conserve. Tu compares donc les institutions prévues par la Constitution de 1793 avec l'organisation du pouvoir pendant le gouvernement révolutionnaire.</td></tr>
+              <tr><td><strong>2. Grévy et Lamartine face à l'élection du président par le peuple en 1848.</strong><br>Annale, juin 2018.</td><td>Commentaire de deux discours.</td><td>Grévy craint qu'un président populaire conserve le pouvoir. Lamartine défend la confiance dans le choix des électeurs. Le commentaire explique ces arguments au moment où les députés discutent la future Constitution.</td></tr>
+              <tr><td><strong>3. Les transformations de la justice sous Napoléon.</strong><br>Annale, seconde session de 2023.</td><td>Dissertation avec extraits ou commentaire, selon le groupe.</td><td>La loi du 27 ventôse an VIII organise plusieurs niveaux de tribunaux. Tu expliques la fonction des juridictions mentionnées dans le document, puis tu montres comment cette organisation participe à la réorganisation de l'État.</td></tr>
+              <tr><td><strong>4. L'évolution du pouvoir législatif entre 1791 et 1875.</strong><br>Annale, avril 2023.</td><td>Dissertation avec extraits ou commentaire, selon le groupe.</td><td>Les documents comparent une assemblée unique avec des institutions à deux Chambres. Il faut aussi examiner la participation du chef de l'exécutif à la loi, car le nombre des assemblées explique seulement une partie de la répartition du pouvoir.</td></tr>
+              <tr><td><strong>5. Les coups d'État de 1789 à 1875.</strong><br>Annale, juin 2024.</td><td>Dissertation.</td><td>Tu définis d'abord le coup d'État, puis tu expliques comment les dirigeants renversent ou contournent les institutions en place. La comparaison porte sur les moyens employés et sur la manière dont le nouveau pouvoir cherche ensuite à être accepté.</td></tr>
+              <tr><td><strong>6. Les relations entre l'Église et l'État, de la Constitution civile du clergé à la loi de 1905.</strong><br>Annale, juin 2024.</td><td>Travail à partir d'un texte.</td><td>L'énoncé reproduit les articles 1er et 2 de la loi de 1905. Tu expliques les changements dans les rapports entre l'État et les cultes. Les limites de la séparation se vérifient dans les dispositions étudiées en cours.</td></tr>
+              <tr><td><strong>7. Pourquoi la Constitution de l'an III sépare-t-elle les organes qui exercent le pouvoir ?</strong><br>Entraînement proposé.</td><td>Dissertation.</td><td>Le législateur répartit le travail entre deux conseils et confie l'exécutif au Directoire. Tu recherches dans le texte ce que chaque organe peut faire, puis comment ces règles organisent leurs rapports.</td></tr>
+              <tr><td><strong>8. Le roi et l'exécution des lois dans la Charte de 1830.</strong><br>Entraînement proposé, corrigé ci-dessous.</td><td>Commentaire des articles 12 et 13.</td><td>Le roi détient l'exécutif et prend des règlements pour appliquer les lois. Le texte lui interdit aussi de suspendre ces lois. Le commentaire explique comment ces pouvoirs royaux s'exercent dans une monarchie constitutionnelle.</td></tr>
+              <tr><td><strong>9. Comment les transformations du Second Empire modifient-elles les rapports entre l'empereur et les Chambres ?</strong><br>Entraînement proposé.</td><td>Dissertation.</td><td>Tu compares les compétences prévues au début du régime avec les changements ultérieurs étudiés dans ton cours. Pour chaque réforme, il faut préciser quelle assemblée obtient quel pouvoir et ce que le gouvernement doit désormais accepter.</td></tr>
+              <tr><td><strong>10. Le rétablissement de la légalité républicaine en 1944.</strong><br>Entraînement proposé.</td><td>Commentaire de l'ordonnance du 9 août 1944.</td><td>L'ordonnance affirme que la République a continué d'exister. Tu expliques ensuite comment elle traite les actes de Vichy, en distinguant la nullité expressément constatée et le maintien provisoire de certaines règles.</td></tr>
+              <tr><td><strong>11. Comment les députés peuvent-ils renverser le gouvernement dans le texte de 1958 ?</strong><br>Entraînement proposé.</td><td>Question de cours développée.</td><td>Les articles 49 et 50 organisent la responsabilité du gouvernement devant l'Assemblée nationale. Tu expliques notamment la motion de censure, le vote par lequel les députés retirent leur soutien au gouvernement, puis l'obligation de démissionner lorsqu'elle est adoptée.</td></tr>
+              <tr><td><strong>12. Comment le président de la République est-il élu dans le texte initial de 1958 ?</strong><br>Entraînement proposé.</td><td>Question de cours.</td><td>Tu lis l'article 6 dans sa version de 1958 pour identifier les électeurs du président. La modification de 1962 doit ensuite recevoir sa propre date, afin que les institutions de 1958 restent expliquées avec leur rédaction d'origine.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Les annales permettent de voir plusieurs formes d'épreuve. Leur sélection dépend toutefois du programme et des sessions disponibles. Tu peux donc les utiliser pour t'entraîner, avec les consignes de ton enseignant comme repère pour le partiel.</p>
+      </div>
+    </section>
+
+    <section class="section" id="commentaire">
+      <div class="container container--narrow prose">
+        <h2 class="h2">Commentaire corrigé des articles 12 et 13 de la Charte de 1830</h2>
+        <p>Ce commentaire est un entraînement proposé pour cette page. Le texte permet de travailler une difficulté fréquente dans les cours sur les monarchies constitutionnelles, la différence entre les compétences écrites du roi et la pratique parlementaire. Tu peux d'abord préparer ton introduction et un plan détaillé, puis comparer ton raisonnement à la copie.</p>
+        <h3 class="h3">Le texte à commenter</h3>
+        <blockquote>
+          <p><strong>Article 12.</strong> « La personne du roi est inviolable et sacrée. Ses ministres sont responsables. Au roi seul appartient la puissance exécutive. »</p>
+          <p><strong>Article 13.</strong> « Le roi est le chef suprême de l'Etat ; il commande les forces de terre et de mer, déclare la guerre, fait les traités de paix, d'alliance et de commerce, nomme à tous les emplois d'administration publique, et fait les règlements et ordonnances nécessaires pour l'exécution des lois, sans pouvoir jamais ni suspendre les lois elles-mêmes ni dispenser de leur exécution. - Toutefois aucune troupe étrangère ne pourra être admise au service de l'Etat qu'en vertu d'une loi. »</p>
+        </blockquote>
+        <p>La Charte est publiée le 14 août 1830 après sa révision et son acceptation par Louis-Philippe. Pour préparer le commentaire, tu sépares les compétences attribuées au roi des limites qui accompagnent leur exercice. La question devient alors celle de savoir comment ces articles conservent un pouvoir royal étendu tout en soumettant l'exécution des lois à des obligations constitutionnelles.</p>
+
+        <div class="card" style="padding:24px;margin:24px 0">
+          <h3 class="h3">L'introduction de la copie</h3>
+          <p>La Charte de 1830 maintient un roi à la tête de l'État tout en limitant l'usage de ses pouvoirs. Les articles 12 et 13 réunissent les dispositions sur la personne du roi et sur l'exécutif. Leur lecture permet donc d'examiner comment une monarchie constitutionnelle organise l'autorité royale.</p>
+          <p>Les journées de juillet 1830 entraînent la chute de Charles X. Les Chambres révisent ensuite la Charte de 1814, et Louis-Philippe accepte le texte avant sa publication le 14 août. La nouvelle rédaction précise notamment que le roi doit respecter les lois lorsqu'il prend les ordonnances nécessaires à leur exécution.</p>
+          <p>Le pouvoir exécutif comprend ici la conduite du gouvernement et l'application des lois. Le texte l'attribue au roi, mais distingue aussi sa personne de ses ministres responsables. Comment la Charte maintient-elle l'autorité du roi tout en encadrant l'exercice du pouvoir exécutif ? Les articles lui conservent d'abord une place centrale dans le gouvernement de l'État (I). Ils soumettent ensuite son action au respect des lois et à la responsabilité des ministres (II).</p>
+
+          <h3 class="h3">I. Le roi conserve la direction du pouvoir exécutif</h3>
+          <p>L'article 12 attribue l'exécutif au roi, puis l'article 13 énumère les compétences qui lui permettent de gouverner. Il faut donc expliquer ce que cette attribution signifie avant d'examiner ses limites.</p>
+          <h4>A. Un exécutif attribué au roi</h4>
+          <p>L'article 12 dispose qu'« au roi seul appartient la puissance exécutive ». Le roi conserve ainsi la direction de cette fonction de l'État. La révision de la Charte maintient la monarchie et l'autorité du souverain dans le gouvernement du pays.</p>
+          <p>De plus, le même article déclare sa personne « inviolable et sacrée ». Les Chambres ne peuvent donc pas mettre le roi en accusation ni le juger pour les actes du gouvernement. La Charte prévoit en revanche la mise en accusation et le jugement de ses ministres, qu'elle déclare responsables.</p>
+          <p>Cependant, cette attribution de l'exécutif doit être distinguée du pouvoir de faire la loi. D'après l'article 14 de la Charte, le roi exerce la puissance législative avec les deux Chambres. Il participe ainsi à la loi dans un cadre qui demande aussi l'intervention des assemblées.</p>
+          <h4>B. Des compétences royales qui concernent la conduite de l'État</h4>
+          <p>L'article 13 précise que le roi est « le chef suprême de l'Etat ». Il lui confie notamment le commandement militaire et les relations avec les autres États. Le roi déclare la guerre et conclut les traités mentionnés dans le texte, ce qui lui permet de conduire la politique extérieure.</p>
+          <p>Ensuite, le pouvoir de nomination lui donne un rôle dans l'administration. Les personnes nommées exercent les fonctions publiques nécessaires au fonctionnement de l'État. Cette compétence complète donc l'attribution générale du pouvoir exécutif donnée par l'article précédent.</p>
+          <p>Enfin, le roi prend des règlements et des ordonnances pour appliquer les lois. Ces actes précisent les mesures nécessaires à leur exécution. Le texte conserve ainsi au roi les moyens de gouverner, tout en définissant la fonction que ces actes doivent remplir.</p>
+          <p>Cependant, la dernière phrase de l'article 13 soumet l'admission de troupes étrangères au service de l'État à une loi. Le commandement militaire du roi s'exerce donc avec cette condition particulière. Une décision prise par le roi seul ne permettrait pas d'admettre ces troupes.</p>
+
+          <h3 class="h3">II. L'exercice du pouvoir royal doit respecter les lois</h3>
+          <p>Le pouvoir réglementaire reçoit une limite écrite dans l'article 13. La responsabilité des ministres complète ensuite l'organisation de l'exécutif, avec des effets qu'il faut distinguer de la pratique politique développée sous le régime.</p>
+          <h4>A. Des ordonnances prises pour exécuter les lois</h4>
+          <p>Le roi peut prendre les actes « nécessaires pour l'exécution des lois ». Ces mots donnent un objet à son pouvoir réglementaire. Une ordonnance doit permettre l'application de la loi, alors qu'une suspension empêcherait cette application pendant une certaine durée.</p>
+          <p class="exemple-pedagogique">Par exemple, une loi prévoit le paiement d'un impôt. Une ordonnance peut alors organiser les formalités de sa perception. En revanche, le roi ne peut pas décider par ordonnance que les personnes visées par la loi seront dispensées de cet impôt. Cette dispense empêcherait l'application de la règle votée.</p>
+          <p>La suite de l'article interdit justement au roi de suspendre les lois ou de dispenser de leur exécution. Il doit donc les faire appliquer, y compris lorsqu'il désapprouve leur contenu. Cette limite concerne la relation entre l'acte pris par le roi et la loi que cet acte exécute.</p>
+          <p>La comparaison avec l'article 14 de la Charte de 1814 explique le choix de cette rédaction. En effet, le texte de 1814 mentionnait les ordonnances nécessaires à l'exécution des lois et à la sûreté de l'État. En 1830, la référence à cette sûreté disparaît de la disposition, tandis qu'une interdiction de suspendre les lois apparaît expressément. Le roi conserve donc son pouvoir réglementaire dans un texte qui précise davantage ses obligations.</p>
+          <h4>B. La responsabilité des ministres et le développement ultérieur du parlementarisme</h4>
+          <p>L'article 12 indique que les ministres sont responsables, alors que la personne du roi est inviolable. La Charte prévoit aussi la possibilité pour la Chambre des députés d'accuser les ministres et pour la Chambre des pairs de les juger. Le texte organise donc une responsabilité qui peut donner lieu à une mise en accusation et à un jugement.</p>
+          <p>La responsabilité politique concerne un autre mécanisme. Un gouvernement doit alors conserver le soutien de la majorité parlementaire pour rester en fonctions. Sous la monarchie de Juillet, cette dépendance se développe par la pratique des rapports entre le roi et les Chambres.</p>
+          <p>Les articles 12 et 13 s'expliquent ainsi à deux niveaux. Leurs dispositions maintiennent l'autorité exécutive du roi et encadrent ses ordonnances. La pratique politique du régime conduit ensuite à examiner le soutien dont les ministres disposent au Parlement, en plus du soutien du roi.</p>
+        </div>
+        <p>Dans ta copie, chaque sous-partie repart des mots étudiés. La citation sur l'exécution des lois conduit ainsi à expliquer la fonction d'une ordonnance, puis la limite imposée au roi. Les connaissances sur le régime servent cette explication du passage.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="questions-cours">
+      <div class="container container--narrow prose">
+        <h2 class="h2">Quatre questions de cours pour vérifier tes connaissances</h2>
+        <h3 class="h3">1. La Constitution de 1793 a-t-elle été appliquée ?</h3>
+        <p>La Constitution de 1793 a été adoptée, mais elle est restée inappliquée. Le gouvernement révolutionnaire correspond donc à l'organisation effectivement utilisée pendant cette période. Si ton sujet porte sur 1793, tu précises si tu expliques les institutions prévues par la Constitution ou celles qui ont exercé le pouvoir.</p>
+        <h3 class="h3">2. Le roi de 1830 propose-t-il seul les lois ?</h3>
+        <p>L'article 15 donne l'initiative des lois au roi et aux deux Chambres. Chacun peut donc proposer un texte, et l'article 14 organise l'exercice de la puissance législative entre ces trois autorités. Tu distingues cette compétence de l'exécutif que l'article 12 attribue au roi.</p>
+        <h3 class="h3">3. Le coup d'État de 1851 rétablit-il immédiatement l'Empire ?</h3>
+        <p>Louis-Napoléon Bonaparte réalise son coup d'État le 2 décembre 1851. La proclamation de l'Empire intervient le 2 décembre 1852. Ta réponse distingue donc la prise du pouvoir et le rétablissement du titre impérial, car ces événements appartiennent à deux étapes différentes.</p>
+        <h3 class="h3">4. Les Français élisent-ils directement le président en 1958 ?</h3>
+        <p>Dans le texte initial de 1958, un collège électoral désigne le président de la République. Ce collège comprend notamment les membres du Parlement et les représentants élus des conseils municipaux. En revanche, la révision de 1962 introduit l'élection au suffrage universel direct. Tu conserves donc le mode d'élection de 1958 lorsque tu commentes un document de cette année.</p>
+      </div>
+    </section>
+
+    <section class="section" id="methode">
+      <div class="container container--narrow prose">
+        <h2 class="h2">Comment travailler ces sujets avant le partiel ?</h2>
+        <p>Tu peux commencer par le commentaire de 1830 en gardant le texte sous les yeux. Pour chaque phrase, tu notes l'autorité concernée et ce qu'elle peut faire. Tu recherches ensuite dans ton cours l'explication de cette compétence, puis la limite qui l'accompagne.</p>
+        <p>Dans une dissertation, le brouillon part des mots du sujet et de ses dates. Sur les coups d'État, par exemple, chaque événement retenu doit servir une comparaison. Tu expliques qui utilise la force et quelle règle constitutionnelle est contournée. Tu gardes donc dans le développement les événements qui permettent d'établir cette comparaison.</p>
+        <p>Le commentaire demande aussi de respecter la date du document. Les propos de Grévy et de Lamartine s'expliquent par les choix possibles en 1848. Le coup d'État de 1851 permet ensuite d'évaluer leurs craintes, mais son résultat doit rester distinct de ce que les orateurs pouvaient savoir au moment du débat.</p>
+        <p>La <a href="methode-du-commentaire-de-texte-juridique.html">méthode du commentaire de texte juridique</a> détaille la préparation du texte. Pour compléter les connaissances nécessaires à ces exercices, la <a href="histoire-des-institutions-l1.html">fiche complète d'histoire des institutions L1</a> suit chaque régime jusqu'à 1958. Le <a href="corriges.html">catalogue des corrigés</a> présente aussi le recueil de dix dissertations de la matière.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="faq">
+      <div class="container container--narrow">
+        <h2 class="h2">Questions sur les sujets d'histoire des institutions L1</h2>
+        <div class="accordion">
+          <details class="accordion__item"><summary class="accordion__trigger">Ces sujets correspondent-ils à toutes les facultés de droit ?</summary><div class="accordion__body"><p>Le programme change selon les facultés. Cette page couvre les institutions françaises de 1789 à 1958. Tu compares donc ces bornes à celles de ton cours, puis tu choisis les sujets qui correspondent aux périodes étudiées.</p></div></details>
+          <details class="accordion__item"><summary class="accordion__trigger">Quel corrigé d'histoire des institutions est gratuit sur cette page ?</summary><div class="accordion__body"><p>La page propose un commentaire entièrement rédigé des articles 12 et 13 de la Charte de 1830. Tu retrouves le texte étudié et l'introduction de la copie. Le développement explique ensuite les compétences du roi et les limites de ses ordonnances.</p></div></details>
+          <details class="accordion__item"><summary class="accordion__trigger">Que contient la fiche d'histoire des institutions en PDF ?</summary><div class="accordion__body"><p>La fiche complète compte 99 pages et dix-huit chapitres sur les institutions françaises de 1789 à 1958. Elle est accompagnée de son plan détaillé et de cartes mentales. Le recueil de dix dissertations corrigées s'achète séparément.</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--sm">
+      <div class="container container--narrow">
+        <p style="font-size:.875rem;color:var(--muted)">Sources. Annales d'histoire du droit et des institutions de Valérie Ménès-Redorat, sessions de 2018 à 2024, conservées dans les dossiers de cours de Julien. <a href="https://www.elysee.fr/la-presidence/la-charte-constitutionnelle-du-14-aout-1830" rel="noopener">Élysée, texte de la Charte de 1830</a>. <a href="https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/monarchie-de-juillet/la-charte-constitutionnelle-revisee" rel="noopener">Assemblée nationale, histoire de la Charte révisée</a>. Les sources institutionnelles ont été relues le 10 novembre 2026.</p>
+        <div class="author-box">
+          <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+          <div>
+            <p class="author-box__name">Julien</p>
+            <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+            <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">164 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- fin-article:pack-ultra -->
+    <section class="article-pack-ligne"><div class="container container--narrow"><p class="article-pack-ligne__texte">Le Pack Ultra L1 S2 réunit les 26 ressources de ton second semestre pour 229 €, dont la fiche d'histoire des institutions. <a href="pack-ultra.html#pack-ultra-l1-s2">Voir le contenu du pack →</a></p></div></section>
+  </main>
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Histoire des institutions L1, sujets et corrigé">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Histoire des institutions L1, sujets et corrigé">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Histoire des institutions L1 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-hist-institutions-l1">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=60767dcf" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=da4d9620" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=ee98d119" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>
