@@ -102,6 +102,8 @@
     }
   ],
   "redirects": [
+    {"source":"/fiches-ultra-completes.html","destination":"/formations.html","permanent":true},
+    {"source":"/fiches-ultra-completes","destination":"/formations.html","permanent":true},
     {"source": "/droit-penal-general-L1", "destination": "/droit-penal-general-l1.html", "permanent": true},
     {"source": "/droit-penal-general-L1.html", "destination": "/droit-penal-general-l1.html", "permanent": true},
     {
