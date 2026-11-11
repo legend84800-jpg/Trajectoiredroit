@@ -1,7 +1,7 @@
 {
   "produits": {
     "fiche-societes-l3-s2": {
-      "sha256": "51415931a9af4b6c199899006bced54409a0180a583e44c5f2ed129f4367c14c",
+      "sha256": "603107021325ebe9231e03604ea47c3606a36d2e68167a80c022d10334944926",
       "pages_pdf": 171,
       "famille": "fiches",
       "fichier_pdf": "fiche-societes-l3-s2.pdf",
@@ -231,8 +231,8 @@
       }
     },
     "fiche-da-l2-s2": {
-      "sha256": "39bb5b4219685122f13187c3400b285e96a6faf51c629b8cb1991b21c7c56915",
-      "pages_pdf": 110,
+      "sha256": "f0faa37bf9a2a8b3fcaf4b2d52b80e4cac9a7d0e940e34f84132ac9a31ebe97c",
+      "pages_pdf": 109,
       "famille": "fiches",
       "fichier_pdf": "fiche-da-l2-s2.pdf",
       "images": [
@@ -334,7 +334,7 @@
       }
     },
     "fiche-constit-l1-s1": {
-      "sha256": "b8024550c1eea0368dfb53bbe7eda0a065fdda8903a86ba0a95e0fd6f2fe4073",
+      "sha256": "9b93f08d683747ee5138640adc8d64a0000ffecced40908de1b8410f2fe23f8b",
       "pages_pdf": 193,
       "famille": "fiches",
       "fichier_pdf": "fiche-constit-l1-s1.pdf",
@@ -1104,7 +1104,7 @@
       }
     },
     "fiche-famille-l1-s2": {
-      "sha256": "4538141c38f14b5afb14407f83b8a9d4492657cece7f76374309f632b9fe1bb9",
+      "sha256": "1517b8815c861466eed032bf7283a06eabce3b4dd3a61e0896ea0087afd68f5b",
       "pages_pdf": 136,
       "famille": "fiches",
       "fichier_pdf": "fiche-famille-l1-s2.pdf",
@@ -1210,7 +1210,7 @@
       }
     },
     "fiche-contrats-l2-s1": {
-      "sha256": "ae54efaf62b662edda06e5968eab8cf3ac52d3d65eac7a5b859dccb0deba3ee2",
+      "sha256": "f29fdcd99f0dfb70c9f6546b69ac5d1661c07cad9fcfc9387fba342573453f78",
       "pages_pdf": 205,
       "famille": "fiches",
       "fichier_pdf": "fiche-contrats-l2-s1.pdf",
@@ -1317,7 +1317,7 @@
       }
     },
     "fiche-obligations-l2-s2": {
-      "sha256": "a9fa7ceb200ff4a111b7629fc1fb67e7e4b66d21f0c67fbfae25cad02e1e28bd",
+      "sha256": "cd136bd30a2ac513efa6a767913cc9f0e3c5ef3b0122c4ffa3610bcc8f416ac5",
       "pages_pdf": 91,
       "famille": "fiches",
       "fichier_pdf": "fiche-obligations-l2-s2.pdf",
@@ -1418,7 +1418,7 @@
       }
     },
     "fiche-penal-general-l1": {
-      "sha256": "00fae925488b716955106b1aa2da8a8d20cc49defd54fd5a6834fb2ae464edfd",
+      "sha256": "539d9c1ab2cf58f0476594387c41df1ec1b350e0d951d0cf76a6b1a10e9afac4",
       "pages_pdf": 108,
       "famille": "fiches",
       "fichier_pdf": "fiche-penal-general-l1.pdf",
@@ -1665,7 +1665,7 @@
       }
     },
     "fiche-biens-l2": {
-      "sha256": "80c84128cfba08169d93a8e3d8df8775d5543623c331c47e66117c7d32b5cdd9",
+      "sha256": "03c0d86eda9ac910e750db34059602d57cc1ea9386323b4938ade70037de140a",
       "pages_pdf": 124,
       "famille": "fiches",
       "fichier_pdf": "fiche-biens-l2.pdf",
@@ -2032,7 +2032,7 @@
       }
     },
     "fiche-contrats-speciaux-l3": {
-      "sha256": "096f40249edb6925896e09fcd4f655dd4d34adf9976be8737ca1b426c816af83",
+      "sha256": "63f946844800fbc7606367cceac359eeffbdb86bf10f2e5ec7782d153582d8bd",
       "pages_pdf": 149,
       "famille": "fiches",
       "fichier_pdf": "fiche-contrats-speciaux-l3.pdf",
@@ -2186,13 +2186,13 @@
       }
     },
     "fiche-travail-l3-s1": {
-      "sha256": "14f4f433816ac6f9b10d36b4721d0e672820e2dc64b679c68080145af832500b",
+      "sha256": "da66f9ce8ea70a33136ffcc6ac4baa0288e1f0b821be4ea889016077fc56c889",
       "pages_pdf": 157,
       "famille": "fiches",
       "fichier_pdf": "fiche-travail-l3-s1.pdf",
       "images": [
         "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p026.webp",
-        "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p027.webp",
+        "assets/apercus/affichage-20261111-complet/fiche-travail-l3-s1/da66f9ce8ea7-p027.webp",
         "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p084.webp",
         "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p085.webp",
         "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p020.webp",
@@ -2226,7 +2226,7 @@
           ],
           "images": [
             "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p026.webp",
-            "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p027.webp",
+            "assets/apercus/affichage-20261111-complet/fiche-travail-l3-s1/da66f9ce8ea7-p027.webp",
             "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p084.webp",
             "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p085.webp",
             "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p020.webp",
@@ -2307,9 +2307,9 @@
             2021
           ]
         },
-        "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p027.webp": {
+        "assets/apercus/affichage-20261111-complet/fiche-travail-l3-s1/da66f9ce8ea7-p027.webp": {
           "page_pdf": 27,
-          "sha256_image": "9cb4ef4fce7d0894ab81d33e91c8aee17ad98803e8a0d2ef8f5f3371bc784774",
+          "sha256_image": "8b2e1a12957cd6ed588094a18289708f4a93a80df0edbc9fdb1c1009ddad770a",
           "dimensions": [
             1429,
             2021
@@ -2351,7 +2351,7 @@
       }
     },
     "fiche-procedure-penale-l3": {
-      "sha256": "a2e8b5920c14caf18b82c0793d1fe6f6db923bc5d774a59d311224c872071c69",
+      "sha256": "34eb67ae2e16e676f4d42aeb15fe9394e59eb465dfc25ba1ecdc13a603fea739",
       "pages_pdf": 124,
       "famille": "fiches",
       "fichier_pdf": "fiche-procedure-penale-l3.pdf",
@@ -2482,7 +2482,7 @@
       }
     },
     "fiche-relations-internationales-l1": {
-      "sha256": "39238bf2d5275f11791a889bd6e42105976f83bade285b6dedd86dcb15875b2c",
+      "sha256": "38d5a595501db10f120e6b5f1d88299464729dac729233e080a878bc8f9ab390",
       "pages_pdf": 159,
       "famille": "fiches",
       "fichier_pdf": "fiche-relations-internationales-l1.pdf",
@@ -2585,7 +2585,7 @@
       }
     },
     "maj-dip-l3-s2": {
-      "sha256": "febf6f4751b5fbec660b8b88050c2c7eea25e12111a44fc775aa1b22fa4b779d",
+      "sha256": "e0431d147bf18648575af42f1d98dae0d94119eaee5766f75618822786f28225",
       "pages_pdf": 43,
       "famille": "majeures",
       "fichier_pdf": "maj-dip-l3-s2.pdf",
@@ -2593,7 +2593,7 @@
         "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p016.webp",
         "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p002.webp",
         "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p003.webp",
-        "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p037.webp"
+        "assets/apercus/affichage-20261111-complet/maj-dip-l3-s2/e0431d147bf1-p037.webp"
       ],
       "pages_images": [
         16,
@@ -2618,7 +2618,7 @@
             "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p016.webp",
             "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p002.webp",
             "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p003.webp",
-            "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p037.webp"
+            "assets/apercus/affichage-20261111-complet/maj-dip-l3-s2/e0431d147bf1-p037.webp"
           ],
           "versions_precedentes": [
             [
@@ -2689,9 +2689,9 @@
             2021
           ]
         },
-        "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p037.webp": {
+        "assets/apercus/affichage-20261111-complet/maj-dip-l3-s2/e0431d147bf1-p037.webp": {
           "page_pdf": 37,
-          "sha256_image": "76de41e9b98b6dff894f4be3c5e7c784a49267ffd161de549858a95644ea6a22",
+          "sha256_image": "30414f63c71a78113aac5f05ea6e531e8758e35aceb94b45b6b181b5ddc2b4b8",
           "dimensions": [
             1429,
             2021
@@ -2700,7 +2700,7 @@
       }
     },
     "maj-procedure-penale-l3": {
-      "sha256": "93083fdcd26954ff2e7ca1f6c0197bec49f7cc9203265a60671274c7ccf6740f",
+      "sha256": "0e9e9aaf9b2cfe9f29fca10a8c90689c5589457439de271fbbc9a68ea1138ef4",
       "pages_pdf": 196,
       "famille": "majeures",
       "fichier_pdf": "maj-procedure-penale-l3.pdf",
@@ -2709,7 +2709,7 @@
         "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p002.webp",
         "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p003.webp",
         "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p004.webp",
-        "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p017.webp"
+        "assets/apercus/affichage-20261111-complet/maj-procedure-penale-l3/0e9e9aaf9b2c-p017.webp"
       ],
       "pages_images": [
         144,
@@ -2737,7 +2737,7 @@
             "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p002.webp",
             "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p003.webp",
             "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p004.webp",
-            "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p017.webp"
+            "assets/apercus/affichage-20261111-complet/maj-procedure-penale-l3/0e9e9aaf9b2c-p017.webp"
           ],
           "versions_precedentes": [
             [
@@ -2809,9 +2809,9 @@
             2021
           ]
         },
-        "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p017.webp": {
+        "assets/apercus/affichage-20261111-complet/maj-procedure-penale-l3/0e9e9aaf9b2c-p017.webp": {
           "page_pdf": 17,
-          "sha256_image": "62754b792731d38fb1d9647cd5f088d57453374870bbf39e2ef958dac73002ba",
+          "sha256_image": "d1f63c27ded3d1b849e89b55f3aa7ac437ecf9628b23f5366265075ae0fbb640",
           "dimensions": [
             1429,
             2021
@@ -2828,12 +2828,12 @@
       }
     },
     "maj-procedure-civile-l3-s1": {
-      "sha256": "be9ba504785226d8a709291cb40f2e92319557b3bf4d580173a0e71f2f2c3ac3",
+      "sha256": "8a737f9688126cd2e23ec5d9a5aab25bb1a124d97960eee772b337a0fb38baf3",
       "pages_pdf": 117,
       "famille": "majeures",
       "fichier_pdf": "maj-procedure-civile-l3-s1.pdf",
       "images": [
-        "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp",
+        "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp",
         "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p002.webp",
         "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p003.webp",
         "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p050.webp"
@@ -2858,7 +2858,7 @@
             50
           ],
           "images": [
-            "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp",
+            "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp",
             "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p002.webp",
             "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p003.webp",
             "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p050.webp"
@@ -2932,9 +2932,9 @@
             2021
           ]
         },
-        "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp": {
+        "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp": {
           "page_pdf": 53,
-          "sha256_image": "c4b235ad268f8349529cdd9ba2200a3a629a3aa6635b94d724ba38661e420381",
+          "sha256_image": "d3c9caa3ff8c5805a6f49cca3d0e2913d8e82d5bd02c1c1ddef878017cd8dc7f",
           "dimensions": [
             1429,
             2021
@@ -3088,7 +3088,7 @@
       }
     },
     "maj-penal-special-l3": {
-      "sha256": "494b1a52e4879f4b9c2e74128946071b870a87158a8ad82478375df1d8445269",
+      "sha256": "adff07439c94ef73c584552c8464e192e9feb2e111991850b041161f87c48729",
       "pages_pdf": 122,
       "famille": "majeures",
       "fichier_pdf": "maj-penal-special-l3.pdf",
@@ -3203,7 +3203,7 @@
       }
     },
     "maj-travail-l3-s1": {
-      "sha256": "9a0bf83a500d9fd09f548ebcf83b0015caf12f2c2ccfb69e9465290f3bc1cf52",
+      "sha256": "3bc58fb4d77f6c6bc171b27fa12b47966cff19a42277b9d988ea6e4549859d30",
       "pages_pdf": 163,
       "famille": "majeures",
       "fichier_pdf": "maj-travail-l3-s1.pdf",
@@ -3328,13 +3328,13 @@
       }
     },
     "maj-contrats-speciaux-l3": {
-      "sha256": "d5c7ea5687dafe08b551432c11bd041602d806188e1d6ca221549b6d19a75262",
+      "sha256": "1c5074f3aec05494b61859527c8ff142d9742d6ce23eae71a29bb5e3f761f8de",
       "pages_pdf": 219,
       "famille": "majeures",
       "fichier_pdf": "maj-contrats-speciaux-l3.pdf",
       "images": [
         "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p035.webp",
-        "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p036.webp",
+        "assets/apercus/affichage-20261111-complet/maj-contrats-speciaux-l3/1c5074f3aec0-p036.webp",
         "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p037.webp",
         "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p002.webp",
         "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p003.webp",
@@ -3368,7 +3368,7 @@
           ],
           "images": [
             "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p035.webp",
-            "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p036.webp",
+            "assets/apercus/affichage-20261111-complet/maj-contrats-speciaux-l3/1c5074f3aec0-p036.webp",
             "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p037.webp",
             "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p002.webp",
             "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p003.webp",
@@ -3482,9 +3482,9 @@
             2021
           ]
         },
-        "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p036.webp": {
+        "assets/apercus/affichage-20261111-complet/maj-contrats-speciaux-l3/1c5074f3aec0-p036.webp": {
           "page_pdf": 36,
-          "sha256_image": "b83c349fcb741d90e046559be6c00489963637dfe0424766093db11c0d951655",
+          "sha256_image": "62e7fd20ccc7261fc7fa2419f90ee8cb1131726eafd1dfe2840486643ba380f9",
           "dimensions": [
             1429,
             2021
@@ -3909,7 +3909,7 @@
       }
     },
     "maj-da-l2-s2": {
-      "sha256": "477d7f7add280349e99a8d797a828b818ac103818867a1e54747343b0b7c9a41",
+      "sha256": "1af3b3a521671ca8696e3c4de577b1852bfe81e915d9f7d7e0b1a701285efbc2",
       "pages_pdf": 61,
       "famille": "majeures",
       "fichier_pdf": "maj-da-l2-s2.pdf",
@@ -4008,7 +4008,7 @@
       }
     },
     "maj-contrats-l2-s1": {
-      "sha256": "e05c86006b801f17739124f927d733ef9a0a3a62815f9c1b50712ea736db4480",
+      "sha256": "6e5e7468b96626c864c1e98e2188314799da2cbddcc686f694e78f7dff626e46",
       "pages_pdf": 60,
       "famille": "majeures",
       "fichier_pdf": "maj-contrats-l2-s1.pdf",
@@ -4295,7 +4295,7 @@
       }
     },
     "maj-penal-l2-s1": {
-      "sha256": "5b25ff3359732475cd8fedb86ee3e17ea4ac4f280e5d03e2b5f11c37d31381cc",
+      "sha256": "5d1e14fd703ccf5af7136d63597f211d2049b773e7b8c2339d843fc9895aa625",
       "pages_pdf": 73,
       "famille": "majeures",
       "fichier_pdf": "maj-penal-l2-s1.pdf",
@@ -4583,7 +4583,7 @@
       }
     },
     "maj-commercial-l3-s1": {
-      "sha256": "33ca5bf24f7318efff97954a12559746bb2265dd347b7b622dd72046d04fee45",
+      "sha256": "3d2f57bcb02b923faecc6d6ffd25610e5aa45418829b5707bc9dd70177ae2562",
       "pages_pdf": 104,
       "famille": "majeures",
       "fichier_pdf": "maj-commercial-l3-s1.pdf",
@@ -4880,7 +4880,7 @@
       }
     },
     "cours-fiche-societes-l3-s2": {
-      "sha256": "558af52e851ac1eb3001a9dd0ddbd671d809022c173bd8a78951111dc3b30f22",
+      "sha256": "d0d921525af70331d69200b3d2a3ec838b515581e3239d085e61edd3829666bc",
       "pages_pdf": 387,
       "famille": "cours",
       "fichier_pdf": "cours-fiche-societes-l3-s2.pdf",
@@ -5083,7 +5083,7 @@
       }
     },
     "cours-fiche-societes-l3-s1": {
-      "sha256": "cf68efcf0eb6d539eb459f768b388fddc67e089c473e50943075d0041da57bf4",
+      "sha256": "6c6af9933bde150a0ce13ae8f6d98c62c2536c4fe1dbb3940d186be05b0ec239",
       "pages_pdf": 165,
       "famille": "cours",
       "fichier_pdf": "cours-fiche-societes-l3-s1.pdf",
@@ -5555,7 +5555,7 @@
       }
     },
     "cours-fiche-penal-l2-s1": {
-      "sha256": "988785c8971fe510ec26e6be800e860c3f332a5f5d9ec95a381aad63cfd08528",
+      "sha256": "fcd5f2fb65e398e3015f04e7b994e26fc3bbc028bf9a7b759593c7c55809832e",
       "pages_pdf": 163,
       "famille": "cours",
       "fichier_pdf": "cours-fiche-penal-l2-s1.pdf",
@@ -5640,8 +5640,8 @@
       }
     },
     "cours-fiche-contrats-l2-s1": {
-      "sha256": "c7a9c481fb6c24bc74756e5b936ec2db8434ece0dd3fedc9e59ffba8e5e6df03",
-      "pages_pdf": 287,
+      "sha256": "ed7dc259e1412ef48969bbb16d2cb9038b80993516f3d0aca803280900a77624",
+      "pages_pdf": 288,
       "famille": "cours",
       "fichier_pdf": "cours-fiche-contrats-l2-s1.pdf",
       "images": [
@@ -5710,8 +5710,8 @@
       }
     },
     "cours-fiche-da-l2-s1": {
-      "sha256": "dc6c3d1f1a7f0912bc4bd30061d492d95f27aa8f054f0ebe3d5898c53484b13d",
-      "pages_pdf": 151,
+      "sha256": "9b148e7c29ad588310bbcc32bc4bcb4cba453722a554fe23564938c99507a925",
+      "pages_pdf": 150,
       "famille": "cours",
       "fichier_pdf": "cours-fiche-da-l2-s1.pdf",
       "images": [
@@ -6638,7 +6638,7 @@
       }
     },
     "cours-fiche-finances-publiques-l2-s1": {
-      "sha256": "5003843c2c8aab97b68da9b72131339f86998055ab611c31656e446c7bf3e670",
+      "sha256": "bb42530a71004d79af539d540db871cace87172c9cb3f7cb8a756d0af38a4edd",
       "pages_pdf": 67,
       "famille": "fiches",
       "fichier_pdf": "cours-fiche-finances-publiques-l2-s1.pdf",
@@ -7242,12 +7242,12 @@
     "assets/apercus/maj-procedure-civile-l3-s1-zoom.webp": {
       "produit": "maj-procedure-civile-l3-s1",
       "page": 53,
-      "image": "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp"
     },
     "assets/apercus/maj-procedure-civile-l3-s1-1.webp": {
       "produit": "maj-procedure-civile-l3-s1",
       "page": 53,
-      "image": "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp"
     },
     "assets/apercus/maj-procedure-civile-l3-s1-2.webp": {
       "produit": "maj-procedure-civile-l3-s1",
@@ -8056,7 +8056,7 @@
     "assets/apercus/lisibilite-20261107/maj-procedure-civile-l3-s1/7b605065c791-p053.webp": {
       "produit": "maj-procedure-civile-l3-s1",
       "page": 53,
-      "image": "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-procedure-civile-l3-s1/7b605065c791-p002.webp": {
       "produit": "maj-procedure-civile-l3-s1",
@@ -8106,7 +8106,7 @@
     "assets/apercus/lisibilite-20261107/maj-procedure-civile-l3-s1/2b0afbcf1ceb-p053.webp": {
       "produit": "maj-procedure-civile-l3-s1",
       "page": 53,
-      "image": "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-procedure-civile-l3-s1/2b0afbcf1ceb-p002.webp": {
       "produit": "maj-procedure-civile-l3-s1",
@@ -8186,7 +8186,7 @@
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/f973bb7d8e1f-p025.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 36,
-      "image": "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p036.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-contrats-speciaux-l3/1c5074f3aec0-p036.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/f973bb7d8e1f-p026.webp": {
       "produit": "maj-contrats-speciaux-l3",
@@ -8721,7 +8721,7 @@
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/e64d033e866a-p025.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 36,
-      "image": "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p036.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-contrats-speciaux-l3/1c5074f3aec0-p036.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/e64d033e866a-p026.webp": {
       "produit": "maj-contrats-speciaux-l3",
@@ -8841,7 +8841,7 @@
     "assets/apercus/lisibilite-20261107/maj-procedure-civile-l3-s1/642b1b03dbaf-p053.webp": {
       "produit": "maj-procedure-civile-l3-s1",
       "page": 53,
-      "image": "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-procedure-civile-l3-s1/642b1b03dbaf-p002.webp": {
       "produit": "maj-procedure-civile-l3-s1",
@@ -10091,7 +10091,7 @@
     "assets/apercus/lisibilite-20261107/fiche-travail-l3-s1/78250a7a2200-p027.webp": {
       "produit": "fiche-travail-l3-s1",
       "page": 27,
-      "image": "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p027.webp"
+      "image": "assets/apercus/affichage-20261111-complet/fiche-travail-l3-s1/da66f9ce8ea7-p027.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-travail-l3-s1/78250a7a2200-p055.webp": {
       "produit": "fiche-travail-l3-s1",
@@ -10146,7 +10146,7 @@
     "assets/apercus/lisibilite-20261107/maj-dip-l3-s2/b18bca738890-p037.webp": {
       "produit": "maj-dip-l3-s2",
       "page": 37,
-      "image": "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p037.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-dip-l3-s2/e0431d147bf1-p037.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-procedure-civile-l3-s1/448c0d0edaa6-p002.webp": {
       "produit": "maj-procedure-civile-l3-s1",
@@ -10166,7 +10166,7 @@
     "assets/apercus/lisibilite-20261107/maj-procedure-civile-l3-s1/448c0d0edaa6-p053.webp": {
       "produit": "maj-procedure-civile-l3-s1",
       "page": 53,
-      "image": "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-procedure-penale-l3/f2009c45411e-p002.webp": {
       "produit": "maj-procedure-penale-l3",
@@ -10186,7 +10186,7 @@
     "assets/apercus/lisibilite-20261107/maj-procedure-penale-l3/f2009c45411e-p017.webp": {
       "produit": "maj-procedure-penale-l3",
       "page": 17,
-      "image": "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p017.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-procedure-penale-l3/0e9e9aaf9b2c-p017.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-procedure-penale-l3/f2009c45411e-p144.webp": {
       "produit": "maj-procedure-penale-l3",
@@ -10301,7 +10301,7 @@
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/389613c06f2b-p025.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 36,
-      "image": "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p036.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-contrats-speciaux-l3/1c5074f3aec0-p036.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/389613c06f2b-p026.webp": {
       "produit": "maj-contrats-speciaux-l3",
@@ -10566,7 +10566,7 @@
     "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p025.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 36,
-      "image": "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p036.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-contrats-speciaux-l3/1c5074f3aec0-p036.webp"
     },
     "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p026.webp": {
       "produit": "maj-contrats-speciaux-l3",
@@ -10596,7 +10596,7 @@
     "assets/apercus/abreviations-20261110/maj-dip-l3-s2/1a48feb809f2-p037.webp": {
       "produit": "maj-dip-l3-s2",
       "page": 37,
-      "image": "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p037.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-dip-l3-s2/e0431d147bf1-p037.webp"
     },
     "assets/apercus/abreviations-20261110/maj-procedure-penale-l3/0834eaf6d96c-p002.webp": {
       "produit": "maj-procedure-penale-l3",
@@ -10616,7 +10616,7 @@
     "assets/apercus/abreviations-20261110/maj-procedure-penale-l3/0834eaf6d96c-p017.webp": {
       "produit": "maj-procedure-penale-l3",
       "page": 17,
-      "image": "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p017.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-procedure-penale-l3/0e9e9aaf9b2c-p017.webp"
     },
     "assets/apercus/abreviations-20261110/maj-procedure-penale-l3/0834eaf6d96c-p144.webp": {
       "produit": "maj-procedure-penale-l3",
@@ -10641,7 +10641,7 @@
     "assets/apercus/abreviations-20261110/maj-procedure-civile-l3-s1/0250361f2af8-p053.webp": {
       "produit": "maj-procedure-civile-l3-s1",
       "page": 53,
-      "image": "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp"
     },
     "assets/apercus/abreviations-20261110/maj-societes-l3-s1/242d6cd03877-p002.webp": {
       "produit": "maj-societes-l3-s1",
@@ -10731,7 +10731,7 @@
     "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p036.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 36,
-      "image": "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p036.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-contrats-speciaux-l3/1c5074f3aec0-p036.webp"
     },
     "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p037.webp": {
       "produit": "maj-contrats-speciaux-l3",
@@ -11126,7 +11126,7 @@
     "assets/apercus/affichage-20261110/maj-dip-l3-s2/79a46acbb056-p037.webp": {
       "produit": "maj-dip-l3-s2",
       "page": 37,
-      "image": "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p037.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-dip-l3-s2/e0431d147bf1-p037.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-intro-droit-l1/d9f8e40ba643-p002.webp": {
       "produit": "fiche-intro-droit-l1",
@@ -11216,7 +11216,7 @@
     "assets/apercus/affichage-20261110/maj-contrats-speciaux-l3/9b50b3cd7f66-p036.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 36,
-      "image": "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p036.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-contrats-speciaux-l3/1c5074f3aec0-p036.webp"
     },
     "assets/apercus/affichage-20261110/maj-contrats-speciaux-l3/9b50b3cd7f66-p037.webp": {
       "produit": "maj-contrats-speciaux-l3",
@@ -11246,7 +11246,7 @@
     "assets/apercus/affichage-20261110/maj-procedure-civile-l3-s1/3194717f0e9b-p053.webp": {
       "produit": "maj-procedure-civile-l3-s1",
       "page": 53,
-      "image": "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp"
     },
     "assets/apercus/affichage-20261110/maj-da-l2-s1/bb9383aa8fe5-p002.webp": {
       "produit": "maj-da-l2-s1",
@@ -11421,7 +11421,7 @@
     "assets/apercus/abreviations-20261110/fiche-travail-l3-s1/fbb07b59105f-p027.webp": {
       "produit": "fiche-travail-l3-s1",
       "page": 27,
-      "image": "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p027.webp"
+      "image": "assets/apercus/affichage-20261111-complet/fiche-travail-l3-s1/da66f9ce8ea7-p027.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-travail-l3-s1/fbb07b59105f-p055.webp": {
       "produit": "fiche-travail-l3-s1",
@@ -11536,7 +11536,7 @@
     "assets/apercus/affichage-20261110/maj-procedure-penale-l3/ca30ef89d075-p017.webp": {
       "produit": "maj-procedure-penale-l3",
       "page": 17,
-      "image": "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p017.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-procedure-penale-l3/0e9e9aaf9b2c-p017.webp"
     },
     "assets/apercus/affichage-20261110/maj-procedure-penale-l3/ca30ef89d075-p144.webp": {
       "produit": "maj-procedure-penale-l3",
@@ -12586,7 +12586,7 @@
     "assets/apercus/abreviations-tjd-20261110/fiche-travail-l3-s1/59fdb829f93c-p027.webp": {
       "produit": "fiche-travail-l3-s1",
       "page": 27,
-      "image": "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p027.webp"
+      "image": "assets/apercus/affichage-20261111-complet/fiche-travail-l3-s1/da66f9ce8ea7-p027.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-travail-l3-s1/59fdb829f93c-p084.webp": {
       "produit": "fiche-travail-l3-s1",
@@ -12676,7 +12676,7 @@
     "assets/apercus/abreviations-tjd-20261110/maj-contrats-speciaux-l3/833f65dba6ee-p036.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 36,
-      "image": "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p036.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-contrats-speciaux-l3/1c5074f3aec0-p036.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/maj-contrats-speciaux-l3/833f65dba6ee-p037.webp": {
       "produit": "maj-contrats-speciaux-l3",
@@ -12751,7 +12751,7 @@
     "assets/apercus/abreviations-tjd-20261110/maj-dip-l3-s2/a8aa76508867-p037.webp": {
       "produit": "maj-dip-l3-s2",
       "page": 37,
-      "image": "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p037.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-dip-l3-s2/e0431d147bf1-p037.webp"
     },
     "assets/apercus/une-ligne-20261110/maj-famille-l1-s2/40274f2967c1-p058.webp": {
       "produit": "maj-famille-l1-s2",
@@ -12876,7 +12876,7 @@
     "assets/apercus/abreviations-tjd-20261110/maj-procedure-civile-l3-s1/50f08abc25a4-p053.webp": {
       "produit": "maj-procedure-civile-l3-s1",
       "page": 53,
-      "image": "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/maj-procedure-civile-l3-s1/50f08abc25a4-p002.webp": {
       "produit": "maj-procedure-civile-l3-s1",
@@ -12916,7 +12916,7 @@
     "assets/apercus/abreviations-tjd-20261110/maj-procedure-penale-l3/54070a5ffd7b-p017.webp": {
       "produit": "maj-procedure-penale-l3",
       "page": 17,
-      "image": "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p017.webp"
+      "image": "assets/apercus/affichage-20261111-complet/maj-procedure-penale-l3/0e9e9aaf9b2c-p017.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp": {
       "produit": "maj-societes-l3-s1",
@@ -12962,7 +12962,12 @@
       "produit": "maj-travail-l3-s1",
       "page": 14,
       "image": "assets/apercus/affichage-20261111/maj-travail-l3-s1/9a0bf83a500d-p014.webp"
-    }
+    },
+    "assets/apercus/affichage-20261111/fiche-travail-l3-s1/14f4f433816a-p027.webp": "assets/apercus/affichage-20261111-complet/fiche-travail-l3-s1/da66f9ce8ea7-p027.webp",
+    "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p036.webp": "assets/apercus/affichage-20261111-complet/maj-contrats-speciaux-l3/1c5074f3aec0-p036.webp",
+    "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p037.webp": "assets/apercus/affichage-20261111-complet/maj-dip-l3-s2/e0431d147bf1-p037.webp",
+    "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp": "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp",
+    "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p017.webp": "assets/apercus/affichage-20261111-complet/maj-procedure-penale-l3/0e9e9aaf9b2c-p017.webp"
   },
   "decomptes": {
     "droit-des-contrats-l2.html": {
