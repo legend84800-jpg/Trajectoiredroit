@@ -2792,23 +2792,23 @@
       }
     },
     "maj-societes-l3-s1": {
-      "sha256": "600d8fd193d70824c1a86f8e53ecb8d2445b61346eaa0a1b54de1bd646876808",
-      "pages_pdf": 165,
+      "sha256": "b1456afa76aea405f0cedfe88e5e713340c65257665a8508b8dfce05db5142c7",
+      "pages_pdf": 160,
       "famille": "majeures",
       "fichier_pdf": "maj-societes-l3-s1.pdf",
       "images": [
-        "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp",
-        "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p003.webp",
-        "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p004.webp",
-        "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p153.webp",
-        "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p154.webp"
+        "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp",
+        "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p003.webp",
+        "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p004.webp",
+        "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p148.webp",
+        "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p149.webp"
       ],
       "pages_images": [
         2,
         3,
         4,
-        153,
-        154
+        148,
+        149
       ],
       "variantes": [
         {
@@ -2822,15 +2822,15 @@
             2,
             3,
             4,
-            153,
-            154
+            148,
+            149
           ],
           "images": [
-            "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp",
-            "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p003.webp",
-            "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p004.webp",
-            "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p153.webp",
-            "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p154.webp"
+            "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp",
+            "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p003.webp",
+            "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p004.webp",
+            "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p148.webp",
+            "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p149.webp"
           ],
           "versions_precedentes": [
             [
@@ -2874,47 +2874,54 @@
               "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b929de6cd215-p004.webp",
               "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b929de6cd215-p153.webp",
               "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b929de6cd215-p154.webp"
+            ],
+            [
+              "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp",
+              "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p003.webp",
+              "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p004.webp",
+              "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p153.webp",
+              "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p154.webp"
             ]
           ]
         }
       ],
       "majeures": 65,
       "preuves_images": {
-        "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp": {
+        "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp": {
           "page_pdf": 2,
-          "sha256_image": "4402a755758b4c45efa5585094110468a5f2e8ce68763e6a969a2f2941e6626c",
+          "sha256_image": "2b93d5c547dcd2127420e80af929043cde606d5e46e625766e490afca736a242",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p003.webp": {
+        "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p003.webp": {
           "page_pdf": 3,
-          "sha256_image": "42d3ca421840e117b96aa4f3fe29457477de2f04dc63595a811ebb4b474bff00",
+          "sha256_image": "175097513dcbf74d0fe686deeaf0dd8639afb9bf43f1ff2064f8baf669b94490",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p004.webp": {
+        "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p004.webp": {
           "page_pdf": 4,
-          "sha256_image": "8046161f1716b6292ec8b1c6e57b3fe3617c8274ff4b3a02276dc55d6a695796",
+          "sha256_image": "628d6dcde9ee236df835d7c6b88cbc61c2531756555320a78d68e7595cb0a11b",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p153.webp": {
-          "page_pdf": 153,
-          "sha256_image": "a410b1ad07a8882206266b9cd89c3bd211d0229caa5f1cb110315611541934e2",
+        "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p148.webp": {
+          "page_pdf": 148,
+          "sha256_image": "e462db69cbcdc373cb8eb4e2e746d527b6c01b480baab90b6f9367d7777209b3",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p154.webp": {
-          "page_pdf": 154,
-          "sha256_image": "2b7b06de3831a0f3000ff00e08f94e9853388be41067801fde95acbaff33430e",
+        "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p149.webp": {
+          "page_pdf": 149,
+          "sha256_image": "81ec8f4f90e2b35707154d889ce40fef1d55c865ffe97dc1caec4af6f4a0a884",
           "dimensions": [
             1429,
             2021
@@ -7002,22 +7009,22 @@
     "assets/apercus/actualisation-20261107/maj-societes-l3-s1/e4439c208a1f-sommaire-1.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 2,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp"
     },
     "assets/apercus/actualisation-20261107/maj-societes-l3-s1/e4439c208a1f-sommaire-2.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 2,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp"
     },
     "assets/apercus/actualisation-20261107/maj-societes-l3-s1/e4439c208a1f-sommaire-3.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 2,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp"
     },
     "assets/apercus/actualisation-20261107/maj-societes-l3-s1/e4439c208a1f-extrait-p125.webp": {
       "produit": "maj-societes-l3-s1",
-      "page": 153,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p153.webp"
+      "page": 148,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p148.webp"
     },
     "assets/apercus/maj-penal-special-l3-zoom.webp": {
       "produit": "maj-penal-special-l3",
@@ -7866,27 +7873,27 @@
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/87b2226812e1-p002.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 2,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/87b2226812e1-p003.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 2,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/87b2226812e1-p004.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 2,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/87b2226812e1-p146.webp": {
       "produit": "maj-societes-l3-s1",
-      "page": 153,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p153.webp"
+      "page": 148,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p148.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/87b2226812e1-p147.webp": {
       "produit": "maj-societes-l3-s1",
-      "page": 154,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p154.webp"
+      "page": 149,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p149.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-penal-special-l3/cf3383764cbc-p069.webp": {
       "produit": "maj-penal-special-l3",
@@ -9261,27 +9268,27 @@
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/a05b7b31a1e0-p002.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 2,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/a05b7b31a1e0-p003.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 2,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/a05b7b31a1e0-p004.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 2,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/a05b7b31a1e0-p146.webp": {
       "produit": "maj-societes-l3-s1",
-      "page": 153,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p153.webp"
+      "page": 148,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p148.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/a05b7b31a1e0-p147.webp": {
       "produit": "maj-societes-l3-s1",
-      "page": 154,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p154.webp"
+      "page": 149,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p149.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-travail-l3-s1/01dfc5e15e1e-p002.webp": {
       "produit": "maj-travail-l3-s1",
@@ -9941,27 +9948,27 @@
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/447cb8ce99e3-p002.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 2,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/447cb8ce99e3-p003.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 3,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p003.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p003.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/447cb8ce99e3-p004.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 4,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p004.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p004.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/447cb8ce99e3-p146.webp": {
       "produit": "maj-societes-l3-s1",
-      "page": 153,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p153.webp"
+      "page": 148,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p148.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/447cb8ce99e3-p147.webp": {
       "produit": "maj-societes-l3-s1",
-      "page": 154,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p154.webp"
+      "page": 149,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p149.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-penal-special-l3/faefdf5e0989-p002.webp": {
       "produit": "maj-penal-special-l3",
@@ -10391,27 +10398,27 @@
     "assets/apercus/abreviations-20261110/maj-societes-l3-s1/242d6cd03877-p002.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 2,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp"
     },
     "assets/apercus/abreviations-20261110/maj-societes-l3-s1/242d6cd03877-p003.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 3,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p003.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p003.webp"
     },
     "assets/apercus/abreviations-20261110/maj-societes-l3-s1/242d6cd03877-p004.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 4,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p004.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p004.webp"
     },
     "assets/apercus/abreviations-20261110/maj-societes-l3-s1/242d6cd03877-p146.webp": {
       "produit": "maj-societes-l3-s1",
-      "page": 153,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p153.webp"
+      "page": 148,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p148.webp"
     },
     "assets/apercus/abreviations-20261110/maj-societes-l3-s1/242d6cd03877-p147.webp": {
       "produit": "maj-societes-l3-s1",
-      "page": 154,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p154.webp"
+      "page": 149,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p149.webp"
     },
     "assets/apercus/abreviations-20261110/maj-penal-special-l3/39bb407aeaa0-p002.webp": {
       "produit": "maj-penal-special-l3",
@@ -10686,27 +10693,27 @@
     "assets/apercus/affichage-20261110/maj-societes-l3-s1/1324fac3de81-p002.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 2,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp"
     },
     "assets/apercus/affichage-20261110/maj-societes-l3-s1/1324fac3de81-p003.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 3,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p003.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p003.webp"
     },
     "assets/apercus/affichage-20261110/maj-societes-l3-s1/1324fac3de81-p004.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 4,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p004.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p004.webp"
     },
     "assets/apercus/affichage-20261110/maj-societes-l3-s1/1324fac3de81-p146.webp": {
       "produit": "maj-societes-l3-s1",
-      "page": 153,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p153.webp"
+      "page": 148,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p148.webp"
     },
     "assets/apercus/affichage-20261110/maj-societes-l3-s1/1324fac3de81-p147.webp": {
       "produit": "maj-societes-l3-s1",
-      "page": 154,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p154.webp"
+      "page": 149,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p149.webp"
     },
     "assets/apercus/affichage-20261110/maj-contrats-l2-s1/b182673c69c7-p002.webp": {
       "produit": "maj-contrats-l2-s1",
@@ -11221,27 +11228,27 @@
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b929de6cd215-p002.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 2,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b929de6cd215-p003.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 3,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p003.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p003.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b929de6cd215-p004.webp": {
       "produit": "maj-societes-l3-s1",
       "page": 4,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p004.webp"
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p004.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b929de6cd215-p153.webp": {
       "produit": "maj-societes-l3-s1",
-      "page": 153,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p153.webp"
+      "page": 148,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p148.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b929de6cd215-p154.webp": {
       "produit": "maj-societes-l3-s1",
-      "page": 154,
-      "image": "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p154.webp"
+      "page": 149,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p149.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-penal-l2-s1/4bccc26488f3-p058-vignette.webp": {
       "produit": "fiche-penal-l2-s1",
@@ -11652,6 +11659,31 @@
       "produit": "maj-contrats-l2-s1",
       "page": 28,
       "image": "assets/apercus/contrats-l2-s1-20261110/maj-contrats-l2-s1/99daddb7c156-p028.webp"
+    },
+    "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p002.webp": {
+      "produit": "maj-societes-l3-s1",
+      "page": 2,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p002.webp"
+    },
+    "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p003.webp": {
+      "produit": "maj-societes-l3-s1",
+      "page": 3,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p003.webp"
+    },
+    "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p004.webp": {
+      "produit": "maj-societes-l3-s1",
+      "page": 4,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p004.webp"
+    },
+    "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p153.webp": {
+      "produit": "maj-societes-l3-s1",
+      "page": 148,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p148.webp"
+    },
+    "assets/apercus/abreviations-tjd-20261110/maj-societes-l3-s1/600d8fd193d7-p154.webp": {
+      "produit": "maj-societes-l3-s1",
+      "page": 149,
+      "image": "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b1456afa76ae-p149.webp"
     }
   },
   "decomptes": {
