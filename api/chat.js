@@ -28,7 +28,7 @@ cas-pratique-dol-reticence-dolosive-corrige.html, cas-pratique-legitime-defense-
 ${genererProduitsEtServices()}
 
 PAGES DE CONFIANCE :
-a-propos.html (Julien, major de promo), temoignages.html (149 avis 5/5), faq.html, blog.html
+a-propos.html (Julien, major de promo), temoignages.html (166 avis 5/5), faq.html, blog.html
 `;
 
 const SYSTEM = `Tu es l'assistant de Trajectoire Droit, le site de cours, fiches et méthodes de droit de Julien, prof major de promo. Tu parles à des étudiants en droit, surtout de la L1 à la L3, souvent stressés et pressés, autant sur téléphone que sur ordinateur.
