@@ -334,7 +334,7 @@
       }
     },
     "fiche-constit-l1-s1": {
-      "sha256": "9b93f08d683747ee5138640adc8d64a0000ffecced40908de1b8410f2fe23f8b",
+      "sha256": "8b684cf85545e11103ef1a45f22f6ef79cf2958105aaa86eb29f5dd9c7339e63",
       "pages_pdf": 193,
       "famille": "fiches",
       "fichier_pdf": "fiche-constit-l1-s1.pdf",
@@ -342,7 +342,7 @@
         "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p009.webp",
         "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p056.webp",
         "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p055.webp",
-        "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p092.webp",
+        "assets/apercus/blancs-20261111/fiche-constit-l1-s1/8b684cf85545-p091.webp",
         "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p093.webp",
         "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p120.webp",
         "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p121.webp",
@@ -353,7 +353,7 @@
         9,
         56,
         55,
-        92,
+        91,
         93,
         120,
         121,
@@ -371,14 +371,14 @@
             9,
             56,
             55,
-            92,
+            91,
             93
           ],
           "images": [
             "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p009.webp",
             "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p056.webp",
             "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p055.webp",
-            "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p092.webp",
+            "assets/apercus/blancs-20261111/fiche-constit-l1-s1/8b684cf85545-p091.webp",
             "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p093.webp"
           ],
           "versions_precedentes": [
@@ -504,9 +504,9 @@
             2021
           ]
         },
-        "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p092.webp": {
-          "page_pdf": 92,
-          "sha256_image": "6650c5cf002b84b8b08d6c331ea966624440272cf4adce9c0133b36c3213a522",
+        "assets/apercus/blancs-20261111/fiche-constit-l1-s1/8b684cf85545-p091.webp": {
+          "page_pdf": 91,
+          "sha256_image": "cebe51943d17616bd7ba01000080852b539d90a8b89a963779b7ac85b72c1347",
           "dimensions": [
             1429,
             2021
@@ -4682,8 +4682,8 @@
       }
     },
     "cours-complet-finances-publiques-l2-s1": {
-      "sha256": "abb86ebfb5300debd969824198e29643cb617a873bd88529a167e23348cdddeb",
-      "pages_pdf": 55,
+      "sha256": "79d302a9a571501f2724ca8645505a6396f4d38b46c9a8f687b1cfb8f6f29f70",
+      "pages_pdf": 54,
       "famille": "cours",
       "fichier_pdf": "cours-complet-finances-publiques-l2-s1.pdf",
       "images": [
@@ -4779,8 +4779,8 @@
       }
     },
     "cours-complet-philosophie-du-droit-l2-s1": {
-      "sha256": "d1ffc731c49d4304f9586a26f0ab6885e11dbc63e862788ee48fe9a7675cc19a",
-      "pages_pdf": 78,
+      "sha256": "ec2a8beacd371fb3c0392431b81d82395f59be94b2ea6aa2b4bc07d0bac27c53",
+      "pages_pdf": 77,
       "famille": "cours",
       "fichier_pdf": "cours-complet-philosophie-du-droit-l2-s1.pdf",
       "images": [
@@ -4788,14 +4788,14 @@
         "assets/apercus/lisibilite-20261107/cours-complet-philosophie-du-droit-l2-s1/d1ffc731c49d-p004.webp",
         "assets/apercus/lisibilite-20261107/cours-complet-philosophie-du-droit-l2-s1/d1ffc731c49d-p019.webp",
         "assets/apercus/lisibilite-20261107/cours-complet-philosophie-du-droit-l2-s1/d1ffc731c49d-p020.webp",
-        "assets/apercus/lisibilite-20261107/cours-complet-philosophie-du-droit-l2-s1/d1ffc731c49d-p049.webp"
+        "assets/apercus/blancs-20261111/cours-complet-philosophie-du-droit-l2-s1/ec2a8beacd37-p048.webp"
       ],
       "pages_images": [
         3,
         4,
         19,
         20,
-        49
+        48
       ],
       "variantes": [
         {
@@ -4809,14 +4809,14 @@
             4,
             19,
             20,
-            49
+            48
           ],
           "images": [
             "assets/apercus/lisibilite-20261107/cours-complet-philosophie-du-droit-l2-s1/d1ffc731c49d-p003.webp",
             "assets/apercus/lisibilite-20261107/cours-complet-philosophie-du-droit-l2-s1/d1ffc731c49d-p004.webp",
             "assets/apercus/lisibilite-20261107/cours-complet-philosophie-du-droit-l2-s1/d1ffc731c49d-p019.webp",
             "assets/apercus/lisibilite-20261107/cours-complet-philosophie-du-droit-l2-s1/d1ffc731c49d-p020.webp",
-            "assets/apercus/lisibilite-20261107/cours-complet-philosophie-du-droit-l2-s1/d1ffc731c49d-p049.webp"
+            "assets/apercus/blancs-20261111/cours-complet-philosophie-du-droit-l2-s1/ec2a8beacd37-p048.webp"
           ],
           "versions_precedentes": [
             [
@@ -4869,9 +4869,9 @@
             2021
           ]
         },
-        "assets/apercus/lisibilite-20261107/cours-complet-philosophie-du-droit-l2-s1/d1ffc731c49d-p049.webp": {
-          "page_pdf": 49,
-          "sha256_image": "a207bfd01faadc38c15f4d85aa6892b37ddd97547fe831e18ddcbfc47ec87ed8",
+        "assets/apercus/blancs-20261111/cours-complet-philosophie-du-droit-l2-s1/ec2a8beacd37-p048.webp": {
+          "page_pdf": 48,
+          "sha256_image": "a96e46442569cbae50ff36770ebe77665bd1b9857ecc0d295e312aa963ae8bd3",
           "dimensions": [
             1429,
             2021
@@ -6942,7 +6942,7 @@
     "assets/apercus/constit-l1-s1-2.webp": {
       "produit": "fiche-constit-l1-s1",
       "page": 92,
-      "image": "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p092.webp"
+      "image": "assets/apercus/blancs-20261111/fiche-constit-l1-s1/8b684cf85545-p091.webp"
     },
     "assets/apercus/constit-l1-s1-separation-zoom.webp": {
       "produit": "fiche-constit-l1-s1",
@@ -7927,7 +7927,7 @@
     "assets/apercus/lisibilite-20261107/fiche-constit-l1-s1/74b4a70574bc-p091.webp": {
       "produit": "fiche-constit-l1-s1",
       "page": 92,
-      "image": "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p092.webp"
+      "image": "assets/apercus/blancs-20261111/fiche-constit-l1-s1/8b684cf85545-p091.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-constit-l1-s1/74b4a70574bc-p121.webp": {
       "produit": "fiche-constit-l1-s1",
@@ -8491,7 +8491,7 @@
     "assets/apercus/lisibilite-20261107/fiche-constit-l1-s1/79128c52c0fc-p092.webp": {
       "produit": "fiche-constit-l1-s1",
       "page": 92,
-      "image": "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p092.webp"
+      "image": "assets/apercus/blancs-20261111/fiche-constit-l1-s1/8b684cf85545-p091.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-constit-l1-s1/79128c52c0fc-p093.webp": {
       "produit": "fiche-constit-l1-s1",
@@ -9021,7 +9021,7 @@
     "assets/apercus/lisibilite-20261107/cours-complet-philosophie-du-droit-l2-s1/a57e69ba8a4c-p049.webp": {
       "produit": "cours-complet-philosophie-du-droit-l2-s1",
       "page": 49,
-      "image": "assets/apercus/lisibilite-20261107/cours-complet-philosophie-du-droit-l2-s1/d1ffc731c49d-p049.webp"
+      "image": "assets/apercus/blancs-20261111/cours-complet-philosophie-du-droit-l2-s1/ec2a8beacd37-p048.webp"
     },
     "assets/apercus/lisibilite-20261107/cours-fiche-biens-l2/4d3e0a329cdd-p137.webp": {
       "produit": "cours-fiche-biens-l2",
@@ -9716,7 +9716,7 @@
     "assets/apercus/lisibilite-20261107/fiche-constit-l1-s1/e830a2ad9ef4-p092.webp": {
       "produit": "fiche-constit-l1-s1",
       "page": 92,
-      "image": "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p092.webp"
+      "image": "assets/apercus/blancs-20261111/fiche-constit-l1-s1/8b684cf85545-p091.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-constit-l1-s1/e830a2ad9ef4-p093.webp": {
       "produit": "fiche-constit-l1-s1",
@@ -11736,7 +11736,7 @@
     "assets/apercus/abreviations-20261110/fiche-constit-l1-s1/7357f740c347-p092.webp": {
       "produit": "fiche-constit-l1-s1",
       "page": 92,
-      "image": "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p092.webp"
+      "image": "assets/apercus/blancs-20261111/fiche-constit-l1-s1/8b684cf85545-p091.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-constit-l1-s1/7357f740c347-p093.webp": {
       "produit": "fiche-constit-l1-s1",
@@ -12151,7 +12151,7 @@
     "assets/apercus/abreviations-tjd-20261110/fiche-constit-l1-s1/ae6bd851077d-p092.webp": {
       "produit": "fiche-constit-l1-s1",
       "page": 92,
-      "image": "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p092.webp"
+      "image": "assets/apercus/blancs-20261111/fiche-constit-l1-s1/8b684cf85545-p091.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-constit-l1-s1/ae6bd851077d-p093.webp": {
       "produit": "fiche-constit-l1-s1",
@@ -12967,7 +12967,9 @@
     "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p036.webp": "assets/apercus/affichage-20261111-complet/maj-contrats-speciaux-l3/1c5074f3aec0-p036.webp",
     "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p037.webp": "assets/apercus/affichage-20261111-complet/maj-dip-l3-s2/e0431d147bf1-p037.webp",
     "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp": "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp",
-    "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p017.webp": "assets/apercus/affichage-20261111-complet/maj-procedure-penale-l3/0e9e9aaf9b2c-p017.webp"
+    "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p017.webp": "assets/apercus/affichage-20261111-complet/maj-procedure-penale-l3/0e9e9aaf9b2c-p017.webp",
+    "assets/apercus/lisibilite-20261107/cours-complet-philosophie-du-droit-l2-s1/d1ffc731c49d-p049.webp": "assets/apercus/blancs-20261111/cours-complet-philosophie-du-droit-l2-s1/ec2a8beacd37-p048.webp",
+    "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p092.webp": "assets/apercus/blancs-20261111/fiche-constit-l1-s1/8b684cf85545-p091.webp"
   },
   "decomptes": {
     "droit-des-contrats-l2.html": {
@@ -14303,7 +14305,7 @@
         "produits": [
           "cours-complet-finances-publiques-l2-s1"
         ],
-        "pages": 55
+        "pages": 54
       },
       "74": {
         "produits": [
@@ -14315,13 +14317,13 @@
         "produits": [
           "cours-complet-finances-publiques-l2-s1"
         ],
-        "pages": 55
+        "pages": 54
       },
       "55": {
         "produits": [
           "cours-complet-finances-publiques-l2-s1"
         ],
-        "pages": 55
+        "pages": 54
       }
     }
   },
