@@ -25,12 +25,8 @@ from lib.essai_majeures import NB_MAJEURES
 
 R2_PUBLIC = "https://pub-45b53167be7548aca62650d34a771b47.r2.dev"
 ENTETES = {"User-Agent": "Mozilla/5.0 (TrajectoireDroit kit-essai)"}
-EDITION_MAJEURES = "affichage-20261110"
-EDITIONS_MAJEURES = {
-    "maj-contrats-l2-s1": "une-ligne-20261110",
-    "maj-famille-l1-s2": "une-ligne-20261110",
-    "maj-obligations-l2-s2": "une-ligne-20261110",
-}
+EDITION_MAJEURES = "affichage-20261111"
+EDITIONS_MAJEURES = {}
 
 
 def _edition_majeures(produit: str) -> str:
