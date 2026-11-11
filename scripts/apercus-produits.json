@@ -1041,14 +1041,14 @@
       }
     },
     "fiche-famille-l1-s2": {
-      "sha256": "6b53a09ecfe295da44211309fbd1978817f50adfa754d7fa440102758e16f826",
+      "sha256": "b9b6a3b5c01adcdb0f99577cc24c928bd1c0bf203035322205d17d348fe9897a",
       "pages_pdf": 136,
       "famille": "fiches",
       "fichier_pdf": "fiche-famille-l1-s2.pdf",
       "images": [
-        "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017.webp",
-        "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p129.webp",
-        "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p130.webp"
+        "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017.webp",
+        "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p129.webp",
+        "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p130.webp"
       ],
       "pages_images": [
         17,
@@ -1068,9 +1068,9 @@
             130
           ],
           "images": [
-            "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017.webp",
-            "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p129.webp",
-            "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p130.webp"
+            "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017.webp",
+            "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p129.webp",
+            "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p130.webp"
           ],
           "versions_precedentes": [
             [
@@ -1092,16 +1092,21 @@
               "assets/apercus/abreviations-20261110/fiche-famille-l1-s2/93b0130aa4e6-p017.webp",
               "assets/apercus/abreviations-20261110/fiche-famille-l1-s2/93b0130aa4e6-p129.webp",
               "assets/apercus/abreviations-20261110/fiche-famille-l1-s2/93b0130aa4e6-p130.webp"
+            ],
+            [
+              "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017.webp",
+              "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p129.webp",
+              "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p130.webp"
             ]
           ]
         }
       ],
       "vignette": {
-        "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017-vignette.webp",
+        "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017-vignette.webp",
         "page_pdf": 17
       },
       "preuves_images": {
-        "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017-vignette.webp": {
+        "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017-vignette.webp": {
           "page_pdf": 17,
           "sha256_image": "0b02fcf9128cdf2616c968707709f493104625b214d17ab87c253a71f955ed5b",
           "dimensions": [
@@ -1110,7 +1115,7 @@
           ],
           "vignette": true
         },
-        "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017.webp": {
+        "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017.webp": {
           "page_pdf": 17,
           "sha256_image": "43b7fefbb7f24d460a27b4073045844e7c7fc097e94e3a29ce95762825773ba6",
           "dimensions": [
@@ -1118,7 +1123,7 @@
             2021
           ]
         },
-        "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p129.webp": {
+        "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p129.webp": {
           "page_pdf": 129,
           "sha256_image": "4cc6e0e1a3d109911240f792103b44fb6a3972cf900b7ddbccc86fb1049ab7f1",
           "dimensions": [
@@ -1126,7 +1131,7 @@
             2021
           ]
         },
-        "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p130.webp": {
+        "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p130.webp": {
           "page_pdf": 130,
           "sha256_image": "978e6b65a656f7d54ed0faa127bd9d9d89be4623ee30969d1e803ca97d82121b",
           "dimensions": [
@@ -1577,15 +1582,15 @@
       }
     },
     "fiche-biens-l2": {
-      "sha256": "9657610f766489a0c7ba605ce3ae313293a036e800fd2b61c32ede4caa9c99a4",
+      "sha256": "9c3310a90cc1e3f80ebf2dfb3eece387f91ac539a5950e784bbedcf1526bb005",
       "pages_pdf": 124,
       "famille": "fiches",
       "fichier_pdf": "fiche-biens-l2.pdf",
       "images": [
-        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041.webp",
-        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p042.webp",
-        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p104.webp",
-        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p105.webp"
+        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041.webp",
+        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p042.webp",
+        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p104.webp",
+        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p105.webp"
       ],
       "pages_images": [
         41,
@@ -1607,10 +1612,10 @@
             105
           ],
           "images": [
-            "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041.webp",
-            "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p042.webp",
-            "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p104.webp",
-            "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p105.webp"
+            "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041.webp",
+            "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p042.webp",
+            "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p104.webp",
+            "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p105.webp"
           ],
           "versions_precedentes": [
             [
@@ -1632,16 +1637,22 @@
               "assets/apercus/abreviations-20261110/fiche-biens-l2/1ef5e8d3104f-p042.webp",
               "assets/apercus/abreviations-20261110/fiche-biens-l2/1ef5e8d3104f-p104.webp",
               "assets/apercus/abreviations-20261110/fiche-biens-l2/1ef5e8d3104f-p105.webp"
+            ],
+            [
+              "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041.webp",
+              "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p042.webp",
+              "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p104.webp",
+              "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p105.webp"
             ]
           ]
         }
       ],
       "vignette": {
-        "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041-vignette.webp",
+        "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041-vignette.webp",
         "page_pdf": 41
       },
       "preuves_images": {
-        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041-vignette.webp": {
+        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041-vignette.webp": {
           "page_pdf": 41,
           "sha256_image": "4b213a6826153b73a77a683017550970ecea5ddbd3e93cd321d704300424eed8",
           "dimensions": [
@@ -1650,7 +1661,7 @@
           ],
           "vignette": true
         },
-        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041.webp": {
+        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041.webp": {
           "page_pdf": 41,
           "sha256_image": "b19401b42810f7193a6620a7bb08fff84c80c8aa559a23a79f10abd367d37042",
           "dimensions": [
@@ -1658,7 +1669,7 @@
             2021
           ]
         },
-        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p042.webp": {
+        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p042.webp": {
           "page_pdf": 42,
           "sha256_image": "9559f262c8109f480a759807e3b8d8d1510d3840b01cab365cfc704d02e88803",
           "dimensions": [
@@ -1666,7 +1677,7 @@
             2021
           ]
         },
-        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p104.webp": {
+        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p104.webp": {
           "page_pdf": 104,
           "sha256_image": "476253346c856498110ebddf599e110c87af028ad537d91e41478ca668d3f1d4",
           "dimensions": [
@@ -1674,7 +1685,7 @@
             2021
           ]
         },
-        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p105.webp": {
+        "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p105.webp": {
           "page_pdf": 105,
           "sha256_image": "f10b54609e5f7b4b555f9a09cf30a552ebb9f1913f67e34ce0242c5ecae8af1c",
           "dimensions": [
@@ -6762,17 +6773,17 @@
     "assets/apercus/famille-l1-s2-zoom.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 17,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017.webp"
     },
     "assets/apercus/famille-l1-s2-1.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 17,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017.webp"
     },
     "assets/apercus/famille-l1-s2-2.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 129,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p129.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p129.webp"
     },
     "assets/apercus/contrats-l2-s1-zoom.webp": {
       "produit": "fiche-contrats-l2-s1",
@@ -6835,17 +6846,17 @@
     "assets/apercus/biens-l2-zoom.webp": {
       "produit": "fiche-biens-l2",
       "page": 41,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041.webp"
     },
     "assets/apercus/biens-l2-1.webp": {
       "produit": "fiche-biens-l2",
       "page": 41,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041.webp"
     },
     "assets/apercus/biens-l2-2.webp": {
       "produit": "fiche-biens-l2",
       "page": 104,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p104.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p104.webp"
     },
     "assets/apercus/commercial-l3-s1-zoom.webp": {
       "produit": "fiche-commercial-l3-s1",
@@ -7585,7 +7596,7 @@
     "assets/apercus/vignettes/biens-l2.webp": {
       "produit": "fiche-biens-l2",
       "page": 41,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041-vignette.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041-vignette.webp"
     },
     "assets/apercus/vignettes/personnes-l1.webp": {
       "produit": "fiche-personnes-l1",
@@ -7600,7 +7611,7 @@
     "assets/apercus/vignettes/famille-l1-s2.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 17,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017-vignette.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017-vignette.webp"
     },
     "assets/apercus/vignettes/procedure-penale-l3.webp": {
       "produit": "fiche-procedure-penale-l3",
@@ -7620,7 +7631,7 @@
     "assets/apercus/famille-l1-s2-1.jpg": {
       "produit": "fiche-famille-l1-s2",
       "page": 17,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017.webp"
     },
     "assets/apercus/contrats-l2-s1-1.jpg": {
       "produit": "fiche-contrats-l2-s1",
@@ -8969,17 +8980,17 @@
     "assets/apercus/lisibilite-20261107/fiche-biens-l2/b73148811c0e-p041.webp": {
       "produit": "fiche-biens-l2",
       "page": 41,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-biens-l2/b73148811c0e-p094.webp": {
       "produit": "fiche-biens-l2",
       "page": 104,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p104.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p104.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-biens-l2/b73148811c0e-p041-vignette.webp": {
       "produit": "fiche-biens-l2",
       "page": 41,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041-vignette.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041-vignette.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-contrats-l2-s1/c4ae00141ecc-p042.webp": {
       "produit": "fiche-contrats-l2-s1",
@@ -9024,22 +9035,22 @@
     "assets/apercus/lisibilite-20261107/fiche-famille-l1-s2/50c23114dea4-p017.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 17,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-famille-l1-s2/50c23114dea4-p131.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 129,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p129.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p129.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-famille-l1-s2/50c23114dea4-p132.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 130,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p130.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p130.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-famille-l1-s2/50c23114dea4-p017-vignette.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 17,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017-vignette.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017-vignette.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-obligations-l2-s2/dd04ba3e6a43-p046.webp": {
       "produit": "fiche-obligations-l2-s2",
@@ -9469,22 +9480,22 @@
     "assets/apercus/lisibilite-20261107/fiche-famille-l1-s2/122d3c5f29b7-p017-vignette.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 17,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017-vignette.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017-vignette.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-famille-l1-s2/122d3c5f29b7-p017.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 17,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-famille-l1-s2/122d3c5f29b7-p129.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 129,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p129.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p129.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-famille-l1-s2/122d3c5f29b7-p130.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 130,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p130.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p130.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-personnes-l1/e2214c3efeb8-p046-vignette.webp": {
       "produit": "fiche-personnes-l1",
@@ -9619,27 +9630,27 @@
     "assets/apercus/lisibilite-20261107/fiche-biens-l2/7d8173e5f620-p041-vignette.webp": {
       "produit": "fiche-biens-l2",
       "page": 41,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041-vignette.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041-vignette.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-biens-l2/7d8173e5f620-p041.webp": {
       "produit": "fiche-biens-l2",
       "page": 41,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-biens-l2/7d8173e5f620-p042.webp": {
       "produit": "fiche-biens-l2",
       "page": 42,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p042.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p042.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-biens-l2/7d8173e5f620-p104.webp": {
       "produit": "fiche-biens-l2",
       "page": 104,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p104.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p104.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-biens-l2/7d8173e5f620-p105.webp": {
       "produit": "fiche-biens-l2",
       "page": 105,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p105.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p105.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-penal-general-l1/7774018c7553-p012.webp": {
       "produit": "fiche-penal-general-l1",
@@ -10869,22 +10880,22 @@
     "assets/apercus/abreviations-20261110/fiche-famille-l1-s2/93b0130aa4e6-p017-vignette.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 17,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017-vignette.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017-vignette.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-famille-l1-s2/93b0130aa4e6-p017.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 17,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-famille-l1-s2/93b0130aa4e6-p129.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 129,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p129.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p129.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-famille-l1-s2/93b0130aa4e6-p130.webp": {
       "produit": "fiche-famille-l1-s2",
       "page": 130,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p130.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p130.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-obligations-l2-s2/39ab5780a42a-p012-vignette.webp": {
       "produit": "fiche-obligations-l2-s2",
@@ -11299,27 +11310,27 @@
     "assets/apercus/abreviations-20261110/fiche-biens-l2/1ef5e8d3104f-p041-vignette.webp": {
       "produit": "fiche-biens-l2",
       "page": 41,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041-vignette.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041-vignette.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-biens-l2/1ef5e8d3104f-p041.webp": {
       "produit": "fiche-biens-l2",
       "page": 41,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-biens-l2/1ef5e8d3104f-p042.webp": {
       "produit": "fiche-biens-l2",
       "page": 42,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p042.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p042.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-biens-l2/1ef5e8d3104f-p104.webp": {
       "produit": "fiche-biens-l2",
       "page": 104,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p104.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p104.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-biens-l2/1ef5e8d3104f-p105.webp": {
       "produit": "fiche-biens-l2",
       "page": 105,
-      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p105.webp"
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p105.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-commercial-l3-s1/2626392fdeb9-p046.webp": {
       "produit": "fiche-commercial-l3-s1",
@@ -11555,6 +11566,51 @@
       "produit": "maj-travail-l3-s1",
       "page": 14,
       "image": "assets/apercus/abreviations-tjd-20261110/maj-travail-l3-s1/1c713f1ea3ee-p014.webp"
+    },
+    "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017-vignette.webp": {
+      "produit": "fiche-famille-l1-s2",
+      "page": 17,
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017-vignette.webp"
+    },
+    "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p017.webp": {
+      "produit": "fiche-famille-l1-s2",
+      "page": 17,
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p017.webp"
+    },
+    "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p129.webp": {
+      "produit": "fiche-famille-l1-s2",
+      "page": 129,
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p129.webp"
+    },
+    "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/6b53a09ecfe2-p130.webp": {
+      "produit": "fiche-famille-l1-s2",
+      "page": 130,
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-famille-l1-s2/b9b6a3b5c01a-p130.webp"
+    },
+    "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041-vignette.webp": {
+      "produit": "fiche-biens-l2",
+      "page": 41,
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041-vignette.webp"
+    },
+    "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p041.webp": {
+      "produit": "fiche-biens-l2",
+      "page": 41,
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p041.webp"
+    },
+    "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p042.webp": {
+      "produit": "fiche-biens-l2",
+      "page": 42,
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p042.webp"
+    },
+    "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p104.webp": {
+      "produit": "fiche-biens-l2",
+      "page": 104,
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p104.webp"
+    },
+    "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9657610f7664-p105.webp": {
+      "produit": "fiche-biens-l2",
+      "page": 105,
+      "image": "assets/apercus/abreviations-tjd-20261110/fiche-biens-l2/9c3310a90cc1-p105.webp"
     }
   },
   "decomptes": {
