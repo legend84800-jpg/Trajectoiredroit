@@ -25,6 +25,7 @@ from lib.essai_majeures import NB_MAJEURES
 
 R2_PUBLIC = "https://pub-45b53167be7548aca62650d34a771b47.r2.dev"
 ENTETES = {"User-Agent": "Mozilla/5.0 (TrajectoireDroit kit-essai)"}
+EDITION_MAJEURES = "affichage-20261110"
 
 
 def _lire(cle: str) -> bytes:
@@ -46,7 +47,7 @@ def _assembler(produit: str, majeures: list[int]) -> bytes:
     import pypdf
 
     morceaux = [f"tjd/essai/kit/{produit}/couverture.pdf"]
-    morceaux += [f"tjd/essai/majeure/{produit}/{i}.pdf" for i in majeures]
+    morceaux += [f"tjd/essai/majeure/{EDITION_MAJEURES}/{produit}/{i}.pdf" for i in majeures]
     morceaux.append(f"tjd/essai/kit/{produit}/suite.pdf")
     sortie = pypdf.PdfWriter()
     for cle in morceaux:
@@ -105,7 +106,7 @@ class handler(BaseHTTPRequestHandler):
             return
 
         nom = f"kit-essai-{produit}-majeures-{'-'.join(map(str, choix))}.pdf"
-        cle = f"tjd/essai/genere/{produit}/{'-'.join(map(str, choix))}.pdf"
+        cle = f"tjd/essai/genere/{EDITION_MAJEURES}/{produit}/{'-'.join(map(str, choix))}.pdf"
         try:
             if not _existe(cle):
                 _envoyer_r2(cle, _assembler(produit, choix), nom)
