@@ -2032,17 +2032,17 @@
       }
     },
     "fiche-contrats-speciaux-l3": {
-      "sha256": "63f946844800fbc7606367cceac359eeffbdb86bf10f2e5ec7782d153582d8bd",
+      "sha256": "caa9a04ecb7f81d23170899015bf8d180c9e0f44b9cfe9d67a7d5ea01ea90e72",
       "pages_pdf": 149,
       "famille": "fiches",
       "fichier_pdf": "fiche-contrats-speciaux-l3.pdf",
       "images": [
-        "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p101.webp",
-        "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p102.webp",
-        "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p103.webp",
-        "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p028.webp",
-        "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p029.webp",
-        "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p108.webp"
+        "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p101.webp",
+        "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p102.webp",
+        "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p103.webp",
+        "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p028.webp",
+        "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p029.webp",
+        "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p108.webp"
       ],
       "pages_images": [
         101,
@@ -2068,12 +2068,12 @@
             108
           ],
           "images": [
-            "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p101.webp",
-            "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p102.webp",
-            "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p103.webp",
-            "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p028.webp",
-            "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p029.webp",
-            "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p108.webp"
+            "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p101.webp",
+            "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p102.webp",
+            "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p103.webp",
+            "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p028.webp",
+            "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p029.webp",
+            "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p108.webp"
           ],
           "versions_precedentes": [
             [
@@ -2117,66 +2117,74 @@
               "assets/apercus/abreviations-tjd-20261110/fiche-contrats-speciaux-l3/aa8ba36efa87-p028.webp",
               "assets/apercus/abreviations-tjd-20261110/fiche-contrats-speciaux-l3/aa8ba36efa87-p029.webp",
               "assets/apercus/abreviations-tjd-20261110/fiche-contrats-speciaux-l3/aa8ba36efa87-p108.webp"
+            ],
+            [
+              "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p101.webp",
+              "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p102.webp",
+              "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p103.webp",
+              "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p028.webp",
+              "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p029.webp",
+              "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p108.webp"
             ]
           ]
         }
       ],
       "vignette": {
-        "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-miniature-p101.webp",
+        "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-miniature-p101.webp",
         "page_pdf": 101
       },
       "preuves_images": {
-        "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p028.webp": {
-          "page_pdf": 28,
-          "sha256_image": "e84abf685d81ef38d4c420e15526b0376e92f3969d6155b8c4ad9e34c14e0830",
-          "dimensions": [
-            1429,
-            2021
-          ]
-        },
-        "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p029.webp": {
-          "page_pdf": 29,
-          "sha256_image": "d890693291c02949e36a4a4760cec5aa938353d853e3657e69c78fde7541b797",
-          "dimensions": [
-            1429,
-            2021
-          ]
-        },
-        "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p101.webp": {
+        "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p101.webp": {
           "page_pdf": 101,
-          "sha256_image": "67cd3e274c64f4ee8f2e6d2cec0ffbc1d81f72a3e20f1041a1b58505dec31988",
+          "sha256_image": "e551de982940567c5088d213523ebdfeb92f0afd9c68ba6f454fdaec2a9d8146",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p102.webp": {
+        "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p102.webp": {
           "page_pdf": 102,
-          "sha256_image": "805905fa2c6f93531597df03d4182c4f1a4cbcf31f1f18756f635daa56c15534",
+          "sha256_image": "8aab3a4ce3e17eeedbdf1f7a4626afb4a2c8d7caa16f1ef9b22c8e4084d74634",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p103.webp": {
+        "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p103.webp": {
           "page_pdf": 103,
-          "sha256_image": "e27001d60b23bc27c5479e3cc02a67bb39ef1688b5cd9c3a3721b68fe95d6ba8",
+          "sha256_image": "ac1072b9d247ff930756953913dd5abe3ff8d05ce69c3543bdce3a007e5d979c",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p108.webp": {
+        "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p028.webp": {
+          "page_pdf": 28,
+          "sha256_image": "2f4aff164f8065c73c5075d676a941fdd6d161fbfe98f3ffe8303d82f958542d",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p029.webp": {
+          "page_pdf": 29,
+          "sha256_image": "6aff099c6ca1738e06785eafd8e9ae783e4a4c1b82f8fabee167ee5cb2b8648a",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p108.webp": {
           "page_pdf": 108,
-          "sha256_image": "f38317b775c2bfe28dcba344978c73e4ededdbd824fb2410ac48a41bfefd4df3",
+          "sha256_image": "68f9ed835d655054f03ca98b98bbed73ec9cc5eadde899835cd50b7cf046aa5b",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-miniature-p101.webp": {
+        "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-miniature-p101.webp": {
           "page_pdf": 101,
-          "sha256_image": "da4bf3a5a8177c0f2a895ae7ebd09b62a0e40563e7d59b23ffb21950bd64ebce",
+          "sha256_image": "64121f80f02da18e0e065818d39443d5056fb0e8c05314d8024da75c6a24dc28",
           "dimensions": [
             358,
             506
@@ -3810,14 +3818,14 @@
       }
     },
     "maj-da-l2-s1": {
-      "sha256": "908fdb08d03e57bcfa3c7e3e4587381c70ea4a4de26ad3bd1cde0eb05c230a03",
+      "sha256": "9a03b515d79db24d5ef61a496884f8171403f052e20ecac9d1ba247d75bd9afe",
       "pages_pdf": 137,
       "famille": "majeures",
       "fichier_pdf": "maj-da-l2-s1.pdf",
       "images": [
-        "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp",
-        "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p003.webp",
-        "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p028.webp"
+        "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp",
+        "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p003.webp",
+        "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p028.webp"
       ],
       "pages_images": [
         2,
@@ -3837,9 +3845,9 @@
             28
           ],
           "images": [
-            "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp",
-            "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p003.webp",
-            "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p028.webp"
+            "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp",
+            "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p003.webp",
+            "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p028.webp"
           ],
           "versions_precedentes": [
             [
@@ -3876,31 +3884,36 @@
               "assets/apercus/abreviations-tjd-20261110/maj-da-l2-s1/4fd8638d419b-p002.webp",
               "assets/apercus/abreviations-tjd-20261110/maj-da-l2-s1/4fd8638d419b-p003.webp",
               "assets/apercus/abreviations-tjd-20261110/maj-da-l2-s1/4fd8638d419b-p028.webp"
+            ],
+            [
+              "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp",
+              "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p003.webp",
+              "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p028.webp"
             ]
           ]
         }
       ],
       "majeures": 46,
       "preuves_images": {
-        "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp": {
+        "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp": {
           "page_pdf": 2,
-          "sha256_image": "d41af77424a7283b22b68e91cbb8dd0f70591752a6e8283f173054549f4454b4",
+          "sha256_image": "735f3a6f4bb4184561e5314a88b6bad5c03356a701a060db3a0ce4f307bcc791",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p003.webp": {
+        "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p003.webp": {
           "page_pdf": 3,
-          "sha256_image": "a75a397d9bf31f5df8db9643d36f7c36a299d88d1baed71650374b3c6248323d",
+          "sha256_image": "3c7b9697617b65f8dd8f8645d1c7eaab2a13b7690f4442767e4bd691dcac3fca",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p028.webp": {
+        "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p028.webp": {
           "page_pdf": 28,
-          "sha256_image": "71865ea332a64c199153def0a5ebf9dd73cc0942ab02319fde01e853fe33f4bb",
+          "sha256_image": "dcc2af4e8aad480bd7ed31ab818d5c9d32d37e5d9d3c3a2a7667eef36350e2f4",
           "dimensions": [
             1429,
             2021
@@ -5310,19 +5323,19 @@
       }
     },
     "cours-fiche-contrats-speciaux-l3": {
-      "sha256": "236ebc8f4be52d4b57b3a4aaef13e80dea619a2aab7fba48282217acbe61b3e1",
-      "pages_pdf": 151,
+      "sha256": "13c258e4698072517e7cb628020e5796bc4bf63e5ab292028ef69e5e1b21d2e3",
+      "pages_pdf": 152,
       "famille": "cours",
       "fichier_pdf": "cours-fiche-contrats-speciaux-l3.pdf",
       "images": [
-        "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p073.webp",
-        "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p074.webp",
-        "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p018.webp",
-        "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p019.webp"
+        "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p074.webp",
+        "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p075.webp",
+        "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p018.webp",
+        "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p019.webp"
       ],
       "pages_images": [
-        73,
         74,
+        75,
         18,
         19
       ],
@@ -5334,16 +5347,16 @@
             "assets/apercus/cours-contrats-speciaux-l3-2.webp"
           ],
           "pages": [
-            73,
             74,
+            75,
             18,
             19
           ],
           "images": [
-            "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p073.webp",
-            "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p074.webp",
-            "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p018.webp",
-            "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p019.webp"
+            "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p074.webp",
+            "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p075.webp",
+            "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p018.webp",
+            "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p019.webp"
           ],
           "versions_precedentes": [
             [
@@ -5357,28 +5370,34 @@
               "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/0490cbd6ec9b-p077.webp",
               "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/0490cbd6ec9b-p018.webp",
               "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/0490cbd6ec9b-p019.webp"
+            ],
+            [
+              "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p073.webp",
+              "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p074.webp",
+              "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p018.webp",
+              "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p019.webp"
             ]
           ]
         }
       ],
       "preuves_images": {
-        "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p073.webp": {
-          "page_pdf": 73,
-          "sha256_image": "28d39f450abb6e9da4eb7e1f06081d5ccbf7786f62b02de60321f0fe72745131",
-          "dimensions": [
-            1429,
-            2021
-          ]
-        },
-        "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p074.webp": {
+        "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p074.webp": {
           "page_pdf": 74,
-          "sha256_image": "fe4f39db1eafd970dde25b437df4965468891ee08b04000bfde34d0ba7703abb",
+          "sha256_image": "9fe7c32b24c36065092e639cd20870af823f679ae8a715b1e68b0e4d43b29f60",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p018.webp": {
+        "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p075.webp": {
+          "page_pdf": 75,
+          "sha256_image": "dbd97225bc2010abd435e48c1e66c99a7c7880751d81f88e257b04ce09ff255b",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p018.webp": {
           "page_pdf": 18,
           "sha256_image": "419d6684258cff4924043e3c7313cd12c31e19512efeda7995e25da8bd3b7c95",
           "dimensions": [
@@ -5386,7 +5405,7 @@
             2021
           ]
         },
-        "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p019.webp": {
+        "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p019.webp": {
           "page_pdf": 19,
           "sha256_image": "c4ce7ce5441dc689aa7730766f922b2ee14a505ccfb5df705b3ae851e38b5172",
           "dimensions": [
@@ -7152,17 +7171,17 @@
     "assets/apercus/contrats-speciaux-l3-zoom.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 101,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p101.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p101.webp"
     },
     "assets/apercus/contrats-speciaux-l3-1.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 101,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p101.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p101.webp"
     },
     "assets/apercus/contrats-speciaux-l3-2.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 28,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p028.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p028.webp"
     },
     "assets/apercus/travail-l3-s1-zoom.webp": {
       "produit": "fiche-travail-l3-s1",
@@ -7372,17 +7391,17 @@
     "assets/apercus/maj-da-l2-s1-sommaire-20261107-1.webp": {
       "produit": "maj-da-l2-s1",
       "page": 2,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp"
     },
     "assets/apercus/maj-da-l2-s1-sommaire-20261107-2.webp": {
       "produit": "maj-da-l2-s1",
       "page": 2,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp"
     },
     "assets/apercus/maj-da-l2-s1-spa-spic-20261107.webp": {
       "produit": "maj-da-l2-s1",
       "page": 28,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p028.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p028.webp"
     },
     "assets/apercus/maj-da-l2-s2-sommaire-20261107-1.webp": {
       "produit": "maj-da-l2-s2",
@@ -7573,15 +7592,18 @@
     },
     "assets/apercus/cours-contrats-speciaux-l3-zoom.webp": {
       "produit": "cours-fiche-contrats-speciaux-l3",
-      "page": 73
+      "page": 74,
+      "image": "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p074.webp"
     },
     "assets/apercus/cours-contrats-speciaux-l3-1.webp": {
       "produit": "cours-fiche-contrats-speciaux-l3",
-      "page": 73
+      "page": 74,
+      "image": "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p074.webp"
     },
     "assets/apercus/cours-contrats-speciaux-l3-2.webp": {
       "produit": "cours-fiche-contrats-speciaux-l3",
-      "page": 18
+      "page": 18,
+      "image": "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p018.webp"
     },
     "assets/apercus/cours-obligations-l2-s2-zoom.webp": {
       "produit": "cours-fiche-obligations-l2-s2",
@@ -7837,7 +7859,7 @@
     "assets/apercus/vignettes/contrats-speciaux-l3.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 101,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-miniature-p101.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-miniature-p101.webp"
     },
     "assets/apercus/vignettes/constit-l1-s1.webp": {
       "produit": "fiche-constit-l1-s1",
@@ -7961,12 +7983,12 @@
     "assets/apercus/lisibilite-20261107/maj-da-l2-s1/e3eb741f12f4-p002.webp": {
       "produit": "maj-da-l2-s1",
       "page": 2,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-da-l2-s1/e3eb741f12f4-p028.webp": {
       "produit": "maj-da-l2-s1",
       "page": 28,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p028.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p028.webp"
     },
     "assets/apercus/lisibilite-20261107/cours-fiche-da-l2-s1/edfbca60cabb-p095.webp": {
       "produit": "cours-fiche-da-l2-s1",
@@ -8251,17 +8273,17 @@
     "assets/apercus/lisibilite-20261107/maj-da-l2-s1/88e0060cf236-p002.webp": {
       "produit": "maj-da-l2-s1",
       "page": 2,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-da-l2-s1/88e0060cf236-p003.webp": {
       "produit": "maj-da-l2-s1",
       "page": 2,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-da-l2-s1/88e0060cf236-p028.webp": {
       "produit": "maj-da-l2-s1",
       "page": 28,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p028.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p028.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-da-l2-s2/f9ba40b84074-p002.webp": {
       "produit": "maj-da-l2-s2",
@@ -8541,22 +8563,22 @@
     "assets/apercus/lisibilite-20261107/fiche-contrats-speciaux-l3/6a2120d2c9b4-p102.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 101,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p101.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p101.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-contrats-speciaux-l3/6a2120d2c9b4-p103.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 102,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p102.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p102.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-contrats-speciaux-l3/6a2120d2c9b4-p029.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 28,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p028.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p028.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-contrats-speciaux-l3/6a2120d2c9b4-p102-vignette.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 101,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-miniature-p101.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-miniature-p101.webp"
     },
     "assets/apercus/lisibilite-20261107/cours-fiche-societes-l3-s2/b177db3e8d90-p252.webp": {
       "produit": "cours-fiche-societes-l3-s2",
@@ -8746,17 +8768,17 @@
     "assets/apercus/lisibilite-20261107/maj-da-l2-s1/a657ec664dd5-p002.webp": {
       "produit": "maj-da-l2-s1",
       "page": 2,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-da-l2-s1/a657ec664dd5-p003.webp": {
       "produit": "maj-da-l2-s1",
       "page": 2,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-da-l2-s1/a657ec664dd5-p028.webp": {
       "produit": "maj-da-l2-s1",
       "page": 28,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p028.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p028.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-travail-l3-s1/3ac13549185d-p027.webp": {
       "produit": "fiche-travail-l3-s1",
@@ -9050,23 +9072,23 @@
     },
     "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/0490cbd6ec9b-p076.webp": {
       "produit": "cours-fiche-contrats-speciaux-l3",
-      "page": 73,
-      "image": "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p073.webp"
+      "page": 74,
+      "image": "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p074.webp"
     },
     "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/0490cbd6ec9b-p077.webp": {
       "produit": "cours-fiche-contrats-speciaux-l3",
-      "page": 74,
-      "image": "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p074.webp"
+      "page": 75,
+      "image": "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p075.webp"
     },
     "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/0490cbd6ec9b-p018.webp": {
       "produit": "cours-fiche-contrats-speciaux-l3",
       "page": 18,
-      "image": "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p018.webp"
+      "image": "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p018.webp"
     },
     "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/0490cbd6ec9b-p019.webp": {
       "produit": "cours-fiche-contrats-speciaux-l3",
       "page": 19,
-      "image": "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p019.webp"
+      "image": "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p019.webp"
     },
     "assets/apercus/lisibilite-20261107/cours-fiche-finances-publiques-l2-s1/972b27b061a4-p003.webp": {
       "produit": "cours-fiche-finances-publiques-l2-s1",
@@ -10006,37 +10028,37 @@
     "assets/apercus/correction-vice-20261110/fiche-contrats-speciaux-l3/b3b3df62c19f-p028.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 28,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p028.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p028.webp"
     },
     "assets/apercus/correction-vice-20261110/fiche-contrats-speciaux-l3/b3b3df62c19f-p029.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 29,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p029.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p029.webp"
     },
     "assets/apercus/correction-vice-20261110/fiche-contrats-speciaux-l3/b3b3df62c19f-p101-vignette.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 101,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-miniature-p101.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-miniature-p101.webp"
     },
     "assets/apercus/correction-vice-20261110/fiche-contrats-speciaux-l3/b3b3df62c19f-p101.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 101,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p101.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p101.webp"
     },
     "assets/apercus/correction-vice-20261110/fiche-contrats-speciaux-l3/b3b3df62c19f-p102.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 102,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p102.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p102.webp"
     },
     "assets/apercus/correction-vice-20261110/fiche-contrats-speciaux-l3/b3b3df62c19f-p103.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 103,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p103.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p103.webp"
     },
     "assets/apercus/correction-vice-20261110/fiche-contrats-speciaux-l3/b3b3df62c19f-p108.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 108,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p108.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p108.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-procedure-penale-l3/7a44e5656363-p031.webp": {
       "produit": "fiche-procedure-penale-l3",
@@ -10356,17 +10378,17 @@
     "assets/apercus/lisibilite-20261107/maj-da-l2-s1/33d6df3f3aba-p002.webp": {
       "produit": "maj-da-l2-s1",
       "page": 2,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-da-l2-s1/33d6df3f3aba-p003.webp": {
       "produit": "maj-da-l2-s1",
       "page": 3,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p003.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p003.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-da-l2-s1/33d6df3f3aba-p028.webp": {
       "produit": "maj-da-l2-s1",
       "page": 28,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p028.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p028.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-penal-l2-s1/976d78be7272-p002.webp": {
       "produit": "maj-penal-l2-s1",
@@ -10791,17 +10813,17 @@
     "assets/apercus/abreviations-20261110/maj-da-l2-s1/eff47fdf5c95-p002.webp": {
       "produit": "maj-da-l2-s1",
       "page": 2,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp"
     },
     "assets/apercus/abreviations-20261110/maj-da-l2-s1/eff47fdf5c95-p003.webp": {
       "produit": "maj-da-l2-s1",
       "page": 3,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p003.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p003.webp"
     },
     "assets/apercus/abreviations-20261110/maj-da-l2-s1/eff47fdf5c95-p028.webp": {
       "produit": "maj-da-l2-s1",
       "page": 28,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p028.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p028.webp"
     },
     "assets/apercus/abreviations-20261110/maj-da-l2-s2/9d612a01604c-p002.webp": {
       "produit": "maj-da-l2-s2",
@@ -11251,17 +11273,17 @@
     "assets/apercus/affichage-20261110/maj-da-l2-s1/bb9383aa8fe5-p002.webp": {
       "produit": "maj-da-l2-s1",
       "page": 2,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp"
     },
     "assets/apercus/affichage-20261110/maj-da-l2-s1/bb9383aa8fe5-p003.webp": {
       "produit": "maj-da-l2-s1",
       "page": 3,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p003.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p003.webp"
     },
     "assets/apercus/affichage-20261110/maj-da-l2-s1/bb9383aa8fe5-p028.webp": {
       "produit": "maj-da-l2-s1",
       "page": 28,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p028.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p028.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-da-l2-s2/8c26a521fcdd-p018.webp": {
       "produit": "fiche-da-l2-s2",
@@ -11661,37 +11683,37 @@
     "assets/apercus/abreviations-20261110/fiche-contrats-speciaux-l3/95fddc805c93-p028.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 28,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p028.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p028.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-contrats-speciaux-l3/95fddc805c93-p029.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 29,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p029.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p029.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-contrats-speciaux-l3/95fddc805c93-p101-vignette.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 101,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-miniature-p101.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-miniature-p101.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-contrats-speciaux-l3/95fddc805c93-p101.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 101,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p101.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p101.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-contrats-speciaux-l3/95fddc805c93-p102.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 102,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p102.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p102.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-contrats-speciaux-l3/95fddc805c93-p103.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 103,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p103.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p103.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-contrats-speciaux-l3/95fddc805c93-p108.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 108,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p108.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p108.webp"
     },
     "assets/apercus/affichage-20261110/maj-penal-l2-s1/0ffd38e5f98b-p002.webp": {
       "produit": "maj-penal-l2-s1",
@@ -12231,37 +12253,37 @@
     "assets/apercus/abreviations-tjd-20261110/fiche-contrats-speciaux-l3/aa8ba36efa87-p101.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 101,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p101.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p101.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-contrats-speciaux-l3/aa8ba36efa87-p102.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 102,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p102.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p102.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-contrats-speciaux-l3/aa8ba36efa87-p103.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 103,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p103.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p103.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-contrats-speciaux-l3/aa8ba36efa87-p028.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 28,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p028.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p028.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-contrats-speciaux-l3/aa8ba36efa87-p029.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 29,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p029.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p029.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-contrats-speciaux-l3/aa8ba36efa87-p108.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 108,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p108.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p108.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-contrats-speciaux-l3/aa8ba36efa87-p101-vignette.webp": {
       "produit": "fiche-contrats-speciaux-l3",
       "page": 101,
-      "image": "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-miniature-p101.webp"
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-miniature-p101.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-da-l2-s1/2614aeb6964f-p090.webp": {
       "produit": "fiche-da-l2-s1",
@@ -12706,17 +12728,17 @@
     "assets/apercus/abreviations-tjd-20261110/maj-da-l2-s1/4fd8638d419b-p002.webp": {
       "produit": "maj-da-l2-s1",
       "page": 2,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/maj-da-l2-s1/4fd8638d419b-p003.webp": {
       "produit": "maj-da-l2-s1",
       "page": 3,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p003.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p003.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/maj-da-l2-s1/4fd8638d419b-p028.webp": {
       "produit": "maj-da-l2-s1",
       "page": 28,
-      "image": "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p028.webp"
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p028.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/maj-da-l2-s2/aba80869bc06-p002.webp": {
       "produit": "maj-da-l2-s2",
@@ -12969,7 +12991,77 @@
     "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p053.webp": "assets/apercus/affichage-20261111-complet/maj-procedure-civile-l3-s1/8a737f968812-p053.webp",
     "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p017.webp": "assets/apercus/affichage-20261111-complet/maj-procedure-penale-l3/0e9e9aaf9b2c-p017.webp",
     "assets/apercus/lisibilite-20261107/cours-complet-philosophie-du-droit-l2-s1/d1ffc731c49d-p049.webp": "assets/apercus/blancs-20261111/cours-complet-philosophie-du-droit-l2-s1/ec2a8beacd37-p048.webp",
-    "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p092.webp": "assets/apercus/blancs-20261111/fiche-constit-l1-s1/8b684cf85545-p091.webp"
+    "assets/apercus/affichage-20261111/fiche-constit-l1-s1/b8024550c1ee-p092.webp": "assets/apercus/blancs-20261111/fiche-constit-l1-s1/8b684cf85545-p091.webp",
+    "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p101.webp": {
+      "produit": "fiche-contrats-speciaux-l3",
+      "page": 101,
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p101.webp"
+    },
+    "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p102.webp": {
+      "produit": "fiche-contrats-speciaux-l3",
+      "page": 102,
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p102.webp"
+    },
+    "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p103.webp": {
+      "produit": "fiche-contrats-speciaux-l3",
+      "page": 103,
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p103.webp"
+    },
+    "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p028.webp": {
+      "produit": "fiche-contrats-speciaux-l3",
+      "page": 28,
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p028.webp"
+    },
+    "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p029.webp": {
+      "produit": "fiche-contrats-speciaux-l3",
+      "page": 29,
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p029.webp"
+    },
+    "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-p108.webp": {
+      "produit": "fiche-contrats-speciaux-l3",
+      "page": 108,
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-p108.webp"
+    },
+    "assets/apercus/affichage-20261111/fiche-contrats-speciaux-l3/096f40249edb-miniature-p101.webp": {
+      "produit": "fiche-contrats-speciaux-l3",
+      "page": 101,
+      "image": "assets/apercus/holtz-20261111/fiche-contrats-speciaux-l3/caa9a04ecb7f-miniature-p101.webp"
+    },
+    "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p073.webp": {
+      "produit": "cours-fiche-contrats-speciaux-l3",
+      "page": 74,
+      "image": "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p074.webp"
+    },
+    "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p074.webp": {
+      "produit": "cours-fiche-contrats-speciaux-l3",
+      "page": 75,
+      "image": "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p075.webp"
+    },
+    "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p018.webp": {
+      "produit": "cours-fiche-contrats-speciaux-l3",
+      "page": 18,
+      "image": "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p018.webp"
+    },
+    "assets/apercus/lisibilite-20261107/cours-fiche-contrats-speciaux-l3/236ebc8f4be5-p019.webp": {
+      "produit": "cours-fiche-contrats-speciaux-l3",
+      "page": 19,
+      "image": "assets/apercus/holtz-20261111/cours-fiche-contrats-speciaux-l3/13c258e46980-p019.webp"
+    },
+    "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p002.webp": {
+      "produit": "maj-da-l2-s1",
+      "page": 2,
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp"
+    },
+    "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p003.webp": {
+      "produit": "maj-da-l2-s1",
+      "page": 3,
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p003.webp"
+    },
+    "assets/apercus/affichage-20261111/maj-da-l2-s1/908fdb08d03e-p028.webp": {
+      "produit": "maj-da-l2-s1",
+      "page": 28,
+      "image": "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p028.webp"
+    }
   },
   "decomptes": {
     "droit-des-contrats-l2.html": {
