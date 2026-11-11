@@ -2938,27 +2938,27 @@
       }
     },
     "maj-contrats-speciaux-l3": {
-      "sha256": "c687ba4084c495b609d7fee2ca7dcf46ab475350898c9832150de694f3cdaabc",
-      "pages_pdf": 184,
+      "sha256": "1a69e69f197af6b17394f43dbb746afd0c9e9e8cb8ff41fe30dd54c58c1da788",
+      "pages_pdf": 219,
       "famille": "majeures",
       "fichier_pdf": "maj-contrats-speciaux-l3.pdf",
       "images": [
-        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p024.webp",
-        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p025.webp",
-        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p026.webp",
-        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p002.webp",
-        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p003.webp",
-        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p004.webp",
-        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p122.webp"
+        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p035.webp",
+        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p036.webp",
+        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p037.webp",
+        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p002.webp",
+        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p003.webp",
+        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p004.webp",
+        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p152.webp"
       ],
       "pages_images": [
-        24,
-        25,
-        26,
+        35,
+        36,
+        37,
         2,
         3,
         4,
-        122
+        152
       ],
       "variantes": [
         {
@@ -2968,22 +2968,22 @@
             "assets/apercus/maj-contrats-speciaux-l3-2.webp"
           ],
           "pages": [
-            24,
-            25,
-            26,
+            35,
+            36,
+            37,
             2,
             3,
             4,
-            122
+            152
           ],
           "images": [
-            "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p024.webp",
-            "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p025.webp",
-            "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p026.webp",
-            "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p002.webp",
-            "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p003.webp",
-            "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p004.webp",
-            "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p122.webp"
+            "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p035.webp",
+            "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p036.webp",
+            "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p037.webp",
+            "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p002.webp",
+            "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p003.webp",
+            "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p004.webp",
+            "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p152.webp"
           ],
           "versions_precedentes": [
             [
@@ -3018,63 +3018,72 @@
               "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/389613c06f2b-p003.webp",
               "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/389613c06f2b-p004.webp",
               "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/389613c06f2b-p122.webp"
+            ],
+            [
+              "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p024.webp",
+              "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p025.webp",
+              "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p026.webp",
+              "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p002.webp",
+              "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p003.webp",
+              "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p004.webp",
+              "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p122.webp"
             ]
           ]
         }
       ],
-      "majeures": 64,
+      "majeures": 76,
       "preuves_images": {
-        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p002.webp": {
+        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p002.webp": {
           "page_pdf": 2,
-          "sha256_image": "a2ee07af5ba4876deea9c3eefd340dbbae279b55080a6f37df82e87a2551f2aa",
+          "sha256_image": "893d61ef8f0b11d9eeb84c3ae67ba9868bc7ee8dd21af3b02d9835e470bcb038",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p003.webp": {
+        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p003.webp": {
           "page_pdf": 3,
-          "sha256_image": "66d7ab2754265002d2c66157d458523510abcdb65506d2d3786b7d6aa594ceff",
+          "sha256_image": "c051f3101269c2c6201fdd9b8c96766d4acf620b83bffaa7935145e2dd2a7cb8",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p004.webp": {
+        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p004.webp": {
           "page_pdf": 4,
-          "sha256_image": "fd8b7ae4ce36dead71aae30654b49f1b87a88bb71e499e40069635793bdb50bf",
+          "sha256_image": "2fe7bb6bd282a452bf3dce219d5d4e729f2ebfbb881b20ce61868b7876206147",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p024.webp": {
-          "page_pdf": 24,
-          "sha256_image": "a773c7c6f82f1ddc4515138835cb6507bcbb2241cb51b535ebb654080091c3b2",
+        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p035.webp": {
+          "page_pdf": 35,
+          "sha256_image": "b374d3af991ed73fc0fa0b6acb05efc0a35b1314ee90e6d70c0b88e1eaccd431",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p025.webp": {
-          "page_pdf": 25,
-          "sha256_image": "8ba2b1421e4f52747f91015ee40a3845c6742d7f7c44ee7d6623f0ac30c2b6db",
+        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p036.webp": {
+          "page_pdf": 36,
+          "sha256_image": "b60903737c522298b7deb2e0a8cca1f25aad02b5a66bd91b1696e0bbb8e26ca0",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p026.webp": {
-          "page_pdf": 26,
-          "sha256_image": "63cced4a20896a166ae0cdc4160b6122461a18cf7d354c7e7335f614d130a99f",
+        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p037.webp": {
+          "page_pdf": 37,
+          "sha256_image": "e9ed274f0e9e48b2b68d95e3a4c8976b2612736641c48bc6a2c2d26fa40d2e02",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p122.webp": {
-          "page_pdf": 122,
-          "sha256_image": "91dbd6a17a62c951062b186caf7255adda5736a4186fde31bfd1e2955f117ed1",
+        "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p152.webp": {
+          "page_pdf": 152,
+          "sha256_image": "e6f8a4ac9f6bd99891e8705f4b7f15dc23f06e19dcdcd2510562a17dd8b8607b",
           "dimensions": [
             1429,
             2021
@@ -6687,18 +6696,18 @@
     },
     "assets/apercus/maj-contrats-speciaux-l3-zoom.webp": {
       "produit": "maj-contrats-speciaux-l3",
-      "page": 24,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p024.webp"
+      "page": 35,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p035.webp"
     },
     "assets/apercus/maj-contrats-speciaux-l3-1.webp": {
       "produit": "maj-contrats-speciaux-l3",
-      "page": 24,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p024.webp"
+      "page": 35,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p035.webp"
     },
     "assets/apercus/maj-contrats-speciaux-l3-2.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 2,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p002.webp"
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p002.webp"
     },
     "assets/apercus/maj-intro-droit-l1-zoom.webp": {
       "produit": "maj-intro-droit-l1",
@@ -7555,33 +7564,33 @@
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/f973bb7d8e1f-p024.webp": {
       "produit": "maj-contrats-speciaux-l3",
-      "page": 24,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p024.webp"
+      "page": 35,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p035.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/f973bb7d8e1f-p025.webp": {
       "produit": "maj-contrats-speciaux-l3",
-      "page": 25,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p025.webp"
+      "page": 36,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p036.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/f973bb7d8e1f-p026.webp": {
       "produit": "maj-contrats-speciaux-l3",
-      "page": 26,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p026.webp"
+      "page": 37,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p037.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/f973bb7d8e1f-p002.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 2,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p002.webp"
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/f973bb7d8e1f-p003.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 2,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p002.webp"
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/f973bb7d8e1f-p004.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 2,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p002.webp"
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-intro-droit-l1/55c35bde05eb-p003.webp": {
       "produit": "maj-intro-droit-l1",
@@ -8090,33 +8099,33 @@
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/e64d033e866a-p024.webp": {
       "produit": "maj-contrats-speciaux-l3",
-      "page": 24,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p024.webp"
+      "page": 35,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p035.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/e64d033e866a-p025.webp": {
       "produit": "maj-contrats-speciaux-l3",
-      "page": 25,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p025.webp"
+      "page": 36,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p036.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/e64d033e866a-p026.webp": {
       "produit": "maj-contrats-speciaux-l3",
-      "page": 26,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p026.webp"
+      "page": 37,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p037.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/e64d033e866a-p002.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 2,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p002.webp"
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/e64d033e866a-p003.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 2,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p002.webp"
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/e64d033e866a-p004.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 2,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p002.webp"
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-da-l2-s1/a657ec664dd5-p002.webp": {
       "produit": "maj-da-l2-s1",
@@ -9656,37 +9665,37 @@
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/389613c06f2b-p002.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 2,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p002.webp"
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p002.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/389613c06f2b-p003.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 3,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p003.webp"
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p003.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/389613c06f2b-p004.webp": {
       "produit": "maj-contrats-speciaux-l3",
       "page": 4,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p004.webp"
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p004.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/389613c06f2b-p024.webp": {
       "produit": "maj-contrats-speciaux-l3",
-      "page": 24,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p024.webp"
+      "page": 35,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p035.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/389613c06f2b-p025.webp": {
       "produit": "maj-contrats-speciaux-l3",
-      "page": 25,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p025.webp"
+      "page": 36,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p036.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/389613c06f2b-p026.webp": {
       "produit": "maj-contrats-speciaux-l3",
-      "page": 26,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p026.webp"
+      "page": 37,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p037.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-contrats-speciaux-l3/389613c06f2b-p122.webp": {
       "produit": "maj-contrats-speciaux-l3",
-      "page": 122,
-      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p122.webp"
+      "page": 152,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p152.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-da-l2-s2/7d1b3e350737-p002.webp": {
       "produit": "maj-da-l2-s2",
@@ -9917,6 +9926,41 @@
       "produit": "cours-fiche-finances-publiques-l2-s1",
       "page": 48,
       "image": "assets/apercus/abreviations-20261110/cours-fiche-finances-publiques-l2-s1/063dfc3a500d-p048.webp"
+    },
+    "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p002.webp": {
+      "produit": "maj-contrats-speciaux-l3",
+      "page": 2,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p002.webp"
+    },
+    "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p003.webp": {
+      "produit": "maj-contrats-speciaux-l3",
+      "page": 3,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p003.webp"
+    },
+    "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p004.webp": {
+      "produit": "maj-contrats-speciaux-l3",
+      "page": 4,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p004.webp"
+    },
+    "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p024.webp": {
+      "produit": "maj-contrats-speciaux-l3",
+      "page": 35,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p035.webp"
+    },
+    "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p025.webp": {
+      "produit": "maj-contrats-speciaux-l3",
+      "page": 36,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p036.webp"
+    },
+    "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p026.webp": {
+      "produit": "maj-contrats-speciaux-l3",
+      "page": 37,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p037.webp"
+    },
+    "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/c687ba4084c4-p122.webp": {
+      "produit": "maj-contrats-speciaux-l3",
+      "page": 152,
+      "image": "assets/apercus/abreviations-20261110/maj-contrats-speciaux-l3/1a69e69f197a-p152.webp"
     }
   },
   "decomptes": {
