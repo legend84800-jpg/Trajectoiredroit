@@ -3,7 +3,6 @@ const { createHash, createHmac, timingSafeEqual } = require("node:crypto");
 const { creerClientStripe } = require("./_stripe");
 const { COUPON_REMISE_POST_ACHAT } = require("./_remise-post-achat");
 
-const DUREE = 72 * 60 * 60;
 const LISTE_BIENVENUE = 3;
 const FORMAT_FIN = new Intl.DateTimeFormat("fr-FR", {
   dateStyle: "long",
@@ -37,13 +36,12 @@ async function retrouverOuCreerCode(stripe, id, token) {
   if (existant) return existant;
 
   const coupon = await stripe.coupons.retrieve(COUPON_REMISE_POST_ACHAT);
-  if (!coupon.valid || coupon.percent_off !== 15 || coupon.applies_to?.products?.length) {
+  if (!coupon.valid || coupon.percent_off !== 15 || coupon.redeem_by || coupon.applies_to?.products?.length) {
     throw new Error("Coupon de bienvenue indisponible");
   }
   try {
     return await stripe.promotionCodes.create({
       code,
-      expires_at: Math.floor(Date.now() / 1000) + DUREE,
       promotion: { type: "coupon", coupon: coupon.id },
       metadata: { campaign: "brevo-bienvenue" },
     }, { idempotencyKey: `brevo-${code}` });
@@ -78,12 +76,12 @@ module.exports = async function remiseBienvenue(req, res) {
     }
     const stripe = creerClientStripe(process.env.STRIPE_SECRET_KEY);
     const promo = await retrouverOuCreerCode(stripe, contact.id, token);
-    const utilisable = promo.active && promo.expires_at > Math.floor(Date.now() / 1000);
+    const utilisable = promo.active && (!promo.expires_at || promo.expires_at > Math.floor(Date.now() / 1000));
     await brevo(contact.id, {
       method: "PUT",
       body: JSON.stringify({ attributes: {
         BIENVENUE_CODE: utilisable ? promo.code : "",
-        BIENVENUE_FIN: utilisable ? FORMAT_FIN.format(promo.expires_at * 1000) : "",
+        BIENVENUE_FIN: utilisable && promo.expires_at ? FORMAT_FIN.format(promo.expires_at * 1000) : "",
       } }),
     });
     return res.status(204).end();
