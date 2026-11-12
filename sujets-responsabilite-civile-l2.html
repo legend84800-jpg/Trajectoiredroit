@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Sujets de responsabilité civile L2 et un cas corrigé (2026)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Douze sujets de responsabilité civile L2 et un cas pratique corrigé. Tu apprends à établir qui répond d’une chute et comment le juge évalue une chance perdue.">
+  <link rel="canonical" href="https://trajectoiredroit.com/sujets-responsabilite-civile-l2.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sujets de responsabilité civile L2 et un cas corrigé (2026)">
+  <meta property="og:description" content="Douze sujets de responsabilité civile L2 et un cas pratique corrigé. Tu apprends à établir qui répond d’une chute et comment le juge évalue une chance perdue.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/sujets-responsabilite-civile-l2.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/sujets-responsabilite-civile-l2.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sujets de responsabilité civile L2 et un cas corrigé (2026)">
+  <meta name="twitter:description" content="Douze sujets de responsabilité civile L2 et un cas pratique corrigé. Tu apprends à établir qui répond d’une chute et comment le juge évalue une chance perdue.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/sujets-responsabilite-civile-l2.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Sujets de responsabilité civile L2 avec un cas pratique corrigé",
+      "description": "Douze sujets de responsabilité civile L2 et un cas pratique corrigé. Tu apprends à établir qui répond d’une chute et comment le juge évalue une chance perdue.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-11-12",
+      "dateModified": "2026-11-12",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Douze sujets de responsabilité civile L2 et un cas pratique corrigé sur la garde d’une chose et la perte de chance"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/sujets-responsabilite-civile-l2.webp",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/sujets-responsabilite-civile-l2.html"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sujets de responsabilité civile L2",
+          "item": "https://trajectoiredroit.com/sujets-responsabilite-civile-l2.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quels sujets de responsabilité civile préparer en L2 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Choisis dans la banque les sujets qui correspondent à ton programme. Tu peux partir d’un exercice sur le préjudice et la causalité, puis travailler la responsabilité du gardien d’une chose ou celle des parents. Certains sujets t’invitent aussi à vérifier un régime spécial, comme celui des accidents de la circulation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel cas pratique de responsabilité civile est corrigé ici ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le cas de la salle de projection est entièrement corrigé sur la page. Il montre comment prouver le rôle du câble dans la chute, puis distinguer les frais de soins de la perte d’une chance de jouer dans un concert. Le PDF offert présente un autre exercice, sur la responsabilité du fait personnel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel PDF choisir pour refaire des cas pratiques de responsabilité civile ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le recueil contient dix cas pratiques et trois sujets types de partiel, chacun avec son corrigé. La fiche complète sert surtout à revoir la règle et les conditions avant de rédiger. Tu peux donc lire le chapitre de la fiche, traiter l’énoncé du recueil et comparer ta réponse à son corrigé."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=6a441fef">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style id="exemples-pedagogiques-page">
+  .biens-hero { padding-top:48px; }
+  .biens-hero .hero__cta { margin-top:24px; }
+  @media (max-width:700px) {
+    .biens-hero { padding-top:24px; }
+    .biens-hero .hero__cta { gap:10px; }
+    .biens-hero .hero__cta .btn {
+      flex:1 1 132px;
+      width:auto;
+      min-height:44px;
+      font-size:.875rem;
+      padding:10px 12px;
+    }
+  }
+  @media (max-width:420px) {
+    .biens-hero { padding-top:12px; }
+    .biens-hero .hero__cta { margin-top:12px; }
+    .biens-hero .tjd-po { margin-top:12px; }
+  }
+  .prose p.exemple-pedagogique { color: #8A4B20; }
+  html[data-theme="dark"] .prose p.exemple-pedagogique,
+  .section--dark .prose p.exemple-pedagogique { color: #F0BD95; }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 474,64 €, 45 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-45 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">474,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 349,74 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">349,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 449,67 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">449,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 399,70 €, 40 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-40 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 569,58 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">569,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>166 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes tes questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+    <main>
+  <section class="section--sm biens-hero">
+    <div class="container container--narrow text-center">
+      <h1 class="h1">Sujets de responsabilité civile L2 avec un cas pratique corrigé</h1>
+      <p class="lead" style="max-width:720px;margin-left:auto;margin-right:auto">Ces douze sujets de responsabilité civile L2 couvrent les principaux exercices du partiel. Dans le cas corrigé, une visiteuse se blesse en trébuchant sur le câble d’un projecteur. Tu vois comment établir la responsabilité de l’association, puis distinguer les frais de soins d’une chance perdue de jouer un concert rémunéré.</p>
+      <div class="hero__cta flex flex--center">
+        <a class="btn btn--primary btn--lg" href="#banque">Les douze sujets →</a>
+        <a class="btn btn--outline btn--lg" href="#cas-pratique">Le cas corrigé</a>
+      </div>
+      <div data-tjd-pdf-offert="matiere" data-id="cas-pratique-obligations-l2-s2" data-titre="Un autre cas corrigé offert en PDF" data-texte="Je t’envoie un cas sur la responsabilité du fait personnel. Il part des dégâts causés à la voiture d’un voisin." data-bouton="Recevoir le cas pratique"></div>
+    </div>
+  </section>
+
+  <section class="conversion-offer" aria-labelledby="offre-responsabilite-titre">
+    <div class="container container--narrow">
+      <div class="conversion-offer__card">
+        <div class="conversion-offer__visual"><img src="assets/covers/fiche-obligations-l2-s2.webp" alt="Couverture de la fiche complète de droit des obligations L2 semestre 2" loading="lazy" width="960" height="540" decoding="async"></div>
+        <div>
+          <p class="conversion-offer__eyebrow">Droit des obligations L2, semestre 2</p>
+          <h2 class="conversion-offer__title" id="offre-responsabilite-titre">La fiche du cours et le recueil de cas pratiques corrigés</h2>
+          <p class="conversion-offer__summary">La fiche complète de 91 pages expose les conditions de la responsabilité civile, ses régimes spéciaux et les règles communes aux obligations. Le recueil de 115 pages, vendu séparément, montre comment appliquer ces règles quand un même énoncé pose des questions de faute, de garde ou de causalité.</p>
+          <ul class="conversion-offer__benefits">
+            <li>Les conditions et les arrêts expliqués dans la fiche pour reprendre un point précis du cours</li>
+            <li>Dix cas et trois sujets types de partiel dans le recueil pour refaire les exercices avant de lire leurs corrigés</li>
+            <li>Un accès immédiat au PDF choisi après le paiement</li>
+          </ul>
+          <div class="conversion-offer__choices">
+            <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-obligations-l2-s2">Acheter la fiche · 14,99 €</button>
+            <button type="button" class="btn btn--outline" data-tjd-produit="cas-pratique-obligations-l2-s2">Acheter le recueil · 14,99 €</button>
+          </div>
+          <p class="conversion-offer__note">Si tu hésites entre les deux PDF, la <a href="droit-des-obligations-l2.html">page du droit des obligations L2</a> présente les supports par semestre. Le <a href="formations.html#a-l-unite">catalogue des fiches complètes</a> permet aussi de retrouver la fiche vendue à l’unité.</p>
+          <div data-tjd-avis data-matiere="obligations-l2"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="banque">
+    <div class="container container--narrow">
+      <div class="prose">
+        <figure style="margin:0 0 32px"><img src="assets/blog/sujets-responsabilite-civile-l2.webp" srcset="assets/blog/sujets-responsabilite-civile-l2-640.webp 640w, assets/blog/sujets-responsabilite-civile-l2.webp 1200w" sizes="(max-width:700px) 100vw, 800px" alt="Un câble noir traverse l’allée d’une salle de projection" width="1200" height="675" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"></figure>
+        <h2>Douze sujets pour préparer ton partiel de responsabilité civile</h2>
+        <p>Les mentions de TD indiquent la provenance de l’exercice. Les situations sont reformulées et les énoncés de faculté restent distincts des exercices rédigés pour cette page. Quand un sujet part d’une décision, l’indication sous le titre te permet de retrouver le texte à lire.</p>
+        <p>Choisis une ligne qui correspond à ton programme, puis écris la question que la victime veut résoudre. L’indication de la dernière colonne aide à vérifier ton brouillon. Par exemple, si une sortie en mer cause deux blessures, il faut déterminer quelle suite d’événements explique chacune d’elles avant de discuter la réparation.</p>
+        <div class="article-table-scroll" tabindex="0" role="region" aria-label="Douze sujets de responsabilité civile et leur piste de travail" style="overflow-x:auto">
+          <table style="width:100%;min-width:660px;border-collapse:collapse">
+            <thead><tr><th scope="col">Sujet</th><th scope="col">Travail demandé</th><th scope="col">Ce qu’il faut vérifier dans ta copie</th></tr></thead>
+            <tbody>
+              <tr><th colspan="3" scope="colgroup">Le dommage et sa cause</th></tr>
+              <tr><th scope="row">1. Deux blessures pendant une sortie en mer<br><small>D’après le TD 17 de Paris-Panthéon-Assas, L2, 2025-2026</small></th><td>Une passagère se tord la cheville en tombant, car le bruit d’une bouteille qu’on ouvre à bord la fait sursauter. Le bateau tangue plus tard et un cadre lui tombe sur la tête. Relie chaque blessure aux faits qui l’expliquent.</td><td>Décris les événements qui expliquent chaque blessure. Si l’entorse a empêché la passagère d’éviter le choc à la tête, explique comment le premier accident a contribué à la seconde blessure.</td></tr>
+              <tr><th scope="row">2. Les préjudices à distinguer après un décès<br><small>D’après la correction du partiel du 28 mars 2020, L2</small></th><td>Lis l’<a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000033297355/" rel="noopener">arrêt du 20 octobre 2016</a>. Le mari et le fils d’une femme tuée lors d’une agression demandent réparation. Sépare ce qu’ils réclament pour eux-mêmes et ce qu’ils demandent au titre des droits transmis par la victime.</td><td>Dans cet arrêt, que change la conscience que la victime avait de sa mort prochaine ? Explique pourquoi les juges distinguent cette souffrance de la perte de la vie elle-même.</td></tr>
+              <tr><th scope="row">3. Un chantier et une fissure<br><small>Exercice d’entraînement</small></th><td>Après des travaux chez un voisin, un propriétaire remarque une large fissure dans son mur. Une ancienne photo montre une fissure plus fine au même endroit. Écris les deux questions qu’une expertise devrait aider à résoudre.</td><td>Distingue l’existence de la fissure et son aggravation. Cherche quelle partie des travaux pourrait expliquer l’aggravation et quels éléments permettraient d’écarter une évolution déjà en cours.</td></tr>
+              <tr><th colspan="3" scope="colgroup">La personne à qui demander réparation</th></tr>
+              <tr><th scope="row">4. Un commerçant invoque le bail auquel il est étranger<br><small>TD de Montpellier, commentaire de l’arrêt Boot Shop</small></th><td>Lis l’<a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000007052928/" rel="noopener">arrêt de l’assemblée plénière du 6 octobre 2006</a>. Présente les personnes liées par le bail, puis explique sur quel fondement le locataire-gérant peut demander réparation au bailleur.</td><td>Le contrat sert à identifier l’obligation d’entretien qui a été méconnue. Il faut encore dire en quoi ce manquement a causé le dommage du locataire-gérant, qui n’est pas partie au bail.</td></tr>
+              <tr><th scope="row">5. Une chute dans un passage verglacé<br><small>Entraînement à partir de l’arrêt du 15 juin 2023</small></th><td>Un invité tombe sur un accès resté ouvert. Un autre passage avait été déneigé. Lis l’<a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000047700843/" rel="noopener">arrêt de la deuxième chambre civile</a> et relève les faits qui permettent de retenir le rôle du sol dans la chute.</td><td>Compare l’état du passage avec l’usage auquel il était destiné. La présence d’un autre accès compte dans la discussion, mais elle ne dit pas à elle seule si le passage utilisé était fermé ou dangereux.</td></tr>
+              <tr><th scope="row">6. Une barrière empruntée pour une fête de quartier<br><small>Exercice d’entraînement</small></th><td>Pour délimiter l’entrée d’une fête, l’organisateur utilise une barrière que lui prête une association. Il choisit où la placer et peut la déplacer seul. Après la chute de la barrière sur une passante, rédige la partie du cas pratique consacrée à la garde.</td><td>Décris qui se servait de la barrière, décidait de son emplacement et pouvait la déplacer au moment de la chute. Le prêt est utile parce qu’il peut modifier ces pouvoirs, même si le propriétaire reste le même.</td></tr>
+              <tr><th scope="row">7. Un enfant heurte un camarade pendant un jeu<br><small>D’après un énoncé de cas pratique, adapté au texte actuel</small></th><td>En septembre 2026, un enfant de huit ans blesse un camarade en jouant. Ses parents sont séparés et exercent ensemble l’autorité parentale. Aucune décision administrative ou judiciaire n’a confié l’enfant à un tiers.</td><td>Applique l’<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051786000/" rel="noopener">article 1242 du Code civil</a> à la date des faits. Cherche si la victime peut demander réparation à l’un ou l’autre parent sans avoir à prouver une faute de leur part.</td></tr>
+              <tr><th scope="row">8. Un livreur à pied blesse une passante<br><small>Exercice d’entraînement</small></th><td>Pendant une livraison confiée par son employeur, un salarié pousse un chariot sur le trottoir et heurte une passante. L’employeur soutient qu’il lui avait demandé d’utiliser l’entrée de service. Indique quel fait il faut discuter pour examiner sa responsabilité.</td><td>Précise quelle mission le salarié accomplissait au moment du choc. Compare le fait de prendre une entrée différente et l’hypothèse où il aurait utilisé le chariot pour un déménagement personnel. Les deux situations posent une question différente sur le rapport entre l’acte et les fonctions.</td></tr>
+              <tr><th colspan="3" scope="colgroup">Le régime à choisir et la part du dommage à réparer</th></tr>
+              <tr><th scope="row">9. Un camion équipé d’un monte-charge et un accident dans la rue<br><small>D’après un TD sur les accidents de la circulation, UPA</small></th><td>Lorsqu’un camion garé prend feu après la surchauffe de son monte-charge, un motard s’en écarte et heurte une voiture. L’automobiliste freine, puis heurte un cycliste. Sépare les événements avant de lire la <a href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000693454/" rel="noopener">loi du 5 juillet 1985</a>.</td><td>Cherche quels véhicules sont impliqués et à quel accident se rattache la blessure du cycliste. Pour le camion, distingue le rôle du monte-charge et celui du camion en feu dans la manœuvre du motard.</td></tr>
+              <tr><th scope="row">10. Une batterie se met à chauffer pendant la charge<br><small>Exercice d’entraînement</small></th><td>Le propriétaire d’une batterie utilise le chargeur prévu par la notice. La batterie s’enflamme et cause 700 € de dégâts à une étagère. Vérifie si la victime peut agir sur le fondement de la responsabilité du fait des produits défectueux.</td><td>Compare les dégâts à l’étagère au <a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000052439669/" rel="noopener">seuil de 500 €</a> pour les dommages matériels. Examine ensuite la sécurité attendue de la batterie et les éléments qui relient son défaut éventuel à l’incendie.</td></tr>
+              <tr><th scope="row">11. Un visiteur franchit un passage fermé<br><small>Exercice d’entraînement</small></th><td>Le propriétaire ferme une allée où il fait creuser une tranchée. Un visiteur franchit la barrière et se blesse en tombant dans la tranchée. Sépare ce qui concerne le rôle de l’allée et ce qui concerne la conduite du visiteur.</td><td>Décris le danger et ce que le visiteur pouvait voir. Si son comportement a contribué à la chute, vérifie si sa faute peut limiter la réparation. Pour discuter la force majeure, demande-toi si le gardien pouvait prévoir le franchissement et l’empêcher.</td></tr>
+              <tr><th scope="row">12. Le câble dans l’allée<br><small>Cas original, corrigé sur cette page</small></th><td>Une visiteuse se blesse dans une salle de projection. Elle engage des frais de soins et ne peut plus se présenter à une audition. <a href="#cas-pratique">Lis l’énoncé et rédige tes trois réponses</a> avant d’ouvrir le corrigé.</td><td>Le câble était immobile. Cherche quel détail prouve qu’il a causé la chute et qui pouvait le déplacer. Puis traite séparément les frais déjà exposés et la possibilité de décrocher le concert.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Pour reprendre le programme entre deux exercices, utilise le <a href="responsabilite-civile-l2.html">guide de responsabilité civile L2</a>. Il classe les fondements et les arrêts par régime. Tu peux ainsi retrouver le chapitre qui te manque avant de refaire un sujet.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section section--alt" id="cas-pratique">
+    <div class="container container--narrow">
+      <div class="prose">
+        <h2>Cas pratique corrigé, une chute dans une salle de projection</h2>
+        <h3>L’énoncé</h3>
+        <p class="exemple-pedagogique">Une association organise une projection de films en accès libre dans son local, sans billet ni inscription. Camille y entre sans conclure de contrat avec l’association. Pour alimenter le projecteur, l’équipe a branché une rallonge dont elle choisit le trajet et qu’elle peut déplacer ou débrancher.</p>
+        <p class="exemple-pedagogique">L’allée centrale reste ouverte aux visiteurs. Un câble sans protection la traverse à quelques centimètres du sol, sur le chemin qui mène aux sièges. Un visiteur photographie le câble tendu d’un bord à l’autre quelques instants avant la chute.</p>
+        <p class="exemple-pedagogique">Camille suit l’allée et sa chaussure se prend dans le câble immobile, sous les yeux d’un témoin. Elle tombe alors et se fracture le poignet.</p>
+        <p class="exemple-pedagogique">Un médecin constate la fracture et lui prescrit dix jours sans jouer du violon. Les soins laissent à sa charge 120 €, qu’elle a réglés.</p>
+        <p class="exemple-pedagogique">Camille avait été retenue avec trois autres violonistes pour la dernière audition d’un concert. La personne choisie devait toucher un cachet de 600 €.</p>
+        <p class="exemple-pedagogique">L’audition a lieu trois jours après l’accident. Comme l’organisateur choisit l’interprète ce jour-là et ne peut pas reporter l’audition, il faut jouer devant lui à cette date pour rester en lice. Camille veut savoir ce qu’elle peut demander à l’association.</p>
+
+        <h3>Le brouillon, trois repères directement sur le sujet</h3>
+        <p>À la lecture, mets des crochets autour du passage qui pose une question. Trace ensuite une flèche et note quelques mots dans la marge. Tu peux aussi numéroter les crochets. Ainsi, tu retrouves l’ordre des réponses sur l’énoncé, puis les faits à reprendre quand tu rédiges chacune d’elles.</p>
+        <ol>
+          <li><strong>[Le câble traverse l’allée et la chaussure de Camille s’y prend]</strong> → Le rôle du câble et la personne qui décide de son emplacement</li>
+          <li><strong>[La blessure entraîne 120 € de frais à sa charge]</strong> → Les dépenses liées à la chute</li>
+          <li><strong>[La dernière audition a lieu pendant l’arrêt du violon]</strong> → La chance de jouer le concert</li>
+        </ol>
+        <p>Les crochets restent sur le sujet. Au brouillon, il faut donc surtout préparer les règles à appliquer et revenir à l’énoncé pour vérifier les dates. Par exemple, le troisième repère permet de comparer les dix jours pendant lesquels Camille ne peut pas jouer avec la date que l’organisateur a fixée.</p>
+
+        <h3>1. La responsabilité de l’association pour la chute</h3>
+        <p><strong>Faits utiles.</strong> Une visiteuse chute après que sa chaussure s’est prise dans un câble immobile dont l’association réglait l’emplacement. Comme aucun contrat ne les lie, la visiteuse demande réparation sur le terrain extracontractuel.</p>
+        <p><strong>Question de droit.</strong> Dans quelles conditions une visiteuse peut-elle demander à l’association de répondre d’une chute liée à un câble immobile ?</p>
+        <p><strong>Rappel du droit applicable.</strong> Selon l’article 1242, alinéa 1 du Code civil, le gardien répond du dommage causé par la chose qu’il garde. Ce régime permet donc de demander réparation sans avoir à prouver que le gardien a commis une faute. Il faut en revanche vérifier les trois points suivants.</p>
+        <ol>
+          <li><p><strong>La garde.</strong> Le gardien est celui qui exerce l’usage, la direction et le contrôle de la chose. Il faut donc établir qui pouvait s’en servir et décider de son emplacement au moment de l’accident.</p></li>
+          <li><p><strong>Le rôle de la chose dans l’accident.</strong> Quand la chose est immobile, le simple contact ne suffit pas. La victime doit donc établir ce qui rendait la chose anormale et expliquer en quoi ce détail a contribué à l’accident. Par exemple, dans un <a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000047700843/" rel="noopener">arrêt du 15 juin 2023</a>, la deuxième chambre civile de la Cour de cassation a confirmé que le sol du passage avait joué un rôle dans la chute. Du verglas caché sous la neige le rendait anormalement glissant pour un accès piéton resté ouvert.</p></li>
+          <li><p><strong>Le dommage et son lien avec l’accident.</strong> La victime doit enfin établir l’atteinte subie et montrer qu’elle vient de l’accident dont la chose a été l’instrument. Les conséquences à réparer se discutent ensuite une par une.</p></li>
+        </ol>
+        <p><strong>Application aux faits.</strong></p>
+        <ol>
+          <li><p><strong>L’association a la garde de la rallonge.</strong> En effet, elle se sert de la rallonge pour alimenter son projecteur et son équipe choisit où elle la fait passer. Les personnes chargées de la projection peuvent également la débrancher ou la déplacer pour le compte de l’association. Ces faits établissent qu’elle exerçait l’usage, la direction et le contrôle au moment de la chute.</p></li>
+          <li><p><strong>La position du câble explique la chute.</strong> Le câble est immobile, mais il traverse une allée ouverte, tendu au-dessus du sol sans protection. Cette position crée donc un obstacle sur le chemin des visiteurs.</p><p>La photographie prise avant la chute montre où passait le câble. Le témoin confirme que la chaussure de Camille s’y est prise. Ensemble, ces preuves montrent la position anormale du câble et son rôle dans la chute.</p></li>
+          <li><p><strong>La fracture vient de la chute.</strong> Camille tombe au moment où sa chaussure se prend dans le câble et se fracture le poignet en tombant. Le témoignage et les éléments médicaux permettent ainsi de relier la fracture à la chute.</p></li>
+        </ol>
+        <p><strong>Conclusion.</strong> Camille peut demander à l’association, qui gardait le câble, de réparer les conséquences de la chute causée par le câble tendu dans l’allée.</p>
+
+        <h3>2. Les frais de soins restés à sa charge</h3>
+        <p><strong>Faits utiles.</strong> Les soins de la fracture ont laissé une dépense de 120 € à la charge de Camille.</p>
+        <p><strong>Question de droit.</strong> La victime peut-elle demander le remboursement de la part des frais de soins qu’elle a réglée après la prise en charge ?</p>
+        <p><strong>Rappel du droit applicable.</strong> La réparation doit couvrir les conséquences du dommage, sans perte ni profit pour la victime. Les frais de soins constituent un préjudice patrimonial, car la personne blessée a dû dépenser de l’argent pour se soigner. Pour rattacher ces frais à l’accident, il faut établir que les soins concernent la blessure en cause. Il faut ensuite distinguer la part déjà prise en charge et la dépense supportée par la victime. Les documents de soins et de remboursement peuvent servir à chiffrer cette part.</p>
+        <p><strong>Application aux faits.</strong> Les soins ont été nécessaires à cause de la fracture survenue lors de la chute. Le cas précise en outre que la somme de 120 € correspond au reste à charge, après remboursement. Camille demande donc le remboursement d’une dépense déjà supportée pour cette blessure. La somme ne dépend pas du résultat de l’audition.</p>
+        <p><strong>Conclusion.</strong> Camille peut demander 120 € au titre des frais de soins restés à sa charge.</p>
+
+        <h3>3. La chance de jouer dans le concert rémunéré</h3>
+        <p><strong>Faits utiles.</strong> Camille avait obtenu une place à la dernière audition, mais sa blessure l’empêche d’y jouer. L’organisateur maintient la date et doit choisir un interprète.</p>
+        <p><strong>Question de droit.</strong> Comment évaluer le préjudice d’une personne que sa blessure a privée d’une audition pour un concert rémunéré ?</p>
+        <p><strong>Rappel du droit applicable.</strong> La perte de chance est un préjudice réparable lorsqu’une possibilité réelle d’obtenir un avantage a disparu de façon certaine. Pour établir ce préjudice, il faut donc vérifier deux points avant de chiffrer la réparation.</p>
+        <ol>
+          <li><p><strong>Une possibilité favorable existait avant l’accident.</strong> La victime doit montrer ce qui lui donnait une chance d’obtenir le gain. La sélection pour une étape finale, par exemple, permet d’apprécier la réalité de cette possibilité.</p></li>
+          <li><p><strong>L’accident a fait disparaître cette possibilité.</strong> Il faut donc vérifier que l’accident a privé la victime de la possibilité d’obtenir l’avantage. Dans un <a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000007055490/" rel="noopener">arrêt du 21 novembre 2006</a>, la première chambre civile a cassé la décision qui indemnisait les clients d’un avocat. En effet, ils pouvaient encore former un pourvoi en cassation, car l’acte qui leur avait notifié la décision indiquait un délai erroné.</p></li>
+        </ol>
+        <p>Une fois la chance perdue établie, le gain espéré sert de base au calcul et l’indemnité correspond à la part de ce gain que représente la chance. Dans l’<a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000051824027/" rel="noopener">arrêt du 27 juin 2025</a>, l’assemblée plénière applique ce calcul à la chance d’éviter un dommage. Lorsque le dommage entier ne peut pas être réparé, l’indemnité couvre alors une part de ce dommage, proportionnée à la chance qu’avait la victime de l’éviter.</p>
+        <p><strong>Application aux faits.</strong></p>
+        <ol>
+          <li><p><strong>Camille était déjà finaliste.</strong> L’organisateur avait retenu sa candidature parmi les quatre dernières. Il restait donc une décision de sélection, mais Camille avait franchi les étapes précédentes. Cette sélection fournit un fait précis pour établir qu’elle pouvait décrocher le concert.</p></li>
+          <li><p><strong>La blessure lui fait perdre l’audition.</strong> L’arrêt du violon dure dix jours, tandis que l’épreuve et le choix de l’interprète ont lieu trois jours après la chute. Comme l’organisateur ne propose aucun report, la fracture prive Camille de la possibilité de jouer devant lui.</p></li>
+        </ol>
+        <p>Le cachet de 600 € donne le montant de la rémunération proposée à la personne sélectionnée. Pour évaluer la chance de Camille, il faudrait donc regarder les critères de sélection et les éléments disponibles sur sa candidature. Quatre finalistes pour une place ne donnent pas automatiquement quatre chances égales. En copie, si le sujet ne donne rien de plus sur leur niveau, il faut expliquer comment l’indemnité se calcule et laisser le montant ouvert.</p>
+        <p><strong>Conclusion.</strong> Camille peut demander une indemnité pour la chance perdue de décrocher le concert, évaluée en fonction de ses chances d’être retenue.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="variations">
+    <div class="container container--narrow">
+      <div class="prose">
+        <h2>Que change un câble rangé ou une audition reportée ?</h2>
+        <p>Reprends le corrigé en ne changeant qu’un fait à la fois. Ainsi, tu vois quelle condition doit être réexaminée et lesquelles restent établies.</p>
+        <h3>La photo montre le câble rangé contre le mur</h3>
+        <p class="exemple-pedagogique">La photo prise avant la chute montre cette fois le câble fixé le long du mur, hors du passage. Le témoin dit toujours que la chaussure de Camille s’est prise dans le câble. Il faut donc vérifier si la rallonge était encore contre le mur quand Camille est tombée et comment elle a pu la toucher.</p>
+        <p>L’association peut toujours avoir la garde de la rallonge. Toutefois, si Camille ne prouve pas que le câble a joué un rôle dans sa chute, elle ne peut pas obtenir sur ce fondement la réparation des frais de soins ni celle de la chance perdue. Le <a href="la-responsabilite-du-fait-des-choses.html">guide sur la garde et le rôle de la chose</a> sépare les deux vérifications.</p>
+        <p>Dans un <a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000054167506/" rel="noopener">arrêt du 28 mai 2026</a>, un témoin avait indiqué qu’un homme était monté à une échelle, mais il ne pouvait pas dire si elle avait basculé en le faisant tomber. La deuxième chambre civile a confirmé que les éléments apportés par la victime ne suffisaient pas à établir une position anormale de l’échelle.</p>
+        <h3>Une audition de remplacement reste possible</h3>
+        <p class="exemple-pedagogique">Si l’organisateur propose à Camille une audition après sa guérison, avec la même place encore ouverte et les mêmes critères, elle peut toujours tenter de décrocher le concert. La seule absence à la première date ne suffit donc plus à établir qu’elle a perdu cette possibilité. En revanche, l’accident a déjà entraîné les soins et leurs frais.</p>
+        <p>Dans ta copie, reprends chaque demande séparément. Camille a encore la possibilité d’être choisie pour le concert. Elle peut toujours demander les 120 € déjà dépensés pour ses soins, puisque rien n’a changé dans les circonstances de la chute.</p>
+
+        <h2>Trois erreurs sur le responsable et le montant de la réparation</h2>
+        <h3>Donner le nom du propriétaire et s’arrêter là</h3>
+        <p>Le nom indiqué sur la facture permet de savoir qui a acheté l’objet. Si ton énoncé précise que l’acheteur l’a confié à quelqu’un, il faut ensuite regarder qui décidait de son utilisation au moment de l’accident. Pour la barrière de l’exercice 6, le prêt compte parce que l’organisateur pouvait choisir l’endroit où la placer et la déplacer seul.</p>
+        <h3>Indemniser la rémunération entière parce que la candidate était finaliste</h3>
+        <p>Camille avait sa place à l’audition, mais l’organisateur devait encore comparer les quatre candidatures avant d’attribuer le concert. Le juge évalue donc la possibilité que Camille soit choisie, au lieu de lui attribuer le cachet qu’elle aurait touché si elle avait été retenue.</p>
+        <h3>Reprocher à la victime de ne pas avoir limité ses pertes</h3>
+        <p>Lorsqu’une boulangère blessée a demandé réparation de la perte de son fonds de commerce, la cour d’appel lui a opposé qu’elle pouvait le confier à un gérant. La deuxième chambre civile a toutefois cassé cette décision dans son <a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000007047923/" rel="noopener">arrêt du 19 juin 2003</a>. En effet, l’incapacité de la boulangère expliquait la perte du fonds et elle n’avait pas à en confier l’exploitation à un tiers dans l’intérêt du responsable.</p>
+        <p>En copie, identifie le moment où le comportement reproché intervient. Une conduite qui a contribué à l’accident pose une question de causalité. En revanche, quand le reproche porte sur la gestion des pertes après l’accident, il faut examiner la portée de l’arrêt et la dépense dont la réparation est demandée.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="verification">
+    <div class="container container--narrow">
+      <div class="prose">
+        <h2>Trois questions pour relire ta copie</h2>
+        <h3>Quels faits prouvent que la rallonge a causé la chute ?</h3>
+        <p>Sur la photographie, le câble traverse une allée accessible. Le témoin décrit l’instant où la chaussure de Camille l’accroche. L’un des éléments montre donc la position du câble, tandis que l’autre le relie à la chute.</p>
+        <h3>Quand faut-il relire la date de l’accident ?</h3>
+        <p>Lorsque le texte applicable a changé, commence par repérer la date des faits avant de reprendre les conditions d’un cours ou d’un ancien corrigé. Par exemple, la loi du 23 juin 2025 a modifié le passage de l’article 1242 sur la responsabilité des parents. Les faits de septembre 2026 se placent après cette réforme. Tu peux donc vérifier qui exerce l’autorité parentale et si une décision de placement écarte la responsabilité des parents.</p>
+        <h3>Comment passer de la règle aux faits ?</h3>
+        <p>Dans la majeure, tu exposes la règle et ses conditions. Pour l’appliquer, écris par exemple que l’association a la garde de la rallonge puisqu’elle s’en sert pour le projecteur et que son équipe choisit son emplacement et peut la déplacer. Tu peux retrouver ce passage de la règle aux faits dans la <a href="methode-cas-pratique.html">méthode du cas pratique avec les annotations de l’énoncé</a>.</p>
+        <p style="font-size:.875rem;color:var(--muted)">Les sujets sont reformulés à partir du TD 17 de Paris-Panthéon-Assas (L2, 2025-2026), du fascicule de droit des obligations de l’Université de Montpellier, du TD sur les accidents de la circulation identifié UPA et de la correction du partiel du 28 mars 2020. L’exercice sur les parents vient d’un énoncé de travail sans établissement indiqué. Le corrigé de la projection et ses variations ont été rédigés pour cette page.</p>
+        <p style="font-size:.875rem;color:var(--muted)">Les règles sont consultables dans le <a href="https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006070721/" rel="noopener">Code civil</a> et dans les décisions citées.</p>
+        <div class="author-box">
+          <img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+          <div>
+            <p class="author-box__name">Julien</p>
+            <p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+            <p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">166 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+            <p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="faq">
+    <div class="container container--narrow"><h2 class="h2">Questions fréquentes sur les sujets de responsabilité civile L2</h2>
+      <div class="accordion">
+          <details class="accordion__item"><summary class="accordion__trigger">Quels sujets de responsabilité civile préparer en L2 ?</summary><div class="accordion__body"><p>Choisis dans la banque les sujets qui correspondent à ton programme. Tu peux partir d’un exercice sur le préjudice et la causalité, puis travailler la responsabilité du gardien d’une chose ou celle des parents. Certains sujets t’invitent aussi à vérifier un régime spécial, comme celui des accidents de la circulation.</p></div></details>
+          <details class="accordion__item"><summary class="accordion__trigger">Quel cas pratique de responsabilité civile est corrigé ici ?</summary><div class="accordion__body"><p>Le cas de la salle de projection est entièrement corrigé sur la page. Il montre comment prouver le rôle du câble dans la chute, puis distinguer les frais de soins de la perte d’une chance de jouer dans un concert. Le PDF offert présente un autre exercice, sur la responsabilité du fait personnel.</p></div></details>
+          <details class="accordion__item"><summary class="accordion__trigger">Quel PDF choisir pour refaire des cas pratiques de responsabilité civile ?</summary><div class="accordion__body"><p>Le recueil contient dix cas pratiques et trois sujets types de partiel, chacun avec son corrigé. La fiche complète sert surtout à revoir la règle et les conditions avant de rédiger. Tu peux donc lire le chapitre de la fiche, traiter l’énoncé du recueil et comparer ta réponse à son corrigé.</p></div></details>
+      </div>
+    </div>
+  </section>
+  <!-- fin-article:pack-ultra -->
+  <section class="article-pack-ligne"><div class="container container--narrow"><p class="article-pack-ligne__texte">Le Pack Ultra L2 semestre 2 réunit 30 ressources pour 239 €, dont des supports de responsabilité civile. <a href="pack-ultra.html#pack-ultra-l2-s2">Voir les supports inclus →</a></p></div></section>
+</main>
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Responsabilité civile L2, sujets et corrigé">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Responsabilité civile L2, sujets et corrigé">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Responsabilité civile L2</strong>
+      <small>Fiche complète · 91 pages</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-obligations-l2-s2">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=60767dcf" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=da4d9620" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=ee98d119" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>
