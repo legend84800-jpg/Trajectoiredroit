@@ -140,6 +140,22 @@ test('un achat avec complément applique la remise au recueil, même placé en s
   });
 });
 
+test('CORRIGE10 réduit les majeures de contrats seules et dans un panier mixte', async () => {
+  await avecStripeFactice(async ({ creer, appels }) => {
+    const seule = await creer({ produitId: 'maj-contrats-l2-s1', code: 'CORRIGE10' });
+    assert.equal(seule.statusCode, 200);
+    assert.deepEqual(appels.creations[0].discounts, [{ promotion_code: PROMO.id }]);
+
+    const panier = await creer({
+      produitIds: ['maj-contrats-l2-s1', 'maj-societes-l3-s1', 'cas-pratique-contrats-l2-s1'],
+      code: 'CORRIGE10',
+    });
+    assert.equal(panier.statusCode, 200);
+    assert.deepEqual(appels.creations[1].line_items.map(ligne => ligne.price_data.unit_amount), [1349, 1499, 1349]);
+    assert.equal(appels.creations[1].metadata.codePromoMontantCentimes, '300');
+  });
+});
+
 const PROMOS_INUTILISABLES = [
   ['absente', null],
   ['inactive', { ...PROMO, active: false }],

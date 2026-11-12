@@ -31,6 +31,7 @@ test('inscription, correction confirmée et livraison à un abonné existant',as
   let attrs=JSON.parse(appels[1].opt.body);assert.equal(attrs.email,'eleve@gmai.com');assert.match(attrs.attributes.CORRIGE_PDF,/dol-reticence/);
   existant=true;appels=[];res=response();await handler({method:'POST',headers:{'x-forwarded-for':'test3'},body:{email:'eleve@gmail.com',exercice:'commentaire-arret-uber-2020-corrige'}},res);
   assert.equal(res.statusCode,200);assert.equal(appels.length,3);assert.equal(JSON.parse(appels[2].opt.body).templateId,33);assert.match(JSON.parse(appels[1].opt.body).attributes.CORRIGE_PDF,/uber-2020/);
+  assert.equal(JSON.parse(appels[2].opt.body).params.CORRIGE_PDF, JSON.parse(appels[1].opt.body).attributes.CORRIGE_PDF);
   appels=[];res=response();await handler({method:'POST',body:{email:'eleve@gmail.com',exercice:'inconnu'}},res);assert.equal(res.statusCode,400);assert.equal(appels.length,0);
  }finally{global.fetch=ancienFetch;if(ancienneCle===undefined)delete process.env.BREVO_API_KEY;else process.env.BREVO_API_KEY=ancienneCle;if(ancienneListe===undefined)delete process.env.BREVO_LIST_ID;else process.env.BREVO_LIST_ID=ancienneListe;}
 });

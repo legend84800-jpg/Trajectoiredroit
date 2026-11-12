@@ -137,7 +137,7 @@ async function inscrireContact(email, attributs, apiKey, listes) {
   return { ok: false, status: brevoRes.status, detail };
 }
 
-async function envoyerCorrigeOffert(email, matiere, apiKey) {
+async function envoyerCorrigeOffert(email, attributs, tags, apiKey) {
   const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
     headers: { "Content-Type": "application/json", "api-key": apiKey, accept: "application/json" },
@@ -148,7 +148,8 @@ async function envoyerCorrigeOffert(email, matiere, apiKey) {
       // contact@trajectoiredroit.com, jamais lue par Julien.
       replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
       templateId: 33,
-      tags: ["corrige-offert", matiere],
+      params: attributs,
+      tags,
     }),
   });
   if (!resp.ok) {
@@ -361,9 +362,7 @@ async function handler(req, res) {
       // Nouveau contact : une seule livraison par le scénario de bienvenue.
       // Déjà abonné : le scénario ne redémarre pas, on livre son nouvel exercice.
       if (dejaInscrit) {
-        const resp = await fetch('https://api.brevo.com/v3/smtp/email', { method:'POST',headers:{'Content-Type':'application/json','api-key':apiKey},
-          body:JSON.stringify({sender:{name:'Trajectoire Droit',email:'contact@trajectoiredroit.com'},to:[{email}],replyTo:{email:'julien.prof1@gmail.com',name:'Julien'},templateId:33,tags:['corrige-exercice',String(body.exercice)]})});
-        if (!resp.ok) throw new Error('Livraison Brevo impossible');
+        await envoyerCorrigeOffert(email, attributs, ["corrige-exercice", String(body.exercice)], apiKey);
       }
       return res.status(200).json({ok:true,envoye:true});
     }
@@ -474,14 +473,15 @@ async function handler(req, res) {
     // Un contact déjà dans la liste ne relance pas la séquence : il reçoit donc
     // le corrigé par l'email transactionnel, comme avant.
     const dejaInscrit = await contactDejaDansListe(email, apiKey);
-    const inscription = await inscrireContact(email, attributsCorrige(matiere), apiKey);
+    const attributs = attributsCorrige(matiere);
+    const inscription = await inscrireContact(email, attributs, apiKey);
     if (!inscription.ok) {
       console.error("Brevo error:", inscription.status, inscription.detail);
       res.status(502).json({ error: "Inscription impossible pour le moment." });
       return;
     }
 
-    if (dejaInscrit) await envoyerCorrigeOffert(email, matiere, apiKey);
+    if (dejaInscrit) await envoyerCorrigeOffert(email, attributs, ["corrige-offert", matiere], apiKey);
     res.status(200).json({ ok: true, envoye: true });
   } catch (err) {
     console.error("lead handler error:", err);

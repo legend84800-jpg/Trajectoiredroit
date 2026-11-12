@@ -105,13 +105,15 @@ function appliquerCodePromo(params, { promo, codeDemande, dejaAcheteur }) {
   return suite;
 }
 
-function estRecueilCorrige(id) {
-  return typeof id === "string" && /^(cas-pratique-|commentaire-arret-|dissertation-)/.test(id)
-    && Boolean(PRODUITS[id]);
+const MAJEURES_CONTRATS_CORRIGE10 = "maj-contrats-l2-s1";
+
+function eligibleCorrige10(id) {
+  return typeof id === "string" && Boolean(PRODUITS[id])
+    && (id === MAJEURES_CONTRATS_CORRIGE10 || /^(cas-pratique-|commentaire-arret-|dissertation-)/.test(id));
 }
 
 // Checkout applique un coupon à la session entière. Dans un panier mixte, le
-// prix des seuls recueils est donc réduit côté serveur, après lecture du coupon.
+// prix des seuls produits éligibles est donc réduit après lecture du coupon.
 // Les autres lignes et les identifiants utilisés pour livrer restent identiques.
 function couponCorrigeUtilisable(promo) {
   if (!promo || promo.active !== true || promo.customer || promo.customer_account) return false;
@@ -132,7 +134,7 @@ async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande,
     });
   }
   const codeCorrige = codeDemande.toUpperCase() === "CORRIGE10";
-  const eligibles = ids.map(estRecueilCorrige);
+  const eligibles = ids.map(eligibleCorrige10);
   // Un code de corrigé mémorisé n'empêche jamais l'achat d'un autre format.
   if (codeCorrige && !eligibles.some(Boolean)) {
     return appliquerCodePromo(params, { promo: null, codeDemande: "", dejaAcheteur });
@@ -152,7 +154,9 @@ async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande,
     const remise = Math.round(prix * 10 / 100);
     montantRemise += remise * ligne.quantity;
     const donnees = ligne.price_data.product_data;
-    const precision = "Le prix de ce recueil comprend la réduction de 10 % du code CORRIGE10.";
+    const precision = ids[index] === MAJEURES_CONTRATS_CORRIGE10
+      ? "Le prix de ces majeures préparées comprend la réduction de 10 % du code CORRIGE10."
+      : "Le prix de ce recueil comprend la réduction de 10 % du code CORRIGE10.";
     return {
       ...ligne,
       price_data: {
