@@ -139,7 +139,7 @@ test("l'email d'achat de l'option renvoie vers Mon compte, sans aucun lien de fi
   }
   const email = envois[0];
   assert.ok(email);
-  assert.match(email.htmlContent, /Tes podcasts et tes vidéos sont disponibles dès maintenant dans ton espace Mon compte/);
+  assert.match(email.htmlContent, /Tes podcasts et tes vidéos sont disponibles dès maintenant dans ton espace Mon Compte/);
   assert.match(email.htmlContent, /Écouter mes podcasts et voir mes vidéos/);
   assert.ok(!/tes PDF sont prêts|48 heures/.test(email.htmlContent + email.textContent));
   assert.ok(!/api\/telecharger/.test(email.htmlContent + email.textContent));

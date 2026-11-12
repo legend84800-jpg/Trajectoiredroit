@@ -570,28 +570,39 @@ test("la page de remerciement attend la confirmation Stripe avant d'annoncer le 
   assert.match(pageMerci, /afficherPaiementNonConfirme\(\);/);
 });
 
-test("le remerciement après achat contient les liens sociaux et les informations à jour", () => {
-  const webhook = fs.readFileSync(path.join(RACINE, "api/stripe-webhook.js"), "utf8");
-  const emailAchat = webhook.slice(
-    webhook.indexOf("async function envoyerEmail"),
-    webhook.indexOf("// Confirmation envoyée au client")
-  );
-  const pageMerci = fs.readFileSync(path.join(RACINE, "merci-achat.html"), "utf8");
-  const youtube = "https://www.youtube.com/@TrajectoireDroit";
-  const tiktok = "https://www.tiktok.com/@trajectoiredroit";
+test("l’email de livraison donne les bons liens dans les formats HTML et texte", async t => {
+  const { envoyerEmail } = require("../api/stripe-webhook")._test;
+  let payload;
+  t.mock.method(global, "fetch", async (url, options) => {
+    assert.equal(url, "https://api.brevo.com/v3/smtp/email");
+    payload = JSON.parse(options.body);
+    return { ok: true };
+  });
+  const fichier = "https://trajectoiredroit.com/api/download?id=fiche-da-l2-s1&token=test";
+  await envoyerEmail("client@example.com", [{ nom: "Fiche complète Droit administratif L2 S1" }],
+    [{ url: fichier, nom: "la fiche complète" }], "brevo-test", null);
+  for (const rendu of [payload.htmlContent, payload.textContent]) {
+    assert.ok(rendu.includes("https://www.youtube.com/@TrajectoireDroit"));
+    assert.ok(rendu.includes("https://www.tiktok.com/@trajectoiredroit"));
+    assert.ok(rendu.includes("https://trajectoiredroit.com/mon-compte.html"));
+    assert.match(rendu, /Ils restent valables 48 heures/);
+    assert.match(rendu, /environ toutes les deux semaines/);
+    assert.match(rendu, /TrajectoireDroit, les meilleures fiches de droit de France/);
+    assert.doesNotMatch(rendu, /mieux vaut les enregistrer|fiche de citations|20 % de commission|mon but est de créer/);
+  }
+  assert.ok(payload.htmlContent.includes(fichier.replace("&", "&amp;")));
+  assert.ok(payload.textContent.includes(fichier));
 
-  assert.ok(webhook.split(youtube).length >= 3, "YouTube doit être présent dans les versions HTML et texte de l'email");
-  assert.ok(webhook.split(tiktok).length >= 3, "TikTok doit être présent dans les versions HTML et texte de l'email");
-  assert.match(pageMerci, new RegExp(youtube.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
-  assert.match(pageMerci, new RegExp(tiktok.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  await envoyerEmail("client@example.com", [{ nom: "Cours", mediaEnLigne: true }],
+    [], "brevo-test", null);
+  assert.match(payload.htmlContent, /Écouter mes podcasts et voir mes vidéos/);
+  assert.doesNotMatch(payload.htmlContent, /48 heures|bon d’achat|PARRAINJULIEN84/);
+
+  const pageMerci = fs.readFileSync(path.join(RACINE, "merci-achat.html"), "utf8");
+  assert.ok(pageMerci.includes("https://www.youtube.com/@TrajectoireDroit"));
+  assert.ok(pageMerci.includes("https://www.tiktok.com/@trajectoiredroit"));
   assert.match(pageMerci, /contact@trajectoiredroit\.com/);
   assert.match(pageMerci, /mon-compte\.html/);
-  assert.doesNotMatch(emailAchat, /Satisfait ou remboursé sous 7 jours/);
-  assert.doesNotMatch(emailAchat, /margin:0 0 (?:8|16)px/);
-  assert.ok(
-    emailAchat.split("margin:0 0 24px;").length >= 9,
-    "Chaque paragraphe de l'email doit conserver un espace visible"
-  );
 });
 
 test("l'email de confirmation du stage reprend les horaires publics", () => {

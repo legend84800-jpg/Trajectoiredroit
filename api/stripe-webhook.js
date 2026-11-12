@@ -390,129 +390,114 @@ async function recupererCodePromo(promotionCodeId, stripe) {
 
 async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
   const nomsAchetes = produits.map(p => p.nom).join(" + ");
+  const nomsHtml = echapperHtml(nomsAchetes);
   const contientPackUltra = produits.some(p => Array.isArray(p.inclus) && Array.isArray(p.blobsMeta));
-  // Les podcasts et vidéos se lancent depuis Mon compte, jamais depuis l'email.
   const contientMedia = !contientPackUltra && produits.some(p => p.mediaEnLigne);
   const seulementMedia = contientMedia && !liens.length;
+  const compte = "https://trajectoiredroit.com/mon-compte.html";
+  const youtube = "https://www.youtube.com/@TrajectoireDroit";
+  const tiktok = "https://www.tiktok.com/@trajectoiredroit";
+  const lien = (url, libelle) => `<a href="${echapperHtml(url)}" style="color:#1a237e;">${libelle}</a>`;
+  const compteHtml = lien(compte, "Mon Compte");
+  const blocs = [];
+  const ajouter = (html, texte = html) => blocs.push({ html, texte });
 
-  const boutonsFichiers = liens.map(l =>
-    `<a href="${l.url}" style="display:inline-block;margin:8px 0;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;font-family:sans-serif;font-size:14px;">
-      Télécharger ${l.nom}
-    </a><br>`
-  ).join("\n");
-  const boutonPackUltra = contientPackUltra
-    ? `<a href="https://trajectoiredroit.com/mon-compte.html" style="display:inline-block;margin:8px 0;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;font-family:sans-serif;font-size:14px;">Accéder à mon Pack Ultra</a><br>`
-    : "";
-  const boutonMedia = contientMedia
-    ? `<a href="https://trajectoiredroit.com/mon-compte.html" style="display:inline-block;margin:8px 0;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;font-family:sans-serif;font-size:14px;">Écouter mes podcasts et voir mes vidéos</a><br>`
-    : "";
-  const boutons = `${boutonPackUltra}${boutonMedia}${boutonsFichiers}`;
+  const finIntro = contientPackUltra
+    ? ". Tes ressources sont disponibles dès maintenant."
+    : seulementMedia
+      ? ". Tes podcasts et tes vidéos sont disponibles dès maintenant dans ton espace Mon Compte."
+      : ", et tes PDF sont prêts juste en dessous.";
+  ajouter(`Tu viens d’acheter <strong>${nomsHtml}</strong>${finIntro}`, `Tu viens d’acheter ${nomsAchetes}${finIntro}`);
+  if (codeAmbassadeur) {
+    ajouter(`Réduction appliquée avec le code <strong>${echapperHtml(codeAmbassadeur)}</strong>.`,
+      `Réduction appliquée avec le code ${codeAmbassadeur}.`);
+  }
 
-  const ligneCodePromo = codeAmbassadeur
-    ? `<p style="font-size:13px;color:#555;margin:0 0 24px;">Réduction appliquée avec le code <strong>${codeAmbassadeur}</strong>.</p>`
-    : "";
+  if (contientPackUltra || seulementMedia) {
+    const action = contientPackUltra ? "Pour retrouver les ressources de ton Pack Ultra" : "Pour lancer tes podcasts et tes vidéos";
+    const suite = contientPackUltra
+      ? " Ensuite, ouvre la ressource dont tu as besoin."
+      : " Chaque leçon du cours a son podcast et sa vidéo. Tu peux les suivre depuis ton téléphone.";
+    const instructions = espace => `${action}, connecte-toi à ton espace ${espace} avec l’adresse email utilisée pour cet achat.${suite}`;
+    ajouter(instructions(compteHtml), instructions(`Mon Compte (${compte})`));
+  } else {
+    const instructions = "Clique sur les liens pour les télécharger.";
+    const mediaHtml = contientMedia ? ` Tu peux aussi lancer les podcasts et les vidéos dans ${compteHtml}.` : "";
+    const mediaTexte = contientMedia ? ` Tu peux aussi lancer les podcasts et les vidéos dans Mon Compte (${compte}).` : "";
+    ajouter(`${instructions} <strong>Ils restent valables 48 heures.</strong>${mediaHtml}`,
+      `${instructions} Ils restent valables 48 heures.${mediaTexte}`);
+  }
 
-  const html = `
-<!DOCTYPE html>
+  const boutons = liens.map(l => ({ url: l.url, libelle: `Télécharger ${l.nom}` }));
+  if (contientPackUltra) boutons.unshift({ url: compte, libelle: "Accéder à mon Pack Ultra" });
+  if (contientMedia) boutons.unshift({ url: compte, libelle: "Écouter mes podcasts et voir mes vidéos" });
+  ajouter(
+    boutons.map(b => `<a href="${echapperHtml(b.url)}" style="display:inline-block;margin:4px 0;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;">${echapperHtml(b.libelle)}</a><br>`).join("\n"),
+    boutons.map(b => `${b.libelle} : ${b.url}`).join("\n")
+  );
+
+  if (contientPackUltra || seulementMedia) {
+    const accès = espace => `Tu peux revenir dans ton espace ${espace} à tout moment pour retrouver tes ressources.`;
+    ajouter(`${accès(compteHtml)} <strong>L’accès est à vie.</strong>`,
+      `${accès(`Mon Compte (${compte})`)} L’accès est à vie.`);
+  } else {
+    const accès = espace => `Passé ce délai de 48 heures, tu n’as pas besoin de m’écrire pour les récupérer. Il suffit de te connecter à ton espace ${espace} sur le site avec cette même adresse email.`;
+    ajouter(accès(compteHtml), accès(`Mon Compte (${compte})`));
+    const suite = "Ainsi, tu retrouveras tous tes achats et tu pourras régénérer un lien de téléchargement à tout moment.";
+    ajouter(`${suite} <strong>L’accès est à vie.</strong>`, `${suite} L’accès est à vie.`);
+  }
+  if (!seulementMedia) {
+    const maj = espace => `Les mises à jour des fiches sont automatiques. N’hésite pas à revenir régulièrement sur ton espace ${espace} pour retélécharger le même format que tu as acheté, car je mets à jour les fiches environ toutes les deux semaines.`;
+    ajouter(maj(compteHtml), maj(`Mon Compte (${compte})`));
+  }
+  const contact = adresse => `Au moindre problème, n’hésite pas à me contacter par mail à ${adresse}. Je réponds sous 24 heures.`;
+  ajouter(contact(lien("mailto:julien.prof1@gmail.com", "julien.prof1@gmail.com")), contact("julien.prof1@gmail.com"));
+
+  if (liens.length || contientPackUltra) {
+    ajouter("J’ai mis un temps long à rédiger ces fiches, alors je te fais confiance. Garde-les pour toi et ne les divulgue pas à autrui.");
+  }
+  const reseaux = (yt, tt) => `Enfin, si tu veux apprendre le droit de manière plus ludique, tu peux me retrouver sur ${yt} et sur ${tt}.`;
+  ajouter(reseaux(lien(youtube, "YouTube"), lien(tiktok, "TikTok")), reseaux(`YouTube (${youtube})`, `TikTok (${tiktok})`));
+  ajouter("Julien, TrajectoireDroit");
+
+  const pied = "TrajectoireDroit, les meilleures fiches de droit de France.";
+  const html = `<!DOCTYPE html>
 <html lang="fr">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#f5f5f5;font-family:sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;padding:40px 0;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;padding:24px 0;">
     <tr><td align="center">
-      <table width="560" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:8px;overflow:hidden;">
+      <table width="560" cellpadding="0" cellspacing="0" style="width:100%;max-width:560px;background:#fff;border-radius:8px;overflow:hidden;">
         <tr><td style="background:#1a237e;padding:24px 32px;">
           <p style="margin:0;color:#fff;font-size:22px;font-weight:700;">TrajectoireDroit</p>
         </td></tr>
         <tr><td style="padding:32px;">
           <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 24px;">Ton achat est confirmé !</p>
-          <p style="font-size:15px;color:#333;margin:0 0 24px;">
-            ${contientPackUltra
-              ? `Tu viens d'acheter <strong>${nomsAchetes}</strong>. Tes ressources sont disponibles dès maintenant.`
-              : seulementMedia
-                ? `Tu viens d'acheter <strong>${nomsAchetes}</strong>. Tes podcasts et tes vidéos sont disponibles dès maintenant dans ton espace Mon compte.`
-                : `Tu viens d'acheter <strong>${nomsAchetes}</strong>, et tes PDF sont prêts juste en dessous.`}
-          </p>
-          ${ligneCodePromo}
-          <p style="font-size:15px;color:#333;margin:0 0 24px;">
-            ${contientPackUltra
-              ? "Pour télécharger les ressources de ton Pack Ultra, connecte-toi à ton espace Mon compte avec l'adresse email utilisée pour cet achat. Ensuite, ouvre la ressource dont tu as besoin."
-              : seulementMedia
-                ? "Pour les lancer, connecte-toi à ton espace Mon compte avec l'adresse email utilisée pour cet achat. Chaque leçon du cours a son podcast et sa vidéo, et tu peux les suivre depuis ton téléphone, par exemple dans les transports."
-                : contientMedia
-                  ? "Clique sur les liens pour télécharger tes PDF. Ils restent valables 48 heures, donc mieux vaut les enregistrer tout de suite. Tes podcasts et tes vidéos, eux, se lancent depuis ton espace Mon compte, avec l'adresse email utilisée pour cet achat."
-                  : "Clique sur les liens pour les télécharger. Ils restent valables 48 heures, donc mieux vaut les enregistrer sur ton ordinateur ou ton téléphone tout de suite."}
-          </p>
-          ${boutons}
-          <p style="font-size:13px;color:#777;margin:24px 0 24px;">
-            ${contientPackUltra
-              ? `Tu peux revenir dans <a href="https://trajectoiredroit.com/mon-compte.html" style="color:#1a237e;">ton espace Mon compte</a> à tout moment pour retrouver les fichiers de ton pack. L'accès est à vie.`
-              : seulementMedia
-                ? `Tu retrouves tes podcasts et tes vidéos dans <a href="https://trajectoiredroit.com/mon-compte.html" style="color:#1a237e;">ton espace Mon compte</a> à chaque connexion. L'accès est à vie.`
-              : `Passé ce délai de 48 heures, pas besoin de m'écrire pour les récupérer : connecte-toi à <a href="https://trajectoiredroit.com/mon-compte.html" style="color:#1a237e;">ton espace Mon compte</a> avec cette même adresse email, tu retrouves tous tes achats et tu régénères un lien de téléchargement à tout moment. L'accès est à vie.`}
-            Les mises à jour de tes fiches sont automatiques. N'hésite pas à revenir régulièrement sur ton <a href="https://trajectoiredroit.com/mon-compte.html" style="color:#1a237e;">espace Mon compte</a> pour retélécharger le même format que tu as déjà acheté. Tu profites ainsi de la dernière version sans rien payer de plus.
-          </p>
-          <p style="font-size:13px;color:#777;margin:0 0 24px;">
-            Au moindre problème, n'hésite pas à me contacter par mail à julien.prof1@gmail.com. Je réponds sous 24 heures.
-          </p>
-          <p style="font-size:13px;color:#777;margin:0 0 24px;">
-            En outre, mon but est de créer les meilleures fiches de droit en France. Par conséquent, je m'efforce de constamment les améliorer.
-          </p>
-          <p style="font-size:13px;color:#777;margin:0 0 24px;">
-            Ainsi, à la moindre remarque, que ce soit sur le fond (exemple : pas assez développé pour toi, ou au contraire trop, il manque des exemples etc.) ou sur la forme (pas assez pédagogue, trop développé, pas assez de couleur, etc.) n'hésite pas à me contacter.
-          </p>
-          <p style="font-size:13px;color:#777;margin:0 0 24px;">
-            En échange, je te renvoie la nouvelle fiche améliorée par mes soins, et si tes commentaires sont réellement détaillés et pertinents, je t'offre une « fiche de citations » en cadeau, très utile pour tes commentaires et dissertations.
-          </p>
-          <p style="font-size:13px;color:#777;margin:0 0 24px;">
-            J'ai mis un temps long à rédiger ces fiches, alors je te fais confiance, garde-les pour toi et ne les divulgue pas à autrui, merci à toi 🙂
-          </p>
-          <p style="font-size:13px;color:#777;margin:0 0 24px;">
-            Si tu as un bon réseau dans ta promo et que tu recommandes déjà mes fiches autour de toi, j'ai un <a href="https://trajectoiredroit.com/ambassadeurs.html" style="color:#1a237e;">programme ambassadeurs</a>, 10 % de réduction pour chaque filleul, 20 % de commission pour toi sur chaque vente.
-          </p>
-          <p style="font-size:13px;color:#777;margin:0 0 24px;">
-            Enfin, si tu veux aussi apprendre le droit de manière plus ludique, tu peux me retrouver sur <a href="https://www.youtube.com/@TrajectoireDroit" style="color:#1a237e;">YouTube</a> et sur <a href="https://www.tiktok.com/@trajectoiredroit" style="color:#1a237e;">TikTok</a>.
-          </p>
-          <p style="font-size:15px;color:#1a237e;font-weight:700;margin:0;">Julien</p>
+          ${blocs.map(b => `<p style="font-size:15px;line-height:1.55;color:#333;margin:0 0 20px;">${b.html}</p>`).join("\n")}
         </td></tr>
         <tr><td style="background:#f0f0f0;padding:16px 32px;">
-          <p style="font-size:12px;color:#999;margin:0;">TrajectoireDroit, la référence francophone en droit</p>
+          <p style="font-size:12px;color:#666;margin:0;">${pied}</p>
         </td></tr>
       </table>
     </td></tr>
   </table>
 </body>
 </html>`;
-
-  const texte = contientPackUltra
-    ? `Tu viens d'acheter ${nomsAchetes}. Tes ressources sont disponibles dès maintenant.\n\nPour télécharger les ressources de ton Pack Ultra, connecte-toi à https://trajectoiredroit.com/mon-compte.html avec l'adresse email utilisée pour cet achat. Ensuite, ouvre la ressource dont tu as besoin.\n\n${liens.length ? `Tes autres ressources :\n${liens.map(l => `${l.nom} : ${l.url}`).join("\n")}\n\n` : ""}Tu peux retrouver les fichiers de ton pack à tout moment. L'accès est à vie.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com. Je réponds sous 24 heures.\n\nJulien, TrajectoireDroit`
-    : seulementMedia
-    ? `Tu viens d'acheter ${nomsAchetes}. Tes podcasts et tes vidéos sont disponibles dès maintenant.\n\nPour les lancer, connecte-toi à https://trajectoiredroit.com/mon-compte.html avec l'adresse email utilisée pour cet achat. Chaque leçon du cours a son podcast et sa vidéo, et tu peux les suivre depuis ton téléphone, par exemple dans les transports. L'accès est à vie.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com. Je réponds sous 24 heures.\n\nJulien, TrajectoireDroit`
-    : `Tu viens d'acheter ${nomsAchetes}, et tes PDF sont prêts.\n\n${contientMedia ? "Tes podcasts et tes vidéos se lancent depuis https://trajectoiredroit.com/mon-compte.html.\n\n" : ""}Télécharge-les ici :\n${liens.map(l => `${l.nom} : ${l.url}`).join("\n")}\n\nLiens valables 48 heures. Passé ce délai, connecte-toi à https://trajectoiredroit.com/mon-compte.html avec cette même adresse email pour régénérer un lien à tout moment : l'accès est à vie. Les mises à jour de tes fiches sont automatiques. N'hésite pas à revenir régulièrement sur ton espace Mon compte (https://trajectoiredroit.com/mon-compte.html) pour retélécharger le même format que tu as déjà acheté. Tu profites ainsi de la dernière version sans rien payer de plus.\n\nAu moindre problème, contacte-moi par mail à julien.prof1@gmail.com. Je réponds sous 24 heures.\n\nMon but est de créer les meilleures fiches de droit en France, donc à la moindre remarque sur le fond ou sur la forme, n'hésite pas à me contacter. Je te renvoie la fiche améliorée, et si tes commentaires sont détaillés et pertinents, je t'offre une fiche de citations en cadeau.\n\nJ'ai mis un temps long à rédiger ces fiches, alors je te fais confiance, garde-les pour toi et ne les divulgue pas à autrui, merci à toi 🙂\n\nSi tu as un bon réseau dans ta promo, j'ai un programme ambassadeurs (https://trajectoiredroit.com/ambassadeurs.html) : 10 % de réduction pour chaque filleul, 20 % de commission pour toi.\n\nEnfin, si tu veux aussi apprendre le droit de manière plus ludique, tu peux me retrouver sur YouTube (https://www.youtube.com/@TrajectoireDroit) et sur TikTok (https://www.tiktok.com/@trajectoiredroit).\n\nJulien, TrajectoireDroit`;
-
+  const texte = ["Ton achat est confirmé !", ...blocs.map(b => b.texte), pied].join("\n\n");
   const payload = {
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
     to: [{ email }],
-    // Le mail invite à contacter Julien "au moindre problème" : si le client répond
-    // directement au lieu de réécrire à julien.prof1@gmail.com, ce replyTo garantit
-    // que ça arrive quand même chez lui plutôt que sur contact@, jamais consultée.
     replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
     subject: `Ton achat : ${nomsAchetes}`,
     htmlContent: html,
     textContent: texte,
   };
-
   const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "api-key": brevoKey,
-    },
+    headers: { "Content-Type": "application/json", "api-key": brevoKey },
     body: JSON.stringify(payload),
   });
-  if (!resp.ok) {
-    const err = await resp.text();
-    throw new Error(`Brevo ${resp.status}: ${err}`);
-  }
+  if (!resp.ok) throw new Error(`Brevo ${resp.status}: ${await resp.text()}`);
 }
 
 // Confirmation envoyée au client qui vient de payer le stage de méthode : reprend le
