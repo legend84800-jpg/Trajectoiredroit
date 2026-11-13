@@ -142,7 +142,11 @@ async function accepterEmails(data, produitIds, stripe, res) {
   const montant = data.amount_total != null ? (data.amount_total / 100).toFixed(2) : "?";
   const contact = await outils.creerContactBrevoAchat(
     email, produits, montant, brevoKey, true, remise, data.id,
-    { produitIds, origineAccord: "page-remerciement" }
+    {
+      produitIds,
+      origineAccord: "page-remerciement",
+      nomAcheteur: data.customer_details?.individual_name || data.customer_details?.name,
+    }
   );
   // Un contact déjà connu de Brevo n'entre dans l'automatisation qu'après une
   // réinscription à la liste des clients.

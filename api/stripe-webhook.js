@@ -145,7 +145,12 @@ async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, a
   // L'adresse sert toujours à la livraison, à l'historique d'achat et au support.
   // Elle rejoint la liste marketing seulement après un accord explicite recueilli
   // par Stripe pendant le paiement.
-  if (accordPromotionnel) payload.listIds = [BREVO_LISTE_CLIENTS];
+  if (accordPromotionnel) {
+    payload.listIds = [BREVO_LISTE_CLIENTS];
+    const [premierMot] = (options.nomAcheteur ?? "").trim().split(/\s+/, 1);
+    const prenom = formaterNomOffrant(premierMot);
+    if (/^\p{L}[\p{L}\p{M}'’-]*$/u.test(prenom)) payload.attributes.PRENOM = prenom;
+  }
 
   const resp = await fetch("https://api.brevo.com/v3/contacts", {
     method: "POST",
@@ -929,6 +934,7 @@ async function traiterAchatPaye(session, contexte) {
       {
         produitIds: produitsAchetes.map(p => p.id),
         origineAccord: accordPromotionnel ? "paiement-stripe" : undefined,
+        nomAcheteur: session.customer_details?.individual_name || session.customer_details?.name,
       }
     );
   } catch (e) {
