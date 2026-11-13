@@ -27,7 +27,7 @@ R2_PUBLIC = "https://pub-45b53167be7548aca62650d34a771b47.r2.dev"
 ENTETES = {"User-Agent": "Mozilla/5.0 (TrajectoireDroit kit-essai)"}
 # Extraits complets du 13/11/2026 : chaque majeure va jusqu'à sa dernière ligne, page
 # partagée avec la suivante comprise (essai-gratuit-tjd-2026-11-07/decouper_majeures.py).
-EDITION_MAJEURES = "integral-20261113"
+EDITION_MAJEURES = "typographie-20261113"
 EDITIONS_MAJEURES: dict[str, str] = {}
 
 
