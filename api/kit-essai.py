@@ -25,19 +25,10 @@ from lib.essai_majeures import NB_MAJEURES
 
 R2_PUBLIC = "https://pub-45b53167be7548aca62650d34a771b47.r2.dev"
 ENTETES = {"User-Agent": "Mozilla/5.0 (TrajectoireDroit kit-essai)"}
-EDITION_MAJEURES = "affichage-20261111"
-EDITIONS_MAJEURES = {
-    "maj-commercial-l3-s1": "affichage-20261111-complet",
-    "maj-da-l2-s2": "affichage-20261111-complet",
-    "maj-contrats-l2-s1": "affichage-20261111-complet",
-    "maj-contrats-speciaux-l3": "affichage-20261111-complet",
-    "maj-dip-l3-s2": "affichage-20261111-complet",
-    "maj-penal-l2-s1": "affichage-20261111-complet",
-    "maj-penal-special-l3": "affichage-20261111-complet",
-    "maj-procedure-civile-l3-s1": "affichage-20261111-complet",
-    "maj-procedure-penale-l3": "affichage-20261111-complet",
-    "maj-travail-l3-s1": "affichage-20261111-complet"
-}
+# Extraits complets du 13/11/2026 : chaque majeure va jusqu'à sa dernière ligne, page
+# partagée avec la suivante comprise (essai-gratuit-tjd-2026-11-07/decouper_majeures.py).
+EDITION_MAJEURES = "integral-20261113"
+EDITIONS_MAJEURES: dict[str, str] = {}
 
 
 def _edition_majeures(produit: str) -> str:
