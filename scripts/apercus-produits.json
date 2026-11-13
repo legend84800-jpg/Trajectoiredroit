@@ -2593,21 +2593,19 @@
       }
     },
     "maj-dip-l3-s2": {
-      "sha256": "e0431d147bf18648575af42f1d98dae0d94119eaee5766f75618822786f28225",
-      "pages_pdf": 43,
+      "sha256": "2d4b8d59ba8e9214c25f8745c1e1c3aaf62280234be0ac96bb7c0e41ede2e6d8",
+      "pages_pdf": 115,
       "famille": "majeures",
       "fichier_pdf": "maj-dip-l3-s2.pdf",
       "images": [
-        "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p016.webp",
-        "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p002.webp",
-        "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p003.webp",
-        "assets/apercus/affichage-20261111-complet/maj-dip-l3-s2/e0431d147bf1-p037.webp"
+        "assets/apercus/lisibilite-20261107/maj-dip-l3-s2/2d4b8d59ba8e-p004.webp",
+        "assets/apercus/lisibilite-20261107/maj-dip-l3-s2/2d4b8d59ba8e-p002.webp",
+        "assets/apercus/lisibilite-20261107/maj-dip-l3-s2/2d4b8d59ba8e-p003.webp"
       ],
       "pages_images": [
-        16,
+        4,
         2,
-        3,
-        37
+        3
       ],
       "variantes": [
         {
@@ -2617,16 +2615,14 @@
             "assets/apercus/maj-dip-l3-s2-2.webp"
           ],
           "pages": [
-            16,
+            4,
             2,
-            3,
-            37
+            3
           ],
           "images": [
-            "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p016.webp",
-            "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p002.webp",
-            "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p003.webp",
-            "assets/apercus/affichage-20261111-complet/maj-dip-l3-s2/e0431d147bf1-p037.webp"
+            "assets/apercus/lisibilite-20261107/maj-dip-l3-s2/2d4b8d59ba8e-p004.webp",
+            "assets/apercus/lisibilite-20261107/maj-dip-l3-s2/2d4b8d59ba8e-p002.webp",
+            "assets/apercus/lisibilite-20261107/maj-dip-l3-s2/2d4b8d59ba8e-p003.webp"
           ],
           "versions_precedentes": [
             [
@@ -2671,35 +2667,27 @@
           ]
         }
       ],
-      "majeures": 30,
+      "majeures": 36,
       "preuves_images": {
-        "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p002.webp": {
+        "assets/apercus/lisibilite-20261107/maj-dip-l3-s2/2d4b8d59ba8e-p004.webp": {
+          "page_pdf": 4,
+          "sha256_image": "0e8c671411ee406db60c6e9a168a7ecd28d2b6316fab23abf81adb289f1c2219",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/lisibilite-20261107/maj-dip-l3-s2/2d4b8d59ba8e-p002.webp": {
           "page_pdf": 2,
-          "sha256_image": "4cf9443072605df5b110b773b24a6ba00a4574196ed65b7e0da8773e084bd43b",
+          "sha256_image": "4c76be7795e280da5ad067d7e6e0d91137363d024dff7431a613ea6a7419a14f",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p003.webp": {
+        "assets/apercus/lisibilite-20261107/maj-dip-l3-s2/2d4b8d59ba8e-p003.webp": {
           "page_pdf": 3,
-          "sha256_image": "e6bae28ddfa902d5418d828c7167018f1b7b7a9db4065a7ff0e6291fb78fb6f2",
-          "dimensions": [
-            1429,
-            2021
-          ]
-        },
-        "assets/apercus/affichage-20261111/maj-dip-l3-s2/febf6f4751b5-p016.webp": {
-          "page_pdf": 16,
-          "sha256_image": "4c176ebaca96d9290c9b4f82a30a7fd45176d6bb0ec7fbd4b2a8c1841af286f1",
-          "dimensions": [
-            1429,
-            2021
-          ]
-        },
-        "assets/apercus/affichage-20261111-complet/maj-dip-l3-s2/e0431d147bf1-p037.webp": {
-          "page_pdf": 37,
-          "sha256_image": "30414f63c71a78113aac5f05ea6e531e8758e35aceb94b45b6b181b5ddc2b4b8",
+          "sha256_image": "2a8cd140c68868ebcfcb26b23987c522a7de53cfa7765bc672799f69c93f4673",
           "dimensions": [
             1429,
             2021

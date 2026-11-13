@@ -8,7 +8,7 @@ NB_MAJEURES = {
  "maj-contrats-speciaux-l3": 64,
  "maj-da-l2-s1": 46,
  "maj-da-l2-s2": 23,
- "maj-dip-l3-s2": 30,
+ "maj-dip-l3-s2": 36,
  "maj-famille-l1-s2": 39,
  "maj-intro-droit-l1": 19,
  "maj-obligations-l2-s2": 23,
