@@ -11,6 +11,7 @@ const PRODUITS = require("./_produits");
 const { upsert, insererSiAbsent, supprimer } = require("./_supabase");
 const { construireLiensTelechargement } = require("./_liens-telechargement");
 const { creerClientStripe } = require("./_stripe");
+const parrainage = require("./_parrainage");
 const { diagnostiquerRelance } = require("./_relance-diagnostic");
 const { bornerAbonnement } = require("./_echeances");
 const {
@@ -388,7 +389,7 @@ async function recupererCodePromo(promotionCodeId, stripe) {
   }
 }
 
-async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
+async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur, codeParrainage) {
   const nomsAchetes = produits.map(p => p.nom).join(" + ");
   const nomsHtml = echapperHtml(nomsAchetes);
   const contientPackUltra = produits.some(p => Array.isArray(p.inclus) && Array.isArray(p.blobsMeta));
@@ -453,6 +454,15 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur) {
   const contact = adresse => `Au moindre problème, n’hésite pas à me contacter par mail à ${adresse}. Je réponds sous 24 heures.`;
   ajouter(contact(lien("mailto:julien.prof1@gmail.com", "julien.prof1@gmail.com")), contact("julien.prof1@gmail.com"));
 
+  if (codeParrainage) {
+    const url = parrainage.lienParrainage(codeParrainage);
+    const expliquer = (partage, pourcentage) => `En outre, si tu recommandes mes ressources à ta promo ou à tes amis, envoie-leur ${partage}. En passant par ce lien, ils obtiennent ${pourcentage} sur les supports qu’ils règlent en une seule fois. Je vois le code utilisé sur la commande et je sais ainsi que la vente vient de toi.`;
+    ajouter(expliquer(lien(url, `ton lien de parrainage <strong>${echapperHtml(codeParrainage)}</strong>`), "<strong>15 % de réduction</strong>"),
+      expliquer(`ton lien de parrainage ${codeParrainage} (${url})`, "15 % de réduction"));
+    const recompense = (dix, cent, espace) => `Chaque fois qu’une personne paie une commande avec ton code, tu reçois ${dix}. Avec dix ventes, tu cumules ${cent}. Tu retrouves tes bons dans ton espace ${espace} et tu peux en utiliser un par commande.`;
+    ajouter(recompense("<strong>un bon d’achat de 10 €</strong>", "<strong>100 € de bons d’achat</strong>", compteHtml),
+      recompense("un bon d’achat de 10 €", "100 € de bons d’achat", `Mon Compte (${compte})`));
+  }
   if (liens.length || contientPackUltra) {
     ajouter("J’ai mis un temps long à rédiger ces fiches, alors je te fais confiance. Garde-les pour toi et ne les divulgue pas à autrui.");
   }
@@ -726,6 +736,7 @@ async function traiterAchatPaye(session, contexte) {
     insererSiAbsent,
     supprimer,
     envoyerEmail,
+    assurerCodeParrainage: parrainage.assurerCodeParrainage,
     envoyerEmailCadeau,
     envoyerConfirmationCadeau,
     envoyerConfirmationStage,
@@ -811,12 +822,22 @@ async function traiterAchatPaye(session, contexte) {
           contexte.brevoKey
         );
       } else {
+        let codeParrainage = null;
+        if (parrainage.achatBoutique(session) && operations.assurerCodeParrainage) {
+          try {
+            const { individual_name, name } = session.customer_details;
+            codeParrainage = await operations.assurerCodeParrainage(contexte.stripe, email, individual_name || name);
+          } catch (e) {
+            console.error("Création du code de parrainage indisponible", e.code || e.name);
+          }
+        }
         await operations.envoyerEmail(
           email,
           produitsAchetes.map(p => p.produit),
           liens,
           contexte.brevoKey,
-          codeAmbassadeur
+          codeAmbassadeur,
+          codeParrainage
         );
       }
     }
@@ -1002,6 +1023,19 @@ async function handler(req, res) {
     return;
   }
 
+  if (evt.type === "charge.refunded") {
+    try {
+      const charge = evt.data.object;
+      const paiement = typeof charge.payment_intent === "string" ? charge.payment_intent : charge.payment_intent?.id;
+      if (charge.refunded) await parrainage.annulerBonParrainage(paiement, stripe);
+      res.status(200).json({ recu: true });
+    } catch (e) {
+      console.error("Annulation du bon de parrainage indisponible", e.code || e.name);
+      res.status(500).json({ erreur: "Annulation temporairement impossible" });
+    }
+    return;
+  }
+
   const estEvenementPaiement = evt.type === "checkout.session.completed"
     || evt.type === "checkout.session.async_payment_succeeded";
   if (!estEvenementPaiement) {
@@ -1018,12 +1052,15 @@ async function handler(req, res) {
   }
 
   try {
-    await traiterAchatPaye(session, {
+    const resultat = await traiterAchatPaye(session, {
       brevoKey,
       downloadSecret,
       stripe,
       origin,
     });
+    // Les rejeux de Stripe créditent aussi les achats déjà livrés. Le bon est
+    // unique par paiement, et la livraison conserve son propre verrou.
+    if (!resultat?.ignore) await parrainage.crediterVenteParrainee(session, stripe);
   } catch (e) {
     console.error("Erreur critique livraison achat:", e.message);
     res.status(500).json({ erreur: "Livraison temporairement impossible" });

@@ -102,5 +102,16 @@ module.exports = async (req, res) => {
     }
   }
 
-  res.status(200).json({ achats, suggestions, remise });
+  let parrainage = null;
+  if (process.env.STRIPE_SECRET_KEY) {
+    try {
+      const { lireParrainage } = require("./_parrainage");
+      const { creerClientStripe } = require("./_stripe");
+      parrainage = await lireParrainage(utilisateur.email, creerClientStripe(process.env.STRIPE_SECRET_KEY));
+    } catch (e) {
+      console.error("mes-telechargements parrainage indisponible:", e.code || e.name);
+    }
+  }
+
+  res.status(200).json({ achats, suggestions, remise, parrainage });
 };

@@ -93,6 +93,7 @@
       achatsVide.style.display = "none";
       var boite = document.getElementById("complementsBox");
       if (boite) boite.hidden = true;
+      afficherParrainage(null);
     }
 
     function afficherEtat(id){
@@ -216,6 +217,31 @@
       boite.hidden = false;
     }
 
+    function afficherParrainage(parrainage){
+      var boite = document.getElementById("parrainageBox");
+      if (!boite) return;
+      var lien = document.getElementById("parrainageLien");
+      var liste = document.getElementById("parrainageBons");
+      boite.hidden = true;
+      lien.removeAttribute("href");
+      lien.textContent = "";
+      liste.replaceChildren();
+      if (!parrainage || !/^PARRAIN[A-Z0-9]{3,32}$/.test(parrainage.code)) return;
+      lien.href = "/?code=" + encodeURIComponent(parrainage.code);
+      lien.textContent = parrainage.code;
+      var bons = Array.isArray(parrainage.bons) ? parrainage.bons : [];
+      bons.filter(function(code){ return /^BON[A-F0-9]{20}$/.test(code); }).forEach(function(code){
+        var element = document.createElement("li");
+        var utilisation = document.createElement("a");
+        utilisation.href = "/formations.html?code=" + encodeURIComponent(code);
+        utilisation.textContent = "Utiliser mon bon de 10 €";
+        element.appendChild(utilisation);
+        liste.appendChild(element);
+      });
+      document.getElementById("parrainageSolde").textContent = liste.children.length * 10 + " € en bons d’achat disponibles";
+      boite.hidden = false;
+    }
+
     // Accès à vie en self-service : régénère des liens de téléchargement signés
     // à la demande (15 min) plutôt que de dépendre du lien 48h envoyé par email.
     async function chargerAchats(accessToken, generation){
@@ -244,10 +270,12 @@
         achatsCourants = [];
         if (achatsOutils) achatsOutils.hidden = true;
         if (achatsResultat) achatsResultat.textContent = "";
+        afficherParrainage(null);
         return;
       }
       achatsCourants = (rep.ok && data.achats) || [];
       afficherComplements(data && data.suggestions, data && data.remise);
+      afficherParrainage(data && data.parrainage);
       preparerFiltresAchats();
       afficherAchatsFiltres();
     }

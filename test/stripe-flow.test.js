@@ -570,7 +570,7 @@ test("la page de remerciement attend la confirmation Stripe avant d'annoncer le 
   assert.match(pageMerci, /afficherPaiementNonConfirme\(\);/);
 });
 
-test("l’email de livraison donne les bons liens dans les formats HTML et texte", async t => {
+test("l’email de livraison donne les liens dans les deux formats et le code du titulaire", async t => {
   const { envoyerEmail } = require("../api/stripe-webhook")._test;
   let payload;
   t.mock.method(global, "fetch", async (url, options) => {
@@ -580,13 +580,16 @@ test("l’email de livraison donne les bons liens dans les formats HTML et texte
   });
   const fichier = "https://trajectoiredroit.com/api/download?id=fiche-da-l2-s1&token=test";
   await envoyerEmail("client@example.com", [{ nom: "Fiche complète Droit administratif L2 S1" }],
-    [{ url: fichier, nom: "la fiche complète" }], "brevo-test", null);
+    [{ url: fichier, nom: "la fiche complète" }], "brevo-test", null, "PARRAINJULIEN84");
   for (const rendu of [payload.htmlContent, payload.textContent]) {
     assert.ok(rendu.includes("https://www.youtube.com/@TrajectoireDroit"));
     assert.ok(rendu.includes("https://www.tiktok.com/@trajectoiredroit"));
     assert.ok(rendu.includes("https://trajectoiredroit.com/mon-compte.html"));
+    assert.ok(rendu.includes("https://trajectoiredroit.com/?code=PARRAINJULIEN84"));
     assert.match(rendu, /Ils restent valables 48 heures/);
     assert.match(rendu, /environ toutes les deux semaines/);
+    assert.match(rendu, /15 % de réduction/);
+    assert.match(rendu, /bon d’achat de 10 €/);
     assert.match(rendu, /TrajectoireDroit, les meilleures fiches de droit de France/);
     assert.doesNotMatch(rendu, /mieux vaut les enregistrer|fiche de citations|20 % de commission|mon but est de créer/);
   }
@@ -594,7 +597,7 @@ test("l’email de livraison donne les bons liens dans les formats HTML et texte
   assert.ok(payload.textContent.includes(fichier));
 
   await envoyerEmail("client@example.com", [{ nom: "Cours", mediaEnLigne: true }],
-    [], "brevo-test", null);
+    [], "brevo-test", null, null);
   assert.match(payload.htmlContent, /Écouter mes podcasts et voir mes vidéos/);
   assert.doesNotMatch(payload.htmlContent, /48 heures|bon d’achat|PARRAINJULIEN84/);
 
