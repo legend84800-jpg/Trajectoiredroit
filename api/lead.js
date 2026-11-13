@@ -184,15 +184,14 @@ function attributsPlan(plan) {
   };
 }
 
-// Textes passés par redaction-julien (checklist, passe adversariale, vale,
-// verificateur_anti_ia.py, verificateur_style_positif.py) le 20/10/2026.
+// Même texte que la branche plan-commentaire du premier mail de bienvenue.
 function construireEmailPlan(a) {
   const paragraphes = [
     "Salut,",
-    `Tu as demandé le plan du commentaire de ${a.PLAN_ARRET}. Tu y trouves d'abord la problématique et la solution du juge, avec l'annonce du plan. Les deux parties suivent, chacune avec le paragraphe qui explique ce qu'elle démontre.`,
+    `Tu as demandé le plan du commentaire de ${a.PLAN_ARRET}. Le PDF commence par la problématique, c’est-à-dire la question juridique à laquelle le commentaire répond. Il rappelle aussi la solution du juge et annonce les deux parties du commentaire. Pour chaque partie, un paragraphe explique ce que tu peux y développer.`,
     { lien: a.PLAN_PDF, texte: "Télécharger le plan" },
-    "Pour t'en servir avant ton TD, tu peux rédiger toi-même une sous-partie à partir de son titre. Tu verras ainsi quels arrêts et quels articles tu sais déjà utiliser pour la défendre.",
-    `Le commentaire rédigé en entier fait ${a.PLAN_PAGES} pages, avec le texte intégral de la décision. Il coûte ${a.PLAN_PRIX}, et tu le trouves sur la page de l'arrêt.`,
+    "Pour préparer ta séance de travaux dirigés, tu peux prendre une sous-partie du plan et essayer de la rédiger. Tu expliques ce que le juge a décidé et pourquoi, en utilisant les articles et les décisions de justice qui concernent cette question. Tu verras ainsi quels points tu arrives à expliquer seul et lesquels demandent de reprendre ton cours.",
+    `Si tu veux comparer ton travail à la correction complète, le commentaire rédigé fait ${a.PLAN_PAGES} pages et comprend le texte intégral de la décision. Tu peux le retrouver sur la page de l’arrêt pour ${a.PLAN_PRIX}.`,
     { lien: a.PLAN_URL, texte: "Voir le commentaire rédigé" },
     "Si tu as une question sur le plan, tu peux répondre à cet email. Je lis moi-même les réponses.",
     "Julien",

@@ -147,7 +147,7 @@ const STYLE_P = "font-size:15px;color:#333;line-height:1.6;margin:0 0 20px;";
 const STYLE_BOUTON = "display:inline-block;margin:8px 0 24px;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;font-family:sans-serif;font-size:14px;";
 const URL_COMPTE = "https://trajectoiredroit.com/mon-compte.html";
 
-function gabarit(titre, corps) {
+function gabarit(titre, corps, { signature = "Julien", pied = "TrajectoireDroit, la référence francophone en droit" } = {}) {
   return `
 <!DOCTYPE html>
 <html lang="fr">
@@ -162,10 +162,10 @@ function gabarit(titre, corps) {
         <tr><td style="padding:32px;">
           <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 24px;">${titre}</p>
           ${corps}
-          <p style="font-size:15px;color:#1a237e;font-weight:700;margin:0;">Julien</p>
+          <p style="font-size:15px;color:#1a237e;font-weight:700;margin:0;">${echapperHtml(signature)}</p>
         </td></tr>
         <tr><td style="background:#f0f0f0;padding:16px 32px;">
-          <p style="font-size:12px;color:#999;margin:0;">TrajectoireDroit, la référence francophone en droit</p>
+          <p style="font-size:12px;color:#999;margin:0;">${echapperHtml(pied)}</p>
         </td></tr>
       </table>
     </td></tr>
@@ -183,38 +183,57 @@ function construireEmailEtudiant({ cadeau, nomOffrant, produits, liens }) {
   const sujet = `${offrant || "On"} t'offre ${nomsPhrase}`;
   const titre = "Tu as reçu le Pack Ultra en cadeau";
   const salutation = cadeau.prenom ? `Bonjour ${cadeau.prenom},` : "Bonjour,";
-  const annonce = `${offrant || "Quelqu'un de ton entourage"} vient de t'offrir ${nomsPhrase} sur Trajectoire Droit. `
-    + "Tu as donc accès dès maintenant à toutes les ressources publiées pour ce semestre, et tu les gardes à vie.";
-  const acces = "Pour télécharger les fichiers, connecte-toi à ton espace Mon compte avec l'adresse email qui reçoit ce message. "
-    + "Tu y retrouves chaque ressource du pack. Les mises à jour qui suivent une réforme ou un nouvel arrêt important s'y ajoutent ensuite sans supplément.";
-  const licence = "Chaque PDF porte ton nom et une partie de ton adresse email, puisque la licence du pack est personnelle. Je te fais donc confiance pour garder ces fichiers pour toi.";
-  const aide = "Au moindre problème, tu peux me répondre directement sur cet email. Je réponds sous 24 heures.";
+  const annonce = `${offrant || "Quelqu’un de ton entourage"} vient de t’offrir ${nomsPhrase} sur TrajectoireDroit. Tes ressources sont disponibles dès maintenant.`;
+  const compte = `<a href="${URL_COMPTE}">Mon Compte</a>`;
+  const compteTexte = `Mon Compte (${URL_COMPTE})`;
+  const acces = espace => `Pour retrouver les ressources de ton Pack Ultra, connecte-toi à ton espace ${espace} avec l’adresse email qui reçoit ce message. Dans ton historique d’achats, retrouve ton Pack Ultra et ouvre la ressource dont tu as besoin.`;
+  const disponibilite = espace => `Tu peux revenir dans ton espace ${espace} à tout moment pour retrouver tes ressources.`;
+  const misesAJour = espace => `Les mises à jour des fiches sont automatiques. N’hésite pas à revenir régulièrement sur ton espace ${espace} pour retélécharger les ressources de ton pack, car je mets à jour les fiches environ toutes les deux semaines.`;
+  const adresse = "julien.prof1@gmail.com";
+  const aide = contact => `Au moindre problème, n’hésite pas à me contacter par mail à ${contact}. Je réponds sous 24 heures.`;
+  const licence = "Les PDF du pack sont à ton nom. La page de licence indique aussi l’adresse email qui reçoit ce message.";
+  const partage = "J’ai mis un temps long à rédiger ces fiches, alors je te fais confiance. Garde-les pour toi et ne les divulgue pas à autrui.";
+  const youtube = "https://www.youtube.com/@TrajectoireDroit";
+  const tiktok = "https://www.tiktok.com/@trajectoiredroit";
+  const reseaux = (yt, tt) => `Enfin, si tu veux apprendre le droit de manière plus ludique, tu peux me retrouver sur ${yt} et sur ${tt}.`;
+  const signature = "Julien, TrajectoireDroit";
+  const pied = "TrajectoireDroit, les meilleures fiches de droit de France.";
 
   const blocMessage = cadeau.message
-    ? `<p style="${STYLE_P}">Voici le message qui accompagne ce cadeau :</p>
+    ? `<p style="${STYLE_P}">Voici le message qui accompagne ce cadeau.</p>
           <blockquote style="margin:0 0 24px;padding:14px 18px;border-left:3px solid #c9a227;background:#faf6ea;font-size:15px;color:#333;line-height:1.6;font-style:italic;">${echapperHtml(cadeau.message).replace(/\n/g, "<br>")}</blockquote>`
     : "";
-  const boutonsFichiers = (liens || []).map((l) => `<a href="${l.url}" style="${STYLE_BOUTON}">Télécharger ${echapperHtml(l.nom)}</a><br>`).join("\n");
+  const boutonsFichiers = (liens || []).map((l) => `<a href="${echapperHtml(l.url)}" style="${STYLE_BOUTON}">Télécharger ${echapperHtml(l.nom)}</a><br>`).join("\n");
 
   const html = gabarit(titre, `
           <p style="${STYLE_P}">${echapperHtml(salutation)}</p>
           <p style="${STYLE_P}">${echapperHtml(annonce).replace(echapperHtml(nomsPhrase), `<strong>${echapperHtml(nomsPhrase)}</strong>`)}</p>
           ${blocMessage}
-          <p style="${STYLE_P}">${echapperHtml(acces)}</p>
+          <p style="${STYLE_P}">${acces(compte)}</p>
           <a href="${URL_COMPTE}" style="${STYLE_BOUTON}">Accéder à mon Pack Ultra</a><br>
           ${boutonsFichiers}
+          <p style="${STYLE_P}">${disponibilite(compte)} <strong>L’accès est à vie.</strong></p>
+          <p style="${STYLE_P}">${misesAJour(compte)}</p>
+          <p style="${STYLE_P}">${aide(`<a href="mailto:${adresse}">${adresse}</a>`)}</p>
           <p style="${STYLE_P}">${echapperHtml(licence)}</p>
-          <p style="${STYLE_P}">${echapperHtml(aide)}</p>`);
+          <p style="${STYLE_P}">${echapperHtml(partage)}</p>
+          <p style="${STYLE_P}">${reseaux(`<a href="${youtube}">YouTube</a>`, `<a href="${tiktok}">TikTok</a>`)}</p>`, { signature, pied });
 
   const texte = [
     salutation,
     annonce,
-    cadeau.message ? `Voici le message qui accompagne ce cadeau :\n« ${cadeau.message} »` : "",
-    `${acces}\n${URL_COMPTE}`,
+    cadeau.message ? `Voici le message qui accompagne ce cadeau.\n« ${cadeau.message} »` : "",
+    acces(compteTexte),
+    `Accéder à mon Pack Ultra\n${URL_COMPTE}`,
     (liens || []).length ? (liens || []).map((l) => `${l.nom} : ${l.url}`).join("\n") : "",
+    `${disponibilite(compteTexte)} L’accès est à vie.`,
+    misesAJour(compteTexte),
+    aide(adresse),
     licence,
-    aide,
-    "Julien, TrajectoireDroit",
+    partage,
+    reseaux(`YouTube (${youtube})`, `TikTok (${tiktok})`),
+    signature,
+    pied,
   ].filter(Boolean).join("\n\n");
 
   return { sujet, html, texte };
