@@ -11,7 +11,7 @@
      data-titre, data-texte                      textes propres à la page
    Chaque changement de matière émet l'évènement « tjd-essai-matiere » sur document.
    Mesure Matomo : catégorie Lead, action essai-majeures, nom produit.
-   Textes passés par redaction-julien le 07/11/2026. */
+   Textes passés par redaction-julien le 07/11/2026. Présentation sobre (version A) le 14/11/2026. */
 (function () {
   'use strict';
 
@@ -34,19 +34,22 @@
   };
 
   var CSS = [
-    '.tjd-ek{box-sizing:border-box;max-width:680px;margin:18px auto 6px;padding:16px;background:var(--gold-bg,#FBF8EE);border:1px solid var(--gold-line,#C9A961);border-radius:var(--r-md,12px);text-align:left;container-type:inline-size}',
+    '.tjd-ek{box-sizing:border-box;max-width:680px;margin:22px auto 6px;padding:22px 22px 18px;background:#fff;border:1px solid var(--border,#E2E8F0);border-radius:var(--r-lg,14px);text-align:left;container-type:inline-size}',
     '.tjd-ek *{box-sizing:border-box}',
-    '.tjd-ek__tete{display:flex;gap:12px;align-items:flex-start;margin:0 0 12px}',
+    '.tjd-ek__tete{margin:0 0 14px}',
     '.tjd-ek__icone{flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:38px;height:46px;border-radius:5px;background:#fff;border:1px solid var(--gold-line,#C9A961);font:700 1.1rem/1 Georgia,serif;color:var(--navy,#1A2851)}',
-    '.tjd-ek__titre{margin:0 0 4px;font-size:1.05rem;line-height:1.3;font-weight:700;color:var(--navy,#1A2851)}',
+    '.tjd-ek__titre{margin:0 0 6px;font-family:"Spectral",Georgia,serif;font-size:1.35rem;line-height:1.3;font-weight:600;color:var(--navy,#1A2851)}',
     '.tjd-ek__texte{margin:0;font-size:.92rem;line-height:1.5;color:var(--body,#475569)}',
-    '.tjd-ek__form{display:grid;gap:8px;margin:0}',
+    '.tjd-ek__form{display:grid;gap:10px;margin:0}',
     '.tjd-ek__champ{display:block;width:100%;min-height:44px;padding:10px 12px;font:inherit;font-size:16px;color:var(--ink,#0F172A);background:#fff;border:1px solid var(--border-strong,#CBD5E1);border-radius:var(--r-sm,8px)}',
     '.tjd-ek__champ:focus{outline:2px solid var(--navy,#1A2851);outline-offset:1px}',
-    '.tjd-ek__liste{max-height:260px;overflow:auto;margin:0;padding:6px 10px;background:#fff;border:1px solid var(--border-strong,#CBD5E1);border-radius:var(--r-sm,8px)}',
-    '.tjd-ek__theme{margin:8px 0 2px;font-size:.78rem;font-weight:700;letter-spacing:.02em;color:var(--gold-ink,#8A6D1F);text-transform:uppercase}',
-    '.tjd-ek__option{display:flex;gap:8px;align-items:flex-start;padding:5px 0;font-size:.92rem;line-height:1.4;color:var(--ink,#0F172A);cursor:pointer}',
-    '.tjd-ek__option input{margin-top:3px;flex:0 0 auto;width:17px;height:17px;accent-color:var(--navy,#1A2851)}',
+    '.tjd-ek__liste{max-height:300px;overflow:auto;margin:0;padding:0 2px;background:#fff;border-top:1px solid var(--border,#E2E8F0);border-bottom:1px solid var(--border,#E2E8F0)}',
+    '.tjd-ek__theme{margin:12px 0 2px;font-size:.8rem;font-weight:600;letter-spacing:.02em;color:var(--gold-ink,#8A6D1F)}',
+    '.tjd-ek__option{display:flex;gap:10px;align-items:flex-start;padding:9px 2px;border-bottom:1px solid #EEF1F6;font-size:.95rem;line-height:1.4;color:var(--ink,#0F172A);cursor:pointer}',
+    '.tjd-ek__option:last-child{border-bottom:0}',
+    '.tjd-ek__option:hover{background:#F8FAFC}',
+    '.tjd-ek__num{flex:0 0 auto;min-width:22px;font-weight:600;color:var(--gold-ink,#8A6D1F)}',
+    '.tjd-ek__option input{margin-top:2px;flex:0 0 auto;width:17px;height:17px;accent-color:var(--navy,#1A2851)}',
     '.tjd-ek__option--off{opacity:.45;cursor:not-allowed}',
     '.tjd-ek__compteur{margin:0;font-size:.82rem;color:var(--muted,#5B6B84)}',
     '.tjd-ek__bouton{display:block;width:100%;min-height:44px;padding:11px 16px;font:inherit;font-size:1rem;font-weight:700;color:#fff;background:var(--navy,#1A2851);border:0;border-radius:var(--r-sm,8px);cursor:pointer;text-align:center;text-decoration:none}',
@@ -114,7 +117,6 @@
 
     var carte = el('div', { 'class': 'tjd-ek' });
     var tete = el('div', { 'class': 'tjd-ek__tete' });
-    tete.appendChild(el('span', { 'class': 'tjd-ek__icone', 'aria-hidden': 'true' }, '2'));
     var textes = el('div');
     textes.appendChild(el('p', { 'class': 'tjd-ek__titre' }, bloc.getAttribute('data-titre') || T.titre));
     var paragraphe = el('p', { 'class': 'tjd-ek__texte' });
@@ -185,7 +187,8 @@
         var c = el('input', { type: 'checkbox', value: String(x.i) });
         if (x.i === preselection && ids.length === 1) c.checked = true;
         lab.appendChild(c);
-        lab.appendChild(el('span', null, x.num + '. ' + x.titre));
+        lab.appendChild(el('span', { 'class': 'tjd-ek__num' }, x.num));
+        lab.appendChild(el('span', null, x.titre));
         liste.appendChild(lab);
       });
       majCompteur();
