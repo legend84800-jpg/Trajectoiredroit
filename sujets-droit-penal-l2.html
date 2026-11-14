@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Sujets de droit pénal L2 : cas corrigé sur le trouble mental</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Douze sujets de droit pénal L2, de l’irresponsabilité à la peine, avec la complicité. Un cas corrigé montre qui peut invoquer l’abolition du discernement.">
+  <link rel="canonical" href="https://trajectoiredroit.com/sujets-droit-penal-l2.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sujets de droit pénal L2 : cas corrigé sur le trouble mental">
+  <meta property="og:description" content="Douze sujets de droit pénal L2, de l’irresponsabilité à la peine, avec la complicité. Un cas corrigé montre qui peut invoquer l’abolition du discernement.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/sujets-droit-penal-l2.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/sujets-droit-penal-l2.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sujets de droit pénal L2 : cas corrigé sur le trouble mental">
+  <meta name="twitter:description" content="Douze sujets de droit pénal L2, de l’irresponsabilité à la peine, avec la complicité. Un cas corrigé montre qui peut invoquer l’abolition du discernement.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/sujets-droit-penal-l2.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Sujets de droit pénal L2 avec un cas pratique corrigé sur le trouble mental",
+      "description": "Douze sujets de droit pénal L2, de l’irresponsabilité à la peine, avec la complicité. Un cas corrigé montre qui peut invoquer l’abolition du discernement.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-11-14",
+      "dateModified": "2026-11-14",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Douze sujets de droit pénal L2 et un cas pratique corrigé sur l’abolition du discernement et la consommation de substances psychoactives"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/sujets-droit-penal-l2.webp",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/sujets-droit-penal-l2.html"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sujets de droit pénal L2",
+          "item": "https://trajectoiredroit.com/sujets-droit-penal-l2.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quels sujets de droit pénal préparer en L2 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les exercices de la page suivent les séances de TD de droit pénal L2. Les quatre premiers portent sur les causes d’irresponsabilité, les quatre suivants sur les personnes qui répondent d’une infraction, et les quatre derniers sur la faute non intentionnelle et la peine. Pour la loi pénale dans le temps ou la tentative, la page des sujets de droit pénal général ajoute d’autres exercices."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Une personne qui a bu ou fumé peut-elle invoquer l’abolition de son discernement ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui quand l’abolition est établie, car l’article 122-1, alinéa 1, s’applique à l’abolition du discernement quelle que soit son origine. L’article 122-1-1 retire cette protection à la personne qui a consommé pour commettre l’infraction ou une infraction de même nature, ou pour en faciliter la commission. Sans ce but, l’article 222-18-4 peut sanctionner la consommation qui a conduit à des violences dont la personne est déclarée irresponsable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel PDF choisir pour refaire des cas pratiques de droit pénal L2 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pour refaire des cas pratiques, choisis le recueil, qui contient dix cas pratiques et trois sujets types de partiel, chacun avec son corrigé. La fiche complète sert surtout à revoir les règles et les conditions avant de rédiger. Tu peux lire le chapitre de la fiche, puis traiter l’énoncé du recueil avant de comparer ta réponse à son corrigé."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=6a441fef">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style id="exemples-pedagogiques-page">
+  .biens-hero { padding-top:48px; }
+  .biens-hero .hero__cta { margin-top:24px; }
+  @media (max-width:700px) {
+    .biens-hero { padding-top:24px; }
+    .biens-hero .hero__cta { gap:10px; }
+    .biens-hero .hero__cta .btn {
+      flex:1 1 132px;
+      width:auto;
+      min-height:44px;
+      font-size:.875rem;
+      padding:10px 12px;
+    }
+  }
+  @media (max-width:420px) {
+    .biens-hero { padding-top:12px; }
+    .biens-hero .hero__cta { margin-top:12px; }
+    .biens-hero .tjd-po { margin-top:12px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 474,64 €, 45 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-45 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">474,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 349,74 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">349,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 449,67 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">449,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 399,70 €, 40 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-40 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 42 ressources, 329 € au lieu de 569,58 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">42 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">569,58 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>166 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes tes questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+    <main>
+<section class="section--sm biens-hero">
+<div class="container container--narrow text-center">
+<h1 class="h1">Sujets de droit pénal L2 avec un cas pratique corrigé sur le trouble mental</h1>
+<p class="lead" style="max-width:720px;margin-left:auto;margin-right:auto">Ces douze sujets de droit pénal L2 vont des causes d’irresponsabilité à la peine, en passant par la complicité et la faute non intentionnelle. Un cas corrigé montre comment répondre quand deux personnes frappent chacune quelqu’un après avoir bu ou fumé. Tu y vois laquelle peut encore invoquer, depuis la loi du 24 janvier 2022, l’abolition de son discernement (la disparition complète de sa capacité à comprendre ses actes et à les contrôler).</p>
+<div class="hero__cta flex flex--center">
+<a class="btn btn--primary btn--lg" href="#banque">Les douze sujets →</a>
+<a class="btn btn--outline btn--lg" href="#cas-pratique">Le cas corrigé</a>
+</div>
+<div data-tjd-pdf-offert="matiere" data-id="cas-pratique-penal-l2-s1" data-titre="Un autre cas corrigé offert en PDF" data-texte="Je t’envoie un cas sur la loi pénale qui change entre les faits et le jugement. Une comptable y est accusée d’une fraude sociale." data-bouton="Recevoir le cas pratique"></div>
+</div>
+</section>
+<section class="conversion-offer" aria-labelledby="offre-penal-l2-titre">
+<div class="container container--narrow">
+<div class="conversion-offer__card">
+<div class="conversion-offer__visual"><img src="assets/covers/fiche-penal-l2-s1.webp" alt="Couverture de la fiche complète de droit pénal L2 semestre 1" loading="lazy" width="960" height="540" decoding="async"></div>
+<div>
+<p class="conversion-offer__eyebrow">Droit pénal L2, semestre 1</p>
+<h2 class="conversion-offer__title" id="offre-penal-l2-titre">La fiche du cours et le recueil de cas pratiques corrigés</h2>
+<p class="conversion-offer__summary">La fiche complète de 109 pages explique les éléments d’une infraction et la tentative. Elle montre ensuite qui en répond pénalement, complice compris, et dans quels cas la loi écarte cette responsabilité. Le recueil de 144 pages, vendu séparément, corrige dix cas pratiques en entier, puis trois sujets types de partiel qui mélangent plusieurs thèmes.</p>
+<ul class="conversion-offer__benefits">
+<li>Dix cas et trois sujets types de partiel dans le recueil pour refaire les exercices avant de lire leurs corrigés</li>
+<li>Un accès immédiat au PDF choisi après le paiement</li>
+</ul>
+<div class="conversion-offer__choices">
+<button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-penal-l2-s1">Acheter la fiche · 14,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="cas-pratique-penal-l2-s1">Acheter le recueil · 14,99 €</button>
+</div>
+<p class="conversion-offer__note">Si tu hésites entre les deux PDF, prends la fiche pour revoir le cours et le recueil pour t’entraîner à rédiger. La <a href="droit-penal-l2.html">page du droit pénal L2</a> présente tous les supports du cours, et le <a href="formations.html#a-l-unite">catalogue des fiches complètes</a> liste la fiche à l’unité.</p>
+<div data-tjd-avis data-matiere="penal-l2"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="banque">
+<div class="container container--narrow">
+<div class="prose">
+<figure style="margin:0 0 32px"><img src="assets/blog/sujets-droit-penal-l2.webp" srcset="assets/blog/sujets-droit-penal-l2-640.webp 640w, assets/blog/sujets-droit-penal-l2.webp 1200w" sizes="(max-width:700px) 100vw, 800px" alt="Un banc en bois usé et vide devant une porte à double battant, dans un couloir de tribunal" width="1200" height="675" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"></figure>
+<h2>Douze sujets pour préparer ton partiel de droit pénal L2</h2>
+<p>Sous le titre de chaque sujet, la mention en petits caractères indique d’où vient l’exercice. Les situations sont reformulées à partir du document d’origine. Pour les sujets 4, 5 et 6, le lien de la ligne ouvre le texte de l’arrêt sur Légifrance.</p>
+<p>Chaque ligne donne le travail demandé, puis ce qu’il faut vérifier dans ta copie. Choisis la ligne qui correspond à ton programme et formule la question de droit que la situation pose, car chaque réponse part de cette question. Quand deux personnes participent à la même infraction, il faut examiner d’abord la responsabilité de chacune, puis se demander si l’une est complice de l’autre. Les exercices sur la loi pénale dans le temps et sur la tentative se trouvent dans la page des <a href="sujets-droit-penal-general-l1.html">sujets de droit pénal général L1 et L2</a>.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Douze sujets de droit pénal L2 et leur piste de travail" style="overflow-x:auto">
+<table style="width:100%;min-width:660px;border-collapse:collapse">
+<thead><tr><th scope="col">Sujet</th><th scope="col">Travail demandé</th><th scope="col">Ce qu’il faut vérifier dans ta copie</th></tr></thead>
+<tbody>
+<tr><th colspan="3" scope="colgroup">Les causes d’irresponsabilité</th></tr>
+<tr><th scope="row">1. La légitime défense, une police privée encadrée ?<br><small>Sujet de dissertation d’après un intitulé de cours</small></th><td>Discute cette idée en deux parties. Pour chacune, réunis les articles du Code pénal qui la soutiennent, puis un exemple qui montre à partir de quel moment la riposte devient excessive.</td><td>L’article 122-5, alinéa 1, protège celui qui répond à une atteinte injustifiée par un acte rendu nécessaire par l’attaque et accompli pendant l’attaque, sauf disproportion avec sa gravité. En outre, l’alinéa 2 concerne la défense d’un bien et exclut l’homicide volontaire. Enfin, l’article 122-6 présume la légitime défense dans deux cas, à savoir pour repousser de nuit l’entrée par effraction, violence ou ruse dans un lieu habité et pour se défendre contre des vols ou des pillages commis avec violence. Cette présomption peut être renversée par la preuve contraire. Il faut expliquer pourquoi elle aide la personne poursuivie. Le <a href="la-legitime-defense-en-droit-penal.html">guide sur la légitime défense</a> détaille les conditions.</td></tr>
+<tr><th scope="row">2. Un vol de téléphone, une poussée et une chute dans le fleuve<br><small>D’après un semi-partiel de droit pénal général L2, sur la minorité et la légitime défense</small></th><td>Une adolescente de 14 ans arrache le téléphone d’un jeune homme et s’enfuit. Dans une autre scène, un homme éméché, un tesson de bouteille à la main, pousse une femme à terre et s’apprête à lui donner un coup de pied. L’amie de la victime attrape la jambe de l’homme, puis le pousse de toutes ses forces, et il tombe dans le fleuve. Étudie la responsabilité de l’adolescente, puis celle de l’amie.</td><td>L’adolescente a 14 ans, donc elle fait partie des mineurs d’au moins 13 ans, présumés capables de discernement (article L. 11-1 du code de la justice pénale des mineurs). Elle peut faire l’objet d’une mesure éducative et, si les circonstances et sa personnalité l’exigent, d’une peine (article L. 11-3). Pour l’amie, il faut vérifier que sa riposte a lieu pendant l’agression et que son geste reste nécessaire et proportionné (article 122-5, alinéa 1).</td></tr>
+<tr><th scope="row">3. Contrainte ou état de nécessité ?<br><small>Sujet classique</small></th><td>Compare ces deux causes d’irresponsabilité avec un exemple pour chacune. Dans une bousculade, un homme est projeté contre une vitrine qu’il brise. Une automobiliste franchit la ligne continue pour éviter un enfant qui traverse.</td><td>L’article 122-7 concerne celui qui accomplit un acte nécessaire à la sauvegarde d’une personne ou d’un bien face à un danger actuel ou imminent, sauf disproportion avec la menace. L’article 122-2 concerne celui qui a agi sous l’empire d’une force ou d’une contrainte à laquelle il n’a pas pu résister. Cherche, dans chaque exemple, si la personne avait encore un choix à faire.</td></tr>
+<tr><th scope="row">4. L’irresponsabilité après une consommation de cannabis<br><small>Commentaire d’arrêt d’entraînement</small></th><td>Commente l’<a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000043473408/" rel="noopener">arrêt de la chambre criminelle du 14 avril 2021</a> (pourvoi n° 20-80.135, le recours formé devant la Cour de cassation). Un homme poursuivi pour meurtre a eu une bouffée délirante que les juges attribuent à sa consommation de cannabis, et la chambre de l’instruction, qui contrôle l’instruction, l’a déclaré irresponsable. Explique ensuite ce que la loi du 24 janvier 2022 a changé.</td><td>Selon l’article 122-1, alinéa 1, l’abolition du discernement supprime la responsabilité. L’alinéa 2 laisse en revanche punissable la personne dont le discernement était seulement altéré (diminué sans être supprimé), avec une peine de prison réduite du tiers, ou ramenée à trente ans pour une réclusion criminelle à perpétuité. Pour un délit, une décision spécialement motivée permet toutefois d’écarter cette réduction. Indique enfin ce que l’article 122-1-1 écarte dans l’alinéa 1 et ce que l’article 122-1-2 écarte dans l’alinéa 2.</td></tr>
+<tr><th colspan="3" scope="colgroup">Les personnes qui répondent de l’infraction</th></tr>
+<tr><th scope="row">5. Un salarié blessé près d’une pelle mécanique<br><small>D’après un partiel de TD de droit pénal, commentaire de l’arrêt du 25 mars 2014</small></th><td>Commente l’<a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000028796759/" rel="noopener">arrêt de la chambre criminelle du 25 mars 2014</a> (pourvoi n° 13-80.376). Un salarié sous contrat de professionnalisation se blesse près d’une pelle mécanique. Le directeur avait confié ses pouvoirs en matière de sécurité au chef de centre. C’est une subdélégation, car le directeur les tenait lui-même d’une délégation. La société est condamnée parce que le chef de centre n’avait pas formé le salarié aux risques de cet engin.</td><td>Nul n’est responsable pénalement que de son propre fait (article 121-1). Pour une société, personne morale distincte de ses membres, l’article 121-2 exige donc une infraction commise pour son compte par un organe (comme le dirigeant) ou un représentant. Dans l’arrêt, la Cour juge que le salarié titulaire d’une délégation de pouvoirs en matière d’hygiène et de sécurité, investi de la compétence, de l’autorité et des moyens nécessaires, est un représentant de la société. Elle précise que la société répond d’une atteinte involontaire à la vie ou à l’intégrité physique qui vient d’un manquement aux règles qu’il devait faire respecter en vertu de cette délégation. Relève enfin la faute retenue contre la société et son lien avec le dommage.</td></tr>
+<tr><th scope="row">6. Une société de construction répond-elle de l’accident d’un ouvrier ?<br><small>D’après un examen de droit pénal, arrêt du 25 février 2020</small></th><td>Réponds à cette question à partir de l’<a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000041701607/" rel="noopener">arrêt du 25 février 2020</a> (pourvoi n° 19-81.771). Un coffreur-boiseur (ouvrier qui monte les coffrages) est pris en étau entre une benne à béton et le garde-corps d’une banche (un grand panneau dans lequel on coule le béton). Un autre ouvrier avait donné, ou semblé donner, au grutier (le conducteur de la grue) l’ordre de descendre la benne.</td><td>La Cour relève qu’un chef de projet, titulaire d’une délégation de pouvoirs en matière d’hygiène et de sécurité, n’a pas veillé au guidage du grutier. Ce guidage doit se faire sous le contrôle permanent du chef de manœuvre quand le grutier ne voit pas le trajet entier de la charge, ni directement ni par des dispositifs auxiliaires, comme le prescrit l’article R. 4323-41 du Code du travail. Cherche ce que la société aurait dû organiser sur le chantier, puis explique en quoi cette faute engage sa responsabilité pénale selon les articles 121-2, 121-3 et 222-19. À l’inverse, dans un <a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000053764946/" rel="noopener">arrêt du 10 mars 2026</a>, la chambre criminelle annule (elle « casse ») une condamnation qui attribuait la faute à « la direction » sans identifier l’organe ou le représentant de la société. Le <a href="la-responsabilite-penale-des-personnes-morales.html">guide sur la responsabilité pénale des personnes morales</a> rappelle les conditions.</td></tr>
+<tr><th scope="row">7. Un prêt de voiture avant une « explication musclée »<br><small>D’après un exercice de TD de droit pénal général sur la complicité</small></th><td>Allan annonce à son ami Bryan qu’il veut une « explication musclée » avec un homme qui lui a pris sa petite amie. Bryan lui prête sa voiture pour aller au rendez-vous, fixé dans un bois. Allan y tue l’homme de dix-sept coups de couteau, au cou et à la poitrine. Il affirme que l’homme l’a frappé le premier et qu’il avait pris le couteau pour se défendre. Quelles qualifications retenir contre Allan et contre Bryan ?</td><td>Pour Bryan, l’article 121-7 exige une aide donnée sciemment (en sachant ce qu’il fait), qui facilite la préparation de l’infraction ou son accomplissement (le texte emploie le mot « consommation » pour l’infraction menée à son terme). Cherche ce que Bryan croyait faciliter au moment du prêt, par exemple une simple explication musclée, puis vérifie si l’infraction commise dépasse ce projet. Pour Allan, il faut discuter son intention de tuer d’après le nombre de coups et les endroits touchés, puis sa légitime défense (article 122-5), qui profiterait aussi à Bryan si elle était retenue.</td></tr>
+<tr><th scope="row">8. L’employée qui promet de se taire<br><small>D’après le TD 17 de droit pénal général L2, Paris-Est Créteil, 2025-2026</small></th><td>Une employée de bijouterie apprend que sa collègue va laisser l’alarme éteinte pour qu’un ami de celle-ci vide le coffre. Elle essaie d’abord de l’en dissuader, puis promet de ne rien dire. Le vol a lieu. Peut-on poursuivre l’employée comme complice ?</td><td>L’article 121-7 définit le complice, et l’article 121-6 le punit comme l’auteur. Est complice celui qui aide sciemment l’auteur à préparer ou à commettre l’infraction, ou qui la provoque ou donne des instructions pour la commettre. La question est de savoir si une promesse de silence constitue l’un de ces actes. La complicité exige en principe un comportement positif (une action concrète, comme prêter un objet). La complicité par abstention (sans acte positif) reste en revanche une exception. Les juges l’admettent par exemple quand une personne dont la fonction impose de s’opposer à l’infraction promet d’avance de ne pas intervenir, ou quand sa présence encourage l’auteur.</td></tr>
+<tr><th colspan="3" scope="colgroup">La faute non intentionnelle et la peine</th></tr>
+<tr><th scope="row">9. Le décideur qui n’a pas causé directement le dommage<br><small>Sujet de dissertation classique</small></th><td>Traite ce sujet, « La responsabilité pénale du décideur depuis la loi du 10 juillet 2000 », en opposant la faute exigée de celui qui cause directement le dommage à celle exigée de celui qui l’a seulement favorisé. Le décideur dirige une entreprise ou une administration.</td><td>Selon l’article 121-3, alinéa 3, il y a aussi délit, lorsque la loi le prévoit, en cas de faute d’imprudence, de négligence ou de manquement à une obligation de prudence ou de sécurité prévue par la loi ou le règlement, s’il est établi que l’auteur n’a pas accompli les diligences normales (les démarches de prudence que l’on attend de lui) compte tenu de sa fonction, de son pouvoir et des moyens dont il disposait. En revanche, l’alinéa 4 exige une faute plus grave de celui qui a seulement créé ou favorisé la situation dont est né le dommage. Il faut alors une violation manifestement délibérée d’une obligation particulière de prudence ou de sécurité prévue par la loi ou le règlement, ou une faute caractérisée qui exposait autrui à un risque d’une particulière gravité qu’il ne pouvait ignorer.</td></tr>
+<tr><th scope="row">10. Comment la juridiction fixe-t-elle la peine ?<br><small>Sujet classique</small></th><td>Réponds en deux temps. Explique d’abord les fonctions que la loi donne à la peine, puis les éléments dont la juridiction tient compte pour choisir la nature de la peine, sa durée ou son montant, et la manière dont elle s’exécute.</td><td>L’article 130-1 donne deux fonctions à la peine, à savoir sanctionner l’auteur de l’infraction et favoriser son amendement (l’amélioration de son comportement), son insertion ou sa réinsertion. L’article 132-1 impose d’individualiser toute peine, donc de l’adapter à chaque auteur, selon les circonstances de l’infraction et la personnalité de l’auteur, puis selon sa situation matérielle, familiale et sociale. Il faut enfin distinguer la peine encourue, le maximum fixé par le texte qui punit l’infraction, de la peine prononcée par la juridiction.</td></tr>
+<tr><th scope="row">11. Une femme éméchée jette une bouteille et pousse une jeune femme<br><small>D’après la séance 10 de droit pénal général L2, consacrée au droit de la peine</small></th><td>Une femme s’approche d’un groupe d’amis, jette une bouteille d’alcool au sol, puis pousse l’une des jeunes femmes, qui tombe. Les policiers la trouvent éméchée. Elle se comporte de manière étrange. Des tests d’alcool et de cannabis se révèlent positifs, et un expert conclut que son discernement était altéré au moment des faits. Indique la peine qu’elle encourt pour des violences volontaires sans incapacité de travail.</td><td>L’article 222-13, 14°, punit ces violences de trois ans d’emprisonnement et de 45 000 euros d’amende quand elles sont commises en état d’ivresse manifeste ou sous l’emprise manifeste de stupéfiants. L’altération du discernement laisse la personne responsable (article 122-1, alinéa 2). Examine ensuite si la réduction d’un tiers s’applique, en lisant l’article 122-1-2, qui concerne l’altération causée par une consommation volontaire.</td></tr>
+<tr><th scope="row">12. Récidive légale et réitération<br><small>Sujet classique</small></th><td>Distingue la récidive de la réitération. Explique ce que la récidive change pour la peine encourue, puis ce que devient la peine prononcée en cas de réitération.</td><td>La récidive suppose une condamnation définitive, que ni l’appel ni le pourvoi en cassation ne peuvent plus remettre en cause. Selon l’article 132-9, le maximum des peines d’emprisonnement et d’amende encourues est doublé quand une personne déjà condamnée définitivement pour un crime, ou pour un délit puni de dix ans d’emprisonnement, commet un nouveau délit. Ce délit doit être puni de dix ans d’emprisonnement et commis dans les dix ans, ou être puni de plus d’un an et de moins de dix ans d’emprisonnement et commis dans les cinq ans, à compter de l’expiration ou de la prescription de la peine précédente. En outre, l’article 132-10 double ce maximum pour le même délit, ou un délit assimilé, commis dans les cinq ans qui suivent l’expiration ou la prescription de la peine précédente, par une personne déjà condamnée définitivement pour un délit. Selon l’article 132-16-7, il y a réitération quand une personne déjà condamnée définitivement pour un crime ou un délit commet une nouvelle infraction sans remplir les conditions de la récidive légale. Les peines s’ajoutent alors à celles de la condamnation précédente, sans plafond et sans confusion. Le <a href="la-recidive-en-droit-penal.html">guide sur la récidive</a> détaille les conditions.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Les articles 122-3 et 122-4 ajoutent deux autres causes d’irresponsabilité. L’article 122-4 vise celui qui accomplit un acte prescrit ou autorisé par un texte, puis celui qui obéit à un ordre de l’autorité légitime, sauf si cet ordre est manifestement illégal. L’article 122-3 vise celui qui justifie avoir cru, par une erreur sur le droit (se tromper sur ce que la loi permet) qu’il ne pouvait pas éviter, pouvoir légitimement agir.</p>
+<p>Pour les sujets 4, 5 et 6, lis d’abord le texte de l’arrêt, puis note les faits et la procédure avant de relever la réponse de la Cour. Pour les sujets 7 et 8, la complicité suppose d’abord un fait principal punissable (une infraction que la loi punit même si son auteur échappe à la peine), puis un acte d’aide, de provocation ou d’instructions, et enfin l’intention de participer à cette infraction. En principe, l’aide ou l’assistance ne vise que les crimes et les délits (les infractions les plus graves), alors que la provocation et les instructions visent aussi les contraventions (les infractions les plus légères). Si l’auteur échappe à la peine pour une cause subjective, comme le trouble mental ou la minorité, le fait principal reste punissable et le complice peut répondre de son aide.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="cas-pratique">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Cas pratique corrigé, deux personnes violentes après avoir consommé des substances</h2>
+<h3>L’énoncé</h3>
+<p>Maxence Jolivet, magasinier à Limoges, supporte mal le bruit de son voisin Mathias Colin. Le 14 février 2026, à 18 h, il écrit à un ami : « Ce soir je vais lui casser la figure, mais je n’oserai jamais à jeun, alors je me prépare. »</p>
+<p>Pendant deux heures, il boit une bouteille de whisky et fume plusieurs joints de cannabis. À 20 h 30, il monte chez Mathias et le frappe à coups de poing et de pied. Mathias a deux côtes cassées et reçoit une incapacité totale de travail de quinze jours. Trois experts psychiatres concluent que Maxence a eu une bouffée délirante (un épisode bref pendant lequel la personne perd le contact avec la réalité) pendant les coups, provoquée par ce mélange, et que son discernement était aboli à ce moment. Cette bouffée délirante a disparu le lendemain.</p>
+<p>Océane Brunet, vendeuse à Nantes, fume du cannabis depuis plusieurs années. En juin 2025, après avoir fumé, elle a lancé une chaise sur un ami. Son médecin lui a expliqué que le cannabis déclenchait chez elle des accès de violence, et elle lui a répondu qu’elle l’avait compris.</p>
+<p>Le 6 mars 2026, avant une soirée avec ses collègues, Océane fume une quantité de cannabis bien supérieure à son habitude. Pendant la soirée, elle frappe sa collègue Léna Prévost à coups de poing au visage. Léna reçoit une incapacité totale de travail de douze jours. Les experts concluent que le cannabis a aboli le discernement d’Océane au moment des coups, et que ce discernement est revenu quelques heures plus tard.</p>
+<p>Maxence et Océane sont poursuivis pour violences volontaires ayant entraîné une incapacité totale de travail de plus de huit jours, commises en état d’ivresse manifeste ou sous l’emprise manifeste de stupéfiants (articles 222-11 et 222-12, 14°, du Code pénal). Les poursuites retiennent seulement cette circonstance aggravante, et la qualification est donnée. Chacun invoque l’abolition de son discernement. Peuvent-ils échapper à toute peine ?</p>
+<h3>Au brouillon, trois repères à marquer sur l’énoncé</h3>
+<p>Pendant la lecture, tu entoures de crochets chaque passage qui pose une question, et tu écris quelques mots en marge. Tu peux aussi numéroter les crochets. Ainsi, tu sais dans quel ordre traiter les questions et tu retrouves vite, au moment de rédiger chaque réponse, les faits dont tu as besoin.</p>
+<ol>
+<li><strong>[je n’oserai jamais à jeun, alors je me prépare]</strong> → Le but de la consommation de Maxence, qui peut changer la réponse sur l’abolition</li>
+<li><strong>[Son médecin lui a expliqué que le cannabis déclenchait chez elle des accès de violence]</strong> → Ce qu’Océane savait avant de fumer</li>
+<li><strong>[le cannabis a aboli le discernement d’Océane]</strong> → Le premier alinéa de l’article 122-1 et ses exceptions</li>
+</ol>
+<h3>1. La responsabilité de Maxence pour les violences sur Mathias</h3>
+<p><strong>Faits utiles.</strong> Maxence a annoncé par message qu’il se préparait pour oser frapper son voisin. Il a bu et fumé pendant deux heures, et les experts constatent que son discernement était aboli pendant les coups.</p>
+<p><strong>Question de droit.</strong> Maxence peut-il invoquer l’abolition de son discernement, alors que ce trouble vient de l’alcool et du cannabis qu’il a consommés avant les coups ?</p>
+<p><strong>Rappel du droit applicable.</strong> Selon l’article 122-1, alinéa 1, du Code pénal, une personne n’est pas pénalement responsable quand elle était atteinte, au moment des faits, d’un trouble psychique ou neuropsychique (le trouble mental, dans le langage courant). Ce trouble doit avoir aboli son discernement ou le contrôle de ses actes. De plus, la chambre criminelle a précisé, dans un <a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000043473408/" rel="noopener">arrêt du 14 avril 2021</a>, que ce texte s’applique même quand le trouble résulte d’une consommation de cannabis. L’article 122-1-1, créé par la loi du 24 janvier 2022, retire pourtant cette protection quand trois conditions sont réunies.</p>
+<ol>
+<li><p><strong>Une abolition temporaire du discernement.</strong> Le trouble s’arrête de lui-même quand les effets de la substance se dissipent. L’abolition existe au moment où le crime ou le délit est commis.</p></li>
+<li><p><strong>Une consommation volontaire de substances psychoactives, dans un temps très voisin de l’action.</strong> L’abolition doit résulter de cette consommation. Par exemple, la personne boit de l’alcool ou fume du cannabis dans les moments qui précèdent les faits.</p></li>
+<li><p><strong>Le but de commettre l’infraction ou de la faciliter.</strong> La personne consomme pour commettre l’infraction ou une infraction de même nature, ou pour en faciliter la commission.</p></li>
+</ol>
+<p><strong>Application aux faits.</strong></p>
+<ol>
+<li><p><strong>L’abolition est temporaire.</strong> Les experts relient la bouffée délirante au mélange d’alcool et de cannabis, et elle a disparu le lendemain. Les violences poursuivies sont un délit (une infraction punie d’emprisonnement).</p></li>
+<li><p><strong>La consommation est volontaire et proche des coups.</strong> Maxence boit et fume pendant les deux heures qui précèdent les faits, donc dans un temps très voisin de l’action.</p></li>
+<li><p><strong>Il consomme pour frapper.</strong> Son message annonce qu’il se prépare parce qu’il n’oserait pas frapper à jeun. La consommation sert donc à faciliter les violences poursuivies.</p></li>
+</ol>
+<p><strong>Conclusion.</strong> L’article 122-1-1 écarte le premier alinéa de l’article 122-1. Maxence reste pénalement responsable des violences sur Mathias, et il encourt cinq ans d’emprisonnement et 75 000 euros d’amende (articles 222-11 et 222-12, 14°).</p>
+<h3>2. La responsabilité d’Océane pour les violences sur Léna</h3>
+<p><strong>Faits utiles.</strong> Océane a fumé une quantité de cannabis bien supérieure à son habitude, et les experts constatent que le cannabis a aboli son discernement pendant les coups. Elle avait déjà lancé une chaise sur un ami après avoir fumé, et son médecin l’avait avertie des accès de violence que le cannabis déclenchait chez elle.</p>
+<p><strong>Question de droit.</strong> Océane est-elle pénalement responsable des violences sur Léna, et peut-elle être sanctionnée pour ce qu’elle a fait avant de les commettre ?</p>
+<p><strong>Rappel du droit applicable.</strong> L’article 122-1-1 s’applique seulement si la consommation poursuivait le but de commettre l’infraction ou une infraction de même nature, ou d’en faciliter la commission. Sans ce but, l’article 122-1-1 ne s’applique donc pas et le premier alinéa de l’article 122-1 continue de protéger la personne. La loi de 2022 a toutefois créé une infraction pour ce cas, à savoir l’article 222-18-4. Il punit la personne qui a consommé volontairement des substances psychoactives, de façon illicite ou manifestement excessive, en sachant que cette consommation pouvait la conduire à mettre délibérément autrui en danger. Quatre conditions se cumulent.</p>
+<ol>
+<li><p><strong>Une consommation volontaire, illicite ou manifestement excessive.</strong></p></li>
+<li><p><strong>La connaissance du risque.</strong> La personne sait que cette consommation peut la conduire à mettre délibérément autrui en danger.</p></li>
+<li><p><strong>Un trouble psychique ou neuropsychique temporaire causé par cette consommation.</strong> La personne commet des violences sous l’effet de ce trouble.</p></li>
+<li><p><strong>Une déclaration d’irresponsabilité pénale</strong> pour ces violences, en application du premier alinéa de l’article 122-1.</p></li>
+</ol>
+<p>Si les violences ont entraîné une incapacité totale de travail de plus de huit jours, l’article 222-18-4, 3°, prévoit deux ans d’emprisonnement et 30 000 euros d’amende.</p>
+<p><strong>Application aux faits.</strong></p>
+<ol>
+<li><p><strong>La consommation est volontaire et illicite.</strong> Océane a choisi de fumer du cannabis, un produit illicite, et elle en a fumé bien plus que d’habitude.</p></li>
+<li><p><strong>Océane connaissait le risque.</strong> En juin 2025, elle avait lancé une chaise sur un ami après avoir fumé. De plus, son médecin lui avait expliqué que le cannabis déclenchait chez elle des accès de violence, et elle avait répondu qu’elle l’avait compris. Elle a pourtant fumé malgré cet avertissement. Elle connaissait donc le risque de mettre délibérément autrui en danger.</p></li>
+<li><p><strong>Le trouble est temporaire et il est causé par le cannabis.</strong> Les experts constatent que le cannabis a aboli son discernement, qui est revenu quelques heures plus tard.</p></li>
+<li><p><strong>L’irresponsabilité relève du premier alinéa.</strong> Aucun élément ne montre qu’Océane ait fumé pour frapper Léna, donc l’article 122-1-1 ne s’applique pas. Le premier alinéa de l’article 122-1 s’applique, et elle est déclarée irresponsable des violences.</p></li>
+</ol>
+<p><strong>Conclusion.</strong> Océane échappe à la peine prévue pour les violences sur Léna, mais elle reste punissable sur le fondement de l’article 222-18-4, 3°, qui prévoit deux ans d’emprisonnement et 30 000 euros d’amende.</p>
+</div>
+</div>
+</section>
+<section class="section" id="variations">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Deux variantes du cas d’Océane, une altération ou des experts en désaccord</h2>
+<p>Reprends maintenant le cas d’Océane en ne changeant qu’un fait à la fois. Quand ton sujet change un seul fait, retrouve l’article dont la condition change.</p>
+<h3>Les experts concluent à une altération</h3>
+<p>Si le discernement d’Océane était seulement altéré (diminué sans être supprimé), le second alinéa de l’article 122-1 s’applique. Elle reste punissable des violences, et la juridiction doit tenir compte du trouble pour fixer la peine. Son altération résulte toutefois d’une consommation volontaire et illicite de cannabis, donc l’article 122-1-2 écarte la réduction du tiers. Océane encourt alors cinq ans d’emprisonnement et 75 000 euros d’amende. L’article 222-18-4 ne s’applique plus, puisqu’il suppose une déclaration d’irresponsabilité fondée sur le premier alinéa de l’article 122-1.</p>
+<h3>Les experts ne s’accordent pas</h3>
+<p>Deux experts concluent à l’abolition du discernement d’Océane, mais un troisième conclut à une simple altération. À la clôture de l’instruction, le juge d’instruction estime que l’abolition résulte au moins en partie du fait d’Océane. Selon l’article 706-120, alinéa 2, du Code de procédure pénale, il renvoie alors l’affaire devant la juridiction de jugement, qui statue à huis clos, sans public, sur l’application de l’article 122-1. Si Océane n’est pas déclarée irresponsable, son dossier est examiné sur le fond, c’est-à-dire sur sa culpabilité et sa peine, à une audience ultérieure.</p>
+<h2>Trois erreurs à éviter dans ces sujets</h2>
+<h3>Qualifier de délibérée une faute d’imprudence</h3>
+<p>Dans le sujet 6, un chef de projet n’a pas veillé au guidage du grutier. Une copie peut écrire qu’il a violé de façon manifestement délibérée une obligation de sécurité, alors que la Cour retient une faute d’imprudence et de négligence. La violation manifestement délibérée suppose un choix conscient d’ignorer une obligation particulière de prudence ou de sécurité prévue par la loi ou le règlement (article 121-3, alinéa 4). Sans ce choix, une faute simple, c’est-à-dire une imprudence ou une négligence ordinaire, suffit quand le comportement a lui-même causé le dommage. Si le lien est indirect, il faut une faute caractérisée. L’article 222-19, alinéa 2, aggrave la peine en cas de violation manifestement délibérée.</p>
+<h3>Faire punir le complice alors que l’auteur est couvert par la légitime défense</h3>
+<p>On lit parfois que Bryan reste complice même si la légitime défense d’Allan est retenue. La légitime défense est pourtant un fait justificatif, qui efface l’infraction pour tous les participants. Si ton énoncé te donne un prêt de voiture comme dans le sujet 7, tu cherches d’abord si la légitime défense est retenue, puis ce que Bryan savait du projet d’Allan.</p>
+<h3>Refuser l’irresponsabilité parce que la personne a fumé</h3>
+<p>Le premier alinéa de l’article 122-1 s’applique à l’abolition du discernement quelle que soit son origine, comme la chambre criminelle l’a jugé le 14 avril 2021 pour un trouble lié au cannabis. L’article 122-1-1 retire cette protection à la personne qui a consommé pour commettre l’infraction ou une infraction de même nature, ou pour en faciliter la commission. Une copie qui refuse l’irresponsabilité sans examiner ce but perd des points.</p>
+<p style="font-size:.875rem;color:var(--muted)">Le sujet 1 reprend l’intitulé d’une dissertation trouvée dans les dossiers de cours. Les sujets 3, 4, 9, 10 et 12, le cas corrigé et ses variantes ont été rédigés pour cette page.</p>
+<p style="font-size:.875rem;color:var(--muted)">Les règles se lisent dans le <a href="https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006070719/" rel="noopener">Code pénal</a>, le Code de procédure pénale, le Code du travail, le code de la justice pénale des mineurs et les décisions citées.</p>
+<div class="author-box">
+<img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+<div>
+<p class="author-box__name">Julien</p>
+<p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+<p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">166 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention, avec une méthode qu'ils réutilisent ensuite seuls à chaque copie. Sur TrajectoireDroit, tu trouves mes fiches complètes et mes majeures préparées (les règles de droit déjà rédigées pour tes cas pratiques).</p>
+<p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="faq">
+<div class="container container--narrow"><h2 class="h2">Questions fréquentes sur les sujets de droit pénal L2</h2>
+<div class="accordion">
+<details class="accordion__item"><summary class="accordion__trigger">Quels sujets de droit pénal préparer en L2 ?</summary><div class="accordion__body"><p>Les exercices de la page suivent les séances de TD de droit pénal L2. Les quatre premiers portent sur les causes d’irresponsabilité, les quatre suivants sur les personnes qui répondent d’une infraction, et les quatre derniers sur la faute non intentionnelle et la peine. Pour la loi pénale dans le temps ou la tentative, la page des <a href="sujets-droit-penal-general-l1.html">sujets de droit pénal général</a> ajoute d’autres exercices.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Une personne qui a bu ou fumé peut-elle invoquer l’abolition de son discernement ?</summary><div class="accordion__body"><p>Oui quand l’abolition est établie, car l’article 122-1, alinéa 1, s’applique à l’abolition du discernement quelle que soit son origine. L’article 122-1-1 retire cette protection à la personne qui a consommé pour commettre l’infraction ou une infraction de même nature, ou pour en faciliter la commission. Sans ce but, l’article 222-18-4 peut sanctionner la consommation qui a conduit à des violences dont la personne est déclarée irresponsable.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Quel PDF choisir pour refaire des cas pratiques de droit pénal L2 ?</summary><div class="accordion__body"><p>Pour refaire des cas pratiques, choisis le recueil, qui contient dix cas pratiques et trois sujets types de partiel, chacun avec son corrigé. La fiche complète sert surtout à revoir les règles et les conditions avant de rédiger. Tu peux lire le chapitre de la fiche, puis traiter l’énoncé du recueil avant de comparer ta réponse à son corrigé.</p></div></details>
+</div>
+</div>
+</section>
+<!-- fin-article:pack-ultra -->
+<section class="article-pack-ligne"><div class="container container--narrow"><p class="article-pack-ligne__texte">Le Pack Ultra L2 semestre 1 réunit 33 ressources pour 259 €, dont des supports de droit pénal. <a href="pack-ultra.html#pack-ultra-l2-s1">Voir les supports inclus →</a></p></div></section>
+</main>
+
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Droit pénal L2, sujets et corrigé">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Droit pénal L2, sujets et corrigé">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit pénal L2</strong>
+      <small>Fiche complète · 109 pages</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-penal-l2-s1">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=60767dcf" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=da4d9620" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=ee98d119" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>
