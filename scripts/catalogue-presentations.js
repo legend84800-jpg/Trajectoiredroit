@@ -7,7 +7,7 @@ const BESOINS = [
       { nom: "Fiche complète", href: "formations.html#a-l-unite", format: "Fiche complète ", unite: " / semestre ou matière" },
       { nom: "Cours complet", href: "cours-fiches.html#grille-cours-fiches", format: "Cours complet ", unite: " / semestre ou matière" },
     ],
-    contenu: "La fiche réunit les règles du cours. Le cours complet développe les explications.",
+    contenu: "La fiche complète réunit toutes les règles du cours. Le cours complet les explique plus en détail, avec l’histoire des grands arrêts.",
     lien: { nom: "Comparer les deux formats sur le dol", href: "formations.html#fiche-ou-cours" },
   },
   {
@@ -25,7 +25,7 @@ const BESOINS = [
       { nom: "Exercices corrigés", href: "corriges.html", format: "Cas pratiques corrigés ", unite: " / recueil" },
       { nom: "Portalis IA", href: "portalis.html#formules", portalis: true, unite: " / mois" },
     ],
-    contenu: "Les majeures donnent les règles déjà rédigées pour le cas pratique. Les corrigés montrent comment traiter les sujets proposés. Avec Portalis, tu ajoutes ton propre sujet pour obtenir un corrigé.",
+    contenu: "Les majeures donnent les règles déjà rédigées pour le cas pratique. Les corrigés montrent comment traiter les sujets proposés. Portalis, lui, rédige un corrigé à partir de ton propre sujet.",
   },
   {
     titre: "Mémoriser et me tester",
@@ -40,7 +40,7 @@ const BESOINS = [
     supports: [
       { nom: "Fiches de citations", href: "revisions.html#citations", famille: "citations-", unite: " / matière" },
     ],
-    contenu: "Tu retrouves les citations classées par thème pour préparer l’introduction de tes devoirs et les relier au sujet.",
+    contenu: "Les citations sont classées par thème. On choisit celle qui éclaire le sujet pour ouvrir l’introduction d’une dissertation ou d’un commentaire.",
   },
   {
     titre: "Regrouper mes ressources",
@@ -48,7 +48,7 @@ const BESOINS = [
       { nom: "Pack annuel de fiches", href: "formations.html#packs-annee", ids: ["pack-l1", "pack-l2", "pack-l3"], minimum: true, unite: " / année" },
       { nom: "Pack Ultra", href: "pack-ultra.html#pack-ultra", famille: "pack-ultra-", minimum: true, unite: " / semestre" },
     ],
-    contenu: "Le pack annuel rassemble les fiches de ton année. Le Pack Ultra réunit plusieurs formats pour un semestre. Tu peux ouvrir leur liste de matières avant de choisir.",
+    contenu: "Le pack annuel rassemble les fiches de ton année. Le Pack Ultra réunit toutes les ressources d’un semestre, du cours jusqu’aux exercices corrigés. La liste des matières de chaque pack se consulte avant de choisir.",
   },
 ];
 
