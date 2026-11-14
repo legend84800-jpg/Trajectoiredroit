@@ -25,7 +25,7 @@ const BESOINS = [
       { nom: "Exercices corrigés", href: "corriges.html", format: "Cas pratiques corrigés ", unite: " / recueil" },
       { nom: "Portalis IA", href: "portalis.html#formules", portalis: true, unite: " / mois" },
     ],
-    contenu: "Les majeures donnent les règles déjà rédigées pour le cas pratique. Les corrigés montrent comment traiter les sujets proposés. Portalis, lui, rédige un corrigé à partir de ton propre sujet.",
+    contenu: "Une majeure préparée donne une règle de droit déjà rédigée, prête à écrire dans un cas pratique. Les corrigés montrent, sujet par sujet, comment construire la réponse puis la rédiger. Portalis rédige un corrigé à partir de ton propre sujet.",
   },
   {
     titre: "Mémoriser et me tester",
@@ -40,7 +40,7 @@ const BESOINS = [
     supports: [
       { nom: "Fiches de citations", href: "revisions.html#citations", famille: "citations-", unite: " / matière" },
     ],
-    contenu: "Les citations sont classées par thème. On choisit celle qui éclaire le sujet pour ouvrir l’introduction d’une dissertation ou d’un commentaire.",
+    contenu: "Les citations sont classées par thème. On choisit celle qui pose le problème du sujet, puis on s’en sert pour ouvrir l’introduction d’une dissertation ou d’un commentaire.",
   },
   {
     titre: "Regrouper mes ressources",
