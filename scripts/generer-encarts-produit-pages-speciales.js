@@ -69,7 +69,7 @@ function construireEncartGenerique() {
           <div class="article-produit-inline__body">
             <p class="article-produit-inline__label">Fiches complètes</p>
             <p class="article-produit-inline__title">Toutes les matières, à apprendre tout le semestre</p>
-            <p class="article-produit-inline__meta">Cours complet, arrêts et notions clés en PDF · à partir de <strong>14,99 €</strong></p>
+            <p class="article-produit-inline__meta">Tout le cours en PDF, avec les arrêts et les notions à retenir · à partir de <strong>14,99 €</strong></p>
           </div>
           <div class="article-produit-inline__actions">
             <a class="btn btn--primary" href="formations.html">Voir les fiches →</a>

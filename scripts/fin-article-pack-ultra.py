@@ -53,29 +53,29 @@ for card in re.findall(r'<article class="ultra-card" id="pack-ultra-([^"]+)">(.*
 # --- Fiches de la matière (encart du milieu et barre collante) ---
 FICHES = {
     "famille": ("Droit de la famille L1", "droit-de-la-famille-l1.html#fiches", "assets/apercus/famille-l1-s2-1.jpg",
-                "Mariage, PACS, concubinage, divorce, filiation et autorité parentale, en PDF"),
+                "Tout le cours en PDF, sur le couple (mariage, PACS, concubinage et divorce) puis sur la filiation et l'autorité parentale"),
     "personnes": ("Droit des personnes L1", "droit-des-personnes-l1.html#fiches", "assets/apercus/personnes-l1-1.jpg",
                   "Tout le cours en PDF"),
     "constit": ("Droit constitutionnel L1", "droit-constitutionnel-l1.html#fiches", "assets/apercus/constit-l1-s2-1.jpg",
-                "Tout le programme en PDF, les grandes décisions et la méthode de la dissertation"),
+                "Tout le programme en PDF, avec les grandes décisions du Conseil constitutionnel et la méthode de la dissertation"),
     "penalgen": ("Droit pénal général L1 S2", "droit-penal-general-l1.html#fiches", "assets/apercus/penal-general-l1-1.jpg",
                  "Tout le cours en PDF, avec cet arrêt et tous les autres"),
     "contrats": ("Droit des contrats L2", "droit-des-contrats-l2.html#fiches", "assets/apercus/contrats-l2-s1-1.jpg",
-                 "Tout le cours en PDF, la réforme de 2016 intégrée"),
+                 "Tout le cours en PDF, à jour de la réforme du droit des contrats de 2016"),
     "obligations": ("Droit des obligations L2", "droit-des-obligations-l2.html#fiches", "assets/apercus/obligations-l2-s2-1.webp",
-                    "Tout le cours du semestre 2 en PDF, la responsabilité civile comprise"),
+                    "Tout le cours du semestre 2 en PDF, avec la responsabilité civile"),
     "admin": ("Droit administratif L2", "droit-administratif-l2.html#fiches", "assets/apercus/da-l2-s1-1.webp",
               "Tout le cours en PDF, semestre 1 ou semestre 2"),
     "biens": ("Droit des biens L2", "droit-des-biens-l2.html#fiches", "assets/apercus/biens-l2-1.jpg",
               "Tout le cours du semestre en PDF"),
     "travail": ("Droit du travail L3", "droit-du-travail-l3.html#fiches", "assets/apercus/travail-l3-s1-1.jpg",
-                "Le contrat de travail, le pouvoir de l'employeur, le licenciement, en PDF"),
+                "Tout le cours en PDF, du contrat de travail jusqu'au licenciement"),
     "cs": ("Contrats spéciaux L3", "contrats-speciaux-l3.html#fiches", "assets/apercus/contrats-speciaux-l3-1.jpg",
-           "La vente, le contrat d'entreprise, leurs garanties, en PDF"),
+           "La vente et le contrat d'entreprise, avec leurs garanties, en PDF"),
     "societes": ("Droit des sociétés L3", "droit-des-societes-l3.html#fiches", "assets/apercus/societes-l3-s1-1.jpg",
                  "Tout le cours du semestre 1 en PDF"),
     "procpen": ("Procédure pénale L3", "procedure-penale-l3.html#fiches", "assets/apercus/procedure-penale-l3-1.jpg",
-                "Tout le cours en PDF, du contrôle d'identité à la garde à vue et au jugement"),
+                "Tout le cours en PDF, du contrôle d'identité jusqu'au jugement, en passant par la garde à vue"),
     "penall2": ("Droit pénal L2", "droit-penal-l2.html#fiches", "assets/apercus/penal-l2-s1-1.jpg", "Tout le cours du semestre en PDF"),
     "commercial": ("Droit commercial L3", "droit-commercial-l3.html#fiches", "assets/apercus/commercial-l3-s1-1.jpg", "Tout le cours du semestre en PDF"),
     "introdroit": ("Introduction au droit L1", "introduction-au-droit-l1.html#fiches", "assets/apercus/intro-droit-l1-1.jpg", "Tout le cours du semestre en PDF"),
@@ -207,7 +207,8 @@ def carte_pack(cle, sid):
         nature = "la majeure" if label == "Majeure préparée" else "la fiche"
         t = minuscule(titre)
         de = "d'" if t[0] in "aeiouyhéèêàâîôû" else "de "
-        comprise = f", {nature} {de}{t} comprise"
+        phrase = f"{nature.capitalize()} {de}{t} en fait partie." if len(t) % 2 else f"On y trouve {nature} {de}{t}."
+        comprise = f". {phrase[:-1]}"
     return f'''    <!-- fin-article:pack-ultra -->
     <section class="section article-pack-ligne" aria-label="Pack Ultra du semestre">
       <div class="container">
