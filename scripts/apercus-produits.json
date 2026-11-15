@@ -7547,6 +7547,2522 @@
           "sha256_image": "b03e2389ae85fac9d3cdea6bcb3893217b2c807ebd84aeb043a65a243ad37ade"
         }
       }
+    },
+    "cas-pratique-biens-l2": {
+      "sha256": "56030995c3c24042b212c21470acc4f60bf25d5c652b3f8d3ab8bfe7159f6676",
+      "pages_pdf": 121,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-biens-l2.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p005.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p005.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p005.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "c4085908450125a9f8b20509d07b6e97a3e63388a4b8e0a0eb0bfc3fb68b7344",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "14b8bf8e8ef86e9a22fa8615155cca2416da1991053f541343e4aef4921d994d",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "62d83786500acc03a2d1fc450a67856c074c963607813bd461a13703713b96b4",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-biens-l2/56030995c3c2-p005.webp": {
+          "page_pdf": 5,
+          "sha256_image": "7d6c3a816e620584b3ae29e9fe9ac6990485254dde9fb90514833056730667c0",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-commercial-l3-s1": {
+      "sha256": "0d9b793f3dc1d9d19070275510d72d725dec67f90418827bf44e4b8ad6ea4a75",
+      "pages_pdf": 110,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-commercial-l3-s1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p005.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p005.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p005.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "cffb07eef230e119ec6b7f9fd6d9529ddbc83036150ed50adf24a074a13cced1",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "c3dd7e1d1f17bc75dd391598c74220252600fe9bcc008bf6025299a6f9242616",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "0de93af7556371026b99bd04da069d4c1f6fdb1a76da76b7cc7dcb281328eed2",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p005.webp": {
+          "page_pdf": 5,
+          "sha256_image": "9f6e6b094116421495cd58832ae9f8960a3014103723096aafc6ee04f89ec4c8",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-commercial-l3-s2": {
+      "sha256": "72758b6fe33f2efba19557e68aa5b60e4f9c30f525586778b67e80958813f2f7",
+      "pages_pdf": 156,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-commercial-l3-s2.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p006.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p006.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p006.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "6698a4fe0a620e5cecd02c4b658d6d8f0b12eef814369c3acd62cab46ed92a80",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "b77778777729ec79cc99ad070f45f7a510db50ad24f3905ad689e21827a24e16",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "7d2937f4074e17e6fdccf9052bdb2cbf85b3dc6568ee6e8222b9bd3dbbaa0791",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s2/72758b6fe33f-p006.webp": {
+          "page_pdf": 6,
+          "sha256_image": "6759094d4c015e5505ca7d7c53bbbf1d8011a29e48408bc4618a84ba64796f00",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-contrats-l2-s1": {
+      "sha256": "0981f8c440aeca2b09bfe20e48158d62126cd1ef57c0e12c510ef31668fc75f5",
+      "pages_pdf": 120,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-contrats-l2-s1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p005.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p005.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p005.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "e4ee91d871b1e20ac0d661dfcd23a933f622b8efbacc988748ef42720f5a35e5",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "a669084687f63d2a5ff7bd9f03bdec69ad99698ceae94460270dc491a1d877f7",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "0ed58a88e380342e1f7695382376806b84e4475c247dd2a355346e0474f329ac",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p005.webp": {
+          "page_pdf": 5,
+          "sha256_image": "e44000fb8a095c5fe1e36ae64b56168081cfbf2deac33aad3a94fa69ccd693bf",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-contrats-speciaux-l3": {
+      "sha256": "987fae5858dc9eaf9d5e5f22fa4595f36a6edc8b560f115175f4dafe102544bc",
+      "pages_pdf": 219,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-contrats-speciaux-l3.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p006.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p006.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p006.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "312d8b709adae22becc2aea5b11decead2b6d36d9085a2ceb9bcb377da36274c",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "c81949e8d6d8b8fe6c6a70364dca3a038474f40516dc46258b29b51ea56e3a5d",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "bd1f039f2f79ade0221892337d0344eb32771e3060e94019012a6d36a9b9a5d3",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-contrats-speciaux-l3/987fae5858dc-p006.webp": {
+          "page_pdf": 6,
+          "sha256_image": "8d5dc196e20e073736ae1a444bdbf06b3e959eaa7766f3c32d552b244d2cfb49",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-da-l2-s1": {
+      "sha256": "6fddaf8442c31f5e7d284c61d8cab59977786a15369dd2c1102fa83812cb5bb6",
+      "pages_pdf": 151,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-da-l2-s1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p008.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        8
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p008.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            8
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p008.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "19471122fc2bc8c5018955ffb3f48cc77655b47e5eaaa1d8e02cc8dd4ac3d2d6",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "e119ffc732d7be26353f54f58424764ee38b4fc80d1b0bf4b6e0ffeaea07fa35",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "1492aa5921e0d78ea631df64db24962814bfed1990e223a90d261fd510d6600d",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s1/6fddaf8442c3-p008.webp": {
+          "page_pdf": 8,
+          "sha256_image": "19f95829b7fd4be4d683432ea653637516356b6194a47320a1ffad11a0c6084a",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-da-l2-s2": {
+      "sha256": "c6325d809a3df15182dcffd9a505b03204065bd2c02d0ea572f3384fc98d0488",
+      "pages_pdf": 142,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-da-l2-s2.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p005.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p005.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p005.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "97b3c91bb9d9cc3ab342635c594128f2314d295ee0f8c9e3570a4b350439783d",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "f87e4c89eba359512640b3359b1fe0771c704bac53adac097407668af29d9d87",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "a3b1afaeca537894ba1671fb531c9ef8ef1559effa8ff2de910e9802a96f5753",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-da-l2-s2/c6325d809a3d-p005.webp": {
+          "page_pdf": 5,
+          "sha256_image": "11021c6e3fc8aa429c80ccaf7e63fc2423ca60afa9e0039d9131a27e69c7f757",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-famille-l1-s2": {
+      "sha256": "404f5865a99798a22fd83259e3ebaffbde58a506008b75c0adec18e42ada36f3",
+      "pages_pdf": 207,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-famille-l1-s2.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p006.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p006.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p006.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "2b77e1f21c5cd03c0185d59306cc25e33c5d266d4e56bc23a56ff78f04f0b1af",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "a54704ab3b8372f8c4d41a82d447b5ccabb9b8d08e3a48bddf4428fcc6edbf4e",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "e3882de935b596b5f32d45fd87bc91a15a13357465a63cf028b0c7b85430c3c4",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-famille-l1-s2/404f5865a997-p006.webp": {
+          "page_pdf": 6,
+          "sha256_image": "ac9e1e52ce520be73053d4205ad6eccfb35afbf67517b6503412099efaf53c42",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-intro-droit-l1": {
+      "sha256": "7a210d8fb49bb2a2c94d6680966bd11f6d1f15142fb3543830b317da679bd222",
+      "pages_pdf": 164,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-intro-droit-l1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p005.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p005.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p005.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "a3dd06e0b78f0dbfbf5ab8f789b5342d408fdef5de4032a90d3e46599df02082",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "d8f4fa42e7b40bb6b5244bfc6b996e7d3a06b67f337ab56d3c1539e8270123cf",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "84d7725a40a730957185e0369f518d7271b914a1742de6a10f8286f65b95d9ed",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p005.webp": {
+          "page_pdf": 5,
+          "sha256_image": "8e81958c49c8a470b5f330070c4a63797cfff74e38d40b3cfa44e7d6b346df97",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-obligations-l2-s2": {
+      "sha256": "1d99c7c1bdd04f15b85576691b97dfbfcc5ed161ce9bd9787ca5802ae49013bf",
+      "pages_pdf": 115,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-obligations-l2-s2.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p005.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p005.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p005.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "f538ccadc0c7b77b0fd0505f6200c814e4c09d142ab3a53807796689f5de4a54",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "bd9e2084078b0da8a5ed97284710ea5a684220f91440e8e195673ae4609cd92e",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "6fff1cf5a01d036bd308c5ae5c1981c914c0ecad87a3d6409e4c485868043514",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-obligations-l2-s2/1d99c7c1bdd0-p005.webp": {
+          "page_pdf": 5,
+          "sha256_image": "cc9c3996e5c2e59d41548298f1eacbfc73d765739500211d2d4d04f6bd107e1f",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-penal-general-l1": {
+      "sha256": "31853dbcab74c32d8c14ac72b687b64f715d903730e4a00a3084bb91406af461",
+      "pages_pdf": 156,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-penal-general-l1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p007.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        7
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p007.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            7
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p007.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "18c4da130b69773740ff7dcad0bc9674e0276bcf8addf48918e80ba41025f5a0",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "b6c272c81310e5ee893e9b4fb5e73034470f3044363f15a2fef0d83ef35fda23",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "4615c543ccc747fc337cb93d0bf3a59d89d5ecb6d184b33cf4013671cdbbe312",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/31853dbcab74-p007.webp": {
+          "page_pdf": 7,
+          "sha256_image": "47fb384889e6dd830da6f64029fdac612c19ff053b4f896b52839059203608fc",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-penal-l2-s1": {
+      "sha256": "2b410c627810521feb8dc8f7336e9a2b5dadc9cbae4ef94946976b580b3779c4",
+      "pages_pdf": 144,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-penal-l2-s1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p004.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p004.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p004.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "8f3ba067bd2fd3a5e258799e3ea06670975aa9ed41004697032d70796d4616d0",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "24b64f8c139e7119939d47305aa8429ba5bc16d05256cea7d0cb64c69ad1618a",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "8f0622011ea0d49ad40b0ccd6662e6abe6b74ed658e345cd0d20eb06a5ada44d",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-penal-l2-s1/2b410c627810-p004.webp": {
+          "page_pdf": 4,
+          "sha256_image": "bff55cec3809762782d998752f173bf2fabbfc4a58b3eb31b38c923752287e92",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-personnes-l1": {
+      "sha256": "570ec72e63df3d31e3b96ba478b2ffd429169b51a619294949c4bf80efe12640",
+      "pages_pdf": 130,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-personnes-l1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p005.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p005.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p005.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "4259f238ae8c15403d785486954f0ed9ea2dcb9799aa6b3429b6fda11ee9ce26",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "d9a8b0eb0c25fc42f89452dfcc80844c33e557275c4500e3e8e1481728be80e3",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "c973398b020a4b96cb2e7386ec7612af38312a614a5f75d6f5774c038e1ca2c9",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-personnes-l1/570ec72e63df-p005.webp": {
+          "page_pdf": 5,
+          "sha256_image": "5c34e5b434065c2f2c4b876ed1fb24e90f5dd81c8bea8d6d9eea5d0c7f7c3300",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-procedure-penale-l3": {
+      "sha256": "70765f76bfe4c90a3668f6b1a295ef7955a2b3df8afa2a506c1bdfb3ed8df1f4",
+      "pages_pdf": 133,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-procedure-penale-l3.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p004.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p004.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p004.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "de62c108cd2ed00713732b3d1dd1502e7b7a8e81573c7e71bfac9030f0992025",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "c1a8c5587281b0f15ac91d0cac60e5761f9093cfe4fbae094755e364555df566",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "4ae85d8343cff2627bdddd52f02b287be0e740d4a2c5401ac03ddcfa4cc8650f",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-procedure-penale-l3/70765f76bfe4-p004.webp": {
+          "page_pdf": 4,
+          "sha256_image": "b4901b2ed81dc667c0532496d87aeb0f027c1d46c56aa9b1964a097a1976bb18",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-societes-l3": {
+      "sha256": "7e0b8adbac6d27b6568d4ee6ae231c451a611af5336e1474eaa925167a9ef3a6",
+      "pages_pdf": 220,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-societes-l3.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p004.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p004.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p004.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "6af26eabdb7cefcd3a4d12baae28727b095e6379db4805a4c139fff7db7394fc",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "c664a7db7ab6b418d02e3fca12dfb30d78dd25b4ab5710cb0f4fa21e60e215ee",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "b2f2196b59c823db5d92a9ea892ab07b4dee2b0c64d02355c3b6d52c83ebd5b7",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3/7e0b8adbac6d-p004.webp": {
+          "page_pdf": 4,
+          "sha256_image": "04a124f06d629a2207d2fe86038812988e8885ca2b99e461a5a0f5b1fdf581ea",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-societes-l3-s2": {
+      "sha256": "07c2992d7a87090b9b7bc9b2d5f69c9e49df343e7223989ced2b400e34306da2",
+      "pages_pdf": 249,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-societes-l3-s2.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p005.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p005.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p005.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "709bc53c68fa07a556c617966c21c871fb74e80ebd19fd2dff11fd8956ce19e7",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "eeea2b30a51bd6804f05ec6b5fbc66f59c272e4657c0ef33bffa892ff058b403",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "f31c67671264296484f71806e47df8a6baeccaa3814e550bdb658a438776d3bf",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-societes-l3-s2/07c2992d7a87-p005.webp": {
+          "page_pdf": 5,
+          "sha256_image": "82fa08415d8791f8daccbb9c93986d5050b744cf1c94ff87e2dbd3fc5f1def47",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "cas-pratique-travail-l3": {
+      "sha256": "f3a7cab5b137370f3d3b6b40dead12d29967bf53a1a6f0106e497bde79b10ec9",
+      "pages_pdf": 125,
+      "famille": "recueils",
+      "fichier_pdf": "cas-pratique-travail-l3.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p005.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p005.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p005.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "01566e37e759538fe39fc83bddacf6407c0ffda8c7d306f1e8d041f486058678",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "38b7977692813025ae0d31d5af2dcff6efcfd8864a6a03153fc132663c735b51",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "743bd8e8bd592f190ba3dafe96206e9f5e7ad416f52d7c0b5419651b5bcfd5a1",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p005.webp": {
+          "page_pdf": 5,
+          "sha256_image": "9c393e1b47533391a283822a737f21a132dea2627c1a820bd3aa8bc59cea93ee",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "commentaire-arret-biens-l2": {
+      "sha256": "2c5ffe8407a9feaf3483320d57e38a8bb65ef614ecf59cefa54bb8b7755a9771",
+      "pages_pdf": 105,
+      "famille": "recueils",
+      "fichier_pdf": "commentaire-arret-biens-l2.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p001.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p006.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p007.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p008.webp"
+      ],
+      "pages_images": [
+        1,
+        6,
+        7,
+        8
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p006.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p008.webp"
+          ],
+          "pages": [
+            1,
+            6,
+            7,
+            8
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p006.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p008.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "1fd5f34eff6218ebfed200ccb374818ca3dec6a5dd5d3858d99c5bcbdea01bc8",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p006.webp": {
+          "page_pdf": 6,
+          "sha256_image": "0ee8ce04f328e812d78e5f8f6ccf9ffb75b96316a84f0a0a59ef5015bffeae85",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p007.webp": {
+          "page_pdf": 7,
+          "sha256_image": "73a2a2e9bcaaf512fc093ea18926cfeb758809830f24632753d17bf60789185a",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-biens-l2/2c5ffe8407a9-p008.webp": {
+          "page_pdf": 8,
+          "sha256_image": "ad7d23c55c835d269062a5c4b3686498d3bb5cac015e5bb5e937be7b84f6018a",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "commentaire-arret-contrats-l2-s1": {
+      "sha256": "733b7c815bbe82732bbb102a0ddb47ac3a1655848f06bcf61280e9023e3354fa",
+      "pages_pdf": 127,
+      "famille": "recueils",
+      "fichier_pdf": "commentaire-arret-contrats-l2-s1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p001.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p008.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p009.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p010.webp"
+      ],
+      "pages_images": [
+        1,
+        8,
+        9,
+        10
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p009.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p010.webp"
+          ],
+          "pages": [
+            1,
+            8,
+            9,
+            10
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p009.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p010.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "492de1e3c80726c6c34d182354929c7e1d18689cb6b1d867c4c245eaaecf424a",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p008.webp": {
+          "page_pdf": 8,
+          "sha256_image": "b84edf44f32acb55d11ea0484032a915c6028a020ff9ba94824d9355cff2dc22",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p009.webp": {
+          "page_pdf": 9,
+          "sha256_image": "b082812f9f7a1b5313216eb1996332486693bdca2ef185f6e96e1ea7eb17f261",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p010.webp": {
+          "page_pdf": 10,
+          "sha256_image": "0267e9fe2bb037e67a39cbc36f915d36ca6ed0f20c59b767dbefc5263cb1c021",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "commentaire-arret-contrats-speciaux-l3": {
+      "sha256": "ff1f1556307e88216d5f6de3d92244f5e41c559b451877b6291feaf8ccae9419",
+      "pages_pdf": 104,
+      "famille": "recueils",
+      "fichier_pdf": "commentaire-arret-contrats-speciaux-l3.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p001.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p007.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p008.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p009.webp"
+      ],
+      "pages_images": [
+        1,
+        7,
+        8,
+        9
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p009.webp"
+          ],
+          "pages": [
+            1,
+            7,
+            8,
+            9
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p009.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "19463f0dd6c429349401e5c68daf85f05facb54dba18bdc5b20bd70a32fb0f6d",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p007.webp": {
+          "page_pdf": 7,
+          "sha256_image": "36492bac8597176b5ac3e47738b3d55f6749a9e9881e38dd7176e9b77db36cda",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p008.webp": {
+          "page_pdf": 8,
+          "sha256_image": "03ddf2abd1baa410e0246854d268db4a674ffe5b28dab2e0846e21860c882afe",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-contrats-speciaux-l3/ff1f1556307e-p009.webp": {
+          "page_pdf": 9,
+          "sha256_image": "60d493dc2f749dc77546fe6ae68b6b76306ba3c6cabbbcdc581d162197aeab12",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "commentaire-arret-da-l2-s1": {
+      "sha256": "2585b396f0797affffa13622a52070b962b09ef75705302c340574724abdf499",
+      "pages_pdf": 145,
+      "famille": "recueils",
+      "fichier_pdf": "commentaire-arret-da-l2-s1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p001.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p007.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p008.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p009.webp"
+      ],
+      "pages_images": [
+        1,
+        7,
+        8,
+        9
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p009.webp"
+          ],
+          "pages": [
+            1,
+            7,
+            8,
+            9
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p009.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "d8b04acd15a4de1d882890607dd0ec65e7763de22210264a805f4cd779e65a44",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p007.webp": {
+          "page_pdf": 7,
+          "sha256_image": "8ca9e943655e5f2e9f2faeb03cbde915d645297f1846d3035817f776b74c56f9",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p008.webp": {
+          "page_pdf": 8,
+          "sha256_image": "d3e88eebe220bb590e0d232f578d4cef7462fad6d9f6bcfc16e79550962dc5bd",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s1/2585b396f079-p009.webp": {
+          "page_pdf": 9,
+          "sha256_image": "ca1ee0dbaee24ef305524fa2d71f892efa2078ec8295a7fe2c844d6c02415b8a",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "commentaire-arret-da-l2-s2": {
+      "sha256": "98f221112f76b3acda41a1d61a0ed30ccfe34720ef47281c4580cce158754877",
+      "pages_pdf": 175,
+      "famille": "recueils",
+      "fichier_pdf": "commentaire-arret-da-l2-s2.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p001.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p008.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p009.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p010.webp"
+      ],
+      "pages_images": [
+        1,
+        8,
+        9,
+        10
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p009.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p010.webp"
+          ],
+          "pages": [
+            1,
+            8,
+            9,
+            10
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p009.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p010.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "68c77b9e135d05ddf2937e8ae9a71c79346179627dec9342e1a72bfd2a9ea9a3",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p008.webp": {
+          "page_pdf": 8,
+          "sha256_image": "719ec8df4d78213bb5e3c2f9a36bb3c71e559035665518e94ccba68542795fb3",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p009.webp": {
+          "page_pdf": 9,
+          "sha256_image": "44be1ca32ef61c77c286e84b24ad886467716a4e2e7786e20eacd83a7f848094",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-da-l2-s2/98f221112f76-p010.webp": {
+          "page_pdf": 10,
+          "sha256_image": "abfdb1dd1f1bc026092dd372c557b97a826b6292e97d6d34767af2643b87bad5",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "commentaire-arret-famille-l1-s2": {
+      "sha256": "69419d4c0c172a2ab1f9f59f58bde01a8da63b4b14207ea5411ef9a7d57212cd",
+      "pages_pdf": 110,
+      "famille": "recueils",
+      "fichier_pdf": "commentaire-arret-famille-l1-s2.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p001.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p007.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p008.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p009.webp"
+      ],
+      "pages_images": [
+        1,
+        7,
+        8,
+        9
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p009.webp"
+          ],
+          "pages": [
+            1,
+            7,
+            8,
+            9
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p009.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "b2db4e3578363e0111ac92e73f226e09b41b01be0989880830c4b751b0eb6386",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p007.webp": {
+          "page_pdf": 7,
+          "sha256_image": "cb02c7bbbbffdff280a5cb92b7d8619f75fb8afae47b6850cb2217022c5ef6b2",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p008.webp": {
+          "page_pdf": 8,
+          "sha256_image": "08c4b649018e5e772275b409761bb4df62e7ca0d569adea202f2d722dbdca5fd",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-famille-l1-s2/69419d4c0c17-p009.webp": {
+          "page_pdf": 9,
+          "sha256_image": "07af81bb63242141b1b0a21b5fe0abdac1b0c015ddb70c76be5b460a0d1d356a",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "commentaire-arret-obligations-l2-s2": {
+      "sha256": "d96c636b02c42a3ba0150b517e32202023b76f55d32f8c84bd1fd7ac28bd013f",
+      "pages_pdf": 189,
+      "famille": "recueils",
+      "fichier_pdf": "commentaire-arret-obligations-l2-s2.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p001.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p009.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p010.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p011.webp"
+      ],
+      "pages_images": [
+        1,
+        9,
+        10,
+        11
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p009.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p010.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p011.webp"
+          ],
+          "pages": [
+            1,
+            9,
+            10,
+            11
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p009.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p010.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p011.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "badbfa8b2ca98aa62f750492d75bcf29ad635ef45f5cd36699c7b27738adbeb9",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p009.webp": {
+          "page_pdf": 9,
+          "sha256_image": "3c454db14192b3e360924127647f5888d5768b67f1c62e7af3245c1764b4006a",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p010.webp": {
+          "page_pdf": 10,
+          "sha256_image": "47ff0ff124ac1260fe9a1c35a26855b8a97627dd19e577eb7b200ab1705335f1",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-obligations-l2-s2/d96c636b02c4-p011.webp": {
+          "page_pdf": 11,
+          "sha256_image": "9d6ffddef51b8907563ca9fc5a3dae2bf97f8578ac5823a9daf06e42df958363",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "commentaire-arret-penal-l2-s1": {
+      "sha256": "13262c56e7432f7f252154db1f046f2b6c12f50e208a76ad2b0b851c5d320d08",
+      "pages_pdf": 107,
+      "famille": "recueils",
+      "fichier_pdf": "commentaire-arret-penal-l2-s1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p001.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p007.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p008.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p009.webp"
+      ],
+      "pages_images": [
+        1,
+        7,
+        8,
+        9
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p009.webp"
+          ],
+          "pages": [
+            1,
+            7,
+            8,
+            9
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p009.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "192bf64d69a005d0da491e0fdddd2d7756f3dbdd93c8cc167380f06fa2f3fbb4",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p007.webp": {
+          "page_pdf": 7,
+          "sha256_image": "0a1aa99b387f05091f5d1b6a98a3426463ec3e01910e63b2e38df252926c2664",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p008.webp": {
+          "page_pdf": 8,
+          "sha256_image": "6ec39e1bd249b93762289b3a17379e5cbe578a72b4889f89ff33b7192e4b9331",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-penal-l2-s1/13262c56e743-p009.webp": {
+          "page_pdf": 9,
+          "sha256_image": "87dc7ab721764819eb86f3987b0b23e0d4e7028733b2d06a28eaad044355f805",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "commentaire-arret-personnes-l1": {
+      "sha256": "81c5cb2f4e3590d27bd7a21c808b761dccf7039760d4105f4be5ffa91a7ecb5b",
+      "pages_pdf": 112,
+      "famille": "recueils",
+      "fichier_pdf": "commentaire-arret-personnes-l1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p001.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p007.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p008.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p009.webp"
+      ],
+      "pages_images": [
+        1,
+        7,
+        8,
+        9
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p009.webp"
+          ],
+          "pages": [
+            1,
+            7,
+            8,
+            9
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p009.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "3241b4d96f1d58275837bc7f39a415701095f50518438e859ae82a6fc84e0cff",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p007.webp": {
+          "page_pdf": 7,
+          "sha256_image": "f98dc41a3d97b8b99bfb17fbee543488ca383ca4b54f61b2d2d3eaf1594592e1",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p008.webp": {
+          "page_pdf": 8,
+          "sha256_image": "df3379d8f98eaef097572307628d14672d520db29ccc58eb2074e07f4b10d24f",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-personnes-l1/81c5cb2f4e35-p009.webp": {
+          "page_pdf": 9,
+          "sha256_image": "00361605e6511938e8adc0ca85d583d602d91a22d87fa64af9ef02807b805cd2",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "commentaire-arret-societes-l3-s1": {
+      "sha256": "86464cb0e6cdf46b6d2ecaca57e1875108496067d147cfa101bf0bec3dce46d0",
+      "pages_pdf": 225,
+      "famille": "recueils",
+      "fichier_pdf": "commentaire-arret-societes-l3-s1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p001.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p007.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p008.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p009.webp"
+      ],
+      "pages_images": [
+        1,
+        7,
+        8,
+        9
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p009.webp"
+          ],
+          "pages": [
+            1,
+            7,
+            8,
+            9
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p009.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "30e6a79622dbee86f76b5956226cd9548dce64f1ab1d79de21e44f94524d462e",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p007.webp": {
+          "page_pdf": 7,
+          "sha256_image": "e944c68444178ed3f7f55e0d23ff0b2610463bcc7aa3e3874f04ab092e607cab",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p008.webp": {
+          "page_pdf": 8,
+          "sha256_image": "a0bcc68a03efd03ffaf80962e0110c2410927bfd3a7b674b7e230a70675b7cc2",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-societes-l3-s1/86464cb0e6cd-p009.webp": {
+          "page_pdf": 9,
+          "sha256_image": "c4391ee56a4ddb22a7d5b8fe9aca50565fee81b6db76ea01ad41f02843e5ad5b",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "commentaire-arret-travail-l3-s1": {
+      "sha256": "05ff5b36f8229e8574008127d18a4cec8fb783a15ad82375e3cc63b12e922d41",
+      "pages_pdf": 108,
+      "famille": "recueils",
+      "fichier_pdf": "commentaire-arret-travail-l3-s1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p001.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p007.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p008.webp",
+        "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p009.webp"
+      ],
+      "pages_images": [
+        1,
+        7,
+        8,
+        9
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p009.webp"
+          ],
+          "pages": [
+            1,
+            7,
+            8,
+            9
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p001.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p007.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p008.webp",
+            "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p009.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "d84cc479c0c84fc6fce34cda747ccf0dca266f885e3f0ab10826eade86cd1f67",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p007.webp": {
+          "page_pdf": 7,
+          "sha256_image": "5e7f958b3e0d5b8aa5b1168ddfc00c63cf8506c1a2221ccdc080166856b510e4",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p008.webp": {
+          "page_pdf": 8,
+          "sha256_image": "29e7f55edad3675bbfbd82d74959ab13d15afeaa97a5314a2d4ef93fdae87e23",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/commentaire-arret-travail-l3-s1/05ff5b36f822-p009.webp": {
+          "page_pdf": 9,
+          "sha256_image": "c8f0af4054c6a94953720a6675f0993fcd1f706ffba1be652976f46246f8d52a",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "dissertation-constit-l1-s1": {
+      "sha256": "17985d91e0416d4eefbaeb7d947690c24b55bf68719edd13157a6f9f27e059ad",
+      "pages_pdf": 53,
+      "famille": "recueils",
+      "fichier_pdf": "dissertation-constit-l1-s1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p001.webp",
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p002.webp",
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p003.webp",
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p004.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p001.webp",
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p002.webp",
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p003.webp",
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p004.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p001.webp",
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p002.webp",
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p003.webp",
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p004.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "43fc2e72b4847e841da86177bcd90034dbfbf688e3d4a0c4a68899229eca8eea",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "28741832b512e48b84abaf8c94ffab168814d4a98812df6f0e439ba8ade849eb",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "a4e64d6db2822c4570d6403eb0c02b924fc64fab455054cbd2e98e1eb863f021",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s1/17985d91e041-p004.webp": {
+          "page_pdf": 4,
+          "sha256_image": "c2da49dc08ff86a2b3606b2a17ec357cb19aa7968f4d7ff32b32505925ffa09b",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "dissertation-constit-l1-s2": {
+      "sha256": "789478e50065ba8b6ed0fc9c573c6164a743faa47551afaeaee2e3e5b9eca0d1",
+      "pages_pdf": 55,
+      "famille": "recueils",
+      "fichier_pdf": "dissertation-constit-l1-s2.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p001.webp",
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p002.webp",
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p003.webp",
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p004.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p001.webp",
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p002.webp",
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p003.webp",
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p004.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p001.webp",
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p002.webp",
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p003.webp",
+            "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p004.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "2e92a3966e3301def5f5da1ae422fc6f92c316d1d45391f0e2de3b059cea582e",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "fa04fb2d2dc30e65addcccbc7fa62725be41d292d2027ca250c44f171afb4766",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "febbb260038dc30dbd5b062251a6a6cad6ea4680ac2bfd48ec760d7c70984e11",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-constit-l1-s2/789478e50065-p004.webp": {
+          "page_pdf": 4,
+          "sha256_image": "52fa1389285b8d089880ae36733b43a0b37ef3be5ad32bf5de8985b2df582519",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "dissertation-hist-droit-l1": {
+      "sha256": "eb836d56beaaddb5ac1aba10a87b95cab70240d4052d10adf20941295a1dcde0",
+      "pages_pdf": 59,
+      "famille": "recueils",
+      "fichier_pdf": "dissertation-hist-droit-l1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p001.webp",
+        "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p002.webp",
+        "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p003.webp",
+        "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p004.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p001.webp",
+            "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p002.webp",
+            "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p003.webp",
+            "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p004.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p001.webp",
+            "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p002.webp",
+            "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p003.webp",
+            "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p004.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "9e3548f14e819635b4b3305d0c1b9cb79bac65c46bb24dbc7eba0233c134cd7e",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "6024abe39dd15eb3fed5f95b2a079dda5c76ca9fc35b42b6b7dcdbb23948e0f2",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "5b880002b6bf9c08cdbdd0c08a4ce655a81377da760ee9ed506ca24fc54f7343",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-hist-droit-l1/eb836d56beaa-p004.webp": {
+          "page_pdf": 4,
+          "sha256_image": "2a12ff0af52b287bc48449e570af0608f622e8cca7711a127e0e732c7e003b5c",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "dissertation-hist-institutions-l1": {
+      "sha256": "c7a1ed5c3927957a082248bb4693dfc1f4aa3f0bc25e5a068ae30c3337679e65",
+      "pages_pdf": 52,
+      "famille": "recueils",
+      "fichier_pdf": "dissertation-hist-institutions-l1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p001.webp",
+        "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p002.webp",
+        "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p003.webp",
+        "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p004.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p001.webp",
+            "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p002.webp",
+            "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p003.webp",
+            "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p004.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p001.webp",
+            "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p002.webp",
+            "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p003.webp",
+            "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p004.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "9e7284cd3600b07a9f4c2697079cb62b6272d29aae561c8a64e0886b673628e6",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "2083391fc6639fd806be0473867531818e2e1d585e2be75aef63901cca6972e8",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "89afc3746db1a6968d532624124831080c8da8fe5b333ade2117585eb24444b9",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-hist-institutions-l1/c7a1ed5c3927-p004.webp": {
+          "page_pdf": 4,
+          "sha256_image": "17b22055f0a3e34915a10c0189267b33eede684ce58e2b31984950e7360bf218",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "dissertation-intro-droit-l1": {
+      "sha256": "50cc3bec5c84ac25ed9f8873764413953a48dbf298c564aff9f2b641110b3af8",
+      "pages_pdf": 58,
+      "famille": "recueils",
+      "fichier_pdf": "dissertation-intro-droit-l1.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p001.webp",
+        "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p002.webp",
+        "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p003.webp",
+        "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p004.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p001.webp",
+            "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p002.webp",
+            "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p003.webp",
+            "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p004.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p001.webp",
+            "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p002.webp",
+            "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p003.webp",
+            "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p004.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "0bbc13005cc0a65383967839bd1d857960040dacc8e50e4a9273283ba3387790",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "2179dcbf298a0b5aee8d39dac3f8a914c09522a22610eab505cb828947f18067",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "ce494439f75c3b7bdd31c48217dfdeb21d6f6bb9561af58bf044eedfd4222b13",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p004.webp": {
+          "page_pdf": 4,
+          "sha256_image": "9b3ad0eaf0270cd47e01c3ef56fec608a6ca7313eb705316352cdfae2d52d222",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
+    },
+    "dissertation-obligations-l2-s2": {
+      "sha256": "c5a23c4394f401b492d16cc8741eb05b3eceb0d03bce52958a3b006c3a73f3df",
+      "pages_pdf": 58,
+      "famille": "recueils",
+      "fichier_pdf": "dissertation-obligations-l2-s2.pdf",
+      "images": [
+        "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p001.webp",
+        "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p002.webp",
+        "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p003.webp",
+        "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p004.webp"
+      ],
+      "pages_images": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variantes": [
+        {
+          "avant": [
+            "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p001.webp",
+            "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p002.webp",
+            "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p003.webp",
+            "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p004.webp"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "images": [
+            "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p001.webp",
+            "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p002.webp",
+            "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p003.webp",
+            "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p004.webp"
+          ]
+        }
+      ],
+      "preuves_images": {
+        "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p001.webp": {
+          "page_pdf": 1,
+          "sha256_image": "e8a64be41f8a4d92587edcc631ac00b1d06a3874a20790e217bc4bad895bb4dd",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p002.webp": {
+          "page_pdf": 2,
+          "sha256_image": "7fb2ac4674048b3044c66e8894bdfba68dc1d38a0d08882da47915294ef4095c",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p003.webp": {
+          "page_pdf": 3,
+          "sha256_image": "ef066e2727ecad9ebf9fe669d4261ddbddfdaed95e28af6bbdc2ef0ff2c36ac8",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        },
+        "assets/apercus/recueils-20261115/dissertation-obligations-l2-s2/c5a23c4394f4-p004.webp": {
+          "page_pdf": 4,
+          "sha256_image": "d43e84e3876c2fabc73e15ed978a04d51ca54262500861d92780497d787d57f7",
+          "dimensions": [
+            1429,
+            2021
+          ]
+        }
+      }
     }
   },
   "remplacements_images": {
