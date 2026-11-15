@@ -5062,14 +5062,14 @@
       }
     },
     "maj-commercial-l3-s1": {
-      "sha256": "a1879dc79d5b92030040fdbaf015f6235d36e82ece6e0c55fb87f46318b3fb60",
-      "pages_pdf": 104,
+      "sha256": "e9a9b747063ff9eee53d7c3c9da5fa5fb390c899dfeb10a918c073cc00437e49",
+      "pages_pdf": 105,
       "famille": "majeures",
       "fichier_pdf": "maj-commercial-l3-s1.pdf",
       "images": [
-        "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p004.webp",
-        "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p002.webp",
-        "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p003.webp"
+        "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p004.webp",
+        "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p002.webp",
+        "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p003.webp"
       ],
       "pages_images": [
         4,
@@ -5089,9 +5089,9 @@
             3
           ],
           "images": [
-            "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p004.webp",
-            "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p002.webp",
-            "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p003.webp"
+            "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p004.webp",
+            "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p002.webp",
+            "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p003.webp"
           ],
           "versions_precedentes": [
             [
@@ -5144,25 +5144,25 @@
       ],
       "majeures": 41,
       "preuves_images": {
-        "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p004.webp": {
+        "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p004.webp": {
           "page_pdf": 4,
-          "sha256_image": "9989b4b116b6bd6e4e02bc9a7a2c0996440c607452ee8a9eac42bb664b47b383",
+          "sha256_image": "d837245256fdb97b9c2dd816edb3f3538200c5d847b3650e2ed29b2020268ce9",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p002.webp": {
+        "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p002.webp": {
           "page_pdf": 2,
-          "sha256_image": "d36aa73bdff95e76f2858d613fcba8ba117c9ddb79c60b77ed4020c1a9926e11",
+          "sha256_image": "ad5ca209d64e527e673bf9129594a5de2cceac7e1179cee366b85130a3a7e939",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p003.webp": {
+        "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p003.webp": {
           "page_pdf": 3,
-          "sha256_image": "9fbcd7e944363d727a859d37f388352f9741a17c3b232ea21f11ebbe88df38d9",
+          "sha256_image": "d108352e4058891d3ba477f330f06ab6d1ecb165a84d18c1bca088b6f9f112c5",
           "dimensions": [
             1429,
             2021

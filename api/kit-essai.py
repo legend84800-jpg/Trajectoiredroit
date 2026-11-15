@@ -29,7 +29,8 @@ ENTETES = {"User-Agent": "Mozilla/5.0 (TrajectoireDroit kit-essai)"}
 # majeure va jusqu'à sa dernière ligne, page partagée avec la suivante comprise
 # (essai-gratuit-tjd-2026-11-07/decouper_majeures.py).
 EDITION_MAJEURES = "finition-20261114"
-EDITIONS_MAJEURES: dict[str, str] = {}
+# Recueil de droit commercial republié le 15/11/2026 avec le cours Holtz 13 (105 pages).
+EDITIONS_MAJEURES: dict[str, str] = {"maj-commercial-l3-s1": "holtz13-20261115"}
 
 
 def _edition_majeures(produit: str) -> str:
