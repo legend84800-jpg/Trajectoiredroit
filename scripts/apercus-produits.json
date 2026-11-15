@@ -2607,14 +2607,14 @@
       }
     },
     "maj-dip-l3-s2": {
-      "sha256": "5193f7bc4abeca1d3d96e8c6776f77719ae1c66c8cbeb18b83e3d6dcd71bc1f1",
-      "pages_pdf": 115,
+      "sha256": "2fc510e392e3980e0c91f499db77b9ec07d68bfe4c89ff10907e5e15ac0965fa",
+      "pages_pdf": 116,
       "famille": "majeures",
       "fichier_pdf": "maj-dip-l3-s2.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-dip-l3-s2/5193f7bc4abe-p004.webp",
-        "assets/apercus/typographie-20261113/maj-dip-l3-s2/5193f7bc4abe-p002.webp",
-        "assets/apercus/typographie-20261113/maj-dip-l3-s2/5193f7bc4abe-p003.webp"
+        "assets/apercus/finition-20261114/maj-dip-l3-s2/2fc510e392e3-p004.webp",
+        "assets/apercus/finition-20261114/maj-dip-l3-s2/2fc510e392e3-p002.webp",
+        "assets/apercus/finition-20261114/maj-dip-l3-s2/2fc510e392e3-p003.webp"
       ],
       "pages_images": [
         4,
@@ -2634,9 +2634,9 @@
             3
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-dip-l3-s2/5193f7bc4abe-p004.webp",
-            "assets/apercus/typographie-20261113/maj-dip-l3-s2/5193f7bc4abe-p002.webp",
-            "assets/apercus/typographie-20261113/maj-dip-l3-s2/5193f7bc4abe-p003.webp"
+            "assets/apercus/finition-20261114/maj-dip-l3-s2/2fc510e392e3-p004.webp",
+            "assets/apercus/finition-20261114/maj-dip-l3-s2/2fc510e392e3-p002.webp",
+            "assets/apercus/finition-20261114/maj-dip-l3-s2/2fc510e392e3-p003.webp"
           ],
           "versions_precedentes": [
             [
@@ -2682,49 +2682,54 @@
               "assets/apercus/lisibilite-20261107/maj-dip-l3-s2/2d4b8d59ba8e-p004.webp",
               "assets/apercus/lisibilite-20261107/maj-dip-l3-s2/2d4b8d59ba8e-p002.webp",
               "assets/apercus/lisibilite-20261107/maj-dip-l3-s2/2d4b8d59ba8e-p003.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-dip-l3-s2/5193f7bc4abe-p004.webp",
+              "assets/apercus/typographie-20261113/maj-dip-l3-s2/5193f7bc4abe-p002.webp",
+              "assets/apercus/typographie-20261113/maj-dip-l3-s2/5193f7bc4abe-p003.webp"
             ]
           ]
         }
       ],
       "majeures": 36,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-dip-l3-s2/5193f7bc4abe-p004.webp": {
+        "assets/apercus/finition-20261114/maj-dip-l3-s2/2fc510e392e3-p004.webp": {
           "page_pdf": 4,
+          "sha256_image": "9ddafcb871aae7833c504954bff96f55d74dc3c8b056381af93e877bf95fb74e",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "d85e0bdab4c9b0ebfd5c9c3e59a759fd97866fc3650086eb87e1565c1e368f26"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-dip-l3-s2/5193f7bc4abe-p002.webp": {
+        "assets/apercus/finition-20261114/maj-dip-l3-s2/2fc510e392e3-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "bf58d3cd327390f1ea4739f86d2be3d61f9a7d9b53621bccd049245925189949",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "f509fb5de4146f39275e86342bdc309ea50ca87711808c76b1d31f74561bfe80"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-dip-l3-s2/5193f7bc4abe-p003.webp": {
+        "assets/apercus/finition-20261114/maj-dip-l3-s2/2fc510e392e3-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "c1c13dc4e43787e541140d3d00461718108356c96369b4631ba43defa53792ba",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "2b61a21807002df8258f78393cdc6826a01e4d33239381d3c1ebd303d7b22872"
+          ]
         }
       }
     },
     "maj-procedure-penale-l3": {
-      "sha256": "7778740c64fdefdfff53c3a2eea69c55c14c18de37afdb41e3d8c9e9f785429d",
-      "pages_pdf": 191,
+      "sha256": "274b6ef5dc01f8ba2d0b9da0d0fdf135a05fe161f54478103c1e5ac5f3225aa3",
+      "pages_pdf": 195,
       "famille": "majeures",
       "fichier_pdf": "maj-procedure-penale-l3.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p140.webp",
-        "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p002.webp",
-        "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p003.webp",
-        "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p004.webp",
-        "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p017.webp"
+        "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p140.webp",
+        "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p002.webp",
+        "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p003.webp",
+        "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p004.webp",
+        "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p017.webp"
       ],
       "pages_images": [
         140,
@@ -2748,11 +2753,11 @@
             17
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p140.webp",
-            "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p002.webp",
-            "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p003.webp",
-            "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p004.webp",
-            "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p017.webp"
+            "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p140.webp",
+            "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p002.webp",
+            "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p003.webp",
+            "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p004.webp",
+            "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p017.webp"
           ],
           "versions_precedentes": [
             [
@@ -2801,64 +2806,71 @@
               "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p003.webp",
               "assets/apercus/affichage-20261111/maj-procedure-penale-l3/93083fdcd269-p004.webp",
               "assets/apercus/affichage-20261111-complet/maj-procedure-penale-l3/0e9e9aaf9b2c-p017.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p140.webp",
+              "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p002.webp",
+              "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p003.webp",
+              "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p004.webp",
+              "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p017.webp"
             ]
           ]
         }
       ],
       "majeures": 54,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p140.webp": {
+        "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p140.webp": {
           "page_pdf": 140,
+          "sha256_image": "f2de6b28e5df6984be443067daeaaeef3603b1a414c052685ac56f7540b99d56",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "2e0072a6079f64d571f9614167d401163d46571a958902571f5a763e2553e0bf"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p002.webp": {
+        "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "d45bf7e83cdb334bea0d7dc93c718ad2b2221d7db40629fdacf0894c3e4a7906",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "3b5068cdb0d085899c6f07f676459e2a47dece275591ad1b569cc9ef93bdf57a"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p003.webp": {
+        "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "9104f52e78e5e206495aca98381430cac6dabfc2585f8b16eb63499ce6c367af",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "5f1e81538865417572366cd43b77eebe97409dc26b26cd7d3ab0e289480fb709"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p004.webp": {
+        "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p004.webp": {
           "page_pdf": 4,
+          "sha256_image": "496ad962d8316738fc6ea2a8854a8df4f6ab650e59e4af5aac6f43a78c920833",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "4f49d66d21397bfab70f0848bf9c0a48d052646b6c8577dffb967b548d09a3b2"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-procedure-penale-l3/7778740c64fd-p017.webp": {
+        "assets/apercus/finition-20261114/maj-procedure-penale-l3/274b6ef5dc01-p017.webp": {
           "page_pdf": 17,
+          "sha256_image": "3b1cda8f399c3da8c75388fccff6c1af6855d7c9cb3ba79b8a1baa2580f51b66",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "35c09d09515e3dd115361ed0c75535de70bec127e72472fd24900fc6fc6f380d"
+          ]
         }
       }
     },
     "maj-procedure-civile-l3-s1": {
-      "sha256": "6f5b02bb3fc75eff60526834d1e3ab1e30e92e5e57c820424692b139577665da",
-      "pages_pdf": 111,
+      "sha256": "fbd512c36c3bb46e29f1f0e998fe694a7e7088c7aef1e6977bc0f9c98f891023",
+      "pages_pdf": 115,
       "famille": "majeures",
       "fichier_pdf": "maj-procedure-civile-l3-s1.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p050.webp",
-        "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p002.webp",
-        "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p003.webp",
-        "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p047.webp"
+        "assets/apercus/finition-20261114/maj-procedure-civile-l3-s1/fbd512c36c3b-p050.webp",
+        "assets/apercus/finition-20261114/maj-procedure-civile-l3-s1/fbd512c36c3b-p002.webp",
+        "assets/apercus/finition-20261114/maj-procedure-civile-l3-s1/fbd512c36c3b-p003.webp",
+        "assets/apercus/finition-20261114/maj-procedure-civile-l3-s1/fbd512c36c3b-p047.webp"
       ],
       "pages_images": [
         50,
@@ -2880,10 +2892,10 @@
             47
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p050.webp",
-            "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p002.webp",
-            "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p003.webp",
-            "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p047.webp"
+            "assets/apercus/finition-20261114/maj-procedure-civile-l3-s1/fbd512c36c3b-p050.webp",
+            "assets/apercus/finition-20261114/maj-procedure-civile-l3-s1/fbd512c36c3b-p002.webp",
+            "assets/apercus/finition-20261114/maj-procedure-civile-l3-s1/fbd512c36c3b-p003.webp",
+            "assets/apercus/finition-20261114/maj-procedure-civile-l3-s1/fbd512c36c3b-p047.webp"
           ],
           "versions_precedentes": [
             [
@@ -2930,57 +2942,63 @@
               "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p002.webp",
               "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p003.webp",
               "assets/apercus/affichage-20261111/maj-procedure-civile-l3-s1/be9ba5047852-p050.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p050.webp",
+              "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p002.webp",
+              "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p003.webp",
+              "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p047.webp"
             ]
           ]
         }
       ],
       "majeures": 36,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p050.webp": {
+        "assets/apercus/finition-20261114/maj-procedure-civile-l3-s1/fbd512c36c3b-p050.webp": {
           "page_pdf": 50,
+          "sha256_image": "d36c7bb49d2c8dd792846c973a890da08c5a4cc58a9fec2dedaff644d0404a46",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "a3a60256d613b75bc69e964a6ce7f9511650ce084dcc90326890a050c7163f41"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p002.webp": {
+        "assets/apercus/finition-20261114/maj-procedure-civile-l3-s1/fbd512c36c3b-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "e8fc5d6c54cf7649b8edd2f899c81dc668a687eaca36e7d7a4a1830ae0e8a596",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "ba0b9a3172e1e918548fa98909a68f790a43fe80064bc477e6c56b4737ce9638"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p003.webp": {
+        "assets/apercus/finition-20261114/maj-procedure-civile-l3-s1/fbd512c36c3b-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "5edcea086c1b70703147a9e7a3d6ae81988824479fefef5ecf094bc1948dd3b1",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "56f381eea253a2686c9370887047f213f2bbab934cce6f41cff124686623064a"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-procedure-civile-l3-s1/6f5b02bb3fc7-p047.webp": {
+        "assets/apercus/finition-20261114/maj-procedure-civile-l3-s1/fbd512c36c3b-p047.webp": {
           "page_pdf": 47,
+          "sha256_image": "d8ccac140d4518a7e1cf27dbdcabe614c8796309fd4be9e13650dc18ee0c3103",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "b6f5d744982921e7f68ce8ff49535a427d5dc68994ec078904fffd535cd5cfaf"
+          ]
         }
       }
     },
     "maj-societes-l3-s1": {
-      "sha256": "0bdb41063fc9ee5172467ce4f6a63199e4defb11b334e2cacdd68b9590e30679",
-      "pages_pdf": 160,
+      "sha256": "63e0f21187f15d35eafe7545b006e8ee6527959fd1b921aae69195f8fd71d7b3",
+      "pages_pdf": 163,
       "famille": "majeures",
       "fichier_pdf": "maj-societes-l3-s1.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p002.webp",
-        "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p003.webp",
-        "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p004.webp",
-        "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p148.webp",
-        "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p149.webp"
+        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p002.webp",
+        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p003.webp",
+        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p004.webp",
+        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p148.webp",
+        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p149.webp"
       ],
       "pages_images": [
         2,
@@ -3005,11 +3023,11 @@
             149
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p002.webp",
-            "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p003.webp",
-            "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p004.webp",
-            "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p148.webp",
-            "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p149.webp"
+            "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p002.webp",
+            "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p003.webp",
+            "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p004.webp",
+            "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p148.webp",
+            "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p149.webp"
           ],
           "versions_precedentes": [
             [
@@ -3074,64 +3092,71 @@
               "assets/apercus/affichage-20261111/maj-societes-l3-s1/ca6128484e29-p004.webp",
               "assets/apercus/affichage-20261111/maj-societes-l3-s1/ca6128484e29-p148.webp",
               "assets/apercus/affichage-20261111/maj-societes-l3-s1/ca6128484e29-p149.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p002.webp",
+              "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p003.webp",
+              "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p004.webp",
+              "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p148.webp",
+              "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p149.webp"
             ]
           ]
         }
       ],
       "majeures": 65,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p002.webp": {
+        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "4b6ff18cca6caa6437e7ff3e9e3069c92ea41447e9e7b12729418c0f8733399b",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "4bf248ec0a2b22e42396de758d6b35e1c48c70c2a1c238858058cb2f62b72d48"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p003.webp": {
+        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "98281b23f7b3941a033831875c85ebc49b9785219d037c938503b8e9ae3be1b4",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "5e00d6f3763b0f34463aad3055d04838855e9a664dddb75b3bd8612489ee962b"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p004.webp": {
+        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p004.webp": {
           "page_pdf": 4,
+          "sha256_image": "e55d257827c464b4a1559e297a3e949a9bc7a9bbc55ac5cabc95aec6591cea0f",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "50f614805936ae5da036813696d8bc21ace3ecca485c2575c6be8d9d4515a9b6"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p148.webp": {
+        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p148.webp": {
           "page_pdf": 148,
+          "sha256_image": "1e9035923eb8007c7ed7a388a36542c8b530f3606f67ef7eab5d7ead417c3ef5",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "040c6df928962b0ce94e0a0c971ca1fae36737f3e0d4388492565bdeb335af45"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p149.webp": {
+        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p149.webp": {
           "page_pdf": 149,
+          "sha256_image": "e3eeca8f79c09e3c59521ab98fadc419a6d313c73b3ae0ddb9615db138527b7d",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "63e6ab0e150745a8be6cf3164873b5619f0d6e0ff79f4bcfd86dd0f0dffae6a2"
+          ]
         }
       }
     },
     "maj-penal-special-l3": {
-      "sha256": "1ee4cb01d6ade238e3823ba27f2db747ddfb833ff46b398fb86338c02d3b8649",
-      "pages_pdf": 122,
+      "sha256": "faafae9c6708c130fb710d0784d4a2fee54d4745e82fa1bead3bc52f36712fe9",
+      "pages_pdf": 124,
       "famille": "majeures",
       "fichier_pdf": "maj-penal-special-l3.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p067.webp",
-        "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p069.webp",
-        "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p002.webp",
-        "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p088.webp"
+        "assets/apercus/finition-20261114/maj-penal-special-l3/faafae9c6708-p067.webp",
+        "assets/apercus/finition-20261114/maj-penal-special-l3/faafae9c6708-p069.webp",
+        "assets/apercus/finition-20261114/maj-penal-special-l3/faafae9c6708-p002.webp",
+        "assets/apercus/finition-20261114/maj-penal-special-l3/faafae9c6708-p088.webp"
       ],
       "pages_images": [
         67,
@@ -3153,10 +3178,10 @@
             88
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p067.webp",
-            "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p069.webp",
-            "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p002.webp",
-            "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p088.webp"
+            "assets/apercus/finition-20261114/maj-penal-special-l3/faafae9c6708-p067.webp",
+            "assets/apercus/finition-20261114/maj-penal-special-l3/faafae9c6708-p069.webp",
+            "assets/apercus/finition-20261114/maj-penal-special-l3/faafae9c6708-p002.webp",
+            "assets/apercus/finition-20261114/maj-penal-special-l3/faafae9c6708-p088.webp"
           ],
           "versions_precedentes": [
             [
@@ -3203,62 +3228,68 @@
               "assets/apercus/affichage-20261111/maj-penal-special-l3/494b1a52e487-p069.webp",
               "assets/apercus/affichage-20261111/maj-penal-special-l3/494b1a52e487-p002.webp",
               "assets/apercus/affichage-20261111/maj-penal-special-l3/494b1a52e487-p088.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p067.webp",
+              "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p069.webp",
+              "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p002.webp",
+              "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p088.webp"
             ]
           ]
         }
       ],
       "majeures": 15,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p067.webp": {
+        "assets/apercus/finition-20261114/maj-penal-special-l3/faafae9c6708-p067.webp": {
           "page_pdf": 67,
+          "sha256_image": "25165d4bedb8ab04befc70320d60e5da734e35aed81e22dd9c6456f4ec30c4c3",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "16ff82c7e47dad38c51e231e9e68f8254dc164f4bd6621570cf415bd6d251a86"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p069.webp": {
+        "assets/apercus/finition-20261114/maj-penal-special-l3/faafae9c6708-p069.webp": {
           "page_pdf": 69,
+          "sha256_image": "d28b6dd5137c92fd76030cd67a9dff2b914b1fec6a80aeb7158f3a3d4dea962a",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "5585702bb867555d1ba691998241a7f8a420286ad7820b75846c4e820fd632bf"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p002.webp": {
+        "assets/apercus/finition-20261114/maj-penal-special-l3/faafae9c6708-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "8c4e0a88c95127c611d01243aed243eff99825e0967491e504d7cfed4c561be4",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "904a16800ed0d4ab20adaae2a8240be55dd1e996df7b0de038a68bbaf3c7dc68"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-penal-special-l3/1ee4cb01d6ad-p088.webp": {
+        "assets/apercus/finition-20261114/maj-penal-special-l3/faafae9c6708-p088.webp": {
           "page_pdf": 88,
+          "sha256_image": "f06efa50068138988e6501304697688455c3f8107e930caf6d734bf622a440a2",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "63e2eaf4f6733e540fe051f6ddb617d27af0ad635b0ff6cd3cf1875ffdf69a26"
+          ]
         }
       }
     },
     "maj-travail-l3-s1": {
-      "sha256": "9e21eb657587492d4b08ff12311f2db3a657fc89de050ff29a2ed953e75b530a",
+      "sha256": "072a974bc520e7c96cbe8c0ccb8af7b256145d12bf2503e15ca717204589a68e",
       "pages_pdf": 163,
       "famille": "majeures",
       "fichier_pdf": "maj-travail-l3-s1.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p002.webp",
-        "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p003.webp",
-        "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p004.webp",
-        "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p014.webp"
+        "assets/apercus/finition-20261114/maj-travail-l3-s1/072a974bc520-p002.webp",
+        "assets/apercus/finition-20261114/maj-travail-l3-s1/072a974bc520-p003.webp",
+        "assets/apercus/finition-20261114/maj-travail-l3-s1/072a974bc520-p004.webp",
+        "assets/apercus/finition-20261114/maj-travail-l3-s1/072a974bc520-p015.webp"
       ],
       "pages_images": [
         2,
         3,
         4,
-        14
+        15
       ],
       "variantes": [
         {
@@ -3272,13 +3303,13 @@
             2,
             3,
             4,
-            14
+            15
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p002.webp",
-            "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p003.webp",
-            "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p004.webp",
-            "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p014.webp"
+            "assets/apercus/finition-20261114/maj-travail-l3-s1/072a974bc520-p002.webp",
+            "assets/apercus/finition-20261114/maj-travail-l3-s1/072a974bc520-p003.webp",
+            "assets/apercus/finition-20261114/maj-travail-l3-s1/072a974bc520-p004.webp",
+            "assets/apercus/finition-20261114/maj-travail-l3-s1/072a974bc520-p015.webp"
           ],
           "versions_precedentes": [
             [
@@ -3334,59 +3365,65 @@
               "assets/apercus/affichage-20261111/maj-travail-l3-s1/9a0bf83a500d-p003.webp",
               "assets/apercus/affichage-20261111/maj-travail-l3-s1/9a0bf83a500d-p004.webp",
               "assets/apercus/affichage-20261111/maj-travail-l3-s1/9a0bf83a500d-p014.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p002.webp",
+              "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p003.webp",
+              "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p004.webp",
+              "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p014.webp"
             ]
           ]
         }
       ],
       "majeures": 50,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p002.webp": {
+        "assets/apercus/finition-20261114/maj-travail-l3-s1/072a974bc520-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "7ea42476c0313c2afe094659cdc138b3a9b3ce69139584c1d75854c7e3a39a63",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "5bea4dbc35fcdff094dae71931a47a29d6c20fcc11e2b13df95f7b15820f2a64"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p003.webp": {
+        "assets/apercus/finition-20261114/maj-travail-l3-s1/072a974bc520-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "138c116af9bc196fcc59a4b76e22fbac148eca38bf10ad2c1bbd7bb1c8bbfbb0",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "8e1803178da80d819d4b9a75e39c07a7c3b2f509d58b144f31dbf57915c4c004"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p004.webp": {
+        "assets/apercus/finition-20261114/maj-travail-l3-s1/072a974bc520-p004.webp": {
           "page_pdf": 4,
+          "sha256_image": "ad8e81e18b931afaad612e0900dcc5f594eb1a97bf7a985e4784d0fef09a5d29",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "9cd54c53f8260d7b28dea8b615bd6c7dbe2c0bf077ba78f27d8f85bf20c64058"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-travail-l3-s1/9e21eb657587-p014.webp": {
-          "page_pdf": 14,
+        "assets/apercus/finition-20261114/maj-travail-l3-s1/072a974bc520-p015.webp": {
+          "page_pdf": 15,
+          "sha256_image": "6a58b0547670c9498ca2bc1b2af8dd4e3927813963dd4ae5e80f6fc6b1a5d3d9",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "b763ec93d1f06c5ceca6ad2f0bd8d7f53e508381d1652775fc4ce2637fcaf1b4"
+          ]
         }
       }
     },
     "maj-contrats-speciaux-l3": {
-      "sha256": "cd6a73172cccafb944f165cd7c9da05fcdc3d07350b969334345ee2c9ae40904",
-      "pages_pdf": 219,
+      "sha256": "18bc7f0fd9866bb21a3296aab72df190aa4efc97329732ea47b9db06a7d6cc49",
+      "pages_pdf": 217,
       "famille": "majeures",
       "fichier_pdf": "maj-contrats-speciaux-l3.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p035.webp",
-        "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p036.webp",
-        "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p037.webp",
-        "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p002.webp",
-        "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p003.webp",
-        "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p004.webp",
-        "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p152.webp"
+        "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p035.webp",
+        "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p036.webp",
+        "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p037.webp",
+        "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p002.webp",
+        "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p003.webp",
+        "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p004.webp",
+        "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p152.webp"
       ],
       "pages_images": [
         35,
@@ -3414,13 +3451,13 @@
             152
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p035.webp",
-            "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p036.webp",
-            "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p037.webp",
-            "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p002.webp",
-            "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p003.webp",
-            "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p004.webp",
-            "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p152.webp"
+            "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p035.webp",
+            "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p036.webp",
+            "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p037.webp",
+            "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p002.webp",
+            "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p003.webp",
+            "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p004.webp",
+            "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p152.webp"
           ],
           "versions_precedentes": [
             [
@@ -3500,78 +3537,87 @@
               "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p003.webp",
               "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p004.webp",
               "assets/apercus/affichage-20261111/maj-contrats-speciaux-l3/d5c7ea5687da-p152.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p035.webp",
+              "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p036.webp",
+              "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p037.webp",
+              "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p002.webp",
+              "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p003.webp",
+              "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p004.webp",
+              "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p152.webp"
             ]
           ]
         }
       ],
       "majeures": 76,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p035.webp": {
+        "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p035.webp": {
           "page_pdf": 35,
+          "sha256_image": "84a3a0a4bf828cc838ed5b0898b1c44faee456f973ee5eafcafabb725924afb7",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "02b6d3198af6931fbf8f47daa3536cb3ce9f23d98008b2d322aec7b665abedb0"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p036.webp": {
+        "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p036.webp": {
           "page_pdf": 36,
+          "sha256_image": "99d86cd1c321125185dadd27b5de4174eb42fef9e3b8add9505a99fddb51760a",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "91ef8cc351ad6ed6845295bce42ef46149f774b058b230929b45a043b7836888"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p037.webp": {
+        "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p037.webp": {
           "page_pdf": 37,
+          "sha256_image": "7c83214f695f9e85b4934bdc7202fe92b86fe53122fdc861e78405912908148f",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "0f669d20753214eb21f8de83c56ab63d22e9f3323fb5a11d0587d9436f583781"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p002.webp": {
+        "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "074b3897b81ab1707c0be1cc29c4a339af98290189bc7226662c9886eeca68bd",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "5dae6f69b2054be9fffe4a04b4b3d366893fe057c21068b19dc292d0c17462a7"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p003.webp": {
+        "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "49f468523a2377cb850c6439eab46b5cdb0a91d67251d7da73891787a2c787a1",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "d5a385fb93ad8f326c2cdce872efedcd12f745568216fe5421835f56eb3245af"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p004.webp": {
+        "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p004.webp": {
           "page_pdf": 4,
+          "sha256_image": "08d9173ee7efdfd3b71322f59b4f62a62b6d39f682a4042964d8a410f74f4a5e",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "e51f6657be127645c1f725109fde189e1610f3b3a2a1d6e0bd1ad421798e4ea6"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-contrats-speciaux-l3/cd6a73172ccc-p152.webp": {
+        "assets/apercus/finition-20261114/maj-contrats-speciaux-l3/18bc7f0fd986-p152.webp": {
           "page_pdf": 152,
+          "sha256_image": "35f9497e2708557077a746e9e2549736109e93b7ba8cdfecb8b13e1c2acf2e24",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "157ddda6d89aadb89dffa5bb975ad62a436fd0dcd0969644e94de50a49c78c6b"
+          ]
         }
       }
     },
     "maj-intro-droit-l1": {
-      "sha256": "e69be637c3942e5967a4246c16dc1486c953dca09363b22d956ae12cc098e337",
-      "pages_pdf": 45,
+      "sha256": "fe3eff2f23389c55d6019c9a6c5a266ca87ef5ff9d1e3c88a0b67360c7084eb0",
+      "pages_pdf": 46,
       "famille": "majeures",
       "fichier_pdf": "maj-intro-droit-l1.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-intro-droit-l1/e69be637c394-p003.webp",
-        "assets/apercus/typographie-20261113/maj-intro-droit-l1/e69be637c394-p002.webp"
+        "assets/apercus/finition-20261114/maj-intro-droit-l1/fe3eff2f2338-p003.webp",
+        "assets/apercus/finition-20261114/maj-intro-droit-l1/fe3eff2f2338-p002.webp"
       ],
       "pages_images": [
         3,
@@ -3589,8 +3635,8 @@
             2
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-intro-droit-l1/e69be637c394-p003.webp",
-            "assets/apercus/typographie-20261113/maj-intro-droit-l1/e69be637c394-p002.webp"
+            "assets/apercus/finition-20261114/maj-intro-droit-l1/fe3eff2f2338-p003.webp",
+            "assets/apercus/finition-20261114/maj-intro-droit-l1/fe3eff2f2338-p002.webp"
           ],
           "versions_precedentes": [
             [
@@ -3624,38 +3670,42 @@
             [
               "assets/apercus/affichage-20261111/maj-intro-droit-l1/6ff0ebc0b175-p003.webp",
               "assets/apercus/affichage-20261111/maj-intro-droit-l1/6ff0ebc0b175-p002.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-intro-droit-l1/e69be637c394-p003.webp",
+              "assets/apercus/typographie-20261113/maj-intro-droit-l1/e69be637c394-p002.webp"
             ]
           ]
         }
       ],
       "majeures": 19,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-intro-droit-l1/e69be637c394-p003.webp": {
+        "assets/apercus/finition-20261114/maj-intro-droit-l1/fe3eff2f2338-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "e2289cf49a9d3f9e951102fc5ed8ad4ead71ca9575a4af1999cdbb785d332d48",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "6a5f825ca83a907031ef02e6189e8f2d0798a56225e5c6218d3b78d60ca64ffb"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-intro-droit-l1/e69be637c394-p002.webp": {
+        "assets/apercus/finition-20261114/maj-intro-droit-l1/fe3eff2f2338-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "4506d71d670bac788acdab2d032e83eb2acb81d99ea99111dfd47e323af41500",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "83873d0bbdb7faaa9e6c51d615a18c5b00a1b37ed26bd9839413cc368c68a362"
+          ]
         }
       }
     },
     "maj-personnes-l1": {
-      "sha256": "16a2b6f70922006d245dd6fa99fdded617bd073c6fa0190751c2b5a8f7f254ae",
-      "pages_pdf": 42,
+      "sha256": "b51bb50241b865ab33d12739c3b3685b0d46a61b9f58f1ae15bb2dcb9947ad5b",
+      "pages_pdf": 45,
       "famille": "majeures",
       "fichier_pdf": "maj-personnes-l1.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-personnes-l1/16a2b6f70922-p003.webp",
-        "assets/apercus/typographie-20261113/maj-personnes-l1/16a2b6f70922-p002.webp"
+        "assets/apercus/finition-20261114/maj-personnes-l1/b51bb50241b8-p003.webp",
+        "assets/apercus/finition-20261114/maj-personnes-l1/b51bb50241b8-p002.webp"
       ],
       "pages_images": [
         3,
@@ -3673,8 +3723,8 @@
             2
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-personnes-l1/16a2b6f70922-p003.webp",
-            "assets/apercus/typographie-20261113/maj-personnes-l1/16a2b6f70922-p002.webp"
+            "assets/apercus/finition-20261114/maj-personnes-l1/b51bb50241b8-p003.webp",
+            "assets/apercus/finition-20261114/maj-personnes-l1/b51bb50241b8-p002.webp"
           ],
           "versions_precedentes": [
             [
@@ -3708,41 +3758,45 @@
             [
               "assets/apercus/affichage-20261111/maj-personnes-l1/949d03e28423-p003.webp",
               "assets/apercus/affichage-20261111/maj-personnes-l1/949d03e28423-p002.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-personnes-l1/16a2b6f70922-p003.webp",
+              "assets/apercus/typographie-20261113/maj-personnes-l1/16a2b6f70922-p002.webp"
             ]
           ]
         }
       ],
       "majeures": 25,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-personnes-l1/16a2b6f70922-p003.webp": {
+        "assets/apercus/finition-20261114/maj-personnes-l1/b51bb50241b8-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "063e77aec49ba210b67a8008fc8f008de20a173f2e85b7c4754c3ded130a924e",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "f950a3c90d7eb62a2db09cefb4890be206b6b14b2a5f44cdcb54c62bd94516a5"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-personnes-l1/16a2b6f70922-p002.webp": {
+        "assets/apercus/finition-20261114/maj-personnes-l1/b51bb50241b8-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "407d05860384a1dfe6668702c4962487765b8a8fb2aaa924bf52274e4887a257",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "5765e1b4aaf14eb8e749051c3e101819eab3e3cd73b253b556d137d17b938699"
+          ]
         }
       }
     },
     "maj-famille-l1-s2": {
-      "sha256": "26b23f1dbf6b9cf29fa2feda869d343c809db136baf5a2ad92a858149a48f532",
-      "pages_pdf": 61,
+      "sha256": "50d0cf58c94bbdb8a506a54c3c29d426bb4d64ad765da0c18f809d5a35a9cbdd",
+      "pages_pdf": 62,
       "famille": "majeures",
       "fichier_pdf": "maj-famille-l1-s2.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p058.webp",
-        "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p059.webp",
-        "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p060.webp",
-        "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p002.webp",
-        "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p003.webp"
+        "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p058.webp",
+        "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p059.webp",
+        "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p060.webp",
+        "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p002.webp",
+        "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p003.webp"
       ],
       "pages_images": [
         58,
@@ -3766,11 +3820,11 @@
             3
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p058.webp",
-            "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p059.webp",
-            "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p060.webp",
-            "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p002.webp",
-            "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p003.webp"
+            "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p058.webp",
+            "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p059.webp",
+            "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p060.webp",
+            "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p002.webp",
+            "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p003.webp"
           ],
           "versions_precedentes": [
             [
@@ -3832,63 +3886,70 @@
               "assets/apercus/affichage-20261111/maj-famille-l1-s2/5138bd0b29a2-p060.webp",
               "assets/apercus/affichage-20261111/maj-famille-l1-s2/5138bd0b29a2-p002.webp",
               "assets/apercus/affichage-20261111/maj-famille-l1-s2/5138bd0b29a2-p003.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p058.webp",
+              "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p059.webp",
+              "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p060.webp",
+              "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p002.webp",
+              "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p003.webp"
             ]
           ]
         }
       ],
       "majeures": 39,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p058.webp": {
+        "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p058.webp": {
           "page_pdf": 58,
+          "sha256_image": "675d125d89ac99a3f069d117ba7344e3cfc42deb1293ec7e06a80faf7eb01c56",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "9c2b044cc9b10e5e2495a53f5cf0efb56257d9a86bdcfb0d2a3c80da66843d32"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p059.webp": {
+        "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p059.webp": {
           "page_pdf": 59,
+          "sha256_image": "72d21709db8c25d5854391d549bacd35bb3cb4257e1f9cc45ed1f82ec6d368db",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "c77ab97551816c62b92addac8d084d9bfbb5fd1da0151f29b822bb1f1f9637dd"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p060.webp": {
+        "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p060.webp": {
           "page_pdf": 60,
+          "sha256_image": "28d9dd15408aae0b2557eb83b8f2905d0884a424242233ecfe1ef303c1e8c2db",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "ff69d5890c22c8b867682a240eae1c89c7e5dc8cb5aa4dfcf5bf110c28ce656e"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p002.webp": {
+        "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "34471c6fac1504caff8c9af162ffe222181aa304c8f315a4356f84238887adaa",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "3aef8c183f7bbbab3a011f9e71e92ad7c74d1b8cdcdb43432e5144c7c1181e31"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-famille-l1-s2/26b23f1dbf6b-p003.webp": {
+        "assets/apercus/finition-20261114/maj-famille-l1-s2/50d0cf58c94b-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "1fd97dcfdd498080ef9814f7133c00be8f4ed7b80c33c6254d3c0318886bda91",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "8d23fff16b40591b73183d08e69b7a37fc3732932d7923ea59af1091ca10b07b"
+          ]
         }
       }
     },
     "maj-da-l2-s1": {
-      "sha256": "1aa486949f42cc4e41245d30e31d9a449d6051b65e69b849590e0c1d3519e885",
-      "pages_pdf": 137,
+      "sha256": "14a385be24f4589b495dbb07a8565ca5d700b98412868ed168b04ab02da4ce78",
+      "pages_pdf": 171,
       "famille": "majeures",
       "fichier_pdf": "maj-da-l2-s1.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-da-l2-s1/1aa486949f42-p002.webp",
-        "assets/apercus/typographie-20261113/maj-da-l2-s1/1aa486949f42-p003.webp",
-        "assets/apercus/typographie-20261113/maj-da-l2-s1/1aa486949f42-p028.webp"
+        "assets/apercus/finition-20261114/maj-da-l2-s1/14a385be24f4-p002.webp",
+        "assets/apercus/finition-20261114/maj-da-l2-s1/14a385be24f4-p003.webp",
+        "assets/apercus/finition-20261114/maj-da-l2-s1/14a385be24f4-p028.webp"
       ],
       "pages_images": [
         2,
@@ -3908,9 +3969,9 @@
             28
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-da-l2-s1/1aa486949f42-p002.webp",
-            "assets/apercus/typographie-20261113/maj-da-l2-s1/1aa486949f42-p003.webp",
-            "assets/apercus/typographie-20261113/maj-da-l2-s1/1aa486949f42-p028.webp"
+            "assets/apercus/finition-20261114/maj-da-l2-s1/14a385be24f4-p002.webp",
+            "assets/apercus/finition-20261114/maj-da-l2-s1/14a385be24f4-p003.webp",
+            "assets/apercus/finition-20261114/maj-da-l2-s1/14a385be24f4-p028.webp"
           ],
           "versions_precedentes": [
             [
@@ -3957,47 +4018,52 @@
               "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p002.webp",
               "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p003.webp",
               "assets/apercus/holtz-20261111/maj-da-l2-s1/9a03b515d79d-p028.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-da-l2-s1/1aa486949f42-p002.webp",
+              "assets/apercus/typographie-20261113/maj-da-l2-s1/1aa486949f42-p003.webp",
+              "assets/apercus/typographie-20261113/maj-da-l2-s1/1aa486949f42-p028.webp"
             ]
           ]
         }
       ],
-      "majeures": 46,
+      "majeures": 58,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-da-l2-s1/1aa486949f42-p002.webp": {
+        "assets/apercus/finition-20261114/maj-da-l2-s1/14a385be24f4-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "54cecdb415dc40bd7866172a8ac8886c249ab28eed775504bb1ae668361dfefb",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "c82b3e1efe4a4e636a0b0254f184ad45b5852e0f9c9dbc43e380108da0734e87"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-da-l2-s1/1aa486949f42-p003.webp": {
+        "assets/apercus/finition-20261114/maj-da-l2-s1/14a385be24f4-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "2f6be1f6bf197061a0b8fbbf44548e631af811ececd1b1ac8a377326ccd6b375",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "511457c7fd37969806540736d8795a5417e43b4cba22165281dfa91b875b5351"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-da-l2-s1/1aa486949f42-p028.webp": {
+        "assets/apercus/finition-20261114/maj-da-l2-s1/14a385be24f4-p028.webp": {
           "page_pdf": 28,
+          "sha256_image": "1f6ee1de143756d95b148dcde011337f8314e463f4697d640910be3026bfe596",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "f102c2614852f38cd197dab9f5917594574f920f78414691d1aafa2c1d57fd53"
+          ]
         }
       }
     },
     "maj-da-l2-s2": {
-      "sha256": "cf776f23927f2ab42a65baafddb5d9aff891b2da9ed9417e371f633415ffcff1",
-      "pages_pdf": 61,
+      "sha256": "82e476c376aac3006ff7d033fd345ba510816639e6b472768f8e9329de3d25b6",
+      "pages_pdf": 64,
       "famille": "majeures",
       "fichier_pdf": "maj-da-l2-s2.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p002.webp",
-        "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p003.webp",
-        "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p004.webp"
+        "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p002.webp",
+        "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p003.webp",
+        "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p004.webp"
       ],
       "pages_images": [
         2,
@@ -4017,9 +4083,9 @@
             4
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p002.webp",
-            "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p003.webp",
-            "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p004.webp"
+            "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p002.webp",
+            "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p003.webp",
+            "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p004.webp"
           ],
           "versions_precedentes": [
             [
@@ -4061,48 +4127,53 @@
               "assets/apercus/affichage-20261111/maj-da-l2-s2/477d7f7add28-p002.webp",
               "assets/apercus/affichage-20261111/maj-da-l2-s2/477d7f7add28-p003.webp",
               "assets/apercus/affichage-20261111/maj-da-l2-s2/477d7f7add28-p004.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p002.webp",
+              "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p003.webp",
+              "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p004.webp"
             ]
           ]
         }
       ],
       "majeures": 23,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p002.webp": {
+        "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "39616cc7e63d6290bdb0e334986cfa0459fcf3f8d7fad14b5e29c0ecea08924b",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "79df96cde24ed280ccfa54a4ef26a410dd4c92f89b33e3225bf43e0c2a090fd2"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p003.webp": {
+        "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "4bef04dab825fc9997b7b69c0fccaa3c6a52b54c15593b575c9ea6b10b75feb1",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "cd916c2a69ef267548cfd632e35af913522b2f4206473adc598e4e6ed4ddddaa"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p004.webp": {
+        "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p004.webp": {
           "page_pdf": 4,
+          "sha256_image": "dc84d94da6336a4feb816f27c96dae7c26b106ca6279bb6b00277190b35143c8",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "5ffae2fd85f81eada1a49723ce18f72f2ba4256aaec73787ad7aed1108b13d3c"
+          ]
         }
       }
     },
     "maj-contrats-l2-s1": {
-      "sha256": "53f6935fabdb70540609e374d2f8e9ed7a00f40fe37cc9b1da68e7d989f8ef56",
-      "pages_pdf": 60,
+      "sha256": "99793defd404f202d1eb19548a9516fb4188f05e6542b95710e54ac5cbdaadce",
+      "pages_pdf": 58,
       "famille": "majeures",
       "fichier_pdf": "maj-contrats-l2-s1.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p002.webp",
-        "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p003.webp",
-        "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p018.webp",
-        "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p011.webp"
+        "assets/apercus/finition-20261114/maj-contrats-l2-s1/99793defd404-p002.webp",
+        "assets/apercus/finition-20261114/maj-contrats-l2-s1/99793defd404-p003.webp",
+        "assets/apercus/finition-20261114/maj-contrats-l2-s1/99793defd404-p018.webp",
+        "assets/apercus/finition-20261114/maj-contrats-l2-s1/99793defd404-p011.webp"
       ],
       "pages_images": [
         2,
@@ -4124,10 +4195,10 @@
             11
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p002.webp",
-            "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p003.webp",
-            "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p018.webp",
-            "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p011.webp"
+            "assets/apercus/finition-20261114/maj-contrats-l2-s1/99793defd404-p002.webp",
+            "assets/apercus/finition-20261114/maj-contrats-l2-s1/99793defd404-p003.webp",
+            "assets/apercus/finition-20261114/maj-contrats-l2-s1/99793defd404-p018.webp",
+            "assets/apercus/finition-20261114/maj-contrats-l2-s1/99793defd404-p011.webp"
           ],
           "versions_precedentes": [
             [
@@ -4198,57 +4269,63 @@
               "assets/apercus/affichage-20261111/maj-contrats-l2-s1/e05c86006b80-p003.webp",
               "assets/apercus/affichage-20261111/maj-contrats-l2-s1/e05c86006b80-p018.webp",
               "assets/apercus/affichage-20261111/maj-contrats-l2-s1/e05c86006b80-p011.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p002.webp",
+              "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p003.webp",
+              "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p018.webp",
+              "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p011.webp"
             ]
           ]
         }
       ],
       "majeures": 26,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p002.webp": {
+        "assets/apercus/finition-20261114/maj-contrats-l2-s1/99793defd404-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "aa3e9830084f86dbd5e1e85fbc35bddfafe4f30acbf2e6cd24e316868f89ce50",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "2871941d7a9c870e1542f827f89e7a062cf6a718b410fee793b33cdb0f8cf618"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p003.webp": {
+        "assets/apercus/finition-20261114/maj-contrats-l2-s1/99793defd404-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "d8ac35f0bc3159fcc15590b7132b763a534e349a1199422f04efc980b5df152e",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "3e1ab5f06441134f8d0a94cacdca6bbee1acddfb22efede67b7acb35541db74b"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p018.webp": {
+        "assets/apercus/finition-20261114/maj-contrats-l2-s1/99793defd404-p018.webp": {
           "page_pdf": 18,
+          "sha256_image": "91e5b5d7438c959aa15f903154965ce3602fefc446f5a9639d473c35e1befb10",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "47bbb15a55dffcc13884a4bdc6af6a0cdc71c0b3c70c9aa8f0b1d87bc216635d"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-contrats-l2-s1/53f6935fabdb-p011.webp": {
+        "assets/apercus/finition-20261114/maj-contrats-l2-s1/99793defd404-p011.webp": {
           "page_pdf": 11,
+          "sha256_image": "b6c753191b938acfae56dc2c8035f8bcad26122b012704399ab34a2bcf7bffa4",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "36bbdf1349452adfe7f39bbd780efffb58f8765146c1f8b05c697b3d92ea726c"
+          ]
         }
       }
     },
     "maj-obligations-l2-s2": {
-      "sha256": "86f3606f1f088d7c9aaf891d4b0e8ca2da08af540dfe643c7692bdc3a9774bff",
-      "pages_pdf": 38,
+      "sha256": "d25e50c5150ed9d5d573494d8ac5ad89e49bea486875b0355c90728bd26f593d",
+      "pages_pdf": 40,
       "famille": "majeures",
       "fichier_pdf": "maj-obligations-l2-s2.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p002.webp",
-        "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p003.webp",
-        "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p031.webp",
-        "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p032.webp",
-        "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p033.webp"
+        "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p002.webp",
+        "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p003.webp",
+        "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p031.webp",
+        "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p032.webp",
+        "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p033.webp"
       ],
       "pages_images": [
         2,
@@ -4272,11 +4349,11 @@
             33
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p002.webp",
-            "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p003.webp",
-            "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p031.webp",
-            "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p032.webp",
-            "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p033.webp"
+            "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p002.webp",
+            "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p003.webp",
+            "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p031.webp",
+            "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p032.webp",
+            "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p033.webp"
           ],
           "versions_precedentes": [
             [
@@ -4345,63 +4422,70 @@
               "assets/apercus/affichage-20261111/maj-obligations-l2-s2/d16a3e2222b5-p031.webp",
               "assets/apercus/affichage-20261111/maj-obligations-l2-s2/d16a3e2222b5-p032.webp",
               "assets/apercus/affichage-20261111/maj-obligations-l2-s2/d16a3e2222b5-p033.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p002.webp",
+              "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p003.webp",
+              "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p031.webp",
+              "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p032.webp",
+              "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p033.webp"
             ]
           ]
         }
       ],
       "majeures": 23,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p002.webp": {
+        "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "ed295ac196ca56b1f9d6dfd19dc5d5e567aeaa72a6efbe19ea8a8aedadcc12f3",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "c7633b533ec3a6d234af6e5f121daef47b76ceca5c61bb2ad4c5c05824220fd2"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p003.webp": {
+        "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "3e8f2e87431b9bc3fe445770ef976af49594efb7452b421a3cfa90d90bb19922",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "4950b81aa148f36b5fa64df53784f822182ca2477ff02ebb905e6316f2b0fa29"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p031.webp": {
+        "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p031.webp": {
           "page_pdf": 31,
+          "sha256_image": "9bcef2eced83f2b1531f7d7adc8f59824fa847657029d70c6206301a8567f26c",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "657bb5f31197dd1c91fea3259843c7db5d1ff183f1544faa0106434b82a39cf3"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p032.webp": {
+        "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p032.webp": {
           "page_pdf": 32,
+          "sha256_image": "3a680a06dc6d05e059dad5ba64418d42a9e58b3f1049721f3d38bbe870714eda",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "a7dcf08781f3fa4dcb4bd546543648ea3dacaf4b88feeb1ad3d66d5eefd68a29"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-obligations-l2-s2/86f3606f1f08-p033.webp": {
+        "assets/apercus/finition-20261114/maj-obligations-l2-s2/d25e50c5150e-p033.webp": {
           "page_pdf": 33,
+          "sha256_image": "7d89f46ff4b227d1028d8d3e3d9ae969dd597a6b4be82081499d07be4eb4d757",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "49215e0d41e4fa18ea0b34f10e305ce8426c6bee26a1950388cb48c9f0b95c9b"
+          ]
         }
       }
     },
     "maj-penal-l2-s1": {
-      "sha256": "1053dae46bd55a04bafe5c002b5ade34d43b1a81037abced13c6de26999c63e9",
-      "pages_pdf": 73,
+      "sha256": "b88253d7d96af5e7d0daca8420a8637dc7dea41b1daa0fcca8a3b12dcfa57c5d",
+      "pages_pdf": 72,
       "famille": "majeures",
       "fichier_pdf": "maj-penal-l2-s1.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-penal-l2-s1/1053dae46bd5-p004.webp",
-        "assets/apercus/typographie-20261113/maj-penal-l2-s1/1053dae46bd5-p002.webp",
-        "assets/apercus/typographie-20261113/maj-penal-l2-s1/1053dae46bd5-p005.webp"
+        "assets/apercus/finition-20261114/maj-penal-l2-s1/b88253d7d96a-p004.webp",
+        "assets/apercus/finition-20261114/maj-penal-l2-s1/b88253d7d96a-p002.webp",
+        "assets/apercus/finition-20261114/maj-penal-l2-s1/b88253d7d96a-p005.webp"
       ],
       "pages_images": [
         4,
@@ -4421,9 +4505,9 @@
             5
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-penal-l2-s1/1053dae46bd5-p004.webp",
-            "assets/apercus/typographie-20261113/maj-penal-l2-s1/1053dae46bd5-p002.webp",
-            "assets/apercus/typographie-20261113/maj-penal-l2-s1/1053dae46bd5-p005.webp"
+            "assets/apercus/finition-20261114/maj-penal-l2-s1/b88253d7d96a-p004.webp",
+            "assets/apercus/finition-20261114/maj-penal-l2-s1/b88253d7d96a-p002.webp",
+            "assets/apercus/finition-20261114/maj-penal-l2-s1/b88253d7d96a-p005.webp"
           ],
           "versions_precedentes": [
             [
@@ -4462,47 +4546,52 @@
               "assets/apercus/affichage-20261111/maj-penal-l2-s1/5b25ff335973-p004.webp",
               "assets/apercus/affichage-20261111/maj-penal-l2-s1/5b25ff335973-p002.webp",
               "assets/apercus/affichage-20261111/maj-penal-l2-s1/5b25ff335973-p005.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-penal-l2-s1/1053dae46bd5-p004.webp",
+              "assets/apercus/typographie-20261113/maj-penal-l2-s1/1053dae46bd5-p002.webp",
+              "assets/apercus/typographie-20261113/maj-penal-l2-s1/1053dae46bd5-p005.webp"
             ]
           ]
         }
       ],
       "majeures": 17,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-penal-l2-s1/1053dae46bd5-p004.webp": {
+        "assets/apercus/finition-20261114/maj-penal-l2-s1/b88253d7d96a-p004.webp": {
           "page_pdf": 4,
+          "sha256_image": "c133433cfcf6ff1b0c6f5ba33cc3dbfaaa92483c5d7a9f623e737e6a0f115a50",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "1be97793356f4d6eba7067ceb06826c0ab9115afbf4d3d93ca63710e2225c724"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-penal-l2-s1/1053dae46bd5-p002.webp": {
+        "assets/apercus/finition-20261114/maj-penal-l2-s1/b88253d7d96a-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "97b4425270887ca4abc277571e2c85198ed2518f9f0d3195f76902bbba9a8c83",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "5493e9d6bb3df0b2a97423a397b3472fab3fd2f3f191a1979724f1ec7e15b767"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-penal-l2-s1/1053dae46bd5-p005.webp": {
+        "assets/apercus/finition-20261114/maj-penal-l2-s1/b88253d7d96a-p005.webp": {
           "page_pdf": 5,
+          "sha256_image": "906d9c14f2e562c66503033306c1f9bd64f3db098f80580c0380462be08bd113",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "4ab74dff30c5766e1d7a5e909368c45de3a8832deb05df04d214f840ebf12165"
+          ]
         }
       }
     },
     "maj-penal-l2-s2": {
-      "sha256": "9c42fd753cd1707ab1485952fe4b7d149dbc6f11bda80bf06fa1758b6bcc906f",
-      "pages_pdf": 38,
+      "sha256": "10cef52260beb3ac372891dcbf73b02c349f1c4de9b708b41791cd952d6cc00e",
+      "pages_pdf": 37,
       "famille": "majeures",
       "fichier_pdf": "maj-penal-l2-s2.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-penal-l2-s2/9c42fd753cd1-p027.webp",
-        "assets/apercus/typographie-20261113/maj-penal-l2-s2/9c42fd753cd1-p002.webp",
-        "assets/apercus/typographie-20261113/maj-penal-l2-s2/9c42fd753cd1-p006.webp"
+        "assets/apercus/finition-20261114/maj-penal-l2-s2/10cef52260be-p027.webp",
+        "assets/apercus/finition-20261114/maj-penal-l2-s2/10cef52260be-p002.webp",
+        "assets/apercus/finition-20261114/maj-penal-l2-s2/10cef52260be-p006.webp"
       ],
       "pages_images": [
         27,
@@ -4522,9 +4611,9 @@
             6
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-penal-l2-s2/9c42fd753cd1-p027.webp",
-            "assets/apercus/typographie-20261113/maj-penal-l2-s2/9c42fd753cd1-p002.webp",
-            "assets/apercus/typographie-20261113/maj-penal-l2-s2/9c42fd753cd1-p006.webp"
+            "assets/apercus/finition-20261114/maj-penal-l2-s2/10cef52260be-p027.webp",
+            "assets/apercus/finition-20261114/maj-penal-l2-s2/10cef52260be-p002.webp",
+            "assets/apercus/finition-20261114/maj-penal-l2-s2/10cef52260be-p006.webp"
           ],
           "versions_precedentes": [
             [
@@ -4563,47 +4652,52 @@
               "assets/apercus/affichage-20261111/maj-penal-l2-s2/10eeedc62712-p027.webp",
               "assets/apercus/affichage-20261111/maj-penal-l2-s2/10eeedc62712-p002.webp",
               "assets/apercus/affichage-20261111/maj-penal-l2-s2/10eeedc62712-p006.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-penal-l2-s2/9c42fd753cd1-p027.webp",
+              "assets/apercus/typographie-20261113/maj-penal-l2-s2/9c42fd753cd1-p002.webp",
+              "assets/apercus/typographie-20261113/maj-penal-l2-s2/9c42fd753cd1-p006.webp"
             ]
           ]
         }
       ],
       "majeures": 18,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-penal-l2-s2/9c42fd753cd1-p027.webp": {
+        "assets/apercus/finition-20261114/maj-penal-l2-s2/10cef52260be-p027.webp": {
           "page_pdf": 27,
+          "sha256_image": "9ac32f3e861f4fd2bfb37b20a938d96c82602af6f86aa6326af1ad82a0c0c72a",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "7cd0b8ac8c985e0d28a9261bea65603e343eddf56f30510aa85ad708845632a5"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-penal-l2-s2/9c42fd753cd1-p002.webp": {
+        "assets/apercus/finition-20261114/maj-penal-l2-s2/10cef52260be-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "2222172537531c0e4ead712a07e4ec12592fa0264bbd1839bc6a66465cfa02dd",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "fb26b5761f0843615c0a032d3b9574a35da84332055f767571c78d1a05ad7cb7"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-penal-l2-s2/9c42fd753cd1-p006.webp": {
+        "assets/apercus/finition-20261114/maj-penal-l2-s2/10cef52260be-p006.webp": {
           "page_pdf": 6,
+          "sha256_image": "7774670d33038aa80cb261419098071068d92eaebcd420f7a08b7267e73139eb",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "87944e1916d07376fe5988c7884cc34864f6bb5ee69dc5cfc83513c1550b5cd7"
+          ]
         }
       }
     },
     "maj-biens-l2": {
-      "sha256": "2b063f6bf028cc50d1c9f6c0a97699d3e1b9799569740b24757f7119bda02084",
-      "pages_pdf": 58,
+      "sha256": "8744761740f7f918eb6c229d480f28dfaff73e39cd3472593a762fc001955799",
+      "pages_pdf": 61,
       "famille": "majeures",
       "fichier_pdf": "maj-biens-l2.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-biens-l2/2b063f6bf028-p049.webp",
-        "assets/apercus/typographie-20261113/maj-biens-l2/2b063f6bf028-p002.webp",
-        "assets/apercus/typographie-20261113/maj-biens-l2/2b063f6bf028-p032.webp"
+        "assets/apercus/finition-20261114/maj-biens-l2/8744761740f7-p049.webp",
+        "assets/apercus/finition-20261114/maj-biens-l2/8744761740f7-p002.webp",
+        "assets/apercus/finition-20261114/maj-biens-l2/8744761740f7-p032.webp"
       ],
       "pages_images": [
         49,
@@ -4623,9 +4717,9 @@
             32
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-biens-l2/2b063f6bf028-p049.webp",
-            "assets/apercus/typographie-20261113/maj-biens-l2/2b063f6bf028-p002.webp",
-            "assets/apercus/typographie-20261113/maj-biens-l2/2b063f6bf028-p032.webp"
+            "assets/apercus/finition-20261114/maj-biens-l2/8744761740f7-p049.webp",
+            "assets/apercus/finition-20261114/maj-biens-l2/8744761740f7-p002.webp",
+            "assets/apercus/finition-20261114/maj-biens-l2/8744761740f7-p032.webp"
           ],
           "versions_precedentes": [
             [
@@ -4664,47 +4758,52 @@
               "assets/apercus/affichage-20261111/maj-biens-l2/0c56e5da8609-p049.webp",
               "assets/apercus/affichage-20261111/maj-biens-l2/0c56e5da8609-p002.webp",
               "assets/apercus/affichage-20261111/maj-biens-l2/0c56e5da8609-p032.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-biens-l2/2b063f6bf028-p049.webp",
+              "assets/apercus/typographie-20261113/maj-biens-l2/2b063f6bf028-p002.webp",
+              "assets/apercus/typographie-20261113/maj-biens-l2/2b063f6bf028-p032.webp"
             ]
           ]
         }
       ],
       "majeures": 28,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-biens-l2/2b063f6bf028-p049.webp": {
+        "assets/apercus/finition-20261114/maj-biens-l2/8744761740f7-p049.webp": {
           "page_pdf": 49,
+          "sha256_image": "246db3b250d6a200de82d2c8723540664990f83513b0ccdd5af2cf62cc8d6503",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "f6ae970dad90ede28e35073271a4460a0f06fd0deee49273fc20ab77e55ff6a5"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-biens-l2/2b063f6bf028-p002.webp": {
+        "assets/apercus/finition-20261114/maj-biens-l2/8744761740f7-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "3bb478b4c24cb8c0bc94f179cf17ab06b989eedb785a6be297e245611afe4707",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "0669d2983f17536b20c5f0db57103f82c0dea78ca123008c981f75842728171f"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-biens-l2/2b063f6bf028-p032.webp": {
+        "assets/apercus/finition-20261114/maj-biens-l2/8744761740f7-p032.webp": {
           "page_pdf": 32,
+          "sha256_image": "b4954977a9d7daa2e93c7166f04f075175086dfe52c8640f2e6425a5bdf0a505",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "8f68ea53405c29ad2d048cd20986c005d8a28ae5d716f0365368764e15d9c41f"
+          ]
         }
       }
     },
     "maj-commercial-l3-s1": {
-      "sha256": "2fbd6e425b9f4b87f5636e4785f80125397c987c9cf20d4a8a5c0e6a87013001",
+      "sha256": "a1879dc79d5b92030040fdbaf015f6235d36e82ece6e0c55fb87f46318b3fb60",
       "pages_pdf": 104,
       "famille": "majeures",
       "fichier_pdf": "maj-commercial-l3-s1.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p004.webp",
-        "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p002.webp",
-        "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p003.webp"
+        "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p004.webp",
+        "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p002.webp",
+        "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p003.webp"
       ],
       "pages_images": [
         4,
@@ -4724,9 +4823,9 @@
             3
           ],
           "images": [
-            "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p004.webp",
-            "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p002.webp",
-            "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p003.webp"
+            "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p004.webp",
+            "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p002.webp",
+            "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p003.webp"
           ],
           "versions_precedentes": [
             [
@@ -4768,35 +4867,40 @@
               "assets/apercus/affichage-20261111/maj-commercial-l3-s1/33ca5bf24f73-p004.webp",
               "assets/apercus/affichage-20261111/maj-commercial-l3-s1/33ca5bf24f73-p002.webp",
               "assets/apercus/affichage-20261111/maj-commercial-l3-s1/33ca5bf24f73-p003.webp"
+            ],
+            [
+              "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p004.webp",
+              "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p002.webp",
+              "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p003.webp"
             ]
           ]
         }
       ],
       "majeures": 41,
       "preuves_images": {
-        "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p004.webp": {
+        "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p004.webp": {
           "page_pdf": 4,
+          "sha256_image": "9989b4b116b6bd6e4e02bc9a7a2c0996440c607452ee8a9eac42bb664b47b383",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "259d86e0156670d65d9ed51d5fcd515e278d55b12c14c74a82197b6dd2fae96e"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p002.webp": {
+        "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "d36aa73bdff95e76f2858d613fcba8ba117c9ddb79c60b77ed4020c1a9926e11",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "9a9fb98ae31822ffe4ba7e9b155d9369c04b0edf9c5ff1f9ee123ee5c1fdf127"
+          ]
         },
-        "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p003.webp": {
+        "assets/apercus/finition-20261114/maj-commercial-l3-s1/a1879dc79d5b-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "9fbcd7e944363d727a859d37f388352f9741a17c3b232ea21f11ebbe88df38d9",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "0defc00d23f4d57452c58da845e7ec440d043900ae840dc3de99ab05ecfd53ea"
+          ]
         }
       }
     },
