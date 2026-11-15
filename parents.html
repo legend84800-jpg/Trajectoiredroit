@@ -58,7 +58,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=6a441fef">
+  <link rel="stylesheet" href="assets/style.css?v=2862ddca">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
@@ -101,7 +101,7 @@
     .parents .chiffre{border:1px solid rgba(15,23,42,.1);border-radius:10px;padding:12px 8px;text-align:center}
     .parents .chiffre b{display:block;font-family:Spectral,Georgia,serif;color:var(--accent);font-size:1.5rem;line-height:1.1}
     .parents .chiffre span{display:block;font-size:.8rem;color:var(--body);margin-top:4px;line-height:1.3}
-    .parents .encadre{background:var(--gold-bg);border-left:3px solid var(--gold-line);padding:16px 20px;border-radius:0 10px 10px 0;margin:18px 0}
+    .parents .encadre{background:var(--gold-bg);border-left:3px solid var(--box-line);padding:16px 20px;border-radius:0 10px 10px 0;margin:18px 0}
     .parents .gains{display:grid;gap:14px}
     .parents .gain b{color:var(--navy);display:block;margin-bottom:2px}
     .parents .gain p{margin:0}
@@ -110,7 +110,7 @@
     .parents ul.formats li::before{content:"→";position:absolute;left:0;color:#7A1F2B;font-weight:700}
     .parents .avis{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0 16px}
     .parents .avis blockquote{margin:0;border:1px solid rgba(15,23,42,.1);border-radius:10px;padding:14px 16px;font-family:Spectral,Georgia,serif;font-style:italic;line-height:1.5;color:var(--navy)}
-    .parents .avis blockquote.parent{border-color:var(--gold-line);background:var(--gold-bg)}
+    .parents .avis blockquote.parent{border-color:var(--box-line);background:var(--gold-bg)}
     .parents .avis .etoiles{display:block;margin-bottom:6px;color:var(--rating-star,#C9A961);font-size:1rem;letter-spacing:2px;font-style:normal;line-height:1}
     .parents .avis cite{display:block;margin-top:8px;font-style:normal;font-family:"Hanken Grotesk",sans-serif;font-size:.8rem;color:var(--body)}
     .parents table{width:100%;border-collapse:collapse;margin:12px 0 18px;font-size:.95rem}
@@ -125,7 +125,7 @@
     .parents .signature span{display:block;font-family:"Hanken Grotesk",sans-serif;font-size:.85rem;color:var(--body)}
     .parents .parents__pdf{margin:18px 0 8px}
     .parents p a:not(.btn),.parents .contact a{color:var(--navy);font-weight:600;text-decoration:underline;text-underline-offset:3px}
-    .parents .offrir{margin:18px 0 8px;padding:22px 24px;border:1px solid var(--gold-line);border-radius:12px;background:var(--gold-bg)}
+    .parents .offrir{margin:18px 0 8px;padding:22px 24px;border:1px solid var(--box-line);border-radius:12px;background:var(--gold-bg)}
     .parents .offrir__echeances{border:0;padding:0;margin:0;display:grid;gap:8px;min-width:0}
     .parents .offrir__echeances label{display:flex;gap:10px;align-items:center;color:var(--body);cursor:pointer}
     .parents .offrir .form__error[hidden]{display:none}
@@ -579,7 +579,7 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js?v=da4d9620" defer></script>
+  <script src="assets/js/main.js?v=0ab08fa4" defer></script>
   <script>
   (function(){
     var loaded = false;
@@ -588,7 +588,7 @@
       if (loaded) return;
       loaded = true;
       var s = document.createElement('script');
-      s.src = 'assets/js/chatbot.js?v=f91878b0';
+      s.src = 'assets/js/chatbot.js?v=1030a7ee';
       s.defer = true;
       document.body.appendChild(s);
       events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });

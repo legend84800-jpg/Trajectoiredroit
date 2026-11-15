@@ -21,7 +21,7 @@
   };
 
   var CSS = [
-    '.tjd-pc{box-sizing:border-box;margin:28px 0;padding:20px 18px;background:var(--gold-bg,#FBF8EE);border:1px solid var(--gold-line,#C9A961);border-radius:var(--r-md,12px);font-family:inherit;color:var(--ink,#0F172A);scroll-margin-top:90px}',
+    '.tjd-pc{box-sizing:border-box;margin:28px 0;padding:20px 18px;background:var(--gold-bg,#F2F5FB);border:1px solid var(--box-line,#C9D3EA);border-radius:var(--r-md,12px);font-family:inherit;color:var(--ink,#0F172A);scroll-margin-top:90px}',
     '.tjd-pc *{box-sizing:border-box}',
     '.tjd-pc__titre{margin:0 0 6px;font-size:1.15rem;line-height:1.3;font-weight:700;color:var(--navy,#1A2851)}',
     '.tjd-pc__intro{margin:0 0 14px;font-size:.95rem;line-height:1.5;color:var(--body,#475569)}',

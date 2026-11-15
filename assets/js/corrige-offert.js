@@ -49,7 +49,7 @@
   };
 
   var CSS = [
-    '.tjd-co{box-sizing:border-box;max-width:640px;margin:24px auto;padding:20px 18px;background:var(--gold-bg,#FBF8EE);border:1px solid var(--gold-line,#C9A961);border-radius:var(--r-md,12px);font-family:inherit;color:var(--ink,#0F172A)}',
+    '.tjd-co{box-sizing:border-box;max-width:640px;margin:24px auto;padding:20px 18px;background:var(--gold-bg,#F2F5FB);border:1px solid var(--box-line,#C9D3EA);border-radius:var(--r-md,12px);font-family:inherit;color:var(--ink,#0F172A)}',
     '.tjd-co *{box-sizing:border-box}',
     '.tjd-co__titre{margin:0 0 6px;font-size:1.15rem;line-height:1.3;font-weight:700;color:var(--navy,#1A2851)}',
     '.tjd-co__intro{margin:0 0 14px;font-size:.95rem;line-height:1.5;color:var(--body,#475569)}',
@@ -191,7 +191,7 @@
     form.appendChild(statut);
 
     carte.appendChild(form);
-    var suite = el('section', { 'class': 'tjd-co__suite', style: 'margin-top:22px;padding-top:18px;border-top:1px solid var(--gold-line,#C9A961)' });
+    var suite = el('section', { 'class': 'tjd-co__suite', style: 'margin-top:22px;padding-top:18px;border-top:1px solid var(--box-line,#C9D3EA)' });
     suite.hidden = true;
     carte.appendChild(suite);
     select.addEventListener('change', function () { montrerSuite(suite, select.value); });

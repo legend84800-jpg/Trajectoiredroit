@@ -63,7 +63,7 @@
   .tjd-sugg{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
   .tjd-chip{background:#fff;border:1px solid #CBD5E1;color:#1A2851;border-radius:20px;padding:8px 14px;font-size:.86rem;
     cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s;text-align:left}
-  .tjd-chip:hover{background:#FBF8EE;border-color:#C9A961}
+  .tjd-chip:hover{background:#F2F5FB;border-color:#C9D3EA}
   .tjd-typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px}
   .tjd-typing span{width:7px;height:7px;border-radius:50%;background:#94A3B8;animation:tjd-bounce 1.2s infinite}
   .tjd-typing span:nth-child(2){animation-delay:.2s}.tjd-typing span:nth-child(3){animation-delay:.4s}

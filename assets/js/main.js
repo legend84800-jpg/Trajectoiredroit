@@ -897,6 +897,26 @@ window.tjdDialogues = (function () {
     });
   });
 
+  // Le méga-menu reste dans l'écran sur les largeurs de 1 080 à 1 180 px
+  // (15/11/2026). Sans ce recalage, sa partie droite sortait de l'écran
+  // et la page défilait de côté alors que le menu était fermé.
+  function recalerMegamenus() {
+    var marge = 16;
+    var largeur = document.documentElement.clientWidth;
+    document.querySelectorAll('.primary-nav .megamenu').forEach(function (menu) {
+      menu.style.setProperty('--mm-decalage', '0px');
+      var r = menu.getBoundingClientRect();
+      if (!r.width) return;
+      var decalage = 0;
+      if (r.right > largeur - marge) decalage = largeur - marge - r.right;
+      if (r.left + decalage < marge) decalage = marge - r.left;
+      menu.style.setProperty('--mm-decalage', Math.round(decalage) + 'px');
+    });
+  }
+  recalerMegamenus();
+  window.addEventListener('resize', recalerMegamenus);
+  window.addEventListener('load', recalerMegamenus);
+
   // Click extérieur ferme tous les dropdowns
   document.addEventListener('click', function (e) {
     if (e.target.closest('.has-dropdown')) return;
