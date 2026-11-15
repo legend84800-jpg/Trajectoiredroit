@@ -23,7 +23,9 @@ test("un même produit garde le même titre précis dans tous les aperçus", () 
   }
   // 262 depuis le 22/10/2026 : douze aperçus de la fiche Contrats L2 S1 ont
   // laissé place à ceux du cours en images, testé jusqu'au 13/11/2026.
-  assert.ok(controles >= 262);
+  // 236 depuis le 15/11/2026 : les fiches d'arrêt passées au commentaire corrigé à
+  // 4,99 € (audit CTA, C3 et D4) n'affichent plus les aperçus de la fiche complète.
+  assert.ok(controles >= 236);
   assert.equal(libelleApercu("produit-inconnu"), null);
 });
 
@@ -105,7 +107,8 @@ test("les packs de corrigés et de révision comptent des documents plutôt que 
 
 test("l'usage en TD vient du retour de Julien sans délai de résolution promis", () => {
   const html = fs.readFileSync(path.join(ROOT, "majeures-preparees.html"), "utf8");
-  assert.match(html, /De nombreux élèves me disent qu'ils utilisent les majeures préparées en parallèle des TD\./);
-  assert.match(html, /conditions une par une aux faits de l'énoncé pour vérifier si chacune est remplie/);
+  // Phrase reprise le 14/11/2026 (c66843de), même retour de Julien.
+  assert.match(html, /De nombreux élèves me disent qu'ils s'en servent aussi pendant le semestre, pour préparer leurs TD\./);
+  assert.match(html, /Il reste alors à vérifier, une par une, si chaque condition est remplie par les faits de l'énoncé/);
   assert.doesNotMatch(html, /en deux secondes|en 2 secondes/);
 });

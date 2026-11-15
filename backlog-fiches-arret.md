@@ -12,6 +12,102 @@ La routine `serie-fiches-arret-quotidienne` prend chaque jour le **premier arrê
 
 ---
 
+## Priorité, arrêts déjà commentés dans un recueil vendu (audit CTA du 15/11/2026)
+
+Chaque fiche de cette section naît avec le commentaire corrigé de l'arrêt à 4,99 € et son plan offert, par la chaîne `livrables/automatisation/test-arrets-conversion-2026-10-20/` (règle C3 du SKILL). Les grands arrêts nommés viennent en premier.
+
+- [ ] matiere:Contrats spéciaux L3 | arret:Cass. 3e civ., 15 décembre 1993, Consorts Cruz | theme:La rétractation d'une promesse unilatérale de vente
+- [ ] matiere:Contrats spéciaux L3 | arret:Cass. 3e civ., 5 mars 2020 (Loi Carrez) | theme:La superficie du lot vendu et sa preuve
+- [ ] matiere:Droit administratif L2 | arret:TC, 7 octobre 1996, Préfet des Côtes-d'Armor c/ Allam (GRETA) | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CAA de Lyon, chambres réunies, 23 octobre 2018, Commune de Chalon-sur-Saône | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:TC, 8 avril 2019, Grand Port maritime du Havre c/ Sté CNMP | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CE, 10e et 9e ch. réunies, 18 octobre 2018, Koenig et autres | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:TA Rennes (juge des référés), 27 août 2019, Commune de Langouët | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CE, 5e et 4e sous-sections réunies, 11 décembre 2006, M. A | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CE, Assemblée, 12 octobre 2018, SARL Super Coiffeur | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CE, juge des référés, 23 janvier 2013, Commune de Chirongui | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:Conseil d'État, 5e et 6e chambres réunies, 24 juillet 2019, Mme B... c/ CHRU de Lille | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CE, 5e ch., 1er février 2017, Commune de Cournon-d'Auvergne | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CE, juge des référés, 9 janvier 2014, Dieudonné M'Bala M'Bala | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CE, 7e et 2e SSR, 31 juillet 2009, Société Jonathan Loisirs | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CE, Ass., 14 janvier 1938, Sté des produits laitiers La Fleurette | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CE, 28 mars 1919, Regnault-Desroziers | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CE, 3e et 8e SSR, 20 octobre 2014, Commune de Rueil-Malmaison | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CE, 16 février 2015, Commune de Saint-Dié-des-Vosges | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CAA Marseille, 11 juillet 2016, Mme C. c/ SDIS de la Haute-Corse | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CE, 1re et 4e ch. réunies, 26 mars 2018, Union syndicale Solidaires | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit de la famille L1 | arret:Cass. ass. plén., 19 mai 1978 (Dame Roy) | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit de la famille L1 | arret:CEDH, 23 janvier 2025, H.W. c. France | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit de la famille L1 | arret:CEDH, 1er février 2000, Mazurek c. France | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des obligations L2 | arret:Cass. 2e civ., 5 janvier 1956 (Oxygène liquide) | theme:La garde de la structure et la garde du comportement
+- [ ] matiere:Droit des obligations L2 | arret:Cass. Ass. plén., 9 mai 1984 (Fullenwarth) | theme:Le fait de l'enfant et la responsabilité de ses parents
+- [ ] matiere:Droit des obligations L2 | arret:Cass. com., 13 avril 2023, Enedis | theme:L'électricité et la responsabilité du producteur
+- [ ] matiere:Droit des obligations L2 | arret:Cass. 1re civ., 4 juin 2025, Médiator | theme:Les produits défectueux et les délais pour agir
+- [ ] matiere:Droit des personnes L1 | arret:Cass. 1re civ., 20 déc. 2000 (Erignac) | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des personnes L1 | arret:Cass. 1re civ., 16 septembre 2010, Our Body | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des personnes L1 | arret:Cass. 2e civ., 28 janvier 1954, Comité d'établissement de Saint-Chamond | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des sociétés L3 | arret:Cass. ch. réunies, 11 mars 1914, Caisse rurale de Manigod | theme:La différence entre la société et l'association
+- [ ] matiere:Droit des sociétés L3 | arret:Cass. 3e civ., 13 avril 2023 (SCI Fen Chong) | theme:La sûreté réelle donnée par une société civile pour la dette d'
+- [ ] matiere:Droit des sociétés L3 | arret:Cass. civ., 4 juin 1946, Motte | theme:La répartition des pouvoirs entre les organes d'une société anonyme
+- [ ] matiere:Droit des sociétés L3 | arret:Cass. crim., 4 février 1985 (Rozenblum) | theme:L'abus de biens sociaux dans un groupe de sociétés
+- [ ] matiere:Droit des sociétés L3 | arret:Cass. com., 17 mai 1994 (Usinor) | theme:Le coup d'accordéon, réduction du capital à zéro suivie d'une augmentation
+- [ ] matiere:Droit des sociétés L3 | arret:Cass. com., 9 mars 1993 (Flandin) | theme:L'abus de minorité et les pouvoirs du juge
+- [ ] matiere:Droit des sociétés L3 | arret:Cass. com., 16 septembre 2014 (Dissolution pour mésentente) | theme:La dissolution pour justes motifs et l'origine d
+- [ ] matiere:Droit du travail L3 | arret:Cass. soc., 29 octobre 1996 (Ponsolle) | theme:L'égalité de rémunération entre salariés
+- [ ] matiere:Droit du travail L3 | arret:Cass. soc., 10 juillet 1996 (Le Berre) | theme:La modification du contrat de travail
+- [ ] matiere:Droit du travail L3 | arret:Cass. soc., 10 novembre 2009 (Harcèlement moral) | theme:Le harcèlement moral du salarié
+- [ ] matiere:Droit du travail L3 | arret:Cass. soc., 28 février 2002 (Amiante) | theme:L'obligation de sécurité de l'employeur
+- [ ] matiere:Droit du travail L3 | arret:Cass. soc., 5 avril 1995 (Thomson Vidéocolor) | theme:Le licenciement pour motif économique
+- [ ] matiere:Droit du travail L3 | arret:Cass. soc., 25 juin 2003 (Technoram) | theme:La prise d'acte de la rupture par le salarié
+- [ ] matiere:Droit pénal L2 | arret:Cass. crim., 3 mars 1960, Goulam et Ben Haddadi | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit pénal L2 | arret:Cass. crim., 28 juin 1958, Lesage | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit pénal L2 | arret:Cass. crim., 29 janvier 1921, Trémintin | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Contrats spéciaux L3 | arret:Cass. ch. mixte, 26 mai 2006 | theme:La violation du pacte de préférence
+- [ ] matiere:Contrats spéciaux L3 | arret:Cass. 3e civ., 22 mai 1997 | theme:La vente de la chose d'autrui
+- [ ] matiere:Contrats spéciaux L3 | arret:Cass. com., 22 mars 2016 | theme:Le prix dérisoire de la vente
+- [ ] matiere:Contrats spéciaux L3 | arret:Cass. 1re civ., 5 mai 1993 | theme:La distinction entre délivrance conforme et vices cachés
+- [ ] matiere:Contrats spéciaux L3 | arret:Cass. com., 10 novembre 2021 (Linagora c. Blue Mind) | theme:La garantie d'éviction du vendeur
+- [ ] matiere:Contrats spéciaux L3 | arret:Cass. 3e civ., 10 avril 2025 | theme:Le bail et la responsabilité du bailleur
+- [ ] matiere:Contrats spéciaux L3 | arret:Cass. 1re civ., 2 octobre 2001 | theme:La révocation du mandat d'intérêt commun
+- [ ] matiere:Droit administratif L2 | arret:CE, 4e et 1re ch. réunies, 28 mars 2018, École des mines de Nantes | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit administratif L2 | arret:CE, juge des référés, 20 novembre 2019 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit de la famille L1 | arret:Cass. 3e civ., 17 décembre 1997 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit de la famille L1 | arret:Cass. 1re civ., 4 décembre 2013 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des biens L2 | arret:Cass. 3e civ., 27 mars 2002 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des biens L2 | arret:Cass. 3e civ., 7 juin 1990 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des biens L2 | arret:Cass. 1re civ., 5 mars 1991 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des biens L2 | arret:Cass. 3e civ., 6 juin 2019 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des biens L2 | arret:Cass. 1re civ., 19 novembre 2002 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des biens L2 | arret:Cass. 3e civ., 27 avril 2017 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des biens L2 | arret:Cass. 2e civ., 19 novembre 1986 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des contrats L2 | arret:Cass. 1re civ., 21 octobre 2020 (FS-P+B) | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des contrats L2 | arret:Cass. 3e civ., 6 décembre 2018 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des contrats L2 | arret:Cass. com., 15 mars 2023 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des contrats L2 | arret:Cass. 3e civ., 21 novembre 2024 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des contrats L2 | arret:Cass. 1re civ., 30 mai 2000 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des obligations L2 | arret:Cass. 2e civ., 11 février 2021 | theme:Le préjudice de l'enfant conçu lors du décès d'un proche
+- [ ] matiere:Droit des obligations L2 | arret:Cass. 1re civ., 22 mai 2008 | theme:La preuve du lien entre la vaccination et le dommage
+- [ ] matiere:Droit des obligations L2 | arret:Cass. 2e civ., 14 mars 2024, publié au Bulletin | theme:La faute civile de la victime et le discernement
+- [ ] matiere:Droit des obligations L2 | arret:Cass. 2e civ., 7 novembre 1988 | theme:La garde commune d'une chose
+- [ ] matiere:Droit des obligations L2 | arret:Cass. Ass. plén., 28 juin 2024 | theme:La responsabilité des parents séparés
+- [ ] matiere:Droit des obligations L2 | arret:Cass. 2e civ., 1er juin 2011 | theme:L'accident de la circulation et le véhicule impliqué
+- [ ] matiere:Droit des obligations L2 | arret:Cass. 3e civ., 4 février 1971 (trouble anormal du voisinage) | theme:La responsabilité pour trouble anormal du voisi
+- [ ] matiere:Droit des personnes L1 | arret:Cass. ass. plén., 29 juin 2001 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des personnes L1 | arret:Cass. ass. plén., 11 décembre 1992 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des personnes L1 | arret:Cass. 1re civ., 5 novembre 1996 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit des sociétés L3 | arret:Cass. com., 21 juin 2023 (Bull.) | theme:La clause de bad leaver dans une promesse de vente d'actions
+- [ ] matiere:Droit des sociétés L3 | arret:Cass. com., 11 juin 2013 (Publié au Bulletin) | theme:L'affectio societatis de l'acquéreur d'actions
+- [ ] matiere:Droit des sociétés L3 | arret:Cass. com., 29 novembre 2023, Publié au Bulletin | theme:La reprise des actes accomplis pour une société en formatio
+- [ ] matiere:Droit des sociétés L3 | arret:Cass. crim., 25 novembre 2020 | theme:La responsabilité pénale en cas de fusion-absorption
+- [ ] matiere:Droit des sociétés L3 | arret:Cass. com., 11 octobre 2023 (Publié au Bulletin) | theme:L'action ut singuli exercée au nom de la société
+- [ ] matiere:Droit des sociétés L3 | arret:Cass. com., 10 avril 2019 | theme:La convention réglementée non approuvée dans une SARL
+- [ ] matiere:Droit du travail L3 | arret:Cass. soc., 10 juillet 2002 | theme:Les conditions de validité de la clause de non-concurrence
+- [ ] matiere:Droit du travail L3 | arret:Cass. ass. plén., 22 décembre 2023 | theme:La preuve déloyale et le droit à la preuve
+- [ ] matiere:Droit pénal L2 | arret:Cass. crim., 19 mars 1986 | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit pénal L2 | arret:Cass. crim., 12 décembre 2000, affaire du Drac | theme:à préciser d’après le commentaire du recueil
+- [ ] matiere:Droit pénal L2 | arret:Cass. crim., 21 juin 2022 | theme:à préciser d’après le commentaire du recueil
+
+
 ## Droit administratif L2
 
 - [x] matiere:droit administratif L2 | arret:CE, 1978, GISTI | theme:la valeur juridique des principes généraux du droit appliqués aux étrangers

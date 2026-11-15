@@ -18,7 +18,11 @@ for (const page of pages) {
       const sha = crypto.createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex');
       assert.equal(sha, extrait.sha256Image, `${page}, image issue du PDF R2 vérifié`);
       const fichier = file.replace(/[.?]/g, (c) => `\\${c}`);
-      assert.match(html, new RegExp(`src="${fichier}(\\?v=[0-9]+)?" width="1203" height="1700" loading="lazy" decoding="async"`));
+      // Extraits refaits sur les PDF républiés le 15/11/2026 : la taille suit l'image, au format A4.
+      const dims = html.match(new RegExp(`src="${fichier}(?:\\?v=[0-9]+)?" width="([0-9]+)" height="([0-9]+)" loading="lazy" decoding="async"`));
+      assert.ok(dims, `${page}, balise de l'extrait ${file}`);
+      const ratio = Number(dims[2]) / Number(dims[1]);
+      assert.ok(ratio > 1.40 && ratio < 1.43, `${page}, extrait au format A4 (${dims[1]}x${dims[2]})`);
       assert.match(html, new RegExp(`href="${fichier}(\\?v=[0-9]+)?" target="_blank" rel="noopener"`));
       assert.ok(html.includes(`${extrait.total} pages au total, extrait p. ${extrait.pagePDF} du PDF`));
     }
@@ -42,15 +46,14 @@ test('les styles du comparatif sont isolés et gardent les couleurs du PDF', () 
   }
 });
 
-test('les métadonnées reprennent les deux PDF livrés et lus sur R2 le 29 octobre', () => {
-  // get_object authentifié, objets modifiés à 03:45:38 et 03:46:08 UTC.
-  // Les anciennes compilations locales de 171 et 274 pages ne sont plus vendues.
+test('les métadonnées reprennent les deux PDF livrés et républiés en novembre', () => {
+  // PDF républiés le 14 et le 15/11/2026, recomptés sur R2 le 15/11 (205 et 289 pages).
   assert.deepEqual(COMPARAISON_DOL.map((e) => [e.produit, e.total, e.pagePDF]), [
-    ['fiche-contrats-l2-s1', 202, 88],
-    ['cours-fiche-contrats-l2-s1', 275, 113],
+    ['fiche-contrats-l2-s1', 205, 89],
+    ['cours-fiche-contrats-l2-s1', 289, 116],
   ]);
-  assert.equal(COMPARAISON_DOL[0].sha256PDF, '22ae131343e6e1d1898600a1c303d9d09cbfd04bb6690c556968a8c07bfd3c21');
-  assert.equal(COMPARAISON_DOL[1].sha256PDF, 'a5c6cd7fab7f0481b0113adc197a3d0a9fdebbe2db7894111d998243379bc18a');
+  assert.equal(COMPARAISON_DOL[0].sha256PDF, 'a94eea5853a456fadfa4b76c1b5dbb090a4eb83c1f92c232b8afa162caff5105');
+  assert.equal(COMPARAISON_DOL[1].sha256PDF, 'bf7d75469162e04f240e0667f7705a911e03a66e1677011ab0ace132c81a67bd');
 });
 
 test('les liens catalogue et les boutons du cours restent accessibles', () => {

@@ -121,7 +121,8 @@ test("chaque page matière propose l'option avec un extrait et le bon bouton", (
   for (const [page, slugs] of Object.entries(pages)) {
     const html = fs.readFileSync(path.join(__dirname, "..", page), "utf8");
     assert.equal((html.match(/id="podcasts-videos"/g) || []).length, 1, page);
-    assert.match(html, /<audio controls preload="none"[^>]*><source src="https:\/\/[^"]+-podcast-extrait\.m4a"/, page);
+    // Depuis le 07/11/2026 (6d3cd7c7), l'introduction au droit offre une leçon entière à la place de l'extrait.
+    assert.match(html, /<audio controls preload="none"[^>]*><source src="https:\/\/[^"]+(?:-podcast-extrait|\/lecon-offerte\/audio-video-[^"]+)\.m4a"/, page);
     assert.match(html, /<video controls preload="none"[^>]*><source src="https:\/\/[^"]+-video-extrait\.mp4"/, page);
     for (const slug of slugs) assert.ok(html.includes(`data-tjd-produit="audio-video-${slug}"`), `${page} ${slug}`);
   }
