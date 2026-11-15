@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Réviser le droit sans s'épuiser, le guide PDF gratuit</title>
+  <meta name="description" content="Le guide PDF de 4 pages réunit les 10 conseils de révision que je donne le plus souvent à mes élèves en cours particulier.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://trajectoiredroit.com/guide-gratuit.html">
+  <meta property="og:title" content="Réviser le droit sans s'épuiser, le guide PDF gratuit">
+  <meta property="og:description" content="Le guide PDF de 4 pages réunit les 10 conseils de révision que je donne le plus souvent à mes élèves en cours particulier.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/hero-video-produits-poster.jpg">
+  <!--
+    Lien de la section Sélection du profil LinkedIn de Julien (routine linkedin-perso-tjd, audit du 15/11/2026, codes A3 et A6).
+    LinkedIn remplace l'adresse d'un lien de la Sélection par la balise canonique de la page visée, ce qui efface les paramètres UTM.
+    Cette page sans balise canonique garde donc l'adresse dans LinkedIn, puis renvoie vers ressources-gratuites.html avec les UTM.
+    utm_content vaut la date du dernier post programmé (mardi et vendredi à 7h25, heure de Paris).
+    Si la cadence de linkedin-perso-tjd change, modifier JOURS_POST et HEURE_POST ci-dessous.
+  -->
+  <script>
+  (function () {
+    var JOURS_POST = ['Tue', 'Fri'];
+    var HEURE_POST = 7 * 60 + 25;
+    var base = '/ressources-gratuites.html?utm_source=linkedin&utm_medium=profil&utm_campaign=ressource-gratuite&utm_content=';
+    var contenu = 'selection';
+    try {
+      var format = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit',
+        weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      });
+      var maintenant = Date.now();
+      for (var k = 0; k < 8; k++) {
+        var parties = {};
+        format.formatToParts(new Date(maintenant - k * 86400000)).forEach(function (p) { parties[p.type] = p.value; });
+        var minutes = parseInt(parties.hour, 10) * 60 + parseInt(parties.minute, 10);
+        if (JOURS_POST.indexOf(parties.weekday) !== -1 && (k > 0 || minutes >= HEURE_POST)) {
+          contenu = 'post-' + parties.year + '-' + parties.month + '-' + parties.day;
+          break;
+        }
+      }
+    } catch (e) {}
+    window.location.replace(base + contenu);
+  })();
+  </script>
+</head>
+<body>
+  <p><a href="/ressources-gratuites.html?utm_source=linkedin&amp;utm_medium=profil&amp;utm_campaign=ressource-gratuite&amp;utm_content=selection">Ouvrir la page des ressources gratuites</a></p>
+</body>
+</html>
