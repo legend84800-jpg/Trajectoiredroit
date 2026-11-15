@@ -40,3 +40,14 @@
   .portalis-home .ph-price .ph-allowance { font-size:14px; }
   .portalis-home .ph-robot { max-height:240px; }
 }
+/* Mode sombre (audit du 15/11/2026) : le bloc suivait le fond blanc alors que les titres passaient en clair. */
+html[data-theme="dark"] .portalis-home { background: var(--slate-50); color: var(--ink); }
+html[data-theme="dark"] .portalis-home .ph-panel { background: #162033; border-color: rgba(255,255,255,.09); }
+html[data-theme="dark"] .portalis-home .ph-brand,
+html[data-theme="dark"] .portalis-home h2,
+html[data-theme="dark"] .portalis-home .ph-amount,
+html[data-theme="dark"] .portalis-home .ph-price .ph-allowance { color: #E2ECF8; }
+html[data-theme="dark"] .portalis-home p { color: var(--body); }
+html[data-theme="dark"] .portalis-home .ph-price .ph-limits { color: var(--muted); }
+html[data-theme="dark"] .portalis-home .ph-button { background: #2E6DB4; border-color: #2E6DB4; }
+

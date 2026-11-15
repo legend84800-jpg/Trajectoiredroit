@@ -29,6 +29,10 @@
 
   /* Surfaces */
   --white:#FFFFFF; --slate-50:#F8FAFC; --slate-100:#F1F5F9;
+  --surface: var(--white); --surface-2: var(--slate-50); /* fonds de carte, suivent le mode sombre (15/11/2026) */
+  /* Variables utilisées dans des pages sans être définies (audit du 15/11/2026). */
+  --bg-alt: var(--slate-50); --text: var(--body); --ink-soft: var(--body); --slate-600: var(--body);
+  --amber-50: var(--gold-bg); --amber-500: var(--blue-500); --gold: var(--gold-line); --gold-ink: var(--accent);
   --slate-200:#E2E8F0;
 
   /* Texte */
@@ -38,7 +42,7 @@
 
   /* Accents fonctionnels */
   --warn:#F59E0B;   --warn-bg:#FEF3C7;
-  --success:#10B981; --success-bg:#D1FAE5;
+  --success:#047857; --success-bg:#D1FAE5; /* vert foncé, contraste AA sur blanc (15/11/2026) */
   --rating-star:#047857;  /* étoiles de notation (vert plus clair), contraste AA 5,5:1 sur blanc */
   --price-violet:#6D28D9;  /* prix Portalis, contraste AA 7,1:1 sur blanc */
   --danger:#EF4444;
@@ -4212,8 +4216,9 @@ html[data-theme="dark"] {
 
   --ink:         #E2ECF8;
   --body:        #8FA8CC;
-  --muted:       #4F6680;
+  --muted:       #93A7C2;   /* relevé le 15/11/2026, contraste AA sur les fonds sombres */
   --rating-star: #34D399;  /* étoiles de notation (vert), contraste AA 9:1 sur les fonds sombres */
+  --success:     #34D399;
   --price-violet: #A78BFA;  /* prix Portalis, contraste AA 6,4:1 sur les fonds sombres */
 
   --border:         rgba(255,255,255,0.09);
@@ -4305,11 +4310,11 @@ html[data-theme="dark"] .megamenu {
   box-shadow: 0 20px 56px rgba(0,0,0,.55);
 }
 html[data-theme="dark"] .dropdown__item { color: #B8CCE8; }
-html[data-theme="dark"] .dropdown__item em { color: #4F6680; }
+html[data-theme="dark"] .dropdown__item em { color: var(--muted); }
 html[data-theme="dark"] .dropdown__item:hover { background: rgba(255,255,255,0.06); }
 html[data-theme="dark"] .megamenu__col-item:hover { background: rgba(255,255,255,0.05); }
 html[data-theme="dark"] .megamenu__footer { background: rgba(255,255,255,0.04); border-top-color: rgba(255,255,255,0.1); }
-html[data-theme="dark"] .megamenu__footer span { color: #4F6680; }
+html[data-theme="dark"] .megamenu__footer span { color: var(--muted); }
 html[data-theme="dark"] .megamenu__tile { background: rgba(255,255,255,.03); border-color: rgba(255,255,255,.1); color: #B8CCE8; }
 html[data-theme="dark"] .megamenu__tile:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.2); }
 html[data-theme="dark"] .megamenu__tile-title { color: #D4E0F0; }
@@ -4375,7 +4380,7 @@ html[data-theme="dark"] .sticky-cta-bar {
   border-top-color: rgba(255,255,255,0.1);
   box-shadow: 0 -4px 24px rgba(0,0,0,.3);
 }
-html[data-theme="dark"] .sticky-cta-bar__text small { color: #4F6680; }
+html[data-theme="dark"] .sticky-cta-bar__text small { color: var(--muted); }
 
 /* 11. Filtres chips */
 html[data-theme="dark"] .filter-chip {
@@ -4399,7 +4404,7 @@ html[data-theme="dark"] select {
   color: #E2ECF8;
 }
 html[data-theme="dark"] input::placeholder,
-html[data-theme="dark"] textarea::placeholder { color: #4F6680; }
+html[data-theme="dark"] textarea::placeholder { color: var(--muted); }
 
 /* 14. TOC */
 html[data-theme="dark"] .toc { background: #122030; border-color: rgba(94,139,218,0.22); }
@@ -4418,10 +4423,10 @@ html[data-theme="dark"] .prose strong { color: #E2ECF8; }
 html[data-theme="dark"] .prose ul,
 html[data-theme="dark"] .prose ol { color: #8FA8CC; }
 html[data-theme="dark"] .article-hero { background: linear-gradient(180deg, #0F1A2E 0%, #0F1A2E 100%); }
-html[data-theme="dark"] .article-breadcrumb { color: #4F6680; }
+html[data-theme="dark"] .article-breadcrumb { color: var(--muted); }
 html[data-theme="dark"] .article-breadcrumb a { color: #7BA5E8; }
 html[data-theme="dark"] .article-author { border-top-color: rgba(255,255,255,0.1); }
-html[data-theme="dark"] .article-author__role { color: #4F6680; }
+html[data-theme="dark"] .article-author__role { color: var(--muted); }
 
 /* 17. Urgency banner */
 /* --navy devient une couleur claire en dark mode (voir la section 1 plus haut, "variables overridées"
@@ -4438,7 +4443,7 @@ html[data-theme="dark"] .blog-hero { background: linear-gradient(180deg, #0F1A2E
 html[data-theme="dark"] .blog-hero__lead { color: #8FA8CC; }
 
 /* 20. Post méta */
-html[data-theme="dark"] .post-meta { color: #4F6680; }
+html[data-theme="dark"] .post-meta { color: var(--muted); }
 html[data-theme="dark"] .post-meta__dot { background: rgba(255,255,255,0.15); }
 
 /* 21. Demo screen */
@@ -4451,7 +4456,7 @@ html[data-theme="dark"] .demo-screen {
 /* 22. Superprof proof widget */
 html[data-theme="dark"] .superprof-proof { background: #1A2840; border-color: rgba(255,255,255,0.1); }
 html[data-theme="dark"] .superprof-proof__text { color: #8FA8CC; }
-html[data-theme="dark"] .superprof-proof__detail { color: #4F6680; }
+html[data-theme="dark"] .superprof-proof__detail { color: var(--muted); }
 
 /* 23. Card choice (tarifs) */
 html[data-theme="dark"] .card--choice { background: #1A2840; border-color: rgba(255,255,255,0.1); }
@@ -4466,7 +4471,7 @@ html[data-theme="dark"] .fiche-preview__fallback { border-color: rgba(201,169,97
 html[data-theme="dark"] .card--testi { background: #1A2840; border-color: rgba(255,255,255,0.1); }
 html[data-theme="dark"] .card--testi blockquote { color: #8FA8CC; }
 html[data-theme="dark"] .testi__name { color: #D4E0F0; }
-html[data-theme="dark"] .testi__role { color: #4F6680; }
+html[data-theme="dark"] .testi__role { color: var(--muted); }
 
 /* 25bis. Avis de conversion (fond en dur #fffdf8, invisible en clair sur clair sans cette surcharge) */
 html[data-theme="dark"] .conversion-review {
@@ -4620,7 +4625,7 @@ html[data-theme="dark"] .edu-card--violet .edu-card__icon-wrap {
 }
 html[data-theme="dark"] .edu-card { background: #1A2840; border-color: rgba(255,255,255,0.08); }
 html[data-theme="dark"] .edu-card__title { color: #D4E0F0; }
-html[data-theme="dark"] .edu-card__sub { color: #4F6680; }
+html[data-theme="dark"] .edu-card__sub { color: var(--muted); }
 
 /* A8. Indicateur de page active dans la nav (::after barre bleue navy invisible) */
 html[data-theme="dark"] .primary-nav .nav-item__link[aria-current="page"]::after {
@@ -5626,3 +5631,31 @@ html[data-theme="dark"] .article-produit-inline { background: rgba(94,139,218,0.
 
 
 /* Empreinte renouvelée le 15/11/2026 après un cache resté sur l’ancienne version. */
+
+/* Mode sombre, audit du 15/11/2026 : texte blanc sur le bleu clair du mode sombre
+   (contraste 2,5) remplacé par le bleu des boutons principaux (contraste 5,2). */
+html[data-theme="dark"] .skip-link,
+html[data-theme="dark"] .tjd-po__bouton,
+html[data-theme="dark"] .tjd-co__bouton,
+html[data-theme="dark"] .tjd-pc__bouton,
+html[data-theme="dark"] .tjd-ek__bouton,
+html[data-theme="dark"] .post-card__badge,
+html[data-theme="dark"] .article-table-scroll thead th,
+html[data-theme="dark"] .table-wrap thead th,
+html[data-theme="dark"] [style*="background:var(--navy)"],
+html[data-theme="dark"] [style*="background: var(--navy)"],
+html[data-theme="dark"] [style*="background:var(--blue-700)"],
+html[data-theme="dark"] [style*="background: var(--blue-700)"] { background: #2E6DB4 !important; color: #fff !important; }
+/* Le gris des paragraphes du mode clair (#475569) écrit en dur reste lisible en sombre. */
+html[data-theme="dark"] [style*="color:#475569"],
+html[data-theme="dark"] [style*="color: #475569"],
+html[data-theme="dark"] [style*="color:var(--slate-600)"] { color: var(--body) !important; }
+/* Blocs à fond blanc écrit dans la page : ils suivent le fond des cartes en mode sombre. */
+html[data-theme="dark"] [style*="background:#fff"],
+html[data-theme="dark"] [style*="background: #fff"],
+html[data-theme="dark"] [style*="background:white"],
+html[data-theme="dark"] [style*="background: white"] { background: var(--white) !important; }
+/* Lien secondaire posé dans un bandeau sombre : bleu marine sur bleu nuit, illisible (15/11/2026). */
+.section--dark .hero__cta-secondary { color: #C2CCE6; }
+.section--dark .hero__cta-secondary:hover { color: #fff; }
+

@@ -48,8 +48,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=13df95af">
-  <link rel="stylesheet" href="assets/css/offre-matiere.css?v=500d6381">
+  <link rel="stylesheet" href="assets/style.css?v=5bc99c11">
+  <link rel="stylesheet" href="assets/css/offre-matiere.css?v=abca86f8">
   <link rel="stylesheet" href="assets/comparatif-fiche-cours.css?v=20261002">
 
   <script type="application/ld+json">
@@ -407,7 +407,8 @@
       .cim-avis__tete small { display:block; font-size:.78rem; color:var(--muted) }
       .cim-avis__photo { width:40px; height:40px; border-radius:50%; object-fit:cover; flex:none }
       .cim-avis__initiale { width:38px; height:38px; border-radius:50%; color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:700; flex:none }
-      .cim-avis__etoiles { margin-left:auto; color:#C49A4A; font-size:.9rem; letter-spacing:1px; white-space:nowrap }
+      html[data-theme="dark"] .cim-avis__etoiles, html[data-theme="dark"] .cim-hero__avis span { color:#D4A85A !important }
+      .cim-avis__etoiles { margin-left:auto; color:#8A6A1C; font-size:.9rem; letter-spacing:1px; white-space:nowrap }
       .cim-avis blockquote { margin:0; font-size:.95rem; line-height:1.6; color:var(--body) }
       .cim-avis__suite { margin-top:22px }
       .cim-avis__suite summary { cursor:pointer; font-weight:600; color:var(--blue-700) }
@@ -446,7 +447,7 @@
             <h1 class="h1" style="margin-bottom:16px">Le droit des contrats en images</h1>
             <p class="lead">Ce cours reprend tout le programme de droit des contrats du premier semestre de L2, de l'introduction jusqu'à l'inexécution, en 109 pages illustrées. Sur chaque page, la règle est écrite avec son article, puis une scène dessinée te montre la situation à laquelle elle s'applique. Tu retiens ainsi chaque règle avec la scène qui l'illustre, ce qui t'aide à la retrouver le jour du partiel.</p>
             <div class="cim-prix"><strong>19,99 €</strong><span class="cim-note">PDF de 109 pages, avec le plan détaillé du cours en bonus</span></div>
-            <p class="cim-note cim-hero__avis" style="margin:0 0 4px"><a href="#avis" style="color:inherit"><span style="color:#C49A4A">★★★★★</span> 23 avis d'élèves</a></p>
+            <p class="cim-note cim-hero__avis" style="margin:0 0 4px"><a href="#avis" style="color:inherit"><span style="color:#8A6A1C">★★★★★</span> 23 avis d'élèves</a></p>
             <div class="cim-actions">
               <button type="button" class="btn btn--primary" data-tjd-produit="cours-images-contrats-l2-s1">Acheter le cours · 19,99 €</button>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/cours-images-contrats-l2-s1/page-002.webp", "assets/apercus/cours-images-contrats-l2-s1/page-014.webp", "assets/apercus/cours-images-contrats-l2-s1/page-040.webp", "assets/apercus/cours-images-contrats-l2-s1/page-090.webp", "assets/apercus/cours-images-contrats-l2-s1/page-103.webp"]' data-apercu-title="Le droit des contrats en images · L2 S1" data-apercu-price="19,99 €" data-apercu-cta="cours-images-contrats-l2-s1" data-apercu-sub="Pages réelles du cours en images"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir des pages du cours</button>

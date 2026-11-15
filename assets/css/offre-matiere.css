@@ -101,3 +101,10 @@ html[data-theme="dark"] .offre-matiere__prix s { color: #8FA8CC; }
   cursor: pointer;
 }
 .offre-matiere__options { margin-bottom: 16px; }
+/* Le texte du bouton passe à la ligne au lieu d'être coupé quand la colonne est étroite,
+   par exemple sur tablette où l'offre partage la largeur avec la colonne d'à côté (15/11/2026). */
+.offre-matiere__option .btn { white-space: normal; line-height: 1.25; }
+:has(> .offre-matiere__options) { container-type: inline-size; }
+@container (max-width: 520px) {
+  .offre-matiere__options { grid-template-columns: 1fr; }
+}

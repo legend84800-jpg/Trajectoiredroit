@@ -53,7 +53,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=13df95af">
+  <link rel="stylesheet" href="assets/style.css?v=5bc99c11">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
@@ -127,6 +127,7 @@
     .niveau-onglet:hover { border-color:var(--navy) }
     .niveau-onglet[aria-pressed="true"] { background:var(--navy); border-color:var(--navy); color:#fff }
     .niveau-onglet[aria-pressed="true"] small { color:rgba(255,255,255,.8) }
+    html[data-theme="dark"] .niveau-onglet[aria-pressed="true"] { background:#2E6DB4; border-color:#2E6DB4 }
     .extrait-majeure { margin:22px auto 4px; max-width:520px }
     .extrait-majeure img { display:block; width:100%; height:auto; border-radius:var(--r-lg); border:1px solid var(--border); box-shadow:var(--sh-2); background:#fff }
     .extrait-majeure figcaption { margin-top:8px; font-size:.85rem; color:var(--muted) }
@@ -967,6 +968,6 @@
 
   <script src="/assets/js/pdf-offert.js?v=31adaf3b" defer></script>
   <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
-<script src="/assets/js/essai-majeures.js?v=cc394530" defer></script>
+<script src="/assets/js/essai-majeures.js?v=41b5cb8b" defer></script>
 </body>
 </html>

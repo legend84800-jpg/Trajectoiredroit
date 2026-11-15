@@ -4,7 +4,7 @@
 .l2-header__inner { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .l2-header nav { display: flex; gap: 28px; font-weight: 600; font-size: .92rem; }
 .l2-header a:hover, .l2-text-link:hover { color: var(--accent); }
-.l2-hero { padding: clamp(40px, 6vw, 76px) 0 62px; background: linear-gradient(135deg, #faf8f3, #fff 72%); border-bottom: 1px solid var(--border); }
+.l2-hero { padding: clamp(40px, 6vw, 76px) 0 62px; background: linear-gradient(135deg, var(--gold-bg), var(--white) 72%); border-bottom: 1px solid var(--border); }
 .l2-hero__grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 .l2-eyebrow { margin: 0 0 14px; color: var(--accent); font-size: .8rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
 .l2-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 4.8vw, 4.4rem); line-height: 1.08; letter-spacing: -.035em; margin: 0 0 24px; }
@@ -33,7 +33,7 @@
 .l2-subjects h3 { margin: 0 0 4px; font-size: 1.06rem; line-height: 1.5; }
 .l2-subjects p { margin: 0; color: var(--muted); font-size: .84rem; }
 .l2-content-note { margin: 26px 0 0; color: var(--body); font-size: .91rem; }
-.l2-preview-section { background: #f5f3ee; padding: 62px 0; }
+.l2-preview-section { background: var(--gold-bg); padding: 62px 0; }
 .l2-previews { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; max-width: 920px; }
 .l2-previews figure { margin: 0; }
 .l2-previews a { display: block; background: #fff; box-shadow: 0 10px 35px rgba(26, 40, 81, .08); }
