@@ -471,6 +471,9 @@ async function handler(req, res) {
   const deviceType = ["mobile", "tablette", "ordinateur"].includes(corps.deviceType)
     ? corps.deviceType
     : "inconnu";
+  const emplacement = /^[a-z0-9-]{1,30}$/.test(tronquer(corps.emplacement, 30))
+    ? tronquer(corps.emplacement, 30)
+    : "inconnu";
   const viewport = /^\d{2,5}x\d{2,5}$/.test(tronquer(corps.viewport, 20))
     ? tronquer(corps.viewport, 20)
     : "inconnu";
@@ -559,6 +562,7 @@ async function handler(req, res) {
       currentPage: pageActuelle || "formations.html",
       deviceType,
       viewport,
+      emplacement,
       internalTest: internalTest ? "1" : "0",
       reminderPlan: autoriserRelance ? "h1-h24-v1" : "none",
     },

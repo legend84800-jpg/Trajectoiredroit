@@ -274,6 +274,25 @@
     if (estDejaAcheteur()) corps.dejaAcheteur = true;
   }
 
+  // Emplacement du bouton cliqué (C9, 15/11/2026) : attribut data-emplacement
+  // s'il existe, sinon déduit du conteneur, sinon du tiers de la page où il se trouve.
+  function emplacementClic(btnEl) {
+    try {
+      var porteur = btnEl.closest('[data-emplacement]');
+      if (porteur) return porteur.getAttribute('data-emplacement');
+      if (btnEl.closest('#stickyCta, .sticky-cta-bar')) return 'barre-collante';
+      if (btnEl.closest('[data-offre-fin-arret]')) return 'fin';
+      if (btnEl.closest('header, .megamenu, .mobile-nav')) return 'menu';
+      var zone = btnEl.closest('main') || document.body;
+      var rz = zone.getBoundingClientRect();
+      var rb = btnEl.getBoundingClientRect();
+      var ratio = (rb.top - rz.top) / Math.max(rz.height, 1);
+      if (ratio < 0.25) return 'haut';
+      if (ratio < 0.75) return 'milieu';
+      return 'bas';
+    } catch (_) { return 'inconnu'; }
+  }
+
   function typeAppareil() {
     var largeur = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     if (largeur < 768) return 'mobile';
@@ -388,6 +407,7 @@
     // renvoyer tout le monde vers formations.html en cas d'abandon du paiement.
     corps.pageActuelle = window.location.pathname.replace(/^\//, '') + window.location.hash;
     corps.deviceType = typeAppareil();
+    corps.emplacement = emplacementClic(btnEl);
     corps.viewport = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
       + 'x' + Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
     corps.internalTest = estTestInterne();
@@ -418,6 +438,7 @@
       try {
         if (!estTestInterne() && window._paq) {
           window._paq.push(['trackEvent', 'Ecommerce', 'ClicAcheter', produitId]);
+          window._paq.push(['trackEvent', 'Ecommerce', 'ClicAcheterEmplacement', emplacementClic(btnEl) + ' | ' + produitId]);
         }
       } catch (_) {}
 

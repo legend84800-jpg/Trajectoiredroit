@@ -346,11 +346,28 @@
         </div>
 
         <!-- Code promo FICHE20 (-20 %) en suspens : à réactiver en créant le code promo directement dans le Dashboard Stripe (allow_promotion_codes est déjà actif côté create-checkout.js), Gumroad est fermé -->
-        <div class="card" style="margin-top:44px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center">
+        <div class="card" id="offre-merci" data-emplacement="merci" style="margin-top:44px; max-width:560px; margin-left:auto; margin-right:auto; text-align:center">
           <h2 class="h3">Et pour aller plus loin</h2>
-          <p style="margin-top:6px">Toute ta licence de droit en fiches complètes, à l'unité et en accès à vie.</p>
-          <a class="btn btn--secondary btn--lg" href="formations.html" style="margin-top:14px">Voir les fiches →</a>
+          <p style="margin-top:6px">Le pack de ton année réunit les fiches complètes des matières de cette année, en accès à vie. Il revient moins cher que les mêmes fiches achetées une par une.</p>
+          <div style="margin-top:14px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px">
+            <button type="button" class="btn btn--outline" data-tjd-produit="pack-l1" data-niveau-merci="l1">Pack L1 · 87 €</button>
+            <button type="button" class="btn btn--outline" data-tjd-produit="pack-l2" data-niveau-merci="l2">Pack L2 · 79 €</button>
+            <button type="button" class="btn btn--outline" data-tjd-produit="pack-l3" data-niveau-merci="l3">Pack L3 · 58 €</button>
+          </div>
+          <a class="parcours__link" href="formations.html" style="display:inline-block; margin-top:14px">Voir les fiches à l'unité →</a>
         </div>
+        <script>
+        /* C8 CTA 2026-11-15 : met en avant le pack de l'année de la page d'arrivée */
+        (function(){
+          try {
+            var page = sessionStorage.getItem('tjd_landing_page') || '';
+            var m = page.match(/-(l[123])(?:-|\.|$)/);
+            if (!m) return;
+            var b = document.querySelector('[data-niveau-merci="' + m[1] + '"]');
+            if (b) { b.classList.remove('btn--outline'); b.classList.add('btn--primary'); }
+          } catch (e) {}
+        })();
+        </script>
 
         <p class="text-muted" style="font-size:.85rem; margin-top:36px">
           Un souci pour télécharger ? Écris-moi à <a href="mailto:julien.prof1@gmail.com">julien.prof1@gmail.com</a>.
@@ -391,6 +408,7 @@
   </footer>
 
   <script src="assets/js/main.js?v=ee7aa3c5" defer></script>
+  <script src="assets/js/achat.js?v=f548e5b0" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
   (function(){
