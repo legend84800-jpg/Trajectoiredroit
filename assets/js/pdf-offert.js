@@ -188,6 +188,24 @@
   function demarrer() {
     var blocs = document.querySelectorAll('[data-tjd-pdf-offert]');
     if (!blocs.length) return;
+    // Test A/B du 15/11/2026 (code D5) : sur les fiches d'arrêt hors modèle du commentaire
+    // à 4,99 €, la moitié des visiteurs (variante B) ne voit pas la capture du PDF offert.
+    // La variante est gardée dans ce navigateur et envoyée à Matomo (AB / pdf-offert-arret).
+    if (/^\/(arret|decision)-/.test(window.location.pathname) && !document.getElementById('commentaire-corrige')) {
+      var variante = null;
+      try { variante = localStorage.getItem('tjd_ab_pdf_arret'); } catch (_) {}
+      if (variante !== 'A' && variante !== 'B') {
+        variante = Math.random() < 0.5 ? 'A' : 'B';
+        try { localStorage.setItem('tjd_ab_pdf_arret', variante); } catch (_) {}
+      }
+      if (!estTestInterne() && window._paq && typeof window._paq.push === 'function') {
+        window._paq.push(['trackEvent', 'AB', 'pdf-offert-arret', variante]);
+      }
+      if (variante === 'B') {
+        Array.prototype.forEach.call(blocs, function (b) { b.remove(); });
+        return;
+      }
+    }
     injecterStyles();
     Array.prototype.forEach.call(blocs, monter);
   }

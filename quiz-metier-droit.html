@@ -499,6 +499,7 @@
   </footer>
 
   <script src="assets/js/main.js?v=ee7aa3c5" defer></script>
+  <script src="assets/js/achat.js?v=f548e5b0" defer></script>
   <script>
   (function(){
     // Chaque question propose 6 réponses, une par métier, dans le même ordre :
@@ -689,8 +690,19 @@
         enseignant: { href:"methode-dissertation-juridique.html", label:"Voir la méthode de la dissertation" }
       };
       var cta = ctaByProfil[prof.key];
+      /* D9 CTA 2026-11-15 : achat direct selon le profil */
+      var achatByProfil = {
+        avocat: ['pack-cas-pratiques-l1', 'Cas pratiques corrigés L1 · 45 €'],
+        magistrat: ['pack-commentaires-arret-l1', "Commentaires d'arrêt corrigés L1 · 22 €"],
+        notaire: ['pack-majeures-l1', 'Majeures préparées L1 · 34 €'],
+        juriste: ['pack-majeures-l1', 'Majeures préparées L1 · 34 €'],
+        commissaire: ['pack-majeures-l1', 'Majeures préparées L1 · 34 €'],
+        enseignant: ['dissertation-intro-droit-l1', 'Dissertations corrigées L1 · 14,99 €']
+      };
+      var achat = achatByProfil[prof.key];
       document.getElementById('ctaMain').innerHTML =
-        '<a class="btn btn--primary btn--lg" href="formations.html">Voir les fiches complètes</a>' +
+        (achat ? '<button type="button" class="btn btn--primary btn--lg" data-tjd-produit="' + achat[0] + '">' + achat[1] + '</button><div class="quiz-cta__row">' : '') +
+        '<a class="btn btn--' + (achat ? 'outline' : 'primary btn--lg') + '" href="formations.html">Voir les fiches complètes</a>' + (achat ? '</div>' : '') +
         '<div class="quiz-cta__row"><a class="btn btn--outline" href="' + cta.href + '">' + cta.label + '</a></div>';
 
       var autresBox = document.getElementById('autresProfils');

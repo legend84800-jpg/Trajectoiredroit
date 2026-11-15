@@ -346,6 +346,33 @@
         </div>
 
         <!-- Code promo FICHE20 (-20 %) en suspens : à réactiver en créant le code promo directement dans le Dashboard Stripe (allow_promotion_codes est déjà actif côté create-checkout.js), Gumroad est fermé -->
+        <div class="article-produit-inline" id="reco-merci" data-emplacement="merci-matiere" hidden style="max-width:560px; margin-left:auto; margin-right:auto; margin-top:44px; text-align:left">
+          <div class="article-produit-inline__body">
+            <p class="article-produit-inline__label">Pour continuer sur ta matière</p>
+            <p class="article-produit-inline__title" id="recoMerciNom"></p>
+            <p class="article-produit-inline__meta">Le PDF complet, en accès à vie · <strong id="recoMerciPrix"></strong></p>
+          </div>
+          <div class="article-produit-inline__actions">
+            <button type="button" class="btn btn--primary" id="recoMerciBouton">Acheter</button>
+          </div>
+        </div>
+        <script src="assets/js/merci-reco-data.js?v=87d436d4" defer></script>
+        <script>
+        /* D7 CTA 2026-11-15 : produit de la page d'arrivée */
+        document.addEventListener('DOMContentLoaded', function(){
+          try {
+            var d = window.TJD_RECO_MERCI; if (!d) return;
+            var page = (sessionStorage.getItem('tjd_landing_page') || '').replace(/^\//, '').split(/[?#]/)[0].replace(/\.html$/, '');
+            var id = d.pages[page]; var p = id && d.produits[id]; if (!p) return;
+            var prix = (p[1] / 100).toFixed(2).replace('.', ',') + ' €';
+            document.getElementById('recoMerciNom').textContent = p[0];
+            document.getElementById('recoMerciPrix').textContent = prix;
+            var b = document.getElementById('recoMerciBouton');
+            b.setAttribute('data-tjd-produit', id); b.textContent = 'Acheter · ' + prix;
+            document.getElementById('reco-merci').hidden = false;
+          } catch (e) {}
+        });
+        </script>
         <div class="card" id="offre-merci" data-emplacement="merci" style="margin-top:44px; max-width:560px; margin-left:auto; margin-right:auto; text-align:center">
           <h2 class="h3">Et pour aller plus loin</h2>
           <p style="margin-top:6px">Le pack de ton année réunit les fiches complètes des matières de cette année, en accès à vie. Il revient moins cher que les mêmes fiches achetées une par une.</p>

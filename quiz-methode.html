@@ -518,6 +518,8 @@
   </footer>
 
   <script src="assets/js/main.js?v=ee7aa3c5" defer></script>
+  <script src="assets/js/achat.js?v=f548e5b0" defer></script>
+  <script src="assets/js/merci-reco-data.js?v=87d436d4" defer></script>
   <script>
   (function(){
     var QUESTIONS = [
@@ -696,8 +698,11 @@
           ctaPrincipal = cibleFiche;
         }
       }
-      document.getElementById('ctaMain').innerHTML =
-        '<a class="btn btn--primary btn--lg" href="' + ctaPrincipal.href + '">' + ctaPrincipal.label + '</a>' +
+      /* D9 CTA 2026-11-15 : achat direct du produit de la matière choisie */
+      var reco = window.TJD_RECO_MERCI, idReco = matiereKey && reco && reco.pages[matiereKey], pReco = idReco && reco.produits[idReco];
+      var boutonAchat = pReco ? '<button type="button" class="btn btn--primary btn--lg" data-tjd-produit="' + idReco + '">' + pReco[0] + ' · ' + (pReco[1] / 100).toFixed(2).replace('.', ',') + ' €</button><div class="quiz-cta__row">' : '';
+      document.getElementById('ctaMain').innerHTML = boutonAchat +
+        '<a class="btn btn--' + (pReco ? 'outline' : 'primary btn--lg') + '" href="' + ctaPrincipal.href + '">' + ctaPrincipal.label + '</a>' + (pReco ? '</div>' : '') +
         '<div class="quiz-cta__row"><a class="btn btn--outline" href="' + ctaSecondaire.href + '">' + ctaSecondaire.label + '</a></div>';
 
       document.getElementById('hiddenScore').value = score + '/30';
