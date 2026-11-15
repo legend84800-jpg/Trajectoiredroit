@@ -46,7 +46,7 @@ const SUJETS = {
 
 // Identifiants dont la matière ne se lit pas en retirant seulement le préfixe du format.
 const ALIAS = { "travail-l3": "travail-l3-s1", "societes-l3": "societes-l3-s1" };
-const PREFIXES = ["cas-pratique-", "commentaire-arret-", "dissertation-", "maj-", "cours-fiche-",
+const PREFIXES = ["cas-pratique-", "cours-images-", "commentaire-arret-", "dissertation-", "maj-", "cours-fiche-",
   "flashcards-qcm-", "audio-video-", "citations-", "fiche-arret-", "fiche-", "cours-complet-"];
 
 function sujetDe(id) {
