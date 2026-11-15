@@ -90,9 +90,9 @@ AUTRES = {
     "proccivile": ("Majeure préparée", "Procédure civile L3", "majeures-preparees.html",
                    "assets/majeures/procedure-civile-l3s1-couleur.webp",
                    "29 majeures dont le pourvoi en cassation et les cas d'ouverture", "14,99 €", "Voir la majeure →"),
-    "packl1": ("Pack complet", "Toute la L1 de droit", "reussir-sa-l1.html",
+    "packl1": ("Pack complet", "Les 9 fiches de L1", "reussir-sa-l1.html",
                "assets/covers/pack-l1.webp?v=coffrets-universitaires-20260916",
-               "8 fiches complètes pour combler la base d'un semestre, en PDF", "87 €", "Voir le pack L1 →"),
+               "9 fiches complètes pour reprendre les bases de la L1, en PDF", "87 €", "Voir le pack L1 →"),
 }
 
 # --- Article -> (produit du milieu, Pack Ultra) ---
