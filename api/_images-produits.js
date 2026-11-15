@@ -135,6 +135,7 @@ const VISUELS = {
   "fiche-arret-relations-internationales-l1": "assets/covers/fiche-arret-relations-internationales-l1.webp?v=collection-graphique-20260921",
   "fiche-arret-societes": "assets/covers/fiche-arret-societes.webp?v=collection-graphique-20260921",
   "fiche-arret-travail-l3-s1": "assets/covers/fiche-arret-travail-l3-s1.webp?v=collection-graphique-20260921",
+  "fiche-arret-procedure-civile-l3-s1": "assets/covers/fiche-arret-procedure-civile-l3-s1.webp?v=collection-graphique-20261115",
   "fiche-biens-l2": "assets/covers/fiche-biens-l2.webp?v=dossier-universitaire-20260915",
   "fiche-commercial-l3-s1": "assets/covers/fiche-commercial-l3-s1.webp?v=dossier-universitaire-20260915",
   "fiche-constit-l1-s1": "assets/covers/fiche-constit-l1-s1.webp?v=dossier-universitaire-20260915",

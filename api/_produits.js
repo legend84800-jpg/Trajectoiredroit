@@ -178,6 +178,7 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/cours-fiche-philo-droit-l2-s1-plan.pdf"] },
 
   // Fiches d'arrêt – 9,99 €
+  "fiche-arret-procedure-civile-l3-s1": { nom: "Fiches d'arrêt Procédure civile L3", prix: 999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-procedure-civile-l3-s1.pdf"] },
   "fiche-arret-procedure-penale": { nom: "Fiches d'arrêt Procédure pénale", prix: 999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-procedure-penale.pdf",
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-procedure-penale-plan.pdf"] },
   "fiche-arret-penal": { nom: "Fiches d'arrêt Droit pénal", prix: 999, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/fiche-arret-penal.pdf",
