@@ -261,3 +261,5 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', demarrer);
   else demarrer();
 })();
+
+// Empreinte renouvelée le 15/11/2026.

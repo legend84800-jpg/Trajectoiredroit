@@ -327,3 +327,5 @@
     build();
   }
 })();
+
+// Empreinte renouvelée le 15/11/2026.

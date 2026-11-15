@@ -1093,3 +1093,5 @@ window.tjdDialogues = (function () {
   }, true);
 
 })();
+
+// Empreinte renouvelée le 15/11/2026.
