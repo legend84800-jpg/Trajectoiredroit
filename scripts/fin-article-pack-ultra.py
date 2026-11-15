@@ -232,10 +232,28 @@ def barre(cle, sid):
 '''
 
 
+def semestre_page(a, cle, sid):
+    """Semestre réel d'une page de droit constitutionnel L1 (correction du 15/11/2026).
+
+    La matière se vend en deux fiches (S1 et S2) et en deux Packs Ultra. Sans ce contrôle,
+    la clé « constit » posait le S2 sur des pages du semestre 1. Le semestre se lit d'abord
+    dans la ligne de catégorie de l'article (« L1 S1 »), puis dans le bouton recommandé de
+    l'offre du haut de page. À défaut, le pack demandé reste."""
+    if cle != "constit":
+        return sid
+    m = re.search(r'post-meta__cat">[^<]*\bL1 S([12])\b', a) or \
+        re.search(r'btn--recommended"[^>]*data-tjd-produit="fiche-(?:arret-)?constit-l1-s([12])"', a)
+    if m and f"l1-s{m.group(1)}" != sid:
+        print(f"semestre corrigé : l1-s{m.group(1)} au lieu de {sid} (page du semestre {m.group(1)})", file=sys.stderr)
+        return f"l1-s{m.group(1)}"
+    return sid
+
+
 def traiter(f, cle, sid):
     path = ROOT / f
     a = path.read_text()
     avant = a
+    sid = semestre_page(a, cle, sid)
     # 1. Encart du milieu, seulement s'il n'y en a aucun
     if 'class="article-produit-inline"' not in a:
         h2 = [m.start() for m in re.finditer(r'<h2 id=', a)]
