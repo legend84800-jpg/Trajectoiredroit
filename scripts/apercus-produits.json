@@ -6202,17 +6202,17 @@
       }
     },
     "cours-fiche-contrats-l2-s1": {
-      "sha256": "a906f48137e4b65da1811c948e6c7837af991b8176ecbdf5f7a48057167ae368",
-      "pages_pdf": 288,
+      "sha256": "bf7d75469162e04f240e0667f7705a911e03a66e1677011ab0ace132c81a67bd",
+      "pages_pdf": 289,
       "famille": "cours",
       "fichier_pdf": "cours-fiche-contrats-l2-s1.pdf",
       "images": [
-        "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p206.webp",
-        "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p171.webp",
-        "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p116.webp"
+        "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p207.webp",
+        "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p171.webp",
+        "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p116.webp"
       ],
       "pages_images": [
-        206,
+        207,
         171,
         116
       ],
@@ -6224,14 +6224,18 @@
             "assets/apercus/cours-contrats-l2-s1-2.webp"
           ],
           "pages": [
-            206,
+            207,
             171
           ],
           "images": [
-            "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p206.webp",
-            "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p171.webp"
+            "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p207.webp",
+            "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p171.webp"
           ],
           "versions_precedentes": [
+            [
+              "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p206.webp",
+              "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p171.webp"
+            ],
             [
               "assets/apercus/lisibilite-20261107/cours-fiche-contrats-l2-s1/75f89839b656-p211.webp",
               "assets/apercus/lisibilite-20261107/cours-fiche-contrats-l2-s1/75f89839b656-p176.webp"
@@ -6241,61 +6245,78 @@
               "assets/apercus/lisibilite-20261107/cours-fiche-contrats-l2-s1/c7a9c481fb6c-p170.webp"
             ]
           ]
+        },
+        {
+          "avant": [
+            "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p002.webp",
+            "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p003.webp",
+            "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p054.webp"
+          ],
+          "pages": [
+            2,
+            3,
+            54
+          ],
+          "images": [
+            "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p002.webp",
+            "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p003.webp",
+            "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p054.webp"
+          ]
         }
       ],
       "comparaison_dol": {
         "page_pdf": 116,
-        "image": "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p116.webp",
+        "image": "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p116.webp",
         "avant": "assets/apercus/comparatif-dol-cours-20261029.png"
       },
       "preuves_images": {
-        "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p206.webp": {
-          "page_pdf": 206,
+        "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p207.webp": {
+          "page_pdf": 207,
+          "sha256_image": "1fba71f5b33932d1e035cec448734a1a2fb8c10cae533bafa9adce9fc4ae36c6",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "2c12edfce33a8317a19613fffc293bc63954aa209aefb7a95bcd30ed8bbde8d6"
+          ]
         },
-        "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p171.webp": {
+        "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p171.webp": {
           "page_pdf": 171,
+          "sha256_image": "5bbb66291889c2c954e5c7a1a3dde1f1f56c48aa2330eed46f19050bfedf783d",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "a3e3c83e806038be43e03b9b95eff27c9a506d73544d7f7d4f64c6e1d979915b"
+          ]
         },
-        "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p116.webp": {
+        "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p116.webp": {
           "page_pdf": 116,
+          "sha256_image": "33021e65b33261d69889dcaa6544a171f24a88cf761b47af1362009b9e14890e",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "bcc9373adfc83293e53d2a3ae9b6af46e5e38cd4aaa55c131860e3f21f1629c1"
+          ]
         },
-        "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p002.webp": {
+        "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p002.webp": {
           "page_pdf": 2,
+          "sha256_image": "c81440eb08746442af3acd782ca20b2e88cd6add14fdd4a887644e2c91fbabc5",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "ba5c08f197bec611e7d261ec70393b70aebdb4949bf869063f12e1dd7447b1bc"
+          ]
         },
-        "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p003.webp": {
+        "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p003.webp": {
           "page_pdf": 3,
+          "sha256_image": "95711c00507c43af6137b71c5afba603c7d9c4b9739b414a24ce73791b370974",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "87e3f200520f9976d07c7cec49c422e654678fff7b43bd9e770a9ee4ea15325a"
+          ]
         },
-        "assets/apercus/typographie-20261113/cours-fiche-contrats-l2-s1/a906f48137e4-p054.webp": {
+        "assets/apercus/republication-20261115/cours-fiche-contrats-l2-s1/bf7d75469162-p054.webp": {
           "page_pdf": 54,
+          "sha256_image": "991d694d0014513d6308d9de4a4091273216187cf5e4c8b310ca279a7f372b8c",
           "dimensions": [
             1429,
             2021
-          ],
-          "sha256_image": "4a0fae71e4d4d9941bbe8bf7c3a6689fcdb97701933555c86da913ba43ff52e9"
+          ]
         }
       }
     },
