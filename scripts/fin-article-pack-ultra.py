@@ -45,7 +45,9 @@ for card in re.findall(r'<article class="ultra-card" id="pack-ultra-([^"]+)">(.*
         prix=g(r'ultra-card__price">([^<]*)<'),
         paiement=g(r'ultra-card__payment">([^<]*)<'),
         economie=g(r'ultra-card__saving">([^<]*)<'),
-        nb=len(types),
+        # Nombre affiché sur la carte (« 36 ressources »), qui fait foi. Le détail ne liste que les
+        # types principaux et sous-compte (31 au lieu de 36 en L1 S1, point l du 15/11/2026).
+        nb=int(re.search(r'(\d+)\s+ressources', html).group(1)),
         types={t: types.count(t) for t in set(types)},
         alt=re.search(r'<img src="assets/covers/pack-ultra-%s\.webp" alt="([^"]*)"' % sid, html).group(1),
     )
