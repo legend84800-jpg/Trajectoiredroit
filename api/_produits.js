@@ -338,6 +338,13 @@ const PRODUITS = {
       "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/stage-methode-replay-sept2026-seance-3.mp4"] },
 
   // Commentaires d'arrêt unitaires, 4,99 € (test des pages d'arrêts du 20/10/2026)
+  "coma-eviction-2021": { nom: "Commentaire corrigé de l'arrêt du 10 novembre 2021 (Linagora)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-eviction-2021.pdf"] },
+  "coma-iron-mountain-2020": { nom: "Commentaire corrigé de l'arrêt Iron Mountain (2020)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-iron-mountain-2020.pdf"] },
+  "coma-transsexualisme-1992": { nom: "Commentaire corrigé de l'arrêt du 11 décembre 1992 (changement de sexe)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-transsexualisme-1992.pdf"] },
+  "coma-homicide-foetus-2001": { nom: "Commentaire corrigé de l'arrêt du 29 juin 2001 (homicide du fœtus)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-homicide-foetus-2001.pdf"] },
+  "coma-troubles-voisinage-1986": { nom: "Commentaire corrigé de l'arrêt du 19 novembre 1986 (troubles de voisinage)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-troubles-voisinage-1986.pdf"] },
+  "coma-tresor-2002": { nom: "Commentaire corrigé de l'arrêt du 19 novembre 2002 (trésor)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-tresor-2002.pdf"] },
+  "coma-empietement-1990": { nom: "Commentaire corrigé de l'arrêt du 7 juin 1990 (empiètement)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-empietement-1990.pdf"] },
   "coma-desmares-1982": { nom: "Commentaire corrigé de l'arrêt Desmares (1982)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-desmares-1982.pdf"] },
   "coma-nikon-2001": { nom: "Commentaire corrigé de l'arrêt Nikon (2001)", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-nikon-2001.pdf"] },
   "coma-begles-2007": { nom: "Commentaire corrigé de l'arrêt du mariage de Bègles", prix: 499, blobs: ["https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/coma-begles-2007.pdf"] },

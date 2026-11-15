@@ -23,9 +23,9 @@ test("un même produit garde le même titre précis dans tous les aperçus", () 
   }
   // 262 depuis le 22/10/2026 : douze aperçus de la fiche Contrats L2 S1 ont
   // laissé place à ceux du cours en images, testé jusqu'au 13/11/2026.
-  // 236 depuis le 15/11/2026 : les fiches d'arrêt passées au commentaire corrigé à
-  // 4,99 € (audit CTA, C3 et D4) n'affichent plus les aperçus de la fiche complète.
-  assert.ok(controles >= 236);
+  // 223 depuis le 15/11/2026 : les 47 fiches d'arrêt passées au commentaire corrigé à
+  // 4,99 € (audit CTA, C3, D4 et F2) n'affichent plus les aperçus de la fiche complète.
+  assert.ok(controles >= 223);
   assert.equal(libelleApercu("produit-inconnu"), null);
 });
 

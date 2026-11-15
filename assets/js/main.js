@@ -795,6 +795,54 @@ window.tjdDialogues = (function () {
   //   - mobile (pas de mouseleave) : remontée rapide vers le haut (signal d'abandon,
   //     on referme l'onglet ou revient en arrière) OU 60 secondes sans interaction
   var modal = document.getElementById('exitModal');
+  // F5 (audit CTA du 15/11/2026) : sur les pages sans fenêtre de sortie qui portent
+  // une capture d'email (PDF de la page offert, ou plan du commentaire offert), une
+  // fenêtre rappelle ce PDF précis et mène au formulaire. La cible est relue au moment
+  // de l'affichage, car pdf-offert.js retire sa carte pour la variante B du test A/B.
+  var sortieType = modal ? 'guide' : null;
+  var sortieDynamique = false;
+  function cibleSortie() {
+    var pdf = document.querySelector('[data-tjd-pdf-offert]');
+    if (pdf) return { el: pdf, type: 'pdf-offert', texte: 'Tu peux recevoir gratuitement ' + minusculeInitiale(pdf.getAttribute('data-titre') || 'le PDF de cette page') + ', par email.' };
+    var plan = document.getElementById('plan-offert');
+    if (plan) return { el: plan, type: 'plan-offert', texte: 'Tu peux recevoir gratuitement le plan détaillé du commentaire de ' + (plan.getAttribute('data-arret') || 'cet arrêt') + ', par email.' };
+    return null;
+  }
+  function minusculeInitiale(t) { return t.charAt(0).toLowerCase() + t.slice(1); }
+  function mesurerSortie(action) {
+    try {
+      if (!window.tjdTestInterne && window._paq && typeof window._paq.push === 'function') {
+        window._paq.push(['trackEvent', 'Lead', action, sortieType || 'inconnu']);
+      }
+    } catch (_) {}
+  }
+  if (!modal && cibleSortie()) {
+    sortieType = 'capture-page';
+    sortieDynamique = true;
+    modal = document.createElement('div');
+    modal.className = 'modal-backdrop';
+    modal.id = 'exitModal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'exitModalTitle');
+    modal.innerHTML = '<div class="modal"><button class="modal__close" data-close-modal aria-label="Fermer">✕</button>' +
+      '<h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>' +
+      '<p class="lead" id="exitModalTexte" style="margin-bottom:24px"></p>' +
+      '<button type="button" class="btn btn--primary btn--lg btn--full" id="exitModalAller">Recevoir le PDF</button>' +
+      '<p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p></div>';
+    document.body.appendChild(modal);
+    modal.querySelector('#exitModalAller').addEventListener('click', function () {
+      var cible = cibleSortie();
+      modal.classList.remove('open');
+      mesurerSortie('exit-intent-clic');
+      if (!cible) return;
+      cible.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(function () {
+        var champ = cible.el.querySelector('input[type="email"]');
+        if (champ) champ.focus({ preventScroll: true });
+      }, 600);
+    });
+  }
   var exitShown = false;
   if (modal) {
     try { exitShown = Boolean(sessionStorage.getItem('exitShown')); } catch (_) {}
@@ -823,8 +871,15 @@ window.tjdDialogues = (function () {
 
     function fireModal() {
       if (triggered) return;
+      if (sortieDynamique) {
+        var cible = cibleSortie();
+        if (!cible) return;
+        sortieType = cible.type;
+        document.getElementById('exitModalTexte').textContent = cible.texte;
+      }
       triggered = true;
       modal.classList.add('open');
+      mesurerSortie('exit-intent-affiche');
       try { sessionStorage.setItem('exitShown', '1'); } catch (_) {}
     }
 
