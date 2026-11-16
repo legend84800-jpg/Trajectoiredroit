@@ -169,9 +169,10 @@ function memeSemestre(a, b) {
 
 // Retourne jusqu'à `max` produits complémentaires, avec la raison de chaque
 // proposition : "meme-matiere", "autre-matiere", "semestre-suivant" ou "pack".
-function suggererComplements(produitIdsAchetes, max = 4, historique = []) {
+function suggererComplements(produitIdsAchetes, max = 4, historique = [], niveau = null) {
   const ids = (produitIdsAchetes || []).filter((id) => PAR_ID.has(id));
   if (!ids.length) return [];
+  const dansLeNiveau = (p) => !niveau || niveauProduit(p) === niveau;
 
   // Tout ce que l'étudiant a déjà, y compris les produits contenus dans un pack acheté.
   const blobsPossedes = new Set(ids.flatMap((id) => PAR_ID.get(id).blobs));
@@ -180,19 +181,20 @@ function suggererComplements(produitIdsAchetes, max = 4, historique = []) {
   const chevauche = (p) => p.blobs.some((b) => blobsPossedes.has(b));
 
   // Un pack annuel n'a pas de matière : on raisonne sur les produits qu'il contient.
-  const achetes = CATALOGUE_ANALYSE.filter((p) => p.groupe && possede(p));
+  const achetes = CATALOGUE_ANALYSE.filter((p) => p.groupe && dansLeNiveau(p) && possede(p));
   if (!achetes.length) return [];
 
   const { idsPossedes, fichiersPossedes } = inventaireAchete(historique);
   const candidats = CATALOGUE_ANALYSE.filter((p) =>
-    proposable(p) && !possede(p) && !idsPossedes.has(p.id) && !fichiersPossedes.has(p.blobs[0]));
+    proposable(p) && dansLeNiveau(p) && !possede(p) && !idsPossedes.has(p.id) && !fichiersPossedes.has(p.blobs[0]));
   const groupes = new Set(achetes.map((p) => p.groupe).filter(Boolean));
   // Années dominantes seulement : le Pack L2 contient aussi une fiche de L1, qui ne
   // doit pas faire proposer toute la L1 à un étudiant de L2.
   const comptesNiveaux = {};
   for (const p of achetes) if (p.niveau) comptesNiveaux[p.niveau] = (comptesNiveaux[p.niveau] || 0) + 1;
   const maxNiveau = Math.max(0, ...Object.values(comptesNiveaux));
-  const niveaux = new Set(Object.keys(comptesNiveaux).filter((n) => comptesNiveaux[n] * 2 >= maxNiveau));
+  const niveaux = niveau ? new Set([niveau])
+    : new Set(Object.keys(comptesNiveaux).filter((n) => comptesNiveaux[n] * 2 >= maxNiveau));
   const famillesAchetees = new Set(achetes.map((p) => p.famille));
   const famillesParGroupe = new Map();
   for (const a of achetes) {
@@ -278,11 +280,19 @@ function suggererComplements(produitIdsAchetes, max = 4, historique = []) {
   return resultat;
 }
 
+function niveauProduit(p) {
+  return p?.niveau || p?.id.match(/-(l[123])(?:-s[12])?$/)?.[1];
+}
+
+function niveauUnique(references) {
+  const niveaux = new Set(references.map(niveauProduit).filter(Boolean));
+  return niveaux.size === 1 ? [...niveaux][0] : null;
+}
+
 function suggererMajeuresPostAchat(dernierAchat, historique) {
   const references = dernierAchat.map((id) => PAR_ID.get(id)).filter(Boolean);
-  const niveaux = new Set(references.map((p) => p.niveau || p.id.match(/-(l[123])(?:-s[12])?$/)?.[1]).filter(Boolean));
-  if (niveaux.size !== 1) return [];
-  const [niveau] = niveaux;
+  const niveau = niveauUnique(references);
+  if (!niveau) return [];
   const semestres = new Set(references.map((p) => p.semestre || p.id.match(/-(s[12])$/)?.[1]).filter(Boolean));
 
   // Les Packs Ultra déclarent les produits inclus. Les anciens packs de majeures
@@ -327,7 +337,9 @@ async function attributsRecommandationsPostAchat(email, dernierAchat, lireAchats
         if (rows.length < taillePage) break;
       }
       majeures = suggererMajeuresPostAchat(dernierAchat, historique);
-      complements = suggererComplements(dernierAchat, 2, [...dernierAchat, ...historique]);
+      // Le J+8 s’en tient à l’année indiquée par le dernier achat, y compris pour un pack.
+      const niveau = niveauUnique(dernierAchat.map((id) => PAR_ID.get(id)));
+      if (niveau) complements = suggererComplements(dernierAchat, 2, [...dernierAchat, ...historique], niveau);
     } catch {
       // Sans l'historique, mieux vaut laisser le bloc de recommandations vide.
       console.error("Historique indisponible pour les recommandations Brevo.");

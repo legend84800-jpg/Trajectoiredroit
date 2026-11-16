@@ -79,6 +79,25 @@ test("le J+8 écarte les compléments déjà couverts par un achat antérieur", 
   assert.ok(autres.every((p) => p.id !== "cas-pratique-da-l2-s1"));
 });
 
+test("le J+8 garde l’année d’un pack même si la matière existe dans une autre année", async () => {
+  for (const id of ["pack-matiere-penal-general-l1", "pack-ultra-l1-s2"]) {
+    const attributs = await attributsRecommandationsPostAchat("audit@example.test", [id],
+      async () => [{ produit_ids: [id] }]);
+    const complements = [attributs.COMPLEMENT_J8_1_ID, attributs.COMPLEMENT_J8_2_ID].filter(Boolean);
+    assert.ok(complements.length > 0, id);
+    assert.ok(complements.every((produit) => /-l1(?:-s[12])?$/.test(produit)), complements.join(", "));
+  }
+});
+
+test("le J+8 masque les liens quand le dernier achat ne permet pas de repérer l’année", async () => {
+  for (const ids of [["pack-complet"], ["fiche-constit-l1-s1", "maj-societes-l3-s1"]]) {
+    const attributs = await attributsRecommandationsPostAchat("audit@example.test", ids,
+      async () => [{ produit_ids: ids }]);
+    assert.equal(attributs.COMPLEMENT_J8_1_ID, "");
+    assert.equal(attributs.COMPLEMENT_J8_2_ID, "");
+  }
+});
+
 test("un lien de complément ouvre uniquement le support indiqué", async () => {
   const interroger = async (query) => {
     const res = { status(code) { this.code = code; return this; }, json(body) { this.body = body; } };
