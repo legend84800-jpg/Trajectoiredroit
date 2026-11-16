@@ -439,6 +439,7 @@
           <a class="btn btn--primary btn--lg" href="#tableau">Le tableau des trois vices</a>
           <a class="btn btn--outline btn--lg" href="#cas-pratique">Voir un cas pratique corrigé</a>
         </div>
+        <div data-tjd-pdf-offert="exercice" data-id="cas-pratique-dol-reticence-dolosive-corrige" data-titre="Un cas pratique sur le dol, corrigé en PDF" data-texte="Tu reçois par email « Cas pratique corrigé sur le dol et la réticence dolosive », avec l&#x27;énoncé et sa correction. Tu vérifies ainsi si tu sais appliquer l&#x27;article 1137 aux faits d&#x27;un sujet de partiel." data-bouton="Recevoir le corrigé"></div>
       </div>
     </section>
 
@@ -450,6 +451,36 @@
         <p style="color:var(--body); line-height:1.75">La sanction est elle aussi commune. Un vice du consentement entraîne la <b>nullité relative</b> du contrat (article 1131). Seule la victime peut la demander, car le texte protège son intérêt à elle. On va voir chaque vice un par un, puis les règles qu'ils partagent. Si tu veux d'abord une vue d'ensemble, le <a href="#tableau">tableau comparatif</a> plus bas résume tout.</p>
       </div>
     </section>
+
+    <!-- équipement offre A5 du 15/11 : offre du PDF correspondant -->
+    <section class="conversion-offer" aria-labelledby="offre-a5-les-vices-du-consentement-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/fiche-contrats-l2-s1.webp?v=dossier-universitaire-20260915" alt="Couverture de la fiche complète Droit des contrats L2, semestre 1, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">Droit des contrats L2 S1, la fiche complète</p>
+            <h2 class="conversion-offer__title" id="offre-a5-les-vices-du-consentement-titre">L'erreur, le dol et la violence, un chapitre pour chaque vice dans la fiche de droit des contrats</h2>
+            <p class="conversion-offer__summary">Les chapitres 11 à 14 suivent l'ordre des articles 1130 à 1144 du Code civil. Chaque vice y est découpé condition par condition, avec la nullité qu'il entraîne et le délai pour la demander. L'abus de dépendance, ajouté par la réforme de 2016, est expliqué avec la violence au chapitre 14.</p>
+            <ul class="conversion-offer__benefits">
+              <li>205 pages sur tout le semestre, de la formation du contrat jusqu'à son inexécution</li>
+              <li>Le pack complet (29,98 €) ajoute les flashcards, les fiches d'arrêt et les cas pratiques corrigés</li>
+              <li>Accès à vie et mises à jour comprises</li>
+            </ul>
+            <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-contrats-l2-s1/a94eea5853a4-p002.webp","assets/apercus/finition-20261114/fiche-contrats-l2-s1/a94eea5853a4-p003.webp","assets/apercus/finition-20261114/fiche-contrats-l2-s1/a94eea5853a4-p049.webp"]' data-apercu-title="Droit des contrats / des obligations · L2 S1 · Fiche complète" data-apercu-price="14,99 €" data-apercu-cta="fiche-contrats-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu de la fiche</button>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-contrats-l2-s1">Fiche complète · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="cas-pratique-contrats-l2-s1">Cas pratiques · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-matiere-contrats-l2">Pack complet · 29,98 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
+            <div data-tjd-avis data-matiere="contrats-l2"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <!-- L'ERREUR -->
     <section class="section section--alt" id="erreur">
@@ -677,6 +708,18 @@
     </div>
   </div>
 
+  <!-- équipement offre A5 du 15/11 : barre d'achat alignée sur l'offre -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit des contrats L2 S1 · 14,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-contrats-l2-s1">Acheter · 14,99 €</button>
+  </div>
+
+  <script src="assets/js/achat.js?v=f548e5b0" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
   <script src="assets/js/main.js?v=b449c838" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
@@ -698,5 +741,6 @@
   })();
   </script>
   <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+<script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
 </body>
 </html>
