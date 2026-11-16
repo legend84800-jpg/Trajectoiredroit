@@ -50,11 +50,12 @@ CIBLES = {
     "dissertation-force-obligatoire-du-contrat-corrigee.html": (10, "La force obligatoire est expliquée page {n}, avec une scène dessinée"),
     "condition-potestative-droit-des-contrats.html": (1, GENERAL),
     "sujets-droit-des-contrats-l2.html": (1, GENERAL),
-    "clause-de-non-concurrence-bail-professionnel.html": (1, GENERAL),
-    "decheance-garantie-assurance-auto-mauvaise-foi.html": (1, GENERAL),
     "fiche-revision-droit-des-obligations-l2.html": (1, GENERAL),
     "preparer-sa-rentree-en-l2-de-droit.html": (1, GENERAL),
 }
+
+# Retirées le 16/11/2026 après le bilan du test (0 vente) : clause-de-non-concurrence-bail-professionnel.html
+# et decheance-garantie-assurance-auto-mauvaise-foi.html, pages grand public rendues à leur fiche de matière.
 
 TEST_ARRETS = "test-arrets-2026-10-20"
 
