@@ -9,7 +9,11 @@
 // chaque avis publié (transparence imposée par le Code de la consommation).
 // Table Supabase : public.avis (supabase/avis.sql), accessible par la seule clé service.
 
+const { createHash } = require("node:crypto");
+const { readFileSync } = require("node:fs");
+const { join } = require("node:path");
 const PRODUITS = require("./_produits");
+const { formaterNomOffrant } = require("./_cadeau");
 const { creerClientStripe } = require("./_stripe");
 const { construireLiensTelechargement } = require("./_liens-telechargement");
 const { selectionner, insererSiAbsent, supprimer } = require("./_supabase");
@@ -320,62 +324,101 @@ async function avisPublies({ produit, matiere }, dep) {
   }));
 }
 
-// Demande d'avis J+7, lancée chaque jour par le cron Vercel (vercel.json).
-// Elle vise les achats payés il y a entre 7 et 8 jours, hors tests, hors stage,
-// hors acheteurs qui ont répondu « Non merci » au choix « emails » du paiement,
-// et hors sessions qui ont déjà un avis. Une fenêtre de 24 h par passage
-// quotidien garantit un seul envoi par commande.
-const TEMPLATE_DEMANDE_AVIS = 31;
+// Le cron à 16 h UTC sollicite un témoignage 21 jours après l'achat.
+const TEMPLATE_TEMOIGNAGE_VIDEO = 31;
+const JOUR_SECONDES = 24 * 3600;
+const HEURE_CRON_SECONDES = 16 * 3600;
+const DELAI_TEMOIGNAGE_JOURS = 21;
+// Les acheteurs contactés lors de la campagne Gmail du 14 novembre et les
+// commandes déjà traitées par l'ancien J+7 précèdent cette date de démarrage.
+const DEBUT_ACHATS_TEMOIGNAGE = Date.parse("2026-11-14T17:00:00Z") / 1000;
+const FICHIER_QUESTIONS = "questions-temoignage.pdf";
 
 function refuseEmails(session) {
   const champ = (session.custom_fields || []).find((c) => c.key === "emails");
-  return Boolean(champ && champ.dropdown && champ.dropdown.value === "non");
+  return session.consent?.promotions === "opt_out" || champ?.dropdown?.value === "non";
 }
 
-async function listerSessionsJ7(maintenant) {
+function fenetreAchatsTemoignage(maintenant) {
+  const secondes = Math.floor(maintenant / 1000);
+  const passage = Math.floor((secondes - HEURE_CRON_SECONDES) / JOUR_SECONDES)
+    * JOUR_SECONDES + HEURE_CRON_SECONDES;
+  const fin = passage - DELAI_TEMOIGNAGE_JOURS * JOUR_SECONDES;
+  const debut = Math.max(fin - JOUR_SECONDES, DEBUT_ACHATS_TEMOIGNAGE);
+  return debut < fin ? { gte: debut, lt: fin } : null;
+}
+
+async function listerSessionsTemoignage(maintenant) {
+  const created = fenetreAchatsTemoignage(maintenant);
+  if (!created) return [];
   const stripe = creerClientStripe(process.env.STRIPE_SECRET_KEY);
-  const fin = Math.floor(maintenant / 1000) - 7 * 24 * 3600;
   const sessions = [];
-  for await (const s of stripe.checkout.sessions.list({ created: { gte: fin - 24 * 3600, lt: fin }, limit: 100 })) {
+  for await (const s of stripe.checkout.sessions.list({ created, limit: 100 })) {
     sessions.push(s);
   }
   return sessions;
 }
 
-async function envoyerDemandeAvis(destinataire, session, brevoKey) {
+function prenomAcheteur(session) {
+  const details = session.customer_details || {};
+  const [premierMot] = (details.individual_name || details.name || "").trim().split(/\s+/, 1);
+  const prenom = formaterNomOffrant(premierMot);
+  return /^\p{L}[\p{L}\p{M}'’-]*$/u.test(prenom) ? prenom : "";
+}
+
+async function envoyerDemandeTemoignage(destinataire, session, brevoKey, fetchImpl = fetch) {
   const noms = produitsDeSession(session).map((id) => PRODUITS[id].nom).join(" + ");
-  const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
+  const questions = readFileSync(join(__dirname, "_ressources", FICHIER_QUESTIONS));
+  const empreinte = createHash("sha256").update(`temoignage-video:${session.id}`).digest();
+  empreinte[6] = (empreinte[6] & 0x0f) | 0x40;
+  empreinte[8] = (empreinte[8] & 0x3f) | 0x80;
+  const hex = empreinte.subarray(0, 16).toString("hex");
+  const cleRequete = `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+  const resp = await fetchImpl("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
     headers: { "Content-Type": "application/json", "api-key": brevoKey, accept: "application/json" },
     body: JSON.stringify({
-      templateId: TEMPLATE_DEMANDE_AVIS,
-      sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
+      templateId: TEMPLATE_TEMOIGNAGE_VIDEO,
+      sender: { name: "Julien", email: "contact@trajectoiredroit.com" },
       replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
       to: [{ email: destinataire }],
-      params: { SESSION: session.id, PRODUIT: noms },
-      tags: ["demande-avis-j7"],
+      params: { PRENOM: prenomAcheteur(session), PRODUIT: noms },
+      attachment: [{ name: FICHIER_QUESTIONS, content: questions.toString("base64") }],
+      headers: { idempotencyKey: cleRequete },
+      tags: ["temoignage-video-j21"],
     }),
   });
-  if (!resp.ok) throw new Error(`Brevo ${resp.status}: ${await resp.text()}`);
+  if (!resp.ok) {
+    const detail = await resp.json().catch(() => ({}));
+    if (detail.code === "duplicate_parameter" && /idempotency/i.test(detail.message || "")) return false;
+    throw new Error(`Brevo ${resp.status}`);
+  }
+  return true;
 }
 
 async function relancerAvis(dep, options = {}) {
-  const sessions = await (dep.listerSessionsJ7 || listerSessionsJ7)(options.maintenant || Date.now());
+  const sessions = await (dep.listerSessionsTemoignage || listerSessionsTemoignage)(options.maintenant ?? Date.now());
   const bilan = { examinees: sessions.length, envoyees: 0, ignorees: 0, erreurs: 0 };
+  const sollicites = new Set();
   for (const session of sessions) {
     const meta = session.metadata || {};
     const email = emailBeneficiaire(session);
+    const cleEmail = email?.toLowerCase();
     if (!sessionEligible(session) || modeSession(session) === "test" || meta.brand === "trajectoire_philo"
-      || meta.cadeauEmail || refuseEmails(session) || !email || await avisExistant(session.id, dep)) {
+      || meta.cadeauEmail || refuseEmails(session) || !email || sollicites.has(cleEmail)
+      || await avisExistant(session.id, dep)) {
       bilan.ignorees++;
       continue;
     }
     try {
-      await (dep.envoyerDemandeAvis || envoyerDemandeAvis)(dep.destinataireForce || email, session, process.env.BREVO_API_KEY);
-      bilan.envoyees++;
+      const envoye = await (dep.envoyerDemandeTemoignage || envoyerDemandeTemoignage)(
+        dep.destinataireForce || email, session, process.env.BREVO_API_KEY);
+      sollicites.add(cleEmail);
+      if (envoye === false) bilan.ignorees++;
+      else bilan.envoyees++;
     } catch (e) {
       bilan.erreurs++;
-      console.error("demande d'avis:", e && e.message ? e.message : "erreur inconnue");
+      console.error("demande de témoignage vidéo:", e && e.message ? e.message : "erreur inconnue");
     }
   }
   return bilan;
@@ -450,6 +493,8 @@ module.exports._test = {
   handler,
   relancerAvis,
   refuseEmails,
+  fenetreAchatsTemoignage,
+  envoyerDemandeTemoignage,
   matiereDepuisProduit,
   citationsPourMatiere,
   contexteFicheOfferte,

@@ -16,6 +16,9 @@
     }
   ],
   "functions": {
+    "api/avis.js": {
+      "includeFiles": "api/_ressources/questions-temoignage.pdf"
+    },
     "api/generer.js": {
       "maxDuration": 800,
       "includeFiles": "api/_portalis-pdf-worker.js"
