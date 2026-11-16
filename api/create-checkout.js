@@ -126,7 +126,27 @@ function couponCorrigeUtilisable(promo) {
   return !restrictions.first_time_transaction && restrictions.minimum_amount == null;
 }
 
-function appliquerRemiseParProduit(params, { ids, eligibles, code, mode, description, promotion }) {
+async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande, dejaAcheteur, promoCadeauEleve }) {
+  const codeCadeau = codeCadeauEleve(codeDemande);
+  if (codeCadeau) {
+    return appliquerCodePromo(avecProduitCadeauEleve(params, PRODUITS[ids[0]], codeCadeau), {
+      promo: promoCadeauEleve, codeDemande, dejaAcheteur,
+    });
+  }
+  const codeCorrige = codeDemande.toUpperCase() === "CORRIGE10";
+  const eligibles = ids.map(eligibleCorrige10);
+  // Un code de corrigé mémorisé n'empêche jamais l'achat d'un autre format.
+  if (codeCorrige && !eligibles.some(Boolean)) {
+    return appliquerCodePromo(params, { promo: null, codeDemande: "", dejaAcheteur });
+  }
+  const promo = await chercherCodePromo(stripe, codeDemande);
+  if (!codeCorrige || eligibles.every(Boolean)) {
+    return appliquerCodePromo(params, { promo, codeDemande, dejaAcheteur });
+  }
+  if (!couponCorrigeUtilisable(promo)) {
+    return appliquerCodePromo(params, { promo: null, codeDemande: "", dejaAcheteur });
+  }
+
   let montantRemise = 0;
   const lignes = params.line_items.map((ligne, index) => {
     if (!eligibles[index]) return ligne;
@@ -134,22 +154,25 @@ function appliquerRemiseParProduit(params, { ids, eligibles, code, mode, descrip
     const remise = Math.round(prix * 10 / 100);
     montantRemise += remise * ligne.quantity;
     const donnees = ligne.price_data.product_data;
+    const precision = ids[index] === MAJEURES_CONTRATS_CORRIGE10
+      ? "Le prix de ces majeures préparées comprend la réduction de 10 % du code CORRIGE10."
+      : "Le prix de ce recueil comprend la réduction de 10 % du code CORRIGE10.";
     return {
       ...ligne,
       price_data: {
         ...ligne.price_data,
         unit_amount: prix - remise,
-        product_data: { ...donnees, description: [donnees.description, description(ids[index])].filter(Boolean).join(" ") },
+        product_data: { ...donnees, description: [donnees.description, precision].filter(Boolean).join(" ") },
       },
     };
   });
   const metadataRemise = {
-    codePromoLien: code,
-    codePromoMode: mode,
+    codePromoLien: "CORRIGE10",
+    codePromoMode: "prix-recueils",
+    codePromoPromotion: promo.id,
     codePromoMontantCentimes: String(montantRemise),
     codePromoProduits: ids.filter((_, index) => eligibles[index]).join(",").slice(0, 500),
   };
-  if (promotion) metadataRemise.codePromoPromotion = promotion;
   const suite = {
     ...params,
     line_items: lignes,
@@ -168,47 +191,6 @@ function appliquerRemiseParProduit(params, { ids, eligibles, code, mode, descrip
     };
   }
   return suite;
-}
-
-async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande, dejaAcheteur, promoCadeauEleve }) {
-  const codeCadeau = codeCadeauEleve(codeDemande);
-  if (codeCadeau) {
-    return appliquerCodePromo(avecProduitCadeauEleve(params, PRODUITS[ids[0]], codeCadeau), {
-      promo: promoCadeauEleve, codeDemande, dejaAcheteur,
-    });
-  }
-  const code = codeDemande.toUpperCase();
-  if (code === "MAJEURES10") {
-    const eligibles = ids.map((id) => /^(maj-|pack-majeures-)/.test(id));
-    if (!eligibles.some(Boolean)) {
-      return appliquerCodePromo(params, { promo: null, codeDemande: "", dejaAcheteur });
-    }
-    // Code appliqué par les liens de la boutique. Seules les lignes de majeures
-    // et les packs de majeures bénéficient de la réduction dans un panier mixte.
-    return appliquerRemiseParProduit(params, {
-      ids, eligibles, code, mode: "prix-majeures",
-      description: () => "Le prix comprend la réduction de 10 % du code MAJEURES10.",
-    });
-  }
-  const codeCorrige = code === "CORRIGE10";
-  const eligibles = ids.map(eligibleCorrige10);
-  // Un code de corrigé mémorisé n'empêche jamais l'achat d'un autre format.
-  if (codeCorrige && !eligibles.some(Boolean)) {
-    return appliquerCodePromo(params, { promo: null, codeDemande: "", dejaAcheteur });
-  }
-  const promo = await chercherCodePromo(stripe, codeDemande);
-  if (!codeCorrige || eligibles.every(Boolean)) {
-    return appliquerCodePromo(params, { promo, codeDemande, dejaAcheteur });
-  }
-  if (!couponCorrigeUtilisable(promo)) {
-    return appliquerCodePromo(params, { promo: null, codeDemande: "", dejaAcheteur });
-  }
-  return appliquerRemiseParProduit(params, {
-    ids, eligibles, code, mode: "prix-recueils", promotion: promo.id,
-    description: (id) => id === MAJEURES_CONTRATS_CORRIGE10
-      ? "Le prix de ces majeures préparées comprend la réduction de 10 % du code CORRIGE10."
-      : "Le prix de ce recueil comprend la réduction de 10 % du code CORRIGE10.",
-  });
 }
 
 // Crée la session. Si Stripe refuse la remise (code expiré ou épuisé entre la

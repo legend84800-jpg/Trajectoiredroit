@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Sujets de droit du travail L3 avec un cas corrigé (2026)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Douze sujets de droit du travail L3, des sources au transfert du contrat, avec un cas corrigé sur la reprise d’une blanchisserie d’hôtel par un prestataire.">
+  <link rel="canonical" href="https://trajectoiredroit.com/sujets-droit-du-travail-l3.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sujets de droit du travail L3 avec un cas corrigé (2026)">
+  <meta property="og:description" content="Douze sujets de droit du travail L3, des sources au transfert du contrat, avec un cas corrigé sur la reprise d’une blanchisserie d’hôtel par un prestataire.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/sujets-droit-du-travail-l3.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/sujets-droit-du-travail-l3.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sujets de droit du travail L3 avec un cas corrigé (2026)">
+  <meta name="twitter:description" content="Douze sujets de droit du travail L3, des sources au transfert du contrat, avec un cas corrigé sur la reprise d’une blanchisserie d’hôtel par un prestataire.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/sujets-droit-du-travail-l3.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Sujets de droit du travail L3 avec un cas pratique corrigé sur le transfert d’entreprise",
+      "description": "Douze sujets de droit du travail L3, des sources au transfert du contrat, avec un cas corrigé sur la reprise d’une blanchisserie d’hôtel par un prestataire.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-11-16",
+      "dateModified": "2026-11-16",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Douze sujets de droit du travail L3 et un cas pratique corrigé sur le transfert des contrats de travail quand une activité passe à un repreneur"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/sujets-droit-du-travail-l3.webp",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/sujets-droit-du-travail-l3.html"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sujets de droit du travail L3",
+          "item": "https://trajectoiredroit.com/sujets-droit-du-travail-l3.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quels sujets de droit du travail préparer en L3 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les douze sujets portent sur plusieurs grands thèmes du premier semestre, depuis les sources du droit du travail jusqu’au transfert du contrat. Le cas corrigé traite la reprise d’une blanchisserie d’hôtel par un prestataire."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que devient le contrat de travail quand l’entreprise change d’employeur ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Selon l’article L. 1224-1 du Code du travail, quand survient une modification dans la situation juridique de l’employeur, tous les contrats de travail en cours au jour de la modification subsistent entre le nouvel employeur et le personnel. Le texte s’applique si une entité économique autonome conserve son identité. Cette entité est un ensemble organisé de personnes et d’éléments corporels ou incorporels qui permet d’exercer une activité économique poursuivant un objectif propre."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Un salarié licencié juste avant un transfert peut-il agir contre le repreneur ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. La chambre sociale le rappelle dans son arrêt du 21 janvier 2026 (pourvoi n° 24-21.142), qui reprend une solution de l’arrêt du 20 mars 2002 (pourvoi n° 00-41.651). Le salarié licencié à l’occasion du transfert de son entité, dont le licenciement est dépourvu d’effet, peut alors, à son choix, demander au repreneur la poursuite de son contrat ou demander à la société qui l’a licencié réparation du préjudice résultant de la rupture. En outre, ces conséquences se réparent selon l’article L. 1235-3 du Code du travail."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel PDF choisir pour refaire des cas pratiques de droit du travail L3 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si tu veux refaire des cas pratiques, prends le recueil, car il contient dix cas pratiques et trois sujets types de partiel, tous corrigés. De plus, la fiche complète de 154 pages revoit tout le cours du premier semestre. La page du droit du travail L3 présente tous les supports."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=5bc99c11">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style id="exemples-pedagogiques-page">
+  .biens-hero { padding-top:48px; }
+  .biens-hero .hero__cta { margin-top:24px; }
+  @media (max-width:700px) {
+    .biens-hero { padding-top:24px; }
+    .biens-hero .hero__cta { gap:10px; }
+    .biens-hero .hero__cta .btn {
+      flex:1 1 132px;
+      width:auto;
+      min-height:44px;
+      font-size:.875rem;
+      padding:10px 12px;
+    }
+  }
+  @media (max-width:420px) {
+    .biens-hero { padding-top:12px; }
+    .biens-hero .hero__cta { margin-top:12px; }
+    .biens-hero .tjd-po { margin-top:12px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 474,64 €, 45 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-45 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">474,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 349,74 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">349,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 449,67 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">449,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 399,70 €, 40 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-40 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 43 ressources, 329 € au lieu de 579,57 €, 43 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-43 %</span></span>
+                    <span class="megamenu__pack-tile-meta">43 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">579,57 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>166 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes tes questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+    <main>
+<section class="section--sm biens-hero">
+<div class="container container--narrow text-center">
+<h1 class="h1">Sujets de droit du travail L3 avec un cas pratique corrigé sur le transfert d’entreprise</h1>
+<p class="lead" style="max-width:720px;margin-left:auto;margin-right:auto">Douze sujets de droit du travail L3 portent sur plusieurs grands thèmes du premier semestre. Chacun donne un énoncé, puis les articles et les arrêts à vérifier dans ta copie. Un cas corrigé porte sur le transfert d’entreprise. Dans ce cas, un prestataire, le repreneur, exploite la blanchisserie d’un hôtel dans la même salle et avec les mêmes machines, et l’activité garde alors son identité. Les salariés de cette activité changent donc automatiquement d’employeur, même si le repreneur annonce qu’il ne reprendra personne.</p>
+<div class="hero__cta flex flex--center">
+<a class="btn btn--primary btn--lg" href="#banque">Les douze sujets →</a>
+<a class="btn btn--outline btn--lg" href="#cas-pratique">Le cas corrigé</a>
+</div>
+<div data-tjd-pdf-offert="matiere" data-id="cas-pratique-travail-l3" data-titre="Un autre cas corrigé de droit du travail, offert en PDF" data-texte="Je t’envoie par email un autre cas que celui de cette page. Il porte sur la naissance du contrat de travail, avec un énoncé de L3 et sa correction complète." data-bouton="Recevoir le cas pratique"></div>
+</div>
+</section>
+<section class="conversion-offer" aria-labelledby="offre-travail-sujets-titre">
+<div class="container container--narrow">
+<div class="conversion-offer__card">
+<div class="conversion-offer__visual"><img src="assets/covers/exercices-20260923/cas-pratique-travail-l3.webp" alt="Couverture du recueil de cas pratiques corrigés de droit du travail L3, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
+<div>
+<p class="conversion-offer__eyebrow">Droit du travail L3, semestre 1</p>
+<h2 class="conversion-offer__title" id="offre-travail-sujets-titre">Le recueil de cas pratiques corrigés et la fiche du cours</h2>
+<p class="conversion-offer__summary">Le recueil de 124 pages corrige dix cas pratiques en entier et trois sujets types de partiel. La fiche complète de 154 pages, vendue séparément, suit le programme du premier semestre, de l’introduction au droit du travail jusqu’à la rupture du contrat.</p>
+<ul class="conversion-offer__benefits">
+<li>Un accès immédiat au PDF choisi après le paiement</li>
+</ul>
+<button type="button" class="apercu-link" data-apercu='["assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p001.webp","assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p002.webp","assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p003.webp","assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p005.webp"]' data-apercu-title="Cas pratiques corrigés Droit du travail L3" data-apercu-price="14,99 €" data-apercu-cta="cas-pratique-travail-l3" data-apercu-sub="Le sommaire du recueil, puis le début du premier cas pratique corrigé, avec son énoncé."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Voir un aperçu du recueil</button>
+<div class="conversion-offer__choices">
+<button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="cas-pratique-travail-l3">Acheter le recueil · 14,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="fiche-travail-l3-s1">Acheter la fiche · 14,99 €</button>
+</div>
+<p class="conversion-offer__note">Si tu hésites entre les deux PDF, prends le recueil pour t’entraîner à rédiger et la fiche pour revoir le cours, y compris le transfert du contrat, traité au chapitre 13. La <a href="droit-du-travail-l3.html">page du droit du travail L3</a> présente tous les supports.</p>
+<div data-tjd-avis data-matiere="travail-l3"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="banque">
+<div class="container container--narrow">
+<div class="prose">
+<figure style="margin:0 0 32px"><img src="assets/blog/sujets-droit-du-travail-l3.webp" srcset="assets/blog/sujets-droit-du-travail-l3-640.webp 640w, assets/blog/sujets-droit-du-travail-l3.webp 1200w" sizes="(max-width:700px) 100vw, 800px" alt="Un établi de menuiserie avec un rabot et des gants usés, devant une veste de travail bleue accrochée au mur d’un atelier vide" width="1200" height="675" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"></figure>
+<h2>Douze sujets pour préparer ton partiel de droit du travail L3</h2>
+<p>Pour chaque sujet, tu formules d’abord la question de droit que l’énoncé pose, puis tu construis la réponse à partir de cette question. Les sujets « D’après un TD » reprennent le thème d’un exercice de TD, avec des faits réécrits.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Douze sujets de droit du travail L3 et leur piste de travail" style="overflow-x:auto">
+<table style="width:100%;min-width:660px;border-collapse:collapse">
+<thead><tr><th scope="col">Sujet</th><th scope="col">Travail demandé</th><th scope="col">Ce qu’il faut vérifier dans ta copie</th></tr></thead>
+<tbody>
+<tr><th colspan="3" scope="colgroup">Les sources du droit du travail et le contrat</th></tr>
+<tr><th scope="row">1. Une journée offerte pour la rentrée des classes<br><small>D’après un TD de droit du travail L3 sur les sources du droit du travail</small></th><td>En 2024 et en 2025, une entreprise de quarante salariés a accordé une journée de congé payé pour la rentrée des classes à onze parents qui l’avaient demandée. En 2026, elle la refuse à Thibault, dont l’enfant entre en sixième, car aucune loi ni convention collective ne la prévoit. Thibault peut-il l’exiger, et l’entreprise peut-elle supprimer cet avantage ?</td><td>Une pratique devient un usage quand elle est générale, constante et fixe. En effet, la chambre sociale de la Cour de cassation approuve les juges qui ont examiné les faits et retenu un usage répondant à ces trois critères (arrêt du 24 février 2009, pourvoi n° 07-43.308, non publié au bulletin). L’employeur peut ensuite mettre fin à l’usage en le dénonçant. Pour être régulière, la dénonciation doit être précédée d’un préavis suffisant pour permettre des négociations et notifiée aux représentants du personnel et à tous les salariés individuellement lorsque l’usage leur profite (arrêt du 28 janvier 2015, pourvoi n° 13-24.242).</td></tr>
+<tr><th scope="row">2. Le principe de faveur a-t-il disparu du droit du travail ?<br><small>Sujet de dissertation rédigé pour cette page</small></th><td>Discute cette question en deux parties. La première montre où la règle la plus favorable au salarié s’applique encore. La seconde montre où l’accord d’entreprise l’emporte sur la convention de branche, même quand il est moins favorable.</td><td>Le principe de faveur subsiste entre un accord collectif et le contrat de travail. En effet, selon l’article L. 2254-1, les clauses d’un accord s’appliquent aux contrats, sauf stipulations plus favorables. Entre la branche et l’entreprise, en revanche, la solution dépend de la matière. Dans les treize matières de l’article L. 2253-1, la branche prévaut sauf si l’accord d’entreprise assure des garanties au moins équivalentes, appréciées par ensemble de garanties se rapportant à la même matière. Dans les quatre matières de l’article L. 2253-2, quand la branche le stipule expressément, l’accord d’entreprise conclu après elle ne peut pas prévoir de stipulations différentes, sauf garanties au moins équivalentes. Enfin, partout ailleurs, l’article L. 2253-3 donne la priorité à l’accord d’entreprise.</td></tr>
+<tr><th scope="row">3. Des CDD de remplacement qui se suivent pendant deux ans<br><small>Cas pratique rédigé pour cette page</small></th><td>Une librairie engage Anouk par un contrat à durée déterminée (CDD) de trois mois pour remplacer une libraire en congé de maternité. Six autres CDD suivent en vingt-quatre mois, dont cinq pour remplacer des libraires absentes et un pour l’afflux de clients de décembre. Anouk demande la requalification en contrat à durée indéterminée (CDI). Les contrats sont-ils réguliers, et que peut-elle obtenir ?</td><td>Un CDD ne peut pas pourvoir durablement un emploi lié à l’activité normale et permanente de l’entreprise, quel que soit son motif (article L. 1242-1). Il se conclut dans les <a href="le-contrat-a-duree-determinee-les-cas-de-recours.html">cas de recours de l’article L. 1242-2</a>, dont le remplacement d’un salarié absent et l’accroissement temporaire d’activité. L’article L. 1244-1 autorise ensuite des CDD successifs avec le même salarié pour remplacer un salarié absent, mais sa liste ne cite pas l’accroissement d’activité. Un contrat conclu en méconnaissance des articles L. 1242-1 et L. 1242-2 est donc réputé à durée indéterminée (article L. 1245-1), et le conseil de prud’hommes qui requalifie accorde au salarié une indemnité d’au moins un mois de salaire (article L. 1245-2).</td></tr>
+<tr><th colspan="3" scope="colgroup">Les pouvoirs de l’employeur et les libertés du salarié</th></tr>
+<tr><th scope="row">4. Une barbe jugée contraire à l’image de l’agence<br><small>D’après un TD de droit du travail L3 sur les pouvoirs de l’employeur</small></th><td>La directrice d’une agence immobilière demande à trois conseillers de raser leur barbe, qu’elle juge contraire à l’image de l’agence. Le règlement intérieur impose seulement une tenue soignée. Deux conseillers refusent, et elle les convoque à un entretien préalable à une sanction. L’un d’eux explique que sa barbe exprime ses convictions religieuses. Peut-elle les sanctionner ?</td><td>Le règlement intérieur a un contenu limité, fixé par l’article L. 1321-1, qui porte notamment sur la santé et la sécurité, ainsi que sur les règles générales de discipline. Régulièrement pris, il s’impose aussi à l’employeur (arrêt du 25 septembre 1991, pourvoi n° 87-42.396). De plus, une restriction aux libertés individuelles doit être justifiée par la nature de la tâche et proportionnée au but recherché (articles L. 1121-1 et L. 1321-3, 2°). L’apparence physique et les convictions religieuses figurent parmi les motifs de discrimination interdits (article L. 1132-1). Enfin, dans une affaire de barbe, la chambre sociale approuve les juges qui ont vu une discrimination directe fondée sur les convictions (arrêt du 8 juillet 2020, pourvoi n° 18-23.743). L’employeur ne produisait ni règlement intérieur ni note de service précisant les restrictions imposées pour des raisons de sécurité, et il ne démontrait pas de risque de sécurité spécifique lié à la barbe dans la mission du salarié.</td></tr>
+<tr><th scope="row">5. Un foulard devant les clients<br><small>Question de cours rédigée pour cette page</small></th><td>Une société de conseil informatique interdit dans son règlement intérieur tout signe religieux, politique ou philosophique devant les clients. Une ingénieure refuse d’enlever son foulard, et la société la licencie parce qu’un client ne veut plus travailler avec elle. À quelles conditions une clause de neutralité est-elle valable, et le souhait du client suffit-il à justifier ce licenciement ?</td><td>L’article L. 1321-2-1 permet une clause de neutralité dans le règlement intérieur, si ses restrictions sont justifiées par d’autres droits fondamentaux ou par les nécessités du bon fonctionnement de l’entreprise et proportionnées au but recherché. La chambre sociale juge qu’une clause générale et indifférenciée, inscrite dans le règlement intérieur ou une note de service, est possible dès lors qu’elle s’applique aux seuls salariés en contact avec les clients (arrêts du 22 novembre 2017, pourvoi n° 13-19.855, et du 8 juillet 2020, pourvoi n° 18-23.743). De plus, après la réponse de la Cour de justice de l’Union européenne du 14 mars 2017, la chambre sociale juge que la volonté d’un employeur de tenir compte du souhait d’un client de ne plus voir ses services assurés par une salariée portant un foulard islamique ne constitue pas une exigence professionnelle essentielle et déterminante (arrêt du 22 novembre 2017). Enfin, si la salariée refuse de se conformer à la clause, l’employeur doit rechercher s’il peut, sans charge supplémentaire, lui proposer un poste sans contact visuel avec les clients plutôt que de la licencier (même arrêt).</td></tr>
+<tr><th scope="row">6. Un licenciement dix jours après la saisine du conseil de prud’hommes<br><small>D’après un arrêt étudié en TD de droit du travail L3 sur le licenciement pour motif personnel</small></th><td>Une assistante de direction saisit le conseil de prud’hommes pour obtenir ses heures supplémentaires. Dix jours plus tard, son employeur la licencie pour des retards répétés, pointages à l’appui. Elle soutient que ce licenciement sanctionne son action en justice et demande qu’il soit déclaré nul, avec au moins six mois de salaire. Quelle preuve incombe à chacun, et que peut obtenir l’assistante si le juge lui donne raison ?</td><td>Le juge examine d’abord les faits de la lettre de licenciement. Quand ils caractérisent une cause réelle et sérieuse, le salarié doit démontrer que la rupture est une mesure de représailles contre une action en justice introduite pour faire valoir ses droits (arrêt du 9 octobre 2019, pourvoi n° 17-24.773). En revanche, quand le licenciement est dépourvu de cause réelle et sérieuse et suit l’action en justice, l’employeur doit établir que sa décision repose sur des éléments étrangers à toute volonté de sanctionner le droit d’agir en justice (arrêt du 1er avril 2026, pourvoi n° 24-17.822, non publié au bulletin). Si l’employeur n’apporte pas cette preuve, le licenciement est nul, car il porte atteinte à une liberté fondamentale, et le barème d’indemnités de l’article L. 1235-3 ne s’applique pas. Si la salariée ne demande pas sa réintégration, ou si celle-ci est impossible, elle reçoit une indemnité au moins égale aux salaires des six derniers mois (article L. 1235-3-1).</td></tr>
+<tr><th colspan="3" scope="colgroup">La santé, la durée du travail et les congés</th></tr>
+<tr><th scope="row">7. Un hayon élévateur qui se bloque<br><small>D’après un TD de droit du travail L3 sur la santé au travail</small></th><td>Un livreur constate que le hayon élévateur de son camion, la plateforme qui monte et descend les charges à l’arrière, se bloque en position haute et menace de retomber au déchargement. Il prévient aussitôt le responsable, qui lui ordonne de faire quand même sa tournée. Le livreur reste au dépôt, et l’employeur retient la demi-journée sur son salaire puis lui adresse un avertissement. Le livreur pouvait-il se retirer, et l’employeur pouvait-il le sanctionner ?</td><td>Le travailleur alerte immédiatement l’employeur de toute situation de travail dont il a un motif raisonnable de penser qu’elle présente un danger grave et imminent pour sa vie ou sa santé, ainsi que de toute défectuosité qu’il constate dans les systèmes de protection. Il peut se retirer d’une telle situation, et l’employeur ne peut pas lui demander de reprendre son activité dans une situation de travail où persiste un danger grave et imminent (article L. 4131-1). Aucune sanction ni retenue de salaire ne peut être appliquée au travailleur qui s’est retiré avec ce motif raisonnable (article L. 4131-3). L’article L. 4121-1 impose en outre à l’employeur de protéger la sécurité de ses salariés, ici en faisant réparer le hayon.</td></tr>
+<tr><th scope="row">8. Un avis d’inaptitude qui exclut tout maintien dans l’emploi<br><small>D’après un TD de droit du travail L3 sur la santé au travail</small></th><td>Après huit mois d’arrêt pour une hernie discale sans lien avec son travail, une magasinière est déclarée inapte par le médecin du travail, qui écrit que tout maintien dans un emploi serait gravement préjudiciable à sa santé. L’employeur ne fait rien pendant six semaines, puis il la convoque à un entretien préalable. Elle réclame son salaire depuis la visite de reprise. Peut-il la licencier sans chercher à la reclasser, et doit-il payer ces six semaines ?</td><td>Quand le médecin du travail déclare inapte un salarié victime d’une maladie non professionnelle, l’employeur lui propose en principe un autre emploi approprié (article L. 1226-2). Toutefois, il peut rompre le contrat sans cette proposition si l’avis mentionne expressément que tout maintien dans un emploi serait gravement préjudiciable à la santé du salarié, ou que son état fait obstacle à tout reclassement (article L. 1226-2-1), en suivant la procédure du licenciement pour motif personnel. Enfin, un mois après l’examen médical de reprise, le salaire redevient dû si le salarié n’est ni reclassé ni licencié (article L. 1226-4). La magasinière peut donc réclamer son salaire à partir du jour où le délai d’un mois après l’examen médical de reprise est écoulé.</td></tr>
+<tr><th scope="row">9. Cinquante-sept heures par semaine et dix heures et demie de repos<br><small>D’après un TD de droit du travail L3 sur la durée du travail</small></th><td>Un chauffeur-livreur travaille du lundi au jeudi de 6 h à 19 h 30 avec une heure de pause, et le vendredi de 6 h à 13 h sans pause. Il termine à 19 h 30 et reprend à 6 h le lendemain. Il réclame ses heures supplémentaires des deux dernières années, avec un tableau d’horaires qu’il remplissait chaque soir. L’employeur n’a aucun décompte. Quelles limites sont dépassées, comment calcule-t-on les majorations, et comment prouve-t-on les heures ?</td><td>Le travail effectif ne peut pas dépasser dix heures par jour sauf dérogation (article L. 3121-18), quarante-huit heures par semaine (article L. 3121-20), ni quarante-quatre heures en moyenne sur douze semaines consécutives (article L. 3121-22). Le repos quotidien dure au moins onze heures consécutives (article L. 3131-1). Si le chauffeur peut vaquer librement à ses occupations pendant sa pause d’une heure, elle ne compte pas comme travail effectif (articles L. 3121-1 et L. 3121-2). Il travaille alors 57 heures par semaine, soit quatre journées de 12 heures 30 et une de 7 heures. Au-delà de la durée légale de trente-cinq heures (article L. 3121-27), il effectue 22 heures supplémentaires par semaine, dont les huit premières sont majorées de 25 % et les suivantes de 50 %, à défaut d’accord (article L. 3121-36). Enfin, pour prouver ses heures, le salarié présente des éléments suffisamment détaillés sur ses horaires, auxquels l’employeur répond (arrêt du 18 mars 2020, pourvoi n° 18-10.919).</td></tr>
+<tr><th scope="row">10. Huit mois d’arrêt maladie et des congés payés à calculer<br><small>Cas pratique rédigé pour cette page</small></th><td>Une employée de bureau travaille de juin à septembre 2025, puis elle est en arrêt maladie sans lien avec son travail d’octobre 2025 à mai 2026 et reprend le 1er juin 2026. La période de référence des congés va du 1er juin au 31 mai. Combien de jours ouvrables de congé a-t-elle acquis, sachant que les jours ouvrables sont tous les jours sauf le dimanche et les jours fériés chômés, et que prévoit la loi si sa maladie l’avait empêchée de prendre ses congés pendant la période de prise de congés ?</td><td>Le salarié acquiert deux jours et demi ouvrables par mois de travail effectif, dans la limite de trente jours (article L. 3141-3). Toutefois, un arrêt pour maladie non professionnelle compte dans le calcul de la durée du congé (article L. 3141-5, 7°), à raison de deux jours ouvrables par mois et de vingt-quatre au maximum par période de référence (article L. 3141-5-1). L’employée acquiert donc 10 jours pour les quatre mois travaillés et 16 jours pour les huit mois d’arrêt, soit 26 jours ouvrables. Ensuite, si la maladie empêche le salarié de prendre ses congés pendant la période de prise de congés, il bénéficie d’une période de report de quinze mois (article L. 3141-19-1). Cette période débute à la date où il reçoit, après sa reprise, les informations de l’employeur sur ses jours de congé et leur date limite (article L. 3141-19-3). Si les congés ont été acquis pendant un arrêt pour maladie ou accident et que le contrat est suspendu pour cette cause depuis au moins un an à la fin de la période de référence, elle débute dès cette date, puis, si elle n’a pas expiré à la reprise, elle est suspendue jusqu’à cette information (article L. 3141-19-2).</td></tr>
+<tr><th colspan="3" scope="colgroup">La discrimination et le transfert du contrat</th></tr>
+<tr><th scope="row">11. Une promotion refusée au retour du congé de maternité<br><small>Cas pratique rédigé pour cette page</small></th><td>À son retour de congé de maternité, une conseillère de clientèle apprend que le poste de responsable d’agence, ouvert pendant son absence, est attribué à un collègue embauché après elle. Devant deux collègues, le directeur lui a dit qu’on ne confie pas une agence à quelqu’un qui va avoir un deuxième enfant. La banque invoque les meilleurs résultats commerciaux de ce collègue. La conseillère saisit le conseil de prud’hommes. Qui doit prouver quoi, et que risque la banque ?</td><td>Aucun salarié ne peut faire l’objet d’une mesure discriminatoire, notamment en matière de promotion professionnelle, en raison de sa situation de famille ou de sa grossesse (article L. 1132-1). Le salarié présente des éléments de fait laissant supposer une discrimination, et la partie défenderesse, ici la banque, doit alors prouver que sa décision repose sur des éléments objectifs étrangers à toute discrimination (article L. 1134-1). Les propos du directeur forment un élément de fait. Le juge examine ensuite si les résultats commerciaux que la banque produit constituent des éléments objectifs étrangers à toute discrimination. Un acte pris en méconnaissance de ces règles est nul (article L. 1132-4).</td></tr>
+<tr><th scope="row">12. Un salarié mis à disposition dans un groupe et l’activité cédée<br><small>Sujet de commentaire d’arrêt rédigé pour cette page</small></th><td>Commente l’<a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000053029158/" rel="noopener">arrêt de la chambre sociale de la Cour de cassation du 10 décembre 2025</a> (pourvoi n° 23-11.819). Un directeur est engagé par une association de gestion, puis mis à disposition d’une autre association du même groupe. L’activité de cette seconde association est cédée à une institution extérieure au groupe. Son employeur d’origine le licencie après la cession, et la cour d’appel juge l’article L. 1224-1 inapplicable parce qu’il n’est pas le salarié de l’association cédée.</td><td>La Cour de cassation annule l’arrêt de la cour d’appel, sauf en ce qu’il rejette une demande de dommages-intérêts pour comportements déloyaux. Elle juge que, lorsque l’activité d’une entreprise d’un groupe, constituant une entité économique autonome, est transférée à une entreprise extérieure au groupe, les salariés qui, au jour du transfert, sont affectés de manière permanente à cette entité pour l’exécution de leur tâche habituelle passent au service du repreneur. Elle s’appuie en outre sur l’arrêt Albron de la Cour de justice de l’Union européenne du 21 octobre 2010, qui admet qu’un employeur non contractuel soit regardé comme un cédant, autrement dit comme l’employeur qui transfère l’activité. Le <a href="methode-commentaire-arret.html">commentaire d’arrêt</a> discute la distinction que la Cour fait entre une affectation permanente et une affectation occasionnelle.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="cas-pratique">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Cas pratique corrigé, une blanchisserie d’hôtel reprise par un prestataire</h2>
+<h3>L’énoncé</h3>
+<p>L’hôtel du Parc, à Bourges, possède une blanchisserie installée depuis 2010 dans une salle de son sous-sol. Elle comprend quatre machines industrielles et une calandre, qui repasse le linge à plat. Ces équipements appartiennent à l’hôtel. Cinq salariés y travaillent tous à plein temps, dans cette salle. Odile Pellerin, responsable de la blanchisserie, est en CDI depuis 2012. Fabien Lopez est en CDD jusqu’au 31 décembre 2026. Ludivine Maillard est repasseuse depuis 2014.</p>
+<p>Le 1er septembre 2026, l’hôtel signe un contrat avec la société Linéa Blanc. À partir du 6 octobre 2026, Linéa Blanc exploitera la blanchisserie dans la même salle, avec les mêmes machines que l’hôtel lui loue. Elle lavera le linge de l’hôtel. Linéa Blanc annonce qu’elle ne reprendra aucun salarié et qu’elle recrutera ses propres équipes.</p>
+<p>Le 15 septembre 2026, l’hôtel notifie à Ludivine Maillard son licenciement pour motif économique, en invoquant la suppression de son poste. L’hôtel ne verse pas non plus à Odile Pellerin la prime de 1 100 euros que la direction lui a promise par écrit pour le 15 septembre 2026.</p>
+<p><strong>Questions.</strong> 1. Les contrats d’Odile Pellerin et de Fabien Lopez passent-ils à Linéa Blanc, malgré son refus de reprendre personne ? 2. Que peut faire Ludivine Maillard, licenciée trois semaines avant la reprise ? 3. Linéa Blanc doit-elle payer à Odile Pellerin la prime de septembre 2026 ?</p>
+<h3>Au brouillon, trois repères à marquer sur l’énoncé</h3>
+<p>Tu relis l’énoncé avec un crayon avant de rédiger, comme le détaille la <a href="methode-cas-pratique.html">méthode du cas pratique</a>, et tu entoures trois passages. En marge, tu notes ce que chacun annonce.</p>
+<ol>
+<li><strong>[à partir du 6 octobre 2026, dans la même salle, avec les mêmes machines]</strong> → L’activité change d’exploitant en gardant ses locaux et son matériel, ce qui pose la question de l’entité économique</li>
+<li><strong>[Linéa Blanc annonce qu’elle ne reprendra aucun salarié]</strong> → Une annonce du repreneur, dont il faut vérifier si elle peut changer ce que prévoit l’article L. 1224-1</li>
+<li><strong>[Le 15 septembre 2026, l’hôtel notifie à Ludivine Maillard son licenciement]</strong> → Un licenciement notifié trois semaines avant la reprise par l’employeur qui cède l’activité</li>
+</ol>
+<h3>1. Les contrats d’Odile Pellerin et de Fabien Lopez passent-ils à Linéa Blanc ?</h3>
+<p><strong>Faits utiles.</strong> Un CDI et un CDD sont en cours le 6 octobre 2026, jour de la reprise.</p>
+<p><strong>Question de droit.</strong> Les contrats des salariés d’une activité passent-ils au repreneur quand cette activité change d’exploitant, et l’annonce du repreneur change-t-elle quelque chose ?</p>
+<p><strong>Rappel du droit applicable.</strong> Selon l’article L. 1224-1 du Code du travail, lorsque survient une modification dans la situation juridique de l’employeur, tous les contrats de travail en cours au jour de la modification subsistent entre le nouvel employeur et le personnel de l’entreprise. Le texte s’applique quand une entité économique autonome conserve son identité. La chambre sociale définit l’entité comme un ensemble organisé de personnes et d’éléments corporels (des machines, des locaux) ou incorporels (une clientèle, un contrat) permettant l’exercice d’une activité économique qui poursuit un objectif propre (arrêt du 31 janvier 2024, pourvoi n° 21-25.273). Dans cette affaire, la société entrante (le repreneur) avait repris un marché de prestations logistiques, dans les mêmes locaux et avec les mêmes équipements, pour la même activité, à laquelle quatorze salariés étaient affectés, et elle avait refusé de poursuivre leurs contrats. La Cour de cassation annule l’arrêt de la cour d’appel en ce qu’il avait écarté le transfert faute d’encadrement dédié à l’activité, car la circonstance que deux salariés encadrant l’activité n’aient pas été repris ne suffit pas à exclure le transfert. De plus, le changement d’employeur qui résulte de plein droit du transfert s’impose aux employeurs successifs comme aux salariés. Le salarié licencié pour avoir refusé ce changement ne peut donc prétendre ni à des indemnités de rupture ni à des dommages-intérêts (arrêt du 14 décembre 2004, pourvoi n° 03-41.713).</p>
+<p><strong>Application aux faits.</strong> En l’espèce, la blanchisserie forme une entité économique autonome. Cinq salariés y travaillent tous à plein temps, avec quatre machines et une calandre, sans partager leur temps avec un autre service de l’hôtel. Cet ensemble organisé poursuit donc un objectif propre, laver le linge de l’hôtel. De plus, son identité se maintient, car Linéa Blanc exploite la même salle avec les mêmes machines et garde l’hôtel comme client. Linéa Blanc recrute certes ses propres équipes. Dans l’arrêt de 2024, la société entrante avait pourtant refusé de poursuivre les contrats des quatorze salariés, et la Cour de cassation annule l’arrêt en ce qu’il avait écarté le transfert. Ensuite, les contrats sont en cours au 6 octobre 2026 et le texte les vise tous. Le contrat à durée indéterminée d’Odile Pellerin subsiste donc avec Linéa Blanc, et le contrat à durée déterminée de Fabien Lopez continue jusqu’au 31 décembre 2026. Enfin, l’annonce de Linéa Blanc reste sans effet, car la loi prévoit que le changement d’employeur résulte du transfert de l’entité. Ce changement s’impose aussi à Odile Pellerin et à Fabien Lopez.</p>
+<p><strong>Conclusion.</strong> Les contrats d’Odile Pellerin et de Fabien Lopez passent à Linéa Blanc le 6 octobre 2026, aux mêmes conditions.</p>
+<h3>2. Que peut faire Ludivine Maillard, licenciée trois semaines avant la reprise ?</h3>
+<p><strong>Faits utiles.</strong> Ludivine Maillard est licenciée le 15 septembre 2026, trois semaines avant la reprise.</p>
+<p><strong>Question de droit.</strong> Un licenciement notifié par l’ancien employeur peu avant le transfert empêche-t-il le contrat de passer au repreneur, et contre qui la salariée peut-elle agir ?</p>
+<p><strong>Rappel du droit applicable.</strong> L’article L. 1224-1 du Code du travail, lu à la lumière de la directive européenne du 12 mars 2001, rend dépourvu d’effet le licenciement d’un salarié prononcé à l’occasion du transfert de l’entité dont il relève. La chambre sociale rappelle, dans l’arrêt du 21 janvier 2026 (pourvoi n° 24-21.142), que le salarié peut alors, à son choix, demander au repreneur la poursuite de son contrat ou demander à la société qui l’a licencié réparation du préjudice résultant de la rupture. Cette solution reprend celle de l’arrêt du 20 mars 2002 (pourvoi n° 00-41.651). Quand le licenciement de l’ancien employeur et le refus du repreneur de poursuivre le contrat causent ensemble la perte d’emploi, le salarié peut agir contre l’un ou l’autre, sauf recours entre eux. En outre, en l’absence de texte spécial, ces conséquences se réparent selon l’article L. 1235-3, qui fixe une indemnité comprise entre un minimum et un maximum.</p>
+<p><strong>Application aux faits.</strong> En l’espèce, le licenciement est intervenu à l’occasion du transfert. L’hôtel le notifie après avoir signé le contrat avec Linéa Blanc, alors que Ludivine Maillard travaille dans l’entité transférée et que son activité se poursuit chez Linéa Blanc. L’énoncé ne donne aucun motif économique distinct du transfert. Ce licenciement est donc dépourvu d’effet. De plus, Ludivine Maillard dispose de deux actions. Elle peut demander à Linéa Blanc de poursuivre son contrat à partir du 6 octobre 2026. Si Linéa Blanc refuse, elle peut alors agir contre l’hôtel ou contre Linéa Blanc pour obtenir réparation de la perte de son emploi, et les deux sociétés règlent ensuite leur recours entre elles. Enfin, l’indemnité relève de l’article L. 1235-3. Le juge apprécie la situation de la salariée, notamment son ancienneté acquise depuis 2014, et fixe une somme comprise entre le minimum et le maximum de ce texte.</p>
+<p><strong>Conclusion.</strong> Ludivine Maillard reste salariée au 6 octobre 2026 malgré son licenciement. Elle peut, à son choix, exiger que Linéa Blanc poursuive son contrat ou demander à l’hôtel, ou à Linéa Blanc si elle refuse de le poursuivre, une indemnité fixée selon l’article L. 1235-3.</p>
+<h3>3. Linéa Blanc doit-elle payer la prime de septembre 2026 à Odile Pellerin ?</h3>
+<p><strong>Faits utiles.</strong> L’hôtel n’a pas versé à Odile Pellerin la prime de 1 100 euros promise pour le 15 septembre 2026.</p>
+<p><strong>Question de droit.</strong> Le repreneur doit-il payer une somme que l’ancien employeur devait déjà à la date du transfert, et peut-il se retourner contre lui ?</p>
+<p><strong>Rappel du droit applicable.</strong> Selon l’article L. 1224-2 du Code du travail, le nouvel employeur est tenu, à l’égard des salariés dont les contrats subsistent, des obligations qui incombaient à l’ancien employeur à la date de la modification. Le texte écarte toutefois cette règle dans deux cas. Le premier est une procédure collective (sauvegarde, redressement ou liquidation judiciaire), qui organise le paiement des dettes d’une entreprise en difficulté. Le second est une substitution d’employeurs sans convention entre eux, autrement dit un changement d’employeur sans accord entre l’ancien et le nouveau. L’ancien employeur rembourse ensuite les sommes que le nouvel employeur a payées et qui étaient dues à la date de la modification, sauf si le contrat entre eux a tenu compte de cette charge.</p>
+<p><strong>Application aux faits.</strong> En l’espèce, la prime était due avant le transfert. Elle devait être versée le 15 septembre 2026, avant le 6 octobre 2026, et l’hôtel s’y était engagé par écrit. De plus, aucune exception ne s’applique, car l’énoncé ne mentionne aucune procédure collective et l’hôtel et Linéa Blanc ont conclu un contrat ensemble. Enfin, le recours dépend de ce contrat. Linéa Blanc paie 1 100 euros à Odile Pellerin, puis elle demande le remboursement à l’hôtel. L’énoncé ne dit pas que le prix de la reprise a tenu compte de cette dette.</p>
+<p><strong>Conclusion.</strong> Linéa Blanc doit payer la prime à Odile Pellerin. Elle peut ensuite se faire rembourser par l’hôtel, sauf si leur contrat a pris cette charge en compte.</p>
+</div>
+</div>
+</section>
+<section class="section" id="variations">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Une variante du cas, avec une commune comme repreneur</h2>
+<p>Reprends maintenant le cas en changeant le repreneur et l’activité. Une association gère un accueil de loisirs pour une commune, et la commune décide de le reprendre et de le gérer elle-même, en régie. Dans un énoncé de ce genre, tu vérifies d’abord si le repreneur est une personne publique.</p>
+<h3>La commune doit proposer un contrat de droit public</h3>
+<p>L’article L. 1224-1 ne suffit plus, car l’article L. 1224-3 s’applique quand une personne publique reprend l’activité d’une entité économique dans le cadre d’un service public administratif. La commune doit proposer à chaque salarié un contrat de droit public, qui reprend en principe les clauses substantielles de son contrat, en particulier la rémunération. Si le salarié refuse, son contrat prend fin automatiquement, et la commune applique alors les règles prévues pour les agents licenciés par le droit du travail et par le contrat. Dans l’arrêt du 6 mars 2024 (pourvoi n° 22-22.315), la chambre sociale juge que la commune doit continuer à payer le salarié selon son contrat de droit privé jusqu’à ce qu’il accepte le contrat de droit public. Elle cesse ce paiement par un licenciement, qu’elle prononce si le salarié refuse ce contrat ou si elle ne peut pas, au regard des règles applicables à son personnel, lui proposer un emploi qui reprend les conditions de son contrat. De plus, dans l’arrêt du 12 mars 2025 (pourvoi n° 22-20.627), elle juge que le refus du salarié de signer le contrat de droit public proposé n’est soumis à aucune forme particulière, puisque la loi ne prévoit aucune procédure pour cette proposition.</p>
+<h2>Trois erreurs à éviter dans un cas de transfert d’entreprise</h2>
+<h3>Réduire la reprise d’un marché à l’article L. 1224-1</h3>
+<p>L’article L. 1224-1 s’applique dès qu’une entité économique autonome existe et que son identité se maintient, quelle que soit l’annonce du repreneur. En revanche, quand ces conditions manquent, une convention de branche peut encore organiser la poursuite des contrats entre deux entreprises (article L. 2253-1, 11°). Dans la sécurité privée, l’accord du 28 janvier 2011 annexé à la convention collective prévoit que l’entreprise entrante (le repreneur) reprend les salariés figurant sur la liste de l’entreprise sortante (l’ancien prestataire) qui remplissent les conditions de transfert (arrêt du 12 mars 2025, pourvoi n° 23-17.756). Quand ton énoncé évoque un marché de services, tu cherches donc si la convention collective de la branche organise la reprise du personnel.</p>
+<h3>Appliquer l’indemnité des licenciements nuls au licenciement dépourvu d’effet</h3>
+<p>Le licenciement de Ludivine Maillard est dépourvu d’effet, et la chambre sociale juge le 21 janvier 2026 que sa réparation relève de l’article L. 1235-3, avec une indemnité comprise entre un minimum et un maximum. Le minimum de six mois de salaire appartient à l’article L. 1235-3-1, qui concerne les nullités qu’il énumère, comme la violation d’une liberté fondamentale dans le sujet 6.</p>
+<h3>Traiter un salarié affecté à mi-temps à l’activité reprise comme tout ou rien</h3>
+<p>Quand un salarié consacre la moitié de son temps à l’activité reprise et l’autre moitié à un service qui reste chez l’ancien employeur, la chambre sociale juge que son contrat est transféré pour la partie de l’activité qu’il consacre au secteur cédé (arrêt du 30 septembre 2020, pourvoi n° 18-24.881). Cette division ne s’applique toutefois pas si elle est impossible, si elle détériore ses conditions de travail ou si elle porte atteinte au maintien de ses droits garantis par la directive européenne.</p>
+<p style="font-size:.875rem;color:var(--muted)">Les textes se lisent sur <a href="https://www.legifrance.gouv.fr/" rel="noopener">Légifrance</a>, dans le Code du travail, et les décisions sur le site de la <a href="https://www.courdecassation.fr/" rel="noopener">Cour de cassation</a>.</p>
+<div class="author-box">
+<img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+<div>
+<p class="author-box__name">Julien</p>
+<p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+<p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">166 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention. Pour cela, je leur apprends une méthode qu'ils réutilisent ensuite seuls, à chaque copie. Sur TrajectoireDroit, j'ai donc réuni mes fiches complètes et mes majeures préparées. Une majeure préparée donne la règle de droit déjà rédigée, prête pour le cas pratique.</p>
+<p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="faq">
+<div class="container container--narrow"><h2 class="h2">Questions fréquentes sur les sujets de droit du travail L3</h2>
+<div class="accordion">
+<details class="accordion__item"><summary class="accordion__trigger">Quels sujets de droit du travail préparer en L3 ?</summary><div class="accordion__body"><p>Les douze sujets portent sur plusieurs grands thèmes du premier semestre, depuis les sources du droit du travail jusqu’au transfert du contrat. Le cas corrigé traite la reprise d’une blanchisserie d’hôtel par un prestataire.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Que devient le contrat de travail quand l’entreprise change d’employeur ?</summary><div class="accordion__body"><p>Selon l’article L. 1224-1 du Code du travail, quand survient une modification dans la situation juridique de l’employeur, tous les contrats de travail en cours au jour de la modification subsistent entre le nouvel employeur et le personnel. Le texte s’applique si une entité économique autonome conserve son identité. Cette entité est un ensemble organisé de personnes et d’éléments corporels ou incorporels qui permet d’exercer une activité économique poursuivant un objectif propre.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Un salarié licencié juste avant un transfert peut-il agir contre le repreneur ?</summary><div class="accordion__body"><p>Oui. La chambre sociale le rappelle dans son arrêt du 21 janvier 2026 (pourvoi n° 24-21.142), qui reprend une solution de l’arrêt du 20 mars 2002 (pourvoi n° 00-41.651). Le salarié licencié à l’occasion du transfert de son entité, dont le licenciement est dépourvu d’effet, peut alors, à son choix, demander au repreneur la poursuite de son contrat ou demander à la société qui l’a licencié réparation du préjudice résultant de la rupture. En outre, ces conséquences se réparent selon l’article L. 1235-3 du Code du travail.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Quel PDF choisir pour refaire des cas pratiques de droit du travail L3 ?</summary><div class="accordion__body"><p>Si tu veux refaire des cas pratiques, prends le recueil, car il contient dix cas pratiques et trois sujets types de partiel, tous corrigés. De plus, la fiche complète de 154 pages revoit tout le cours du premier semestre. La <a href="droit-du-travail-l3.html">page du droit du travail L3</a> présente tous les supports.</p></div></details>
+</div>
+</div>
+</section>
+<!-- fin-article:pack-ultra -->
+<section class="article-pack-ligne"><div class="container container--narrow"><p class="article-pack-ligne__texte">Le Pack Ultra L3 semestre 1 réunit 43 ressources pour 329 €. <a href="pack-ultra.html#pack-ultra-l3-s1">Voir les supports inclus →</a></p></div></section>
+</main>
+
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Droit du travail L3, sujets et corrigé">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Droit du travail L3, sujets et corrigé">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit du travail L3</strong>
+      <small>Cas pratiques corrigés · 124 pages</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="cas-pratique-travail-l3">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=f548e5b0" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=b449c838" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=695cfddc';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>

@@ -46,24 +46,6 @@ async function avecStripeFactice(operation, { promo = PROMO } = {}) {
   }
 }
 
-test('MAJEURES10 réduit les majeures L1, L2 et L3 et leur pack dans un panier mixte', async () => {
-  await avecStripeFactice(async ({ creer, appels }) => {
-    const ids = ['maj-intro-droit-l1', 'maj-da-l2-s1', 'maj-commercial-l3-s1', 'pack-majeures-l3', 'fiche-constit-l1-s1'];
-    const reponse = await creer({ produitIds: ids, code: 'majeures10' });
-    assert.equal(reponse.statusCode, 200);
-    const session = appels.creations[0];
-    const catalogue = require('../api/_produits');
-    assert.deepEqual(session.line_items.map((ligne) => ligne.price_data.unit_amount), ids.map((id, i) => {
-      const prix = catalogue[id].prix;
-      return i < 4 ? prix - Math.round(prix / 10) : prix;
-    }));
-    assert.equal(session.metadata.codePromoLien, 'MAJEURES10');
-    assert.equal(session.metadata.codePromoProduits, ids.slice(0, 4).join(','));
-    assert.equal(session.allow_promotion_codes, false);
-    assert.equal(appels.recherches.length, 0);
-  }, { promo: null });
-});
-
 test('le code CORRIGE10 conservé après un lien ouvre une majeure sans lui accorder de remise', async () => {
   await avecStripeFactice(async ({ creer, appels }) => {
     const source = fs.readFileSync(path.join(__dirname, '../assets/js/achat.js'), 'utf8');
