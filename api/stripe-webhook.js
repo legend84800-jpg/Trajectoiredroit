@@ -14,7 +14,7 @@ const { creerClientStripe } = require("./_stripe");
 const parrainage = require("./_parrainage");
 const { diagnostiquerRelance } = require("./_relance-diagnostic");
 const { bornerAbonnement } = require("./_echeances");
-const { attributsMajeuresPostAchat } = require("./_suggestions-post-achat");
+const { attributsRecommandationsPostAchat } = require("./_suggestions-post-achat");
 const {
   cadeauDepuisMetadata,
   formaterNomOffrant,
@@ -131,8 +131,7 @@ async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, a
   };
   // Lien de l'email de demande d'avis J+7 (donner-mon-avis.html?session_id=…).
   if (sessionId) payload.attributes.DERNIERE_SESSION = sessionId;
-  // Identifiants achetés : le lien de l'email J+8 ouvre complements.html avec
-  // les suggestions calculées pour cet achat précis.
+  // Identifiants conservés pour les anciens liens de compléments et le suivi de l'achat.
   if (Array.isArray(options.produitIds) && options.produitIds.length) {
     payload.attributes.PRODUITS_ACHETES = options.produitIds.join(",");
   }
@@ -152,11 +151,11 @@ async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, a
     const prenom = formaterNomOffrant(premierMot);
     if (/^\p{L}[\p{L}\p{M}'’-]*$/u.test(prenom)) payload.attributes.PRENOM = prenom;
   }
-  const produitsPourMajeures = accordPromotionnel && options.recommanderMajeures !== false
+  const produitsPourRecommandations = accordPromotionnel && options.recommanderSupports !== false
     && Array.isArray(options.produitIds)
     ? options.produitIds
     : [];
-  Object.assign(payload.attributes, await attributsMajeuresPostAchat(email, produitsPourMajeures));
+  Object.assign(payload.attributes, await attributsRecommandationsPostAchat(email, produitsPourRecommandations));
 
   const resp = await fetch("https://api.brevo.com/v3/contacts", {
     method: "POST",
@@ -941,7 +940,7 @@ async function traiterAchatPaye(session, contexte) {
         produitIds: produitsAchetes.map(p => p.id),
         origineAccord: accordPromotionnel ? "paiement-stripe" : undefined,
         nomAcheteur: session.customer_details?.individual_name || session.customer_details?.name,
-        recommanderMajeures: !cadeau && !estStage && !estTestInterne,
+        recommanderSupports: !cadeau && !estStage && !estTestInterne,
       }
     );
   } catch (e) {

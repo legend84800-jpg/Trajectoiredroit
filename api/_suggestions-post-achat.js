@@ -148,13 +148,28 @@ function proposable(p) {
   return p && !p.suspendu && p.prix > 0 && p.groupe && FAMILLES_PROPOSABLES.has(p.famille);
 }
 
+function detailComplement(id) {
+  const produit = PAR_ID.get(id);
+  if (!proposable(produit)) return null;
+  return { id: produit.id, nom: produit.nom, prix: produit.prix };
+}
+
+function inventaireAchete(ids) {
+  const idsPossedes = new Set(ids);
+  for (const id of idsPossedes) {
+    for (const inclus of PRODUITS[id]?.inclus || []) idsPossedes.add(inclus);
+  }
+  const fichiersPossedes = new Set([...idsPossedes].flatMap((id) => PAR_ID.get(id)?.blobs || []));
+  return { idsPossedes, fichiersPossedes };
+}
+
 function memeSemestre(a, b) {
   return !a.semestre || !b.semestre || a.semestre === b.semestre;
 }
 
 // Retourne jusqu'à `max` produits complémentaires, avec la raison de chaque
 // proposition : "meme-matiere", "autre-matiere", "semestre-suivant" ou "pack".
-function suggererComplements(produitIdsAchetes, max = 4) {
+function suggererComplements(produitIdsAchetes, max = 4, historique = []) {
   const ids = (produitIdsAchetes || []).filter((id) => PAR_ID.has(id));
   if (!ids.length) return [];
 
@@ -168,7 +183,9 @@ function suggererComplements(produitIdsAchetes, max = 4) {
   const achetes = CATALOGUE_ANALYSE.filter((p) => p.groupe && possede(p));
   if (!achetes.length) return [];
 
-  const candidats = CATALOGUE_ANALYSE.filter((p) => proposable(p) && !possede(p));
+  const { idsPossedes, fichiersPossedes } = inventaireAchete(historique);
+  const candidats = CATALOGUE_ANALYSE.filter((p) =>
+    proposable(p) && !possede(p) && !idsPossedes.has(p.id) && !fichiersPossedes.has(p.blobs[0]));
   const groupes = new Set(achetes.map((p) => p.groupe).filter(Boolean));
   // Années dominantes seulement : le Pack L2 contient aussi une fiche de L1, qui ne
   // doit pas faire proposer toute la L1 à un étudiant de L2.
@@ -223,7 +240,8 @@ function suggererComplements(produitIdsAchetes, max = 4) {
 
   // 4. Le pack de la matière, seulement s'il ne contient rien de déjà acheté.
   const packs = candidats
-    .filter((p) => p.famille === "pack-matiere" && groupes.has(p.groupe) && !chevauche(p));
+    .filter((p) => p.famille === "pack-matiere" && groupes.has(p.groupe)
+      && !chevauche(p) && !p.blobs.some((fichier) => fichiersPossedes.has(fichier)));
 
   const complementCible = memeMatiere.length && prioritaires.includes(memeMatiere[0].famille);
   const tete = [{ liste: packs, raison: "pack" }, { liste: memeMatiere, raison: "meme-matiere" }];
@@ -269,11 +287,7 @@ function suggererMajeuresPostAchat(dernierAchat, historique) {
 
   // Les Packs Ultra déclarent les produits inclus. Les anciens packs de majeures
   // déclarent leurs PDF, dont le premier fichier de chaque recueil.
-  const idsPossedes = new Set([...dernierAchat, ...historique]);
-  for (const id of idsPossedes) {
-    for (const inclus of PRODUITS[id]?.inclus || []) idsPossedes.add(inclus);
-  }
-  const fichiersPossedes = new Set([...idsPossedes].flatMap((id) => PAR_ID.get(id)?.blobs || []));
+  const { idsPossedes, fichiersPossedes } = inventaireAchete([...dernierAchat, ...historique]);
 
   // Dans la bonne année, on propose en premier la même matière, puis le même semestre.
   // Les matières déjà retenues pour la variante L3 départagent les ex æquo.
@@ -300,8 +314,9 @@ function suggererMajeuresPostAchat(dernierAchat, historique) {
   return suggestions;
 }
 
-async function attributsMajeuresPostAchat(email, dernierAchat, lireAchats = selectionner) {
-  let suggestions = [];
+async function attributsRecommandationsPostAchat(email, dernierAchat, lireAchats = selectionner) {
+  let majeures = [];
+  let complements = [];
   if (dernierAchat.length) {
     try {
       const historique = [];
@@ -311,19 +326,25 @@ async function attributsMajeuresPostAchat(email, dernierAchat, lireAchats = sele
         historique.push(...rows.flatMap((row) => row.produit_ids || []));
         if (rows.length < taillePage) break;
       }
-      suggestions = suggererMajeuresPostAchat(dernierAchat, historique);
+      majeures = suggererMajeuresPostAchat(dernierAchat, historique);
+      complements = suggererComplements(dernierAchat, 2, [...dernierAchat, ...historique]);
     } catch {
       // Sans l'historique, mieux vaut laisser le bloc de recommandations vide.
-      console.error("Historique indisponible pour les recommandations de majeures Brevo.");
+      console.error("Historique indisponible pour les recommandations Brevo.");
     }
   }
-  const [premiere, seconde] = suggestions;
+  const [premiereMajeure, secondeMajeure] = majeures;
+  const [premierComplement, secondComplement] = complements;
   return {
-    MAJEURE_J5_1_ID: premiere?.id || "",
-    MAJEURE_J5_1_MATIERE: premiere?.matiere || "",
-    MAJEURE_J5_2_ID: seconde?.id || "",
-    MAJEURE_J5_2_MATIERE: seconde?.matiere || "",
+    MAJEURE_J5_1_ID: premiereMajeure?.id || "",
+    MAJEURE_J5_1_MATIERE: premiereMajeure?.matiere || "",
+    MAJEURE_J5_2_ID: secondeMajeure?.id || "",
+    MAJEURE_J5_2_MATIERE: secondeMajeure?.matiere || "",
+    COMPLEMENT_J8_1_ID: premierComplement?.id || "",
+    COMPLEMENT_J8_1_NOM: premierComplement?.nom || "",
+    COMPLEMENT_J8_2_ID: secondComplement?.id || "",
+    COMPLEMENT_J8_2_NOM: secondComplement?.nom || "",
   };
 }
 
-module.exports = { suggererComplements, CATALOGUE_ANALYSE, suggererMajeuresPostAchat, attributsMajeuresPostAchat };
+module.exports = { suggererComplements, CATALOGUE_ANALYSE, suggererMajeuresPostAchat, attributsRecommandationsPostAchat, detailComplement };

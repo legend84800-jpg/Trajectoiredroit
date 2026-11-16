@@ -4,7 +4,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { suggererComplements, suggererMajeuresPostAchat, attributsMajeuresPostAchat } = require("../api/_suggestions-post-achat");
+const { suggererComplements, suggererMajeuresPostAchat, attributsRecommandationsPostAchat } = require("../api/_suggestions-post-achat");
 const remise = require("../api/_remise-post-achat");
 const sessionInfo = require("../api/session-info");
 
@@ -55,14 +55,41 @@ test("le J+5 propose deux majeures de l'année du dernier achat", () => {
 
 test("les recommandations Brevo relisent aussi les commandes des pages suivantes", async () => {
   const requetes = [];
-  const attributs = await attributsMajeuresPostAchat("etudiant@example.test", ["fiche-constit-l1-s1"], async (table, query) => {
+  const attributs = await attributsRecommandationsPostAchat("etudiant@example.test", ["fiche-constit-l1-s1"], async (table, query) => {
     assert.equal(table, "achats");
     requetes.push(query);
     if (query.endsWith("offset=0")) return Array.from({ length: 100 }, () => ({ produit_ids: ["fiche-constit-l1-s1"] }));
     return [{ produit_ids: ["pack-majeures-l1"] }];
   });
   assert.equal(requetes.length, 2);
-  assert.deepEqual(Object.values(attributs), ["", "", "", ""]);
+  assert.equal(attributs.MAJEURE_J5_1_ID, "");
+  assert.equal(attributs.MAJEURE_J5_2_ID, "");
+  assert.ok(attributs.COMPLEMENT_J8_1_ID);
+  assert.ok(attributs.COMPLEMENT_J8_2_ID);
+});
+
+test("le J+8 écarte les compléments déjà couverts par un achat antérieur", () => {
+  const dernierAchat = ["maj-da-l2-s1"];
+  const candidats = suggererComplements(dernierAchat, 2, [...dernierAchat, "pack-matiere-da-l2"]);
+  assert.equal(candidats.length, 2);
+  assert.equal(candidats[0].id, "commentaire-arret-da-l2-s1");
+  assert.ok(!candidats.some((p) => ["fiche-da-l2-s1", "cas-pratique-da-l2-s1", "pack-matiere-da-l2"].includes(p.id)));
+  const autres = suggererComplements(dernierAchat, 2, [...dernierAchat, "cas-pratique-da-l2-s1"]);
+  assert.equal(autres.length, 2);
+  assert.ok(autres.every((p) => p.id !== "cas-pratique-da-l2-s1"));
+});
+
+test("un lien de complément ouvre uniquement le support indiqué", async () => {
+  const interroger = async (query) => {
+    const res = { status(code) { this.code = code; return this; }, json(body) { this.body = body; } };
+    await sessionInfo({ method: "GET", query }, res);
+    assert.equal(res.code, 200);
+    return res.body.suggestions;
+  };
+  const support = await interroger({ produit: "cas-pratique-da-l2-s1", ids: "maj-da-l2-s1" });
+  assert.deepEqual(support.map((p) => p.id), ["cas-pratique-da-l2-s1"]);
+  assert.deepEqual(await interroger({ produit: "stage-methode" }), []);
+  assert.ok((await interroger({ ids: "maj-da-l2-s1" })).length > 1);
 });
 
 test("le code de remise est le même pour une session donnée, quel que soit qui le crée", () => {

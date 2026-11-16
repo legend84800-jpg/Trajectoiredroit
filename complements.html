@@ -328,8 +328,8 @@
     <section class="section" style="padding-top:48px">
       <div class="container container--narrow">
         <span class="eyebrow">Pour compléter tes révisions</span>
-        <h1 class="h1" style="margin-top:12px">Les documents qui complètent ton achat</h1>
-        <p class="lead">Ces documents sont choisis à partir de ton achat. Certains traitent la même matière dans un autre format, comme les majeures préparées après une fiche complète. D'autres reprennent le même format dans une autre matière de ton année.</p>
+        <h1 class="h1" id="complementsTitre" style="margin-top:12px">Les documents qui complètent ton achat</h1>
+        <p class="lead" id="complementsIntro">Ces documents sont choisis à partir de ton achat. Certains traitent la même matière dans un autre format, comme les majeures préparées après une fiche complète. D'autres reprennent le même format dans une autre matière de ton année.</p>
 
         <div class="card" id="complementsRemise" style="margin-top:24px; border:2px solid var(--gold, #c9a227)" hidden>
           <p style="margin:0">Ton code <strong id="complementsCode"></strong> te donne 15 % de remise jusqu'au <span id="complementsDate"></span>. Il est déjà appliqué aux prix affichés et au moment du paiement.</p>
@@ -397,10 +397,11 @@
   })();
   </script>
   <script>
-  /* Suggestions après achat (email J+8 de Brevo) : complements.html?ids=…&code=POSTA-… */
+  /* Le mail J+8 ouvre le support choisi. Les anciens liens avec ids ouvrent la liste. */
   (function () {
     var params = new URLSearchParams(window.location.search);
     var ids = (params.get('ids') || '').trim();
+    var produit = (params.get('produit') || '').trim();
     var code = (params.get('code') || '').trim();
     var liste = document.getElementById('complementsListe');
     var vide = document.getElementById('complementsVide');
@@ -414,12 +415,16 @@
     function echapper(t) { return String(t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
     // Contact Brevo antérieur au 14/10/2026, sans liste d'achats : la page des
     // formations garde le code, qui s'applique au paiement.
-    if (!ids) {
+    if (produit) {
+      document.getElementById('complementsIntro').hidden = true;
+      vide.textContent = 'Les supports disponibles sont classés par année sur la page des formations.';
+    } else if (!ids) {
       if (/^POSTA-[A-Za-z0-9]{8}$/.test(code)) { window.location.replace('formations.html?code=' + encodeURIComponent(code)); return; }
       vide.hidden = false;
       return;
     }
-    var url = '/api/session-info?ids=' + encodeURIComponent(ids) + (code ? '&code=' + encodeURIComponent(code) : '');
+    var cible = produit ? 'produit=' + encodeURIComponent(produit) : 'ids=' + encodeURIComponent(ids);
+    var url = '/api/session-info?' + cible + (code ? '&code=' + encodeURIComponent(code) : '');
     fetch(url).then(function (r) { return r.ok ? r.json() : { suggestions: [] }; }).then(function (d) {
       var remise = d && d.remise;
       if (remise && remise.code) {
@@ -430,17 +435,19 @@
       }
       var suggestions = (d && d.suggestions) || [];
       if (!suggestions.length) { vide.hidden = false; return; }
+      if (produit) document.getElementById('complementsTitre').textContent = suggestions[0].nom;
       var pct = remise && remise.pourcentage ? remise.pourcentage : 0;
+      var codePaiement = remise && remise.code ? ' data-tjd-code="' + echapper(remise.code) + '"' : '';
       liste.innerHTML = suggestions.map(function (s) {
         var prix = pct ? '<s style="opacity:.7; font-weight:400">' + euros(s.prix) + '</s> ' + euros(Math.round(s.prix * (100 - pct) / 100)) : euros(s.prix);
         var libelle = LIBELLES[s.raison] || '';
         return '<div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; padding:12px 0; border-top:1px solid var(--blue-100)">' +
           '<span style="flex:1 1 100%; font-size:.95rem; color:var(--body)">' +
             (libelle ? '<span style="display:block; font-size:.75rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)">' + libelle + '</span>' : '') +
-            echapper(s.nom) +
+            (produit ? '' : echapper(s.nom)) +
             (s.explication ? '<span style="display:block; margin-top:4px; font-size:.86rem; line-height:1.5; color:var(--muted)">' + echapper(s.explication) + '</span>' : '') +
             '</span>' +
-          '<button type="button" class="btn btn--primary btn--sm" style="white-space:nowrap" data-tjd-produit="' + echapper(s.id) + '">Acheter · ' + prix + '</button>' +
+          '<button type="button" class="btn btn--primary btn--sm" style="white-space:nowrap" data-tjd-produit="' + echapper(s.id) + '"' + codePaiement + '>Acheter · ' + prix + '</button>' +
         '</div>';
       }).join('');
     }).catch(function () { vide.hidden = false; });

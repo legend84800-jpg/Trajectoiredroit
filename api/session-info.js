@@ -11,7 +11,7 @@
 //      l'acheteur accepte les emails depuis la page de remerciement : il rejoint
 //      la liste des clients Brevo, ce qui ouvre la séquence après achat.
 
-const { suggererComplements } = require("./_suggestions-post-achat");
+const { suggererComplements, detailComplement } = require("./_suggestions-post-achat");
 const { creerClientStripe } = require("./_stripe");
 const { construireLiensTelechargement } = require("./_liens-telechargement");
 
@@ -159,9 +159,13 @@ async function handler(req, res) {
   const corps = methode === "POST" ? lireCorps(req) : {};
   const query = req.query || {};
 
-  // Suggestions publiques à partir d'identifiants du catalogue, sans session.
-  if (methode === "GET" && !query.session_id && typeof query.ids === "string") {
-    const ids = query.ids.split(",").map((s) => s.trim()).filter((s) => ID_PRODUIT_VALIDE.test(s)).slice(0, 20);
+  // Suggestions publiques ou support précis à partir du catalogue, sans session.
+  const lienPrecis = typeof query.produit === "string";
+  if (methode === "GET" && !query.session_id && (lienPrecis || typeof query.ids === "string")) {
+    const suggestions = lienPrecis
+      ? [detailComplement(query.produit.trim())].filter(Boolean)
+      : suggererComplements(query.ids.split(",").map((s) => s.trim())
+        .filter((s) => ID_PRODUIT_VALIDE.test(s)).slice(0, 20), NOMBRE_SUGGESTIONS);
     let remise = null;
     const code = typeof query.code === "string" ? query.code.trim().toUpperCase() : "";
     if (code && process.env.STRIPE_SECRET_KEY) {
@@ -174,7 +178,7 @@ async function handler(req, res) {
     }
     if (res.setHeader) res.setHeader("Cache-Control", code ? "private, no-store" : "public, max-age=300");
     res.status(200).json({
-      suggestions: suggererComplements(ids, NOMBRE_SUGGESTIONS),
+      suggestions,
       remise: remise ? { code: remise.code, dateFin: remise.dateFin, expireLe: remise.expireLe, pourcentage: remise.pourcentage } : null,
     });
     return;
