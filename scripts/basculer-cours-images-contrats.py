@@ -163,6 +163,7 @@ def basculer(nom, n, phrase):
 
 
 def main():
+    sys.exit("Test terminé le 13/11/2026 (0 vente). Le 16/11, Julien a remis la fiche complète sur ces pages. Ne pas relancer sans sa décision.")
     for nom, (n, phrase) in CIBLES.items():
         print(f"{nom}: {basculer(nom, n, phrase)}")
 
