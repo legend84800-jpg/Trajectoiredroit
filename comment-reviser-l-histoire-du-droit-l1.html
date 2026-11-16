@@ -377,8 +377,39 @@
           <a class="btn btn--primary btn--lg" href="#confusions">Voir les confusions à éviter →</a>
           <a class="btn btn--outline btn--lg" href="#planning">Le planning de révision</a>
         </div>
+        <div data-tjd-pdf-offert="matiere" data-titre="Un cas pratique corrigé dans une autre matière de L1" data-texte="L&#x27;introduction au droit et le droit des personnes figurent dans la liste, comme le droit de la famille. Le corrigé choisi arrive par email, avec l&#x27;énoncé complet." data-bouton="Recevoir le corrigé"></div>
       </div>
     </section>
+
+    <!-- équipement offre A5 du 15/11 : offre du PDF correspondant -->
+    <section class="conversion-offer" aria-labelledby="offre-a5-comment-reviser-l-histoire-du-droit-l1-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/fiche-hist-droit-l1.webp" alt="Couverture de la fiche complète Histoire du droit L1, semestre 1, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">Histoire du droit L1, les fiches des deux semestres</p>
+            <h2 class="conversion-offer__title" id="offre-a5-comment-reviser-l-histoire-du-droit-l1-titre">Chaque bloc du programme a sa fiche, de Rome à 1789 au semestre 1, puis de 1789 à aujourd'hui au semestre 2</h2>
+            <p class="conversion-offer__summary">La fiche d'histoire du droit du semestre 1 couvre le premier bloc en 133 pages, de la royauté romaine jusqu'à la contestation de la monarchie absolue. La fiche d'histoire des institutions du semestre 2 prend la suite en 99 pages, de la Révolution jusqu'à la naissance de la Ve République.</p>
+            <ul class="conversion-offer__benefits">
+              <li>Un plan détaillé et des cartes mentales accompagnent chaque fiche</li>
+              <li>Le recueil de dissertations du semestre 1 (14,99 €) corrige dix sujets</li>
+              <li>Accès à vie et mises à jour comprises</li>
+            </ul>
+            <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-hist-droit-l1/d12e29d868d8-p029.webp","assets/apercus/finition-20261114/fiche-hist-droit-l1/d12e29d868d8-p030.webp","assets/apercus/finition-20261114/fiche-hist-droit-l1/d12e29d868d8-p061.webp"]' data-apercu-title="Histoire du droit · L1 S1 · Fiche complète" data-apercu-price="14,99 €" data-apercu-cta="fiche-hist-droit-l1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu de la fiche</button>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-hist-droit-l1">Fiche S1 · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="fiche-hist-institutions-l1">Fiche S2 · 14,99 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="dissertation-hist-droit-l1">Dissertations S1 · 14,99 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
+            <div data-tjd-avis data-matiere="hist-droit-l1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <!-- LE REFLEXE DE BASE -->
     <section class="section">
@@ -612,19 +643,21 @@
       <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
     </div>
   </div>
-  <!-- vague2:sticky-bar -->
+  <!-- équipement offre A5 du 15/11 : barre d'achat alignée sur l'offre -->
   <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
     <div class="sticky-cta-bar__text">
-      <strong>Histoire du droit L1 · dès 14,99 €</strong>
+      <strong>Histoire du droit L1 S1 · 14,99 €</strong>
       <small>Fiche complète · accès à vie</small>
     </div>
-    <a class="btn btn--primary" href="histoire-du-droit-l1.html#fiches">Voir la fiche →</a>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-hist-droit-l1">Acheter · 14,99 €</button>
   </div>
 
 
   <script src="assets/js/achat.js?v=f548e5b0" defer></script>
 
 
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
   <script src="assets/js/main.js?v=b449c838" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
@@ -646,5 +679,6 @@
   })();
   </script>
   <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+<script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
 </body>
 </html>

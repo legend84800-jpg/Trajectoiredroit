@@ -387,6 +387,7 @@
           <a class="btn btn--primary btn--lg" href="#protocole">Voir le protocole complet →</a>
           <a class="btn btn--outline btn--lg" href="#erreurs">Les erreurs qui coûtent du temps</a>
         </div>
+        <div data-tjd-pdf-offert="matiere" data-titre="Un cas pratique corrigé pour te tester, en PDF" data-texte="Tu choisis ta matière, et je t&#x27;envoie par email un énoncé avec sa correction complète. Tu le traites sans tes notes, puis tu corriges ta copie avec le corrigé." data-bouton="Recevoir le corrigé"></div>
       </div>
     </section>
 
@@ -398,6 +399,34 @@
         <p style="color:var(--body); line-height:1.75">Je donne des cours particuliers de droit depuis plusieurs années, du L1 au M2, et j'applique avec mes élèves, à chaque séance, le protocole que je détaille sur cette page. Il te demande le même nombre d'heures de travail, mais il change la façon dont tu les emploies.</p>
       </div>
     </section>
+
+    <!-- équipement offre A5 du 15/11 : offre du PDF correspondant -->
+    <section class="conversion-offer" aria-labelledby="offre-a5-comment-reviser-le-droit-titre">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card">
+          <div class="conversion-offer__visual">
+            <img src="assets/covers/pack-l1.webp?v=coffrets-universitaires-20260916" alt="Couverture du pack des fiches complètes de L1, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__eyebrow">Les fiches complètes, par année de licence</p>
+            <h2 class="conversion-offer__title" id="offre-a5-comment-reviser-le-droit-titre">Une fiche complète par matière, avec ses cartes mentales pour te tester de mémoire</h2>
+            <p class="conversion-offer__summary">Chaque fiche complète reprend le cours d'une matière avec ses articles et ses arrêts. Elle comprend aussi un plan détaillé et des cartes mentales, qui servent à s'interroger sans regarder ses notes, comme le recommande cette page. Le pack de L1 réunit les neuf fiches de l'année, celui de L2 sept fiches et celui de L3 six fiches.</p>
+            <ul class="conversion-offer__benefits">
+              <li>Chaque fiche existe aussi seule, à 14,99 €</li>
+              <li>Les packs réunissent les deux semestres de l'année</li>
+              <li>Accès à vie et mises à jour comprises</li>
+            </ul>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="pack-l1">Pack L1 · 87 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-l2">Pack L2 · 79 €</button>
+              <button type="button" class="btn btn--outline" data-tjd-produit="pack-l3">Pack L3 · 58 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <section class="section">
       <div class="container container--narrow">
@@ -639,8 +668,22 @@
     </div>
   </div>
 
+  <!-- équipement offre A5 du 15/11 : barre d'achat des packs de fiches -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Fiches complètes</strong>
+      <small>Le pack de ton année · accès à vie</small>
+    </div>
+    <div class="sticky-cta-bar__choices" aria-label="Achat rapide du pack de fiches complètes">
+      <button type="button" class="btn btn--primary" data-tjd-produit="pack-l1">Pack L1 · 87 €</button>
+      <button type="button" class="btn btn--primary" data-tjd-produit="pack-l2">Pack L2 · 79 €</button>
+      <button type="button" class="btn btn--primary" data-tjd-produit="pack-l3">Pack L3 · 58 €</button>
+    </div>
+  </div>
+
   <script src="assets/js/achat.js?v=f548e5b0" defer></script>
 
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
   <script src="assets/js/main.js?v=b449c838" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
@@ -662,5 +705,6 @@
   })();
   </script>
   <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+<script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
 </body>
 </html>
