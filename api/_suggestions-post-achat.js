@@ -11,6 +11,7 @@
 // déjà : il ne repaie jamais un PDF qu'il a.
 
 const PRODUITS = require("./_produits");
+const { selectionner } = require("./_supabase");
 
 const FAMILLES = [
   { prefixe: "Pack ", famille: "pack", priorite: 1 },
@@ -227,4 +228,70 @@ function suggererComplements(produitIdsAchetes, max = 4) {
   return resultat;
 }
 
-module.exports = { suggererComplements, CATALOGUE_ANALYSE };
+function suggererMajeuresPostAchat(dernierAchat, historique) {
+  const references = dernierAchat.map((id) => PAR_ID.get(id)).filter(Boolean);
+  const niveaux = new Set(references.map((p) => p.niveau || p.id.match(/-(l[123])(?:-s[12])?$/)?.[1]).filter(Boolean));
+  if (niveaux.size !== 1) return [];
+  const [niveau] = niveaux;
+  const semestres = new Set(references.map((p) => p.semestre || p.id.match(/-(s[12])$/)?.[1]).filter(Boolean));
+
+  // Les Packs Ultra déclarent les produits inclus. Les anciens packs de majeures
+  // déclarent leurs PDF, dont le premier fichier de chaque recueil.
+  const idsPossedes = new Set([...dernierAchat, ...historique]);
+  for (const id of idsPossedes) {
+    for (const inclus of PRODUITS[id]?.inclus || []) idsPossedes.add(inclus);
+  }
+  const fichiersPossedes = new Set([...idsPossedes].flatMap((id) => PAR_ID.get(id)?.blobs || []));
+
+  // Dans la bonne année, on propose en premier la même matière, puis le même semestre.
+  // Les matières déjà retenues pour la variante L3 départagent les ex æquo.
+  const priorite = (p) => {
+    const memeMatiere = references.some((r) => r.sujet === p.sujet && memeSemestre(r, p));
+    const semestre = semestres.has(p.semestre) ? 2 : p.semestre ? 0 : 1;
+    const varianteL3 = p.id === "maj-commercial-l3-s1" ? 2 : p.id === "maj-travail-l3-s1" ? 1 : 0;
+    return Number(memeMatiere) * 9 + semestre * 3 + varianteL3;
+  };
+  const candidats = CATALOGUE_ANALYSE
+    .filter((p) => p.famille === "majeure" && p.niveau === niveau && proposable(p)
+      && p.blobs.length > 0 && !idsPossedes.has(p.id) && !fichiersPossedes.has(p.blobs[0]))
+    .sort((a, b) => priorite(b) - priorite(a));
+
+  const suggestions = [];
+  const matieres = new Set();
+  for (const p of candidats) {
+    if (matieres.has(p.sujet)) continue;
+    matieres.add(p.sujet);
+    const libelle = p.nom.replace(/^Majeures préparées /, "");
+    suggestions.push({ id: p.id, matiere: libelle[0].toLowerCase() + libelle.slice(1) });
+    if (suggestions.length === 2) break;
+  }
+  return suggestions;
+}
+
+async function attributsMajeuresPostAchat(email, dernierAchat, lireAchats = selectionner) {
+  let suggestions = [];
+  if (dernierAchat.length) {
+    try {
+      const historique = [];
+      const taillePage = 100;
+      for (let offset = 0; ; offset += taillePage) {
+        const rows = await lireAchats("achats", `email=eq.${encodeURIComponent(email)}&or=(session_id.is.null,session_id.not.like.cs_test_*)&select=produit_ids&order=id.desc&limit=${taillePage}&offset=${offset}`);
+        historique.push(...rows.flatMap((row) => row.produit_ids || []));
+        if (rows.length < taillePage) break;
+      }
+      suggestions = suggererMajeuresPostAchat(dernierAchat, historique);
+    } catch {
+      // Sans l'historique, mieux vaut laisser le bloc de recommandations vide.
+      console.error("Historique indisponible pour les recommandations de majeures Brevo.");
+    }
+  }
+  const [premiere, seconde] = suggestions;
+  return {
+    MAJEURE_J5_1_ID: premiere?.id || "",
+    MAJEURE_J5_1_MATIERE: premiere?.matiere || "",
+    MAJEURE_J5_2_ID: seconde?.id || "",
+    MAJEURE_J5_2_MATIERE: seconde?.matiere || "",
+  };
+}
+
+module.exports = { suggererComplements, CATALOGUE_ANALYSE, suggererMajeuresPostAchat, attributsMajeuresPostAchat };
