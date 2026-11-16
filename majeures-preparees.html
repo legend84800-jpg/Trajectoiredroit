@@ -855,7 +855,8 @@
       var pages = [];
       try { pages = JSON.parse(source.getAttribute('data-apercu') || '[]'); } catch (err) {}
       if (!pages.length) return null;
-      var page = pages[pages.length > 1 ? 1 : 0];
+      /* Première page de contenu : les pages 2 et 3 sont souvent le sommaire */
+      var page = pages.filter(function(x){ var n = (x.match(/-p0*(\d+)\.webp$/) || [])[1]; return n && +n >= 4; })[0] || pages[pages.length - 1];
       var numero = (page.match(/-p0*(\d+)\.webp$/) || [])[1];
       var titre = (source.getAttribute('data-apercu-title') || '').split(' · ').slice(0, 2).join(' ');
       return [page, 'Page ' + (numero || '') + ' des majeures préparées ' + titre, 'Extrait réel, ' + titre + (numero ? ', page ' + numero + ' du recueil.' : '.'), '', ''];

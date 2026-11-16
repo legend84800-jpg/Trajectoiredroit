@@ -12,7 +12,7 @@
     var source=document.querySelector('.card--product [data-apercu-cta="'+id+'"]');
     if(source&&source.hasAttribute('data-apercu')){var pages=[];try{pages=JSON.parse(source.getAttribute('data-apercu')||'[]');}catch(_){}
       if(pages.length){var apercu=document.createElement('button');apercu.type='button';apercu.className='recueil-selectionne__apercu';apercu.style.cssText='display:flex;align-items:center;gap:14px;margin:4px 0 16px;padding:0;border:0;background:none;cursor:pointer;text-align:left;font:inherit;color:var(--blue-600)';
-        var vignette=document.createElement('img');vignette.src=pages[pages.length>1?1:0];vignette.alt='Page du recueil '+x.nom;vignette.width=120;vignette.loading='lazy';vignette.style.cssText='width:120px;height:auto;border:1px solid var(--border);border-radius:6px;box-shadow:var(--sh-2);background:#fff';
+        var vignette=document.createElement('img');vignette.src=pages.filter(function(u){var n=(u.match(/-p0*(\d+)\.webp$/)||[])[1];return n&&+n>=3;})[0]||pages[pages.length-1];vignette.alt='Page du recueil '+x.nom;vignette.width=120;vignette.loading='lazy';vignette.style.cssText='width:120px;height:auto;border:1px solid var(--border);border-radius:6px;box-shadow:var(--sh-2);background:#fff';
         var libelle=document.createElement('span');libelle.textContent='Lire '+pages.length+' pages du recueil avant de l’acheter';libelle.style.textDecoration='underline';
         apercu.appendChild(vignette);apercu.appendChild(libelle);apercu.addEventListener('click',function(){source.click();if(window._paq)window._paq.push(['trackEvent','Corriges','Apercu recueil selectionne',id]);});block.appendChild(apercu);}}
     block.appendChild(price);block.appendChild(button);block.hidden=false;
