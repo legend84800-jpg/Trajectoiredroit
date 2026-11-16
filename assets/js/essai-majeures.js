@@ -252,6 +252,7 @@
       var id = a.getAttribute('data-tjd-essai-ouvrir');
       if (ids.indexOf(id) < 0) return;
       e.preventDefault();
+      try { if (window._paq) window._paq.push(['trackEvent', 'Lead', 'essai-majeures-ouvrir', id + '|' + (a.getAttribute('data-emplacement') || 'carte')]); } catch (_) {}
       if (select) select.value = id;
       afficher(id);
       bloc.scrollIntoView({ behavior: 'smooth', block: 'start' });

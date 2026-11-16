@@ -42,6 +42,20 @@ const ORDRE_MEME_MATIERE = {
   citations: 8,
 };
 
+// Complément prioritaire selon le format acheté (16/11/2026, audit des achats) :
+// après des majeures, le recueil de cas pratiques de la même matière (A24) ; après
+// un recueil, les majeures de la même matière (A17).
+const COMPLEMENT_PAR_FAMILLE = {
+  majeure: ["cas-pratique", "fiche-complete"],
+  "cas-pratique": ["majeure", "fiche-complete"],
+};
+
+// Phrase qui dit à l'étudiant ce que le complément ajoute à son achat.
+const EXPLICATIONS = {
+  "majeure>cas-pratique": "Tes majeures donnent les règles de la matière, condition par condition. Le recueil montre sur des énoncés complets comment choisir la règle qui s'applique, puis comment l'appliquer aux faits.",
+  "cas-pratique>majeure": "Le recueil t'a montré les règles appliquées à des énoncés. Les majeures rassemblent toutes les règles de la matière, déjà rédigées condition par condition comme dans une copie.",
+};
+
 // Préfixes d'identifiant, du plus long au plus court, pour isoler la matière.
 const PREFIXES_ID = [
   "pack-matiere-", "cours-complet-", "cours-fiche-", "fiche-arret-", "flashcards-qcm-",
@@ -169,12 +183,26 @@ function suggererComplements(produitIdsAchetes, max = 4) {
     famillesParGroupe.get(a.groupe).add(a.famille);
   }
 
+  const prioritaires = [];
+  for (const f of famillesAchetees) for (const c of (COMPLEMENT_PAR_FAMILLE[f] || [])) if (!prioritaires.includes(c)) prioritaires.push(c);
+  const rangMemeMatiere = (p) => {
+    const i = prioritaires.indexOf(p.famille);
+    return i >= 0 ? i : 10 + (ORDRE_MEME_MATIERE[p.famille] || 9);
+  };
+  const explication = (p) => {
+    for (const f of famillesAchetees) {
+      const texte = EXPLICATIONS[`${f}>${p.famille}`];
+      if (texte && achetes.some((a) => a.famille === f && a.groupe === p.groupe)) return texte;
+    }
+    return "";
+  };
+
   // 1. Même matière, même semestre, un format pas encore acheté.
   const memeMatiere = candidats
     .filter((p) => p.famille !== "pack-matiere" && groupes.has(p.groupe)
       && !famillesParGroupe.get(p.groupe).has(p.famille)
       && achetes.some((a) => a.groupe === p.groupe && memeSemestre(a, p)))
-    .sort((a, b) => (ORDRE_MEME_MATIERE[a.famille] || 9) - (ORDRE_MEME_MATIERE[b.famille] || 9));
+    .sort((a, b) => rangMemeMatiere(a) - rangMemeMatiere(b));
 
   // 2. Même format, autre matière de la même année.
   const autreMatiere = candidats
@@ -196,9 +224,11 @@ function suggererComplements(produitIdsAchetes, max = 4) {
   const packs = candidats
     .filter((p) => p.famille === "pack-matiere" && groupes.has(p.groupe) && !chevauche(p));
 
+  const complementCible = memeMatiere.length && prioritaires.includes(memeMatiere[0].famille);
+  const tete = [{ liste: packs, raison: "pack" }, { liste: memeMatiere, raison: "meme-matiere" }];
+  if (complementCible) tete.reverse();
   const sources = [
-    { liste: packs, raison: "pack" },
-    { liste: memeMatiere, raison: "meme-matiere" },
+    ...tete,
     { liste: autreMatiere, raison: "autre-matiere" },
     { liste: semestreSuivant, raison: "semestre-suivant" },
   ];
@@ -220,7 +250,9 @@ function suggererComplements(produitIdsAchetes, max = 4) {
       if (!suivant) continue;
       vus.add(suivant.id);
       famillesProposeesParGroupe.set(`${suivant.groupe}|${suivant.famille}`, true);
-      resultat.push({ id: suivant.id, nom: suivant.nom, prix: suivant.prix, raison });
+      const texte = raison === "meme-matiere" ? explication(suivant) : "";
+      resultat.push(texte ? { id: suivant.id, nom: suivant.nom, prix: suivant.prix, raison, explication: texte }
+        : { id: suivant.id, nom: suivant.nom, prix: suivant.prix, raison });
       ajoutDansTour = true;
     }
   }

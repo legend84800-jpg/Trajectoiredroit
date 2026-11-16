@@ -437,7 +437,9 @@
         return '<div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; padding:12px 0; border-top:1px solid var(--blue-100)">' +
           '<span style="flex:1 1 100%; font-size:.95rem; color:var(--body)">' +
             (libelle ? '<span style="display:block; font-size:.75rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)">' + libelle + '</span>' : '') +
-            echapper(s.nom) + '</span>' +
+            echapper(s.nom) +
+            (s.explication ? '<span style="display:block; margin-top:4px; font-size:.86rem; line-height:1.5; color:var(--muted)">' + echapper(s.explication) + '</span>' : '') +
+            '</span>' +
           '<button type="button" class="btn btn--primary btn--sm" style="white-space:nowrap" data-tjd-produit="' + echapper(s.id) + '">Acheter · ' + prix + '</button>' +
         '</div>';
       }).join('');

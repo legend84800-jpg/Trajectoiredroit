@@ -715,7 +715,7 @@
           <li><strong>L'auteur de la tromperie.</strong> Bernard est le vendeur, donc l'autre partie au contrat. Cette condition est ainsi remplie sans difficulté.</li>
         </ul>
         <p style="color:var(--body); line-height:1.75">Les cinq conditions sont réunies, si bien que Maxime peut demander l'annulation de la vente pour dol. L'annulation efface alors la vente, c'est pourquoi Maxime rend l'appartement et Bernard lui rembourse les 298 500 euros.</p>
-        <p style="color:var(--body); line-height:1.75">Ce sujet, avec sa correction complète, se trouve dans les <a href="corriges.html">Cas pratiques corrigés, Droit des contrats L2 S1</a>. La majeure préparée te donne la règle déjà rédigée, condition par condition, puis le corrigé te montre comment l'appliquer à un énoncé. Chaque matière a d'ailleurs sa propre majeure préparée. Enfin, si tu veux revoir les cinq étapes du cas pratique avant de t'entraîner, la <a href="methode-cas-pratique.html">méthode complète du cas pratique</a> les reprend une par une.</p>
+        <p style="color:var(--body); line-height:1.75">Ce sujet, avec sa correction complète, se trouve dans les <a href="corriges.html?produit=cas-pratique-contrats-l2-s1#recueil-selectionne" data-emplacement="majeures-exemple-dol">Cas pratiques corrigés, Droit des contrats L2 S1</a>. La majeure préparée te donne la règle déjà rédigée, condition par condition, puis le corrigé te montre comment l'appliquer à un énoncé. Chaque matière a d'ailleurs sa propre majeure préparée. Enfin, si tu veux revoir les cinq étapes du cas pratique avant de t'entraîner, la <a href="methode-cas-pratique.html">méthode complète du cas pratique</a> les reprend une par une.</p>
       </div>
     </section>
 
@@ -843,8 +843,34 @@
     var entiers = { L1: 'maj-intro-droit-l1/1', L2: 'maj-da-l2-s1/9', L3: 'maj-contrats-speciaux-l3/8' };
     var lienEntier = document.getElementById('extraitMajeureEntier');
     var texteEntier = lienEntier ? lienEntier.textContent : '';
+    /* Lien ?produit=maj-... ou matière choisie dans l'essai : l'image, la légende et le PDF du haut montrent cette matière (16/11/2026) */
+    var extraitsProduits = {
+      'maj-contrats-l2-s1': ['assets/apercus/extraits-20261116/maj-contrats-l2-s1-dol.webp', 'Majeure 7 de Droit des contrats L2 S1, sur le dol et ses conditions', 'Extrait réel, droit des contrats L2 S1, majeure 7 sur le dol.', 'maj-contrats-l2-s1/7', 'Lire en entier la majeure sur le dol, sans laisser ton email'],
+      'maj-da-l2-s1': [extraits.L2[0], extraits.L2[1], extraits.L2[2], entiers.L2, '']
+    };
+    function extraitDuProduit(id){
+      if (extraitsProduits[id]) return extraitsProduits[id];
+      var source = document.querySelector('#grille-majeures [data-apercu-cta="' + id + '"]');
+      if (!source) return null;
+      var pages = [];
+      try { pages = JSON.parse(source.getAttribute('data-apercu') || '[]'); } catch (err) {}
+      if (!pages.length) return null;
+      var page = pages[pages.length > 1 ? 1 : 0];
+      var numero = (page.match(/-p0*(\d+)\.webp$/) || [])[1];
+      var titre = (source.getAttribute('data-apercu-title') || '').split(' · ').slice(0, 2).join(' ');
+      return [page, 'Page ' + (numero || '') + ' des majeures préparées ' + titre, 'Extrait réel, ' + titre + (numero ? ', page ' + numero + ' du recueil.' : '.'), '', ''];
+    }
+    function montrerProduit(id){
+      var e = extraitDuProduit(id);
+      if (!e || !img) return false;
+      if (img.getAttribute('src') !== e[0]) { img.src = e[0]; img.alt = e[1]; }
+      legende.textContent = e[2];
+      if (lienEntier && e[3]) { lienEntier.href = R2_MAJ + e[3] + '.pdf'; lienEntier.textContent = e[4] || texteEntier; return true; }
+      return false;
+    }
     document.addEventListener('tjd-essai-matiere', function(e){
       if (!lienEntier || e.detail.initial) return;
+      if (montrerProduit(e.detail.produit)) return;
       var m = e.detail.data.majeures[0];
       lienEntier.href = R2_MAJ + e.detail.produit + '/' + m.i + '.pdf';
       lienEntier.textContent = 'Lire en entier la majeure « ' + m.titre + ' » de ' + e.detail.data.matiere + ', sans laisser ton email';
@@ -914,6 +940,7 @@
       choisie.hidden = false;
       var niv = carte.getAttribute('data-niveau');
       if (extraits[niv]) appliquer(niv);
+      montrerProduit(produit);
       if (window._paq) window._paq.push(['trackEvent', 'Majeures', 'Lien matière', produit]);
       /* La barre fixe du bas propose alors l'achat direct de cette matière */
       document.addEventListener('DOMContentLoaded', function(){
@@ -968,6 +995,6 @@
 
   <script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
   <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
-<script src="/assets/js/essai-majeures.js?v=41b5cb8b" defer></script>
+<script src="/assets/js/essai-majeures.js?v=7d6e0295" defer></script>
 </body>
 </html>
