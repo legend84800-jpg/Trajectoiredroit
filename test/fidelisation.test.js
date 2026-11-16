@@ -4,16 +4,17 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { suggererComplements } = require("../api/_suggestions-post-achat");
+const { suggererComplements, suggererMajeuresPostAchat, attributsMajeuresPostAchat } = require("../api/_suggestions-post-achat");
 const remise = require("../api/_remise-post-achat");
 const sessionInfo = require("../api/session-info");
 
 const RACINE = path.join(__dirname, "..");
 
-test("une majeure propose la même matière, la même année dans une autre matière et le semestre suivant", () => {
+test("une majeure propose d'abord le recueil de la même matière, puis d'autres majeures", () => {
   const s = suggererComplements(["maj-da-l2-s1"], 4);
   const ids = s.map((x) => x.id);
-  assert.ok(ids.includes("fiche-da-l2-s1"));
+  assert.equal(s[0].id, "cas-pratique-da-l2-s1");
+  assert.equal(s[0].raison, "meme-matiere");
   assert.ok(s.some((x) => x.raison === "autre-matiere" && x.id.startsWith("maj-") && x.id.endsWith("-l2-s1")));
   assert.ok(ids.includes("maj-da-l2-s2"));
   assert.ok(!ids.includes("maj-da-l2-s1"));
@@ -39,6 +40,29 @@ test("le stage, un produit inconnu et une liste vide ne donnent aucune suggestio
   assert.deepEqual(suggererComplements(["stage-methode"], 4), []);
   assert.deepEqual(suggererComplements(["produit-inexistant"], 4), []);
   assert.deepEqual(suggererComplements([], 4), []);
+});
+
+test("le J+5 propose deux majeures de l'année du dernier achat", () => {
+  const ids = (dernier, historique) => suggererMajeuresPostAchat(dernier, historique).map((p) => p.id);
+  assert.deepEqual(ids(["fiche-constit-l1-s1"], []), ["maj-intro-droit-l1", "maj-personnes-l1"]);
+  assert.deepEqual(ids(["maj-contrats-l2-s1"], ["pack-majeures-l1"]), ["maj-da-l2-s1", "maj-penal-l2-s1"]);
+  assert.deepEqual(ids(["maj-societes-l3-s1"], []), ["maj-commercial-l3-s1", "maj-travail-l3-s1"]);
+  assert.deepEqual(ids(["fiche-constit-l1-s1", "maj-societes-l3-s1"], []), []);
+  assert.deepEqual(ids(["maj-intro-droit-l1"], ["maj-personnes-l1"]), ["maj-famille-l1-s2"]);
+  assert.deepEqual(ids(["fiche-constit-l1-s1"], ["pack-majeures-l1"]), []);
+  assert.ok(!ids(["fiche-constit-l1-s1"], ["pack-ultra-l1-s1"]).includes("maj-intro-droit-l1"));
+});
+
+test("les recommandations Brevo relisent aussi les commandes des pages suivantes", async () => {
+  const requetes = [];
+  const attributs = await attributsMajeuresPostAchat("etudiant@example.test", ["fiche-constit-l1-s1"], async (table, query) => {
+    assert.equal(table, "achats");
+    requetes.push(query);
+    if (query.endsWith("offset=0")) return Array.from({ length: 100 }, () => ({ produit_ids: ["fiche-constit-l1-s1"] }));
+    return [{ produit_ids: ["pack-majeures-l1"] }];
+  });
+  assert.equal(requetes.length, 2);
+  assert.deepEqual(Object.values(attributs), ["", "", "", ""]);
 });
 
 test("le code de remise est le même pour une session donnée, quel que soit qui le crée", () => {
