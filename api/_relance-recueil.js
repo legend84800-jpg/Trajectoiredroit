@@ -12,8 +12,10 @@
 //   4. envoie l'email du recueil de sa matière, dont le bouton porte ?code= (le site applique le
 //      code tout seul au paiement), puis note RELANCE_RECUEIL sur le contact.
 // Le mail 1 de la séquence de bienvenue part à J0 et le mail « Relire ton cours » à J+2, d'où J+3.
-// Le lundi, rien ne part, pour laisser au plan gratuit de Brevo (300 envois par jour) la place de
-// la newsletter des trois astuces. Une réserve de crédits protège aussi les emails d'achat.
+// Tant que le compte Brevo est sur le plan gratuit (300 envois par jour), rien ne part le lundi,
+// pour laisser la place à la newsletter des trois astuces. Depuis le passage à Starter (16/11/2026,
+// crédits mensuels), la pause du lundi saute d'elle-même. Une réserve de crédits protège toujours
+// les emails d'achat.
 // La même tâche tient à jour MATIERE_NOM et MATIERE_DE, lus par la newsletter (codes A4 et A5).
 
 const crypto = require("crypto");
@@ -170,9 +172,18 @@ function brevo(apiKey) {
       return tous;
     },
     async credits() {
+      return (await this.plan()).credits;
+    },
+    // Crédits restants et type d'offre. Le plan gratuit compte ses crédits par jour, une offre payante
+    // les compte par mois. Sans réponse lisible, on suppose le plan gratuit, le cas le plus prudent.
+    async plan() {
       const compte = await appel("/account");
-      const plan = (compte.plan || []).find(x => x.creditsType === "sendLimit");
-      return plan ? Number(plan.credits) : Infinity;
+      const plans = compte.plan || [];
+      const envoi = plans.find(x => x.creditsType === "sendLimit");
+      return {
+        credits: envoi ? Number(envoi.credits) : Infinity,
+        gratuit: plans.length === 0 || plans.some(x => x.type === "free"),
+      };
     },
     majContact: (email, attributs) => appel("/contacts/" + encodeURIComponent(email), { method: "PUT", body: JSON.stringify({ attributes: attributs }) }),
     bloquer: email => appel("/contacts/" + encodeURIComponent(email), { method: "PUT", body: JSON.stringify({ emailBlacklisted: true }) }),
@@ -239,7 +250,10 @@ async function passer(options = {}) {
   }
 
   // 2. Relance du recueil (A1).
-  if (estLundiParis(maintenant) && !options.ignorerLundi) { bilan.pause = "lundi, newsletter des trois astuces"; return bilan; }
+  if (estLundiParis(maintenant) && !options.ignorerLundi && (await api.plan()).gratuit) {
+    bilan.pause = "lundi, newsletter des trois astuces (plan Brevo gratuit)";
+    return bilan;
+  }
   const crees = await api.contactsDepuis("createdSince", new Date(maintenant - FENETRE_H[1] * 3600000));
   let credits = essai ? Infinity : await api.credits();
   for (const c of crees) {
