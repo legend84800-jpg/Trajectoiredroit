@@ -5,10 +5,8 @@
 //
 // Sans `matiere`, le comportement est celui d'origine : le contact est inscrit
 // avec l'attribut SOURCE et rien d'autre ne se passe.
-// Avec `matiere` (un id cas-pratique-* de la liste blanche ci-dessous, lot C du
-// chantier conversion du 10/10/2026), le contact est inscrit avec SOURCE=corrige-offert
-// et MATIERE=<id>, puis un email transactionnel lui envoie le lien du PDF offert,
-// à savoir le premier cas pratique du recueil, publié sur R2 sous tjd/corrige-offert/<id>.pdf.
+// Pour une ressource offerte, le site envoie le PDF demandé par email transactionnel
+// puis ajoute le contact à la liste de suivi Brevo.
 
 const PRODUITS = require("./_produits");
 const ESSAI = require("./_essai-majeures");
@@ -18,6 +16,9 @@ const { attributsExercice, suggestionEmail, emailDepuisAttributs } = require('./
 const PLANS = require('./_plans-commentaires.json');
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// La liste 17 lance le suivi au deuxième mail, puis ajoute le contact à la liste 3.
+const LISTE_NEWSLETTER = 3;
+const LISTE_SUIVI_PDF = 17;
 const R2_PUBLIC = "https://pub-45b53167be7548aca62650d34a771b47.r2.dev";
 function urlRecueil(matiere) {
   const params = new URLSearchParams({ matiere, utm_source: 'brevo', utm_medium: 'email',
@@ -102,23 +103,11 @@ function attributsCorrige(matiere) {
   };
 }
 
-async function contactDejaDansListe(email, apiKey) {
-  const listId = parseInt(process.env.BREVO_LIST_ID || "", 10);
-  if (Number.isNaN(listId)) return true;
-  const resp = await fetch(`https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`, {
-    headers: { "api-key": apiKey, accept: "application/json" },
-  });
-  if (resp.status === 404) return false;
-  if (!resp.ok) return true; // Dans le doute, l'email transactionnel garantit la livraison.
-  const contact = await resp.json().catch(() => ({}));
-  return Array.isArray(contact.listIds) && contact.listIds.includes(listId);
-}
-
 async function inscrireContact(email, attributs, apiKey, listes) {
   const payload = { email, updateEnabled: true, attributes: attributs };
   const listId = parseInt(process.env.BREVO_LIST_ID || "", 10);
-  if (Array.isArray(listes)) payload.listIds = listes;
-  else if (!Number.isNaN(listId)) payload.listIds = [listId];
+  if (listes === undefined && !Number.isNaN(listId)) payload.listIds = [listId];
+  if (listes?.length) payload.listIds = listes;
 
   const brevoRes = await fetch("https://api.brevo.com/v3/contacts", {
     method: "POST",
@@ -135,6 +124,38 @@ async function inscrireContact(email, attributs, apiKey, listes) {
   const detail = await brevoRes.json().catch(() => ({}));
   if (detail && detail.code === "duplicate_parameter") return { ok: true };
   return { ok: false, status: brevoRes.status, detail };
+}
+
+async function livrerPdf(email, attributs, apiKey, envoyer) {
+  // Le scénario de bienvenue lit ce marqueur après l'ajout à sa liste.
+  // On prépare le contact avant de déclencher le scénario.
+  const contact = await inscrireContact(email, { ...attributs, LIVRAISON_PDF_SITE: true }, apiKey, []);
+  if (!contact.ok) return false;
+
+  await envoyer();
+
+  const listId = parseInt(process.env.BREVO_LIST_ID || "", 10);
+  if (!Number.isNaN(listId)) {
+    try {
+      // Le PDF est déjà accepté par Brevo. Un échec du suivi ne doit pas
+      // demander à l'élève de relancer un envoi qui a réussi.
+      let listeSuivi = listId;
+      if (listId === LISTE_NEWSLETTER) {
+        const reponse = await fetch(`https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`, {
+          headers: { "api-key": apiKey, accept: "application/json" },
+        });
+        if (!reponse.ok) throw new Error("Lecture des listes Brevo impossible");
+        const { listIds } = await reponse.json();
+        if (listIds?.includes(listId)) return true;
+        listeSuivi = LISTE_SUIVI_PDF;
+      }
+      const suivi = await inscrireContact(email, undefined, apiKey, [listeSuivi]);
+      if (!suivi.ok) console.error("Inscription au suivi PDF impossible", suivi.status);
+    } catch {
+      console.error("Inscription au suivi PDF indisponible");
+    }
+  }
+  return true;
 }
 
 async function envoyerCorrigeOffert(email, attributs, tags, apiKey) {
@@ -355,15 +376,10 @@ async function handler(req, res) {
       if (!attributs) return res.status(400).json({ error: 'Exercice inconnu.' });
       if (typeof body.site === 'string' && body.site.trim()) return res.status(200).json({ ok: true });
       if (limiteAtteinte(ipVisiteur(req)) || limiteAtteinte('email:' + email)) return res.status(429).json({ error: 'Trop de demandes. Réessaie dans quelques minutes.' });
-      const dejaInscrit = await contactDejaDansListe(email, apiKey);
-      const inscription = await inscrireContact(email, attributs, apiKey);
-      if (!inscription.ok) return res.status(502).json({ error: 'Inscription impossible pour le moment.' });
-      // Nouveau contact : une seule livraison par le scénario de bienvenue.
-      // Déjà abonné : le scénario ne redémarre pas, on livre son nouvel exercice.
-      if (dejaInscrit) {
-        await envoyerCorrigeOffert(email, attributs, ["corrige-exercice", String(body.exercice)], apiKey);
-      }
-      return res.status(200).json({ok:true,envoye:true});
+      const envoye = await livrerPdf(email, attributs, apiKey, () =>
+        envoyerCorrigeOffert(email, attributs, ["corrige-exercice", String(body.exercice)], apiKey));
+      if (!envoye) return res.status(502).json({ error: "Inscription impossible pour le moment." });
+      return res.status(200).json({ ok: true, envoye: true });
     }
     if (body.essai !== undefined && body.essai !== null && body.essai !== "") {
       // Kit d'essai des majeures préparées (07/11/2026), détail dans _essai-majeures.js.
@@ -404,16 +420,8 @@ async function handler(req, res) {
       if (limiteAtteinte(ipVisiteur(req)) || limiteAtteinte("email:" + email)) {
         return res.status(429).json({ error: "Trop de demandes. Réessaie dans quelques minutes." });
       }
-      // Même logique que le plan offert : un nouvel inscrit reçoit la fiche par le
-      // premier email de la séquence de bienvenue, un contact déjà inscrit par un
-      // email transactionnel, car la séquence ne redémarre pas pour lui.
-      const dejaInscrit = await contactDejaDansListe(email, apiKey);
-      const inscription = await inscrireContact(email, attributsFiche(fiche), apiKey);
-      if (!inscription.ok) {
-        console.error("Brevo error:", inscription.status, inscription.detail);
-        return res.status(502).json({ error: "Inscription impossible pour le moment." });
-      }
-      if (dejaInscrit) await envoyerFiche(email, fiche, apiKey);
+      const envoye = await livrerPdf(email, attributsFiche(fiche), apiKey, () => envoyerFiche(email, fiche, apiKey));
+      if (!envoye) return res.status(502).json({ error: "Inscription impossible pour le moment." });
       return res.status(200).json({ ok: true, envoye: true });
     }
     if (body.plan !== undefined && body.plan !== null && body.plan !== "") {
@@ -426,20 +434,12 @@ async function handler(req, res) {
       if (limiteAtteinte(ipVisiteur(req)) || limiteAtteinte("email:" + email)) {
         return res.status(429).json({ error: "Trop de demandes. Réessaie dans quelques minutes." });
       }
-      // Même logique que le corrigé offert : un nouvel inscrit reçoit le plan par le
-      // premier email de la séquence de bienvenue, un contact déjà inscrit par un
-      // email transactionnel, car la séquence ne redémarre pas pour lui.
-      const dejaInscrit = await contactDejaDansListe(email, apiKey);
-      const inscription = await inscrireContact(email, attributsPlan(plan), apiKey);
-      if (!inscription.ok) {
-        console.error("Brevo error:", inscription.status, inscription.detail);
-        return res.status(502).json({ error: "Inscription impossible pour le moment." });
-      }
-      if (dejaInscrit) await envoyerPlan(email, plan, apiKey);
+      const envoye = await livrerPdf(email, attributsPlan(plan), apiKey, () => envoyerPlan(email, plan, apiKey));
+      if (!envoye) return res.status(502).json({ error: "Inscription impossible pour le moment." });
       return res.status(200).json({ ok: true, envoye: true });
     }
     if (!avecMatiere) {
-      const inscription = await inscrireContact(email, { SOURCE: source }, apiKey);
+      const inscription = await inscrireContact(email, { SOURCE: source, LIVRAISON_PDF_SITE: false }, apiKey);
       if (inscription.ok) {
         res.status(200).json({ ok: true });
         return;
@@ -466,21 +466,10 @@ async function handler(req, res) {
       return;
     }
 
-    // Un nouvel inscrit entre dans la liste des leads, ce qui déclenche la séquence
-    // de bienvenue Brevo (« Automatisation #1 »). Son premier email affiche le
-    // corrigé quand SOURCE vaut corrige-offert, grâce aux attributs CORRIGE_*.
-    // Un contact déjà dans la liste ne relance pas la séquence : il reçoit donc
-    // le corrigé par l'email transactionnel, comme avant.
-    const dejaInscrit = await contactDejaDansListe(email, apiKey);
     const attributs = attributsCorrige(matiere);
-    const inscription = await inscrireContact(email, attributs, apiKey);
-    if (!inscription.ok) {
-      console.error("Brevo error:", inscription.status, inscription.detail);
-      res.status(502).json({ error: "Inscription impossible pour le moment." });
-      return;
-    }
-
-    if (dejaInscrit) await envoyerCorrigeOffert(email, attributs, ["corrige-offert", matiere], apiKey);
+    const envoye = await livrerPdf(email, attributs, apiKey, () =>
+      envoyerCorrigeOffert(email, attributs, ["corrige-offert", matiere], apiKey));
+    if (!envoye) return res.status(502).json({ error: "Inscription impossible pour le moment." });
     res.status(200).json({ ok: true, envoye: true });
   } catch (err) {
     console.error("lead handler error:", err);

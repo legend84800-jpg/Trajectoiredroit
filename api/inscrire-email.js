@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
   const contact = {
     email,
     updateEnabled: true,
-    attributes: { SOURCE: "generateur-fiche-arret" },
+    attributes: { SOURCE: "generateur-fiche-arret", LIVRAISON_PDF_SITE: false },
   };
   if (process.env.BREVO_LIST_ID) {
     contact.listIds = [Number(process.env.BREVO_LIST_ID)];
