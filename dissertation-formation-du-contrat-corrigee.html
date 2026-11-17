@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>La formation du contrat, dissertation corrigée avec plan</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Dissertation corrigée sur la formation du contrat en droit des contrats L2. Décorticage du sujet, introduction en sept étapes, plan détaillé et arrêts à citer.">
+  <link rel="canonical" href="https://trajectoiredroit.com/dissertation-formation-du-contrat-corrigee.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="La formation du contrat, dissertation corrigée avec plan">
+  <meta property="og:description" content="Dissertation corrigée sur la formation du contrat en droit des contrats L2. Décorticage du sujet, introduction en sept étapes, plan détaillé et arrêts à citer.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/dissertation-formation-du-contrat-corrigee.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/dissertation-formation-du-contrat-corrigee.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="La formation du contrat, dissertation corrigée avec plan">
+  <meta name="twitter:description" content="Dissertation corrigée sur la formation du contrat en droit des contrats L2. Décorticage du sujet, introduction en sept étapes, plan détaillé et arrêts à citer.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/dissertation-formation-du-contrat-corrigee.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "La formation du contrat, dissertation corrigée avec plan détaillé",
+      "description": "Dissertation corrigée sur la formation du contrat en droit des contrats L2. Décorticage du sujet, introduction en sept étapes, plan détaillé et arrêts à citer.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-11-17",
+      "dateModified": "2026-11-17",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "La formation du contrat, sujet de dissertation de droit des contrats L2, corrigé avec son plan détaillé"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/dissertation-formation-du-contrat-corrigee.webp",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/dissertation-formation-du-contrat-corrigee.html"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "La formation du contrat, dissertation corrigée",
+          "item": "https://trajectoiredroit.com/dissertation-formation-du-contrat-corrigee.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Que comprend la formation du contrat en droit français ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le chapitre II du sous-titre consacré au contrat s’intitule « La formation du contrat » et occupe les articles 1112 à 1187 du Code civil. Il couvre la conclusion du contrat et sa validité, puis sa forme et ses sanctions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelles sont les conditions de validité du contrat depuis 2016 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depuis 2016, l’article 1128 du Code civil exige trois conditions de validité, à savoir le consentement des parties, leur capacité de contracter et un contenu licite et certain. La cause, qui figurait parmi les quatre conditions de l’ancien article 1108, n’est plus une condition autonome."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Une partie peut-elle rompre librement des négociations ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, car l’article 1112 du Code civil déclare libres l’initiative, le déroulement et la rupture des négociations, à condition de respecter la bonne foi. En cas de faute, la réparation ne compense ni la perte des avantages attendus du contrat non conclu ni la perte de chance d’obtenir ces avantages."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel PDF choisir pour s’entraîner sur la formation du contrat ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si tu veux t’entraîner à appliquer les règles à des faits, prends le recueil de cas pratiques corrigés, dont huit cas sur dix portent sur la formation et la validité du contrat. En revanche, pour revoir tout le cours, la fiche complète de 205 pages convient mieux."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=5bc99c11">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style id="exemples-pedagogiques-page">
+  .biens-hero { padding-top:48px; }
+  .biens-hero .hero__cta { margin-top:24px; }
+  @media (max-width:700px) {
+    .biens-hero { padding-top:24px; }
+    .biens-hero .hero__cta { gap:10px; }
+    .biens-hero .hero__cta .btn {
+      flex:1 1 132px;
+      width:auto;
+      min-height:44px;
+      font-size:.875rem;
+      padding:10px 12px;
+    }
+  }
+  @media (max-width:420px) {
+    .biens-hero { padding-top:12px; }
+    .biens-hero .hero__cta { margin-top:12px; }
+    .biens-hero .tjd-po { margin-top:12px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 36 ressources, 259 € au lieu de 474,64 €, 45 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-45 %</span></span>
+                    <span class="megamenu__pack-tile-meta">36 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">474,64 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 26 ressources, 229 € au lieu de 349,74 €, 35 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-35 %</span></span>
+                    <span class="megamenu__pack-tile-meta">26 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">349,74 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 33 ressources, 259 € au lieu de 449,67 €, 42 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-42 %</span></span>
+                    <span class="megamenu__pack-tile-meta">33 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">449,67 €</span><span class="megamenu__pack-tile-price">259 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 30 ressources, 239 € au lieu de 399,70 €, 40 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-40 %</span></span>
+                    <span class="megamenu__pack-tile-meta">30 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,70 €</span><span class="megamenu__pack-tile-price">239 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 43 ressources, 329 € au lieu de 579,57 €, 43 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-43 %</span></span>
+                    <span class="megamenu__pack-tile-meta">43 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">579,57 €</span><span class="megamenu__pack-tile-price">329 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>166 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes tes questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="cours-fiches.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+    <main>
+<section class="section--sm biens-hero">
+<div class="container container--narrow text-center">
+<h1 class="h1">La formation du contrat, dissertation corrigée avec plan détaillé</h1>
+<p class="lead" style="max-width:720px;margin-left:auto;margin-right:auto">Dans le Code civil, la formation du contrat occupe les articles 1112 à 1187. Elle réunit la conclusion du contrat, depuis les négociations jusqu’à l’acceptation de l’offre, et la validité du contrat. Elle comprend aussi sa forme et ses sanctions. Ce corrigé de la formation du contrat, dissertation de droit des contrats L2, défend donc la thèse que chacun reste libre de contracter, mais que le droit contrôle la loyauté de l’accord et son contenu.</p>
+<div class="hero__cta flex flex--center">
+<a class="btn btn--primary btn--lg" href="#sujet">Le décorticage du sujet →</a>
+<a class="btn btn--outline btn--lg" href="#plan">Le plan détaillé</a>
+</div>
+<div data-tjd-pdf-offert="matiere" data-id="cas-pratique-contrats-l2-s1" data-titre="Un cas pratique corrigé en droit des contrats L2 S1, en PDF" data-texte="Je t&#x27;envoie par email l&#x27;énoncé et sa correction complète, rédigée comme une copie de partiel. Tu peux ainsi t&#x27;entraîner sur papier, puis comparer ta réponse avec le corrigé." data-bouton="Recevoir le corrigé"></div>
+</div>
+</section>
+<section class="conversion-offer" aria-labelledby="offre-formation-contrat-titre">
+<div class="container container--narrow">
+<div class="conversion-offer__card">
+<div class="conversion-offer__visual"><img src="assets/covers/exercices-20260923/cas-pratique-contrats-l2-s1.webp" alt="Couverture du recueil de cas pratiques corrigés de droit des contrats L2 S1, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
+<div>
+<p class="conversion-offer__eyebrow">Droit des contrats L2, semestre 1</p>
+<h2 class="conversion-offer__title" id="offre-formation-contrat-titre">Le recueil de cas pratiques corrigés et la fiche du cours</h2>
+<p class="conversion-offer__summary">Le recueil de 125 pages corrige en entier dix cas pratiques et trois sujets types de partiel, dont huit cas sur la formation et la validité du contrat. La fiche complète de 205 pages, vendue séparément, suit tout le programme, avec la conclusion du contrat aux chapitres 5 à 10 et sa validité, sa forme et ses sanctions aux chapitres 11 à 19.</p>
+<ul class="conversion-offer__benefits">
+<li>Un accès immédiat au PDF choisi après le paiement</li>
+</ul>
+<button type="button" class="apercu-link" data-apercu='["assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p001.webp","assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p002.webp","assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p003.webp","assets/apercus/recueils-20261115/cas-pratique-contrats-l2-s1/0981f8c440ae-p005.webp"]' data-apercu-title="Cas pratiques corrigés Droit des contrats L2 S1" data-apercu-price="14,99 €" data-apercu-cta="cas-pratique-contrats-l2-s1" data-apercu-sub="Le sommaire du recueil, puis le début du premier cas pratique corrigé, avec son énoncé."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Voir un aperçu du recueil</button>
+<div class="conversion-offer__choices">
+<button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="cas-pratique-contrats-l2-s1">Acheter le recueil · 14,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="fiche-contrats-l2-s1">Acheter la fiche · 14,99 €</button>
+</div>
+<p class="conversion-offer__note">Si tu hésites entre les deux PDF, prends le recueil pour t’entraîner à appliquer les articles 1112 à 1171 à des faits, et la fiche pour revoir le cours en entier. La <a href="droit-des-contrats-l2.html">page du droit des contrats L2</a> présente tous les supports.</p>
+<div data-tjd-avis data-matiere="contrats-l2"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="sujet">
+<div class="container container--narrow">
+<div class="prose">
+<figure style="margin:0 0 32px"><img src="assets/blog/dissertation-formation-du-contrat-corrigee.webp" srcset="assets/blog/dissertation-formation-du-contrat-corrigee-640.webp 640w, assets/blog/dissertation-formation-du-contrat-corrigee.webp 1200w" sizes="(max-width:700px) 100vw, 800px" alt="Un étal de marché couvert avec une balance à plateaux, des cageots de légumes et une ardoise vierge" width="1200" height="675" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"></figure>
+<h2>Que demande le sujet « La formation du contrat » ?</h2>
+<p>Un énoncé de quatre mots laisse à l’étudiant le choix de ce que la copie traite et de ce qu’elle écarte, c’est-à-dire la délimitation. Tu recopies donc le sujet en haut de ton brouillon, puis tu notes pour chaque mot ce qu’il couvre et ce qu’il écarte, avant de chercher l’idée qui s’y oppose.</p>
+<h3>Les termes du sujet</h3>
+<p>Selon l’article 1101 du Code civil, le contrat est un accord de volontés entre deux ou plusieurs personnes, destiné à créer, modifier, transmettre ou éteindre des obligations. Une obligation est ce qu’une personne doit faire ou payer à une autre, comme le prix qu’un acheteur doit au vendeur. L’article défini « le » annonce un sujet sur le contrat en général, donc sur les règles communes à tous les contrats, qui s’appliquent aussi bien à une vente qu’à une location.</p>
+<p>Le mot « formation » reçoit dans le Code civil un sens plus large que dans le langage courant. Le chapitre II du sous-titre sur le contrat s’intitule « La formation du contrat » et couvre les articles 1112 à 1187, répartis en quatre sections.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Les quatre sections du chapitre II du Code civil, La formation du contrat" style="overflow-x:auto">
+<table style="width:100%;min-width:560px;border-collapse:collapse">
+<thead><tr><th scope="col">Section du chapitre II</th><th scope="col">Articles</th><th scope="col">Ce qu’elle contient</th></tr></thead>
+<tbody>
+<tr><th scope="row">1. La conclusion du contrat</th><td>1112 à 1127-4</td><td>Les négociations, l’offre et l’acceptation, le pacte de préférence, la promesse unilatérale et le contrat conclu en ligne.</td></tr>
+<tr><th scope="row">2. La validité du contrat</th><td>1128 à 1171</td><td>Le consentement et ses vices, la capacité et la représentation, puis le contenu du contrat.</td></tr>
+<tr><th scope="row">3. La forme du contrat</th><td>1172 à 1177</td><td>Le consensualisme, les contrats solennels et les formes exigées pour la preuve.</td></tr>
+<tr><th scope="row">4. Les sanctions</th><td>1178 à 1187</td><td>La nullité et la caducité.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Le sujet couvre donc la validité du contrat en plus de l’offre et de l’acceptation, avec les trois conditions de l’article 1128, à savoir le consentement des parties, leur capacité de contracter et un contenu licite et certain. La capacité de contracter est l’aptitude d’une personne à s’engager seule.</p>
+<h3>La délimitation</h3>
+<p>Les effets du contrat et son inexécution relèvent d’autres chapitres du Code civil, par exemple la force obligatoire de l’article 1103, qui lie les parties comme une loi, ou l’imprévision, qui permet de renégocier un contrat devenu trop coûteux à exécuter.</p>
+<p>La forme du contrat se traite en quelques lignes, car l’article 1172 pose le principe du consensualisme, selon lequel le contrat se forme par le seul échange des volontés. La loi prévoit toutefois deux exceptions. Le contrat solennel dépend de formes déterminées par la loi, sous peine de nullité sauf régularisation possible, et le contrat réel suppose la remise d’une chose. La copie mentionne aussi la nullité en une phrase, comme la sanction d’une condition de validité qui manque.</p>
+<h3>Les deux principes qui s’opposent dans le sujet</h3>
+<p>Pour trouver le débat que soulève un sujet de droit des obligations, je pars des quatre grands principes du contrat. La force obligatoire, selon laquelle le contrat lie les parties, concerne les effets du contrat et sort donc du sujet. Il en va de même de l’effet relatif, selon lequel le contrat ne lie qu’elles. La liberté contractuelle et la bonne foi se rencontrent en revanche dès les premiers articles.</p>
+<p>D’après l’article 1102, chacun est libre de contracter ou de ne pas contracter. Il choisit aussi l’autre partie au contrat, son cocontractant, ainsi que le contenu et la forme du contrat, dans les limites fixées par la loi. D’après l’article 1104, les contrats doivent être négociés, formés et exécutés de bonne foi, ce qui signifie que chaque partie agit loyalement envers l’autre. Cette disposition est d’ordre public. La bonne foi impose donc de rester loyal à chaque étape, par exemple de donner à l’autre une information importante qu’il ignore, alors que la liberté laisse chacun décider s’il s’engage.</p>
+<p>Un sujet qui annonce tout le programme pousse vers le plan catalogue, qui énumère les notions du cours dans l’ordre du Code civil. Par exemple, le plan « I. La conclusion du contrat, II. La validité du contrat » résume le cours. Un bon plan défend une thèse, ici que la volonté reste le point de départ et que le droit la contrôle.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="introduction">
+<div class="container container--narrow">
+<div class="prose">
+<h2>L’introduction rédigée en sept étapes</h2>
+<p>Ces sept étapes se suivent dans le même ordre sur toutes tes dissertations, et seul le contenu change.</p>
+<h3>1. L’accroche</h3>
+<p>Le 10 novembre 1997, les actionnaires d’une société promettent de céder leurs actions à un acquéreur. Pourtant, ils négocient depuis le printemps avec un autre candidat, avec qui ils ont établi un projet d’accord en septembre. Ils attendent quatorze jours pour informer ce candidat, tout en lui laissant croire que seule l’absence de l’expert-comptable retarde la signature du protocole.</p>
+<p>Le 26 novembre 2003, la chambre commerciale de la Cour de cassation confirme que la rupture des négociations avec ce candidat est fautive, mais elle limite la réparation du candidat écarté à ses frais de négociation et d’études. Cette affaire montre que la liberté de ne pas conclure et l’exigence de loyauté se rencontrent avant même que le contrat existe.</p>
+<h3>2. La présentation du sujet et la définition des termes</h3>
+<p>Selon l’article 1101 du Code civil, le contrat est un accord de volontés destiné à créer, modifier, transmettre ou éteindre des obligations. Sa formation désigne tout ce qui conduit à cet accord et lui permet de rester valable. Ainsi, le chapitre II du sous-titre sur le contrat, aux articles 1112 à 1187, lui donne un sens large qui réunit la conclusion du contrat et sa validité, puis sa forme et ses sanctions.</p>
+<h3>3. La délimitation du sujet</h3>
+<p>Les effets du contrat et son inexécution sortent du sujet. Le régime détaillé de la nullité, qui fixe qui peut demander l’annulation et dans quel délai, en sort aussi, et la copie le mentionne en une phrase.</p>
+<h3>4. Le contexte</h3>
+<p>Le gouvernement a réécrit les règles de formation du contrat dans le Code civil par l’ordonnance n° 2016-131 du 10 février 2016, entrée en vigueur le 1er octobre 2016. La loi n° 2018-287 du 20 avril 2018 a ensuite modifié plusieurs de ces articles, dont l’article 1143 sur l’abus de dépendance et l’article 1171 sur le déséquilibre significatif.</p>
+<p>De plus, cette réécriture reprend la jurisprudence, soit les solutions déjà adoptées par les juges, comme le devoir d’information de l’article 1112-1 et la sanction du dol, une tromperie intentionnelle (article 1137). En revanche, elle inverse la solution applicable à la promesse unilatérale de vente, par laquelle un propriétaire laisse à une personne le droit de décider plus tard d’acheter son bien (article 1124).</p>
+<h3>5. L’intérêt du sujet</h3>
+<p>Le sujet porte sur deux conceptions du contrat. Certains y voient un accord libre que le droit se contente d’enregistrer. D’autres y voient un accord que le droit contrôle pour qu’il reste loyal et équilibré. En effet, l’article 1112 du Code civil proclame la liberté de négocier, puis impose dans le même alinéa le respect de la bonne foi. La réponse permet donc de savoir quand une partie peut quitter une négociation ou retirer son offre, et quand elle peut demander l’annulation d’un contrat déjà signé.</p>
+<h3>6. La problématique</h3>
+<p>La formation du contrat repose-t-elle encore sur la seule rencontre de deux volontés libres, ou le droit la contrôle-t-il à chaque étape, depuis les négociations jusqu’au contenu de l’accord ?</p>
+<p>La problématique est la question à laquelle toute la dissertation répond. Elle s’écrit en une seule phrase interrogative qui oppose la liberté des parties et le contrôle du droit.</p>
+<h3>7. L’annonce du plan</h3>
+<p>La volonté des parties reste le point de départ de la formation du contrat (I). Le droit contrôle néanmoins cette volonté et le contenu qu’elle donne au contrat (II).</p>
+</div>
+</div>
+</section>
+<section class="section" id="plan">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quel plan détaillé pour cette dissertation ?</h2>
+<p>Le plan défend une thèse en deux temps. La liberté reste d’abord le point de départ de la formation du contrat (I). Le droit contrôle ensuite cette liberté sur deux points, la loyauté du consentement puis le contenu de l’accord, tout en limitant lui-même ce contrôle (II). Tu écris les intitulés sous forme nominale, sans verbe conjugué.</p>
+<h3>I. La volonté des parties, point de départ de la formation du contrat</h3>
+<h4>A. La liberté de négocier et de ne pas contracter</h4>
+<ul>
+<li><strong>1. Une liberté affirmée par le Code civil.</strong></li>
+<li><strong>2. Une réparation limitée en cas d’abus de cette liberté.</strong></li>
+</ul>
+<h4>B. La rencontre des volontés, source du contrat</h4>
+<ul>
+<li><strong>1. L’offre et l’acceptation.</strong></li>
+<li><strong>2. Les avant-contrats, pacte de préférence et promesse unilatérale.</strong></li>
+</ul>
+<h3>II. Le contrôle exercé par le droit sur le consentement et sur le contenu du contrat</h3>
+<h4>A. La protection du consentement et de la personne</h4>
+<ul>
+<li><strong>1. La loyauté pendant les négociations et la conclusion.</strong></li>
+<li><strong>2. Les vices du consentement et l’incapacité.</strong></li>
+</ul>
+<h4>B. Le contrôle du contenu du contrat</h4>
+<ul>
+<li><strong>1. Un contenu licite et certain.</strong></li>
+<li><strong>2. Un contrôle limité des clauses du contrat.</strong></li>
+</ul>
+<h3>Les articles à connaître, sous-partie par sous-partie</h3>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Les articles du Code civil à citer dans chaque sous-partie du plan" style="overflow-x:auto">
+<table style="width:100%;min-width:640px;border-collapse:collapse">
+<thead><tr><th scope="col">Sous-partie</th><th scope="col">Ce que dit le Code civil, article par article</th></tr></thead>
+<tbody>
+<tr><th scope="row">I.A.1</th><td>Chacun est libre de contracter ou non (1102), et l’initiative, le déroulement et la rupture des négociations sont libres, à condition de respecter impérativement la bonne foi (1112, alinéa 1).</td></tr>
+<tr><th scope="row">I.A.2</th><td>La réparation du préjudice causé par une faute dans les négociations ne peut compenser ni la perte des avantages attendus du contrat non conclu ni la perte de chance d’obtenir ces avantages (1112, alinéa 2). Utiliser ou divulguer sans autorisation une information confidentielle obtenue en négociation engage la responsabilité (1112-2).</td></tr>
+<tr><th scope="row">I.B.1</th><td>L’offre est la proposition ferme de conclure, l’acceptation est la réponse positive de celui qui la reçoit, et le contrat se forme quand elles se rencontrent, sans formalité en principe (1113, 1172, 1173). L’offre contient les éléments essentiels et la volonté d’être lié (1114). Son auteur peut la retirer tant qu’elle n’est pas parvenue à son destinataire (1115), mais plus avant l’expiration du délai fixé par lui ou, à défaut, d’un délai raisonnable (1116). Elle devient caduque, soit sans effet, à l’expiration de ce délai, ou en cas d’incapacité ou de décès de son auteur, ou de décès de son destinataire (1117). Le contrat est conclu quand l’acceptation, conforme à l’offre, parvient à l’offrant (1118, 1121), et le silence n’est une acceptation que si la loi, les usages, les relations d’affaires ou des circonstances particulières le prévoient (1120). Quand un professionnel propose des biens ou des services en ligne, l’acheteur doit pouvoir vérifier sa commande et son prix total, puis corriger ses erreurs avant de confirmer, sauf exceptions (1127-1 à 1127-3).</td></tr>
+<tr><th scope="row">I.B.2</th><td>Le pacte de préférence oblige une personne à proposer en premier à son bénéficiaire de traiter avec lui, si elle décide un jour de contracter (1123). La promesse unilatérale laisse au bénéficiaire le droit de décider plus tard de conclure un contrat déjà défini, et le contrat conclu en violation de la promesse avec un tiers qui la connaissait est nul (1124).</td></tr>
+<tr><th scope="row">II.A.1</th><td>La bonne foi est d’ordre public (1104). Celui qui connaît une information déterminante pour le consentement de l’autre doit la lui donner quand, légitimement, l’autre l’ignore ou fait confiance à son cocontractant, sauf pour l’estimation de la valeur, et les parties ne peuvent ni limiter ni exclure ce devoir. Son manquement engage la responsabilité de son auteur et peut aussi entraîner l’annulation du contrat dans les conditions des articles 1130 et suivants (1112-1). Le dol consiste à obtenir le consentement de l’autre par des manœuvres, des mensonges ou la dissimulation intentionnelle d’une information dont on sait le caractère déterminant (1137), et l’erreur qu’il provoque est toujours excusable (1139).</td></tr>
+<tr><th scope="row">II.A.2, vices du consentement</th><td>L’erreur, le dol et la violence peuvent entraîner la nullité relative, que seule la partie protégée peut demander, quand, sans eux, elle n’aurait pas contracté ou aurait contracté à des conditions substantiellement différentes (1130, 1131, 1181). L’erreur sur les qualités essentielles de la prestation, ou du cocontractant dans les seuls contrats conclus en considération de la personne, est une cause de nullité si elle n’est pas inexcusable, alors que l’erreur sur la seule valeur laisse le contrat valable (1132, 1134, 1136). La violence est une contrainte qui fait craindre pour sa personne, sa fortune ou celles de ses proches un mal considérable (1140). Il y a aussi violence quand une partie abuse de l’état de dépendance dans lequel se trouve son cocontractant à son égard, obtient de lui un engagement qu’il n’aurait pas souscrit sans cette contrainte et en tire un avantage manifestement excessif (1143).</td></tr>
+<tr><th scope="row">II.A.2, incapacité et représentation</th><td>Les mineurs non émancipés et les majeurs protégés, par exemple les adultes placés sous tutelle ou curatelle, sont incapables dans la mesure définie par la loi, mais ils peuvent accomplir seuls les actes courants autorisés par la loi ou l’usage, pourvu qu’ils soient conclus à des conditions normales (1146, 1148). Le représentant, qui conclut au nom d’autrui, n’agit que dans la limite de ses pouvoirs (1153).</td></tr>
+<tr><th scope="row">II.B.1</th><td>Le contenu doit être licite et certain, autrement dit ne pas déroger à l’ordre public et porter sur une prestation possible et déterminée ou déterminable (1128, 1162, 1163). Dans les contrats synallagmatiques, où chaque partie s’oblige envers l’autre, le défaut d’équivalence n’est pas une cause de nullité, à moins que la loi n’en dispose autrement (1168), et le contrat à titre onéreux dont la contrepartie est illusoire ou dérisoire est nul (1169).</td></tr>
+<tr><th scope="row">II.B.2</th><td>Une clause qui prive de sa substance l’obligation essentielle du débiteur est réputée non écrite, autrement dit traitée comme si elle n’avait jamais existé (1170). Dans un contrat d’adhésion, dont une partie détermine à l’avance les clauses, qui ne sont pas négociables (1110), il en va de même d’une clause non négociable qui crée un déséquilibre significatif, et l’appréciation de ce déséquilibre ne porte ni sur l’objet principal du contrat ni sur l’adéquation du prix à la prestation (1171).</td></tr>
+</tbody>
+</table>
+</div>
+<h3>La réponse à la problématique</h3>
+<p>La volonté reste le point de départ, car chacun décide s’il négocie et s’il s’engage, puis fixe le contenu de l’accord. Le droit intervient pourtant du début à la fin, d’abord par la bonne foi et les vices du consentement, puis par le contrôle des clauses. Ce contrôle a toutefois des limites que les textes fixent eux-mêmes. Le devoir d’information ne couvre pas l’estimation de la valeur (article 1112-1), l’erreur qui porte seulement sur la valeur laisse le contrat valable (article 1136), et l’appréciation du déséquilibre significatif laisse de côté l’objet principal du contrat et l’adéquation du prix à la prestation (article 1171, alinéa 2).</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="arrets">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quels arrêts citer, et qu’en dit le Code civil aujourd’hui ?</h2>
+<p>Chaque décision du tableau trouve sa place dans une sous-partie du plan (troisième colonne), et la dernière colonne indique ce que le Code civil en a repris ou renversé. Avant de citer une décision, vérifie sa date et son numéro de pourvoi, c’est-à-dire du recours formé devant la Cour, sur le site de la Cour de cassation.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Les décisions de la Cour de cassation sur la formation du contrat et ce que le Code civil en a fait" style="overflow-x:auto">
+<table style="width:100%;min-width:760px;border-collapse:collapse">
+<thead><tr><th scope="col">Décision</th><th scope="col">Ce qu’elle juge</th><th scope="col">Où la placer</th><th scope="col">Ce que le Code civil en a fait</th></tr></thead>
+<tbody>
+<tr><th scope="row">Chambre commerciale, 26 novembre 2003, pourvois n° 00-10.243 et 00-10.949 (Manoukian)</th><td>Des actionnaires qui cèdent leurs actions rompent de mauvaise foi des négociations avancées. L’acheteur écarté obtient pourtant seulement ses frais de négociation et d’études, sans les gains espérés ni la perte de chance de les obtenir. En revanche, le second acquéreur ne commet pas de faute du seul fait de contracter avec ces actionnaires, même en connaissant leurs négociations avec un autre acheteur, sauf intention de nuire ou manœuvres frauduleuses.</td><td>I.A.2</td><td>L’article 1112, alinéa 2, reprend cette limite de la réparation. Les articles 1112 à 1112-2 ne disent rien du second acquéreur.</td></tr>
+<tr><th scope="row">Troisième chambre civile, 7 mai 2008, pourvoi n° 07-11.690</th><td>Une acheteuse retire son offre avant la fin du délai accordé au vendeur. La Cour casse l’arrêt qui validait ce retrait, car l’acheteuse s’était engagée à maintenir son offre jusqu’à cette date.</td><td>I.B.1</td><td>L’article 1116 reprend cette interdiction. Selon ses alinéas 2 et 3, le retrait fautif empêche la conclusion du contrat et engage la responsabilité extracontractuelle de son auteur, soit en dehors de tout contrat, sans l’obliger à compenser la perte des avantages attendus du contrat.</td></tr>
+<tr><th scope="row">Troisième chambre civile, 15 décembre 1993 (pourvoi n° 91-10.199) et 11 mai 2011 (pourvoi n° 10-12.875), puis changement de solution le 23 juin 2021 (pourvoi n° 20-17.554)</th><td>Le promettant retire sa promesse de vente avant que le bénéficiaire lève l’option, c’est-à-dire déclare vouloir acheter. En 1993 et en 2011, la Cour juge qu’aucune rencontre des volontés n’a lieu, si bien que la vente ne peut pas être imposée. Le 23 juin 2021, à propos d’une promesse de 1999, donc antérieure à l’ordonnance, elle juge au contraire que le promettant s’oblige définitivement à vendre dès la signature de la promesse, sans possibilité de rétractation, sauf stipulation contraire.</td><td>I.B.2</td><td>L’article 1124, alinéa 2, a retenu la solution inverse pour les promesses conclues depuis le 1er octobre 2016, et la Cour l’a adoptée en 2021 pour une promesse antérieure à la réforme.</td></tr>
+<tr><th scope="row">Chambre mixte, 26 mai 2006, pourvoi n° 03-19.376</th><td>Le bénéficiaire d’un pacte de préférence peut demander l’annulation de la vente conclue avec un tiers et prendre la place de ce tiers dans la vente, si ce tiers connaissait le pacte et savait que le bénéficiaire voulait l’invoquer.</td><td>I.B.2</td><td>L’article 1123, alinéa 2, reprend ces conditions et prévoit la réparation du préjudice, et ses alinéas 3 et 4 permettent au tiers d’interroger le bénéficiaire par écrit.</td></tr>
+<tr><th scope="row">Première chambre civile, 3 mai 2000, pourvoi n° 98-11.381 (Baldus)</th><td>Un acheteur acquiert des photographies à 1 000 francs pièce, alors qu’il savait, selon la cour d’appel, qu’elles valaient bien plus. La Cour casse l’arrêt qui l’avait condamné, car l’acheteur n’avait aucune obligation d’informer le vendeur.</td><td>II.A.1</td><td>L’article 1112-1, alinéa 2, exclut du devoir d’information l’estimation de la valeur de la prestation, et l’article 1137, dernier alinéa, écarte le dol pour celui qui ne révèle pas son estimation de la valeur de la prestation.</td></tr>
+<tr><th scope="row">Chambre commerciale, 27 février 1996, pourvoi n° 94-11.241 (Vilgrain)</th><td>Un dirigeant acquiert les actions d’une associée sans lui dire qu’il a engagé des négociations pour vendre des actions de la même société à un prix minimum de 7 000 francs par action, alors qu’il paie 5 650 francs par action à l’associée. Il manque à son devoir de loyauté, et la Cour approuve la cour d’appel d’avoir retenu la réticence dolosive, c’est-à-dire le silence gardé volontairement sur une information que l’on sait déterminante pour l’autre partie.</td><td>II.A.1</td><td>L’article 1137, alinéa 2, définit le dol par la dissimulation intentionnelle d’une information dont le contractant sait le caractère déterminant pour l’autre partie.</td></tr>
+<tr><th scope="row">Chambre commerciale, 18 septembre 2024, pourvoi n° 23-10.183</th><td>Une cour d’appel rejette l’annulation de la vente de parts d’une société en reprochant à l’acheteur de ne pas s’être renseigné. La Cour casse, car ces motifs ne permettent pas d’écarter une réticence dolosive, et l’erreur qu’elle provoque est toujours excusable.</td><td>II.A.1</td><td>L’article 1139 contient déjà cette règle.</td></tr>
+<tr><th scope="row">Chambre commerciale, 14 mai 2025, pourvois n° 23-17.948, 23-18.049 et 23-18.082</th><td>Un acheteur de parts d’une société de restauration rapide réclame une indemnité en soutenant qu’on lui a caché l’impossibilité d’exercer cette activité dans le local loué. La Cour rejette les pourvois, car le devoir d’information ne couvre que les informations liées directement et nécessairement au contenu du contrat ou à la qualité des parties, et dont l’importance est déterminante pour le consentement. La cour d’appel avait retenu qu’il n’était pas établi que la possibilité d’y faire de la friture ait été déterminante pour son consentement.</td><td>II.A.1</td><td>L’article 1112-1, alinéa 3, range parmi les informations déterminantes celles qui ont un lien direct et nécessaire avec le contenu du contrat ou la qualité des parties, et la Cour juge que le devoir d’information suppose aussi que leur importance soit déterminante pour le consentement de l’autre partie.</td></tr>
+<tr><th scope="row">Première chambre civile, 30 mai 2000, pourvoi n° 98-15.242, puis troisième chambre civile, 4 juin 2026, pourvoi n° 24-15.070</th><td>En 2000, la Cour juge que la contrainte économique se rattache à la violence, si bien qu’une transaction signée après l’incendie d’un garage, c’est-à-dire un accord qui règle un différend, peut être attaquée pour violence. En 2026, elle approuve l’annulation d’un bail rural que des parents âgés, aux facultés affaiblies, avaient consenti à leur fils pour un loyer nettement inférieur aux loyers de référence. Elle juge que l’état de dépendance peut résulter d’une vulnérabilité que le cocontractant connaît et dont il abuse, même sans actes de menace.</td><td>II.A.2</td><td>L’article 1143 reprend cette idée en la limitant à l’abus de l’état de dépendance, dont les conditions figurent dans le tableau des articles.</td></tr>
+<tr><th scope="row">Chambre commerciale, 22 octobre 1996, pourvoi n° 93-18.632 (Chronopost)</th><td>Un transporteur s’engage à livrer un pli dans un délai déterminé. La clause qui limite son indemnisation au prix du transport contredit cet engagement et doit être réputée non écrite.</td><td>II.B.2</td><td>L’article 1170 reprend cette solution.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Les arrêts Baldus et Vilgrain se complètent. L’acheteur de Baldus n’a pas à révéler sa propre estimation de la valeur des photographies, alors que le dirigeant de Vilgrain doit informer l’associée à qui il achète des actions des négociations qu’il a engagées pour vendre des actions de la même société, car le dirigeant d’une société doit sa loyauté à tout associé, en particulier lorsqu’il est l’intermédiaire du reclassement de sa participation.</p>
+</div>
+</div>
+</section>
+<section class="section" id="retrait-offre">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Comment traiter le retrait d’une offre dans la partie I.B ?</h2>
+<p>Prenons Nathalie, qui envoie le lundi à Pierre une offre de vendre sa camionnette pour 8 000 euros, valable jusqu’au vendredi. Quand elle retire son offre, tu distingues dans cet ordre trois situations de ta partie I.B.</p>
+<ul>
+<li><strong>Dans la première situation, Nathalie a envoyé l’offre par courrier et le retrait par message, et le retrait parvient à Pierre avant l’offre.</strong> Selon l’article 1115, l’offre peut être librement retirée tant qu’elle n’est pas parvenue à son destinataire, donc rien n’engage Nathalie.</li>
+<li><strong>Dans la deuxième situation, Nathalie retire son offre le mercredi, alors que Pierre l’a reçue et n’a encore rien répondu.</strong> L’article 1116 interdit ce retrait avant la fin du délai fixé. Le retrait fautif empêche la conclusion du contrat et engage la responsabilité extracontractuelle de Nathalie (alinéas 2 et 3). Pierre peut donc demander des dommages-intérêts, c’est-à-dire une somme qui répare son préjudice, mais le contrat n’existe pas et il ne peut pas exiger la camionnette.</li>
+<li><strong>Dans la troisième situation, Pierre a répondu oui le mardi et sa réponse est parvenue à Nathalie le jour même.</strong> Une acceptation conforme à l’offre est parvenue à l’offrant alors que l’offre subsistait, donc le contrat est conclu (article 1121). Le retrait du mercredi arrive trop tard, et Pierre peut exiger l’exécution du contrat si Nathalie refuse de lui livrer la camionnette. En revanche, si elle l’a déjà vendue à un tiers, il peut demander des dommages-intérêts.</li>
+</ul>
+<p>La promesse unilatérale obéit à la solution contraire. Sa révocation pendant le temps laissé au bénéficiaire n’empêche pas la formation du contrat promis (article 1124, alinéa 2), car la promesse est déjà un contrat, alors que l’offre exprime seulement la volonté de son auteur.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="copie">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Deux passages de la copie rédigée</h2>
+<p>Dans chaque paragraphe, tu gardes le même ordre. Une phrase annonce l’idée, l’article donne la règle, la décision montre comment le juge l’applique, et une dernière phrase en tire la conséquence. Chaque paragraphe défend ainsi une seule idée.</p>
+<h3>Sous-partie I.A, la liberté de négocier et de ne pas contracter</h3>
+<p>La formation du contrat commence par la liberté de chacun de négocier et de s’engager. Selon l’article 1102 du Code civil, chacun est libre de contracter ou de ne pas contracter et choisit son cocontractant, le contenu et la forme du contrat, dans les limites fixées par la loi. Cette liberté s’exerce dès les négociations. En effet, selon l’article 1112, alinéa 1, l’initiative, le déroulement et la rupture des négociations précontractuelles sont libres. Une partie peut donc engager plusieurs négociations en même temps et y mettre fin quand elle le décide, sous réserve de la bonne foi.</p>
+<p>Cette liberté doit toutefois respecter la bonne foi. L’article 1112, alinéa 1, l’impose dès les négociations, et l’article 1104 l’impose aussi à la formation et à l’exécution du contrat. Dans l’affaire jugée le 26 novembre 2003 par la chambre commerciale de la Cour de cassation, des actionnaires avaient négocié avec un candidat, avec qui ils avaient établi un projet d’accord, puis consenti à un autre acquéreur une promesse de cession de leurs actions, qu’ils avaient cachée au candidat pendant quatorze jours en lui laissant croire que seule l’absence de l’expert-comptable retardait la signature du protocole. La Cour de cassation approuve la cour d’appel d’avoir jugé que ces actionnaires avaient rompu les négociations unilatéralement et de mauvaise foi.</p>
+<p>La Cour de cassation refuse pourtant d’indemniser les gains que le candidat écarté espérait. Selon l’arrêt, en l’absence d’accord ferme et définitif, le préjudice de ce candidat n’inclut que les frais de négociation et les études préalables, sans les gains espérés ni la perte d’une chance de les obtenir. L’article 1112, alinéa 2, reprend d’ailleurs cette limite de la réparation.</p>
+<p>Ainsi, le droit sanctionne la rupture de mauvaise foi, mais il protège aussi la liberté de ne pas contracter, puisque l’indemnité reste limitée aux dépenses engagées. Lorsque les parties décident finalement de s’engager, le contrat se forme par la rencontre d’une offre et d’une acceptation.</p>
+<h3>Sous-partie II.B, le contrôle du contenu du contrat</h3>
+<p>Le juge contrôle le contenu du contrat de façon plus ou moins stricte selon le point examiné. D’abord, l’article 1128 range parmi les conditions de validité un contenu licite et certain. Ensuite, d’après l’article 1162, le contrat ne peut contredire l’ordre public ni par ses clauses ni par son but, même si une partie ignorait ce but. L’ordre public désigne les règles que la société juge essentielles. L’article 1163 exige en outre que la prestation de chaque partie soit possible et déterminée ou déterminable.</p>
+<p>Le contrôle de l’équilibre entre ce que chaque partie donne et reçoit reste en revanche limité. Selon l’article 1168, dans un contrat synallagmatique, comme une vente, un déséquilibre entre les prestations ne rend pas le contrat nul, sauf loi contraire.</p>
+<p>Trois textes permettent pourtant au juge de sanctionner certains déséquilibres. D’abord, l’article 1169 déclare nul le contrat à titre onéreux lorsque la contrepartie de celui qui s’engage est illusoire ou dérisoire au moment de la formation du contrat. Ensuite, l’article 1170 répute non écrite toute clause qui prive de sa substance l’obligation essentielle du débiteur. L’arrêt Chronopost du 22 octobre 1996 avait déjà jugé non écrite la clause qui limitait l’indemnisation d’un transporteur et contredisait son engagement de livrer un pli dans un délai déterminé.</p>
+<p>Enfin, dans un contrat d’adhésion, c’est-à-dire un contrat dont les clauses sont fixées à l’avance par une partie et ne sont pas négociables (article 1110), l’article 1171 répute non écrite toute clause non négociable qui crée un déséquilibre significatif entre les droits et obligations des parties. L’appréciation de ce déséquilibre ne porte ni sur l’objet principal du contrat ni sur l’adéquation du prix à la prestation. Cette limite confirme que la volonté des parties reste le point de départ de la formation du contrat, même quand le droit la contrôle.</p>
+</div>
+</div>
+</section>
+<section class="section" id="erreurs">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles erreurs font perdre des points sur ce sujet ?</h2>
+<h3>Ajouter la cause aux conditions de validité</h3>
+<p>Pour les contrats conclus avant le 1er octobre 2016, l’ancien article 1108 exigeait quatre conditions. Il fallait le consentement et la capacité, puis un objet certain et une cause licite. Depuis cette date, l’article 1128 en retient trois, car le contenu licite et certain remplace l’objet et la cause. La cause n’est donc plus une condition autonome. Si tu la cites comme une quatrième condition, ta copie applique l’ancien droit.</p>
+<h3>Écrire que l’erreur sur la valeur annule le contrat</h3>
+<p>L’erreur qui porte seulement sur la valeur de la prestation laisse le contrat valable (article 1136). Une acheteuse paie un vélo d’occasion 500 euros en croyant qu’il se revend 800 euros, puis découvre qu’il se revend 400 euros. Son erreur porte sur le marché, et le vélo a les qualités attendues, donc la vente reste valable. Si ton énoncé montre que le vendeur a trompé l’acheteuse sur cette valeur, tu invoques le dol, car l’erreur sur la valeur permet alors l’annulation (article 1139).</p>
+<h3>Traiter le silence comme une acceptation</h3>
+<p>Le silence de celui qui reçoit une offre laisse le contrat non formé, sauf si la loi, les usages, les relations d’affaires ou des circonstances particulières en décident autrement (article 1120). Par exemple, un restaurant reçoit chaque lundi la même livraison de pain depuis trois ans. Si le boulanger annonce la livraison suivante et que le restaurant ne répond pas, ces relations d’affaires peuvent faire de son silence une acceptation.</p>
+<h3>Confondre l’offre et l’invitation à entrer en négociation</h3>
+<p>Selon l’article 1114, l’offre comprend les éléments essentiels du contrat envisagé et exprime la volonté de son auteur d’être lié en cas d’acceptation. À défaut, il y a seulement une invitation à entrer en négociation. Par exemple, un message qui annonce « Je vends ma moto, contactez-moi » ne précise ni le prix ni les caractéristiques de la moto. Il invite donc à négocier, et la réponse « d’accord » ne forme aucun contrat.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="autres">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Comment adapter ce plan à un autre sujet ?</h2>
+<p>Les mêmes éléments servent pour d’autres sujets de partiel. Chaque sujet reprend une partie du plan avec une autre problématique, et le tableau des arrêts fournit les décisions à citer.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Quatre sujets voisins et les parties du plan à reprendre" style="overflow-x:auto">
+<table style="width:100%;min-width:560px;border-collapse:collapse">
+<thead><tr><th scope="col">Sujet</th><th scope="col">Problématique possible</th><th scope="col">Parties à reprendre</th></tr></thead>
+<tbody>
+<tr><th scope="row">Les négociations contractuelles</th><td>La liberté de négocier est-elle encore entière depuis la consécration de la bonne foi ?</td><td>I.A en entier, puis la loyauté du II.A.1</td></tr>
+<tr><th scope="row">Le consentement</th><td>Le droit protège-t-il le consentement au risque de rendre le contrat plus facile à annuler ?</td><td>II.A en entier, avec la manifestation de la volonté du I.B.1</td></tr>
+<tr><th scope="row">La liberté contractuelle</th><td>La liberté contractuelle reste-t-elle le principe quand le contenu du contrat est contrôlé ?</td><td>I.A, puis II.B en entier</td></tr>
+<tr><th scope="row">La bonne foi dans le contrat</th><td>La bonne foi limite-t-elle la liberté ou la complète-t-elle ?</td><td>I.A.2, puis II.A.1</td></tr>
+</tbody>
+</table>
+</div>
+<p>Pour le sujet « La bonne foi dans le contrat », la copie traite aussi l’exécution de bonne foi, que l’article 1104 impose comme la négociation et la formation, mais que ce plan ne développe pas. Pour les effets du contrat, la <a href="dissertation-force-obligatoire-du-contrat-corrigee.html">dissertation sur la force obligatoire du contrat</a> traite un sujet voisin. Les pages sur <a href="la-formation-du-contrat-offre-et-acceptation.html">l’offre et l’acceptation</a> et <a href="les-vices-du-consentement.html">les vices du consentement</a> détaillent chaque notion, et la page sur <a href="methode-dissertation-juridique.html">la méthode de la dissertation juridique</a> détaille le travail au brouillon.</p>
+<div class="author-box">
+<img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+<div>
+<p class="author-box__name">Julien</p>
+<p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+<p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">166 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention. Pour cela, je leur apprends une méthode qu'ils réutilisent ensuite seuls, à chaque copie. Sur TrajectoireDroit, j'ai donc réuni mes fiches complètes et mes majeures préparées. Une majeure préparée donne la règle de droit déjà rédigée, prête pour le cas pratique.</p>
+<p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="faq">
+<div class="container container--narrow"><h2 class="h2">Questions fréquentes sur la formation du contrat</h2>
+<div class="accordion">
+<details class="accordion__item"><summary class="accordion__trigger">Que comprend la formation du contrat en droit français ?</summary><div class="accordion__body"><p>Le chapitre II du sous-titre consacré au contrat s’intitule « La formation du contrat » et occupe les articles 1112 à 1187 du Code civil. Il couvre la conclusion du contrat et sa validité, puis sa forme et ses sanctions.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Quelles sont les conditions de validité du contrat depuis 2016 ?</summary><div class="accordion__body"><p>Depuis 2016, l’article 1128 du Code civil exige trois conditions de validité, à savoir le consentement des parties, leur capacité de contracter et un contenu licite et certain. La cause, qui figurait parmi les quatre conditions de l’ancien article 1108, n’est plus une condition autonome.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Une partie peut-elle rompre librement des négociations ?</summary><div class="accordion__body"><p>Oui, car l’article 1112 du Code civil déclare libres l’initiative, le déroulement et la rupture des négociations, à condition de respecter la bonne foi. En cas de faute, la réparation ne compense ni la perte des avantages attendus du contrat non conclu ni la perte de chance d’obtenir ces avantages.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Quel PDF choisir pour s’entraîner sur la formation du contrat ?</summary><div class="accordion__body"><p>Si tu veux t’entraîner à appliquer les règles à des faits, prends le recueil de cas pratiques corrigés, dont huit cas sur dix portent sur la formation et la validité du contrat. En revanche, pour revoir tout le cours, la fiche complète de 205 pages convient mieux.</p></div></details>
+</div>
+</div>
+</section>
+<!-- fin-article:pack-ultra -->
+<section class="article-pack-ligne"><div class="container container--narrow"><p class="article-pack-ligne__texte">Le Pack Ultra L2 S1 réunit les 33 ressources de ton premier semestre de L2 pour 259 €. La fiche de droit des contrats L2 en fait partie. <a href="pack-ultra.html#pack-ultra-l2-s1">Voir les supports inclus →</a></p></div></section>
+</main>
+
+
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Droit des contrats L2, dissertation sur la formation du contrat">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Droit des contrats L2, dissertation sur la formation du contrat">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit des contrats L2</strong>
+      <small>Cas pratiques corrigés · 125 pages</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="cas-pratique-contrats-l2-s1">Acheter · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=f548e5b0" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=b449c838" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=695cfddc';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>
