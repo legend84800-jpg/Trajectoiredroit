@@ -36,14 +36,14 @@ test("le témoignage ignore les refus, les tests, le stage, les avis déjà donn
   assert.equal(refuseEmails(sessions[0]), false);
 });
 
-test("la fenêtre J+21 écarte les commandes de l'ancienne campagne et reste stable au cours du passage", () => {
+test("la fenêtre J+30 écarte les commandes de l'ancienne campagne et reste stable au cours du passage", () => {
   const ts = (date) => Date.parse(date) / 1000;
   const fenetre = (date) => fenetreAchatsTemoignage(Date.parse(date));
-  assert.equal(fenetre("2026-12-05T16:00:00Z"), null);
+  assert.equal(fenetre("2026-12-14T16:00:00Z"), null);
   const premierJour = { gte: ts("2026-11-14T17:00:00Z"), lt: ts("2026-11-15T16:00:00Z") };
-  assert.deepEqual(fenetre("2026-12-06T16:00:00Z"), premierJour);
-  assert.deepEqual(fenetre("2026-12-06T16:09:00Z"), premierJour);
-  assert.deepEqual(fenetre("2026-12-07T16:01:00Z"), { gte: premierJour.lt, lt: ts("2026-11-16T16:00:00Z") });
+  assert.deepEqual(fenetre("2026-12-15T16:00:00Z"), premierJour);
+  assert.deepEqual(fenetre("2026-12-15T16:09:00Z"), premierJour);
+  assert.deepEqual(fenetre("2026-12-16T16:01:00Z"), { gte: premierJour.lt, lt: ts("2026-11-16T16:00:00Z") });
 });
 
 test("le modèle 31 reçoit le prénom, le produit et le PDF de la campagne", async () => {
@@ -59,6 +59,7 @@ test("le modèle 31 reçoit le prénom, le produit et le PDF de la campagne", as
   await envoyerDemandeTemoignage("camille@example.com", commande, "cle-test", envoyer);
   const [message, nouvelleTentative] = traces;
   assert.equal(message.templateId, 31);
+  assert.deepEqual(message.tags, ["temoignage-video-j30"]);
   assert.deepEqual(message.params, { PRENOM: "Élodie-Marie", PRODUIT: "Fiche complète Droit administratif L2 S1" });
   assert.equal(message.sender.name, "Julien");
   assert.equal(message.replyTo.name, "Julien");

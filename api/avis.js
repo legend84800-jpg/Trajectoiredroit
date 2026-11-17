@@ -324,11 +324,11 @@ async function avisPublies({ produit, matiere }, dep) {
   }));
 }
 
-// Le cron à 16 h UTC sollicite un témoignage 21 jours après l'achat.
+// Le cron à 16 h UTC sollicite un témoignage 30 jours après l'achat.
 const TEMPLATE_TEMOIGNAGE_VIDEO = 31;
 const JOUR_SECONDES = 24 * 3600;
 const HEURE_CRON_SECONDES = 16 * 3600;
-const DELAI_TEMOIGNAGE_JOURS = 21;
+const DELAI_TEMOIGNAGE_JOURS = 30;
 // Les acheteurs contactés lors de la campagne Gmail du 14 novembre et les
 // commandes déjà traitées par l'ancien J+7 précèdent cette date de démarrage.
 const DEBUT_ACHATS_TEMOIGNAGE = Date.parse("2026-11-14T17:00:00Z") / 1000;
@@ -385,7 +385,7 @@ async function envoyerDemandeTemoignage(destinataire, session, brevoKey, fetchIm
       params: { PRENOM: prenomAcheteur(session), PRODUIT: noms },
       attachment: [{ name: FICHIER_QUESTIONS, content: questions.toString("base64") }],
       headers: { idempotencyKey: cleRequete },
-      tags: ["temoignage-video-j21"],
+      tags: ["temoignage-video-j30"],
     }),
   });
   if (!resp.ok) {
