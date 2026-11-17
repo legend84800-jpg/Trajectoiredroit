@@ -33,6 +33,7 @@ from reportlab.platypus import Paragraph
 
 PRODUIT_PILOTE = "maj-penal-l2-s1"
 SOURCE_PREFIX = "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/"
+SOURCE_PRIVEE_PREFIX = "r2://tjd/"
 VERSION_PROTECTION = "tjd-acheteur-3"
 STRIPE_API_VERSION = "2026-07-29.dahlia"
 TAILLE_SOURCE_MAX = 60 * 1024 * 1024
@@ -120,12 +121,11 @@ def verifier_signature(
         raise ValueError("Produit invalide")
     if blob_index < 0 or blob_index > 99:
         raise ValueError("Fichier invalide")
-    if not session_id.startswith("cs_") or len(session_id) > 255:
+    if session_id and (not session_id.startswith("cs_") or len(session_id) > 255):
         raise ValueError("Commande invalide")
-    if not source_url.startswith(SOURCE_PREFIX) or not source_url.lower().endswith(".pdf"):
-        raise ValueError("Source PDF refusée")
     if len(source_url) > 500 or len(nom_produit) > 160 or len(nom_fichier) > 180:
         raise ValueError("Paramètres trop longs")
+    cle_source_pdf(source_url)
     horodatage = int(time.time()) if maintenant is None else maintenant
     if expiration < horodatage:
         raise PermissionError("Lien expiré")
@@ -311,35 +311,58 @@ def recuperer_session_stripe(session_id: str, cle_stripe: str) -> dict:
         return json.loads(reponse.read().decode("utf-8"))
 
 
-def telecharger_source(url: str) -> bytes:
-    if not url.startswith(SOURCE_PREFIX) or not url.lower().endswith(".pdf"):
+def cle_source_pdf(reference: str) -> str:
+    prefixes = "|".join(re.escape(prefixe) for prefixe in (SOURCE_PRIVEE_PREFIX, SOURCE_PREFIX))
+    fichier = re.fullmatch(
+        rf"(?:{prefixes})((?:[a-zA-Z0-9_-][a-zA-Z0-9._-]*/)*[a-zA-Z0-9_-][a-zA-Z0-9._-]*\.pdf)",
+        reference,
+    )
+    if not fichier:
         raise ValueError("Source PDF refusée")
-    requete = urllib.request.Request(url, headers={"User-Agent": "TrajectoireDroit-PDF/1.0"})
-    with urllib.request.urlopen(requete, timeout=20) as reponse:
-        contenu = reponse.read(TAILLE_SOURCE_MAX + 1)
+    return f"sources/tjd/{fichier[1]}"
+
+
+def _bucket_prive() -> str:
+    bucket = _variable_obligatoire("R2_PERSONNALISES_BUCKET")
+    if bucket == os.environ.get("R2_BUCKET", "").strip():
+        raise RuntimeError("Le compartiment des copies doit être distinct du catalogue public.")
+    return bucket
+
+
+def telecharger_source(reference: str, *, client=None, bucket: str | None = None) -> bytes:
+    reponse = (client or _client_r2()).get_object(
+        Bucket=bucket or _bucket_prive(), Key=cle_source_pdf(reference),
+    )
+    flux = reponse["Body"]
+    try:
+        contenu = flux.read(TAILLE_SOURCE_MAX + 1)
+    finally:
+        flux.close()
     if len(contenu) > TAILLE_SOURCE_MAX or not contenu.startswith(b"%PDF-"):
         raise ValueError("Source PDF invalide")
     return contenu
 
 
-def version_source(url: str) -> str:
-    if not url.startswith(SOURCE_PREFIX) or not url.lower().endswith(".pdf"):
-        raise ValueError("Source PDF refusée")
-    requete = urllib.request.Request(
-        url,
-        method="HEAD",
-        headers={"User-Agent": "TrajectoireDroit-PDF/2.0"},
+def version_source(reference: str, *, client=None, bucket: str | None = None) -> str:
+    objet = (client or _client_r2()).head_object(
+        Bucket=bucket or _bucket_prive(), Key=cle_source_pdf(reference),
     )
-    with urllib.request.urlopen(requete, timeout=15) as reponse:
-        taille = int(reponse.headers.get("Content-Length") or 0)
-        if taille <= 0 or taille > TAILLE_SOURCE_MAX:
-            raise ValueError("Taille de la source PDF invalide")
-        marqueurs = (
-            reponse.headers.get("ETag") or "",
-            reponse.headers.get("Last-Modified") or "",
-            str(taille),
-        )
+    taille = objet["ContentLength"]
+    if taille <= 0 or taille > TAILLE_SOURCE_MAX:
+        raise ValueError("Taille de la source PDF invalide")
+    version_avant_transfert = objet.get("Metadata", {}).get("tjd-source-version", "")
+    if re.fullmatch(r"[a-f0-9]{20}", version_avant_transfert):
+        return version_avant_transfert
+    marqueurs = (objet["ETag"], objet["LastModified"].isoformat(), str(taille))
     return hashlib.sha256("|".join(marqueurs).encode("utf-8")).hexdigest()[:20]
+
+
+def lien_pdf_offert(reference: str) -> str:
+    return _client_r2().generate_presigned_url(
+        "get_object",
+        Params={"Bucket": _bucket_prive(), "Key": cle_source_pdf(reference)},
+        ExpiresIn=DUREE_LIEN_R2_SECONDES,
+    )
 
 
 def _variable_obligatoire(nom: str) -> str:
@@ -866,8 +889,8 @@ def produire_depuis_commande(
     nom_fichier: str,
     *,
     chargeur_session: Callable[[str, str], dict] = recuperer_session_stripe,
-    chargeur_source: Callable[[str], bytes] = telecharger_source,
-    chargeur_version: Callable[[str], str] = version_source,
+    chargeur_source: Callable[[str], bytes] | None = None,
+    chargeur_version: Callable[[str], str] | None = None,
     client_r2: object | None = None,
 ) -> tuple[str, IdentiteLicence, bool]:
     session = chargeur_session(session_id, cle_stripe)
@@ -880,7 +903,12 @@ def produire_depuis_commande(
         produit_id,
         blob_index,
     )
-    source_version = chargeur_version(source_url)
+    bucket = _bucket_prive()
+    client = client_r2 or _client_r2()
+    source_version = (
+        chargeur_version(source_url) if chargeur_version
+        else version_source(source_url, client=client, bucket=bucket)
+    )
     cle = _cle_pdf_personnalise(
         session_id,
         produit_id,
@@ -888,13 +916,12 @@ def produire_depuis_commande(
         source_version,
         secret,
     )
-    bucket = _variable_obligatoire("R2_PERSONNALISES_BUCKET")
-    if bucket == os.environ.get("R2_BUCKET", "").strip():
-        raise RuntimeError("Le compartiment des copies doit être distinct du catalogue public.")
-    client = client_r2 or _client_r2()
     genere = not _objet_r2_existe(client, bucket, cle)
     if genere:
-        source = chargeur_source(source_url)
+        source = (
+            chargeur_source(source_url) if chargeur_source
+            else telecharger_source(source_url, client=client, bucket=bucket)
+        )
         contenu = personnaliser_pdf(
             source,
             identite,

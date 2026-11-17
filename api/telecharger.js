@@ -60,7 +60,7 @@ module.exports = async (req, res) => {
 
   const sourceUrl = produit.blobs[blobIndex];
   const estPdf = /\.pdf(?:$|\?)/i.test(sourceUrl);
-  if (estPdf && sessionId) {
+  if (estPdf) {
     const nomFichier = nomFichierDepuisUrl(sourceUrl);
     const personnalisationSig = genererJetonPersonnalisation({
       produitId: id,
@@ -85,10 +85,6 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // Les anciens liens envoyés avant la généralisation ne portaient pas la
-  // commande Stripe. Ils restent valables pendant leurs 48 heures afin de ne
-  // jamais casser une livraison déjà reçue. Les liens régénérés depuis Mon
-  // compte portent tous la commande et passent par la personnalisation.
   res.redirect(302, sourceUrl);
 };
 

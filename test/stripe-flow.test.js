@@ -390,7 +390,7 @@ test("chaque PDF du catalogue route vers une copie personnalisée", async () => 
         if (/\.pdf$/i.test(sourceUrl)) {
           assert.match(
             sourceUrl,
-            /^https:\/\/pub-45b53167be7548aca62650d34a771b47\.r2\.dev\/tjd\//
+            /^r2:\/\/tjd\//
           );
           assert.match(destination, /^\/api\/personnaliser-pdf\?/);
           const url = new URL(destination, "https://trajectoiredroit.com");
@@ -422,7 +422,7 @@ test("chaque PDF du catalogue route vers une copie personnalisée", async () => 
 
 });
 
-test("un ancien lien sans commande reste téléchargeable pendant sa validité", async () => {
+test("un lien sans commande permet toujours de télécharger un PDF offert", async () => {
   const { genererToken } = require("../api/_liens-telechargement");
   const produitId = "fiche-da-l2-s1";
   const produit = require("../api/_produits")[produitId];
@@ -449,7 +449,11 @@ test("un ancien lien sans commande reste téléchargeable pendant sa validité",
     else process.env.DOWNLOAD_SECRET = ancienneValeur;
   }
   assert.equal(reponse.statusCode, 302);
-  assert.equal(destination, produit.blobs[0]);
+  const url = new URL(destination, "https://trajectoiredroit.com");
+  assert.equal(url.pathname, "/api/personnaliser-pdf");
+  assert.equal(url.searchParams.get("src"), produit.blobs[0]);
+  assert.equal(url.searchParams.get("sid"), "");
+  assert.ok(url.searchParams.get("psig"));
 });
 
 test("le panier abandonné prépare une seule relance H+1 et une seule relance H+24", async () => {

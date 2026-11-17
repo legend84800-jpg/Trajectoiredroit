@@ -7,7 +7,7 @@ import urllib.error
 import urllib.parse
 from http.server import BaseHTTPRequestHandler
 
-from lib.personnalisation_pdf import produire_depuis_commande, verifier_signature
+from lib.personnalisation_pdf import lien_pdf_offert, produire_depuis_commande, verifier_signature
 
 
 class handler(BaseHTTPRequestHandler):
@@ -42,7 +42,7 @@ class handler(BaseHTTPRequestHandler):
 
         secret = os.environ.get("DOWNLOAD_SECRET", "")
         cle_stripe = os.environ.get("STRIPE_SECRET_KEY", "")
-        if not secret or not cle_stripe:
+        if not secret or (session_id and not cle_stripe):
             self._texte(500, "Le téléchargement est temporairement indisponible.")
             return
 
@@ -58,16 +58,19 @@ class handler(BaseHTTPRequestHandler):
                 nom_produit,
                 nom_fichier,
             )
-            url_pdf, _, _ = produire_depuis_commande(
-                session_id,
-                secret,
-                cle_stripe,
-                produit_id,
-                blob_index,
-                source_url,
-                nom_produit,
-                nom_fichier,
-            )
+            if session_id:
+                url_pdf, _, _ = produire_depuis_commande(
+                    session_id,
+                    secret,
+                    cle_stripe,
+                    produit_id,
+                    blob_index,
+                    source_url,
+                    nom_produit,
+                    nom_fichier,
+                )
+            else:
+                url_pdf = lien_pdf_offert(source_url)
         except PermissionError as erreur:
             statut = 410 if str(erreur) == "Lien expiré" else 403
             self._texte(statut, str(erreur) + ".")

@@ -17,6 +17,7 @@ import hashlib
 import json
 import re
 import subprocess
+import sys
 import tempfile
 import urllib.request
 from pathlib import Path
@@ -102,13 +103,21 @@ def main():
     liens = produits_recueils()
     ids = args.produits or sorted(liens)
     catalogue = json.loads(CATALOGUE.read_text())
+    if not args.pdf_root and any(liens.get(produit, "").startswith("r2://tjd/") for produit in ids):
+        sys.path.insert(0, str(ROOT))
+        from lib.personnalisation_pdf import telecharger_source
+
     with tempfile.TemporaryDirectory(prefix="tjd-recueils-") as temporaire:
         for produit in ids:
             if not MOTIF_RECUEIL.match(produit) or produit not in liens:
                 raise SystemExit(f"Recueil inconnu : {produit}")
             chemin = (args.pdf_root / f"{produit}.pdf") if args.pdf_root else Path(temporaire) / f"{produit}.pdf"
             if not args.pdf_root:
-                urllib.request.urlretrieve(liens[produit], chemin)
+                reference = liens[produit]
+                if reference.startswith("r2://tjd/"):
+                    chemin.write_bytes(telecharger_source(reference))
+                else:
+                    urllib.request.urlretrieve(reference, chemin)
             rendre(produit, chemin, catalogue)
     CATALOGUE.write_text(json.dumps(catalogue, ensure_ascii=False, indent=2) + "\n")
 

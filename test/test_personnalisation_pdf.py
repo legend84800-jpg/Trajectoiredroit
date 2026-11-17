@@ -10,6 +10,8 @@ from reportlab.pdfgen import canvas
 from lib.personnalisation_pdf import (
     PRODUIT_PILOTE,
     SOURCE_PREFIX,
+    SOURCE_PRIVEE_PREFIX,
+    cle_source_pdf,
     codes_licence_depuis_session,
     generer_signature_personnalisation,
     identite_depuis_session,
@@ -166,6 +168,25 @@ class PersonnalisationPdfTest(unittest.TestCase):
                 nom_produit,
                 nom_fichier,
                 maintenant=1_900_000_000,
+            )
+
+    def test_reference_pdf_privee_et_compatibilite_des_liens_en_cours(self):
+        reference = SOURCE_PRIVEE_PREFIX + "fiche-da-l2-s1.pdf"
+        ancienne = SOURCE_PREFIX + "fiche-da-l2-s1.pdf"
+        self.assertEqual(cle_source_pdf(reference), "sources/tjd/fiche-da-l2-s1.pdf")
+        self.assertEqual(cle_source_pdf(ancienne), cle_source_pdf(reference))
+        with self.assertRaises(ValueError):
+            cle_source_pdf(SOURCE_PRIVEE_PREFIX + "../autre.pdf")
+
+        arguments = ("fiche-da-l2-s1", 0, 2_000_000_000, "", reference, "Fiche", "fiche-da-l2-s1.pdf")
+        signature = generer_signature_personnalisation(*arguments, "secret-de-test")
+        verifier_signature(
+            *arguments[:3], signature, "secret-de-test", *arguments[3:], maintenant=1_900_000_000,
+        )
+        with self.assertRaises(PermissionError):
+            verifier_signature(
+                *arguments[:3], "signature-incorrecte", "secret-de-test",
+                *arguments[3:], maintenant=1_900_000_000,
             )
 
     def test_codes_generalises_distinguent_produit_et_fichier(self):
