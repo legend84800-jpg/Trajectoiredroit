@@ -99,10 +99,21 @@ test("les packs de corrigés et de révision comptent des documents plutôt que 
       const noms = PRODUITS[id].blobs.map((u) => u.split("/").pop());
       const cartes = id.startsWith("pack-flashcards-qcm");
       const principaux = noms.filter((f) => cartes ? /-flashcards\.pdf$/.test(f) : /\.pdf$/.test(f) && !/-plan|-cartesmentales|-textes-des-arrets/.test(f));
-      const unit = cartes && id !== "pack-flashcards-qcm-l3" ? "séries" : cartes ? "matières" : "recueils";
+      const unit = cartes && id !== "pack-flashcards-qcm-l3" ? "séries" : cartes ? "matières" : "PDF";
       assert.ok(carte.includes(`<span>${principaux.length} ${unit}</span>`), `${fichier}, ${id}`);
     }
   }
+});
+
+test("les libellés d'achat et d'aperçu nomment le type de PDF", () => {
+  const pages = fs.readdirSync(ROOT).filter((fichier) => fichier.endsWith(".html"));
+  for (const fichier of pages) {
+    const html = fs.readFileSync(path.join(ROOT, fichier), "utf8");
+    assert.doesNotMatch(html, /(?:>|\b)Acheter le recueil\b|Voir un aperçu du recueil|>Acheter la fiche(?=\s*[·<])|>Recueil\s*·/i, fichier);
+  }
+  const societes = fs.readFileSync(path.join(ROOT, "sujets-droit-des-societes-l3.html"), "utf8");
+  assert.match(societes, /data-tjd-produit="cas-pratique-societes-l3">Acheter les cas pratiques corrigés · 14,99 €</);
+  assert.match(societes, /data-tjd-produit="fiche-societes-l3-s1">Acheter la fiche complète · 14,99 €</);
 });
 
 test("l'usage en TD vient du retour de Julien sans délai de résolution promis", () => {

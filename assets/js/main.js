@@ -218,14 +218,14 @@ window.tjdDialogues = (function () {
     modal.innerHTML =
       '<div class="apercu-panel">' +
       '<div class="apercu-head">' +
-      '<div><h3 id="apercuTitle"></h3><p id="apercuSub">Extraits réels de la fiche complète</p></div>' +
+      '<div><h3 id="apercuTitle"></h3><p id="apercuSub">Pages du PDF</p></div>' +
       '<button class="apercu-close" data-apercu-close aria-label="Fermer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
       '</div>' +
       '<div class="apercu-imgs" id="apercuImgs"></div>' +
       '<p class="apercu-hint">Tu peux agrandir chaque page.</p>' +
       '<div class="apercu-foot">' +
       '<span class="price" id="apercuPrice"></span>' +
-      '<a class="btn btn--primary" id="apercuCta" href="#" target="_blank" rel="noopener">Acheter la fiche</a>' +
+      '<a class="btn btn--primary" id="apercuCta" href="#" target="_blank" rel="noopener">Acheter le PDF</a>' +
       '</div>' +
       '</div>';
     document.body.appendChild(modal);
@@ -267,7 +267,7 @@ window.tjdDialogues = (function () {
       var imgs;
       try { imgs = JSON.parse(btn.getAttribute('data-apercu') || '[]'); } catch (e) { imgs = []; }
       document.getElementById('apercuTitle').textContent = btn.getAttribute('data-apercu-title') || 'Aperçu';
-      document.getElementById('apercuSub').textContent = btn.getAttribute('data-apercu-sub') || 'Extraits réels de la fiche complète';
+      document.getElementById('apercuSub').textContent = btn.getAttribute('data-apercu-sub') || 'Pages du PDF';
       var price = btn.getAttribute('data-apercu-price') || '';
       document.getElementById('apercuPrice').textContent = price;
       var cta = document.getElementById('apercuCta');
@@ -279,7 +279,20 @@ window.tjdDialogues = (function () {
         cta.href = ctaVal;
         cta.removeAttribute('data-tjd-produit');
       }
-      cta.textContent = price ? ('Acheter · ' + price) : 'Acheter la fiche';
+      var libelles = {
+        'cas-pratique-': 'les cas pratiques corrigés',
+        'coma-': 'le commentaire d’arrêt corrigé',
+        'commentaire-arret-': 'les commentaires d’arrêt corrigés',
+        'dissertation-': 'les dissertations corrigées',
+        'fiche-arret-': 'les fiches d’arrêt',
+        'fiche-': 'la fiche complète',
+        'cours-fiche-': 'le cours complet',
+        'cours-images-': 'le cours en images',
+        'citations-': 'la fiche de citations',
+        'maj-': 'les majeures préparées'
+      };
+      var format = Object.keys(libelles).find(function (prefixe) { return ctaVal.startsWith(prefixe); });
+      cta.textContent = 'Acheter ' + (libelles[format] || 'le PDF') + (price ? ' · ' + price : '');
       imgsBox.innerHTML = '';
       imgs.forEach(function (src, position) {
         var im = document.createElement('img');

@@ -119,8 +119,8 @@
       if (!offre) return;
       bloc.appendChild(el('h3', { 'class': 'tjd-co__titre' }, 'Pour continuer en ' + offre.matiere));
       bloc.appendChild(el('p', { 'class': 'tjd-co__intro' }, 'Le PDF offert contient un cas pratique, avec son énoncé et son corrigé complet.'));
-      bloc.appendChild(el('p', { 'class': 'tjd-co__intro' }, 'Le recueil complet réunit ' + offre.cas + ' cas pratiques, dont celui qui est offert, et ' + offre.partiels + ' sujets de partiel. Tous sont corrigés avec la même méthode. Tu disposes donc de ' + (offre.cas - 1) + ' autres cas et de ' + offre.partiels + ' sujets de partiel pour t’entraîner sur les autres thèmes du cours.'));
-      bloc.appendChild(el('a', { href: offre.url, 'class': 'tjd-co__bouton', style: 'text-align:center;text-decoration:none' }, 'Voir le recueil complet · ' + (offre.prix / 100).toFixed(2).replace('.', ',') + ' €'));
+      bloc.appendChild(el('p', { 'class': 'tjd-co__intro' }, 'La compilation payante contient ' + offre.cas + ' cas pratiques et ' + offre.partiels + ' sujets de partiel, tous corrigés en entier. Tu y retrouves le cas offert et ' + (offre.cas - 1) + ' autres cas pour t’entraîner sur le reste du programme.'));
+      bloc.appendChild(el('a', { href: offre.url, 'class': 'tjd-co__bouton', style: 'text-align:center;text-decoration:none' }, 'Voir la compilation de cas pratiques corrigés · ' + (offre.prix / 100).toFixed(2).replace('.', ',') + ' €'));
     });
   }
 

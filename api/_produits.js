@@ -309,7 +309,7 @@ const PRODUITS = {
   "cas-pratique-societes-l3-s2": { nom: "Cas pratiques corrigés Droit des sociétés L3 S2", prix: 1499, blobs: ["r2://tjd/cas-pratique-societes-l3-s2.pdf"] },
   "cas-pratique-procedure-penale-l3": { nom: "Cas pratiques corrigés Procédure pénale L3", prix: 1499, blobs: ["r2://tjd/cas-pratique-procedure-penale-l3.pdf"] },
   "cas-pratique-travail-l3": { nom: "Cas pratiques corrigés Droit du travail L3", prix: 1499, blobs: ["r2://tjd/cas-pratique-travail-l3.pdf"] },
-  "cas-pratique-societes-l3": { nom: "Cas pratiques corrigés Droit des sociétés L3", prix: 1499, blobs: ["r2://tjd/cas-pratique-societes-l3.pdf"] },
+  "cas-pratique-societes-l3": { nom: "Cas pratiques corrigés Droit des sociétés L3 S1", prix: 1499, blobs: ["r2://tjd/cas-pratique-societes-l3.pdf"] },
   "cas-pratique-contrats-speciaux-l3": { nom: "Cas pratiques corrigés Contrats spéciaux L3", prix: 1499, blobs: ["r2://tjd/cas-pratique-contrats-speciaux-l3.pdf"] },
   "cas-pratique-commercial-l3-s2": { nom: "Cas pratiques corrigés Droit commercial L3 S2", prix: 1499, blobs: ["r2://tjd/cas-pratique-commercial-l3-s2.pdf"] },
   "cas-pratique-commercial-l3-s1": { nom: "Cas pratiques corrigés Droit commercial L3 S1", prix: 1499, blobs: ["r2://tjd/cas-pratique-commercial-l3-s1.pdf"] },

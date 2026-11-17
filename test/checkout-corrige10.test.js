@@ -143,7 +143,7 @@ test('un panier mixte réduit les seuls recueils au centime et conserve la trace
     assert.equal(params.metadata.codePromoMontantCentimes, '300');
     assert.equal(params.metadata.codePromoProduits, 'cas-pratique-societes-l3,dissertation-intro-droit-l1');
     assert.equal(params.payment_intent_data.metadata.codePromoMontantCentimes, '300');
-    assert.match(params.line_items[0].price_data.product_data.description, /Le prix de ce recueil comprend la réduction de 10 % du code CORRIGE10\./);
+    assert.match(params.line_items[0].price_data.product_data.description, /Le prix inclut les 10 % de réduction du code CORRIGE10\./);
     assert.doesNotMatch(params.line_items[1].price_data.product_data.description, /CORRIGE10/);
     assert.deepEqual(appels.recherches[0].expand, ['data.promotion.coupon']);
   });

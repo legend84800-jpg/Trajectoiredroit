@@ -21,8 +21,8 @@ const BESOINS = [
   {
     titre: "Rédiger mes exercices",
     supports: [
-      { nom: "Majeures préparées", href: "majeures-preparees.html", format: "Majeures préparées ", unite: " / recueil" },
-      { nom: "Exercices corrigés", href: "corriges.html", format: "Cas pratiques corrigés ", unite: " / recueil" },
+      { nom: "Majeures préparées", href: "majeures-preparees.html", format: "Majeures préparées ", unite: " / PDF" },
+      { nom: "Exercices corrigés", href: "corriges.html", format: "Cas pratiques corrigés ", unite: " / PDF" },
       { nom: "Portalis IA", href: "portalis.html#formules", portalis: true, unite: " / mois" },
     ],
     contenu: "Une majeure préparée donne une règle de droit déjà rédigée, prête à écrire dans un cas pratique. Les corrigés montrent, sujet par sujet, comment construire la réponse puis la rédiger. Portalis rédige un corrigé à partir de ton propre sujet.",

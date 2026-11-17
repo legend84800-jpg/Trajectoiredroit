@@ -30,7 +30,7 @@ function construireEncart(matiereSlug) {
       : "";
     return `${MARQUEUR_ENCART}
 <div class="article-produit-inline">
-  ${thumb ? `<img class="article-produit-inline__thumb" src="${thumb}" alt="Aperçu de la fiche ${m.nom}" loading="lazy">` : ""}
+  ${thumb ? `<img class="article-produit-inline__thumb" src="${thumb}" alt="Aperçu de la fiche complète ${m.nom}" loading="lazy">` : ""}
   <div class="article-produit-inline__body">
     <p class="article-produit-inline__label">Fiche complète</p>
     <p class="article-produit-inline__title">${m.nom}</p>
@@ -49,7 +49,7 @@ function construireEncart(matiereSlug) {
   const thumb = m.semestres[0].vignette || m.semestres[0].apercus[0] || "";
   return `${MARQUEUR_ENCART}
 <div class="article-produit-inline">
-  ${thumb ? `<img class="article-produit-inline__thumb" src="${thumb}" alt="Aperçu de la fiche ${m.nom}" loading="lazy">` : ""}
+  ${thumb ? `<img class="article-produit-inline__thumb" src="${thumb}" alt="Aperçu de la fiche complète ${m.nom}" loading="lazy">` : ""}
   <div class="article-produit-inline__body">
     <p class="article-produit-inline__label">Fiche complète</p>
     <p class="article-produit-inline__title">${m.nom}</p>
@@ -88,7 +88,7 @@ function construireSticky(matiereSlug) {
       <strong>${m.nom} · ${prix}</strong>
       <small>${sousTitre}</small>
     </div>
-    <a class="btn btn--primary" href="${pageMatiere}#fiches">Voir la fiche →</a>
+    <a class="btn btn--primary" href="${pageMatiere}#fiches">Voir la fiche complète →</a>
   </div>
 `;
 }

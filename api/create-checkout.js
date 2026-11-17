@@ -207,7 +207,7 @@ async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande,
     ids, eligibles, code, mode: "prix-recueils", promotion: promo.id,
     description: (id) => id === MAJEURES_CONTRATS_CORRIGE10
       ? "Le prix de ces majeures préparées comprend la réduction de 10 % du code CORRIGE10."
-      : "Le prix de ce recueil comprend la réduction de 10 % du code CORRIGE10.",
+      : "Le prix inclut les 10 % de réduction du code CORRIGE10.",
   });
 }
 

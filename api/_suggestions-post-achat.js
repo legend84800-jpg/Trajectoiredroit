@@ -53,8 +53,8 @@ const COMPLEMENT_PAR_FAMILLE = {
 
 // Phrase qui dit à l'étudiant ce que le complément ajoute à son achat.
 const EXPLICATIONS = {
-  "majeure>cas-pratique": "Tes majeures donnent les règles de la matière, condition par condition. Le recueil montre sur des énoncés complets comment choisir la règle qui s'applique, puis comment l'appliquer aux faits.",
-  "cas-pratique>majeure": "Le recueil t'a montré les règles appliquées à des énoncés. Les majeures rassemblent toutes les règles de la matière, déjà rédigées condition par condition comme dans une copie.",
+  "majeure>cas-pratique": "Tes majeures donnent les règles de la matière, condition par condition. Les cas pratiques corrigés montrent comment choisir la règle qui s’applique à un énoncé et l’appliquer aux faits.",
+  "cas-pratique>majeure": "Les cas pratiques corrigés montrent comment les règles s’appliquent aux faits. Les majeures préparées reprennent les règles de la matière, rédigées condition par condition comme dans une copie.",
 };
 
 // Préfixes d'identifiant, du plus long au plus court, pour isoler la matière.
