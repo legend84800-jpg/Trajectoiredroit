@@ -408,7 +408,7 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur, c
   const compte = "https://trajectoiredroit.com/mon-compte.html";
   const youtube = "https://www.youtube.com/@TrajectoireDroit";
   const tiktok = "https://www.tiktok.com/@trajectoiredroit";
-  const lien = (url, libelle) => `<a href="${echapperHtml(url)}" style="color:#1a237e;">${libelle}</a>`;
+  const lien = (url, libelle) => `<a href="${echapperHtml(url)}" style="color:#18564A;text-decoration:underline;">${libelle}</a>`;
   const compteHtml = lien(compte, "Mon Compte");
   const blocs = [];
   const ajouter = (html, texte = html) => blocs.push({ html, texte });
@@ -443,7 +443,7 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur, c
   if (contientPackUltra) boutons.unshift({ url: compte, libelle: "Accéder à mon Pack Ultra" });
   if (contientMedia) boutons.unshift({ url: compte, libelle: "Écouter mes podcasts et voir mes vidéos" });
   ajouter(
-    boutons.map(b => `<a href="${echapperHtml(b.url)}" style="display:inline-block;margin:4px 0;padding:12px 24px;background:#1a237e;color:#fff;text-decoration:none;border-radius:6px;">${echapperHtml(b.libelle)}</a><br>`).join("\n"),
+    boutons.map(b => `<a href="${echapperHtml(b.url)}" style="display:inline-block;margin:4px 0;box-sizing:border-box;max-width:100%;padding:12px 17px;background:#0E2A47;color:#fff;font-weight:700;line-height:1.45;overflow-wrap:anywhere;text-decoration:none;border-radius:6px;">${echapperHtml(b.libelle)}</a><br>`).join("\n"),
     boutons.map(b => `${b.libelle} : ${b.url}`).join("\n")
   );
 
@@ -481,21 +481,31 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur, c
   ajouter("Julien, TrajectoireDroit");
 
   const pied = "TrajectoireDroit, les meilleures fiches de droit de France.";
+  const estUneFiche = produits.length === 1 && /^Fiche complète /i.test(nomsAchetes);
+  const sujet = estUneFiche
+    ? `Ta fiche ${nomsAchetes.slice("Fiche complète ".length)} est prête`
+    : liens.length ? "Tes téléchargements sont prêts" : "Ton achat est confirmé";
+  const apercu = contientPackUltra || seulementMedia
+    ? "Tes ressources sont disponibles dans ton espace Mon Compte."
+    : liens.length === 1
+      ? "Ton lien de téléchargement reste valable 48 heures. L’accès à ton PDF est à vie."
+      : "Tes liens de téléchargement restent valables 48 heures. L’accès à tes PDF est à vie.";
   const html = `<!DOCTYPE html>
 <html lang="fr">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#f5f5f5;font-family:sans-serif;">
+  <div style="display:none;max-height:0;max-width:0;overflow:hidden;opacity:0;mso-hide:all;font-size:1px;line-height:1px;">${echapperHtml(apercu)}${"&#847;&zwnj;&nbsp;".repeat(60)}</div>
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;padding:24px 0;">
     <tr><td align="center">
-      <table width="560" cellpadding="0" cellspacing="0" style="width:100%;max-width:560px;background:#fff;border-radius:8px;overflow:hidden;">
-        <tr><td style="background:#1a237e;padding:24px 32px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;max-width:560px;table-layout:fixed;background:#fff;border-radius:8px;overflow:hidden;">
+        <tr><td style="background:#0E2A47;padding:24px 18px;">
           <p style="margin:0;color:#fff;font-size:22px;font-weight:700;">TrajectoireDroit</p>
         </td></tr>
-        <tr><td style="padding:32px;">
+        <tr><td style="padding:24px 18px;">
           <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 24px;">Ton achat est confirmé !</p>
           ${blocs.map(b => `<p style="font-size:15px;line-height:1.55;color:#333;margin:0 0 20px;">${b.html}</p>`).join("\n")}
         </td></tr>
-        <tr><td style="background:#f0f0f0;padding:16px 32px;">
+        <tr><td style="background:#f0f0f0;padding:16px 18px;">
           <p style="font-size:12px;color:#666;margin:0;">${pied}</p>
         </td></tr>
       </table>
@@ -508,7 +518,7 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur, c
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
     to: [{ email }],
     replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
-    subject: `Ton achat : ${nomsAchetes}`,
+    subject: sujet,
     htmlContent: html,
     textContent: texte,
   };
