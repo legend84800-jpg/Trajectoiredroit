@@ -221,6 +221,13 @@
         });
       }).then(function (d) {
         mesurer('essai-majeures', courant);
+        // Évènement Lead du Pixel Meta (17/11/2026), après consentement seulement,
+        // pour que la campagne Meta du kit d'essai optimise sur les vraies demandes.
+        try {
+          if (!estTestInterne() && localStorage.getItem('tjd_consent') === 'granted' && typeof window.fbq === 'function') {
+            window.fbq('track', 'Lead', { content_name: 'kit-essai-majeures', content_category: courant });
+          }
+        } catch (_) {}
         var succes = el('div', { 'class': 'tjd-ek__succes', role: 'status', 'aria-live': 'polite' });
         succes.appendChild(el('strong', null, T.succesTitre));
         succes.appendChild(el('p', null, T.succes.replace('{email}', email)));
