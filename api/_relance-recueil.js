@@ -70,14 +70,11 @@ function lireJetonStop(jeton, secret) {
 // Formats d'exercice, pour accorder le texte au recueil de la matière.
 const TYPES = {
   "cas-pratique-": { exercice: "cas pratique", pluriel: "cas pratiques", corriges: "corrigés",
-    bien: "les règles que tu avais bien appliquées", manque: "les conditions ou les arrêts qui te manquaient",
-    raison: "chaque énoncé oblige à appliquer les règles du cours à des faits différents" },
+    bien: "les règles de droit que tu avais bien appliquées", manque: "les conditions ou les arrêts qui te manquaient" },
   "commentaire-arret-": { exercice: "commentaire d'arrêt", pluriel: "commentaires d'arrêt", corriges: "corrigés",
-    bien: "ce que tu avais bien compris de la décision", manque: "les explications qui te manquaient sur le sens et la portée de l'arrêt",
-    raison: "chaque décision oblige à retrouver la question posée au juge, puis à expliquer sa réponse avec les règles du cours" },
+    bien: "ce que tu avais bien compris de la décision", manque: "les explications qui te manquaient sur le sens et la portée de l'arrêt" },
   "dissertation-": { exercice: "dissertation", pluriel: "dissertations", corriges: "corrigées",
-    bien: "les idées que tu avais bien trouvées", manque: "les arguments ou les exemples qui te manquaient dans ton plan",
-    raison: "chaque sujet oblige à construire un plan différent à partir des notions du cours" },
+    bien: "les idées que tu avais bien trouvées", manque: "les arguments ou les exemples qui te manquaient dans ton plan" },
 };
 const typeDe = id => TYPES[Object.keys(TYPES).find(p => id.startsWith(p))];
 
@@ -98,24 +95,23 @@ function donneesRelance(contact, remise) {
   const t = typeDe(id);
   const info = recueils().find(r => r.id === id);
   const cle = sujetDe(id);
+  const matiere = cle ? deNom(SUJETS[cle].nom) : "de ta matière";
   const prix = produit.prix;
   return {
     MATIERE: id,
+    PRENOM: contact.attributes.PRENOM?.trim() || contact.attributes.FIRSTNAME?.trim() || "",
     EXERCICE: t.exercice,
-    RAISON: t.raison,
     // Corrigé offert d'une page de matière (lead.js, CORRIGE_PARTIELS renseigné) ou corrigé d'un
     // exercice précis (_corriges-exercices.js, CORRIGE_PARTIELS à 0 et titre de l'exercice).
     TELECHARGE: contact.attributes.CORRIGE_PARTIELS && contact.attributes.CORRIGE_PARTIELS !== "0" || !contact.attributes.CORRIGE_MATIERE
-      ? `le ${t.exercice} corrigé ${cle ? deNom(SUJETS[cle].nom) : "de ta matière"}`
+      ? `le ${t.exercice} corrigé ${matiere}`
       : `« ${contact.attributes.CORRIGE_MATIERE} »`,
     BIEN: t.bien,
     MANQUE: t.manque,
-    RECUEIL: cle ? deNom(SUJETS[cle].nom) : produit.nom,
+    MATIERE_NIVEAU: matiere.replace(/ L([123])(?: S[12])?$/, ", dès la licence $1"),
     NOMBRE: String(info ? info.nombre : COMPTES[id]),
-    TYPE: info && info.type === "cas pratiques et sujets de partiel" ? "cas pratiques et sujets de partiel" : t.pluriel,
-    CORRIGES: t.corriges,
-    OBJET_FORMAT: (t.pluriel === "dissertations" ? "les dissertations corrigées " : "les " + t.pluriel + " corrigés ")
-      + (cle ? deNom(SUJETS[cle].nom) : "de " + minInitiale(produit.nom)),
+    TYPE: t.pluriel,
+    OBJET_FORMAT: `les ${t.pluriel} ${t.corriges} ${cle ? matiere : "de " + minInitiale(produit.nom)}`,
     PRIX: euros(prix),
     PRIX_REMISE: euros(prix - Math.round(prix * POURCENTAGE / 100)),
     CODE: remise.code,
@@ -129,11 +125,12 @@ function donneesRelance(contact, remise) {
 // de bienvenue réécrits par Julien le 14/11/2026.
 function construireEmailRelance(d, lienStop) {
   const paragraphes = [
-    "Salut,",
-    `Il y a quelques jours, tu as téléchargé ${d.TELECHARGE}. Si tu as d'abord fait l'exercice sans regarder la correction, tu as pu repérer ${d.BIEN}, mais aussi ${d.MANQUE}.`,
-    `Pour progresser en ${d.EXERCICE}, il faut refaire ce travail sur d'autres sujets de la même matière. En effet, ${d.RAISON}. Ainsi, en comparant plusieurs corrections, tu repères les erreurs qui reviennent dans tes copies et tu les corriges avant le partiel.`,
-    `Le recueil ${d.RECUEIL} réunit ${d.NOMBRE} ${d.TYPE} ${d.CORRIGES} en entier. Il coûte normalement ${d.PRIX}, mais je te propose un code de -15 % valable 48 heures. Ton code est ${d.CODE}, donc le recueil passe à ${d.PRIX_REMISE}. Le bouton ci-dessous applique d'ailleurs le code tout seul au paiement, jusqu'au ${d.FIN}.`,
-    { lien: d.URL, texte: "Voir le recueil avec -15 %" },
+    d.PRENOM ? `Salut ${d.PRENOM},` : "Salut,",
+    `Il y a quelques jours, tu as téléchargé ${d.TELECHARGE}. Si tu as d’abord fait l’exercice sans regarder la correction, tu as pu repérer ${d.BIEN}, mais aussi ${d.MANQUE}.`,
+    `Pour progresser en ${d.EXERCICE}, il faut refaire ce travail sur d’autres sujets de la même matière afin de maîtriser les différents thèmes de cette dernière. Ainsi, en t’exerçant sur des exercices spécifiquement adaptés à tout ton cours, tu développes un niveau qui te permettra de viser plus de 15 sur 20 lors de ton partiel.`,
+    `C’est pour cela que j’ai créé et corrigé moi-même, étape par étape, de manière ultra complète et pédagogique, ${d.NOMBRE} ${d.TYPE} sur différents thèmes ${d.MATIERE_NIVEAU}. Je les vends dans ma compilation de corrigés.`,
+    `Elle coûte normalement ${d.PRIX}, mais je te propose un code de -15 % valable 48 heures. Ton code est ${d.CODE}, donc la compilation passe à ${d.PRIX_REMISE}. Le bouton ci-dessous applique d'ailleurs le code tout seul au paiement, jusqu'au ${d.FIN}.`,
+    { lien: d.URL, texte: "Voir la compilation de corrigés avec -15 %" },
     "Si tu as une question sur le corrigé, n'hésite pas à m'envoyer un message en répondant à ce mail.",
     "Respectueusement,\nJulien\nTrajectoire Droit",
   ];
@@ -146,7 +143,7 @@ function construireEmailRelance(d, lienStop) {
     + "</body></html>";
   const texte = paragraphes.map(p => typeof p === "string" ? p : p.texte + "\n" + p.lien).join("\n\n")
     + "\n\n" + pied + (lienStop ? "\nNe plus recevoir mes emails : " + lienStop : "");
-  return { sujet: `-15 % sur ${d.OBJET_FORMAT}, jusqu'au ${d.FIN}`, html, texte };
+  return { sujet: `-15 % sur ${d.OBJET_FORMAT}`, html, texte };
 }
 
 // ---------- Accès Brevo et Stripe ----------
@@ -205,7 +202,7 @@ async function dejaAcheteur(stripe, email, produitId, maintenant) {
 }
 
 async function creerCode(stripe, produitId, email, jour) {
-  const code = "RECUEIL-" + crypto.randomBytes(4).toString("hex").toUpperCase();
+  const code = "COMPILATION-" + crypto.randomBytes(4).toString("hex").toUpperCase();
   const expire = Math.floor(Date.now() / 1000) + DUREE_CODE_S;
   const promo = await stripe.promotionCodes.create({
     code, active: true, expires_at: expire, max_redemptions: 1,

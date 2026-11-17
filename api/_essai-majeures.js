@@ -103,12 +103,12 @@ function construireEmailEssai(a) {
   if (a.ESSAI_CODE) {
     paragraphes.push(
       `Si ça t'intéresse et que tu veux les majeures complètes, voici un code de -15 % valable 48 heures sur les majeures de cette matière. Ton code est ${a.ESSAI_CODE}.`,
-      `Avec ce code, le recueil des ${a.ESSAI_NB} majeures de ${a.ESSAI_MATIERE} passe de ${a.ESSAI_PRIX} à ${a.ESSAI_PRIX_REMISE}. Le bouton ci-dessous applique le code tout seul au paiement, jusqu'au ${a.ESSAI_FIN}.`,
+      `Avec ce code, la compilation des ${a.ESSAI_NB} majeures de ${a.ESSAI_MATIERE} passe de ${a.ESSAI_PRIX} à ${a.ESSAI_PRIX_REMISE}. Le bouton ci-dessous applique le code tout seul au paiement, jusqu'au ${a.ESSAI_FIN}.`,
       { lien: a.ESSAI_URL, texte: "Voir les majeures complètes avec -15 %" },
     );
   } else {
     paragraphes.push(
-      `Si tu veux les majeures complètes, le recueil réunit les ${a.ESSAI_NB} majeures de ${a.ESSAI_MATIERE} pour ${a.ESSAI_PRIX}.`,
+      `Si tu veux les majeures complètes, la compilation réunit les ${a.ESSAI_NB} majeures de ${a.ESSAI_MATIERE} pour ${a.ESSAI_PRIX}.`,
       { lien: a.ESSAI_URL, texte: "Voir les majeures complètes" },
     );
   }
