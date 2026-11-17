@@ -1,4 +1,4 @@
-/* Plan détaillé du commentaire offert contre un email (test des pages d'arrêts du 20/10/2026).
+/* Plan détaillé du commentaire offert sur les fiches d'arrêt.
    Remplit chaque [data-tjd-plan] avec un formulaire compact. data-plan donne l'identifiant
    de l'arrêt (clé de api/_plans-commentaires.json) et data-arret son nom affiché
    (« l'arrêt Manoukian »). Le formulaire poste { email, source, plan } vers /api/lead, qui
@@ -8,9 +8,9 @@
   'use strict';
 
   var TEXTES = {
-    titre: 'Le plan détaillé du commentaire, envoyé gratuitement par email',
-    intro: 'Je t’envoie par email le plan du commentaire de {arret}. Il donne la problématique avec l’annonce du plan, puis le paragraphe qui présente chacune des deux parties. Tu peux donc t’en servir pour construire ta propre copie avant le TD.',
-    email: 'Ton email',
+    titre: 'Reçois gratuitement le plan du commentaire de {arret}',
+    intro: 'Le PDF te donne la problématique et l’annonce du plan. Un paragraphe présente ce que tu peux développer dans chacune des deux parties.',
+    email: 'Ton adresse e-mail',
     bouton: 'Recevoir le plan',
     envoi: 'Envoi…',
     rgpd: 'En validant, tu reçois ce plan et les emails de Trajectoire Droit.',
@@ -77,8 +77,8 @@
     var uid = 'tjd-pc-' + index;
 
     var carte = el('div', { 'class': 'tjd-pc' });
-    carte.appendChild(el('p', { 'class': 'tjd-pc__titre' }, TEXTES.titre));
-    carte.appendChild(el('p', { 'class': 'tjd-pc__intro' }, TEXTES.intro.replace('{arret}', arret)));
+    carte.appendChild(el('h2', { 'class': 'tjd-pc__titre' }, TEXTES.titre.replace('{arret}', arret)));
+    carte.appendChild(el('p', { 'class': 'tjd-pc__intro' }, TEXTES.intro));
 
     var form = el('form', { 'class': 'tjd-pc__form', novalidate: 'novalidate' });
     var ligneEmail = el('div');

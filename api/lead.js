@@ -14,6 +14,14 @@ const { attributsExercice, suggestionEmail, emailDepuisAttributs } = require('./
 // Plan du commentaire offert sur les pages d'arrêts les plus vues (test du 20/10/2026).
 // Liste blanche écrite par livrables/automatisation/test-arrets-conversion-2026-10-20/generer_liste_plans.py.
 const PLANS = require('./_plans-commentaires.json');
+const RECOMMANDATIONS_ARRETS = require('./_recommandations-arrets.json');
+const recommandationsParPage = new Map();
+for (const [produit, recommandation] of Object.entries(RECOMMANDATIONS_ARRETS)) {
+  for (const plan of recommandation.plans) {
+    const entree = PLANS[plan];
+    if (entree) recommandationsParPage.set(entree.page, { produit, ...recommandation });
+  }
+}
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // La liste 17 lance le suivi au deuxième mail, puis ajoute le contact à la liste 3.
@@ -184,24 +192,101 @@ function planValide(plan) {
     && Boolean(PRODUITS[PLANS[plan].produit]);
 }
 
-function urlCommentaire(plan) {
-  const params = new URLSearchParams({ utm_source: 'brevo', utm_medium: 'email',
-    utm_campaign: 'plan-commentaire', utm_content: plan });
-  return 'https://trajectoiredroit.com/' + PLANS[plan].page + '?' + params.toString() + '#commentaire-corrige';
+function recommandationArret(page, source, slug) {
+  const recommandation = recommandationsParPage.get(page);
+  if (!recommandation) return null;
+
+  const { produit, destination, matiere } = recommandation;
+  const url = new URL(destination, "https://trajectoiredroit.com");
+  url.search = new URLSearchParams({
+    utm_source: "brevo",
+    utm_medium: "email",
+    utm_campaign: source,
+    utm_content: slug,
+  });
+
+  if (produit.startsWith("commentaire-arret-")) {
+    const question = source === "plan-commentaire"
+      ? "Tu veux voir comment passer du plan au commentaire rédigé ?"
+      : "Tu veux voir comment rédiger le commentaire de cet arrêt ?";
+    return {
+      url: url.href,
+      format: "compilation",
+      texte: question + " Le corrigé de cet arrêt figure dans la compilation de la matière.",
+      bouton: "Voir la compilation des commentaires corrigés de " + matiere,
+    };
+  }
+  if (produit.startsWith("maj-")) {
+    return {
+      url: url.href,
+      format: "majeures",
+      texte: "Tu veux appliquer la règle de cet arrêt dans un cas pratique ? Les majeures préparées te donnent la règle déjà rédigée. Ensuite, tu peux vérifier chaque condition dans les faits de ton énoncé.",
+      bouton: "Voir les majeures préparées de " + matiere,
+    };
+  }
+  return {
+    url: url.href,
+    format: "fiche",
+    texte: "Pour réviser le chapitre dans lequel tu étudies cet arrêt, tu peux reprendre les règles et leurs conditions dans la fiche complète du semestre.",
+    bouton: "Voir la fiche complète de " + matiere,
+  };
+}
+
+function attributsRecommandationArret(recommandation) {
+  return {
+    OFFRE_ARRET_TEXTE: recommandation?.texte ?? "",
+    OFFRE_ARRET_BOUTON: recommandation?.bouton ?? "",
+    OFFRE_ARRET_FORMAT: recommandation?.format ?? "",
+  };
+}
+
+function blocRecommandationArret(a, url) {
+  if (!a.OFFRE_ARRET_FORMAT) return [];
+  return [
+    a.OFFRE_ARRET_TEXTE,
+    { lien: url, texte: a.OFFRE_ARRET_BOUTON, format: a.OFFRE_ARRET_FORMAT },
+  ];
+}
+
+const STYLES_LIENS_ARRET = {
+  telechargement: "padding:12px 17px;background:#0E2A47;color:#FFFFFF;text-decoration:none;font-weight:700",
+  compilation: "padding:8px 11px;background:#EAF5F0;color:#18564A;text-decoration:underline;font-weight:600",
+  majeures: "padding:8px 11px;background:#F4EDF7;color:#583A6F;text-decoration:underline;font-weight:600",
+  fiche: "padding:8px 11px;background:#EDF3FA;color:#0E2A47;text-decoration:underline;font-weight:600",
+};
+
+function construireEmailArret(sujet, paragraphes, groupesEnGras = []) {
+  const esc = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const corps = paragraphes.map(p => {
+    if (typeof p === "string") {
+      let texte = esc(p);
+      for (const groupe of groupesEnGras) {
+        texte = texte.replace(esc(groupe), '<strong style="color:#0E2A47">' + esc(groupe) + '</strong>');
+      }
+      return '<p>' + texte + '</p>';
+    }
+    const style = STYLES_LIENS_ARRET[p.format] ?? "color:#1A2851;font-weight:700";
+    return '<p><a href="' + esc(p.lien) + '" style="display:inline-block;box-sizing:border-box;max-width:100%;border-radius:6px;overflow-wrap:anywhere;' + style + '">' + esc(p.texte) + '</a></p>';
+  }).join("");
+  const html = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>'
+    + '<body style="margin:0;font:16px Arial;line-height:1.6;color:#0F172A"><div style="box-sizing:border-box;max-width:600px;margin:0 auto;padding:12px 18px">'
+    + corps + '</div></body></html>';
+  const texte = paragraphes.map(p => typeof p === "string" ? p : p.texte + "\n" + p.lien).join("\n\n");
+  return { sujet, html, texte };
 }
 
 // Attributs lus par le premier email de la séquence de bienvenue Brevo (branche
 // SOURCE == "plan-commentaire" du modèle 1) et par l'email transactionnel ci-dessous.
 function attributsPlan(plan) {
   const x = PLANS[plan];
+  const recommandation = recommandationArret(x.page, "plan-commentaire", plan);
   return {
     SOURCE: "plan-commentaire",
     PLAN_SLUG: plan,
     PLAN_ARRET: x.arret,
     PLAN_PDF: x.pdf,
-    PLAN_URL: urlCommentaire(plan),
-    PLAN_PAGES: String(x.pages),
-    PLAN_PRIX: euros(PRODUITS[x.produit].prix),
+    PLAN_URL: recommandation?.url ?? "",
+    ...attributsRecommandationArret(recommandation),
   };
 }
 
@@ -210,20 +295,13 @@ function construireEmailPlan(a) {
   const paragraphes = [
     "Salut,",
     `Tu as demandé le plan du commentaire de ${a.PLAN_ARRET}. Le PDF commence par la problématique, c’est-à-dire la question juridique à laquelle le commentaire répond. Il rappelle aussi la solution du juge et annonce les deux parties du commentaire. Pour chaque partie, un paragraphe explique ce que tu peux y développer.`,
-    { lien: a.PLAN_PDF, texte: "Télécharger le plan" },
+    { lien: a.PLAN_PDF, texte: "Télécharger le plan", format: "telechargement" },
     "Pour préparer ta séance de travaux dirigés, tu peux prendre une sous-partie du plan et essayer de la rédiger. Tu expliques ce que le juge a décidé et pourquoi, en utilisant les articles et les décisions de justice qui concernent cette question. Tu verras ainsi quels points tu arrives à expliquer seul et lesquels demandent de reprendre ton cours.",
-    `Si tu veux comparer ton travail à la correction complète, le commentaire rédigé fait ${a.PLAN_PAGES} pages et comprend le texte intégral de la décision. Tu peux le retrouver sur la page de l’arrêt pour ${a.PLAN_PRIX}.`,
-    { lien: a.PLAN_URL, texte: "Voir le commentaire rédigé" },
+    ...blocRecommandationArret(a, a.PLAN_URL),
     "Si tu as une question sur le plan, tu peux répondre à cet email. Je lis moi-même les réponses.",
     "Julien",
   ];
-  const esc = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const html = '<html lang="fr"><body style="font:16px Arial;line-height:1.6;max-width:580px;margin:30px auto;padding:20px">'
-    + paragraphes.map(p => typeof p === "string" ? '<p>' + esc(p) + '</p>'
-      : '<p><a href="' + esc(p.lien) + '" style="color:#1A2851;font-weight:bold">' + esc(p.texte) + '</a></p>').join('')
-    + '</body></html>';
-  const texte = paragraphes.map(p => typeof p === "string" ? p : p.texte + "\n" + p.lien).join("\n\n");
-  return { sujet: `Ton plan du commentaire de ${a.PLAN_ARRET}`, html, texte };
+  return construireEmailArret(`Ton plan du commentaire de ${a.PLAN_ARRET}`, paragraphes, ["la problématique", "la solution du juge"]);
 }
 
 async function envoyerPlan(email, plan, apiKey) {
@@ -287,6 +365,7 @@ function attributsFiche(fiche) {
   const f = FICHES[fiche];
   const produit = PRODUITS[f.produit];
   const p = produitDansPhrase(produit.nom);
+  const recommandation = recommandationArret(f.page, "fiche-arret", fiche);
   return {
     SOURCE: "fiche-arret",
     MATIERE: f.produit,
@@ -298,29 +377,29 @@ function attributsFiche(fiche) {
     FICHE_PRODUIT: p.phrase,
     FICHE_BOUTON: p.bouton,
     FICHE_PRIX: euros(produit.prix),
-    FICHE_URL: urlOffreFiche(fiche),
+    FICHE_URL: recommandation?.url ?? urlOffreFiche(fiche),
+    ...attributsRecommandationArret(recommandation),
   };
 }
 // Textes passés par redaction-julien (checklist, passe adversariale, vale,
 // verificateur_anti_ia.py, verificateur_style_positif.py) le 03/11/2026.
 function construireEmailFiche(a) {
+  const recommandation = a.OFFRE_ARRET_FORMAT
+    ? blocRecommandationArret(a, a.FICHE_URL)
+    : [
+      `${a.FICHE_TITRE} fait partie du programme de ${a.FICHE_MATIERE}. Pour réviser toute la matière avant tes partiels, je te conseille donc ${a.FICHE_PRODUIT}, à ${a.FICHE_PRIX}.`,
+      { lien: a.FICHE_URL, texte: a.FICHE_BOUTON },
+    ];
   const paragraphes = [
     "Salut,",
     `Tu as demandé la fiche ${a.FICHE_DE}. Le PDF reprend toute l'explication de la page, des faits de l'affaire jusqu'à la façon de t'en servir dans une copie.`,
-    { lien: a.FICHE_PDF, texte: "Télécharger la fiche" },
+    { lien: a.FICHE_PDF, texte: "Télécharger la fiche", format: "telechargement" },
     "Pour que la fiche te serve en TD, le mieux est de relire d'abord le problème de droit et la solution, puis de les redire à voix haute sans regarder le PDF. En effet, si tu arrives à expliquer pourquoi le juge a tranché ainsi, tu sais déjà t'en servir dans un cas pratique ou dans un commentaire.",
-    `${a.FICHE_TITRE} fait partie du programme de ${a.FICHE_MATIERE}. Pour réviser toute la matière avant tes partiels, je te conseille donc ${a.FICHE_PRODUIT}, à ${a.FICHE_PRIX}.`,
-    { lien: a.FICHE_URL, texte: a.FICHE_BOUTON },
+    ...recommandation,
     "Si tu as une question sur l'arrêt, tu peux répondre à cet email. Je lis moi-même les réponses.",
     "Julien",
   ];
-  const esc = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const html = '<html lang="fr"><body style="font:16px Arial;line-height:1.6;max-width:580px;margin:30px auto;padding:20px">'
-    + paragraphes.map(p => typeof p === "string" ? '<p>' + esc(p) + '</p>'
-      : '<p><a href="' + esc(p.lien) + '" style="color:#1A2851;font-weight:bold">' + esc(p.texte) + '</a></p>').join('')
-    + '</body></html>';
-  const texte = paragraphes.map(p => typeof p === "string" ? p : p.texte + "\n" + p.lien).join("\n\n");
-  return { sujet: `Ta fiche ${a.FICHE_DE}`, html, texte };
+  return construireEmailArret(`Ta fiche ${a.FICHE_DE}`, paragraphes, ["problème de droit et la solution"]);
 }
 async function envoyerFiche(email, fiche, apiKey) {
   const contenu = construireEmailFiche(attributsFiche(fiche));

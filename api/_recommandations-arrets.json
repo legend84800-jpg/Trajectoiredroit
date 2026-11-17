@@ -1,0 +1,77 @@
+{
+  "commentaire-arret-contrats-l2-s1": {
+    "destination": "commentaires-arret-corriges.html#commentaire-arret-contrats-l2-s1",
+    "matiere": "droit des contrats (L2, S1)",
+    "plans": ["manoukian", "chronopost-1996", "canal-de-craponne-1876", "pacte-de-preference-2006"]
+  },
+  "commentaire-arret-biens-l2": {
+    "destination": "commentaires-arret-corriges.html#commentaire-arret-biens-l2",
+    "matiere": "droit des biens (L2)",
+    "plans": ["maison-de-la-poesie-2012", "vollard-1993", "clement-bayard-1915", "empietement-1990", "tresor-2002", "troubles-voisinage-1986"]
+  },
+  "commentaire-arret-da-l2-s1": {
+    "destination": "commentaires-arret-corriges.html#commentaire-arret-da-l2-s1",
+    "matiere": "droit administratif (L2, S1)",
+    "plans": ["narcy-1963", "blanco-1873", "benjamin-1933"]
+  },
+  "commentaire-arret-famille-l1-s2": {
+    "destination": "commentaires-arret-corriges.html#commentaire-arret-famille-l1-s2",
+    "matiere": "droit de la famille (L1, S2)",
+    "plans": ["galopin-2004", "expertise-biologique-2000", "appietto-1963", "begles-2007"]
+  },
+  "commentaire-arret-societes-l3-s1": {
+    "destination": "commentaires-arret-corriges.html#commentaire-arret-societes-l3-s1",
+    "matiere": "droit des sociétés (L3, S1)",
+    "plans": ["bowater-1986", "schumann-piquard-1961", "fruehauf-1965", "vilgrain-1996"]
+  },
+  "commentaire-arret-penal-l2-s1": {
+    "destination": "commentaires-arret-corriges.html#commentaire-arret-penal-l2-s1",
+    "matiere": "droit pénal (L2, S1)",
+    "plans": ["perdereau-1986", "lacour-1962", "cousinet-1967", "laboube-1956"]
+  },
+  "commentaire-arret-travail-l3-s1": {
+    "destination": "commentaires-arret-corriges.html#commentaire-arret-travail-l3-s1",
+    "matiere": "droit du travail (L3, S1)",
+    "plans": ["non-concurrence-2002", "uber-2020", "nikon-2001"]
+  },
+  "commentaire-arret-obligations-l2-s2": {
+    "destination": "commentaires-arret-corriges.html#commentaire-arret-obligations-l2-s2",
+    "matiere": "responsabilité civile (L2, S2)",
+    "plans": ["jandheur-1930", "teffaine-1896", "bertrand-1997", "costedoat-2000", "desmares-1982"]
+  },
+  "commentaire-arret-personnes-l1": {
+    "destination": "commentaires-arret-corriges.html#commentaire-arret-personnes-l1",
+    "matiere": "droit des personnes (L1)",
+    "plans": ["mennesson-2019", "mere-porteuse-1991", "perruche-2000", "sexe-neutre-2017", "homicide-foetus-2001", "transsexualisme-1992"]
+  },
+  "commentaire-arret-contrats-speciaux-l3": {
+    "destination": "commentaires-arret-corriges.html#commentaire-arret-contrats-speciaux-l3",
+    "matiere": "contrats spéciaux (L3)",
+    "plans": ["mandat-apparent-1962", "eviction-2021"]
+  },
+  "maj-contrats-l2-s1": {
+    "destination": "majeures-preparees.html#maj-contrats-l2-s1",
+    "matiere": "droit des contrats (L2, S1)",
+    "plans": ["poussin-1978", "baldus-2000"]
+  },
+  "maj-da-l2-s1": {
+    "destination": "majeures-preparees.html#maj-da-l2-s1",
+    "matiere": "droit administratif (L2, S1)",
+    "plans": ["bac-eloka"]
+  },
+  "fiche-travail-l3-s1": {
+    "destination": "droit-du-travail-l3.html#offre",
+    "matiere": "droit du travail (L3, S1)",
+    "plans": ["bardou-1931"]
+  },
+  "fiche-commercial-l3-s1": {
+    "destination": "droit-commercial-l3.html#offre",
+    "matiere": "droit commercial (L3, S1)",
+    "plans": ["solidarite-commerciale-1920"]
+  },
+  "fiche-societes-l3-s1": {
+    "destination": "droit-des-societes-l3.html#offre",
+    "matiere": "droit des sociétés (L3, S1)",
+    "plans": ["iron-mountain-2020"]
+  }
+}
