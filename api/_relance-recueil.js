@@ -69,11 +69,11 @@ function lireJetonStop(jeton, secret) {
 
 // Formats d'exercice, pour accorder le texte au recueil de la matière.
 const TYPES = {
-  "cas-pratique-": { exercice: "cas pratique", pluriel: "cas pratiques", corriges: "corrigés",
+  "cas-pratique-": { exercice: "cas pratique", offert: "le cas pratique corrigé", pluriel: "cas pratiques", corriges: "corrigés",
     bien: "les règles de droit que tu avais bien appliquées", manque: "les conditions ou les arrêts qui te manquaient" },
-  "commentaire-arret-": { exercice: "commentaire d'arrêt", pluriel: "commentaires d'arrêt", corriges: "corrigés",
+  "commentaire-arret-": { exercice: "commentaire d'arrêt", offert: "le commentaire d'arrêt corrigé", pluriel: "commentaires d'arrêt", corriges: "corrigés",
     bien: "ce que tu avais bien compris de la décision", manque: "les explications qui te manquaient sur le sens et la portée de l'arrêt" },
-  "dissertation-": { exercice: "dissertation", pluriel: "dissertations", corriges: "corrigées",
+  "dissertation-": { exercice: "dissertation", offert: "la dissertation corrigée", pluriel: "dissertations", corriges: "corrigées",
     bien: "les idées que tu avais bien trouvées", manque: "les arguments ou les exemples qui te manquaient dans ton plan" },
 };
 const typeDe = id => TYPES[Object.keys(TYPES).find(p => id.startsWith(p))];
@@ -96,6 +96,12 @@ function donneesRelance(contact, remise) {
   const info = recueils().find(r => r.id === id);
   const cle = sujetDe(id);
   const matiere = cle ? deNom(SUJETS[cle].nom) : "de ta matière";
+  const themes = matiere.replace(/ L[123](?: S[12])?$/, "").replace(/^de droit\b/, "du droit");
+  // Le nom du produit précise le semestre, y compris quand il est absent de l'identifiant.
+  const niveauProduit = produit.nom.match(/ L([123])(?: S([12]))?$/);
+  const niveau = niveauProduit
+    ? [niveauProduit[2] && `semestre ${niveauProduit[2]}`, `licence ${niveauProduit[1]}`].filter(Boolean).join(", ")
+    : "";
   const prix = produit.prix;
   return {
     MATIERE: id,
@@ -104,11 +110,11 @@ function donneesRelance(contact, remise) {
     // Corrigé offert d'une page de matière (lead.js, CORRIGE_PARTIELS renseigné) ou corrigé d'un
     // exercice précis (_corriges-exercices.js, CORRIGE_PARTIELS à 0 et titre de l'exercice).
     TELECHARGE: contact.attributes.CORRIGE_PARTIELS && contact.attributes.CORRIGE_PARTIELS !== "0" || !contact.attributes.CORRIGE_MATIERE
-      ? `le ${t.exercice} corrigé ${matiere}`
+      ? `${t.offert} ${matiere}`
       : `« ${contact.attributes.CORRIGE_MATIERE} »`,
     BIEN: t.bien,
     MANQUE: t.manque,
-    MATIERE_NIVEAU: matiere.replace(/ L([123])(?: S[12])?$/, ", dès la licence $1"),
+    MATIERE_NIVEAU: niveau ? `${themes} (${niveau})` : themes,
     NOMBRE: String(info ? info.nombre : COMPTES[id]),
     TYPE: t.pluriel,
     OBJET_FORMAT: `les ${t.pluriel} ${t.corriges} ${cle ? matiere : "de " + minInitiale(produit.nom)}`,
@@ -120,29 +126,51 @@ function donneesRelance(contact, remise) {
   };
 }
 
-// Texte passé par redaction-julien (checklist, passe adversariale, vale, verificateur_anti_ia.py,
-// verificateur_style_positif.py) le 15/11/2026. Signature et formule de question reprises des mails
-// de bienvenue réécrits par Julien le 14/11/2026.
 function construireEmailRelance(d, lienStop) {
+  const nombreExercices = `${d.NOMBRE} ${d.TYPE}`;
   const paragraphes = [
-    d.PRENOM ? `Salut ${d.PRENOM},` : "Salut,",
-    `Il y a quelques jours, tu as téléchargé ${d.TELECHARGE}. Si tu as d’abord fait l’exercice sans regarder la correction, tu as pu repérer ${d.BIEN}, mais aussi ${d.MANQUE}.`,
-    `Pour progresser en ${d.EXERCICE}, il faut refaire ce travail sur d’autres sujets de la même matière afin de maîtriser les différents thèmes de cette dernière. Ainsi, en t’exerçant sur des exercices spécifiquement adaptés à tout ton cours, tu développes un niveau qui te permettra de viser plus de 15 sur 20 lors de ton partiel.`,
-    `C’est pour cela que j’ai créé et corrigé moi-même, étape par étape, de manière ultra complète et pédagogique, ${d.NOMBRE} ${d.TYPE} sur différents thèmes ${d.MATIERE_NIVEAU}. Je les vends dans ma compilation de corrigés.`,
-    `Elle coûte normalement ${d.PRIX}, mais je te propose un code de -15 % valable 48 heures. Ton code est ${d.CODE}, donc la compilation passe à ${d.PRIX_REMISE}. Le bouton ci-dessous applique d'ailleurs le code tout seul au paiement, jusqu'au ${d.FIN}.`,
+    { texte: d.PRENOM ? `Salut ${d.PRENOM},` : "Salut," },
+    {
+      texte: `Il y a quelques jours, tu as téléchargé ${d.TELECHARGE}. Si tu as d’abord fait l’exercice sans regarder la correction, tu as pu repérer ${d.BIEN}, mais aussi ${d.MANQUE}.`,
+      gras: ["fait l’exercice sans regarder la correction"],
+    },
+    {
+      texte: `Pour progresser en ${d.EXERCICE}, il faut refaire ce travail sur d’autres sujets de la même matière afin de maîtriser les différents thèmes de cette dernière. Ainsi, en t’exerçant sur des exercices spécifiquement adaptés à tout ton cours, tu développes un niveau qui te permettra de viser plus de 15 sur 20 lors de ton partiel.`,
+      gras: ["viser plus de 15 sur 20"],
+    },
+    {
+      texte: `C’est pour cela que j’ai créé et corrigé moi-même, étape par étape, de manière ultra complète et pédagogique, ${nombreExercices} sur les différents thèmes ${d.MATIERE_NIVEAU}. Je les vends dans ma compilation de corrigés.`,
+      gras: ["ultra complète et pédagogique", nombreExercices, d.MATIERE_NIVEAU],
+    },
+    {
+      texte: `Elle coûte normalement ${d.PRIX}, mais je te propose un code de -15 % valable 48 heures. Ton code est ${d.CODE}, donc la compilation passe à ${d.PRIX_REMISE}. Le bouton ci-dessous applique d'ailleurs le code tout seul au paiement, jusqu'au ${d.FIN}.`,
+      gras: ["-15 % valable 48 heures", d.CODE],
+    },
     { lien: d.URL, texte: "Voir la compilation de corrigés avec -15 %" },
-    "Si tu as une question sur le corrigé, n'hésite pas à m'envoyer un message en répondant à ce mail.",
-    "Respectueusement,\nJulien\nTrajectoire Droit",
+    { texte: "Si tu as une question sur le corrigé, n'hésite pas à m'envoyer un message en répondant à ce mail." },
+    { texte: "Respectueusement,\nJulien\nTrajectoire Droit" },
   ];
   const pied = "Tu reçois cet email parce que tu as demandé un corrigé sur trajectoiredroit.com.";
-  const html = '<html lang="fr"><body style="font:16px Arial;line-height:1.6;max-width:580px;margin:30px auto;padding:20px;color:#1F1F1F">'
-    + paragraphes.map(p => typeof p === "string" ? "<p>" + esc(p).replace(/\n/g, "<br>") + "</p>"
-      : '<p><a href="' + esc(p.lien) + '" style="display:inline-block;padding:11px 18px;background:#1A2851;color:#fff;border-radius:8px;font-weight:bold;text-decoration:none">' + esc(p.texte) + "</a></p>").join("")
-    + '<p style="font-size:12px;color:#6B7280;margin-top:32px">' + esc(pied)
-    + (lienStop ? ' <a href="' + esc(lienStop) + '" style="color:#6B7280">Ne plus recevoir mes emails</a>' : "") + "</p>"
-    + "</body></html>";
-  const texte = paragraphes.map(p => typeof p === "string" ? p : p.texte + "\n" + p.lien).join("\n\n")
-    + "\n\n" + pied + (lienStop ? "\nNe plus recevoir mes emails : " + lienStop : "");
+  const desinscription = "Se désinscrire de ces emails";
+  const corps = paragraphes.map(p => {
+    let contenu = esc(p.texte).replace(/\n/g, "<br>");
+    for (const groupe of p.gras || []) {
+      if (groupe) contenu = contenu.replace(esc(groupe), mot => `<strong>${mot}</strong>`);
+    }
+    if (p.lien) {
+      contenu = '<a href="' + esc(p.lien) + '" style="display:inline-block;padding:11px 18px;background:#1A2851;color:#fff;border-radius:8px;font-weight:bold;text-decoration:none">' + contenu + "</a>";
+    }
+    return '<p style="margin:0 0 24px">' + contenu + "</p>";
+  }).join("");
+  const html = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>'
+    + '<body style="margin:0;font:16px Arial,sans-serif;line-height:1.6;color:#1F1F1F">'
+    + '<div style="display:none;visibility:hidden;mso-hide:all;max-height:0;overflow:hidden">Ton code personnel est valable 48 heures.</div>'
+    + '<div style="box-sizing:border-box;max-width:600px;margin:0 auto;padding:18px">' + corps
+    + '<p style="font-size:11px;color:#6B7280;margin:32px 0 0">' + esc(pied)
+    + (lienStop ? '<br><a href="' + esc(lienStop) + '" style="color:#6B7280;text-decoration:none">' + desinscription + "</a>" : "") + "</p>"
+    + "</div></body></html>";
+  const texte = paragraphes.map(p => p.lien ? p.texte + "\n" + p.lien : p.texte).join("\n\n")
+    + "\n\n" + pied + (lienStop ? "\n" + desinscription + "\n" + lienStop : "");
   return { sujet: `-15 % sur ${d.OBJET_FORMAT}`, html, texte };
 }
 
