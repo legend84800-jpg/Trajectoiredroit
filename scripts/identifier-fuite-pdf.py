@@ -198,7 +198,7 @@ def afficher_rapport(rapport: dict[str, object]) -> None:
 
 def parser() -> argparse.ArgumentParser:
     analyseur = argparse.ArgumentParser(description=__doc__)
-    analyseur.add_argument("pdf", type=Path, help="PDF suspect à analyser")
+    analyseur.add_argument("pdf", type=Path, help="PDF ou photo de page à analyser")
     analyseur.add_argument(
         "--rapport",
         type=Path,

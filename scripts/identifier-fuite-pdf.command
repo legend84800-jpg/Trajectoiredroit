@@ -5,7 +5,7 @@ dossier_script="${0:A:h}"
 racine_site="${dossier_script:h}"
 
 if (( $# == 0 )); then
-  pdf_suspect="$(osascript -e 'POSIX path of (choose file with prompt "Choisis le PDF suspect" of type {"com.adobe.pdf"})')"
+  pdf_suspect="$(osascript -e 'POSIX path of (choose file with prompt "Choisis le PDF ou la photo de la page" of type {"com.adobe.pdf", "public.jpeg", "public.png"})')"
   set -- "$pdf_suspect"
 fi
 

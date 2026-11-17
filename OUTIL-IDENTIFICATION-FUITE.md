@@ -1,17 +1,17 @@
 # Identifier l'origine d'un PDF diffusé
 
-Cet outil local analyse un PDF suspect, retrouve ses marqueurs et les compare à
+Cet outil local analyse un PDF ou une photo de page et compare ses marques à
 l'historique des achats. Il vérifie ensuite la session Stripe avant d'afficher
 le titulaire de la licence.
 
 ## Utilisation simple sur le Mac
 
 1. Ouvre `scripts/identifier-fuite-pdf.command`.
-2. Choisis le PDF suspect dans la fenêtre qui s'affiche.
+2. Choisis le PDF ou une photo JPEG ou PNG dans la fenêtre.
 3. Lis le résultat dans le Terminal.
 
-Tu peux aussi déposer directement un PDF sur le fichier `.command` depuis le
-Finder.
+Pour une photo, garde la page entière dans l’image. Un recadrage qui coupe une
+partie de la page peut supprimer les marques dont l’outil a besoin.
 
 ## Utilisation depuis le Terminal
 
@@ -28,7 +28,7 @@ un emplacement privé.
   --rapport "/chemin/prive/rapport-fuite.json"
 ```
 
-Le PDF reste sur le Mac. Seuls l'identifiant de la commande retrouvée et les
+Le fichier analysé reste sur le Mac. Seuls l'identifiant de la commande retrouvée et les
 requêtes nécessaires à sa vérification sont envoyés à Supabase et à Stripe.
 Les clés restent dans les variables d'environnement locales et ne sont jamais
 écrites dans le rapport. La clé réservée à cet outil est stockée dans le fichier
@@ -36,10 +36,8 @@ local ignoré par Git et dans une variable Vercel sensible.
 
 ## Couverture du catalogue
 
-Tous les PDF du catalogue passent automatiquement par la personnalisation. La
-couverture actuelle comprend 180 produits, 690 livraisons PDF et 283 fichiers
-distincts. Une nouvelle création PDF ajoutée à `api/_produits.js` est protégée
-sans modification supplémentaire de son générateur.
+Le serveur personnalise les PDF achetés. Les PDF sources sont stockés en privé.
+Le catalogue contient 343 PDF distincts au 17 novembre 2026.
 
 Les fichiers Anki `.apkg` restent inchangés. Le stage en direct ne livre aucun
 PDF. Les anciens liens reçus avant la généralisation continuent de fonctionner
@@ -53,10 +51,9 @@ Le nom de licence vient des informations normales de paiement. Si Stripe ne
 fournit pas de nom, le système utilise une forme lisible dérivée de l'adresse
 email.
 
-Au premier téléchargement, le serveur génère la copie, la place sur R2 sous
-une adresse non devinable, puis lance le téléchargement. La copie est réutilisée
-aux téléchargements suivants. Une republication du PDF source invalide
-automatiquement cette copie et provoque une nouvelle génération.
+Au premier téléchargement, le serveur crée la copie dans le stockage privé.
+Il génère une adresse valable quinze minutes à chaque clic. Quand le PDF source
+change, le serveur crée un nouvel exemplaire au prochain téléchargement.
 
 ## Résistance et vérifications
 

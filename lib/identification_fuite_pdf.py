@@ -28,6 +28,7 @@ LICENCE_RE = re.compile(
     r"\b(?:TD-PEN-S1-[0-9A-F]{8}|TD-[0-9A-F]{10})\b",
     re.IGNORECASE,
 )
+FORMATS_PHOTO = {".jpg", ".jpeg", ".png"}
 
 
 def sha256_fichier(chemin: Path) -> str:
@@ -236,7 +237,20 @@ def preuves_visuelles(
             "Utilise le lanceur scripts/identifier-fuite-pdf.command."
         ) from erreur
 
-    document = pymupdf.open(chemin)
+    if chemin.suffix.lower() in FORMATS_PHOTO:
+        from PIL import Image, ImageOps
+        from reportlab.lib.pagesizes import A4, landscape
+
+        tampon = io.BytesIO()
+        with Image.open(chemin) as fichier:
+            image = ImageOps.exif_transpose(fichier).convert("L")
+            format_page = landscape(A4) if image.width > image.height else A4
+            image.save(tampon, format="PNG")
+        document = pymupdf.open()
+        page = document.new_page(width=format_page[0], height=format_page[1])
+        page.insert_image(page.rect, stream=tampon.getvalue(), keep_proportion=False)
+    else:
+        document = pymupdf.open(chemin)
     comptes: dict[str, int] = {}
     pages: list[dict[str, object]] = []
     try:
@@ -273,10 +287,11 @@ def analyser_pdf(
     pages_max: int = 8,
 ) -> dict[str, object]:
     chemin = chemin.expanduser().resolve()
-    if not chemin.is_file() or chemin.suffix.lower() != ".pdf":
-        raise ValueError("Le fichier à analyser doit être un PDF existant")
+    extension = chemin.suffix.lower()
+    if not chemin.is_file() or extension not in FORMATS_PHOTO | {".pdf"}:
+        raise ValueError("Choisis un PDF ou une photo JPEG ou PNG.")
 
-    structure, licences = preuves_structurelles(chemin)
+    structure, licences = preuves_structurelles(chemin) if extension == ".pdf" else ({}, set())
     comptes_visuels, pages_visuelles = preuves_visuelles(
         chemin,
         dpi=dpi,

@@ -230,6 +230,30 @@ class IdentificationFuitePdfTest(unittest.TestCase):
         self.assertGreaterEqual(preuve["occurrences_visuelles"], 2)
         self.assertEqual(preuve["couches"], ["micro_marqueurs"])
 
+    def test_capture_compressee_d_une_page_entiere_en_jpeg_et_png(self):
+        import pymupdf
+        from PIL import Image
+
+        produit_id = "fiche-da-l2-s1"
+        session = session_payee("cs_test_forensic_capture")
+        session["metadata"]["produitIds"] = produit_id
+        identite = identite_depuis_session(session, SECRET, produit_id, 0)
+        with tempfile.TemporaryDirectory() as dossier:
+            original = Path(dossier) / "original.pdf"
+            ecrire_pdf_personnalise(original, session, produit_id, 0)
+            with pymupdf.open(original) as document:
+                pixels = document[1].get_pixmap(dpi=180, alpha=False)
+                capture = Image.frombytes("RGB", (pixels.width, pixels.height), pixels.samples)
+            for extension in (".jpg", ".png"):
+                with self.subTest(extension=extension):
+                    photo = Path(dossier) / f"capture{extension}"
+                    capture.save(photo, quality=72)
+                    analyse = analyser_pdf(photo)
+                    self.assertEqual(
+                        analyse["fingerprints"][identite.fingerprint]["couches"],
+                        ["micro_marqueurs"],
+                    )
+
     def test_six_variantes_attaque_retrouvent_la_meme_commande(self):
         session = session_payee("cs_test_forensic_six_attaques")
         identite = identite_depuis_session(session, SECRET)

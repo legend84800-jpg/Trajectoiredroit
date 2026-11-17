@@ -31,6 +31,8 @@ from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Paragraph
 
+from lib.certification_pdf import certifier_pdf, charger_certificat
+
 PRODUIT_PILOTE = "maj-penal-l2-s1"
 SOURCE_PREFIX = "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/"
 SOURCE_PRIVEE_PREFIX = "r2://tjd/"
@@ -851,7 +853,7 @@ def personnaliser_pdf(
 
     personnalise = io.BytesIO()
     writer.write(personnalise)
-    owner_password = _hmac_hex(secret, f"owner|{session_id}")[:32]
+    owner_password = _mot_de_passe_proprietaire(secret, session_id)
     sortie = io.BytesIO()
     permissions = pikepdf.Permissions(
         accessibility=True,
@@ -876,6 +878,10 @@ def personnaliser_pdf(
             ),
         )
     return sortie.getvalue()
+
+
+def _mot_de_passe_proprietaire(secret: str, session_id: str) -> str:
+    return _hmac_hex(secret, f"owner|{session_id}")[:32]
 
 
 def produire_depuis_commande(
@@ -909,11 +915,15 @@ def produire_depuis_commande(
         chargeur_version(source_url) if chargeur_version
         else version_source(source_url, client=client, bucket=bucket)
     )
+    certificat = charger_certificat()
+    version_livree = source_version
+    if certificat:
+        version_livree = f"{source_version}|{certificat.signing_cert.sha256.hex()}"
     cle = _cle_pdf_personnalise(
         session_id,
         produit_id,
         blob_index,
-        source_version,
+        version_livree,
         secret,
     )
     genere = not _objet_r2_existe(client, bucket, cle)
@@ -932,6 +942,10 @@ def produire_depuis_commande(
             nom_produit=nom_produit,
             nom_fichier=nom_fichier,
         )
+        if certificat:
+            contenu = certifier_pdf(
+                contenu, _mot_de_passe_proprietaire(secret, session_id), certificat,
+            )
         _uploader_pdf_personnalise(
             client,
             bucket,
