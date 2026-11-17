@@ -15,7 +15,9 @@ Usage :
 import argparse
 import hashlib
 import json
+import os
 import re
+import shlex
 import subprocess
 import sys
 import tempfile
@@ -29,6 +31,28 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOGUE = ROOT / "scripts/apercus-produits.json"
 DOSSIER = "assets/apercus/recueils-20261115"
 MOTIF_RECUEIL = re.compile(r"^(dissertation-|cas-pratique-|commentaire-arret-)")
+
+
+def charger_acces_r2():
+    noms = {
+        "R2_ACCOUNT_ID", "R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY",
+        "R2_BUCKET", "R2_PERSONNALISES_BUCKET",
+    }
+    manquants = {nom for nom in noms if not os.environ.get(nom)}
+    for fichier in (ROOT / ".env.local", ROOT / ".env"):
+        if not manquants or not fichier.is_file():
+            continue
+        with fichier.open() as configuration:
+            for ligne in configuration:
+                nom, separateur, valeur = ligne.strip().removeprefix("export ").partition("=")
+                nom = nom.strip()
+                if separateur and nom in manquants:
+                    valeurs = shlex.split(valeur, comments=True)
+                    if valeurs:
+                        os.environ[nom] = valeurs[0]
+                        manquants.remove(nom)
+    if not os.environ.get("R2_PERSONNALISES_BUCKET"):
+        os.environ["R2_PERSONNALISES_BUCKET"] = "trajectoiredroit-pdf-personnalises"
 
 
 def produits_recueils():
@@ -104,6 +128,7 @@ def main():
     ids = args.produits or sorted(liens)
     catalogue = json.loads(CATALOGUE.read_text())
     if not args.pdf_root and any(liens.get(produit, "").startswith("r2://tjd/") for produit in ids):
+        charger_acces_r2()
         sys.path.insert(0, str(ROOT))
         from lib.personnalisation_pdf import telecharger_source
 
