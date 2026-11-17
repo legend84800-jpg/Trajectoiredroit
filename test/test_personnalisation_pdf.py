@@ -270,7 +270,7 @@ class PersonnalisationPdfTest(unittest.TestCase):
         self.assertEqual(destination[0].idnum,
                          lecteur.pages[2].indirect_reference.idnum)
 
-    def test_generation_r2_est_mise_en_cache_sans_renvoyer_le_pdf_par_vercel(self):
+    def test_chaque_telechargement_signe_la_meme_copie_dans_le_stockage_prive(self):
         produit_id = "fiche-da-l2-s1"
         session = session_payee()
         session["metadata"]["produitIds"] = produit_id
@@ -279,6 +279,7 @@ class PersonnalisationPdfTest(unittest.TestCase):
             def __init__(self):
                 self.objets = {}
                 self.puts = 0
+                self.signatures = []
 
             def head_object(self, *, Bucket, Key):
                 if (Bucket, Key) not in self.objets:
@@ -293,13 +294,17 @@ class PersonnalisationPdfTest(unittest.TestCase):
                 self.objets[(Bucket, Key)] = parametres
                 return {"ETag": '"test"'}
 
+            def generate_presigned_url(self, operation, *, Params, ExpiresIn):
+                self.signatures.append((operation, Params, ExpiresIn))
+                return f"https://r2.example.com/{Params['Bucket']}/{Params['Key']}?sig={len(self.signatures)}"
+
         client = FauxR2()
         environnement = {
             "R2_ACCOUNT_ID": "compte-test",
             "R2_ACCESS_KEY_ID": "acces-test",
             "R2_SECRET_ACCESS_KEY": "secret-r2-test",
-            "R2_BUCKET": "bucket-test",
-            "R2_PUBLIC_URL": "https://public.example.com",
+            "R2_BUCKET": "catalogue-test",
+            "R2_PERSONNALISES_BUCKET": "copies-test",
         }
         arguments = (
             session["id"],
@@ -324,9 +329,24 @@ class PersonnalisationPdfTest(unittest.TestCase):
         self.assertTrue(genere_1)
         self.assertFalse(genere_2)
         self.assertEqual(client.puts, 1)
-        self.assertEqual(url_1, url_2)
         self.assertEqual(identite_1, identite_2)
-        self.assertTrue(url_1.startswith("https://public.example.com/personnalises/v3/"))
+        [(bucket, cle)] = client.objets
+        self.assertEqual(bucket, "copies-test")
+        self.assertTrue(cle.startswith(f"personnalises/v3/{produit_id}/"))
+        self.assertTrue(url_1.startswith(f"https://r2.example.com/{bucket}/{cle}?"))
+        self.assertTrue(url_2.startswith(f"https://r2.example.com/{bucket}/{cle}?"))
+        self.assertNotEqual(url_1, url_2)
+        self.assertEqual(client.signatures, [("get_object", {"Bucket": bucket, "Key": cle}, 900)] * 2)
+        self.assertEqual(client.objets[(bucket, cle)]["ContentType"], "application/pdf")
+        self.assertEqual(
+            client.objets[(bucket, cle)]["ContentDisposition"],
+            f'attachment; filename="fiche-da-l2-s1-{identite_1.licence.lower()}.pdf"',
+        )
+
+        environnement["R2_PERSONNALISES_BUCKET"] = environnement["R2_BUCKET"]
+        with patch.dict("os.environ", environnement), self.assertRaises(RuntimeError):
+            produire_depuis_commande(*arguments, **options)
+        self.assertEqual(client.puts, 1)
 
 
 if __name__ == "__main__":

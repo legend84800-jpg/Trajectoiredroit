@@ -36,6 +36,7 @@ SOURCE_PREFIX = "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/"
 VERSION_PROTECTION = "tjd-acheteur-3"
 STRIPE_API_VERSION = "2026-07-29.dahlia"
 TAILLE_SOURCE_MAX = 60 * 1024 * 1024
+DUREE_LIEN_R2_SECONDES = 15 * 60
 
 NAVY = HexColor("#0E2A47")
 BORDEAUX = HexColor("#A52E3B")
@@ -350,6 +351,7 @@ def _variable_obligatoire(nom: str) -> str:
 
 def _client_r2():
     import boto3
+    from botocore.config import Config
 
     account_id = _variable_obligatoire("R2_ACCOUNT_ID")
     return boto3.client(
@@ -358,6 +360,7 @@ def _client_r2():
         aws_access_key_id=_variable_obligatoire("R2_ACCESS_KEY_ID"),
         aws_secret_access_key=_variable_obligatoire("R2_SECRET_ACCESS_KEY"),
         region_name="auto",
+        config=Config(signature_version="s3v4"),
     )
 
 
@@ -371,22 +374,18 @@ def _nom_sortie(nom_fichier: str, licence: str) -> str:
     return f"{base}-{licence.lower()}.pdf"
 
 
-def _destination_r2(
+def _cle_pdf_personnalise(
     session_id: str,
     produit_id: str,
     blob_index: int,
     source_version: str,
     secret: str,
-) -> tuple[str, str]:
+) -> str:
     jeton = _hmac_hex(
         secret,
         f"cache-pdf-v3|{session_id}|{produit_id}|{blob_index}|{source_version}",
     )[:32]
-    cle = f"personnalises/v3/{produit_id}/{blob_index}/{jeton}.pdf"
-    public_url = _variable_obligatoire("R2_PUBLIC_URL").rstrip("/")
-    if not public_url.startswith("https://"):
-        raise RuntimeError("URL publique R2 invalide")
-    return cle, f"{public_url}/{urllib.parse.quote(cle, safe='/')}"
+    return f"personnalises/v3/{produit_id}/{blob_index}/{jeton}.pdf"
 
 
 def _objet_r2_existe(client: object, bucket: str, cle: str) -> bool:
@@ -882,38 +881,44 @@ def produire_depuis_commande(
         blob_index,
     )
     source_version = chargeur_version(source_url)
-    cle, url_publique = _destination_r2(
+    cle = _cle_pdf_personnalise(
         session_id,
         produit_id,
         blob_index,
         source_version,
         secret,
     )
+    bucket = _variable_obligatoire("R2_PERSONNALISES_BUCKET")
+    if bucket == os.environ.get("R2_BUCKET", "").strip():
+        raise RuntimeError("Le compartiment des copies doit être distinct du catalogue public.")
     client = client_r2 or _client_r2()
-    bucket = _variable_obligatoire("R2_BUCKET")
-    if _objet_r2_existe(client, bucket, cle):
-        return url_publique, identite, False
-
-    source = chargeur_source(source_url)
-    contenu = personnaliser_pdf(
-        source,
-        identite,
-        secret,
-        session_id,
-        produit_id=produit_id,
-        blob_index=blob_index,
-        nom_produit=nom_produit,
-        nom_fichier=nom_fichier,
+    genere = not _objet_r2_existe(client, bucket, cle)
+    if genere:
+        source = chargeur_source(source_url)
+        contenu = personnaliser_pdf(
+            source,
+            identite,
+            secret,
+            session_id,
+            produit_id=produit_id,
+            blob_index=blob_index,
+            nom_produit=nom_produit,
+            nom_fichier=nom_fichier,
+        )
+        _uploader_pdf_personnalise(
+            client,
+            bucket,
+            cle,
+            contenu,
+            _nom_sortie(nom_fichier, identite.licence),
+            identite,
+            produit_id,
+            blob_index,
+            source_version,
+        )
+    url_telechargement = client.generate_presigned_url(
+        "get_object",
+        Params={"Bucket": bucket, "Key": cle},
+        ExpiresIn=DUREE_LIEN_R2_SECONDES,
     )
-    _uploader_pdf_personnalise(
-        client,
-        bucket,
-        cle,
-        contenu,
-        _nom_sortie(nom_fichier, identite.licence),
-        identite,
-        produit_id,
-        blob_index,
-        source_version,
-    )
-    return url_publique, identite, True
+    return url_telechargement, identite, genere
