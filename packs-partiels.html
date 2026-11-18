@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Packs Partiels de droit L1, L2 et L3 | Trajectoire Droit</title>
+  <meta name="description" content="Choisis un duo de matières pour tes partiels du premier semestre. Retrouve les fiches complètes, les cartes mentales, les QCM et les corrigés.">
+  <link rel="canonical" href="https://trajectoiredroit.com/packs-partiels.html">
+  <link rel="stylesheet" href="assets/style.css?v=a8ac54a2">
+  <style>
+    .partiels-entete { border-bottom: 1px solid var(--border); background: var(--surface); }
+    .partiels-entete .container { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding-block: 14px; }
+    .partiels-entete img { display: block; width: 160px; max-width: 100%; height: auto; }
+    .partiels-intro { background: var(--surface-2); border-bottom: 1px solid var(--border); padding: clamp(36px, 7vw, 80px) 0 clamp(30px, 5vw, 54px); }
+    .partiels-intro h1 { max-width: 740px; margin: 0 0 12px; }
+    .partiels-intro p, .partiels-niveau p { max-width: 670px; }
+    .partiels-nav { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+    .partiels-nav .btn { min-width: 74px; }
+    .partiels-offres { padding-block: clamp(26px, 5vw, 60px); }
+    .partiels-grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 265px), 1fr)); gap: 16px; }
+    .partiels-carte { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: clamp(16px, 3vw, 26px); scroll-margin-top: 24px; }
+    .partiels-carte img { display: block; width: 100%; height: auto; border-radius: 9px; margin-bottom: 14px; }
+    .partiels-carte .partiels-licence { margin: 0 0 4px; font-weight: 700; }
+    .partiels-carte h2, .partiels-carte h3 { margin: 3px 0 10px; }
+    .partiels-carte p { color: var(--body); }
+    .partiels-carte .btn { align-self: flex-start; margin-top: auto; }
+    .partiels-niveau { margin-top: 38px; }
+    .partiels-niveau h2 { margin-bottom: 6px; }
+    .partiels-pied { border-top: 1px solid var(--border); padding-block: 24px; }
+    .partiels-pied .container { display: flex; flex-wrap: wrap; gap: 12px 20px; }
+  </style>
+</head>
+<body>
+  <header class="partiels-entete">
+    <div class="container">
+      <a href="/"><img src="assets/logo-tjd.svg" width="160" height="34" alt="Trajectoire Droit"></a>
+      <a href="formations.html">Voir les fiches et les packs</a>
+    </div>
+  </header>
+  <main>
+    <section class="partiels-intro">
+      <div class="container">
+        <h1 class="h1">Packs Partiels du premier semestre</h1>
+        <p class="lead">Quelles matières passes-tu au partiel ? Choisis le duo et retrouve pour chaque matière la fiche complète, son plan et toutes les cartes mentales. Tu reçois aussi les QCM et les flashcards, avec les fichiers Anki.</p>
+        <nav class="partiels-nav" aria-label="Année de licence">
+          <a class="btn btn--outline" href="#pack-partiel-l1-s1">L1</a>
+          <a class="btn btn--outline" href="#pack-partiel-l2-s1">L2</a>
+          <a class="btn btn--outline" href="#licence-3">L3</a>
+        </nav>
+      </div>
+    </section>
+
+    <div class="container partiels-offres">
+      <div class="partiels-grille">
+        <article class="partiels-carte" id="pack-partiel-l1-s1" aria-labelledby="titre-partiel-l1">
+          <img src="assets/covers/pack-partiel-l1-s1.webp" width="960" height="540" alt="" loading="lazy">
+          <p class="partiels-licence">Licence 1</p>
+          <h2 class="h3" id="titre-partiel-l1">Droit constitutionnel et introduction au droit</h2>
+          <p>Dissertations corrigées en droit constitutionnel. Cas pratiques corrigés et majeures préparées en introduction au droit.</p>
+          <button type="button" class="btn btn--primary" data-tjd-produit="pack-partiel-l1-s1">Acheter le pack · 69,90 €</button>
+        </article>
+        <article class="partiels-carte" id="pack-partiel-l2-s1" aria-labelledby="titre-partiel-l2">
+          <img src="assets/covers/pack-partiel-l2-s1.webp" width="960" height="540" alt="" loading="lazy">
+          <p class="partiels-licence">Licence 2</p>
+          <h2 class="h3" id="titre-partiel-l2">Droit des contrats et droit administratif</h2>
+          <p>Cas pratiques corrigés et majeures préparées pour les deux matières.</p>
+          <button type="button" class="btn btn--primary" data-tjd-produit="pack-partiel-l2-s1">Acheter le pack · 69,90 €</button>
+        </article>
+      </div>
+
+      <section class="partiels-niveau" id="licence-3" aria-labelledby="titre-partiel-l3">
+        <h2 class="h2" id="titre-partiel-l3">Licence 3</h2>
+        <p>Chaque duo comprend les cas pratiques corrigés et les majeures préparées des deux matières choisies. En droit du travail, les supports portent sur les relations individuelles.</p>
+        <div class="partiels-grille">
+          <article class="partiels-carte" id="pack-partiel-l3-travail-societes">
+            <img src="assets/covers/pack-partiel-l3-travail-societes.webp" width="960" height="540" alt="" loading="lazy">
+            <h3>Droit du travail et droit des sociétés</h3>
+            <button type="button" class="btn btn--primary" data-tjd-produit="pack-partiel-l3-travail-societes">Acheter le pack · 69,90 €</button>
+          </article>
+          <article class="partiels-carte" id="pack-partiel-l3-travail-contrats-speciaux">
+            <img src="assets/covers/pack-partiel-l3-travail-contrats-speciaux.webp" width="960" height="540" alt="" loading="lazy">
+            <h3>Droit du travail et contrats spéciaux</h3>
+            <button type="button" class="btn btn--primary" data-tjd-produit="pack-partiel-l3-travail-contrats-speciaux">Acheter le pack · 69,90 €</button>
+          </article>
+          <article class="partiels-carte" id="pack-partiel-l3-societes-contrats-speciaux">
+            <img src="assets/covers/pack-partiel-l3-societes-contrats-speciaux.webp" width="960" height="540" alt="" loading="lazy">
+            <h3>Droit des sociétés et contrats spéciaux</h3>
+            <button type="button" class="btn btn--primary" data-tjd-produit="pack-partiel-l3-societes-contrats-speciaux">Acheter le pack · 69,90 €</button>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="partiels-pied">
+    <div class="container">
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="cgu.html">Conditions de vente</a>
+      <a href="confidentialite.html">Confidentialité</a>
+    </div>
+  </footer>
+  <script src="assets/js/main.js?v=6f18d1c8" defer></script>
+  <script src="assets/js/achat.js?v=81a894f1" defer></script>
+  <script src="assets/js/cookie-consent.js?v=f4e5ba48" defer></script>
+</body>
+</html>

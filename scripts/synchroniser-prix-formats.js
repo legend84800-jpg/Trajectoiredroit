@@ -7,7 +7,7 @@ const ROOT = path.resolve(__dirname, "..");
 const IMAGE = "cours-images-contrats-l2-s1";
 const euro = (centimes) => `${(centimes / 100).toFixed(2).replace(".", ",")} €`;
 const estFormat = (id) => Boolean(PRODUITS[id] && (
-  id === IMAGE || /^(?:audio-video|maj|cas-pratique|commentaire-arret|dissertation)-/.test(id) ||
+  id === IMAGE || /^(?:audio-video|maj|cas-pratique|commentaire-arret|dissertation|pack-partiel)-/.test(id) ||
   /^Fiche complète\b/.test(PRODUITS[id].nom)
 ));
 

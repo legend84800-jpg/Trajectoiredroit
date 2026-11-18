@@ -12,7 +12,7 @@ const PRODUITS = require("../api/_produits");
 const ROOT = path.resolve(__dirname, "..");
 const SORTIE = path.join(ROOT, "assets/js/merci-reco-data.js");
 const PAGES_LECTRICES = ["merci.html", "quiz-methode.html"];
-const EXCLUS = /^(merci|mon-compte|panier|404|index|formations|cours-fiches|corriges|revisions|fiche-arrets|commentaires-arret-corriges|blog|methode|galop|methodologie|pack-ultra|top-ventes|a-propos|faq|cgu|cgv|mentions|confidentialite|ambassadeurs|temoignages|garantie|parents|portalis|quiz|ressources|produit-template|bientot|google|complements|guide|donner|contact|connexion|stage|podcasts|majeures-preparees|cas-pratiques-corriges|flashcards-qcm|fiches-de-citations)/;
+const EXCLUS = /^(merci|mon-compte|panier|404|index|formations|cours-fiches|corriges|revisions|fiche-arrets|commentaires-arret-corriges|blog|methode|galop|methodologie|pack-ultra|packs-partiels|top-ventes|a-propos|faq|cgu|cgv|mentions|confidentialite|ambassadeurs|temoignages|garantie|parents|portalis|quiz|ressources|produit-template|bientot|google|complements|guide|donner|contact|connexion|stage|podcasts|majeures-preparees|cas-pratiques-corriges|flashcards-qcm|fiches-de-citations)/;
 const MOTIFS = [
   /data-offre-fin-arret="([^"]+)"/g,
   /class="conversion-offer[\s\S]*?data-tjd-produit="([^"]+)"/g,
