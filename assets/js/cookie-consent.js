@@ -5,6 +5,9 @@
   var STORAGE_KEY = "tjd_consent_v2";
   var STORAGE_VERSION = 2;
   var META_PIXEL_ID = "1736839687358457";
+  // Second pixel, portefeuille Meta de Trajectoire Droit LLC (compte publicitaire en dollars, 18/11/2026).
+  // fbq("track") envoie chaque évènement aux deux pixels initialisés.
+  var META_PIXEL_ID_LLC = "1619806393510868";
   var activePreferences = null;
   var purchaseLinkAllowed = false;
   var lastFocusedElement = null;
@@ -129,6 +132,7 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     window.fbq("consent", "grant");
     window.fbq("init", META_PIXEL_ID);
+    window.fbq("init", META_PIXEL_ID_LLC);
     window.fbq("track", "PageView");
   }
 
