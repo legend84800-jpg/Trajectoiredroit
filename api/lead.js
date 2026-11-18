@@ -357,11 +357,11 @@ function construireEmailPlan(a) {
       "Si tu veux t’améliorer en commentaire d’arrêt, fais le commentaire d’arrêt de ton côté à partir de l’arrêt. Ensuite, une fois que tu as fini, compare ton travail en détail avec mon commentaire corrigé. En plus, ça te fera un petit rappel de cours sur le thème de l’arrêt.",
       "Cependant, avoir seulement le I.A. rédigé ne suffit pas pour bien t’entraîner. Il te faut des corrections complètes.",
       ...blocRecommandationArret(a, a.PLAN_URL),
-      "Et si tu veux une fiche complète pour viser plus de 15 sur 20 au partiel, n’hésite pas à prendre aussi la fiche de la matière.",
+      "Je travaille tous les jours depuis deux ans sur mes fiches complètes pour faire les meilleures fiches de droit en France. Si tu veux réviser avec mes fiches, n’hésite pas à prendre aussi celle de ta matière.",
       { lien: a.PLAN_FICHE_URL, texte: a.PLAN_FICHE_BOUTON, format: "fiche" },
       "Si tu as une question sur le commentaire, n’hésite pas à m’envoyer un message en répondant à cet email.",
       "Respectueusement,\nJulien\nTrajectoire Droit",
-    ], ["l’introduction", "le I.A. rédigé", "compare ton travail en détail", "corrections complètes", "viser plus de 15 sur 20 au partiel"],
+    ], ["l’introduction", "le I.A. rédigé", "compare ton travail en détail", "corrections complètes", "tous les jours depuis deux ans"],
     "L’introduction, l’annonce du plan et le I.A. rédigé.");
   }
   const paragraphes = [
