@@ -357,7 +357,7 @@ function construireEmailPlan(a) {
       "Si tu veux t’améliorer en commentaire d’arrêt, fais le commentaire d’arrêt de ton côté à partir de l’arrêt. Ensuite, une fois que tu as fini, compare ce que tu as fait avec mon commentaire corrigé. En plus, ça te fera un petit rappel de cours sur le thème de l’arrêt.",
       "Cependant, avoir seulement le I.A. rédigé ne suffit pas pour bien t’entraîner. Il te faut des corrections complètes.",
       ...blocRecommandationArret(a, a.PLAN_URL),
-      "Je travaille tous les jours depuis deux ans sur mes fiches complètes pour faire les meilleures fiches de droit en France. Si tu veux réviser avec mes fiches, n’hésite pas à prendre aussi celle de ta matière.",
+      "Je travaille tous les jours depuis deux ans sur mes fiches pour créer les meilleures fiches de droit en France. Si tu veux réviser avec mes fiches, n’hésite pas à prendre aussi celle de ta matière.",
       { lien: a.PLAN_FICHE_URL, texte: a.PLAN_FICHE_BOUTON, format: "fiche" },
       "Si tu as une question sur le commentaire, n’hésite pas à m’envoyer un message en répondant à cet email.",
       "Respectueusement,\nJulien\nTrajectoire Droit",
