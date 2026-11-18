@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <title>Aperçus des supports de droit | Trajectoire Droit</title>
+  <style>
+    :root { color-scheme: light; font-family: Arial, Helvetica, sans-serif; color: #0e2a47; background: #f1f5f9; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { background: #fff; border-bottom: 1px solid #d9e3ed; }
+    header a, main { display: block; width: min(800px, calc(100% - 24px)); margin: auto; }
+    header a { padding-block: 12px; }
+    header img { display: block; }
+    main { padding-block: 24px 40px; }
+    [hidden] { display: none; }
+    h1 { margin: 0; font-size: clamp(1.45rem, 4vw, 2.15rem); line-height: 1.18; }
+    #niveau { margin: 8px 0 0; color: #4d5d71; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding-block: 16px; }
+    .actions a, main > p a { color: #0e2a47; text-underline-offset: 3px; }
+    #acheter { min-height: 44px; border: 0; border-radius: 6px; padding: 10px 15px; background: #0e2a47; color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+    #acheter:disabled { opacity: .66; cursor: wait; }
+    a:focus-visible, button:focus-visible { outline: 2px solid #2878c2; outline-offset: 3px; }
+    #pages img { display: block; width: 100%; height: auto; margin-bottom: 16px; border: 1px solid #d9e3ed; background: #fff; }
+  </style>
+</head>
+<body>
+  <header><a href="/"><img src="/assets/logo-tjd.svg" width="160" height="34" alt="Trajectoire Droit"></a></header>
+  <main id="apercu" hidden>
+    <h1 id="titre"></h1>
+    <p id="niveau"></p>
+    <div class="actions">
+      <a id="pdf">Ouvrir l’aperçu en PDF</a>
+      <button type="button" id="acheter"></button>
+    </div>
+    <div id="pages"></div>
+  </main>
+  <main id="catalogue">
+    <h1>Choisis ton support de droit</h1>
+    <p><a href="/formations.html">Voir les fiches et les recueils</a></p>
+  </main>
+  <script>
+    (() => {
+      const supports = {
+        "fiche-constit-l1-s1": {
+          "titre": "Aperçu de la fiche de droit constitutionnel",
+          "niveau": "Licence 1, semestre 1",
+          "pages": 1,
+          "largeur": 1320,
+          "hauteur": 1867
+        },
+        "maj-contrats-l2-s1": {
+          "titre": "Aperçu des majeures de droit des contrats",
+          "niveau": "Licence 2, semestre 1",
+          "pages": 8,
+          "largeur": 1320,
+          "hauteur": 1867
+        },
+        "maj-da-l2-s1": {
+          "titre": "Aperçu des majeures de droit administratif",
+          "niveau": "Licence 2, semestre 1",
+          "pages": 11,
+          "largeur": 1320,
+          "hauteur": 1867
+        },
+        "maj-travail-l3-s1": {
+          "titre": "Aperçu des majeures de droit du travail",
+          "niveau": "Licence 3, semestre 1",
+          "pages": 6,
+          "largeur": 1320,
+          "hauteur": 1867
+        },
+        "maj-societes-l3-s1": {
+          "titre": "Aperçu des majeures de droit des sociétés",
+          "niveau": "Licence 3, semestre 1",
+          "pages": 10,
+          "largeur": 1320,
+          "hauteur": 1867
+        },
+        "maj-contrats-speciaux-l3": {
+          "titre": "Aperçu des majeures de contrats spéciaux",
+          "niveau": "Licence 3, semestre 1",
+          "pages": 8,
+          "largeur": 1320,
+          "hauteur": 1867
+        }
+      };
+      const produit = new URLSearchParams(window.location.search).get('produit') || window.location.hash.slice(1);
+      if (!Object.hasOwn(supports, produit)) return;
+
+      // Stripe reprend le chemin et le fragment quand le lecteur revient à l’aperçu.
+      if (window.location.hash !== '#' + produit) history.replaceState(null, '', '#' + produit);
+
+      const { titre, niveau, pages, largeur, hauteur } = supports[produit];
+      document.title = titre + ' | Trajectoire Droit';
+      document.getElementById('titre').textContent = titre;
+      document.getElementById('niveau').textContent = niveau;
+      document.getElementById('pdf').href = produit + '/apercu.pdf';
+
+      const acheter = document.getElementById('acheter');
+      acheter.dataset.tjdProduit = produit;
+      acheter.textContent = produit.startsWith('fiche-') ? 'Acheter la fiche complète' : 'Acheter le recueil complet';
+
+      const images = document.getElementById('pages');
+      for (let page = 1; page <= pages; page += 1) {
+        const image = document.createElement('img');
+        image.src = produit + '/page-' + page + '.webp';
+        image.alt = titre + ', page ' + page + ' sur ' + pages;
+        image.width = largeur;
+        image.height = hauteur;
+        image.loading = page === 1 ? 'eager' : 'lazy';
+        image.decoding = 'async';
+        images.append(image);
+      }
+      document.getElementById('catalogue').hidden = true;
+      document.getElementById('apercu').hidden = false;
+    })();
+  </script>
+  <script src="/assets/js/achat.js" defer></script>
+</body>
+</html>
