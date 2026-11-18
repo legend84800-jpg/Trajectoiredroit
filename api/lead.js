@@ -519,6 +519,33 @@ async function handler(req, res) {
     }
 
     const proposition = suggestionEmail(email);
+    if (body.essai !== undefined && body.essai !== null && body.essai !== "") {
+      // Les anciens formulaires envoient un produit et des numéros de majeures.
+      // Le contenu livré est le même pour chaque demande.
+      if (proposition && body.confirmerDomaine !== true) {
+        return res.status(409).json({ error: 'Vérifie le domaine de ton adresse email.', suggestion: proposition });
+      }
+      if (typeof body.site === "string" && body.site.trim()) return res.status(200).json({ ok: true, kit: ESSAI.KIT_URL });
+      if (limiteAtteinte(ipVisiteur(req)) || limiteAtteinte("email:" + email)) {
+        return res.status(429).json({ error: "Trop de demandes. Réessaie dans quelques minutes." });
+      }
+      let remise = null;
+      try {
+        remise = await ESSAI.creerCode(process.env.STRIPE_SECRET_KEY);
+      } catch (e) {
+        console.error("essai-majeures code Stripe impossible", e && e.code ? e.code : e && e.message);
+      }
+      const attributs = ESSAI.attributsEssai(remise);
+      // Liste 9 « Essai majeures préparées ». Elle déclenche sa propre séquence de
+      // bienvenue dans Brevo, sans le premier email générique de la liste 3 (08/11/2026).
+      const inscription = await inscrireContact(email, attributs, apiKey, [ESSAI.LISTE_BREVO]);
+      if (!inscription.ok) {
+        console.error("Brevo error:", inscription.status, inscription.detail);
+        return res.status(502).json({ error: "Inscription impossible pour le moment." });
+      }
+      await ESSAI.envoyerEssai(email, attributs, apiKey);
+      return res.status(200).json({ ok: true, envoye: true, kit: attributs.ESSAI_KIT });
+    }
     if ((avecMatiere || body.exercice) && proposition && body.confirmerDomaine !== true) {
       return res.status(409).json({ error: 'Vérifie le domaine de ton adresse email.', suggestion: proposition });
     }
@@ -531,35 +558,6 @@ async function handler(req, res) {
         envoyerCorrigeOffert(email, a, ["corrige-exercice", String(body.exercice)], apiKey));
       if (!envoye) return res.status(502).json({ error: "Inscription impossible pour le moment." });
       return res.status(200).json({ ok: true, envoye: true });
-    }
-    if (body.essai !== undefined && body.essai !== null && body.essai !== "") {
-      // Kit d'essai des majeures préparées (07/11/2026), détail dans _essai-majeures.js.
-      const produit = String(body.essai).trim();
-      const choix = ESSAI.essaiValide(produit, body.majeures);
-      if (!choix) return res.status(400).json({ error: "Choisis deux majeures de la matière." });
-      if (proposition && body.confirmerDomaine !== true) {
-        return res.status(409).json({ error: 'Vérifie le domaine de ton adresse email.', suggestion: proposition });
-      }
-      if (typeof body.site === "string" && body.site.trim()) return res.status(200).json({ ok: true, kit: ESSAI.urlKit(produit, choix) });
-      if (limiteAtteinte(ipVisiteur(req)) || limiteAtteinte("email:" + email)) {
-        return res.status(429).json({ error: "Trop de demandes. Réessaie dans quelques minutes." });
-      }
-      let remise = null;
-      try {
-        remise = await ESSAI.creerCode(produit, process.env.STRIPE_SECRET_KEY);
-      } catch (e) {
-        console.error("essai-majeures code Stripe impossible", e && e.code ? e.code : e && e.message);
-      }
-      const attributs = ESSAI.attributsEssai(produit, choix, remise);
-      // Liste 9 « Essai majeures préparées ». Elle déclenche sa propre séquence de
-      // bienvenue dans Brevo, sans le premier email générique de la liste 3 (08/11/2026).
-      const inscription = await inscrireContact(email, attributs, apiKey, [ESSAI.LISTE_BREVO]);
-      if (!inscription.ok) {
-        console.error("Brevo error:", inscription.status, inscription.detail);
-        return res.status(502).json({ error: "Inscription impossible pour le moment." });
-      }
-      await ESSAI.envoyerEssai(email, attributs, apiKey);
-      return res.status(200).json({ ok: true, envoye: true, kit: attributs.ESSAI_KIT });
     }
     if (body.fiche !== undefined && body.fiche !== null && body.fiche !== "") {
       const fiche = String(body.fiche).trim();
