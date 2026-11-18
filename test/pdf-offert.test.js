@@ -82,7 +82,7 @@ test('les plans offerts et les fiches d’arrêt renvoient vers les supports de 
       assert.match(emailPlan.sujet, /^Ton plan offert pour commenter /);
       assert.match(emailPlan.texte, /^Salut Camille,/);
       assert.match(emailPlan.texte, /le I\.A\. rédigé/);
-      assert.match(emailPlan.texte, /Une fois ton commentaire terminé, compare-le point par point avec mon corrigé\./);
+      assert.match(emailPlan.texte, /Ensuite, une fois que tu as fini, compare ce que tu as fait avec mon commentaire corrigé\./);
       assert.match(emailPlan.texte, /thème de l’arrêt\.\n\nCependant,[^\n]+corrections complètes\./);
       assert.match(emailPlan.texte, /Je travaille tous les jours depuis deux ans sur mes fiches complètes pour faire les meilleures fiches de droit en France\./);
       assert.match(emailPlan.texte, /Si tu as une question sur le commentaire,[^\n]+en répondant à cet email\.\n\nRespectueusement,\nJulien\nTrajectoire Droit$/);
