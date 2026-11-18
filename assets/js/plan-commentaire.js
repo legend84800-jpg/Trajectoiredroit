@@ -9,7 +9,7 @@
 
   var TEXTES = {
     titre: 'Reçois gratuitement le plan du commentaire de {arret}',
-    intro: 'Le PDF te donne la problématique et l’annonce du plan. Un paragraphe présente ce que tu peux développer dans chacune des deux parties.',
+    intro: 'Le PDF te donne la problématique et l’annonce du plan. Et un paragraphe présente ce qu’il faut développer dans chacune des deux parties.',
     email: 'Ton adresse e-mail',
     bouton: 'Recevoir le plan',
     envoi: 'Envoi…',
