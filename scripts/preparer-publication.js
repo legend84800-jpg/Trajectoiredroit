@@ -1,11 +1,18 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const PRODUITS = require('../api/_produits');
 
 const DOSSIERS_PUBLICS = ['assets', 'apercus', 'jeu', '.well-known'];
 const FICHIERS_PUBLICS = ['robots.txt', 'sitemap.xml', 'llms.txt'];
 const FORMATS_PUBLICS = new Set(['.html', '.css', '.js', '.json', '.svg', '.png', '.jpg', '.jpeg', '.webp', '.gif', '.avif', '.ico', '.pdf', '.zip', '.woff', '.woff2', '.ttf', '.otf', '.eot', '.mp4', '.m4a', '.mp3', '.webm', '.ogg', '.wav', '.webmanifest', '.wasm', '.vtt', '.txt', '.xml']);
 const DOSSIERS_EXCLUS = new Set(['api', 'lib', 'scripts', 'test', 'tests', 'node_modules', 'brouillons', 'partials']);
 const FORMATS_EXCLUS = new Set(['.map', '.md', '.py', '.ts', '.tsx', '.toml', '.lock', '.pem', '.key', '.sqlite', '.db']);
+
+const IDENTIFIANTS_COURS_RETIRES = Object.entries(PRODUITS)
+  .filter(([id, produit]) => produit.venteSuspendue && (produit.nom.startsWith('Cours complet ') || id.startsWith('pack-cours-complets-')))
+  .map(([id]) => id);
+const APERCUS_COURS_RETIRES = new RegExp(`(?:^|[/_-])(?:${IDENTIFIANTS_COURS_RETIRES.join('|')})(?:[/_.-]|$)`, 'i');
+const VISUELS_COURS_RETIRES = /(?:comparatif-dol-cours-|photo-cours-complet-|og-cours-complet\.|hero-video-produits-poster\.)/;
 
 function preparerPublication(racine = path.resolve(__dirname, '..')) {
   const sortie = path.join(racine, 'build', 'site-public');
@@ -16,6 +23,7 @@ function preparerPublication(racine = path.resolve(__dirname, '..')) {
     const nom = path.basename(chemin);
     const relatif = path.relative(racine, chemin);
     if ((nom.startsWith('.') && relatif !== '.well-known') || DOSSIERS_EXCLUS.has(nom)) return;
+    if (APERCUS_COURS_RETIRES.test(relatif) || VISUELS_COURS_RETIRES.test(relatif)) return;
     const statut = fs.lstatSync(chemin);
     if (statut.isSymbolicLink()) throw new Error(`Un lien symbolique est exclu de la publication, ${relatif}.`);
     if (statut.isDirectory()) {

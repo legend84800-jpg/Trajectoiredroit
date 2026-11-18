@@ -32,7 +32,7 @@ function environnement({ url = 'https://trajectoiredroit.com/formations.html', m
   const niveaux = ['tous', 'L1', 'L2', 'L3'].map((n) => element({ 'data-catalogue-niveau': n }));
   const matieres = format === 'fiches' ? ['tous', 'civil', 'public', 'penal'].map((m) => element({ 'data-catalogue-matiere': m })) : [];
   const liens = [
-    element({ href: 'cours-fiches.html?utm_source=comparatif#grille-cours-fiches' }),
+    element({ href: 'formations.html?utm_source=comparatif#a-l-unite' }),
     element({ href: 'formations.html#a-l-unite' }),
     element({ href: 'formations.html#cours-l1' }),
     element({ href: 'https://exemple.com/formations.html' }),
@@ -115,14 +115,14 @@ test('le lien de méga-menu L1 prime sur L2 enregistré et hashchange sélection
   assert.equal(e.window.location.search, '?niveau=l3');
 });
 
-test('les liens conservent le niveau entre fiches et cours, avec leur ancre et leurs autres paramètres', () => {
+test('les liens conservent le niveau dans le catalogue, avec leur ancre et leurs autres paramètres', () => {
   const e = environnement(); e.niveau('L2');
   const lien = new URL(e.liens[0].getAttribute('href'), e.window.location.href);
   assert.equal(lien.searchParams.get('niveau'), 'l2');
   assert.equal(lien.searchParams.get('utm_source'), 'comparatif');
-  assert.equal(lien.hash, '#grille-cours-fiches');
-  const cours = environnement({ format: 'cours', memoire: e.memoire, url: lien.href });
-  assert.deepEqual(cours.visibles(), ['administratif', 'penal']);
+  assert.equal(lien.hash, '#a-l-unite');
+  const catalogue = environnement({ memoire: e.memoire, url: lien.href });
+  assert.deepEqual(catalogue.visibles(), ['administratif', 'penal']);
   assert.equal(e.liens[3].getAttribute('href'), 'https://exemple.com/formations.html');
   assert.equal(e.liens[4].getAttribute('href'), 'majeures-preparees.html');
 });
@@ -131,23 +131,22 @@ test('le refus du stockage conserve les filtres et le niveau porté par le lien 
   const e = environnement({ stockageRefuse: true });
   e.niveau('L3'); e.chercher('spéciaux contrats');
   assert.deepEqual(e.visibles(), ['contrats']);
-  const cours = environnement({ stockageRefuse: true, format: 'cours', url: new URL(e.liens[0].getAttribute('href'), e.window.location.href).href });
-  assert.deepEqual(cours.visibles(), ['contrats']);
-  cours.reset.declencher('click');
-  assert.equal(cours.visibles().length, 4);
+  const catalogue = environnement({ stockageRefuse: true, url: new URL(e.liens[0].getAttribute('href'), e.window.location.href).href });
+  assert.deepEqual(catalogue.visibles(), ['contrats']);
+  catalogue.reset.declencher('click');
+  assert.equal(catalogue.visibles().length, 4);
 });
 
-test('les deux pages réelles restent cherchables sans accents et avec des mots dans un autre ordre', () => {
-  for (const nom of ['formations.html', 'cours-fiches.html']) {
-    const cartes = cartesPage(nom);
-    assert.equal(cartes.length, 24, nom);
-    const e = environnement({ cartesReelles: cartes, format: nom === 'formations.html' ? 'fiches' : 'cours' });
-    e.chercher('penal L2'); const sansAccents = e.visibles();
-    assert.ok(sansAccents.length > 0, nom);
-    e.chercher('L2 pénal');
-    assert.deepEqual(e.visibles(), sansAccents);
-    e.niveau('L2'); e.chercher('L2 administratif');
-    assert.equal(e.visibles().length, 2, nom);
-    assert.equal(e.cartes.length, 24);
-  }
+test('le catalogue de fiches reste cherchable sans accents et avec des mots dans un autre ordre', () => {
+  const nom = 'formations.html';
+  const cartes = cartesPage(nom);
+  assert.equal(cartes.length, 24, nom);
+  const e = environnement({ cartesReelles: cartes, format: 'fiches' });
+  e.chercher('penal L2'); const sansAccents = e.visibles();
+  assert.ok(sansAccents.length > 0, nom);
+  e.chercher('L2 pénal');
+  assert.deepEqual(e.visibles(), sansAccents);
+  e.niveau('L2'); e.chercher('L2 administratif');
+  assert.equal(e.visibles().length, 2, nom);
+  assert.equal(e.cartes.length, 24);
 });

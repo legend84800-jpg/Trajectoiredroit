@@ -48,6 +48,24 @@ function referencesPour(packId, catalogue) {
   });
 }
 
+function referenceVente(id) {
+  return id + "-revision";
+}
+
+function composer(definition, inclus, catalogue) {
+  const blobs = [];
+  const blobsMeta = [];
+  for (const reference of inclus) {
+    const produit = catalogue[reference];
+    produit.blobs.forEach((url, index) => {
+      const libelle = produit.blobsMeta?.[index]?.libelle;
+      blobs.push(url);
+      blobsMeta.push(libelle ? { reference, nom: produit.nom, libelle } : { reference, nom: produit.nom });
+    });
+  }
+  return { nom: definition.nom, prix: definition.prix, inclus, blobs, blobsMeta };
+}
+
 function construireProduits(catalogue) {
   const packs = {};
   for (const [id, definition] of Object.entries(DEFINITIONS)) {
@@ -56,20 +74,14 @@ function construireProduits(catalogue) {
       throw new Error(`${id}: ${inclus.length} références trouvées, ${definition.attendus} attendues. Vérifier la composition.`);
     }
     if (definition.prix === null) continue;
-    const blobs = [];
-    const blobsMeta = [];
-    for (const reference of inclus) {
-      const produit = catalogue[reference];
-      produit.blobs.forEach((url, index) => {
-        const libelle = produit.blobsMeta && produit.blobsMeta[index] && produit.blobsMeta[index].libelle;
-        blobs.push(url);
-        blobsMeta.push(libelle ? { reference, nom: produit.nom, libelle } : { reference, nom: produit.nom });
-      });
-    }
-    packs[id] = { nom: definition.nom, prix: definition.prix, inclus, blobs, blobsMeta };
-    if (definition.venteSuspendue) packs[id].venteSuspendue = true;
+    packs[id] = { ...composer(definition, inclus, catalogue), venteSuspendue: true };
+    if (definition.venteSuspendue) continue;
+
+    // La nouvelle référence permet de livrer la composition d'origine aux anciens acheteurs.
+    const inclusEnVente = inclus.filter((reference) => !catalogue[reference].venteSuspendue);
+    packs[referenceVente(id)] = composer(definition, inclusEnVente, catalogue);
   }
   return packs;
 }
 
-module.exports = { DEFINITIONS, referencesPour, construireProduits };
+module.exports = { DEFINITIONS, referencesPour, referenceVente, construireProduits };

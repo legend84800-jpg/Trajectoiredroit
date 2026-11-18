@@ -1,6 +1,6 @@
 // Vague 2 (2.5) : ajoute une section "Tout pour ta matière" sur les 18 pages matière,
 // juste après la section #fiches existante. Montre les AUTRES formats disponibles
-// (majeure préparée, cours complet, pack matière) avec prix et achat direct.
+// (majeure préparée, pack matière) avec prix et achat direct.
 // Idempotent (marqueur HTML vérifié avant insertion).
 const fs = require("fs");
 const path = require("path");
@@ -42,16 +42,6 @@ function construireSection(matiereSlug) {
       )
     );
   }
-  if (m.coursComplets && m.coursComplets.length) {
-    cartes.push(
-      carteMultiple(
-        "Cours complet",
-        "Il reprend le programme de la fiche complète sur une fois et demie à deux fois plus de pages. Les schémas y sont complets, et chaque grand arrêt est présenté avec son histoire. Il contient aussi des arguments pour les devoirs maison, qu'il s'agisse d'une dissertation ou d'un commentaire.",
-        m.coursComplets,
-        "btn--outline"
-      )
-    );
-  }
   if (m.packMatiere) {
     const pack = presentationPackMatiere(m);
     cartes.push(`
@@ -73,7 +63,7 @@ function construireSection(matiereSlug) {
       <div class="container container--narrow">
         <h2 class="h2 text-center">Tout pour ${m.nom}</h2>
         <p class="lead text-center" style="max-width:620px; margin:0 auto 28px">Chaque format correspond à une façon de réviser. Si tu préfères tout avoir, le pack matière complet en réunit plusieurs à prix réduit.</p>
-        <div class="grid-3" style="gap:20px">${cartes.join("")}
+        <div${cartes.length > 1 ? ' class="grid-2" style="gap:20px"' : ""}>${cartes.join("")}
         </div>
       </div>
     </section>

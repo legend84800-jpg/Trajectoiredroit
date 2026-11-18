@@ -14,10 +14,6 @@ const MATIERES = {
       { label: "Semestre 1", id: "maj-da-l2-s1", prix: "19,99 €" },
       { label: "Semestre 2", id: "maj-da-l2-s2", prix: "19,99 €" },
     ],
-    coursComplets: [
-      { label: "Semestre 1", id: "cours-fiche-da-l2-s1", prix: "19,99 €" },
-      { label: "Semestre 2", id: "cours-fiche-da-l2-s2", prix: "19,99 €" },
-    ],
     packMatiere: { id: "pack-matiere-da-l2", prix: "29,98 €" },
   },
   "droit-commercial-l3": {
@@ -26,7 +22,6 @@ const MATIERES = {
       { label: null, id: "fiche-commercial-l3-s1", prix: "19,99 €", apercus: ["assets/apercus/commercial-l3-s1-zoom.webp", "assets/apercus/commercial-l3-s1-1.webp", "assets/apercus/commercial-l3-s1-2.webp"] },
     ],
     majeures: [{ label: null, id: "maj-commercial-l3-s1", prix: "19,99 €" }],
-    coursComplets: [{ label: null, id: "cours-fiche-commercial-l3-s1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-commercial-l3", prix: "29,98 €" },
   },
   "droit-constitutionnel-l1": {
@@ -36,10 +31,6 @@ const MATIERES = {
       { label: "Semestre 2", id: "fiche-constit-l1-s2", prix: "19,99 €", apercus: ["assets/apercus/constit-l1-s2-zoom.webp", "assets/apercus/constit-l1-s2-1.webp", "assets/apercus/constit-l1-s2-2.webp"] },
     ],
     majeures: [],
-    coursComplets: [
-      { label: "Semestre 1", id: "cours-fiche-constit-l1-s1", prix: "19,99 €" },
-      { label: "Semestre 2", id: "cours-fiche-constit-l1-s2", prix: "19,99 €" },
-    ],
     packMatiere: { id: "pack-matiere-constit-l1", prix: "29,98 €" },
   },
   "droit-de-la-famille-l1": {
@@ -48,7 +39,6 @@ const MATIERES = {
       { label: null, id: "fiche-famille-l1-s2", prix: "19,99 €", apercus: ["assets/apercus/famille-l1-s2-zoom.webp", "assets/apercus/famille-l1-s2-1.webp", "assets/apercus/famille-l1-s2-2.webp"] },
     ],
     majeures: [{ label: null, id: "maj-famille-l1-s2", prix: "19,99 €" }],
-    coursComplets: [{ label: null, id: "cours-fiche-famille-l1-s2", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-famille-l1", prix: "29,98 €" },
   },
   "droit-des-biens-l2": {
@@ -57,7 +47,6 @@ const MATIERES = {
       { label: null, id: "fiche-biens-l2", prix: "19,99 €", apercus: ["assets/apercus/biens-l2-zoom.webp", "assets/apercus/biens-l2-1.webp", "assets/apercus/biens-l2-2.webp"] },
     ],
     majeures: [{ label: null, id: "maj-biens-l2", prix: "19,99 €" }],
-    coursComplets: [{ label: null, id: "cours-fiche-biens-l2", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-biens-l2", prix: "29,98 €" },
   },
   "droit-des-contrats-l2": {
@@ -66,7 +55,6 @@ const MATIERES = {
       { label: null, id: "fiche-contrats-l2-s1", prix: "19,99 €", apercus: ["assets/apercus/contrats-l2-s1-zoom.webp", "assets/apercus/contrats-l2-s1-1.webp", "assets/apercus/contrats-l2-s1-2.webp"] },
     ],
     majeures: [{ label: null, id: "maj-contrats-l2-s1", prix: "19,99 €" }],
-    coursComplets: [{ label: null, id: "cours-fiche-contrats-l2-s1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-contrats-l2", prix: "29,98 €" },
   },
   "droit-des-obligations-l2": {
@@ -75,7 +63,6 @@ const MATIERES = {
       { label: null, id: "fiche-obligations-l2-s2", prix: "19,99 €", apercus: ["assets/apercus/obligations-l2-s2-zoom.webp", "assets/apercus/obligations-l2-s2-1.webp", "assets/apercus/obligations-l2-s2-2.webp"] },
     ],
     majeures: [{ label: null, id: "maj-obligations-l2-s2", prix: "19,99 €" }],
-    coursComplets: [{ label: null, id: "cours-fiche-obligations-l2-s2", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-obligations-l2", prix: "29,98 €" },
   },
   "droit-des-personnes-l1": {
@@ -84,7 +71,6 @@ const MATIERES = {
       { label: null, id: "fiche-personnes-l1", prix: "19,99 €", apercus: ["assets/apercus/personnes-l1-zoom.webp", "assets/apercus/personnes-l1-1.webp", "assets/apercus/personnes-l1-2.webp"] },
     ],
     majeures: [{ label: null, id: "maj-personnes-l1", prix: "19,99 €" }],
-    coursComplets: [{ label: null, id: "cours-fiche-personnes-l1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-personnes-l1", prix: "29,98 €" },
   },
   "droit-des-societes-l3": {
@@ -101,10 +87,6 @@ const MATIERES = {
     // Les deux semestres portent un libellé enrichi, parce que le programme les
     // sépare nettement, le droit commun d'abord et le droit spécial ensuite, et
     // qu'un acheteur doit savoir lequel correspond à son semestre.
-    coursComplets: [
-      { label: "Semestre 1 · le droit commun", id: "cours-fiche-societes-l3-s1", prix: "19,99 €" },
-      { label: "Semestre 2 · le droit spécial", id: "cours-fiche-societes-l3-s2", prix: "19,99 €" },
-    ],
     packMatiere: { id: "pack-matiere-societes-l3", prix: "29,98 €" },
   },
   "droit-du-travail-l3": {
@@ -115,7 +97,6 @@ const MATIERES = {
     // Bloc vide corrigé le 12/09/2026 (audit qualité, proposition 7.7) : le
     // produit existait déjà en vente, invisible sur cette page à trafic SEO.
     majeures: [{ label: null, id: "maj-travail-l3-s1", prix: "19,99 €" }],
-    coursComplets: [{ label: null, id: "cours-fiche-travail-l3-s1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-travail-l3", prix: "29,98 €" },
   },
   "droit-penal-general-l1": {
@@ -124,7 +105,6 @@ const MATIERES = {
       { label: null, id: "fiche-penal-general-l1", prix: "19,99 €", apercus: ["assets/apercus/penal-general-l1-zoom.webp", "assets/apercus/penal-general-l1-1.webp", "assets/apercus/penal-general-l1-2.webp"] },
     ],
     majeures: [],
-    coursComplets: [{ label: null, id: "cours-fiche-penal-general-l1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-penal-general-l1", prix: "29,98 €" },
   },
   "droit-penal-l2": {
@@ -138,7 +118,6 @@ const MATIERES = {
       { label: "Semestre 1", id: "maj-penal-l2-s1", prix: "19,99 €" },
       { label: "Semestre 2", id: "maj-penal-l2-s2", prix: "19,99 €" },
     ],
-    coursComplets: [{ label: null, id: "cours-fiche-penal-l2-s1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-penal-l2", prix: "29,98 €" },
   },
   "histoire-des-institutions-l1": {
@@ -147,7 +126,6 @@ const MATIERES = {
       { label: null, id: "fiche-hist-institutions-l1", prix: "19,99 €", apercus: ["assets/apercus/hist-institutions-l1-zoom.webp", "assets/apercus/hist-institutions-l1-1.webp", "assets/apercus/hist-institutions-l1-2.webp"] },
     ],
     majeures: [],
-    coursComplets: [{ label: null, id: "cours-fiche-hist-institutions-l1", prix: "19,99 €" }],
     packMatiere: null,
   },
   "histoire-du-droit-l1": {
@@ -156,7 +134,6 @@ const MATIERES = {
       { label: null, id: "fiche-hist-droit-l1", prix: "19,99 €", apercus: ["assets/apercus/hist-droit-l1-zoom.webp", "assets/apercus/hist-droit-l1-1.webp", "assets/apercus/hist-droit-l1-2.webp"] },
     ],
     majeures: [],
-    coursComplets: [{ label: null, id: "cours-fiche-hist-droit-l1", prix: "19,99 €" }],
     packMatiere: null,
   },
   "introduction-au-droit-l1": {
@@ -165,7 +142,6 @@ const MATIERES = {
       { label: null, id: "fiche-intro-droit-l1", prix: "19,99 €", apercus: ["assets/apercus/intro-droit-l1-zoom.webp", "assets/apercus/intro-droit-l1-1.webp", "assets/apercus/intro-droit-l1-2.webp"] },
     ],
     majeures: [{ label: null, id: "maj-intro-droit-l1", prix: "19,99 €" }],
-    coursComplets: [{ label: null, id: "cours-fiche-intro-droit-l1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-intro-droit-l1", prix: "29,98 €" },
   },
   "procedure-penale-l3": {
@@ -176,7 +152,6 @@ const MATIERES = {
     // Bloc vide corrigé le 12/09/2026 (audit qualité, proposition 7.7) : le
     // produit existait déjà en vente, invisible sur cette page à trafic SEO.
     majeures: [{ label: null, id: "maj-procedure-penale-l3", prix: "19,99 €" }],
-    coursComplets: [{ label: null, id: "cours-fiche-procedure-penale-l3", prix: "19,99 €" }],
     packMatiere: null,
   },
   "contrats-speciaux-l3": {
@@ -187,7 +162,6 @@ const MATIERES = {
     // Bloc vide corrigé le 12/09/2026 (audit qualité, proposition 7.7) : le
     // produit existait déjà en vente, invisible sur cette page à trafic SEO.
     majeures: [{ label: null, id: "maj-contrats-speciaux-l3", prix: "19,99 €" }],
-    coursComplets: [{ label: null, id: "cours-fiche-contrats-speciaux-l3", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-contrats-speciaux-l3", prix: "29,98 €" },
   },
   "relations-internationales-l1": {
@@ -196,7 +170,6 @@ const MATIERES = {
       { label: null, id: "fiche-relations-internationales-l1", prix: "19,99 €", apercus: ["assets/apercus/relations-internationales-l1-zoom.webp", "assets/apercus/relations-internationales-l1-1.webp", "assets/apercus/relations-internationales-l1-2.webp"] },
     ],
     majeures: [],
-    coursComplets: [{ label: null, id: "cours-fiche-relations-internationales-l1", prix: "19,99 €" }],
     packMatiere: null,
   },
 };

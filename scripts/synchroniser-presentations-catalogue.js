@@ -5,7 +5,7 @@ const PRODUITS = require("../api/_produits");
 const { FORMULES } = require("../api/_portalis-config");
 const { BESOINS, APERCUS, COMPARAISON_DOL } = require("./catalogue-presentations");
 const ROOT = path.resolve(__dirname, "..");
-const PAGES = ["index.html", "formations.html", "cours-fiches.html", "droit-des-contrats-l2.html", "majeures-preparees.html", "corriges.html", "revisions.html", "flashcards-qcm.html", "pack-ultra.html", "reussir-sa-l1.html", "reussir-sa-l3.html"];
+const PAGES = ["index.html", "formations.html", "droit-des-contrats-l2.html", "majeures-preparees.html", "corriges.html", "revisions.html", "flashcards-qcm.html", "pack-ultra.html", "reussir-sa-l1.html", "reussir-sa-l3.html"];
 const euro = (centimes) => `${(centimes / 100).toLocaleString("fr-FR", { maximumFractionDigits: 2 })} €`;
 const escape = (value) => String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
@@ -72,7 +72,7 @@ function presentationPack(id) {
               <h3 class="product__title">${titreHtml}</h3>
               <div class="product__meta"><span>${niveau}</span><span>·</span><span>${nombre} fiches complètes</span><span>·</span><span>${totalPdf} PDF · Accès à vie</span></div>
               <p class="product__desc">${escape(descriptions[id])}</p>
-              <details class="product__includes" data-pack-inclus="${id}" style="text-align:left; margin:10px 0; color:var(--body); font-size:.9rem"><summary style="cursor:pointer; color:var(--blue-600)">Voir les ${nombre} fiches incluses</summary><ul style="padding-left:20px; margin:10px 0; line-height:1.6">${inclusions}</ul><p style="margin:0">Les cours complets et les majeures préparées s’achètent à part.</p></details>
+              <details class="product__includes" data-pack-inclus="${id}" style="text-align:left; margin:10px 0; color:var(--body); font-size:.9rem"><summary style="cursor:pointer; color:var(--blue-600)">Voir les ${nombre} fiches incluses</summary><ul style="padding-left:20px; margin:10px 0; line-height:1.6">${inclusions}</ul><p style="margin:0">Les majeures préparées s’achètent à part.</p></details>
               <div><span class="product__price-old">${euro(totalUnite)}</span><span class="product__price">${euro(produit.prix)}</span><span class="badge badge--success" style="margin-left:6px">-${economie} %</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="${id}">Acheter le pack · ${euro(produit.prix)}</button>
             </div>` };

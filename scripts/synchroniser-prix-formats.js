@@ -1,7 +1,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const PRODUITS = require("../api/_produits");
-const { DEFINITIONS, referencesPour } = require("../api/_packs-ultra");
+const { DEFINITIONS, referenceVente } = require("../api/_packs-ultra");
 const { renderComparateur } = require("./synchroniser-presentations-catalogue");
 const ROOT = path.resolve(__dirname, "..");
 const IMAGE = "cours-images-contrats-l2-s1";
@@ -13,11 +13,11 @@ const estFormat = (id) => Boolean(PRODUITS[id] && (
 
 function bilanPacksUltra() {
   return Object.fromEntries(Object.entries(DEFINITIONS).filter(([, p]) => !p.venteSuspendue).map(([id, p]) => {
-    const references = referencesPour(id, PRODUITS);
+    const references = PRODUITS[referenceVente(id)].inclus;
     const total = references.reduce((somme, reference) => somme + PRODUITS[reference].prix, 0);
     const medias = references.filter((reference) => reference.startsWith("audio-video-"));
     const totalMedias = medias.reduce((somme, reference) => somme + PRODUITS[reference].prix, 0);
-    return [id, { prix: p.prix, total, totalMedias, economie: Math.round((total - p.prix) / total * 100) }];
+    return [id, { prix: p.prix, total, totalMedias, ressources: references.length, economie: Math.round((total - p.prix) / total * 100) }];
   }));
 }
 
@@ -59,6 +59,10 @@ function synchroniserPrixFormats(contenu, fichier) {
     return bloc.replace(/(<span class="ultra-card__saving">)\d+( % d’économie<\/span>)/, `$1${p.economie}$2`)
       .replace(/(<span class="ultra-card__unit-total">)[^<]+(?=<\/span>)/, `$1${euro(p.total)}`)
       .replace(/(<p class="ultra-card__bonus">[^<]*ils coûtent )[^€]+€/, `$1${euro(p.totalMedias)}`);
+  });
+  sortie = sortie.replace(/<p class="article-pack-ligne__texte">[\s\S]*?<\/p>/g, (bloc) => {
+    const id = bloc.match(/href="pack-ultra\.html#([^"]+)"/)?.[1];
+    return packs[id] ? bloc.replace(/\d+ ressources/, `${packs[id].ressources} ressources`) : bloc;
   });
   sortie = sortie.replace(/<!-- catalogue:comparateur:start -->[\s\S]*?<!-- catalogue:comparateur:end -->/g, renderComparateur());
   return sortie;

@@ -965,7 +965,7 @@ test("le stage ignore tout code et garde son propre texte, sans garantie", async
 
 test("le paiement en plusieurs fois n'accepte aucun code mais affiche la garantie", async () => {
   const { appels, params } = await creerCheckoutAvecStripeFactice(
-    { produitId: "pack-ultra-l1-s1", echeances: 2, code: "POSTA-1A2B3C4D" },
+    { produitId: "pack-ultra-l1-s1-revision", echeances: 2, code: "POSTA-1A2B3C4D" },
     { promos: [PROMO_POSTA] }
   );
   assert.equal(appels.list.length, 0);
@@ -1016,5 +1016,27 @@ test("le stage en réserve refuse les ventes seules, en panier et en complément
     assert.equal(res.statusCode, 400);
     assert.equal(res.payload.code, "produit_indisponible");
     assert.equal(appels.create.length, 0, "aucune session de paiement créée");
+  }
+});
+
+test("les cours complets et packs retirés refusent la création de paiement Stripe", async () => {
+  const catalogue = require("../api/_produits");
+  const offres = Object.entries(catalogue)
+    .filter(([id, p]) => p.nom.startsWith("Cours complet ") ||
+      id.startsWith("pack-cours-complets-") || /^pack-ultra-l[123]-s[12]$/.test(id));
+  assert.equal(offres.length, 32);
+  for (const [id, p] of offres) {
+    assert.equal(p.venteSuspendue, true, id);
+    assert.ok(p.blobs.length > 0, id);
+    for (const corps of [
+      { produitId: id },
+      { produitIds: ["fiche-da-l2-s1", id] },
+      { produitId: "fiche-da-l2-s1", bumpId: id },
+    ]) {
+      const { res, appels } = await creerCheckoutAvecStripeFactice(corps);
+      assert.equal(res.statusCode, 400, id);
+      assert.equal(res.payload.code, "produit_indisponible", id);
+      assert.equal(appels.create.length, 0, id);
+    }
   }
 });

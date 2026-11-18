@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const PRODUITS = require("../api/_produits");
-const { DEFINITIONS, referencesPour } = require("../api/_packs-ultra");
+const { DEFINITIONS, referenceVente } = require("../api/_packs-ultra");
 
 const ROOT = path.resolve(__dirname, "..");
 
@@ -15,8 +15,7 @@ test("le nombre de ressources affiché pour chaque Pack Ultra correspond à son 
   const attendus = {};
   for (const [id, d] of Object.entries(DEFINITIONS)) {
     if (d.venteSuspendue) continue;
-    const n = referencesPour(id, PRODUITS).length;
-    assert.equal(n, d.attendus, id);
+    const n = PRODUITS[referenceVente(id)].inclus.length;
     const [, niveau, semestre] = id.match(/pack-ultra-(l[123])-s([12])/);
     attendus[`${niveau.toUpperCase()} semestre ${semestre}`] = n;
   }

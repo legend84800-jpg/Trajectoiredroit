@@ -89,10 +89,9 @@ test('le menu mobile reprend les quatre familles avec divulgation progressive', 
     assert.match(navMobile, /<details class="mobile-nav__group[^>]*" open>/, `${nom} doit montrer les formats dès l'ouverture du menu`);
     assert.match(navMobile, />Choisir un format</, `${nom} doit nommer clairement le premier groupe`);
     assert.match(navMobile, /href="formations\.html#comparatif"[^>]*>Comparer tous les formats</, `${nom} doit donner un accès direct au comparatif`);
-    // Neuf depuis le 23/10/2026 : le cours en images rejoint les sept formats et le Pack Ultra.
-    assert.equal((navMobile.match(/mobile-nav__format-icon/g) || []).length, 9, `${nom} doit illustrer les huit formats et le Pack Ultra, sans l'offre retirée`);
+    assert.equal((navMobile.match(/mobile-nav__format-icon/g) || []).length, 8, `${nom} doit illustrer les formats en vente et le Pack Ultra`);
     assert.match(navMobile, /mobile-nav__format--featured[^>]*href="pack-ultra\.html#pack-ultra"/, `${nom} doit mettre le Pack Ultra en avant`);
-    assert.match(navMobile, /href="cours-fiches\.html"[^>]*><span[^>]*>🎓<\/span><span>Cours complets<\/span>/, `${nom} doit illustrer les cours complets`);
+    assert.doesNotMatch(navMobile, /cours-fiches\.html|Cours complets/, nom);
     assert.match(navMobile, /href="formations\.html"[^>]*><span[^>]*>📄<\/span><span>Fiches complètes<\/span>/, `${nom} doit conserver les fiches complètes`);
     assert.match(navMobile, /href="revisions\.html"[^>]*><span[^>]*>📜<\/span><span>Fiches d[’']arrêt et citations<\/span>/, `${nom} doit conserver les fiches d'arrêt et les citations sur mobile`);
     assert.match(navMobile, /mobile-nav__top-link[^>]*href="cours-particuliers\.html"/, `${nom} doit garder les cours en accès direct`);

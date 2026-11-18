@@ -24,7 +24,7 @@ function produitDeLaPage(fichier, html) {
   for (const motif of MOTIFS) {
     for (const m of main.matchAll(motif)) {
       const id = m[1];
-      if (!PRODUITS[id]) continue;
+      if (!PRODUITS[id] || PRODUITS[id].venteSuspendue) continue;
       if (id.startsWith("cours-images-") && !fichier.includes("en-images")) continue;
       return id;
     }

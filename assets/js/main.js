@@ -286,7 +286,7 @@ window.tjdDialogues = (function () {
         'dissertation-': 'les dissertations corrigées',
         'fiche-arret-': 'les fiches d’arrêt',
         'fiche-': 'la fiche complète',
-        'cours-fiche-': 'le cours complet',
+        'cours-fiche-': 'la fiche complète',
         'cours-images-': 'le cours en images',
         'citations-': 'la fiche de citations',
         'maj-': 'les majeures préparées'

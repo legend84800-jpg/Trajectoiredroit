@@ -142,7 +142,7 @@ test("le formulaire cadeau valide l'email et limite le prénom et le message", (
 
 test("la session Stripe d'un cadeau porte l'étudiant en metadata et parle au parent", async () => {
   const { res, appels } = await creerCheckout({
-    produitId: "pack-ultra-l1-s1",
+    produitId: "pack-ultra-l1-s1-revision",
     cadeauEmail: "Lea.Martin@example.com",
     cadeauPrenom: "Léa",
     cadeauMessage: "Bon courage pour les partiels !",
@@ -167,7 +167,7 @@ test("la session Stripe d'un cadeau porte l'étudiant en metadata et parle au pa
 
 test("un cadeau payé en 3 fois reste un abonnement borné et garde le cadeau", async () => {
   const { appels } = await creerCheckout({
-    produitId: "pack-ultra-l3-s1",
+    produitId: "pack-ultra-l3-s1-revision",
     echeances: 3,
     cadeauEmail: "etudiant@example.com",
   });
@@ -185,7 +185,7 @@ test("un cadeau payé en 3 fois reste un abonnement borné et garde le cadeau", 
 });
 
 test("un cadeau refuse un email invalide ou un produit autre qu'un Pack Ultra", async () => {
-  const invalide = await creerCheckout({ produitId: "pack-ultra-l1-s1", cadeauEmail: "lea@" });
+  const invalide = await creerCheckout({ produitId: "pack-ultra-l1-s1-revision", cadeauEmail: "lea@" });
   assert.equal(invalide.res.statusCode, 400);
   assert.equal(invalide.res.payload.code, "cadeau_email_invalide");
   assert.equal(invalide.appels.length, 0);
@@ -197,7 +197,7 @@ test("un cadeau refuse un email invalide ou un produit autre qu'un Pack Ultra", 
 });
 
 test("sans cadeau, la session d'un Pack Ultra reste identique", async () => {
-  const { appels } = await creerCheckout({ produitId: "pack-ultra-l1-s1", echeances: 2 });
+  const { appels } = await creerCheckout({ produitId: "pack-ultra-l1-s1-revision", echeances: 2 });
   const { params, options } = appels[0];
   assert.equal(params.metadata.cadeauEmail, undefined);
   assert.equal(params.subscription_data.metadata.cadeau, undefined);

@@ -69,15 +69,15 @@ test("une échéance ne dépasse jamais le prix affiché", () => {
 });
 
 test("seuls les Packs Ultra en vente acceptent 2 ou 3 échéances", () => {
-  assert.equal(nombreEcheancesValide("pack-ultra-l1-s1", PRODUITS["pack-ultra-l1-s1"], 3), 3);
-  assert.equal(nombreEcheancesValide("pack-ultra-l1-s1", PRODUITS["pack-ultra-l1-s1"], "2"), 2);
-  assert.equal(nombreEcheancesValide("pack-ultra-l1-s1", PRODUITS["pack-ultra-l1-s1"], 4), null);
+  assert.equal(nombreEcheancesValide("pack-ultra-l1-s1-revision", PRODUITS["pack-ultra-l1-s1-revision"], 3), 3);
+  assert.equal(nombreEcheancesValide("pack-ultra-l1-s1-revision", PRODUITS["pack-ultra-l1-s1-revision"], "2"), 2);
+  assert.equal(nombreEcheancesValide("pack-ultra-l1-s1-revision", PRODUITS["pack-ultra-l1-s1-revision"], 4), null);
   assert.equal(nombreEcheancesValide("fiche-da-l2-s1", PRODUITS["fiche-da-l2-s1"], 3), null);
-  assert.equal(nombreEcheancesValide("pack-ultra-l3-s2", { prix: 19900, venteSuspendue: true }, 3), null);
+  assert.equal(nombreEcheancesValide("pack-ultra-l3-s2-revision", { prix: 19900, venteSuspendue: true }, 3), null);
 });
 
 test("le paiement en 3 fois ouvre un abonnement mensuel sans relance ni code promo", async () => {
-  const { res, appels } = await creerCheckout({ produitId: "pack-ultra-l1-s1", echeances: 3 });
+  const { res, appels } = await creerCheckout({ produitId: "pack-ultra-l1-s1-revision", echeances: 3 });
   assert.equal(res.statusCode, 200);
   const { params, options } = appels[0];
   assert.equal(params.mode, "subscription");
@@ -90,7 +90,7 @@ test("le paiement en 3 fois ouvre un abonnement mensuel sans relance ni code pro
   assert.equal(params.metadata.echeances, "3");
   assert.equal(params.metadata.montantTotal, "25899");
   assert.equal(params.metadata.reminderPlan, "none");
-  assert.equal(params.metadata.produitIds, "pack-ultra-l1-s1");
+  assert.equal(params.metadata.produitIds, "pack-ultra-l1-s1-revision");
   assert.equal(params.subscription_data.metadata.echeances, "3");
   assert.match(params.custom_text.submit.message, /86,33 € aujourd'hui, puis 86,33 €/);
   assert.equal(options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012-x3");

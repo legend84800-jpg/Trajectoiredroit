@@ -85,10 +85,10 @@ test("l'ajout du visuel conserve tous les autres paramètres et le tableau reçu
   assert.deepEqual(params, avant);
 });
 
-test("les cours et les majeures utilisent leurs propres couvertures de format", () => {
+test("les deux fiches aux anciens identifiants et les majeures ont la bonne couverture", () => {
   for (const [id] of VENDUS) {
     if (id.startsWith("maj-")) assert.match(IMAGES_PRODUITS[id], /\/assets\/majeures\//, id);
-    if (id.startsWith("cours-fiche-")) assert.match(IMAGES_PRODUITS[id], /\/assets\/covers\/cours-(fiche|complet)-/, id);
+    if (id.startsWith("cours-fiche-")) assert.match(IMAGES_PRODUITS[id], /\/assets\/covers\/fiche-/, id);
   }
 });
 

@@ -25,7 +25,7 @@ test("un même produit garde le même titre précis dans tous les aperçus", () 
   // laissé place à ceux du cours en images, testé jusqu'au 13/11/2026.
   // 223 depuis le 15/11/2026 : les 47 fiches d'arrêt passées au commentaire corrigé à
   // 4,99 € (audit CTA, C3, D4 et F2) n'affichent plus les aperçus de la fiche complète.
-  assert.ok(controles >= 223);
+  assert.ok(controles >= 180);
   assert.equal(libelleApercu("produit-inconnu"), null);
 });
 
@@ -47,9 +47,9 @@ test("les quatorze packs matière distinguent contenu livré et formats séparé
   }
 });
 
-test("les dix listes annuelles repliées correspondent aux fichiers réellement livrés", () => {
+test("les sept listes annuelles repliées correspondent aux fichiers réellement livrés", () => {
   let controles = 0;
-  for (const fichier of ["formations.html", "cours-fiches.html", "majeures-preparees.html"]) {
+  for (const fichier of ["formations.html", "majeures-preparees.html"]) {
     const html = fs.readFileSync(path.join(ROOT, fichier), "utf8");
     for (const [bloc, id] of html.matchAll(/<details\b[^>]*data-pack-inclus="([^"]+)"[^>]*>[\s\S]*?<\/details>/g)) {
       assert.doesNotMatch(bloc.split(">")[0], /\bopen\b/);
@@ -61,11 +61,11 @@ test("les dix listes annuelles repliées correspondent aux fichiers réellement 
       controles++;
     }
   }
-  assert.equal(controles, 10);
+  assert.equal(controles, 7);
 });
 
 test("les présentations générées restent à jour avec le catalogue de livraison", () => {
-  for (const fichier of ["index.html", "formations.html", "cours-fiches.html"]) {
+  for (const fichier of ["index.html", "formations.html"]) {
     const html = fs.readFileSync(path.join(ROOT, fichier), "utf8");
     assert.ok(synchroniser(html, fichier) === html, `${fichier}, présentation à régénérer`);
     assert.deepEqual(verifierPrix(html, fichier), [], fichier);
@@ -81,13 +81,11 @@ test("le contrôle signale un montant de bouton différent du prix réellement e
   assert.equal(verifierPrix(html, "exemple.html").length, 1);
 });
 
-test("le pack Cours L2 annonce neuf cours et les annexes effectivement livrées", () => {
-  const html = fs.readFileSync(path.join(ROOT, "cours-fiches.html"), "utf8");
-  const carte = [...html.matchAll(/<article\b[\s\S]*?<\/article>/g)].find(([s]) => s.includes('data-tjd-produit="pack-cours-complets-l2"'))[0];
-  assert.match(carte, /<span>9 cours<\/span>/);
-  assert.equal(PRODUITS["pack-cours-complets-l2"].nom, "Pack Cours L2 (8 cours L2 + Droit pénal général L1 S2)");
-  assert.match(carte, /finances publiques et la philosophie du droit ont leur plan seul/);
-  assert.ok(PRODUITS["pack-cours-complets-l2"].blobs.filter((f) => /cartesmentales\.pdf$/.test(f)).length === 7);
+test("le pack annuel retiré garde les cours et annexes des achats passés", () => {
+  const pack = PRODUITS["pack-cours-complets-l2"];
+  assert.equal(pack.venteSuspendue, true);
+  assert.equal(pack.blobs.filter((f) => /cartesmentales\.pdf$/.test(f)).length, 7);
+  assert.equal(pack.blobs.filter((f) => /-plan\.pdf$/.test(f)).length, 9);
 });
 
 test("les packs de corrigés et de révision comptent des documents plutôt que des matières distinctes", () => {
@@ -122,4 +120,14 @@ test("l'usage en TD vient du retour de Julien sans délai de résolution promis"
   assert.match(html, /De nombreux élèves me disent qu'ils s'en servent aussi pendant le semestre, pour préparer leurs TD\./);
   assert.match(html, /Il reste alors à vérifier, une par une, si chaque condition est remplie par les faits de l'énoncé/);
   assert.doesNotMatch(html, /en deux secondes|en 2 secondes/);
+});
+
+test("chaque bouton d’achat ou d’aperçu du site renvoie à une offre en vente", () => {
+  for (const fichier of fs.readdirSync(ROOT).filter((nom) => nom.endsWith(".html"))) {
+    const html = fs.readFileSync(path.join(ROOT, fichier), "utf8");
+    assert.doesNotMatch(html, /\bcours-fiches\.html|\bcours complets?\b/i, fichier);
+    for (const [, id] of html.matchAll(/data-(?:tjd-produit|apercu-cta)="([a-z0-9-]+)"/g)) {
+      if (PRODUITS[id]) assert.ok(!PRODUITS[id].venteSuspendue, `${fichier}, ${id}`);
+    }
+  }
 });

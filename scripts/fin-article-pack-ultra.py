@@ -19,7 +19,6 @@ APERCUS_VERIFIES = json.loads((ROOT / "scripts/apercus-produits.json").read_text
 # --- Packs Ultra, lus dans pack-ultra.html (prix, description, ressources) ---
 TYPES_PLURIEL = {
     "Fiche complète": ("fiche complète", "fiches complètes"),
-    "Cours complet": ("cours complet", "cours complets"),
     "Majeures préparées": ("série de majeures préparées", "séries de majeures préparées"),
     "Fiches d'arrêt": ("PDF de fiches d’arrêt", "PDF de fiches d’arrêt"),
     "Cas pratiques corrigés": ("compilation de cas pratiques corrigés", "compilations de cas pratiques corrigés"),
@@ -28,7 +27,7 @@ TYPES_PLURIEL = {
     "Flashcards + QCM": ("pack de flashcards et QCM", "packs de flashcards et QCM"),
     "Fiche de citations": ("fiche de citations", "fiches de citations"),
 }
-ORDRE_TYPES = ["Fiche complète", "Cours complet", "Majeures préparées", "Cas pratiques corrigés",
+ORDRE_TYPES = ["Fiche complète", "Majeures préparées", "Cas pratiques corrigés",
                "Fiches d'arrêt", "Commentaires d'arrêt", "Dissertations corrigées"]
 
 PACKS = {}

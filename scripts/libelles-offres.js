@@ -23,12 +23,12 @@ function presentationPackMatiere(matiere) {
   const titre = `${nom}${double ? ` ${semestre}` : semestre ? ` S${semestre}` : ""}`;
   let description;
   if (id === "pack-matiere-constit-l1") {
-    description = "Le pack contient les fiches S1 et S2 avec leurs flashcards et QCM. Tu reçois aussi les fiches d'arrêt et deux dissertations corrigées. Les cours complets et les majeures préparées s'achètent à part.";
+    description = "Le pack contient les fiches S1 et S2 avec leurs flashcards et QCM. Tu reçois aussi les fiches d'arrêt et deux dissertations corrigées. Les majeures préparées s'achètent à part.";
   } else if (double) {
     const flashcards = id === "pack-matiere-societes-l3" ? "les flashcards et QCM de S1" : "leurs flashcards et QCM";
-    description = `Le pack contient les fiches S1 et S2 avec ${flashcards}. Tu reçois aussi les fiches d'arrêt et deux cas pratiques corrigés. Les cours complets et les majeures préparées s'achètent à part.`;
+    description = `Le pack contient les fiches S1 et S2 avec ${flashcards}. Tu reçois aussi les fiches d'arrêt et deux cas pratiques corrigés. Les majeures préparées s'achètent à part.`;
   } else {
-    description = "Le pack contient la fiche complète et les flashcards avec QCM. Tu reçois aussi les fiches d'arrêt et un cas pratique corrigé. Le cours complet et les majeures préparées s'achètent à part.";
+    description = "Le pack contient la fiche complète et les flashcards avec QCM. Tu reçois aussi les fiches d'arrêt et un cas pratique corrigé. Les majeures préparées s'achètent à part.";
   }
   return { titre, description };
 }

@@ -111,7 +111,7 @@ test('la provenance survit à la navigation et à une nouvelle session pendant t
   assert.equal(corps.landingPage, 'droit-des-obligations-l2.html');
   browser.avancer(29);
   browser.nouvelleSession();
-  corps = await browser.page('', '/cours-fiches.html').payer(true);
+  corps = await browser.page('', '/pack-ultra.html').payer(true);
   assert.equal(corps.atelierPublicationRef, REF);
   for (const [cle, valeur] of Object.entries(UTM)) assert.equal(corps[cle], valeur);
   assert.equal(JSON.parse(browser.localStorage.getItem('tjd_attribution')).ts, contactInitial.ts);

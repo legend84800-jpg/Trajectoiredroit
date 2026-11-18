@@ -18,7 +18,7 @@
     try {
       if (niveau === 'tous') sessionStorage.removeItem(CLE_NIVEAU);
       else sessionStorage.setItem(CLE_NIVEAU, niveau);
-    } catch (_) { /* Le niveau reste porté par les liens entre les deux formats. */ }
+    } catch (_) { /* Le niveau reste porté par les liens du catalogue. */ }
   }
   function niveauAdresse() {
     if (HASH_NIVEAU[window.location.hash]) return HASH_NIVEAU[window.location.hash];
@@ -50,7 +50,7 @@
       document.querySelectorAll('a[href]').forEach(function (lien) {
         try {
           var url = new URL(lien.getAttribute('href'), window.location.href);
-          if (url.origin !== window.location.origin || !/\/(formations|cours-fiches)\.html$/.test(url.pathname)) return;
+          if (url.origin !== window.location.origin || !/\/formations\.html$/.test(url.pathname)) return;
           if (etat.niveau === 'tous') url.searchParams.delete('niveau');
           else url.searchParams.set('niveau', etat.niveau.toLowerCase());
           lien.setAttribute('href', url.pathname + url.search + url.hash);
@@ -64,7 +64,7 @@
         else url.searchParams.set('niveau', etat.niveau.toLowerCase());
         if (!depuisHash && HASH_NIVEAU[url.hash]) {
           url.hash = etat.niveau === 'tous'
-            ? (racine.getAttribute('data-catalogue-format') === 'cours' ? 'grille-cours-fiches' : 'a-l-unite')
+            ? 'a-l-unite'
             : 'cours-' + etat.niveau.toLowerCase();
         }
         if (window.history && window.history.replaceState) window.history.replaceState(window.history.state, '', url.pathname + url.search + url.hash);

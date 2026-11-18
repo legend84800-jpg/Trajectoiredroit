@@ -106,7 +106,7 @@ const VISUELS = {
   "cours-fiche-da-l2-s1": "assets/covers/cours-fiche-da-l2-s1.webp?v=cours-2a-20260921",
   "cours-fiche-da-l2-s2": "assets/covers/cours-fiche-da-l2-s2.webp?v=cours-2a-20260921",
   "cours-fiche-famille-l1-s2": "assets/covers/cours-fiche-famille-l1-s2.webp?v=cours-2a-20260921",
-  "cours-fiche-finances-publiques-l2-s1": "assets/covers/cours-complet-finances-publiques-l2-s1.webp",
+  "cours-fiche-finances-publiques-l2-s1": "assets/covers/fiche-finances-publiques-l2-s1.webp",
   "cours-fiche-hist-droit-l1": "assets/covers/cours-fiche-hist-droit-l1.webp?v=cours-2a-20260921",
   "cours-fiche-hist-institutions-l1": "assets/covers/cours-fiche-hist-institutions-l1.webp?v=cours-2a-20260921",
   "cours-fiche-intro-droit-l1": "assets/covers/cours-fiche-intro-droit-l1.webp?v=cours-2a-20260921",
@@ -114,7 +114,7 @@ const VISUELS = {
   "cours-fiche-penal-general-l1": "assets/covers/cours-fiche-penal-general-l1.webp?v=cours-2a-20260921b",
   "cours-fiche-penal-l2-s1": "assets/covers/cours-fiche-penal-l2-s1.webp?v=cours-2a-20260921",
   "cours-fiche-personnes-l1": "assets/covers/cours-fiche-personnes-l1.webp?v=cours-2a-20260921",
-  "cours-fiche-philo-droit-l2-s1": "assets/covers/cours-complet-philosophie-du-droit-l2-s1.webp",
+  "cours-fiche-philo-droit-l2-s1": "assets/covers/fiche-philo-droit-l2-s1.webp",
   "cours-fiche-procedure-penale-l3": "assets/covers/cours-fiche-procedure-penale-l3.webp?v=cours-2a-20260921",
   "cours-fiche-relations-internationales-l1": "assets/covers/cours-fiche-relations-internationales-l1.webp?v=cours-2a-20260921",
   "cours-fiche-societes-l3-s1": "assets/covers/cours-fiche-societes-l3-s1.webp?v=cours-2a-20260921",
@@ -270,6 +270,11 @@ const VISUELS = {
   "audio-video-societes-l3-s2": "assets/covers/audio-video/audio-video-societes-l3-s2.jpg",
   "stage-methode": "assets/julien.jpg",
 };
+
+const { DEFINITIONS, referenceVente } = require("./_packs-ultra");
+for (const [id, definition] of Object.entries(DEFINITIONS)) {
+  if (!definition.venteSuspendue) VISUELS[referenceVente(id)] = VISUELS[id];
+}
 
 const IMAGES_PRODUITS = Object.freeze(Object.fromEntries(
   Object.entries(VISUELS).map(([id, chemin]) => [id, `https://trajectoiredroit.com/${chemin}`])

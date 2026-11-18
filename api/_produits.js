@@ -970,6 +970,12 @@ const PRODUITS = {
 
 Object.assign(PRODUITS, require("./_audio-video").construireProduits(PRODUITS));
 Object.assign(PRODUITS, require("./_packs-citations").construireProduits(PRODUITS));
+// Les cours complets et leurs packs annuels restent lisibles par la livraison historique.
+for (const [id, produit] of Object.entries(PRODUITS)) {
+  if (produit.nom.startsWith("Cours complet ") || id.startsWith("pack-cours-complets-")) {
+    produit.venteSuspendue = true;
+  }
+}
 Object.assign(PRODUITS, require("./_packs-ultra").construireProduits(PRODUITS));
 
 module.exports = PRODUITS;

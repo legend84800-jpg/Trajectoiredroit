@@ -15,7 +15,7 @@ function euros(centimes) {
 }
 
 function idsDe(famille) {
-  return CATALOGUE_ANALYSE.filter((p) => p.famille === famille).map((p) => p.id);
+  return CATALOGUE_ANALYSE.filter((p) => p.famille === famille && !p.suspendu).map((p) => p.id);
 }
 
 // Un seul prix si tout le sous-ensemble est au même tarif, sinon une fourchette :
@@ -28,7 +28,6 @@ function prixTexte(ids) {
 
 function genererProduitsEtServices() {
   const ficheComplete = idsDe("fiche-complete");
-  const coursComplet = idsDe("cours-complet");
   const majeure = idsDe("majeure");
   const ficheArret = idsDe("fiche-arret");
   const citations = idsDe("citations");
@@ -41,7 +40,6 @@ function genererProduitsEtServices() {
 
   return `PRODUITS ET SERVICES (tous les PDF sont couverts par la garantie satisfait ou remboursé 7 jours, un simple email suffit) :
 formations.html — les fiches complètes PDF (${prixTexte(ficheComplete)} la matière, ${ficheComplete.length} matières), les packs par année (L1, L2, L3) et le pack licence complète à 179 €
-cours-fiches.html — les cours complets PDF, le format le plus développé par matière (${prixTexte(coursComplet)}, ${coursComplet.length} matières), plus les packs annuels par année
 majeures-preparees.html — majeures préparées PDF (la règle de droit condition par condition, pour les cas pratiques, ${prixTexte(majeure)}, ${majeure.length} matières), plus les packs annuels par année
 revisions.html — fiches d'arrêt par matière (${prixTexte(ficheArret)}, ${ficheArret.length} matières) et fiches de citations par matière (${prixTexte(citations)}, ${citations.length} matières), plus les packs annuels
 flashcards-qcm.html — flashcards + QCM par matière avec deck Anki inclus (${prixTexte(flashcards)}, ${flashcards.length} matières)

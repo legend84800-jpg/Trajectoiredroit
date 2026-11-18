@@ -269,7 +269,6 @@ function groupeActif(fichier, pages) {
 }
 
 function menuMobile(fichier) {
-  const groupeFiches = groupeActif(fichier, ['formations.html', 'cours-fiches.html', 'majeures-preparees.html', 'corriges.html', 'revisions.html', 'flashcards-qcm.html']);
   const groupeRessources = groupeActif(fichier, ['blog.html', 'methodologie-juridique.html', 'methode-fiche-arret.html', 'methode-commentaire-arret.html', 'methode-cas-pratique.html', 'methode-dissertation-juridique.html']);
   const groupeAPropos = groupeActif(fichier, ['a-propos.html', 'temoignages.html', 'faq.html']);
 
@@ -282,7 +281,6 @@ function menuMobile(fichier) {
       <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
       <div class="mobile-nav__subnav">
         ${lienMobile('formations.html#comparatif', 'Comparer tous les formats', fichier, 'mobile-nav__compare')}
-        ${lienMobile('cours-fiches.html', '<span class="mobile-nav__format-icon" aria-hidden="true">🎓</span><span>Cours complets</span>', fichier, 'mobile-nav__format')}
         ${lienMobile('formations.html', '<span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span>', fichier, 'mobile-nav__format mobile-nav__format--featured')}
         ${lienMobile('majeures-preparees.html', '<span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span>', fichier, 'mobile-nav__format')}
         ${lienMobile('revisions.html', '<span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span>', fichier, 'mobile-nav__format')}

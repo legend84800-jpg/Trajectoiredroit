@@ -8,9 +8,9 @@ const root = path.resolve(__dirname, '..');
 const pages = ['formations.html', 'droit-des-contrats-l2.html'];
 
 for (const page of pages) {
-  test(`${page} montre les deux extraits réels avec leurs pages et prix`, () => {
+  test(`${page} montre l’extrait de la fiche avec son prix`, () => {
     const html = fs.readFileSync(path.join(root, page), 'utf8');
-    assert.equal((html.match(/id="fiche-ou-cours"/g) || []).length, 1);
+    assert.equal((html.match(/id="extrait-fiche-contrats"/g) || []).length, 1);
     assert.match(html, /assets\/comparatif-fiche-cours\.css\?v=20261002/);
     for (const extrait of COMPARAISON_DOL) {
       const file = extrait.image;
@@ -27,8 +27,8 @@ for (const page of pages) {
       assert.ok(html.includes(`${extrait.total} pages au total, extrait p. ${extrait.pagePDF} du PDF`));
     }
     const prixComparateur = [...html.matchAll(/format-comparison__price">([^<]+)/g)].map(m => m[1]);
-    assert.deepEqual(prixComparateur, ["19,99 €", "19,99 €"]);
-    assert.ok(html.includes("le cours complet s'achète à part"));
+    assert.deepEqual(prixComparateur, ["19,99 €"]);
+    assert.doesNotMatch(html, /\bcours complet|cours-fiches\.html/i);
   });
 }
 
@@ -46,21 +46,16 @@ test('les styles du comparatif sont isolés et gardent les couleurs du PDF', () 
   }
 });
 
-test('les métadonnées reprennent les deux PDF livrés et républiés en novembre', () => {
-  // PDF républiés le 14 et le 15/11/2026, recomptés sur R2 le 15/11 (205 et 289 pages).
+test('les métadonnées reprennent la fiche livrée et republiée en novembre', () => {
   assert.deepEqual(COMPARAISON_DOL.map((e) => [e.produit, e.total, e.pagePDF]), [
     ['fiche-contrats-l2-s1', 205, 89],
-    ['cours-fiche-contrats-l2-s1', 289, 116],
   ]);
   assert.equal(COMPARAISON_DOL[0].sha256PDF, 'a94eea5853a456fadfa4b76c1b5dbb090a4eb83c1f92c232b8afa162caff5105');
-  assert.equal(COMPARAISON_DOL[1].sha256PDF, 'bf7d75469162e04f240e0667f7705a911e03a66e1677011ab0ace132c81a67bd');
 });
 
-test('les liens catalogue et les boutons du cours restent accessibles', () => {
+test('le lien catalogue ouvre les fiches vendues', () => {
   const catalogue = fs.readFileSync(path.join(root, pages[0]), 'utf8');
   assert.match(catalogue, /class="format-comparison__catalogue" href="#a-l-unite"/);
-  assert.match(catalogue, /class="format-comparison__catalogue" href="cours-fiches.html"/);
   const matiere = fs.readFileSync(path.join(root, pages[1]), 'utf8');
-  assert.match(matiere, /data-apercu-cta="cours-fiche-contrats-l2-s1"/);
-  assert.match(matiere, /data-tjd-produit="cours-fiche-contrats-l2-s1">Acheter · 19,99 €/);
+  assert.match(matiere, /data-tjd-produit="fiche-contrats-l2-s1"/);
 });

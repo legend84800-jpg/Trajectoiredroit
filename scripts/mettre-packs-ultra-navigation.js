@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const produits = require('../api/_produits');
-const { DEFINITIONS, referencesPour } = require('../api/_packs-ultra');
+const { DEFINITIONS, referenceVente } = require('../api/_packs-ultra');
 
 const racine = path.resolve(__dirname, '..');
 const verification = process.argv.includes('--check');
@@ -14,17 +14,18 @@ const packsActifs = Object.entries(DEFINITIONS).filter(([, definition]) => !defi
 
 const lignesPacks = packsActifs.map(([id, definition]) => {
   const suffixe = id.replace('pack-ultra-', '');
-  const total = referencesPour(id, produits).reduce((somme, reference) => somme + produits[reference].prix, 0);
+  const inclus = produits[referenceVente(id)].inclus;
+  const total = inclus.reduce((somme, reference) => somme + produits[reference].prix, 0);
   const economie = Math.round((total - definition.prix) / total * 100);
   const totalAffiche = `${(total / 100).toFixed(2).replace('.', ',')} €`;
   const prixAffiche = `${definition.prix / 100} €`;
   const [, annee, semestre] = suffixe.match(/^(l[123])-s([12])$/);
   const titre = `${annee.toUpperCase()} semestre ${semestre}`;
-  return `                <a href="pack-ultra.html#${id}" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra ${titre}, ${definition.attendus} ressources, ${prixAffiche} au lieu de ${totalAffiche}, ${economie} % d’économie">
+  return `                <a href="pack-ultra.html#${id}" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra ${titre}, ${inclus.length} ressources, ${prixAffiche} au lieu de ${totalAffiche}, ${economie} % d’économie">
                   <span class="megamenu__pack-tile-cover"><img src="assets/covers/${id}.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
                   <span class="megamenu__pack-tile-body">
                     <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">${annee.toUpperCase()} · S${semestre}</span><span class="badge badge--success">-${economie} %</span></span>
-                    <span class="megamenu__pack-tile-meta">${definition.attendus} ressources</span>
+                    <span class="megamenu__pack-tile-meta">${inclus.length} ressources</span>
                     <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">${totalAffiche}</span><span class="megamenu__pack-tile-price">${prixAffiche}</span></span>
                   </span>
                 </a>`;

@@ -23,7 +23,6 @@ ${liens}
 
 const COLONNE_FORMATS = `            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
               <div class="megamenu__niveau-head"><strong>Par format</strong></div>
-              <a href="cours-fiches.html" role="menuitem">🎓 Cours complet</a>
               <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
               <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
               <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
