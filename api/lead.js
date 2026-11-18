@@ -359,7 +359,7 @@ function construireEmailPlan(a) {
       ...blocRecommandationArret(a, a.PLAN_URL),
       "Je travaille tous les jours depuis deux ans sur mes fiches afin de créer les meilleures fiches de droit en France. Donc si tu veux réviser avec mes fiches, n’hésite pas à prendre aussi celles de ta matière.",
       { lien: a.PLAN_FICHE_URL, texte: a.PLAN_FICHE_BOUTON, format: "fiche" },
-      "Si tu as une question sur le commentaire, n’hésite pas à m’envoyer un message en répondant à cet email.",
+      "Si tu as une question sur le commentaire, tu peux m’envoyer un message en répondant à cet email.",
       "Respectueusement,\nJulien\nTrajectoire Droit",
     ], ["l’introduction", "le I.A. rédigé", "compare ce que tu as fait", "corrections complètes", "tous les jours depuis deux ans"],
     "L’introduction, l’annonce du plan et le I.A. rédigé.");

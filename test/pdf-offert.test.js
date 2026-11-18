@@ -86,7 +86,7 @@ test('les plans offerts et les fiches d’arrêt renvoient vers les supports de 
       assert.match(emailPlan.texte, /thème de l’arrêt\.\n\nCependant,[^\n]+corrections complètes\./);
       assert.match(emailPlan.texte, /Je travaille tous les jours depuis deux ans sur mes fiches afin de créer les meilleures fiches de droit en France\./);
       assert.match(emailPlan.texte, /Donc si tu veux réviser avec mes fiches, n’hésite pas à prendre aussi celles de ta matière\./);
-      assert.match(emailPlan.texte, /Si tu as une question sur le commentaire,[^\n]+en répondant à cet email\.\n\nRespectueusement,\nJulien\nTrajectoire Droit$/);
+      assert.match(emailPlan.texte, /Si tu as une question sur le commentaire, tu peux m’envoyer un message en répondant à cet email\.\n\nRespectueusement,\nJulien\nTrajectoire Droit$/);
       assert.ok(emailPlan.html.includes('Respectueusement,<br>Julien<br>Trajectoire Droit'), slug);
       assert.ok(emailPlan.texte.includes(aPlan.PLAN_PDF) && emailPlan.texte.includes(aPlan.PLAN_URL));
       assert.equal((emailPlan.html.match(/<a href="/g) || []).length, 3, slug);
