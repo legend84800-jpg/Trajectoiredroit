@@ -1,6 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
+const { createHash } = require("node:crypto");
 const path = require("node:path");
 const lead = require("../api/lead");
 const kit = require("../api/kit-essai");
@@ -86,4 +87,39 @@ test("le lien fixe et les anciens liens aboutissent au même PDF", () => {
   kit({ method: "POST", query: {} }, res);
   assert.equal(res.code, 405);
   assert.equal(fs.readFileSync(path.join(__dirname, "..", essai.KIT), "utf8").slice(0, 5), "%PDF-");
+});
+
+test("les pages du site utilisent le formulaire fixe et la version courante de son script", () => {
+  const racine = path.join(__dirname, "..");
+  const script = fs.readFileSync(path.join(racine, "assets/js/essai-majeures.js"));
+  const version = createHash("sha256").update(script).digest("hex").slice(0, 8);
+  const pagesAvecEssai = new Set();
+
+  assert.ok(!fs.existsSync(path.join(racine, "assets/data/essai-majeures.json")));
+  for (const page of fs.readdirSync(racine).filter(nom => nom.endsWith(".html"))) {
+    const html = fs.readFileSync(path.join(racine, page), "utf8");
+    assert.doesNotMatch(html, /tjd\/essai\/(?:kit|genere)\//, page);
+    if (!/\bdata-tjd-essai(?=[\s=>])/.test(html)) continue;
+    pagesAvecEssai.add(page);
+    assert.doesNotMatch(html, /\bdata-tjd-essai\s*=|\bdata-preselection\s*=/, page);
+    assert.ok(html.includes(`/assets/js/essai-majeures.js?v=${version}"`), page);
+  }
+  for (const page of [
+    "majeures-preparees.html",
+    "droit-des-contrats-l2.html",
+    "notion-service-public-droit-administratif.html",
+    "cas-pratique-corrige-droit-civil-l1.html",
+  ]) {
+    assert.ok(pagesAvecEssai.has(page), page);
+  }
+});
+
+test("le jeu Cassation met en cache le script qui ouvre le formulaire fixe", () => {
+  const jeu = path.join(__dirname, "../jeu");
+  const index = fs.readFileSync(path.join(jeu, "index.html"), "utf8");
+  const worker = fs.readFileSync(path.join(jeu, "sw.js"), "utf8");
+  const script = index.match(/src="(jeu\.js\?v=[0-9a-f]+)"/);
+  assert.ok(script);
+  assert.ok(worker.includes(`"${script[1]}"`));
+  assert.match(index, /majeures-preparees\.html\?[^"]+#essai-majeures/);
 });

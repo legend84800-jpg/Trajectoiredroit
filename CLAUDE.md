@@ -42,6 +42,14 @@ python3 /Users/julienfnl/Claude/livrables/automatisation/verifier_sante_site.py 
 
 Le contrôle passe les liens internes et les fichiers produits. Si une anomalie sort, la corriger, relancer le contrôle, et publier seulement quand il est vert. Rien ne part sur une impression que ça a l'air bon.
 
+## Essais et extraits gratuits
+
+Le serveur limite chaque essai aux extraits prévus pour cette offre. Une nouvelle demande, une autre adresse email ou un ancien formulaire donnent accès au même contenu.
+
+Avant de publier, compare les fichiers réellement accessibles avec les extraits prévus. Contrôle aussi les anciennes routes, les adresses directes et les fichiers conservés en cache.
+
+Stocke les fichiers payants en privé. Les acheteurs reçoivent leurs liens d’accès depuis leur commande.
+
 ## Ce qu'on ne touche pas
 
 - Les clés et les jetons. Ils vivent dans le `.env` local et dans les variables d'environnement Vercel, jamais en clair dans une page ni dans un commit.

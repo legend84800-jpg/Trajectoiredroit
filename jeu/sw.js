@@ -1,6 +1,6 @@
 /* Service worker du jeu Cassation. Coquille en cache, données réseau d'abord. */
-var CACHE = "cassation-v2";
-var COQUILLE = ["./", "jeu.css?v=1", "jeu.js?v=2", "manifest.webmanifest"];
+var CACHE = "cassation-v3";
+var COQUILLE = ["./", "jeu.css?v=cb164917", "jeu.js?v=a7bc7228", "manifest.webmanifest"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(COQUILLE); }).then(function () { return self.skipWaiting(); }));
@@ -8,7 +8,7 @@ self.addEventListener("install", function (e) {
 
 self.addEventListener("activate", function (e) {
   e.waitUntil(caches.keys().then(function (cles) {
-    return Promise.all(cles.filter(function (k) { return k !== CACHE; }).map(function (k) { return caches.delete(k); }));
+    return Promise.all(cles.filter(function (k) { return k.startsWith("cassation-") && k !== CACHE; }).map(function (k) { return caches.delete(k); }));
   }).then(function () { return self.clients.claim(); }));
 });
 
