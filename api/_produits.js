@@ -979,4 +979,6 @@ for (const [id, produit] of Object.entries(PRODUITS)) {
 Object.assign(PRODUITS, require("./_packs-ultra").construireProduits(PRODUITS));
 Object.assign(PRODUITS, require("./_packs-partiels").construireProduits(PRODUITS));
 
+Object.assign(PRODUITS, require("./_kits-partiels").construireProduits(PRODUITS));
+
 module.exports = PRODUITS;

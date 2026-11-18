@@ -16,9 +16,10 @@ function montantEcheance(prixCentimes, nombre) {
 function nombreEcheancesValide(produitId, produit, valeur) {
   const nombre = Number(valeur);
   if (!NOMBRES_ECHEANCES.includes(nombre)) return null;
-  if (typeof produitId !== "string" || !produitId.startsWith("pack-ultra-")) return null;
+  if (typeof produitId !== "string") return null;
   if (!produit || produit.venteSuspendue || !Number.isInteger(produit.prix)) return null;
-  return nombre;
+  const modes = produitId.startsWith("pack-ultra-") ? NOMBRES_ECHEANCES : produit.echeancesAutorisees;
+  return modes?.includes(nombre) ? nombre : null;
 }
 
 function euros(centimes) {
@@ -80,9 +81,15 @@ function versCheckoutEcheances(params, produit, nombre) {
 // schedule existe déjà (webhook rejoué), il n'est pas recréé.
 async function bornerAbonnement(stripe, subscriptionId, nombre) {
   const abonnement = await stripe.subscriptions.retrieve(subscriptionId);
-  if (abonnement.schedule) return { dejaBorne: true };
-  const schedule = await stripe.subscriptionSchedules.create({ from_subscription: subscriptionId });
+  const schedule = abonnement.schedule
+    ? await stripe.subscriptionSchedules.retrieve(abonnement.schedule)
+    : await stripe.subscriptionSchedules.create(
+      { from_subscription: subscriptionId },
+      { idempotencyKey: `echeances-${subscriptionId}` }
+    );
   const phase = schedule.phases[0];
+  if (schedule.end_behavior === "cancel" && schedule.phases.length === 1
+    && phase?.metadata?.echeances === String(nombre)) return { dejaBorne: true };
   await stripe.subscriptionSchedules.update(schedule.id, {
     end_behavior: "cancel",
     proration_behavior: "none",

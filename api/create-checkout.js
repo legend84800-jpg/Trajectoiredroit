@@ -652,8 +652,12 @@ async function handler(req, res) {
     });
   }
 
-  // Paiement en 2 ou 3 fois sans frais, réservé aux Packs Ultra achetés seuls.
+  // Les produits du catalogue fixent les échéances possibles en achat direct.
   const nombreEcheances = bump ? null : nombreEcheancesValide(produitId, produit, corps.echeances);
+  if (produit.echeancesAutorisees && corps.echeances != null && !nombreEcheances) {
+    res.status(400).json({ erreur: "Mode de paiement indisponible", code: "echeances_indisponibles" });
+    return;
+  }
   const paramsEcheances = nombreEcheances ? versCheckoutEcheances(params, produit, nombreEcheances) : params;
   const paramsFinaux = cadeau
     ? appliquerCadeauCheckout(

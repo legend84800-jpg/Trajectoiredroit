@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Choisis trois matières de L1, L2 ou L3. Pour 69 €, reçois les fiches complètes, les majeures préparées ou les dissertations corrigées et les QCM avec flashcards.">
+  <link rel="canonical" href="https://trajectoiredroit.com/kit-partiels.html">
+  <title>Kit Partiels de trois matières | Trajectoire Droit</title>
+  <link rel="stylesheet" href="assets/style.css?v=a8ac54a2">
+  <link rel="stylesheet" href="assets/kit-partiels/styles.css">
+  <script src="assets/js/main.js?v=6f18d1c8" defer></script>
+  <script src="assets/js/achat.js?v=81a894f1" defer></script>
+  <script src="assets/js/cookie-consent.js?v=63ff8b7a" defer></script>
+  <script src="assets/kit-partiels/catalogue.js" defer></script>
+  <script src="assets/kit-partiels/composer.js" defer></script>
+</head>
+<body id="haut">
+  <header class="header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html"><img src="assets/kit-partiels/media/logo.png" alt="" width="38" height="38">Trajectoire Droit</a>
+      <nav class="nav" aria-label="Accès rapide">
+        <a href="#contenu">Contenu du kit</a>
+        <a class="button button--outline" href="#composer">Choisir mes matières</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+
+<section class="kit-hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1>Tes trois matières dans un seul kit.</h1>
+      <p class="lead">Choisis les trois matières que tu passes en L1, L2 ou L3. Tu as les supports pour revoir le cours et préparer tes copies avant les partiels.</p>
+      <div class="offer-line"><strong data-kit-prix>69 €</strong><span>ou 2 × <span data-kit-echeance>34,50 €</span> sans frais</span></div>
+      <a class="button" href="#composer">Choisir mes matières</a>
+    </div>
+    <figure class="desk" aria-label="Exemples de supports de droit des contrats">
+      <img class="paper-fiche" src="assets/kit-partiels/media/fiche-contrats.webp" alt="Couverture de la fiche complète de droit des contrats">
+      <img class="paper-majeure" src="assets/kit-partiels/media/majeure-dol.webp" alt="Extrait de la majeure préparée sur le dol">
+      <img class="paper-qcm" src="assets/kit-partiels/media/qcm-contrats.webp" alt="Couverture des QCM et flashcards de droit des contrats">
+      <figcaption class="desk-caption">Exemples de supports en droit des contrats</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section" id="contenu">
+  <div class="wrap">
+    <div class="section-intro">
+      <h2>Ce que tu reçois pour chaque matière</h2>
+    </div>
+    <div class="supports-list">
+      <div class="support"><h3>La fiche complète</h3><p>Tu reprends les règles du cours et leur plan. Les cartes mentales t’aident à relier les notions.</p></div>
+      <div class="support"><h3>Les majeures préparées ou les dissertations corrigées</h3><p>Selon la matière, tu reçois les règles à appliquer en cas pratique ou des copies modèles de dissertation.</p></div>
+      <div class="support"><h3>Les QCM et les flashcards</h3><p>Tu vérifies ce que tu as retenu. Les fichiers Anki te permettent de revoir les questions où tu te trompes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section config-zone" id="composer">
+  <div class="wrap">
+    <div class="section-intro">
+      <h2>Compose ton Kit Partiels</h2>
+      <p>Choisis ton année, puis les trois matières que tu veux réviser.</p>
+    </div>
+
+<noscript><p>Active JavaScript pour composer ton kit. <a href="packs-partiels.html">Voir les Packs Partiels du premier semestre</a>.</p></noscript>
+<form id="config" class="config config-grid">
+  <div class="picker">
+    <fieldset>
+      <legend class="control-name">Ton année</legend>
+      <div class="niveaux"><div class="level-option"><input id="niveau-l1" type="radio" name="niveau" value="l1"><label for="niveau-l1">L1</label></div><div class="level-option"><input id="niveau-l2" type="radio" name="niveau" value="l2" checked><label for="niveau-l2">L2</label></div><div class="level-option"><input id="niveau-l3" type="radio" name="niveau" value="l3"><label for="niveau-l3">L3</label></div></div>
+    </fieldset>
+    <fieldset>
+      <legend class="control-name matter-legend">Tes trois matières <span class="counter" id="compteur" aria-live="polite">0 sur 3</span></legend>
+      <div id="matieres"></div>
+    </fieldset>
+  </div>
+  <div class="summary">
+    <h3 class="summary-head">Ton Kit Partiels</h3>
+    <div class="selection" id="selection"></div>
+    <div class="pricing">
+      <div class="price-main"><strong data-kit-prix>69 €</strong><span>pour les trois matières</span></div>
+      <p id="comparaison" class="compare">Les mêmes supports coûtent <strong id="prix-separe"></strong> à l’unité.</p>
+    </div>
+    <fieldset>
+      <legend class="control-name">Paiement</legend>
+      <div class="pay-list">
+        <div class="pay-option">
+          <input id="payer-une-fois" name="paiement" type="radio" value="1" checked>
+          <label for="payer-une-fois"><span class="pay-name">En une fois</span><span data-kit-prix>69 €</span></label>
+        </div>
+        <div class="pay-option">
+          <input id="payer-deux-fois" name="paiement" type="radio" value="2">
+          <label for="payer-deux-fois"><span class="pay-name">En deux fois sans frais</span><span>2 × <span data-kit-echeance>34,50 €</span></span></label>
+        </div>
+      </div>
+    </fieldset>
+    <p class="pay-note" id="detail-paiement" aria-live="polite"></p>
+    <button class="button" id="commander" type="submit" disabled>Choisis trois matières</button>
+    <p class="delivery">Tes fichiers arrivent par email dès le premier paiement.</p>
+  </div>
+</form>
+
+  </div>
+</section>
+
+
+<section class="section" id="questions">
+  <div class="wrap faq">
+    <h2>Questions sur le kit</h2>
+    <div>
+      <details><summary>Quels supports sont inclus en droit constitutionnel&nbsp;?</summary>
+        <p>Avec la fiche complète, tu reprends le cours de ton semestre. Ensuite, tu vérifies ce que tu as retenu avec les QCM et les flashcards. Pour la rédaction, tu reçois aussi les dissertations corrigées du même semestre.</p></details>
+      <details><summary>Quand vais-je recevoir mes fichiers&nbsp;?</summary>
+        <p>Tu reçois les fichiers des trois matières par email dès le premier paiement. Une fois téléchargés, les fichiers restent à toi.</p></details>
+      <details><summary>Comment se passe le paiement en deux fois&nbsp;?</summary>
+        <p>Tu paies <span data-kit-echeance>34,50 €</span> à la commande et <span data-kit-echeance>34,50 €</span> un mois plus tard. Le total reste à <span data-kit-prix>69 €</span>.</p></details>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <footer class="footer">
+    <div class="wrap">
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="cgu.html">Conditions de vente</a>
+      <a href="confidentialite.html">Confidentialité</a>
+    </div>
+  </footer>
+</body>
+</html>

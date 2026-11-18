@@ -281,6 +281,12 @@ for (const [id, definition] of Object.entries(DEFINITIONS)) {
   if (!definition.venteSuspendue) VISUELS[referenceVente(id)] = VISUELS[id];
 }
 
+for (const id of Object.keys(require("./_produits"))) {
+  if (id.startsWith("pack-kit-partiels-")) {
+    VISUELS[id] = "assets/covers/kit-partiels-trois-matieres.png";
+  }
+}
+
 const IMAGES_PRODUITS = Object.freeze(Object.fromEntries(
   Object.entries(VISUELS).map(([id, chemin]) => [id, `https://trajectoiredroit.com/${chemin}`])
 ));

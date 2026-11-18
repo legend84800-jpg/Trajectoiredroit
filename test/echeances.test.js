@@ -150,6 +150,7 @@ test("le plafond crée un schedule qui s'arrête après N mois, une seule fois",
         appels.push(["create", params]);
         return { id: "sub_sched_1", phases: [{ start_date: 1790000000, items: [{ price: { id: "price_1" }, quantity: 1 }] }] };
       },
+      retrieve: async () => ({ id: schedule, ...appels[1][2] }),
       update: async (id, params) => { appels.push(["update", id, params]); schedule = id; return {}; },
     },
   };
