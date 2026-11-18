@@ -345,12 +345,11 @@ function attributsPlan(plan) {
 
 const SALUT_PDF = a => a.PRENOM ? `Salut ${a.PRENOM},` : "Salut,";
 
-// Même texte que la branche plan-commentaire du premier mail de bienvenue.
-function construireEmailPlan(a) {
+function construireEmailPlan(a, salutation = SALUT_PDF(a)) {
   const sujet = `Ton plan offert pour commenter ${a.PLAN_ARRET}`;
   if (a.PLAN_EXTRAIT) {
     return construireEmailArret(sujet, [
-      SALUT_PDF(a),
+      salutation,
       `Tu as demandé le plan du commentaire de ${a.PLAN_ARRET}, le voici.`,
       "Dans le PDF, j’ai repris l’introduction avec la problématique et la solution du juge. Tu trouveras ensuite l’annonce du plan et le I.A. rédigé, tel qu’il figure dans le commentaire complet.",
       { lien: a.PLAN_PDF, texte: "Télécharger le plan offert", format: "telechargement" },
@@ -365,7 +364,7 @@ function construireEmailPlan(a) {
     "L’introduction, l’annonce du plan et le I.A. rédigé.");
   }
   const paragraphes = [
-    SALUT_PDF(a),
+    salutation,
     `Tu as demandé le plan du commentaire de ${a.PLAN_ARRET}. Le PDF commence par la problématique, c’est-à-dire la question juridique à laquelle le commentaire répond. Il rappelle aussi la solution du juge et annonce les deux parties du commentaire. Pour chaque partie, un paragraphe explique ce que tu peux y développer.`,
     { lien: a.PLAN_PDF, texte: "Télécharger le plan", format: "telechargement" },
     "Pour préparer ta séance de travaux dirigés, tu peux prendre une sous-partie du plan et essayer de la rédiger. Tu expliques ce que le juge a décidé et pourquoi, en utilisant les articles et les décisions de justice qui concernent cette question. Tu verras ainsi quels points tu arrives à expliquer seul et lesquels demandent de reprendre ton cours.",
@@ -376,20 +375,37 @@ function construireEmailPlan(a) {
   return construireEmailArret(sujet, paragraphes, ["la problématique", "la solution du juge"]);
 }
 
+function construireModeleBrevoPlan() {
+  const champs = [
+    "PLAN_ARRET", "PLAN_PDF", "PLAN_URL", "OFFRE_ARRET_TEXTE", "OFFRE_ARRET_BOUTON",
+    "PLAN_FICHE_URL", "PLAN_FICHE_BOUTON",
+  ];
+  const attributs = Object.fromEntries(champs.map(champ => [champ, `{{ params.${champ} }}`]));
+  const salutation = "Salut{% if params.PRENOM %} {{ params.PRENOM }}{% endif %},";
+  return construireEmailPlan({ ...attributs, PLAN_EXTRAIT: true, OFFRE_ARRET_FORMAT: "compilation" }, salutation);
+}
+
+const MODELE_PLAN_OFFERT_BREVO = 70;
+
 async function envoyerPlan(email, attributs, apiKey) {
-  const contenu = construireEmailPlan(attributs);
-  const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "api-key": apiKey, accept: "application/json" },
-    body: JSON.stringify({
+  const message = { to: [{ email }], tags: ["plan-commentaire", attributs.PLAN_SLUG] };
+  if (attributs.PLAN_EXTRAIT) {
+    message.templateId = MODELE_PLAN_OFFERT_BREVO;
+    message.params = attributs;
+  } else {
+    const contenu = construireEmailPlan(attributs);
+    Object.assign(message, {
       sender: { name: "Julien", email: "contact@trajectoiredroit.com" },
-      to: [{ email }],
       replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
       subject: contenu.sujet,
       htmlContent: contenu.html,
       textContent: contenu.texte,
-      tags: ["plan-commentaire", attributs.PLAN_SLUG],
-    }),
+    });
+  }
+  const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "api-key": apiKey, accept: "application/json" },
+    body: JSON.stringify(message),
   });
   if (!resp.ok) throw new Error(`Brevo ${resp.status}: ${await resp.text()}`);
 }
@@ -633,5 +649,6 @@ module.exports.urlPdf = urlPdf;
 module.exports.attributsCorrige = attributsCorrige;
 module.exports.attributsPlan = attributsPlan;
 module.exports.construireEmailPlan = construireEmailPlan;
+module.exports.construireModeleBrevoPlan = construireModeleBrevoPlan;
 module.exports.attributsFiche = attributsFiche;
 module.exports.construireEmailFiche = construireEmailFiche;
