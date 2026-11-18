@@ -282,7 +282,7 @@ window.tjdDialogues = (function () {
       var libelles = {
         'cas-pratique-': 'les cas pratiques corrigés',
         'coma-': 'le commentaire d’arrêt corrigé',
-        'commentaire-arret-': 'les commentaires d’arrêt corrigés',
+        'commentaire-arret-': 'les commentaires corrigés',
         'dissertation-': 'les dissertations corrigées',
         'fiche-arret-': 'les fiches d’arrêt',
         'fiche-': 'la fiche complète',

@@ -4,7 +4,7 @@
     var x=(d.recueils||[]).find(function(p){return p.id===id;});if(!x)return;
     var euro=function(n){return(n/100).toFixed(2).replace('.',',')+' €';},code=(params.get('code')||'').toUpperCase(),remise=code==='CORRIGE10',relance=/^(?:RECUEIL|COMPILATION)-[A-F0-9]{8}$/.test(code),prixRelance=x.prix-Math.round(x.prix*.15);
     var title=document.createElement('h2');title.className='h2';title.textContent=x.nom;
-    var libelleAchat = 'Acheter les commentaires d’arrêt corrigés';
+    var libelleAchat = 'Acheter les commentaires corrigés';
     var contenu = x.nombre + ' commentaires d’arrêt rédigés en entier';
     if (id.startsWith('cas-pratique-')) {
       libelleAchat = 'Acheter les cas pratiques corrigés';

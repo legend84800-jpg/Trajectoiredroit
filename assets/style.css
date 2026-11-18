@@ -474,7 +474,11 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   cursor: pointer;
   transition: all .18s ease;
   text-decoration: none;
-  white-space: nowrap;
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
 }
 .btn--primary { background: var(--blue-600); color: var(--white); box-shadow: var(--sh-1) }
 .btn--primary:hover { background: var(--blue-700); color: var(--white); transform: translateY(-1px); box-shadow: var(--sh-2) }
@@ -787,8 +791,6 @@ section[id] { scroll-margin-top: 100px; }
 @media (max-width: 540px) {
   .logo__img { height: 30px; }
   .logo__slogan-only { display: none; }
-  /* Boutons sur petit écran : un libellé long passe à la ligne au lieu de pousser la page et de créer un débordement horizontal (constaté à 360px et en dessous) */
-  .btn { max-width: 100%; white-space: normal; text-align: center; }
   .btn--lg { padding: 14px 20px; font-size: 1rem; }
 }
 .primary-nav { display: flex; gap: var(--sp-5); flex: 1; justify-content: center; flex-wrap: nowrap; align-items: center }
@@ -5504,7 +5506,7 @@ html[data-theme="dark"] .article-produit-inline { background: rgba(94,139,218,0.
   }
   .sticky-cta-bar__text small { font-size: .72rem; white-space: normal; overflow: visible; }
   .sticky-cta-bar .btn {
-    flex: 0 0 auto; white-space: nowrap;
+    flex: 0 1 auto;
     min-height: 44px; padding: 10px 14px; font-size: .9rem;
   }
   /* Lien panier injecté par achat.js : version courte, sur une ligne, à la
