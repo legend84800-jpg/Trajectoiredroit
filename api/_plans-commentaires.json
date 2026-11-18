@@ -2,330 +2,471 @@
   "manoukian": {
     "arret": "l'arrêt Manoukian",
     "produit": "coma-manoukian-2003",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-manoukian-2003.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-manoukian-2003-39aa2f60199e.pdf",
     "page": "arret-manoukian-explique.html",
-    "pages": 13
+    "pages": 13,
+    "extrait": true,
+    "compilation": "commentaire-arret-contrats-l2-s1",
+    "fiche": "fiche-contrats-l2-s1"
   },
   "maison-de-la-poesie-2012": {
     "arret": "l'arrêt Maison de la Poésie",
     "produit": "coma-maison-de-la-poesie-2012",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-maison-de-la-poesie-2012.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-maison-de-la-poesie-2012-1ea9923fd0d9.pdf",
     "page": "arret-maison-de-la-poesie-2012-explique.html",
-    "pages": 14
+    "pages": 14,
+    "extrait": true,
+    "compilation": "commentaire-arret-biens-l2",
+    "fiche": "fiche-biens-l2"
   },
   "bardou-1931": {
     "arret": "l'arrêt Bardou",
     "produit": "coma-bardou-1931",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-bardou-1931.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-bardou-1931-d24f887a2369.pdf",
     "page": "arret-bardou-1931-explique.html",
-    "pages": 12
+    "pages": 12,
+    "extrait": true,
+    "compilation": null,
+    "fiche": "fiche-travail-l3-s1"
   },
   "narcy-1963": {
     "arret": "l'arrêt Narcy",
     "produit": "coma-narcy-1963",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-narcy-1963.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-narcy-1963-f7affcdbade7.pdf",
     "page": "arret-narcy-1963-explique.html",
-    "pages": 16
+    "pages": 16,
+    "extrait": true,
+    "compilation": "commentaire-arret-da-l2-s1",
+    "fiche": "fiche-da-l2-s1"
   },
   "solidarite-commerciale-1920": {
     "arret": "l'arrêt du 20 octobre 1920",
     "produit": "coma-solidarite-commerciale-1920",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-solidarite-commerciale-1920.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-solidarite-commerciale-1920-1076469ab3f4.pdf",
     "page": "arret-solidarite-commerciale-1920-explique.html",
-    "pages": 14
+    "pages": 14,
+    "extrait": true,
+    "compilation": null,
+    "fiche": "fiche-commercial-l3-s1"
   },
   "galopin-2004": {
     "arret": "l'arrêt Galopin",
     "produit": "coma-galopin-2004",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-galopin-2004.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-galopin-2004-968557a1ce5e.pdf",
     "page": "arret-galopin-2004-explique.html",
-    "pages": 12
+    "pages": 12,
+    "extrait": true,
+    "compilation": "commentaire-arret-famille-l1-s2",
+    "fiche": "fiche-famille-l1-s2"
   },
   "bowater-1986": {
     "arret": "l'arrêt Bowater",
     "produit": "coma-bowater-1986",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-bowater-1986.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-bowater-1986-3bc13184b928.pdf",
     "page": "arret-bowater-1986-explique.html",
-    "pages": 14
+    "pages": 14,
+    "extrait": true,
+    "compilation": "commentaire-arret-societes-l3-s1",
+    "fiche": "fiche-societes-l3-s1"
   },
   "perdereau-1986": {
     "arret": "l'arrêt Perdereau",
     "produit": "coma-perdereau-1986",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-perdereau-1986.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-perdereau-1986-4f6589732fe3.pdf",
     "page": "arret-perdereau-1986-explique.html",
-    "pages": 11
+    "pages": 11,
+    "extrait": true,
+    "compilation": "commentaire-arret-penal-l2-s1",
+    "fiche": "fiche-penal-l2-s1"
   },
   "non-concurrence-2002": {
     "arret": "l'arrêt du 10 juillet 2002",
     "produit": "coma-non-concurrence-2002",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-non-concurrence-2002.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-non-concurrence-2002-d09760adf965.pdf",
     "page": "arret-non-concurrence-2002-explique.html",
-    "pages": 10
+    "pages": 10,
+    "extrait": true,
+    "compilation": "commentaire-arret-travail-l3-s1",
+    "fiche": "fiche-travail-l3-s1"
   },
   "bac-eloka": {
     "arret": "l'arrêt Bac d'Eloka",
     "produit": "coma-bac-eloka-1921",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-bac-eloka-1921.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-bac-eloka-1921-46f440b27394.pdf",
     "page": "arret-bac-eloka-explique.html",
-    "pages": 13
+    "pages": 13,
+    "extrait": true,
+    "compilation": null,
+    "fiche": "fiche-da-l2-s1"
   },
   "blanco-1873": {
     "arret": "l'arrêt Blanco",
     "produit": "coma-blanco-1873",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-blanco-1873.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-blanco-1873-3ec71bbd5963.pdf",
     "page": "arret-blanco-explique.html",
-    "pages": 13
+    "pages": 13,
+    "extrait": true,
+    "compilation": "commentaire-arret-da-l2-s1",
+    "fiche": "fiche-da-l2-s1"
   },
   "benjamin-1933": {
     "arret": "l'arrêt Benjamin",
     "produit": "coma-benjamin-1933",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-benjamin-1933.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-benjamin-1933-57a17856c57a.pdf",
     "page": "arret-benjamin-explique.html",
-    "pages": 14
+    "pages": 14,
+    "extrait": true,
+    "compilation": "commentaire-arret-da-l2-s1",
+    "fiche": "fiche-da-l2-s1"
   },
   "lacour-1962": {
     "arret": "l'arrêt Lacour",
     "produit": "coma-lacour-1962",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-lacour-1962.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-lacour-1962-155d6cc7d803.pdf",
     "page": "arret-lacour-1962-explique.html",
-    "pages": 11
+    "pages": 11,
+    "extrait": true,
+    "compilation": "commentaire-arret-penal-l2-s1",
+    "fiche": "fiche-penal-l2-s1"
   },
   "poussin-1978": {
     "arret": "l'arrêt Poussin",
     "produit": "coma-poussin-1978",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-poussin-1978.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-poussin-1978-4189a73221f0.pdf",
     "page": "arret-poussin-1978-explique.html",
-    "pages": 10
+    "pages": 10,
+    "extrait": true,
+    "compilation": "commentaire-arret-contrats-l2-s1",
+    "fiche": "fiche-contrats-l2-s1"
   },
   "cousinet-1967": {
     "arret": "l'arrêt Cousinet",
     "produit": "coma-cousinet-1967",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-cousinet-1967.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-cousinet-1967-c4a6f2924955.pdf",
     "page": "arret-cousinet-1967-explique.html",
-    "pages": 11
+    "pages": 11,
+    "extrait": true,
+    "compilation": "commentaire-arret-penal-l2-s1",
+    "fiche": "fiche-penal-l2-s1"
   },
   "jandheur-1930": {
     "arret": "l'arrêt Jand'heur",
     "produit": "coma-jandheur-1930",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-jandheur-1930.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-jandheur-1930-02adcbd16045.pdf",
     "page": "arret-jandheur-1930-explique.html",
-    "pages": 10
+    "pages": 10,
+    "extrait": true,
+    "compilation": "commentaire-arret-obligations-l2-s2",
+    "fiche": "fiche-obligations-l2-s2"
   },
   "schumann-piquard-1961": {
     "arret": "l'arrêt Schumann-Piquard",
     "produit": "coma-schumann-piquard-1961",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-schumann-piquard-1961.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-schumann-piquard-1961-0670fabf8cd4.pdf",
     "page": "arret-abus-majorite-1961-explique.html",
-    "pages": 11
+    "pages": 11,
+    "extrait": true,
+    "compilation": "commentaire-arret-societes-l3-s1",
+    "fiche": "fiche-societes-l3-s1"
   },
   "baldus-2000": {
     "arret": "l'arrêt Baldus",
     "produit": "coma-baldus-2000",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-baldus-2000.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-baldus-2000-387cf0eb99b9.pdf",
     "page": "arret-baldus-explique.html",
-    "pages": 13
+    "pages": 13,
+    "extrait": true,
+    "compilation": "commentaire-arret-contrats-l2-s1",
+    "fiche": "fiche-contrats-l2-s1"
   },
   "teffaine-1896": {
     "arret": "l'arrêt Teffaine",
     "produit": "coma-teffaine-1896",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-teffaine-1896.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-teffaine-1896-bd9ea1582071.pdf",
     "page": "arret-teffaine-1896-explique.html",
-    "pages": 10
+    "pages": 10,
+    "extrait": true,
+    "compilation": "commentaire-arret-obligations-l2-s2",
+    "fiche": "fiche-obligations-l2-s2"
   },
   "mennesson-2019": {
     "arret": "l'arrêt Mennesson",
     "produit": "coma-mennesson-2019",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-mennesson-2019.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-mennesson-2019-8da5056fd047.pdf",
     "page": "arret-mennesson-2019-explique.html",
-    "pages": 19
+    "pages": 19,
+    "extrait": true,
+    "compilation": "commentaire-arret-personnes-l1",
+    "fiche": "fiche-personnes-l1"
   },
   "vollard-1993": {
     "arret": "l'arrêt Vollard",
     "produit": "coma-vollard-1993",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-vollard-1993.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-vollard-1993-232a72b23144.pdf",
     "page": "arret-vollard-1993-explique.html",
-    "pages": 12
+    "pages": 12,
+    "extrait": true,
+    "compilation": "commentaire-arret-biens-l2",
+    "fiche": "fiche-biens-l2"
   },
   "bertrand-1997": {
     "arret": "l'arrêt Bertrand",
     "produit": "coma-bertrand-1997",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-bertrand-1997.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-bertrand-1997-5c8b49fdbab9.pdf",
     "page": "arret-bertrand-1997-explique.html",
-    "pages": 10
+    "pages": 10,
+    "extrait": true,
+    "compilation": "commentaire-arret-obligations-l2-s2",
+    "fiche": "fiche-obligations-l2-s2"
   },
   "laboube-1956": {
     "arret": "l'arrêt Laboube",
     "produit": "coma-laboube-1956",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-laboube-1956.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-laboube-1956-53af0cd81ff0.pdf",
     "page": "arret-laboube-1956-explique.html",
-    "pages": 10
+    "pages": 10,
+    "extrait": true,
+    "compilation": "commentaire-arret-penal-l2-s1",
+    "fiche": "fiche-penal-l2-s1"
   },
   "chronopost-1996": {
     "arret": "l'arrêt Chronopost",
     "produit": "coma-chronopost-1996",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-chronopost-1996.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-chronopost-1996-40d3957009e3.pdf",
     "page": "arret-chronopost-explique.html",
-    "pages": 10
+    "pages": 10,
+    "extrait": true,
+    "compilation": "commentaire-arret-contrats-l2-s1",
+    "fiche": "fiche-contrats-l2-s1"
   },
   "canal-de-craponne-1876": {
     "arret": "l'arrêt Canal de Craponne",
     "produit": "coma-canal-de-craponne-1876",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-canal-de-craponne-1876.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-canal-de-craponne-1876-9368292c8085.pdf",
     "page": "arret-canal-de-craponne-explique.html",
-    "pages": 14
+    "pages": 14,
+    "extrait": true,
+    "compilation": "commentaire-arret-contrats-l2-s1",
+    "fiche": "fiche-contrats-l2-s1"
   },
   "mere-porteuse-1991": {
     "arret": "l'arrêt des mères porteuses",
     "produit": "coma-mere-porteuse-1991",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-mere-porteuse-1991.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-mere-porteuse-1991-716e0655fc75.pdf",
     "page": "arret-gpa-1991-explique.html",
-    "pages": 11
+    "pages": 11,
+    "extrait": true,
+    "compilation": "commentaire-arret-personnes-l1",
+    "fiche": "fiche-personnes-l1"
   },
   "clement-bayard-1915": {
     "arret": "l'arrêt Clément-Bayard",
     "produit": "coma-clement-bayard-1915",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-clement-bayard-1915.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-clement-bayard-1915-426b14fa4312.pdf",
     "page": "arret-clement-bayard-1915-explique.html",
-    "pages": 11
+    "pages": 11,
+    "extrait": true,
+    "compilation": "commentaire-arret-biens-l2",
+    "fiche": "fiche-biens-l2"
   },
   "perruche-2000": {
     "arret": "l'arrêt Perruche",
     "produit": "coma-perruche-2000",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-perruche-2000.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-perruche-2000-81babbbf3f04.pdf",
     "page": "arret-perruche-2000-explique.html",
-    "pages": 13
+    "pages": 13,
+    "extrait": true,
+    "compilation": "commentaire-arret-personnes-l1",
+    "fiche": "fiche-personnes-l1"
   },
   "mandat-apparent-1962": {
     "arret": "l'arrêt Banque canadienne nationale",
     "produit": "coma-mandat-apparent-1962",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-mandat-apparent-1962.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-mandat-apparent-1962-2fd55530345c.pdf",
     "page": "arret-mandat-apparent-1962-explique.html",
-    "pages": 10
+    "pages": 10,
+    "extrait": true,
+    "compilation": "commentaire-arret-contrats-speciaux-l3",
+    "fiche": "fiche-contrats-speciaux-l3"
   },
   "fruehauf-1965": {
     "arret": "l'arrêt Fruehauf",
     "produit": "coma-fruehauf-1965",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-fruehauf-1965.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-fruehauf-1965-f2e59df8d1ea.pdf",
     "page": "arret-fruehauf-explique.html",
-    "pages": 11
+    "pages": 11,
+    "extrait": true,
+    "compilation": "commentaire-arret-societes-l3-s1",
+    "fiche": "fiche-societes-l3-s1"
   },
   "expertise-biologique-2000": {
     "arret": "l'arrêt du 28 mars 2000 (expertise biologique)",
     "produit": "coma-expertise-biologique-2000",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-expertise-biologique-2000.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-expertise-biologique-2000-6b2fc2efabe7.pdf",
     "page": "arret-expertise-biologique-2000-explique.html",
-    "pages": 10
+    "pages": 10,
+    "extrait": true,
+    "compilation": "commentaire-arret-famille-l1-s2",
+    "fiche": "fiche-famille-l1-s2"
   },
   "pacte-de-preference-2006": {
     "arret": "l'arrêt du 26 mai 2006 (pacte de préférence)",
     "produit": "coma-pacte-de-preference-2006",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-pacte-de-preference-2006.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-pacte-de-preference-2006-45f04320d8f4.pdf",
     "page": "arret-pacte-de-preference-2006-explique.html",
-    "pages": 12
+    "pages": 12,
+    "extrait": true,
+    "compilation": "commentaire-arret-contrats-l2-s1",
+    "fiche": "fiche-contrats-l2-s1"
   },
   "costedoat-2000": {
     "arret": "l'arrêt Costedoat",
     "produit": "coma-costedoat-2000",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-costedoat-2000.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-costedoat-2000-f9f661b8a268.pdf",
     "page": "arret-costedoat-2000-explique.html",
-    "pages": 13
+    "pages": 13,
+    "extrait": true,
+    "compilation": "commentaire-arret-obligations-l2-s2",
+    "fiche": "fiche-obligations-l2-s2"
   },
   "appietto-1963": {
     "arret": "l'arrêt Appietto",
     "produit": "coma-appietto-1963",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-appietto-1963.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-appietto-1963-d164c118632f.pdf",
     "page": "arret-appietto-1963-explique.html",
-    "pages": 10
+    "pages": 10,
+    "extrait": true,
+    "compilation": "commentaire-arret-famille-l1-s2",
+    "fiche": "fiche-famille-l1-s2"
   },
   "uber-2020": {
     "arret": "l'arrêt Uber",
     "produit": "coma-uber-2020",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-uber-2020.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-uber-2020-1c97e6c84fe0.pdf",
     "page": "arret-uber-2020-explique.html",
-    "pages": 12
+    "pages": 12,
+    "extrait": true,
+    "compilation": "commentaire-arret-travail-l3-s1",
+    "fiche": "fiche-travail-l3-s1"
   },
   "sexe-neutre-2017": {
     "arret": "l'arrêt du 4 mai 2017 (sexe neutre)",
     "produit": "coma-sexe-neutre-2017",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-sexe-neutre-2017.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-sexe-neutre-2017-19dc95eaba1d.pdf",
     "page": "arret-sexe-neutre-2017-explique.html",
-    "pages": 12
+    "pages": 12,
+    "extrait": true,
+    "compilation": "commentaire-arret-personnes-l1",
+    "fiche": "fiche-personnes-l1"
   },
   "vilgrain-1996": {
     "arret": "l'arrêt Vilgrain",
     "produit": "coma-vilgrain-1996",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-vilgrain-1996.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-vilgrain-1996-784aa0658247.pdf",
     "page": "arret-vilgrain-1996-explique.html",
-    "pages": 14
+    "pages": 14,
+    "extrait": true,
+    "compilation": "commentaire-arret-societes-l3-s1",
+    "fiche": "fiche-societes-l3-s1"
   },
   "begles-2007": {
     "arret": "l'arrêt du mariage de Bègles",
     "produit": "coma-begles-2007",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-begles-2007.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-begles-2007-871538c7fd20.pdf",
     "page": "arret-begles-2007-explique.html",
-    "pages": 11
+    "pages": 11,
+    "extrait": true,
+    "compilation": "commentaire-arret-famille-l1-s2",
+    "fiche": "fiche-famille-l1-s2"
   },
   "nikon-2001": {
     "arret": "l'arrêt Nikon",
     "produit": "coma-nikon-2001",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-nikon-2001.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-nikon-2001-ae1aca8b5fac.pdf",
     "page": "arret-nikon.html",
-    "pages": 11
+    "pages": 11,
+    "extrait": true,
+    "compilation": "commentaire-arret-travail-l3-s1",
+    "fiche": "fiche-travail-l3-s1"
   },
   "desmares-1982": {
     "arret": "l'arrêt Desmares",
     "produit": "coma-desmares-1982",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-desmares-1982.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-desmares-1982-838a4e06e0ed.pdf",
     "page": "arret-desmares-1982-explique.html",
-    "pages": 13
+    "pages": 13,
+    "extrait": true,
+    "compilation": "commentaire-arret-obligations-l2-s2",
+    "fiche": "fiche-obligations-l2-s2"
   },
   "empietement-1990": {
     "arret": "l'arrêt du 7 juin 1990 (empiètement)",
     "produit": "coma-empietement-1990",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-empietement-1990.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-empietement-1990-ff37d23044e0.pdf",
     "page": "arret-empietement-1990-explique.html",
-    "pages": 10
+    "pages": 10,
+    "extrait": true,
+    "compilation": "commentaire-arret-biens-l2",
+    "fiche": "fiche-biens-l2"
   },
   "tresor-2002": {
     "arret": "l'arrêt du 19 novembre 2002 (trésor)",
     "produit": "coma-tresor-2002",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-tresor-2002.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-tresor-2002-871261811022.pdf",
     "page": "arret-tresor-2002-explique.html",
-    "pages": 10
+    "pages": 10,
+    "extrait": true,
+    "compilation": "commentaire-arret-biens-l2",
+    "fiche": "fiche-biens-l2"
   },
   "troubles-voisinage-1986": {
     "arret": "l'arrêt du 19 novembre 1986 (troubles de voisinage)",
     "produit": "coma-troubles-voisinage-1986",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-troubles-voisinage-1986.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-troubles-voisinage-1986-73512b1e0e6a.pdf",
     "page": "arret-troubles-voisinage-1986-explique.html",
-    "pages": 9
+    "pages": 9,
+    "extrait": true,
+    "compilation": "commentaire-arret-biens-l2",
+    "fiche": "fiche-biens-l2"
   },
   "homicide-foetus-2001": {
     "arret": "l'arrêt du 29 juin 2001 (homicide du fœtus)",
     "produit": "coma-homicide-foetus-2001",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-homicide-foetus-2001.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-homicide-foetus-2001-15dcc9b0121c.pdf",
     "page": "arret-homicide-foetus-2001-explique.html",
-    "pages": 12
+    "pages": 12,
+    "extrait": true,
+    "compilation": "commentaire-arret-personnes-l1",
+    "fiche": "fiche-personnes-l1"
   },
   "transsexualisme-1992": {
     "arret": "l'arrêt du 11 décembre 1992 (changement de sexe)",
     "produit": "coma-transsexualisme-1992",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-transsexualisme-1992.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-transsexualisme-1992-c288d7a967a0.pdf",
     "page": "arret-transsexualisme-1992-explique.html",
-    "pages": 11
+    "pages": 11,
+    "extrait": true,
+    "compilation": "commentaire-arret-personnes-l1",
+    "fiche": "fiche-personnes-l1"
   },
   "iron-mountain-2020": {
     "arret": "l'arrêt Iron Mountain",
     "produit": "coma-iron-mountain-2020",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-iron-mountain-2020.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-iron-mountain-2020-12c4418c4bcd.pdf",
     "page": "arret-iron-mountain-2020-explique.html",
-    "pages": 19
+    "pages": 19,
+    "extrait": true,
+    "compilation": "commentaire-arret-societes-l3-s1",
+    "fiche": "fiche-societes-l3-s1"
   },
   "eviction-2021": {
     "arret": "l'arrêt du 10 novembre 2021 (Linagora)",
     "produit": "coma-eviction-2021",
-    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/coma-eviction-2021.pdf",
+    "pdf": "https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/plan-commentaire/extraits/coma-eviction-2021-7c81a884b083.pdf",
     "page": "arret-eviction-fait-personnel-2021-explique.html",
-    "pages": 13
+    "pages": 13,
+    "extrait": true,
+    "compilation": "commentaire-arret-contrats-speciaux-l3",
+    "fiche": "fiche-contrats-speciaux-l3"
   }
 }

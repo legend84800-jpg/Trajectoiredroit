@@ -35,7 +35,7 @@ test('chaque PDF est envoyé par le site avant le déclenchement du suivi', asyn
     const route = new URL(url).pathname;
     const corps = options.body ? JSON.parse(options.body) : undefined;
     appels.push({ route, corps });
-    if (!options.method) return Response.json({ listIds: listesExistantes });
+    if (!options.method) return Response.json({ listIds: listesExistantes, attributes: { PRENOM: ' Camille ' } });
     if (url.endsWith('/smtp/email')) {
       return new Response(statutSmtp === 201 ? null : 'Indisponible', { status: statutSmtp });
     }
@@ -69,7 +69,7 @@ test('chaque PDF est envoyé par le site avant le déclenchement du suivi', asyn
         'CORRIGE_PDF', '/corrige-exercice/commentaire-arret-uber-2020-corrige.pdf'],
       [{ email: 'matiere@example.org', matiere: 'cas-pratique-intro-droit-l1' },
         'CORRIGE_PDF', '/corrige-offert/cas-pratique-intro-droit-l1.pdf'],
-      [{ email: 'plan@example.org', plan: 'manoukian' }, 'PLAN_PDF', '/plan-commentaire/coma-manoukian-2003.pdf'],
+      [{ email: 'plan@example.org', plan: 'manoukian' }, 'PLAN_PDF', require('../api/_plans-commentaires.json').manoukian.pdf],
       [{ email: 'fiche@example.org', fiche: 'arret-abus-majorite-1961-explique' },
         'FICHE_PDF', '/fiche-arret/arret-abus-majorite-1961-explique.pdf'],
     ];
@@ -79,11 +79,11 @@ test('chaque PDF est envoyé par le site avant le déclenchement du suivi', asyn
       res = await demander(demande);
       assert.equal(res.code, 200);
       assert.deepEqual(res.data, { ok: true, envoye: true });
-      const routes = ['/v3/contacts', '/v3/smtp/email', '/v3/contacts/' + encodeURIComponent(demande.email)];
+      const routes = ['/v3/contacts', '/v3/contacts/' + encodeURIComponent(demande.email), '/v3/smtp/email'];
       if (listesExistantes.length === 0) routes.push('/v3/contacts');
       assert.deepEqual(appels.map(appel => appel.route), routes);
 
-      const [contact, mail, , suivi] = appels.map(appel => appel.corps);
+      const [contact, , mail, suivi] = appels.map(appel => appel.corps);
       assert.equal(contact.attributes.LIVRAISON_PDF_SITE, true);
       assert.equal(contact.listIds, undefined);
       assert.ok(contact.attributes[clePdf].endsWith(finDuLien));
@@ -91,8 +91,10 @@ test('chaque PDF est envoyé par le site avant le déclenchement du suivi', asyn
       if (clePdf === 'CORRIGE_PDF') {
         assert.equal(mail.templateId, 33);
         assert.equal(mail.params.CORRIGE_PDF, contact.attributes.CORRIGE_PDF);
+        assert.equal(mail.params.PRENOM, 'Camille');
       } else {
         assert.ok(mail.textContent.includes(contact.attributes[clePdf]));
+        assert.match(mail.textContent, /^Salut Camille,/);
       }
       if (listesExistantes.length === 0) {
         assert.deepEqual(suivi, { email: demande.email, updateEnabled: true, listIds: [17] });
@@ -105,7 +107,7 @@ test('chaque PDF est envoyé par le site avant le déclenchement du suivi', asyn
     res = await demander({ email: 'erreur@example.org', exercice });
     assert.equal(res.code, 500);
     assert.equal(res.data.envoye, undefined);
-    assert.deepEqual(appels.map(appel => appel.route), ['/v3/contacts', '/v3/smtp/email']);
+    assert.deepEqual(appels.map(appel => appel.route), ['/v3/contacts', '/v3/contacts/erreur%40example.org', '/v3/smtp/email']);
     assert.equal(erreurs.length, 1);
 
     res = await demander({ email: 'guide@example.org', source: 'newsletter' });

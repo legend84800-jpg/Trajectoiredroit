@@ -10,7 +10,8 @@
 
 const PRODUITS = require("./_produits");
 const ESSAI = require("./_essai-majeures");
-const { attributsExercice, suggestionEmail, emailDepuisAttributs } = require('./_corriges-exercices');
+const { attributsExercice, suggestionEmail, emailDepuisAttributs, COMPTES } = require('./_corriges-exercices');
+const { SUJETS, sujetDe } = require('./_offres-matieres');
 // Plan du commentaire offert sur les pages d'arrêts les plus vues (test du 20/10/2026).
 // Liste blanche écrite par livrables/automatisation/test-arrets-conversion-2026-10-20/generer_liste_plans.py.
 const PLANS = require('./_plans-commentaires.json');
@@ -134,13 +135,30 @@ async function inscrireContact(email, attributs, apiKey, listes) {
   return { ok: false, status: brevoRes.status, detail };
 }
 
+async function lireContactBrevo(email, apiKey) {
+  const reponse = await fetch(`https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`, {
+    headers: { "api-key": apiKey, accept: "application/json" },
+    signal: AbortSignal.timeout(2500),
+  });
+  if (!reponse.ok) throw new Error("Lecture du contact Brevo impossible");
+  return reponse.json();
+}
+
+function prenomDuContact(attributs) {
+  return [attributs?.PRENOM, attributs?.FIRSTNAME]
+    .find(v => typeof v === "string" && v.trim() && v.trim().length <= 80)
+    ?.trim() ?? "";
+}
+
 async function livrerPdf(email, attributs, apiKey, envoyer) {
   // Le scénario de bienvenue lit ce marqueur après l'ajout à sa liste.
   // On prépare le contact avant de déclencher le scénario.
   const contact = await inscrireContact(email, { ...attributs, LIVRAISON_PDF_SITE: true }, apiKey, []);
   if (!contact.ok) return false;
 
-  await envoyer();
+  // Le formulaire peut ne demander que l'email. Le prénom fiable vient du contact.
+  const profil = await lireContactBrevo(email, apiKey).catch(() => null);
+  await envoyer({ ...attributs, PRENOM: prenomDuContact(profil?.attributes) });
 
   const listId = parseInt(process.env.BREVO_LIST_ID || "", 10);
   if (!Number.isNaN(listId)) {
@@ -149,11 +167,7 @@ async function livrerPdf(email, attributs, apiKey, envoyer) {
       // demander à l'élève de relancer un envoi qui a réussi.
       let listeSuivi = listId;
       if (listId === LISTE_NEWSLETTER) {
-        const reponse = await fetch(`https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`, {
-          headers: { "api-key": apiKey, accept: "application/json" },
-        });
-        if (!reponse.ok) throw new Error("Lecture des listes Brevo impossible");
-        const { listIds } = await reponse.json();
+        const { listIds } = profil ?? await lireContactBrevo(email, apiKey);
         if (listIds?.includes(listId)) return true;
         listeSuivi = LISTE_SUIVI_PDF;
       }
@@ -240,6 +254,41 @@ function attributsRecommandationArret(recommandation) {
   };
 }
 
+function offrePlan(plan, slug) {
+  const compilation = plan.compilation;
+  const produit = compilation ? PRODUITS[compilation] : PRODUITS[plan.produit];
+  const chemin = compilation
+    ? `commentaires-arret-corriges.html#${compilation}`
+    : `${plan.page}#commentaire-integral`;
+  const url = new URL(chemin, "https://trajectoiredroit.com");
+  url.search = new URLSearchParams({ utm_source: "brevo", utm_medium: "email", utm_campaign: "plan-commentaire", utm_content: slug });
+  if (!compilation) {
+    return {
+      url: url.href,
+      format: "commentaire",
+      texte: "Si tu veux lire la suite, le commentaire d’arrêt rédigé en entier est disponible sur la page de l’arrêt.",
+      bouton: "Voir le commentaire d’arrêt rédigé en entier",
+    };
+  }
+  const autres = COMPTES[compilation] - 1;
+  const matiere = SUJETS[sujetDe(compilation)].de.replace(/ L[123](?: S[12])?$/, "");
+  const niveau = produit.nom.match(/L[123](?: S[12])?$/)?.[0]?.replace(" S", ", S");
+  return {
+    url: url.href,
+    format: "compilation",
+    texte: `Si tu veux lire le commentaire rédigé en entier, tu le trouveras dans la compilation avec ${autres} autres commentaires d’arrêt corrigés. Ils portent sur des thèmes qui reviennent souvent aux partiels.`,
+    bouton: `Voir la compilation des commentaires d’arrêt corrigés ${matiere}${niveau ? " (" + niveau + ")" : ""}`,
+  };
+}
+
+function fichePourPlan(fiche, slug) {
+  const chemin = new URL("formations.html", "https://trajectoiredroit.com");
+  chemin.hash = fiche;
+  chemin.search = new URLSearchParams({ utm_source: "brevo", utm_medium: "email", utm_campaign: "plan-commentaire", utm_content: slug });
+  const matiere = SUJETS[sujetDe(fiche)].de.replace(/ L[123](?: S[12])?$/, "");
+  return { PLAN_FICHE_URL: chemin.href, PLAN_FICHE_BOUTON: `Voir la fiche complète ${matiere}` };
+}
+
 function blocRecommandationArret(a, url) {
   if (!a.OFFRE_ARRET_FORMAT) return [];
   return [
@@ -251,11 +300,12 @@ function blocRecommandationArret(a, url) {
 const STYLES_LIENS_ARRET = {
   telechargement: "padding:12px 17px;background:#0E2A47;color:#FFFFFF;text-decoration:none;font-weight:700",
   compilation: "padding:8px 11px;background:#EAF5F0;color:#18564A;text-decoration:underline;font-weight:600",
+  commentaire: "padding:8px 11px;background:#EAF5F0;color:#18564A;text-decoration:underline;font-weight:600",
   majeures: "padding:8px 11px;background:#F4EDF7;color:#583A6F;text-decoration:underline;font-weight:600",
   fiche: "padding:8px 11px;background:#EDF3FA;color:#0E2A47;text-decoration:underline;font-weight:600",
 };
 
-function construireEmailArret(sujet, paragraphes, groupesEnGras = []) {
+function construireEmailArret(sujet, paragraphes, groupesEnGras = [], apercu = "") {
   const esc = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const corps = paragraphes.map(p => {
     if (typeof p === "string") {
@@ -269,7 +319,9 @@ function construireEmailArret(sujet, paragraphes, groupesEnGras = []) {
     return '<p><a href="' + esc(p.lien) + '" style="display:inline-block;box-sizing:border-box;max-width:100%;border-radius:6px;overflow-wrap:anywhere;' + style + '">' + esc(p.texte) + '</a></p>';
   }).join("");
   const html = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>'
-    + '<body style="margin:0;font:16px Arial;line-height:1.6;color:#0F172A"><div style="box-sizing:border-box;max-width:600px;margin:0 auto;padding:12px 18px">'
+    + '<body style="margin:0;font:16px Arial;line-height:1.6;color:#0F172A">'
+    + (apercu ? '<div style="display:none;mso-hide:all;max-height:0;overflow:hidden">' + esc(apercu) + '</div>' : "")
+    + '<div style="box-sizing:border-box;max-width:600px;margin:0 auto;padding:12px 18px">'
     + corps + '</div></body></html>';
   const texte = paragraphes.map(p => typeof p === "string" ? p : p.texte + "\n" + p.lien).join("\n\n");
   return { sujet, html, texte };
@@ -279,21 +331,40 @@ function construireEmailArret(sujet, paragraphes, groupesEnGras = []) {
 // SOURCE == "plan-commentaire" du modèle 1) et par l'email transactionnel ci-dessous.
 function attributsPlan(plan) {
   const x = PLANS[plan];
-  const recommandation = recommandationArret(x.page, "plan-commentaire", plan);
+  const recommandation = x.extrait ? offrePlan(x, plan) : recommandationArret(x.page, "plan-commentaire", plan);
   return {
     SOURCE: "plan-commentaire",
     PLAN_SLUG: plan,
     PLAN_ARRET: x.arret,
     PLAN_PDF: x.pdf,
     PLAN_URL: recommandation?.url ?? "",
+    ...(x.extrait ? { PLAN_EXTRAIT: true, ...fichePourPlan(x.fiche, plan) } : {}),
     ...attributsRecommandationArret(recommandation),
   };
 }
 
+const SALUT_PDF = a => a.PRENOM ? `Salut ${a.PRENOM},` : "Salut,";
+
 // Même texte que la branche plan-commentaire du premier mail de bienvenue.
 function construireEmailPlan(a) {
+  const sujet = `Ton plan offert pour commenter ${a.PLAN_ARRET}`;
+  if (a.PLAN_EXTRAIT) {
+    return construireEmailArret(sujet, [
+      SALUT_PDF(a),
+      `Tu as demandé le plan du commentaire de ${a.PLAN_ARRET}, le voici.`,
+      "Dans le PDF, j’ai repris l’introduction avec la problématique et la solution du juge. Tu trouveras ensuite l’annonce du plan et le I.A. rédigé, tel qu’il figure dans le commentaire complet.",
+      { lien: a.PLAN_PDF, texte: "Télécharger le plan offert", format: "telechargement" },
+      "Si tu veux t’améliorer en commentaire d’arrêt, fais le commentaire d’arrêt de ton côté à partir de l’arrêt. Ensuite, une fois que tu as fini, compare ton travail en détail avec mon commentaire corrigé. En plus, ça te fera un petit rappel de cours sur le thème de l’arrêt.",
+      ...blocRecommandationArret(a, a.PLAN_URL),
+      "Et si tu veux une fiche complète pour viser plus de 15 sur 20 au partiel, n’hésite pas à prendre aussi la fiche de la matière.",
+      { lien: a.PLAN_FICHE_URL, texte: a.PLAN_FICHE_BOUTON, format: "fiche" },
+      "Si tu as une question sur le plan, tu peux répondre à cet email. Je lis moi-même les réponses.",
+      "Julien",
+    ], ["l’introduction", "le I.A. rédigé", "compare ton travail en détail", "viser plus de 15 sur 20 au partiel"],
+    "L’introduction, l’annonce du plan et le I.A. rédigé.");
+  }
   const paragraphes = [
-    "Salut,",
+    SALUT_PDF(a),
     `Tu as demandé le plan du commentaire de ${a.PLAN_ARRET}. Le PDF commence par la problématique, c’est-à-dire la question juridique à laquelle le commentaire répond. Il rappelle aussi la solution du juge et annonce les deux parties du commentaire. Pour chaque partie, un paragraphe explique ce que tu peux y développer.`,
     { lien: a.PLAN_PDF, texte: "Télécharger le plan", format: "telechargement" },
     "Pour préparer ta séance de travaux dirigés, tu peux prendre une sous-partie du plan et essayer de la rédiger. Tu expliques ce que le juge a décidé et pourquoi, en utilisant les articles et les décisions de justice qui concernent cette question. Tu verras ainsi quels points tu arrives à expliquer seul et lesquels demandent de reprendre ton cours.",
@@ -301,11 +372,11 @@ function construireEmailPlan(a) {
     "Si tu as une question sur le plan, tu peux répondre à cet email. Je lis moi-même les réponses.",
     "Julien",
   ];
-  return construireEmailArret(`Ton plan du commentaire de ${a.PLAN_ARRET}`, paragraphes, ["la problématique", "la solution du juge"]);
+  return construireEmailArret(sujet, paragraphes, ["la problématique", "la solution du juge"]);
 }
 
-async function envoyerPlan(email, plan, apiKey) {
-  const contenu = construireEmailPlan(attributsPlan(plan));
+async function envoyerPlan(email, attributs, apiKey) {
+  const contenu = construireEmailPlan(attributs);
   const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
     headers: { "Content-Type": "application/json", "api-key": apiKey, accept: "application/json" },
@@ -316,7 +387,7 @@ async function envoyerPlan(email, plan, apiKey) {
       subject: contenu.sujet,
       htmlContent: contenu.html,
       textContent: contenu.texte,
-      tags: ["plan-commentaire", plan],
+      tags: ["plan-commentaire", attributs.PLAN_SLUG],
     }),
   });
   if (!resp.ok) throw new Error(`Brevo ${resp.status}: ${await resp.text()}`);
@@ -391,18 +462,18 @@ function construireEmailFiche(a) {
       { lien: a.FICHE_URL, texte: a.FICHE_BOUTON },
     ];
   const paragraphes = [
-    "Salut,",
-    `Tu as demandé la fiche ${a.FICHE_DE}. Le PDF reprend toute l'explication de la page, des faits de l'affaire jusqu'à la façon de t'en servir dans une copie.`,
+    SALUT_PDF(a),
+    `Tu as demandé la fiche ${a.FICHE_DE}. Le PDF reprend toute l’explication de la page, des faits de l’affaire jusqu’à la façon de t’en servir dans une copie.`,
     { lien: a.FICHE_PDF, texte: "Télécharger la fiche", format: "telechargement" },
-    "Pour que la fiche te serve en TD, le mieux est de relire d'abord le problème de droit et la solution, puis de les redire à voix haute sans regarder le PDF. En effet, si tu arrives à expliquer pourquoi le juge a tranché ainsi, tu sais déjà t'en servir dans un cas pratique ou dans un commentaire.",
+    "Pour que la fiche te serve en TD, le mieux est de relire d’abord le problème de droit et la solution. Ensuite, redis-les à voix haute sans regarder le PDF, en expliquant pourquoi le juge a tranché ainsi. Si tu y arrives de mémoire, tu sais déjà te servir de l’arrêt dans un cas pratique ou dans un commentaire.",
     ...recommandation,
-    "Si tu as une question sur l'arrêt, tu peux répondre à cet email. Je lis moi-même les réponses.",
+    "Si tu as une question sur l’arrêt, tu peux répondre à cet email. Je lis moi-même les réponses.",
     "Julien",
   ];
-  return construireEmailArret(`Ta fiche ${a.FICHE_DE}`, paragraphes, ["problème de droit et la solution"]);
+  return construireEmailArret(`Ta fiche ${a.FICHE_DE}`, paragraphes);
 }
-async function envoyerFiche(email, fiche, apiKey) {
-  const contenu = construireEmailFiche(attributsFiche(fiche));
+async function envoyerFiche(email, attributs, apiKey) {
+  const contenu = construireEmailFiche(attributs);
   const resp = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
     headers: { "Content-Type": "application/json", "api-key": apiKey, accept: "application/json" },
@@ -413,7 +484,7 @@ async function envoyerFiche(email, fiche, apiKey) {
       subject: contenu.sujet,
       htmlContent: contenu.html,
       textContent: contenu.texte,
-      tags: ["fiche-arret", fiche],
+      tags: ["fiche-arret", attributs.FICHE_SLUG],
     }),
   });
   if (!resp.ok) throw new Error(`Brevo ${resp.status}: ${await resp.text()}`);
@@ -455,8 +526,8 @@ async function handler(req, res) {
       if (!attributs) return res.status(400).json({ error: 'Exercice inconnu.' });
       if (typeof body.site === 'string' && body.site.trim()) return res.status(200).json({ ok: true });
       if (limiteAtteinte(ipVisiteur(req)) || limiteAtteinte('email:' + email)) return res.status(429).json({ error: 'Trop de demandes. Réessaie dans quelques minutes.' });
-      const envoye = await livrerPdf(email, attributs, apiKey, () =>
-        envoyerCorrigeOffert(email, attributs, ["corrige-exercice", String(body.exercice)], apiKey));
+      const envoye = await livrerPdf(email, attributs, apiKey, a =>
+        envoyerCorrigeOffert(email, a, ["corrige-exercice", String(body.exercice)], apiKey));
       if (!envoye) return res.status(502).json({ error: "Inscription impossible pour le moment." });
       return res.status(200).json({ ok: true, envoye: true });
     }
@@ -499,7 +570,7 @@ async function handler(req, res) {
       if (limiteAtteinte(ipVisiteur(req)) || limiteAtteinte("email:" + email)) {
         return res.status(429).json({ error: "Trop de demandes. Réessaie dans quelques minutes." });
       }
-      const envoye = await livrerPdf(email, attributsFiche(fiche), apiKey, () => envoyerFiche(email, fiche, apiKey));
+      const envoye = await livrerPdf(email, attributsFiche(fiche), apiKey, a => envoyerFiche(email, a, apiKey));
       if (!envoye) return res.status(502).json({ error: "Inscription impossible pour le moment." });
       return res.status(200).json({ ok: true, envoye: true });
     }
@@ -513,7 +584,7 @@ async function handler(req, res) {
       if (limiteAtteinte(ipVisiteur(req)) || limiteAtteinte("email:" + email)) {
         return res.status(429).json({ error: "Trop de demandes. Réessaie dans quelques minutes." });
       }
-      const envoye = await livrerPdf(email, attributsPlan(plan), apiKey, () => envoyerPlan(email, plan, apiKey));
+      const envoye = await livrerPdf(email, attributsPlan(plan), apiKey, a => envoyerPlan(email, a, apiKey));
       if (!envoye) return res.status(502).json({ error: "Inscription impossible pour le moment." });
       return res.status(200).json({ ok: true, envoye: true });
     }
@@ -546,8 +617,8 @@ async function handler(req, res) {
     }
 
     const attributs = attributsCorrige(matiere);
-    const envoye = await livrerPdf(email, attributs, apiKey, () =>
-      envoyerCorrigeOffert(email, attributs, ["corrige-offert", matiere], apiKey));
+    const envoye = await livrerPdf(email, attributs, apiKey, a =>
+      envoyerCorrigeOffert(email, a, ["corrige-offert", matiere], apiKey));
     if (!envoye) return res.status(502).json({ error: "Inscription impossible pour le moment." });
     res.status(200).json({ ok: true, envoye: true });
   } catch (err) {

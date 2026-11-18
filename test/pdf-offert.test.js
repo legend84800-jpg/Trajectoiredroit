@@ -8,6 +8,7 @@ const fiches = require('../api/_fiches-arrets.json');
 const plans = require('../api/_plans-commentaires.json');
 const recommandations = require('../api/_recommandations-arrets.json');
 const exercices = require('../api/_corriges-exercices.json');
+const { COMPTES } = require('../api/_corriges-exercices');
 const { CORRIGES_OFFERTS } = lead;
 
 const racine = path.join(__dirname, '..');
@@ -36,7 +37,7 @@ test('chaque fiche d’arrêt offerte renvoie vers sa page, son PDF et un produi
   }
 });
 
-test('chaque arrêt de l’ancien test propose un seul PDF et recommande un support précis par email', () => {
+test('les plans offerts et les fiches d’arrêt renvoient vers les supports de l’arrêt demandé', () => {
   const controles = new Set();
   const formats = new Set();
   const formulaires = new Set();
@@ -52,9 +53,11 @@ test('chaque arrêt de l’ancien test propose un seul PDF et recommande un supp
     for (const slug of recommandation.plans) {
       assert.ok(plans[slug] && !controles.has(slug), slug);
       controles.add(slug);
-      const page = plans[slug].page;
+      const plan = plans[slug];
+      const page = plan.page;
       const article = fs.readFileSync(path.join(racine, page), 'utf8');
-      assert.doesNotMatch(article, /4,99 €|data-tjd-produit="coma-/);
+      if (plan.compilation) assert.doesNotMatch(article, /data-tjd-produit="coma-/);
+      else assert.ok(article.includes('id="commentaire-integral"') && article.includes('data-tjd-produit="' + plan.produit + '"'), slug);
       assert.equal((article.match(/\bdata-tjd-plan\b|data-tjd-pdf-offert="fiche"/g) || []).length, 1, page);
       const id = page.replace(/\.html$/, '');
       const aPlan = lead.attributsPlan(slug);
@@ -70,7 +73,24 @@ test('chaque arrêt de l’ancien test propose un seul PDF et recommande un supp
         assert.doesNotMatch(email.texte, /4,99|\brecueil\b|undefined/i);
         formats.add(attributs.OFFRE_ARRET_FORMAT);
       };
-      verifierEmail(aPlan, aPlan.PLAN_URL, lead.construireEmailPlan(aPlan), aPlan.PLAN_PDF);
+      const emailPlan = lead.construireEmailPlan({ ...aPlan, PRENOM: 'Camille' });
+      const offrePlan = new URL(aPlan.PLAN_URL);
+      assert.equal(offrePlan.pathname, plan.compilation ? '/commentaires-arret-corriges.html' : '/' + page);
+      assert.equal(offrePlan.hash, plan.compilation ? '#' + plan.compilation : '#commentaire-integral');
+      assert.equal(offrePlan.searchParams.get('utm_content'), slug);
+      assert.match(aPlan.PLAN_PDF, /\/plan-commentaire\/extraits\/coma-.+-[0-9a-f]{12}\.pdf$/);
+      assert.match(emailPlan.sujet, /^Ton plan offert pour commenter /);
+      assert.match(emailPlan.texte, /^Salut Camille,/);
+      assert.match(emailPlan.texte, /le I\.A\. rédigé/);
+      assert.ok(emailPlan.texte.includes(aPlan.PLAN_PDF) && emailPlan.texte.includes(aPlan.PLAN_URL));
+      assert.equal((emailPlan.html.match(/<a href="/g) || []).length, 3, slug);
+      const offreFiche = new URL(aPlan.PLAN_FICHE_URL);
+      assert.equal(offreFiche.pathname, '/formations.html');
+      assert.equal(offreFiche.hash, '#' + plan.fiche);
+      assert.ok(fs.readFileSync(path.join(racine, 'formations.html'), 'utf8').includes('id="' + plan.fiche + '"'));
+      assert.ok(emailPlan.texte.includes(aPlan.PLAN_FICHE_URL));
+      if (plan.compilation) assert.ok(emailPlan.texte.includes((COMPTES[plan.compilation] - 1) + ' autres commentaires'), slug);
+      formats.add(aPlan.OFFRE_ARRET_FORMAT);
       if (fiches[id]) {
         assert.ok(article.includes('data-id="' + id + '"'));
         const aFiche = lead.attributsFiche(id);
@@ -83,7 +103,7 @@ test('chaque arrêt de l’ancien test propose un seul PDF et recommande un supp
     }
   }
   assert.deepEqual(controles, new Set(Object.keys(plans)));
-  assert.deepEqual(formats, new Set(['compilation', 'majeures', 'fiche']));
+  assert.deepEqual(formats, new Set(['compilation', 'commentaire', 'majeures', 'fiche']));
   assert.deepEqual(formulaires, new Set(['fiche', 'plan']));
 });
 
