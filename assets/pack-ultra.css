@@ -49,7 +49,7 @@
 .ultra-card__body { display: flex; flex: 1; flex-direction: column; padding: 22px; }
 .ultra-card__topline { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .ultra-card__eyebrow {
-  color: #796122;
+  color: #34467F;
   font-size: .78rem;
   font-weight: 800;
   letter-spacing: .08em;
@@ -95,9 +95,9 @@
 html[data-theme="dark"] .ultra-card__split { color: #c5cbd8; }
 /* Lien vers la présentation aux parents : une seule fois sous la grille, discret, dans le bleu du site */
 .ultra-parents { margin: 22px 0 0; text-align: center; font-size: .92rem; color: #4f5a70; }
-.ultra-parents a { color: #1a2851; font-weight: 600; text-decoration: underline; text-decoration-color: #c9a961; text-underline-offset: 4px; }
+.ultra-parents a { color: #1a2851; font-weight: 600; text-decoration: underline; text-decoration-color: #8EAADD; text-underline-offset: 4px; }
 .ultra-parents a:hover { text-decoration-color: currentColor; }
-html[data-theme="dark"] .ultra-parents a { color: #e8d9a8; }
+html[data-theme="dark"] .ultra-parents a { color: #D4E0F6; }
 .ultra-explainer {
   max-width: 780px;
   margin: 0 auto;
@@ -113,7 +113,7 @@ html[data-theme="dark"] .ultra-parents a { color: #e8d9a8; }
 }
 .ultra-explainer p { margin: 0 0 14px; }
 .ultra-explainer strong { color: #137a4b; }
-html[data-theme="dark"] .ultra-card__split-btn { color: #e8d9a8; }
+html[data-theme="dark"] .ultra-card__split-btn { color: #D4E0F6; }
 .ultra-card__amount { display: flex; flex-direction: column; gap: 4px; }
 .ultra-card__comparison { color: #4f5a70; font-size: .82rem; line-height: 1.3; }
 .ultra-card__unit-total { text-decoration: line-through; text-decoration-thickness: 1px; }
@@ -168,7 +168,7 @@ html[data-theme="dark"] .ultra-card__split-btn { color: #e8d9a8; }
   content: "";
   flex: 1;
   height: 2px;
-  background: #c9a961;
+  background: #8EAADD;
 }
 .ultra-inclusions > p {
   max-width: 800px;
@@ -193,7 +193,7 @@ html[data-theme="dark"] .ultra-card__split-btn { color: #e8d9a8; }
   color: #1a2851;
   font-weight: 800;
 }
-.ultra-inclusions__item summary span:last-child { color: #796122; font-size: .87rem; white-space: nowrap; }
+.ultra-inclusions__item summary span:last-child { color: #34467F; font-size: .87rem; white-space: nowrap; }
 .ultra-inclusions__item ul {
   columns: 2;
   column-gap: 38px;
@@ -218,7 +218,7 @@ html[data-theme="dark"] .ultra-card__split-btn { color: #e8d9a8; }
 .ultra-resource--fiche { --resource-accent: #285a92; --resource-bg: #edf5ff; }
 .ultra-resource--majeure { --resource-accent: #6d4d9b; --resource-bg: #f5efff; }
 .ultra-resource--cours { --resource-accent: #176c5a; --resource-bg: #eaf8f3; }
-.ultra-resource--arret { --resource-accent: #8b5817; --resource-bg: #fff4e3; }
+.ultra-resource--arret { --resource-accent: #34467F; --resource-bg: #E6EEF9; }
 .ultra-resource--citations { --resource-accent: #963f64; --resource-bg: #fff0f5; }
 .ultra-resource--flashcards { --resource-accent: #256d82; --resource-bg: #ecf8fc; }
 .ultra-resource--commentaire { --resource-accent: #98513b; --resource-bg: #fff0e9; }
@@ -435,10 +435,10 @@ html[data-theme="dark"] .ultra-card__split-btn { color: #e8d9a8; }
   font-weight: 800;
   white-space: nowrap;
 }
-.ultra-inclusions__achat { flex: 0 0 auto; white-space: nowrap; }
+.ultra-inclusions__achat { flex: 0 1 auto; }
 .ultra-inclusions__experience [role="tab"]:focus-visible,
 .ultra-inclusions__experience [role="tabpanel"]:focus-visible,
-.ultra-inclusions__achat:focus-visible { outline: 3px solid #b77d28; outline-offset: 3px; }
+.ultra-inclusions__achat:focus-visible { outline: 3px solid #315CA6; outline-offset: 3px; }
 .ultra-section__note {
   max-width: 780px;
   margin: 25px auto 0;
@@ -499,7 +499,7 @@ html[data-theme="dark"] .ultra-card__comparison,
 html[data-theme="dark"] .ultra-card__payment,
 html[data-theme="dark"] .ultra-section__note,
 html[data-theme="dark"] .ultra-section__comparison { color: #d0d7e4; }
-html[data-theme="dark"] .ultra-card__eyebrow { color: #e5c277; }
+html[data-theme="dark"] .ultra-card__eyebrow { color: #AEC8F5; }
 html[data-theme="dark"] .ultra-card__saving { background: #2a744b; color: #fff; }
 html[data-theme="dark"] .ultra-explainer { border-color: #415371; color: #d0d7e4; }
 html[data-theme="dark"] .ultra-explainer h2 { color: #f6f3ea; }
@@ -512,7 +512,7 @@ html[data-theme="dark"] .ultra-inclusions__item li { color: #e7ecf5; }
 html[data-theme="dark"] .ultra-resource--fiche { --resource-accent: #a9d1ff; --resource-bg: #223858; }
 html[data-theme="dark"] .ultra-resource--majeure { --resource-accent: #d4bcff; --resource-bg: #34294d; }
 html[data-theme="dark"] .ultra-resource--cours { --resource-accent: #94e5d0; --resource-bg: #1b403b; }
-html[data-theme="dark"] .ultra-resource--arret { --resource-accent: #f5c783; --resource-bg: #473820; }
+html[data-theme="dark"] .ultra-resource--arret { --resource-accent: #AEC8F5; --resource-bg: #263C61; }
 html[data-theme="dark"] .ultra-resource--citations { --resource-accent: #f4b5cd; --resource-bg: #47283a; }
 html[data-theme="dark"] .ultra-resource--flashcards { --resource-accent: #a7def1; --resource-bg: #1e3b4c; }
 html[data-theme="dark"] .ultra-resource--commentaire { --resource-accent: #f0baa1; --resource-bg: #462e29; }

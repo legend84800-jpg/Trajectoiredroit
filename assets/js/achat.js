@@ -754,7 +754,7 @@
       'box-shadow:0 8px 24px rgba(15,26,53,.3);opacity:0;pointer-events:none;transform:translateY(10px);' +
       'transition:opacity .25s ease,transform .25s ease}' +
       '.tjd-panier-fab.tjd-panier-fab--visible{opacity:1;pointer-events:auto;transform:translateY(0)}' +
-      '.tjd-panier-fab__badge{background:var(--gold-line,#C9A961);color:var(--navy,#1A2851);border-radius:999px;' +
+      '.tjd-panier-fab__badge{background:#AEC8F5;color:#1A2851;border-radius:999px;' +
       'min-width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;' +
       'font-size:.75rem;font-weight:700;padding:0 5px}' +
       'body:has(#tjdPanierBackdrop.open) .tjd-fab{opacity:0!important;pointer-events:none!important}' +

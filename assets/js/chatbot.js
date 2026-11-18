@@ -1,6 +1,6 @@
 /* Assistant Trajectoire Droit — bulle de chat autonome.
    Injecte son propre style et son HTML. Appelle /api/chat et /api/lead.
-   Charte : navy #1A2851, bordeaux #8B1538, or #C9A961. Police Hanken Grotesk. */
+   Charte : navy #1A2851, bordeaux #8B1538, bleu clair #8EAADD. Police Hanken Grotesk. */
 (function () {
   "use strict";
 
@@ -32,7 +32,7 @@
   body:has(.apercu-backdrop.open) .tjd-fab,
   body:has(#exitModal.open) .tjd-fab{opacity:0!important;pointer-events:none!important}
   .tjd-fab svg{width:28px;height:28px}
-  .tjd-fab__dot{position:absolute;top:6px;right:6px;width:12px;height:12px;border-radius:50%;background:#C9A961;border:2px solid #1A2851}
+  .tjd-fab__dot{position:absolute;top:6px;right:6px;width:12px;height:12px;border-radius:50%;background:#8EAADD;border:2px solid #1A2851}
   /* Téléphone (audit du 15/10/2026) : la bulle de 60px recouvrait en permanence la fin des lignes
      de texte et le bord des boutons. Plus petite, collée au bord, et masquée pendant la lecture
      vers le bas ; elle revient dès que le visiteur remonte. */
@@ -48,7 +48,7 @@
     border:1px solid #E2E8F0}
   .tjd-panel.tjd-open{display:flex;animation:tjd-in .22s ease}
   @keyframes tjd-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-  .tjd-head{background:#1A2851;color:#fff;padding:16px 18px;display:flex;align-items:center;gap:12px;border-bottom:3px solid #C9A961}
+  .tjd-head{background:#1A2851;color:#fff;padding:16px 18px;display:flex;align-items:center;gap:12px;border-bottom:3px solid #8EAADD}
   .tjd-head__av{width:38px;height:38px;border-radius:50%;background:#8B1538;display:flex;align-items:center;justify-content:center;
     font-family:"Spectral",Georgia,serif;font-weight:700;font-size:1.1rem;flex-shrink:0}
   .tjd-head__t{font-family:"Spectral",Georgia,serif;font-weight:600;font-size:1.05rem;line-height:1.2}

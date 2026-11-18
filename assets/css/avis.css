@@ -7,7 +7,7 @@
   background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg);
   padding: 18px 20px; box-shadow: var(--sh-1, none); display: flex; flex-direction: column; gap: 10px;
 }
-.tjd-avis__etoiles { color: var(--rating-star, #E3A008); letter-spacing: 2px; font-size: 1.05rem; line-height: 1 }
+.tjd-avis__etoiles { color: var(--rating-star, #047857); letter-spacing: 2px; font-size: 1.05rem; line-height: 1 }
 .tjd-avis__etoiles span { color: var(--border-strong) }
 .tjd-avis__texte { margin: 0; color: var(--ink); white-space: pre-line; overflow-wrap: anywhere }
 .tjd-avis__auteur { margin: 0; font-weight: 600; color: var(--navy); font-size: .92rem }

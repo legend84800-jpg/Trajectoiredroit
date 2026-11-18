@@ -11,7 +11,7 @@
 .portalis-home .ph-copy p { max-width:560px; }
 .portalis-home .ph-button { display:inline-flex; gap:14px; justify-content:center; align-items:center; min-height:48px; padding:12px 24px; background:#1a2851; border:1px solid #1a2851; border-radius:10px; font-weight:650; color:#fff; font-size:16px; text-decoration:none; }
 .portalis-home .ph-button:hover { background:#34467f; }
-.portalis-home a:focus-visible { outline:3px solid #8a6a1c; outline-offset:4px; }
+.portalis-home a:focus-visible { outline:3px solid #34467F; outline-offset:4px; }
 .portalis-home .ph-right { display:grid; grid-template-columns:minmax(135px,.75fr) minmax(0,1fr); gap:6px; align-items:center; border-left:1px solid #c2cce6; padding-left:28px; }
 .portalis-home .ph-price { text-align:left; }
 .portalis-home .ph-price p { font-size:15px; margin:0 0 12px; }

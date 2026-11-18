@@ -3,7 +3,7 @@
 .compare-table--besoins tbody tr:nth-child(2) { --need-rgb: 33 105 115; --need-ink: #216973; --need-light: #8BD6DF; }
 .compare-table--besoins tbody tr:nth-child(3) { --need-rgb: 138 35 65; --need-ink: #8A2341; --need-light: #FFB1C7; }
 .compare-table--besoins tbody tr:nth-child(4) { --need-rgb: 39 98 63; --need-ink: #27623F; --need-light: #A1D9B4; }
-.compare-table--besoins tbody tr:nth-child(5) { --need-rgb: 128 92 26; --need-ink: #805C1A; --need-light: #EDCE8D; }
+.compare-table--besoins tbody tr:nth-child(5) { --need-rgb: 128 92 26; --need-ink: #34467F; --need-light: #8EAADD; }
 .compare-table--besoins tbody tr:nth-child(6) { --need-rgb: 52 70 127; --need-ink: #34467F; --need-light: #C0CBFF; }
 .compare-table--besoins tbody th {
   color: var(--need-ink); background: rgb(var(--need-rgb) / .12);

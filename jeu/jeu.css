@@ -1,7 +1,7 @@
 /* Cassation, le jeu de révision TrajectoireDroit. Charte alignée sur le site. */
 :root {
   --navy:#1A2851; --navy-deep:#0F1A35; --blue-500:#34467F;
-  --accent:#8A6A1C; --accent-soft:#AD8325; --gold-line:#C9A961; --gold-bg:#F2F5FB; --box-line:#C9D3EA;
+  --accent:#34467F; --accent-soft:#315CA6; --gold-line:#8EAADD; --gold-bg:#F2F5FB; --box-line:#C9D3EA;
   --emerald:#10B981; --emerald-bg:#ECFDF5;
   --danger:#EF4444; --rose-bg:#FFF1F2;
   --white:#FFFFFF; --slate-50:#F8FAFC; --slate-100:#F1F5F9;

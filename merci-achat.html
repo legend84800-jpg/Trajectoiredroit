@@ -41,7 +41,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
   <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=b2bb72be">
+  <link rel="stylesheet" href="assets/style.css?v=a8ac54a2">
   <style>
     .achat-retour[hidden] { display: none !important; }
     #purchaseSteps[hidden], #purchaseGiftSteps[hidden] { display: none !important; }
@@ -347,7 +347,7 @@
         </p>
 
         <div id="purchaseConfirmedContent" hidden>
-          <div class="card" id="purchaseSpamReminder" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; padding:24px; border-left:4px solid #C49A4A">
+          <div class="card" id="purchaseSpamReminder" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; padding:24px; border-left:4px solid #315CA6">
             <h2 class="h4" style="margin-top:0">Pense bien à regarder tes spams</h2>
             <p style="margin:8px 0 0; color:var(--body)">Ton email d'achat est envoyé par <strong style="overflow-wrap:anywhere">contact@trajectoiredroit.com</strong>. S'il arrive dans les courriers indésirables, tu peux le déplacer dans ta boîte de réception et ajouter cette adresse à tes contacts.</p>
           </div>
@@ -440,7 +440,7 @@
             <p style="margin:14px 0 0; font-size:.82rem; color:var(--muted)">Évite d'indiquer ton nom ou tes coordonnées dans les champs libres. Tes réponses ne sont pas ajoutées à ton compte. <a href="confidentialite.html">Comment elles sont utilisées</a>.</p>
           </div>
 
-          <div class="card" id="remiseCard" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center; border:2px solid var(--gold, #c9a227)" hidden>
+          <div class="card" id="remiseCard" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center; border:2px solid var(--gold, #8EAADD)" hidden>
             <h2 class="h4" style="margin-top:0">Ton code de 15 % pour ta prochaine commande</h2>
             <p style="margin:8px 0 12px; font-size:1.35rem; font-weight:700; letter-spacing:.06em"><span id="remiseCode"></span></p>
             <p style="margin:0 0 8px; font-size:.95rem">Ce code personnel te donne 15 % de remise sur ta prochaine commande, quel que soit le document que tu choisis. Il reste valable jusqu'au <span id="remiseDate"></span> et sert une seule fois.</p>
@@ -526,7 +526,7 @@
       if (loaded) return;
       loaded = true;
       var s = document.createElement('script');
-      s.src = 'assets/js/chatbot.js?v=695cfddc';
+      s.src = 'assets/js/chatbot.js?v=7aba7f6e';
       s.defer = true;
       document.body.appendChild(s);
       events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
@@ -723,7 +723,7 @@
       fallback.style.display = 'none';
       if (!document.querySelector('script[src*="achat.js"]')) {
         var s = document.createElement('script');
-        s.src = 'assets/js/achat.js?v=f548e5b0';
+        s.src = 'assets/js/achat.js?v=81a894f1';
         s.defer = true;
         document.body.appendChild(s);
       }
