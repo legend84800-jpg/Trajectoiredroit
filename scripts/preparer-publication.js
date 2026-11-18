@@ -15,6 +15,11 @@ const APERCUS_COURS_RETIRES = new RegExp(`(?:^|[/_-])(?:${IDENTIFIANTS_COURS_RET
 const VISUELS_COURS_RETIRES = /(?:comparatif-dol-cours-|photo-cours-complet-|og-cours-complet\.|hero-video-produits-poster\.jpg$)/;
 
 function preparerPublication(racine = path.resolve(__dirname, '..')) {
+  for (const [id, produit] of Object.entries(PRODUITS)) {
+    if (produit.blobs.some((reference) => !/^r2:\/\/tjd\/.+\.(pdf|apkg|m4a|mp4)$/.test(reference))) {
+      throw new Error(`Un fichier du produit ${id} ne référence pas le stockage privé.`);
+    }
+  }
   const sortie = path.join(racine, 'build', 'site-public');
   const build = path.dirname(sortie);
   if (fs.existsSync(build) && fs.lstatSync(build).isSymbolicLink()) throw new Error('Le dossier build est un lien symbolique.');

@@ -15,6 +15,7 @@ from lib.personnalisation_pdf import (
     codes_licence_depuis_session,
     generer_signature_personnalisation,
     identite_depuis_session,
+    lien_media_prive,
     personnaliser_pdf,
     produire_depuis_commande,
     verifier_session_payee,
@@ -188,6 +189,37 @@ class PersonnalisationPdfTest(unittest.TestCase):
                 *arguments[:3], "signature-incorrecte", "secret-de-test",
                 *arguments[3:], maintenant=1_900_000_000,
             )
+
+    def test_media_prive_signe_pour_un_indice_de_pack(self):
+        reference = SOURCE_PRIVEE_PREFIX + "av/matiere/U01-video.mp4"
+        arguments = ("pack-ultra-test", 309, 2_000_000_000, "cs_test_pack", reference, "Pack", "U01-video.mp4")
+        signature = generer_signature_personnalisation(*arguments, "secret-de-test")
+        verifier_signature(
+            *arguments[:3], signature, "secret-de-test", *arguments[3:], maintenant=1_900_000_000,
+        )
+
+    @patch("lib.personnalisation_pdf._bucket_prive", return_value="stockage-prive")
+    @patch("lib.personnalisation_pdf._client_r2")
+    @patch("lib.personnalisation_pdf.time.time", return_value=1_900_000_000)
+    def test_liens_media_limites_par_la_duree_de_lecture_et_du_lien(self, _time, client, _bucket):
+        for nom, maximum in (("video.mp4", 6 * 3600), ("podcast.m4a", 6 * 3600), ("anki.apkg", 900)):
+            with self.subTest(format=nom):
+                reference = SOURCE_PRIVEE_PREFIX + "matiere/" + nom
+                for duree in (60, maximum + 100):
+                    lien_media_prive(reference, 1_900_000_000 + duree)
+                    disposition = f'attachment; filename="{nom}"' if nom.endswith(".apkg") else "inline"
+                    client.return_value.generate_presigned_url.assert_called_with(
+                        "get_object",
+                        Params={
+                            "Bucket": "stockage-prive",
+                            "Key": "sources/tjd/matiere/" + nom,
+                            "ResponseCacheControl": "private, no-store",
+                            "ResponseContentDisposition": disposition,
+                        },
+                        ExpiresIn=min(duree, maximum),
+                    )
+        with self.assertRaises(PermissionError):
+            lien_media_prive(reference, 1_900_000_000)
 
     def test_codes_generalises_distinguent_produit_et_fichier(self):
         secret = "secret-de-test"

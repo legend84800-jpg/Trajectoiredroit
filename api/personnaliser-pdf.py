@@ -1,4 +1,4 @@
-"""Point d'entrée Vercel du téléchargement PDF nominatif généralisé."""
+"""Accès signé aux fichiers médias et aux PDF nominatifs."""
 
 from __future__ import annotations
 
@@ -7,10 +7,18 @@ import urllib.error
 import urllib.parse
 from http.server import BaseHTTPRequestHandler
 
-from lib.personnalisation_pdf import lien_pdf_offert, produire_depuis_commande, verifier_signature
+from lib.personnalisation_pdf import (
+    lien_media_prive,
+    lien_pdf_offert,
+    produire_depuis_commande,
+    verifier_signature,
+)
 
 
 class handler(BaseHTTPRequestHandler):
+    def log_request(self, code="-", size="-") -> None:
+        self.log_message("%s /api/personnaliser-pdf %s %s", self.command, code, size)
+
     def _texte(self, statut: int, message: str) -> None:
         contenu = message.encode("utf-8")
         self.send_response(statut)
@@ -42,7 +50,8 @@ class handler(BaseHTTPRequestHandler):
 
         secret = os.environ.get("DOWNLOAD_SECRET", "")
         cle_stripe = os.environ.get("STRIPE_SECRET_KEY", "")
-        if not secret or (session_id and not cle_stripe):
+        est_pdf = source_url.endswith(".pdf")
+        if not secret or (est_pdf and session_id and not cle_stripe):
             self._texte(500, "Le téléchargement est temporairement indisponible.")
             return
 
@@ -58,8 +67,10 @@ class handler(BaseHTTPRequestHandler):
                 nom_produit,
                 nom_fichier,
             )
-            if session_id:
-                url_pdf, _, _ = produire_depuis_commande(
+            if not est_pdf:
+                destination = lien_media_prive(source_url, expiration)
+            elif session_id:
+                destination, _, _ = produire_depuis_commande(
                     session_id,
                     secret,
                     cle_stripe,
@@ -70,7 +81,7 @@ class handler(BaseHTTPRequestHandler):
                     nom_fichier,
                 )
             else:
-                url_pdf = lien_pdf_offert(source_url)
+                destination = lien_pdf_offert(source_url)
         except PermissionError as erreur:
             statut = 410 if str(erreur) == "Lien expiré" else 403
             self._texte(statut, str(erreur) + ".")
@@ -85,8 +96,9 @@ class handler(BaseHTTPRequestHandler):
             return
 
         self.send_response(302)
-        self.send_header("Location", url_pdf)
+        self.send_header("Location", destination)
         self.send_header("Cache-Control", "private, no-store")
+        self.send_header("Referrer-Policy", "no-referrer")
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("X-Robots-Tag", "noindex, nofollow, noarchive")
         self.end_headers()

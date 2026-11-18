@@ -347,7 +347,7 @@ test("les fichiers d'un pack portent des noms distincts dans l'email et Mon comp
   }
 });
 
-test("chaque PDF du catalogue route vers une copie personnalisée", async () => {
+test("chaque fichier vendu passe par la route de stockage privé", async () => {
   const {
     genererToken,
     genererJetonPersonnalisation,
@@ -387,32 +387,26 @@ test("chaque PDF du catalogue route vers une copie personnalisée", async () => 
         } }, reponse);
 
         assert.equal(reponse.statusCode, 302);
-        if (/\.pdf$/i.test(sourceUrl)) {
-          assert.match(
+        assert.match(sourceUrl, /^r2:\/\/tjd\/.*\.(pdf|mp4|m4a|apkg)$/);
+        assert.match(destination, /^\/api\/personnaliser-pdf\?/);
+        assert.equal(reponse.headers["Cache-Control"], "private, no-store");
+        const url = new URL(destination, "https://trajectoiredroit.com");
+        const nomFichier = decodeURIComponent(new URL(sourceUrl).pathname.split("/").pop());
+        assert.equal(url.searchParams.get("sid"), sessionId);
+        assert.equal(url.searchParams.get("src"), sourceUrl);
+        assert.equal(url.searchParams.get("nom"), produit.nom);
+        assert.equal(
+          url.searchParams.get("psig"),
+          genererJetonPersonnalisation({
+            produitId,
+            blobIndex,
+            expiry: expiration,
+            sessionId,
             sourceUrl,
-            /^r2:\/\/tjd\//
-          );
-          assert.match(destination, /^\/api\/personnaliser-pdf\?/);
-          const url = new URL(destination, "https://trajectoiredroit.com");
-          const nomFichier = decodeURIComponent(new URL(sourceUrl).pathname.split("/").pop());
-          assert.equal(url.searchParams.get("sid"), sessionId);
-          assert.equal(url.searchParams.get("src"), sourceUrl);
-          assert.equal(url.searchParams.get("nom"), produit.nom);
-          assert.equal(
-            url.searchParams.get("psig"),
-            genererJetonPersonnalisation({
-              produitId,
-              blobIndex,
-              expiry: expiration,
-              sessionId,
-              sourceUrl,
-              nomProduit: produit.nom,
-              nomFichier,
-            }, "secret_test")
-          );
-        } else {
-          assert.equal(destination, sourceUrl);
-        }
+            nomProduit: produit.nom,
+            nomFichier,
+          }, "secret_test")
+        );
       }
     }
   } finally {

@@ -1,6 +1,6 @@
 """Génération à la demande d'un PDF nominatif Trajectoire Droit.
 
-Le PDF public protégé sert de source. La fonction le déchiffre en mémoire,
+Le PDF protégé est stocké en privé. La fonction le déchiffre en mémoire,
 ajoute la page de licence et plusieurs marqueurs redondants, puis protège la
 copie finale avec un mot de passe propriétaire propre à la commande.
 """
@@ -38,6 +38,7 @@ VERSION_PROTECTION = "tjd-acheteur-3"
 STRIPE_API_VERSION = "2026-07-29.dahlia"
 TAILLE_SOURCE_MAX = 60 * 1024 * 1024
 DUREE_LIEN_R2_SECONDES = 15 * 60
+DUREE_LECTURE_R2_SECONDES = 6 * 60 * 60
 
 NAVY = HexColor("#0E2A47")
 BORDEAUX = HexColor("#A52E3B")
@@ -119,13 +120,17 @@ def verifier_signature(
 ) -> None:
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]{1,99}", produit_id):
         raise ValueError("Produit invalide")
-    if blob_index < 0 or blob_index > 99:
+    # La route qui signe les liens contrôle déjà l'indice dans le catalogue.
+    if blob_index < 0:
         raise ValueError("Fichier invalide")
     if session_id and (not session_id.startswith("cs_") or len(session_id) > 255):
         raise ValueError("Commande invalide")
     if len(source_url) > 500 or len(nom_produit) > 160 or len(nom_fichier) > 180:
         raise ValueError("Paramètres trop longs")
-    cle_source_pdf(source_url)
+    if source_url.endswith(".pdf"):
+        cle_source_pdf(source_url)
+    else:
+        cle_source_media(source_url)
     horodatage = int(time.time()) if maintenant is None else maintenant
     if expiration < horodatage:
         raise PermissionError("Lien expiré")
@@ -322,6 +327,17 @@ def cle_source_pdf(reference: str) -> str:
     return f"sources/tjd/{fichier[1]}"
 
 
+def cle_source_media(reference: str) -> str:
+    fichier = re.fullmatch(
+        rf"{re.escape(SOURCE_PRIVEE_PREFIX)}((?:[a-zA-Z0-9_-][a-zA-Z0-9._-]*/)*"
+        r"[a-zA-Z0-9_-][a-zA-Z0-9._-]*\.(?:mp4|m4a|apkg))",
+        reference,
+    )
+    if not fichier:
+        raise ValueError("Source média refusée")
+    return f"sources/tjd/{fichier[1]}"
+
+
 def _bucket_prive() -> str:
     bucket = _variable_obligatoire("R2_PERSONNALISES_BUCKET")
     if bucket == os.environ.get("R2_BUCKET", "").strip():
@@ -362,6 +378,27 @@ def lien_pdf_offert(reference: str) -> str:
         "get_object",
         Params={"Bucket": _bucket_prive(), "Key": cle_source_pdf(reference)},
         ExpiresIn=DUREE_LIEN_R2_SECONDES,
+    )
+
+
+def lien_media_prive(reference: str, expiration: int) -> str:
+    cle = cle_source_media(reference)
+    est_deck = cle.endswith(".apkg")
+    duree_max = DUREE_LIEN_R2_SECONDES if est_deck else DUREE_LECTURE_R2_SECONDES
+    duree = min(duree_max, expiration - int(time.time()))
+    if duree <= 0:
+        raise PermissionError("Lien expiré")
+    nom_fichier = cle.rsplit("/", 1)[-1]
+    disposition = f'attachment; filename="{nom_fichier}"' if est_deck else "inline"
+    return _client_r2().generate_presigned_url(
+        "get_object",
+        Params={
+            "Bucket": _bucket_prive(),
+            "Key": cle,
+            "ResponseCacheControl": "private, no-store",
+            "ResponseContentDisposition": disposition,
+        },
+        ExpiresIn=duree,
     )
 
 

@@ -1,4 +1,4 @@
-// Vérifie le token HMAC et redirige vers l'URL Vercel Blob.
+// Vérifie le lien d'achat et transmet le fichier choisi à la route de stockage privé.
 // GET /api/telecharger?id=<produit_id>&b=<blob_index>&exp=<timestamp_unix>&sig=<hmac_hex>
 
 const crypto = require("crypto");
@@ -60,32 +60,35 @@ module.exports = async (req, res) => {
 
   const sourceUrl = produit.blobs[blobIndex];
   const estPdf = /\.pdf(?:$|\?)/i.test(sourceUrl);
-  if (estPdf) {
-    const nomFichier = nomFichierDepuisUrl(sourceUrl);
-    const personnalisationSig = genererJetonPersonnalisation({
-      produitId: id,
-      blobIndex,
-      expiry,
-      sessionId,
-      sourceUrl,
-      nomProduit: produit.nom,
-      nomFichier,
-    }, secret);
-    const parametres = new URLSearchParams({
-      id,
-      b: String(blobIndex),
-      exp: String(expiry),
-      sid: sessionId,
-      src: sourceUrl,
-      nom: produit.nom,
-      fichier: nomFichier,
-      psig: personnalisationSig,
-    });
-    res.redirect(302, `/api/personnaliser-pdf?${parametres.toString()}`);
+  const estMediaPrive = /^r2:\/\/tjd\/.+\.(mp4|m4a|apkg)$/.test(sourceUrl);
+  if (!estPdf && !estMediaPrive) {
+    res.status(404).send("Fichier introuvable.");
     return;
   }
 
-  res.redirect(302, sourceUrl);
+  const nomFichier = nomFichierDepuisUrl(sourceUrl);
+  const personnalisationSig = genererJetonPersonnalisation({
+    produitId: id,
+    blobIndex,
+    expiry,
+    sessionId,
+    sourceUrl,
+    nomProduit: produit.nom,
+    nomFichier,
+  }, secret);
+  const parametres = new URLSearchParams({
+    id,
+    b: String(blobIndex),
+    exp: String(expiry),
+    sid: sessionId,
+    src: sourceUrl,
+    nom: produit.nom,
+    fichier: nomFichier,
+    psig: personnalisationSig,
+  });
+  res.setHeader("Cache-Control", "private, no-store");
+  res.setHeader("Referrer-Policy", "no-referrer");
+  res.redirect(302, `/api/personnaliser-pdf?${parametres.toString()}`);
 };
 
 module.exports._test = { nomFichierDepuisUrl };
