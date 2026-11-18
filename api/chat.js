@@ -14,7 +14,7 @@ const MAX_CHARS = 1500; // garde-fou coût : un message visiteur plus long est t
 // pas tapée à la main : un format entier (citations, fiches d'arrêt) avait fini par
 // disparaître du prompt sans que rien ne le signale, découvert le 11/09/2026.
 const CATALOGUE = `
-PAGES MATIÈRE (présentation de la matière + fiches PDF à acheter, dès 14,99 €, accès à vie) :
+PAGES MATIÈRE (présentation de la matière + fiches PDF à acheter, dès 19,99 €, accès à vie) :
 L1 — introduction-au-droit-l1.html, droit-constitutionnel-l1.html, droit-des-personnes-l1.html, droit-de-la-famille-l1.html, histoire-du-droit-l1.html, histoire-des-institutions-l1.html, relations-internationales-l1.html, droit-penal-general-l1.html
 L2 — droit-administratif-l2.html, droit-des-biens-l2.html, droit-des-contrats-l2.html, droit-des-obligations-l2.html, droit-penal-l2.html
 L3 — contrats-speciaux-l3.html, droit-commercial-l3.html, droit-des-societes-l3.html, droit-du-travail-l3.html, procedure-penale-l3.html

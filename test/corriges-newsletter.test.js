@@ -10,7 +10,7 @@ test('chaque page livre son exercice et propose un recueil vérifié',()=>{
   assert(!a.CORRIGE_PDF.includes('/compilations/'));
  }
  assert.equal(attributsExercice('inconnu'),null);
- for(const x of recueils())assert.equal(x.prixRemise,1349);
+ for(const x of recueils())assert.equal(x.prixRemise,1799);
 });
 test('la suggestion de domaine conserve les domaines inconnus',()=>{
  assert.equal(suggestionEmail('eleve@gmai.com'),'eleve@gmail.com');

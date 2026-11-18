@@ -89,7 +89,7 @@ FICHES = {
 AUTRES = {
     "proccivile": ("Majeure préparée", "Procédure civile L3", "majeures-preparees.html",
                    "assets/majeures/procedure-civile-l3s1-couleur.webp",
-                   "29 majeures dont le pourvoi en cassation et les cas d'ouverture", "14,99 €", "Voir la majeure →"),
+                   "29 majeures dont le pourvoi en cassation et les cas d'ouverture", "19,99 €", "Voir la majeure →"),
     "packl1": ("Pack complet", "Les 9 fiches de L1", "reussir-sa-l1.html",
                "assets/covers/pack-l1.webp?v=coffrets-universitaires-20260916",
                "9 fiches complètes pour reprendre les bases de la L1, en PDF", "87 €", "Voir le pack L1 →"),
@@ -134,7 +134,7 @@ lot("proccivile", "l3-s1", "arret-estoppel-2009-explique.html")
 
 
 # Produit vendu en achat direct (bouton Stripe), par clé et par semestre du Pack Ultra.
-# Depuis le 01/10/2026 la fiche à 14,99 € s'achète en un clic dans l'article
+# Depuis le 01/10/2026 la fiche à 19,99 € s'achète en un clic dans l'article
 # (encart du milieu et barre collante), et le Pack Ultra n'est plus qu'une ligne de lien.
 ID_PRODUIT = {
     "famille": "fiche-famille-l1-s2", "personnes": "fiche-personnes-l1", "penalgen": "fiche-penal-general-l1",
@@ -170,7 +170,7 @@ def produit(cle):
             infos[4] = re.sub(r'\b\d+(?= majeures\b)', str(apercu['majeures']), infos[4])
         return tuple(infos)
     t, lien, img, meta = FICHES[cle]
-    return ("Fiche complète", t, lien, img, meta, "14,99 €", "Voir la fiche →")
+    return ("Fiche complète", t, lien, img, meta, "19,99 €", "Voir la fiche →")
 
 
 def encart_milieu(cle, sid):

@@ -112,8 +112,8 @@ test("les libellés d'achat et d'aperçu nomment le type de PDF", () => {
     assert.doesNotMatch(html, /(?:>|\b)Acheter le recueil\b|Voir un aperçu du recueil|>Acheter la fiche(?=\s*[·<])|>Recueil\s*·/i, fichier);
   }
   const societes = fs.readFileSync(path.join(ROOT, "sujets-droit-des-societes-l3.html"), "utf8");
-  assert.match(societes, /data-tjd-produit="cas-pratique-societes-l3">Acheter les cas pratiques corrigés · 14,99 €</);
-  assert.match(societes, /data-tjd-produit="fiche-societes-l3-s1">Acheter la fiche complète · 14,99 €</);
+  assert.match(societes, /data-tjd-produit="cas-pratique-societes-l3">Acheter les cas pratiques corrigés · 19,99 €</);
+  assert.match(societes, /data-tjd-produit="fiche-societes-l3-s1">Acheter la fiche complète · 19,99 €</);
 });
 
 test("l'usage en TD vient du retour de Julien sans délai de résolution promis", () => {

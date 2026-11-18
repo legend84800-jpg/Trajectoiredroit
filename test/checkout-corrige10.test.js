@@ -68,7 +68,7 @@ test('le code CORRIGE10 conservé après un lien ouvre une majeure sans lui acco
   await avecStripeFactice(async ({ creer, appels }) => {
     const source = fs.readFileSync(path.join(__dirname, '../assets/js/achat.js'), 'utf8');
     const etapes = [];
-    const bouton = { textContent: 'Acheter · 14,99 €', disabled: false, getAttribute: () => null };
+    const bouton = { textContent: 'Acheter · 19,99 €', disabled: false, getAttribute: () => null };
     const window = {
       location: {
         search: '', hostname: 'trajectoiredroit.com', protocol: 'https:',
@@ -98,7 +98,7 @@ test('le code CORRIGE10 conservé après un lien ouvre une majeure sans lui acco
     await new Promise(setImmediate);
     assert.deepEqual(etapes, ['https://checkout.stripe.com/test']);
     assert.equal(appels.recherches.length, 0);
-    assert.equal(appels.creations[0].line_items[0].price_data.unit_amount, 1499);
+    assert.equal(appels.creations[0].line_items[0].price_data.unit_amount, 1999);
     assert.equal(appels.creations[0].discounts, undefined);
   });
 });
@@ -108,7 +108,7 @@ test('un ancien acheteur garde son champ Stripe et son prix normal malgré CORRI
     const res = await creer({ produitId: 'fiche-intro-droit-l1', code: 'CORRIGE10', dejaAcheteur: true });
     assert.equal(res.statusCode, 200);
     const params = appels.creations[0];
-    assert.equal(params.line_items[0].price_data.unit_amount, 1499);
+    assert.equal(params.line_items[0].price_data.unit_amount, 1999);
     assert.equal(params.allow_promotion_codes, true);
     assert.equal(params.discounts, undefined);
     assert.equal(params.metadata.codePromoLien, undefined);
@@ -121,7 +121,7 @@ test('un panier composé de recueils conserve le code promotionnel natif Stripe'
     assert.equal(res.statusCode, 200);
     const params = appels.creations[0];
     assert.deepEqual(params.discounts, [{ promotion_code: PROMO.id }]);
-    assert.deepEqual(params.line_items.map((ligne) => ligne.price_data.unit_amount), [1499, 1499]);
+    assert.deepEqual(params.line_items.map((ligne) => ligne.price_data.unit_amount), [1999, 1999]);
     assert.equal(params.metadata.codePromoLien, 'CORRIGE10');
   });
 });
@@ -134,15 +134,15 @@ test('un panier mixte réduit les seuls recueils au centime et conserve la trace
     });
     assert.equal(res.statusCode, 200);
     const params = appels.creations[0];
-    assert.deepEqual(params.line_items.map((ligne) => ligne.price_data.unit_amount), [1349, 1499, 1349]);
-    assert.equal(params.line_items.reduce((total, ligne) => total + ligne.price_data.unit_amount, 0), 4197);
+    assert.deepEqual(params.line_items.map((ligne) => ligne.price_data.unit_amount), [1799, 1999, 1799]);
+    assert.equal(params.line_items.reduce((total, ligne) => total + ligne.price_data.unit_amount, 0), 5597);
     assert.equal(params.discounts, undefined);
     assert.equal(params.allow_promotion_codes, false);
     assert.equal(params.after_expiration.recovery.allow_promotion_codes, false);
     assert.equal(params.metadata.codePromoLien, 'CORRIGE10');
-    assert.equal(params.metadata.codePromoMontantCentimes, '300');
+    assert.equal(params.metadata.codePromoMontantCentimes, '400');
     assert.equal(params.metadata.codePromoProduits, 'cas-pratique-societes-l3,dissertation-intro-droit-l1');
-    assert.equal(params.payment_intent_data.metadata.codePromoMontantCentimes, '300');
+    assert.equal(params.payment_intent_data.metadata.codePromoMontantCentimes, '400');
     assert.match(params.line_items[0].price_data.product_data.description, /Le prix inclut les 10 % de réduction du code CORRIGE10\./);
     assert.doesNotMatch(params.line_items[1].price_data.product_data.description, /CORRIGE10/);
     assert.deepEqual(appels.recherches[0].expand, ['data.promotion.coupon']);
@@ -153,8 +153,8 @@ test('un achat avec complément applique la remise au recueil, même placé en s
   await avecStripeFactice(async ({ creer, appels }) => {
     const res = await creer({ produitId: 'maj-societes-l3-s1', bumpId: 'cas-pratique-societes-l3', code: 'CORRIGE10' });
     assert.equal(res.statusCode, 200);
-    assert.deepEqual(appels.creations[0].line_items.map((ligne) => ligne.price_data.unit_amount), [1499, 1349]);
-    assert.equal(appels.creations[0].metadata.codePromoMontantCentimes, '150');
+    assert.deepEqual(appels.creations[0].line_items.map((ligne) => ligne.price_data.unit_amount), [1999, 1799]);
+    assert.equal(appels.creations[0].metadata.codePromoMontantCentimes, '200');
   });
 });
 
@@ -169,8 +169,8 @@ test('CORRIGE10 réduit les majeures de contrats seules et dans un panier mixte'
       code: 'CORRIGE10',
     });
     assert.equal(panier.statusCode, 200);
-    assert.deepEqual(appels.creations[1].line_items.map(ligne => ligne.price_data.unit_amount), [1349, 1499, 1349]);
-    assert.equal(appels.creations[1].metadata.codePromoMontantCentimes, '300');
+    assert.deepEqual(appels.creations[1].line_items.map(ligne => ligne.price_data.unit_amount), [1799, 1999, 1799]);
+    assert.equal(appels.creations[1].metadata.codePromoMontantCentimes, '400');
   });
 });
 
@@ -189,7 +189,7 @@ for (const [nom, promo] of PROMOS_INUTILISABLES) {
     await avecStripeFactice(async ({ creer, appels }) => {
       const res = await creer({ produitIds: ['cas-pratique-societes-l3', 'maj-societes-l3-s1'], code: 'CORRIGE10' });
       assert.equal(res.statusCode, 200);
-      assert.deepEqual(appels.creations[0].line_items.map((ligne) => ligne.price_data.unit_amount), [1499, 1499]);
+      assert.deepEqual(appels.creations[0].line_items.map((ligne) => ligne.price_data.unit_amount), [1999, 1999]);
       assert.equal(appels.creations[0].discounts, undefined);
       assert.equal(appels.creations[0].metadata.codePromoLien, undefined);
     }, { promo });

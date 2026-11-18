@@ -6,7 +6,10 @@ const { renderComparateur } = require("./synchroniser-presentations-catalogue");
 const ROOT = path.resolve(__dirname, "..");
 const IMAGE = "cours-images-contrats-l2-s1";
 const euro = (centimes) => `${(centimes / 100).toFixed(2).replace(".", ",")} €`;
-const estFormat = (id) => id === IMAGE || id?.startsWith("audio-video-");
+const estFormat = (id) => Boolean(PRODUITS[id] && (
+  id === IMAGE || /^(?:audio-video|maj|cas-pratique|commentaire-arret|dissertation)-/.test(id) ||
+  /^Fiche complète\b/.test(PRODUITS[id].nom)
+));
 
 function bilanPacksUltra() {
   return Object.fromEntries(Object.entries(DEFINITIONS).filter(([, p]) => !p.venteSuspendue).map(([id, p]) => {
