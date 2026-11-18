@@ -185,7 +185,7 @@ async function envoyerCorrigeOffert(email, attributs, tags, apiKey) {
     method: "POST",
     headers: { "Content-Type": "application/json", "api-key": apiKey, accept: "application/json" },
     body: JSON.stringify({
-      sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
+      sender: { name: "Julien", email: "contact@trajectoiredroit.com" },
       to: [{ email }],
       // L'email invite à répondre : sans ce replyTo, la réponse partirait vers
       // contact@trajectoiredroit.com, jamais lue par Julien.
@@ -381,7 +381,7 @@ async function envoyerPlan(email, attributs, apiKey) {
     method: "POST",
     headers: { "Content-Type": "application/json", "api-key": apiKey, accept: "application/json" },
     body: JSON.stringify({
-      sender: { name: "Trajectoire Droit", email: "contact@trajectoiredroit.com" },
+      sender: { name: "Julien", email: "contact@trajectoiredroit.com" },
       to: [{ email }],
       replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
       subject: contenu.sujet,
@@ -478,7 +478,7 @@ async function envoyerFiche(email, attributs, apiKey) {
     method: "POST",
     headers: { "Content-Type": "application/json", "api-key": apiKey, accept: "application/json" },
     body: JSON.stringify({
-      sender: { name: "Trajectoire Droit", email: "contact@trajectoiredroit.com" },
+      sender: { name: "Julien", email: "contact@trajectoiredroit.com" },
       to: [{ email }],
       replyTo: { email: "julien.prof1@gmail.com", name: "Julien" },
       subject: contenu.sujet,

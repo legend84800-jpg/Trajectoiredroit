@@ -88,6 +88,7 @@ test('chaque PDF est envoyé par le site avant le déclenchement du suivi', asyn
       assert.equal(contact.listIds, undefined);
       assert.ok(contact.attributes[clePdf].endsWith(finDuLien));
       assert.equal(mail.to[0].email, demande.email);
+      assert.equal(mail.sender.name, 'Julien');
       if (clePdf === 'CORRIGE_PDF') {
         assert.equal(mail.templateId, 33);
         assert.equal(mail.params.CORRIGE_PDF, contact.attributes.CORRIGE_PDF);
