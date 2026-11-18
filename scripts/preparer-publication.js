@@ -12,7 +12,7 @@ const IDENTIFIANTS_COURS_RETIRES = Object.entries(PRODUITS)
   .filter(([id, produit]) => produit.venteSuspendue && (produit.nom.startsWith('Cours complet ') || id.startsWith('pack-cours-complets-')))
   .map(([id]) => id);
 const APERCUS_COURS_RETIRES = new RegExp(`(?:^|[/_-])(?:${IDENTIFIANTS_COURS_RETIRES.join('|')})(?:[/_.-]|$)`, 'i');
-const VISUELS_COURS_RETIRES = /(?:comparatif-dol-cours-|photo-cours-complet-|og-cours-complet\.|hero-video-produits-poster\.)/;
+const VISUELS_COURS_RETIRES = /(?:comparatif-dol-cours-|photo-cours-complet-|og-cours-complet\.|hero-video-produits-poster\.jpg$)/;
 
 function preparerPublication(racine = path.resolve(__dirname, '..')) {
   const sortie = path.join(racine, 'build', 'site-public');

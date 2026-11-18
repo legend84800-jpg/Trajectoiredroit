@@ -537,7 +537,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .card--product .product__thumb img { width: 100%; height: 100%; object-fit: cover }
 .card--product .product__thumb .badge { position: absolute; top: 12px; left: 12px; z-index: 2 }
 /* Badge de format (Fiche détaillée, Cours complet...) : toujours en haut à droite, fond plein, jamais en filigrane, pour qu'on sache sans ambiguïté ce qu'on achète */
-.card--product .product__thumb .badge--format { left: auto; right: 12px; background: var(--ink); color: var(--white); font-weight: 700 }
+.card--product .product__thumb .badge--format { left: auto; right: 12px; background: var(--format-fond, var(--ink)); color: var(--format-encre, var(--white)); font-weight: 700 }
 /* Illustration vectorielle au centre du thumbnail */
 .card--product .product__thumb:not(.has-cover)::after {
   content: "📚";
@@ -5657,3 +5657,73 @@ html[data-theme="dark"] [style*="background: white"] { background: var(--white) 
 .section--dark .hero__cta-secondary { color: #C2CCE6; }
 .section--dark .hero__cta-secondary:hover { color: #fff; }
 
+
+/* Couleurs de repérage des deux formats, communes au catalogue et au kit. */
+:root {
+  --majeures-fond: #f5eaf4;
+  --majeures-encre: #603054;
+  --majeures-bouton: #713c65;
+  --majeures-survol: #5a2c50;
+  --dissertations-fond: #e5f2ed;
+  --dissertations-encre: #23574a;
+  --dissertations-bouton: #286351;
+  --dissertations-survol: #1d4c3e;
+}
+html[data-theme="dark"] {
+  --majeures-fond: #3b293e;
+  --majeures-encre: #f2d9ed;
+  --dissertations-fond: #203b34;
+  --dissertations-encre: #cfefe2;
+}
+:is(
+  [data-ton-format="majeures"],
+  [data-tjd-produit^="maj-"],
+  [data-tjd-produit^="pack-majeures-"],
+  .apercu-link[data-apercu-cta^="maj-"],
+  .card--product:has([data-tjd-produit^="maj-"], [data-tjd-produit^="pack-majeures-"]),
+  .megamenu__niveau-col--formats a[href="majeures-preparees.html"],
+  .mobile-nav__format[href="majeures-preparees.html"]
+) {
+  --format-fond: var(--majeures-fond);
+  --format-encre: var(--majeures-encre);
+  --format-bouton: var(--majeures-bouton);
+  --format-survol: var(--majeures-survol);
+}
+:is(
+  [data-ton-format="dissertations"],
+  [data-tjd-produit^="dissertation-"],
+  .apercu-link[data-apercu-cta^="dissertation-"],
+  .card--product:has([data-tjd-produit^="dissertation-"])
+) {
+  --format-fond: var(--dissertations-fond);
+  --format-encre: var(--dissertations-encre);
+  --format-bouton: var(--dissertations-bouton);
+  --format-survol: var(--dissertations-survol);
+}
+.format-etiquette {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 680;
+  background: var(--format-fond);
+  color: var(--format-encre);
+}
+.btn.btn--primary:is([data-tjd-produit^="maj-"], [data-tjd-produit^="pack-majeures-"], [data-tjd-produit^="dissertation-"]) {
+  background: var(--format-bouton);
+  border-color: var(--format-bouton);
+  color: #fff;
+}
+.btn.btn--primary:is([data-tjd-produit^="maj-"], [data-tjd-produit^="pack-majeures-"], [data-tjd-produit^="dissertation-"]):hover {
+  background: var(--format-survol);
+  border-color: var(--format-survol);
+}
+.apercu-link:is([data-apercu-cta^="maj-"], [data-apercu-cta^="dissertation-"]) {
+  color: var(--format-encre);
+}
+.megamenu__niveau-col--formats a[href="majeures-preparees.html"],
+.mobile-nav__format[href="majeures-preparees.html"] {
+  background: var(--format-fond);
+  color: var(--format-encre);
+}
+#video-des-formats { scroll-margin-top: 88px; }
+#video-des-formats a.fiche-preview__caption-sub { text-decoration: underline; text-underline-offset: 3px; }

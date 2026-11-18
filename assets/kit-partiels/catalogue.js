@@ -9,6 +9,7 @@ window.catalogueKit = {
         "nom": "Droit constitutionnel",
         "semestre": "S1",
         "formatApplication": "Dissertations corrigées",
+        "tonFormat": "dissertations",
         "prixSepare": 4997
       },
       {
@@ -17,6 +18,7 @@ window.catalogueKit = {
         "nom": "Introduction au droit",
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
+        "tonFormat": "majeures",
         "prixSepare": 4997
       },
       {
@@ -25,6 +27,7 @@ window.catalogueKit = {
         "nom": "Histoire du droit",
         "semestre": "S1",
         "formatApplication": "Dissertations corrigées",
+        "tonFormat": "dissertations",
         "prixSepare": 4997
       },
       {
@@ -33,6 +36,7 @@ window.catalogueKit = {
         "nom": "Droit des personnes",
         "semestre": "",
         "formatApplication": "Majeures préparées",
+        "tonFormat": "majeures",
         "prixSepare": 4997
       },
       {
@@ -41,6 +45,7 @@ window.catalogueKit = {
         "nom": "Droit constitutionnel",
         "semestre": "S2",
         "formatApplication": "Dissertations corrigées",
+        "tonFormat": "dissertations",
         "prixSepare": 4997
       },
       {
@@ -49,6 +54,7 @@ window.catalogueKit = {
         "nom": "Droit de la famille",
         "semestre": "S2",
         "formatApplication": "Majeures préparées",
+        "tonFormat": "majeures",
         "prixSepare": 4997
       }
     ],
@@ -59,6 +65,7 @@ window.catalogueKit = {
         "nom": "Droit des contrats",
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
+        "tonFormat": "majeures",
         "prixSepare": 4997
       },
       {
@@ -67,6 +74,7 @@ window.catalogueKit = {
         "nom": "Droit administratif",
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
+        "tonFormat": "majeures",
         "prixSepare": 4997
       },
       {
@@ -75,6 +83,7 @@ window.catalogueKit = {
         "nom": "Droit pénal",
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
+        "tonFormat": "majeures",
         "prixSepare": 4997
       },
       {
@@ -83,6 +92,7 @@ window.catalogueKit = {
         "nom": "Responsabilité civile",
         "semestre": "S2",
         "formatApplication": "Majeures préparées",
+        "tonFormat": "majeures",
         "prixSepare": 4997
       },
       {
@@ -91,6 +101,7 @@ window.catalogueKit = {
         "nom": "Droit administratif",
         "semestre": "S2",
         "formatApplication": "Majeures préparées",
+        "tonFormat": "majeures",
         "prixSepare": 4997
       },
       {
@@ -99,6 +110,7 @@ window.catalogueKit = {
         "nom": "Droit des biens",
         "semestre": "",
         "formatApplication": "Majeures préparées",
+        "tonFormat": "majeures",
         "prixSepare": 4997
       }
     ],
@@ -109,6 +121,7 @@ window.catalogueKit = {
         "nom": "Droit du travail",
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
+        "tonFormat": "majeures",
         "prixSepare": 4997
       },
       {
@@ -117,6 +130,7 @@ window.catalogueKit = {
         "nom": "Droit des sociétés",
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
+        "tonFormat": "majeures",
         "prixSepare": 4997
       },
       {
@@ -125,6 +139,7 @@ window.catalogueKit = {
         "nom": "Contrats spéciaux",
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
+        "tonFormat": "majeures",
         "prixSepare": 4997
       },
       {
@@ -133,6 +148,7 @@ window.catalogueKit = {
         "nom": "Droit commercial",
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
+        "tonFormat": "majeures",
         "prixSepare": 4997
       }
     ]

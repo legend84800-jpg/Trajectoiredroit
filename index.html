@@ -57,7 +57,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
-  <link rel="stylesheet" href="assets/style.css?v=a8ac54a2">
+  <link rel="stylesheet" href="assets/style.css?v=152fbd23">
   <link rel="stylesheet" href="assets/comparateur-besoins.css?v=dbcd508a">
   <link rel="stylesheet" href="assets/portalis-accueil.css?v=853a780f">
   <link rel="stylesheet" href="assets/pack-ultra-accueil.css?v=4e6466ed">
@@ -125,6 +125,7 @@
               <div class="megamenu__niveau-head"><strong>Par format</strong></div>
               <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
               <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="kit-partiels.html" role="menuitem">📚 Kit Partiels</a>
               <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
               <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
               <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
@@ -314,6 +315,7 @@
         <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
         <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
         <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="kit-partiels.html"><span class="mobile-nav__format-icon" aria-hidden="true">📚</span><span>Kit Partiels</span></a>
         <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
         <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
         <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
@@ -377,6 +379,7 @@
             <!-- 3. CTA (1 dominant + 1 secondaire en lien) -->
             <div class="hero__cta">
               <a class="btn btn--primary btn--lg" href="#formules" data-saison="hero-bouton">Choisir mes ressources →</a>
+              <a class="btn btn--outline" href="kit-partiels.html">Kit Partiels · Trois matières</a>
               <a class="hero__cta-secondary" href="#apercu-produit">▶ Voir un extrait de majeure préparée</a>
             </div>
 
@@ -420,13 +423,20 @@
             </a>
           </div>
 
-          <div class="hero__visual hero__fiche hero__fiche--extrait fade-in fade-in--delay-1">
+          <div id="video-des-formats" class="hero__visual hero__fiche hero__fiche--video fade-in fade-in--delay-1">
             <div class="fiche-preview">
-              <a class="fiche-preview__viewport" href="formations.html#extrait-fiche-contrats" aria-label="Lire un extrait de la fiche complète de droit des contrats">
-                <img class="fiche-preview__img" src="assets/formats/photo-fiche-complete-contrats-l2s1.webp" alt="Fiche complète de droit des contrats, L2 semestre 1" fetchpriority="high">
-              </a>
+              <div class="fiche-preview__badge"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>5 min pour tout comprendre</div>
+              <div class="fiche-preview__viewport">
+                <video class="fiche-preview__video"
+                       controls playsinline
+                       preload="metadata"
+                       poster="assets/hero-video-produits-poster.webp?v=46426dcd">
+                  <source src="https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/video/vue-ensemble-produits.mp4" type="video/mp4">
+                </video>
+              </div>
               <div class="fiche-preview__caption">
-                <strong><a href="formations.html#extrait-fiche-contrats">Lire un extrait de la fiche de droit des contrats</a></strong>
+                <strong>Je te présente les formats de révision</strong>
+                <a class="fiche-preview__caption-sub" href="formations.html#extrait-fiche-contrats">Lire un extrait de la fiche de droit des contrats</a>
               </div>
             </div>
             <div class="edu-badge"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-trophy"/></svg>+3 pts de moyenne</div>

@@ -28,6 +28,7 @@ test('les pages françaises partagent quatre familles de navigation avec Portali
     assert.equal(familles.length, 4, `${nom} doit avoir quatre familles`);
     const formats = extraire(nav, '<div class="megamenu__niveau-col megamenu__niveau-col--formats">', '</div>\n            <div class="megamenu__niveau-col">');
     assert.match(formats, /href="portalis\.html" role="menuitem"/, `${nom} doit proposer Portalis dans Par format`);
+    assert.match(formats, /href="kit-partiels\.html" role="menuitem"/, `${nom} doit proposer le Kit Partiels dans Par format`);
     assert.match(nav, />Fiches\s*</, `${nom} doit proposer Fiches`);
     assert.match(nav, />Cours particuliers\s*</, `${nom} doit proposer Cours particuliers`);
     assert.doesNotMatch(nav, /stage-methode|Stage en direct/, `${nom} doit retirer le stage`);
@@ -89,7 +90,8 @@ test('le menu mobile reprend les quatre familles avec divulgation progressive', 
     assert.match(navMobile, /<details class="mobile-nav__group[^>]*" open>/, `${nom} doit montrer les formats dès l'ouverture du menu`);
     assert.match(navMobile, />Choisir un format</, `${nom} doit nommer clairement le premier groupe`);
     assert.match(navMobile, /href="formations\.html#comparatif"[^>]*>Comparer tous les formats</, `${nom} doit donner un accès direct au comparatif`);
-    assert.equal((navMobile.match(/mobile-nav__format-icon/g) || []).length, 8, `${nom} doit illustrer les formats en vente et le Pack Ultra`);
+    assert.equal((navMobile.match(/mobile-nav__format-icon/g) || []).length, 9, `${nom} doit illustrer les formats, les kits et le Pack Ultra`);
+    assert.match(navMobile, /mobile-nav__format" href="kit-partiels\.html"/, `${nom} doit proposer le Kit Partiels sur mobile`);
     assert.match(navMobile, /mobile-nav__format--featured[^>]*href="pack-ultra\.html#pack-ultra"/, `${nom} doit mettre le Pack Ultra en avant`);
     assert.doesNotMatch(navMobile, /cours-fiches\.html|Cours complets/, nom);
     assert.match(navMobile, /href="formations\.html"[^>]*><span[^>]*>📄<\/span><span>Fiches complètes<\/span>/, `${nom} doit conserver les fiches complètes`);

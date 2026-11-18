@@ -30,12 +30,14 @@ function lireMatiere(entree, produits) {
   const [code, discipline, nom, semestre, fiche, application, qcm] = entree;
   const supports = [fiche, application, qcm].map((reference) => produits[reference]);
   if (supports.some((support) => !support?.blobs?.length || !Number.isInteger(support.prix))) return null;
+  const majeure = application.startsWith("maj-");
   return {
     code,
     discipline,
     nom,
     semestre,
-    formatApplication: application.startsWith("maj-") ? "Majeures préparées" : "Dissertations corrigées",
+    formatApplication: majeure ? "Majeures préparées" : "Dissertations corrigées",
+    tonFormat: majeure ? "majeures" : "dissertations",
     prixSepare: supports.reduce((total, support) => total + support.prix, 0),
     suspendue: supports.some((support) => support.venteSuspendue),
     fichiers: supports.flatMap((support) => support.blobs),
@@ -77,8 +79,8 @@ function donneesPage(produits) {
     entrees
       .map((entree) => lireMatiere(entree, produits))
       .filter((matiere) => matiere && !matiere.suspendue)
-      .map(({ code, discipline, nom, semestre, formatApplication, prixSepare }) => ({
-        code, discipline, nom, semestre, formatApplication, prixSepare,
+      .map(({ code, discipline, nom, semestre, formatApplication, tonFormat, prixSepare }) => ({
+        code, discipline, nom, semestre, formatApplication, tonFormat, prixSepare,
       })),
   ]));
   return { prix: PRIX_KIT, nombreMatieres: NOMBRE_MATIERES, niveaux };

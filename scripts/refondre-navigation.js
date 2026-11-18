@@ -282,6 +282,7 @@ function menuMobile(fichier) {
       <div class="mobile-nav__subnav">
         ${lienMobile('formations.html#comparatif', 'Comparer tous les formats', fichier, 'mobile-nav__compare')}
         ${lienMobile('formations.html', '<span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span>', fichier, 'mobile-nav__format mobile-nav__format--featured')}
+        ${lienMobile('kit-partiels.html', '<span class="mobile-nav__format-icon" aria-hidden="true">📚</span><span>Kit Partiels</span>', fichier, 'mobile-nav__format')}
         ${lienMobile('majeures-preparees.html', '<span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span>', fichier, 'mobile-nav__format')}
         ${lienMobile('revisions.html', '<span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span>', fichier, 'mobile-nav__format')}
         ${lienMobile('corriges.html', '<span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span>', fichier, 'mobile-nav__format')}

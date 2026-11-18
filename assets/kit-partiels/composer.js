@@ -65,6 +65,8 @@
       titre.className = "matter-name";
       titre.textContent = matiere.nom;
       const format = document.createElement("small");
+      format.className = "format-etiquette";
+      format.dataset.tonFormat = matiere.tonFormat;
       format.textContent = matiere.formatApplication;
       titre.append(format);
 
