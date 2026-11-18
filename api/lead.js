@@ -266,7 +266,7 @@ function offrePlan(plan, slug) {
     return {
       url: url.href,
       format: "commentaire",
-      texte: "Si tu veux lire la suite, le commentaire d’arrêt rédigé en entier est disponible sur la page de l’arrêt.",
+      texte: "Si tu veux obtenir le commentaire rédigé en entier, clique sur le lien ci-dessous.",
       bouton: "Voir le commentaire d’arrêt rédigé en entier",
     };
   }
@@ -276,7 +276,7 @@ function offrePlan(plan, slug) {
   return {
     url: url.href,
     format: "compilation",
-    texte: `Si tu veux lire le commentaire rédigé en entier, tu le trouveras dans la compilation avec ${autres} autres commentaires d’arrêt corrigés. Ils portent sur des thèmes qui reviennent souvent aux partiels.`,
+    texte: `Si tu veux obtenir le commentaire rédigé en entier ainsi que ${autres} autres commentaires d’arrêt, clique sur le lien ci-dessous. Ces commentaires portent sur l’ensemble des thèmes qui reviennent souvent en partiel.`,
     bouton: `Voir la compilation des commentaires d’arrêt corrigés ${matiere}${niveau ? " (" + niveau + ")" : ""}`,
   };
 }
@@ -313,7 +313,7 @@ function construireEmailArret(sujet, paragraphes, groupesEnGras = [], apercu = "
       for (const groupe of groupesEnGras) {
         texte = texte.replace(esc(groupe), '<strong style="color:#0E2A47">' + esc(groupe) + '</strong>');
       }
-      return '<p>' + texte + '</p>';
+      return '<p>' + texte.replace(/\n/g, '<br>') + '</p>';
     }
     const style = STYLES_LIENS_ARRET[p.format] ?? "color:#1A2851;font-weight:700";
     return '<p><a href="' + esc(p.lien) + '" style="display:inline-block;box-sizing:border-box;max-width:100%;border-radius:6px;overflow-wrap:anywhere;' + style + '">' + esc(p.texte) + '</a></p>';
@@ -355,12 +355,13 @@ function construireEmailPlan(a) {
       "Dans le PDF, j’ai repris l’introduction avec la problématique et la solution du juge. Tu trouveras ensuite l’annonce du plan et le I.A. rédigé, tel qu’il figure dans le commentaire complet.",
       { lien: a.PLAN_PDF, texte: "Télécharger le plan offert", format: "telechargement" },
       "Si tu veux t’améliorer en commentaire d’arrêt, fais le commentaire d’arrêt de ton côté à partir de l’arrêt. Ensuite, une fois que tu as fini, compare ton travail en détail avec mon commentaire corrigé. En plus, ça te fera un petit rappel de cours sur le thème de l’arrêt.",
+      "Cependant, avoir seulement le I.A. rédigé ne suffit pas pour bien t’entraîner. Il te faut des corrections complètes.",
       ...blocRecommandationArret(a, a.PLAN_URL),
       "Et si tu veux une fiche complète pour viser plus de 15 sur 20 au partiel, n’hésite pas à prendre aussi la fiche de la matière.",
       { lien: a.PLAN_FICHE_URL, texte: a.PLAN_FICHE_BOUTON, format: "fiche" },
-      "Si tu as une question sur le plan, tu peux répondre à cet email. Je lis moi-même les réponses.",
-      "Julien",
-    ], ["l’introduction", "le I.A. rédigé", "compare ton travail en détail", "viser plus de 15 sur 20 au partiel"],
+      "Si tu as une question sur le commentaire, n’hésite pas à m’envoyer un message en répondant à cet email.",
+      "Respectueusement,\nJulien\nTrajectoire Droit",
+    ], ["l’introduction", "le I.A. rédigé", "compare ton travail en détail", "corrections complètes", "viser plus de 15 sur 20 au partiel"],
     "L’introduction, l’annonce du plan et le I.A. rédigé.");
   }
   const paragraphes = [
