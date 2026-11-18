@@ -2,22 +2,24 @@ const fs = require("node:fs");
 const path = require("node:path");
 const PRODUITS = require("../api/_produits");
 const { DEFINITIONS, referenceVente } = require("../api/_packs-ultra");
+const { montantEcheance } = require("../api/_echeances");
 const { renderComparateur } = require("./synchroniser-presentations-catalogue");
 const ROOT = path.resolve(__dirname, "..");
 const IMAGE = "cours-images-contrats-l2-s1";
 const euro = (centimes) => `${(centimes / 100).toFixed(2).replace(".", ",")} €`;
+const prixUltra = (prix) => prix % 100 === 0 ? `${prix / 100} €` : euro(prix);
 const estFormat = (id) => Boolean(PRODUITS[id] && (
   id === IMAGE || /^(?:audio-video|maj|cas-pratique|commentaire-arret|dissertation|pack-partiel)-/.test(id) ||
   /^Fiche complète\b/.test(PRODUITS[id].nom)
 ));
 
 function bilanPacksUltra() {
-  return Object.fromEntries(Object.entries(DEFINITIONS).filter(([, p]) => !p.venteSuspendue).map(([id, p]) => {
-    const references = PRODUITS[referenceVente(id)].inclus;
+  return Object.fromEntries(Object.keys(DEFINITIONS).filter((id) => PRODUITS[referenceVente(id)]).map((id) => {
+    const { prix, inclus: references } = PRODUITS[referenceVente(id)];
     const total = references.reduce((somme, reference) => somme + PRODUITS[reference].prix, 0);
     const medias = references.filter((reference) => reference.startsWith("audio-video-"));
     const totalMedias = medias.reduce((somme, reference) => somme + PRODUITS[reference].prix, 0);
-    return [id, { prix: p.prix, total, totalMedias, ressources: references.length, economie: Math.round((total - p.prix) / total * 100) }];
+    return [id, { prix, total, totalMedias, ressources: references.length, economie: Math.round((total - prix) / total * 100) }];
   }));
 }
 
@@ -49,21 +51,42 @@ function synchroniserPrixFormats(contenu, fichier) {
     const id = bloc.match(/href="pack-ultra\.html#([^"]+)"/)?.[1];
     const p = packs[id];
     if (!p) return bloc;
-    return bloc.replace(/(au lieu de )[^€]+€(, )\d+( % d’économie)/, `$1${euro(p.total)}$2${p.economie}$3`)
+    return bloc.replace(/(ressources, )[^€]+€( au lieu de )[^€]+€(, )\d+( % d’économie)/,
+      (_, debut, comparaison, separateur, unite) => debut + prixUltra(p.prix) + comparaison + euro(p.total) + separateur + p.economie + unite)
       .replace(/(<span class="badge badge--success">)-\d+( %<\/span>)/, `$1-${p.economie}$2`)
-      .replace(/(<span class="megamenu__pack-tile-price-old">)[^<]+(?=<\/span>)/, `$1${euro(p.total)}`);
+      .replace(/(<span class="megamenu__pack-tile-price-old">)[^<]+(?=<\/span>)/, `$1${euro(p.total)}`)
+      .replace(/(<span class="megamenu__pack-tile-price">)[^<]+(?=<\/span>)/, `$1${prixUltra(p.prix)}`);
   });
   sortie = sortie.replace(/<article class="ultra-card" id="([^"]+)">[\s\S]*?<\/article>/g, (bloc, id) => {
     const p = packs[id];
     if (!p) return bloc;
     return bloc.replace(/(<span class="ultra-card__saving">)\d+( % d’économie<\/span>)/, `$1${p.economie}$2`)
       .replace(/(<span class="ultra-card__unit-total">)[^<]+(?=<\/span>)/, `$1${euro(p.total)}`)
+      .replace(/(<span class="ultra-card__price">)[^<]+(?=<\/span>)/, `$1${prixUltra(p.prix)}`)
+      .replace(/(<span class="ultra-card__payment">ou 3 × )[^€]+€/, `$1${euro(montantEcheance(p.prix, 3))}`)
       .replace(/(<p class="ultra-card__bonus">[^<]*ils coûtent )[^€]+€/, `$1${euro(p.totalMedias)}`);
   });
   sortie = sortie.replace(/<p class="article-pack-ligne__texte">[\s\S]*?<\/p>/g, (bloc) => {
     const id = bloc.match(/href="pack-ultra\.html#([^"]+)"/)?.[1];
-    return packs[id] ? bloc.replace(/\d+ ressources/, `${packs[id].ressources} ressources`) : bloc;
+    const p = packs[id];
+    if (!p) return bloc;
+    return bloc.replace(/\d+ ressources/, `${p.ressources} ressources`)
+      .replace(/\b(pour|à) (?:un achat unique de )?\d+(?:,\d{2})? €/, (prix) => prix.replace(/\d+(?:,\d{2})? €/, prixUltra(p.prix)));
   });
+  if (fichier === "index.html") {
+    const minimum = Math.min(...Object.values(packs).map((p) => p.prix));
+    sortie = sortie.replace(/(<span class="pricing__price pricing__price--blue">dès )[^<]+/, (_, debut) => debut + prixUltra(minimum));
+  }
+  if (fichier === "parents.html") {
+    sortie = sortie.replace(/(<tr><td>(L[123]) · semestre ([12])<\/td>)<td>\d+<\/td><td class="prix">[^<]+<\/td><td>3 × [^<]+<\/td><td class="barre">[^<]+<\/td>/g,
+      (bloc, debut, niveau, semestre) => {
+        const p = packs[`pack-ultra-${niveau.toLowerCase()}-s${semestre}`];
+        return p ? `${debut}<td>${p.ressources}</td><td class="prix">${prixUltra(p.prix)}</td><td>3 × ${euro(montantEcheance(p.prix, 3))}</td><td class="barre">${euro(p.total)}</td>` : bloc;
+      });
+    sortie = sortie.replace(/(<option value="(pack-ultra-l[123]-s[12])-revision" data-prix=")\d+(">[^(]+\()[^)<]+/g,
+      (bloc, debut, id, texte) => packs[id] ? `${debut}${packs[id].prix}${texte}${prixUltra(packs[id].prix)}` : bloc);
+    sortie = sortie.replace(/(Le Pack Ultra de L1 semestre 1 coûte )\d+(?:,\d{2})? €/, (_, debut) => debut + prixUltra(packs["pack-ultra-l1-s1"].prix));
+  }
   sortie = sortie.replace(/<!-- catalogue:comparateur:start -->[\s\S]*?<!-- catalogue:comparateur:end -->/g, renderComparateur());
   return sortie;
 }

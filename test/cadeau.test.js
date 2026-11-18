@@ -5,6 +5,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const PRODUITS = require("../api/_produits");
+const { euros, montantEcheance } = require("../api/_echeances");
 const {
   lireCadeauFormulaire,
   cadeauDepuisMetadata,
@@ -178,8 +179,8 @@ test("un cadeau payé en 3 fois reste un abonnement borné et garde le cadeau", 
   assert.equal(params.metadata.cadeauPrenom, undefined);
   assert.equal(params.subscription_data.metadata.cadeau, "1");
   assert.equal(params.subscription_data.metadata.echeances, "3");
-  assert.match(params.custom_text.submit.message, /109,66 € aujourd'hui/);
-  assert.match(params.custom_text.submit.message, /328,98 € au total/);
+  assert.match(params.custom_text.submit.message, /76,33 € aujourd'hui/);
+  assert.match(params.custom_text.submit.message, /228,99 € au total/);
   assert.match(params.custom_text.submit.message, /etudiant@example\.com dès le premier paiement\./);
   assert.ok(!/tu reçois/i.test(params.custom_text.submit.message));
 });
@@ -330,7 +331,7 @@ test("la confirmation au parent vouvoie, détaille les échéances et ne contien
   assert.match(unique.texte, /LYON3JULIE/);
 });
 
-test("le formulaire de parents.html propose les cinq packs en vente au bon prix", () => {
+test("la page parents affiche les cinq packs en vente au bon prix", () => {
   const html = fs.readFileSync(path.join(RACINE, "parents.html"), "utf8");
   const options = [...html.matchAll(/<option value="(pack-ultra-[a-z0-9-]+)" data-prix="(\d+)">/g)];
   const enVente = Object.entries(PRODUITS)
@@ -338,7 +339,14 @@ test("le formulaire de parents.html propose les cinq packs en vente au bon prix"
     .map(([id]) => id)
     .sort();
   assert.deepEqual(options.map((o) => o[1]).sort(), enVente);
-  options.forEach(([, id, prix]) => assert.equal(Number(prix), PRODUITS[id].prix, id));
+  for (const [, id, prix] of options) {
+    const produit = PRODUITS[id];
+    assert.equal(Number(prix), produit.prix, id);
+    const [, niveau, semestre] = id.match(/^pack-ultra-(l[123])-s([12])-revision$/);
+    const total = produit.inclus.reduce((somme, reference) => somme + PRODUITS[reference].prix, 0);
+    const prixVisible = euros(produit.prix).replace(",00 €", " €");
+    assert.ok(html.includes(`<td>${niveau.toUpperCase()} · semestre ${semestre}</td><td>${produit.inclus.length}</td><td class="prix">${prixVisible}</td><td>3 × ${euros(montantEcheance(produit.prix, 3))}</td><td class="barre">${euros(total)}</td>`), id);
+  }
   assert.match(html, /id="offrirEmail"[^>]*required/);
   assert.match(html, /id="offrirMessage"[^>]*maxlength="300"/);
   assert.match(html, /cadeauEmail: adresse/);

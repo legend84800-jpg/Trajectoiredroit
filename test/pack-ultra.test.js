@@ -4,6 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const PRODUITS = require("../api/_produits");
 const { DEFINITIONS, referencesPour, referenceVente } = require("../api/_packs-ultra");
+const { montantEcheance, euros } = require("../api/_echeances");
 const { construireLiensTelechargement } = require("../api/_liens-telechargement");
 const { MATIERES, classerRessource } = require("../assets/js/pack-ultra-inclusions");
 
@@ -19,7 +20,7 @@ test("chaque Pack Ultra contient exactement les références de son semestre", (
       continue;
     }
     const pack = PRODUITS[id];
-    assert.equal(pack.prix, definition.prix);
+    assert.equal(pack.prix, definition.prixHistorique ?? definition.prix);
     assert.equal(pack.venteSuspendue, true);
     assert.deepEqual(pack.inclus, references);
     assert.equal(pack.blobs.length, pack.blobsMeta.length);
@@ -32,7 +33,7 @@ test("chaque Pack Ultra contient exactement les références de son semestre", (
     const actives = references.filter(reference => !PRODUITS[reference].venteSuspendue);
     assert.deepEqual(revision.inclus, actives, id);
     assert.deepEqual(revision.blobs, actives.flatMap(reference => PRODUITS[reference].blobs), id);
-    assert.equal(revision.prix, pack.prix);
+    assert.equal(revision.prix, definition.prix);
     assert.ok(!revision.venteSuspendue);
   }
 });
@@ -81,6 +82,7 @@ test("la page dédiée montre seulement les cinq packs en vente et leurs ressour
       assert.ok(carte.includes(`class="ultra-card__comparison">Total à l’unité : <span class="ultra-card__unit-total">${totalAffiche}</span></span>`), id);
       assert.ok(carte.includes(`class="ultra-card__saving">${pourcentage} % d’économie</span>`), id);
       assert.ok(carte.includes(`class="ultra-card__price">${prixAffiche}</span>`), id);
+      assert.ok(carte.includes(`ou 3 × ${euros(montantEcheance(pack.prix, 3))} sans frais`), id);
       assert.ok(bloc.includes(`href="#${id}">Voir le prix et les options de paiement</a>`), id);
     }
   }
@@ -160,10 +162,10 @@ test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async
     [400, "produit_indisponible"],
   ]);
   assert.equal(appels.length, 2);
-  assert.equal(appels[0].line_items[0].price_data.unit_amount, 25900);
+  assert.equal(appels[0].line_items[0].price_data.unit_amount, 19900);
   assert.equal(appels[0].metadata.produitIds, "pack-ultra-l1-s1-revision");
   assert.equal(appels[0].cancel_url, "https://trajectoiredroit.com/pack-ultra.html#pack-ultra-l1-s1");
-  assert.equal(appels[1].line_items[0].price_data.unit_amount, 23900);
+  assert.equal(appels[1].line_items[0].price_data.unit_amount, 19900);
   assert.equal(appels[1].metadata.produitIds, "pack-ultra-l2-s2-revision");
   assert.equal(appels[1].cancel_url, "https://trajectoiredroit.com/#pack-ultra-detail-l2-s2");
 });

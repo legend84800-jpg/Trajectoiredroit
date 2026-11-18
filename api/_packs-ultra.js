@@ -4,11 +4,11 @@
 // Les références sans semestre explicite sont rattachées ci-dessous par matière.
 
 const DEFINITIONS = {
-  "pack-ultra-l1-s1": { nom: "Le Pack Ultra L1 semestre 1", prix: 25900, attendus: 36 },
-  "pack-ultra-l1-s2": { nom: "Le Pack Ultra L1 semestre 2", prix: 22900, attendus: 26 },
-  "pack-ultra-l2-s1": { nom: "Le Pack Ultra L2 semestre 1", prix: 25900, attendus: 33 },
-  "pack-ultra-l2-s2": { nom: "Le Pack Ultra L2 semestre 2", prix: 23900, attendus: 30 },
-  "pack-ultra-l3-s1": { nom: "Le Pack Ultra L3 semestre 1", prix: 32900, attendus: 43 },
+  "pack-ultra-l1-s1": { nom: "Le Pack Ultra L1 semestre 1", prix: 19900, prixHistorique: 25900, attendus: 36 },
+  "pack-ultra-l1-s2": { nom: "Le Pack Ultra L1 semestre 2", prix: 19900, prixHistorique: 22900, attendus: 26 },
+  "pack-ultra-l2-s1": { nom: "Le Pack Ultra L2 semestre 1", prix: 19900, prixHistorique: 25900, attendus: 33 },
+  "pack-ultra-l2-s2": { nom: "Le Pack Ultra L2 semestre 2", prix: 19900, prixHistorique: 23900, attendus: 30 },
+  "pack-ultra-l3-s1": { nom: "Le Pack Ultra L3 semestre 1", prix: 22900, prixHistorique: 32900, attendus: 43 },
   "pack-ultra-l3-s2": { nom: "Le Pack Ultra L3 semestre 2", prix: 19900, attendus: 6, venteSuspendue: true },
 };
 
@@ -74,7 +74,11 @@ function construireProduits(catalogue) {
       throw new Error(`${id}: ${inclus.length} références trouvées, ${definition.attendus} attendues. Vérifier la composition.`);
     }
     if (definition.prix === null) continue;
-    packs[id] = { ...composer(definition, inclus, catalogue), venteSuspendue: true };
+    packs[id] = {
+      ...composer(definition, inclus, catalogue),
+      prix: definition.prixHistorique ?? definition.prix,
+      venteSuspendue: true,
+    };
     if (definition.venteSuspendue) continue;
 
     // La nouvelle référence permet de livrer la composition d'origine aux anciens acheteurs.
