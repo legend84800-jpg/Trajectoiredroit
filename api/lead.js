@@ -354,14 +354,14 @@ function construireEmailPlan(a) {
       `Tu as demandé le plan du commentaire de ${a.PLAN_ARRET}, le voici.`,
       "Dans le PDF, j’ai repris l’introduction avec la problématique et la solution du juge. Tu trouveras ensuite l’annonce du plan et le I.A. rédigé, tel qu’il figure dans le commentaire complet.",
       { lien: a.PLAN_PDF, texte: "Télécharger le plan offert", format: "telechargement" },
-      "Si tu veux t’améliorer en commentaire d’arrêt, fais le commentaire d’arrêt de ton côté à partir de l’arrêt. Ensuite, une fois que tu as fini, compare ton travail en détail avec mon commentaire corrigé. En plus, ça te fera un petit rappel de cours sur le thème de l’arrêt.",
+      "Si tu veux t’améliorer en commentaire d’arrêt, fais le commentaire d’arrêt de ton côté à partir de l’arrêt. Une fois ton commentaire terminé, compare-le point par point avec mon corrigé. En plus, ça te fera un petit rappel de cours sur le thème de l’arrêt.",
       "Cependant, avoir seulement le I.A. rédigé ne suffit pas pour bien t’entraîner. Il te faut des corrections complètes.",
       ...blocRecommandationArret(a, a.PLAN_URL),
       "Je travaille tous les jours depuis deux ans sur mes fiches complètes pour faire les meilleures fiches de droit en France. Si tu veux réviser avec mes fiches, n’hésite pas à prendre aussi celle de ta matière.",
       { lien: a.PLAN_FICHE_URL, texte: a.PLAN_FICHE_BOUTON, format: "fiche" },
       "Si tu as une question sur le commentaire, n’hésite pas à m’envoyer un message en répondant à cet email.",
       "Respectueusement,\nJulien\nTrajectoire Droit",
-    ], ["l’introduction", "le I.A. rédigé", "compare ton travail en détail", "corrections complètes", "tous les jours depuis deux ans"],
+    ], ["l’introduction", "le I.A. rédigé", "compare-le point par point", "corrections complètes", "tous les jours depuis deux ans"],
     "L’introduction, l’annonce du plan et le I.A. rédigé.");
   }
   const paragraphes = [
