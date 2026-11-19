@@ -58,6 +58,7 @@ test("le paiement unique et les deux échéances portent sur le même kit", asyn
   assert.equal(echelonne.line_items[0].price_data.unit_amount, 3450);
   assert.match(echelonne.line_items[0].price_data.product_data.name, /2 paiements sur 2 mois$/);
   assert.match(echelonne.line_items[0].price_data.product_data.description, /^2 paiements sur 2 mois\. Le prix total est de 69,00 €/);
+  assert.match(echelonne.custom_text.submit.message, /^2 paiements sur \*\*2 mois\*\*\./);
   assert.match(echelonne.custom_text.submit.message, /34,50 € aujourd’hui puis 34,50 € dans un mois, soit 69,00 € au total\. Les paiements s’arrêtent donc automatiquement après le deuxième\./);
   assert.equal(echelonne.metadata.echeances, "2");
   assert.equal(echelonne.metadata.montantTotal, "6900");

@@ -74,7 +74,7 @@ function versCheckoutEcheances(params, produit, nombre) {
   suite.custom_text = {
     submit: {
       message: enDeuxFois
-        ? `${libellePaiement}. Tu paies ${euros(montant)} aujourd’hui puis ${euros(montant)} dans un mois, soit ${euros(total)} au total. `
+        ? `2 paiements sur **2 mois**. Tu paies ${euros(montant)} aujourd’hui puis ${euros(montant)} dans un mois, soit ${euros(total)} au total. `
           + "Les paiements s’arrêtent donc automatiquement après le deuxième. Tu reçois tout le pack par email dès le premier paiement."
         : `Tu paies ${euros(montant)} aujourd'hui, puis ${euros(montant)} chacun des deux mois suivants, soit ${euros(total)} au total. `
           + "Les prélèvements s'arrêtent automatiquement après le troisième, et tu reçois tout le pack par email dès aujourd'hui.",
