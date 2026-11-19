@@ -22,6 +22,17 @@
   const valeurSeparee = form.querySelector("#prix-separe");
   const detail = form.querySelector("#detail-paiement");
   const cta = form.querySelector("#commander");
+  const comparaisonPack = form.querySelector("#duo-partiels");
+  const descriptionPack = form.querySelector("#duo-partiels-description");
+  const lienPack = form.querySelector("#duo-partiels-lien");
+
+  const packsPartiels = new Map([
+    ["constitutionnel-s1+intro-droit", "pack-partiel-l1-s1"],
+    ["administratif-s1+contrats", "pack-partiel-l2-s1"],
+    ["societes+travail", "pack-partiel-l3-travail-societes"],
+    ["contrats-speciaux+travail", "pack-partiel-l3-travail-contrats-speciaux"],
+    ["contrats-speciaux+societes", "pack-partiel-l3-societes-contrats-speciaux"],
+  ]);
   document.querySelectorAll("[data-kit-prix]").forEach((element) => {
     element.textContent = euros(montant);
   });
@@ -95,6 +106,14 @@
     resume.replaceChildren(matieres.length
       ? liste(matieres.map(nomComplet))
       : document.createTextNode("Tes matières apparaîtront ici."));
+    const pack = packsPartiels.get([...codes].sort().join("+"));
+    comparaisonPack.hidden = !pack;
+    if (pack) {
+      descriptionPack.textContent = niveau === "l1"
+        ? "Le Pack comprend des dissertations corrigées en droit constitutionnel. Il comprend aussi des cas pratiques corrigés et des majeures préparées en introduction au droit."
+        : "Le Pack comprend aussi des cas pratiques corrigés et des majeures préparées pour les deux matières.";
+      lienPack.href = `packs-partiels.html#${pack}`;
+    }
     comparaison.hidden = !pret && !memePrix;
     if (!comparaison.hidden) {
       const total = pret
