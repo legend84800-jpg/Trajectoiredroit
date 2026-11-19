@@ -26,7 +26,16 @@ function environnement({ url = 'https://trajectoiredroit.com/formations.html', m
     { niveau: 'L2', matiere: 'penal', texte: 'Droit pénal L2 semestre 1', id: 'penal' },
     { niveau: 'L3', matiere: 'civil', texte: 'Contrats spéciaux L3', id: 'contrats' }
   ];
-  const cartes = donnees.map((d) => Object.assign(element({ 'data-niveau': d.niveau, 'data-matiere': d.matiere }, d.texte), { id: d.id }));
+  const cartes = donnees.map((d) => {
+    const carte = element({ 'data-niveau': d.niveau, 'data-matiere': d.matiere }, d.texte);
+    const champs = Object.fromEntries(Object.entries(d.champs || { 'product__title': d.texte }).map(
+      ([classe, texte]) => ['.' + classe, { textContent: texte }]
+    ));
+    carte.id = d.id;
+    carte.querySelector = (s) => champs[s] || null;
+    carte.querySelectorAll = (s) => s.split(', ').map((selecteur) => champs[selecteur]).filter(Boolean);
+    return carte;
+  });
   cartes[0].style.display = 'flex';
   const recherche = element(), compteur = element(), vide = element(), reset = element();
   const niveaux = ['tous', 'L1', 'L2', 'L3'].map((n) => element({ 'data-catalogue-niveau': n }));
@@ -71,7 +80,12 @@ function cartesPage(nom) {
   const html = fs.readFileSync(path.join(__dirname, '..', nom), 'utf8');
   return Array.from(html.matchAll(/<article\b([^>]*\bdata-niveau="([^"]+)"[^>]*)>([\s\S]*?)<\/article>/g), (m) => ({
     niveau: m[2], matiere: m[1].match(/data-matiere="([^"]+)"/)?.[1] || '',
-    texte: m[3].replace(/<[^>]*>/g, ' '), id: m[3].match(/data-tjd-produit="([^"]+)"/)?.[1]
+    texte: m[3].replace(/<[^>]*>/g, ''),
+    id: m[3].match(/data-tjd-produit="([^"]+)"/)?.[1],
+    champs: Object.fromEntries(Array.from(
+      m[3].matchAll(/<(\w+) [^>]*class="(?:badge )?(badge--format|product__(?:title|meta|edition|desc|sommaire-list))"[^>]*>([\s\S]*?)<\/\1>/g),
+      ([, , classe, contenu]) => [classe, contenu.replace(/<[^>]*>/g, '')]
+    ))
   }));
 }
 
@@ -149,4 +163,25 @@ test('le catalogue de fiches reste cherchable sans accents et avec des mots dans
   e.niveau('L2'); e.chercher('L2 administratif');
   assert.equal(e.visibles().length, 2, nom);
   assert.equal(e.cartes.length, 24);
+});
+
+test('le semestre recherché correspond à la fiche et exclut les offres d’ajout', () => {
+  const e = environnement({ cartesReelles: cartesPage('formations.html') });
+  e.niveau('L2');
+  for (const [recherche, produits] of [
+    ['droit administratif semestre 1', ['fiche-da-l2-s1']],
+    ['droit administratif S1', ['fiche-da-l2-s1']],
+    ['droit administratif S.1', ['fiche-da-l2-s1']],
+    ['droit administratif semestre 2', ['fiche-da-l2-s2']],
+    ['droit administratif S2', ['fiche-da-l2-s2']],
+    ['Droit administratif, S 2', ['fiche-da-l2-s2']],
+    ['contrats semestre 1', ['cours-images-contrats-l2-s1', 'fiche-contrats-l2-s1']],
+    ['contrats S1', ['cours-images-contrats-l2-s1', 'fiche-contrats-l2-s1']],
+    ['responsabilité civile S2', ['fiche-obligations-l2-s2']],
+    ['droit des biens', ['fiche-biens-l2']],
+    ['droit des biens S1', []]
+  ]) {
+    e.chercher(recherche);
+    assert.deepEqual(e.visibles(), produits, recherche);
+  }
 });

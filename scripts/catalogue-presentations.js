@@ -13,9 +13,9 @@ const BESOINS = [
     titre: "Voir ou écouter les explications",
     supports: [
       { nom: "Cours en images", href: "droit-des-contrats-en-images.html", ids: ["cours-images-contrats-l2-s1"], unite: "" },
-      { nom: "Podcasts et vidéos", href: "pack-ultra.html#pack-ultra-podcasts", famille: "audio-video-", unite: " / matière" },
+      { nom: "Podcasts et vidéos par matière", choixMatieres: true, famille: "audio-video-", unite: " le cours" },
     ],
-    contenu: "Le cours en images porte sur les contrats de L2 S1. Les podcasts et les vidéos reprennent les leçons des matières proposées, avec un extrait à écouter avant de choisir.",
+    contenu: "Le cours en images porte sur les contrats de L2 S1. Choisis ta matière pour écouter un podcast ou regarder un extrait vidéo.",
   },
   {
     titre: "Rédiger mes exercices",

@@ -2,6 +2,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const PRODUITS = require("../api/_produits");
+const { SUJETS, sujetDe } = require("../api/_offres-matieres");
 const { FORMULES } = require("../api/_portalis-config");
 const { BESOINS, APERCUS, COMPARAISON_DOL } = require("./catalogue-presentations");
 const ROOT = path.resolve(__dirname, "..");
@@ -23,9 +24,35 @@ function prixSupport(support) {
   return montant + support.unite;
 }
 
+function renderChoixMatieres(support, prix) {
+  const annees = new Map();
+  for (const [id, produit] of Object.entries(PRODUITS)) {
+    if (!id.startsWith(support.famille) || produit.venteSuspendue) continue;
+    const sujet = SUJETS[sujetDe(id)];
+    const nomParAnnee = sujet?.nom.match(/^(.*?) L([123])(?: S[12])?$/);
+    if (!sujet?.page || !nomParAnnee) continue;
+    const [, nom, annee] = nomParAnnee;
+    if (!annees.has(annee)) annees.set(annee, new Map());
+    annees.get(annee).set(sujet.page, nom);
+  }
+  const choix = [...annees].sort(([anneeA], [anneeB]) => anneeA.localeCompare(anneeB)).map(([annee, matieres]) => {
+    const liens = [...matieres].sort(([, nomA], [, nomB]) => nomA.localeCompare(nomB, "fr"))
+      .map(([page, nom]) => `<li><a href="${escape(page)}#podcasts-videos">${escape(nom)}</a></li>`);
+    return `<div><p class="compare-podcasts__annee">Licence ${annee}</p><ul role="list">${liens.join("")}</ul></div>`;
+  });
+  return `<details class="compare-podcasts">
+    <summary><span>${escape(support.nom)}</span> <span class="compare-needs__price">${escape(prix)}</span></summary>
+    <div class="compare-podcasts__matieres">${choix.join("\n      ")}</div>
+  </details>`;
+}
+
 function renderComparateur() {
   const lignes = BESOINS.map((besoin) => {
-    const supports = besoin.supports.map((s) => `<li><a href="${escape(s.href)}">${escape(s.nom)}</a><span class="compare-needs__price">${escape(prixSupport(s))}</span></li>`).join("");
+    const supports = besoin.supports.map((s) => {
+      const prix = prixSupport(s);
+      if (s.choixMatieres) return `<li>${renderChoixMatieres(s, prix)}</li>`;
+      return `<li><a href="${escape(s.href)}">${escape(s.nom)}</a><span class="compare-needs__price">${escape(prix)}</span></li>`;
+    }).join("");
     const lien = besoin.lien ? ` <a href="${escape(besoin.lien.href)}">${escape(besoin.lien.nom)}</a>` : "";
     return `            <tr><th scope="row">${escape(besoin.titre)}</th><td><ul class="compare-needs__supports">${supports}</ul></td><td>${escape(besoin.contenu)}${lien}</td></tr>`;
   }).join("\n");

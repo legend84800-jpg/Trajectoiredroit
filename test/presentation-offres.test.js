@@ -76,6 +76,24 @@ test("les présentations générées restent à jour avec le catalogue de livrai
   assert.match(licence.description, /cartes mentales de 20 fiches/);
 });
 
+test("le comparatif des podcasts mène à chaque matière avec un extrait et une offre active", () => {
+  const accueil = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+  const choix = accueil.match(/<details class="compare-podcasts">[\s\S]*?<\/details>/)?.[0] || "";
+  const liens = [...choix.matchAll(/href="([^"#]+)#[^"]+"/g)].map(([, fichier]) => fichier);
+  const matieres = fs.readdirSync(ROOT).filter((fichier) => {
+    if (!fichier.endsWith(".html")) return false;
+    const html = fs.readFileSync(path.join(ROOT, fichier), "utf8");
+    const offre = html.match(/<section\b[^>]*\bid="podcasts-videos"[^>]*>[\s\S]*?<\/section>/)?.[0];
+    if (!offre || !offre.includes("<audio ") || !offre.includes("<video ")) return false;
+    return [...offre.matchAll(/data-tjd-produit="(audio-video-[^"]+)"/g)]
+      .some(([, id]) => PRODUITS[id] && !PRODUITS[id].venteSuspendue);
+  });
+  assert.ok(matieres.length > 0);
+  assert.deepEqual(liens.sort(), matieres.sort());
+  assert.equal([...choix.matchAll(/href="[^"#]+#podcasts-videos"/g)].length, matieres.length);
+  assert.ok(choix.includes('href="droit-des-contrats-l2.html#podcasts-videos"'));
+});
+
 test("le contrôle signale un montant de bouton différent du prix réellement encaissé", () => {
   const html = '<button data-tjd-produit="pack-l1">Acheter le pack · 0,01 €</button>';
   assert.equal(verifierPrix(html, "exemple.html").length, 1);
