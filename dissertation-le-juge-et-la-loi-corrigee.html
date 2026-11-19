@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Le juge et la loi, dissertation corrigée avec plan (L1)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Dissertation corrigée sur le juge et la loi en introduction au droit L1. Le juge est-il la bouche de la loi ? Plan détaillé, arrêts et passages de copie.">
+  <link rel="canonical" href="https://trajectoiredroit.com/dissertation-le-juge-et-la-loi-corrigee.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Le juge et la loi, dissertation corrigée avec plan (L1)">
+  <meta property="og:description" content="Dissertation corrigée sur le juge et la loi en introduction au droit L1. Le juge est-il la bouche de la loi ? Plan détaillé, arrêts et passages de copie.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/dissertation-le-juge-et-la-loi-corrigee.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/dissertation-le-juge-et-la-loi-corrigee.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Le juge et la loi, dissertation corrigée avec plan (L1)">
+  <meta name="twitter:description" content="Dissertation corrigée sur le juge et la loi en introduction au droit L1. Le juge est-il la bouche de la loi ? Plan détaillé, arrêts et passages de copie.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/dissertation-le-juge-et-la-loi-corrigee.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Le juge et la loi, dissertation corrigée avec plan détaillé",
+      "description": "Dissertation corrigée sur le juge et la loi en introduction au droit L1. Le juge est-il la bouche de la loi ? Plan détaillé, arrêts et passages de copie.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-11-19",
+      "dateModified": "2026-11-19",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Le juge et la loi, sujet de dissertation d’introduction au droit L1, corrigé avec son plan détaillé"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/dissertation-le-juge-et-la-loi-corrigee.html"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/dissertation-le-juge-et-la-loi-corrigee.webp"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Le juge et la loi, dissertation corrigée",
+          "item": "https://trajectoiredroit.com/dissertation-le-juge-et-la-loi-corrigee.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Le juge est-il la bouche de la loi ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le juge n’est pas toujours la bouche de la loi. Il doit appliquer la loi, et l’article 5 du Code civil lui interdit de poser des règles générales. Il interprète pourtant la loi quand elle est obscure ou muette (article 4), et il écarte parfois une loi contraire à un traité, comme dans l’arrêt Jacques Vabre du 24 mai 1975."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que dit l’article 5 du Code civil sur le rôle du juge ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "L’article 5 défend aux juges de prononcer « par voie de disposition générale et réglementaire sur les causes qui leur sont soumises ». Un juge tranche donc le litige qu’il a devant lui, et sa décision ne fixe pas de règle valable pour tous les procès à venir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Un juge peut-il écarter une loi ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, quand la loi est contraire à un traité. Le juge l’écarte alors dans le litige qu’il tranche, et la loi reste en vigueur pour les autres affaires. La Cour de cassation l’a jugé en 1975 (arrêt Jacques Vabre), et le Conseil d’État a accepté le même contrôle en 1989 (arrêt Nicolo), mais il a jugé la loi compatible avec le traité. La constitutionnalité d’une loi relève en revanche du Conseil constitutionnel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel PDF choisir pour s’entraîner à la dissertation en introduction au droit ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pour t’entraîner à rédiger, prends les dix dissertations corrigées d’introduction au droit L1 S1, avec un brouillon et une copie modèle pour chaque sujet. Pour revoir le cours avant d’écrire, prends la fiche complète d’introduction au droit L1 S1."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=152fbd23">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style id="exemples-pedagogiques-page">
+  .biens-hero { padding-top:48px; }
+  .biens-hero .hero__cta { margin-top:24px; }
+  @media (max-width:700px) {
+    .biens-hero { padding-top:24px; }
+    .biens-hero .hero__cta { gap:10px; }
+    .biens-hero .hero__cta .btn {
+      flex:1 1 132px;
+      width:auto;
+      min-height:44px;
+      font-size:.875rem;
+      padding:10px 12px;
+    }
+  }
+  @media (max-width:420px) {
+    .biens-hero { padding-top:12px; }
+    .biens-hero .hero__cta { margin-top:12px; }
+    .biens-hero .tjd-po { margin-top:12px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="kit-partiels.html" role="menuitem">📚 Kit Partiels</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 199 € au lieu de 439,69 €, 55 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-55 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">439,69 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 22 ressources, 199 € au lieu de 319,78 €, 38 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-38 %</span></span>
+                    <span class="megamenu__pack-tile-meta">22 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">319,78 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 28 ressources, 199 € au lieu de 419,72 €, 53 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-53 %</span></span>
+                    <span class="megamenu__pack-tile-meta">28 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">419,72 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 27 ressources, 199 € au lieu de 409,73 €, 51 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-51 %</span></span>
+                    <span class="megamenu__pack-tile-meta">27 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">409,73 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 38 ressources, 229 € au lieu de 579,62 €, 60 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-60 %</span></span>
+                    <span class="megamenu__pack-tile-meta">38 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">579,62 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>166 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes tes questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="kit-partiels.html"><span class="mobile-nav__format-icon" aria-hidden="true">📚</span><span>Kit Partiels</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+    <main>
+<section class="section--sm biens-hero">
+<div class="container container--narrow text-center">
+<h1 class="h1">Le juge et la loi, dissertation corrigée avec plan détaillé</h1>
+<p class="lead" style="max-width:720px;margin-left:auto;margin-right:auto">Le juge et la loi, dissertation d’introduction au droit, se traite en partant de la formule de Montesquieu. Le juge français doit d’abord appliquer la loi, et l’article 5 du Code civil lui interdit de fixer des règles générales. Il fait pourtant davantage que la répéter. Quand un texte est obscur ou muet, il l’interprète, car l’article 4 lui interdit de refuser de juger. Il écarte parfois une loi contraire à un traité.</p>
+<div class="hero__cta flex flex--center">
+<a class="btn btn--primary btn--lg" href="#sujet">Le décorticage du sujet →</a>
+<a class="btn btn--outline btn--lg" href="#plan">Le plan détaillé</a>
+</div>
+<div data-tjd-pdf-offert="exercice" data-id="exemple-dissertation-juridique-corrigee" data-titre="Le sujet et son corrigé en PDF" data-texte="Je t&#x27;envoie par email « La jurisprudence est-elle une source de droit ? », avec le sujet et la correction complète. Tu peux ainsi traiter l&#x27;exercice sur papier, puis comparer ta copie avec le corrigé." data-bouton="Recevoir le corrigé"></div>
+</div>
+</section>
+<!-- offre du PDF correspondant -->
+<section class="conversion-offer" aria-labelledby="offre-juge-loi-titre">
+<div class="container container--narrow">
+<div class="conversion-offer__card">
+<div class="conversion-offer__visual">
+<img src="assets/covers/exercices-20260923/dissertation-intro-droit-l1.webp" alt="Couverture des dix dissertations corrigées d’introduction au droit L1, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+</div>
+<div>
+<p class="conversion-offer__eyebrow">Les dissertations corrigées du semestre 1</p>
+<h2 class="conversion-offer__title" id="offre-juge-loi-titre">Introduction au droit L1 S1, dix dissertations corrigées en 58 pages</h2>
+<p class="conversion-offer__summary">Chaque sujet commence par une page de brouillon, que j’appelle le décorticage. J’y analyse d’abord les mots importants du sujet. J’écris ensuite la délimitation, autrement dit ce que la copie traite et ce qu’elle laisse de côté. Je nomme aussi la tension du sujet, soit l’opposition entre deux idées qui oblige à discuter. J’y écris ensuite la problématique (la question à laquelle la copie répond) et le plan. La copie modèle vient après le brouillon, avec une introduction et un plan en deux parties. Le PDF contient notamment « La jurisprudence est-elle une source de droit ? » et « La hiérarchie des normes », deux sujets voisins de celui de cette page. Le sujet « Le juge et la loi » est corrigé ici, et le PDF applique la même méthode à dix autres sujets.</p>
+<button type="button" class="apercu-link" data-apercu='["assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p001.webp","assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p002.webp","assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p003.webp","assets/apercus/recueils-20261115/dissertation-intro-droit-l1/50cc3bec5c84-p004.webp"]' data-apercu-title="Dissertations corrigées Introduction au droit L1 S1" data-apercu-price="19,99 €" data-apercu-cta="dissertation-intro-droit-l1" data-apercu-sub="Le sommaire, puis le brouillon du premier sujet et le début de sa copie modèle."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu des dissertations corrigées</button>
+<div class="conversion-offer__choices">
+<button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="dissertation-intro-droit-l1">Dissertations corrigées · 19,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="fiche-intro-droit-l1">Fiche complète · 19,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="pack-l1">Les 9 fiches de L1 · 87 €</button>
+</div>
+<p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation. Si tu hésites entre les deux PDF, prends les dissertations pour t’entraîner à rédiger, et la fiche complète pour revoir le cours d’<a href="introduction-au-droit-l1.html">introduction au droit L1</a>.</p>
+<div data-tjd-avis data-matiere="intro-droit-l1"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="sujet">
+<div class="container container--narrow">
+<div class="prose">
+<figure style="margin:0 0 32px"><img src="assets/blog/dissertation-le-juge-et-la-loi-corrigee.webp" srcset="assets/blog/dissertation-le-juge-et-la-loi-corrigee-640.webp 640w, assets/blog/dissertation-le-juge-et-la-loi-corrigee.webp 1200w" sizes="(max-width:700px) 100vw, 800px" alt="Sur un bureau de juge en bois sombre et patiné, un Code civil à couverture rouge usée aux coins est posé à côté d'un dossier cartonné fermé par une sangle, d'un stylo et d'une lampe de bureau éteinte, devant les bancs vides et les boiseries d'une salle d'audience." width="1200" height="675" decoding="async"></figure>
+<h2>Que demande le sujet « Le juge est-il toujours la bouche qui prononce les paroles de loi » ?</h2>
+<p>Un juge tranche des litiges, soit des désaccords que deux personnes lui soumettent. Prenons un locataire et son propriétaire qui ne s’accordent pas sur le montant d’un loyer. Le juge cherche dans la loi la règle qui répond à leur question, puis il l’applique à leur situation.</p>
+<p>Dans <em>De l’esprit des lois</em>, publié en 1748 (livre XI, chapitre 6), Montesquieu écrit que les juges de la nation ne sont que « la bouche qui prononce les paroles de la loi ». En effet, une bouche répète ce qu’un autre a dit. Le juge répéterait donc la loi, sans rien y ajouter ni rien y retirer.</p>
+<p>Ce sujet est tombé le 9 janvier 2024 à l’examen d’introduction au droit de première année de licence. Le mot « toujours » change la question. Il suffit d’un seul cas où le juge fait davantage que répéter la loi pour répondre que le juge n’est pas toujours la bouche de la loi. Tu dois donc montrer ce que le juge fait en plus de la loi et ce que la loi continue de lui interdire.</p>
+<h3>Les termes du sujet</h3>
+<p>Le juge est la personne ou le tribunal qui tranche le litige. Les tribunaux se répartissent en effet en deux ordres. L’ordre judiciaire juge les litiges entre particuliers et les infractions (tribunaux civils et pénaux, Cour de cassation), et l’ordre administratif juge les litiges avec l’administration (tribunaux administratifs, Conseil d’État). De plus, la Cour de cassation et le Conseil d’État sont les plus hautes juridictions de leur ordre. Leurs décisions s’appellent des arrêts, même si le Conseil d’État les intitule officiellement « décisions ». En revanche, le Conseil constitutionnel joue un autre rôle, puisqu’il contrôle les lois elles-mêmes.</p>
+<p>La loi est ici la règle écrite que le Parlement vote. Le mot peut aussi désigner, au sens large, toute règle générale et impersonnelle, comme un règlement, mais la copie retient ici le sens strict. Un traité est un accord conclu entre plusieurs États, qu’on appelle aussi une convention. Une norme est une règle de droit, et une norme supérieure est une règle qui l’emporte sur la loi, comme la Constitution ou un traité. Le sujet porte aussi sur ces normes supérieures, car elles limitent ce que le juge peut faire avec la loi.</p>
+<p>Interpréter une loi, c’est chercher ce qu’elle veut dire, surtout quand son texte est obscur ou ne prévoit pas la situation. Écarter une loi, c’est refuser de l’appliquer dans le litige en cours, alors qu’elle reste en vigueur et continue de s’appliquer ailleurs. Légiférer, c’est faire la loi.</p>
+<p>Le contrôle de constitutionnalité est la vérification qu’une loi respecte la Constitution. Le contrôle de conventionnalité est en revanche la vérification qu’une loi respecte un traité. Quand le juge constate que la loi contredit le traité, il l’écarte dans le litige qu’il tranche. Le contrôle de proportionnalité est enfin une autre vérification. Il consiste à examiner si l’application d’un texte à un cas particulier porte une atteinte excessive à un droit garanti par un traité, comme le respect de la vie privée et familiale.</p>
+<h3>La délimitation</h3>
+<p>L’organisation des tribunaux et la procédure sortent du sujet. La jurisprudence est l’ensemble des décisions rendues par les juges. En outre, la question « La jurisprudence est-elle une source de droit ? » est un autre exercice, corrigé dans l’<a href="exemple-dissertation-juridique-corrigee.html">exemple de dissertation juridique corrigée</a>. Ta copie la mentionne donc en une phrase, quand elle montre que le juge interprète la loi.</p>
+<h3>L’opposition qui structure le sujet</h3>
+<p>Le sujet oppose deux façons de voir le juge. La première est celle de Montesquieu, un juge qui obéit à la loi. La seconde est celle d’un juge qui décide, parce que la loi ne prévoit pas toutes les situations. Le Code civil de 1804 reconnaît lui-même ce problème. Son article 4 oblige le juge à trancher y compris quand la loi ne prévoit pas la situation, donc le juge ne peut pas toujours se contenter de la répéter.</p>
+<p>La tension du sujet tient à ce que le même Code civil interdit aussi au juge de fixer des règles générales (article 5). Le juge doit donc décider sans légiférer.</p>
+<h3>Le piège du plan « le juge applique la loi, puis le juge crée la loi »</h3>
+<p>Un plan « I. Le juge applique la loi, II. Le juge crée la loi » semble couvrir le sujet. Il oublie que l’article 5 interdit encore au juge de poser une règle générale, et que le Parlement peut défaire une solution du juge. Le plan retenu traite donc, dans sa deuxième partie, des limites de la formule de Montesquieu, dans lesquelles le juge reste soumis aux règles supérieures à la loi, comme la Constitution et les traités.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="introduction">
+<div class="container container--narrow">
+<div class="prose">
+<h2>L’introduction rédigée en sept étapes</h2>
+<p>Tu suis les mêmes sept étapes pour toutes les dissertations, et seul leur contenu change.</p>
+<h3>1. L’accroche</h3>
+<p>Du 5 janvier 1967 au 5 juillet 1971, la société des Cafés Jacques Vabre importe des Pays-Bas du café soluble pour le vendre en France. Un commissionnaire en douane est un intermédiaire chargé des formalités à la frontière. Chaque fois, celui de la société Jacques Vabre règle à l’administration la taxe que l’article 265 du Code des douanes prévoit pour ce café. La société et son commissionnaire poursuivent ensuite l’administration en justice. Ils invoquent en effet l’article 95 du traité de Rome de 1957, le traité qui a créé la Communauté économique européenne. Cet article interdit de taxer un produit venu d’un autre État membre plus lourdement qu’un produit français comparable. Une cour d’appel rejuge une affaire après un premier jugement, et celle de Paris leur donne raison. L’administration des douanes soutient en revanche qu’un juge excède ses pouvoirs quand il écarte une loi française. Selon elle, l’article 265 s’impose à toute juridiction française, car il vient d’une loi du 14 décembre 1966.</p>
+<p>Un pourvoi est un recours devant la Cour de cassation. Une chambre mixte est une formation qui réunit des magistrats de plusieurs chambres. Entre deux règles de même valeur, la plus récente l’emporte normalement, et l’article 265 était plus récent que le traité. Le 24 mai 1975, la chambre mixte rejette pourtant le pourvoi de l’administration. Elle approuve l’application de l’article 95 du traité « à l’exclusion de l’article 265 du code des douanes, bien que ce dernier texte fût postérieur ». Ici, le juge refuse d’appliquer une loi, alors que Montesquieu attendait de lui qu’il la répète.</p>
+<h3>2. La présentation du sujet et la définition des termes</h3>
+<p>Dans <em>De l’esprit des lois</em> (1748), Montesquieu écrit que les juges de la nation ne sont que « la bouche qui prononce les paroles de la loi ». Le juge tranche les litiges, et la loi est la règle que le Parlement vote. Selon cette formule, le juge appliquerait donc la loi telle qu’elle est écrite, sans rien y changer. Le mot « toujours » ouvre la discussion, car il suffit d’un cas où le juge fait plus pour que la formule cesse d’être vraie.</p>
+<h3>3. La délimitation du sujet</h3>
+<p>La copie laisse de côté l’organisation des juridictions et la procédure. Elle évoque la jurisprudence comme source du droit seulement pour expliquer ce que le juge ajoute à la loi, car cette question forme un autre sujet.</p>
+<h3>4. Le contexte</h3>
+<p>Les révolutionnaires se méfient des juges. En effet, avant 1789, un « parlement » était une grande cour de justice, et les parlements rendaient des arrêts de règlement, c’est-à-dire des décisions qui fixaient une règle générale pour tout leur territoire. C’est pourquoi la loi des 16 et 24 août 1790 interdit aux tribunaux de faire des règlements. Elle prévoit aussi qu’ils s’adressent à l’assemblée qui vote les lois, alors appelée le corps législatif, quand ils jugent nécessaire d’interpréter une loi. On appelle cette procédure le référé législatif. Le Code civil de 1804 adopte ensuite une solution différente pour l’interprétation. Son article 4 oblige le juge à trancher lui-même, et son article 5 maintient l’interdiction de poser des règles générales. Enfin, la loi du 1er avril 1837 supprime le référé législatif.</p>
+<h3>5. L’intérêt du sujet</h3>
+<p>Le sujet touche à la séparation des pouvoirs, qui confie la loi au Parlement et le jugement des litiges aux tribunaux. Il oblige aussi à relier deux chapitres du cours d’introduction au droit, l’interprétation de la loi et la hiérarchie des normes, qui range les règles de droit de la plus forte à la moins forte.</p>
+<h3>6. La problématique</h3>
+<p>La problématique est la question à laquelle toute la dissertation répond. Tu l’écris sous la forme d’une seule question, car une phrase affirmative donnerait la réponse avant la démonstration.</p>
+<p>La loi oblige le juge à l’appliquer et lui interdit de poser des règles générales, mais le juge peut-il faire plus que la répéter ?</p>
+<h3>7. L’annonce du plan</h3>
+<p>Le juge est d’abord au service de la loi, qu’il doit appliquer sans pouvoir faire la loi (I). Mais la formule de Montesquieu a des limites, car le juge interprète la loi et l’écarte parfois au nom d’une norme supérieure (II).</p>
+</div>
+</div>
+</section>
+<section class="section" id="plan">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quel plan détaillé pour la dissertation sur le juge et la loi ?</h2>
+<p>Chaque titre de ton plan s’écrit sans verbe, comme le veut l’usage en dissertation de droit.</p>
+<h3>I. Un juge au service de la loi</h3>
+<h4>A. L’application obligatoire de la loi imparfaite</h4>
+<ul>
+<li><strong>1. Le jugement selon les règles de droit</strong></li>
+<li><strong>2. Le contrôle de constitutionnalité réservé au Conseil constitutionnel</strong></li>
+</ul>
+<h4>B. L’interdiction des règles générales pour le juge</h4>
+<ul>
+<li><strong>1. L’interdiction des arrêts de règlement</strong></li>
+<li><strong>2. Une décision limitée aux parties du procès</strong></li>
+</ul>
+<h3>II. Les limites de la formule de Montesquieu</h3>
+<h4>A. L’interprétation d’une loi obscure ou incomplète</h4>
+<ul>
+<li><strong>1. L’interdiction du déni de justice</strong></li>
+<li><strong>2. Une interprétation créatrice de droit sous le contrôle du Parlement</strong></li>
+</ul>
+<h4>B. La mise à l’écart de la loi au nom d’une norme supérieure</h4>
+<ul>
+<li><strong>1. Le contrôle de conventionnalité</strong></li>
+<li><strong>2. Le contrôle de proportionnalité au cas par cas</strong></li>
+</ul>
+<h3>Les textes et les décisions, sous-partie par sous-partie</h3>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Les textes et les décisions à citer dans chaque sous-partie du plan" style="overflow-x:auto">
+<table style="width:100%;min-width:640px;border-collapse:collapse">
+<thead><tr><th scope="col">Sous-partie</th><th scope="col">Ce que disent les textes et les décisions</th></tr></thead>
+<tbody>
+<tr><th scope="row">I.A.1</th><td>D’après l’article 12 du Code de procédure civile, « le juge tranche le litige conformément aux règles de droit qui lui sont applicables ». L’article 455 dispose que « le jugement doit être motivé », et l’article 458 sanctionne l’absence de motivation par la nullité, soit l’annulation, du jugement. Le juge doit donc expliquer les règles et les faits sur lesquels il fonde sa solution.</td></tr>
+<tr><th scope="row">I.A.2</th><td>Le contrôle de constitutionnalité des lois revient au Conseil constitutionnel (articles 61 et 61-1 de la Constitution). Une personne en procès peut aussi contester la loi qu’on lui applique par une question prioritaire de constitutionnalité, depuis 2010. Un acte administratif est une décision ou un texte pris par l’administration. Le juge administratif le contrôle en principe au regard de la Constitution. Il refuse toutefois de le faire quand l’acte se contente d’appliquer une loi, car la loi protège cet acte. Cette protection s’appelle la loi-écran (Conseil d’État, Section, 6 novembre 1936, Arrighi).</td></tr>
+<tr><th scope="row">I.B.1</th><td>« Il est défendu aux juges de prononcer par voie de disposition générale et réglementaire sur les causes qui leur sont soumises » (article 5 du Code civil). Autrement dit, un juge ne peut pas décider que sa solution s’appliquera à tous les procès futurs. Les parlements d’avant 1789 rendaient de telles décisions, et la loi des 16 et 24 août 1790 interdit aux tribunaux de faire des règlements.</td></tr>
+<tr><th scope="row">I.B.2</th><td>L’autorité de la chose jugée, soit la force qu’un jugement a sur ce qu’il tranche, « n’a lieu qu’à l’égard de ce qui a fait l’objet du jugement » (article 1355 du Code civil). Une décision ne concerne donc que les personnes qui ont été parties au procès. Un autre juge n’est pas tenu de la reprendre pour une affaire semblable. En pratique, les juges suivent souvent la Cour de cassation, car elle peut annuler leur décision.</td></tr>
+<tr><th scope="row">II.A.1</th><td>Le juge qui refuse de juger « sous prétexte du silence, de l’obscurité ou de l’insuffisance de la loi » peut être poursuivi pour déni de justice (article 4 du Code civil). L’article 434-7-1 du Code pénal punit ce déni de 7 500 euros d’amende et d’une interdiction d’exercer des fonctions publiques de cinq à vingt ans, quand le magistrat persiste après un avertissement ou une injonction de ses supérieurs.</td></tr>
+<tr><th scope="row">II.A.2, l’interprétation</th><td>Pour juger malgré un texte obscur ou muet, le juge interprète. Par analogie, il applique la règle à un cas semblable. A contrario, il ne l’applique pas au cas opposé. A fortiori, il l’applique à un cas qui s’y prête encore davantage. Il peut aussi chercher la volonté de l’auteur du texte, ce qu’on appelle la méthode exégétique, ou le but que son auteur poursuivait, ce qu’on appelle la méthode téléologique. En effet, le législateur donne parfois lui-même une marge de décision au juge. L’article 1231-5 du Code civil lui permet par exemple de modérer ou d’augmenter une pénalité prévue au contrat quand elle est manifestement excessive ou dérisoire. En matière pénale, l’article 111-4 du Code pénal impose au contraire une interprétation stricte, ce qui interdit de punir un comportement au seul motif qu’il ressemble à une infraction. Enfin, l’arrêt Dangereux (27 février 1970) montre un juge qui lit un texte général tel qu’il est écrit, sans y ajouter de condition.</td></tr>
+<tr><th scope="row">II.A.2, le dernier mot du Parlement</th><td>Le Parlement peut répondre au juge. Dans l’arrêt Perruche (assemblée plénière de la Cour de cassation, formation qui réunit des magistrats venus de toutes les chambres, 17 novembre 2000), la Cour admet qu’un enfant né handicapé puisse être indemnisé. Des fautes médicales avaient en effet empêché sa mère d’interrompre sa grossesse. La loi du 4 mars 2002 pose ensuite que nul ne peut se prévaloir d’un préjudice du seul fait de sa naissance, autrement dit que personne ne peut demander réparation du seul fait d’être né. Cette phrase figure aujourd’hui à l’article L. 114-5 du Code de l’action sociale et des familles. Ce même article permet pourtant à la personne née avec un handicap dû à une faute médicale d’obtenir réparation lorsque l’acte fautif a provoqué directement le handicap ou l’a aggravé.</td></tr>
+<tr><th scope="row">II.B.1</th><td>L’article 55 de la Constitution donne aux traités que la France a régulièrement ratifiés ou approuvés une autorité supérieure à celle des lois. Le Conseil constitutionnel refuse de comparer une loi à un traité quand il examine une loi avant sa promulgation (15 janvier 1975). La Cour de cassation (Jacques Vabre, 1975) puis le Conseil d’État (Nicolo, 1989) acceptent ce contrôle. La chambre sociale est la chambre de la Cour de cassation qui juge les litiges du travail. En outre, elle écarte en 2023, en partie, une disposition du Code du travail au profit de la Charte des droits fondamentaux de l’Union européenne, un texte qui a la même valeur qu’un traité.</td></tr>
+<tr><th scope="row">II.B.2</th><td>L’article 8 de la Convention européenne des droits de l’homme protège la vie privée et familiale. L’article 161 du Code civil interdit en ligne directe le mariage entre alliés, c’est-à-dire entre parents par alliance, comme un beau-père et sa belle-fille. Le 4 décembre 2013, la Cour de cassation refuse l’annulation d’un tel mariage, car cette annulation porte une atteinte injustifiée à la vie privée et familiale de l’épouse.</td></tr>
+</tbody>
+</table>
+</div>
+<h3>La réponse à la problématique</h3>
+<p>Le juge français fait davantage que dire la loi. Il applique d’abord les règles de droit, parce que l’article 12 du Code de procédure civile le lui ordonne et que l’article 5 du Code civil lui interdit de faire la loi. Comme l’article 4 l’oblige à juger y compris quand elle ne prévoit pas la situation, il l’interprète ensuite. Il l’écarte enfin, lorsqu’un traité ou un droit protégé par la Convention européenne des droits de l’homme l’exige, mais seulement dans le litige qu’il tranche. Le Parlement garde le dernier mot sur la solution du juge, comme le montre la loi du 4 mars 2002 après l’arrêt Perruche, sous réserve de respecter la Constitution et les traités.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="arrets">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles décisions citer dans la dissertation sur le juge et la loi, et où les placer ?</h2>
+<p>La dernière colonne du tableau indique ce que ta copie doit retenir sur chaque décision.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Les décisions à citer sur le juge et la loi, avec leur place dans le plan" style="overflow-x:auto">
+<table style="width:100%;min-width:760px;border-collapse:collapse">
+<thead><tr><th scope="col">Décision</th><th scope="col">Ce qu’elle juge</th><th scope="col">Où la placer</th><th scope="col">Ce que ta copie doit retenir</th></tr></thead>
+<tbody>
+<tr><th scope="row">Conseil d’État, Section, 6 novembre 1936 (Arrighi)</th><td>Un acte administratif qui se contente d’appliquer une loi ne peut pas être contrôlé par rapport à la Constitution, car le juge contrôlerait la constitutionnalité de la loi elle-même.</td><td>I.A.2</td><td>Le juge administratif contrôle les actes administratifs, mais le contrôle de la constitutionnalité de la loi appartient au Conseil constitutionnel.</td></tr>
+<tr><th scope="row">Conseil constitutionnel, 15 janvier 1975, n° 74-54 DC</th><td>« Une loi contraire à un traité ne serait pas, pour autant, contraire à la Constitution » (considérant 5). Le Conseil refuse donc de vérifier le respect d’un traité par une loi.</td><td>II.B.1</td><td>Les juges ordinaires exercent le contrôle d’une loi par rapport à un traité, car le Conseil constitutionnel refuse de l’exercer quand il examine une loi avant sa promulgation.</td></tr>
+<tr><th scope="row">Chambre mixte, 24 mai 1975, n° 73-13.556 (<a href="arret-jacques-vabre-explique.html">Jacques Vabre</a>)</th><td>Le traité de Rome « s’impose à leurs juridictions », celles des États membres. La Cour approuve la cour d’appel d’avoir appliqué l’article 95 du traité « à l’exclusion de l’article 265 du code des douanes, bien que ce dernier texte fût postérieur », et « sans excéder ses pouvoirs ».</td><td>II.B.1 et l’accroche</td><td>Le juge écarte la loi dans le litige, et elle reste en vigueur pour les autres affaires.</td></tr>
+<tr><th scope="row">Conseil d’État, Assemblée, 20 octobre 1989, n° 108243 (<a href="arret-nicolo-explique.html">Nicolo</a>)</th><td>Le Conseil d’État compare la loi du 7 juillet 1977 sur l’élection des représentants français au Parlement européen à l’article 227-1 du traité de Rome, juge qu’elle est compatible avec lui et rejette la requête.</td><td>II.B.1</td><td>Le Conseil d’État accepte de contrôler la loi, mais il ne l’écarte pas dans cette affaire, car il la juge compatible avec le traité.</td></tr>
+<tr><th scope="row">Chambre sociale, 13 septembre 2023, n° 22-17.340</th><td>Des salariés en arrêt maladie non professionnelle réclament à leur employeur les congés payés qu’ils disent avoir acquis pendant cet arrêt. La Cour juge qu’elle doit « écarter partiellement l’application » de l’article L. 3141-3 du Code du travail, qui subordonne l’acquisition de ces congés à l’exécution d’un travail effectif. Elle applique à la place l’article 31, paragraphe 2, de la Charte des droits fondamentaux de l’Union européenne.</td><td>II.B.1</td><td>Le juge peut écarter, en partie, une loi française au profit du droit de l’Union européenne, et le Parlement adapte ensuite la loi par l’article L. 3141-5-1, créé par la loi du 22 avril 2024.</td></tr>
+<tr><th scope="row">Première chambre civile, 4 décembre 2013, n° 12-26.066</th><td>Une femme épouse en 1983 le père de son ex-mari. Après le décès du père en 2005, le fils demande l’annulation du mariage sur le fondement de l’article 161. La Cour de cassation refuse cette annulation, car après plus de vingt ans de mariage célébré sans opposition, elle porte une atteinte injustifiée au respect de la vie privée et familiale (article 8 de la Convention européenne des droits de l’homme).</td><td>II.B.2</td><td>Le juge ne l’applique pas à ce mariage, mais l’article 161 reste en vigueur.</td></tr>
+<tr><th scope="row">Chambre mixte, 27 février 1970, n° 68-10.276 (Dangereux)</th><td>Un concubin est le compagnon avec qui l’on vit sans être marié. Une femme demande réparation après la mort de son concubin, tué dans un accident. La cour d’appel rejette sa demande, car le concubinage ne crée pas de droit. La Cour de cassation censure cette décision. L’article 1382 oblige celui qui cause un dommage par sa faute à le réparer, et il n’exige pas de lien de droit, comme un mariage, entre le défunt et la personne qui demande réparation. La cour d’appel avait donc soumis son application « à une condition qu’il ne contient pas ».</td><td>II.A.2</td><td>La Cour de cassation affirme lire le texte tel qu’il est écrit, et sa lecture change pourtant la solution de la cour d’appel, qui refusait d’indemniser la concubine d’un homme tué dans un accident.</td></tr>
+<tr><th scope="row">Assemblée plénière, 17 novembre 2000, n° 99-13.701 (<a href="arret-perruche-2000-explique.html">Perruche</a>)</th><td>Les fautes d’un médecin et d’un laboratoire ont empêché une mère d’interrompre sa grossesse. L’enfant né handicapé peut demander réparation du préjudice résultant de son handicap et causé par ces fautes.</td><td>II.A.2 et la réponse à la problématique</td><td>Le Parlement peut défaire une décision du juge par une loi.</td></tr>
+</tbody>
+</table>
+</div>
+<p>L’arrêt du 4 décembre 2013 montre un pouvoir différent de celui d’écarter une loi contraire à un traité, celui de refuser une solution écrite dans la loi quand son application à un cas particulier constitue, selon les mots de la Cour, une « ingérence injustifiée » dans un droit garanti. La <a href="la-hierarchie-des-normes.html">page sur la hiérarchie des normes</a> replace ces contrôles dans l’ordre des textes.</p>
+</div>
+</div>
+</section>
+<section class="section" id="copie">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Deux passages de la copie rédigée</h2>
+<p>Dans chaque paragraphe de ta copie, tu commences par une phrase qui annonce l’idée. Tu cites ensuite le texte ou la décision qui donne la règle, puis tu montres comment le juge l’applique. Une dernière phrase en tire la conséquence.</p>
+<h3>Sous-partie I.A.2, le contrôle de constitutionnalité réservé au Conseil constitutionnel</h3>
+<p>Un juge ordinaire ne vérifie pas lui-même qu’une loi respecte la Constitution. Ce contrôle appartient au Conseil constitutionnel. Il l’exerce avant la promulgation de la loi (article 61 de la Constitution), soit avant que le Président de la République la signe pour la rendre applicable. Il contrôle aussi la loi après sa promulgation, quand une personne en procès la conteste par une question prioritaire de constitutionnalité (article 61-1, depuis 2010). Dans ce second cas, la question passe deux filtres avant d’arriver au Conseil constitutionnel. En effet, le juge saisi du procès l’examine d’abord, puis la Cour de cassation ou le Conseil d’État décident de la renvoyer ou non au Conseil constitutionnel.</p>
+<p>Un acte administratif est une décision ou un texte pris par l’administration, comme un règlement d’application que le gouvernement prend pour appliquer une loi. Le juge administratif peut en principe contrôler un acte administratif au regard de la Constitution. La loi-écran forme toutefois une exception à cette règle. Quand cet acte se contente d’appliquer la loi, sans rien y ajouter, la loi protège l’acte, et cette protection s’appelle la loi-écran. En effet, contrôler l’acte par rapport à la Constitution reviendrait à contrôler la loi qu’il applique. Or le juge administratif n’a pas le droit de contrôler la constitutionnalité d’une loi, car ce rôle appartient au Conseil constitutionnel. Il ne peut donc pas vérifier que l’acte respecte la Constitution. Le Conseil d’État l’a jugé dans l’arrêt Arrighi du 6 novembre 1936.</p>
+<p>Attention à bien distinguer les deux contrôles. Le juge administratif peut contrôler un acte administratif, mais il ne peut pas vérifier que la loi qui le protège respecte la Constitution. Depuis 2010, la question prioritaire de constitutionnalité permet toutefois de contester la loi elle-même devant le Conseil constitutionnel. Le juge reste donc ici dans le rôle que Montesquieu lui donnait, celui d’appliquer la loi sans en contrôler la constitutionnalité.</p>
+<h3>Sous-partie II.B.1, la mise à l’écart de la loi au nom d’un traité</h3>
+<p>Le juge écarte une loi quand un traité l’exige. L’article 55 de la Constitution donne aux traités que la France a régulièrement ratifiés ou approuvés une autorité supérieure à celle des lois, sous réserve que l’autre partie les applique. Il faut aussi savoir quel juge vérifie qu’une loi respecte un traité. Le Conseil constitutionnel refuse de le faire dans sa décision du 15 janvier 1975 sur l’interruption volontaire de grossesse, parce qu’« une loi contraire à un traité ne serait pas, pour autant, contraire à la Constitution ». Le Conseil justifie ce refus par la nature des deux contrôles. Ses décisions rendues avant la promulgation d’une loi ont un caractère « absolu et définitif ». La supériorité des traités sur les lois a au contraire un caractère « relatif » et « contingent », parce qu’elle dépend du champ du traité et de la réciprocité, c’est-à-dire de son application par l’autre partie. Ce refus laisse le contrôle aux juges ordinaires, puisque l’article 55 impose que les traités l’emportent sur les lois.</p>
+<p>Le 24 mai 1975, la chambre mixte de la Cour de cassation accepte ce contrôle dans l’arrêt Jacques Vabre. L’administration des douanes soutenait au contraire qu’un juge excède ses pouvoirs quand il écarte une loi française, puisque la loi du 14 décembre 1966 s’impose à toute juridiction française. Le traité de Rome a, selon l’article 55 de la Constitution, une autorité supérieure à celle des lois. La Cour répond qu’il « institue un ordre juridique propre intégré à celui des États membres », autrement dit que ses règles font partie du droit de chaque État membre. Ce traité « s’impose à leurs juridictions », et, dans l’ordre juridique communautaire, « l’exception tirée du défaut de réciprocité ne peut être invoquée devant les juridictions nationales ». La cour d’appel a donc décidé « à bon droit, et sans excéder ses pouvoirs », d’appliquer le traité à l’exclusion de l’article 265 du Code des douanes, bien que ce texte soit plus récent que le traité. Le Conseil d’État accepte à son tour ce contrôle le 20 octobre 1989 dans l’arrêt Nicolo. Il vérifie qu’une loi du 7 juillet 1977 est compatible avec le traité de Rome, et il l’applique donc.</p>
+<p>Quand le juge constate qu’une loi contredit un traité, il l’écarte dans le litige qu’il tranche, et elle reste en vigueur pour les autres affaires. Cette solution montre que le juge peut préférer une norme supérieure à la loi, mais seulement dans l’affaire qu’il juge.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="erreurs">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles erreurs font perdre des points sur ce sujet ?</h2>
+<h3>Écrire que le juge crée la loi</h3>
+<p>Le juge crée parfois une règle, mais la loi reste l’œuvre du Parlement. L’article 5 du Code civil lui interdit de poser une règle générale, et le Parlement peut défaire une solution du juge. Dans l’arrêt Perruche, la Cour de cassation admet qu’un enfant né handicapé puisse être indemnisé, parce que des fautes médicales avaient empêché sa mère d’interrompre sa grossesse. La loi du 4 mars 2002 déclare ensuite que nul ne peut se prévaloir d’un préjudice du seul fait de sa naissance. Si ta copie écrit « le juge crée la loi », elle contredit l’article 5.</p>
+<h3>Attribuer l’interdiction des arrêts de règlement à l’article 4</h3>
+<p>L’article 4 oblige le juge à juger malgré le silence de la loi, alors que l’article 5 lui interdit de poser une règle générale. L’article 4 donne donc au juge un pouvoir d’interpréter la loi et de la compléter quand elle ne prévoit pas la situation, mais l’article 5 limite ce pouvoir. Tu cites l’article 4 dans la deuxième partie (II.A.1) et l’article 5 dans la première (I.B.1). Tu te trompes de texte dès que tu inverses les deux.</p>
+<h3>Écrire que le juge annule une loi contraire à un traité</h3>
+<p>Le juge ordinaire écarte la loi dans le litige qu’il tranche, mais la loi reste en vigueur pour les autres affaires. Parmi les institutions qui contrôlent les lois, seul le Conseil constitutionnel peut faire disparaître une loi, à la suite d’une question prioritaire de constitutionnalité. Dans ta copie, tu écris donc que le juge ordinaire « écarte » la loi, et que le Conseil constitutionnel l’« abroge ». Abroger une loi, c’est la supprimer pour tout le monde à partir de la publication de la décision ou d’une date plus tardive que le Conseil fixe.</p>
+<h3>Écrire que le Conseil d’État écarte la loi dans l’arrêt Nicolo</h3>
+<p>Dans l’arrêt Nicolo, le Conseil d’État compare la loi du 7 juillet 1977 au traité de Rome et conclut qu’elle n’est pas incompatible avec lui. Il accepte donc de contrôler la loi, mais il l’applique dans cette affaire et rejette la requête. Son texte ne mentionne l’article 55 que dans la liste des textes cités en tête de la décision. Pour montrer un juge qui écarte une loi, tu cites donc plutôt l’arrêt Jacques Vabre de 1975.</p>
+</div>
+</div>
+</section>
+<section class="section" id="autres">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Comment adapter ce plan à un autre sujet ?</h2>
+<p>Tu peux réutiliser ce plan pour plusieurs sujets voisins. Il suffit de changer la problématique et de reprendre les parties qui répondent à la nouvelle question.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Deux sujets voisins et les parties du plan à reprendre" style="overflow-x:auto">
+<table style="width:100%;min-width:560px;border-collapse:collapse">
+<thead><tr><th scope="col">Sujet</th><th scope="col">Problématique possible</th><th scope="col">Parties à reprendre</th></tr></thead>
+<tbody>
+<tr><th scope="row">La jurisprudence est-elle une source de droit ?</th><td>Une décision qui oblige seulement les parties au procès peut-elle compter comme une règle ? Le corrigé complet se trouve dans l’<a href="exemple-dissertation-juridique-corrigee.html">exemple de dissertation juridique corrigée</a>.</td><td>I.B en entier, puis II.A.2</td></tr>
+<tr><th scope="row">Le juge administratif et la loi</th><td>Le juge administratif est-il soumis à la loi comme le juge judiciaire ? Le détail se trouve dans la <a href="dissertation-conseil-etat-et-la-loi-corrigee.html">dissertation sur le Conseil d’État et la loi</a>.</td><td>I.A.2, puis II.B.1</td></tr>
+</tbody>
+</table>
+</div>
+<p>Le PDF de dix dissertations corrigées traite en entier « La jurisprudence est-elle une source de droit ? » et « La hiérarchie des normes ». Quatre pages gratuites complètent ce travail.</p>
+<ul>
+<li>La page des <a href="sujets-introduction-au-droit-l1.html">sujets d’introduction au droit L1</a> classe douze autres sujets par thème.</li>
+<li>Les <a href="exercices-corriges-introduction-au-droit-l1.html">exercices corrigés d’introduction au droit L1</a> ajoutent trois exercices gratuits.</li>
+<li>La <a href="la-separation-des-pouvoirs.html">page sur la séparation des pouvoirs</a> explique qui vote la loi et qui juge les litiges.</li>
+<li>La page sur <a href="les-sources-du-droit.html">les sources du droit</a> donne la liste des règles que le juge applique.</li>
+</ul>
+<div class="author-box">
+<img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+<div>
+<p class="author-box__name">Julien</p>
+<p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+<p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">166 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention. Pour cela, je leur apprends une méthode qu'ils réutilisent ensuite seuls, à chaque copie. Sur TrajectoireDroit, j'ai donc réuni mes fiches complètes et mes majeures préparées. Une majeure préparée donne la règle de droit déjà rédigée, prête pour le cas pratique.</p>
+<p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+<section class="section" id="faq">
+<div class="container container--narrow"><h2 class="h2">Questions fréquentes sur le juge et la loi</h2>
+<div class="accordion">
+<details class="accordion__item"><summary class="accordion__trigger">Le juge est-il la bouche de la loi ?</summary><div class="accordion__body"><p>Le juge n’est pas toujours la bouche de la loi. Il doit appliquer la loi, et l’article 5 du Code civil lui interdit de poser des règles générales. Il interprète pourtant la loi quand elle est obscure ou muette (article 4), et il écarte parfois une loi contraire à un traité, comme dans l’arrêt Jacques Vabre du 24 mai 1975.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Que dit l’article 5 du Code civil sur le rôle du juge ?</summary><div class="accordion__body"><p>L’article 5 défend aux juges de prononcer « par voie de disposition générale et réglementaire sur les causes qui leur sont soumises ». Un juge tranche donc le litige qu’il a devant lui, et sa décision ne fixe pas de règle valable pour tous les procès à venir.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Un juge peut-il écarter une loi ?</summary><div class="accordion__body"><p>Oui, quand la loi est contraire à un traité. Le juge l’écarte alors dans le litige qu’il tranche, et la loi reste en vigueur pour les autres affaires. La Cour de cassation l’a jugé en 1975 (arrêt Jacques Vabre), et le Conseil d’État a accepté le même contrôle en 1989 (arrêt Nicolo), mais il a jugé la loi compatible avec le traité. La constitutionnalité d’une loi relève en revanche du Conseil constitutionnel.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Quel PDF choisir pour s’entraîner à la dissertation en introduction au droit ?</summary><div class="accordion__body"><p>Pour t’entraîner à rédiger, prends les dix dissertations corrigées d’introduction au droit L1 S1, avec un brouillon et une copie modèle pour chaque sujet. Pour revoir le cours avant d’écrire, prends la fiche complète d’introduction au droit L1 S1.</p></div></details>
+</div>
+</div>
+</section>
+<!-- fin-article:pack-ultra -->
+<section class="article-pack-ligne"><div class="container container--narrow"><p class="article-pack-ligne__texte">Le Pack Ultra L1 S1 réunit les 31 ressources de ton premier semestre de L1 pour 199 €. On y trouve la fiche d’introduction au droit L1. <a href="pack-ultra.html#pack-ultra-l1-s1">Voir le contenu du pack →</a></p></div></section>
+</main>
+
+
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Introduction au droit L1, dissertation sur le juge et la loi">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Introduction au droit L1, dissertation sur le juge et la loi">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Introduction au droit L1 S1</strong>
+      <small>Dix dissertations corrigées</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="dissertation-intro-droit-l1" aria-label="Acheter les dissertations corrigées · 19,99 €">Acheter · 19,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=81a894f1" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=d95dbb08" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=7aba7f6e';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=63ff8b7a" defer></script>
+</body>
+</html>
