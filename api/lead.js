@@ -551,7 +551,7 @@ async function handler(req, res) {
       } catch (e) {
         console.error("essai-majeures code Stripe impossible", e && e.code ? e.code : e && e.message);
       }
-      const attributs = ESSAI.attributsEssai(remise);
+      const { ESSAI_URL_DA, ...attributs } = ESSAI.attributsEssai(remise);
       // Liste 9 « Essai majeures préparées ». Elle déclenche sa propre séquence de
       // bienvenue dans Brevo, sans le premier email générique de la liste 3 (08/11/2026).
       const inscription = await inscrireContact(email, attributs, apiKey, [ESSAI.LISTE_BREVO]);
@@ -559,7 +559,12 @@ async function handler(req, res) {
         console.error("Brevo error:", inscription.status, inscription.detail);
         return res.status(502).json({ error: "Inscription impossible pour le moment." });
       }
-      await ESSAI.envoyerEssai(email, attributs, apiKey);
+      const profil = await lireContactBrevo(email, apiKey).catch(() => null);
+      await ESSAI.envoyerEssai(email, {
+        ...attributs,
+        ESSAI_URL_DA,
+        PRENOM: prenomDuContact(profil?.attributes),
+      }, apiKey);
       return res.status(200).json({ ok: true, envoye: true, kit: attributs.ESSAI_KIT });
     }
     if ((avecMatiere || body.exercice) && proposition && body.confirmerDomaine !== true) {

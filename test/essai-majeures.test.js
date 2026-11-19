@@ -31,6 +31,12 @@ test("les demandes d’essai envoient le même PDF à chaque adresse", async t =
 
   const echanges = [];
   t.mock.method(global, "fetch", async (url, options) => {
+    if (url.startsWith("https://api.brevo.com/v3/contacts/")) {
+      assert.equal(options.method, undefined);
+      echanges.push({ url });
+      if (url.includes("essai-deux%40")) return new Response(null, { status: 404 });
+      return Response.json({ attributes: { PRENOM: " Camille " } });
+    }
     assert.ok(["https://api.brevo.com/v3/contacts", "https://api.brevo.com/v3/smtp/email"].includes(url), url);
     echanges.push({ url, body: JSON.parse(options.body) });
     return { ok: true, status: 201 };
@@ -54,23 +60,53 @@ test("les demandes d’essai envoient le même PDF à chaque adresse", async t =
     assert.deepEqual(inscription.listIds, [9]);
     assert.equal(inscription.attributes.ESSAI_KIT, essai.KIT_URL);
     assert.equal(inscription.attributes.ESSAI_CP, "");
+    assert.equal(inscription.attributes.ESSAI_URL_DA, undefined);
   }
   const emails = echanges.filter(e => e.url.endsWith("/smtp/email")).map(e => e.body);
   assert.deepEqual(emails.map(x => x.to[0].email), demandes.map(x => x.email));
+  assert.deepEqual(emails.map(x => x.params.PRENOM), ["Camille", "", "Camille"]);
   for (const email of emails) {
-    assert.equal(email.subject, "Tes deux majeures offertes");
-    assert.match(email.textContent, /« Le dol »/);
-    assert.match(email.textContent, /« La distinction entre service public administratif et service public industriel et commercial »/);
-    assert.ok(email.textContent.includes(essai.KIT_URL));
-    assert.equal(email.textContent, emails[0].textContent);
-    assert.equal(email.htmlContent, emails[0].htmlContent);
-    assert.doesNotMatch(email.textContent, /cas pratique corrigé|maj-famille|maj-penal/);
+    assert.equal(email.templateId, 71);
+    assert.equal(email.htmlContent, undefined);
+    assert.equal(email.params.ESSAI_KIT, essai.KIT_URL);
+    assert.equal(email.params.ESSAI_MAJ_A, "Le dol");
+    assert.equal(email.params.ESSAI_MAJ_B, "La distinction entre service public administratif et service public industriel et commercial");
+    assert.equal(email.params.ESSAI_CODE, "");
+    const rendu = essai.construireEmailEssai(email.params);
+    assert.equal(rendu.sujet, "Tes deux majeures offertes");
+    assert.match(rendu.texte, /minimum 15 sur 20 en cas pratique/);
+    assert.doesNotMatch(rendu.texte, /15 % de réduction|cas pratique corrigé|maj-famille|maj-penal/);
+    assert.equal((rendu.html.match(/<a href=/g) || []).length, 1);
   }
 
   const invalide = reponse();
   await lead({ method: "POST", body: { email: "invalide", essai: true } }, invalide);
   assert.equal(invalide.code, 400);
-  assert.equal(echanges.length, demandes.length * 2);
+  assert.equal(echanges.length, demandes.length * 3);
+});
+
+test("le code du kit accompagne les deux liens et l’échéance affiche le jour", () => {
+  const code = "ESSAI-SIMULATION";
+  const expire = Date.parse("2026-11-20T23:20:00+01:00") / 1000;
+  const attributs = essai.attributsEssai({ code, expire });
+  assert.equal(attributs.ESSAI_FIN, "20 novembre");
+  const offres = [
+    [attributs.ESSAI_URL, "maj-contrats-l2-s1"],
+    [attributs.ESSAI_URL_DA, "maj-da-l2-s1"],
+  ];
+  const rendu = essai.construireEmailEssai({ ...attributs, PRENOM: "Camille" });
+  assert.match(rendu.texte, /^Salut Camille,/);
+  assert.match(rendu.texte, /15 % de réduction jusqu’au 20 novembre\./);
+  assert.match(rendu.texte, /droit administratif \(L2, S1\)/);
+  assert.doesNotMatch(rendu.texte, /heure de Paris|Le bouton applique/);
+  for (const [adresse, produit] of offres) {
+    const url = new URL(adresse);
+    assert.equal(url.searchParams.get("produit"), produit);
+    assert.equal(url.searchParams.get("utm_content"), produit);
+    assert.equal(url.searchParams.get("code"), code);
+    assert.ok(rendu.texte.includes(adresse));
+  }
+  assert.equal((rendu.html.match(/<a href=/g) || []).length, 3);
 });
 
 test("le lien fixe et les anciens liens aboutissent au même PDF", () => {
