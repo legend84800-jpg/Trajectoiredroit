@@ -33,6 +33,15 @@ function euros(centimes) {
 function versCheckoutEcheances(params, produit, nombre) {
   const montant = montantEcheance(produit.prix, nombre);
   const total = montant * nombre;
+  const enDeuxFois = nombre === 2;
+  const libellePaiement = enDeuxFois ? "2 paiements sur 2 mois" : `paiement en ${nombre} fois`;
+  const descriptionPaiement = enDeuxFois
+    ? `${libellePaiement}. Le prix total est de ${euros(total)}.`
+    : "";
+  const descriptionFichiers = Array.isArray(produit.blobs) && produit.blobs.length > 0
+    ? `Tu reçois les ${produit.blobs.length} fichiers par email dès le premier paiement, et tu les gardes à vie avec leurs mises à jour.`
+    : "";
+  const description = [descriptionPaiement, descriptionFichiers].filter(Boolean).join(" ");
   const produitIds = params.metadata.produitIds;
   const suite = { ...params };
   delete suite.payment_intent_data;
@@ -45,10 +54,8 @@ function versCheckoutEcheances(params, produit, nombre) {
       unit_amount: montant,
       recurring: { interval: "month" },
       product_data: {
-        name: `${produit.nom}, paiement en ${nombre} fois`,
-        ...(Array.isArray(produit.blobs) && produit.blobs.length > 0
-          ? { description: `Tu reçois les ${produit.blobs.length} fichiers par email dès le premier paiement, et tu les gardes à vie avec leurs mises à jour.` }
-          : {}),
+        name: `${produit.nom}, ${libellePaiement}`,
+        ...(description ? { description } : {}),
       },
     },
     quantity: 1,
@@ -64,14 +71,13 @@ function versCheckoutEcheances(params, produit, nombre) {
     description: `${produit.nom}, ${nombre} prélèvements mensuels de ${euros(montant)}`,
     metadata: { produitIds, echeances: String(nombre) },
   };
-  const suiteEcheances = nombre === 2
-    ? ` et ${euros(montant)} dans un mois`
-    : `, puis ${euros(montant)} chacun des deux mois suivants`;
-  const dernier = nombre === 2 ? "deuxième" : "troisième";
   suite.custom_text = {
     submit: {
-      message: `Tu paies ${euros(montant)} aujourd'hui${suiteEcheances}, soit ${euros(total)} au total. `
-        + `Les prélèvements s'arrêtent automatiquement après le ${dernier}, et tu reçois tout le pack par email dès aujourd'hui.`,
+      message: enDeuxFois
+        ? `${libellePaiement}. Tu paies ${euros(montant)} aujourd’hui puis ${euros(montant)} dans un mois, soit ${euros(total)} au total. `
+          + "Les paiements s’arrêtent donc automatiquement après le deuxième. Tu reçois tout le pack par email dès le premier paiement."
+        : `Tu paies ${euros(montant)} aujourd'hui, puis ${euros(montant)} chacun des deux mois suivants, soit ${euros(total)} au total. `
+          + "Les prélèvements s'arrêtent automatiquement après le troisième, et tu reçois tout le pack par email dès aujourd'hui.",
     },
   };
   return suite;
