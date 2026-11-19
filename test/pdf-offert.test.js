@@ -33,6 +33,8 @@ test('chaque fiche d’arrêt offerte renvoie vers sa page, son PDF et un produi
     assert.ok(page.includes('id="offre-matiere"'), fiche.page + ' sans ancre #offre-matiere');
     const email = lead.construireEmailFiche(a);
     assert.ok(email.texte.includes(a.FICHE_PDF));
+    assert.ok(email.html.includes('<strong style="color:#0E2A47">le problème de droit et la solution</strong>'), slug);
+    assert.ok(email.html.includes('<strong style="color:#0E2A47">redis-les à voix haute sans regarder le PDF</strong>'), slug);
     assert.doesNotMatch(email.texte, /[—–]/);
   }
 });
@@ -81,6 +83,8 @@ test('les plans offerts et les fiches d’arrêt renvoient vers les supports de 
       assert.match(aPlan.PLAN_PDF, /\/plan-commentaire\/extraits\/coma-.+-[0-9a-f]{12}\.pdf$/);
       assert.match(emailPlan.sujet, /^Ton plan offert pour commenter /);
       assert.match(emailPlan.texte, /^Salut Camille,/);
+      assert.ok(emailPlan.html.includes('<strong style="color:#0E2A47">la problématique</strong>'), slug);
+      assert.ok(emailPlan.html.includes('<strong style="color:#0E2A47">la solution du juge</strong>'), slug);
       assert.match(emailPlan.texte, /le I\.A\. rédigé/);
       assert.match(emailPlan.texte, /Ensuite, une fois que tu as fini, compare ce que tu as fait avec mon commentaire corrigé\./);
       assert.match(emailPlan.texte, /thème de l’arrêt\.\n\nCependant,[^\n]+corrections complètes\./);

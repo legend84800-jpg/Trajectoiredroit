@@ -360,8 +360,10 @@ function construireEmailPlan(a, salutation = SALUT_PDF(a)) {
       { lien: a.PLAN_FICHE_URL, texte: a.PLAN_FICHE_BOUTON, format: "fiche" },
       "Si tu as une question sur le commentaire, tu peux m’envoyer un message en répondant à cet email.",
       "Respectueusement,\nJulien\nTrajectoire Droit",
-    ], ["l’introduction", "le I.A. rédigé", "compare ce que tu as fait", "corrections complètes", "tous les jours depuis deux ans"],
-    "L’introduction, l’annonce du plan et le I.A. rédigé.");
+    ], [
+      "l’introduction", "la problématique", "la solution du juge", "le I.A. rédigé",
+      "compare ce que tu as fait", "corrections complètes", "tous les jours depuis deux ans",
+    ], "L’introduction, l’annonce du plan et le I.A. rédigé.");
   }
   const paragraphes = [
     salutation,
@@ -487,7 +489,10 @@ function construireEmailFiche(a) {
     "Si tu as une question sur l’arrêt, tu peux répondre à cet email. Je lis moi-même les réponses.",
     "Julien",
   ];
-  return construireEmailArret(`Ta fiche ${a.FICHE_DE}`, paragraphes);
+  return construireEmailArret(`Ta fiche ${a.FICHE_DE}`, paragraphes, [
+    "le problème de droit et la solution",
+    "redis-les à voix haute sans regarder le PDF",
+  ]);
 }
 async function envoyerFiche(email, attributs, apiKey) {
   const contenu = construireEmailFiche(attributs);
