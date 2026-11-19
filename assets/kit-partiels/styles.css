@@ -78,8 +78,8 @@ p { max-width: 64ch; }
 .matter-legend { width: 100%; }
 .counter { color: var(--muted); font-weight: 620; float: right; padding-left: 6px; font-size: 13px; }
 .matter-option { min-height: 56px; display: grid; grid-template-columns: 20px minmax(0,1fr) auto; align-items: center; gap: 10px; border-top: 1px solid var(--line); padding: 10px 0; cursor: pointer; }
-.matter-option:hover { background: #f5f8fd; }
-.matter-option input { width: 18px; height: 18px; margin: 0; accent-color: var(--blue); }
+.matter-option:hover, .matter-option:focus-within { background: #f5f8fd; }
+.matter-option input { width: 18px; height: 18px; margin: 0; accent-color: var(--blue); scroll-margin-block: 22px; }
 .matter-option input:disabled ~ span { color: var(--muted); }
 .matter-option input:disabled { cursor: default; }
 .matter-name { color: var(--ink); font-size: 15px; font-weight: 650; line-height: 1.28; }
@@ -128,8 +128,22 @@ p { max-width: 64ch; }
 .summary { padding: clamp(19px, 3vw, 29px); border: 1px solid var(--line); border-top: 3px solid var(--navy); border-radius: 13px; background: var(--white); }
 .summary-head { color: var(--navy); font: 700 30px/1.15 var(--font-display); margin-bottom: 6px; }
 .selection { min-height: 22px; color: var(--body); font-size: 14px; }
-.selection ul { padding-left: 19px; margin: 7px 0 0; }
-.selection li { margin-bottom: 2px; }
+.selection ul { list-style: none; padding: 0; margin: 7px 0 0; }
+.selection li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; }
+.selection li + li { border-top: 1px solid var(--line); }
+.selection-retirer {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.selection-retirer:hover { background: var(--blue-tint); }
 .pricing { padding-block: 15px 13px; margin-block: 15px 11px; border-block: 1px solid var(--line); }
 .price-main { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 11px; }
 .price-main strong { font: 700 44px/1.15 var(--font-display); color: var(--navy); white-space: nowrap; }

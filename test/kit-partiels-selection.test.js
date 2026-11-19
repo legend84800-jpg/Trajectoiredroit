@@ -9,11 +9,16 @@ const catalogue = readFileSync(join(__dirname, "../assets/kit-partiels/catalogue
 const composer = readFileSync(join(__dirname, "../assets/kit-partiels/composer.js"), "utf8");
 
 function ouvrirKit(sessionStorage) {
+  let champActif;
   const element = () => ({
     children: [],
     dataset: {},
+    attributs: {},
     append(...enfants) { this.children.push(...enfants); },
     replaceChildren(...enfants) { this.children = enfants; },
+    setAttribute(nom, valeur) { this.attributs[nom] = valeur; },
+    addEventListener(type, traiter) { if (type === "click") this.clic = traiter; },
+    focus() { champActif = this; },
   });
   const champs = new Map();
   const radios = {};
@@ -42,6 +47,10 @@ function ouvrirKit(sessionStorage) {
   };
   const listeMatieres = form.querySelector("#matieres");
   listeMatieres.querySelectorAll = () => listeMatieres.children.map((label) => label.children[0]);
+  listeMatieres.querySelector = (selecteur) => {
+    assert.equal(selecteur, "input:not(:checked):not(:disabled)");
+    return listeMatieres.querySelectorAll().find((input) => !input.checked && !input.disabled);
+  };
   const document = {
     querySelector: () => form,
     querySelectorAll: () => [],
@@ -59,6 +68,10 @@ function ouvrirKit(sessionStorage) {
     get paiement() { return paiement.value; },
     get pack() { return champs.get("#duo-partiels").hidden ? null : champs.get("#duo-partiels-lien").href; },
     get commander() { return !champs.get("#commander").disabled; },
+    get champActif() { return champActif?.value; },
+    get boutonsRetirer() {
+      return (champs.get("#selection").children[0]?.children || []).map((li) => li.children[1]);
+    },
     choisirNiveau(valeur) {
       radios[valeur].checked = true;
       traiterChangement({ target: radios[valeur] });
@@ -122,6 +135,37 @@ test("retrouve le duo à comparer et conserve le retrait d’une matière", () =
   const nouveauNiveau = ouvrirKit(session);
   assert.equal(nouveauNiveau.niveau, "l3");
   assert.equal(nouveauNiveau.compteur, "0 sur 3");
+});
+
+test("retire une matière depuis le récapitulatif et place le focus dans les choix", () => {
+  const session = stockage();
+  const kit = ouvrirKit(session);
+  ["contrats", "administratif-s1", "penal"].forEach((code) => kit.choisirMatiere(code));
+  kit.choisirPaiement("2");
+
+  const retirer = kit.boutonsRetirer.find((bouton) => bouton.attributs["aria-label"] === "Retirer Droit pénal (S1)");
+  assert.ok(retirer);
+  assert.equal(retirer.type, "button");
+  assert.equal(retirer.textContent, "Retirer");
+  retirer.clic();
+
+  assert.equal(kit.champActif, "penal");
+  assert.equal(kit.compteur, "2 sur 3");
+  assert.equal(kit.commander, false);
+  assert.equal(kit.paiement, "2");
+  assert.equal(kit.pack, "packs-partiels.html#pack-partiel-l2-s1");
+  assert.deepEqual(ouvrirKit(session).matieres, ["contrats", "administratif-s1"]);
+
+  kit.choisirMatiere("biens");
+  assert.equal(kit.commander, true);
+  assert.equal(kit.pack, null);
+  assert.deepEqual(ouvrirKit(session).matieres, ["contrats", "administratif-s1", "biens"]);
+
+  const retirerAdministratif = kit.boutonsRetirer.find((bouton) => bouton.attributs["aria-label"] === "Retirer Droit administratif (S1)");
+  assert.ok(retirerAdministratif);
+  retirerAdministratif.clic();
+  kit.choisirMatiere("administratif-s2");
+  assert.deepEqual(ouvrirKit(session).matieres, ["contrats", "administratif-s2", "biens"]);
 });
 
 test("écarte les codes périmés, les doublons de discipline et les choix en trop", () => {

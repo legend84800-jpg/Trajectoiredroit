@@ -81,11 +81,25 @@
     return matiere.semestre ? `${matiere.nom} (${matiere.semestre})` : matiere.nom;
   }
 
-  function liste(noms) {
+  function listeSelection(matieres) {
     const ul = document.createElement("ul");
-    for (const nom of noms) {
+    ul.setAttribute("role", "list");
+    for (const matiere of matieres) {
       const li = document.createElement("li");
-      li.textContent = nom;
+      const nom = document.createElement("span");
+      nom.textContent = nomComplet(matiere);
+      const retirer = document.createElement("button");
+      retirer.type = "button";
+      retirer.className = "selection-retirer";
+      retirer.textContent = "Retirer";
+      retirer.setAttribute("aria-label", `Retirer ${nom.textContent}`);
+      retirer.addEventListener("click", () => {
+        codes.delete(matiere.code);
+        enregistrerSelection();
+        rafraichir();
+        choix.querySelector("input:not(:checked):not(:disabled)")?.focus();
+      });
+      li.append(nom, retirer);
       ul.append(li);
     }
     return ul;
@@ -138,7 +152,7 @@
 
     compteur.textContent = `${matieres.length} sur ${nombre}`;
     resume.replaceChildren(matieres.length
-      ? liste(matieres.map(nomComplet))
+      ? listeSelection(matieres)
       : document.createTextNode("Tes matières apparaîtront ici."));
     const pack = packsPartiels.get([...codes].sort().join("+"));
     comparaisonPack.hidden = !pack;

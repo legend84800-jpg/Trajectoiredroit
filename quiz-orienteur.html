@@ -492,14 +492,14 @@
   <script src="assets/js/main.js?v=d95dbb08" defer></script>
   <script src="assets/js/achat.js?v=81a894f1"></script>
   <script>
-    // ----- Donnees reelles : matieres par niveau, avec l'id produit de la fiche complete et des flashcards -----
+    // Références de la fiche et des flashcards, ou questions du guide si les flashcards sont indisponibles.
     var MATIERES = {
       L1: [
         {nom:"Introduction au droit", sem:"S1", fiche:"fiche-intro-droit-l1", fc:"flashcards-qcm-intro-droit-l1"},
         {nom:"Histoire du droit", sem:"S1", fiche:"fiche-hist-droit-l1", fc:"flashcards-qcm-hist-droit-l1"},
         {nom:"Droit constitutionnel", sem:"S1", fiche:"fiche-constit-l1-s1", fc:"flashcards-qcm-constit-l1-s1"},
         {nom:"Droit constitutionnel", sem:"S2", fiche:"fiche-constit-l1-s2", fc:"flashcards-qcm-constit-l1-s2"},
-        {nom:"Histoire des institutions", sem:"S2", fiche:"fiche-hist-institutions-l1", fc:"flashcards-qcm-hist-institutions-l1"},
+        {nom:"Histoire des institutions", sem:"S2", fiche:"fiche-hist-institutions-l1", guide:"histoire-des-institutions-l1.html#teste-toi"},
         {nom:"Droit pénal général", sem:"S2", fiche:"fiche-penal-general-l1", fc:"flashcards-qcm-penal-general-l1"},
         {nom:"Droit de la famille", sem:"S2", fiche:"fiche-famille-l1-s2", fc:"flashcards-qcm-famille-l1-s2"},
         {nom:"Droit des personnes", sem:"", fiche:"fiche-personnes-l1", fc:"flashcards-qcm-personnes-l1"},
@@ -518,7 +518,7 @@
         {nom:"Droit des sociétés", sem:"S1", fiche:"fiche-societes-l3-s1", fc:"flashcards-qcm-societes-l3-s1"},
         {nom:"Droit du travail", sem:"S1", fiche:"fiche-travail-l3-s1", fc:"flashcards-qcm-travail-l3-s1"},
         {nom:"Contrats spéciaux", sem:"", fiche:"fiche-contrats-speciaux-l3", fc:"flashcards-qcm-contrats-speciaux-l3"},
-        {nom:"Procédure pénale", sem:"", fiche:"fiche-procedure-penale-l3", fc:"flashcards-qcm-procedure-penale-l3"}
+        {nom:"Procédure pénale", sem:"", fiche:"fiche-procedure-penale-l3", guide:"procedure-penale-l3.html#teste-toi"}
       ]
     };
 
@@ -616,7 +616,7 @@
         title.textContent = 'La fiche complète de ' + m.nom;
         lead.textContent = "Elle réunit tout le semestre en un seul PDF, avec les définitions et les articles, mais aussi des exemples qui t'aident à comprendre chaque notion.";
         ctaMain.innerHTML = boutonAchat(m.fiche, 'Acheter la fiche', '19,99 €');
-        if (ech === 'proche') {
+        if (ech === 'proche' && m.fc) {
           ctaSecondary.innerHTML = "Ton échéance est proche. En complément, les <a href=\"flashcards-qcm.html\">flashcards + QCM</a> de " + m.nom + " te permettent de réviser plus vite juste avant l'examen.";
         } else if (ech === 'debut') {
           ctaSecondary.innerHTML = "Tu commences tout juste le semestre. Le <a href=\"formations.html#packs-annee\">pack de l'année</a> couvre toutes les matières de ta " + reponses.niveau + " pour moins cher qu'à l'unité.";
@@ -630,9 +630,15 @@
         lead.textContent = "Chaque fiche reprend un grand arrêt de la matière. Elle en donne les faits et la procédure, puis elle explique la solution et ce qu'elle a changé au droit. Tu peux ainsi connaître ces arrêts par cœur avant l'examen.";
         ctaMain.innerHTML = boutonLien('revisions.html', 'Voir les fiches d\'arrêt');
       } else if (obj === 'reviser') {
-        title.textContent = 'Flashcards + QCM de ' + m.nom;
-        lead.textContent = "Tu as une flashcard par notion et un QCM corrigé pour tester ce que tu retiens vraiment. Le paquet de cartes pour Anki, une application de révision, est aussi fourni, prêt à importer.";
-        ctaMain.innerHTML = boutonAchat(m.fc, 'Acheter les flashcards', '9,99 €');
+        if (m.fc) {
+          title.textContent = 'Flashcards + QCM de ' + m.nom;
+          lead.textContent = "Tu as une flashcard par notion et un QCM corrigé pour tester ce que tu retiens vraiment. Le paquet de cartes pour Anki, une application de révision, est aussi fourni, prêt à importer.";
+          ctaMain.innerHTML = boutonAchat(m.fc, 'Acheter les flashcards', '9,99 €');
+        } else {
+          title.textContent = 'Quatre questions pour te tester';
+          lead.textContent = "Réponds de mémoire, puis ouvre chaque réponse pour vérifier. Si une réponse te manque, revois le point du cours correspondant.";
+          ctaMain.innerHTML = boutonLien(m.guide, 'Voir les questions gratuites');
+        }
       } else if (obj === 'methode') {
         title.textContent = 'Les méthodes des exercices de droit';
         lead.textContent = "Tu peux reprendre la méthode de chaque exercice sur les pages gratuites. Tu y apprends à rédiger une fiche d'arrêt et un commentaire d'arrêt. Les pages sur le cas pratique et la dissertation expliquent ensuite comment construire ton raisonnement.";
