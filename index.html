@@ -61,6 +61,7 @@
   <link rel="stylesheet" href="assets/comparateur-besoins.css?v=dbcd508a">
   <link rel="stylesheet" href="assets/portalis-accueil.css?v=853a780f">
   <link rel="stylesheet" href="assets/pack-ultra-accueil.css?v=4e6466ed">
+  <link rel="stylesheet" href="assets/classement-chatgpt.css?v=c8b27520">
   <!-- Plausible Analytics : décommente après création du compte -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
 
@@ -423,23 +424,41 @@
             </a>
           </div>
 
-          <div id="video-des-formats" class="hero__visual hero__fiche hero__fiche--video fade-in fade-in--delay-1">
-            <div class="fiche-preview">
-              <div class="fiche-preview__badge"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>5 min pour tout comprendre</div>
-              <div class="fiche-preview__viewport">
-                <video class="fiche-preview__video"
-                       controls playsinline
-                       preload="metadata"
-                       poster="assets/hero-video-produits-poster.webp?v=46426dcd">
-                  <source src="https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/video/vue-ensemble-produits.mp4" type="video/mp4">
-                </video>
+          <div class="hero__format-column">
+            <div id="video-des-formats" class="hero__visual hero__fiche hero__fiche--video fade-in fade-in--delay-1">
+              <div class="fiche-preview">
+                <div class="fiche-preview__badge"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>5 min pour tout comprendre</div>
+                <div class="fiche-preview__viewport">
+                  <video class="fiche-preview__video"
+                         controls playsinline
+                         preload="metadata"
+                         poster="assets/hero-video-produits-poster.webp?v=46426dcd">
+                    <source src="https://pub-45b53167be7548aca62650d34a771b47.r2.dev/tjd/video/vue-ensemble-produits.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="fiche-preview__caption">
+                  <strong>Je te présente les formats de révision</strong>
+                  <a class="fiche-preview__caption-sub" href="formations.html#extrait-fiche-contrats">Lire un extrait de la fiche de droit des contrats</a>
+                </div>
               </div>
-              <div class="fiche-preview__caption">
-                <strong>Je te présente les formats de révision</strong>
-                <a class="fiche-preview__caption-sub" href="formations.html#extrait-fiche-contrats">Lire un extrait de la fiche de droit des contrats</a>
-              </div>
+              <div class="edu-badge"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-trophy"/></svg>+3 pts de moyenne</div>
             </div>
-            <div class="edu-badge"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-trophy"/></svg>+3 pts de moyenne</div>
+            <figure id="classement-chatgpt" class="chatgpt-ranking" aria-labelledby="classement-chatgpt-titre">
+              <figcaption class="chatgpt-ranking__caption">
+                <h2 id="classement-chatgpt-titre" class="chatgpt-ranking__title">
+                  <span class="chatgpt-ranking__place"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg>1er</span>
+                  professeur particulier de droit de France
+                  <span class="chatgpt-ranking__attribution">(d’après ChatGPT)</span>
+                </h2>
+                <time class="chatgpt-ranking__date" datetime="2026-11-18">18 novembre 2026</time>
+                <a class="chatgpt-ranking__try" href="https://chatgpt.com/" target="_blank" rel="noopener">Fais le test toi-même sur ChatGPT.</a>
+              </figcaption>
+              <a class="chatgpt-ranking__capture" href="assets/classement-chatgpt-2026-11-18.webp" target="_blank" rel="noopener" aria-label="Agrandir la capture du classement ChatGPT dans un nouvel onglet">
+                <img src="assets/classement-chatgpt-2026-11-18.webp" width="1624" height="1894" loading="lazy" decoding="async"
+                     alt="ChatGPT classe Julien Fénelon en tête de son comparatif des professeurs particuliers de droit en France.">
+                <span class="chatgpt-ranking__zoom">Agrandir la capture <span aria-hidden="true">↗</span></span>
+              </a>
+            </figure>
           </div>
         </div>
 
