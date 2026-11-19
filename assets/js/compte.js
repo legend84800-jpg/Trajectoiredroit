@@ -329,7 +329,12 @@
               "</audio>" +
             "</div>";
           }
-          return "<a class=\"btn btn--outline btn--sm\" href=\"" + f.url + "\" style=\"margin:4px 6px 0 0\">Télécharger " + echapperCompte(f.nom) + "</a>";
+          var telechargement = "<a class=\"btn btn--outline btn--sm\" href=\"" + f.url + "\" style=\"margin:4px 6px 0 0\">Télécharger " + echapperCompte(f.nom) + "</a>";
+          if (f.format !== "apkg") return telechargement;
+          return "<span style=\"display:inline-flex; flex-wrap:wrap; align-items:center\">" +
+            telechargement +
+            "<a class=\"btn btn--ghost btn--sm\" href=\"flashcards-qcm.html#importer-anki\" style=\"margin:4px 6px 0 0\">Importer les cartes dans Anki</a>" +
+          "</span>";
         }
         var groupes = [];
         var indexGroupes = {};

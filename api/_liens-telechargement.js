@@ -118,7 +118,11 @@ function construireLiensTelechargement(
       }
     }
     const type = estVideo ? "video" : estAudio ? "audio" : "pdf";
-    return { nom, url, type, ...(composant ? { groupe: composant.nom } : {}) };
+    return {
+      nom, url, type,
+      ...(/\.apkg$/i.test(blobUrl) ? { format: "apkg" } : {}),
+      ...(composant ? { groupe: composant.nom } : {}),
+    };
   });
 }
 

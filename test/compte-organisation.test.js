@@ -3,6 +3,8 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+const produits = require('../api/_produits');
+const { construireLiensTelechargement, genererToken } = require('../api/_liens-telechargement');
 
 const source = fs.readFileSync(path.join(__dirname, '../assets/js/compte.js'), 'utf8');
 const tick = () => new Promise(resolve => setImmediate(resolve));
@@ -148,4 +150,44 @@ test('les noms utilisés dans les options sont échappés', async () => {
   await b.flush();
   assert.match(b.elements.achatsProduit.innerHTML, /&lt;script&gt; &amp; &quot;copie&quot;/);
   assert.doesNotMatch(b.elements.achatsProduit.innerHTML, /<script>/);
+});
+
+test('Mon compte montre le guide Anki près des seuls téléchargements .apkg', async () => {
+  const secret = 'secret-de-test';
+  const sessionId = 'cs_test_anki_42';
+  const produitsAchetes = [
+    'flashcards-qcm-contrats-l2-s1',
+    'pack-flashcards-qcm-l2',
+    'pack-ultra-l2-s1',
+    'pack-partiel-l2-s1',
+    'pack-kit-partiels-l2--administratif-s1--contrats--penal',
+    'fiche-contrats-l2-s1',
+  ].map(id => {
+    const produit = produits[id];
+    const fichiers = construireLiensTelechargement(id, produit, secret, 'https://trajectoiredroit.com', 900, { sessionId });
+    for (const [index, fichier] of fichiers.entries()) {
+      const extension = produit.blobs[index].split('.').at(-1);
+      assert.equal(fichier.format, extension === 'apkg' ? 'apkg' : undefined);
+      assert.equal(fichier.type, { mp4: 'video', m4a: 'audio' }[extension] || 'pdf');
+      if (fichier.format !== 'apkg') continue;
+      const url = new URL(fichier.url);
+      const expiration = Number(url.searchParams.get('exp'));
+      assert.equal(url.searchParams.get('sid'), sessionId);
+      assert.equal(url.searchParams.get('sig'), genererToken(id, index, expiration, secret, sessionId));
+    }
+    return { id, nom: produit.nom, fichiers };
+  });
+  const b = navigateur({ achats: [{ date: '2026-11-19', produits: produitsAchetes }] });
+  await b.flush();
+  const rendu = b.elements.achatsListe.innerHTML;
+  const paquets = produitsAchetes.flatMap(p => p.fichiers.filter(fichier => fichier.format === 'apkg'));
+  assert.equal(paquets.length, 15);
+  const liensAnki = Array.from(rendu.matchAll(/href="([^"]+)"[^>]*>Télécharger [^<>]+<\/a><a [^>]*href="flashcards-qcm\.html#importer-anki"[^>]*>Importer les cartes dans Anki<\/a>/g), m => m[1]);
+  assert.deepEqual(liensAnki, paquets.map(fichier => fichier.url));
+  assert.match(rendu, /<audio controls/);
+  assert.match(rendu, /<video controls/);
+
+  const guide = fs.readFileSync(path.join(__dirname, '../flashcards-qcm.html'), 'utf8');
+  assert.match(guide, /<div class="accordion__body" id="importer-anki"[^>]*>\s*<p><strong>Sur ordinateur<\/strong>[^<]+\.apkg/);
+  assert.equal((guide.match(/id="importer-anki"/g) || []).length, 1);
 });

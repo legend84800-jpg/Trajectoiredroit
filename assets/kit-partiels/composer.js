@@ -42,6 +42,40 @@
 
   let niveau = form.querySelector('input[name="niveau"]:checked').value;
   let codes = new Set();
+  const cleSelection = "tjd_kit_partiels_selection";
+
+  function restaurerSelection() {
+    let selection;
+    try {
+      selection = JSON.parse(window.sessionStorage.getItem(cleSelection));
+    } catch (_) {
+      return;
+    }
+    if (!selection || typeof selection.niveau !== "string" ||
+        !Object.hasOwn(catalogue.niveaux, selection.niveau) || !Array.isArray(selection.codes)) return;
+
+    const boutonNiveau = form.querySelector(`input[name="niveau"][value="${selection.niveau}"]`);
+    if (!boutonNiveau) return;
+    niveau = selection.niveau;
+    boutonNiveau.checked = true;
+
+    const disciplines = new Set();
+    for (const code of selection.codes) {
+      const matiere = catalogue.niveaux[niveau].find((item) => item.code === code);
+      if (!matiere || disciplines.has(matiere.discipline)) continue;
+      codes.add(code);
+      disciplines.add(matiere.discipline);
+      if (codes.size === nombre) break;
+    }
+  }
+
+  function enregistrerSelection() {
+    try {
+      window.sessionStorage.setItem(cleSelection, JSON.stringify({ niveau, codes: [...codes] }));
+    } catch (_) {
+      // Le formulaire reste utilisable lorsque le navigateur bloque le stockage.
+    }
+  }
 
   function nomComplet(matiere) {
     return matiere.semestre ? `${matiere.nom} (${matiere.semestre})` : matiere.nom;
@@ -133,9 +167,11 @@
       niveau = event.target.value;
       codes = new Set();
       afficherMatieres();
+      enregistrerSelection();
     } else if (event.target.name === "matiere") {
       if (event.target.checked) codes.add(event.target.value);
       else codes.delete(event.target.value);
+      enregistrerSelection();
     }
     rafraichir();
   });
@@ -152,6 +188,7 @@
     window.tjdAcheter(id, cta);
   });
 
+  restaurerSelection();
   afficherMatieres();
   rafraichir();
 })();
