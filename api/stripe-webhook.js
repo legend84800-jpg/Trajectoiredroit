@@ -112,6 +112,12 @@ function deduireMatiere(nomProduit) {
     .trim();
 }
 
+function prenomDepuisNom(nom) {
+  const [premierMot] = (typeof nom === "string" ? nom : "").trim().split(/\s+/, 1);
+  const prenom = formaterNomOffrant(premierMot);
+  return /^\p{L}[\p{L}\p{M}'’-]*$/u.test(prenom) ? prenom : "";
+}
+
 // Crée ou met à jour le contact acheteur dans Brevo, avec ses derniers achats en
 // attributs et un ajout à la liste Clients, pour ouvrir la porte à une séquence
 // de conseils après achat à J+2, J+5 et J+8.
@@ -147,9 +153,8 @@ async function creerContactBrevoAchat(email, produits, montantEuros, brevoKey, a
   // par Stripe pendant le paiement.
   if (accordPromotionnel) {
     payload.listIds = [BREVO_LISTE_CLIENTS];
-    const [premierMot] = (options.nomAcheteur ?? "").trim().split(/\s+/, 1);
-    const prenom = formaterNomOffrant(premierMot);
-    if (/^\p{L}[\p{L}\p{M}'’-]*$/u.test(prenom)) payload.attributes.PRENOM = prenom;
+    const prenom = prenomDepuisNom(options.nomAcheteur);
+    if (prenom) payload.attributes.PRENOM = prenom;
   }
   const produitsPourRecommandations = accordPromotionnel && options.recommanderSupports !== false
     && Array.isArray(options.produitIds)
@@ -399,7 +404,9 @@ async function recupererCodePromo(promotionCodeId, stripe) {
   }
 }
 
-async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur, codeParrainage) {
+async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur, codeParrainage, nomAcheteur) {
+  const prenom = prenomDepuisNom(nomAcheteur);
+  const salutation = prenom ? `Salut ${prenom},` : "Salut,";
   const nomsAchetes = produits.map(p => p.nom).join(" + ");
   const nomsHtml = echapperHtml(nomsAchetes);
   const contientPackUltra = produits.some(p => Array.isArray(p.inclus) && Array.isArray(p.blobsMeta));
@@ -502,6 +509,7 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur, c
           <p style="margin:0;color:#fff;font-size:22px;font-weight:700;">TrajectoireDroit</p>
         </td></tr>
         <tr><td style="padding:24px 18px;">
+          <p style="font-size:15px;line-height:1.55;color:#333;margin:0 0 20px;">${echapperHtml(salutation)}</p>
           <p style="font-size:18px;font-weight:700;color:#1a237e;margin:0 0 24px;">Ton achat est confirmé !</p>
           ${blocs.map(b => `<p style="font-size:15px;line-height:1.55;color:#333;margin:0 0 20px;">${b.html}</p>`).join("\n")}
         </td></tr>
@@ -513,7 +521,7 @@ async function envoyerEmail(email, produits, liens, brevoKey, codeAmbassadeur, c
   </table>
 </body>
 </html>`;
-  const texte = ["Ton achat est confirmé !", ...blocs.map(b => b.texte), pied].join("\n\n");
+  const texte = [salutation, "Ton achat est confirmé !", ...blocs.map(b => b.texte), pied].join("\n\n");
   const payload = {
     sender: { name: "TrajectoireDroit", email: "contact@trajectoiredroit.com" },
     to: [{ email }],
@@ -751,6 +759,7 @@ async function traiterAchatPaye(session, contexte) {
   // de paiement, reste le seul concerné par Brevo, la remise et Meta.
   const cadeau = estStage ? null : cadeauDepuisMetadata(session.metadata);
   const emailBeneficiaire = cadeau ? cadeau.email : email;
+  const nomAcheteur = session.customer_details?.individual_name || session.customer_details?.name;
 
   const operations = contexte.operations || {
     insererSiAbsent,
@@ -857,7 +866,8 @@ async function traiterAchatPaye(session, contexte) {
           liens,
           contexte.brevoKey,
           codeAmbassadeur,
-          codeParrainage
+          codeParrainage,
+          nomAcheteur
         );
       }
     }
@@ -949,7 +959,7 @@ async function traiterAchatPaye(session, contexte) {
       {
         produitIds: produitsAchetes.map(p => p.id),
         origineAccord: accordPromotionnel ? "paiement-stripe" : undefined,
-        nomAcheteur: session.customer_details?.individual_name || session.customer_details?.name,
+        nomAcheteur,
         recommanderSupports: !cadeau && !estStage && !estTestInterne,
       }
     );

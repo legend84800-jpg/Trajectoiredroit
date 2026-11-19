@@ -578,8 +578,10 @@ test("l’email de livraison donne les liens dans les deux formats et le code du
   });
   const fichier = "https://trajectoiredroit.com/api/download?id=fiche-da-l2-s1&token=test";
   await envoyerEmail("client@example.com", [{ nom: "Fiche complète Droit administratif L2 S1" }],
-    [{ url: fichier, nom: "la fiche complète" }], "brevo-test", null, "PARRAINJULIEN84");
+    [{ url: fichier, nom: "la fiche complète" }], "brevo-test", null, "PARRAINJULIEN84", "  ÉLODIE  Martin ");
   for (const rendu of [payload.htmlContent, payload.textContent]) {
+    assert.match(rendu, /Salut Élodie,/);
+    assert.doesNotMatch(rendu, /Élodie Martin/);
     assert.ok(rendu.includes("https://www.youtube.com/@TrajectoireDroit"));
     assert.ok(rendu.includes("https://www.tiktok.com/@trajectoiredroit"));
     assert.ok(rendu.includes("https://trajectoiredroit.com/mon-compte.html"));
@@ -596,6 +598,8 @@ test("l’email de livraison donne les liens dans les deux formats et le code du
 
   await envoyerEmail("client@example.com", [{ nom: "Cours", mediaEnLigne: true }],
     [], "brevo-test", null, null);
+  assert.match(payload.htmlContent, />Salut,<\/p>/);
+  assert.match(payload.textContent, /^Salut,\n/);
   assert.match(payload.htmlContent, /Écouter mes podcasts et voir mes vidéos/);
   assert.doesNotMatch(payload.htmlContent, /48 heures|bon d’achat|PARRAINJULIEN84/);
 
@@ -738,7 +742,13 @@ test("un webhook rejoué ne renvoie pas le PDF", async () => {
 
 test("une commande gratuite confirmée livre le bon PDF une seule fois et garde le montant zéro", async () => {
   const { traiterAchatPaye } = require("../api/stripe-webhook")._test;
-  const session = { ...sessionPayee("cs_test_mathilde_livraison"), status: "complete", payment_status: "no_payment_required", amount_total: 0 };
+  const session = {
+    ...sessionPayee("cs_test_mathilde_livraison"),
+    status: "complete",
+    payment_status: "no_payment_required",
+    amount_total: 0,
+    customer_details: { email: "client@example.com", name: "Nom de facturation", individual_name: "Mathilde Bernard" },
+  };
   let achat;
   let livraisons = 0;
   const operations = operationsFactices({
@@ -747,8 +757,9 @@ test("une commande gratuite confirmée livre le bon PDF une seule fois et garde 
       achat = donnees;
       return [{ id: 1 }];
     },
-    envoyerEmail: async (_email, produits, liens) => {
+    envoyerEmail: async (_email, produits, liens, _brevoKey, _codeAmbassadeur, _codeParrainage, nomAcheteur) => {
       livraisons += 1;
+      assert.equal(nomAcheteur, "Mathilde Bernard");
       assert.equal(produits[0].nom, "Fiche complète Droit administratif L2 S1");
       assert.ok(liens.length > 0);
     },
