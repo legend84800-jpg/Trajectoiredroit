@@ -168,7 +168,7 @@ window.tjdDialogues = (function () {
       if (chargement) return;
       trigger.setAttribute('aria-busy', 'true');
       chargement = document.createElement('script');
-      chargement.src = '/assets/js/recherche.js?v=049b8e90';
+      chargement.src = '/assets/js/recherche.js?v=99b9d15c';
       chargement.onload = function () {
         trigger.removeAttribute('aria-busy');
         var erreur = document.querySelector('.search-load-error'); if (erreur) erreur.remove();

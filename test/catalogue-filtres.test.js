@@ -177,6 +177,11 @@ test('le semestre recherché correspond à la fiche et exclut les offres d’ajo
     ['Droit administratif, S 2', ['fiche-da-l2-s2']],
     ['contrats semestre 1', ['cours-images-contrats-l2-s1', 'fiche-contrats-l2-s1']],
     ['contrats S1', ['cours-images-contrats-l2-s1', 'fiche-contrats-l2-s1']],
+    ['contrats L2S1', ['cours-images-contrats-l2-s1', 'fiche-contrats-l2-s1']],
+    ['contrats L2-S1', ['cours-images-contrats-l2-s1', 'fiche-contrats-l2-s1']],
+    ['contrats L2 S1', ['cours-images-contrats-l2-s1', 'fiche-contrats-l2-s1']],
+    ['droit pénal L2 S1', ['fiche-penal-l2-s1']],
+    ['droit pénal L2-S2', ['fiche-penal-general-l1']],
     ['responsabilité civile S2', ['fiche-obligations-l2-s2']],
     ['droit des biens', ['fiche-biens-l2']],
     ['droit des biens S1', []]
@@ -184,4 +189,23 @@ test('le semestre recherché correspond à la fiche et exclut les offres d’ajo
     e.chercher(recherche);
     assert.deepEqual(e.visibles(), produits, recherche);
   }
+});
+
+test('une ancre de fiche rend sa carte visible malgré les filtres et place le focus à son début', () => {
+  const cartes = cartesPage('formations.html');
+  const ancre = 'fiche-obligations-l2-s2';
+  const memo = new Map([['tjd_catalogue_niveau', 'L3']]);
+  const depuisAutrePage = environnement({ cartesReelles: cartes, memoire: memo, url: 'https://trajectoiredroit.com/formations.html#' + ancre });
+  assert.ok(depuisAutrePage.visibles().includes(ancre));
+  assert.equal(depuisAutrePage.actif().id, ancre);
+  assert.equal(depuisAutrePage.actif().defilements, 1);
+  const depuisCatalogue = environnement({ cartesReelles: cartes });
+  depuisCatalogue.niveau('L3');
+  depuisCatalogue.matiere('public');
+  depuisCatalogue.chercher('distinction SPA/SPIC');
+  depuisCatalogue.hash('#' + ancre);
+  assert.ok(depuisCatalogue.visibles().includes(ancre));
+  assert.equal(depuisCatalogue.recherche.value, '');
+  assert.equal(depuisCatalogue.actif().id, ancre);
+  assert.equal(depuisCatalogue.window.location.searchParams.get('niveau'), 'l2');
 });

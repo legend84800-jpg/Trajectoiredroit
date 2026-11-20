@@ -79,6 +79,27 @@ test('l’index couvre les cartes individuelles sans inventer de semestre', () =
   assert.equal(rechercher(index, 'QCM droit des personnes S2').length, 0);
 });
 
+test('les fiches complètes actives mènent toutes à une carte au bon niveau dans Formations', () => {
+  const prefixe = '/formations.html#';
+  const fiches = index.filter((entree) => entree.u.startsWith(prefixe));
+  const attendues = Object.entries(PRODUITS).filter(([, produit]) => produit.nom.startsWith('Fiche complète ') && !produit.venteSuspendue);
+  assert.equal(fiches.length, attendues.length);
+  assert.deepEqual(fiches.map((fiche) => fiche.u.slice(prefixe.length)).sort(), attendues.map(([id]) => id).sort());
+  assert.ok(fiches.some((fiche) => fiche.u.endsWith('#cours-fiche-philo-droit-l2-s1')));
+  for (const requete of ['fiche responsabilité civile L2S2', 'fiches complètes responsabilité civile L2-S2', 'fiche de révision obligations Licence 2 semestre 2']) {
+    assert.equal(rechercher(index, requete)[0].u, prefixe + 'fiche-obligations-l2-s2', requete);
+  }
+  assert.equal(rechercher(index, 'fiche droit pénal L2 S1')[0].u, prefixe + 'fiche-penal-l2-s1');
+  assert.equal(rechercher(index, 'fiche droit pénal L2 S2')[0].u, prefixe + 'fiche-penal-general-l1');
+  assert.equal(rechercher(index, 'fiche droit des biens L2 S1').filter((entree) => entree.u.startsWith(prefixe)).length, 0);
+});
+
+test('la recherche QCM reconnaît aussi les années et semestres séparés par un tiret', () => {
+  for (const repere of ['L1S2', 'L1-S2', 'L1 S2', 'L1 S.2', 'Licence 1 semestre 2']) {
+    assert.equal(rechercher(index, 'QCM droit constitutionnel ' + repere)[0].u, '/flashcards-qcm.html#flashcards-qcm-constit-l1-s2');
+  }
+});
+
 test('les recherches de guides ou d’arrêts conservent le classement des pages', () => {
   const pages = index.filter((p) => !p.u.includes('#'));
   for (const requete of ['droit administratif', 'droit pénal', 'arrêt KPMG', 'Portalis', 'droit administratif L2']) {

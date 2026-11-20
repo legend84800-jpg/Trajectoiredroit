@@ -55,6 +55,7 @@
         try {
           var url = new URL(lien.getAttribute('href'), window.location.href);
           if (url.origin !== window.location.origin || !/\/formations\.html$/.test(url.pathname)) return;
+          if (url.hash && cartes.some(function (carte) { return carte.element.id === url.hash.slice(1); })) return;
           if (etat.niveau === 'tous') url.searchParams.delete('niveau');
           else url.searchParams.set('niveau', etat.niveau.toLowerCase());
           lien.setAttribute('href', url.pathname + url.search + url.hash);
@@ -77,16 +78,23 @@
       actualiserLiens();
     }
     function appliquerFiltres() {
-      var semestres = [];
-      var texte = normaliser(recherche.value).replace(/\b(?:semestre|s)[\s.-]*([12])\b/g, function (_, semestre) {
-        semestres.push(semestre);
-        return ' ';
-      });
+      var semestres = [], niveauxRecherches = [];
+      var texte = normaliser(recherche.value)
+        .replace(/\bl([123])s([12])\b/g, 'l$1 s$2')
+        .replace(/\b(?:licence|l)[\s.-]*([123])\b/g, function (_, niveau) {
+          niveauxRecherches.push('L' + niveau);
+          return ' ';
+        })
+        .replace(/\b(?:semestre|s)[\s.-]*([12])\b/g, function (_, semestre) {
+          semestres.push(semestre);
+          return ' ';
+        });
       var mots = texte.match(/[\p{L}\p{N}]+/gu) || [];
       var nombre = 0;
       cartes.forEach(function (carte) {
         var visible = (etat.niveau === 'tous' || carte.niveaux.indexOf(etat.niveau) !== -1)
           && (etat.matiere === 'tous' || carte.matieres.indexOf(etat.matiere) !== -1)
+          && (!niveauxRecherches.length || niveauxRecherches.some(function (niveau) { return carte.niveaux.indexOf(niveau) !== -1; }))
           && (!semestres.length || semestres.indexOf(carte.semestre) !== -1)
           && mots.every(function (mot) { return carte.texte.indexOf(mot) !== -1; });
         carte.element.hidden = !visible;
@@ -127,15 +135,26 @@
       appliquerFiltres(); actualiserAdresse(false); recherche.focus();
     });
     function appliquerHash() {
-      var niveau = HASH_NIVEAU[window.location.hash];
-      if (!niveau) return;
+      var hash = window.location.hash;
+      var cible = hash && cartes.find(function (carte) { return carte.element.id === hash.slice(1); });
+      if (cible && cible.niveaux.length) {
+        etat.niveau = niveauValide(cible.niveaux[0]) || 'tous';
+        etat.matiere = 'tous';
+        recherche.value = '';
+        appliquerFiltres(); actualiserAdresse(true);
+        cible.element.focus({ preventScroll: true });
+        cible.element.scrollIntoView({ behavior: 'auto', block: 'start' });
+        return true;
+      }
+      var niveau = HASH_NIVEAU[hash];
+      if (!niveau) return false;
       etat.niveau = niveau;
       appliquerFiltres(); actualiserAdresse(true);
       racine.scrollIntoView({ behavior: 'auto', block: 'start' });
+      return true;
     }
     window.addEventListener('hashchange', appliquerHash);
-    appliquerFiltres(); actualiserAdresse(true);
-    if (HASH_NIVEAU[window.location.hash]) appliquerHash();
+    if (!appliquerHash()) { appliquerFiltres(); actualiserAdresse(true); }
   }
   function initialiser() {
     document.querySelectorAll('[data-tjd-catalogue]').forEach(initialiserCatalogue);

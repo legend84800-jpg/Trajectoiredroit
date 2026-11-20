@@ -22,25 +22,32 @@ function categorie(nom) {
   return 'Page';
 }
 
-function cartesFlashcards(html) {
+const FORMATS_CARTES = {
+  'formations.html': 'Fiche complète',
+  'flashcards-qcm.html': 'Flashcards + QCM',
+};
+
+function cartesCatalogue(html, page, formatAttendu) {
   const cartes = [];
   for (const match of html.matchAll(/<article\b([^>]*)>([\s\S]*?)<\/article>/gi)) {
     const [, attributs, corps] = match;
     const niveau = attributs.match(/\bdata-niveau=["'](L[123])["']/)?.[1];
-    const produit = corps.match(/\bdata-tjd-produit=["'](flashcards-qcm-[a-z0-9]+(?:-[a-z0-9]+)*)["']/)?.[1];
-    if (!niveau || !produit || !PRODUITS[produit] || PRODUITS[produit].venteSuspendue) continue;
+    const produit = corps.match(/\bdata-tjd-produit=["']([a-z0-9]+(?:-[a-z0-9]+)*)["']/)?.[1];
+    if (!niveau || !produit || !Object.hasOwn(PRODUITS, produit) || PRODUITS[produit].venteSuspendue || /\shidden(?:\s|=|$)/i.test(attributs)) continue;
 
     const ancre = attributs.match(/\sid=["']([^"']+)["']/)?.[1];
     const titre = texteHtml(corps.match(/<h3\b[^>]*class=["']product__title["'][^>]*>([\s\S]*?)<\/h3>/i)?.[1]);
     const format = texteHtml(corps.match(/<span\b[^>]*class=["'][^"']*\bbadge--format\b[^"']*["'][^>]*>([\s\S]*?)<\/span>/i)?.[1]);
-    const niveauEtSemestre = texteHtml(corps.match(/<div\b[^>]*class=["']product__meta["'][^>]*>\s*<span>([^<]+)<\/span>/i)?.[1]);
-    const semestre = niveauEtSemestre.match(/^L[123] · (S[12])$/)?.[1];
-    if (ancre !== produit || !titre || !format || niveauEtSemestre !== (semestre ? niveau + ' · ' + semestre : niveau)) continue;
+    const meta = texteHtml(corps.match(/<div\b[^>]*class=["']product__meta["'][^>]*>([\s\S]*?)<\/div>/i)?.[1]);
+    const repereMeta = meta.match(/^(L[123])(?: · (?:Semestre |S)([12]))?(?: ·|$)/);
+    if (ancre !== produit || format !== formatAttendu || !titre || repereMeta?.[1] !== niveau) continue;
 
+    const semestre = repereMeta[2] ? 'S' + repereMeta[2] : '';
     const sujet = semestre ? titre.replace(new RegExp(` \\(${semestre}\\)$`), '') : titre;
     const repere = semestre ? niveau + ' ' + semestre : niveau;
     const licence = 'Licence ' + niveau.slice(1) + (semestre ? ' semestre ' + semestre.slice(1) : '');
-    cartes.push({ t: sujet + ' · ' + repere, u: '/flashcards-qcm.html#' + ancre, c: format, k: format.replace(' + ', ' et ') + ' de ' + sujet + ' ' + licence });
+    const motsFormat = format === 'Fiche complète' ? 'Fiche complète fiche de révision PDF' : format.replace(' + ', ' et ');
+    cartes.push({ t: sujet + ' · ' + repere, u: '/' + page + '#' + ancre, c: format, k: motsFormat + ' de ' + sujet + ' ' + licence });
   }
   return cartes;
 }
@@ -69,7 +76,7 @@ function construireIndex(racine) {
     if (!titre || !h1) continue;
     dejaVus.add(nom);
     index.push({ t: titre, u: nom === 'index.html' ? '/' : '/' + nom, c: categorie(nom), k: h1 + ' ' + nom.replace(/\.html$/, '').replace(/-/g, ' ') });
-    if (nom === 'flashcards-qcm.html') index.push(...cartesFlashcards(html));
+    if (FORMATS_CARTES[nom]) index.push(...cartesCatalogue(html, nom, FORMATS_CARTES[nom]));
   }
   return index.sort((a, b) => a.u.localeCompare(b.u));
 }

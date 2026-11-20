@@ -859,9 +859,24 @@
       fbq('track', 'Purchase', { value: donneesSession.montant, currency: donneesSession.devise || 'EUR' }, { eventID: sessionId });
     }
 
+    function chargerRemise(d) {
+      if (!d.remisePossible) {
+        afficherSuggestions(d.suggestions, d.remise);
+        return;
+      }
+      fetch('/api/session-info?session_id=' + encodeURIComponent(sessionId) + '&vue=remise', { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; })
+        .then(function (resultat) {
+          var remise = resultat && resultat.remise;
+          memoriserRemise(remise);
+          afficherSuggestions(d.suggestions, remise);
+        });
+    }
+
     function verifierSession(tentative) {
       statusRetry.disabled = true;
-      return fetch('/api/session-info?session_id=' + encodeURIComponent(sessionId), { cache: 'no-store' })
+      return fetch('/api/session-info?session_id=' + encodeURIComponent(sessionId) + '&vue=confirmation', { cache: 'no-store' })
         .then(function (r) {
           if (r.status === 404) return { etat: 'introuvable' };
           if (!r.ok) throw new Error('verification_indisponible');
@@ -885,9 +900,9 @@
           afficherAchatConfirme();
           envoyerMesures(d);
           afficherRetourSiEligible(d);
-          afficherSuggestions(d && d.suggestions, d && d.remise);
           afficherAccordEmails(d);
           envoyerMetaSiPret();
+          chargerRemise(d);
         });
     }
 

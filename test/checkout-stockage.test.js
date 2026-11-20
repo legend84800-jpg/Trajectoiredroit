@@ -7,7 +7,10 @@ const vm = require('node:vm');
 const source = fs.readFileSync(path.join(__dirname, '../assets/js/achat.js'), 'utf8');
 const sourceAvecPanier = source.replace(/\}\)\(\);\s*$/, `
   panierRafraichir = function () {};
-  window.__panier = { ajouter: panierAjouter, lire: panierLire, retirer: panierRetirer, payer: panierCheckout, rendre: panierRendreListe };
+  window.__panier = {
+    ajouter: (id, nom, prixCentimes) => panierAjouter([{ id, nom, prixCentimes }]).length === 1,
+    lire: panierLire, retirer: panierRetirer, payer: panierCheckout, rendre: panierRendreListe
+  };
 })();`);
 assert.notEqual(sourceAvecPanier, source);
 

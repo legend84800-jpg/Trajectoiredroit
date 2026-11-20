@@ -4,6 +4,8 @@ const { createRequire } = require("node:module");
 const { join } = require("node:path");
 const { test } = require("node:test");
 const vm = require("node:vm");
+const { genererToken } = require("../api/_liens-telechargement");
+const { codeRemisePourSession } = require("../api/_remise-post-achat");
 
 const fichierApi = join(__dirname, "../api/session-info.js");
 const api = readFileSync(fichierApi, "utf8");
@@ -12,17 +14,19 @@ const baliseDebut = "<script defer>";
 const debut = page.lastIndexOf(baliseDebut) + baliseDebut.length;
 const script = page.slice(debut, page.indexOf("</script>", debut));
 const sessionId = "cs_test_Confirmation1";
+const sessionLive = "cs_live_Confirmation1";
+const secretSignature = "signature_factice";
 const paiementId = "pi_factice";
 const packUltra = "pack-ultra-l2-s1";
 const fiche = "fiche-da-l2-s1";
 const media = "audio-video-da-l2-s1";
 
-function apiFactice(session, paiement) {
+function apiFactice(session, paiement, { cleStripe = "sk_test_factice", promotionCodes } = {}) {
   const lectures = [];
   const intentionsLues = [];
   const requireApi = createRequire(fichierApi);
   const contexte = {
-    process: { env: { STRIPE_SECRET_KEY: "sk_test_factice", DOWNLOAD_SECRET: "signature_factice" } },
+    process: { env: { STRIPE_SECRET_KEY: cleStripe, DOWNLOAD_SECRET: secretSignature } },
     console: { error() {} },
     module: { exports: {} },
     require(nom) {
@@ -42,6 +46,7 @@ function apiFactice(session, paiement) {
               return paiement;
             },
           },
+          promotionCodes,
         }) };
       }
       return requireApi(nom);
@@ -51,7 +56,7 @@ function apiFactice(session, paiement) {
   return {
     lectures,
     intentionsLues,
-    async appeler(method = "GET", id = sessionId) {
+    async appeler(method = "GET", id = sessionId, vue) {
       const sortie = {
         statusCode: 0,
         headers: {},
@@ -60,7 +65,7 @@ function apiFactice(session, paiement) {
         json(donnees) { this.donnees = JSON.parse(JSON.stringify(donnees)); },
       };
       await contexte.module.exports({
-        method, query: { session_id: id }, body: { session_id: id, action: "emails" },
+        method, query: { session_id: id, vue }, body: { session_id: id, action: "emails" },
       }, sortie);
       return sortie;
     },
@@ -145,6 +150,104 @@ test("le cadeau et l’accès gratuit gardent les conditions de confirmation pr�
   assert.deepEqual(ouverte.donnees, { etat: "a_terminer" });
 });
 
+test("les liens signés et le montant total arrivent avant une remise Stripe lente", async () => {
+  const code = codeRemisePourSession(sessionLive);
+  const expireLe = Math.floor(Date.now() / 1000) + 86400;
+  const remiseExistante = { data: [{ code, expires_at: expireLe }] };
+  const appelsRemise = [];
+  const creationsRemise = [];
+  let debloquerRemise;
+  const attenteRemise = new Promise((resolve) => { debloquerRemise = resolve; });
+  const stripe = apiFactice(donneesStripe({
+    id: sessionLive, livemode: true, payment_status: "paid", amount_total: 2300,
+    metadata: { produitIds: fiche, montantTotal: "6900" },
+  }), undefined, {
+    cleStripe: "sk_live_factice",
+    promotionCodes: {
+      list(params) {
+        appelsRemise.push(params);
+        return appelsRemise.length === 1 ? attenteRemise : remiseExistante;
+      },
+      create(params) { creationsRemise.push(params); },
+    },
+  });
+  let remiseTerminee = false;
+  const demandeRemise = stripe.appeler("GET", sessionLive, "remise").then((reponse) => {
+    remiseTerminee = true;
+    return reponse;
+  });
+  await laisserRepondre();
+  assert.equal(appelsRemise.length, 1);
+  const { donnees, statusCode, headers } = await stripe.appeler("GET", sessionLive, "confirmation");
+  assert.equal(remiseTerminee, false);
+  assert.deepEqual(appelsRemise.map(({ code, limit }) => [code, limit]), [[code, 1]]);
+  assert.equal(statusCode, 200);
+  assert.equal(headers["Cache-Control"], "private, no-store");
+  assert.equal(donnees.montant, 69);
+  assert.equal(donnees.devise, "EUR");
+  assert.deepEqual(donnees.produitIds, [fiche]);
+  assert.equal(donnees.remise, null);
+  assert.equal(donnees.remisePossible, true);
+  assert.equal(donnees.emailsAcceptes, false);
+  assert.equal(donnees.liens.length, 3);
+  for (const [index, lien] of donnees.liens.entries()) {
+    const url = new URL(lien.url);
+    const params = url.searchParams;
+    const expiration = Number(params.get("exp"));
+    assert.equal(url.pathname, "/api/telecharger");
+    assert.equal(params.get("id"), fiche);
+    assert.equal(params.get("b"), String(index));
+    assert.equal(params.get("sid"), sessionLive);
+    assert.ok(Math.abs(expiration - Math.floor(Date.now() / 1000) - 7200) <= 1);
+    assert.equal(params.get("sig"), genererToken(fiche, index, expiration, secretSignature, sessionLive));
+  }
+
+  debloquerRemise(remiseExistante);
+  const remise = await demandeRemise;
+  assert.equal(remise.statusCode, 200);
+  assert.equal(remise.headers["Cache-Control"], "private, no-store");
+  assert.deepEqual(Object.keys(remise.donnees), ["remise"]);
+  assert.equal(remise.donnees.remise.code, code);
+  assert.equal(remise.donnees.remise.pourcentage, 15);
+  assert.equal(remise.donnees.remise.expireLe, expireLe);
+  assert.deepEqual(stripe.lectures, [[sessionLive], [sessionLive]]);
+
+  const historique = await stripe.appeler("GET", sessionLive);
+  assert.equal(historique.donnees.remisePossible, undefined);
+  assert.deepEqual(historique.donnees.remise, remise.donnees.remise);
+  assert.equal(historique.donnees.liens.length, donnees.liens.length);
+  assert.deepEqual(creationsRemise, []);
+});
+
+test("confirmation et remise exigent la même session Stripe confirmée et compatible avec le mode", async () => {
+  for (const vue of ["confirmation", "remise"]) {
+    const absente = new Error("Absente");
+    absente.code = "resource_missing";
+    const appelsRemise = [];
+    const options = { cleStripe: "sk_live_factice", promotionCodes: {
+      list(params) { appelsRemise.push(params); return { data: [] }; },
+    } };
+    for (const [session, statut, corps] of [
+      [absente, 404, { erreur: "Session introuvable" }],
+      [donneesStripe({ id: sessionLive, livemode: true }), 200, { etat: "indisponible" }],
+      [donneesStripe({ id: sessionLive, livemode: true, status: "expired" }), 200, { etat: "expire" }],
+      [donneesStripe({ id: sessionLive, livemode: true, status: "expired", payment_status: "paid" }), 200, { etat: "expire" }],
+    ]) {
+      const stripe = apiFactice(session, undefined, options);
+      const reponse = await stripe.appeler("GET", sessionLive, vue);
+      assert.equal(reponse.statusCode, statut);
+      assert.deepEqual(reponse.donnees, corps);
+      assert.equal(reponse.headers["Cache-Control"], "private, no-store");
+    }
+    const stripe = apiFactice(donneesStripe({ payment_status: "paid" }), undefined, options);
+    const reponse = await stripe.appeler("GET", sessionId, vue);
+    assert.equal(reponse.statusCode, 404);
+    assert.deepEqual(reponse.donnees, { erreur: "Session introuvable" });
+    assert.deepEqual(stripe.lectures, []);
+    assert.deepEqual(appelsRemise, []);
+  }
+});
+
 function navigateur(responses, { id = sessionId, stockageAutorise = true } = {}) {
   const elems = new Map();
   const element = (cle) => {
@@ -185,7 +288,7 @@ function navigateur(responses, { id = sessionId, stockageAutorise = true } = {})
     clearInterval() {},
     async fetch(url, options) {
       requetes.push({ url, options });
-      const [status, data] = responses.shift();
+      const [status, data] = await responses.shift();
       return { status, ok: status < 400, json: () => data };
     },
   };
@@ -225,7 +328,7 @@ test("Vérifier mon paiement relit la même session et attend la confirmation po
   await laisserRepondre();
   assert.equal(nav.requetes.length, 3);
   for (const { url, options } of nav.requetes) {
-    assert.equal(url, "/api/session-info?session_id=" + sessionId);
+    assert.equal(url, "/api/session-info?session_id=" + sessionId + "&vue=confirmation");
     assert.equal(options.method, undefined);
     assert.equal(options.cache, "no-store");
   }
@@ -234,6 +337,33 @@ test("Vérifier mon paiement relit la même session et attend la confirmation po
   assert.equal(nav.stockage.has("tjd_panier"), false);
   assert.equal(nav.stockage.has("tjd_code_promo"), false);
   assert.equal(nav.mesures.length, 3);
+});
+
+test("les PDF et le consentement s’affichent avant le code de remise, y compris si la remise échoue", async () => {
+  for (const remiseOk of [true, false]) {
+    let repondreRemise;
+    const attenteRemise = new Promise((resolve) => { repondreRemise = resolve; });
+    const lien = { nom: "la fiche complète", type: "pdf", url: "/api/telecharger?lien=factice" };
+    const nav = navigateur([[200, { montant: 19.99, produitIds: [fiche], liens: [lien], remisePossible: true }], attenteRemise]);
+    await laisserRepondre();
+    assert.deepEqual(nav.requetes.map(({ url, options }) => [url, options.cache]), [
+      ["/api/session-info?session_id=" + sessionId + "&vue=confirmation", "no-store"],
+      ["/api/session-info?session_id=" + sessionId + "&vue=remise", "no-store"],
+    ]);
+    assert.equal(nav.element("purchaseDownloads").hidden, false);
+    assert.equal(nav.element("purchaseDownloadsList").children[0].href, lien.url);
+    assert.equal(nav.element("emailsCard").hidden, false);
+    assert.equal(nav.element("remiseCard").hidden, true);
+    assert.equal(nav.stockage.has("tjd_code_promo"), false);
+    repondreRemise(remiseOk ? [200, { remise: { code: "POSTA-0123ABCD", pourcentage: 15 } }] : [500, {}]);
+    await laisserRepondre();
+    assert.equal(nav.element("purchaseDownloads").hidden, false);
+    assert.equal(nav.element("purchaseDownloadsList").children.length, 1);
+    assert.equal(nav.element("emailsCard").hidden, false);
+    assert.equal(nav.element("remiseCard").hidden, !remiseOk);
+    assert.equal(nav.stockage.has("tjd_code_promo"), remiseOk);
+    assert.equal(nav.mesures.length, 3);
+  }
 });
 
 test("les états non confirmés donnent une action adaptée et gardent le panier", async () => {

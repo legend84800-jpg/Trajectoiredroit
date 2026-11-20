@@ -12,20 +12,27 @@
     var mots = requete.split(/\s+/);
     var requeteCarte = requete
       .replace(/\bl([123])s([12])\b/g, 'l$1 s$2')
-      .replace(/\b(?:licence|l)\s*([123])\b/g, 'l$1')
-      .replace(/\b(?:semestre|s)\s*([12])\b/g, 's$1');
-    var motsCarte = requeteCarte.split(/\s+/).map(function (mot) { return mot === 'qcms' ? 'qcm' : mot; });
-    var chercheFormat = /\b(?:flashcards?|qcms?)\b/.test(requete);
+      .replace(/\b(?:licence|l)[\s.-]*([123])\b/g, 'l$1')
+      .replace(/\b(?:semestre|s)[\s.-]*([12])\b/g, 's$1');
+    var variantes = { qcms: 'qcm', flashcard: 'flashcards', fiches: 'fiche', completes: 'complete' };
+    var motsCarte = (requeteCarte.match(/[\p{L}\p{N}]+/gu) || []).map(function (mot) { return Object.hasOwn(variantes, mot) ? variantes[mot] : mot; });
+    var formatCherche = /\b(?:flashcards?|qcms?)\b/.test(requete) ? 'Flashcards + QCM'
+      : /\bfiches?\b/.test(requete) && !/\bfiches?\s+(?:d\s+)?arrets?\b/.test(requete) ? 'Fiche complète' : '';
     return pages.map(function (item) {
       var carte = item.u.indexOf('#') !== -1;
       var motsCherches = carte ? motsCarte : mots;
       var titre = normalize(item.t), contenu = titre + ' ' + normalize(item.k) + ' ' + normalize(item.c);
-      if (!motsCherches.every(function (mot) { return contenu.indexOf(mot) !== -1; })) return null;
+      var reperes = carte ? titre.match(/\b(?:l[123]|s[12])\b/g) || [] : [];
+      if (!motsCherches.length || !motsCherches.every(function (mot) {
+        if (carte && /^(?:l[123]|s[12])$/.test(mot)) return reperes.indexOf(mot) !== -1;
+        return contenu.indexOf(mot) !== -1;
+      })) return null;
       var score = motsCherches.reduce(function (total, mot) { return total + (titre.indexOf(mot) !== -1 ? 10 : 1); }, 0);
-      if (titre.indexOf(carte ? requeteCarte : requete) !== -1) score += 20;
-      // Pour une recherche par matière, les guides gardent leur place devant les offres.
-      return { item: item, score: score, apresLesPages: carte && !chercheFormat };
-    }).filter(Boolean).sort(function (a, b) { return a.apresLesPages - b.apresLesPages || b.score - a.score || a.item.t.localeCompare(b.item.t, 'fr'); })
+      if (titre.indexOf(carte ? motsCarte.join(' ') : requete) !== -1) score += 20;
+      // Une demande de format précis favorise sa carte. Les guides passent d'abord pour une matière seule.
+      var priorite = carte ? (item.c === formatCherche ? -1 : 1) : 0;
+      return { item: item, score: score, priorite: priorite };
+    }).filter(Boolean).sort(function (a, b) { return a.priorite - b.priorite || b.score - a.score || a.item.t.localeCompare(b.item.t, 'fr'); })
       .map(function (resultat) { return resultat.item; });
   }
   window.tjdRechercherPages = rechercher;
@@ -39,7 +46,8 @@
         index = pages.filter(function (item) {
           if (!item || typeof item.t !== 'string' || typeof item.u !== 'string') return false;
           return /^\/(?:[a-z0-9][a-z0-9_-]*\.html)?$/.test(item.u)
-            || /^\/flashcards-qcm\.html#flashcards-qcm-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.u);
+            || /^\/flashcards-qcm\.html#flashcards-qcm-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.u)
+            || /^\/formations\.html#(?:cours-)?fiche-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.u);
         });
         chargement = null;
         return index;
@@ -98,11 +106,22 @@
     }
     function close() { window.tjdDialogues.fermer(overlay); }
     closeBtn.addEventListener('click', close);
+    results.addEventListener('click', function (e) {
+      var lien = e.target.closest('a.search-result');
+      if (!lien || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+      close();
+      // Une fiche masquée par un filtre doit redevenir visible même si son ancre est déjà active.
+      if (lien.pathname === '/formations.html' && lien.origin === window.location.origin
+        && lien.pathname === window.location.pathname && lien.hash && lien.hash === window.location.hash) {
+        e.preventDefault();
+        window.dispatchEvent(new Event('hashchange'));
+      }
+    });
     overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
     window.tjdOuvrirRecherche = open;
     input.addEventListener('input', function () { nombreAffiche = 20; render(); });
     input.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') { var first = results.querySelector('.search-result'); if (first) window.location.href = first.getAttribute('href'); }
+      if (e.key === 'Enter') { var first = results.querySelector('.search-result'); if (first) first.click(); }
     });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', buildUI);

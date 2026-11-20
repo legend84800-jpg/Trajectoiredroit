@@ -8,7 +8,8 @@ const { construireInclusionsPanier } = require('../scripts/generer-inclusions-pa
 const source = fs.readFileSync(require.resolve('../assets/js/achat.js'), 'utf8');
 const scenario = source.replace(/\}\)\(\);\s*$/, `
   panierRafraichir = function () {};
-  window.panier = { ajouter: panierAjouter, lire: panierLire, rendre: panierRendreListe, payer: panierCheckout };
+  window.panier = { ajouter: panierAjouter, lire: panierLire, rendre: panierRendreListe, payer: panierCheckout,
+    choix: panierChoix, synchroniser: panierSyncLien };
 })();`);
 assert.notEqual(scenario, source);
 const pack = 'pack-matiere-da-l2';
@@ -23,6 +24,7 @@ function bouton(id, inclus = false) {
     disabled: false,
     getAttribute(nom) { return nom === 'data-tjd-panier-retirer' ? id : null; },
     hasAttribute(nom) { return inclus && nom === 'data-tjd-panier-retrait-inclus'; },
+    setAttribute(nom, valeur) { this[nom] = valeur; },
     addEventListener(nom, action) { if (nom === 'click') this.action = action; },
   };
 }
@@ -41,7 +43,9 @@ function navigateur(reponse = () => ({ ok: true, json: async () => donnees })) {
           const bloc = {
             html: '',
             retrait: null,
-            parentElement: { querySelector: () => titre },
+            parentElement: { querySelector: (selecteur) => ({
+              '.tjd-panier-item__nom': titre, '.tjd-panier-item__retirer': retrait,
+            }[selecteur]) },
             getAttribute: () => id,
             set innerHTML(nouvelleNote) {
               this.html = nouvelleNote;
@@ -92,16 +96,18 @@ function navigateur(reponse = () => ({ ok: true, json: async () => donnees })) {
   vm.runInNewContext(scenario, { window, document, URLSearchParams, localStorage: stockage, sessionStorage: stockage, fetch });
   return {
     elements, lignes, requetes, panier: window.panier,
-    ajouter(id) { window.panier.ajouter(id, 'Titre capté sur la page', PRODUITS[id].prix); },
+    ajouter(id, prixCentimes = PRODUITS[id].prix) {
+      window.panier.ajouter([{ id, nom: 'Titre capté sur la page', prixCentimes }]);
+    },
     ids: () => Array.from(window.panier.lire(), ({ id }) => id),
   };
 }
 
-test('le catalogue ne publie que les inclusions strictes et des intitulés', () => {
+test('le catalogue publie les inclusions strictes, les intitulés et les prix publics', () => {
   const fichiers = {
     'pack-exemple': { nom: 'Pack exemple', blobs: ['a.pdf', 'b.pdf', 'c.pdf'] },
     'fiche-incluse': { nom: 'Fiche incluse', blobs: ['a.pdf', 'b.pdf'] },
-    'fiche-partielle': { nom: 'Fiche partielle', blobs: ['a.pdf', 'x.pdf'] },
+    'fiche-partielle': { nom: 'Fiche partielle', prix: 1999, blobs: ['a.pdf', 'x.pdf'] },
     'pack-identique': { nom: 'Pack identique', blobs: ['a.pdf', 'b.pdf', 'c.pdf'] },
     'fiche-vide': { nom: 'Fiche vide', blobs: [] },
     'fiche-suspendue': { nom: 'Fiche suspendue', blobs: ['a.pdf'], venteSuspendue: true },
@@ -109,7 +115,11 @@ test('le catalogue ne publie que les inclusions strictes et des intitulés', () 
   const graphe = construireInclusionsPanier(fichiers);
   assert.deepEqual(graphe.inclusions['pack-exemple'], ['fiche-incluse']);
   assert.deepEqual(graphe.inclusions['pack-identique'], ['fiche-incluse']);
-  assert.deepEqual(graphe.noms, { 'fiche-incluse': 'Fiche incluse' });
+  assert.equal(graphe.noms['fiche-incluse'], 'Fiche incluse');
+  assert.equal(graphe.noms['fiche-partielle'], 'Fiche partielle');
+  assert.equal(graphe.noms['fiche-suspendue'], undefined);
+  assert.deepEqual(graphe.prix, { 'fiche-partielle': 1999 });
+  assert.deepEqual(Object.keys(graphe), ['inclusions', 'noms', 'prix']);
   assert.doesNotMatch(JSON.stringify(graphe), /\.pdf/);
   assert.ok(donnees.inclusions[pack].includes(fiche));
   assert.ok(donnees.inclusions[pack].includes('fiche-da-l2-s2'));
@@ -174,4 +184,72 @@ test('des offres distinctes et un fichier public indisponible laissent le panier
     assert.match(b.elements.tjdPanierTotalMontant.textContent, /49,97/);
     assert.equal(b.elements.tjdPanierCta.disabled, false);
   }
+});
+
+test('une seule ligne héritée reçoit son nom et son prix catalogue à l’arrivée du réseau', async () => {
+  let repondre;
+  const reponse = new Promise(resolve => { repondre = resolve; });
+  const b = navigateur(() => reponse);
+  b.ajouter('fiche-intro-droit-l1', 1799);
+  b.panier.rendre();
+  const ligne = b.lignes.get('fiche-intro-droit-l1');
+  ligne.retrait.aLeFocus = true;
+  await viderMicrotaches();
+  assert.equal(b.requetes.length, 1);
+  assert.equal(b.elements.tjdPanierTotalMontant.textContent, '17,99 €');
+  repondre({ ok: true, json: async () => donnees });
+  await viderMicrotaches();
+  assert.equal(b.lignes.get('fiche-intro-droit-l1'), ligne);
+  assert.equal(ligne.retrait.aLeFocus, true);
+  assert.equal(ligne.titre.textContent, PRODUITS['fiche-intro-droit-l1'].nom);
+  assert.equal(ligne.retrait['aria-label'], 'Retirer du panier ' + PRODUITS['fiche-intro-droit-l1'].nom);
+  assert.equal(b.elements.tjdPanierTotalMontant.textContent, '19,99 €');
+  assert.equal(b.panier.lire()[0].prixCentimes, 1999);
+});
+
+test('une case cochée complète le panier sans dupliquer la fiche, la quantité ou le prix', async () => {
+  const fiche = 'fiche-contrats-speciaux-l3';
+  const cas = 'cas-pratique-contrats-speciaux-l3';
+  const b = navigateur();
+  const caseComplement = { checked: false };
+  const lien = {
+    dataset: { produitId: fiche, nom: 'Fiche complète', prix: '1999' },
+    tjdComplement: { caseComplement, article: { id: cas, nom: 'Cas pratiques corrigés', prixCentimes: null } },
+  };
+  b.panier.ajouter(b.panier.choix(lien));
+  b.panier.synchroniser(lien);
+  assert.equal(lien.disabled, true);
+  assert.deepEqual(b.ids(), [fiche]);
+  b.panier.rendre();
+  await viderMicrotaches();
+
+  caseComplement.checked = true;
+  b.panier.synchroniser(lien);
+  assert.equal(lien.disabled, false);
+  b.panier.ajouter(b.panier.choix(lien));
+  b.panier.ajouter(b.panier.choix(lien));
+  b.panier.synchroniser(lien);
+  assert.equal(lien.disabled, true);
+  assert.deepEqual(b.ids(), [fiche, cas]);
+  assert.equal(b.panier.lire()[1].prixCentimes, PRODUITS[cas].prix);
+  b.panier.rendre();
+  assert.equal(b.elements.tjdPanierTotalMontant.textContent, '39,98 €');
+
+  b.panier.payer();
+  await viderMicrotaches();
+  const achat = b.requetes.find(({ url }) => url === '/api/create-checkout');
+  assert.deepEqual(JSON.parse(achat.options.body).produitIds, [fiche, cas]);
+});
+
+test('sans catalogue réseau, un complément au montant connu reste ajouté avec le prix de son étiquette', async () => {
+  const b = navigateur(erreurReseau);
+  const lien = {
+    dataset: { produitId: fiche, nom: 'Fiche complète S1', prix: '1999' },
+    tjdComplement: { caseComplement: { checked: true }, article: { id: 'fiche-da-l2-s2', nom: 'Fiche complète S2', prixCentimes: 1999 } },
+  };
+  b.panier.ajouter(b.panier.choix(lien));
+  b.panier.rendre();
+  await viderMicrotaches();
+  assert.deepEqual(b.ids(), [fiche, 'fiche-da-l2-s2']);
+  assert.equal(b.elements.tjdPanierTotalMontant.textContent, '39,98 €');
 });

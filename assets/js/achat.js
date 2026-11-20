@@ -374,6 +374,13 @@
     if (apresMesure) apresMesure();
   }
 
+  function complementPour(bouton, produitId) {
+    var id = bouton.getAttribute('data-tjd-bump');
+    var caseId = bouton.getAttribute('data-tjd-bump-checkbox');
+    var caseComplement = caseId ? document.getElementById(caseId) : null;
+    return id && id !== produitId && caseComplement ? { id: id, caseComplement: caseComplement } : null;
+  }
+
   function tjdAcheter(produitId, btnEl) {
     if (!btnEl) btnEl = document.querySelector('[data-tjd-produit="' + produitId + '"]');
     if (!btnEl) return;
@@ -382,14 +389,12 @@
     TEXTES_ORIGINAUX[idx] = TEXTES_ORIGINAUX[idx] || texteSansAffichageRemise(btnEl).trim();
 
     // Order bump : si le bouton référence une checkbox cochée, on ajoute ce produit à la même session.
-    var bumpId = btnEl.getAttribute('data-tjd-bump');
-    var bumpCheckboxId = btnEl.getAttribute('data-tjd-bump-checkbox');
-    var bumpCheckbox = bumpCheckboxId ? document.getElementById(bumpCheckboxId) : null;
-    var bumpActif = !!(bumpId && bumpCheckbox && bumpCheckbox.checked);
+    var complement = complementPour(btnEl, produitId);
+    var bumpActif = complement && complement.caseComplement.checked;
 
     // Identifiants Meta transmis uniquement si le visiteur a accepté les cookies,
     // pour permettre à l'API Conversions de recouper l'achat avec le pixel côté serveur.
-    var corps = bumpActif ? { produitId: produitId, bumpId: bumpId } : { produitId: produitId };
+    var corps = bumpActif ? { produitId: produitId, bumpId: complement.id } : { produitId: produitId };
     // Paiement en 2 ou 3 fois sans frais (Packs Ultra) : le serveur revérifie le produit.
     var echeances = parseInt(btnEl.getAttribute('data-tjd-echeances') || '', 10);
     if (echeances === 2 || echeances === 3) corps.echeances = echeances;
@@ -634,13 +639,27 @@
   var inclusionsPanier = null;
   var chargementInclusionsPanier = null;
 
+  function panierValeurCatalogue(champ, id) {
+    var donnees = inclusionsPanier && inclusionsPanier[champ];
+    return donnees && Object.prototype.hasOwnProperty.call(donnees, id) ? donnees[id] : undefined;
+  }
+
+  function panierArticleCatalogue(article) {
+    var nom = panierValeurCatalogue('noms', article.id);
+    var prix = panierValeurCatalogue('prix', article.id);
+    return Object.assign({}, article, {
+      nom: typeof nom === 'string' && nom.trim() ? nom : article.nom,
+      prixCentimes: Number.isSafeInteger(prix) && prix >= 0 ? prix : article.prixCentimes
+    });
+  }
+
   function panierLire() {
     try {
       var brut = lireStockage('localStorage', CLE_PANIER);
       var liste = brut ? JSON.parse(brut) : [];
       return Array.isArray(liste) ? liste.filter(function (a) {
         return a && typeof a.id === 'string' && typeof a.prixCentimes === 'number';
-      }) : [];
+      }).map(panierArticleCatalogue) : [];
     } catch (_) { return []; }
   }
 
@@ -649,16 +668,16 @@
     panierRafraichir();
   }
 
-  function panierContient(id) {
-    return panierLire().some(function (a) { return a.id === id; });
-  }
-
-  function panierAjouter(id, nom, prixCentimes) {
-    if (panierContient(id)) return false;
+  function panierAjouter(articles) {
     var liste = panierLire();
-    liste.push({ id: id, nom: nom, prixCentimes: prixCentimes });
-    panierEcrire(liste);
-    return true;
+    var ids = new Set(liste.map(function (article) { return article.id; }));
+    var ajouts = articles.filter(function (article) {
+      if (ids.has(article.id)) return false;
+      ids.add(article.id);
+      return true;
+    });
+    if (ajouts.length) panierEcrire(liste.concat(ajouts));
+    return ajouts;
   }
 
   function panierRetirer(id) {
@@ -670,8 +689,8 @@
     panierRafraichir();
   };
 
-  function panierTotalCentimes() {
-    return panierLire().reduce(function (s, a) { return s + (a.prixCentimes || 0); }, 0);
+  function panierTotalCentimes(liste) {
+    return liste.reduce(function (s, a) { return s + (a.prixCentimes || 0); }, 0);
   }
 
   // Remonte au plus proche titre pertinent (carte catalogue, encart article, page produit
@@ -689,8 +708,32 @@
 
   var PRODUIT_EXCLU_PANIER = { 'stage-methode': true };
 
-  function panierSyncLien(lien, produitId) {
-    var dansPanier = panierContient(produitId);
+  function panierNomSecours(bouton, produitId, texte) {
+    var libelle = texte.replace(/[·\-–:]?\s*\d+(?:[,.]\d{1,2})?\s*€\s*$/, '').replace(/^\s*Acheter\s*/i, '').trim();
+    var carte = bouton.closest('.card--product');
+    var titre = carte && carte.querySelector('.product__title');
+    if (titre && titre.textContent.trim()) {
+      var nom = titre.textContent.trim();
+      libelle = libelle && !nom.toLowerCase().includes(libelle.toLowerCase()) ? libelle + ' · ' + nom : nom;
+    }
+    if (!libelle) libelle = nomProduitProche(bouton);
+    var semestre = produitId.match(/-s([12])$/);
+    if (semestre && !new RegExp('(?:^|\\W)(?:S|semestre\\s*)' + semestre[1] + '(?:$|\\W)', 'i').test(libelle)) {
+      libelle += ' · S' + semestre[1];
+    }
+    return libelle;
+  }
+
+  function panierChoix(lien) {
+    var articles = [{ id: lien.dataset.produitId, nom: lien.dataset.nom, prixCentimes: Number(lien.dataset.prix) }];
+    var complement = lien.tjdComplement;
+    if (complement && complement.caseComplement.checked) articles.push(complement.article);
+    return articles.map(panierArticleCatalogue);
+  }
+
+  function panierSyncLien(lien) {
+    var ids = new Set(panierLire().map(function (article) { return article.id; }));
+    var dansPanier = panierChoix(lien).every(function (article) { return ids.has(article.id); });
     lien.disabled = dansPanier;
     lien.innerHTML = dansPanier
       ? 'Déjà dans ton panier ✓'
@@ -706,10 +749,12 @@
       var existant = parent.querySelector('[data-tjd-panier-lien="' + produitId + '"]');
       // Le lien existe déjà (ex. après un retrait depuis le tiroir) : on resynchronise juste
       // son état au lieu de le sauter, sinon "Ajouté ✓" reste affiché pour un produit retiré.
-      if (existant) { panierSyncLien(existant, produitId); return; }
-      var prixCentimes = euroVersCentimes(texteSansAffichageRemise(bouton));
+      if (existant) { panierSyncLien(existant); return; }
+      var texte = texteSansAffichageRemise(bouton);
+      var prixCentimes = euroVersCentimes(texte);
       if (prixCentimes == null) return;
-      var nom = nomProduitProche(bouton);
+      var nom = panierNomSecours(bouton, produitId, texte);
+      var complement = complementPour(bouton, produitId);
       var lien = document.createElement('button');
       lien.type = 'button';
       lien.className = 'tjd-panier-lien';
@@ -717,27 +762,52 @@
       lien.dataset.produitId = produitId;
       lien.dataset.nom = nom;
       lien.dataset.prix = String(prixCentimes);
-      panierSyncLien(lien, produitId);
+      if (complement) {
+        var etiquette = complement.caseComplement.closest('label');
+        var texteComplement = etiquette ? texteSansAffichageRemise(etiquette) : '';
+        lien.tjdComplement = {
+          caseComplement: complement.caseComplement,
+          article: {
+            id: complement.id,
+            nom: texteComplement.replace(/^\s*Ajouter\s+(?:aussi\s+)?/i, '').split(/\s*\(\+/)[0].trim(),
+            prixCentimes: euroVersCentimes(texteComplement)
+          }
+        };
+        complement.caseComplement.addEventListener('change', function () { panierSyncLien(lien); });
+      }
+      panierSyncLien(lien);
       bouton.insertAdjacentElement('afterend', lien);
     });
   }
 
-  document.addEventListener('click', function (e) {
+  function panierPrixInconnu(article) {
+    return !Number.isSafeInteger(article.prixCentimes) || article.prixCentimes < 0;
+  }
+
+  document.addEventListener('click', async function (e) {
     var lien = e.target.closest('[data-tjd-panier-lien]');
     if (!lien) return;
     e.preventDefault();
-    var produitId = lien.dataset.produitId;
-    var ajoute = panierAjouter(produitId, lien.dataset.nom, parseInt(lien.dataset.prix, 10));
-    if (ajoute) {
-      lien.textContent = 'Ajouté ✓';
-      lien.disabled = true;
-      panierOuvrirBadgeUnInstant();
-      if (!estTestInterne() && typeof window.gtag === 'function') {
-        gtag('event', 'add_to_cart', { items: [{ item_id: produitId }], page_path: window.location.pathname });
+    var articles = panierChoix(lien);
+    if (articles.some(panierPrixInconnu)) {
+      await panierChargerInclusions();
+      articles = articles.map(panierArticleCatalogue);
+      if (articles.some(panierPrixInconnu)) {
+        lien.textContent = 'Prix indisponible. Réessayer';
+        return;
       }
-      if (!estTestInterne() && window._paq) {
-        window._paq.push(['trackEvent', 'Ecommerce', 'AjoutPanier', produitId]);
-      }
+    }
+    var ajouts = panierAjouter(articles);
+    if (!ajouts.length) return;
+    document.querySelectorAll('[data-tjd-panier-lien]').forEach(panierSyncLien);
+    lien.textContent = 'Ajouté ✓';
+    panierOuvrirBadgeUnInstant();
+    panierChargerInclusions();
+    if (!estTestInterne() && typeof window.gtag === 'function') {
+      gtag('event', 'add_to_cart', { items: ajouts.map(function (article) { return { item_id: article.id }; }), page_path: window.location.pathname });
+    }
+    if (!estTestInterne() && window._paq) {
+      ajouts.forEach(function (article) { window._paq.push(['trackEvent', 'Ecommerce', 'AjoutPanier', article.id]); });
     }
   });
 
@@ -775,12 +845,15 @@
       '.tjd-panier-panel__titre{font-family:var(--font-display,serif);font-size:1.4rem;color:var(--navy,#1A2851);' +
       'margin:0 0 16px}' +
       '.tjd-panier-liste{overflow-y:auto;flex:1;margin-bottom:16px}' +
-      '.tjd-panier-item{display:flex;justify-content:space-between;align-items:center;gap:10px;' +
+      '.tjd-panier-item{display:grid;grid-template-columns:minmax(0,1fr) auto 44px;align-items:center;gap:8px;' +
       'padding:10px 0;border-bottom:1px solid var(--border,#E2E8F0)}' +
-      '.tjd-panier-item__nom{font-size:.92rem;color:var(--ink,#0F172A)}' +
-      '.tjd-panier-item__prix{font-weight:700;color:var(--navy,#1A2851);white-space:nowrap;margin-left:10px}' +
+      '.tjd-panier-item__nom{min-width:0;overflow-wrap:anywhere;font-size:.92rem;color:var(--ink,#0F172A)}' +
+      '.tjd-panier-item__prix{font-weight:700;color:var(--navy,#1A2851);white-space:nowrap}' +
       '.tjd-panier-item__retirer{background:none;border:none;color:var(--danger,#EF4444);cursor:pointer;' +
-      'font-size:1.1rem;padding:4px 8px;margin-left:6px}' +
+      'font-size:1.1rem;min-height:44px;padding:4px 8px}' +
+      '@media(max-width:420px){.tjd-panier-panel{padding:20px}.tjd-panier-item{grid-template-columns:minmax(0,1fr) 44px;gap:3px 8px}' +
+      '.tjd-panier-item__nom{grid-area:1/1}.tjd-panier-item__prix{grid-area:2/1}' +
+      '.tjd-panier-item__retirer{grid-area:1/2/span 2}}' +
       '.tjd-panier-inclusion:empty{padding:0;margin:0;border:0}' +
       '.tjd-panier-inclusion{font-size:.85rem;padding:10px 12px;margin:8px 0;' +
       'border:1px solid var(--border-strong,#CBD5E1);border-radius:8px;color:var(--ink,#0F172A)}' +
@@ -932,8 +1005,6 @@
       var nom = Object.prototype.hasOwnProperty.call(inclusionsPanier.noms, id) && inclusionsPanier.noms[id];
       if (!inclusDansUnPack || typeof nom !== 'string' || !nom) return;
 
-      var titre = bloc.parentElement.querySelector('.tjd-panier-item__nom');
-      if (titre) titre.textContent = nom;
       bloc.innerHTML = '<p>Ce support est déjà compris dans un pack du panier.</p>' +
         '<button type="button" class="btn btn--outline btn--sm" data-tjd-panier-retrait-inclus ' +
         'data-tjd-panier-retirer="' + panierEchapperHTML(id) + '" aria-label="Retirer du panier ' +
@@ -942,8 +1013,32 @@
     });
   }
 
+  function panierActualiserCatalogue(liste) {
+    var conteneur = document.getElementById('tjdPanierListe');
+    if (!conteneur) return;
+    var articles = new Map(liste.map(function (article) { return [article.id, article]; }));
+    var blocs = conteneur.querySelectorAll('[data-tjd-panier-inclusion]');
+    blocs.forEach(function (bloc) {
+      var article = articles.get(bloc.getAttribute('data-tjd-panier-inclusion'));
+      if (!article) return;
+      var ligne = bloc.parentElement;
+      var titre = ligne.querySelector('.tjd-panier-item__nom');
+      var retirer = ligne.querySelector('.tjd-panier-item__retirer');
+      var prix = ligne.querySelector('.tjd-panier-item__prix');
+      var nom = article.nom || article.id;
+      if (titre && titre.textContent !== nom) titre.textContent = nom;
+      if (retirer) retirer.setAttribute('aria-label', 'Retirer du panier ' + nom);
+      var montant = centimesVersEuro(article.prixCentimes);
+      if (prix && texteSansAffichageRemise(prix) !== montant) prix.textContent = montant;
+    });
+    var total = document.getElementById('tjdPanierTotalMontant');
+    var montantTotal = centimesVersEuro(panierTotalCentimes(liste));
+    if (blocs.length && total && texteSansAffichageRemise(total) !== montantTotal) total.textContent = montantTotal;
+  }
+
   function panierChargerInclusions() {
-    if (inclusionsPanier || chargementInclusionsPanier) return;
+    if (inclusionsPanier) return Promise.resolve();
+    if (chargementInclusionsPanier) return chargementInclusionsPanier;
     chargementInclusionsPanier = Promise.resolve().then(function () {
       return fetch('/assets/panier-inclusions.json', { cache: 'no-store', credentials: 'omit' });
     }).then(function (reponse) {
@@ -952,12 +1047,15 @@
       if (!donnees || !donnees.inclusions || typeof donnees.inclusions !== 'object'
         || !donnees.noms || typeof donnees.noms !== 'object') return;
       inclusionsPanier = donnees;
-      panierRendreInclusions(panierLire());
+      var liste = panierLire();
+      panierActualiserCatalogue(liste);
+      panierRendreInclusions(liste);
     }).catch(function () {
       // Le panier et le paiement restent disponibles si les inclusions ne chargent pas.
     }).finally(function () {
       chargementInclusionsPanier = null;
     });
+    return chargementInclusionsPanier;
   }
 
   function panierRendreListe() {
@@ -976,17 +1074,18 @@
     }
     conteneur.innerHTML = liste.map(function (a) {
       var id = panierEchapperHTML(a.id);
-      return '<div><div class="tjd-panier-item"><span class="tjd-panier-item__nom">' + panierEchapperHTML(a.nom || a.id) + '</span>' +
+      var nom = panierEchapperHTML(a.nom || a.id);
+      return '<div><div class="tjd-panier-item"><span class="tjd-panier-item__nom">' + nom + '</span>' +
         '<span class="tjd-panier-item__prix" data-tjd-prix-ligne="' + id + '">' + centimesVersEuro(a.prixCentimes) + '</span>' +
-        '<button type="button" class="tjd-panier-item__retirer" data-tjd-panier-retirer="' + id + '" aria-label="Retirer">✕</button></div>' +
+        '<button type="button" class="tjd-panier-item__retirer" data-tjd-panier-retirer="' + id + '" aria-label="Retirer du panier ' + nom + '">✕</button></div>' +
         '<div class="tjd-panier-inclusion" data-tjd-panier-inclusion="' + id + '" aria-live="polite"></div></div>';
     }).join('');
-    document.getElementById('tjdPanierTotalMontant').textContent = centimesVersEuro(panierTotalCentimes());
+    document.getElementById('tjdPanierTotalMontant').textContent = centimesVersEuro(panierTotalCentimes(liste));
     totalBloc.hidden = false;
     cta.disabled = !!cta.tjdPaiementEnCours;
     panierActiverRetraits(conteneur, cta);
     panierRendreInclusions(liste);
-    if (liste.length > 1) panierChargerInclusions();
+    panierChargerInclusions();
   }
 
   function panierRafraichir() {

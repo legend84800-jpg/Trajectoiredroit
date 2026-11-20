@@ -5,6 +5,8 @@
 // compléments et, depuis le 14/10/2026, le code de remise personnel de 15 %.
 //
 // GET  /api/session-info?session_id=cs_xxx   état du paiement, puis liens si confirmé
+// GET  /api/session-info?session_id=cs_xxx&vue=confirmation   confirmation sans attendre la remise
+// GET  /api/session-info?session_id=cs_xxx&vue=remise   remise seule après confirmation
 // GET  /api/session-info?ids=id1,id2          suggestions seules (complements.html),
 //                                             aucune donnée personnelle
 // POST /api/session-info { session_id, action: "emails" }
@@ -100,6 +102,12 @@ async function lireOuCreerRemise(data, produitIds, stripe) {
   }
 }
 
+function remisePourNavigateur(remise) {
+  return remise
+    ? { code: remise.code, dateFin: remise.dateFin, expireLe: remise.expireLe, pourcentage: remise.pourcentage }
+    : null;
+}
+
 function outilsWebhook() {
   try {
     const webhook = require("./stripe-webhook");
@@ -189,7 +197,7 @@ async function handler(req, res) {
     if (res.setHeader) res.setHeader("Cache-Control", code ? "private, no-store" : "public, max-age=300");
     res.status(200).json({
       suggestions,
-      remise: remise ? { code: remise.code, dateFin: remise.dateFin, expireLe: remise.expireLe, pourcentage: remise.pourcentage } : null,
+      remise: remisePourNavigateur(remise),
     });
     return;
   }
@@ -212,8 +220,8 @@ async function handler(req, res) {
   try {
     const stripe = creerClientStripe(stripeKey);
     const data = await stripe.checkout.sessions.retrieve(session_id);
-    if (data.payment_status !== "paid"
-      && !require("./_commande-confirmee").commandeGratuiteConfirmee(data)) {
+    if (data.status === "expired" || (data.payment_status !== "paid"
+      && !require("./_commande-confirmee").commandeGratuiteConfirmee(data))) {
       if (methode === "GET") {
         let paiement = data.payment_intent;
         if (data.status !== "expired" && typeof paiement === "string" && paiement) {
@@ -238,11 +246,18 @@ async function handler(req, res) {
       return;
     }
 
+    if (methode === "GET" && query.vue === "remise") {
+      const remise = await lireOuCreerRemise(data, produitIds, stripe);
+      res.status(200).json({ remise: remisePourNavigateur(remise) });
+      return;
+    }
+
+    const confirmationSeule = methode === "GET" && query.vue === "confirmation";
     const cadeau = !!(data.metadata && data.metadata.cadeauEmail);
     // Paiement en plusieurs fois : la valeur de la commande est le total des
     // échéances, pas la seule première mensualité encaissée par Checkout.
     const montantTotalEcheances = Number(data.metadata && data.metadata.montantTotal);
-    const remise = await lireOuCreerRemise(data, produitIds, stripe);
+    const remise = confirmationSeule ? null : await lireOuCreerRemise(data, produitIds, stripe);
     // La réponse porte des liens de téléchargement signés, jamais mis en cache.
     res.status(200).json({
       montant: montantTotalEcheances > 0
@@ -256,7 +271,8 @@ async function handler(req, res) {
       // jamais renvoyer l'adresse de l'étudiant au navigateur.
       cadeau,
       suggestions: cadeau ? [] : suggererComplements(produitIds, NOMBRE_SUGGESTIONS),
-      remise: remise ? { code: remise.code, dateFin: remise.dateFin, expireLe: remise.expireLe, pourcentage: remise.pourcentage } : null,
+      remise: remisePourNavigateur(remise),
+      ...(confirmationSeule ? { remisePossible: remiseApplicable(data, produitIds) } : {}),
       emailsAcceptes: cadeau ? true : emailsAcceptes(data),
       liens: liensPageRemerciement(data, produitIds),
     });

@@ -57,7 +57,9 @@
   <link rel="stylesheet" href="assets/compare-podcasts.css?v=266ecdde">
   <link rel="stylesheet" href="assets/comparateur-besoins.css?v=ddad462c">
   <link rel="stylesheet" href="assets/comparatif-fiche-cours.css?v=20261002">
-  <style>.card--product .product__edition{margin:0;color:var(--navy);font-size:.82rem;font-weight:700}</style>
+  <style>.card--product .product__edition{margin:0;color:var(--navy);font-size:.82rem;font-weight:700}
+    #a-l-unite .card--product[id] { scroll-margin-top:96px }
+  </style>
   <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
   <!-- Google Analytics (GA4) -->
@@ -535,7 +537,7 @@
         <p class="text-muted" data-catalogue-vide hidden>Aucun support ne correspond à cette recherche.</p>
         <div class="grid-3" data-catalogue-grille>
 
-          <article class="card card--product fade-in" data-niveau="L2" data-matiere="public">
+          <article id="fiche-da-l2-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L2" data-matiere="public">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-da-l2-s1.webp?v=dossier-universitaire-20260915" alt="Droit administratif , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif (S1)</h3>
@@ -545,11 +547,11 @@
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-da-l2-s1/507acea54720-p089.webp","assets/apercus/finition-20261114/fiche-da-l2-s1/507acea54720-p119.webp"]' data-apercu-title="Droit administratif · L2 S1 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-da-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
               <details class="product__sommaire"><summary>Voir le sommaire (6 thèmes)</summary><ul class="product__sommaire-list"><li>L'identité du droit administratif</li><li>Le dualisme juridictionnel et le juge</li><li>Le principe de légalité</li><li>Les sources de la légalité</li><li>L'organisation administrative</li><li>Grands arrêts et notions clés</li></ul></details><div><span class="product__price">19,99 €</span></div>
               <label style="display:flex; gap:8px; align-items:flex-start; font-size:.83rem; color:var(--body); text-align:left; margin:8px 0 0; cursor:pointer"><input type="checkbox" id="bump-cat-da-s1"><span>Ajouter aussi le <strong>Semestre 2</strong> (+19,99 €), un seul paiement</span></label>
-              <button id="fiche-da-l2-s1" type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-da-l2-s1" data-tjd-bump="fiche-da-l2-s2" data-tjd-bump-checkbox="bump-cat-da-s1">Acheter la fiche complète · 19,99 €</button>
+              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-da-l2-s1" data-tjd-bump="fiche-da-l2-s2" data-tjd-bump-checkbox="bump-cat-da-s1">Acheter la fiche complète · 19,99 €</button>
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2" data-matiere="public">
+          <article id="fiche-da-l2-s2" tabindex="-1" class="card card--product fade-in" data-niveau="L2" data-matiere="public">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-da-l2-s2.webp?v=dossier-universitaire-20260915" alt="Droit administratif , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif (S2)</h3>
@@ -563,7 +565,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1" data-matiere="public">
+          <article id="fiche-constit-l1-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L1" data-matiere="public">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-constit-l1-s1.webp?v=dossier-universitaire-20260915" alt="Droit constitutionnel , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel (S1)</h3>
@@ -577,7 +579,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1" data-matiere="public">
+          <article id="fiche-constit-l1-s2" tabindex="-1" class="card card--product fade-in" data-niveau="L1" data-matiere="public">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-constit-l1-s2.webp?v=dossier-universitaire-20260915" alt="Droit constitutionnel , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel (S2)</h3>
@@ -591,7 +593,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1" data-matiere="histoire">
+          <article id="fiche-intro-droit-l1" tabindex="-1" class="card card--product fade-in" data-niveau="L1" data-matiere="histoire">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-intro-droit-l1.webp?v=dossier-universitaire-20260915" alt="Introduction au droit , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Introduction au droit</h3>
@@ -604,7 +606,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1" data-matiere="histoire">
+          <article id="fiche-hist-droit-l1" tabindex="-1" class="card card--product fade-in" data-niveau="L1" data-matiere="histoire">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-hist-droit-l1.webp?v=dossier-universitaire-20260915" alt="Histoire du droit , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Histoire du droit</h3>
@@ -617,7 +619,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1" data-matiere="histoire">
+          <article id="fiche-hist-institutions-l1" tabindex="-1" class="card card--product fade-in" data-niveau="L1" data-matiere="histoire">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-hist-institutions-l1.webp?v=dossier-universitaire-20260915" alt="Histoire des institutions , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Histoire des institutions</h3>
@@ -630,7 +632,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1" data-matiere="public">
+          <article id="fiche-relations-internationales-l1" tabindex="-1" class="card card--product fade-in" data-niveau="L1" data-matiere="public">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-relations-internationales-l1.webp?v=dossier-universitaire-20260915" alt="Relations internationales, fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Relations internationales</h3>
@@ -643,7 +645,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1" data-matiere="civil">
+          <article id="fiche-personnes-l1" tabindex="-1" class="card card--product fade-in" data-niveau="L1" data-matiere="civil">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-personnes-l1.webp?v=dossier-universitaire-20260915" alt="Droit des personnes , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des personnes</h3>
@@ -652,11 +654,11 @@
               <p class="product__desc">La fiche commence par le moment où une personne existe pour le droit et par la façon dont l'état civil l'identifie. La fiche traite aussi des droits qui protègent sa vie privée ou son image, puis des personnes qui ne peuvent pas agir seules, comme les mineurs.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-personnes-l1/ca3ac95c6faf-p045.webp","assets/apercus/finition-20261114/fiche-personnes-l1/ca3ac95c6faf-p090.webp","assets/apercus/finition-20261114/fiche-personnes-l1/ca3ac95c6faf-p091.webp","assets/apercus/finition-20261114/fiche-personnes-l1/ca3ac95c6faf-p062.webp"]' data-apercu-title="Droit des personnes · L1 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-personnes-l1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
               <details class="product__sommaire"><summary>Voir le sommaire (6 thèmes)</summary><ul class="product__sommaire-list"><li>La personnalité juridique</li><li>L'identification de la personne</li><li>La protection du corps humain</li><li>Les droits de la personnalité</li><li>Les incapacités</li><li>Les personnes morales</li></ul></details><div><span class="product__price">19,99 €</span></div>
-              <button id="fiche-personnes-l1" type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-personnes-l1">Acheter la fiche complète · 19,99 €</button>
+              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-personnes-l1">Acheter la fiche complète · 19,99 €</button>
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1" data-matiere="civil">
+          <article id="fiche-famille-l1-s2" tabindex="-1" class="card card--product fade-in" data-niveau="L1" data-matiere="civil">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-famille-l1-s2.webp?v=dossier-universitaire-20260915" alt="Droit de la famille , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit de la famille</h3>
@@ -665,7 +667,7 @@
               <p class="product__desc">La fiche couvre tout le droit de la famille, du mariage au divorce. Elle explique aussi la filiation, c'est-à-dire le lien juridique entre un parent et son enfant, puis l'autorité parentale.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-famille-l1-s2/eff70fa1c3bd-p017.webp","assets/apercus/finition-20261114/fiche-famille-l1-s2/eff70fa1c3bd-p128.webp","assets/apercus/finition-20261114/fiche-famille-l1-s2/eff70fa1c3bd-p129.webp"]' data-apercu-title="Droit de la famille · L1 S2 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-famille-l1-s2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
               <details class="product__sommaire"><summary>Voir le sommaire (5 thèmes)</summary><ul class="product__sommaire-list"><li>Le mariage</li><li>Les couples non mariés</li><li>La désunion</li><li>L'établissement de la filiation</li><li>Les effets de la filiation</li></ul></details><div><span class="product__price">19,99 €</span></div>
-              <button id="fiche-famille-l1-s2" type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-famille-l1-s2">Acheter la fiche complète · 19,99 €</button>
+              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-famille-l1-s2">Acheter la fiche complète · 19,99 €</button>
             </div>
           </article>
 
@@ -682,7 +684,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2" data-matiere="civil">
+          <article id="fiche-contrats-l2-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L2" data-matiere="civil">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-contrats-l2-s1.webp?v=dossier-universitaire-20260915" alt="Droit des contrats , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des contrats / des obligations (S1)</h3>
@@ -692,11 +694,11 @@
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-contrats-l2-s1/a94eea5853a4-p002.webp","assets/apercus/finition-20261114/fiche-contrats-l2-s1/a94eea5853a4-p003.webp","assets/apercus/finition-20261114/fiche-contrats-l2-s1/a94eea5853a4-p049.webp"]' data-apercu-title="Droit des contrats / des obligations · L2 S1 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-contrats-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
               <details class="product__sommaire"><summary>Voir le sommaire (6 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction au droit des contrats</li><li>La formation du contrat</li><li>La validité du contrat</li><li>Les effets du contrat</li><li>L'inexécution du contrat</li><li>Bilan et révisions</li></ul></details><div><span class="product__price">19,99 €</span></div>
               <label style="display:flex; gap:8px; align-items:flex-start; font-size:.83rem; color:var(--body); text-align:left; margin:8px 0 0; cursor:pointer"><input type="checkbox" id="bump-cat-contrats-s1"><span>Ajouter aussi le <strong>Semestre 2</strong> (+19,99 €), un seul paiement</span></label>
-              <button id="fiche-contrats-l2-s1" type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-contrats-l2-s1" data-tjd-bump="fiche-obligations-l2-s2" data-tjd-bump-checkbox="bump-cat-contrats-s1">Acheter la fiche complète · 19,99 €</button>
+              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-contrats-l2-s1" data-tjd-bump="fiche-obligations-l2-s2" data-tjd-bump-checkbox="bump-cat-contrats-s1">Acheter la fiche complète · 19,99 €</button>
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2" data-matiere="civil">
+          <article id="fiche-obligations-l2-s2" tabindex="-1" class="card card--product fade-in" data-niveau="L2" data-matiere="civil">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-obligations-l2-s2.webp?v=dossier-universitaire-20260915" alt="Droit des obligations , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit de la responsabilité civile / des obligations (S2)</h3>
@@ -706,15 +708,15 @@
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-obligations-l2-s2/46ca3fd8c70d-p012.webp","assets/apercus/finition-20261114/fiche-obligations-l2-s2/46ca3fd8c70d-p045.webp","assets/apercus/finition-20261114/fiche-obligations-l2-s2/46ca3fd8c70d-p064.webp"]' data-apercu-title="Droit de la responsabilité civile / des obligations · L2 S2 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-obligations-l2-s2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
               <details class="product__sommaire"><summary>Voir le sommaire (7 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction à la responsabilité civile</li><li>Les conditions communes de la responsabilité</li><li>La responsabilité du fait personnel</li><li>La responsabilité du fait des choses</li><li>La responsabilité du fait d'autrui</li><li>Les régimes spéciaux de responsabilité</li><li>Les quasi-contrats</li></ul></details><div><span class="product__price">19,99 €</span></div>
               <label style="display:flex; gap:8px; align-items:flex-start; font-size:.83rem; color:var(--body); text-align:left; margin:8px 0 0; cursor:pointer"><input type="checkbox" id="bump-cat-obligations-s2"><span>Ajouter aussi le <strong>Semestre 1</strong> (+19,99 €), un seul paiement</span></label>
-              <button id="fiche-obligations-l2-s2" type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-obligations-l2-s2" data-tjd-bump="fiche-contrats-l2-s1" data-tjd-bump-checkbox="bump-cat-obligations-s2">Acheter la fiche complète · 19,99 €</button>
+              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-obligations-l2-s2" data-tjd-bump="fiche-contrats-l2-s1" data-tjd-bump-checkbox="bump-cat-obligations-s2">Acheter la fiche complète · 19,99 €</button>
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2" data-matiere="penal">
+          <article id="fiche-penal-general-l1" tabindex="-1" class="card card--product fade-in" data-niveau="L2" data-matiere="penal">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-penal-general-l1.webp?v=dossier-universitaire-20260915" alt="Droit pénal général, fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit pénal général, avec les peines</h3>
-              <div class="product__meta"><span>L2</span><span>·</span><span>PDF · 103 p.</span></div>
+              <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 2</span><span>·</span><span>PDF · 103 p.</span></div>
               <p class="product__edition">Édition : septembre 2026</p>
               <p class="product__desc">La fiche explique l’infraction et la responsabilité pénale, puis les peines et leur exécution.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p013.webp","assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p014.webp","assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p062.webp","assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p063.webp","assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p064.webp","assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p012.webp"]' data-apercu-title="Droit pénal général · L2 S2 · Fiche complète" data-apercu-sub="La fiche traite aussi des peines." data-apercu-price="19,99 €" data-apercu-cta="fiche-penal-general-l1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
@@ -723,20 +725,20 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2" data-matiere="penal">
+          <article id="fiche-penal-l2-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L2" data-matiere="penal">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-penal-l2-s1.webp?v=dossier-universitaire-20260915" alt="Couverture de la fiche complète de droit pénal L2 S1" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit pénal (S1)</h3>
-              <div class="product__meta"><span>L2</span><span>·</span><span>PDF · 105 p.</span></div>
+              <div class="product__meta"><span>L2</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · 105 p.</span></div>
               <p class="product__edition">Édition : septembre 2026</p>
               <p class="product__desc">La fiche explique qui répond pénalement d'une infraction, y compris le complice. Elle traite aussi de la tentative et des causes d’irresponsabilité.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-penal-l2-s1/8e0aa4c93ddf-p058.webp","assets/apercus/finition-20261114/fiche-penal-l2-s1/8e0aa4c93ddf-p059.webp","assets/apercus/finition-20261114/fiche-penal-l2-s1/8e0aa4c93ddf-p060.webp"]' data-apercu-title="Droit pénal · L2 S1 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-penal-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
               <details class="product__sommaire"><summary>Voir le sommaire (3 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction au droit pénal</li><li>L'infraction pénale</li><li>Le responsable de l'infraction pénale</li></ul></details><div><span class="product__price">19,99 €</span></div>
-              <button id="fiche-penal-l2-s1" type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-penal-l2-s1">Acheter la fiche complète · 19,99 €</button>
+              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-penal-l2-s1">Acheter la fiche complète · 19,99 €</button>
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2" data-matiere="civil">
+          <article id="fiche-biens-l2" tabindex="-1" class="card card--product fade-in" data-niveau="L2" data-matiere="civil">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-biens-l2.webp?v=dossier-universitaire-20260915" alt="Droit des biens , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des biens</h3>
@@ -745,11 +747,11 @@
               <p class="product__desc">La fiche couvre tout le droit des biens, en commençant par la propriété et la possession. Elle explique ensuite comment la propriété se partage, avec l'usufruit ou l'indivision entre plusieurs propriétaires.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-biens-l2/a36e3320d837-p041.webp","assets/apercus/finition-20261114/fiche-biens-l2/a36e3320d837-p042.webp","assets/apercus/finition-20261114/fiche-biens-l2/a36e3320d837-p103.webp","assets/apercus/finition-20261114/fiche-biens-l2/a36e3320d837-p104.webp"]' data-apercu-title="Droit des biens · L2 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-biens-l2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
               <details class="product__sommaire"><summary>Voir le sommaire (6 thèmes)</summary><ul class="product__sommaire-list"><li>La notion de bien et le patrimoine</li><li>La possession</li><li>Le droit de propriété</li><li>Les modes d'acquisition de la propriété</li><li>Les démembrements de la propriété</li><li>La propriété collective</li></ul></details><div><span class="product__price">19,99 €</span></div>
-              <button id="fiche-biens-l2" type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-biens-l2">Acheter la fiche complète · 19,99 €</button>
+              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-biens-l2">Acheter la fiche complète · 19,99 €</button>
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L3" data-matiere="affaires">
+          <article id="fiche-commercial-l3-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L3" data-matiere="affaires">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-commercial-l3-s1.webp?v=dossier-universitaire-20260915" alt="Droit commercial , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit commercial</h3>
@@ -758,11 +760,11 @@
               <p class="product__desc">La fiche explique qui a la qualité de commerçant et ce qui rend un acte commercial. Elle détaille aussi le fonds de commerce, c'est-à-dire l'ensemble des biens qui permettent d'exploiter un commerce, comme la clientèle ou le nom commercial.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p057.webp","assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p058.webp","assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p046.webp","assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p047.webp","assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p048.webp","assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p085.webp"]' data-apercu-title="Droit commercial · L3 S1 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-commercial-l3-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
               <details class="product__sommaire"><summary>Voir le sommaire (5 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction au droit commercial</li><li>Les actes de commerce</li><li>Le commerçant et les acteurs de la vie commerciale</li><li>Le fonds de commerce</li><li>Le bail commercial et la protection de la concurrence</li></ul></details><div><span class="product__price">19,99 €</span></div>
-              <button id="fiche-commercial-l3-s1" type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-commercial-l3-s1">Acheter la fiche complète · 19,99 €</button>
+              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-commercial-l3-s1">Acheter la fiche complète · 19,99 €</button>
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L3" data-matiere="affaires">
+          <article id="fiche-societes-l3-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L3" data-matiere="affaires">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><span class="badge badge--popular">Populaire</span><img src="assets/covers/fiche-societes-l3-s1.webp?v=dossier-universitaire-20260915" alt="Droit des sociétés , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des sociétés (S1)</h3>
@@ -772,11 +774,11 @@
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-societes-l3-s1/633b43e2c1e8-p002.webp","assets/apercus/finition-20261114/fiche-societes-l3-s1/633b43e2c1e8-p003.webp","assets/apercus/finition-20261114/fiche-societes-l3-s1/633b43e2c1e8-p068.webp"]' data-apercu-title="Droit des sociétés · L3 S1 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-societes-l3-s1" data-apercu-sub="Sommaire complet, puis un extrait du PDF vendu."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
               <details class="product__sommaire"><summary>Voir le sommaire (5 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction au droit des sociétés</li><li>La formation de la société</li><li>La personnalité morale</li><li>Le fonctionnement de la société</li><li>La disparition de la société</li></ul></details><div><span class="product__price">19,99 €</span></div>
               <label style="display:flex; gap:8px; align-items:flex-start; font-size:.83rem; color:var(--body); text-align:left; margin:8px 0 0; cursor:pointer"><input type="checkbox" id="bump-cat-societes-s1"><span>Ajouter aussi le <strong>Semestre 2</strong> (+19,99 €), un seul paiement</span></label>
-              <button id="fiche-societes-l3-s1" type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-societes-l3-s1" data-tjd-bump="fiche-societes-l3-s2" data-tjd-bump-checkbox="bump-cat-societes-s1">Acheter la fiche complète · 19,99 €</button>
+              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-societes-l3-s1" data-tjd-bump="fiche-societes-l3-s2" data-tjd-bump-checkbox="bump-cat-societes-s1">Acheter la fiche complète · 19,99 €</button>
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L3" data-matiere="affaires">
+          <article id="fiche-societes-l3-s2" tabindex="-1" class="card card--product fade-in" data-niveau="L3" data-matiere="affaires">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-societes-l3-s2.webp?v=dossier-universitaire-20260915" alt="Droit des sociétés semestre 2, fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des sociétés (S2)</h3>
@@ -790,7 +792,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L3" data-matiere="civil">
+          <article id="fiche-contrats-speciaux-l3" tabindex="-1" class="card card--product fade-in" data-niveau="L3" data-matiere="civil">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-contrats-speciaux-l3.webp?v=dossier-universitaire-20260915" alt="Contrats spéciaux , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Contrats spéciaux</h3>
@@ -799,11 +801,11 @@
               <p class="product__desc">La fiche explique la vente et le bail, puis le mandat et le prêt, autrement dit des contrats que l'on signe dans la vie courante.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-contrats-speciaux-l3/ec80d1cb07b7-p102.webp","assets/apercus/finition-20261114/fiche-contrats-speciaux-l3/ec80d1cb07b7-p103.webp","assets/apercus/finition-20261114/fiche-contrats-speciaux-l3/ec80d1cb07b7-p104.webp","assets/apercus/finition-20261114/fiche-contrats-speciaux-l3/ec80d1cb07b7-p028.webp","assets/apercus/finition-20261114/fiche-contrats-speciaux-l3/ec80d1cb07b7-p029.webp","assets/apercus/finition-20261114/fiche-contrats-speciaux-l3/ec80d1cb07b7-p109.webp"]' data-apercu-title="Contrats spéciaux · L3 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-contrats-speciaux-l3"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
               <details class="product__sommaire"><summary>Voir le sommaire (5 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction aux contrats spéciaux</li><li>Les contrats translatifs de propriété, la vente</li><li>Les contrats relatifs à l'usage d'une chose</li><li>Les contrats de service</li><li>Les contrats de distribution, de règlement et aléatoires</li></ul></details><div><span class="product__price">19,99 €</span></div>
-              <button id="fiche-contrats-speciaux-l3" type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-contrats-speciaux-l3">Acheter la fiche complète · 19,99 €</button>
+              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-contrats-speciaux-l3">Acheter la fiche complète · 19,99 €</button>
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L3" data-matiere="affaires">
+          <article id="fiche-travail-l3-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L3" data-matiere="affaires">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-travail-l3-s1.webp?v=dossier-universitaire-20260915" alt="Droit du travail , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Droit du travail (S1)</h3>
@@ -812,11 +814,11 @@
               <p class="product__desc">La fiche suit le contrat de travail de sa conclusion à sa rupture. Elle explique aussi les règles sur la durée du travail et ce que l'employeur peut imposer au salarié.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-travail-l3-s1/9fe365dced2b-p026.webp","assets/apercus/finition-20261114/fiche-travail-l3-s1/9fe365dced2b-p027.webp","assets/apercus/finition-20261114/fiche-travail-l3-s1/9fe365dced2b-p082.webp","assets/apercus/finition-20261114/fiche-travail-l3-s1/9fe365dced2b-p083.webp","assets/apercus/finition-20261114/fiche-travail-l3-s1/9fe365dced2b-p020.webp","assets/apercus/finition-20261114/fiche-travail-l3-s1/9fe365dced2b-p021.webp","assets/apercus/finition-20261114/fiche-travail-l3-s1/9fe365dced2b-p054.webp"]' data-apercu-title="Droit du travail · L3 S1 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-travail-l3-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
               <details class="product__sommaire"><summary>Voir le sommaire (5 thèmes)</summary><ul class="product__sommaire-list"><li>Introduction au droit du travail</li><li>La formation de la relation de travail</li><li>L'exécution de la relation de travail</li><li>La rupture de la relation de travail</li><li>Le contentieux du contrat de travail</li></ul></details><div><span class="product__price">19,99 €</span></div>
-              <button id="fiche-travail-l3-s1" type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-travail-l3-s1">Acheter la fiche complète · 19,99 €</button>
+              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-travail-l3-s1">Acheter la fiche complète · 19,99 €</button>
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L3" data-matiere="penal">
+          <article id="fiche-procedure-penale-l3" tabindex="-1" class="card card--product fade-in" data-niveau="L3" data-matiere="penal">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-procedure-penale-l3.webp?v=dossier-universitaire-20260915" alt="Procédure pénale , fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Procédure pénale</h3>
@@ -829,7 +831,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2" data-matiere="public">
+          <article id="cours-fiche-finances-publiques-l2-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L2" data-matiere="public">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-finances-publiques-l2-s1.webp?v=dossier-universitaire-20260915" alt="Finances publiques L2 S1, fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Finances publiques</h3>
@@ -843,7 +845,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2" data-matiere="histoire">
+          <article id="cours-fiche-philo-droit-l2-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L2" data-matiere="histoire">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-philo-droit-l2-s1.webp?v=dossier-universitaire-20260915" alt="Philosophie du droit L2 S1, fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
             <div class="product__body">
               <h3 class="product__title">Philosophie du droit</h3>
@@ -1291,7 +1293,7 @@
   </div>
 
   <script src="assets/js/main.js?v=909718f7" defer></script>
-  <script src="assets/js/catalogue.js?v=c636dadb" defer></script>
+  <script src="assets/js/catalogue.js?v=e8fdbc8f" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
