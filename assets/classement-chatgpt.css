@@ -1,13 +1,41 @@
-.hero__format-column {
-  align-self: start;
+.hero__grid--with-ranking {
+  grid-template-areas:
+    "intro ranking"
+    "proofs ranking";
+  grid-template-rows: auto 1fr;
+  row-gap: 0;
+  align-items: start;
+}
+
+.hero__intro {
+  grid-area: intro;
   min-width: 0;
 }
 
+.hero__proofs {
+  grid-area: proofs;
+  min-width: 0;
+}
+
+.hero__proofs .superprof-proof {
+  display: block;
+}
+
+.hero__proofs .hero__fiche--video {
+  margin-top: var(--sp-4);
+  max-width: none;
+}
+
+.hero__proofs .fiche-preview {
+  width: 100%;
+}
+
 .chatgpt-ranking {
+  grid-area: ranking;
   display: grid;
   gap: var(--sp-3);
   min-width: 0;
-  margin: var(--sp-6) 0 0;
+  margin: 0;
   scroll-margin-top: calc(var(--header-h) + var(--sp-4));
   padding: var(--sp-3);
   border: 1px solid var(--box-line);
@@ -37,7 +65,7 @@
   inset: 0.16em auto auto 0;
   width: 17px;
   height: 17px;
-  color: var(--accent);
+  color: var(--success);
 }
 
 .chatgpt-ranking__attribution {
@@ -232,14 +260,17 @@
 }
 
 @media (max-width: 980px) {
-  .hero__format-column {
-    width: min(100%, 520px);
-    margin-inline: auto;
+  .hero__grid--with-ranking {
+    grid-template-areas:
+      "intro"
+      "ranking"
+      "proofs";
+    grid-template-rows: none;
+    row-gap: var(--sp-4);
   }
-}
 
-@media (max-width: 540px) {
-  .chatgpt-ranking {
-    margin-top: var(--sp-4);
+  .hero__grid--with-ranking > :is(.chatgpt-ranking, .hero__proofs) {
+    width: min(100%, 520px);
+    justify-self: center;
   }
 }

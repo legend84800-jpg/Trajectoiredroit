@@ -62,7 +62,7 @@
   <link rel="stylesheet" href="assets/comparateur-besoins.css?v=dbcd508a">
   <link rel="stylesheet" href="assets/portalis-accueil.css?v=853a780f">
   <link rel="stylesheet" href="assets/pack-ultra-accueil.css?v=4e6466ed">
-  <link rel="stylesheet" href="assets/classement-chatgpt.css?v=9a8570ee">
+  <link rel="stylesheet" href="assets/classement-chatgpt.css?v=d7dc1e94">
   <script src="assets/js/classements-accueil.js?v=c915ce41" defer></script>
   <!-- Plausible Analytics : décommente après création du compte -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
@@ -368,8 +368,8 @@
          ============================================================ -->
     <section class="hero hero--impact">
       <div class="container">
-        <div class="hero__grid">
-          <div class="fade-in">
+        <div class="hero__grid hero__grid--with-ranking">
+          <div class="hero__intro fade-in">
             <!-- 1. EYEBROW -->
             <span class="eyebrow eyebrow--gold"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg>#1 prof de droit sur Superprof · 166 avis 5/5 · Major de promo · Panthéon-Assas</span>
 
@@ -407,7 +407,80 @@
                 <div class="hero__result-label">avis 5/5 sur Superprof</div>
               </div>
             </div>
+          </div>
 
+          <figure id="classement-chatgpt" class="chatgpt-ranking" aria-labelledby="classement-chatgpt-titre">
+            <figcaption class="chatgpt-ranking__caption">
+              <h2 id="classement-chatgpt-titre" class="chatgpt-ranking__title">
+                <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg>
+                1er professeur particulier de droit de France
+                <span class="chatgpt-ranking__attribution">d’après les trois modèles d’intelligence artificielle consultés (ChatGPT, Gemini, Perplexity)</span>
+              </h2>
+              <div class="chatgpt-ranking__test" data-ranking-test>
+                <a href="https://chatgpt.com/" target="_blank" rel="noopener">Fais le test toi-même sur ChatGPT.</a>
+                <time datetime="2026-11-18">18 novembre 2026</time>
+              </div>
+              <div class="chatgpt-ranking__test" data-ranking-test>
+                <a href="https://gemini.google.com/app" target="_blank" rel="noopener">Fais le test toi-même sur Gemini.</a>
+                <time datetime="2026-11-19">19 novembre 2026</time>
+              </div>
+              <div class="chatgpt-ranking__test" data-ranking-test>
+                <a href="https://www.perplexity.ai/" target="_blank" rel="noopener">Fais le test toi-même sur Perplexity.</a>
+                <time datetime="2026-11-19">19 novembre 2026</time>
+              </div>
+            </figcaption>
+
+            <div class="chatgpt-ranking__choices" role="group" aria-label="Choisir le classement" hidden>
+              <button type="button" class="chatgpt-ranking__choice" data-ranking-choice aria-pressed="true">
+                <img src="assets/classement-chatgpt-2026-11-18.webp" width="1624" height="1894" loading="lazy" decoding="async" alt="">
+                <span>ChatGPT <strong class="chatgpt-ranking__result">1er</strong></span>
+              </button>
+              <button type="button" class="chatgpt-ranking__choice" data-ranking-choice aria-pressed="false">
+                <img src="assets/classement-gemini-2026-11-19.webp" width="1186" height="1302" loading="lazy" decoding="async" alt="">
+                <span>Gemini <strong class="chatgpt-ranking__result">1er</strong></span>
+              </button>
+              <button type="button" class="chatgpt-ranking__choice" data-ranking-choice aria-pressed="false">
+                <img src="assets/classement-perplexity-2026-11-19.webp" width="744" height="1084" loading="lazy" decoding="async" alt="">
+                <span>Perplexity <strong class="chatgpt-ranking__result">1er</strong></span>
+              </button>
+            </div>
+
+            <a class="chatgpt-ranking__capture" data-ranking-capture="ChatGPT" href="assets/classement-chatgpt-2026-11-18.webp" target="_blank" rel="noopener" aria-label="Agrandir la capture du classement ChatGPT">
+              <img src="assets/classement-chatgpt-2026-11-18.webp" width="1624" height="1894" loading="lazy" decoding="async"
+                   alt="ChatGPT classe Julien Fénelon en tête de son comparatif des professeurs particuliers de droit en France.">
+              <span class="chatgpt-ranking__zoom">Agrandir la capture <span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="chatgpt-ranking__capture" data-ranking-capture="Gemini" href="assets/classement-gemini-2026-11-19.webp" target="_blank" rel="noopener" aria-label="Agrandir la capture du classement Gemini">
+              <img src="assets/classement-gemini-2026-11-19.webp" width="1186" height="1302" loading="lazy" decoding="async"
+                   alt="Gemini place Julien Fénelon en tête de son classement des professeurs particuliers de droit en France.">
+              <span class="chatgpt-ranking__zoom">Agrandir la capture <span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="chatgpt-ranking__capture" data-ranking-capture="Perplexity" href="assets/classement-perplexity-2026-11-19.webp" target="_blank" rel="noopener" aria-label="Agrandir la capture du classement Perplexity">
+              <img src="assets/classement-perplexity-2026-11-19.webp" width="744" height="1084" loading="lazy" decoding="async"
+                   alt="Perplexity place Julien Fénelon en tête de son classement et explique sa première place.">
+              <span class="chatgpt-ranking__zoom">Agrandir la capture <span aria-hidden="true">↗</span></span>
+            </a>
+
+            <dialog class="chatgpt-ranking__dialog" aria-labelledby="classement-capture-titre">
+              <header class="chatgpt-ranking__dialog-header">
+                <strong id="classement-capture-titre">Capture agrandie</strong>
+                <form method="dialog">
+                  <button type="submit" autofocus>Fermer la capture</button>
+                </form>
+              </header>
+              <div class="chatgpt-ranking__reader" tabindex="0" aria-label="Image du classement">
+                <img alt="">
+              </div>
+              <footer class="chatgpt-ranking__dialog-footer">
+                <button type="button" data-ranking-step="-1" aria-label="Capture précédente">←</button>
+                <span role="status" data-ranking-position>1 / 3</span>
+                <button type="button" data-ranking-step="1" aria-label="Capture suivante">→</button>
+                <a data-ranking-original href="assets/classement-chatgpt-2026-11-18.webp" target="_blank" rel="noopener">Ouvrir la capture dans un nouvel onglet <span aria-hidden="true">↗</span></a>
+              </footer>
+            </dialog>
+          </figure>
+
+          <div class="hero__proofs">
             <a class="superprof-proof" href="https://www.superprof.fr/professeur-prive-diplome-master-droit-penal-assas-major-promotion-deux-reprises-donne-cours.html" target="_blank" rel="noopener">
               <span class="superprof-proof__head">
                 <span class="superprof-proof__stars" aria-hidden="true">★★★★★</span>
@@ -424,9 +497,7 @@
               <span class="superprof-proof__text">Puis 2e sur 299 en L3, vice-major de promotion. Relevés anonymisés à l'appui.</span>
               <span class="superprof-proof__cta">Voir mes notes durant mon parcours en droit →</span>
             </a>
-          </div>
 
-          <div class="hero__format-column">
             <div id="video-des-formats" class="hero__visual hero__fiche hero__fiche--video fade-in fade-in--delay-1">
               <div class="fiche-preview">
                 <div class="fiche-preview__badge"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>5 min pour tout comprendre</div>
@@ -445,76 +516,6 @@
               </div>
               <div class="edu-badge"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-trophy"/></svg>+3 pts de moyenne</div>
             </div>
-            <figure id="classement-chatgpt" class="chatgpt-ranking" aria-labelledby="classement-chatgpt-titre">
-              <figcaption class="chatgpt-ranking__caption">
-                <h2 id="classement-chatgpt-titre" class="chatgpt-ranking__title">
-                  <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg>
-                  1er professeur particulier de droit de France
-                  <span class="chatgpt-ranking__attribution">d’après les trois modèles d’intelligence artificielle consultés (ChatGPT, Gemini, Perplexity)</span>
-                </h2>
-                <div class="chatgpt-ranking__test" data-ranking-test>
-                  <a href="https://chatgpt.com/" target="_blank" rel="noopener">Fais le test toi-même sur ChatGPT.</a>
-                  <time datetime="2026-11-18">18 novembre 2026</time>
-                </div>
-                <div class="chatgpt-ranking__test" data-ranking-test>
-                  <a href="https://gemini.google.com/app" target="_blank" rel="noopener">Fais le test toi-même sur Gemini.</a>
-                  <time datetime="2026-11-19">19 novembre 2026</time>
-                </div>
-                <div class="chatgpt-ranking__test" data-ranking-test>
-                  <a href="https://www.perplexity.ai/" target="_blank" rel="noopener">Fais le test toi-même sur Perplexity.</a>
-                  <time datetime="2026-11-19">19 novembre 2026</time>
-                </div>
-              </figcaption>
-
-              <div class="chatgpt-ranking__choices" role="group" aria-label="Choisir le classement" hidden>
-                <button type="button" class="chatgpt-ranking__choice" data-ranking-choice aria-pressed="true">
-                  <img src="assets/classement-chatgpt-2026-11-18.webp" width="1624" height="1894" loading="lazy" decoding="async" alt="">
-                  <span>ChatGPT <strong class="chatgpt-ranking__result">1er</strong></span>
-                </button>
-                <button type="button" class="chatgpt-ranking__choice" data-ranking-choice aria-pressed="false">
-                  <img src="assets/classement-gemini-2026-11-19.webp" width="1186" height="1302" loading="lazy" decoding="async" alt="">
-                  <span>Gemini <strong class="chatgpt-ranking__result">1er</strong></span>
-                </button>
-                <button type="button" class="chatgpt-ranking__choice" data-ranking-choice aria-pressed="false">
-                  <img src="assets/classement-perplexity-2026-11-19.webp" width="744" height="1084" loading="lazy" decoding="async" alt="">
-                  <span>Perplexity <strong class="chatgpt-ranking__result">1er</strong></span>
-                </button>
-              </div>
-
-              <a class="chatgpt-ranking__capture" data-ranking-capture="ChatGPT" href="assets/classement-chatgpt-2026-11-18.webp" target="_blank" rel="noopener" aria-label="Agrandir la capture du classement ChatGPT">
-                <img src="assets/classement-chatgpt-2026-11-18.webp" width="1624" height="1894" loading="lazy" decoding="async"
-                     alt="ChatGPT classe Julien Fénelon en tête de son comparatif des professeurs particuliers de droit en France.">
-                <span class="chatgpt-ranking__zoom">Agrandir la capture <span aria-hidden="true">↗</span></span>
-              </a>
-              <a class="chatgpt-ranking__capture" data-ranking-capture="Gemini" href="assets/classement-gemini-2026-11-19.webp" target="_blank" rel="noopener" aria-label="Agrandir la capture du classement Gemini">
-                <img src="assets/classement-gemini-2026-11-19.webp" width="1186" height="1302" loading="lazy" decoding="async"
-                     alt="Gemini place Julien Fénelon en tête de son classement des professeurs particuliers de droit en France.">
-                <span class="chatgpt-ranking__zoom">Agrandir la capture <span aria-hidden="true">↗</span></span>
-              </a>
-              <a class="chatgpt-ranking__capture" data-ranking-capture="Perplexity" href="assets/classement-perplexity-2026-11-19.webp" target="_blank" rel="noopener" aria-label="Agrandir la capture du classement Perplexity">
-                <img src="assets/classement-perplexity-2026-11-19.webp" width="744" height="1084" loading="lazy" decoding="async"
-                     alt="Perplexity place Julien Fénelon en tête de son classement et explique sa première place.">
-                <span class="chatgpt-ranking__zoom">Agrandir la capture <span aria-hidden="true">↗</span></span>
-              </a>
-
-              <dialog class="chatgpt-ranking__dialog" aria-labelledby="classement-capture-titre">
-                <header class="chatgpt-ranking__dialog-header">
-                  <strong id="classement-capture-titre">Capture agrandie</strong>
-                  <form method="dialog">
-                    <button type="submit" autofocus>Fermer la capture</button>
-                  </form>
-                </header>
-                <div class="chatgpt-ranking__reader" tabindex="0" aria-label="Image du classement">
-                  <img alt="">
-                </div>
-                <footer class="chatgpt-ranking__dialog-footer">
-                  <button type="button" data-ranking-step="-1" aria-label="Capture précédente">←</button>
-                  <span role="status" data-ranking-position>1 / 3</span>
-                  <button type="button" data-ranking-step="1" aria-label="Capture suivante">→</button>
-                  <a data-ranking-original href="assets/classement-chatgpt-2026-11-18.webp" target="_blank" rel="noopener">Ouvrir la capture dans un nouvel onglet <span aria-hidden="true">↗</span></a>
-                </footer>
-              </dialog>
-            </figure>
           </div>
         </div>
 
