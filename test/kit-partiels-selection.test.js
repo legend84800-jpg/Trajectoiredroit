@@ -23,7 +23,9 @@ function ouvrirKit(sessionStorage, recherche = "") {
   const champs = new Map();
   const radios = {};
   const paiement = { name: "paiement", value: "1" };
+  const commandes = [];
   let traiterChangement;
+  let traiterSoumission;
   for (const valeur of ["l1", "l2", "l3"]) {
     radios[valeur] = {
       name: "niveau",
@@ -43,8 +45,10 @@ function ouvrirKit(sessionStorage, recherche = "") {
     },
     addEventListener(type, traiter) {
       if (type === "change") traiterChangement = traiter;
+      if (type === "submit") traiterSoumission = traiter;
     },
   };
+  form.querySelector("#kit-matiere-info").hidden = true;
   const listeMatieres = form.querySelector("#matieres");
   listeMatieres.querySelectorAll = () => listeMatieres.children.map((label) => label.children[0]);
   listeMatieres.querySelector = (selecteur) => {
@@ -61,6 +65,7 @@ function ouvrirKit(sessionStorage, recherche = "") {
   const window = {
     sessionStorage,
     location,
+    tjdAcheter(id, cta) { commandes.push({ id, echeances: cta.dataset.tjdEcheances }); },
     history: {
       replaceState(_etat, _titre, url) { location.href = String(url); },
     },
@@ -75,6 +80,7 @@ function ouvrirKit(sessionStorage, recherche = "") {
     get compteur() { return champs.get("#compteur").textContent; },
     get paiement() { return paiement.value; },
     get pack() { return champs.get("#duo-partiels").hidden ? null : champs.get("#duo-partiels-lien").href; },
+    get avertissement() { return !champs.get("#kit-matiere-info").hidden; },
     get commander() { return !champs.get("#commander").disabled; },
     get champActif() { return champActif?.value; },
     get boutonsRetirer() {
@@ -90,9 +96,16 @@ function ouvrirKit(sessionStorage, recherche = "") {
       input.checked = etat;
       traiterChangement({ target: input });
     },
+    matiereBloquee(code) {
+      return listeMatieres.querySelectorAll().find((input) => input.value === code).disabled;
+    },
     choisirPaiement(valeur) {
       paiement.value = valeur;
       traiterChangement({ target: paiement });
+    },
+    soumettre() {
+      traiterSoumission({ preventDefault() {} });
+      return commandes.at(-1);
     },
   };
 }
@@ -176,16 +189,45 @@ test("retire une matière depuis le récapitulatif et place le focus dans les ch
   assert.deepEqual(ouvrirKit(session).matieres, ["contrats", "administratif-s2", "biens"]);
 });
 
-test("écarte les codes périmés, les doublons de discipline et les choix en trop", () => {
+test("garde les deux semestres et écarte les codes périmés, les vrais doublons et les choix en trop", () => {
   const session = stockage();
   session.setItem(cleSelection, JSON.stringify({
     niveau: "l2",
-    codes: ["civil-obsolete", "societes", null, "administratif-s1", "administratif-s2", "contrats", "contrats", "penal", "biens"],
+    codes: ["civil-obsolete", "societes", null, "administratif-s1", "administratif-s1", "administratif-s2", "contrats", "penal", "biens"],
   }));
 
   const kit = ouvrirKit(session);
-  assert.deepEqual(kit.matieres, ["contrats", "administratif-s1", "penal"]);
+  assert.deepEqual(kit.matieres, ["contrats", "administratif-s1", "administratif-s2"]);
   assert.equal(kit.compteur, "3 sur 3");
+});
+
+test("compte chaque semestre comme un choix et transmet le bon kit même quand la sélection part du S2", () => {
+  const session = stockage();
+  const kit = ouvrirKit(session);
+  kit.choisirMatiere("administratif-s2");
+  assert.equal(kit.matiereBloquee("administratif-s1"), false);
+  kit.choisirMatiere("administratif-s1");
+  assert.equal(kit.compteur, "2 sur 3");
+  assert.equal(kit.pack, null);
+  assert.equal(kit.soumettre(), undefined);
+
+  kit.choisirMatiere("contrats");
+  assert.equal(kit.compteur, "3 sur 3");
+  assert.equal(kit.commander, true);
+  assert.equal(kit.matiereBloquee("penal"), true);
+  const id = "pack-kit-partiels-l2--administratif-s1--administratif-s2--contrats";
+  assert.deepEqual(kit.soumettre(), { id, echeances: undefined });
+  kit.choisirPaiement("2");
+  assert.deepEqual(kit.soumettre(), { id, echeances: "2" });
+
+  const retour = ouvrirKit(session);
+  assert.deepEqual(retour.matieres, ["contrats", "administratif-s1", "administratif-s2"]);
+  const retirerS2 = retour.boutonsRetirer.find((bouton) => bouton.attributs["aria-label"] === "Retirer Droit administratif (S2)");
+  assert.ok(retirerS2);
+  retirerS2.clic();
+  assert.deepEqual(ouvrirKit(session).matieres, ["contrats", "administratif-s1"]);
+  assert.equal(retour.matiereBloquee("penal"), false);
+  assert.equal(retour.commander, false);
 });
 
 test("ouvre une sélection vide en L2 lorsque le stockage est invalide ou indisponible", () => {
@@ -217,10 +259,20 @@ test("présélectionne la matière du guide et conserve le retrait après rechar
   assert.deepEqual(ouvrirKit(session, kit.url.search).matieres, []);
 });
 
+test("présélectionne le S1 depuis le guide quand le S2 est déjà coché", () => {
+  const session = stockage();
+  session.setItem(cleSelection, JSON.stringify({ niveau: "l2", codes: ["administratif-s2"] }));
+  const kit = ouvrirKit(session, "?matiere=administratif-s1");
+
+  assert.deepEqual(kit.matieres, ["administratif-s1", "administratif-s2"]);
+  assert.equal(kit.compteur, "2 sur 3");
+  assert.equal(kit.avertissement, false);
+  assert.deepEqual(ouvrirKit(session).matieres, ["administratif-s1", "administratif-s2"]);
+});
+
 test("conserve les matières cochées quand la matière du guide est incompatible", () => {
   for (const [niveau, codes] of [
     ["l1", ["constitutionnel-s1"]],
-    ["l2", ["administratif-s2"]],
     ["l2", ["contrats", "penal", "biens"]],
   ]) {
     const session = stockage();
@@ -230,6 +282,7 @@ test("conserve les matières cochées quand la matière du guide est incompatibl
 
     assert.equal(kit.niveau, niveau);
     assert.deepEqual(kit.matieres, codes);
+    assert.equal(kit.avertissement, true);
     assert.equal(kit.url.search, "");
   }
 });

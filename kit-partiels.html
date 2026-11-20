@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Choisis trois matières de L1, L2 ou L3. Pour 69 €, reçois les fiches complètes, les majeures préparées ou les dissertations corrigées et les QCM avec flashcards.">
+  <meta name="description" content="Choisis trois matières ou semestres de L1, L2 ou L3. Pour 69 €, reçois les fiches complètes, les majeures préparées ou les dissertations corrigées et les QCM avec flashcards.">
   <link rel="canonical" href="https://trajectoiredroit.com/kit-partiels.html">
-  <title>Kit Partiels de trois matières | Trajectoire Droit</title>
+  <title>Kit Partiels de droit | Trajectoire Droit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="assets/style.css?v=152fbd23">
-  <link rel="stylesheet" href="assets/kit-partiels/styles.css?v=dabf56a8">
+  <link rel="stylesheet" href="assets/kit-partiels/styles.css?v=564dc0ef">
   <script src="assets/js/main.js?v=6f18d1c8" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script src="assets/js/cookie-consent.js?v=63ff8b7a" defer></script>
-  <script src="assets/kit-partiels/catalogue.js?v=f26a21ab" defer></script>
-  <script src="assets/kit-partiels/composer.js?v=22a72f3e" defer></script>
+  <script src="assets/kit-partiels/catalogue.js?v=bd31217b" defer></script>
+  <script src="assets/kit-partiels/composer.js?v=f7c97ad2" defer></script>
 </head>
 <body id="haut">
   <header class="header">
@@ -34,8 +34,8 @@
 <section class="kit-hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <h1>Tes trois matières dans un seul kit.</h1>
-      <p class="lead">Choisis les trois matières que tu passes en L1, L2 ou L3. Tu as les supports pour revoir le cours et préparer tes copies avant les partiels.</p>
+      <h1>Tes révisions dans un seul kit.</h1>
+      <p class="lead">Choisis trois matières ou semestres dans ton année de licence. Tu as les supports pour revoir le cours et préparer tes copies avant les partiels.</p>
       <div class="offer-line"><strong data-kit-prix>69 €</strong> <span>ou 2 paiements de <span data-kit-echeance>34,50 €</span> sur 2 mois sans frais</span></div>
       <a class="button" href="#composer">Choisir mes matières</a>
     </div>
@@ -65,7 +65,7 @@
   <div class="wrap">
     <div class="section-intro">
       <h2>Compose ton Kit Partiels</h2>
-      <p>Choisis ton année, puis les trois matières que tu veux réviser.</p>
+      <p>Choisis ton année, puis coche trois cases. Le S1 et le S2 d’une même matière comptent chacun pour une place.</p>
     </div>
 
 <noscript><p>Active JavaScript pour composer ton kit. <a href="packs-partiels.html">Voir les Packs Partiels du premier semestre</a>.</p></noscript>
@@ -77,7 +77,7 @@
       <div class="niveaux"><div class="level-option"><input id="niveau-l1" type="radio" name="niveau" value="l1"><label for="niveau-l1">L1</label></div><div class="level-option"><input id="niveau-l2" type="radio" name="niveau" value="l2" checked><label for="niveau-l2">L2</label></div><div class="level-option"><input id="niveau-l3" type="radio" name="niveau" value="l3"><label for="niveau-l3">L3</label></div></div>
     </fieldset>
     <fieldset>
-      <legend class="control-name matter-legend">Tes trois matières <span class="counter" id="compteur" aria-live="polite">0 sur 3</span></legend>
+      <legend class="control-name matter-legend">Tes trois choix <span class="counter" id="compteur" aria-live="polite">0 sur 3</span></legend>
       <div id="matieres"></div>
     </fieldset>
     <section class="duo-partiels" id="duo-partiels" aria-labelledby="duo-partiels-titre" hidden>
@@ -85,13 +85,13 @@
       <p class="duo-partiels__intro">Les deux formules comprennent les fiches complètes, les QCM et les flashcards.</p>
       <div class="duo-partiels__options">
         <div>
-          <h4>Pack Partiels · 2 matières</h4>
+          <h4><span>Pack Partiels · 2 matières</span><span id="duo-partiels-prix" class="duo-partiels__prix"></span></h4>
           <p id="duo-partiels-description"></p>
           <a class="text-link" id="duo-partiels-lien" href="packs-partiels.html">Voir le Pack de ces deux matières</a>
         </div>
         <div>
-          <h4>Kit Partiels · 3 matières</h4>
-          <p>Le Kit comprend des majeures préparées ou des dissertations corrigées selon la matière. Pour le composer, coche une troisième matière.</p>
+          <h4><span>Kit Partiels · 3 choix</span><span class="duo-partiels__prix" data-kit-prix>69 €</span></h4>
+          <p>Le Kit comprend des majeures préparées ou des dissertations corrigées selon la matière. Pour le composer, coche une troisième case.</p>
         </div>
       </div>
     </section>
@@ -100,7 +100,7 @@
     <h3 class="summary-head">Ton Kit Partiels</h3>
     <div class="selection" id="selection"></div>
     <div class="pricing">
-      <div class="price-main"><strong data-kit-prix>69 €</strong><span>pour les trois matières</span></div>
+      <div class="price-main"><strong data-kit-prix>69 €</strong><span>pour tes trois choix</span></div>
       <p id="comparaison" class="compare">Les mêmes supports coûtent <strong id="prix-separe"></strong> à l’unité.</p>
     </div>
     <fieldset>
@@ -117,7 +117,7 @@
       </div>
     </fieldset>
     <p class="pay-note" id="detail-paiement" aria-live="polite"></p>
-    <button class="button" id="commander" type="submit" disabled>Choisis trois matières</button>
+    <button class="button" id="commander" type="submit" disabled>Coche trois cases</button>
     <p class="delivery">Tes fichiers arrivent par email dès le premier paiement.</p>
   </div>
 </form>
@@ -133,7 +133,7 @@
       <details><summary>Quels supports sont inclus en droit constitutionnel&nbsp;?</summary>
         <p>Avec la fiche complète, tu reprends le cours de ton semestre. Ensuite, tu vérifies ce que tu as retenu avec les QCM et les flashcards. Pour la rédaction, tu reçois aussi les dissertations corrigées du même semestre.</p></details>
       <details><summary>Quand vais-je recevoir mes fichiers&nbsp;?</summary>
-        <p>Tu reçois les fichiers des trois matières par email dès le premier paiement. Une fois téléchargés, les fichiers restent à toi.</p></details>
+        <p>Tu reçois les fichiers de tes trois choix par email dès le premier paiement. Une fois téléchargés, les fichiers restent à toi.</p></details>
       <details><summary>Comment se passe le paiement en deux fois&nbsp;?</summary>
         <p>Tu paies <span data-kit-echeance>34,50 €</span> à la commande. Le deuxième et dernier paiement de <span data-kit-echeance>34,50 €</span> a lieu un mois plus tard. Le total reste à <span data-kit-prix>69 €</span>.</p></details>
     </div>

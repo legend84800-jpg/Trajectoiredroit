@@ -57,7 +57,7 @@ function construireProduits(produits) {
       for (let j = i + 1; j < matieres.length - 1; j++) {
         for (let k = j + 1; k < matieres.length; k++) {
           const trio = [matieres[i], matieres[j], matieres[k]];
-          if (new Set(trio.map((matiere) => matiere.discipline)).size !== NOMBRE_MATIERES) continue;
+          if (new Set(trio.map((matiere) => matiere.code)).size !== NOMBRE_MATIERES) continue;
           const noms = trio.map(({ nom, semestre }) => semestre ? `${nom} (${semestre})` : nom).join(", ");
           kits[codeKit(niveau, trio)] = {
             nom: `Kit Partiels ${niveau.toUpperCase()}, ${noms}`,
@@ -83,7 +83,10 @@ function donneesPage(produits) {
         code, discipline, nom, semestre, formatApplication, tonFormat, prixSepare,
       })),
   ]));
-  return { prix: PRIX_KIT, nombreMatieres: NOMBRE_MATIERES, niveaux };
+  const prixPacks = Object.fromEntries(Object.entries(produits)
+    .filter(([id, produit]) => id.startsWith("pack-partiel-") && !produit.venteSuspendue)
+    .map(([id, produit]) => [id, produit.prix]));
+  return { prix: PRIX_KIT, nombreMatieres: NOMBRE_MATIERES, niveaux, prixPacks };
 }
 
 module.exports = { construireProduits, donneesPage };

@@ -3,8 +3,15 @@ const { test } = require("node:test");
 const PRODUITS = require("../api/_produits");
 const { donneesPage } = require("../api/_kits-partiels");
 const { bornerAbonnement } = require("../api/_echeances");
+const { genererToken } = require("../api/_liens-telechargement");
+const { traiterAchatPaye } = require("../api/stripe-webhook")._test;
 
-const kitId = "pack-kit-partiels-l2--administratif-s1--contrats--penal";
+const kitId = "pack-kit-partiels-l2--administratif-s1--administratif-s2--contrats";
+const fichiersAttendus = [...new Set([
+  "fiche-da-l2-s1", "maj-da-l2-s1", "flashcards-qcm-da-l2-s1",
+  "fiche-da-l2-s2", "maj-da-l2-s2", "flashcards-qcm-da-l2-s2",
+  "fiche-contrats-l2-s1", "maj-contrats-l2-s1", "flashcards-qcm-contrats-l2-s1",
+].flatMap((id) => PRODUITS[id].blobs))];
 const config = "./../api/_stripe";
 const stripePath = require.resolve(config);
 const checkoutParams = [];
@@ -38,19 +45,28 @@ test("les trios autorisés livrent les fichiers de chacun des supports", () => {
   assert.deepEqual(Object.values(catalogue.niveaux).map((liste) => liste.length), [6, 6, 4]);
   for (const m of Object.values(catalogue.niveaux).flat()) assert.equal(m.prixSepare, 4997);
   const references = Object.entries(PRODUITS).filter(([cle]) => cle.startsWith("pack-kit-partiels-"));
-  assert.equal(references.length, 36);
+  assert.deepEqual(["l1", "l2", "l3"].map((niveau) =>
+    references.filter(([id]) => id.startsWith(`pack-kit-partiels-${niveau}--`)).length
+  ), [20, 20, 4]);
   for (const [id, produit] of references) {
     assert.equal(produit.prix, 6900, id);
     assert.ok(produit.blobs.length >= 21, id);
     assert.equal(produit.blobs.length, new Set(produit.blobs).size, id);
   }
-  assert.ok(!PRODUITS["pack-kit-partiels-l2--administratif-s1--administratif-s2--contrats"]);
+  const droitAdministratif = PRODUITS[kitId];
+  assert.match(droitAdministratif.nom, /Droit administratif \(S1\)/);
+  assert.match(droitAdministratif.nom, /Droit administratif \(S2\)/);
+  assert.deepEqual(new Set(droitAdministratif.blobs), new Set(fichiersAttendus));
+  const droitConstitutionnel = PRODUITS["pack-kit-partiels-l1--constitutionnel-s1--constitutionnel-s2--intro-droit"];
+  assert.match(droitConstitutionnel.nom, /Droit constitutionnel \(S1\)/);
+  assert.match(droitConstitutionnel.nom, /Droit constitutionnel \(S2\)/);
 });
 
-test("le paiement unique et les deux échéances portent sur le même kit", async () => {
+test("le paiement unique et les deux échéances portent sur le kit des deux semestres", async () => {
+  const debut = checkoutParams.length;
   assert.equal((await ouvrir({ produitId: kitId })).statusCode, 200);
   assert.equal((await ouvrir({ produitId: kitId, echeances: 2 })).statusCode, 200);
-  const [comptant, echelonne] = checkoutParams;
+  const [comptant, echelonne] = checkoutParams.slice(debut);
   assert.equal(comptant.mode, "payment");
   assert.equal(comptant.line_items[0].price_data.unit_amount, 6900);
   assert.equal(comptant.metadata.produitIds, kitId);
@@ -67,7 +83,70 @@ test("le paiement unique et les deux échéances portent sur le même kit", asyn
   const result = await ouvrir({ produitId: kitId, echeances: 3 });
   assert.equal(result.statusCode, 400);
   assert.equal(result.content.code, "echeances_indisponibles");
-  assert.equal(checkoutParams.length, 2);
+  assert.equal(checkoutParams.length, debut + 2);
+});
+
+test("le paiement refuse les kits avec un code répété, une année non valide ou un nombre de choix incorrect", async () => {
+  const debut = checkoutParams.length;
+  for (const id of [
+    "pack-kit-partiels-l2--administratif-s1--administratif-s1--contrats",
+    "pack-kit-partiels-l1--administratif-s1--administratif-s2--contrats",
+    "pack-kit-partiels-l4--administratif-s1--administratif-s2--contrats",
+    "pack-kit-partiels-l2--administratif-s1--administratif-s2",
+    "pack-kit-partiels-l2--administratif-s1--administratif-s2--contrats--penal",
+  ]) {
+    const reponse = await ouvrir({ produitId: id });
+    assert.equal(reponse.statusCode, 400, id);
+    assert.equal(reponse.content.code, "produit_inconnu", id);
+  }
+  assert.equal(checkoutParams.length, debut);
+});
+
+test("la confirmation de commande livre les fichiers des deux semestres et de la troisième matière", async () => {
+  assert.equal((await ouvrir({ produitId: kitId })).statusCode, 200);
+  const { metadata, mode } = checkoutParams.at(-1);
+  const secret = "verification-des-liens-en-local";
+  const sessionId = "cs_test_kit_deux_semestres";
+  const livraisons = [];
+  const session = {
+    id: sessionId,
+    mode,
+    metadata,
+    payment_status: "paid",
+    amount_total: 6900,
+    livemode: false,
+    customer_details: { email: "client@example.com" },
+  };
+  const operations = {
+    insererSiAbsent: async (_table, achat) => {
+      assert.deepEqual(achat.produit_ids, [kitId]);
+      return [{ id: 1 }];
+    },
+    envoyerEmail: async (_email, produits, liens) => livraisons.push({ produits, liens }),
+    creerContactBrevoAchat: async () => {},
+  };
+  const resultat = await traiterAchatPaye(session, {
+    operations,
+    downloadSecret: secret,
+    origin: "https://trajectoiredroit.com",
+  });
+
+  assert.deepEqual(resultat, { traite: true });
+  assert.equal(livraisons.length, 1);
+  const { produits, liens } = livraisons[0];
+  assert.deepEqual(produits, [PRODUITS[kitId]]);
+  const fichiersLivres = liens.map(({ url }) => {
+    const lien = new URL(url);
+    const index = lien.searchParams.get("b");
+    const expiration = lien.searchParams.get("exp");
+    assert.equal(lien.pathname, "/api/telecharger");
+    assert.equal(lien.searchParams.get("id"), kitId);
+    assert.equal(lien.searchParams.get("sid"), sessionId);
+    assert.equal(lien.searchParams.get("sig"), genererToken(kitId, index, expiration, secret, sessionId));
+    return PRODUITS[kitId].blobs[index];
+  });
+  assert.equal(fichiersLivres.length, fichiersAttendus.length);
+  assert.deepEqual(new Set(fichiersLivres), new Set(fichiersAttendus));
 });
 
 test("le rejeu borne une échéance créée avant une erreur de mise à jour", async () => {

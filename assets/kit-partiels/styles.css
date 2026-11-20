@@ -106,10 +106,16 @@ p { max-width: 64ch; }
   padding-top: 13px;
 }
 .duo-partiels__options h4 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 10px;
   margin: 0 0 6px;
   color: var(--navy);
   font: 700 15px/1.25 var(--font-body);
 }
+.duo-partiels__prix { white-space: nowrap; font-variant-numeric: tabular-nums; }
 .duo-partiels p { color: var(--body); font-size: 14px; line-height: 1.5; }
 .duo-partiels .text-link {
   display: inline-flex;

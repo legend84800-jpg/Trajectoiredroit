@@ -23,6 +23,7 @@
   const detail = form.querySelector("#detail-paiement");
   const cta = form.querySelector("#commander");
   const comparaisonPack = form.querySelector("#duo-partiels");
+  const valeurPack = form.querySelector("#duo-partiels-prix");
   const descriptionPack = form.querySelector("#duo-partiels-description");
   const lienPack = form.querySelector("#duo-partiels-lien");
 
@@ -59,12 +60,9 @@
     niveau = selection.niveau;
     boutonNiveau.checked = true;
 
-    const disciplines = new Set();
     for (const code of selection.codes) {
-      const matiere = catalogue.niveaux[niveau].find((item) => item.code === code);
-      if (!matiere || disciplines.has(matiere.discipline)) continue;
+      if (!catalogue.niveaux[niveau].some((matiere) => matiere.code === code)) continue;
       codes.add(code);
-      disciplines.add(matiere.discipline);
       if (codes.size === nombre) break;
     }
   }
@@ -140,14 +138,12 @@
 
   function rafraichir() {
     const matieres = matieresChoisies();
-    const disciplines = new Set(matieres.map((matiere) => matiere.discipline));
     const pret = matieres.length === nombre;
     const deuxFois = form.querySelector('input[name="paiement"]:checked').value === "2";
 
     for (const input of choix.querySelectorAll("input")) {
-      const matiere = catalogue.niveaux[niveau].find((item) => item.code === input.value);
-      input.checked = codes.has(matiere.code);
-      input.disabled = !input.checked && (pret || disciplines.has(matiere.discipline));
+      input.checked = codes.has(input.value);
+      input.disabled = !input.checked && pret;
     }
 
     compteur.textContent = `${matieres.length} sur ${nombre}`;
@@ -155,8 +151,11 @@
       ? listeSelection(matieres)
       : document.createTextNode("Tes matières apparaîtront ici."));
     const pack = packsPartiels.get([...codes].sort().join("+"));
-    comparaisonPack.hidden = !pack;
-    if (pack) {
+    const prixPack = catalogue.prixPacks?.[pack];
+    const packDisponible = Number.isInteger(prixPack);
+    comparaisonPack.hidden = !packDisponible;
+    if (packDisponible) {
+      valeurPack.textContent = euros(prixPack);
       descriptionPack.textContent = niveau === "l1"
         ? "Le Pack comprend des dissertations corrigées en droit constitutionnel. Il comprend aussi des cas pratiques corrigés et des majeures préparées en introduction au droit."
         : "Le Pack comprend aussi des cas pratiques corrigés et des majeures préparées pour les deux matières.";
@@ -173,7 +172,7 @@
       ? `${euros(echeance)} aujourd’hui et ${euros(echeance)} dans un mois. Total ${euros(montant)}.`
       : `${euros(montant)} aujourd’hui.`;
     cta.disabled = !pret;
-    cta.textContent = pret ? "Passer au paiement" : "Choisis trois matières";
+    cta.textContent = pret ? "Passer au paiement" : "Coche trois cases";
   }
 
   form.addEventListener("change", (event) => {
@@ -210,9 +209,7 @@
       catalogue.niveaux[niveau].some((matiere) => matiere.code === code));
     if (!niveauGuide) return;
     const matiere = catalogue.niveaux[niveauGuide].find((matiere) => matiere.code === code);
-    const autreSemestre = matieresChoisies().some((choisie) =>
-      choisie.discipline === matiere.discipline && choisie.code !== code);
-    if (!codes.size || (niveau === niveauGuide && !autreSemestre && (codes.size < nombre || codes.has(code)))) {
+    if (!codes.size || (niveau === niveauGuide && (codes.size < nombre || codes.has(code)))) {
       niveau = niveauGuide;
       form.querySelector(`input[name="niveau"][value="${niveau}"]`).checked = true;
       codes.add(code);

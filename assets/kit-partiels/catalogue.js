@@ -152,5 +152,12 @@ window.catalogueKit = {
         "prixSepare": 4997
       }
     ]
+  },
+  "prixPacks": {
+    "pack-partiel-l1-s1": 6990,
+    "pack-partiel-l2-s1": 6990,
+    "pack-partiel-l3-travail-societes": 6990,
+    "pack-partiel-l3-travail-contrats-speciaux": 6990,
+    "pack-partiel-l3-societes-contrats-speciaux": 6990
   }
 };
