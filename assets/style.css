@@ -4920,35 +4920,23 @@ html[data-theme="dark"] .btn--secondary {
 /* ===== Bannière cookies ===== */
 .cookie-banner {
   position: fixed;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
+  left: calc(.5rem + env(safe-area-inset-left));
+  bottom: calc(.5rem + max(var(--tjd-sticky-height, 0px), env(safe-area-inset-bottom)));
   z-index: 900;
-  display: grid;
-  grid-template-columns: minmax(220px, .8fr) minmax(390px, 1.2fr);
-  align-items: center;
-  gap: 14px;
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 14px 16px;
-  background: var(--navy-deep);
-  border: 1px solid var(--gold-line);
-  border-radius: var(--r-md);
-  box-shadow: 0 10px 26px rgba(15,26,53,.24);
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity .25s ease, transform .25s ease;
-  pointer-events: none;
+  width: min(16rem, calc(100% - 1rem - env(safe-area-inset-left) - env(safe-area-inset-right)));
+  padding: .3rem .45rem;
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(15,26,53,.14);
+  font-size: .75rem;
+  line-height: 1.3;
+  visibility: hidden;
 }
 .cookie-banner--visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+  visibility: visible;
 }
-.cookie-banner__content {
-  min-width: 0;
-}
-.cookie-banner__eyebrow,
 .cookie-preferences__eyebrow {
   margin: 0 0 4px;
   color: var(--gold-line);
@@ -4957,62 +4945,42 @@ html[data-theme="dark"] .btn--secondary {
   letter-spacing: .11em;
   text-transform: uppercase;
 }
-.cookie-banner__eyebrow {
-  display: none;
-}
-.cookie-banner h2 {
-  margin: 0 0 3px;
-  color: #fff;
-  font-size: 1rem;
-  line-height: 1.15;
-}
 .cookie-banner__text {
-  margin: 0;
-  font-size: .74rem;
-  line-height: 1.35;
-  color: rgba(255,255,255,.88);
+  margin: 0 0 .25rem;
+  color: inherit;
 }
 .cookie-banner__text a {
-  color: var(--gold-line);
+  color: inherit;
+  font-weight: 700;
   text-decoration: underline;
 }
 .cookie-banner__actions {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 7px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem;
 }
-.cookie-choice {
-  min-height: 40px;
-  padding: 7px 8px;
-  border: 1px solid rgba(255,255,255,.72);
-  border-radius: var(--r-sm);
-  font-size: .68rem;
-  line-height: 1.15;
-  white-space: normal;
-}
-.cookie-choice--preferences {
+.cookie-banner .cookie-choice {
+  flex: 1 0 4.25rem;
+  min-height: 1.875rem;
+  padding: .15rem .3rem;
   background: transparent;
-  color: rgba(255,255,255,.92);
+  color: inherit;
+  border: 1px solid var(--muted);
+  border-radius: 5px;
+  font-size: inherit;
+  line-height: 1.25;
 }
-.cookie-choice--preferences:hover {
-  background: rgba(255,255,255,.08);
+.cookie-banner .cookie-choice--preferences {
+  border-color: transparent;
+  text-decoration: underline;
 }
-.cookie-choice--essential {
-  background: #fff;
-  color: var(--navy-deep);
+.cookie-banner .cookie-choice:hover {
+  background: var(--slate-100);
 }
-.cookie-choice--essential:hover {
-  background: #eef2f7;
+.cookie-banner :is(a, button):focus-visible {
+  outline: 2px solid var(--blue-600);
+  outline-offset: 1px;
 }
-.cookie-choice--accept {
-  border-color: var(--gold-line);
-  background: var(--gold-line);
-  color: var(--navy-deep);
-}
-.cookie-choice--accept:hover {
-  filter: brightness(1.06);
-}
-.cookie-choice:focus-visible,
 .cookie-preferences button:focus-visible,
 .cookie-preferences a:focus-visible {
   outline: 3px solid #fff;
@@ -5147,46 +5115,7 @@ html[data-theme="dark"] .btn--secondary {
   gap: 10px;
   margin-top: 14px;
 }
-@media (max-width: 720px) {
-  .cookie-banner {
-    grid-template-columns: 1fr;
-  }
-}
 @media (max-width: 620px) {
-  .cookie-banner {
-    left: 12px;
-    right: 12px;
-    bottom: 8px;
-    max-width: 360px;
-    padding: 12px;
-    gap: 9px;
-  }
-  .cookie-banner h2 {
-    font-size: .95rem;
-  }
-  .cookie-banner__text {
-    font-size: .72rem;
-  }
-  .cookie-banner__actions {
-    width: 100%;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 6px;
-  }
-  .cookie-choice {
-    min-height: 42px;
-    padding: 6px 7px;
-    font-size: .66rem;
-  }
-  .cookie-choice--accept {
-    order: -3;
-  }
-  .cookie-choice--essential {
-    order: -2;
-  }
-  .cookie-choice--preferences {
-    order: -1;
-    grid-column: 1 / -1;
-  }
   .cookie-preferences__panel {
     padding: 18px 14px;
   }
@@ -5207,74 +5136,7 @@ html[data-theme="dark"] .btn--secondary {
     width: 100%;
   }
 }
-/* Remonte la bannière au-dessus de la barre d'achat sticky (desktop compris depuis --always), pour ne jamais la recouvrir */
-.cookie-banner--above-sticky {
-  bottom: 82px;
-}
-/* Bandeau cookies réduit à une petite carte (01/10/2026) : il masquait 177 px au-dessus du bouton Acheter sur mobile. */
-.cookie-banner {
-  left: 12px;
-  right: auto;
-  bottom: 12px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  width: min(calc(100% - 24px), 340px);
-  max-width: 340px;
-  margin: 0;
-  padding: 8px 10px;
-  border-radius: 10px;
-}
-.cookie-banner__content {
-  flex: 1 1 100%;
-}
-.cookie-banner h2 {
-  margin: 0;
-  font-size: .8rem;
-  font-family: inherit;
-  font-weight: 700;
-}
-/* Le détail reste lu par les lecteurs d'écran et dans « Modifier mes préférences ». */
-.cookie-banner__text {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-}
-.cookie-banner .cookie-banner__actions {
-  display: flex;
-  flex: 1 1 100%;
-  width: 100%;
-  gap: 5px;
-}
-.cookie-banner .cookie-choice {
-  flex: 1 1 0;
-  justify-content: center;
-  min-height: 32px;
-  margin-top: 0;
-  padding: 4px 6px;
-  font-size: .64rem;
-  text-align: center;
-}
-.cookie-banner .cookie-choice--preferences {
-  flex: 0 0 auto;
-  border-color: transparent;
-  background: transparent;
-  color: #fff;
-  text-decoration: underline;
-}
-.cookie-banner--above-sticky {
-  bottom: 98px;
-}
-@media (min-width: 621px) {
-  .cookie-banner--above-sticky {
-    bottom: 82px;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
-  .cookie-banner,
   .cookie-switch,
   .cookie-switch span {
     transition: none;
@@ -5564,12 +5426,6 @@ html[data-theme="dark"] .article-produit-inline { background: rgba(94,139,218,0.
   .case-timeline__dot { left: -26px; top: 3px; }
 }
 @media (max-width: 760px) {
-  /* Bandeau cookies : texte des boutons à 10px et cibles de 32px. Carte un
-     peu plus large, boutons lisibles et assez hauts pour le pouce. */
-  .cookie-banner { width: calc(100% - 24px); max-width: 420px; padding: 10px 12px; }
-  .cookie-banner h2 { font-size: .86rem; }
-  .cookie-banner .cookie-choice { min-height: 40px; font-size: .74rem; line-height: 1.2; }
-
   /* Champs de saisie à 16px : en dessous, Safari iPhone zoome la page au
      moment où l'étudiant touche le champ. */
   input[type="email"], input[type="text"], input[type="search"], input[type="tel"],

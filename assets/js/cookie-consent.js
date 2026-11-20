@@ -331,38 +331,17 @@
     var banner = document.createElement("section");
     banner.className = "cookie-banner";
     banner.setAttribute("role", "dialog");
-    banner.setAttribute("aria-labelledby", "cookieBannerTitle");
+    banner.setAttribute("aria-label", "Cookies facultatifs");
     banner.setAttribute("aria-describedby", "cookieBannerDescription");
     banner.innerHTML =
-      '<div class="cookie-banner__content">' +
-        '<p class="cookie-banner__eyebrow">Tes données, ton choix</p>' +
-        '<h2 id="cookieBannerTitle">Choisis les cookies que tu acceptes</h2>' +
-        '<p class="cookie-banner__text" id="cookieBannerDescription">Selon ton choix, nous mesurons l’utilisation du site et nos publicités. La relecture masquée des clics et du défilement nous aide aussi à repérer les difficultés de navigation et à relier une visite à son achat confirmé. <a href="confidentialite.html#cookies">En savoir plus</a></p>' +
-      '</div>' +
+      '<p class="cookie-banner__text" id="cookieBannerDescription"><a href="/confidentialite.html#cookies">Cookies</a> d’audience et de publicité. On peut revoir ta visite et la lier à un achat.</p>' +
       '<div class="cookie-banner__actions">' +
-        '<button type="button" class="btn btn--sm cookie-choice cookie-choice--preferences" data-cookie-preferences>Modifier mes préférences</button>' +
-        '<button type="button" class="btn btn--sm cookie-choice cookie-choice--essential" data-cookie-essential>Seulement les cookies essentiels</button>' +
-        '<button type="button" class="btn btn--sm cookie-choice cookie-choice--accept" data-cookie-accept>Accepter les cookies</button>' +
+        '<button type="button" class="btn cookie-choice" data-cookie-accept aria-label="Accepter les cookies facultatifs">Accepter</button>' +
+        '<button type="button" class="btn cookie-choice" data-cookie-essential aria-label="Refuser les cookies facultatifs">Refuser</button>' +
+        '<button type="button" class="btn cookie-choice cookie-choice--preferences" data-cookie-preferences>Réglages</button>' +
       '</div>';
 
-    var barreAchat = document.querySelector(".sticky-cta-bar, .sticky-cta");
-    if (barreAchat) {
-      banner.classList.add("cookie-banner--above-sticky");
-    }
-
     document.body.appendChild(banner);
-
-    // Hauteur réelle de la barre d'achat (62 à 110px selon la page) plutôt qu'un
-    // forfait de 98px, et rien du tout quand la barre est masquée (ordinateur).
-    if (barreAchat) {
-      var calerBandeau = function () {
-        var visible = getComputedStyle(barreAchat).display !== "none";
-        banner.style.bottom = (visible ? barreAchat.getBoundingClientRect().height + 10 : 12) + "px";
-      };
-      calerBandeau();
-      window.addEventListener("resize", calerBandeau);
-      if (typeof ResizeObserver === "function") new ResizeObserver(calerBandeau).observe(barreAchat);
-    }
 
     banner.querySelector("[data-cookie-accept]").addEventListener("click", function () {
       savePreferences({ analytics: true, advertising: true, behavior: true });

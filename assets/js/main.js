@@ -334,7 +334,7 @@ window.tjdDialogues = (function () {
     function actualiser() {
       attente = false;
       var suspendre = media.matches && (visibles.size > 0 || window.tjdDialogues.estOuvert() ||
-        !!document.querySelector('#mobileNav.open, #tjdPanierBackdrop.open, #exitModal.open, .cookie-banner--visible'));
+        !!document.querySelector('#mobileNav.open, #tjdPanierBackdrop.open, #exitModal.open'));
       var hauteur = 0;
       barres.forEach(function (barre) {
         if (barre.classList.contains('tjd-sticky-suspended') !== suspendre) barre.classList.toggle('tjd-sticky-suspended', suspendre);
@@ -375,7 +375,7 @@ window.tjdDialogues = (function () {
     }
     if (typeof MutationObserver === 'function') new MutationObserver(function (mutations) {
       if (mutations.some(function (mutation) {
-        return mutation.target === document.body || (mutation.target.matches && mutation.target.matches('#mobileNav, #urgencyBanner, #tjdPanierBackdrop, #exitModal, .cookie-banner'));
+        return mutation.target === document.body || (mutation.target.matches && mutation.target.matches('#mobileNav, #urgencyBanner, #tjdPanierBackdrop, #exitModal'));
       })) { observerBandeau(); programmer(); }
     }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'hidden'] });
     document.addEventListener('tjd:dialogue', programmer);

@@ -99,6 +99,7 @@ function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formation
   vm.runInContext(source, context, { filename: 'cookie-consent.js' });
   const load = () => { for (const handler of documentHandlers.get('DOMContentLoaded') || []) handler(); };
   const banner = () => roots.find((element) => element.className === 'cookie-banner');
+  const dialog = () => roots.find((element) => element.className === 'cookie-preferences');
   const choose = (name) => {
     const control = banner()?.querySelector('[data-cookie-' + name + ']');
     assert.ok(control, 'Contrôle de consentement présent, ' + name);
@@ -107,12 +108,12 @@ function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formation
   const preferences = () => JSON.parse(JSON.stringify(window.tjdCookieConsent.getPreferences()));
   const customize = (choice) => {
     window.tjdCookieConsent.openPreferences();
-    const dialog = roots.find((element) => element.className === 'cookie-preferences');
-    for (const [name, value] of Object.entries(choice)) dialog.querySelector('[data-cookie-switch="' + name + '"]').setAttribute('aria-checked', value ? 'true' : 'false');
-    dialog.querySelector('[data-cookie-save]').click();
-    return dialog;
+    const preferencesDialog = dialog();
+    for (const [name, value] of Object.entries(choice)) preferencesDialog.querySelector('[data-cookie-switch="' + name + '"]').setAttribute('aria-checked', value ? 'true' : 'false');
+    preferencesDialog.querySelector('[data-cookie-save]').click();
+    return preferencesDialog;
   };
-  return { window, storage, events, scripts, ga, meta, load, banner, choose, preferences, customize };
+  return { window, storage, events, scripts, ga, meta, load, banner, dialog, choose, preferences, customize };
 }
 
 test('aucun choix ne charge le traceur et le bandeau explique la relecture avant acceptation', () => {
@@ -120,7 +121,12 @@ test('aucun choix ne charge le traceur et le bandeau explique la relecture avant
   b.load();
   assert.equal(b.preferences(), null);
   assert.equal(b.scripts.length, 0);
-  assert.match(b.banner().html, /relecture masquée des clics et du défilement/i);
+  assert.match(b.banner().html, /revoir ta visite et la lier à un achat/i);
+  assert.match(b.banner().html, /href="\/confidentialite\.html#cookies"/);
+  b.window.tjdCookieConsent.openPreferences();
+  const dialog = b.dialog();
+  assert.match(dialog.html, /tes clics et le défilement des pages/);
+  assert.match(dialog.html, /Les textes saisis sont masqués/);
 });
 
 test('les anciens choix Analytics et Meta gardent leur effet et refusent la nouvelle catégorie', () => {
