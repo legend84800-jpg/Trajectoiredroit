@@ -48,9 +48,14 @@ function preparerPublication(racine = path.resolve(__dirname, '..')) {
     if (nom.endsWith('.html') || FICHIERS_PUBLICS.includes(nom) || DOSSIERS_PUBLICS.includes(nom)) examiner(path.join(racine, nom));
   }
   if (!fichiers.includes('index.html')) throw new Error('La page d’accueil index.html est absente.');
-  const versionsRessources = new Map(['assets/style.css', 'assets/js/cookie-consent.js', 'assets/js/main.js', 'assets/js/achat.js']
+  const versionsRessources = new Map([
+    'assets/style.css', 'assets/js/cookie-consent.js', 'assets/js/main.js', 'assets/js/achat.js',
+    'assets/js/portalis.js', 'assets/js/recueil-selectionne.js', 'assets/js/prix-promotion.js', 'assets/prix-promotion.css',
+  ]
     .filter((ressource) => fichiers.includes(ressource))
     .map((ressource) => [ressource, createHash('sha256').update(fs.readFileSync(path.join(racine, ressource))).digest('hex').slice(0, 8)]));
+  const scriptPromotion = versionsRessources.get('assets/js/prix-promotion.js');
+  const stylePromotion = versionsRessources.get('assets/prix-promotion.css');
   // Ce seul sous-dossier est régénéré. Les API et le reste du build restent à la racine du projet.
   fs.rmSync(sortie, { recursive: true, force: true });
   for (const relatif of fichiers) {
@@ -63,7 +68,22 @@ function preparerPublication(racine = path.resolve(__dirname, '..')) {
         const version = versionsRessources.get(ressource);
         return version ? `${ressource}?v=${version}` : reference;
       });
-      fs.writeFileSync(destination, htmlVersionne);
+      const avecAchat = /assets\/js\/(?:main|achat|portalis)\.js\b/.test(htmlVersionne);
+      const balisesPromotion = scriptPromotion && stylePromotion && avecAchat
+        ? '  <link rel="stylesheet" href="/assets/prix-promotion.css?v=' + stylePromotion + '">\n'
+          + '  <script src="/assets/js/prix-promotion.js?v=' + scriptPromotion + '" defer></script>\n'
+        : '';
+      fs.writeFileSync(destination, balisesPromotion
+        ? htmlVersionne.replace(/<\/head>/i, balisesPromotion + '</head>')
+        : htmlVersionne);
+    } else if (relatif === 'assets/data/saison.json' && scriptPromotion) {
+      const saison = JSON.parse(fs.readFileSync(source, 'utf8'));
+      if (saison.offre_partiels) {
+        saison.prix_catalogue = Object.fromEntries(Object.entries(PRODUITS)
+          .filter(([, produit]) => !produit.venteSuspendue)
+          .map(([id, produit]) => [id, produit.prix]));
+      }
+      fs.writeFileSync(destination, JSON.stringify(saison) + '\n');
     } else {
       fs.copyFileSync(source, destination);
     }

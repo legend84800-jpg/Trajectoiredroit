@@ -1,6 +1,10 @@
 /* Intégration paiement TJD (Stripe). Gère tous les boutons [data-tjd-produit] du site. */
 (function () {
   var TEXTES_ORIGINAUX = {};
+
+  function texteSansAffichageRemise(element) {
+    return window.tjdTexteAvantRemise ? window.tjdTexteAvantRemise(element) : element.textContent;
+  }
   var TENTATIVES_PAIEMENT = {};
   var BOUTONS_PAIEMENT = [];
   var ATTENTE_PAIEMENT_MS = 30000;
@@ -375,7 +379,7 @@
     if (!btnEl) return;
     if (btnEl.disabled || btnEl.tjdPaiementEnCours) return;
     var idx = produitId + '-' + Array.from(document.querySelectorAll('[data-tjd-produit="' + produitId + '"]')).indexOf(btnEl);
-    TEXTES_ORIGINAUX[idx] = TEXTES_ORIGINAUX[idx] || btnEl.textContent.trim();
+    TEXTES_ORIGINAUX[idx] = TEXTES_ORIGINAUX[idx] || texteSansAffichageRemise(btnEl).trim();
 
     // Order bump : si le bouton référence une checkbox cochée, on ajoute ce produit à la même session.
     var bumpId = btnEl.getAttribute('data-tjd-bump');
@@ -503,8 +507,8 @@
       var checkbox = checkboxId ? document.getElementById(checkboxId) : null;
       if (!checkbox) return;
       var label = checkbox.closest('label');
-      var prixBumpCentimes = euroVersCentimes(label ? label.textContent : '');
-      var texteBase = btn.textContent;
+      var prixBumpCentimes = euroVersCentimes(label ? texteSansAffichageRemise(label) : '');
+      var texteBase = texteSansAffichageRemise(btn);
       var prixBaseCentimes = euroVersCentimes(texteBase);
       if (prixBumpCentimes == null || prixBaseCentimes == null) return;
       var prefixe = texteBase.replace(/[\d]+[,.]?\d{0,2}\s*€\s*$/, '').replace(/[·\-–:]\s*$/, '').trim();
@@ -703,7 +707,7 @@
       // Le lien existe déjà (ex. après un retrait depuis le tiroir) : on resynchronise juste
       // son état au lieu de le sauter, sinon "Ajouté ✓" reste affiché pour un produit retiré.
       if (existant) { panierSyncLien(existant, produitId); return; }
-      var prixCentimes = euroVersCentimes(bouton.textContent);
+      var prixCentimes = euroVersCentimes(texteSansAffichageRemise(bouton));
       if (prixCentimes == null) return;
       var nom = nomProduitProche(bouton);
       var lien = document.createElement('button');
@@ -973,7 +977,7 @@
     conteneur.innerHTML = liste.map(function (a) {
       var id = panierEchapperHTML(a.id);
       return '<div><div class="tjd-panier-item"><span class="tjd-panier-item__nom">' + panierEchapperHTML(a.nom || a.id) + '</span>' +
-        '<span class="tjd-panier-item__prix">' + centimesVersEuro(a.prixCentimes) + '</span>' +
+        '<span class="tjd-panier-item__prix" data-tjd-prix-ligne="' + id + '">' + centimesVersEuro(a.prixCentimes) + '</span>' +
         '<button type="button" class="tjd-panier-item__retirer" data-tjd-panier-retirer="' + id + '" aria-label="Retirer">✕</button></div>' +
         '<div class="tjd-panier-inclusion" data-tjd-panier-inclusion="' + id + '" aria-live="polite"></div></div>';
     }).join('');

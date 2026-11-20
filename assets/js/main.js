@@ -793,9 +793,9 @@ window.tjdDialogues = (function () {
       suivreClic(lien, 'clic-bouton-collant', idPeriode);
     }
 
-    fetch('/assets/data/saison.json', { cache: 'no-cache' })
-      .then(function (r) { if (!r.ok) throw new Error('saison ' + r.status); return r.json(); })
-      .then(function (s) {
+    var donneesSaison = window.tjdDonneesSaison || fetch('/assets/data/saison.json', { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error('saison ' + r.status); return r.json(); });
+    donneesSaison.then(function (s) {
         if (!s) return;
         // Une période vaut si elle a un id et une fin pas encore passée, et que son
         // début (facultatif) est atteint. Aucune période en cours : affichage par défaut.

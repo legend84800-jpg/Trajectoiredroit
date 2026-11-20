@@ -1,0 +1,71 @@
+.tjd-prix-remise {
+  --prix-remise-ancien: #536075;
+  --prix-remise-nouveau: #14623d;
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .08em .34em;
+  max-width: 100%;
+  vertical-align: baseline;
+  font-variant-numeric: tabular-nums;
+}
+html[data-theme="dark"] .tjd-prix-remise {
+  --prix-remise-ancien: #b8c2d0;
+  --prix-remise-nouveau: #86e3a6;
+}
+.btn--primary .tjd-prix-remise {
+  --prix-remise-ancien: #e1e8f5;
+  --prix-remise-nouveau: #adf0bb;
+}
+html[data-theme="dark"] .btn--primary .tjd-prix-remise {
+  --prix-remise-ancien: #e7eff9;
+  --prix-remise-nouveau: #d1ffdb;
+}
+.tjd-prix-remise > del {
+  color: var(--prix-remise-ancien);
+  font-size: .78em;
+  font-weight: 500;
+  opacity: 1;
+  text-decoration: line-through;
+  white-space: nowrap;
+}
+.tjd-prix-remise > strong {
+  color: var(--prix-remise-nouveau);
+  font-size: 1em;
+  font-weight: 800;
+  letter-spacing: -.015em;
+  white-space: nowrap;
+}
+.tjd-prix-remise .tjd-prix-lecteur {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.tjd-prix-remise .tjd-prix-mensuel {
+  flex-basis: 100%;
+  color: var(--prix-remise-ancien);
+  font-size: .8em;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.plan > .price:has(.tjd-prix-mensuel) > span:last-child,
+.ph-amount:has(.tjd-prix-mensuel) > small,
+.product__price-old:has(~ .product__price .tjd-prix-remise),
+.megamenu__pack-tile-prices:has(.tjd-prix-remise) > .megamenu__pack-tile-price-old,
+.offre-matiere__prix:has(.tjd-prix-remise) > s,
+.product__price:has(.tjd-prix-remise) ~ .badge--success,
+.megamenu__pack-tile:has(.tjd-prix-remise) .badge--success {
+  display: none;
+}
+.plan > .price [data-price] .tjd-prix-mensuel { font-size: .44em; }
+.ph-amount .tjd-prix-mensuel { font-size: .49em; }
+.compare-needs__price:has(.tjd-prix-remise) {
+  background: transparent;
+  color: var(--muted);
+}
+.tjd-panier-item__prix:has(.tjd-prix-remise) { white-space: normal !important; }

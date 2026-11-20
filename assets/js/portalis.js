@@ -134,6 +134,7 @@
   }
   function renderState(){
     const actif=!!state?.actif;
+    $('formules')?.toggleAttribute?.('data-tjd-portalis-abonne', actif);
     $('connexion').hidden=!!session;
     $('abonnement').hidden=!state?.formule;
     $('champs').disabled=!actif||working||importing;

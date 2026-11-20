@@ -24,6 +24,7 @@
         var vignette=document.createElement('img');vignette.src=pages.filter(function(u){var n=(u.match(/-p0*(\d+)\.webp$/)||[])[1];return n&&+n>=3;})[0]||pages[pages.length-1];vignette.alt='';vignette.width=120;vignette.loading='lazy';vignette.style.cssText='width:120px;height:auto;border:1px solid var(--border);border-radius:6px;box-shadow:var(--sh-2);background:#fff';
         var libelle=document.createElement('span');libelle.textContent='Voir '+pages.length+' pages du PDF';libelle.style.textDecoration='underline';
         apercu.appendChild(vignette);apercu.appendChild(libelle);apercu.addEventListener('click',function(){source.click();if(window._paq)window._paq.push(['trackEvent','Corriges','Apercu recueil selectionne',id]);});block.appendChild(apercu);}}
+    price.dataset.tjdPrixRecueil = x.prix;
     block.appendChild(price);block.appendChild(button);block.hidden=false;
   }).catch(function(){block.hidden=false;block.textContent='Le PDF choisi est momentanément indisponible ici. Tu peux retrouver les corrigés dans les rubriques ci-dessous.';});
 })();
