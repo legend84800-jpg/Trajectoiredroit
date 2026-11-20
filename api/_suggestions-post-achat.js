@@ -98,7 +98,7 @@ function analyserId(id) {
   if (!m || !m[1]) return { sujet: null, niveau: null, semestre: null };
   const sujet = ALIAS_SUJET[m[1]] || m[1];
   if (m[1] === "penal-general" && m[2] === "l1") {
-    return { sujet, niveau: "l2", semestre: "s2" };
+    return { sujet, niveau: "l2", semestre: null };
   }
   return { sujet, niveau: m[2] || null, semestre: m[3] || null };
 }

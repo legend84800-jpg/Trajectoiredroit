@@ -94,7 +94,7 @@ function construireProduits(catalogue) {
     if (id === "pack-ultra-l1-s2") {
       packs[id + "-revision"] = { ...composer(definition, inclusEnVente, catalogue), venteSuspendue: true };
       inclusEnVente = inclusEnVente.filter((reference) => !PENAL_GENERAL.has(reference));
-    } else if (id === "pack-ultra-l2-s2") {
+    } else if (id === "pack-ultra-l2-s1" || id === "pack-ultra-l2-s2") {
       inclusEnVente = [...new Set([...inclusEnVente, ...[...PENAL_GENERAL].filter((reference) => !catalogue[reference].venteSuspendue)])];
     }
     packs[referenceVente(id)] = composer(definition, inclusEnVente, catalogue);

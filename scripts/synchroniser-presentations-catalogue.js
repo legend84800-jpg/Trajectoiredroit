@@ -109,7 +109,7 @@ function presentationPack(id) {
   const annexe = cartes === nombre ? "Chaque fiche est accompagnée de son plan et de ses cartes mentales." : `Chaque fiche est accompagnée de son plan. Les cartes mentales de ${cartes} fiches sont aussi incluses.`;
   const descriptions = {
     "pack-l1": `Le pack réunit ${nombre} fiches pour la L1, dont une pour chaque semestre de droit constitutionnel. ${annexe}`,
-    "pack-l2": `Le pack réunit ${nombre} fiches pour la L2, dont une fiche de droit pénal par semestre. La fiche du second semestre traite aussi des peines. ${annexe}`,
+    "pack-l2": `Le pack réunit ${nombre} fiches pour la L2, dont deux en droit pénal. La fiche de droit pénal général traite aussi des peines. ${annexe}`,
     "pack-l3": `Le pack réunit ${nombre} fiches de L3, dont le droit des sociétés S1 et S2. ${annexe}`,
     "pack-complet": `Le pack réunit ${nombre} fiches pour les trois années de licence, avec les deux semestres de droit des sociétés. ${annexe}`,
   };

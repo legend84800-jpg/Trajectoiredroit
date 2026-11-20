@@ -107,8 +107,8 @@ window.catalogueKit = {
       {
         "code": "penal-general-s2",
         "discipline": "penal",
-        "nom": "Droit pénal général",
-        "semestre": "S2",
+        "nom": "Droit pénal général avec les peines",
+        "semestre": "S1 ou S2",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
         "prixSepare": 4997

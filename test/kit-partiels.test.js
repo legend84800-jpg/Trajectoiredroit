@@ -61,7 +61,7 @@ test("les trios autorisés livrent les fichiers de chacun des supports", () => {
   assert.match(droitConstitutionnel.nom, /Droit constitutionnel \(S1\)/);
   assert.match(droitConstitutionnel.nom, /Droit constitutionnel \(S2\)/);
   const penalGeneral = PRODUITS["pack-kit-partiels-l2--administratif-s2--contrats--penal-general-s2"];
-  assert.match(penalGeneral.nom, /Droit pénal général \(S2\)/);
+  assert.match(penalGeneral.nom, /Droit pénal général avec les peines \(S1 ou S2\)/);
   for (const id of ["fiche-penal-general-l1", "maj-penal-l2-s2", "flashcards-qcm-penal-general-l1"]) {
     assert.ok(PRODUITS[id].blobs.every((fichier) => penalGeneral.blobs.includes(fichier)), id);
   }

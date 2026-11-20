@@ -1574,17 +1574,17 @@
       }
     },
     "fiche-penal-general-l1": {
-      "sha256": "f1cd828fd1dfd93b712aadd379e56f3cf58cb73c4d07a1917edfd2021cabce0d",
+      "sha256": "2a457c6f1449afda26c8efe9d8e50b8cb1f08e9ff50fd47a7477f7dbe1d26d23",
       "pages_pdf": 103,
       "famille": "fiches",
       "fichier_pdf": "fiche-penal-general-l1.pdf",
       "images": [
-        "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p013.webp",
-        "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p014.webp",
-        "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p062.webp",
-        "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p063.webp",
-        "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p064.webp",
-        "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p012.webp"
+        "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p013.webp",
+        "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p014.webp",
+        "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p062.webp",
+        "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p063.webp",
+        "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p064.webp",
+        "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p012.webp"
       ],
       "pages_images": [
         13,
@@ -1610,12 +1610,12 @@
             12
           ],
           "images": [
-            "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p013.webp",
-            "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p014.webp",
-            "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p062.webp",
-            "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p063.webp",
-            "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p064.webp",
-            "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p012.webp"
+            "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p013.webp",
+            "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p014.webp",
+            "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p062.webp",
+            "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p063.webp",
+            "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p064.webp",
+            "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p012.webp"
           ],
           "versions_precedentes": [
             [
@@ -1672,11 +1672,11 @@
         }
       ],
       "vignette": {
-        "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp",
+        "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp",
         "page_pdf": 13
       },
       "preuves_images": {
-        "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p013.webp": {
+        "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p013.webp": {
           "page_pdf": 13,
           "sha256_image": "9dc3a30c792a322a12b18a64730c9dbdd6e99580c7535beded130100f72d07a4",
           "dimensions": [
@@ -1684,7 +1684,7 @@
             2021
           ]
         },
-        "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p014.webp": {
+        "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p014.webp": {
           "page_pdf": 14,
           "sha256_image": "945ea78985d44b985847066064770b405c8288daebc71c966f685eaf19037ebe",
           "dimensions": [
@@ -1692,7 +1692,7 @@
             2021
           ]
         },
-        "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p062.webp": {
+        "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p062.webp": {
           "page_pdf": 62,
           "sha256_image": "563e55b27b05eb854950082c7efbc53a57248899b020200aca870fce474e9da8",
           "dimensions": [
@@ -1700,7 +1700,7 @@
             2021
           ]
         },
-        "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p063.webp": {
+        "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p063.webp": {
           "page_pdf": 63,
           "sha256_image": "2a1ef3dcfafd125790355f4351c80fca0d11bae5e34b419cc37a3d086ea5322b",
           "dimensions": [
@@ -1708,7 +1708,7 @@
             2021
           ]
         },
-        "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p064.webp": {
+        "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p064.webp": {
           "page_pdf": 64,
           "sha256_image": "2799d17a63c85433172de6d68592fad681f1a3664971a4f319e8619fce3035dc",
           "dimensions": [
@@ -1716,7 +1716,7 @@
             2021
           ]
         },
-        "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p012.webp": {
+        "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p012.webp": {
           "page_pdf": 12,
           "sha256_image": "971801786989c8462aa3b95ec175f0b6efae91a88e7381310780ea39073780df",
           "dimensions": [
@@ -1724,7 +1724,7 @@
             2021
           ]
         },
-        "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp": {
+        "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp": {
           "page_pdf": 13,
           "sha256_image": "fe9a2c891b3282203e392623c359ae12aba6ef858057c7f5450a82f6b9499cb9",
           "dimensions": [
@@ -8333,15 +8333,15 @@
       }
     },
     "cas-pratique-penal-general-l1": {
-      "sha256": "17cd8278014259225bcc4ec9ebc01680b2891e85a255071b0285835ac1a4d38e",
+      "sha256": "a108134bae12a09c715f01c0db1dd12419c379d26d5151e4e162926fe0c708e4",
       "pages_pdf": 160,
       "famille": "recueils",
       "fichier_pdf": "cas-pratique-penal-general-l1.pdf",
       "images": [
-        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p001.webp",
-        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p002.webp",
-        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p003.webp",
-        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p007.webp"
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p001.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p002.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p003.webp",
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p007.webp"
       ],
       "pages_images": [
         1,
@@ -8352,10 +8352,10 @@
       "variantes": [
         {
           "avant": [
-            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p001.webp",
-            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p002.webp",
-            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p003.webp",
-            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p007.webp"
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p007.webp"
           ],
           "pages": [
             1,
@@ -8364,41 +8364,41 @@
             7
           ],
           "images": [
-            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p001.webp",
-            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p002.webp",
-            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p003.webp",
-            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p007.webp"
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p001.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p002.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p003.webp",
+            "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p007.webp"
           ]
         }
       ],
       "preuves_images": {
-        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p001.webp": {
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p001.webp": {
           "page_pdf": 1,
-          "sha256_image": "c28798dfe94504e5c8973fba2ec04c69e20df315c09e5608f258d9ba20c8b788",
+          "sha256_image": "5c2073b513e4c092e78b534de94265b2fc2928c0214f9d12d679c0c3278d7278",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p002.webp": {
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p002.webp": {
           "page_pdf": 2,
-          "sha256_image": "1cc2b92f8035ca8506822b00d5c22f85c0eb3e3b9c815c93c6886defa0bb0ba8",
+          "sha256_image": "e409a52654fcf8859998b9e728728782d0521fe96dd2846f7ee20282f51ecd0e",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p003.webp": {
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p003.webp": {
           "page_pdf": 3,
-          "sha256_image": "3f849b0cbe222128cb1c2d6500febc2822fe54f30fc2f677f56ed85fcd609e07",
+          "sha256_image": "d77fdc821b7df358ad48e22f05d1bce78f83562be71ac9da6214c8c2e605ba36",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/17cd82780142-p007.webp": {
+        "assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p007.webp": {
           "page_pdf": 7,
-          "sha256_image": "7117a953cc96c3ab751f21d58e37a055f39eab8b3fb4941f3084fae73ce006e8",
+          "sha256_image": "d57ff2b6e70cb23d8565811445cdbd7db00682e345c2a3abdede043b2371726e",
           "dimensions": [
             1429,
             2021
@@ -10308,17 +10308,17 @@
     "assets/apercus/penal-general-l1-zoom.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 13,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp"
     },
     "assets/apercus/penal-general-l1-1.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 13,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp"
     },
     "assets/apercus/penal-general-l1-2.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 62,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p062.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p062.webp"
     },
     "assets/apercus/penal-l2-s1-zoom.webp": {
       "produit": "fiche-penal-l2-s1",
@@ -11081,7 +11081,7 @@
     "assets/apercus/vignettes/penal-general-l1.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 13,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp"
     },
     "assets/apercus/vignettes/penal-l2-s1.webp": {
       "produit": "fiche-penal-l2-s1",
@@ -11890,22 +11890,22 @@
     "assets/apercus/lisibilite-20261107/fiche-penal-general-l1/c9dd1e348ee5-p014.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 13,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-penal-general-l1/c9dd1e348ee5-p063.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 62,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p062.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p062.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-penal-general-l1/c9dd1e348ee5-p064.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 63,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p063.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p063.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-penal-general-l1/c9dd1e348ee5-p014-vignette.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 13,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-personnes-l1/440a01f2eaff-p045.webp": {
       "produit": "fiche-personnes-l1",
@@ -13150,37 +13150,37 @@
     "assets/apercus/lisibilite-20261107/fiche-penal-general-l1/7774018c7553-p012.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 12,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p012.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p012.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-penal-general-l1/7774018c7553-p013-vignette.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 13,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-penal-general-l1/7774018c7553-p013.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 13,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-penal-general-l1/7774018c7553-p014.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 14,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p014.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p014.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-penal-general-l1/7774018c7553-p062.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 62,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p062.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p062.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-penal-general-l1/7774018c7553-p063.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 63,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p063.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p063.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-penal-general-l1/7774018c7553-p064.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 64,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p064.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p064.webp"
     },
     "assets/apercus/lisibilite-20261107/fiche-societes-l3-s1/7709d6ba13dc-p002.webp": {
       "produit": "fiche-societes-l3-s1",
@@ -14675,37 +14675,37 @@
     "assets/apercus/abreviations-20261110/fiche-penal-general-l1/49bc04656ee0-p012.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 12,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p012.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p012.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-penal-general-l1/49bc04656ee0-p013-vignette.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 13,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-penal-general-l1/49bc04656ee0-p013.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 13,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-penal-general-l1/49bc04656ee0-p014.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 14,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p014.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p014.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-penal-general-l1/49bc04656ee0-p062.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 62,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p062.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p062.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-penal-general-l1/49bc04656ee0-p063.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 63,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p063.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p063.webp"
     },
     "assets/apercus/abreviations-20261110/fiche-penal-general-l1/49bc04656ee0-p064.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 64,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p064.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p064.webp"
     },
     "assets/apercus/lisibilite-20261107/maj-societes-l3-s1/b929de6cd215-p002.webp": {
       "produit": "maj-societes-l3-s1",
@@ -15645,37 +15645,37 @@
     "assets/apercus/abreviations-tjd-20261110/fiche-penal-general-l1/856990513587-p013.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 13,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-penal-general-l1/856990513587-p014.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 14,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p014.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p014.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-penal-general-l1/856990513587-p062.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 62,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p062.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p062.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-penal-general-l1/856990513587-p063.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 63,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p063.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p063.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-penal-general-l1/856990513587-p064.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 64,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p064.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p064.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-penal-general-l1/856990513587-p012.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 12,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p012.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p012.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-penal-general-l1/856990513587-p013-vignette.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 13,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp"
     },
     "assets/apercus/abreviations-tjd-20261110/fiche-penal-l2-s1/1a7c1b771cde-p058.webp": {
       "produit": "fiche-penal-l2-s1",
@@ -16582,37 +16582,37 @@
     "assets/apercus/affichage-20261111/fiche-penal-general-l1/00fae925488b-p013.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 13,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp"
     },
     "assets/apercus/affichage-20261111/fiche-penal-general-l1/00fae925488b-p014.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 14,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p014.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p014.webp"
     },
     "assets/apercus/affichage-20261111/fiche-penal-general-l1/00fae925488b-p062.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 62,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p062.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p062.webp"
     },
     "assets/apercus/affichage-20261111/fiche-penal-general-l1/00fae925488b-p063.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 63,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p063.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p063.webp"
     },
     "assets/apercus/affichage-20261111/fiche-penal-general-l1/00fae925488b-p064.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 64,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p064.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p064.webp"
     },
     "assets/apercus/affichage-20261111/fiche-penal-general-l1/00fae925488b-p012.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 12,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p012.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p012.webp"
     },
     "assets/apercus/affichage-20261111/fiche-penal-general-l1/00fae925488b-miniature-p013.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 13,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp"
     },
     "assets/apercus/affichage-20261111/fiche-biens-l2/80c84128cfba-p041.webp": {
       "produit": "fiche-biens-l2",
@@ -18112,32 +18112,32 @@
     "assets/apercus/typographie-20261113/fiche-penal-general-l1/1b9cab1398c1-p013.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 13,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-vignette-p013.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-vignette-p013.webp"
     },
     "assets/apercus/typographie-20261113/fiche-penal-general-l1/1b9cab1398c1-p014.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 14,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p014.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p014.webp"
     },
     "assets/apercus/typographie-20261113/fiche-penal-general-l1/1b9cab1398c1-p062.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 62,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p062.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p062.webp"
     },
     "assets/apercus/typographie-20261113/fiche-penal-general-l1/1b9cab1398c1-p063.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 63,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p063.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p063.webp"
     },
     "assets/apercus/typographie-20261113/fiche-penal-general-l1/1b9cab1398c1-p064.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 64,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p064.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p064.webp"
     },
     "assets/apercus/typographie-20261113/fiche-penal-general-l1/1b9cab1398c1-p012.webp": {
       "produit": "fiche-penal-general-l1",
       "page": 12,
-      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/f1cd828fd1df-p012.webp"
+      "image": "assets/apercus/finition-20261114/fiche-penal-general-l1/2a457c6f1449-p012.webp"
     },
     "assets/apercus/typographie-20261113/fiche-hist-droit-l1/db4aa1fa2a19-p029.webp": {
       "produit": "fiche-hist-droit-l1",

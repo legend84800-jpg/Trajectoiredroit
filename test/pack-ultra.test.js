@@ -45,8 +45,8 @@ test("chaque Pack Ultra contient exactement les références de son semestre", (
       assert.deepEqual(ancien.blobs, actives.flatMap(reference => PRODUITS[reference].blobs));
       assert.equal(ancien.venteSuspendue, true);
       actives = actives.filter(reference => !PENAL_GENERAL.includes(reference));
-    } else if (id === "pack-ultra-l2-s2") {
-      actives.push(...PENAL_GENERAL);
+    } else if (id === "pack-ultra-l2-s1" || id === "pack-ultra-l2-s2") {
+      actives = [...new Set([...actives, ...PENAL_GENERAL])];
     }
     assert.deepEqual(revision.inclus, actives, id);
     assert.deepEqual(revision.blobs, actives.flatMap(reference => PRODUITS[reference].blobs), id);

@@ -24,7 +24,7 @@ const NIVEAUX = {
       { nom: "Droit des contrats", href: "droit-des-contrats-l2.html" },
       { nom: "Droit des obligations", href: "droit-des-obligations-l2.html" },
       { nom: "Droit pénal", href: "droit-penal-l2.html" },
-      { nom: "Droit pénal général (S2)", href: "droit-penal-general-l2.html" },
+      { nom: "Droit pénal général", href: "droit-penal-general-l2.html" },
       { nom: "Droit des biens", href: "droit-des-biens-l2.html" },
     ],
   },

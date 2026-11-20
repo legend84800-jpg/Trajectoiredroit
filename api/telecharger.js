@@ -40,8 +40,8 @@ const PAGE_LIEN_EXPIRE = `<!doctype html>
 function nomFichierDepuisUrl(url) {
   try {
     return decodeURIComponent(new URL(url).pathname.split("/").pop() || "document.pdf")
-      .replace(/penal-general-l1(?=[.-])/, "penal-general-l2-s2")
-      .replace(/^fiche-arret-penal-plan-l1s2\.pdf$/, "fiche-arret-penal-plan-l2s2.pdf");
+      .replace(/penal-general-l1(?=[.-])/, "penal-general-l2")
+      .replace(/^fiche-arret-penal-plan-l1s2\.pdf$/, "fiche-arret-penal-plan-general-l2.pdf");
   } catch {
     return "document.pdf";
   }

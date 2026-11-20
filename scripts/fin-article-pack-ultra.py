@@ -59,7 +59,7 @@ FICHES = {
                   "Tout le cours en PDF"),
     "constit": ("Droit constitutionnel L1", "droit-constitutionnel-l1.html#fiches", "assets/apercus/constit-l1-s2-1.jpg",
                 "Tout le programme en PDF, avec les grandes décisions du Conseil constitutionnel et la méthode de la dissertation"),
-    "penalgen": ("Droit pénal général L2 S2", "droit-penal-general-l2.html#fiches", "assets/apercus/penal-general-l1-1.jpg",
+    "penalgen": ("Droit pénal général L2", "droit-penal-general-l2.html#fiches", "assets/apercus/penal-general-l1-1.jpg",
                  "Tout le cours en PDF, avec cet arrêt et tous les autres"),
     "contrats": ("Droit des contrats L2", "droit-des-contrats-l2.html#fiches", "assets/apercus/contrats-l2-s1-1.jpg",
                  "Tout le cours en PDF, à jour de la réforme du droit des contrats de 2016"),
@@ -198,6 +198,15 @@ def minuscule(titre):
 
 
 def carte_pack(cle, sid):
+    if cle == "penalgen":
+        return '''    <!-- fin-article:pack-ultra -->
+    <section class="section article-pack-ligne" aria-label="Les deux Packs Ultra de L2">
+      <div class="container">
+        <p class="article-pack-ligne__texte">La fiche et les cas pratiques de droit pénal général sont inclus dans les deux Packs Ultra de L2. Voir le <a href="pack-ultra.html#pack-ultra-l2-s1">Pack Ultra L2 S1</a> ou le <a href="pack-ultra.html#pack-ultra-l2-s2">Pack Ultra L2 S2</a>.</p>
+        <p class="article-pack__back"><a href="blog.html">← Revenir au blog</a></p>
+      </div>
+    </section>
+'''
     p = PACKS[sid]
     label, titre, *_ = produit(cle)
     num = sid[1]

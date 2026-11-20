@@ -58,7 +58,7 @@ function libelleFichierPrincipal(nomProduit) {
 
 function libelleAnnexe(brut, suffixes) {
   if (brut.endsWith("-textes-des-arrets")) return "les textes des arrêts";
-  if (brut === "fiche-arret-penal-plan-l1s2") return "le plan L2 S2";
+  if (brut === "fiche-arret-penal-plan-l1s2") return "le plan de droit pénal général L2";
   const planSemestre = brut.match(/-plan-(l[123])s([12])$/i);
   if (planSemestre) return `le plan ${planSemestre[1].toUpperCase()} S${planSemestre[2]}`;
   const segments = brut.split("-");
