@@ -168,7 +168,9 @@
           const finMontant = debut + prix[0].length;
           const suffixe = mensuel ? texte.slice(finMontant).match(uniteMensuelle)?.[0] || "" : "";
           const finPrix = finMontant + suffixe.length;
-          fragments.push(texte.slice(curseur, debut), paire(texte.slice(debut, finPrix), nominal, prixFinal, mensuel));
+          const libelle = texte.slice(curseur, debut);
+          const avantPrix = id ? libelle.replace(/\s*·\s*$/, "") : libelle;
+          fragments.push(avantPrix, paire(texte.slice(curseur + avantPrix.length, finPrix), nominal, prixFinal, mensuel));
           curseur = finPrix;
           const lien = element.matches(".megamenu__pack-tile-price") ? element.closest(".megamenu__pack-tile") : element;
           remplacerEtiquette(lien, centimes(prix[0]), prixFinal);

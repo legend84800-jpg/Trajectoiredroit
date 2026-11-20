@@ -180,8 +180,9 @@ test('le semestre recherché correspond à la fiche et exclut les offres d’ajo
     ['contrats L2S1', ['cours-images-contrats-l2-s1', 'fiche-contrats-l2-s1']],
     ['contrats L2-S1', ['cours-images-contrats-l2-s1', 'fiche-contrats-l2-s1']],
     ['contrats L2 S1', ['cours-images-contrats-l2-s1', 'fiche-contrats-l2-s1']],
-    ['droit pénal L2 S1', ['fiche-penal-l2-s1']],
+    ['droit pénal L2 S1', ['fiche-penal-general-l1', 'fiche-penal-l2-s1']],
     ['droit pénal L2-S2', ['fiche-penal-general-l1']],
+    ['droit pénal général L2 S1', ['fiche-penal-general-l1']],
     ['responsabilité civile S2', ['fiche-obligations-l2-s2']],
     ['droit des biens', ['fiche-biens-l2']],
     ['droit des biens S1', []]

@@ -32,12 +32,15 @@
     racine.tjdCataloguePret = true;
     var cartes = Array.prototype.slice.call(grille.querySelectorAll('article[data-niveau]')).map(function (carte) {
       var meta = carte.querySelector('.product__meta');
-      var semestre = normaliser(meta && meta.textContent).match(/\bsemestre\s+([12])\b/);
+      var texteMeta = normaliser(meta && meta.textContent);
+      var semestresCarte = Array.from(texteMeta.matchAll(/\b(?:semestre\s+|s)([12])\b/g), function (match) {
+        return match[1];
+      });
       var champs = carte.querySelectorAll('.badge--format, .product__title, .product__meta, .product__edition, .product__desc, .product__sommaire-list');
       return {
         element: carte,
         display: carte.style.display,
-        semestre: semestre ? semestre[1] : null,
+        semestres: semestresCarte,
         texte: normaliser(Array.prototype.map.call(champs, function (champ) { return champ.textContent; }).join(' ')),
         niveaux: (carte.getAttribute('data-niveau') || '').split(',').map(function (niveau) { return niveau.trim(); }),
         matieres: (carte.getAttribute('data-matiere') || '').split(',').map(function (matiere) { return matiere.trim(); })
@@ -95,7 +98,7 @@
         var visible = (etat.niveau === 'tous' || carte.niveaux.indexOf(etat.niveau) !== -1)
           && (etat.matiere === 'tous' || carte.matieres.indexOf(etat.matiere) !== -1)
           && (!niveauxRecherches.length || niveauxRecherches.some(function (niveau) { return carte.niveaux.indexOf(niveau) !== -1; }))
-          && (!semestres.length || semestres.indexOf(carte.semestre) !== -1)
+          && (!semestres.length || semestres.some(function (semestre) { return carte.semestres.includes(semestre); }))
           && mots.every(function (mot) { return carte.texte.indexOf(mot) !== -1; });
         carte.element.hidden = !visible;
         carte.element.style.display = visible ? carte.display : 'none';

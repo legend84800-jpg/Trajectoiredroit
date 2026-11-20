@@ -39,13 +39,13 @@ function cartesCatalogue(html, page, formatAttendu) {
     const titre = texteHtml(corps.match(/<h3\b[^>]*class=["']product__title["'][^>]*>([\s\S]*?)<\/h3>/i)?.[1]);
     const format = texteHtml(corps.match(/<span\b[^>]*class=["'][^"']*\bbadge--format\b[^"']*["'][^>]*>([\s\S]*?)<\/span>/i)?.[1]);
     const meta = texteHtml(corps.match(/<div\b[^>]*class=["']product__meta["'][^>]*>([\s\S]*?)<\/div>/i)?.[1]);
-    const repereMeta = meta.match(/^(L[123])(?: · (?:Semestre |S)([12]))?(?: ·|$)/);
-    if (ancre !== produit || format !== formatAttendu || !titre || repereMeta?.[1] !== niveau) continue;
+    const niveauMeta = meta.match(/^(L[123])(?: ·|$)/)?.[1];
+    if (ancre !== produit || format !== formatAttendu || !titre || niveauMeta !== niveau) continue;
 
-    const semestre = repereMeta[2] ? 'S' + repereMeta[2] : '';
-    const sujet = semestre ? titre.replace(new RegExp(` \\(${semestre}\\)$`), '') : titre;
-    const repere = semestre ? niveau + ' ' + semestre : niveau;
-    const licence = 'Licence ' + niveau.slice(1) + (semestre ? ' semestre ' + semestre.slice(1) : '');
+    const semestres = Array.from(meta.matchAll(/\b(?:Semestre\s+|S)([12])\b/gi), (match) => match[1]);
+    const sujet = semestres.length === 1 ? titre.replace(new RegExp(` \\(S${semestres[0]}\\)$`), '') : titre;
+    const repere = [niveau, semestres.map((semestre) => 'S' + semestre).join(' ou ')].filter(Boolean).join(' ');
+    const licence = ['Licence ' + niveau.slice(1), ...semestres.map((semestre) => 'semestre ' + semestre)].join(' ');
     const motsFormat = format === 'Fiche complète' ? 'Fiche complète fiche de révision PDF' : format.replace(' + ', ' et ');
     cartes.push({ t: sujet + ' · ' + repere, u: '/' + page + '#' + ancre, c: format, k: motsFormat + ' de ' + sujet + ' ' + licence });
   }

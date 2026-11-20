@@ -91,6 +91,11 @@ test('les fiches complètes actives mènent toutes à une carte au bon niveau da
   }
   assert.equal(rechercher(index, 'fiche droit pénal L2 S1')[0].u, prefixe + 'fiche-penal-l2-s1');
   assert.equal(rechercher(index, 'fiche droit pénal L2 S2')[0].u, prefixe + 'fiche-penal-general-l1');
+  for (const semestre of ['S1', 'S2']) {
+    const [fiche] = rechercher(index, 'fiche droit pénal général L2 ' + semestre);
+    assert.equal(fiche.u, prefixe + 'fiche-penal-general-l1');
+    assert.match(fiche.t, /L2 S1 ou S2$/);
+  }
   assert.equal(rechercher(index, 'fiche droit des biens L2 S1').filter((entree) => entree.u.startsWith(prefixe)).length, 0);
 });
 
