@@ -11,7 +11,7 @@
     ".ultra-card__price", ".ultra-card__payment", ".cim-prix > strong",
     ".sticky-cta-bar:has([data-tjd-produit]) .sticky-cta-bar__text > *",
     "#apercuPrice", ".duo-partiels__prix", "[data-kit-prix]", "[data-kit-echeance]",
-    "#detail-paiement", "#prix-separe", "td.prix", "td.prix + td", "[data-echeances-libelle]",
+    "[data-kit-total-echeances]", "td.prix", "td.prix + td", "[data-echeances-libelle]",
     ".ph-amount", ".plan > .price", "#choixDetail", "[data-recharge]",
   ].join(",");
   const contexteMensuel = ".ph-amount, .plan > .price, .compare-needs__price, #choixDetail";
@@ -40,15 +40,19 @@
     .then((reponse) => reponse.ok ? reponse.json() : null)
     .catch(() => null);
 
-  function paire(original, avant, apres, mensuel = false) {
+  function paire(original, avant, apres, mensuel = false, prixActuelSeul = false) {
     const groupe = document.createElement("span");
     groupe.className = "tjd-prix-remise";
     groupe.dataset.prixOrigine = original;
+    const nouveau = document.createElement("strong");
+    nouveau.textContent = euros(apres);
+    if (prixActuelSeul) {
+      groupe.append(nouveau);
+      return groupe;
+    }
     const ancien = document.createElement("del");
     ancien.textContent = euros(avant);
     ancien.setAttribute("aria-hidden", "true");
-    const nouveau = document.createElement("strong");
-    nouveau.textContent = euros(apres);
     nouveau.setAttribute("aria-hidden", "true");
 
     const lecteur = document.createElement("span");
@@ -86,7 +90,7 @@
       element.setAttribute("aria-label", nouvelle);
     }
 
-    function montantsEcheance(element, base, index) {
+    function montantsEcheance(element, base) {
       if (element.matches(".ultra-card__payment, td.prix + td")) {
         const paiement = element.matches("td") ? element.previousElementSibling :
           element.parentElement.querySelector(".ultra-card__price");
@@ -97,14 +101,13 @@
         const total = Number(document.querySelector("#offrirPack")?.selectedOptions[0]?.dataset.prix);
         if (nombre > 1 && total > 0) return Math.floor(reduire(total) / nombre);
       }
-      const kitDeuxFois = element.matches("#detail-paiement") && document.querySelector("#payer-deux-fois")?.checked;
-      if (element.matches("[data-kit-echeance]") || kitDeuxFois ||
-          (element.matches("[data-kit-prix]") && element.closest("details"))) {
-        const total = window.catalogueKit?.prix ?? trouve(document.querySelector(".price-main [data-kit-prix]"));
+      const totalKitEcheances = element.matches("[data-kit-total-echeances]") ||
+        (element.matches("[data-kit-prix]") && element.closest("details"));
+      if (element.matches("[data-kit-echeance]") || totalKitEcheances) {
+        const total = window.catalogueKit?.prix ?? trouve(document.querySelector(".offer-line [data-kit-prix]"));
         if (total > 0) {
           const echeance = Math.floor(reduire(total) / 2);
-          const afficheTotal = element.matches("[data-kit-prix]") || (kitDeuxFois && index === 2);
-          return afficheTotal ? 2 * echeance : echeance;
+          return totalKitEcheances ? 2 * echeance : echeance;
         }
       }
       return reduire(base);
@@ -151,7 +154,7 @@
           return parent.closest(cible) === element ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
         },
       });
-      let index = 0;
+      const prixActuelSeul = element.closest("[data-tjd-prix-actuel]") !== null;
       const selection = [];
       for (let noeud = textes.nextNode(); noeud; noeud = textes.nextNode()) selection.push(noeud);
       for (const noeud of selection) {
@@ -163,18 +166,18 @@
           if (nominal <= 0) continue;
           const n = Number(element.dataset.tjdEcheances);
           const prixFinal = n > 1 && catalogue?.[id] ? Math.floor(reduire(catalogue[id]) / n) :
-            montantsEcheance(element, nominal, index);
+            montantsEcheance(element, nominal);
           const debut = prix.index;
           const finMontant = debut + prix[0].length;
           const suffixe = mensuel ? texte.slice(finMontant).match(uniteMensuelle)?.[0] || "" : "";
           const finPrix = finMontant + suffixe.length;
           const libelle = texte.slice(curseur, debut);
           const avantPrix = id ? libelle.replace(/\s*·\s*$/, "") : libelle;
-          fragments.push(avantPrix, paire(texte.slice(curseur + avantPrix.length, finPrix), nominal, prixFinal, mensuel));
+          const original = texte.slice(curseur + avantPrix.length, finPrix);
+          fragments.push(avantPrix, paire(original, nominal, prixFinal, mensuel, prixActuelSeul));
           curseur = finPrix;
           const lien = element.matches(".megamenu__pack-tile-price") ? element.closest(".megamenu__pack-tile") : element;
           remplacerEtiquette(lien, centimes(prix[0]), prixFinal);
-          index += 1;
         }
         if (fragments.length) noeud.replaceWith(...fragments, texte.slice(curseur));
       }

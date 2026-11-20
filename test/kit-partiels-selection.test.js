@@ -61,7 +61,7 @@ function ouvrirKit(sessionStorage, recherche = "") {
   listeMatieres.querySelectorAll = () => listeMatieres.children.map((label) => label.children[0]);
   const document = {
     querySelector: () => form,
-    querySelectorAll: () => [],
+    querySelectorAll: (selecteur) => [form.querySelector(selecteur)],
     createElement: element,
     createTextNode: (texte) => ({ textContent: texte }),
   };
@@ -84,7 +84,11 @@ function ouvrirKit(sessionStorage, recherche = "") {
     get compteur() { return champs.get("#compteur").textContent; },
     get paiement() { return paiements.actif; },
     get remplacement() { return !champs.get("#kit-remplacement").hidden; },
-    get paiementAffiche() { return champs.get("#detail-paiement").textContent.replace(/\s+/g, " "); },
+    get detailPaiementVisible() { return !champs.get("#detail-paiement").hidden; },
+    get montants() {
+      return ["[data-kit-prix]", "[data-kit-echeance]", "[data-kit-total-echeances]"]
+        .map((selecteur) => champs.get(selecteur).textContent.replace(/\s+/g, " "));
+    },
     get pack() { return champs.get("#duo-partiels").hidden ? null : champs.get("#duo-partiels-lien").href; },
     get avertissement() { return !champs.get("#kit-matiere-info").hidden; },
     get commander() { return !champs.get("#commander").disabled; },
@@ -146,8 +150,21 @@ test("retrouve le niveau et les matières après rechargement dans le même ongl
     assert.equal(retour.compteur, "3 sur 3");
     assert.equal(retour.commander, true);
     assert.equal(retour.paiement, "2");
-    assert.equal(retour.paiementAffiche, "34,50 € aujourd’hui et 34,50 € dans un mois. Total 69 €.");
+    assert.equal(retour.detailPaiementVisible, true);
   }
+});
+
+test("affiche le détail des échéances uniquement après avoir choisi le paiement en deux fois", () => {
+  const session = stockage();
+  session.setItem(cleSelection, JSON.stringify({ niveau: "l2", codes: ["contrats"] }));
+  const kit = ouvrirKit(session);
+  assert.deepEqual(kit.matieres, ["contrats"]);
+  assert.deepEqual(kit.montants, ["69 €", "34,50 €", "69 €"]);
+  assert.equal(kit.detailPaiementVisible, false);
+  kit.choisirPaiement("2");
+  assert.equal(ouvrirKit(session).detailPaiementVisible, true);
+  kit.choisirPaiement("1");
+  assert.equal(ouvrirKit(session).detailPaiementVisible, false);
 });
 
 test("retrouve le duo à comparer et conserve le retrait d’une matière", () => {

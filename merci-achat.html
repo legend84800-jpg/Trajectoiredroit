@@ -56,6 +56,34 @@
     .achat-retour__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 22px; }
     .achat-retour__actions .btn { width: auto; }
     @media (max-width: 480px) { .achat-retour__actions .btn { width: 100%; } }
+    #purchaseDownloads .telechargements-produit {
+      border: 1px solid var(--border, #e2e8f0);
+      border-radius: 12px;
+      padding: 14px;
+      min-width: 0;
+      background: var(--surface, #fff);
+      text-align: left;
+    }
+    #purchaseDownloads .telechargements-produit h3 {
+      color: var(--navy);
+      font-size: 1rem;
+      line-height: 1.35;
+      margin: 0 0 10px;
+    }
+    #purchaseDownloads .telechargements-produit a {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 8px 12px;
+      margin-top: 6px;
+      line-height: 1.3;
+      justify-content: flex-start;
+      text-align: left;
+      white-space: normal;
+    }
+    @media (max-width: 480px) {
+      #purchaseDownloads.card.telechargements-groupes { padding: 20px 16px !important; }
+    }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
@@ -593,6 +621,52 @@
       }
     };
 
+    function boutonTelechargement(lien, classe) {
+      var bouton = document.createElement('a');
+      bouton.className = 'btn ' + classe;
+      bouton.href = lien.url;
+      bouton.rel = 'nofollow noreferrer';
+      bouton.textContent = 'Télécharger ' + lien.nom;
+      return bouton;
+    }
+
+    function grouperTelechargements(liens, nomsProduits) {
+      var groupes = new Map();
+      if (!nomsProduits) return groupes;
+      for (var lien of liens) {
+        var produitId = lien.produitId;
+        var nom = Object.prototype.hasOwnProperty.call(nomsProduits, produitId) && nomsProduits[produitId];
+        if (!produitId || typeof nom !== 'string' || !nom.trim()) return new Map();
+        if (!groupes.has(produitId)) groupes.set(produitId, { nom: nom, liens: [] });
+        groupes.get(produitId).liens.push(lien);
+      }
+      return groupes;
+    }
+
+    function afficherTelechargements(liens, nomsProduits) {
+      var carte = document.getElementById('purchaseDownloads');
+      var liste = document.getElementById('purchaseDownloadsList');
+      var groupes = grouperTelechargements(liens, nomsProduits);
+      liste.textContent = '';
+      carte.classList.toggle('telechargements-groupes', groupes.size > 1);
+      if (groupes.size > 1) {
+        groupes.forEach(function (groupe, produitId) {
+          var bloc = document.createElement('section');
+          bloc.className = 'telechargements-produit';
+          var titre = document.createElement('h3');
+          titre.textContent = groupe.nom.replace(/^Fiche complète /, '');
+          titre.id = 'purchaseDownloads-title-' + produitId;
+          bloc.setAttribute('aria-labelledby', titre.id);
+          bloc.appendChild(titre);
+          groupe.liens.forEach(function (lien) { bloc.appendChild(boutonTelechargement(lien, 'btn--outline')); });
+          liste.appendChild(bloc);
+        });
+      } else {
+        liens.forEach(function (lien) { liste.appendChild(boutonTelechargement(lien, 'btn--primary')); });
+      }
+      carte.hidden = false;
+    }
+
     function afficherAchatConfirme() {
       var d = donneesSession;
       // Chantier 5.12 : vide le panier seulement ici, sur la confirmation réelle du
@@ -617,17 +691,7 @@
       // pour qu'un email classé en indésirables ou refusé ne bloque plus l'acheteur.
       var liens = (d && Array.isArray(d.liens)) ? d.liens.filter(function (l) { return l && l.url && l.type !== 'video' && l.type !== 'audio'; }) : [];
       if (liens.length && !(d && d.cadeau)) {
-        var liste = document.getElementById('purchaseDownloadsList');
-        liste.textContent = '';
-        liens.forEach(function (l) {
-          var a = document.createElement('a');
-          a.className = 'btn btn--primary';
-          a.href = l.url;
-          a.rel = 'nofollow noreferrer';
-          a.textContent = 'Télécharger ' + l.nom;
-          liste.appendChild(a);
-        });
-        document.getElementById('purchaseDownloads').hidden = false;
+        afficherTelechargements(liens, d.nomsProduits);
         statusTitle.textContent = 'Tes fichiers sont prêts';
         statusMessage.textContent = 'Paiement reçu. Tu peux télécharger tes fichiers juste en dessous, et tu reçois aussi un email avec les mêmes liens.';
       }

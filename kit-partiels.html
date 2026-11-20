@@ -13,12 +13,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
-  <link rel="stylesheet" href="assets/kit-partiels/styles.css?v=81b6a35a">
+  <link rel="stylesheet" href="assets/kit-partiels/styles.css?v=97e6197f">
   <script src="assets/js/main.js?v=909718f7" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
   <script src="assets/kit-partiels/catalogue.js?v=0f8a478b" defer></script>
-  <script src="assets/kit-partiels/composer.js?v=575c448a" defer></script>
+  <script src="assets/kit-partiels/composer.js?v=9c86a331" defer></script>
 </head>
 <body id="haut">
   <header class="header">
@@ -101,24 +101,20 @@
   <div class="summary">
     <h3 class="summary-head">Ton Kit Partiels</h3>
     <div class="selection" id="selection"></div>
-    <div class="pricing">
-      <div class="price-main"><strong data-kit-prix>69 €</strong><span id="prix-kit-indication">pour tes trois choix</span></div>
-      <p id="comparaison" class="compare">Les mêmes supports coûtent <strong id="prix-separe"></strong> à l’unité.</p>
-    </div>
-    <fieldset>
+    <fieldset class="pay" data-tjd-prix-actuel>
       <legend class="control-name">Paiement</legend>
       <div class="pay-list">
         <div class="pay-option">
           <input id="payer-une-fois" name="paiement" type="radio" value="1" checked>
-          <label for="payer-une-fois"><span class="pay-name">En une fois</span><span data-kit-prix>69 €</span></label>
+          <label for="payer-une-fois"><span>En une fois</span><span class="pay-price" data-kit-prix>69 €</span></label>
         </div>
         <div class="pay-option">
-          <input id="payer-deux-fois" name="paiement" type="radio" value="2">
-          <label for="payer-deux-fois"><span class="pay-name">2 paiements sur 2 mois</span> <span>2 × <span data-kit-echeance>34,50 €</span> sans frais</span></label>
+          <input id="payer-deux-fois" name="paiement" type="radio" value="2" aria-describedby="detail-paiement">
+          <label for="payer-deux-fois"><span>En deux fois</span> <span class="pay-price">2 × <span data-kit-echeance>34,50 €</span></span></label>
         </div>
       </div>
+      <p class="pay-note" id="detail-paiement" hidden>Un paiement aujourd’hui, le second dans un mois. <span class="pay-total">Total en deux fois <span data-kit-total-echeances>69 €</span>.</span></p>
     </fieldset>
-    <p class="pay-note" id="detail-paiement" aria-live="polite"></p>
     <button class="button" id="commander" type="submit" disabled>Coche trois cases</button>
     <p class="delivery">Tes fichiers arrivent par email dès le premier paiement.</p>
   </div>

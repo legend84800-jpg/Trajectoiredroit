@@ -71,7 +71,7 @@ p { max-width: 64ch; }
 .control-name { font-weight: 740; font-size: 16px; padding-bottom: 11px; color: var(--navy); }
 .niveaux { display: flex; gap: 8px; padding-bottom: 20px; }
 .level-option { position: relative; }
-.level-option input, .pay-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.level-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .level-option label { min-width: 64px; min-height: 40px; display: grid; place-items: center; padding-inline: 16px; border: 1px solid var(--line); border-radius: 8px; font-weight: 680; cursor: pointer; color: var(--navy); }
 .level-option input:checked + label { background: var(--navy); border-color: var(--navy); color: var(--white); }
 .level-option input:focus-visible + label, .pay-option input:focus-visible + label { outline: 3px solid #648cce; outline-offset: 3px; }
@@ -133,12 +133,11 @@ p { max-width: 64ch; }
   .duo-partiels__options { grid-template-columns: 1fr; gap: 10px; }
   .duo-partiels__options > div + div { border-top: 1px solid var(--line); padding-top: 13px; }
 }
-.summary { padding: clamp(19px, 3vw, 29px); border: 1px solid var(--line); border-top: 3px solid var(--navy); border-radius: 13px; background: var(--white); }
+.summary { padding: clamp(19px, 3vw, 29px); border: 1px solid var(--line); border-radius: 13px; background: var(--white); }
 .summary-head { color: var(--navy); font: 700 30px/1.15 var(--font-display); margin-bottom: 6px; }
 .selection { min-height: 22px; color: var(--body); font-size: 14px; }
 .selection ul { list-style: none; padding: 0; margin: 7px 0 0; }
 .selection li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; }
-.selection li + li { border-top: 1px solid var(--line); }
 .selection-retirer {
   min-width: 44px;
   min-height: 44px;
@@ -152,18 +151,16 @@ p { max-width: 64ch; }
   text-underline-offset: 3px;
 }
 .selection-retirer:hover { background: var(--blue-tint); }
-.pricing { padding-block: 15px 13px; margin-block: 15px 11px; border-block: 1px solid var(--line); }
-.price-main { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 11px; }
-.price-main strong { font: 700 44px/1.15 var(--font-display); color: var(--navy); white-space: nowrap; }
-.price-main span { font-size: 14px; font-weight: 650; color: var(--muted); }
-.compare { font-size: 13px; color: var(--body); line-height: 1.45; margin-top: 9px; }
-.compare strong { color: var(--ink); }
-.pay-list { display: grid; gap: 7px; }
+.pay { margin-block: 16px; }
+.pay > legend { padding-bottom: 5px; }
+.pay-list { display: grid; gap: 3px; }
 .pay-option { position: relative; }
-.pay-option label { display: grid; grid-template-columns: 1fr auto; gap: 5px 8px; align-items: center; min-height: 48px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; cursor: pointer; font-size: 14px; }
-.pay-option input:checked + label { background: var(--blue-tint); border-color: #809bc0; }
-.pay-name { font-weight: 670; }
-.pay-note { font-size: 13px; color: var(--muted); margin: 9px 0 13px; }
+.pay-option input { position: absolute; top: 15px; left: 10px; width: 16px; height: 16px; margin: 0; accent-color: var(--blue); cursor: pointer; }
+.pay-option label { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; min-height: 46px; border-radius: 8px; padding: 7px 10px 7px 34px; cursor: pointer; font-size: 14px; }
+.pay-option input:checked + label { background: var(--blue-tint); }
+.pay-price { color: var(--navy); font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pay-note { font-size: 13px; color: var(--body); line-height: 1.45; margin: 8px 0 0 10px; }
+.pay-total { display: block; color: var(--ink); font-weight: 700; }
 .summary .button { width: 100%; }
 .delivery { font-size: 13px; color: var(--green); margin: 10px 0 0; line-height: 1.42; }
 .faq { display: grid; grid-template-columns: minmax(200px, .65fr) minmax(0, 1.35fr); gap: 24px; }
@@ -192,5 +189,4 @@ p { max-width: 64ch; }
   .support, .support + .support { padding: 14px 0; border-left: 0; border-bottom: 1px solid var(--line); }
 }
 @media (max-width: 390px) { .offer-line strong { font-size: 39px; } .wrap { width: calc(100% - 32px); } }
-@media (max-width: 360px) { .pay-option label[for="payer-deux-fois"] { grid-template-columns: 1fr; gap: 2px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

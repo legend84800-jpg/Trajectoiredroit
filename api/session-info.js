@@ -73,20 +73,21 @@ function remiseApplicable(data, produitIds) {
 // partagée de Brevo. Mêmes liens signés que l'email, valables 2 heures.
 const DUREE_LIENS_PAGE_SECONDES = 2 * 3600;
 
-function liensPageRemerciement(data, produitIds) {
+function groupesPageRemerciement(data, produitIds) {
   const secret = process.env.DOWNLOAD_SECRET;
   if (!secret || (data.metadata && data.metadata.cadeauEmail)) return [];
   const PRODUITS = require("./_produits");
-  let liens = [];
-  for (const id of produitIds) {
-    const produit = PRODUITS[id];
-    if (!produit || id === "stage-methode" || !Array.isArray(produit.blobs) || !produit.blobs.length) continue;
+  const groupes = [];
+  for (const produitId of new Set(produitIds)) {
+    const produit = PRODUITS[produitId];
+    if (!produit || produitId === "stage-methode" || !Array.isArray(produit.blobs) || !produit.blobs.length) continue;
     if ((Array.isArray(produit.inclus) && Array.isArray(produit.blobsMeta)) || produit.mediaEnLigne) continue;
-    liens = liens.concat(construireLiensTelechargement(
-      id, produit, secret, "https://trajectoiredroit.com", DUREE_LIENS_PAGE_SECONDES, { sessionId: data.id }
-    ));
+    const liens = construireLiensTelechargement(
+      produitId, produit, secret, "https://trajectoiredroit.com", DUREE_LIENS_PAGE_SECONDES, { sessionId: data.id }
+    ).map(({ nom, url, type }) => ({ nom, url, type }));
+    groupes.push({ produitId, nom: produit.nom, liens });
   }
-  return liens.map(({ nom, url, type }) => ({ nom, url, type }));
+  return groupes;
 }
 
 async function lireOuCreerRemise(data, produitIds, stripe) {
@@ -258,6 +259,8 @@ async function handler(req, res) {
     // échéances, pas la seule première mensualité encaissée par Checkout.
     const montantTotalEcheances = Number(data.metadata && data.metadata.montantTotal);
     const remise = confirmationSeule ? null : await lireOuCreerRemise(data, produitIds, stripe);
+    const groupes = groupesPageRemerciement(data, produitIds);
+    const liensGroupables = confirmationSeule && groupes.length > 1;
     // La réponse porte des liens de téléchargement signés, jamais mis en cache.
     res.status(200).json({
       montant: montantTotalEcheances > 0
@@ -274,7 +277,10 @@ async function handler(req, res) {
       remise: remisePourNavigateur(remise),
       ...(confirmationSeule ? { remisePossible: remiseApplicable(data, produitIds) } : {}),
       emailsAcceptes: cadeau ? true : emailsAcceptes(data),
-      liens: liensPageRemerciement(data, produitIds),
+      liens: groupes.flatMap(({ produitId, liens }) => liensGroupables
+        ? liens.map((lien) => ({ ...lien, produitId }))
+        : liens),
+      ...(liensGroupables ? { nomsProduits: Object.fromEntries(groupes.map(({ produitId, nom }) => [produitId, nom])) } : {}),
     });
   } catch (e) {
     if (e && (e.code === "resource_missing" || e.statusCode === 404)) {
@@ -287,4 +293,4 @@ async function handler(req, res) {
 }
 
 module.exports = handler;
-module.exports._test = { modeDepuisCle, sessionCompatibleAvecCle, remiseApplicable, liensPageRemerciement };
+module.exports._test = { modeDepuisCle, sessionCompatibleAvecCle, remiseApplicable };

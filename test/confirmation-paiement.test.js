@@ -19,6 +19,8 @@ const secretSignature = "signature_factice";
 const paiementId = "pi_factice";
 const packUltra = "pack-ultra-l2-s1";
 const fiche = "fiche-da-l2-s1";
+const ficheS2 = "fiche-da-l2-s2";
+const packMatiere = "pack-matiere-da-l2";
 const media = "audio-video-da-l2-s1";
 
 function apiFactice(session, paiement, { cleStripe = "sk_test_factice", promotionCodes } = {}) {
@@ -131,13 +133,55 @@ test("la réponse confirmée donne les liens des PDF mais réserve le Pack Ultra
   assert.deepEqual(stripe.intentionsLues, []);
 });
 
+test("la confirmation associe les liens signés aux deux produits avec leur nom du catalogue", async () => {
+  const stripe = apiFactice(donneesStripe({
+    payment_status: "paid", amount_total: 3998, metadata: { produitIds: [fiche, ficheS2, media, packUltra].join(",") },
+  }));
+  const moderne = await stripe.appeler("GET", sessionId, "confirmation");
+  const historique = await stripe.appeler();
+  assert.equal(moderne.statusCode, 200);
+  assert.deepEqual(moderne.donnees.nomsProduits, {
+    [fiche]: "Fiche complète Droit administratif L2 S1",
+    [ficheS2]: "Fiche complète Droit administratif L2 S2",
+  });
+  assert.equal(historique.donnees.nomsProduits, undefined);
+  assert.equal(historique.donnees.liens.length, 6);
+  assert.ok(historique.donnees.liens.every(lien => !Object.hasOwn(lien, "produitId")));
+  assert.equal(moderne.donnees.liens.length, 6);
+  assert.equal(new Set(moderne.donnees.liens.map(lien => lien.url)).size, 6);
+  for (const [index, lien] of moderne.donnees.liens.entries()) {
+    const params = new URL(lien.url).searchParams;
+    const id = index < 3 ? fiche : ficheS2;
+    const fichier = index % 3;
+    const expiration = Number(params.get("exp"));
+    assert.equal(lien.produitId, id);
+    assert.equal(params.get("id"), id);
+    assert.equal(params.get("b"), String(fichier));
+    assert.equal(params.get("sid"), sessionId);
+    assert.ok(Math.abs(expiration - Math.floor(Date.now() / 1000) - 7200) <= 1);
+    assert.equal(params.get("sig"), genererToken(id, fichier, expiration, secretSignature, sessionId));
+  }
+});
+
+test("un pack de plusieurs fichiers reste un seul produit et conserve ses liens", async () => {
+  const stripe = apiFactice(donneesStripe({
+    payment_status: "paid", metadata: { produitIds: [packMatiere, media].join(",") },
+  }));
+  const { donnees } = await stripe.appeler("GET", sessionId, "confirmation");
+  assert.ok(donnees.liens.length > 3);
+  assert.ok(donnees.liens.every(({ url, produitId }) =>
+    !produitId && new URL(url).searchParams.get("id") === packMatiere));
+  assert.equal(donnees.nomsProduits, undefined);
+});
+
 test("le cadeau et l’accès gratuit gardent les conditions de confirmation prévues", async () => {
   const cadeau = donneesStripe({ payment_status: "paid", metadata: {
-    produitIds: packUltra, cadeauEmail: "etudiant@example.test",
+    produitIds: [packUltra, fiche, ficheS2].join(","), cadeauEmail: "etudiant@example.test",
   } });
-  const { donnees } = await apiFactice(cadeau).appeler();
+  const { donnees } = await apiFactice(cadeau).appeler("GET", sessionId, "confirmation");
   assert.equal(donnees.cadeau, true);
   assert.deepEqual(donnees.liens, []);
+  assert.equal(donnees.nomsProduits, undefined);
   assert.equal(JSON.stringify(donnees).includes("etudiant@example.test"), false);
 
   const gratuite = donneesStripe({ payment_status: "no_payment_required", amount_total: 0, metadata: { produitIds: fiche } });
@@ -250,12 +294,15 @@ test("confirmation et remise exigent la même session Stripe confirmée et compa
 
 function navigateur(responses, { id = sessionId, stockageAutorise = true } = {}) {
   const elems = new Map();
+  const creerElement = (tag) => ({
+    tag, hidden: true, style: {}, evenements: {}, children: [], attributs: {},
+    addEventListener(type, action) { this.evenements[type] = action; },
+    appendChild(enfant) { this.children.push(enfant); },
+    setAttribute(nom, valeur) { this.attributs[nom] = valeur; },
+    classList: { toggle() {} },
+  });
   const element = (cle) => {
-    if (!elems.has(cle)) elems.set(cle, {
-      hidden: true, style: {}, evenements: {}, children: [],
-      addEventListener(type, action) { this.evenements[type] = action; },
-      appendChild(enfant) { this.children.push(enfant); },
-    });
+    if (!elems.has(cle)) elems.set(cle, creerElement(cle));
     return elems.get(cle);
   };
   const requetes = [];
@@ -273,7 +320,7 @@ function navigateur(responses, { id = sessionId, stockageAutorise = true } = {})
       gtag, fbq,
     },
     document: {
-      getElementById: element, querySelector: element, createElement: element,
+      getElementById: element, querySelector: element, createElement: creerElement,
     },
     sessionStorage: {
       getItem() { if (!stockageAutorise) throw new Error("Stockage bloqué"); },
@@ -421,6 +468,38 @@ test("la confirmation affiche les accès du Pack Ultra, des fichiers et des méd
     if (ultraVisible) assert.match(nav.element("purchaseStatusMessage").textContent, /adresse email saisie au moment du paiement/);
   }
   assert.match(page, /href="mon-compte\.html">Accéder à mon Pack Ultra<\/a>/);
+});
+
+test("la page sépare les deux semestres et conserve les boutons simples avec une ancienne réponse", async () => {
+  const stripe = apiFactice(donneesStripe({
+    payment_status: "paid", amount_total: 3998, metadata: { produitIds: [fiche, ficheS2].join(",") },
+  }));
+  const { donnees } = await stripe.appeler("GET", sessionId, "confirmation");
+  const nav = navigateur([[200, donnees]]);
+  await laisserRepondre();
+  const groupes = nav.element("purchaseDownloadsList").children;
+  assert.equal(nav.element("purchaseDownloads").hidden, false);
+  assert.equal(groupes.length, 2);
+  for (const [index, id] of [fiche, ficheS2].entries()) {
+    const bloc = groupes[index];
+    const [titre, ...boutons] = bloc.children;
+    assert.equal(bloc.tag, "section");
+    assert.equal(titre.tag, "h3");
+    assert.equal(titre.textContent, "Droit administratif L2 S" + (index + 1));
+    assert.equal(bloc.attributs["aria-labelledby"], titre.id);
+    assert.equal(boutons.length, 3);
+    assert.ok(boutons.every(bouton => bouton.className === "btn btn--outline" && bouton.rel === "nofollow noreferrer"));
+    assert.deepEqual(boutons.map(bouton => bouton.href), donnees.liens.filter(lien => lien.produitId === id).map(lien => lien.url));
+  }
+
+  const { donnees: anciennes } = await stripe.appeler();
+  for (const reponse of [anciennes, { ...donnees, nomsProduits: { [fiche]: donnees.nomsProduits[fiche] } }]) {
+    const ancienNavigateur = navigateur([[200, reponse]]);
+    await laisserRepondre();
+    const boutons = ancienNavigateur.element("purchaseDownloadsList").children;
+    assert.ok(boutons.every(bouton => bouton.tag === "a" && bouton.className === "btn btn--primary"));
+    assert.deepEqual(boutons.map(bouton => bouton.href), reponse.liens.map(lien => lien.url));
+  }
 });
 
 test("le stockage bloqué laisse le navigateur vérifier une commande gratuite", async () => {

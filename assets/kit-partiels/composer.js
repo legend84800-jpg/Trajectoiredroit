@@ -12,17 +12,12 @@
   const montant = catalogue.prix;
   const echeance = Math.floor(montant / 2);
   const nombre = catalogue.nombreMatieres;
-  const toutes = Object.values(catalogue.niveaux).flat();
-  const memePrix = toutes.every((matiere) => matiere.prixSepare === toutes[0].prixSepare);
 
   const choix = form.querySelector("#matieres");
   const resume = form.querySelector("#selection");
   const compteur = form.querySelector("#compteur");
   const remplacement = form.querySelector("#kit-remplacement");
-  const comparaison = form.querySelector("#comparaison");
-  const valeurSeparee = form.querySelector("#prix-separe");
   const detail = form.querySelector("#detail-paiement");
-  const prixIndication = form.querySelector("#prix-kit-indication");
   const cta = form.querySelector("#commander");
   const comparaisonPack = form.querySelector("#duo-partiels");
   const valeurPack = form.querySelector("#duo-partiels-prix");
@@ -41,6 +36,9 @@
   });
   document.querySelectorAll("[data-kit-echeance]").forEach((element) => {
     element.textContent = euros(echeance);
+  });
+  document.querySelectorAll("[data-kit-total-echeances]").forEach((element) => {
+    element.textContent = euros(2 * echeance);
   });
 
   let niveau = form.querySelector('input[name="niveau"]:checked').value;
@@ -195,17 +193,7 @@
         : "Le Pack comprend aussi des cas pratiques corrigés et des majeures préparées pour les deux matières.";
       lienPack.href = `packs-partiels.html#${pack}`;
     }
-    comparaison.hidden = !pret && !memePrix;
-    if (!comparaison.hidden) {
-      const total = pret
-        ? matieres.reduce((somme, matiere) => somme + matiere.prixSepare, 0)
-        : toutes[0].prixSepare * nombre;
-      valeurSeparee.textContent = euros(total);
-    }
-    if (prixIndication) prixIndication.textContent = deuxFois ? "en une fois" : "pour tes trois choix";
-    detail.textContent = deuxFois
-      ? `${euros(echeance)} aujourd’hui et ${euros(echeance)} dans un mois. Total ${euros(montant)}.`
-      : `${euros(montant)} aujourd’hui.`;
+    detail.hidden = !deuxFois;
     cta.disabled = !pret;
     cta.textContent = pret ? "Passer au paiement" : "Coche trois cases";
   }
