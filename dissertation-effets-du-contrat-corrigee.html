@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Les effets du contrat, dissertation corrigée avec plan (L2)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Dissertation corrigée sur les effets du contrat en droit des contrats L2. Le contrat produit-il des effets au-delà des parties ? Plan détaillé et arrêts.">
+  <link rel="canonical" href="https://trajectoiredroit.com/dissertation-effets-du-contrat-corrigee.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Les effets du contrat, dissertation corrigée avec plan (L2)">
+  <meta property="og:description" content="Dissertation corrigée sur les effets du contrat en droit des contrats L2. Le contrat produit-il des effets au-delà des parties ? Plan détaillé et arrêts.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/dissertation-effets-du-contrat-corrigee.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/dissertation-effets-du-contrat-corrigee.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Les effets du contrat, dissertation corrigée avec plan (L2)">
+  <meta name="twitter:description" content="Dissertation corrigée sur les effets du contrat en droit des contrats L2. Le contrat produit-il des effets au-delà des parties ? Plan détaillé et arrêts.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/dissertation-effets-du-contrat-corrigee.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Les effets du contrat, dissertation corrigée avec plan détaillé",
+      "description": "Dissertation corrigée sur les effets du contrat en droit des contrats L2. Le contrat produit-il des effets au-delà des parties ? Plan détaillé et arrêts.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-11-20",
+      "dateModified": "2026-11-20",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Les effets du contrat, sujet de dissertation de droit des contrats L2, corrigé avec son plan détaillé"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/dissertation-effets-du-contrat-corrigee.html"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/dissertation-effets-du-contrat-corrigee.webp"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Les effets du contrat, dissertation corrigée",
+          "item": "https://trajectoiredroit.com/dissertation-effets-du-contrat-corrigee.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quelle différence y a-t-il entre l’effet relatif et l’opposabilité du contrat ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "L’effet relatif signifie que le contrat ne crée d’obligations qu’entre les parties (article 1199). Un tiers ne peut donc en principe ni exiger l’exécution du contrat ni être contraint de l’exécuter. L’opposabilité signifie que les tiers doivent respecter la situation juridique créée par le contrat et qu’ils peuvent s’en prévaloir, par exemple pour prouver un fait (article 1200)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Un tiers peut-il agir en justice quand un contrat n’est pas exécuté ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En principe, il ne peut pas demander l’exécution du contrat (article 1199), sauf exceptions comme la stipulation pour autrui (article 1206). Il peut en revanche demander réparation du dommage que l’inexécution lui cause. L’assemblée plénière juge le 6 octobre 2006, puis le 13 janvier 2020, qu’il lui suffit d’établir un lien de causalité entre le manquement contractuel et son dommage, sans démontrer de faute distincte. On peut toutefois lui opposer les conditions et limites de responsabilité qui s’appliquent entre les contractants (chambre commerciale, 3 juillet 2024)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Le créancier peut-il cumuler plusieurs sanctions de l’inexécution ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, quand elles ne sont pas incompatibles. Selon l’article 1217, des dommages et intérêts peuvent toujours s’ajouter aux autres sanctions. L’exécution forcée en nature et la résolution se contredisent en revanche, car la première maintient le contrat et la seconde y met fin."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel PDF choisir pour réviser les effets du contrat ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pour revoir le cours en entier, la fiche complète de droit des contrats L2 S1 traite aux chapitres 21 à 26 la force obligatoire, l’effet relatif et les sanctions de l’inexécution, avec les articles. Pour t’entraîner à appliquer ces règles à des faits, prends la compilation de cas pratiques corrigés."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=01cff354">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style id="exemples-pedagogiques-page">
+  .biens-hero { padding-top:48px; }
+  .biens-hero .hero__cta { margin-top:24px; }
+  @media (max-width:700px) {
+    .biens-hero { padding-top:24px; }
+    .biens-hero .hero__cta { gap:10px; }
+    .biens-hero .hero__cta .btn {
+      flex:1 1 132px;
+      width:auto;
+      min-height:44px;
+      font-size:.875rem;
+      padding:10px 12px;
+    }
+  }
+  @media (max-width:420px) {
+    .biens-hero { padding-top:12px; }
+    .biens-hero .hero__cta { margin-top:12px; }
+    .biens-hero .tjd-po { margin-top:12px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="kit-partiels.html" role="menuitem">📚 Kit Partiels</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🧠 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards + QCM</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>6 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 199 € au lieu de 439,69 €, 55 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-55 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">439,69 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 22 ressources, 199 € au lieu de 319,78 €, 38 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-38 %</span></span>
+                    <span class="megamenu__pack-tile-meta">22 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">319,78 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 28 ressources, 199 € au lieu de 419,72 €, 53 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-53 %</span></span>
+                    <span class="megamenu__pack-tile-meta">28 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">419,72 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 27 ressources, 199 € au lieu de 409,73 €, 51 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-51 %</span></span>
+                    <span class="megamenu__pack-tile-meta">27 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">409,73 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 38 ressources, 229 € au lieu de 579,62 €, 60 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-60 %</span></span>
+                    <span class="megamenu__pack-tile-meta">38 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">579,62 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>166 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes tes questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="kit-partiels.html"><span class="mobile-nav__format-icon" aria-hidden="true">📚</span><span>Kit Partiels</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🧠</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+    <main>
+<section class="section--sm biens-hero">
+<div class="container container--narrow text-center">
+<h1 class="h1">Les effets du contrat, dissertation corrigée avec plan détaillé</h1>
+<p class="lead" style="max-width:720px;margin-left:auto;margin-right:auto">Les effets du contrat, dissertation de droit des contrats L2, se traitent en deux temps. Entre les parties, le contrat tient lieu de loi (article 1103), et le créancier peut donc sanctionner son inexécution (article 1217). À l’égard des tiers, il ne crée aucune obligation (article 1199), mais ces tiers doivent respecter la situation qu’il crée (article 1200). Ce corrigé te donne l’introduction rédigée et le plan détaillé, avec les décisions à citer.</p>
+<div class="hero__cta flex flex--center">
+<a class="btn btn--primary btn--lg" href="#sujet">Le décorticage du sujet →</a>
+<a class="btn btn--outline btn--lg" href="#plan">Le plan détaillé</a>
+</div>
+<div data-tjd-pdf-offert="matiere" data-id="cas-pratique-contrats-l2-s1" data-titre="Un cas pratique corrigé en droit des contrats L2 S1, en PDF" data-texte="Je t&#x27;envoie par email l&#x27;énoncé et sa correction complète, rédigée comme une copie de partiel. Tu peux ainsi t&#x27;entraîner sur papier, puis comparer ta réponse avec le corrigé." data-bouton="Recevoir le corrigé"></div>
+</div>
+</section>
+<!-- offre du PDF correspondant -->
+<section class="conversion-offer" aria-labelledby="offre-effets-contrat-titre">
+<div class="container container--narrow">
+<div class="conversion-offer__card">
+<div class="conversion-offer__visual"><img src="assets/covers/fiche-contrats-l2-s1.webp?v=dossier-universitaire-20260915" alt="Couverture de la fiche complète de droit des contrats L2 S1, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
+<div>
+<p class="conversion-offer__eyebrow">Droit des contrats L2, semestre 1</p>
+<h2 class="conversion-offer__title" id="offre-effets-contrat-titre">Fiche complète et cas pratiques corrigés</h2>
+<p class="conversion-offer__summary">La fiche complète suit tout le programme du premier semestre. Ses chapitres 21 à 26 traitent en effet les effets du contrat entre les parties et à l’égard des tiers, puis les sanctions de l’inexécution. La compilation de 125 pages se vend en revanche séparément. Elle corrige en entier dix cas pratiques et trois sujets types de partiel, dont un cas pratique sur les effets du contrat et un autre sur les sanctions de l’inexécution.</p>
+<ul class="conversion-offer__benefits">
+<li>Tu reçois le PDF dès le paiement</li>
+</ul>
+<button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-contrats-l2-s1/a94eea5853a4-p002.webp","assets/apercus/finition-20261114/fiche-contrats-l2-s1/a94eea5853a4-p003.webp","assets/apercus/finition-20261114/fiche-contrats-l2-s1/a94eea5853a4-p049.webp"]' data-apercu-title="Droit des contrats / des obligations · L2 S1 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-contrats-l2-s1" data-apercu-sub="Le sommaire, puis des pages extraites de la fiche complète."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Voir un aperçu de la fiche complète</button>
+<div class="conversion-offer__choices">
+<button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-contrats-l2-s1">Acheter la fiche complète · 19,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="cas-pratique-contrats-l2-s1">Acheter les cas pratiques corrigés · 19,99 €</button>
+</div>
+<p class="conversion-offer__note">Si tu hésites entre les deux PDF, la fiche complète sert à revoir tout le cours, et les cas pratiques corrigés servent à t’entraîner à appliquer les articles à des faits. La <a href="droit-des-contrats-l2.html">page du droit des contrats L2</a> présente tous les supports.</p>
+<div data-tjd-avis data-matiere="contrats-l2"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="sujet">
+<div class="container container--narrow">
+<div class="prose">
+<figure style="margin:0 0 32px"><img src="assets/blog/dissertation-effets-du-contrat-corrigee.webp" srcset="assets/blog/dissertation-effets-du-contrat-corrigee-640.webp 640w, assets/blog/dissertation-effets-du-contrat-corrigee.webp 1200w" sizes="(max-width:700px) 100vw, 800px" alt="Au petit matin dans la brume, deux bateaux de pêche en bois peint, à la coque bleue et blanche écaillée, sont amarrés à un quai de pierre par de gros cordages de chanvre tendus vers une bitte rouillée au premier plan." width="1200" height="675" decoding="async" fetchpriority="high" style="width:100%;height:auto;border-radius:12px;display:block"></figure>
+<h2>Que demande le sujet « Les effets du contrat » ?</h2>
+<p>Le sujet demande ce que produit un contrat une fois qu’il est valablement formé. Selon l’article 1101 du Code civil, le contrat est un accord de volontés entre deux ou plusieurs personnes, destiné à créer, modifier, transmettre ou éteindre des obligations. Ses effets sont donc les obligations et les situations juridiques qui naissent de cet accord.</p>
+<p>La règle normale est que le contrat produit ses effets entre les parties. Les parties sont les personnes qui ont donné leur accord, par exemple le vendeur et l’acheteur d’une voiture. Chacune doit donc faire ce qu’elle a promis. En effet, si l’une ne le fait pas, l’autre dispose de plusieurs moyens pour l’y contraindre ou pour obtenir réparation.</p>
+<p>L’exception vient des tiers. Un tiers est une personne qui n’a pas donné son accord au contrat. Prenons un propriétaire qui loue sa maison à une locataire. Leur voisin ne doit rien à la locataire, et il ne peut pas exiger qu’elle lui paie le loyer. Il doit pourtant respecter le bail. Par exemple, il ne peut pas s’installer dans la maison en prétendant ignorer ce contrat.</p>
+<p>Le fait que le voisin ne doive rien à la locataire s’appelle l’effet relatif du contrat. Le fait qu’il doive pourtant respecter le bail s’appelle l’opposabilité du contrat. Face à ce sujet, ta copie traite d’abord ce que le contrat produit pour les parties, puis pour les tiers.</p>
+<h3>Les termes du sujet</h3>
+<p>Une obligation est le lien par lequel une personne, le débiteur, doit quelque chose à une autre, le créancier. Les parties sont les personnes qui ont consenti au contrat, personnellement ou par un représentant. Les tiers sont les personnes étrangères au contrat. Les héritiers d’une partie et la personne qui reçoit un bien d’une partie forment toutefois une catégorie à part, car ils reçoivent des droits de cette partie.</p>
+<p>Le Code civil range ces effets dans un chapitre du même titre que le sujet, aux articles 1193 à 1231-7. Ce chapitre comprend cinq sections. Les deux premières portent sur les effets entre les parties et sur les effets à l’égard des tiers, car ce sont les deux groupes du sujet. Les trois autres portent en revanche sur les thèmes suivants.</p>
+<ul>
+<li>La durée du contrat.</li>
+<li>La cession de contrat.</li>
+<li>L’inexécution du contrat.</li>
+</ul>
+<h3>La délimitation</h3>
+<p>La formation, la validité et la nullité du contrat sortent du sujet, car elles portent sur sa naissance. L’interprétation des clauses (articles 1188 à 1192) en sort aussi. La durée (articles 1210 à 1215) et la cession de contrat (articles 1216 à 1216-3) appartiennent en revanche au même chapitre du Code civil, et le transfert de propriété par le seul effet du contrat (article 1196) se rattache à sa première section. Ta copie les mentionne toutefois en une phrase seulement quand un argument les demande. La dissertation sur la <a href="dissertation-force-obligatoire-du-contrat-corrigee.html">force obligatoire du contrat</a> approfondit l’article 1103 et l’imprévision (un changement de circonstances imprévisible qui rend l’exécution excessivement onéreuse), que la partie I.A de ce plan résume.</p>
+<h3>Le piège du plan « I. Les effets entre les parties, II. Les effets à l’égard des tiers »</h3>
+<p>Ce plan reprend les titres de deux sections du Code civil. Il présente donc le contenu du chapitre et laisse la thèse implicite. Le plan retenu affirme en revanche une idée dans chaque partie. Dans la première, le contrat est obligatoire et le droit garantit cette obligation par des sanctions. Dans la seconde, le contrat reste relatif à l’égard des tiers, mais il leur est opposable.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="introduction">
+<div class="container container--narrow">
+<div class="prose">
+<h2>L’introduction rédigée en sept étapes</h2>
+<p>Tu suis les mêmes sept étapes pour toutes tes dissertations, et seul leur contenu change.</p>
+<h3>1. L’accroche</h3>
+<p>À La Réunion, deux sociétés qui fabriquent du sucre de canne concluent en 1995 un protocole pour concentrer le traitement de la canne sur deux usines. L’une est l’usine de Bois rouge, l’autre l’usine du Gol, et chacune traite aussi la canne de l’autre société. Mais dans la nuit du 30 au 31 août 2009, un incendie se déclare dans une usine électrique de la centrale thermique qui fournit l’énergie à l’usine de Bois rouge. Cette usine ferme alors pendant quatre semaines, et l’usine du Gol traite une partie de la canne à sa place.</p>
+<p>L’assureur de la société propriétaire de l’usine du Gol indemnise les pertes d’exploitation de son assurée, puis agit à sa place contre la société qui exploite la centrale thermique. Cette société avait promis de fournir l’énergie à l’usine de Bois rouge, et la société du Gol est tiers à ce contrat de fourniture. La cour d’appel rejette la demande, car elle ne trouve aucune faute de la centrale thermique.</p>
+<p>Le 13 janvier 2020, l’assemblée plénière de la Cour de cassation, sa formation la plus solennelle, casse l’arrêt, autrement dit l’annule, sur ce point. Elle juge que « le tiers au contrat qui établit un lien de causalité entre un manquement contractuel et le dommage qu’il subit n’est pas tenu de démontrer une faute délictuelle ou quasi délictuelle distincte de ce manquement ». Une faute délictuelle est une faute qui oblige son auteur à réparer le dommage causé à autrui, même sans contrat entre lui et la victime (article 1240). Un contrat conclu entre deux sociétés a donc des conséquences pour une troisième, qui peut s’en plaindre en justice.</p>
+<h3>2. La présentation du sujet et la définition des termes</h3>
+<p>Selon l’article 1101 du Code civil, le contrat est un accord de volontés destiné à créer, modifier, transmettre ou éteindre des obligations. Ses effets sont les conséquences juridiques de cet accord, mais ils ne touchent pas toutes les personnes de la même manière. Les parties sont les personnes qui l’ont conclu, alors que les tiers sont les personnes qui y sont étrangères. Le sujet demande donc qui le contrat oblige et ce qu’il change pour chacun.</p>
+<h3>3. La délimitation du sujet</h3>
+<p>La formation, la validité, l’interprétation, la durée et la cession du contrat sortent du sujet. La copie les mentionne en une phrase quand un argument les demande.</p>
+<h3>4. Le contexte</h3>
+<p>Avant 2016, l’article 1165 disait que les conventions n’ont d’effet qu’entre les parties contractantes, qu’elles ne nuisent pas aux tiers et qu’elles ne leur profitent que dans le cas de l’article 1121. L’ordonnance n° 2016-131 du 10 février 2016 l’a ensuite remplacé par l’article 1199 et a consacré l’opposabilité à l’article 1200. Elle a aussi réuni les sanctions de l’inexécution dans l’article 1217 et inscrit à l’article 1226 la résolution par notification, que la Cour de cassation admettait depuis 1998. Elle est entrée en vigueur le 1er octobre 2016, et la loi du 20 avril 2018 a enfin modifié l’article 1217.</p>
+<h3>5. L’intérêt du sujet</h3>
+<p>Une partie qui subit l’inexécution du contrat veut savoir ce qu’elle peut obtenir. Un tiers qui subit les conséquences de cette inexécution veut savoir s’il peut agir. Ta dissertation répond aux deux questions, car une partie et un tiers n’ont pas les mêmes actions en justice.</p>
+<h3>6. La problématique</h3>
+<p>Le contrat, qui n’oblige que ses parties, peut-il produire des effets au-delà d’elles ?</p>
+<p>La problématique est la question à laquelle la copie répond. Elle reste interrogative, car une phrase affirmative donnerait la réponse avant la démonstration.</p>
+<h3>7. L’annonce du plan</h3>
+<p>Entre les parties, le contrat est obligatoire, et le droit garantit cette obligation par des sanctions (I). À l’égard des tiers, il reste relatif, mais il leur est opposable (II).</p>
+</div>
+</div>
+</section>
+<section class="section" id="plan">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quel plan détaillé pour cette dissertation ?</h2>
+<p>Le plan défend une thèse en deux temps. Entre les parties, le contrat oblige et son inexécution se sanctionne donc (I). À l’égard des tiers, il reste relatif, mais les tiers doivent le respecter (II). Tu écris les intitulés en groupes nominaux, sans verbe conjugué. Dans les tableaux qui suivent, une mise en demeure est un écrit par lequel le créancier demande au débiteur d’exécuter dans un délai donné.</p>
+<h3>I. Un contrat obligatoire entre les parties</h3>
+<h4>A. L’intangibilité de l’engagement</h4>
+<ul>
+<li><strong>1. La force obligatoire comme loi des parties</strong></li>
+<li><strong>2. L’exception de l’imprévision</strong></li>
+</ul>
+<h4>B. La garantie de l’engagement par les sanctions</h4>
+<ul>
+<li><strong>1. Le choix du créancier entre cinq sanctions</strong></li>
+<li><strong>2. L’encadrement des sanctions par le juge ou par le contrat</strong></li>
+</ul>
+<h3>II. Un contrat relatif à l’égard des tiers</h3>
+<h4>A. La protection des tiers par l’effet relatif</h4>
+<ul>
+<li><strong>1. Le principe de l’effet relatif</strong></li>
+<li><strong>2. Les aménagements de l’effet relatif</strong></li>
+</ul>
+<h4>B. Le respect du contrat par les tiers</h4>
+<ul>
+<li><strong>1. L’opposabilité du contrat aux tiers</strong></li>
+<li><strong>2. L’invocation du contrat par les tiers</strong></li>
+</ul>
+<h3>Les articles à connaître, sous-partie par sous-partie</h3>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Les articles du Code civil à citer dans chaque sous-partie du plan sur les effets du contrat" style="overflow-x:auto">
+<table style="width:100%;min-width:640px;border-collapse:collapse">
+<thead><tr><th scope="col">Sous-partie</th><th scope="col">Ce que dit le Code civil, article par article</th></tr></thead>
+<tbody>
+<tr><th scope="row">I.A.1</th><td>Les contrats légalement formés tiennent lieu de loi à ceux qui les ont faits (1103). Ils ne peuvent donc être modifiés ou révoqués que du consentement mutuel des parties, ou pour les causes que la loi autorise (1193). De plus, ils obligent à toutes les suites que leur donnent l’équité, l’usage ou la loi (1194), et ils doivent être exécutés de bonne foi (1104). Cette règle s’appelle l’intangibilité du contrat, car une partie seule ne peut pas le modifier, et le juge ne le peut que dans les cas que la loi autorise. La bonne foi permet de sanctionner l’usage déloyal d’une prérogative contractuelle, mais elle n’autorise pas le juge à porter atteinte à la substance des droits et obligations convenus (chambre commerciale, 10 juillet 2007, Les Maréchaux).</td></tr>
+<tr><th scope="row">I.A.2</th><td>Si un changement de circonstances imprévisible rend l’exécution excessivement onéreuse pour une partie qui n’avait pas accepté d’en assumer le risque, celle-ci peut demander une renégociation et continue d’exécuter pendant ce temps. Après un refus ou un échec, les parties peuvent convenir de la résolution ou demander ensemble au juge d’adapter le contrat. À défaut d’accord dans un délai raisonnable, le juge peut réviser le contrat ou y mettre fin (1195), pour les contrats conclus depuis le 1er octobre 2016. Les parties peuvent toutefois écarter ce texte, qui est supplétif, autrement dit qui s’applique seulement si elles n’ont pas décidé autrement.</td></tr>
+<tr><th scope="row">I.B.1</th><td>La partie envers laquelle l’engagement n’a pas été exécuté, ou l’a été imparfaitement, dispose de cinq sanctions, présentées dans le tableau ci-dessous. Les sanctions qui ne sont pas incompatibles peuvent être cumulées, et des dommages et intérêts peuvent toujours s’y ajouter (1217).</td></tr>
+<tr><th scope="row">I.B.2</th><td><p>La résolution résulte de l’application d’une clause résolutoire ou, en cas d’inexécution suffisamment grave, d’une notification du créancier ou d’une décision de justice (1224).</p><ul><li>La clause résolutoire précise les engagements dont l’inexécution entraîne la résolution. Elle suppose une mise en demeure infructueuse, sauf convention contraire, et cette mise en demeure doit mentionner expressément la clause (1225).</li><li>Le créancier résout le contrat par notification à ses risques et périls. Il met le débiteur en demeure sauf urgence, et le débiteur peut saisir le juge à tout moment (1226).</li><li>La résolution peut en toute hypothèse être demandée en justice (1227). Le juge peut alors accorder un délai au débiteur ou allouer seulement des dommages et intérêts (1228). Il peut aussi reporter ou échelonner le paiement d’une dette dans la limite de deux années (1343-5).</li></ul><p>La clause pénale fixe à l’avance les dommages et intérêts, mais le juge peut la modérer ou l’augmenter si elle est manifestement excessive ou dérisoire (1231-5).</p></td></tr>
+<tr><th scope="row">II.A.1</th><td>Le contrat ne crée d’obligations qu’entre les parties. Les tiers ne peuvent donc ni demander l’exécution du contrat ni se voir contraints de l’exécuter, sous réserve des exceptions que prévoit la loi (1199). Pour appliquer ce principe, il faut distinguer quatre catégories de personnes. D’abord, les parties au contrat ont consenti à celui-ci. Ensuite, les héritiers d’une partie, ou ayants cause universels, continuent sa personne et reçoivent ses droits et obligations transmissibles. De même, l’acquéreur d’un bien, ou ayant cause à titre particulier, reçoit ce bien et les droits qui y sont attachés. Enfin, les autres personnes, ou tiers absolus, restent étrangères au contrat.</td></tr>
+<tr><th scope="row">II.A.2</th><td>Dans la stipulation pour autrui, une partie, le stipulant, fait promettre à l’autre, le promettant, une prestation au profit d’un tiers bénéficiaire. Ce bénéficiaire reçoit ainsi un droit direct contre le promettant dès la stipulation, et le stipulant peut néanmoins la révoquer tant que le bénéficiaire ne l’a pas acceptée (1205 et 1206). Dans une assurance-vie, par exemple, l’assureur doit verser le capital aux enfants que le souscripteur a désignés. Le porte-fort applique en revanche l’effet relatif. Il promet le fait d’un tiers, qui reste libre tant qu’il n’a pas ratifié, et il est libéré si ce tiers accomplit le fait promis. Dans le cas contraire, il peut être condamné à des dommages et intérêts (1204). Une action directe permet enfin à un créancier d’agir contre le débiteur de son débiteur. Elle appartient par exemple au tiers lésé contre l’assureur de responsabilité de l’auteur du dommage (article L. 124-3 du Code des assurances). Le maître de l’ouvrage n’a en revanche aucun contrat avec le sous-traitant de son entrepreneur, et l’assemblée plénière en conclut le 12 juillet 1991 (arrêt Besse) qu’il ne peut pas agir contre lui sur un fondement contractuel.</td></tr>
+<tr><th scope="row">II.B.1</th><td>Les tiers doivent respecter la situation juridique créée par le contrat, et ils peuvent s’en prévaloir, notamment pour apporter la preuve d’un fait (1200). La contre-lettre, contrat occulte que dissimule un contrat apparent, produit effet entre les parties, mais elle n’est pas opposable aux tiers, qui peuvent néanmoins s’en prévaloir (1201). Le tiers qui aide sciemment une partie à violer son contrat commet une faute délictuelle (arrêts de 1971 et de 2026 du tableau ci-dessous). Cette faute suppose d’abord un contrat valable. Elle suppose ensuite que le tiers connaisse effectivement ce contrat, puis qu’il participe activement à sa violation. Le tiers qui ignore légitimement le contrat ne commet donc pas de faute. Un pacte de préférence oblige une partie, si elle décide de contracter, à proposer d’abord de traiter avec son bénéficiaire. Le tiers qui l’achète en connaissant ce pacte et l’intention du bénéficiaire de s’en prévaloir s’expose à l’annulation de la vente ou à la substitution du bénéficiaire (1123, alinéa 2, qui reprend la solution de la <a href="arret-pacte-de-preference-2006-explique.html">chambre mixte du 26 mai 2006</a>).</td></tr>
+<tr><th scope="row">II.B.2</th><td>Le tiers qui subit un dommage à cause de l’inexécution d’un contrat peut demander réparation sur le fondement de la responsabilité délictuelle. Selon l’article 1240, tout fait de l’homme qui cause à autrui un dommage oblige celui par la faute duquel il est arrivé à le réparer. Le tiers établit en effet seulement que le manquement contractuel lui a causé un dommage (Boot Shop, 2006), sans démontrer de faute distincte de ce manquement (assemblée plénière, 2020). On peut en revanche lui opposer les conditions et limites de responsabilité qui s’appliquent entre les contractants (chambre commerciale, 2024).</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Les cinq sanctions de l’article 1217</h3>
+<p>Pour la sous-partie I.B.1, ce tableau donne la condition à vérifier avant d’employer chaque sanction. La <a href="l-exception-d-inexecution.html">page sur l’exception d’inexécution</a> et celle sur la <a href="la-resolution-du-contrat.html">résolution du contrat</a> développent les deux sanctions les plus fréquentes.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Les cinq sanctions de l’inexécution du contrat prévues par l’article 1217 du Code civil" style="overflow-x:auto">
+<table style="width:100%;min-width:640px;border-collapse:collapse">
+<thead><tr><th scope="col">Sanction</th><th scope="col">Condition à vérifier</th><th scope="col">Effet pour le créancier</th></tr></thead>
+<tbody>
+<tr><th scope="row">Refuser d’exécuter ou suspendre sa propre obligation (1219 et 1220)</th><td>L’inexécution de l’autre partie est suffisamment grave (1219). Avant l’échéance, il doit être manifeste que le cocontractant ne s’exécutera pas, avec des conséquences suffisamment graves, et la suspension se notifie dans les meilleurs délais (1220).</td><td>Le créancier garde sa prestation, et le contrat continue d’exister.</td></tr>
+<tr><th scope="row">Poursuivre l’exécution forcée en nature (1221 et 1222)</th><td>Une mise en demeure précède la demande. Le créancier poursuit ensuite l’exécution, sauf si elle est impossible ou si son coût pour le débiteur de bonne foi est manifestement disproportionné par rapport à l’intérêt du créancier (1221).</td><td>Le débiteur fournit donc ce qu’il avait promis. Le créancier peut aussi le faire exécuter lui-même, à un coût raisonnable, et en demander le remboursement (1222).</td></tr>
+<tr><th scope="row">Obtenir une réduction du prix (1223)</th><td>L’exécution est imparfaite, une mise en demeure a eu lieu et le créancier n’a pas encore payé tout ou partie de la prestation. Il notifie ensuite sa décision au débiteur, et l’acceptation du débiteur doit être écrite.</td><td>Le prix baisse alors en proportion du défaut d’exécution. Le créancier peut aussi demander cette réduction au juge, avant ou après avoir payé (première chambre civile, 18 décembre 2024).</td></tr>
+<tr><th scope="row">Provoquer la résolution du contrat (1224 à 1230)</th><td>L’inexécution est suffisamment grave, sauf si une clause résolutoire s’applique. Le créancier passe par la clause, par une notification ou par le juge.</td><td>Le contrat prend fin, et les parties se restituent ensuite ce qu’elles se sont procuré lorsque leurs prestations ne servaient que par l’exécution complète du contrat. En revanche, quand les prestations ont servi au fur et à mesure, il n’y a pas de restitution pour la période antérieure à la dernière prestation qui n’a pas reçu sa contrepartie, et la résolution est qualifiée de résiliation (1229).</td></tr>
+<tr><th scope="row">Demander réparation des conséquences de l’inexécution (responsabilité contractuelle, 1231 à 1231-7)</th><td>Une mise en demeure précède la demande, sauf inexécution définitive (1231). Le débiteur ne répond que des dommages prévus ou prévisibles lors de la conclusion du contrat, sauf faute lourde ou dolosive (1231-3), et il échappe à la condamnation s’il prouve que la force majeure a empêché l’exécution (1231-1).</td><td>Le créancier obtient une somme d’argent, qui s’ajoute aux autres sanctions compatibles.</td></tr>
+</tbody>
+</table>
+</div>
+<h3>La réponse à la problématique</h3>
+<p>Le contrat produit d’abord des effets entre les parties. Il leur tient lieu de loi, et le juge ne le révise que dans les cas que la loi prévoit, comme l’imprévision après l’échec d’une renégociation ou la clause pénale manifestement excessive. Le créancier dispose en outre de cinq sanctions, que le juge ou le contrat encadre. Le contrat n’oblige en principe aucun tiers, et un tiers ne peut en exiger l’exécution que dans les cas prévus par la loi, comme la stipulation pour autrui. Tous doivent pourtant le respecter, et le tiers lésé par son inexécution peut l’invoquer pour obtenir réparation. Le contrat produit donc des effets au-delà des parties, sans obliger les tiers.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="arrets">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles décisions citer, et qu’en dit le Code civil aujourd’hui ?</h2>
+<p>Chaque décision du tableau trouve sa place dans une sous-partie du plan, et la dernière colonne indique ensuite ce que le Code civil en a repris. Dans ta copie, tu cites chaque décision par sa juridiction et sa date. Le pourvoi est le recours formé devant la Cour de cassation, et son numéro permet donc de retrouver la décision.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Les décisions de la Cour de cassation sur les effets du contrat et ce que le Code civil en a fait" style="overflow-x:auto">
+<table style="width:100%;min-width:760px;border-collapse:collapse">
+<thead><tr><th scope="col">Décision</th><th scope="col">Ce qu’elle juge</th><th scope="col">Où la placer</th><th scope="col">Ce que le Code civil en a fait</th></tr></thead>
+<tbody>
+<tr><th scope="row">Chambre civile, 6 mars 1876 (<a href="arret-canal-de-craponne-explique.html">Canal de Craponne</a>)</th><td>Des conventions de 1560 et 1567 fixent une redevance pour l’eau d’un canal d’irrigation en Provence. Trois siècles plus tard, la cour d’appel d’Aix augmente cette redevance au nom de l’équité. La Cour de cassation casse cette décision sur ce point, car « dans aucun cas, il n’appartient aux tribunaux, quelque équitable que puisse leur paraître leur décision, de prendre en considération le temps et les circonstances pour modifier les conventions des parties ».</td><td>I.A.2</td><td>L’article 1195 admet depuis le 1er octobre 2016 la renégociation puis la révision judiciaire pour imprévision, dans les contrats conclus depuis cette date.</td></tr>
+<tr><th scope="row">Première chambre civile, 18 décembre 2024, pourvoi n° 24-14.750</th><td>Des abonnés d’un distributeur d’eau à Mayotte, privés d’eau par des arrêtés du préfet, demandent la réduction du prix de leur abonnement. La cour d’appel rejette la demande, car la réduction par le juge ne serait possible qu’après le paiement du prix. La Cour casse en revanche cet arrêt sur ce point et juge que « la réduction du prix peut, en toute hypothèse, être demandée en justice ».</td><td>I.B.1</td><td>La Cour interprète l’article 1223, alinéa 2, dans sa rédaction issue de la loi du 20 avril 2018. Le texte permet de saisir le juge quand le créancier a déjà payé, et la décision l’étend ainsi au créancier qui n’a pas encore payé.</td></tr>
+<tr><th scope="row">Première chambre civile, 13 octobre 1998, pourvoi n° 96-21.485 (Tocqueville)</th><td>Un médecin anesthésiste obtient, avec d’autres confrères, l’exclusivité des actes de sa spécialité dans une clinique pendant trente ans, et le contrat lui impose de ne pratiquer ses actes qu’à l’intérieur de la clinique. Il continue pourtant de consulter en dehors, malgré une mise en demeure, et la cour d’appel relève aussi d’autres manquements graves et répétés. La clinique met fin au contrat avec un préavis de six mois. La Cour rejette le pourvoi du médecin, car « la gravité du comportement d’une partie à un contrat peut justifier que l’autre partie y mette fin de façon unilatérale à ses risques et périls ».</td><td>I.B.2</td><td>L’article 1226 permet depuis 2016 la résolution par notification, après une mise en demeure sauf urgence. Le débiteur peut saisir le juge, devant qui le créancier prouve la gravité de l’inexécution.</td></tr>
+<tr><th scope="row">Chambre commerciale, 11 octobre 1971, pourvoi n° 70-11.892</th><td>Un grossiste en boissons résilie son contrat d’exclusivité avec une brasserie, puis fournit d’autres bières à des détaillants liés à cette brasserie par un contrat d’exclusivité. La cour d’appel refuse d’indemniser la brasserie, car ces faits suivent une résiliation régulière. La Cour casse cet arrêt, car « toute personne qui, avec connaissance, aide autrui à enfreindre les obligations contractuelles pesant sur lui, commet une faute délictuelle à l’égard de la victime de l’infraction ».</td><td>II.B.1</td><td>La solution applique l’article 1240 (ancien article 1382), que la Cour vise dans sa décision.</td></tr>
+<tr><th scope="row">Troisième chambre civile, 7 mai 2026, pourvoi n° 24-10.637</th><td>Un agent immobilier reçoit un mandat de vente non exclusif, avec une commission à la charge de l’acquéreur. Des acquéreurs visitent la villa avec lui, puis signent la vente directement avec les vendeurs, sans commission. Ces acquéreurs ne sont pas parties au mandat, mais les juges constatent qu’ils connaissaient le droit de l’agent à une rémunération et que leur promesse de vente, signée à son insu, prévoit qu’ils prennent en charge les poursuites éventuelles des agences. La Cour rejette le pourvoi des acquéreurs, car leur comportement traduit une volonté d’agir en fraude aux droits de l’agent immobilier. Elle rappelle que « le tiers à un contrat qui se rend complice de la violation par une partie de ses obligations contractuelles engage sa responsabilité délictuelle ».</td><td>II.B.1</td><td>La Cour juge qu’il résulte des articles 1200 et 1240 que le tiers complice engage sa responsabilité délictuelle.</td></tr>
+<tr><th scope="row">Assemblée plénière, 6 octobre 2006, pourvoi n° 05-13.255 (Boot Shop)</th><td>Une société exploite en location-gérance un fonds de commerce dans des locaux que les bailleurs ont loués à la société propriétaire du fonds. Elle réclame aux bailleurs un défaut d’entretien des locaux, alors qu’elle n’est pas partie au bail. La Cour admet pourtant son action, car « le tiers à un contrat peut invoquer, sur le fondement de la responsabilité délictuelle, un manquement contractuel dès lors que ce manquement lui a causé un dommage ».</td><td>II.B.2</td><td>La solution s’appuie sur l’article 1240 (ancien article 1382).</td></tr>
+<tr><th scope="row">Assemblée plénière, 13 janvier 2020, pourvoi n° 17-19.963</th><td>Un incendie arrête pendant quatre semaines une usine sucrière, que la centrale thermique alimentait en énergie. La société propriétaire d’une autre usine, tiers au contrat de fourniture, subit pourtant un dommage. La Cour juge donc que le tiers qui établit un lien de causalité entre le manquement contractuel et son dommage n’a pas à démontrer une faute distincte de ce manquement.</td><td>II.B.2</td><td>La décision vise l’ancien article 1165, aujourd’hui l’article 1199, et l’article 1240 (ancien article 1382).</td></tr>
+<tr><th scope="row">Chambre commerciale, 3 juillet 2024, pourvoi n° 21-14.947 (Clamageran)</th><td>Un employé d’une société chargée de la manutention de machines exposées à un salon en endommage une. L’assureur de la société Aetna Group Spa, qui avait fait transporter les machines, l’indemnise puis agit à sa place contre la société de manutention. La cour d’appel écarte les clauses limitatives de responsabilité du contrat de manutention, car elles seraient inopposables à Aetna Group Spa, tiers à ce contrat. La Cour casse toutefois cet arrêt sur ce point, car le tiers qui invoque un manquement contractuel « peut se voir opposer les conditions et limites de la responsabilité qui s’appliquent dans les relations entre les contractants ».</td><td>II.B.2</td><td>La décision vise les anciens articles 1134 et 1165 et l’article 1240 (ancien article 1382). Elle précise la règle de 2006 et de 2020, car les conditions et limites de responsabilité qui s’appliquent entre les contractants s’opposent aussi au tiers.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="copie">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Deux passages de la copie rédigée</h2>
+<p>Dans chaque paragraphe de ta copie, tu commences par une phrase qui annonce l’idée. Tu cites ensuite le texte ou la décision qui donne la règle, puis tu montres comment le juge l’applique. Une dernière phrase en tire la conséquence.</p>
+<h3>Sous-partie I.B.2, l’encadrement des sanctions par le juge ou par le contrat</h3>
+<p>Le créancier ne peut pas mettre fin au contrat comme il l’entend, car le droit encadre la résolution. L’article 1224 du Code civil prévoit trois voies, qui se distinguent par la personne qui décide. Les parties peuvent avoir décidé à l’avance, par une clause résolutoire. Le créancier peut aussi décider seul, par une notification, mais il agit alors à ses risques. Enfin, la résolution peut toujours être demandée au juge, qui décide alors (article 1227).</p>
+<p>La clause résolutoire précise les engagements dont l’inexécution mettra fin au contrat (article 1225). Elle s’applique à trois conditions. D’abord, l’inexécution doit porter sur un engagement que la clause vise. Ensuite, sauf convention contraire, une mise en demeure doit mentionner expressément la clause résolutoire. Enfin, cette mise en demeure doit rester infructueuse, car le débiteur qui s’exécute dans le délai qu’elle lui laisse écarte la clause.</p>
+<p>La notification est plus souple, mais le créancier agit à ses risques et périls. Dans l’arrêt Tocqueville du 13 octobre 1998, la première chambre civile de la Cour de cassation juge que « la gravité du comportement d’une partie à un contrat peut justifier que l’autre partie y mette fin de façon unilatérale à ses risques et périls ». La Cour a rejeté le pourvoi d’un médecin que sa clinique avait écarté après une mise en demeure.</p>
+<p>L’article 1226 reprend cette solution depuis 2016. Le créancier met en demeure le débiteur, sauf urgence, en lui laissant un délai raisonnable et en annonçant expressément qu’il pourra résoudre le contrat. Si l’inexécution persiste, il notifie la résolution et en donne les raisons. Le débiteur peut alors saisir le juge à tout moment, et le créancier doit prouver la gravité de l’inexécution. Le créancier peut donc résoudre le contrat sans attendre un jugement, et le juge, si le débiteur le saisit, vérifie ensuite que l’inexécution était assez grave.</p>
+<h3>Sous-partie II.B.2, l’invocation du contrat par les tiers</h3>
+<p>Le tiers à un contrat peut agir en réparation quand l’inexécution lui cause un dommage. L’article 1199 lui interdit d’exiger l’exécution du contrat. L’article 1200 lui permet en revanche de s’en prévaloir, notamment pour apporter la preuve d’un fait.</p>
+<p>Dans l’arrêt Boot Shop du 6 octobre 2006, l’assemblée plénière examine l’action d’une société qui exploitait un fonds de commerce appartenant à une autre société, dans le cadre d’une location-gérance. La location-gérance est le contrat par lequel le propriétaire d’un fonds de commerce en confie l’exploitation à une autre société. La société qui exploitait ce fonds n’était donc pas partie au bail des locaux, que les bailleurs avaient conclu avec la propriétaire du fonds. Elle reprochait pourtant aux bailleurs d’avoir laissé les accès sans entretien et le monte-charge hors d’usage. La Cour juge que « le tiers à un contrat peut invoquer, sur le fondement de la responsabilité délictuelle, un manquement contractuel dès lors que ce manquement lui a causé un dommage ».</p>
+<p>Plusieurs arrêts ont pourtant pu laisser croire que le tiers devait prouver une faute distincte du manquement. L’assemblée plénière lève ce doute le 13 janvier 2020. Le tiers qui établit un lien de causalité entre le manquement contractuel et son dommage n’a pas à démontrer une faute délictuelle distincte. Ainsi, le contrat reste relatif pour ses obligations, mais son inexécution est un fait que chacun peut invoquer.</p>
+<p>Le tiers est toutefois soumis aux mêmes limites que le créancier. Dans l’arrêt Clamageran du 3 juillet 2024, la chambre commerciale juge que le tiers qui invoque un manquement contractuel peut se voir opposer les conditions et limites de la responsabilité qui s’appliquent entre les contractants. Elle veut ainsi respecter les prévisions du débiteur, qui s’est engagé en considération de l’économie générale du contrat. Le tiers agit en responsabilité délictuelle, mais on peut lui opposer ces conditions et ces limites.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="erreurs">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles erreurs font perdre des points sur ce sujet ?</h2>
+<h3>Confondre l’effet relatif et l’opposabilité</h3>
+<p>L’effet relatif (article 1199) signifie que le contrat n’oblige que les parties. L’opposabilité (article 1200) signifie que les tiers doivent respecter la situation que le contrat crée. L’effet relatif protège les tiers, car il leur évite de subir un contrat qu’ils n’ont pas signé. L’opposabilité protège en revanche les parties, puisqu’elle empêche les tiers d’ignorer leur contrat. Pour ne pas les confondre, ta copie définit chacun des deux avec son article avant de s’en servir.</p>
+<h3>Présenter la résolution comme toujours judiciaire</h3>
+<p>Avant 2016, l’ancien article 1184 voulait que la résolution soit demandée en justice. Aujourd’hui, l’article 1224 la permet aussi par une clause résolutoire ou par une notification du créancier. Dans le cas de la notification, le créancier agit à ses risques et périls (article 1226), car le débiteur peut saisir le juge pour contester la résolution.</p>
+<h3>Ne pas distinguer la résolution de la résiliation</h3>
+<p>La résolution met fin au contrat pour inexécution et impose des restitutions quand les prestations ne pouvaient servir que par l’exécution complète du contrat. Quand les prestations ont servi au fur et à mesure, comme dans un bail, la résolution porte le nom de résiliation, et il n’y a pas de restitution pour la période antérieure à la dernière prestation qui n’a pas reçu sa contrepartie (article 1229).</p>
+<h3>Attribuer l’arrêt Boot Shop à une simple chambre</h3>
+<p>L’arrêt Boot Shop du 6 octobre 2006 émane de l’assemblée plénière de la Cour de cassation, sa formation la plus solennelle. Une copie qui le cite comme un arrêt de la première chambre civile perd des points sur une décision qu’il faut identifier à coup sûr.</p>
+<h3>Croire que le créancier doit choisir une seule sanction</h3>
+<p>Selon l’article 1217, les sanctions qui ne sont pas incompatibles peuvent être cumulées, et des dommages et intérêts peuvent toujours s’y ajouter. Le créancier peut donc obtenir la résolution du contrat et la réparation de son préjudice.</p>
+</div>
+</div>
+</section>
+<section class="section" id="autres">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles autres dissertations de droit des contrats lire ensuite ?</h2>
+<p>D’autres dissertations corrigées de droit des contrats complètent celle-ci. Tu peux lire la <a href="dissertation-force-obligatoire-du-contrat-corrigee.html">force obligatoire du contrat</a>, les <a href="dissertation-fondements-du-contrat-corrigee.html">fondements du contrat</a> et la <a href="dissertation-formation-du-contrat-corrigee.html">formation du contrat</a>. La page <a href="formations.html">des formations</a> présente tous les supports de droit des contrats.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="faq">
+<div class="container container--narrow"><h2 class="h2">Questions fréquentes sur les effets du contrat</h2>
+<div class="accordion">
+<details class="accordion__item"><summary class="accordion__trigger">Quelle différence y a-t-il entre l’effet relatif et l’opposabilité du contrat ?</summary><div class="accordion__body"><p>L’effet relatif signifie que le contrat ne crée d’obligations qu’entre les parties (article 1199). Un tiers ne peut donc en principe ni exiger l’exécution du contrat ni être contraint de l’exécuter. L’opposabilité signifie que les tiers doivent respecter la situation juridique créée par le contrat et qu’ils peuvent s’en prévaloir, par exemple pour prouver un fait (article 1200).</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Un tiers peut-il agir en justice quand un contrat n’est pas exécuté ?</summary><div class="accordion__body"><p>En principe, il ne peut pas demander l’exécution du contrat (article 1199), sauf exceptions comme la stipulation pour autrui (article 1206). Il peut en revanche demander réparation du dommage que l’inexécution lui cause. L’assemblée plénière juge le 6 octobre 2006, puis le 13 janvier 2020, qu’il lui suffit d’établir un lien de causalité entre le manquement contractuel et son dommage, sans démontrer de faute distincte. On peut toutefois lui opposer les conditions et limites de responsabilité qui s’appliquent entre les contractants (chambre commerciale, 3 juillet 2024).</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Le créancier peut-il cumuler plusieurs sanctions de l’inexécution ?</summary><div class="accordion__body"><p>Oui, quand elles ne sont pas incompatibles. Selon l’article 1217, des dommages et intérêts peuvent toujours s’ajouter aux autres sanctions. L’exécution forcée en nature et la résolution se contredisent en revanche, car la première maintient le contrat et la seconde y met fin.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Quel PDF choisir pour réviser les effets du contrat ?</summary><div class="accordion__body"><p>Pour revoir le cours en entier, la fiche complète de droit des contrats L2 S1 traite aux chapitres 21 à 26 la force obligatoire, l’effet relatif et les sanctions de l’inexécution, avec les articles. Pour t’entraîner à appliquer ces règles à des faits, prends la compilation de cas pratiques corrigés.</p></div></details>
+</div>
+</div>
+</section>
+<!-- fin-article:pack-ultra -->
+<section class="article-pack-ligne"><div class="container container--narrow"><p class="article-pack-ligne__texte">Le Pack Ultra L2 S1 réunit les 28 ressources de ton premier semestre de L2 pour 199 €. La fiche de droit des contrats L2 en fait partie. <a href="pack-ultra.html#pack-ultra-l2-s1">Voir les supports inclus →</a></p></div></section>
+</main>
+
+
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Droit des contrats L2, dissertation sur les effets du contrat">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Droit des contrats L2, dissertation sur les effets du contrat">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit des contrats L2 S1 · 19,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-contrats-l2-s1" aria-label="Acheter la fiche complète · 19,99 €">Acheter · 19,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=81a894f1" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=909718f7" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=7aba7f6e';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
+</body>
+</html>
