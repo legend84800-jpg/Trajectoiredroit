@@ -3255,23 +3255,23 @@
       }
     },
     "maj-societes-l3-s1": {
-      "sha256": "63e0f21187f15d35eafe7545b006e8ee6527959fd1b921aae69195f8fd71d7b3",
-      "pages_pdf": 163,
+      "sha256": "752217a4aeebfb9511508bcfb91d7d201d1e4dd0acde32d118551fa5ac276b91",
+      "pages_pdf": 164,
       "famille": "majeures",
       "fichier_pdf": "maj-societes-l3-s1.pdf",
       "images": [
-        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p002.webp",
-        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p003.webp",
-        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p004.webp",
-        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p148.webp",
-        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p149.webp"
+        "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p002.webp",
+        "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p003.webp",
+        "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p004.webp",
+        "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p152.webp",
+        "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p153.webp"
       ],
       "pages_images": [
         2,
         3,
         4,
-        148,
-        149
+        152,
+        153
       ],
       "variantes": [
         {
@@ -3285,15 +3285,15 @@
             2,
             3,
             4,
-            148,
-            149
+            152,
+            153
           ],
           "images": [
-            "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p002.webp",
-            "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p003.webp",
-            "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p004.webp",
-            "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p148.webp",
-            "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p149.webp"
+            "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p002.webp",
+            "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p003.webp",
+            "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p004.webp",
+            "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p152.webp",
+            "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p153.webp"
           ],
           "versions_precedentes": [
             [
@@ -3365,47 +3365,54 @@
               "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p004.webp",
               "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p148.webp",
               "assets/apercus/typographie-20261113/maj-societes-l3-s1/0bdb41063fc9-p149.webp"
+            ],
+            [
+              "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p002.webp",
+              "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p003.webp",
+              "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p004.webp",
+              "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p148.webp",
+              "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p149.webp"
             ]
           ]
         }
       ],
       "majeures": 65,
       "preuves_images": {
-        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p002.webp": {
+        "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p002.webp": {
           "page_pdf": 2,
-          "sha256_image": "4b6ff18cca6caa6437e7ff3e9e3069c92ea41447e9e7b12729418c0f8733399b",
+          "sha256_image": "9948e623faf070f1b055c7800d7d495acdca5f9dd9a7a1176be0e5a746bb6739",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p003.webp": {
+        "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p003.webp": {
           "page_pdf": 3,
-          "sha256_image": "98281b23f7b3941a033831875c85ebc49b9785219d037c938503b8e9ae3be1b4",
+          "sha256_image": "31b3ca00512dc82b34540a90ce22fe4c34f5be5b97c5f6f3e73ae1196f998c06",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p004.webp": {
+        "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p004.webp": {
           "page_pdf": 4,
-          "sha256_image": "e55d257827c464b4a1559e297a3e949a9bc7a9bbc55ac5cabc95aec6591cea0f",
+          "sha256_image": "cafcefc8787690109bfa5f85c8a00fcc115b8d1dfdfb955e323f28ebb9d755ee",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p148.webp": {
-          "page_pdf": 148,
-          "sha256_image": "c6880c7490e53be1e848cef03deb5e0c9857c6fef16a8eb5b40462317401056b",
+        "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p152.webp": {
+          "page_pdf": 152,
+          "sha256_image": "7a1764274c2ace26c73366884cdc786c0604b33f37029a3761a4cf202d5fcbf4",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p149.webp": {
-          "page_pdf": 149,
-          "sha256_image": "e3eeca8f79c09e3c59521ab98fadc419a6d313c73b3ae0ddb9615db138527b7d",
+        "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p153.webp": {
+          "page_pdf": 153,
+          "sha256_image": "6e9cba461d7d193267c95204f3ddf0acb33bfd3cdfce7d6c74bda7c2855454c3",
           "dimensions": [
             1429,
             2021
@@ -18153,6 +18160,31 @@
       "produit": "fiche-hist-droit-l1",
       "page": 61,
       "image": "assets/apercus/finition-20261114/fiche-hist-droit-l1/d12e29d868d8-p061.webp"
+    },
+    "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p002.webp": {
+      "produit": "maj-societes-l3-s1",
+      "page": 2,
+      "image": "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p002.webp"
+    },
+    "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p003.webp": {
+      "produit": "maj-societes-l3-s1",
+      "page": 3,
+      "image": "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p003.webp"
+    },
+    "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p004.webp": {
+      "produit": "maj-societes-l3-s1",
+      "page": 4,
+      "image": "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p004.webp"
+    },
+    "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p148.webp": {
+      "produit": "maj-societes-l3-s1",
+      "page": 152,
+      "image": "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p152.webp"
+    },
+    "assets/apercus/finition-20261114/maj-societes-l3-s1/63e0f21187f1-p149.webp": {
+      "produit": "maj-societes-l3-s1",
+      "page": 153,
+      "image": "assets/apercus/20261120-cours-audio/maj-societes-l3-s1/752217a4aeeb-p153.webp"
     }
   },
   "decomptes": {
