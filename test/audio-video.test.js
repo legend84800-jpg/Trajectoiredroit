@@ -23,7 +23,9 @@ test("chaque option podcasts et vidéos contient un podcast et une vidéo par le
     assert.match(produit.nom, /^Podcasts et vidéos .+ L[123]/, id);
     assert.ok(produit.blobsMeta.every((m) => !/ d [a-z]| l [a-z]|responsabilite /.test(m.libelle)), id);
     assert.ok(IMAGES_PRODUITS[id], id);
-    assert.ok(fs.existsSync(path.join(__dirname, "..", IMAGES_PRODUITS[id].replace("https://trajectoiredroit.com/", ""))), id);
+    const image = new URL(IMAGES_PRODUITS[id]);
+    assert.equal(image.origin, "https://trajectoiredroit.com", id);
+    assert.ok(fs.existsSync(path.join(__dirname, "..", decodeURIComponent(image.pathname))), id);
   }
 });
 
