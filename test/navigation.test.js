@@ -39,6 +39,7 @@ test('les pages françaises partagent quatre familles de navigation avec Portali
     assert.equal(familles.length, 4, `${nom} doit avoir quatre familles`);
     const formats = extraire(nav, '<div class="megamenu__niveau-col megamenu__niveau-col--formats">', '</div>\n            <div class="megamenu__niveau-col">');
     assert.match(formats, /href="portalis\.html" role="menuitem">🤖 Portalis IA<\/a>/, nom);
+    assert.match(formats, /href="flashcards-qcm\.html" role="menuitem">🗂️ Flashcards et QCM<\/a>/, nom);
     verifierFinFormats(formats, nom);
     assert.match(formats, /href="kit-partiels\.html" role="menuitem"/, `${nom} doit proposer le Kit Partiels dans Par format`);
     assert.match(nav, />Fiches\s*</, `${nom} doit proposer Fiches`);
