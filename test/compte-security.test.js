@@ -77,7 +77,7 @@ function browser(options={}) {
     values,getItem:key=>values[key]||null,setItem:(key,value)=>{values[key]=value;},removeItem:key=>{delete values[key];}
   };}
   const local=storage(options.localStorage);const temporary=storage(options.sessionStorage);
-  for(const id of ['etatChargement','etatConnexion','etatConnecte','connexionForm','connexionEmail','connexionSubmit','connexionError','connexionSuccess','compteEmail','deconnexionBtn','achatsListe','achatsVide','resterConnecte','codeForm','connexionCode','codeSubmit','codeDestinataire','renvoyerCode','changerEmail']) {
+  for(const id of ['etatChargement','etatConnexion','etatConnecte','connexionForm','connexionEmail','connexionSubmit','connexionError','connexionSuccess','compteEmail','deconnexionBtn','achatsListe','achatsVide','achatsReessayer','resterConnecte','codeForm','connexionCode','codeSubmit','codeDestinataire','renvoyerCode','changerEmail']) {
     const classes=new Set();
     elements[id]={style:{},textContent:'',innerHTML:'',value:'',disabled:false,checked:false,hidden:id==='codeForm',listeners:{},focus(){this.focused=true;},
       classList:{add:x=>classes.add(x),remove:x=>classes.delete(x),contains:x=>classes.has(x)},

@@ -71,6 +71,7 @@
     var deconnexionBtn    = document.getElementById("deconnexionBtn");
     var achatsListe        = document.getElementById("achatsListe");
     var achatsVide         = document.getElementById("achatsVide");
+    var achatsReessayer    = document.getElementById("achatsReessayer");
     var generationSession = 0;
     var achatsOutils       = document.getElementById("achatsOutils");
     var achatsRecherche    = document.getElementById("achatsRecherche");
@@ -79,6 +80,7 @@
     var achatsReinitialiser = document.getElementById("achatsReinitialiser");
     var achatsResultat     = document.getElementById("achatsResultat");
     var achatsCourants = [];
+    var relancerAchats = null;
 
     function effacerAchats(){
       compteEmail.textContent = "";
@@ -91,6 +93,11 @@
       if (achatsResultat) achatsResultat.textContent = "";
       achatsVide.textContent = "Aucun achat pour l'instant.";
       achatsVide.style.display = "none";
+      relancerAchats = null;
+      if (achatsReessayer) {
+        achatsReessayer.hidden = true;
+        achatsReessayer.disabled = false;
+      }
       var boite = document.getElementById("complementsBox");
       if (boite) boite.hidden = true;
       afficherParrainage(null);
@@ -245,15 +252,19 @@
     // Accès à vie en self-service : régénère des liens de téléchargement signés
     // à la demande (15 min) plutôt que de dépendre du lien 48h envoyé par email.
     async function chargerAchats(accessToken, generation){
-      var rep, data;
+      if (generation !== generationSession) return;
+      relancerAchats = null;
+      if (achatsReessayer) achatsReessayer.disabled = true;
+      achatsVide.textContent = "Chargement des documents…";
+      achatsVide.style.display = "block";
+      var data;
       try {
-        rep = await fetch("/api/mes-telechargements", {
+        var rep = await fetch("/api/mes-telechargements", {
           method: "POST",
           cache: "no-store",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({ accessToken: accessToken })
         });
-        data = await rep.json();
         if (generation !== generationSession) return;
         if (rep.status === 401){
           actualiserSession(null);
@@ -262,23 +273,38 @@
           return;
         }
         if (!rep.ok) throw new Error("Achats indisponibles");
+        data = await rep.json();
+        if (generation !== generationSession) return;
+        if (!Array.isArray(data?.achats)) throw new Error("Réponse des achats invalide");
       } catch (e){
         if (generation !== generationSession) return;
-        achatsVide.style.display = "block";
-        achatsVide.textContent = "Impossible de charger tes achats pour l'instant. Réessaie dans un instant.";
+        achatsVide.textContent = "Le chargement de tes documents a échoué.";
         achatsListe.innerHTML = "";
         achatsCourants = [];
         if (achatsOutils) achatsOutils.hidden = true;
         if (achatsResultat) achatsResultat.textContent = "";
         afficherParrainage(null);
+        if (achatsReessayer) {
+          relancerAchats = function(){ return chargerAchats(accessToken, generation); };
+          achatsReessayer.hidden = false;
+          achatsReessayer.disabled = false;
+        }
         return;
       }
-      achatsCourants = (rep.ok && data.achats) || [];
+      if (achatsReessayer) {
+        achatsReessayer.hidden = true;
+        achatsReessayer.disabled = false;
+      }
+      achatsCourants = data.achats;
       afficherComplements(data && data.suggestions, data && data.remise);
       afficherParrainage(data && data.parrainage);
       preparerFiltresAchats();
       afficherAchatsFiltres();
     }
+
+    achatsReessayer?.addEventListener("click", function(){
+      if (relancerAchats) return relancerAchats();
+    });
 
     function afficherAchats(achats){
       achatsVide.textContent = achatsCourants.length

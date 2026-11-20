@@ -26,9 +26,10 @@ function historique() {
   ];
 }
 function navigateur(options = {}) {
-  const ids = ['etatChargement', 'etatConnexion', 'etatConnecte', 'connexionForm', 'connexionEmail', 'connexionSubmit', 'connexionError', 'connexionSuccess', 'compteEmail', 'deconnexionBtn', 'achatsListe', 'achatsVide', 'resterConnecte', 'codeForm', 'connexionCode', 'codeSubmit', 'codeDestinataire', 'renvoyerCode', 'changerEmail', 'achatsOutils', 'achatsRecherche', 'achatsProduit', 'achatsSemestre', 'achatsReinitialiser', 'achatsResultat'];
+  const ids = ['etatChargement', 'etatConnexion', 'etatConnecte', 'connexionForm', 'connexionEmail', 'connexionSubmit', 'connexionError', 'connexionSuccess', 'compteEmail', 'deconnexionBtn', 'achatsListe', 'achatsVide', 'achatsReessayer', 'resterConnecte', 'codeForm', 'connexionCode', 'codeSubmit', 'codeDestinataire', 'renvoyerCode', 'changerEmail', 'achatsOutils', 'achatsRecherche', 'achatsProduit', 'achatsSemestre', 'achatsReinitialiser', 'achatsResultat'];
   const elements = {};
   for (const id of ids) {
+    if (options.ancienHtml && id === 'achatsReessayer') continue;
     const classes = new Set();
     elements[id] = { style: {}, textContent: '', innerHTML: '', value: '', hidden: true, listeners: {},
       classList: { add: x => classes.add(x), remove: x => classes.delete(x), contains: x => classes.has(x) },
@@ -79,6 +80,107 @@ test('la recherche ignore les accents et cherche tous les mots dans un groupe du
   assert.match(rendu, /contrats.mp4/);
   assert.doesNotMatch(rendu, /contrats.pdf|admin.m4a|personnes.pdf/);
   assert.equal(b.elements.achatsResultat.textContent, '1 achat affiché sur 3');
+});
+
+const panneServeur = { ok: false, status: 500 };
+const reponseAchats = (achats = historique()) => ({ ok: true, status: 200, json: async () => ({ achats }) });
+
+test('après un échec, la relance de Mes documents réutilise la session et bloque un deuxième clic', async () => {
+  const attente = differe();
+  let nombre = 0;
+  const b = navigateur({ fetch: () => ++nombre === 1 ? panneServeur : attente.promise });
+  await b.flush();
+  const { achatsReessayer, achatsVide, etatConnecte, achatsListe } = b.elements;
+  assert.equal(achatsVide.textContent, 'Le chargement de tes documents a échoué.');
+  assert.equal(achatsReessayer.hidden, false);
+  assert.equal(achatsReessayer.disabled, false);
+  assert.ok(etatConnecte.classList.contains('is-active'));
+
+  const chargement = achatsReessayer.listeners.click();
+  achatsReessayer.listeners.click();
+  assert.equal(achatsVide.textContent, 'Chargement des documents…');
+  assert.equal(achatsReessayer.disabled, true);
+  assert.equal(b.demandes.length, 2);
+  assert.deepEqual(b.demandes[1], b.demandes[0]);
+  assert.equal(b.demandes[1].url, '/api/mes-telechargements');
+
+  attente.resolve(reponseAchats());
+  await chargement;
+  assert.match(achatsListe.innerHTML, /Pack Ultra L2 S1/);
+  assert.equal(achatsVide.style.display, 'none');
+  assert.equal(achatsReessayer.hidden, true);
+  achatsReessayer.listeners.click();
+  assert.equal(b.demandes.length, 2);
+});
+
+test('une panne persistante rend le bouton disponible pour une nouvelle tentative', async () => {
+  let nombre = 0;
+  const b = navigateur({ fetch: async () => {
+    if (++nombre === 2) throw new Error('Réseau indisponible');
+    return nombre < 3 ? panneServeur : reponseAchats([]);
+  } });
+  await b.flush();
+  await b.elements.achatsReessayer.listeners.click();
+  assert.equal(b.elements.achatsReessayer.hidden, false);
+  assert.equal(b.elements.achatsReessayer.disabled, false);
+  assert.equal(b.elements.achatsVide.textContent, 'Le chargement de tes documents a échoué.');
+
+  await b.elements.achatsReessayer.listeners.click();
+  assert.equal(b.demandes.length, 3);
+  assert.equal(b.elements.achatsReessayer.hidden, true);
+  assert.equal(b.elements.achatsVide.textContent, "Aucun achat pour l'instant.");
+  assert.equal(b.elements.achatsVide.style.display, 'block');
+});
+
+test('la page antérieure charge toujours ses documents sans le nouveau bouton', async () => {
+  const b = navigateur({ ancienHtml: true });
+  await b.flush();
+  assert.equal(b.elements.achatsReessayer, undefined);
+  assert.match(b.elements.achatsListe.innerHTML, /Pack Ultra L2 S1/);
+  assert.equal(b.elements.achatsVide.style.display, 'none');
+
+  const enPanne = navigateur({ ancienHtml: true, fetch: () => panneServeur });
+  await enPanne.flush();
+  assert.ok(enPanne.elements.etatConnecte.classList.contains('is-active'));
+  assert.equal(enPanne.elements.achatsVide.textContent, 'Le chargement de tes documents a échoué.');
+});
+
+test('une session expirée pendant le réessai retourne à la connexion', async () => {
+  let nombre = 0;
+  const b = navigateur({ fetch: () => ++nombre === 1 ? panneServeur : { ok: false, status: 401 } });
+  await b.flush();
+  await b.elements.achatsReessayer.listeners.click();
+  assert.ok(b.elements.etatConnexion.classList.contains('is-active'));
+  assert.match(b.elements.connexionError.textContent, /session a expiré/);
+  assert.equal(b.elements.achatsReessayer.hidden, true);
+  b.elements.achatsReessayer.listeners.click();
+  assert.equal(b.demandes.length, 2);
+});
+
+test('la réponse du réessai en cours est ignorée après une déconnexion ou un changement de compte', async () => {
+  for (const changerCompte of [false, true]) {
+    const attente = differe();
+    let nombre = 0;
+    const b = navigateur({ fetch: () => {
+      ++nombre;
+      if (nombre === 1) return panneServeur;
+      if (nombre === 2) return attente.promise;
+      return reponseAchats([]);
+    } });
+    await b.flush();
+    const chargement = b.elements.achatsReessayer.listeners.click();
+    await b.elements.deconnexionBtn.listeners.click();
+    if (changerCompte) {
+      b.evenement('SIGNED_IN', { access_token: 'autre-jeton-factice' });
+      await b.flush();
+    }
+    attente.resolve(reponseAchats());
+    await chargement;
+    assert.equal(b.elements.achatsListe.innerHTML, '');
+    assert.equal(b.elements.achatsReessayer.hidden, true);
+    b.elements.achatsReessayer.listeners.click();
+    assert.equal(b.demandes.length, changerCompte ? 3 : 2);
+  }
 });
 
 test('le filtre de matière réduit les fichiers du Pack Ultra sans perdre leur groupe', async () => {

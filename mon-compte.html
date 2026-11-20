@@ -74,6 +74,11 @@
     .achats-liste li:last-child{border-bottom:none}
     .achats-liste .achat-date{color:#94A3B8;font-size:.82rem}
     .achats-vide{color:#94A3B8;font-size:.92rem;text-align:center;padding:20px 0}
+    .compte-achats-etat{text-align:center}
+    .compte-achats-etat .achats-vide{color:var(--body)}
+    .compte-achats-etat button{min-height:44px}
+    .compte-achats-etat button[hidden]{display:none}
+    .compte-achats-etat button:disabled{opacity:.55;cursor:wait}
     .compte-achats-outils{display:grid;gap:12px;margin:20px 0}
     .compte-achats-outils[hidden]{display:none}
     .compte-achats-outils label{display:flex;flex-direction:column;gap:6px;font-size:.9rem;font-weight:600;color:var(--navy)}
@@ -453,7 +458,12 @@
                 </div>
               </div>
               <ul class="achats-liste" id="achatsListe"></ul>
-              <p class="achats-vide" id="achatsVide" style="display:none">Aucun achat pour l'instant.</p>
+              <div class="compte-achats-etat">
+                <div role="status" aria-live="polite" aria-atomic="true">
+                  <p class="achats-vide" id="achatsVide" style="display:none">Aucun achat pour l'instant.</p>
+                </div>
+                <button type="button" class="btn btn--outline" id="achatsReessayer" aria-describedby="achatsVide" hidden>Réessayer</button>
+              </div>
             </div>
 
             <div class="compte-box compte-portalis">
@@ -520,7 +530,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="assets/js/main.js?v=909718f7" defer></script>
-  <script src="assets/js/compte.js?v=9ea32db8" defer></script>
+  <script src="assets/js/compte.js?v=a0afe256" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
 </body>
