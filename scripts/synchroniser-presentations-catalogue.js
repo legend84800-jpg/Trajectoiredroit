@@ -6,7 +6,7 @@ const { SUJETS, sujetDe } = require("../api/_offres-matieres");
 const { FORMULES } = require("../api/_portalis-config");
 const { BESOINS, APERCUS, COMPARAISON_DOL } = require("./catalogue-presentations");
 const ROOT = path.resolve(__dirname, "..");
-const PAGES = ["index.html", "formations.html", "droit-des-contrats-l2.html", "majeures-preparees.html", "corriges.html", "revisions.html", "flashcards-qcm.html", "pack-ultra.html", "reussir-sa-l1.html", "reussir-sa-l3.html"];
+const PAGES = ["index.html", "formations.html", "droit-des-contrats-l2.html", "majeures-preparees.html", "corriges.html", "revisions.html", "flashcards-qcm.html", "podcasts-videos.html", "pack-ultra.html", "reussir-sa-l1.html", "reussir-sa-l3.html"];
 const euro = (centimes) => `${(centimes / 100).toLocaleString("fr-FR", { maximumFractionDigits: 2 })} €`;
 const escape = (value) => String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
@@ -24,10 +24,10 @@ function prixSupport(support) {
   return montant + support.unite;
 }
 
-function renderChoixMatieres(support, prix) {
+function matieresParAnnee(famille) {
   const annees = new Map();
   for (const [id, produit] of Object.entries(PRODUITS)) {
-    if (!id.startsWith(support.famille) || produit.venteSuspendue) continue;
+    if (!id.startsWith(famille) || produit.venteSuspendue) continue;
     const sujet = SUJETS[sujetDe(id)];
     const nomParAnnee = sujet?.nom.match(/^(.*?) L([123])(?: S[12])?$/);
     if (!sujet?.page || !nomParAnnee) continue;
@@ -35,15 +35,36 @@ function renderChoixMatieres(support, prix) {
     if (!annees.has(annee)) annees.set(annee, new Map());
     annees.get(annee).set(sujet.page, nom);
   }
-  const choix = [...annees].sort(([anneeA], [anneeB]) => anneeA.localeCompare(anneeB)).map(([annee, matieres]) => {
-    const liens = [...matieres].sort(([, nomA], [, nomB]) => nomA.localeCompare(nomB, "fr"))
-      .map(([page, nom]) => `<li><a href="${escape(page)}#podcasts-videos">${escape(nom)}</a></li>`);
-    return `<div><p class="compare-podcasts__annee">Licence ${annee}</p><ul role="list">${liens.join("")}</ul></div>`;
-  });
+  return [...annees].sort(([anneeA], [anneeB]) => anneeA.localeCompare(anneeB));
+}
+
+function liensPodcasts(matieres) {
+  return [...matieres].sort(([, nomA], [, nomB]) => nomA.localeCompare(nomB, "fr"))
+    .map(([page, nom]) => `<li><a href="${escape(page)}#podcasts-videos">${escape(nom)}</a></li>`);
+}
+
+function renderChoixMatieres(support, prix) {
+  const choix = matieresParAnnee(support.famille).map(([annee, matieres]) =>
+    `<div><p class="compare-podcasts__annee">Licence ${annee}</p><ul role="list">${liensPodcasts(matieres).join("")}</ul></div>`
+  );
   return `<details class="compare-podcasts">
     <summary><span>${escape(support.nom)}</span> <span class="compare-needs__price">${escape(prix)}</span></summary>
     <div class="compare-podcasts__matieres">${choix.join("\n      ")}</div>
   </details>`;
+}
+
+function renderCatalogueAudioVideo() {
+  const groupes = matieresParAnnee("audio-video-").map(([annee, matieres]) => `
+          <section class="card" aria-labelledby="podcasts-l${annee}">
+            <h2 class="h3" id="podcasts-l${annee}">Licence ${annee}</h2>
+            <ul class="podcasts-videos__liste" role="list">
+              ${liensPodcasts(matieres).join("\n              ")}
+            </ul>
+          </section>`);
+  return `<!-- catalogue:audio-video:start -->
+        <div class="grid-3 podcasts-videos__matieres">${groupes.join("")}
+        </div>
+        <!-- catalogue:audio-video:end -->`;
 }
 
 function renderComparateur() {
@@ -118,6 +139,11 @@ function renderSommaire(item) {
 
 function synchroniser(contenu, fichier) {
   let sortie = contenu.replace(/<!-- catalogue:comparateur:start -->[\s\S]*?<!-- catalogue:comparateur:end -->/g, renderComparateur());
+  if (fichier === "podcasts-videos.html") {
+    const bloc = /<!-- catalogue:audio-video:start -->[\s\S]*?<!-- catalogue:audio-video:end -->/;
+    if (!bloc.test(sortie)) throw new Error("Liste des matières absente, podcasts-videos.html");
+    sortie = sortie.replace(bloc, renderCatalogueAudioVideo());
+  }
   if (["formations.html", "droit-des-contrats-l2.html"].includes(fichier)) {
     for (const extrait of COMPARAISON_DOL) {
       sortie = sortie.replace(new RegExp(`assets/apercus/comparatif-dol-${extrait.format}-[0-9]{8}(?:-hierarchie)?\\.png(?:\\?v=[0-9]+)?`, "g"), extrait.image);

@@ -18,6 +18,17 @@ function extraire(html, debut, fin) {
   return html.slice(positionDebut, positionFin + fin.length);
 }
 
+function verifierFinFormats(formats, nom) {
+  const liens = [...formats.matchAll(/href="([^"]+)"/g)].map(([, href]) => href);
+  assert.deepEqual(liens.slice(-3), [
+    'flashcards-qcm.html',
+    'podcasts-videos.html',
+    'droit-des-contrats-en-images.html',
+  ], nom);
+  assert.equal(liens.filter((lien) => lien === 'podcasts-videos.html').length, 1, nom);
+  assert.equal(liens.filter((lien) => lien === 'droit-des-contrats-en-images.html').length, 1, nom);
+}
+
 test('les pages françaises partagent quatre familles de navigation avec Portalis dans Par format', () => {
   assert.ok(pages.length >= 247, `Le contrôle doit couvrir au moins 247 pages, ${pages.length} trouvées`);
 
@@ -27,7 +38,8 @@ test('les pages françaises partagent quatre familles de navigation avec Portali
 
     assert.equal(familles.length, 4, `${nom} doit avoir quatre familles`);
     const formats = extraire(nav, '<div class="megamenu__niveau-col megamenu__niveau-col--formats">', '</div>\n            <div class="megamenu__niveau-col">');
-    assert.match(formats, /href="portalis\.html" role="menuitem"/, `${nom} doit proposer Portalis dans Par format`);
+    assert.match(formats, /href="portalis\.html" role="menuitem">🤖 Portalis IA<\/a>/, nom);
+    verifierFinFormats(formats, nom);
     assert.match(formats, /href="kit-partiels\.html" role="menuitem"/, `${nom} doit proposer le Kit Partiels dans Par format`);
     assert.match(nav, />Fiches\s*</, `${nom} doit proposer Fiches`);
     assert.match(nav, />Cours particuliers\s*</, `${nom} doit proposer Cours particuliers`);
@@ -83,14 +95,16 @@ test('Fiches montre les cinq Packs Ultra et Ressources accueille le quiz', () =>
 test('le menu mobile reprend les quatre familles avec divulgation progressive', () => {
   for (const { nom, html } of pages) {
     const navMobile = extraire(html, '<nav class="mobile-nav"', '</nav>');
-    assert.match(navMobile, /mobile-nav__format" href="portalis\.html"/, `${nom} doit proposer Portalis parmi les formats sur mobile`);
+    const formats = extraire(navMobile, '<div class="mobile-nav__subnav">', '</div>');
+    assert.match(formats, /href="portalis\.html"><span[^>]*>🤖<\/span><span>Portalis IA<\/span>/, nom);
+    verifierFinFormats(formats, nom);
     const groupes = navMobile.match(/<details class="mobile-nav__group/g) || [];
 
     assert.equal(groupes.length, 3, `${nom} doit regrouper Fiches, Ressources et À propos`);
     assert.match(navMobile, /<details class="mobile-nav__group[^>]*" open>/, `${nom} doit montrer les formats dès l'ouverture du menu`);
     assert.match(navMobile, />Choisir un format</, `${nom} doit nommer clairement le premier groupe`);
     assert.match(navMobile, /href="formations\.html#comparatif"[^>]*>Comparer tous les formats</, `${nom} doit donner un accès direct au comparatif`);
-    assert.equal((navMobile.match(/mobile-nav__format-icon/g) || []).length, 9, `${nom} doit illustrer les formats, les kits et le Pack Ultra`);
+    assert.equal((navMobile.match(/mobile-nav__format-icon/g) || []).length, 10, `${nom} doit illustrer les formats, les kits et le Pack Ultra`);
     assert.match(navMobile, /mobile-nav__format" href="kit-partiels\.html"/, `${nom} doit proposer le Kit Partiels sur mobile`);
     assert.match(navMobile, /mobile-nav__format--featured[^>]*href="pack-ultra\.html#pack-ultra"/, `${nom} doit mettre le Pack Ultra en avant`);
     assert.doesNotMatch(navMobile, /cours-fiches\.html|Cours complets/, nom);

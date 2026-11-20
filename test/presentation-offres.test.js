@@ -76,7 +76,7 @@ test("les présentations générées restent à jour avec le catalogue de livrai
   assert.match(licence.description, /cartes mentales de 20 fiches/);
 });
 
-test("le comparatif des podcasts mène à chaque matière avec un extrait et une offre active", () => {
+test("le comparatif et la rubrique Vidéos et podcasts mènent à chaque matière avec un extrait et une offre active", () => {
   const accueil = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
   const choix = accueil.match(/<details class="compare-podcasts">[\s\S]*?<\/details>/)?.[0] || "";
   const liens = [...choix.matchAll(/href="([^"#]+)#[^"]+"/g)].map(([, fichier]) => fichier);
@@ -90,6 +90,10 @@ test("le comparatif des podcasts mène à chaque matière avec un extrait et une
   });
   assert.ok(matieres.length > 0);
   assert.deepEqual(liens.sort(), matieres.sort());
+  const page = fs.readFileSync(path.join(ROOT, "podcasts-videos.html"), "utf8");
+  const catalogue = page.match(/<!-- catalogue:audio-video:start -->[\s\S]*?<!-- catalogue:audio-video:end -->/)?.[0] || "";
+  const liensCatalogue = [...catalogue.matchAll(/href="([^"#]+)#podcasts-videos"/g)].map(([, fichier]) => fichier);
+  assert.deepEqual(liensCatalogue.sort(), matieres);
   assert.equal([...choix.matchAll(/href="[^"#]+#podcasts-videos"/g)].length, matieres.length);
   assert.ok(choix.includes('href="droit-des-contrats-l2.html#podcasts-videos"'));
 });
