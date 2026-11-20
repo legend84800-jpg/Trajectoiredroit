@@ -99,6 +99,17 @@ test('niveau, matière et mots recherchés se combinent sans retirer les cartes 
   assert.equal(e.niveaux[2].getAttribute('aria-pressed'), 'true');
 });
 
+test('les contrôles attendent que le catalogue soit prêt', () => {
+  const html = fs.readFileSync(path.join(__dirname, '../formations.html'), 'utf8');
+  const controles = html.match(/<(?:button|input)\b[^>]*\bdata-catalogue-(?:niveau|matiere|recherche|reset)\b[^>]*>/g);
+  assert.ok(controles.length > 0);
+  assert.ok(controles.every((controle) => /\sdisabled(?:\s|>)/.test(controle)));
+
+  const e = environnement();
+  const actives = [...e.niveaux, ...e.matieres, e.recherche, e.reset];
+  assert.ok(actives.every((controle) => controle.disabled === false));
+});
+
 test('une recherche vide affiche le message prévu puis Réinitialiser rétablit tout', () => {
   const e = environnement({ url: 'https://trajectoiredroit.com/formations.html#cours-l2' });
   e.matiere('public'); e.chercher('texte absent');

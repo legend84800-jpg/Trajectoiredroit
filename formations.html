@@ -507,27 +507,27 @@
       <div class="catalogue-toolbar">
         <div class="filtre-recherche">
           <svg class="filtre-recherche__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="search" data-catalogue-recherche placeholder="Rechercher une matière" aria-label="Rechercher une matière">
+          <input type="search" data-catalogue-recherche placeholder="Rechercher une matière" aria-label="Rechercher une matière" disabled>
         </div>
         <div class="filters" role="group" aria-label="Filtres des fiches">
           <div class="filters__row">
             <strong style="margin-right:8px; font-size:.9rem">Niveau :</strong>
-            <button type="button" aria-pressed="true" class="filter-chip active" data-catalogue-niveau="tous">Tous</button>
-            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-niveau="L1">L1</button>
-            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-niveau="L2">L2</button>
-            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-niveau="L3">L3</button>
+            <button type="button" aria-pressed="true" class="filter-chip active" data-catalogue-niveau="tous" disabled>Tous</button>
+            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-niveau="L1" disabled>L1</button>
+            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-niveau="L2" disabled>L2</button>
+            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-niveau="L3" disabled>L3</button>
           </div>
           <div class="filters__row" style="margin-top:10px">
             <strong style="margin-right:8px; font-size:.9rem">Matière :</strong>
-            <button type="button" aria-pressed="true" class="filter-chip active" data-catalogue-matiere="tous">Toutes</button>
-            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="civil">Droit civil</button>
-            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="penal">Droit pénal</button>
-            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="public">Droit public</button>
-            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="affaires">Droit des affaires</button>
-            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="histoire">Histoire &amp; introduction</button>
+            <button type="button" aria-pressed="true" class="filter-chip active" data-catalogue-matiere="tous" disabled>Toutes</button>
+            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="civil" disabled>Droit civil</button>
+            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="penal" disabled>Droit pénal</button>
+            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="public" disabled>Droit public</button>
+            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="affaires" disabled>Droit des affaires</button>
+            <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="histoire" disabled>Histoire &amp; introduction</button>
           </div>
         </div>
-              <div class="filters"><div class="filters__row"><span class="text-muted" data-catalogue-compteur role="status" aria-live="polite">24 supports affichés sur 24</span><button type="button" class="btn btn--ghost btn--sm" data-catalogue-reset>Réinitialiser</button></div></div>
+              <div class="filters"><div class="filters__row"><span class="text-muted" data-catalogue-compteur role="status" aria-live="polite">24 supports affichés sur 24</span><button type="button" class="btn btn--ghost btn--sm" data-catalogue-reset disabled>Réinitialiser</button></div></div>
       </div>
     </div>
 
@@ -1293,7 +1293,7 @@
   </div>
 
   <script src="assets/js/main.js?v=909718f7" defer></script>
-  <script src="assets/js/catalogue.js?v=7bbe981d" defer></script>
+  <script src="assets/js/catalogue.js?v=ad7d2713" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */

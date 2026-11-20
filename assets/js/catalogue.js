@@ -158,6 +158,9 @@
     }
     window.addEventListener('hashchange', appliquerHash);
     if (!appliquerHash()) { appliquerFiltres(); actualiserAdresse(true); }
+    niveaux.concat(matieres, recherche, reset || []).forEach(function (controle) {
+      controle.disabled = false;
+    });
   }
   function initialiser() {
     document.querySelectorAll('[data-tjd-catalogue]').forEach(initialiserCatalogue);
