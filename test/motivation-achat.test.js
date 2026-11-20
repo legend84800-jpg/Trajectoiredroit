@@ -71,10 +71,10 @@ test('le questionnaire est dans le bloc caché avant confirmation', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'merci-achat.html'), 'utf8');
   const blockStart = html.indexOf('<div id="purchaseConfirmedContent" hidden>');
   const formIndex = html.indexOf('<form id="achatRetourForm">');
-  const blockEnd = html.indexOf('<div id="purchasePendingCard"', blockStart);
-  assert.ok(blockStart >= 0 && formIndex > blockStart && (blockEnd < 0 || formIndex < blockEnd));
+  const blockEnd = html.indexOf('<div id="purchaseStatusActions"', blockStart);
+  assert.ok(blockStart >= 0 && formIndex > blockStart && formIndex < blockEnd);
   assert.match(html, /afficherAchatConfirme\(\);[\s\S]*?afficherRetourSiEligible\(d\)/);
-  assert.match(html, /if \(!d \|\| d\.montant == null\) throw new Error\('paiement_non_confirme'\)/);
+  assert.match(html, /if \(!d \|\| d\.etat \|\| !Number\.isFinite\(d\.montant\)\)[\s\S]*?return;[\s\S]*?afficherAchatConfirme\(\);/);
 });
 
 test('une origine seule suffit après un achat de pack confirmé', async () => {

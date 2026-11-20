@@ -47,19 +47,22 @@ function preparerPublication(racine = path.resolve(__dirname, '..')) {
     if (nom.endsWith('.html') || FICHIERS_PUBLICS.includes(nom) || DOSSIERS_PUBLICS.includes(nom)) examiner(path.join(racine, nom));
   }
   if (!fichiers.includes('index.html')) throw new Error('La page d’accueil index.html est absente.');
-  const scriptConsentement = 'assets/js/cookie-consent.js';
-  const versionConsentement = fichiers.includes(scriptConsentement)
-    ? createHash('sha256').update(fs.readFileSync(path.join(racine, scriptConsentement))).digest('hex').slice(0, 8)
-    : null;
+  const versionsScripts = new Map(['assets/js/cookie-consent.js', 'assets/js/main.js']
+    .filter((script) => fichiers.includes(script))
+    .map((script) => [script, createHash('sha256').update(fs.readFileSync(path.join(racine, script))).digest('hex').slice(0, 8)]));
   // Ce seul sous-dossier est régénéré. Les API et le reste du build restent à la racine du projet.
   fs.rmSync(sortie, { recursive: true, force: true });
   for (const relatif of fichiers) {
     const destination = path.join(sortie, relatif);
     fs.mkdirSync(path.dirname(destination), { recursive: true });
     const source = path.join(racine, relatif);
-    if (versionConsentement && relatif.endsWith('.html')) {
+    if (versionsScripts.size && relatif.endsWith('.html')) {
       const html = fs.readFileSync(source, 'utf8');
-      fs.writeFileSync(destination, html.replace(/(assets\/js\/cookie-consent\.js\?v=)[a-f0-9]+/g, (_, prefixe) => prefixe + versionConsentement));
+      const htmlVersionne = html.replace(/(assets\/js\/[a-z0-9-]+\.js)\?v=[a-f0-9]+/g, (reference, script) => {
+        const version = versionsScripts.get(script);
+        return version ? `${script}?v=${version}` : reference;
+      });
+      fs.writeFileSync(destination, htmlVersionne);
     } else {
       fs.copyFileSync(source, destination);
     }

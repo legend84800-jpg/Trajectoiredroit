@@ -7,15 +7,25 @@
     return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[’']/g, ' ');
   }
   function rechercher(pages, query) {
-    var mots = normalize(query).trim().split(/\s+/).filter(Boolean);
-    if (!mots.length) return [];
+    var requete = normalize(query).trim();
+    if (!requete) return [];
+    var mots = requete.split(/\s+/);
+    var requeteCarte = requete
+      .replace(/\bl([123])s([12])\b/g, 'l$1 s$2')
+      .replace(/\b(?:licence|l)\s*([123])\b/g, 'l$1')
+      .replace(/\b(?:semestre|s)\s*([12])\b/g, 's$1');
+    var motsCarte = requeteCarte.split(/\s+/).map(function (mot) { return mot === 'qcms' ? 'qcm' : mot; });
+    var chercheFormat = /\b(?:flashcards?|qcms?)\b/.test(requete);
     return pages.map(function (item) {
+      var carte = item.u.indexOf('#') !== -1;
+      var motsCherches = carte ? motsCarte : mots;
       var titre = normalize(item.t), contenu = titre + ' ' + normalize(item.k) + ' ' + normalize(item.c);
-      if (!mots.every(function (mot) { return contenu.indexOf(mot) !== -1; })) return null;
-      var score = mots.reduce(function (total, mot) { return total + (titre.indexOf(mot) !== -1 ? 10 : 1); }, 0);
-      if (titre.indexOf(normalize(query).trim()) !== -1) score += 20;
-      return { item: item, score: score };
-    }).filter(Boolean).sort(function (a, b) { return b.score - a.score || a.item.t.localeCompare(b.item.t, 'fr'); })
+      if (!motsCherches.every(function (mot) { return contenu.indexOf(mot) !== -1; })) return null;
+      var score = motsCherches.reduce(function (total, mot) { return total + (titre.indexOf(mot) !== -1 ? 10 : 1); }, 0);
+      if (titre.indexOf(carte ? requeteCarte : requete) !== -1) score += 20;
+      // Pour une recherche par matière, les guides gardent leur place devant les offres.
+      return { item: item, score: score, apresLesPages: carte && !chercheFormat };
+    }).filter(Boolean).sort(function (a, b) { return a.apresLesPages - b.apresLesPages || b.score - a.score || a.item.t.localeCompare(b.item.t, 'fr'); })
       .map(function (resultat) { return resultat.item; });
   }
   window.tjdRechercherPages = rechercher;
@@ -26,7 +36,11 @@
       .then(function (reponse) { if (!reponse.ok) throw new Error('Index indisponible'); return reponse.json(); })
       .then(function (pages) {
         if (!Array.isArray(pages)) throw new Error('Index invalide');
-        index = pages.filter(function (item) { return item && typeof item.t === 'string' && typeof item.u === 'string' && /^\/(?!\/)[^?#]*$/.test(item.u); });
+        index = pages.filter(function (item) {
+          if (!item || typeof item.t !== 'string' || typeof item.u !== 'string') return false;
+          return /^\/(?:[a-z0-9][a-z0-9_-]*\.html)?$/.test(item.u)
+            || /^\/flashcards-qcm\.html#flashcards-qcm-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.u);
+        });
         chargement = null;
         return index;
       }).catch(function (erreur) { chargement = null; throw erreur; });

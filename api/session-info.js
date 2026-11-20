@@ -4,7 +4,7 @@
 // success_url ne porte que le session_id). Renvoie aussi les suggestions de
 // compléments et, depuis le 14/10/2026, le code de remise personnel de 15 %.
 //
-// GET  /api/session-info?session_id=cs_xxx   achat confirmé, suggestions, remise
+// GET  /api/session-info?session_id=cs_xxx   état du paiement, puis liens si confirmé
 // GET  /api/session-info?ids=id1,id2          suggestions seules (complements.html),
 //                                             aucune donnée personnelle
 // POST /api/session-info { session_id, action: "emails" }
@@ -28,6 +28,16 @@ function sessionCompatibleAvecCle(sessionId, cle) {
   if (!correspondance) return false;
   const modeCle = modeDepuisCle(cle);
   return !modeCle || correspondance[1] === modeCle;
+}
+
+function etatPaiementNonConfirme(session, paiement) {
+  const statutPaiement = paiement?.status;
+  if (session.status === "expired") return "expire";
+  if (statutPaiement === "canceled") return "annule";
+  if (statutPaiement === "requires_payment_method" && paiement.last_payment_error) return "echec";
+  if (statutPaiement === "processing") return "en_attente";
+  if (session.status === "open") return "a_terminer";
+  return "indisponible";
 }
 
 function lireCorps(req) {
@@ -185,6 +195,7 @@ async function handler(req, res) {
   }
 
   const session_id = methode === "POST" ? corps.session_id : query.session_id;
+  if (res.setHeader) res.setHeader("Cache-Control", "private, no-store");
 
   if (!session_id || !/^cs_(live|test)_[A-Za-z0-9]+$/.test(session_id)) {
     res.status(400).json({ erreur: "session_id invalide" });
@@ -194,7 +205,7 @@ async function handler(req, res) {
   const stripeKey = process.env.STRIPE_SECRET_KEY;
   if (!stripeKey) { res.status(500).json({ erreur: "Configuration Stripe manquante" }); return; }
   if (!sessionCompatibleAvecCle(session_id, stripeKey)) {
-    res.status(404).json({ erreur: "Session introuvable ou non payée" });
+    res.status(404).json({ erreur: "Session introuvable" });
     return;
   }
 
@@ -203,7 +214,20 @@ async function handler(req, res) {
     const data = await stripe.checkout.sessions.retrieve(session_id);
     if (data.payment_status !== "paid"
       && !require("./_commande-confirmee").commandeGratuiteConfirmee(data)) {
-      res.status(404).json({ erreur: "Session introuvable ou non payée" });
+      if (methode === "GET") {
+        let paiement = data.payment_intent;
+        if (data.status !== "expired" && typeof paiement === "string" && paiement) {
+          try {
+            paiement = await stripe.paymentIntents.retrieve(paiement);
+          } catch {
+            res.status(200).json({ etat: "indisponible" });
+            return;
+          }
+        }
+        res.status(200).json({ etat: etatPaiementNonConfirme(data, paiement) });
+      } else {
+        res.status(404).json({ erreur: "Session introuvable ou non payée" });
+      }
       return;
     }
     const produitIds = produitIdsDe(data);
@@ -220,7 +244,6 @@ async function handler(req, res) {
     const montantTotalEcheances = Number(data.metadata && data.metadata.montantTotal);
     const remise = await lireOuCreerRemise(data, produitIds, stripe);
     // La réponse porte des liens de téléchargement signés, jamais mis en cache.
-    if (res.setHeader) res.setHeader("Cache-Control", "private, no-store");
     res.status(200).json({
       montant: montantTotalEcheances > 0
         ? montantTotalEcheances / 100
@@ -239,7 +262,7 @@ async function handler(req, res) {
     });
   } catch (e) {
     if (e && (e.code === "resource_missing" || e.statusCode === 404)) {
-      res.status(404).json({ erreur: "Session introuvable ou non payée" });
+      res.status(404).json({ erreur: "Session introuvable" });
       return;
     }
     console.error("session-info Stripe erreur:", e && e.message ? e.message : "erreur inconnue");

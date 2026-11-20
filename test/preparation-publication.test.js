@@ -6,6 +6,10 @@ const path = require('node:path');
 const { createHash } = require('node:crypto');
 const { preparerPublication } = require('../scripts/preparer-publication');
 
+function versionScript(texte) {
+  return createHash('sha256').update(texte).digest('hex').slice(0, 8);
+}
+
 function projet(t) {
   const racine = fs.mkdtempSync(path.join(os.tmpdir(), 'tjd-publication-'));
   t.after(() => fs.rmSync(racine, { recursive: true, force: true }));
@@ -14,9 +18,11 @@ function projet(t) {
     fs.mkdirSync(path.dirname(fichier), { recursive: true });
     fs.writeFileSync(fichier, texte);
   }
-  ecrire('index.html', '<a href="/cours.html#extrait">Cours</a><script src="/assets/js/main.js?v=12345678"></script><a href="/jeu/">Jeu</a>');
+  const scriptPrincipal = 'window.exemple = true;';
+  const versionPrincipale = versionScript(scriptPrincipal);
+  ecrire('index.html', `<a href="/cours.html#extrait">Cours</a><script src="/assets/js/main.js?v=${versionPrincipale}"></script><a href="/jeu/">Jeu</a>`);
   ecrire('cours.html', '<main id="extrait"><img src="apercus/page.webp"></main>');
-  ecrire('assets/js/main.js', 'window.exemple = true;');
+  ecrire('assets/js/main.js', scriptPrincipal);
   ecrire('assets/style.css', 'body{color:black}');
   ecrire('apercus/page.webp');
   ecrire('jeu/index.html', '<script src="jeu.js"></script>');
@@ -37,17 +43,23 @@ test('la sortie conserve les pages, ressources et adresses du site et du jeu', (
   }
 });
 
-test('la sortie actualise la version du script de consentement sur chaque page concernée', (t) => {
+test('la sortie actualise les versions des scripts partagés sans modifier les sources', (t) => {
   const p = projet(t);
-  const script = 'window.consentement = true;';
-  const avant = '<script src="/assets/js/cookie-consent.js?v=00000000"></script>';
-  p.ecrire('assets/js/cookie-consent.js', script);
+  const consentement = 'window.consentement = true;';
+  const principal = 'window.nouvelleVersion = true;';
+  const avant = '<script src="/assets/js/cookie-consent.js?v=00000000"></script>'
+    + '<script src="assets/js/main.js?v=11111111"></script>'
+    + '<script src="assets/js/autre.js?v=22222222"></script>';
+  p.ecrire('assets/js/cookie-consent.js', consentement);
+  p.ecrire('assets/js/main.js', principal);
   p.ecrire('cours.html', avant);
-  const version = createHash('sha256').update(script).digest('hex').slice(0, 8);
   const { sortie } = preparerPublication(p.racine);
-  assert.equal(fs.readFileSync(path.join(sortie, 'cours.html'), 'utf8'), avant.replace('00000000', version));
+  const coursPublie = fs.readFileSync(path.join(sortie, 'cours.html'), 'utf8');
+  assert.equal(coursPublie, avant.replace('00000000', versionScript(consentement)).replace('11111111', versionScript(principal)));
   assert.equal(fs.readFileSync(path.join(p.racine, 'cours.html'), 'utf8'), avant);
-  assert.equal(fs.readFileSync(path.join(sortie, 'index.html'), 'utf8'), fs.readFileSync(path.join(p.racine, 'index.html'), 'utf8'));
+  const accueil = fs.readFileSync(path.join(p.racine, 'index.html'), 'utf8');
+  assert.equal(fs.readFileSync(path.join(sortie, 'index.html'), 'utf8'),
+    accueil.replace(/main\.js\?v=[a-f0-9]+/, `main.js?v=${versionScript(principal)}`));
 });
 
 test('les sources serveur, brouillons et fichiers de configuration restent hors de la sortie', (t) => {

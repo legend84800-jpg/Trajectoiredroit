@@ -562,10 +562,10 @@ test("la page de remerciement attend la confirmation Stripe avant d'annoncer le 
 
   assert.match(pageMerci, /id="purchaseStatusEyebrow"[^>]*>Vérification en cours</);
   assert.match(pageMerci, /id="purchaseConfirmedContent" hidden/);
-  assert.match(pageMerci, /if \(r\.status === 404\) throw new Error\('paiement_non_confirme'\)/);
-  assert.match(pageMerci, /if \(!d \|\| d\.montant == null\) throw new Error\('paiement_non_confirme'\)/);
+  assert.match(pageMerci, /if \(r\.status === 404\) return \{ etat: 'introuvable' \}/);
+  assert.match(pageMerci, /if \(!d \|\| d\.etat \|\| !Number\.isFinite\(d\.montant\)\)/);
   assert.match(pageMerci, /afficherAchatConfirme\(\);/);
-  assert.match(pageMerci, /afficherPaiementNonConfirme\(\);/);
+  assert.match(pageMerci, /afficherPaiementNonConfirme\(d && d\.etat\);/);
 });
 
 test("l’email de livraison donne les liens dans les deux formats et le code du titulaire", async t => {

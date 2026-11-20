@@ -526,8 +526,8 @@ html[data-theme="dark"] #fiche-da-choix-2:checked ~ .fiche-semestre__choix [for=
             </div>
             <aside id="kit-depuis-la-matiere" aria-labelledby="kit-depuis-la-matiere-titre" style="display:grid; gap:10px; margin:18px 0 14px; padding:16px; border:1px solid var(--border); border-radius:var(--r-md, 12px); background:var(--surface-2)">
               <h3 id="kit-depuis-la-matiere-titre" style="font:700 1.18rem/1.25 var(--font-display); margin:0; color:var(--text)">Trois matières à réviser ?</h3>
-              <p style="margin:0; color:var(--body); line-height:1.5">Dans un nouveau Kit, le droit administratif du semestre 1 est déjà coché. Le bouton permet aussi de reprendre un Kit déjà commencé.</p>
-              <div><a class="btn btn--outline" href="kit-partiels.html?matiere=administratif-s1#composer">Composer mon Kit Partiels</a></div>
+              <p style="margin:0; color:var(--body); line-height:1.5">Dans un nouveau Kit, le droit administratif du semestre <span id="kit-da-semestre">1</span> est déjà coché. Le bouton permet aussi de reprendre un Kit déjà commencé.</p>
+              <div><a id="kit-da-lien" class="btn btn--outline" href="kit-partiels.html?matiere=administratif-s1#composer">Composer mon Kit Partiels</a></div>
             </aside>
             <p class="offre-matiere__essai" style="margin:14px 0 4px; padding:12px 14px; border:1px dashed var(--border-strong); border-radius:var(--r-md, 12px); line-height:1.55"><a href="#essai-majeures" data-tjd-essai-ouvrir data-emplacement="offre-haut">Recevoir les deux majeures offertes</a></p>
             <p class="conversion-offer__summary"><strong>Les deux fiches complètes réunissent 232 pages.</strong> Le S1 explique d'où vient le droit administratif et quel juge le fait appliquer. Il présente aussi le principe de légalité avec ses sources, puis l'organisation de l'administration. Le S2 étudie ensuite l'action de l'administration, d'abord le service public et la police, puis ses actes et ses contrats. Il se termine par sa responsabilité et par le contentieux, c'est-à-dire les recours devant le juge administratif.</p>
@@ -1053,12 +1053,27 @@ html[data-theme="dark"] #fiche-da-choix-2:checked ~ .fiche-semestre__choix [for=
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const card = document.getElementById('fiche-seule-da');
+  const choixS1 = document.getElementById('fiche-da-choix-1');
+  const choixS2 = document.getElementById('fiche-da-choix-2');
+  const kitSemestre = document.getElementById('kit-da-semestre');
+  const kitLien = document.getElementById('kit-da-lien');
+
+  function actualiserLienKit() {
+    const semestre = choixS2.checked ? '2' : '1';
+    kitSemestre.textContent = semestre;
+    kitLien.href = `kit-partiels.html?matiere=administratif-s${semestre}#composer`;
+  }
+
   card.querySelectorAll('[data-apercu-cta][data-premier-chapitre="1"]').forEach(function (apercu) {
     const chapitre = apercu.nextElementSibling;
     if (chapitre && chapitre.matches('a.apercu-link')) chapitre.textContent = 'Premier chapitre';
   });
+  card.addEventListener('change', actualiserLienKit);
+  window.addEventListener('pageshow', actualiserLienKit);
+  actualiserLienKit();
   document.querySelector('[data-fiche-da-s1]').addEventListener('click', function () {
-    document.getElementById('fiche-da-choix-1').checked = true;
+    choixS1.checked = true;
+    actualiserLienKit();
   });
 });
 </script>
