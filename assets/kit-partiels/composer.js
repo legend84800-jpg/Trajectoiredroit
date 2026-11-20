@@ -18,9 +18,11 @@
   const choix = form.querySelector("#matieres");
   const resume = form.querySelector("#selection");
   const compteur = form.querySelector("#compteur");
+  const remplacement = form.querySelector("#kit-remplacement");
   const comparaison = form.querySelector("#comparaison");
   const valeurSeparee = form.querySelector("#prix-separe");
   const detail = form.querySelector("#detail-paiement");
+  const prixIndication = form.querySelector("#prix-kit-indication");
   const cta = form.querySelector("#commander");
   const comparaisonPack = form.querySelector("#duo-partiels");
   const valeurPack = form.querySelector("#duo-partiels-prix");
@@ -42,8 +44,31 @@
   });
 
   let niveau = form.querySelector('input[name="niveau"]:checked').value;
-  let codes = new Set();
+  const choixParNiveau = new Map(Object.keys(catalogue.niveaux).map((niveau) => [niveau, new Set()]));
+  let codes = choixParNiveau.get(niveau);
   const cleSelection = "tjd_kit_partiels_selection";
+
+  function activerNiveau(nouveauNiveau) {
+    const radio = form.querySelector(`input[name="niveau"][value="${nouveauNiveau}"]`);
+    if (!radio || !choixParNiveau.has(nouveauNiveau)) return;
+    niveau = nouveauNiveau;
+    codes = choixParNiveau.get(niveau);
+    radio.checked = true;
+  }
+
+  function importerCodes(niveau, valeurs) {
+    if (!Array.isArray(valeurs)) return;
+    const choixSauvegardes = choixParNiveau.get(niveau);
+    const codesValides = new Set(catalogue.niveaux[niveau].map((matiere) => matiere.code));
+    for (const code of valeurs) {
+      if (codesValides.has(code)) choixSauvegardes.add(code);
+      if (choixSauvegardes.size === nombre) break;
+    }
+  }
+
+  function paiementChoisi() {
+    return form.querySelector('input[name="paiement"]:checked').value;
+  }
 
   function restaurerSelection() {
     let selection;
@@ -52,24 +77,32 @@
     } catch (_) {
       return;
     }
-    if (!selection || typeof selection.niveau !== "string" ||
-        !Object.hasOwn(catalogue.niveaux, selection.niveau) || !Array.isArray(selection.codes)) return;
+    if (!selection || !choixParNiveau.has(selection.niveau)) return;
 
-    const boutonNiveau = form.querySelector(`input[name="niveau"][value="${selection.niveau}"]`);
-    if (!boutonNiveau) return;
-    niveau = selection.niveau;
-    boutonNiveau.checked = true;
+    const brouillons = selection.choixParNiveau;
+    if (brouillons && typeof brouillons === "object" && !Array.isArray(brouillons)) {
+      for (const annee of choixParNiveau.keys()) {
+        if (Object.hasOwn(brouillons, annee)) importerCodes(annee, brouillons[annee]);
+      }
+    } else if (Array.isArray(selection.codes)) {
+      importerCodes(selection.niveau, selection.codes);
+    } else {
+      return;
+    }
+    activerNiveau(selection.niveau);
 
-    for (const code of selection.codes) {
-      if (!catalogue.niveaux[niveau].some((matiere) => matiere.code === code)) continue;
-      codes.add(code);
-      if (codes.size === nombre) break;
+    if (selection.paiement === "1" || selection.paiement === "2") {
+      const option = form.querySelector(`input[name="paiement"][value="${selection.paiement}"]`);
+      if (option) option.checked = true;
     }
   }
 
   function enregistrerSelection() {
     try {
-      window.sessionStorage.setItem(cleSelection, JSON.stringify({ niveau, codes: [...codes] }));
+      const brouillons = Object.fromEntries([...choixParNiveau].map(([niveau, choixAnnee]) => [niveau, [...choixAnnee]]));
+      window.sessionStorage.setItem(cleSelection, JSON.stringify({
+        niveau, choixParNiveau: brouillons, paiement: paiementChoisi(),
+      }));
     } catch (_) {
       // Le formulaire reste utilisable lorsque le navigateur bloque le stockage.
     }
@@ -95,7 +128,7 @@
         codes.delete(matiere.code);
         enregistrerSelection();
         rafraichir();
-        choix.querySelector("input:not(:checked):not(:disabled)")?.focus();
+        [...choix.querySelectorAll("input")].find((input) => input.value === matiere.code)?.focus();
       });
       li.append(nom, retirer);
       ul.append(li);
@@ -139,7 +172,7 @@
   function rafraichir() {
     const matieres = matieresChoisies();
     const pret = matieres.length === nombre;
-    const deuxFois = form.querySelector('input[name="paiement"]:checked').value === "2";
+    const deuxFois = paiementChoisi() === "2";
 
     for (const input of choix.querySelectorAll("input")) {
       input.checked = codes.has(input.value);
@@ -147,6 +180,7 @@
     }
 
     compteur.textContent = `${matieres.length} sur ${nombre}`;
+    if (remplacement) remplacement.hidden = !pret;
     resume.replaceChildren(matieres.length
       ? listeSelection(matieres)
       : document.createTextNode("Tes matières apparaîtront ici."));
@@ -168,6 +202,7 @@
         : toutes[0].prixSepare * nombre;
       valeurSeparee.textContent = euros(total);
     }
+    if (prixIndication) prixIndication.textContent = deuxFois ? "en une fois" : "pour tes trois choix";
     detail.textContent = deuxFois
       ? `${euros(echeance)} aujourd’hui et ${euros(echeance)} dans un mois. Total ${euros(montant)}.`
       : `${euros(montant)} aujourd’hui.`;
@@ -176,16 +211,18 @@
   }
 
   form.addEventListener("change", (event) => {
-    if (event.target.name === "niveau") {
-      niveau = event.target.value;
-      codes = new Set();
+    const champ = event.target;
+    if (champ.name === "niveau") {
+      activerNiveau(champ.value);
       afficherMatieres();
-      enregistrerSelection();
-    } else if (event.target.name === "matiere") {
-      if (event.target.checked) codes.add(event.target.value);
-      else codes.delete(event.target.value);
-      enregistrerSelection();
+    } else if (champ.name === "matiere") {
+      const codeValide = catalogue.niveaux[niveau].some((matiere) => matiere.code === champ.value);
+      if (codeValide && champ.checked && codes.size < nombre) codes.add(champ.value);
+      else if (!champ.checked) codes.delete(champ.value);
+    } else if (champ.name !== "paiement") {
+      return;
     }
+    enregistrerSelection();
     rafraichir();
   });
 
@@ -194,7 +231,7 @@
     const matieres = matieresChoisies();
     if (matieres.length !== nombre) return;
 
-    const deuxFois = form.querySelector('input[name="paiement"]:checked').value === "2";
+    const deuxFois = paiementChoisi() === "2";
     const id = `pack-kit-partiels-${niveau}--${matieres.map((matiere) => matiere.code).sort().join("--")}`;
     if (deuxFois) cta.dataset.tjdEcheances = "2";
     else delete cta.dataset.tjdEcheances;
@@ -209,16 +246,16 @@
       catalogue.niveaux[niveau].some((matiere) => matiere.code === code));
     if (!niveauGuide) return;
     const matiere = catalogue.niveaux[niveauGuide].find((matiere) => matiere.code === code);
-    if (!codes.size || (niveau === niveauGuide && (codes.size < nombre || codes.has(code)))) {
-      niveau = niveauGuide;
-      form.querySelector(`input[name="niveau"][value="${niveau}"]`).checked = true;
+    const peutOuvrir = !codes.size || niveau === niveauGuide;
+    if (peutOuvrir) activerNiveau(niveauGuide);
+    if (peutOuvrir && (codes.size < nombre || codes.has(code))) {
       codes.add(code);
-      enregistrerSelection();
     } else {
       const info = form.querySelector("#kit-matiere-info");
       info.textContent = `Pour ajouter la matière « ${nomComplet(matiere)} », il faut d’abord modifier les choix déjà cochés.`;
       info.hidden = false;
     }
+    if (peutOuvrir) enregistrerSelection();
     url.searchParams.delete("matiere");
     window.history.replaceState(window.history.state, "", url);
   }

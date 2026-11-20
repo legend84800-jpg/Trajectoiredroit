@@ -71,9 +71,17 @@ test("les présentations générées restent à jour avec le catalogue de livrai
     assert.deepEqual(verifierPrix(html, fichier), [], fichier);
   }
   const licence = presentationPack("pack-complet");
-  assert.equal(licence.nombre, 21);
-  assert.equal(licence.totalPdf, 62);
+  assert.equal(licence.nombre, 23);
+  assert.equal(licence.totalPdf, 66);
+  assert.equal(licence.totalUnite, 45977);
+  assert.equal(licence.economie, 61);
   assert.match(licence.description, /cartes mentales de 20 fiches/);
+  const l2 = presentationPack("pack-l2");
+  assert.equal(l2.nombre, 9);
+  assert.equal(l2.totalPdf, 25);
+  assert.equal(l2.cartes, 7);
+  assert.equal(l2.totalUnite, 17991);
+  assert.equal(l2.economie, 56);
 });
 
 test("le comparatif et la rubrique Vidéos et podcasts mènent à chaque matière avec un extrait et une offre active", () => {

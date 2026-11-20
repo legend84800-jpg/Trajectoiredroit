@@ -93,7 +93,7 @@ function fichesIncluses(id) {
   const pack = PRODUITS[id];
   if (!pack) throw new Error(`Pack inconnu, ${id}`);
   const fichiers = new Set(pack.blobs);
-  return Object.entries(PRODUITS).filter(([cle, p]) => cle.startsWith("fiche-") && p.nom.startsWith("Fiche complète ") && fichiers.has(p.blobs[0]))
+  return Object.entries(PRODUITS).filter(([, p]) => p.nom.startsWith("Fiche complète ") && p.blobs.length && p.blobs.every((fichier) => fichiers.has(fichier)))
     .sort(([, a], [, b]) => pack.blobs.indexOf(a.blobs[0]) - pack.blobs.indexOf(b.blobs[0]));
 }
 
@@ -109,21 +109,24 @@ function presentationPack(id) {
   const annexe = cartes === nombre ? "Chaque fiche est accompagnée de son plan et de ses cartes mentales." : `Chaque fiche est accompagnée de son plan. Les cartes mentales de ${cartes} fiches sont aussi incluses.`;
   const descriptions = {
     "pack-l1": `Le pack réunit ${nombre} fiches pour la L1, dont une pour chaque semestre de droit constitutionnel. ${annexe}`,
-    "pack-l2": `Le pack réunit ${nombre} fiches pour la L2, dont deux en droit pénal. La fiche de droit pénal général traite aussi des peines. ${annexe}`,
+    "pack-l2": `Le pack réunit ${nombre} fiches pour la L2, dont celles de finances publiques et de philosophie du droit. La fiche de droit pénal général traite aussi des peines. Chaque fiche a son plan, et ${cartes} fiches ont aussi leurs cartes mentales.`,
     "pack-l3": `Le pack réunit ${nombre} fiches de L3, dont le droit des sociétés S1 et S2. ${annexe}`,
-    "pack-complet": `Le pack réunit ${nombre} fiches pour les trois années de licence, avec les deux semestres de droit des sociétés. ${annexe}`,
+    "pack-complet": `Le pack réunit ${nombre} fiches pour les trois années de licence, dont celles de finances publiques et de philosophie du droit en L2. Chaque fiche a son plan. Le pack comprend aussi les cartes mentales de ${cartes} fiches.`,
   };
   const titre = id === "pack-complet" ? "Pack Licence complète" : `Pack Licence ${niveau.slice(-1)}`;
   const inclusions = fiches.map(([cle, p]) =>
     `<li data-produit-inclus="${escape(cle)}">${escape(p.nom.replace(/^Fiche complète /, ""))}</li>`).join("");
   const economie = Math.round((1 - produit.prix / totalUnite) * 100);
   const titreHtml = id === "pack-l2" ? `<a href="pack-fiches-droit-l2.html">${titre}</a>` : titre;
+  const prixUnite = id === "pack-l2" || id === "pack-complet"
+    ? `<span class="product__price-old" style="text-decoration:none"><del>${euro(totalUnite)}</del> <small>à l’unité hors promotion</small></span> `
+    : `<span class="product__price-old">${euro(totalUnite)}</span>`;
   return { nombre, totalPdf, cartes, totalUnite, economie, titre, description: descriptions[id], html: `<div class="product__body" data-catalogue-pack="${id}">
               <h3 class="product__title">${titreHtml}</h3>
               <div class="product__meta"><span>${niveau}</span><span>·</span><span>${nombre} fiches complètes</span><span>·</span><span>${totalPdf} PDF · Accès à vie</span></div>
               <p class="product__desc">${escape(descriptions[id])}</p>
               <details class="product__includes" data-pack-inclus="${reference}" style="text-align:left; margin:10px 0; color:var(--body); font-size:.9rem"><summary style="cursor:pointer; color:var(--blue-600)">Voir les ${nombre} fiches incluses</summary><ul style="padding-left:20px; margin:10px 0; line-height:1.6">${inclusions}</ul><p style="margin:0">Les majeures préparées s’achètent à part.</p></details>
-              <div><span class="product__price-old">${euro(totalUnite)}</span><span class="product__price">${euro(produit.prix)}</span><span class="badge badge--success" style="margin-left:6px">-${economie} %</span></div>
+              <div>${prixUnite}<span class="product__price">${euro(produit.prix)}</span><span class="badge badge--success" style="margin-left:6px">-${economie} %</span></div>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="${reference}">Acheter le pack · ${euro(produit.prix)}</button>
             </div>` };
 }
@@ -170,12 +173,10 @@ function synchroniser(contenu, fichier) {
         if (debut < 0) throw new Error(`Carte absente, ${id}`);
         return ouverture + interieur.slice(0, debut).replace(/alt="[^"]*"/, `alt="${presentationPack(id).titre}, couverture Trajectoire Droit"`) + presentationPack(id).html + "\n          " + fin;
       });
-      if (id !== "pack-complet") {
-        const p = presentationPack(id);
-        const nom = `${p.titre}, ${p.nombre} fiches complètes de droit`;
-        const metadata = new RegExp(`("name":\\s*)"Pack Licence ${id.slice(-1)},[^"\\n]*"(,\\s*"description":\\s*)"[^"\\n]*"`);
-        sortie = sortie.replace(metadata, (bloc, avantNom, avantDescription) => avantNom + JSON.stringify(nom) + avantDescription + JSON.stringify(p.description));
-      }
+      const p = presentationPack(id);
+      const nom = `${p.titre}, ${p.nombre} fiches complètes de droit`;
+      const metadata = new RegExp(`("name":\\s*)"${p.titre},[^"\\n]*"(,\\s*"description":\\s*)"[^"\\n]*"`);
+      sortie = sortie.replace(metadata, (bloc, avantNom, avantDescription) => avantNom + JSON.stringify(nom) + avantDescription + JSON.stringify(p.description));
     }
   }
   return sortie;

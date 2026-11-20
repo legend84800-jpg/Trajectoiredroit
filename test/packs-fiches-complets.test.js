@@ -1,6 +1,11 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const { createHash } = require('node:crypto');
+const fs = require('node:fs');
+const vm = require('node:vm');
 const produits = require('../api/_produits');
+const { construireLiensTelechargement } = require('../api/_liens-telechargement');
+const { construireInclusionsPanier } = require('../scripts/generer-inclusions-panier');
 
 const attentes = {
   'pack-l1': { prix: 8700, fichiers: 27, ajout: 'fiche-penal-general-l1', anciens: ['fiche-intro-droit-l1','fiche-constit-l1-s1','fiche-constit-l1-s2','fiche-hist-droit-l1','fiche-hist-institutions-l1','fiche-personnes-l1','fiche-famille-l1-s2','fiche-relations-internationales-l1'] },
@@ -20,8 +25,8 @@ test('la licence contient les fiches des trois packs sans fichier en double', ()
   const union = new Set(['pack-l1-revision','pack-l2','pack-l3'].flatMap(id => produits[id].blobs));
   assert.deepEqual(new Set(produits['pack-complet'].blobs), union);
   assert.equal(produits['pack-complet'].prix, 17900);
-  assert.equal(produits['pack-complet'].blobs.length, 62);
-  assert.equal(produits['pack-l2'].blobs.length, 21);
+  assert.equal(produits['pack-complet'].blobs.length, 66);
+  assert.equal(produits['pack-l2'].blobs.length, 25);
   assert.equal(produits['pack-l2'].prix, 7900);
 });
 
@@ -40,5 +45,61 @@ test('le pénal général reste dans les anciens packs L1 et se vend dans les pa
     assert.ok(fichiers.every(fichier => ancien.blobs.includes(fichier)));
     assert.ok(fichiers.every(fichier => produits[l2].blobs.includes(fichier)));
     assert.deepEqual(nouveau.blobs, ancien.blobs.filter(fichier => !fichiers.includes(fichier)));
+  }
+});
+
+const deuxFichesL2 = ['cours-fiche-finances-publiques-l2-s1', 'cours-fiche-philo-droit-l2-s1'];
+const anciennesListes = {
+  'pack-l2': { taille: 21, empreinte: '9fafbf412a8c757d3e4a16c37555938e28f0ae9d971ba5bbc9218b636b820a82' },
+  'pack-complet': { taille: 62, empreinte: 'e53b3397b6cd534f54a056dfc0e81948994465c88bcacbe2983f6d3d4a184cab' },
+};
+
+test('les deux fiches et leurs plans sont ajoutés après tous les anciens indices de téléchargement', () => {
+  const ajouts = deuxFichesL2.flatMap(id => produits[id].blobs);
+  const panier = construireInclusionsPanier(produits);
+  for (const [id, avant] of Object.entries(anciennesListes)) {
+    const { blobs } = produits[id];
+    const empreinte = createHash('sha256').update(JSON.stringify(blobs.slice(0, avant.taille))).digest('hex');
+    assert.equal(empreinte, avant.empreinte, id);
+    assert.deepEqual(blobs.slice(avant.taille), ajouts, id);
+    assert.equal(new Set(blobs).size, blobs.length, id);
+    for (const fiche of deuxFichesL2) assert.ok(panier.inclusions[id].includes(fiche), fiche);
+  }
+});
+
+test('Mon compte propose les nouveaux fichiers sur deux anciens achats fictifs', async () => {
+  const code = fs.readFileSync(require.resolve('../api/mes-telechargements'), 'utf8');
+  const lignes = Object.keys(anciennesListes).map(id => ({
+    produit_ids: [id], session_id: 'cs_test_ancien_' + id, cree_le: '2026-10-01T00:00:00Z',
+  }));
+  const modules = {
+    './_produits': produits,
+    './_supabase': {
+      utilisateurDepuisJWT: async () => ({ email: 'etudiant@example.invalid' }),
+      selectionner: async () => lignes,
+    },
+    './_liens-telechargement': { construireLiensTelechargement },
+    './_suggestions-post-achat': { suggererComplements: () => [] },
+  };
+  const contexte = {
+    module: { exports: {} }, require: id => modules[id], process: { env: { DOWNLOAD_SECRET: 'secret-de-test' } }, console,
+  };
+  vm.runInNewContext(code, contexte);
+  const reponse = { setHeader() {}, status(code) { this.code = code; return this; }, json(corps) { this.corps = corps; } };
+  await contexte.module.exports({ method: 'POST', body: { accessToken: 'jeton-fictif' } }, reponse);
+  assert.equal(reponse.code, 200);
+  for (const achat of reponse.corps.achats) {
+    const [{ id, fichiers }] = achat.produits;
+    assert.equal(fichiers.length, anciennesListes[id].taille + 4);
+    assert.match(fichiers.at(-4).nom, /Finances publiques/);
+    assert.match(fichiers.at(-3).nom, /Finances publiques.+plan/);
+    assert.match(fichiers.at(-2).nom, /Philosophie du droit/);
+    assert.match(fichiers.at(-1).nom, /Philosophie du droit.+plan/);
+    for (let index = 0; index < fichiers.length; index++) {
+      const url = new URL(fichiers[index].url);
+      assert.equal(url.pathname, '/api/telecharger');
+      assert.equal(url.searchParams.get('b'), String(index));
+      assert.equal(url.searchParams.get('sid'), achat.sessionId);
+    }
   }
 });

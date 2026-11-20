@@ -22,7 +22,15 @@ function ouvrirKit(sessionStorage, recherche = "") {
   });
   const champs = new Map();
   const radios = {};
-  const paiement = { name: "paiement", value: "1" };
+  const paiements = { actif: "1" };
+  for (const valeur of ["1", "2"]) {
+    paiements[valeur] = {
+      name: "paiement",
+      value: valeur,
+      set checked(etat) { if (etat) paiements.actif = valeur; },
+    };
+    champs.set(`input[name="paiement"][value="${valeur}"]`, paiements[valeur]);
+  }
   const commandes = [];
   let traiterChangement;
   let traiterSoumission;
@@ -36,10 +44,10 @@ function ouvrirKit(sessionStorage, recherche = "") {
     champs.set(`input[name="niveau"][value="${valeur}"]`, radios[valeur]);
   }
   radios.actif = "l2";
-  champs.set('input[name="paiement"]:checked', paiement);
   const form = {
     querySelector(selecteur) {
       if (selecteur === 'input[name="niveau"]:checked') return radios[radios.actif];
+      if (selecteur === 'input[name="paiement"]:checked') return paiements[paiements.actif];
       if (!champs.has(selecteur)) champs.set(selecteur, element());
       return champs.get(selecteur);
     },
@@ -51,10 +59,6 @@ function ouvrirKit(sessionStorage, recherche = "") {
   form.querySelector("#kit-matiere-info").hidden = true;
   const listeMatieres = form.querySelector("#matieres");
   listeMatieres.querySelectorAll = () => listeMatieres.children.map((label) => label.children[0]);
-  listeMatieres.querySelector = (selecteur) => {
-    assert.equal(selecteur, "input:not(:checked):not(:disabled)");
-    return listeMatieres.querySelectorAll().find((input) => !input.checked && !input.disabled);
-  };
   const document = {
     querySelector: () => form,
     querySelectorAll: () => [],
@@ -78,7 +82,9 @@ function ouvrirKit(sessionStorage, recherche = "") {
     get niveau() { return radios.actif; },
     get matieres() { return listeMatieres.querySelectorAll().filter((input) => input.checked).map((input) => input.value); },
     get compteur() { return champs.get("#compteur").textContent; },
-    get paiement() { return paiement.value; },
+    get paiement() { return paiements.actif; },
+    get remplacement() { return !champs.get("#kit-remplacement").hidden; },
+    get paiementAffiche() { return champs.get("#detail-paiement").textContent.replace(/\s+/g, " "); },
     get pack() { return champs.get("#duo-partiels").hidden ? null : champs.get("#duo-partiels-lien").href; },
     get avertissement() { return !champs.get("#kit-matiere-info").hidden; },
     get commander() { return !champs.get("#commander").disabled; },
@@ -100,8 +106,8 @@ function ouvrirKit(sessionStorage, recherche = "") {
       return listeMatieres.querySelectorAll().find((input) => input.value === code).disabled;
     },
     choisirPaiement(valeur) {
-      paiement.value = valeur;
-      traiterChangement({ target: paiement });
+      paiements[valeur].checked = true;
+      traiterChangement({ target: paiements[valeur] });
     },
     soumettre() {
       traiterSoumission({ preventDefault() {} });
@@ -130,13 +136,17 @@ test("retrouve le niveau et les matières après rechargement dans le même ongl
     matieres.forEach((code) => kit.choisirMatiere(code));
     kit.choisirPaiement("2");
 
-    assert.deepEqual(JSON.parse(session.getItem(cleSelection)), { niveau, codes: matieres });
+    const valeurs = JSON.parse(session.getItem(cleSelection));
+    assert.deepEqual(valeurs.choixParNiveau[niveau], matieres);
+    assert.equal(valeurs.niveau, niveau);
+    assert.equal(valeurs.paiement, "2");
     const retour = ouvrirKit(session);
     assert.equal(retour.niveau, niveau);
     assert.deepEqual(retour.matieres, matieres);
     assert.equal(retour.compteur, "3 sur 3");
     assert.equal(retour.commander, true);
-    assert.equal(retour.paiement, "1");
+    assert.equal(retour.paiement, "2");
+    assert.equal(retour.paiementAffiche, "34,50 € aujourd’hui et 34,50 € dans un mois. Total 69 €.");
   }
 });
 
@@ -285,4 +295,78 @@ test("conserve les matières cochées quand la matière du guide est incompatibl
     assert.equal(kit.avertissement, true);
     assert.equal(kit.url.search, "");
   }
+});
+
+test("garde des choix indépendants pour chaque année et le paiement pendant les allers-retours", () => {
+  const session = stockage();
+  const kit = ouvrirKit(session);
+  const l2 = ["contrats", "administratif-s1", "administratif-s2"];
+  l2.forEach((code) => kit.choisirMatiere(code));
+  kit.choisirPaiement("2");
+  kit.choisirNiveau("l1");
+  assert.deepEqual(kit.matieres, []);
+  assert.equal(kit.paiement, "2");
+  const l1 = ["constitutionnel-s1", "constitutionnel-s2"];
+  l1.forEach((code) => kit.choisirMatiere(code));
+  kit.choisirNiveau("l2");
+  assert.deepEqual(kit.matieres, l2);
+  assert.equal(kit.remplacement, true);
+  const retour = ouvrirKit(session);
+  assert.equal(retour.paiement, "2");
+  assert.deepEqual(retour.soumettre(), {
+    id: "pack-kit-partiels-l2--administratif-s1--administratif-s2--contrats", echeances: "2",
+  });
+  retour.choisirNiveau("l1");
+  assert.deepEqual(retour.matieres, l1);
+  assert.equal(retour.remplacement, false);
+  retour.choisirPaiement("1");
+  retour.choisirNiveau("l2");
+  assert.equal(ouvrirKit(session).soumettre().echeances, undefined);
+});
+
+test("nettoie les brouillons périmés sans mélanger leurs années ni rejouer un mauvais paiement", () => {
+  const session = stockage();
+  session.setItem(cleSelection, JSON.stringify({
+    niveau: "l2",
+    choixParNiveau: {
+      l1: ["constitutionnel-s1", "constitutionnel-s1", "administratif-s2", "constitutionnel-s2"],
+      l2: ["ancien-code", null, "administratif-s1", "administratif-s2", "contrats", "penal"],
+      l3: "societes",
+      l4: ["penal"],
+    },
+    paiement: "3",
+  }));
+  const kit = ouvrirKit(session);
+  assert.deepEqual(kit.matieres, ["contrats", "administratif-s1", "administratif-s2"]);
+  assert.equal(kit.paiement, "1");
+  assert.equal(kit.soumettre().echeances, undefined);
+  kit.choisirNiveau("l1");
+  assert.deepEqual(kit.matieres, ["constitutionnel-s1", "constitutionnel-s2"]);
+  kit.choisirNiveau("l3");
+  assert.deepEqual(kit.matieres, []);
+});
+
+test("le lien du guide ouvre le brouillon cible déjà rempli et demande de modifier les choix", () => {
+  const session = stockage();
+  const codes = ["contrats", "penal", "biens"];
+  session.setItem(cleSelection, JSON.stringify({
+    niveau: "l1", choixParNiveau: { l1: [], l2: codes }, paiement: "2",
+  }));
+  const kit = ouvrirKit(session, "?matiere=administratif-s2");
+  assert.equal(kit.avertissement, true);
+  assert.equal(kit.niveau, "l2");
+  assert.equal(kit.paiement, "2");
+  assert.deepEqual(kit.matieres, codes);
+  assert.deepEqual(ouvrirKit(session).matieres, codes);
+});
+
+test("retirer le dernier choix donne le focus à sa propre case", () => {
+  const kit = ouvrirKit(stockage());
+  ["contrats", "penal", "biens"].forEach((code) => kit.choisirMatiere(code));
+  assert.equal(kit.remplacement, true);
+  const retirer = kit.boutonsRetirer.find((bouton) => bouton.attributs["aria-label"].startsWith("Retirer Droit des biens"));
+  assert.ok(retirer);
+  retirer.clic();
+  assert.equal(kit.champActif, "biens");
+  assert.equal(kit.remplacement, false);
 });

@@ -664,7 +664,7 @@ const PRODUITS = {
     ],
   },
   "pack-l2": {
-    nom: "Pack Fiches L2 (7 fiches)",
+    nom: "Pack Fiches L2 (9 fiches)",
     prix: 7900,
     blobs: [
       "r2://tjd/fiche-da-l2-s1.pdf",
@@ -688,6 +688,10 @@ const PRODUITS = {
       "r2://tjd/fiche-penal-general-l1.pdf",
       "r2://tjd/fiche-penal-general-l1-plan.pdf",
       "r2://tjd/fiche-penal-general-l1-cartesmentales.pdf",
+      "r2://tjd/cours-fiche-finances-publiques-l2-s1.pdf",
+      "r2://tjd/cours-fiche-finances-publiques-l2-s1-plan.pdf",
+      "r2://tjd/cours-fiche-philo-droit-l2-s1.pdf",
+      "r2://tjd/cours-fiche-philo-droit-l2-s1-plan.pdf",
     ],
   },
   "pack-l3": {
@@ -714,7 +718,7 @@ const PRODUITS = {
     ],
   },
   "pack-complet": {
-    nom: "Pack Fiches L1+L2+L3 (21 fiches)",
+    nom: "Pack Fiches L1+L2+L3 (23 fiches)",
     prix: 17900,
     blobs: [
       "r2://tjd/fiche-intro-droit-l1.pdf",
@@ -779,6 +783,10 @@ const PRODUITS = {
       "r2://tjd/fiche-procedure-penale-l3-cartesmentales.pdf",
       "r2://tjd/fiche-societes-l3-s2.pdf",
       "r2://tjd/fiche-societes-l3-s2-plan.pdf",
+      "r2://tjd/cours-fiche-finances-publiques-l2-s1.pdf",
+      "r2://tjd/cours-fiche-finances-publiques-l2-s1-plan.pdf",
+      "r2://tjd/cours-fiche-philo-droit-l2-s1.pdf",
+      "r2://tjd/cours-fiche-philo-droit-l2-s1-plan.pdf",
     ],
   },
 

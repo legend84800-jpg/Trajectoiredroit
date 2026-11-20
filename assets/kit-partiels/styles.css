@@ -82,6 +82,8 @@ p { max-width: 64ch; }
 .matter-option input { width: 18px; height: 18px; margin: 0; accent-color: var(--blue); scroll-margin-block: 22px; }
 .matter-option input:disabled ~ span { color: var(--muted); }
 .matter-option input:disabled { cursor: default; }
+.matter-option:has(input:disabled) { cursor: default; background: transparent; }
+.kit-remplacement { margin: 8px 0 0; color: var(--body); font-size: 14px; line-height: 1.4; }
 .matter-name { color: var(--ink); font-size: 15px; font-weight: 650; line-height: 1.28; }
 .matter-name .format-etiquette { display: table; font-size: 12px; margin-top: 4px; }
 .semestre { color: #415678; background: var(--blue-tint); padding: 2px 7px; border-radius: 4px; font-size: 12px; font-weight: 650; }
@@ -190,4 +192,5 @@ p { max-width: 64ch; }
   .support, .support + .support { padding: 14px 0; border-left: 0; border-bottom: 1px solid var(--line); }
 }
 @media (max-width: 390px) { .offer-line strong { font-size: 39px; } .wrap { width: calc(100% - 32px); } }
+@media (max-width: 360px) { .pay-option label[for="payer-deux-fois"] { grid-template-columns: 1fr; gap: 2px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
