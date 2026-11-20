@@ -627,6 +627,8 @@
   // plusieurs matières choisies sur plusieurs pages en un seul paiement.
   var CLE_PANIER = 'tjd_panier';
   var panierSansConservation = false;
+  var inclusionsPanier = null;
+  var chargementInclusionsPanier = null;
 
   function panierLire() {
     try {
@@ -775,6 +777,11 @@
       '.tjd-panier-item__prix{font-weight:700;color:var(--navy,#1A2851);white-space:nowrap;margin-left:10px}' +
       '.tjd-panier-item__retirer{background:none;border:none;color:var(--danger,#EF4444);cursor:pointer;' +
       'font-size:1.1rem;padding:4px 8px;margin-left:6px}' +
+      '.tjd-panier-inclusion:empty{padding:0;margin:0;border:0}' +
+      '.tjd-panier-inclusion{font-size:.85rem;padding:10px 12px;margin:8px 0;' +
+      'border:1px solid var(--border-strong,#CBD5E1);border-radius:8px;color:var(--ink,#0F172A)}' +
+      '.tjd-panier-inclusion p{margin:0 0 4px}' +
+      '.tjd-panier-inclusion .btn{min-height:44px}' +
       '.tjd-panier-vide{color:var(--muted,#5B6B84);font-size:.92rem;text-align:center;padding:24px 0}' +
       '.tjd-panier-total{display:flex;justify-content:space-between;align-items:center;' +
       'font-family:var(--font-display,serif);font-size:1.15rem;color:var(--navy,#1A2851);' +
@@ -886,6 +893,69 @@
     document.getElementById('tjdPanierCta').addEventListener('click', panierCheckout);
   }
 
+  function panierEchapperHTML(texte) {
+    return String(texte).replace(/[&<>"']/g, function (caractere) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[caractere];
+    });
+  }
+
+  function panierActiverRetraits(conteneur, cta) {
+    conteneur.querySelectorAll('[data-tjd-panier-retirer]').forEach(function (btn) {
+      btn.disabled = !!cta.tjdPaiementEnCours;
+      btn.addEventListener('click', function () {
+        if (btn.disabled || cta.tjdPaiementEnCours) return;
+        var dansAvertissement = btn.hasAttribute('data-tjd-panier-retrait-inclus');
+        panierRetirer(btn.getAttribute('data-tjd-panier-retirer'));
+        panierRendreListe();
+        initPanierBoutons(); // réactive le lien d’ajout du produit retiré s’il est visible
+        if (dansAvertissement && !cta.disabled) cta.focus();
+      });
+    });
+  }
+
+  function panierRendreInclusions(liste) {
+    if (!inclusionsPanier) return;
+    var conteneur = document.getElementById('tjdPanierListe');
+    var cta = document.getElementById('tjdPanierCta');
+    if (!conteneur || !cta) return;
+
+    conteneur.querySelectorAll('[data-tjd-panier-inclusion]').forEach(function (bloc) {
+      var id = bloc.getAttribute('data-tjd-panier-inclusion');
+      var inclusDansUnPack = liste.some(function (article) {
+        var inclus = Object.prototype.hasOwnProperty.call(inclusionsPanier.inclusions, article.id) && inclusionsPanier.inclusions[article.id];
+        return Array.isArray(inclus) && inclus.includes(id);
+      });
+      var nom = Object.prototype.hasOwnProperty.call(inclusionsPanier.noms, id) && inclusionsPanier.noms[id];
+      if (!inclusDansUnPack || typeof nom !== 'string' || !nom) return;
+
+      var titre = bloc.parentElement.querySelector('.tjd-panier-item__nom');
+      if (titre) titre.textContent = nom;
+      bloc.innerHTML = '<p>Ce support est déjà compris dans un pack du panier.</p>' +
+        '<button type="button" class="btn btn--outline btn--sm" data-tjd-panier-retrait-inclus ' +
+        'data-tjd-panier-retirer="' + panierEchapperHTML(id) + '" aria-label="Retirer du panier ' +
+        panierEchapperHTML(nom) + '">Retirer du panier</button>';
+      panierActiverRetraits(bloc, cta);
+    });
+  }
+
+  function panierChargerInclusions() {
+    if (inclusionsPanier || chargementInclusionsPanier) return;
+    chargementInclusionsPanier = Promise.resolve().then(function () {
+      return fetch('/assets/panier-inclusions.json', { cache: 'no-store', credentials: 'omit' });
+    }).then(function (reponse) {
+      return reponse.ok ? reponse.json() : null;
+    }).then(function (donnees) {
+      if (!donnees || !donnees.inclusions || typeof donnees.inclusions !== 'object'
+        || !donnees.noms || typeof donnees.noms !== 'object') return;
+      inclusionsPanier = donnees;
+      panierRendreInclusions(panierLire());
+    }).catch(function () {
+      // Le panier et le paiement restent disponibles si les inclusions ne chargent pas.
+    }).finally(function () {
+      chargementInclusionsPanier = null;
+    });
+  }
+
   function panierRendreListe() {
     var liste = panierLire();
     var precisionConservation = document.getElementById('tjdPanierTemporaire');
@@ -901,21 +971,18 @@
       return;
     }
     conteneur.innerHTML = liste.map(function (a) {
-      return '<div class="tjd-panier-item"><span class="tjd-panier-item__nom">' + a.nom.replace(/</g, '&lt;') + '</span>' +
+      var id = panierEchapperHTML(a.id);
+      return '<div><div class="tjd-panier-item"><span class="tjd-panier-item__nom">' + panierEchapperHTML(a.nom || a.id) + '</span>' +
         '<span class="tjd-panier-item__prix">' + centimesVersEuro(a.prixCentimes) + '</span>' +
-        '<button type="button" class="tjd-panier-item__retirer" data-tjd-panier-retirer="' + a.id + '" aria-label="Retirer">✕</button></div>';
+        '<button type="button" class="tjd-panier-item__retirer" data-tjd-panier-retirer="' + id + '" aria-label="Retirer">✕</button></div>' +
+        '<div class="tjd-panier-inclusion" data-tjd-panier-inclusion="' + id + '" aria-live="polite"></div></div>';
     }).join('');
     document.getElementById('tjdPanierTotalMontant').textContent = centimesVersEuro(panierTotalCentimes());
     totalBloc.hidden = false;
     cta.disabled = !!cta.tjdPaiementEnCours;
-    conteneur.querySelectorAll('[data-tjd-panier-retirer]').forEach(function (btn) {
-      btn.disabled = !!cta.tjdPaiementEnCours;
-      btn.addEventListener('click', function () {
-        panierRetirer(btn.getAttribute('data-tjd-panier-retirer'));
-        panierRendreListe();
-        initPanierBoutons(); // réactive le lien "Ajouter au panier" du produit retiré, s'il est visible sur cette page
-      });
-    });
+    panierActiverRetraits(conteneur, cta);
+    panierRendreInclusions(liste);
+    if (liste.length > 1) panierChargerInclusions();
   }
 
   function panierRafraichir() {

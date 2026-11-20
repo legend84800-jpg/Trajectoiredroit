@@ -664,7 +664,7 @@ const PRODUITS = {
     ],
   },
   "pack-l2": {
-    nom: "Pack Fiches L2 (6 fiches L2 + Droit pénal général L1 S2)",
+    nom: "Pack Fiches L2 (7 fiches)",
     prix: 7900,
     blobs: [
       "r2://tjd/fiche-da-l2-s1.pdf",

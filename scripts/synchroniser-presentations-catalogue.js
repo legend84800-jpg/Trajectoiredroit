@@ -86,13 +86,16 @@ function presentationPack(id) {
   const niveau = id === "pack-complet" ? "L1 + L2 + L3" : id.slice(-2).toUpperCase();
   const annexe = cartes === nombre ? "Chaque fiche est accompagnée de son plan et de ses cartes mentales." : `Chaque fiche est accompagnée de son plan. Les cartes mentales de ${cartes} fiches sont aussi incluses.`;
   const descriptions = {
-    "pack-l1": `Le pack réunit ${nombre} fiches de première année, dont le droit pénal général L1 S2 et les deux semestres de droit constitutionnel. ${annexe}`,
-    "pack-l2": `Ce pack contient six fiches de L2 et la fiche « Droit pénal général L1 S2 ». ${annexe}`,
+    "pack-l1": `Le pack réunit ${nombre} fiches, dont les deux semestres de droit constitutionnel et une fiche complémentaire de droit pénal général. La couverture de cette fiche indique « Licence 1 · Semestre 2 ». ${annexe}`,
+    "pack-l2": `Le pack réunit ${nombre} fiches pour la L2, dont la fiche de droit pénal L2 S1 et la fiche de droit pénal général. Cette seconde fiche traite aussi des peines et sa couverture indique « Licence 1 · Semestre 2 ». ${annexe}`,
     "pack-l3": `Le pack réunit ${nombre} fiches de L3, dont le droit des sociétés S1 et S2. ${annexe}`,
     "pack-complet": `Le pack réunit ${nombre} fiches pour les trois années de licence, avec les deux semestres de droit des sociétés. ${annexe}`,
   };
   const titre = id === "pack-complet" ? "Pack Licence complète" : `Pack Licence ${niveau.slice(-1)}`;
-  const inclusions = fiches.map(([cle, p]) => `<li data-produit-inclus="${escape(cle)}">${escape(p.nom.replace(/^Fiche complète /, ""))}</li>`).join("");
+  const inclusions = fiches.map(([cle, p]) => {
+    const libelle = cle === "fiche-penal-general-l1" ? "Droit pénal général, avec les peines (couverture L1 S2)" : p.nom.replace(/^Fiche complète /, "");
+    return `<li data-produit-inclus="${escape(cle)}">${escape(libelle)}</li>`;
+  }).join("");
   const economie = Math.round((1 - produit.prix / totalUnite) * 100);
   const titreHtml = id === "pack-l2" ? `<a href="pack-fiches-droit-l2.html">${titre}</a>` : titre;
   return { nombre, totalPdf, cartes, totalUnite, economie, titre, description: descriptions[id], html: `<div class="product__body" data-catalogue-pack="${id}">

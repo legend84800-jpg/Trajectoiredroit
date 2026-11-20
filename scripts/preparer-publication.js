@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { createHash } = require('node:crypto');
 const PRODUITS = require('../api/_produits');
+const { CHEMIN_INCLUSIONS_PANIER, construireInclusionsPanier } = require('./generer-inclusions-panier');
 
 const DOSSIERS_PUBLICS = ['assets', 'apercus', 'jeu', '.well-known'];
 const FICHIERS_PUBLICS = ['robots.txt', 'sitemap.xml', 'llms.txt'];
@@ -47,7 +48,7 @@ function preparerPublication(racine = path.resolve(__dirname, '..')) {
     if (nom.endsWith('.html') || FICHIERS_PUBLICS.includes(nom) || DOSSIERS_PUBLICS.includes(nom)) examiner(path.join(racine, nom));
   }
   if (!fichiers.includes('index.html')) throw new Error('La page d’accueil index.html est absente.');
-  const versionsRessources = new Map(['assets/style.css', 'assets/js/cookie-consent.js', 'assets/js/main.js']
+  const versionsRessources = new Map(['assets/style.css', 'assets/js/cookie-consent.js', 'assets/js/main.js', 'assets/js/achat.js']
     .filter((ressource) => fichiers.includes(ressource))
     .map((ressource) => [ressource, createHash('sha256').update(fs.readFileSync(path.join(racine, ressource))).digest('hex').slice(0, 8)]));
   // Ce seul sous-dossier est régénéré. Les API et le reste du build restent à la racine du projet.
@@ -66,6 +67,11 @@ function preparerPublication(racine = path.resolve(__dirname, '..')) {
     } else {
       fs.copyFileSync(source, destination);
     }
+  }
+  if (versionsRessources.has('assets/js/achat.js')) {
+    const graphe = construireInclusionsPanier(PRODUITS);
+    fs.writeFileSync(path.join(sortie, CHEMIN_INCLUSIONS_PANIER), JSON.stringify(graphe) + '\n');
+    fichiers.push(CHEMIN_INCLUSIONS_PANIER);
   }
   return { sortie, fichiers };
 }

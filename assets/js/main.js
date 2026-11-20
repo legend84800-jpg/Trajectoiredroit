@@ -230,32 +230,45 @@ window.tjdDialogues = (function () {
       '</div>';
     document.body.appendChild(modal);
 
-    /* Visionneuse plein écran : la page s'affiche en grand et se parcourt en faisant glisser,
-       pour que le texte soit lisible sur téléphone. */
+    /* La visionneuse ajuste d’abord la page à la largeur du téléphone. */
     var viewer = document.createElement('div');
     viewer.className = 'apercu-zoom';
     viewer.setAttribute('role', 'dialog');
     viewer.setAttribute('aria-modal', 'true');
-    viewer.setAttribute('aria-label', 'Page agrandie');
+    viewer.setAttribute('aria-label', 'Aperçu de la page');
     viewer.setAttribute('tabindex', '-1');
     viewer.innerHTML =
-      '<button class="apercu-zoom__close" aria-label="Fermer l’agrandissement"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
-      '<div class="apercu-zoom__scroll"><img alt=""></div>' +
+      '<button type="button" class="apercu-zoom__close" aria-label="Fermer l’agrandissement"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
+      '<button type="button" class="apercu-zoom__toggle" aria-controls="apercuZoomPage">Agrandir</button>' +
+      '<div class="apercu-zoom__scroll" id="apercuZoomPage"><img alt=""></div>' +
       '<p class="apercu-zoom__hint">Fais défiler l’image pour lire toute la page.</p>';
     document.body.appendChild(viewer);
     var viewerImg = viewer.querySelector('img');
     var viewerScroll = viewer.querySelector('.apercu-zoom__scroll');
+    var viewerToggle = viewer.querySelector('.apercu-zoom__toggle');
+    var viewerClose = viewer.querySelector('.apercu-zoom__close');
+    function reglerZoom(agrandi) {
+      viewer.classList.toggle('apercu-zoom--agrandi', agrandi);
+      viewerToggle.textContent = agrandi ? 'Voir la page entière' : 'Agrandir';
+    }
     function openViewer(im, bouton) {
       viewerImg.src = im.src;
       viewerImg.alt = im.alt;
       viewer.classList.toggle('apercu-zoom--detail', im.getAttribute('data-detail') === '1');
-      window.tjdDialogues.ouvrir(viewer, viewer.querySelector('.apercu-zoom__close'), bouton);
+      reglerZoom(false);
+      window.tjdDialogues.ouvrir(viewer, viewerClose, bouton);
       viewerScroll.scrollTop = 0;
       viewerScroll.scrollLeft = 0;
       try { if (window.gtag) gtag('event', 'apercu_zoom', { image: im.src.split('/').pop() }); } catch (_) {}
     }
     function closeViewer() { window.tjdDialogues.fermer(viewer); }
-    viewer.querySelector('.apercu-zoom__close').addEventListener('click', closeViewer);
+    viewerClose.addEventListener('click', closeViewer);
+    viewerToggle.addEventListener('click', function () {
+      var position = viewerScroll.scrollTop / viewerImg.offsetWidth;
+      reglerZoom(!viewer.classList.contains('apercu-zoom--agrandi'));
+      viewerScroll.scrollLeft = 0;
+      viewerScroll.scrollTop = position * viewerImg.offsetWidth;
+    });
 
     var imgsBox = document.getElementById('apercuImgs');
     imgsBox.addEventListener('click', function (e) {
