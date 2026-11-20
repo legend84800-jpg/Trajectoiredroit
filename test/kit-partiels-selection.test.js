@@ -8,7 +8,7 @@ const cleSelection = "tjd_kit_partiels_selection";
 const catalogue = readFileSync(join(__dirname, "../assets/kit-partiels/catalogue.js"), "utf8");
 const composer = readFileSync(join(__dirname, "../assets/kit-partiels/composer.js"), "utf8");
 
-function ouvrirKit(sessionStorage) {
+function ouvrirKit(sessionStorage, recherche = "") {
   let champActif;
   const element = () => ({
     children: [],
@@ -57,11 +57,19 @@ function ouvrirKit(sessionStorage) {
     createElement: element,
     createTextNode: (texte) => ({ textContent: texte }),
   };
-  const window = { sessionStorage };
+  const location = { href: `https://trajectoiredroit.com/kit-partiels.html${recherche}#composer` };
+  const window = {
+    sessionStorage,
+    location,
+    history: {
+      replaceState(_etat, _titre, url) { location.href = String(url); },
+    },
+  };
   vm.runInNewContext(catalogue, { window });
-  vm.runInNewContext(composer, { window, document });
+  vm.runInNewContext(composer, { window, document, URL });
 
   return {
+    get url() { return new URL(location.href); },
     get niveau() { return radios.actif; },
     get matieres() { return listeMatieres.querySelectorAll().filter((input) => input.checked).map((input) => input.value); },
     get compteur() { return champs.get("#compteur").textContent; },
@@ -193,4 +201,35 @@ test("ouvre une sélection vide en L2 lorsque le stockage est invalide ou indisp
   assert.equal(kit.niveau, "l2");
   kit.choisirMatiere("contrats");
   assert.deepEqual(kit.matieres, ["contrats"]);
+});
+
+test("présélectionne la matière du guide et conserve le retrait après rechargement", () => {
+  const session = stockage();
+  const kit = ouvrirKit(session, "?source=guide&matiere=administratif-s1");
+
+  assert.deepEqual(kit.matieres, ["administratif-s1"]);
+  assert.equal(kit.niveau, "l2");
+  assert.equal(kit.compteur, "1 sur 3");
+  assert.equal(kit.url.search, "?source=guide");
+  assert.equal(kit.url.hash, "#composer");
+  kit.choisirMatiere("administratif-s1", false);
+
+  assert.deepEqual(ouvrirKit(session, kit.url.search).matieres, []);
+});
+
+test("conserve les matières cochées quand la matière du guide est incompatible", () => {
+  for (const [niveau, codes] of [
+    ["l1", ["constitutionnel-s1"]],
+    ["l2", ["administratif-s2"]],
+    ["l2", ["contrats", "penal", "biens"]],
+  ]) {
+    const session = stockage();
+    session.setItem(cleSelection, JSON.stringify({ niveau, codes }));
+
+    const kit = ouvrirKit(session, "?matiere=administratif-s1");
+
+    assert.equal(kit.niveau, niveau);
+    assert.deepEqual(kit.matieres, codes);
+    assert.equal(kit.url.search, "");
+  }
 });

@@ -202,7 +202,32 @@
     window.tjdAcheter(id, cta);
   });
 
+  function ajouterDepuisLeGuide() {
+    const url = new URL(window.location.href);
+    const code = url.searchParams.get("matiere");
+    if (code === null) return;
+    const niveauGuide = Object.keys(catalogue.niveaux).find((niveau) =>
+      catalogue.niveaux[niveau].some((matiere) => matiere.code === code));
+    if (!niveauGuide) return;
+    const matiere = catalogue.niveaux[niveauGuide].find((matiere) => matiere.code === code);
+    const autreSemestre = matieresChoisies().some((choisie) =>
+      choisie.discipline === matiere.discipline && choisie.code !== code);
+    if (!codes.size || (niveau === niveauGuide && !autreSemestre && (codes.size < nombre || codes.has(code)))) {
+      niveau = niveauGuide;
+      form.querySelector(`input[name="niveau"][value="${niveau}"]`).checked = true;
+      codes.add(code);
+      enregistrerSelection();
+    } else {
+      const info = form.querySelector("#kit-matiere-info");
+      info.textContent = `Pour ajouter la matière « ${nomComplet(matiere)} », il faut d’abord modifier les choix déjà cochés.`;
+      info.hidden = false;
+    }
+    url.searchParams.delete("matiere");
+    window.history.replaceState(window.history.state, "", url);
+  }
+
   restaurerSelection();
+  ajouterDepuisLeGuide();
   afficherMatieres();
   rafraichir();
 })();

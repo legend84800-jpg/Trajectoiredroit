@@ -188,6 +188,24 @@
 html[data-theme="dark"] #offre .offre-matiere__option--pack{background:#1a2840;border-color:#7ba5e8}
 html[data-theme="dark"] #offre .offre-matiere__option--fiche{border-color:rgba(255,255,255,.1)}
 @media(max-width:760px){#offre .offre-matiere__options{grid-template-columns:1fr}}
+#offre #fiche-seule-da{align-self:start}
+#fiche-seule-da .fiche-semestre{border:0;padding:0;min-width:0;margin:2px 0 0}
+#fiche-seule-da .fiche-semestre__choix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;padding:4px;border:1px solid var(--border);border-radius:10px;background:var(--surface-2)}
+#fiche-seule-da .fiche-semestre__choix label{display:grid;place-items:center;min-height:44px;padding:5px 9px;border:1px solid transparent;border-radius:7px;color:var(--body);font-weight:650;font-size:.88rem;text-align:center;cursor:pointer}
+#fiche-da-choix-1:checked ~ .fiche-semestre__choix [for="fiche-da-choix-1"],
+#fiche-da-choix-2:checked ~ .fiche-semestre__choix [for="fiche-da-choix-2"]{background:var(--blue-50,#eaf0fa);border-color:var(--blue-600);color:var(--navy)}
+#fiche-da-choix-1:focus-visible ~ .fiche-semestre__choix [for="fiche-da-choix-1"],
+#fiche-da-choix-2:focus-visible ~ .fiche-semestre__choix [for="fiche-da-choix-2"]{outline:2px solid var(--blue-600);outline-offset:2px}
+#fiche-da-choix-1:checked ~ .fiche-semestre__panneau--2,
+#fiche-da-choix-2:checked ~ .fiche-semestre__panneau--1{display:none}
+#fiche-seule-da .fiche-semestre__panneau{padding-top:13px}
+#fiche-seule-da .fiche-semestre__panneau .offre-matiere__detail{margin:0}
+#fiche-seule-da .fiche-semestre__extraits{display:flex;flex-wrap:wrap;align-items:center;gap:0 10px;margin:3px 0 11px}
+#fiche-seule-da .fiche-semestre__extraits .apercu-link{display:inline-flex;align-items:center;min-height:44px;margin:0;padding:0;font-size:.875rem}
+#fiche-seule-da .fiche-semestre__achat{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:1px 9px;width:100%;min-height:48px;padding:9px 12px;font-size:.94rem;line-height:1.3}
+#fiche-seule-da .fiche-semestre__montant{white-space:nowrap}
+html[data-theme="dark"] #fiche-da-choix-1:checked ~ .fiche-semestre__choix [for="fiche-da-choix-1"],
+html[data-theme="dark"] #fiche-da-choix-2:checked ~ .fiche-semestre__choix [for="fiche-da-choix-2"]{background:#233d64;border-color:#91b4ed;color:#fff}
 .comparaison-blanco{margin-top:24px}.comparaison-blanco__pages{display:grid;grid-template-columns:1fr 1fr;gap:20px}.comparaison-blanco figure{margin:0;min-width:0}.comparaison-blanco figcaption{margin-bottom:10px;font-size:.88rem}.comparaison-blanco__image{display:block;padding:0;border:1px solid var(--border,#dce2e8);border-radius:8px;background:#fff;overflow:hidden;width:100%;cursor:zoom-in}.comparaison-blanco__image img{display:block;width:100%;height:auto}.comparaison-blanco__image:hover{opacity:.95}@media(max-width:640px){.comparaison-blanco__pages{grid-template-columns:1fr}}
 </style>
 </head>
@@ -466,7 +484,7 @@ html[data-theme="dark"] #offre .offre-matiere__option--fiche{border-color:rgba(2
           <div>
             <p class="conversion-offer__eyebrow">Une fiche par semestre ou le pack complet</p>
             <h2 class="conversion-offer__title" id="offre-admin-titre">Droit administratif L2, les fiches et les exercices</h2>
-            <p class="offre-matiere__meta"><a class="btn btn--outline btn--sm" href="#fiche-seule-da">Voir la fiche du semestre 1 · 19,99 €</a></p>
+            <p class="offre-matiere__meta"><a class="btn btn--outline btn--sm" href="#fiche-seule-da" data-fiche-da-s1>Voir la fiche du semestre 1 · 19,99 €</a></p>
             <div class="offre-matiere__options" aria-label="Choisir un support de droit administratif L2">
               <div class="offre-matiere__option offre-matiere__option--pack">
                 <p class="offre-matiere__label">Le pack Droit administratif L2</p>
@@ -481,14 +499,36 @@ html[data-theme="dark"] #offre .offre-matiere__option--fiche{border-color:rgba(2
                 <p class="offre-matiere__detail">Les 17 fichiers du pack sont envoyés par email juste après le paiement.</p>
                 <button type="button" class="btn btn--primary" data-tjd-produit="pack-matiere-da-l2">Acheter le pack · 29,98 €</button>
               </div>
-              <div class="offre-matiere__option offre-matiere__option--fiche" id="fiche-seule-da">
+              <div class="offre-matiere__option offre-matiere__option--fiche" id="fiche-seule-da" data-tjd-bloc-achat>
                 <p class="offre-matiere__label">La fiche d’un seul semestre</p>
-                <p class="offre-matiere__prix">19,99 € <small>par semestre</small></p>
-                <p class="offre-matiere__detail">122 pages pour le S1 et 110 pages pour le S2, en PDF.</p>
-                <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-da-l2-s1/507acea54720-p089.webp","assets/apercus/finition-20261114/fiche-da-l2-s1/507acea54720-p119.webp"]' data-apercu-title="Droit administratif · L2 S1 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-da-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Aperçu du S1</button><button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p019.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p018.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p107.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p082.webp"]' data-apercu-title="Droit administratif · L2 S2 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-da-l2-s2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Aperçu du S2</button>
-                <div class="offre-matiere__fiches"><button type="button" class="btn btn--outline" data-tjd-produit="fiche-da-l2-s1">Semestre 1 · 19,99 €</button><button type="button" class="btn btn--outline" data-tjd-produit="fiche-da-l2-s2">Semestre 2 · 19,99 €</button></div>
+                <fieldset class="fiche-semestre">
+                  <legend class="sr-only">Choisir le semestre</legend>
+                  <input class="sr-only" type="radio" name="fiche-da-semestre" id="fiche-da-choix-1" checked>
+                  <input class="sr-only" type="radio" name="fiche-da-semestre" id="fiche-da-choix-2">
+                  <div class="fiche-semestre__choix">
+                    <label for="fiche-da-choix-1">Semestre 1</label>
+                    <label for="fiche-da-choix-2">Semestre 2</label>
+                  </div>
+                  <div id="fiche-da-panneau-1" class="fiche-semestre__panneau fiche-semestre__panneau--1">
+                    <h3 class="sr-only">Fiche complète de droit administratif L2, semestre 1</h3>
+                    <p class="offre-matiere__detail">122 pages · PDF</p>
+                    <div class="fiche-semestre__extraits"><button type="button" class="apercu-link" aria-label="Aperçu du PDF du semestre 1" data-apercu='["assets/apercus/finition-20261114/fiche-da-l2-s1/507acea54720-p089.webp","assets/apercus/finition-20261114/fiche-da-l2-s1/507acea54720-p119.webp"]' data-apercu-title="Droit administratif · L2 S1 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-da-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Aperçu du PDF</button></div>
+                    <button type="button" class="btn btn--primary fiche-semestre__achat" data-tjd-produit="fiche-da-l2-s1"><span>Acheter la fiche complète</span> <span class="fiche-semestre__montant">19,99 €</span></button>
+                  </div>
+                  <div id="fiche-da-panneau-2" class="fiche-semestre__panneau fiche-semestre__panneau--2">
+                    <h3 class="sr-only">Fiche complète de droit administratif L2, semestre 2</h3>
+                    <p class="offre-matiere__detail">110 pages · PDF</p>
+                    <div class="fiche-semestre__extraits"><button type="button" class="apercu-link" aria-label="Aperçu du PDF du semestre 2" data-apercu='["assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p019.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p018.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p107.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p082.webp"]' data-apercu-title="Droit administratif · L2 S2 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-da-l2-s2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Aperçu du PDF</button></div>
+                    <button type="button" class="btn btn--primary fiche-semestre__achat" data-tjd-produit="fiche-da-l2-s2"><span>Acheter la fiche complète</span> <span class="fiche-semestre__montant">19,99 €</span></button>
+                  </div>
+                </fieldset>
               </div>
             </div>
+            <aside id="kit-depuis-la-matiere" aria-labelledby="kit-depuis-la-matiere-titre" style="display:grid; gap:10px; margin:18px 0 14px; padding:16px; border:1px solid var(--border); border-radius:var(--r-md, 12px); background:var(--surface-2)">
+              <h3 id="kit-depuis-la-matiere-titre" style="font:700 1.18rem/1.25 var(--font-display); margin:0; color:var(--text)">Trois matières à réviser ?</h3>
+              <p style="margin:0; color:var(--body); line-height:1.5">Dans un nouveau Kit, le droit administratif du semestre 1 est déjà coché. Le bouton permet aussi de reprendre un Kit déjà commencé.</p>
+              <div><a class="btn btn--outline" href="kit-partiels.html?matiere=administratif-s1#composer">Composer mon Kit Partiels</a></div>
+            </aside>
             <p class="offre-matiere__essai" style="margin:14px 0 4px; padding:12px 14px; border:1px dashed var(--border-strong); border-radius:var(--r-md, 12px); line-height:1.55"><a href="#essai-majeures" data-tjd-essai-ouvrir data-emplacement="offre-haut">Recevoir les deux majeures offertes</a></p>
             <p class="conversion-offer__summary"><strong>Les deux fiches complètes réunissent 232 pages.</strong> Le S1 explique d'où vient le droit administratif et quel juge le fait appliquer. Il présente aussi le principe de légalité avec ses sources, puis l'organisation de l'administration. Le S2 étudie ensuite l'action de l'administration, d'abord le service public et la police, puis ses actes et ses contrats. Il se termine par sa responsabilité et par le contentieux, c'est-à-dire les recours devant le juge administratif.</p>
             <ul class="conversion-offer__benefits">
@@ -1010,5 +1050,17 @@ html[data-theme="dark"] #offre .offre-matiere__option--fiche{border-color:rgba(2
   <script src="assets/js/cookie-consent.js?v=63ff8b7a" defer></script>
 <script src="/assets/js/essai-majeures.js?v=3623b4a3" defer></script>
 <script src="/assets/js/premier-chapitre.js?v=6fc33a44" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const card = document.getElementById('fiche-seule-da');
+  card.querySelectorAll('[data-apercu-cta][data-premier-chapitre="1"]').forEach(function (apercu) {
+    const chapitre = apercu.nextElementSibling;
+    if (chapitre && chapitre.matches('a.apercu-link')) chapitre.textContent = 'Premier chapitre';
+  });
+  document.querySelector('[data-fiche-da-s1]').addEventListener('click', function () {
+    document.getElementById('fiche-da-choix-1').checked = true;
+  });
+});
+</script>
 </body>
 </html>
