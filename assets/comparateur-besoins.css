@@ -10,14 +10,20 @@
   border-left: 4px solid var(--need-ink);
 }
 .compare-table--besoins td { background: rgb(var(--need-rgb) / .025); }
-.compare-table--besoins tbody a {
+.compare-table--besoins tbody :is(a, .compare-podcasts > summary > span:first-child) {
   color: var(--need-ink); font-weight: 600; text-decoration: underline;
   text-decoration-color: rgb(var(--need-rgb) / .4); text-underline-offset: 3px;
   text-decoration-thickness: 1px;
 }
-.compare-table--besoins tbody a:hover { text-decoration-color: currentColor; text-decoration-thickness: 2px; }
-.compare-table--besoins tbody a:focus-visible { outline: 2px solid var(--need-ink); outline-offset: 4px; }
-.compare-needs__supports li { flex-wrap: wrap; gap: 5px 10px; }
+.compare-table--besoins tbody :is(a:hover, .compare-podcasts > summary:hover > span:first-child) { text-decoration-color: currentColor; text-decoration-thickness: 2px; }
+.compare-table--besoins tbody :is(a, .compare-podcasts > summary):focus-visible { outline: 2px solid var(--need-ink); outline-offset: 4px; }
+.compare-needs__supports :is(li, .compare-podcasts > summary) {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+}
 .compare-needs__price {
   display: inline-block; padding: 3px 8px; border-radius: 6px; white-space: normal;
   background: rgb(var(--need-rgb) / .09); color: var(--need-ink);
@@ -25,12 +31,16 @@
 }
 html[data-theme="dark"] .compare-table--besoins tbody tr { --need-ink: var(--need-light); }
 html[data-theme="dark"] .compare-table--besoins tbody th { background: rgb(var(--need-rgb) / .22); }
-html[data-theme="dark"] .compare-table--besoins tbody a { text-decoration-color: currentColor; }
+html[data-theme="dark"] .compare-table--besoins tbody :is(a, .compare-podcasts > summary > span:first-child) { text-decoration-color: currentColor; }
 html[data-theme="dark"] .compare-needs__price { background: rgb(var(--need-rgb) / .24); }
 html[data-theme="dark"] .compare-needs__note { color: var(--body); }
 @media (max-width: 768px) {
+  .compare-podcasts > summary > span:first-child { display: inline-flex; align-items: center; min-height: 36px; }
   .compare-table--besoins tr { border-left: 4px solid var(--need-ink); }
   .compare-table--besoins th:first-child { background: transparent; }
   .compare-table--besoins td { background: transparent; }
   html[data-theme="dark"] .compare-table--besoins tbody th { background: transparent; }
+}
+@media (max-width: 760px) {
+  .compare-podcasts > summary > span:first-child { display: inline-block; padding: 6px 0; }
 }

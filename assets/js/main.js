@@ -645,7 +645,7 @@ window.tjdDialogues = (function () {
       });
     }
 
-    function bandeau(b, idPeriode) {
+    function bandeau(b, idPeriode, offrePartiels) {
       var header = document.querySelector('.site-header');
       var lien = b && lienSur(b.lien);
       var fort = b && texte(b.etiquette_forte);
@@ -660,17 +660,23 @@ window.tjdDialogues = (function () {
       var echeance = texte(b.compte_a_rebours_fin) ? new Date(b.compte_a_rebours_fin).getTime() : NaN;
       var avecDecompte = !isNaN(echeance) && echeance > Date.now();
 
-      var banner = el('div', 'urgency-banner');
+      var banner = el('div', offrePartiels ? 'urgency-banner urgency-banner--partiels' : 'urgency-banner');
       banner.id = 'urgencyBanner';
       var a = el('a', 'urgency-banner__link');
       a.href = lien;
       suivreClic(a, 'clic-bandeau', idPeriode);
-      var dot = el('span', 'urgency-banner__dot');
-      dot.setAttribute('aria-hidden', 'true');
-      a.appendChild(dot);
+      if (offrePartiels) {
+        a.appendChild(el('span', 'urgency-banner__reduction', '−' + offrePartiels.taux + '\u00a0%'));
+      } else {
+        var dot = el('span', 'urgency-banner__dot');
+        dot.setAttribute('aria-hidden', 'true');
+        a.appendChild(dot);
+      }
       var label = el('span', 'urgency-banner__label');
       label.appendChild(el('span', 'urgency-banner__label-strong', fort));
-      if (texte(b.etiquette)) label.appendChild(document.createTextNode(b.etiquette));
+      if (texte(b.etiquette)) {
+        label.appendChild(offrePartiels ? el('span', 'urgency-banner__scope', b.etiquette) : document.createTextNode(b.etiquette));
+      }
       a.appendChild(label);
       if (texte(b.puce)) a.appendChild(el('span', 'urgency-banner__chip', b.puce));
       var countdown = null;
@@ -719,7 +725,13 @@ window.tjdDialogues = (function () {
           var h = Math.floor((diff / 3600000) % 24);
           var m = Math.floor((diff / 60000) % 60);
           var s = Math.floor((diff / 1000) % 60);
-          countdown.innerHTML = seg(d, 'j') + sep + seg(pad(h), 'h') + sep + seg(pad(m), 'min') + sep + seg(pad(s), 's');
+          if (offrePartiels) {
+            var duree = echeance - Date.parse(offrePartiels.debut);
+            banner.style.setProperty('--temps-restant', 100 * diff / duree + '%');
+            countdown.innerHTML = seg(pad(d * 24 + h), 'h') + sep + seg(pad(m), 'min') + sep + seg(pad(s), 's');
+          } else {
+            countdown.innerHTML = seg(d, 'j') + sep + seg(pad(h), 'h') + sep + seg(pad(m), 'min') + sep + seg(pad(s), 's');
+          }
         };
         maj();
         minuteur = setInterval(maj, 1000);
@@ -803,9 +815,20 @@ window.tjdDialogues = (function () {
         } else if (enCours(s.periode)) {
           choix = s;
         }
+        var offre = s.offre_partiels;
+        var maintenant = Date.now();
+        var offreActive = offre && Date.parse(offre.debut) <= maintenant && maintenant < Date.parse(offre.fin);
+        if (offreActive) {
+          try {
+            var bandeauOffre = Object.assign({}, offre.bandeau, { compte_a_rebours_fin: offre.fin });
+            bandeau(bandeauOffre, offre.id, offre);
+          } catch (e) {}
+        }
         if (!choix) return;
         var id = choix.periode.id;
-        try { bandeau(choix.bandeau, id); } catch (e) {}
+        if (!offreActive) {
+          try { bandeau(choix.bandeau, id); } catch (e) {}
+        }
         try { zoneAccueil(choix.accueil); } catch (e) {}
         try { boutonCollant(choix.bouton_collant, id); } catch (e) {}
       })

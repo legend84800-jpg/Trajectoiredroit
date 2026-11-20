@@ -1856,6 +1856,60 @@ html[data-theme="dark"] .mobile-nav__quick-btn:active { background: rgba(255,255
   .urgency-banner__dot { animation: none }
 }
 
+/* Offre partiels, déclinaison verte du bandeau saisonnier. */
+html .urgency-banner.urgency-banner--partiels {
+  --temps-restant: 100%;
+  background: linear-gradient(105deg, #0d3528 0%, #18513a 64%, #10382b 100%);
+  border-bottom: 0;
+}
+.urgency-banner--partiels::after {
+  content: "";
+  display: block;
+  height: 3px;
+  background: linear-gradient(to right, #9bf1ad var(--temps-restant), #376a55 var(--temps-restant));
+}
+.urgency-banner--partiels .urgency-banner__link {
+  min-height: 62px;
+  column-gap: 18px;
+}
+.urgency-banner__reduction {
+  flex-shrink: 0;
+  padding: 5px 11px;
+  border-radius: 8px;
+  background: #bdfac7;
+  color: #0e3726;
+  font-size: clamp(1.18rem, 2.5vw, 1.55rem);
+  font-weight: 800;
+  line-height: 1.12;
+}
+.urgency-banner--partiels .urgency-banner__label {
+  display: grid;
+  gap: 2px;
+}
+.urgency-banner--partiels .urgency-banner__label-strong { color: #fff; font-weight: 800; }
+.urgency-banner__scope { color: #def2e3; font-size: .81rem; font-weight: 500; }
+.urgency-banner--partiels .urgency-banner__countdown-group {
+  padding: 5px 10px;
+  background: rgba(9, 43, 30, .6);
+  border: 1px solid #61977b;
+  color: #fff;
+}
+.urgency-banner--partiels .urgency-banner__countdown-label { display: inline; }
+.urgency-banner--partiels .urgency-banner__cta {
+  padding: 5px 10px;
+  border: 1px solid #83b299;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.urgency-banner--partiels .urgency-banner__link:hover .urgency-banner__cta { background: #245f45; }
+@media (max-width: 720px) {
+  .urgency-banner--partiels .urgency-banner__link { gap: 7px 9px; max-width: none; }
+}
+@media (max-width: 460px) {
+  .urgency-banner--partiels .urgency-banner__countdown-group { font-size: .75rem; }
+  .urgency-banner--partiels .urgency-banner__close { top: 24px; }
+}
+
 /* ===== 10. HERO ===== */
 .hero {
   padding: clamp(72px, 8vw, 120px) 0 clamp(40px, 6vw, 64px);

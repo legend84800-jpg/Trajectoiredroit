@@ -3,33 +3,12 @@
   min-width: 0;
 }
 
-.compare-podcasts summary {
-  display: grid;
-  grid-template-columns: .5rem minmax(0, 1fr) auto;
-  align-items: center;
-  gap: .55rem;
-  min-height: 44px;
+.compare-podcasts > summary {
   cursor: pointer;
-  color: var(--blue-700);
-  font-weight: 700;
   list-style: none;
 }
 
-.compare-podcasts summary::-webkit-details-marker { display: none; }
-
-.compare-podcasts summary::before {
-  content: "";
-  width: .4rem;
-  height: .4rem;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: rotate(-45deg);
-}
-
-.compare-podcasts[open] summary::before { transform: rotate(45deg); }
-.compare-podcasts summary:hover span:first-child { text-decoration: underline; text-underline-offset: .15em; }
-.compare-podcasts summary:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; border-radius: 4px; }
-.compare-podcasts .compare-needs__price { font-weight: 400; }
+.compare-podcasts > summary::-webkit-details-marker { display: none; }
 
 .compare-podcasts__matieres {
   display: grid;

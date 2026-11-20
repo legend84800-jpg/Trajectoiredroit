@@ -10,6 +10,7 @@ const { avecImagesProduits } = require("./_images-produits");
 const { selectionner } = require("./_supabase");
 const { creerClientStripe, INTEGRATION_IDS } = require("./_stripe");
 const { nombreEcheancesValide, versCheckoutEcheances, montantEcheance } = require("./_echeances");
+const { offrePartielsActive, prixOffrePartiels, bornerSessionOffrePartiels, avecCouponOffrePartiels } = require("./_offre-partiels");
 const { lireCadeauFormulaire, appliquerCadeauCheckout } = require("./_cadeau");
 const { codeCadeauEleve, lireCadeauEleve, avecProduitCadeauEleve } = require("./_cadeau-eleve");
 
@@ -170,7 +171,7 @@ function appliquerRemiseParProduit(params, { ids, eligibles, code, mode, descrip
   return suite;
 }
 
-async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande, dejaAcheteur, promoCadeauEleve }) {
+async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande, dejaAcheteur, promoCadeauEleve, offre }) {
   const codeCadeau = codeCadeauEleve(codeDemande);
   if (codeCadeau) {
     return appliquerCodePromo(avecProduitCadeauEleve(params, PRODUITS[ids[0]], codeCadeau), {
@@ -178,6 +179,7 @@ async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande,
     });
   }
   const code = codeDemande.toUpperCase();
+  if (offre && (code === "MAJEURES10" || code === "CORRIGE10")) return params;
   if (code === "MAJEURES10") {
     const eligibles = ids.map((id) => /^(maj-|pack-majeures-)/.test(id));
     if (!eligibles.some(Boolean)) {
@@ -213,8 +215,13 @@ async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande,
 
 // Crée la session. Si Stripe refuse la remise (code expiré ou épuisé entre la
 // recherche et la création), la session repart sans remise, avec le champ affiché.
-async function creerSessionAvecRepli(stripe, params, cle) {
+async function creerSessionAvecRepli(stripe, params, cle, offre) {
+  const creerAvecOffre = (parametres = params) => stripe.checkout.sessions.create(
+    avecImagesProduits(avecCouponOffrePartiels(parametres, offre)),
+    { idempotencyKey: `${cle}-${offre.id}`, timeout: 12000, maxNetworkRetries: 0 }
+  );
   if (!params.discounts) {
+    if (offre) return creerAvecOffre();
     return stripe.checkout.sessions.create(avecImagesProduits(params), { idempotencyKey: cle, timeout: 12000, maxNetworkRetries: 0 });
   }
   try {
@@ -222,6 +229,11 @@ async function creerSessionAvecRepli(stripe, params, cle) {
   } catch (e) {
     if (!e || e.type !== "StripeInvalidRequestError") throw e;
     if (codeCadeauEleve(params.metadata?.codePromoLien)) throw e;
+    if (offre) {
+      const metadata = { ...params.metadata };
+      delete metadata.codePromoLien;
+      return creerAvecOffre({ ...params, metadata });
+    }
     console.error("create-checkout remise refusée, repli sur le champ code promo", {
       stripeCode: e.code ? e.code : "inconnu",
       stripeMessage: typeof e.message === "string" ? e.message.slice(0, 200) : "",
@@ -326,6 +338,7 @@ async function handler(req, res) {
   const attemptTimestamp = normaliserAttemptTimestamp(corps.attemptCreatedAt);
 
   const origin = "https://trajectoiredroit.com";
+  const offre = offrePartielsActive();
 
   // Panier multi-produits (chantier 5.12, ajouté le 21/09/2026). Reçoit { produitIds: [...] }
   // au lieu de { produitId, bumpId? }. Reste une branche séparée, retournée avant la validation
@@ -442,10 +455,11 @@ async function handler(req, res) {
       codeDemande: codeDemandePanier,
       dejaAcheteur: corps.dejaAcheteur === true,
       promoCadeauEleve,
+      offre,
     });
 
     try {
-      const sessionPanier = await creerSessionAvecRepli(stripe, paramsPanierFinaux, `checkout-panier-${attemptId}`);
+      const sessionPanier = await creerSessionAvecRepli(stripe, paramsPanierFinaux, `checkout-panier-${attemptId}`, offre);
       res.status(200).json({
         url: sessionPanier.url,
         sessionId: sessionPanier.id,
@@ -658,18 +672,22 @@ async function handler(req, res) {
     res.status(400).json({ erreur: "Mode de paiement indisponible", code: "echeances_indisponibles" });
     return;
   }
-  const paramsEcheances = nombreEcheances ? versCheckoutEcheances(params, produit, nombreEcheances) : params;
+  const offreAchat = contientStage ? null : offre;
+  const offreEcheances = nombreEcheances ? offreAchat : null;
+  const produitEcheances = offreEcheances ? { ...produit, prix: prixOffrePartiels(produit.prix, offreEcheances) } : produit;
+  const paramsEcheances = nombreEcheances ? versCheckoutEcheances(params, produitEcheances, nombreEcheances) : params;
   const paramsFinaux = cadeau
     ? appliquerCadeauCheckout(
       paramsEcheances,
-      produit,
+      produitEcheances,
       cadeau,
       nombreEcheances,
-      nombreEcheances ? montantEcheance(produit.prix, nombreEcheances) : 0
+      nombreEcheances ? montantEcheance(produitEcheances.prix, nombreEcheances) : 0
     )
     : paramsEcheances;
   const cleBase = nombreEcheances ? `checkout-${attemptId}-x${nombreEcheances}` : `checkout-${attemptId}`;
-  const cleIdempotence = cadeau ? `${cleBase}-cadeau` : cleBase;
+  const cleDestinataire = cadeau ? `${cleBase}-cadeau` : cleBase;
+  const cleIdempotence = offreEcheances ? `${cleDestinataire}-${offreEcheances.id}` : cleDestinataire;
 
   // Le paiement en plusieurs fois garde son champ fermé (un code ne réduirait que la
   // première échéance) et le stage n'accepte aucun code. Le cadeau d'un parent
@@ -691,14 +709,16 @@ async function handler(req, res) {
       codeDemande,
       dejaAcheteur: corps.dejaAcheteur === true,
       promoCadeauEleve,
+      offre: offreAchat,
     });
   }
+  if (offreEcheances) paramsSession = bornerSessionOffrePartiels(paramsSession, offreEcheances);
   if (!contientStage && !cadeau) {
     paramsSession = { ...paramsSession, custom_text: avecGarantie(paramsSession.custom_text) };
   }
 
   try {
-    const sessionCheckout = await creerSessionAvecRepli(stripe, paramsSession, cleIdempotence);
+    const sessionCheckout = await creerSessionAvecRepli(stripe, paramsSession, cleIdempotence, nombreEcheances ? null : offreAchat);
     res.status(200).json({
       url: sessionCheckout.url,
       sessionId: sessionCheckout.id,

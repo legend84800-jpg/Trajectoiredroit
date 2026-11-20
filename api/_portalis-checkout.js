@@ -4,6 +4,8 @@ const {authentifier,ErreurPortalis,service,rpc}=require('./_portalis-store');
 const {creerClientStripe}=require('./_stripe');
 const {synchroniser,formuleStripe}=require('./_portalis-billing');
 const ORIGIN='https://trajectoiredroit.com';
+const { offrePartielsActive, avecCouponOffrePartiels } = require("./_offre-partiels");
+
 async function prixStripe(stripe,formule,nombre) {
   const plan=FORMULES[formule];
   const montant=nombre?plan.recharges[nombre]:plan.prix;
@@ -114,14 +116,21 @@ async function checkout(req,res,body) {
       ...(recharge?{nombre:String(nombre)}:{})};
     const attempt=UUID.test(body.attemptId||'')?body.attemptId:randomUUID();
     const key=createHash('sha256').update(JSON.stringify([user.id,formule,nombre,attempt])).digest('hex');
-    const session=await stripe.checkout.sessions.create({mode:recharge?'payment':'subscription',customer,
+    const offre = offrePartielsActive();
+    const params = {mode:recharge?'payment':'subscription',customer,
       locale:'fr',payment_method_types:['card'],wallet_options:{link:{display:'never'}},
       line_items:[{price:await prixStripe(stripe,formule,nombre),quantity:1}],metadata,
       ...(!recharge?{subscription_data:{metadata}}:{}),
       success_url:`${ORIGIN}/portalis.html?session_id={CHECKOUT_SESSION_ID}#espace`,
       cancel_url:`${ORIGIN}/portalis.html#formules`,expires_at:Math.floor(Date.now()/1000)+3600,
-      custom_text:{submit:{message:recharge?'Cette recharge est un achat ponctuel. Elle reste disponible avec la même formule active.':'60 réponses par période mensuelle. Résiliation depuis ton espace, avec accès jusqu’à la fin de la période payée.'}}},
-      {idempotencyKey:`portalis-${key}`});
+      custom_text:{submit:{message:recharge?'Cette recharge est un achat ponctuel. Elle reste disponible avec la même formule active.':'60 réponses par période mensuelle. Résiliation depuis ton espace, avec accès jusqu’à la fin de la période payée.'}}};
+    if (offre && !recharge) {
+      params.custom_text.submit.message += ` Les ${offre.taux} % de remise s’appliquent au premier mois. Les mois suivants sont au tarif habituel.`;
+    }
+    const session = await stripe.checkout.sessions.create(
+      offre ? avecCouponOffrePartiels(params, offre) : params,
+      { idempotencyKey: offre ? `portalis-${key}-${offre.id}` : `portalis-${key}` }
+    );
     res.status(200).json({url:session.url});
   } catch(error) {
     if(!(error instanceof ErreurPortalis)) console.error('Portalis checkout',{code:error.code||error.type||error.message});
