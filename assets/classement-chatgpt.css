@@ -122,13 +122,30 @@
 }
 
 .chatgpt-ranking__result {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.16em;
   margin-inline-start: 2px;
+}
+
+.chatgpt-ranking__star {
+  width: 0.95em;
+  height: 0.95em;
+  color: var(--rating-star);
 }
 
 .chatgpt-ranking__choice[aria-pressed="true"] {
   border-color: var(--navy);
   background: var(--navy);
   color: var(--surface);
+}
+
+.chatgpt-ranking__choice[aria-pressed="true"] .chatgpt-ranking__star {
+  color: #34D399;
+}
+
+html[data-theme="dark"] .chatgpt-ranking__choice[aria-pressed="true"] .chatgpt-ranking__star {
+  color: #064E3B;
 }
 
 .chatgpt-ranking__capture {
@@ -260,8 +277,21 @@
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 380px) {
+  .chatgpt-ranking {
+    padding-inline: var(--sp-2);
+  }
+
+  .chatgpt-ranking__choices {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+
   .chatgpt-ranking__choice {
+    padding-inline: 1px;
     font-size: 0.75rem;
+  }
+
+  .chatgpt-ranking__result {
+    margin-inline-start: 0;
   }
 }
