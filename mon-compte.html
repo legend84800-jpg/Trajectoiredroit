@@ -73,6 +73,11 @@
     .achats-liste li{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #F1F5F9;font-size:.92rem}
     .achats-liste li:last-child{border-bottom:none}
     .achats-liste .achat-date{color:#94A3B8;font-size:.82rem}
+    .achats-liste>li>.achat-date{align-self:flex-end}
+    .achat-produits{display:grid;gap:12px;width:100%;min-width:0}
+    .achat-produit{min-width:0}
+    .achat-produit+.achat-produit{border-top:1px solid var(--border);padding-top:12px}
+    .achat-produit__titre{margin:0;font-size:1rem;color:var(--ink);overflow-wrap:anywhere}
     .achats-vide{color:#94A3B8;font-size:.92rem;text-align:center;padding:20px 0}
     .compte-achats-etat{text-align:center}
     .compte-achats-etat .achats-vide{color:var(--body)}
@@ -530,7 +535,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="assets/js/main.js?v=909718f7" defer></script>
-  <script src="assets/js/compte.js?v=a0afe256" defer></script>
+  <script src="assets/js/compte.js?v=839cf9b6" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
 </body>

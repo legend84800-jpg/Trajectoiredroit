@@ -321,49 +321,46 @@
           return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
         });
       }
-      achatsListe.innerHTML = achats.map(function(a, idx){
-        var date = new Date(a.date).toLocaleDateString("fr-FR");
-        var noms = a.produits.map(function(p){ return echapperCompte(p.nom); }).join(", ");
-        var fichiers = a.produits.reduce(function(acc, p){ return acc.concat(p.fichiers); }, []);
-        function rendreFichier(f){
-          if (f.type === "video") {
-            var rectification = "";
-            var parametresReplay = new URLSearchParams(String(f.url).split("?")[1] || "");
-            if (parametresReplay.get("id") === "stage-methode-replay-sept2026") {
-              var texteRectification = parametresReplay.get("b") === "1"
-                ? "À partir de 20 minutes, distingue la preuve illicite, qui contrevient à une règle de droit, de la preuve déloyale, qui dépend du procédé utilisé pour l’obtenir. Dans le divorce, l’article 259-1 du Code civil exclut les preuves obtenues par violence ou fraude. Ainsi, l’agenda arraché pendant une altercation doit être écarté sur ce fondement. La seule atteinte à la vie privée ne permet pas, en revanche, d’écarter les messages sans examiner leur mode d’obtention."
-                : parametresReplay.get("b") === "2"
-                  ? "Dans le passage vers 31 minutes, le président de la République est garant de l’indépendance de l’autorité judiciaire selon l’article 64 de la Constitution. L’article 56 fonde ses nominations au Conseil constitutionnel. De plus, sa qualité de chef des armées, prévue par l’article 15, doit être distinguée du régime de contreseing applicable à chaque acte."
-                  : "";
-              if (texteRectification) {
-                rectification = "<div class=\"replay-rectification\" style=\"max-width:480px; padding:12px; margin:8px 0; border-left:3px solid #8b1538; background:#f7f4f2; font-size:14px; line-height:1.6\">" +
-                  "<strong>Précisions sur le passage filmé</strong><p style=\"margin:6px 0 0\">" + echapperCompte(texteRectification) + "</p></div>";
-              }
+      function rendreFichier(f){
+        if (f.type === "video") {
+          var rectification = "";
+          var parametresReplay = new URLSearchParams(String(f.url).split("?")[1] || "");
+          if (parametresReplay.get("id") === "stage-methode-replay-sept2026") {
+            var texteRectification = parametresReplay.get("b") === "1"
+              ? "À partir de 20 minutes, distingue la preuve illicite, qui contrevient à une règle de droit, de la preuve déloyale, qui dépend du procédé utilisé pour l’obtenir. Dans le divorce, l’article 259-1 du Code civil exclut les preuves obtenues par violence ou fraude. Ainsi, l’agenda arraché pendant une altercation doit être écarté sur ce fondement. La seule atteinte à la vie privée ne permet pas, en revanche, d’écarter les messages sans examiner leur mode d’obtention."
+              : parametresReplay.get("b") === "2"
+                ? "Dans le passage vers 31 minutes, le président de la République est garant de l’indépendance de l’autorité judiciaire selon l’article 64 de la Constitution. L’article 56 fonde ses nominations au Conseil constitutionnel. De plus, sa qualité de chef des armées, prévue par l’article 15, doit être distinguée du régime de contreseing applicable à chaque acte."
+                : "";
+            if (texteRectification) {
+              rectification = "<div class=\"replay-rectification\" style=\"max-width:480px; padding:12px; margin:8px 0; border-left:3px solid #8b1538; background:#f7f4f2; font-size:14px; line-height:1.6\">" +
+                "<strong>Précisions sur le passage filmé</strong><p style=\"margin:6px 0 0\">" + echapperCompte(texteRectification) + "</p></div>";
             }
-            return "<div style=\"margin:6px 0\">" +
-              "<div style=\"font-size:14px; margin-bottom:4px\">" + echapperCompte(f.nom) + "</div>" +
-              "<video controls preload=\"none\" controlsList=\"nodownload noremoteplayback\" disablePictureInPicture oncontextmenu=\"return false\" style=\"width:100%; max-width:480px; border-radius:8px; display:block\">" +
-                "<source src=\"" + f.url + "\" type=\"video/mp4\">" +
-              "</video>" + rectification +
-            "</div>";
           }
-          if (f.type === "audio") {
-            return "<div style=\"margin:6px 0\">" +
-              "<div style=\"font-size:14px; margin-bottom:4px\">" + echapperCompte(f.nom) + "</div>" +
-              "<audio controls preload=\"none\" controlsList=\"nodownload\" oncontextmenu=\"return false\" style=\"width:100%; max-width:480px; display:block\">" +
-                "<source src=\"" + f.url + "\" type=\"audio/mp4\">" +
-              "</audio>" +
-            "</div>";
-          }
-          var telechargement = "<a class=\"btn btn--outline btn--sm\" href=\"" + f.url + "\" style=\"margin:4px 6px 0 0\">Télécharger " + echapperCompte(f.nom) + "</a>";
-          if (f.format !== "apkg") return telechargement;
-          return "<span style=\"display:inline-flex; flex-wrap:wrap; align-items:center\">" +
-            telechargement +
-            "<a class=\"btn btn--ghost btn--sm\" href=\"flashcards-qcm.html#importer-anki\" style=\"margin:4px 6px 0 0\">Importer les cartes dans Anki</a>" +
-          "</span>";
+          return "<div style=\"margin:6px 0\">" +
+            "<div style=\"font-size:14px; margin-bottom:4px\">" + echapperCompte(f.nom) + "</div>" +
+            "<video controls preload=\"none\" controlsList=\"nodownload noremoteplayback\" disablePictureInPicture oncontextmenu=\"return false\" style=\"width:100%; max-width:480px; border-radius:8px; display:block\">" +
+              "<source src=\"" + f.url + "\" type=\"video/mp4\">" +
+            "</video>" + rectification +
+          "</div>";
         }
+        if (f.type === "audio") {
+          return "<div style=\"margin:6px 0\">" +
+            "<div style=\"font-size:14px; margin-bottom:4px\">" + echapperCompte(f.nom) + "</div>" +
+            "<audio controls preload=\"none\" controlsList=\"nodownload\" oncontextmenu=\"return false\" style=\"width:100%; max-width:480px; display:block\">" +
+              "<source src=\"" + f.url + "\" type=\"audio/mp4\">" +
+            "</audio>" +
+          "</div>";
+        }
+        var telechargement = "<a class=\"btn btn--outline btn--sm\" href=\"" + f.url + "\" style=\"margin:4px 6px 0 0\">Télécharger " + echapperCompte(f.nom) + "</a>";
+        if (f.format !== "apkg") return telechargement;
+        return "<span style=\"display:inline-flex; flex-wrap:wrap; align-items:center\">" +
+          telechargement +
+          "<a class=\"btn btn--ghost btn--sm\" href=\"flashcards-qcm.html#importer-anki\" style=\"margin:4px 6px 0 0\">Importer les cartes dans Anki</a>" +
+        "</span>";
+      }
+      function rendreFichiers(fichiers){
         var groupes = [];
-        var indexGroupes = {};
+        var indexGroupes = Object.create(null);
         fichiers.forEach(function(f){
           if (!f.groupe){ groupes.push({ fichier: f }); return; }
           if (indexGroupes[f.groupe] === undefined){
@@ -380,10 +377,26 @@
         if (fichiers.some(function(f){ return !!f.groupe; })){
           liens = "<div class=\"pack-ultra-downloads\">" + liens + "</div>";
         }
-        return "<li style=\"flex-direction:column; align-items:flex-start; gap:8px\">" +
-          "<div class=\"compte-row\" style=\"width:100%\"><span>" + noms + "</span><span class=\"achat-date\">" + date + "</span></div>" +
-          "<div>" + liens + "</div>" +
-        "</li>";
+        return liens;
+      }
+      achatsListe.innerHTML = achats.map(function(a){
+        var date = new Date(a.date).toLocaleDateString("fr-FR");
+        var debutCommande = "<li style=\"flex-direction:column; align-items:flex-start; gap:8px\">";
+        if (a.produits.length > 1){
+          var supports = a.produits.map(function(produit){
+            var liens = rendreFichiers(produit.fichiers || []);
+            return "<div class=\"achat-produit\"><h3 class=\"achat-produit__titre\">" + echapperCompte(produit.nom) + "</h3>" +
+              (liens ? "<div>" + liens + "</div>" : "") + "</div>";
+          }).join("");
+          return debutCommande +
+            "<span class=\"achat-date\">" + date + "</span>" +
+            "<div class=\"achat-produits\">" + supports + "</div></li>";
+        }
+        var produit = a.produits[0];
+        var nom = produit ? echapperCompte(produit.nom) : "";
+        return debutCommande +
+          "<div class=\"compte-row\" style=\"width:100%\"><span>" + nom + "</span><span class=\"achat-date\">" + date + "</span></div>" +
+          "<div>" + rendreFichiers(produit && produit.fichiers || []) + "</div></li>";
       }).join("");
     }
 

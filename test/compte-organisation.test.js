@@ -254,6 +254,115 @@ test('les noms utilisés dans les options sont échappés', async () => {
   assert.doesNotMatch(b.elements.achatsProduit.innerHTML, /<script>/);
 });
 
+function fichesAdministratif() {
+  return ['fiche-da-l2-s1', 'fiche-da-l2-s2'].map(id => {
+    const produit = produits[id];
+    const fichiers = construireLiensTelechargement(id, produit, 'secret-de-test', 'https://example.invalid', 900,
+      { sessionId: 'cs_test_panier_deux_semestres' });
+    return { id, nom: produit.nom, fichiers };
+  });
+}
+
+function sectionsProduits(rendu) {
+  return rendu.split(/<div class="achat-produit"(?=[\s>])/).slice(1);
+}
+
+function telechargements(rendu) {
+  return Array.from(rendu.matchAll(/<a\b[^>]*\bhref="([^"]+)"[^>]*>(Télécharger [^<>]+)<\/a>/g),
+    ([, href, libelle]) => ({ href: href.replaceAll('&amp;', '&'), libelle }));
+}
+
+test('une commande de deux semestres sépare les six liens par produit et affiche sa date une fois', async () => {
+  const fiches = fichesAdministratif();
+  const b = navigateur({ achats: [{ date: '2026-11-19T12:00:00Z', produits: fiches }] });
+  await b.flush();
+  const rendu = b.elements.achatsListe.innerHTML;
+  const sections = sectionsProduits(rendu);
+
+  assert.equal((rendu.match(/<li\b/g) || []).length, 1);
+  assert.equal((rendu.match(/<span class="achat-date"[^>]*>19\/11\/2026<\/span>/g) || []).length, 1);
+  assert.equal(sections.length, 2);
+  assert.equal(b.elements.achatsResultat.textContent, '1 achat affiché sur 1');
+  for (const [index, fiche] of fiches.entries()) {
+    const section = sections[index];
+    assert.ok(section.includes('<h3 class="achat-produit__titre">' + fiche.nom + '</h3>'));
+    assert.deepEqual(telechargements(section), [
+      { href: fiche.fichiers[0].url, libelle: 'Télécharger la fiche complète' },
+      { href: fiche.fichiers[1].url, libelle: 'Télécharger le plan' },
+      { href: fiche.fichiers[2].url, libelle: 'Télécharger la carte mentale' }
+    ]);
+    assert.equal(telechargements(section).every(lien => new URL(lien.href).searchParams.get('id') === fiche.id), true);
+  }
+});
+
+test('filtrer un panier sur le semestre 2 conserve les bons liens et effacer restaure le regroupement', async () => {
+  const fiches = fichesAdministratif();
+  const commandes = [{ date: '2026-11-19T12:00:00Z', produits: fiches }];
+  const copie = JSON.stringify(commandes);
+  const b = navigateur({ achats: commandes });
+  await b.flush();
+  const initial = b.elements.achatsListe.innerHTML;
+
+  b.filtrer('achatsSemestre', '2');
+  const filtre = b.elements.achatsListe.innerHTML;
+  assert.match(filtre, /Fiche complète Droit administratif L2 S2/);
+  assert.doesNotMatch(filtre, /L2 S1|fiche-da-l2-s1/);
+  assert.deepEqual(telechargements(filtre).map(lien => lien.href), fiches[1].fichiers.map(fichier => fichier.url));
+  assert.equal((filtre.match(/class="achat-date"/g) || []).length, 1);
+  assert.equal(b.elements.achatsResultat.textContent, '1 achat affiché sur 1');
+
+  b.effacer();
+  assert.equal(b.elements.achatsListe.innerHTML, initial);
+  assert.equal(JSON.stringify(commandes), copie);
+  assert.equal(b.demandes.length, 1);
+});
+
+test('un achat mono-produit conserve ses groupes et deux packs gardent leurs groupes homonymes séparés', async () => {
+  const ancienPack = historique()[0].produits[0];
+  const autrePack = { id: 'pack-l2-s2-factice', nom: 'Pack L2 S2 de test', fichiers: [
+    { nom: 'Le dossier d’exercices', groupe: 'Droit des contrats', url: 'https://example.invalid/exercices-s2.pdf' }
+  ] };
+  const b = navigateur({ achats: [
+    { date: '2026-10-20T12:00:00Z', produits: [ancienPack, autrePack] },
+    { date: '2026-10-10T12:00:00Z', produits: [ancienPack] }
+  ] });
+  await b.flush();
+  const commandesRendues = b.elements.achatsListe.innerHTML.split(/(?=<li\b)/);
+  assert.equal(commandesRendues.length, 2);
+  const [multi, mono] = commandesRendues;
+  assert.equal(sectionsProduits(mono).length, 0);
+  assert.match(mono, /<summary>Droit des contrats<\/summary>/);
+  assert.match(mono, /contrats\.mp4/);
+  assert.match(mono, /admin\.m4a/);
+
+  const [premierPack, secondPack] = sectionsProduits(multi);
+  assert.equal(sectionsProduits(multi).length, 2);
+  assert.match(premierPack, /<summary>Droit des contrats<\/summary>/);
+  assert.match(premierPack, /contrats\.pdf/);
+  assert.match(premierPack, /<video[\s\S]*contrats\.mp4/);
+  assert.match(premierPack, /<audio[\s\S]*admin\.m4a/);
+  assert.doesNotMatch(premierPack, /exercices-s2\.pdf/);
+  assert.match(secondPack, /<summary>Droit des contrats<\/summary>/);
+  assert.match(secondPack, /exercices-s2\.pdf/);
+  assert.doesNotMatch(secondPack, /contrats\.pdf|contrats\.mp4|admin\.m4a/);
+});
+
+test('les titres des produits, des groupes et des fichiers apparaissent comme texte dans le panier', async () => {
+  const fiches = fichesAdministratif();
+  fiches[0].nom = 'Fiche <em> S1 & "cours"';
+  fiches[0].fichiers[0].groupe = 'Groupe <em> & notes';
+  fiches[0].fichiers[0].nom = 'la fiche <em> & le cours';
+  fiches[0].fichiers[1].groupe = 'constructor';
+  const b = navigateur({ achats: [{ date: '2026-11-19T12:00:00Z', produits: fiches }] });
+  await b.flush();
+  const [premiereSection] = sectionsProduits(b.elements.achatsListe.innerHTML);
+  assert.match(premiereSection, /<h3 class="achat-produit__titre">Fiche &lt;em&gt; S1 &amp; &quot;cours&quot;<\/h3>/);
+  assert.match(premiereSection, /<summary>Groupe &lt;em&gt; &amp; notes<\/summary>/);
+  assert.match(premiereSection, /Télécharger la fiche &lt;em&gt; &amp; le cours/);
+  assert.match(premiereSection, /<summary>constructor<\/summary>/);
+  assert.doesNotMatch(premiereSection, /<em>/);
+});
+
 test('Mon compte montre le guide Anki près des seuls téléchargements .apkg', async () => {
   const secret = 'secret-de-test';
   const sessionId = 'cs_test_anki_42';
