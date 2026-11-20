@@ -340,9 +340,10 @@
     banner.setAttribute("aria-label", "Cookies facultatifs");
     banner.setAttribute("aria-describedby", "cookieBannerDescription");
     banner.innerHTML =
-      '<p class="cookie-banner__text" id="cookieBannerDescription"><a href="/confidentialite.html#cookies">Cookies</a> d’audience et de publicité. On peut revoir ta visite et la lier à un achat. Tu peux continuer sans accepter.</p>' +
+      '<p class="cookie-banner__text" id="cookieBannerDescription"><a href="/confidentialite.html#cookies">Cookies</a> d’audience et de publicité. On peut revoir ta visite et la lier à un achat.</p>' +
       '<div class="cookie-banner__actions">' +
         '<button type="button" class="btn cookie-choice" data-cookie-accept aria-label="Accepter les cookies facultatifs">Accepter</button>' +
+        '<button type="button" class="btn cookie-choice" data-cookie-essential>Essentiels seuls</button>' +
         '<button type="button" class="btn cookie-choice cookie-choice--preferences" data-cookie-preferences aria-label="Choisir les cookies facultatifs">Choisir</button>' +
       '</div>';
 
@@ -350,6 +351,11 @@
 
     banner.querySelector("[data-cookie-accept]").addEventListener("click", function () {
       savePreferences({ analytics: true, advertising: true, behavior: true });
+      closeBanner();
+    });
+
+    banner.querySelector("[data-cookie-essential]").addEventListener("click", function () {
+      savePreferences({ analytics: false, advertising: false, behavior: false });
       closeBanner();
     });
 

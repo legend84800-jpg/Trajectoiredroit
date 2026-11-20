@@ -43,19 +43,23 @@ test('la sortie conserve les pages, ressources et adresses du site et du jeu', (
   }
 });
 
-test('la sortie actualise les versions des scripts partagés sans modifier les sources', (t) => {
+test('la sortie actualise les versions des ressources partagées sans modifier les sources', (t) => {
   const p = projet(t);
   const consentement = 'window.consentement = true;';
   const principal = 'window.nouvelleVersion = true;';
+  const style = 'body{color:blue}';
   const avant = '<script src="/assets/js/cookie-consent.js?v=00000000"></script>'
     + '<script src="assets/js/main.js?v=11111111"></script>'
-    + '<script src="assets/js/autre.js?v=22222222"></script>';
+    + '<script src="assets/js/autre.js?v=22222222"></script>'
+    + '<link rel="stylesheet" href="/assets/style.css?v=33333333">';
   p.ecrire('assets/js/cookie-consent.js', consentement);
   p.ecrire('assets/js/main.js', principal);
+  p.ecrire('assets/style.css', style);
   p.ecrire('cours.html', avant);
   const { sortie } = preparerPublication(p.racine);
   const coursPublie = fs.readFileSync(path.join(sortie, 'cours.html'), 'utf8');
-  assert.equal(coursPublie, avant.replace('00000000', versionScript(consentement)).replace('11111111', versionScript(principal)));
+  assert.equal(coursPublie, avant.replace('00000000', versionScript(consentement))
+    .replace('11111111', versionScript(principal)).replace('33333333', versionScript(style)));
   assert.equal(fs.readFileSync(path.join(p.racine, 'cours.html'), 'utf8'), avant);
   const accueil = fs.readFileSync(path.join(p.racine, 'index.html'), 'utf8');
   assert.equal(fs.readFileSync(path.join(sortie, 'index.html'), 'utf8'),

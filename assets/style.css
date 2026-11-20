@@ -4960,7 +4960,7 @@ html[data-theme="dark"] .btn--secondary {
   gap: .25rem;
 }
 .cookie-banner .cookie-choice {
-  flex: 1 0 4.25rem;
+  flex: 1 0 auto;
   min-height: 1.875rem;
   padding: .15rem .3rem;
   background: transparent;

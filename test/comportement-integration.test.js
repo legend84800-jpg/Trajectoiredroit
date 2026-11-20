@@ -109,9 +109,9 @@ function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formation
   const load = () => { for (const handler of documentHandlers.get('DOMContentLoaded') || []) handler(); };
   const banner = () => roots.find((element) => element.className === 'cookie-banner');
   const dialog = () => roots.find((element) => element.className === 'cookie-preferences');
-  const choose = (name) => {
-    if (name === 'essential' && !dialog()?.open) window.tjdCookieConsent.openPreferences();
-    const surface = name === 'essential' ? dialog() : banner();
+  const choose = (name, { fromPreferences = false } = {}) => {
+    if (fromPreferences && !dialog()?.open) window.tjdCookieConsent.openPreferences();
+    const surface = fromPreferences ? dialog() : banner();
     const control = surface?.querySelector('[data-cookie-' + name + ']');
     assert.ok(control, 'Contrôle de consentement présent, ' + name);
     control.click();
@@ -134,10 +134,8 @@ test('aucun choix ne charge le traceur et le bandeau explique la relecture avant
   assert.equal(b.preferences(), null);
   assert.equal(b.scripts.length, 0);
   assert.match(b.banner().html, /revoir ta visite et la lier à un achat/i);
-  assert.match(b.banner().html, /Tu peux continuer sans accepter/);
-  assert.match(b.banner().html, />Choisir<\/button>/);
-  assert.doesNotMatch(b.banner().html, /data-cookie-essential/);
-  assert.equal((b.banner().html.match(/<button\b/g) || []).length, 2);
+  const boutons = Array.from(b.banner().html.matchAll(/<button\b[^>]*>([^<]+)<\/button>/g), ([, texte]) => texte);
+  assert.deepEqual(boutons, ['Accepter', 'Essentiels seuls', 'Choisir']);
   assert.match(b.banner().html, /href="\/confidentialite\.html#cookies"/);
   b.window.tjdCookieConsent.openPreferences();
   const dialog = b.dialog();
@@ -178,7 +176,7 @@ test('les anciens choix Analytics et Meta gardent leur effet et refusent la nouv
   }
 });
 
-test('le refus des cookies essentiels laisse toutes les catégories optionnelles désactivées', () => {
+test('le bouton Essentiels seuls enregistre le refus des cookies facultatifs', () => {
   const b = browser();
   b.load(); b.choose('essential');
   assert.deepEqual(b.preferences(), { analytics: false, advertising: false, behavior: false });
@@ -204,7 +202,7 @@ test('une acceptation charge une seule IIFE et ne démarre qu’après son tél�
 
 test('un retrait pendant le téléchargement empêche tout démarrage différé', () => {
   const b = browser();
-  b.load(); b.choose('accept'); b.choose('essential');
+  b.load(); b.choose('accept'); b.choose('essential', { fromPreferences: true });
   let starts = 0, stops = 0;
   b.window.AtelierComportement = { start() { starts++; }, stop() { stops++; } };
   b.scripts[0].onload();
@@ -319,7 +317,7 @@ test('un stockage indisponible conserve le choix en mémoire pour cette visite',
   const b = browser({ blocked: true }); b.load(); b.choose('accept');
   assert.equal(b.preferences().behavior, true);
   assert.equal(b.scripts.length, 1);
-  b.choose('essential');
+  b.choose('essential', { fromPreferences: true });
   assert.equal(b.preferences().behavior, false);
 });
 
