@@ -80,12 +80,12 @@ test("le J+8 écarte les compléments déjà couverts par un achat antérieur", 
 });
 
 test("le J+8 garde l’année d’un pack même si la matière existe dans une autre année", async () => {
-  for (const id of ["pack-matiere-penal-general-l1", "pack-ultra-l1-s2"]) {
+  for (const [id, niveau] of [["pack-matiere-penal-general-l1", "l2"], ["pack-ultra-l1-s2", "l1"], ["pack-ultra-l1-s2-revision-2", "l1"]]) {
     const attributs = await attributsRecommandationsPostAchat("audit@example.test", [id],
       async () => [{ produit_ids: [id] }]);
     const complements = [attributs.COMPLEMENT_J8_1_ID, attributs.COMPLEMENT_J8_2_ID].filter(Boolean);
     assert.ok(complements.length > 0, id);
-    assert.ok(complements.every((produit) => /-l1(?:-s[12])?$/.test(produit)), complements.join(", "));
+    assert.ok(complements.every((produit) => new RegExp("-" + niveau + "(?:-s[12])?$").test(produit)), complements.join(", "));
   }
 });
 

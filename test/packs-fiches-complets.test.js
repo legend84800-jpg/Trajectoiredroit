@@ -17,10 +17,28 @@ for (const [id, attendu] of Object.entries(attentes)) test(id + ' conserve ses f
 });
 
 test('la licence contient les fiches des trois packs sans fichier en double', () => {
-  const union = new Set(['pack-l1','pack-l2','pack-l3'].flatMap(id => produits[id].blobs));
+  const union = new Set(['pack-l1-revision','pack-l2','pack-l3'].flatMap(id => produits[id].blobs));
   assert.deepEqual(new Set(produits['pack-complet'].blobs), union);
   assert.equal(produits['pack-complet'].prix, 17900);
   assert.equal(produits['pack-complet'].blobs.length, 62);
   assert.equal(produits['pack-l2'].blobs.length, 21);
   assert.equal(produits['pack-l2'].prix, 7900);
+});
+
+test('le pénal général reste dans les anciens packs L1 et se vend dans les packs L2', () => {
+  for (const [l1, l2, support] of [
+    ['pack-l1', 'pack-l2', 'fiche-penal-general-l1'],
+    ['pack-cas-pratiques-l1', 'pack-cas-pratiques-l2', 'cas-pratique-penal-general-l1'],
+    ['pack-flashcards-qcm-l1', 'pack-flashcards-qcm-l2', 'flashcards-qcm-penal-general-l1'],
+  ]) {
+    const fichiers = produits[support].blobs;
+    const ancien = produits[l1];
+    const nouveau = produits[l1 + '-revision'];
+    assert.equal(ancien.venteSuspendue, true);
+    assert.ok(!nouveau.venteSuspendue);
+    assert.equal(nouveau.prix, ancien.prix);
+    assert.ok(fichiers.every(fichier => ancien.blobs.includes(fichier)));
+    assert.ok(fichiers.every(fichier => produits[l2].blobs.includes(fichier)));
+    assert.deepEqual(nouveau.blobs, ancien.blobs.filter(fichier => !fichiers.includes(fichier)));
+  }
 });

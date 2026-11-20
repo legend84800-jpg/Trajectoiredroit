@@ -59,7 +59,7 @@ FICHES = {
                   "Tout le cours en PDF"),
     "constit": ("Droit constitutionnel L1", "droit-constitutionnel-l1.html#fiches", "assets/apercus/constit-l1-s2-1.jpg",
                 "Tout le programme en PDF, avec les grandes décisions du Conseil constitutionnel et la méthode de la dissertation"),
-    "penalgen": ("Droit pénal général L1 S2", "droit-penal-general-l1.html#fiches", "assets/apercus/penal-general-l1-1.jpg",
+    "penalgen": ("Droit pénal général L2 S2", "droit-penal-general-l2.html#fiches", "assets/apercus/penal-general-l1-1.jpg",
                  "Tout le cours en PDF, avec cet arrêt et tous les autres"),
     "contrats": ("Droit des contrats L2", "droit-des-contrats-l2.html#fiches", "assets/apercus/contrats-l2-s1-1.jpg",
                  "Tout le cours en PDF, à jour de la réforme du droit des contrats de 2016"),
@@ -105,7 +105,7 @@ lot("famille", "l1-s2", "rupture-du-concubinage-consequences.html", "peut-on-mod
 lot("personnes", "l1-s1", "absence-disparition-droit-des-personnes.html")
 lot("constit", "l1-s2", "bloc-de-constitutionnalite-explique.html", "qpc-question-prioritaire-de-constitutionnalite.html",
     "decision-ivg-1975-expliquee.html", "decision-liberte-association-1971-expliquee.html")
-lot("penalgen", "l1-s2", "arret-laboube-1956-explique.html")
+lot("penalgen", "l2-s2", "arret-laboube-1956-explique.html")
 lot("contrats", "l2-s1", "condition-potestative-droit-des-contrats.html", "decheance-garantie-assurance-auto-mauvaise-foi.html",
     "promesse-unilaterale-de-vente-article-1124.html", "clause-de-non-concurrence-bail-professionnel.html",
     "execution-forcee-en-nature-droit-des-contrats.html", "reforme-droit-contrats-2016.html", "la-lesion-en-droit-des-contrats.html",

@@ -105,6 +105,15 @@ window.catalogueKit = {
         "prixSepare": 4997
       },
       {
+        "code": "penal-general-s2",
+        "discipline": "penal",
+        "nom": "Droit pénal général",
+        "semestre": "S2",
+        "formatApplication": "Majeures préparées",
+        "tonFormat": "majeures",
+        "prixSepare": 4997
+      },
+      {
         "code": "biens",
         "discipline": "biens",
         "nom": "Droit des biens",

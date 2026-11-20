@@ -16,6 +16,7 @@ const programmes = {
     ["penal", "penal", "Droit pénal", "S1", "fiche-penal-l2-s1", "maj-penal-l2-s1", "flashcards-qcm-penal-l2-s1"],
     ["responsabilite", "responsabilite", "Responsabilité civile", "S2", "fiche-obligations-l2-s2", "maj-obligations-l2-s2", "flashcards-qcm-obligations-l2-s2"],
     ["administratif-s2", "administratif", "Droit administratif", "S2", "fiche-da-l2-s2", "maj-da-l2-s2", "flashcards-qcm-da-l2-s2"],
+    ["penal-general-s2", "penal", "Droit pénal général", "S2", "fiche-penal-general-l1", "maj-penal-l2-s2", "flashcards-qcm-penal-general-l1"],
     ["biens", "biens", "Droit des biens", "", "fiche-biens-l2", "maj-biens-l2", "flashcards-qcm-biens-l2"],
   ],
   l3: [

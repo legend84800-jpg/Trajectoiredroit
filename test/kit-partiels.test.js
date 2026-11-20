@@ -42,12 +42,12 @@ async function ouvrir(payload) {
 
 test("les trios autorisés livrent les fichiers de chacun des supports", () => {
   const catalogue = donneesPage(PRODUITS);
-  assert.deepEqual(Object.values(catalogue.niveaux).map((liste) => liste.length), [6, 6, 4]);
+  assert.deepEqual(Object.values(catalogue.niveaux).map((liste) => liste.length), [6, 7, 4]);
   for (const m of Object.values(catalogue.niveaux).flat()) assert.equal(m.prixSepare, 4997);
   const references = Object.entries(PRODUITS).filter(([cle]) => cle.startsWith("pack-kit-partiels-"));
   assert.deepEqual(["l1", "l2", "l3"].map((niveau) =>
     references.filter(([id]) => id.startsWith(`pack-kit-partiels-${niveau}--`)).length
-  ), [20, 20, 4]);
+  ), [20, 35, 4]);
   for (const [id, produit] of references) {
     assert.equal(produit.prix, 6900, id);
     assert.ok(produit.blobs.length >= 21, id);
@@ -60,6 +60,11 @@ test("les trios autorisés livrent les fichiers de chacun des supports", () => {
   const droitConstitutionnel = PRODUITS["pack-kit-partiels-l1--constitutionnel-s1--constitutionnel-s2--intro-droit"];
   assert.match(droitConstitutionnel.nom, /Droit constitutionnel \(S1\)/);
   assert.match(droitConstitutionnel.nom, /Droit constitutionnel \(S2\)/);
+  const penalGeneral = PRODUITS["pack-kit-partiels-l2--administratif-s2--contrats--penal-general-s2"];
+  assert.match(penalGeneral.nom, /Droit pénal général \(S2\)/);
+  for (const id of ["fiche-penal-general-l1", "maj-penal-l2-s2", "flashcards-qcm-penal-general-l1"]) {
+    assert.ok(PRODUITS[id].blobs.every((fichier) => penalGeneral.blobs.includes(fichier)), id);
+  }
 });
 
 test("le paiement unique et les deux échéances portent sur le kit des deux semestres", async () => {

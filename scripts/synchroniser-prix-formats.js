@@ -19,7 +19,7 @@ function bilanPacksUltra() {
     const total = references.reduce((somme, reference) => somme + PRODUITS[reference].prix, 0);
     const medias = references.filter((reference) => reference.startsWith("audio-video-"));
     const totalMedias = medias.reduce((somme, reference) => somme + PRODUITS[reference].prix, 0);
-    return [id, { prix, total, totalMedias, ressources: references.length, economie: Math.round((total - prix) / total * 100) }];
+    return [id, { prix, total, totalMedias, nbMedias: medias.length, ressources: references.length, economie: Math.round((total - prix) / total * 100) }];
   }));
 }
 
@@ -72,6 +72,8 @@ function synchroniserPrixFormats(contenu, fichier) {
     const p = packs[id];
     if (!p) return bloc;
     return bloc.replace(/(<span class="ultra-card__saving">)\d+( % d’économie<\/span>)/, `$1${p.economie}$2`)
+      .replace(/(<p class="ultra-card__description">)\d+( ressources)/, `$1${p.ressources}$2`)
+      .replace(/(<p class="ultra-card__bonus">Les podcasts et les vidéos des )\d+( matières)/, `$1${p.nbMedias}$2`)
       .replace(/(<span class="ultra-card__unit-total">)[^<]+(?=<\/span>)/, `$1${euro(p.total)}`)
       .replace(/(<span class="ultra-card__price">)[^<]+(?=<\/span>)/, `$1${prixUltra(p.prix)}`)
       .replace(/(<span class="ultra-card__payment">ou 3 × )[^€]+€/, `$1${euro(montantEcheance(p.prix, 3))}`)
@@ -94,7 +96,7 @@ function synchroniserPrixFormats(contenu, fichier) {
         const p = packs[`pack-ultra-${niveau.toLowerCase()}-s${semestre}`];
         return p ? `${debut}<td>${p.ressources}</td><td class="prix">${prixUltra(p.prix)}</td><td>3 × ${euro(montantEcheance(p.prix, 3))}</td><td class="barre">${euro(p.total)}</td>` : bloc;
       });
-    sortie = sortie.replace(/(<option value="(pack-ultra-l[123]-s[12])-revision" data-prix=")\d+(">[^(]+\()[^)<]+/g,
+    sortie = sortie.replace(/(<option value="(pack-ultra-l[123]-s[12])-revision(?:-2)?" data-prix=")\d+(">[^(]+\()[^)<]+/g,
       (bloc, debut, id, texte) => packs[id] ? `${debut}${packs[id].prix}${texte}${prixUltra(packs[id].prix)}` : bloc);
     sortie = sortie.replace(/(Le Pack Ultra de L1 semestre 1 coûte )\d+(?:,\d{2})? €/, (_, debut) => debut + prixUltra(packs["pack-ultra-l1-s1"].prix));
   }

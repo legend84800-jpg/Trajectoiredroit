@@ -354,7 +354,7 @@ test("la page parents affiche les cinq packs en vente au bon prix", () => {
   for (const [, id, prix] of options) {
     const produit = PRODUITS[id];
     assert.equal(Number(prix), produit.prix, id);
-    const [, niveau, semestre] = id.match(/^pack-ultra-(l[123])-s([12])-revision$/);
+    const [, niveau, semestre] = id.match(/^pack-ultra-(l[123])-s([12])-revision(?:-2)?$/);
     const total = produit.inclus.reduce((somme, reference) => somme + PRODUITS[reference].prix, 0);
     const prixVisible = euros(produit.prix).replace(",00 €", " €");
     assert.ok(html.includes(`<td>${niveau.toUpperCase()} · semestre ${semestre}</td><td>${produit.inclus.length}</td><td class="prix">${prixVisible}</td><td>3 × ${euros(montantEcheance(produit.prix, 3))}</td><td class="barre">${euros(total)}</td>`), id);

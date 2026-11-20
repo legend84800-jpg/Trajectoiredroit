@@ -99,8 +99,8 @@ const MATIERES = {
     majeures: [{ label: null, id: "maj-travail-l3-s1", prix: "19,99 €" }],
     packMatiere: { id: "pack-matiere-travail-l3", prix: "29,98 €" },
   },
-  "droit-penal-general-l1": {
-    nom: "Droit pénal général L1 S2",
+  "droit-penal-general-l2": {
+    nom: "Droit pénal général L2 S2",
     semestres: [
       { label: null, id: "fiche-penal-general-l1", prix: "19,99 €", apercus: ["assets/apercus/penal-general-l1-zoom.webp", "assets/apercus/penal-general-l1-1.webp", "assets/apercus/penal-general-l1-2.webp"] },
     ],
@@ -200,14 +200,14 @@ const ARRETS_VERS_MATIERE = {
   "arret-jacques-vabre-explique": "droit-constitutionnel-l1",
   "arret-jandheur-1930-explique": "droit-des-obligations-l2",
   "arret-kpmg-2006-explique": "droit-administratif-l2",
-  "arret-laboube-1956-explique": "droit-penal-general-l1",
-  "arret-lacour-1962-explique": "droit-penal-general-l1",
+  "arret-laboube-1956-explique": "droit-penal-general-l2",
+  "arret-lacour-1962-explique": "droit-penal-general-l2",
   "arret-magnier-1961-explique": "droit-administratif-l2",
   "arret-manoukian-explique": "droit-des-contrats-l2",
   "arret-mennesson-2019-explique": "droit-des-personnes-l1",
   "arret-narcy-1963-explique": "droit-administratif-l2",
   "arret-nicolo-explique": "droit-administratif-l2",
-  "arret-perdereau-1986-explique": "droit-penal-general-l1",
+  "arret-perdereau-1986-explique": "droit-penal-general-l2",
   "arret-perruche-2000-explique": "droit-des-personnes-l1",
   "arret-sarran-1998-explique": "droit-constitutionnel-l1",
   "arret-sexe-neutre-2017-explique": "droit-des-personnes-l1",

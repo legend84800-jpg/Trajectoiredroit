@@ -8,6 +8,14 @@ const { montantEcheance, euros } = require("../api/_echeances");
 const { construireLiensTelechargement } = require("../api/_liens-telechargement");
 const { MATIERES, classerRessource } = require("../assets/js/pack-ultra-inclusions");
 
+const PENAL_GENERAL = [
+  "fiche-penal-general-l1",
+  "flashcards-qcm-penal-general-l1",
+  "cas-pratique-penal-general-l1",
+  "audio-video-penal-general-l1",
+  "fiche-arret-penal",
+];
+
 test("chaque Pack Ultra contient exactement les références de son semestre", () => {
   for (const [id, definition] of Object.entries(DEFINITIONS)) {
     const references = referencesPour(id, PRODUITS);
@@ -30,7 +38,16 @@ test("chaque Pack Ultra contient exactement les références de son semestre", (
       assert.equal(revision, undefined);
       continue;
     }
-    const actives = references.filter(reference => !PRODUITS[reference].venteSuspendue);
+    let actives = references.filter(reference => !PRODUITS[reference].venteSuspendue);
+    if (id === "pack-ultra-l1-s2") {
+      const ancien = PRODUITS["pack-ultra-l1-s2-revision"];
+      assert.deepEqual(ancien.inclus, actives);
+      assert.deepEqual(ancien.blobs, actives.flatMap(reference => PRODUITS[reference].blobs));
+      assert.equal(ancien.venteSuspendue, true);
+      actives = actives.filter(reference => !PENAL_GENERAL.includes(reference));
+    } else if (id === "pack-ultra-l2-s2") {
+      actives.push(...PENAL_GENERAL);
+    }
     assert.deepEqual(revision.inclus, actives, id);
     assert.deepEqual(revision.blobs, actives.flatMap(reference => PRODUITS[reference].blobs), id);
     assert.equal(revision.prix, definition.prix);

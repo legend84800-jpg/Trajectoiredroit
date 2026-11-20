@@ -35,6 +35,14 @@ const RATTACHEMENTS_GENERIQUES = {
 // Pack Ultra L2 S1 se décide au bilan.
 const HORS_PACKS = new Set(["cours-images-contrats-l2-s1"]);
 
+const PENAL_GENERAL = new Set([
+  "fiche-penal-general-l1",
+  "flashcards-qcm-penal-general-l1",
+  "cas-pratique-penal-general-l1",
+  "audio-video-penal-general-l1",
+  "fiche-arret-penal",
+]);
+
 function referencesPour(packId, catalogue) {
   const semestre = packId.slice(-5);
   const rattachements = RATTACHEMENTS_ANNUELS[packId];
@@ -49,7 +57,7 @@ function referencesPour(packId, catalogue) {
 }
 
 function referenceVente(id) {
-  return id + "-revision";
+  return id === "pack-ultra-l1-s2" ? id + "-revision-2" : id + "-revision";
 }
 
 function composer(definition, inclus, catalogue) {
@@ -82,7 +90,13 @@ function construireProduits(catalogue) {
     if (definition.venteSuspendue) continue;
 
     // La nouvelle référence permet de livrer la composition d'origine aux anciens acheteurs.
-    const inclusEnVente = inclus.filter((reference) => !catalogue[reference].venteSuspendue);
+    let inclusEnVente = inclus.filter((reference) => !catalogue[reference].venteSuspendue);
+    if (id === "pack-ultra-l1-s2") {
+      packs[id + "-revision"] = { ...composer(definition, inclusEnVente, catalogue), venteSuspendue: true };
+      inclusEnVente = inclusEnVente.filter((reference) => !PENAL_GENERAL.has(reference));
+    } else if (id === "pack-ultra-l2-s2") {
+      inclusEnVente = [...new Set([...inclusEnVente, ...[...PENAL_GENERAL].filter((reference) => !catalogue[reference].venteSuspendue)])];
+    }
     packs[referenceVente(id)] = composer(definition, inclusEnVente, catalogue);
   }
   return packs;

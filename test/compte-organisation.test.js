@@ -392,7 +392,7 @@ test('Mon compte montre le guide Anki près des seuls téléchargements .apkg', 
   await b.flush();
   const rendu = b.elements.achatsListe.innerHTML;
   const paquets = produitsAchetes.flatMap(p => p.fichiers.filter(fichier => fichier.format === 'apkg'));
-  assert.equal(paquets.length, 15);
+  assert.equal(paquets.length, 16);
   const liensAnki = Array.from(rendu.matchAll(/href="([^"]+)"[^>]*>Télécharger [^<>]+<\/a><a [^>]*href="flashcards-qcm\.html#importer-anki"[^>]*>Importer les cartes dans Anki<\/a>/g), m => m[1]);
   assert.deepEqual(liensAnki, paquets.map(fichier => fichier.url));
   assert.match(rendu, /<audio controls/);

@@ -109,7 +109,7 @@ test("chaque offre en vente transmet son propre visuel avec le prix et le nom du
 
 test("le panier et l'ajout d'un second produit gardent une image par article", async () => {
   await capturerCheckout(async (envoyer) => {
-    const ids = ["fiche-da-l2-s1", "maj-penal-l2-s1", "flashcards-qcm-da-l2-s1", "pack-l1"];
+    const ids = ["fiche-da-l2-s1", "maj-penal-l2-s1", "flashcards-qcm-da-l2-s1", "pack-l1-revision"];
     const panier = await envoyer({ produitIds: [...ids, ids[0]] });
     assert.equal(panier.line_items.length, ids.length);
     for (const [i, id] of ids.entries()) {

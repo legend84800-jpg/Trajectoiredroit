@@ -77,8 +77,9 @@ function fichesIncluses(id) {
 }
 
 function presentationPack(id) {
-  const produit = PRODUITS[id];
-  const fiches = fichesIncluses(id);
+  const reference = id === "pack-l1" ? "pack-l1-revision" : id;
+  const produit = PRODUITS[reference];
+  const fiches = fichesIncluses(reference);
   const totalUnite = fiches.reduce((somme, [, p]) => somme + p.prix, 0);
   const totalPdf = new Set(produit.blobs.filter((f) => f.endsWith(".pdf"))).size;
   const cartes = fiches.filter(([, p]) => p.blobs.some((f) => /cartesmentales\.pdf$/.test(f))).length;
@@ -86,25 +87,23 @@ function presentationPack(id) {
   const niveau = id === "pack-complet" ? "L1 + L2 + L3" : id.slice(-2).toUpperCase();
   const annexe = cartes === nombre ? "Chaque fiche est accompagnée de son plan et de ses cartes mentales." : `Chaque fiche est accompagnée de son plan. Les cartes mentales de ${cartes} fiches sont aussi incluses.`;
   const descriptions = {
-    "pack-l1": `Le pack réunit ${nombre} fiches, dont les deux semestres de droit constitutionnel et une fiche complémentaire de droit pénal général. La couverture de cette fiche indique « Licence 1 · Semestre 2 ». ${annexe}`,
-    "pack-l2": `Le pack réunit ${nombre} fiches pour la L2, dont la fiche de droit pénal L2 S1 et la fiche de droit pénal général. Cette seconde fiche traite aussi des peines et sa couverture indique « Licence 1 · Semestre 2 ». ${annexe}`,
+    "pack-l1": `Le pack réunit ${nombre} fiches pour la L1, dont une pour chaque semestre de droit constitutionnel. ${annexe}`,
+    "pack-l2": `Le pack réunit ${nombre} fiches pour la L2, dont une fiche de droit pénal par semestre. La fiche du second semestre traite aussi des peines. ${annexe}`,
     "pack-l3": `Le pack réunit ${nombre} fiches de L3, dont le droit des sociétés S1 et S2. ${annexe}`,
     "pack-complet": `Le pack réunit ${nombre} fiches pour les trois années de licence, avec les deux semestres de droit des sociétés. ${annexe}`,
   };
   const titre = id === "pack-complet" ? "Pack Licence complète" : `Pack Licence ${niveau.slice(-1)}`;
-  const inclusions = fiches.map(([cle, p]) => {
-    const libelle = cle === "fiche-penal-general-l1" ? "Droit pénal général, avec les peines (couverture L1 S2)" : p.nom.replace(/^Fiche complète /, "");
-    return `<li data-produit-inclus="${escape(cle)}">${escape(libelle)}</li>`;
-  }).join("");
+  const inclusions = fiches.map(([cle, p]) =>
+    `<li data-produit-inclus="${escape(cle)}">${escape(p.nom.replace(/^Fiche complète /, ""))}</li>`).join("");
   const economie = Math.round((1 - produit.prix / totalUnite) * 100);
   const titreHtml = id === "pack-l2" ? `<a href="pack-fiches-droit-l2.html">${titre}</a>` : titre;
   return { nombre, totalPdf, cartes, totalUnite, economie, titre, description: descriptions[id], html: `<div class="product__body" data-catalogue-pack="${id}">
               <h3 class="product__title">${titreHtml}</h3>
               <div class="product__meta"><span>${niveau}</span><span>·</span><span>${nombre} fiches complètes</span><span>·</span><span>${totalPdf} PDF · Accès à vie</span></div>
               <p class="product__desc">${escape(descriptions[id])}</p>
-              <details class="product__includes" data-pack-inclus="${id}" style="text-align:left; margin:10px 0; color:var(--body); font-size:.9rem"><summary style="cursor:pointer; color:var(--blue-600)">Voir les ${nombre} fiches incluses</summary><ul style="padding-left:20px; margin:10px 0; line-height:1.6">${inclusions}</ul><p style="margin:0">Les majeures préparées s’achètent à part.</p></details>
+              <details class="product__includes" data-pack-inclus="${reference}" style="text-align:left; margin:10px 0; color:var(--body); font-size:.9rem"><summary style="cursor:pointer; color:var(--blue-600)">Voir les ${nombre} fiches incluses</summary><ul style="padding-left:20px; margin:10px 0; line-height:1.6">${inclusions}</ul><p style="margin:0">Les majeures préparées s’achètent à part.</p></details>
               <div><span class="product__price-old">${euro(totalUnite)}</span><span class="product__price">${euro(produit.prix)}</span><span class="badge badge--success" style="margin-left:6px">-${economie} %</span></div>
-              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="${id}">Acheter le pack · ${euro(produit.prix)}</button>
+              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="${reference}">Acheter le pack · ${euro(produit.prix)}</button>
             </div>` };
 }
 

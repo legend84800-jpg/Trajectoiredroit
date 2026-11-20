@@ -97,6 +97,9 @@ function analyserId(id) {
   const m = reste.match(/^(.*?)(?:-(l[123]))?(?:-(s[12]))?$/);
   if (!m || !m[1]) return { sujet: null, niveau: null, semestre: null };
   const sujet = ALIAS_SUJET[m[1]] || m[1];
+  if (m[1] === "penal-general" && m[2] === "l1") {
+    return { sujet, niveau: "l2", semestre: "s2" };
+  }
   return { sujet, niveau: m[2] || null, semestre: m[3] || null };
 }
 
@@ -281,7 +284,7 @@ function suggererComplements(produitIdsAchetes, max = 4, historique = [], niveau
 }
 
 function niveauProduit(p) {
-  return p?.niveau || p?.id.match(/-(l[123])(?:-s[12])?$/)?.[1];
+  return p?.niveau || p?.id.match(/-(l[123])(?:-s[12])?(?:-revision(?:-2)?)?$/)?.[1];
 }
 
 function niveauUnique(references) {

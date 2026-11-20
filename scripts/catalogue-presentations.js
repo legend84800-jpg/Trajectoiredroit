@@ -44,7 +44,7 @@ const BESOINS = [
   {
     titre: "Regrouper mes ressources",
     supports: [
-      { nom: "Pack annuel de fiches", href: "formations.html#packs-annee", ids: ["pack-l1", "pack-l2", "pack-l3"], minimum: true, unite: " / année" },
+      { nom: "Pack annuel de fiches", href: "formations.html#packs-annee", ids: ["pack-l1-revision", "pack-l2", "pack-l3"], minimum: true, unite: " / année" },
       { nom: "Pack Ultra", href: "pack-ultra.html#pack-ultra", famille: "pack-ultra-", minimum: true, unite: " / semestre" },
     ],
     contenu: "Le pack annuel rassemble les fiches de ton année. Le Pack Ultra réunit les fiches, les podcasts et vidéos, ainsi que les exercices corrigés disponibles dans ton semestre. La liste des matières de chaque pack se consulte avant de choisir.",

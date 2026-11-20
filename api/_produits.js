@@ -38,7 +38,7 @@ const PRODUITS = {
   "fiche-obligations-l2-s2": { nom: "Fiche complète Droit de la responsabilité civile / des obligations L2 S2", prix: 1999, blobs: ["r2://tjd/fiche-obligations-l2-s2.pdf",
       "r2://tjd/fiche-obligations-l2-s2-plan.pdf",
       "r2://tjd/fiche-obligations-l2-s2-cartesmentales.pdf"] },
-  "fiche-penal-general-l1": { nom: "Fiche complète Droit pénal général L1 S2", prix: 1999, blobs: ["r2://tjd/fiche-penal-general-l1.pdf",
+  "fiche-penal-general-l1": { nom: "Fiche complète Droit pénal général L2 S2", prix: 1999, blobs: ["r2://tjd/fiche-penal-general-l1.pdf",
       "r2://tjd/fiche-penal-general-l1-plan.pdf",
       "r2://tjd/fiche-penal-general-l1-cartesmentales.pdf"] },
   "fiche-penal-l2-s1": { nom: "Fiche complète Droit pénal L2 S1", prix: 1999, blobs: ["r2://tjd/fiche-penal-l2-s1.pdf",
@@ -148,7 +148,7 @@ const PRODUITS = {
   "cours-fiche-hist-institutions-l1": { nom: "Cours complet Histoire des institutions L1 S2", prix: 1999, blobs: ["r2://tjd/cours-fiche-hist-institutions-l1.pdf",
       "r2://tjd/cours-fiche-hist-institutions-l1-plan.pdf",
       "r2://tjd/cours-fiche-hist-institutions-l1-cartesmentales.pdf"] },
-  "cours-fiche-penal-general-l1": { nom: "Cours complet Droit pénal général L1 S2", prix: 1999, blobs: ["r2://tjd/cours-fiche-penal-general-l1.pdf",
+  "cours-fiche-penal-general-l1": { nom: "Cours complet Droit pénal général L2 S2", prix: 1999, blobs: ["r2://tjd/cours-fiche-penal-general-l1.pdf",
       "r2://tjd/cours-fiche-penal-general-l1-plan.pdf",
       "r2://tjd/cours-fiche-penal-general-l1-cartesmentales.pdf"] },
   "cours-fiche-famille-l1-s2": { nom: "Cours complet Droit de la famille L1 S2", prix: 1999, blobs: ["r2://tjd/cours-fiche-famille-l1-s2.pdf",
@@ -270,7 +270,7 @@ const PRODUITS = {
   "flashcards-qcm-famille-l1-s2": { nom: "Flashcards + QCM Droit de la famille L1 S2", prix: 999, blobs: ["r2://tjd/flashcards-qcm-famille-l1-s2-flashcards.pdf",
       "r2://tjd/flashcards-qcm-famille-l1-s2-qcm.pdf",
       "r2://tjd/flashcards-qcm-famille-l1-s2-anki.apkg"] },
-  "flashcards-qcm-penal-general-l1": { nom: "Flashcards + QCM Droit pénal général L1 S2", prix: 999, blobs: ["r2://tjd/flashcards-qcm-penal-general-l1-flashcards.pdf",
+  "flashcards-qcm-penal-general-l1": { nom: "Flashcards + QCM Droit pénal général L2 S2", prix: 999, blobs: ["r2://tjd/flashcards-qcm-penal-general-l1-flashcards.pdf",
       "r2://tjd/flashcards-qcm-penal-general-l1-qcm.pdf",
       "r2://tjd/flashcards-qcm-penal-general-l1-anki.apkg"] },
   "flashcards-qcm-constit-l1-s2": { nom: "Flashcards + QCM Droit constitutionnel L1 S2", prix: 999, blobs: ["r2://tjd/flashcards-qcm-constit-l1-s2-flashcards.pdf",
@@ -319,7 +319,7 @@ const PRODUITS = {
   "cas-pratique-penal-l2-s1": { nom: "Cas pratiques corrigés Droit pénal L2 S1", prix: 1999, blobs: ["r2://tjd/cas-pratique-penal-l2-s1.pdf"] },
   "cas-pratique-contrats-l2-s1": { nom: "Cas pratiques corrigés Droit des contrats L2 S1", prix: 1999, blobs: ["r2://tjd/cas-pratique-contrats-l2-s1.pdf"] },
   "cas-pratique-da-l2-s1": { nom: "Cas pratiques corrigés Droit administratif L2 S1", prix: 1999, blobs: ["r2://tjd/cas-pratique-da-l2-s1.pdf"] },
-  "cas-pratique-penal-general-l1": { nom: "Cas pratiques corrigés Droit pénal général L1 S2", prix: 1999, blobs: ["r2://tjd/cas-pratique-penal-general-l1.pdf"] },
+  "cas-pratique-penal-general-l1": { nom: "Cas pratiques corrigés Droit pénal général L2 S2", prix: 1999, blobs: ["r2://tjd/cas-pratique-penal-general-l1.pdf"] },
   "cas-pratique-famille-l1-s2": { nom: "Cas pratiques corrigés Droit de la famille L1 S2", prix: 1999, blobs: ["r2://tjd/cas-pratique-famille-l1-s2.pdf"] },
   "cas-pratique-personnes-l1": { nom: "Cas pratiques corrigés Droit des personnes L1", prix: 1999, blobs: ["r2://tjd/cas-pratique-personnes-l1.pdf"] },
   "cas-pratique-intro-droit-l1": { nom: "Cas pratiques corrigés Introduction au droit L1 S1", prix: 1999, blobs: ["r2://tjd/cas-pratique-intro-droit-l1.pdf"] },
@@ -503,7 +503,7 @@ const PRODUITS = {
       "r2://tjd/cours-fiche-contrats-speciaux-l3.pdf",
       "r2://tjd/cours-fiche-contrats-speciaux-l3-plan.pdf",
       "r2://tjd/cours-fiche-contrats-speciaux-l3-cartesmentales.pdf"] },
-  "pack-cours-complets-l2": { nom: "Pack Cours L2 (8 cours L2 + Droit pénal général L1 S2)", prix: 13500, blobs: ["r2://tjd/cours-fiche-obligations-l2-s2.pdf",
+  "pack-cours-complets-l2": { nom: "Pack annuel Cours complets L2", prix: 13500, blobs: ["r2://tjd/cours-fiche-obligations-l2-s2.pdf",
       "r2://tjd/cours-fiche-obligations-l2-s2-plan.pdf",
       "r2://tjd/cours-fiche-obligations-l2-s2-cartesmentales.pdf",
       "r2://tjd/cours-fiche-da-l2-s2.pdf",
@@ -916,7 +916,7 @@ const PRODUITS = {
       "r2://tjd/fiche-arret-travail-l3-s1-plan.pdf",
       "r2://tjd/cas-pratique-travail-l3.pdf"
   ] },
-  "pack-matiere-penal-general-l1": { nom: "Pack Droit pénal général L1 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2998, blobs: [
+  "pack-matiere-penal-general-l1": { nom: "Pack Droit pénal général L2 complet (fiche + flashcards + arrêts + cas pratique)", prix: 2998, blobs: [
       "r2://tjd/fiche-penal-general-l1.pdf",
       "r2://tjd/fiche-penal-general-l1-plan.pdf",
       "r2://tjd/fiche-penal-general-l1-cartesmentales.pdf",
@@ -967,6 +967,26 @@ const PRODUITS = {
   // create-checkout.js et stripe-webhook.js le traitent via des branches dédiées).
   "stage-methode": { venteSuspendue: true, nom: "Stage de méthode en direct (3 séances, vacances de la Toussaint, 27-29 octobre 2026)", prix: 17600, blobs: [] },
 };
+
+// Les achats des anciens packs L1 gardent leurs fichiers. Le catalogue vend
+// leur nouvelle composition sous une référence distincte.
+for (const [packId, penalId, nom] of [
+  ["pack-l1", "fiche-penal-general-l1", "Pack Fiches L1 (8 fiches)"],
+  ["pack-flashcards-qcm-l1", "flashcards-qcm-penal-general-l1", PRODUITS["pack-flashcards-qcm-l1"].nom],
+  ["pack-cas-pratiques-l1", "cas-pratique-penal-general-l1", PRODUITS["pack-cas-pratiques-l1"].nom],
+]) {
+  const pack = PRODUITS[packId];
+  const penal = new Set(PRODUITS[penalId].blobs);
+  PRODUITS[packId + "-revision"] = { ...pack, nom, blobs: pack.blobs.filter((fichier) => !penal.has(fichier)) };
+  pack.venteSuspendue = true;
+}
+
+for (const [packId, penalId] of [
+  ["pack-flashcards-qcm-l2", "flashcards-qcm-penal-general-l1"],
+  ["pack-cas-pratiques-l2", "cas-pratique-penal-general-l1"],
+]) {
+  PRODUITS[packId].blobs.push(...PRODUITS[penalId].blobs);
+}
 
 Object.assign(PRODUITS, require("./_audio-video").construireProduits(PRODUITS));
 Object.assign(PRODUITS, require("./_packs-citations").construireProduits(PRODUITS));

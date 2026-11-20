@@ -106,7 +106,7 @@ test("chaque page matière propose l'option avec un extrait et le bon bouton", (
     "droit-constitutionnel-l1.html": ["constit-l1-s1", "constit-l1-s2"],
     "droit-de-la-famille-l1.html": ["famille-l1-s2"],
     "histoire-des-institutions-l1.html": ["hist-institutions-l1"],
-    "droit-penal-general-l1.html": ["penal-general-l1"],
+    "droit-penal-general-l2.html": ["penal-general-l1"],
     "droit-administratif-l2.html": ["da-l2-s1", "da-l2-s2"],
     "droit-des-contrats-l2.html": ["contrats-l2-s1"],
     "droit-des-obligations-l2.html": ["obligations-l2-s2"],

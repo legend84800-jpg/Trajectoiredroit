@@ -23,7 +23,7 @@ const SUJETS = {
   "famille-l1-s2": { nom: "Droit de la famille L1", de: "de droit de la famille L1", page: "droit-de-la-famille-l1.html" },
   "constit-l1-s1": { nom: "Droit constitutionnel L1 S1", de: "de droit constitutionnel L1", page: "droit-constitutionnel-l1.html" },
   "constit-l1-s2": { nom: "Droit constitutionnel L1 S2", de: "de droit constitutionnel L1", page: "droit-constitutionnel-l1.html" },
-  "penal-general-l1": { nom: "Droit pénal général L1", de: "de droit pénal général L1", page: "droit-penal-general-l1.html" },
+  "penal-general-l1": { nom: "Droit pénal général L2", de: "de droit pénal général L2", page: "droit-penal-general-l2.html" },
   "relations-internationales-l1": { nom: "Relations internationales L1", de: "de relations internationales L1", page: "relations-internationales-l1.html" },
   "da-l2-s1": { nom: "Droit administratif L2 S1", de: "de droit administratif L2", page: "droit-administratif-l2.html" },
   "da-l2-s2": { nom: "Droit administratif L2 S2", de: "de droit administratif L2", page: "droit-administratif-l2.html" },

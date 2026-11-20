@@ -14,7 +14,6 @@
       ['Droit constitutionnel', ['Droit constitutionnel']],
       ['Histoire des institutions', ['Histoire des institutions']],
       ['Droit de la famille', ['Droit de la famille']],
-      ['Droit pénal général', ['Droit pénal']],
     ],
     'l2-s1': [
       ['Droit administratif', ['Droit administratif']],

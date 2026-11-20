@@ -389,6 +389,8 @@ def lien_media_prive(reference: str, expiration: int) -> str:
     if duree <= 0:
         raise PermissionError("Lien expiré")
     nom_fichier = cle.rsplit("/", 1)[-1]
+    if nom_fichier == "flashcards-qcm-penal-general-l1-anki.apkg":
+        nom_fichier = "flashcards-qcm-penal-general-l2-s2-anki.apkg"
     disposition = f'attachment; filename="{nom_fichier}"' if est_deck else "inline"
     return _client_r2().generate_presigned_url(
         "get_object",

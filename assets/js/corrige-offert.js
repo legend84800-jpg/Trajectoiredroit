@@ -11,8 +11,7 @@
     ['Licence 1', [
       ['cas-pratique-intro-droit-l1', 'Introduction au droit L1 S1'],
       ['cas-pratique-personnes-l1', 'Droit des personnes L1'],
-      ['cas-pratique-famille-l1-s2', 'Droit de la famille L1 S2'],
-      ['cas-pratique-penal-general-l1', 'Droit pénal général L1 S2']
+      ['cas-pratique-famille-l1-s2', 'Droit de la famille L1 S2']
     ]],
     ['Licence 2', [
       ['cas-pratique-da-l2-s1', 'Droit administratif L2 S1'],
@@ -20,6 +19,7 @@
       ['cas-pratique-contrats-l2-s1', 'Droit des contrats L2 S1'],
       ['cas-pratique-obligations-l2-s2', 'Droit des obligations L2 S2'],
       ['cas-pratique-penal-l2-s1', 'Droit pénal L2 S1'],
+      ['cas-pratique-penal-general-l1', 'Droit pénal général L2 S2'],
       ['cas-pratique-biens-l2', 'Droit des biens L2']
     ]],
     ['Licence 3', [
