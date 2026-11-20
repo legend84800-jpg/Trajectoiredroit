@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { createHash } = require('node:crypto');
 const { preparerPublication } = require('../scripts/preparer-publication');
 
 function projet(t) {
@@ -34,6 +35,19 @@ test('la sortie conserve les pages, ressources et adresses du site et du jeu', (
   for (const relatif of ['index.html', 'cours.html', 'assets/js/main.js', 'assets/style.css', 'apercus/page.webp', 'jeu/index.html', 'jeu/jeu.js', 'jeu/data/questions.json', 'robots.txt', 'sitemap.xml', 'llms.txt', '.well-known/apple-developer-merchantid-domain-association']) {
     assert.equal(fs.readFileSync(path.join(sortie, relatif), 'utf8'), fs.readFileSync(path.join(p.racine, relatif), 'utf8'), relatif);
   }
+});
+
+test('la sortie actualise la version du script de consentement sur chaque page concernée', (t) => {
+  const p = projet(t);
+  const script = 'window.consentement = true;';
+  const avant = '<script src="/assets/js/cookie-consent.js?v=00000000"></script>';
+  p.ecrire('assets/js/cookie-consent.js', script);
+  p.ecrire('cours.html', avant);
+  const version = createHash('sha256').update(script).digest('hex').slice(0, 8);
+  const { sortie } = preparerPublication(p.racine);
+  assert.equal(fs.readFileSync(path.join(sortie, 'cours.html'), 'utf8'), avant.replace('00000000', version));
+  assert.equal(fs.readFileSync(path.join(p.racine, 'cours.html'), 'utf8'), avant);
+  assert.equal(fs.readFileSync(path.join(sortie, 'index.html'), 'utf8'), fs.readFileSync(path.join(p.racine, 'index.html'), 'utf8'));
 });
 
 test('les sources serveur, brouillons et fichiers de configuration restent hors de la sortie', (t) => {

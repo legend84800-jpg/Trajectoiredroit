@@ -3,17 +3,16 @@ const assert = require('node:assert/strict');
 const vm = require('node:vm');
 const fs = require('node:fs');
 const path = require('node:path');
-const { createHash } = require('node:crypto');
 
 const root = path.resolve(__dirname, '..');
 const source = fs.readFileSync(path.join(root, 'assets/js/cookie-consent.js'), 'utf8');
 
-function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formations.html', internal = false, blocked = false, tracker } = {}) {
+function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formations.html', internal = false, blocked = false, tracker, session = new Map() } = {}) {
   const storage = new Map();
   if (stored) storage.set('tjd_consent_v2', JSON.stringify(stored));
   if (legacy) storage.set('tjd_consent', legacy);
   const events = [], scripts = [], ga = [], meta = [], windowHandlers = new Map();
-  const roots = [];
+  const roots = [], timers = [];
   const activeElement = { focus() {} };
 
   class Element {
@@ -26,6 +25,8 @@ function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formation
       this.className = '';
       this.classList = { add() {}, remove() {}, toggle() {} };
     }
+    get isConnected() { return roots.includes(this); }
+    contains(element) { return [...this.controls.values()].includes(element); }
     set innerHTML(value) {
       this.html = value;
       for (const match of value.matchAll(/\b(data-cookie-[a-z-]+)(?:="([^"]*)")?/g)) {
@@ -74,11 +75,19 @@ function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formation
     location: new URL(url),
     tjdTestInterne: internal,
     AtelierComportement: tracker,
+    scrollY: 0,
+    sessionStorage: {
+      getItem(key) { return session.get(key) ?? null; },
+      setItem(key, value) { session.set(key, value); },
+    },
     gtag: (...arguments_) => ga.push(arguments_),
     fbq: (...arguments_) => meta.push(arguments_),
     addEventListener(name, handler) {
       if (!windowHandlers.has(name)) windowHandlers.set(name, []);
       windowHandlers.get(name).push(handler);
+    },
+    removeEventListener(name, handler) {
+      windowHandlers.set(name, (windowHandlers.get(name) || []).filter((other) => other !== handler));
     },
     dispatchEvent(event) {
       events.push(event);
@@ -93,7 +102,7 @@ function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formation
   const context = vm.createContext({
     window, document, localStorage, URL,
     CustomEvent: class { constructor(type, options) { this.type = type; this.detail = options.detail; } },
-    setTimeout: () => 1,
+    setTimeout: (handler) => timers.push(handler),
     requestAnimationFrame: (handler) => handler(),
   });
   vm.runInContext(source, context, { filename: 'cookie-consent.js' });
@@ -101,7 +110,9 @@ function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formation
   const banner = () => roots.find((element) => element.className === 'cookie-banner');
   const dialog = () => roots.find((element) => element.className === 'cookie-preferences');
   const choose = (name) => {
-    const control = banner()?.querySelector('[data-cookie-' + name + ']');
+    if (name === 'essential' && !dialog()?.open) window.tjdCookieConsent.openPreferences();
+    const surface = name === 'essential' ? dialog() : banner();
+    const control = surface?.querySelector('[data-cookie-' + name + ']');
     assert.ok(control, 'Contrôle de consentement présent, ' + name);
     control.click();
   };
@@ -113,7 +124,8 @@ function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formation
     preferencesDialog.querySelector('[data-cookie-save]').click();
     return preferencesDialog;
   };
-  return { window, storage, events, scripts, ga, meta, load, banner, dialog, choose, preferences, customize };
+  const runTimers = () => { for (const handler of timers.splice(0)) handler(); };
+  return { window, storage, events, scripts, ga, meta, load, banner, dialog, choose, preferences, customize, runTimers };
 }
 
 test('aucun choix ne charge le traceur et le bandeau explique la relecture avant acceptation', () => {
@@ -122,11 +134,34 @@ test('aucun choix ne charge le traceur et le bandeau explique la relecture avant
   assert.equal(b.preferences(), null);
   assert.equal(b.scripts.length, 0);
   assert.match(b.banner().html, /revoir ta visite et la lier à un achat/i);
+  assert.match(b.banner().html, /Tu peux continuer sans accepter/);
+  assert.match(b.banner().html, />Choisir<\/button>/);
+  assert.doesNotMatch(b.banner().html, /data-cookie-essential/);
+  assert.equal((b.banner().html.match(/<button\b/g) || []).length, 2);
   assert.match(b.banner().html, /href="\/confidentialite\.html#cookies"/);
   b.window.tjdCookieConsent.openPreferences();
   const dialog = b.dialog();
   assert.match(dialog.html, /tes clics et le défilement des pages/);
   assert.match(dialog.html, /Les textes saisis sont masqués/);
+});
+
+test('le défilement ferme le bandeau pour la visite sans accorder de consentement', () => {
+  const session = new Map();
+  const first = browser({ session });
+  first.load();
+  first.runTimers();
+  first.window.scrollY = 140;
+  first.window.dispatchEvent({ type: 'scroll' });
+  first.runTimers();
+  assert.equal(first.banner(), undefined);
+  assert.equal(first.preferences(), null);
+  assert.equal(first.scripts.length, 0);
+
+  const next = browser({ session });
+  next.load();
+  assert.equal(next.banner(), undefined);
+  next.window.tjdCookieConsent.openPreferences();
+  assert.equal(next.dialog().open, true);
 });
 
 test('les anciens choix Analytics et Meta gardent leur effet et refusent la nouvelle catégorie', () => {
@@ -315,15 +350,11 @@ test('Vercel transfère le préfixe isolé sans remplacer les routes Conversion'
   assert.equal(config.rewrites.find((rule) => rule.source === '/public/:path*').destination, 'https://stats.trajectoiredroit.com/public/:path*');
 });
 
-test('toutes les pages existantes chargent la même version du consentement et Portalis reste exclu', () => {
-  const digest = createHash('sha256').update(source).digest('hex').slice(0, 8);
+test('la couverture du consentement est conservée et Portalis reste exclu', () => {
   let references = 0;
   for (const file of fs.readdirSync(root).filter((name) => name.endsWith('.html'))) {
     const html = fs.readFileSync(path.join(root, file), 'utf8');
-    for (const match of html.matchAll(/assets\/js\/cookie-consent\.js\?v=([a-f0-9]+)/g)) {
-      references++;
-      assert.equal(match[1], digest, file + ' emploie la version courante');
-    }
+    references += (html.match(/assets\/js\/cookie-consent\.js\?v=[a-f0-9]+/g) || []).length;
   }
   assert.ok(references >= 340, 'Couverture des pages publiques existantes conservée');
   assert.ok(!fs.readFileSync(path.join(root, 'portalis.html'), 'utf8').includes('cookie-consent.js'));

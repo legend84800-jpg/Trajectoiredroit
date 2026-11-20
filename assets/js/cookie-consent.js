@@ -4,6 +4,7 @@
   var LEGACY_KEY = "tjd_consent";
   var STORAGE_KEY = "tjd_consent_v2";
   var STORAGE_VERSION = 2;
+  var BANNER_SEEN_KEY = "tjd_consent_banner_seen";
   var META_PIXEL_ID = "1736839687358457";
   // Second pixel, portefeuille Meta de Trajectoire Droit LLC (compte publicitaire en dollars, 18/11/2026).
   // fbq("track") envoie chaque évènement aux deux pixels initialisés.
@@ -12,6 +13,7 @@
   var purchaseLinkAllowed = false;
   var lastFocusedElement = null;
   var behaviorScript = null;
+  var dismissOnScroll = null;
 
   function safeGet(key) {
     try {
@@ -185,6 +187,10 @@
   }
 
   function closeBanner() {
+    if (dismissOnScroll) {
+      window.removeEventListener("scroll", dismissOnScroll);
+      dismissOnScroll = null;
+    }
     var banner = document.querySelector(".cookie-banner");
     if (!banner) return;
     banner.classList.remove("cookie-banner--visible");
@@ -334,11 +340,10 @@
     banner.setAttribute("aria-label", "Cookies facultatifs");
     banner.setAttribute("aria-describedby", "cookieBannerDescription");
     banner.innerHTML =
-      '<p class="cookie-banner__text" id="cookieBannerDescription"><a href="/confidentialite.html#cookies">Cookies</a> d’audience et de publicité. On peut revoir ta visite et la lier à un achat.</p>' +
+      '<p class="cookie-banner__text" id="cookieBannerDescription"><a href="/confidentialite.html#cookies">Cookies</a> d’audience et de publicité. On peut revoir ta visite et la lier à un achat. Tu peux continuer sans accepter.</p>' +
       '<div class="cookie-banner__actions">' +
         '<button type="button" class="btn cookie-choice" data-cookie-accept aria-label="Accepter les cookies facultatifs">Accepter</button>' +
-        '<button type="button" class="btn cookie-choice" data-cookie-essential aria-label="Refuser les cookies facultatifs">Refuser</button>' +
-        '<button type="button" class="btn cookie-choice cookie-choice--preferences" data-cookie-preferences>Réglages</button>' +
+        '<button type="button" class="btn cookie-choice cookie-choice--preferences" data-cookie-preferences aria-label="Choisir les cookies facultatifs">Choisir</button>' +
       '</div>';
 
     document.body.appendChild(banner);
@@ -348,18 +353,27 @@
       closeBanner();
     });
 
-    banner.querySelector("[data-cookie-essential]").addEventListener("click", function () {
-      savePreferences({ analytics: false, advertising: false, behavior: false });
-      closeBanner();
-    });
-
     banner.querySelector("[data-cookie-preferences]").addEventListener("click", function () {
       openPreferences(banner.querySelector("[data-cookie-preferences]"));
     });
 
     setTimeout(function () {
       requestAnimationFrame(function () {
+        if (!banner.isConnected || activePreferences) return;
+        try {
+          window.sessionStorage.setItem(BANNER_SEEN_KEY, "1");
+        } catch (error) {
+          // Le bandeau reste utilisable si le stockage de session est indisponible.
+        }
         banner.classList.add("cookie-banner--visible");
+        var scrollAtDisplay = window.scrollY;
+        dismissOnScroll = function () {
+          var dialog = document.querySelector(".cookie-preferences");
+          if (Math.abs(window.scrollY - scrollAtDisplay) < 120 ||
+              banner.contains(document.activeElement) || (dialog && dialog.open)) return;
+          closeBanner();
+        };
+        window.addEventListener("scroll", dismissOnScroll, { passive: true });
       });
     }, 900);
   }
@@ -390,6 +404,12 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     addManageLink();
-    if (!storedPreferences) createBanner();
+    if (storedPreferences) return;
+    try {
+      if (window.sessionStorage.getItem(BANNER_SEEN_KEY)) return;
+    } catch (error) {
+      // Le bandeau reste utilisable si le stockage de session est indisponible.
+    }
+    createBanner();
   });
 })();
