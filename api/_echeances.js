@@ -38,11 +38,14 @@ function versCheckoutEcheances(params, produit, nombre) {
   const descriptionPaiement = enDeuxFois
     ? `${libellePaiement}. Le prix total est de ${euros(total)}.`
     : "";
-  const descriptionFichiers = Array.isArray(produit.blobs) && produit.blobs.length > 0
-    ? `Tu reçois les ${produit.blobs.length} fichiers par email dès le premier paiement, et tu les gardes à vie avec leurs mises à jour.`
-    : "";
-  const description = [descriptionPaiement, descriptionFichiers].filter(Boolean).join(" ");
   const produitIds = params.metadata.produitIds;
+  const accesPackUltra = produitIds.startsWith("pack-ultra-")
+    ? "Le Pack Ultra est disponible dans Mon compte dès le premier paiement."
+    : null;
+  const descriptionLivraison = accesPackUltra ?? (Array.isArray(produit.blobs) && produit.blobs.length > 0
+    ? `Tu reçois les ${produit.blobs.length} fichiers par email dès le premier paiement, et tu les gardes à vie avec leurs mises à jour.`
+    : "");
+  const description = [descriptionPaiement, descriptionLivraison].filter(Boolean).join(" ");
   const suite = { ...params };
   delete suite.payment_intent_data;
   delete suite.after_expiration;
@@ -75,9 +78,11 @@ function versCheckoutEcheances(params, produit, nombre) {
     submit: {
       message: enDeuxFois
         ? `2 paiements sur **2 mois**. Tu paies ${euros(montant)} aujourd’hui puis ${euros(montant)} dans un mois, soit ${euros(total)} au total. `
-          + "Les paiements s’arrêtent donc automatiquement après le deuxième. Tu reçois tout le pack par email dès le premier paiement."
+          + "Les paiements s’arrêtent donc automatiquement après le deuxième. "
+          + (accesPackUltra ?? "Tu reçois tout le pack par email dès le premier paiement.")
         : `Tu paies ${euros(montant)} aujourd'hui, puis ${euros(montant)} chacun des deux mois suivants, soit ${euros(total)} au total. `
-          + "Les prélèvements s'arrêtent automatiquement après le troisième, et tu reçois tout le pack par email dès aujourd'hui.",
+          + "Les prélèvements s'arrêtent automatiquement après le troisième"
+          + (accesPackUltra ? `. ${accesPackUltra}` : ", et tu reçois tout le pack par email dès aujourd'hui."),
     },
   };
   return suite;

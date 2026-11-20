@@ -23,8 +23,19 @@ function bilanPacksUltra() {
   }));
 }
 
+function synchroniserPrixQcm(html) {
+  return html.replace(/<article\b([^>]*\sid="(flashcards-qcm-[a-z0-9-]+)"[^>]*)>([\s\S]*?)<\/article>/g, (_, attributs, id, contenu) => {
+    const produit = PRODUITS[id];
+    const balise = attributs.replace(/\sdata-qcm-prix-centimes="[^"]*"/g, "");
+    if (!contenu.includes(`data-tjd-produit="${id}"`) || !produit || produit.venteSuspendue || !Number.isSafeInteger(produit.prix) || produit.prix <= 0) {
+      return `<article${balise}>${contenu}</article>`;
+    }
+    return `<article${balise} data-qcm-prix-centimes="${produit.prix}">${contenu}</article>`;
+  });
+}
+
 function synchroniserPrixFormats(contenu, fichier) {
-  let sortie = contenu;
+  let sortie = fichier === "flashcards-qcm.html" ? synchroniserPrixQcm(contenu) : contenu;
   sortie = sortie.replace(/<button\b([^>]*)>([\s\S]*?)<\/button>/g, (bloc, attributs, texte) => {
     const id = attributs.match(/\bdata-tjd-produit="([^"]+)"/)?.[1];
     if (!estFormat(id)) return bloc;

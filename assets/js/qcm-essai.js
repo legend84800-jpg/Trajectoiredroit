@@ -3,6 +3,7 @@
 (function () {
   'use strict';
   var LETTRES = ['A', 'B', 'C', 'D'];
+  var euros = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
 
   function el(tag, attrs, html) {
     var n = document.createElement(tag);
@@ -71,11 +72,23 @@
           '<p style="margin:0 0 14px;line-height:1.8">Le QCM complet de ' + m.matiere + ' contient ' + m.total + ' questions réparties sur ' + m.fiches +
           ' fiches, et chaque question y reçoit une explication comme celles que tu viens de lire. De plus, une grille te permet de noter ton score à la fin de chaque fiche.</p>';
         var actions = el('div', { class: 'flex', style: 'gap:12px;flex-wrap:wrap' });
-        var achat = el('button', { type: 'button', class: 'btn btn--primary', 'data-tjd-produit': m.id, style: 'max-width:100%;white-space:normal;text-align:center' },
-          '<span>Acheter les flashcards et le QCM de ' + m.matiere + '</span>');
+        var carte = document.getElementById(m.id);
+        var prixCentimes = carte && Number(carte.getAttribute('data-qcm-prix-centimes'));
+        var nomOffre = 'les flashcards et le QCM de ' + m.matiere;
+        var styleAction = 'max-width:100%;white-space:normal;text-align:center';
+        if (Number.isSafeInteger(prixCentimes) && prixCentimes > 0) {
+          var achat = el('button', { type: 'button', class: 'btn btn--primary', 'data-tjd-produit': m.id, style: styleAction });
+          var libelle = el('span', null, 'Acheter ' + nomOffre + ' ');
+          libelle.appendChild(el('span', { style: 'white-space:nowrap' }, '· ' + euros.format(prixCentimes / 100)));
+          achat.appendChild(libelle);
+          actions.appendChild(achat);
+        } else if (carte) {
+          var offre = el('a', { class: 'btn btn--primary', href: '#' + carte.id, style: styleAction });
+          offre.textContent = 'Voir ' + nomOffre;
+          actions.appendChild(offre);
+        }
         var encore = el('button', { type: 'button', class: 'btn btn--outline' }, 'Recommencer');
         encore.addEventListener('click', function () { afficher(index); zone.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-        actions.appendChild(achat);
         actions.appendChild(encore);
         bilan.appendChild(actions);
       });

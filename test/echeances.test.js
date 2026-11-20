@@ -82,6 +82,7 @@ test("le paiement en 3 fois ouvre un abonnement mensuel sans relance ni code pro
   const { params, options } = appels[0];
   assert.equal(params.mode, "subscription");
   assert.equal(params.line_items.length, 1);
+  assert.equal(params.line_items[0].price_data.currency, "eur");
   assert.equal(params.line_items[0].price_data.unit_amount, 6633);
   assert.deepEqual(params.line_items[0].price_data.recurring, { interval: "month" });
   assert.equal(params.payment_intent_data, undefined);
@@ -92,8 +93,37 @@ test("le paiement en 3 fois ouvre un abonnement mensuel sans relance ni code pro
   assert.equal(params.metadata.reminderPlan, "none");
   assert.equal(params.metadata.produitIds, "pack-ultra-l1-s1-revision");
   assert.equal(params.subscription_data.metadata.echeances, "3");
-  assert.match(params.custom_text.submit.message, /66,33 € aujourd'hui, puis 66,33 €/);
+  assert.equal(params.line_items[0].price_data.product_data.description, "Le Pack Ultra est disponible dans Mon compte dès le premier paiement.");
+  assert.equal(params.custom_text.submit.message,
+    "Tu paies 66,33 € aujourd'hui, puis 66,33 € chacun des deux mois suivants, soit 198,99 € au total. "
+    + "Les prélèvements s'arrêtent automatiquement après le troisième. Le Pack Ultra est disponible dans Mon compte dès le premier paiement.");
   assert.equal(options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012-x3");
+});
+
+test("un Pack Ultra payé comptant garde les libellés et les paramètres du paiement unique", async () => {
+  const produitId = "pack-ultra-l1-s1-revision";
+  const { res, appels } = await creerCheckout({ produitId });
+  assert.equal(res.statusCode, 200);
+  assert.equal(appels.length, 1);
+  const { params, options } = appels[0];
+  assert.equal(params.mode, "payment");
+  assert.equal(params.metadata.echeances, undefined);
+  assert.equal(params.subscription_data, undefined);
+  assert.deepEqual(params.payment_intent_data, { metadata: { produitIds: produitId } });
+  assert.deepEqual(params.line_items[0], {
+    price_data: {
+      currency: "eur",
+      unit_amount: 19900,
+      product_data: {
+        name: PRODUITS[produitId].nom,
+        description: "Tu retrouves toutes les ressources du pack dans ton espace Mon compte dès que le paiement est validé, et tu y gardes l'accès à vie.",
+        images: ["https://trajectoiredroit.com/assets/covers/pack-ultra-l1-s1.webp"],
+      },
+    },
+    quantity: 1,
+  });
+  assert.equal(params.custom_text.submit.message, "Vérifie ton adresse email, car c'est avec elle que tu te connectes ensuite à ton espace Mon compte.");
+  assert.equal(options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012");
 });
 
 test("une demande d'échéances sur une fiche reste un paiement unique", async () => {

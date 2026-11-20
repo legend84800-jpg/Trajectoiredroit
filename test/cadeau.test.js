@@ -197,12 +197,24 @@ test("un cadeau refuse un email invalide ou un produit autre qu'un Pack Ultra", 
   assert.equal(fiche.appels.length, 0);
 });
 
-test("sans cadeau, la session d'un Pack Ultra reste identique", async () => {
-  const { appels } = await creerCheckout({ produitId: "pack-ultra-l1-s1-revision", echeances: 2 });
+test("un Pack Ultra acheté pour soi en 2 fois indique l’accès dans Mon compte", async () => {
+  const { res, appels } = await creerCheckout({ produitId: "pack-ultra-l1-s1-revision", echeances: 2 });
+  assert.equal(res.statusCode, 200);
+  assert.equal(appels.length, 1);
   const { params, options } = appels[0];
+  const { price_data: prix } = params.line_items[0];
+  assert.equal(params.mode, "subscription");
   assert.equal(params.metadata.cadeauEmail, undefined);
   assert.equal(params.subscription_data.metadata.cadeau, undefined);
-  assert.match(params.custom_text.submit.message, /^Tu paies/);
+  assert.equal(params.subscription_data.metadata.echeances, "2");
+  assert.equal(params.metadata.montantTotal, "19900");
+  assert.equal(prix.currency, "eur");
+  assert.equal(prix.unit_amount, 9950);
+  assert.deepEqual(prix.recurring, { interval: "month" });
+  assert.equal(prix.product_data.description, "2 paiements sur 2 mois. Le prix total est de 199,00 €. Le Pack Ultra est disponible dans Mon compte dès le premier paiement.");
+  assert.equal(params.custom_text.submit.message,
+    "2 paiements sur **2 mois**. Tu paies 99,50 € aujourd’hui puis 99,50 € dans un mois, soit 199,00 € au total. "
+    + "Les paiements s’arrêtent donc automatiquement après le deuxième. Le Pack Ultra est disponible dans Mon compte dès le premier paiement.");
   assert.equal(options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012-x2");
 });
 
