@@ -58,11 +58,15 @@
   <link rel="stylesheet" href="assets/comparateur-besoins.css?v=ddad462c">
   <link rel="stylesheet" href="assets/comparatif-fiche-cours.css?v=20261002">
   <style>.card--product .product__edition{margin:0;color:var(--navy);font-size:.82rem;font-weight:700}
-    #a-l-unite .card--product[id] { scroll-margin-top:96px }
+    #a-l-unite .card--product[id], #packs-annee .card--product[id] { scroll-margin-top:96px }
     #recherche-formations-mobile:empty { display:none }
     #recherche-formations-mobile .filtre-recherche { margin:18px auto 16px }
     @media (max-width:768px) {
       .catalogue-toolbar > .filters:first-child { border-top:0; margin-top:0; padding-top:0 }
+    }
+    @media (max-width:600px) {
+      .formations-grille { grid-template-columns:minmax(0, 1fr) }
+      .formations-grille .product__meta span { white-space:normal }
     }
   </style>
   <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
@@ -878,7 +882,7 @@
           <h2 class="h2" style="margin-top:10px">Une fiche pour une matière, un pack pour en réviser plusieurs.</h2>
           <p class="lead">Plus le pack couvre de matières, moins chaque fiche coûte cher. Le pack d'une année revient bien moins cher que les mêmes fiches achetées une par une.</p>
         </div>
-        <div class="grid-3">
+        <div class="grid-3 formations-grille">
 
           <article class="card card--product fade-in">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche complète</span><img src="assets/covers/fiche-da-l2-s1.webp?v=dossier-universitaire-20260915" alt="Exemple de fiche complète, couverture Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
@@ -1041,20 +1045,20 @@
     <!-- LES 3 QUALITÉS DES FICHES -->
     <section class="section section--alt" style="padding-top:48px; padding-bottom:48px">
       <div class="container">
-        <div class="grid-3" style="gap:48px; align-items:start">
+        <div class="grid-3 formations-grille" style="gap:48px; align-items:start">
 
           <div>
-            <p style="font-size:2.8rem; font-weight:800; line-height:1.05; color:var(--blue-700); margin:0 0 16px; font-family:var(--font-display, inherit)">Agréable.</p>
+            <p style="font-size:clamp(2.4rem, 11vw, 2.8rem); font-weight:800; line-height:1.05; color:var(--blue-700); margin:0 0 16px; font-family:var(--font-display, inherit)">Agréable.</p>
             <p style="color:var(--body); line-height:1.8; margin:0">La fiche est construite pour que tu aies envie de l'ouvrir. Elle suit un code couleur, où chaque type de règle a sa couleur. Les titres sont en gras, les conditions sont présentées une par une, et les paragraphes sont courts, donc tu n'as jamais un mur de texte devant toi. La fiche comprend aussi un PDF de mémorisation qui regroupe les points à retenir, et des schémas pour les mécanismes les plus complexes.</p>
           </div>
 
           <div>
-            <p style="font-size:2.8rem; font-weight:800; line-height:1.05; color:var(--blue-700); margin:0 0 16px; font-family:var(--font-display, inherit)">Facile à&nbsp;comprendre.</p>
+            <p style="font-size:clamp(2.4rem, 11vw, 2.8rem); font-weight:800; line-height:1.05; color:var(--blue-700); margin:0 0 16px; font-family:var(--font-display, inherit)">Facile à comprendre.</p>
             <p style="color:var(--body); line-height:1.8; margin:0">J'écris comme si j'expliquais à quelqu'un qui voit la notion pour la première fois. La matière reste entière, avec toutes les conditions et les arrêts. Mais chaque terme technique est expliqué dès qu'il apparaît, et chaque règle abstraite est suivie d'un exemple concret. Pour moi, la pédagogie consiste à garder tout le contenu et à le rendre compréhensible dès la première lecture.</p>
           </div>
 
           <div>
-            <p style="font-size:2.8rem; font-weight:800; line-height:1.05; color:var(--blue-700); margin:0 0 16px; font-family:var(--font-display, inherit)">Complète.</p>
+            <p style="font-size:clamp(2.4rem, 11vw, 2.8rem); font-weight:800; line-height:1.05; color:var(--blue-700); margin:0 0 16px; font-family:var(--font-display, inherit)">Complète.</p>
             <p style="color:var(--body); line-height:1.8; margin:0">Les fiches couvrent tout le programme officiel. Sur chaque chapitre, tu as les définitions et les conditions, avec leurs exceptions. Chaque règle est également rattachée à son article et aux grands arrêts, et la fiche garde les nuances que les autres fiches laissent de côté. En corrigeant des copies, je vois souvent des étudiants arriver au partiel sans avoir appris une partie du programme. Si le sujet tombe sur ces chapitres, ils ne peuvent donc pas dépasser 11 ou 12. Avec ces fiches, tu arrives avec tout le programme en tête.</p>
           </div>
 

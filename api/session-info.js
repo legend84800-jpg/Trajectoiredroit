@@ -73,7 +73,7 @@ function remiseApplicable(data, produitIds) {
 // partagée de Brevo. Mêmes liens signés que l'email, valables 2 heures.
 const DUREE_LIENS_PAGE_SECONDES = 2 * 3600;
 
-function groupesPageRemerciement(data, produitIds) {
+function groupesPageRemerciement(data, produitIds, inclureFormatAnki) {
   const secret = process.env.DOWNLOAD_SECRET;
   if (!secret || (data.metadata && data.metadata.cadeauEmail)) return [];
   const PRODUITS = require("./_produits");
@@ -84,7 +84,10 @@ function groupesPageRemerciement(data, produitIds) {
     if ((Array.isArray(produit.inclus) && Array.isArray(produit.blobsMeta)) || produit.mediaEnLigne) continue;
     const liens = construireLiensTelechargement(
       produitId, produit, secret, "https://trajectoiredroit.com", DUREE_LIENS_PAGE_SECONDES, { sessionId: data.id }
-    ).map(({ nom, url, type }) => ({ nom, url, type }));
+    ).map(({ nom, url, type, format }) => ({
+      nom, url, type,
+      ...(inclureFormatAnki && format === "apkg" ? { format } : {}),
+    }));
     groupes.push({ produitId, nom: produit.nom, liens });
   }
   return groupes;
@@ -259,7 +262,7 @@ async function handler(req, res) {
     // échéances, pas la seule première mensualité encaissée par Checkout.
     const montantTotalEcheances = Number(data.metadata && data.metadata.montantTotal);
     const remise = confirmationSeule ? null : await lireOuCreerRemise(data, produitIds, stripe);
-    const groupes = groupesPageRemerciement(data, produitIds);
+    const groupes = groupesPageRemerciement(data, produitIds, confirmationSeule);
     const liensGroupables = confirmationSeule && groupes.length > 1;
     // La réponse porte des liens de téléchargement signés, jamais mis en cache.
     res.status(200).json({

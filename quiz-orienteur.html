@@ -619,9 +619,9 @@
         lead.textContent = "Elle réunit tout le semestre en un seul PDF, avec les définitions et les articles, mais aussi des exemples qui t'aident à comprendre chaque notion.";
         ctaMain.innerHTML = boutonAchat(m.fiche, 'Acheter la fiche', '19,99 €');
         if (ech === 'proche' && m.fc) {
-          ctaSecondary.innerHTML = "Ton échéance est proche. En complément, les <a href=\"flashcards-qcm.html\">flashcards + QCM</a> de " + m.nom + " te permettent de réviser plus vite juste avant l'examen.";
+          ctaSecondary.innerHTML = "Ton échéance est proche. En complément, les <a href=\"flashcards-qcm.html#" + m.fc + "\">flashcards + QCM</a> de " + m.nom + " te permettent de réviser plus vite juste avant l'examen.";
         } else if (ech === 'debut') {
-          ctaSecondary.innerHTML = "Tu commences tout juste le semestre. Le <a href=\"formations.html#packs-annee\">pack de l'année</a> couvre toutes les matières de ta " + reponses.niveau + " pour moins cher qu'à l'unité.";
+          ctaSecondary.innerHTML = "Tu commences tout juste le semestre. Le <a href=\"formations.html#pack-" + reponses.niveau.toLowerCase() + "\">pack de l'année</a> couvre toutes les matières de ta " + reponses.niveau + " pour moins cher qu'à l'unité.";
         }
       } else if (obj === 'mention') {
         title.textContent = 'Une majeure préparée en ' + m.nom;

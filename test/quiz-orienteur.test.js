@@ -33,9 +33,9 @@ function quiz() {
 
   return {
     matieres: contexte.MATIERES,
-    repondre(niveau, matiere, objectif) {
+    repondre(niveau, matiere, objectif, echeance = "Moins de 2 semaines") {
       getElementById("startBtn").listeners.click();
-      for (const reponse of [niveau, matiere, "Moins de 2 semaines", objectif]) {
+      for (const reponse of [niveau, matiere, echeance, objectif]) {
         const option = getElementById("optionsBox").enfants.find(bouton => bouton.textContent === reponse);
         assert.ok(option, reponse);
         option.listeners.click();
@@ -96,5 +96,29 @@ test("une matière qui a des flashcards garde le bouton d’achat et le conseil 
 
   const comprendre = quiz().repondre("L2", matiere, "Comprendre et apprendre tout le cours");
   assert.match(comprendre.cta, /data-tjd-produit="fiche-da-l2-s2"/);
-  assert.match(comprendre.complement, /href="flashcards-qcm\.html"/);
+  assert.ok(comprendre.complement.includes('href="flashcards-qcm.html#flashcards-qcm-da-l2-s2"'));
+});
+
+test("les conseils du quiz ouvrent une offre précise qui existe sur le site", () => {
+  const objectif = "Comprendre et apprendre tout le cours";
+  const flashcards = fs.readFileSync(path.join(racine, "flashcards-qcm.html"), "utf8");
+  const formations = fs.readFileSync(path.join(racine, "formations.html"), "utf8");
+
+  for (const [niveau, matieres] of Object.entries(quiz().matieres)) {
+    for (const matiere of matieres) {
+      const nom = matiere.nom + (matiere.sem ? ` (${matiere.sem})` : "");
+      if (matiere.fc) {
+        const { complement } = quiz().repondre(niveau, nom, objectif);
+        assert.ok(complement.includes(`href="flashcards-qcm.html#${matiere.fc}"`), nom);
+        assert.equal(flashcards.split(`id="${matiere.fc}"`).length, 2, nom);
+      }
+    }
+
+    const premiereMatiere = matieres[0];
+    const nom = `${premiereMatiere.nom} (${premiereMatiere.sem})`;
+    const { complement } = quiz().repondre(niveau, nom, objectif, "Je commence tout juste le semestre");
+    const pack = `pack-${niveau.toLowerCase()}`;
+    assert.ok(complement.includes(`href="formations.html#${pack}"`), niveau);
+    assert.equal(formations.split(`id="${pack}"`).length, 2, niveau);
+  }
 });

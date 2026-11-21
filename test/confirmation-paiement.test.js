@@ -174,6 +174,38 @@ test("un pack de plusieurs fichiers reste un seul produit et conserve ses liens"
   assert.equal(donnees.nomsProduits, undefined);
 });
 
+test("la confirmation indique le format Anki uniquement pour les fichiers qu’elle remet", async () => {
+  const flashcards = "flashcards-qcm-da-l2-s1";
+  const autre = "flashcards-qcm-da-l2-s2";
+  const stripe = apiFactice(donneesStripe({
+    payment_status: "paid",
+    metadata: { produitIds: [flashcards, autre, packUltra, fiche].join(",") },
+  }));
+  const confirmation = await stripe.appeler("GET", sessionId, "confirmation");
+  assert.equal(confirmation.statusCode, 200);
+  const liens = confirmation.donnees.liens;
+  const liensAnki = liens.filter((lien) => lien.format === "apkg");
+  assert.deepEqual(liensAnki.map((lien) => lien.produitId), [flashcards, autre]);
+  assert.equal(liens.length, 9);
+  assert.ok(liens.every((lien) => lien.produitId !== packUltra));
+  for (const lien of liens) {
+    const adresse = new URL(lien.url);
+    const { searchParams: params } = adresse;
+    assert.equal(adresse.pathname, "/api/telecharger");
+    assert.equal(params.get("sid"), sessionId);
+    assert.equal(params.get("id"), lien.produitId);
+    assert.equal(params.get("sig"), genererToken(lien.produitId, Number(params.get("b")), Number(params.get("exp")), secretSignature, sessionId));
+  }
+  const ancien = await stripe.appeler();
+  assert.equal(ancien.donnees.liens.length, liens.length);
+  assert.ok(ancien.donnees.liens.every((lien) => !Object.hasOwn(lien, "format")));
+
+  const cadeau = await apiFactice(donneesStripe({
+    payment_status: "paid", metadata: { produitIds: flashcards, cadeauEmail: "etudiant@example.test" },
+  })).appeler("GET", sessionId, "confirmation");
+  assert.deepEqual(cadeau.donnees.liens, []);
+});
+
 test("le cadeau et l’accès gratuit gardent les conditions de confirmation prévues", async () => {
   const cadeau = donneesStripe({ payment_status: "paid", metadata: {
     produitIds: [packUltra, fiche, ficheS2].join(","), cadeauEmail: "etudiant@example.test",
@@ -468,6 +500,53 @@ test("la confirmation affiche les accès du Pack Ultra, des fichiers et des méd
     if (ultraVisible) assert.match(nav.element("purchaseStatusMessage").textContent, /adresse email saisie au moment du paiement/);
   }
   assert.match(page, /href="mon-compte\.html">Accéder à mon Pack Ultra<\/a>/);
+});
+
+test("la page affiche un seul guide Anki si elle offre un téléchargement Anki effectif", async () => {
+  const lienPdf = { nom: "Fiche PDF", url: "https://example.test/fichier-1", type: "pdf" };
+  const lienAnki = { nom: "Cartes", url: "https://example.test/fichier-2", type: "pdf", format: "apkg" };
+  const deuxiemeAnki = { ...lienAnki, url: "https://example.test/fichier-3" };
+  const reponse = { montant: 9.99, produitIds: ["flashcards-qcm-da-l2-s1"], emailsAcceptes: true };
+  assert.equal((page.match(/id="purchaseAnkiHelp" hidden/g) || []).length, 1);
+  assert.match(page, /<a href="flashcards-qcm\.html#importer-anki">Importer les cartes dans Anki<\/a>/);
+
+  for (const [details, avecAide, avecPdfSeul] of [
+    [{ liens: [lienPdf] }, false, true],
+    [{ liens: [{ ...lienPdf, nom: "Fichier Anki", url: "https://example.test/fichier.apkg" }] }, false, true],
+    [{ liens: [lienPdf, { ...lienAnki, url: null }] }, false, true],
+    [{ liens: [lienPdf, lienAnki] }, true, false],
+    [{ liens: [lienAnki, deuxiemeAnki] }, true, false],
+    [{ produitIds: [packUltra], liens: [] }, false, false],
+    [{ liens: [] }, false, false],
+    [{ cadeau: true, liens: [lienAnki] }, false, false],
+    [{ etat: "en_attente", liens: [lienAnki] }, false, false],
+  ]) {
+    const nav = navigateur([[200, { ...reponse, ...details }]]);
+    await laisserRepondre();
+    const telechargements = nav.element("purchaseDownloads");
+    const aide = nav.element("purchaseAnkiHelp");
+    if (avecAide || avecPdfSeul) {
+      assert.equal(telechargements.hidden, false);
+      assert.equal(aide.hidden, !avecAide);
+      assert.equal(nav.element("purchaseDownloadsPdfIntro").hidden, !avecPdfSeul);
+      const boutons = nav.element("purchaseDownloadsList").children;
+      assert.deepEqual(boutons.map((bouton) => bouton.href), details.liens.filter((lien) => lien.url).map((lien) => lien.url));
+    } else {
+      assert.equal(telechargements.hidden, true);
+      assert.equal(aide.hidden, true);
+    }
+  }
+
+  const nav = navigateur([
+    [500, {}], [500, {}], [200, { ...reponse, liens: [lienAnki] }],
+  ]);
+  await laisserRepondre();
+  nav.rappels[0]();
+  await laisserRepondre();
+  assert.equal(nav.element("purchaseAnkiHelp").hidden, true);
+  nav.element("purchaseStatusRetry").evenements.click();
+  await laisserRepondre();
+  assert.equal(nav.element("purchaseAnkiHelp").hidden, false);
 });
 
 test("la page sépare les deux semestres et conserve les boutons simples avec une ancienne réponse", async () => {

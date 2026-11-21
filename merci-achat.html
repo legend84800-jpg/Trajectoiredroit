@@ -403,8 +403,9 @@
 
           <div class="card" id="purchaseDownloads" hidden style="margin-top:40px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center; padding:28px 32px">
             <h2 class="h4" style="margin-top:0">Tes fichiers</h2>
-            <p style="margin:8px 0 0; color:var(--body)">Chaque bouton ouvre ton PDF à ton nom, prêt à être enregistré sur ton ordinateur ou ton téléphone.</p>
+            <p id="purchaseDownloadsPdfIntro" style="margin:8px 0 0; color:var(--body)">Chaque bouton ouvre ton PDF à ton nom, prêt à être enregistré sur ton ordinateur ou ton téléphone.</p>
             <div id="purchaseDownloadsList" style="display:flex; flex-direction:column; gap:12px; margin-top:20px"></div>
+            <p id="purchaseAnkiHelp" hidden style="margin:16px 0 0"><a href="flashcards-qcm.html#importer-anki">Importer les cartes dans Anki</a></p>
             <p style="margin:16px 0 0; font-size:.9rem; color:var(--body)">Ces boutons restent valables 2 heures. Ensuite, tu retrouves tes fichiers dans ton espace <a href="mon-compte.html">Mon compte</a>, avec l'adresse email utilisée pour cet achat.</p>
           </div>
 
@@ -664,6 +665,9 @@
       } else {
         liens.forEach(function (lien) { liste.appendChild(boutonTelechargement(lien, 'btn--primary')); });
       }
+      var contientAnki = liens.some(function (lien) { return lien.format === 'apkg'; });
+      document.getElementById('purchaseAnkiHelp').hidden = !contientAnki;
+      document.getElementById('purchaseDownloadsPdfIntro').hidden = contientAnki;
       carte.hidden = false;
     }
 
