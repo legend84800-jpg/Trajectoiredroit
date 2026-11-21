@@ -77,9 +77,33 @@ test('le compte garde les achats datés, les groupes et les lecteurs existants',
 test('la recherche ignore les accents et cherche tous les mots dans un groupe du Pack Ultra', async () => {
   const b = navigateur(); await b.flush(); b.chercher('CONTRATS video');
   const rendu = b.elements.achatsListe.innerHTML;
+  assert.match(rendu, /<details open><summary>Droit des contrats<\/summary>/);
   assert.match(rendu, /contrats.mp4/);
   assert.doesNotMatch(rendu, /contrats.pdf|admin.m4a|personnes.pdf/);
   assert.equal(b.elements.achatsResultat.textContent, '1 achat affiché sur 3');
+});
+
+test('le volet reste replié si plusieurs fichiers correspondent dans des achats distincts', async () => {
+  const achats = historique();
+  achats[1].produits[0].fichiers[0].nom = 'La personnalité juridique en vidéo';
+  const b = navigateur({ achats }); await b.flush();
+  b.chercher('vidéo');
+  assert.match(b.elements.achatsListe.innerHTML, /contrats\.mp4/);
+  assert.match(b.elements.achatsListe.innerHTML, /personnes\.pdf/);
+  assert.doesNotMatch(b.elements.achatsListe.innerHTML, /<details open>/);
+
+  b.filtrer('achatsProduit', 'Droit des contrats');
+  assert.match(b.elements.achatsListe.innerHTML, /<details open><summary>Droit des contrats<\/summary>/);
+
+  b.chercher('contrat');
+  assert.match(b.elements.achatsListe.innerHTML, /contrats\.pdf/);
+  assert.match(b.elements.achatsListe.innerHTML, /contrats\.mp4/);
+  assert.doesNotMatch(b.elements.achatsListe.innerHTML, /<details open>/);
+
+  b.chercher('vidéo');
+  b.effacer();
+  assert.doesNotMatch(b.elements.achatsListe.innerHTML, /<details open>/);
+  assert.equal(b.elements.achatsResultat.textContent, '3 achats affichés sur 3');
 });
 
 const panneServeur = { ok: false, status: 500 };
@@ -187,6 +211,7 @@ test('le filtre de matière réduit les fichiers du Pack Ultra sans perdre leur 
   const b = navigateur(); await b.flush(); b.filtrer('achatsProduit', 'Droit administratif');
   assert.match(b.elements.achatsListe.innerHTML, /<summary>Droit administratif<\/summary>/);
   assert.match(b.elements.achatsListe.innerHTML, /admin.m4a/);
+  assert.doesNotMatch(b.elements.achatsListe.innerHTML, /<details open>/);
   assert.doesNotMatch(b.elements.achatsListe.innerHTML, /contrats.pdf|personnes.pdf/);
 });
 

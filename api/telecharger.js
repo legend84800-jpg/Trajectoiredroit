@@ -32,7 +32,7 @@ const PAGE_LIEN_EXPIRE = `<!doctype html>
     <h1>Ce lien de téléchargement a expiré</h1>
     <p>Pour retrouver un fichier acheté, il faut se connecter à Mon compte avec l’adresse email utilisée lors de l’achat.</p>
     <a class="bouton" href="/mon-compte.html" rel="noreferrer">Retrouver mes documents</a>
-    <p class="aide"><a href="/faq.html#paiement-garantie" rel="noreferrer">Aide pour un problème de téléchargement</a></p>
+    <p class="aide"><a href="/faq.html#pdf-manquant" rel="noreferrer">Aide pour un problème de téléchargement</a></p>
   </main>
 </body>
 </html>`;

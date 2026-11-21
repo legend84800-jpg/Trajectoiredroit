@@ -125,7 +125,8 @@
     const matieres = element('div', 'ultra-inclusions__matieres');
     matieres.setAttribute('role', 'tablist');
     matieres.setAttribute('aria-label', 'Matières du semestre');
-    sommaire.append(titreSemestre, metaSemestre, matieres);
+    const achat = element('a', 'btn btn--primary ultra-inclusions__achat', 'Voir le prix et les options de paiement');
+    sommaire.append(titreSemestre, metaSemestre, achat, matieres);
     const contenu = element('div', 'ultra-inclusions__contenu');
     contenu.id = 'ultra-inclusions-matiere';
     contenu.setAttribute('role', 'tabpanel');
@@ -135,8 +136,7 @@
     const liste = element('ul', 'ultra-inclusions__ressources');
     const pied = element('div', 'ultra-inclusions__pied');
     const note = element('p', 'ultra-inclusions__autres');
-    const achat = element('a', 'btn btn--primary ultra-inclusions__achat', 'Voir le prix et les options de paiement');
-    pied.append(note, achat);
+    pied.append(note);
     contenu.append(titreMatiere, metaMatiere, liste, pied);
     disposition.append(sommaire, contenu);
     experience.append(semestres, disposition);

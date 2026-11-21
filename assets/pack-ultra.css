@@ -435,7 +435,7 @@ html[data-theme="dark"] .ultra-card__split-btn { color: #D4E0F6; }
   font-weight: 800;
   white-space: nowrap;
 }
-.ultra-inclusions__achat { flex: 0 1 auto; }
+.ultra-inclusions__achat { width: 100%; margin-bottom: 14px; }
 .ultra-inclusions__experience [role="tab"]:focus-visible,
 .ultra-inclusions__experience [role="tabpanel"]:focus-visible,
 .ultra-inclusions__achat:focus-visible { outline: 3px solid #315CA6; outline-offset: 3px; }
@@ -482,7 +482,6 @@ html[data-theme="dark"] .ultra-card__split-btn { color: #D4E0F6; }
   .ultra-offers { margin-top: 44px; padding-top: 28px; }
   .ultra-inclusions__pied { align-items: center; gap: 12px; }
   .ultra-inclusions__tarif { margin-right: auto; }
-  .ultra-inclusions__achat { width: 100%; }
 }
 html[data-theme="dark"] .ultra-section { background: #111d35; }
 html[data-theme="dark"] .ultra-offers { border-color: #415371; }

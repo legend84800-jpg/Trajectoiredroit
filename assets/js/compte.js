@@ -156,6 +156,7 @@
       var mots = texteRecherche(achatsRecherche && achatsRecherche.value).trim().split(/\s+/).filter(Boolean);
       var choixProduit = achatsProduit && achatsProduit.value || "";
       var choixSemestre = achatsSemestre && achatsSemestre.value || "";
+      var nombreFichiers = 0;
       var achats = achatsCourants.reduce(function(resultat, achat){
         var produits = (achat.produits || []).reduce(function(liste, produit){
           function correspond(fichier){
@@ -167,6 +168,7 @@
             return mots.every(function(mot){ return texte.indexOf(mot) !== -1; });
           }
           var fichiers = (produit.fichiers || []).filter(correspond);
+          nombreFichiers += fichiers.length;
           if (fichiers.length || (!(produit.fichiers || []).length && correspond(null))) {
             liste.push(Object.assign({}, produit, { fichiers: fichiers }));
           }
@@ -178,7 +180,7 @@
       if (achatsResultat) achatsResultat.textContent = achatsCourants.length
         ? achats.length + (achats.length === 1 ? " achat affiché sur " : " achats affichés sur ") + achatsCourants.length
         : "";
-      afficherAchats(achats);
+      afficherAchats(achats, mots.length > 0 && nombreFichiers === 1);
     }
     [achatsRecherche, achatsProduit, achatsSemestre].forEach(function(champ){
       if (champ) champ.addEventListener(champ === achatsRecherche ? "input" : "change", afficherAchatsFiltres);
@@ -306,7 +308,7 @@
       if (relancerAchats) return relancerAchats();
     });
 
-    function afficherAchats(achats){
+    function afficherAchats(achats, ouvrirVolet){
       achatsVide.textContent = achatsCourants.length
         ? "Aucun achat ne correspond à ces filtres. Tu peux les effacer pour tout retrouver."
         : "Aucun achat pour l'instant.";
@@ -371,7 +373,7 @@
         });
         var liens = groupes.map(function(g){
           if (g.fichier) return rendreFichier(g.fichier);
-          return "<details><summary>" + echapperCompte(g.nom) + "</summary><div class=\"pack-ultra-downloads__files\">" +
+          return (ouvrirVolet ? "<details open>" : "<details>") + "<summary>" + echapperCompte(g.nom) + "</summary><div class=\"pack-ultra-downloads__files\">" +
             g.fichiers.map(rendreFichier).join("") + "</div></details>";
         }).join("");
         if (fichiers.some(function(f){ return !!f.groupe; })){

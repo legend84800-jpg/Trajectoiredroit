@@ -314,8 +314,8 @@ window.tjdDialogues = (function () {
       try { imgs = JSON.parse(btn.getAttribute('data-apercu') || '[]'); } catch (e) { imgs = []; }
       document.getElementById('apercuTitle').textContent = btn.getAttribute('data-apercu-title') || 'Aperçu';
       document.getElementById('apercuSub').textContent = btn.getAttribute('data-apercu-sub') || 'Pages du PDF';
-      var price = btn.getAttribute('data-apercu-price') || '';
-      document.getElementById('apercuPrice').textContent = price;
+      var price = (btn.getAttribute('data-apercu-price') || '').trim();
+      var prixSepare = document.getElementById('apercuPrice');
       var cta = document.getElementById('apercuCta');
       var ctaVal = btn.getAttribute('data-apercu-cta') || '#';
       if (ctaVal && !ctaVal.startsWith('http')) {
@@ -338,6 +338,8 @@ window.tjdDialogues = (function () {
         'maj-': 'les majeures préparées'
       };
       var format = Object.keys(libelles).find(function (prefixe) { return ctaVal.startsWith(prefixe); });
+      prixSepare.textContent = price;
+      prixSepare.hidden = Boolean(format && price);
       cta.textContent = 'Acheter ' + (libelles[format] || 'le PDF') + (price ? ' · ' + price : '');
       imgsBox.innerHTML = '';
       imgs.forEach(function (src, position) {

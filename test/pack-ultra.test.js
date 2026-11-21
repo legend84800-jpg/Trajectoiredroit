@@ -2,6 +2,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const { createHash } = require("node:crypto");
 const PRODUITS = require("../api/_produits");
 const { DEFINITIONS, referencesPour, referenceVente } = require("../api/_packs-ultra");
 const { montantEcheance, euros } = require("../api/_echeances");
@@ -71,7 +72,11 @@ test("la page dédiée montre seulement les cinq packs en vente et leurs ressour
   assert.match(html, /<h1 class="h1" id="pack-ultra-title"[^>]*>Le Pack Ultra<\/h1>/);
   assert.equal((html.match(/<article class="ultra-card"/g) || []).length, 5);
   assert.equal((html.match(/<details class="ultra-inclusions__item"/g) || []).length, 5);
-  assert.match(html, /assets\/js\/pack-ultra-inclusions\.js\?v=/);
+  for (const chemin of ["assets/pack-ultra.css", "assets/js/pack-ultra-inclusions.js"]) {
+    const source = fs.readFileSync(path.join(__dirname, "..", chemin));
+    const version = createHash("sha256").update(source).digest("hex").slice(0, 8);
+    assert.ok(html.includes(`${chemin}?v=${version}`), chemin);
+  }
   for (const id of Object.keys(DEFINITIONS)) {
     const suffixe = id.replace("pack-ultra-", "");
     if (DEFINITIONS[id].venteSuspendue) {
@@ -100,7 +105,8 @@ test("la page dédiée montre seulement les cinq packs en vente et leurs ressour
       assert.ok(carte.includes(`class="ultra-card__saving">${pourcentage} % d’économie</span>`), id);
       assert.ok(carte.includes(`class="ultra-card__price">${prixAffiche}</span>`), id);
       assert.ok(carte.includes(`ou 3 × ${euros(montantEcheance(pack.prix, 3))} sans frais`), id);
-      assert.ok(bloc.includes(`href="#${id}">Voir le prix et les options de paiement</a>`), id);
+      const lienPrix = bloc.indexOf(`href="#${id}">Voir le prix et les options de paiement</a>`);
+      assert.ok(lienPrix > bloc.indexOf("</summary>") && lienPrix < bloc.indexOf("<ul"), id);
     }
   }
 });

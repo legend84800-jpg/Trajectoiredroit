@@ -46,7 +46,7 @@ test("un lien expiré affiche une aide générique sans transmettre ses données
   assert.match(reponse.corps, /adresse email utilisée lors de l’achat/);
   assert.deepEqual([...reponse.corps.matchAll(/href="([^"]+)" rel="noreferrer"/g)].map((lien) => lien[1]), [
     "/mon-compte.html",
-    "/faq.html#paiement-garantie",
+    "/faq.html#pdf-manquant",
   ]);
   for (const valeur of [id, produits[id].nom, sid, exp, sig, email]) {
     assert.ok(!reponse.corps.includes(valeur));
