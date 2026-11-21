@@ -183,6 +183,34 @@
       }
     }
 
+    function rendreComplements() {
+      for (const bouton of document.querySelectorAll("[data-tjd-bump][data-tjd-bump-checkbox]")) {
+        const principal = catalogue?.[bouton.dataset.tjdProduit];
+        const complement = catalogue?.[bouton.dataset.tjdBump];
+        if (!(principal > 0 && complement > 0)) continue;
+        const montantAjoute = reduire(principal + complement) - reduire(principal);
+        const caseComplement = document.getElementById(bouton.dataset.tjdBumpCheckbox);
+        for (const label of caseComplement?.labels || []) {
+          if (label.querySelector(exemple)) continue;
+          const textes = document.createTreeWalker(label, NodeFilter.SHOW_TEXT);
+          for (let texte = textes.nextNode(); texte; texte = textes.nextNode()) {
+            const prix = [...texte.data.matchAll(montant)].find(({ index }) =>
+              /\+\s*$/.test(texte.data.slice(0, index))
+            );
+            if (!prix) continue;
+            const prixReduit = paire(prix[0], complement, montantAjoute, false, true);
+            prixReduit.style.display = "inline";
+            texte.replaceWith(
+              texte.data.slice(0, prix.index),
+              prixReduit,
+              texte.data.slice(prix.index + prix[0].length)
+            );
+            break;
+          }
+        }
+      }
+    }
+
     function rendrePanier() {
       const total = document.getElementById("tjdPanierTotalMontant");
       if (!total) return;
@@ -248,6 +276,7 @@
       if (Date.now() >= fin) terminer();
     }
 
+    rendreComplements();
     for (const element of document.querySelectorAll(cible)) rendre(element);
     rendrePanier();
     observateur.observe(document.body, {

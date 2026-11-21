@@ -256,20 +256,9 @@ function attributsRecommandationArret(recommandation) {
 
 function offrePlan(plan, slug) {
   const compilation = plan.compilation;
-  const produit = compilation ? PRODUITS[compilation] : PRODUITS[plan.produit];
-  const chemin = compilation
-    ? `commentaires-arret-corriges.html#${compilation}`
-    : `${plan.page}#commentaire-integral`;
-  const url = new URL(chemin, "https://trajectoiredroit.com");
+  const produit = PRODUITS[compilation];
+  const url = new URL(`commentaires-arret-corriges.html#${compilation}`, "https://trajectoiredroit.com");
   url.search = new URLSearchParams({ utm_source: "brevo", utm_medium: "email", utm_campaign: "plan-commentaire", utm_content: slug });
-  if (!compilation) {
-    return {
-      url: url.href,
-      format: "commentaire",
-      texte: "Si tu veux obtenir le commentaire rédigé en entier, clique sur le lien ci-dessous.",
-      bouton: "Voir le commentaire d’arrêt rédigé en entier",
-    };
-  }
   const autres = COMPTES[compilation] - 1;
   const matiere = SUJETS[sujetDe(compilation)].de.replace(/ L[123](?: S[12])?$/, "");
   const niveau = produit.nom.match(/L[123](?: S[12])?$/)?.[0]?.replace(" S", ", S");
@@ -300,7 +289,6 @@ function blocRecommandationArret(a, url) {
 const STYLES_LIENS_ARRET = {
   telechargement: "padding:12px 17px;background:#0E2A47;color:#FFFFFF;text-decoration:none;font-weight:700",
   compilation: "padding:8px 11px;background:#EAF5F0;color:#18564A;text-decoration:underline;font-weight:600",
-  commentaire: "padding:8px 11px;background:#EAF5F0;color:#18564A;text-decoration:underline;font-weight:600",
   majeures: "padding:8px 11px;background:#F4EDF7;color:#583A6F;text-decoration:underline;font-weight:600",
   fiche: "padding:8px 11px;background:#EDF3FA;color:#0E2A47;text-decoration:underline;font-weight:600",
 };
@@ -331,7 +319,9 @@ function construireEmailArret(sujet, paragraphes, groupesEnGras = [], apercu = "
 // SOURCE == "plan-commentaire" du modèle 1) et par l'email transactionnel ci-dessous.
 function attributsPlan(plan) {
   const x = PLANS[plan];
-  const recommandation = x.extrait ? offrePlan(x, plan) : recommandationArret(x.page, "plan-commentaire", plan);
+  const recommandation = x.extrait && x.compilation
+    ? offrePlan(x, plan)
+    : recommandationArret(x.page, "plan-commentaire", plan);
   return {
     SOURCE: "plan-commentaire",
     PLAN_SLUG: plan,
@@ -347,6 +337,17 @@ const SALUT_PDF = a => a.PRENOM ? `Salut ${a.PRENOM},` : "Salut,";
 
 function construireEmailPlan(a, salutation = SALUT_PDF(a)) {
   const sujet = `Ton plan offert pour commenter ${a.PLAN_ARRET}`;
+  if (a.PLAN_EXTRAIT && a.OFFRE_ARRET_FORMAT !== "compilation") {
+    return construireEmailArret(sujet, [
+      salutation,
+      `Tu as demandé le plan du commentaire de ${a.PLAN_ARRET}. Le PDF s’ouvre sur l’introduction rédigée, avec la problématique et la solution du juge. Il donne ensuite l’annonce du plan et la première sous-partie (I.A.) rédigée.`,
+      { lien: a.PLAN_PDF, texte: "Télécharger le plan offert", format: "telechargement" },
+      "Pour t’entraîner, il faut lire l’annonce du plan puis rédiger la première sous-partie à partir de l’arrêt, avant de regarder le modèle. La comparaison avec le modèle permet ensuite de vérifier que ta sous-partie explique ce que le juge a décidé et pourquoi.",
+      ...blocRecommandationArret(a, a.PLAN_URL),
+      "Si tu as une question sur le commentaire, tu peux m’envoyer un message en répondant à cet email.",
+      "Respectueusement,\nJulien\nTrajectoire Droit",
+    ], ["l’introduction", "la problématique", "la solution du juge", "la première sous-partie (I.A.) rédigée"], "L’introduction, l’annonce du plan et le I.A. rédigé.");
+  }
   if (a.PLAN_EXTRAIT) {
     return construireEmailArret(sujet, [
       salutation,
@@ -391,7 +392,7 @@ const MODELE_PLAN_OFFERT_BREVO = 70;
 
 async function envoyerPlan(email, attributs, apiKey) {
   const message = { to: [{ email }], tags: ["plan-commentaire", attributs.PLAN_SLUG] };
-  if (attributs.PLAN_EXTRAIT) {
+  if (attributs.PLAN_EXTRAIT && attributs.OFFRE_ARRET_FORMAT === "compilation") {
     message.templateId = MODELE_PLAN_OFFERT_BREVO;
     message.params = attributs;
   } else {
