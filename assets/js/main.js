@@ -222,6 +222,7 @@ window.tjdDialogues = (function () {
       '<button class="apercu-close" data-apercu-close aria-label="Fermer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
       '</div>' +
       '<div class="apercu-imgs" id="apercuImgs"></div>' +
+      '<p class="sr-only" id="apercuEtat" role="status"></p>' +
       '<p class="apercu-hint">Tu peux agrandir chaque page.</p>' +
       '<div class="apercu-foot">' +
       '<span class="price" id="apercuPrice"></span>' +
@@ -257,8 +258,10 @@ window.tjdDialogues = (function () {
     var viewerNext = viewer.querySelector('.apercu-zoom__suivante');
     var viewerStatus = viewer.querySelector('.apercu-zoom__compteur');
     var imgsBox = document.getElementById('apercuImgs');
+    var etatApercu = document.getElementById('apercuEtat');
     var pagesViewer = [];
     var positionViewer = 0;
+    var tentativesApercu = 0;
 
     function reglerZoom(agrandi) {
       viewer.classList.toggle('apercu-zoom--agrandi', agrandi);
@@ -267,6 +270,11 @@ window.tjdDialogues = (function () {
     function afficherPage(position) {
       var im = pagesViewer[position];
       if (!im) return;
+      if (im.hidden) {
+        closeViewer();
+        im.parentElement.focus();
+        return;
+      }
       positionViewer = position;
       viewerImg.src = im.src;
       viewerImg.alt = im.alt;
@@ -277,14 +285,14 @@ window.tjdDialogues = (function () {
       viewerNext.setAttribute('aria-disabled', position === pagesViewer.length - 1);
       viewerStatus.textContent = viewerNav.hidden ? '' : 'Page ' + (position + 1) + ' sur ' + pagesViewer.length;
     }
-    function openViewer(im, bouton) {
+    function openViewer(im, bouton, src) {
       pagesViewer = Array.from(imgsBox.querySelectorAll('.apercu-page img'));
       viewerNav.hidden = pagesViewer.length < 2;
       viewer.classList.toggle('apercu-zoom--plusieurs', !viewerNav.hidden);
       reglerZoom(false);
       window.tjdDialogues.ouvrir(viewer, viewerClose, bouton);
       afficherPage(pagesViewer.indexOf(im));
-      try { if (window.gtag) gtag('event', 'apercu_zoom', { image: im.src.split('/').pop() }); } catch (_) {}
+      try { if (window.gtag) gtag('event', 'apercu_zoom', { image: src.split('/').pop() }); } catch (_) {}
     }
     function closeViewer() { window.tjdDialogues.fermer(viewer); }
     viewerClose.addEventListener('click', closeViewer);
@@ -302,11 +310,6 @@ window.tjdDialogues = (function () {
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
       e.preventDefault();
       afficherPage(positionViewer + (e.key === 'ArrowLeft' ? -1 : 1));
-    });
-
-    imgsBox.addEventListener('click', function (e) {
-      var bouton = e.target.closest('.apercu-page');
-      if (bouton) openViewer(bouton.querySelector('img'), bouton);
     });
 
     function open(btn) {
@@ -340,15 +343,60 @@ window.tjdDialogues = (function () {
       var format = Object.keys(libelles).find(function (prefixe) { return ctaVal.startsWith(prefixe); });
       cta.textContent = 'Acheter ' + (libelles[format] || 'le PDF') + (price ? ' · ' + price : '');
       imgsBox.innerHTML = '';
+      etatApercu.textContent = '';
       imgs.forEach(function (src, position) {
         var im = document.createElement('img');
         var detail = /-zoom\.(jpg|webp|png)$/.test(src);
-        im.src = src; im.loading = 'lazy';
+        var numero = position + 1;
+        var texteAction = document.createElement('span');
+        texteAction.hidden = true;
+        im.loading = 'lazy';
         im.alt = detail ? 'Gros plan sur une page' : 'Extrait ' + (position + 1) + ' du document';
         if (detail) im.setAttribute('data-detail', '1');
         var bouton = document.createElement('button'); bouton.type = 'button'; bouton.className = 'apercu-page';
-        bouton.setAttribute('aria-label', 'Agrandir l’extrait ' + (position + 1));
-        bouton.appendChild(im); imgsBox.appendChild(bouton);
+        var nomAgrandir = 'Agrandir l’extrait ' + numero;
+        bouton.setAttribute('aria-label', nomAgrandir);
+
+        im.addEventListener('error', function () {
+          if (!bouton.isConnected) return;
+          im.hidden = true;
+          texteAction.hidden = false;
+          texteAction.textContent = 'Réessayer';
+          bouton.classList.add('apercu-page--indisponible');
+          bouton.removeAttribute('aria-disabled');
+          bouton.setAttribute('aria-label', 'Réessayer de charger l’extrait ' + numero);
+          etatApercu.textContent = 'Impossible de charger l’extrait ' + numero + '.';
+        });
+        im.addEventListener('load', function () {
+          if (!im.hidden || !bouton.isConnected) return;
+          var defilement = imgsBox.scrollTop;
+          im.hidden = false;
+          texteAction.hidden = true;
+          bouton.classList.remove('apercu-page--indisponible');
+          bouton.removeAttribute('aria-disabled');
+          bouton.setAttribute('aria-label', nomAgrandir);
+          imgsBox.scrollTop = defilement;
+          etatApercu.textContent = 'L’extrait ' + numero + ' est chargé.';
+        });
+        bouton.addEventListener('click', function (e) {
+          if (!im.hidden) {
+            openViewer(im, bouton, src);
+            return;
+          }
+          e.stopPropagation();
+          if (bouton.getAttribute('aria-disabled') === 'true') return;
+          bouton.setAttribute('aria-disabled', 'true');
+          bouton.removeAttribute('aria-label');
+          texteAction.textContent = 'Chargement…';
+          var url = new URL(src, document.baseURI);
+          url.searchParams.append('tjd-apercu-retry', Date.now() + '-' + (++tentativesApercu));
+          im.loading = 'eager';
+          im.src = url.href;
+        });
+        bouton.appendChild(im);
+        bouton.appendChild(texteAction);
+        imgsBox.appendChild(bouton);
+        im.src = src;
       });
       imgsBox.scrollTop = 0;
       window.tjdDialogues.ouvrir(modal, modal.querySelector('.apercu-close'), btn);

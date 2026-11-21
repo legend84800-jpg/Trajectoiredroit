@@ -29,15 +29,15 @@ const BESOINS = [
   {
     titre: "Mémoriser et me tester",
     supports: [
-      { nom: "Flashcards et QCM", href: "flashcards-qcm.html", format: "Flashcards + QCM ", unite: " / matière" },
-      { nom: "Fiches d’arrêt", href: "revisions.html#fiches-arret", format: "Fiches d'arrêt ", unite: " / matière" },
+      { nom: "Flashcards et QCM", href: "flashcards-qcm.html", format: "Flashcards + QCM ", unite: " / semestre ou matière" },
+      { nom: "Fiches d’arrêt", href: "revisions.html#fiches-arret", format: "Fiches d'arrêt ", unite: " / semestre ou matière" },
     ],
     contenu: "Les cartes et les questions à choix multiples te permettent de vérifier ce que tu as retenu. Les fiches d’arrêt expliquent les décisions à connaître, depuis les faits jusqu’à la solution.",
   },
   {
     titre: "Préparer mes accroches",
     supports: [
-      { nom: "Fiches de citations", href: "revisions.html#citations", famille: "citations-", unite: " / matière" },
+      { nom: "Fiches de citations", href: "revisions.html#citations", famille: "citations-", unite: " / semestre ou matière" },
     ],
     contenu: "Les citations sont classées par thème. On choisit celle qui pose le problème du sujet, puis on s’en sert pour ouvrir l’introduction d’une dissertation ou d’un commentaire.",
   },

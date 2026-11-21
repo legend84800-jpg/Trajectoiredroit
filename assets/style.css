@@ -4851,6 +4851,8 @@ html[data-theme="dark"] .tag-high  { color: #34D399; }
 .apercu-close { background: none; border: none; color: var(--muted); cursor: pointer; display: flex; align-items: center; padding: 4px }
 .apercu-imgs { padding: 18px 24px; display: flex; flex-direction: column; gap: 16px; min-height: 0; max-height: 60vh; overflow-y: auto; background: var(--slate-50) }
 .apercu-imgs img { width: 100%; border: 1px solid var(--border); border-radius: var(--r-md); box-shadow: var(--sh-1) }
+.apercu-page--indisponible { min-height: 44px; padding: 8px 12px; color: var(--navy); background: var(--white); border: 1px solid var(--border); border-radius: var(--r-md); font: 600 .9rem var(--font-body); cursor: pointer }
+.apercu-page--indisponible[aria-disabled="true"] { cursor: wait }
 .apercu-foot { padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--border) }
 .apercu-imgs img { cursor: zoom-in }
 .apercu-hint { margin: 0; padding: 8px 24px 0; font-size: .82rem; color: var(--muted); text-align: center; background: var(--slate-50) }
