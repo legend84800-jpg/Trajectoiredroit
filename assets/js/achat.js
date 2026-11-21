@@ -545,7 +545,7 @@
       if (suivant && /pdf complet par email/i.test(suivant.textContent || '')) suivant.remove();
       var p = document.createElement('p');
       p.className = 'tjd-reassurance';
-      p.textContent = TEXTE_REASSURANCE;
+      p.textContent = btn.closest('[data-tjd-livraison-courte]') ? 'PDF envoyé par email' : TEXTE_REASSURANCE;
       btn.insertAdjacentElement('afterend', p);
     });
   }
