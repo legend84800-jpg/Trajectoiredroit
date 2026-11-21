@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Cas pratique sur la preuve, exemple corrigé (L1, 2026)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Cas pratique sur la preuve corrigé en droit civil L1. Un prêt entre amis, puis la correction qui dit qui doit prouver et quelles preuves le juge accepte.">
+  <link rel="canonical" href="https://trajectoiredroit.com/cas-pratique-corrige-preuve-droit-civil.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Cas pratique sur la preuve, exemple corrigé (L1, 2026)">
+  <meta property="og:description" content="Cas pratique sur la preuve corrigé en droit civil L1. Un prêt entre amis, puis la correction qui dit qui doit prouver et quelles preuves le juge accepte.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/cas-pratique-corrige-preuve-droit-civil.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/cas-pratique-corrige-preuve-droit-civil.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cas pratique sur la preuve, exemple corrigé (L1, 2026)">
+  <meta name="twitter:description" content="Cas pratique sur la preuve corrigé en droit civil L1. Un prêt entre amis, puis la correction qui dit qui doit prouver et quelles preuves le juge accepte.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/cas-pratique-corrige-preuve-droit-civil.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Cas pratique sur la preuve, exemple corrigé en droit civil L1",
+      "description": "Cas pratique sur la preuve corrigé en droit civil L1. Un prêt entre amis, puis la correction qui dit qui doit prouver et quelles preuves le juge accepte.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-11-21",
+      "dateModified": "2026-11-21",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Cas pratique corrigé sur la preuve en droit civil L1, avec la méthode en quatre questions"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/cas-pratique-corrige-preuve-droit-civil.html"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/cas-pratique-corrige-preuve-droit-civil.webp"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Cas pratique sur la preuve, exemple corrigé",
+          "item": "https://trajectoiredroit.com/cas-pratique-corrige-preuve-droit-civil.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "À partir de quel montant faut-il un écrit pour prouver un contrat ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Au-delà de 1 500 euros, en matière civile et sauf exception. En effet, l’article 1359 du Code civil exige un écrit pour prouver un acte juridique qui porte sur une somme supérieure à un montant fixé par décret. Le décret du 15 juillet 1980 fixe ce montant à 1 500 euros, si bien qu’un acte de 1 500 euros exactement reste prouvable par tout moyen. L’écrit est un document signé par celui qui s’engage ou un acte authentique, reçu par un officier public comme un notaire. Un accident ou un autre fait juridique se prouve en revanche par tout moyen, quel que soit son montant."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Un virement bancaire prouve-t-il un prêt ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un virement prouve que l’argent a été envoyé. Il ne prouve pas que le destinataire doit le rendre, car la somme peut être un cadeau. Pour un prêt de plus de 1 500 euros, le prêteur doit en principe prouver l’obligation de rendre avec un écrit, par exemple une reconnaissance de dette. Un commencement de preuve par écrit, confirmé par d’autres éléments, peut le remplacer. En dessous de ce montant, tout moyen de preuve est admis, mais le virement seul reste insuffisant."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Un SMS ou un message WhatsApp peut-il servir de preuve ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, comme écrit électronique, car l’article 1366 du Code civil lui donne la même force probante, c’est-à-dire la même valeur de preuve, qu’un écrit sur papier si l’on peut identifier son auteur et si le message est conservé sans modification. Sans signature électronique fiable, un SMS ne remplace pas l’écrit signé que la loi exige au-delà de 1 500 euros. Un message qui émane de l’adversaire et rend le fait vraisemblable peut toutefois servir de commencement de preuve par écrit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Peut-on utiliser un enregistrement fait à l’insu de quelqu’un ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le juge civil peut l’accepter, mais sous conditions. Depuis l’assemblée plénière du 22 décembre 2023, une preuve déloyale n’est plus écartée automatiquement. Le juge vérifie en effet que sa production est indispensable à l’exercice du droit à la preuve et que l’atteinte à la vie privée reste strictement proportionnée. Quand les autres preuves de la partie suffisent à soutenir sa demande, il peut donc l’écarter."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style id="exemples-pedagogiques-page">
+  .biens-hero { padding-top:48px; }
+  .biens-hero .hero__cta { margin-top:24px; }
+  @media (max-width:700px) {
+    .biens-hero { padding-top:24px; }
+    .biens-hero .hero__cta { gap:10px; }
+    .biens-hero .hero__cta .btn {
+      flex:1 1 132px;
+      width:auto;
+      min-height:44px;
+      font-size:.875rem;
+      padding:10px 12px;
+    }
+  }
+  @media (max-width:420px) {
+    .biens-hero { padding-top:12px; }
+    .biens-hero .hero__cta { margin-top:12px; }
+    .biens-hero .tjd-po { margin-top:12px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="kit-partiels.html" role="menuitem">📚 Kit Partiels</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🤖 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards et QCM</a>
+              <a href="podcasts-videos.html" role="menuitem"><span aria-hidden="true">🎬</span> Vidéos et podcasts</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>7 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 199 € au lieu de 439,69 €, 55 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-55 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">439,69 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 17 ressources, 199 € au lieu de 249,83 €, 20 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-20 %</span></span>
+                    <span class="megamenu__pack-tile-meta">17 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">249,83 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 32 ressources, 199 € au lieu de 479,68 €, 59 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-59 %</span></span>
+                    <span class="megamenu__pack-tile-meta">32 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">479,68 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 32 ressources, 199 € au lieu de 479,68 €, 59 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-59 %</span></span>
+                    <span class="megamenu__pack-tile-meta">32 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">479,68 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 38 ressources, 229 € au lieu de 579,62 €, 60 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-60 %</span></span>
+                    <span class="megamenu__pack-tile-meta">38 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">579,62 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>166 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes tes questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="kit-partiels.html"><span class="mobile-nav__format-icon" aria-hidden="true">📚</span><span>Kit Partiels</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🤖</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+        <a class="mobile-nav__format" href="podcasts-videos.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎬</span><span>Vidéos et podcasts</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+    <main>
+<section class="section--sm biens-hero">
+<div class="container container--narrow text-center">
+<h1 class="h1">Cas pratique sur la preuve, exemple corrigé en droit civil L1</h1>
+<p class="lead" style="max-width:720px;margin-left:auto;margin-right:auto">Un cas pratique sur la preuve se résout en quatre questions. Tu cherches d’abord qui doit prouver (article 1353 du Code civil). Tu distingues ensuite l’acte juridique, comme un contrat de prêt, du fait juridique, comme un accident. Un acte de plus de 1 500 euros se prouve par écrit, sauf exception. Enfin, tu vérifies que la preuve a été obtenue loyalement. La correction ci-dessous applique ces questions à un prêt entre amis.</p>
+<div class="hero__cta flex flex--center">
+<a class="btn btn--primary btn--lg" href="#enonce">Lire l’énoncé →</a>
+<a class="btn btn--outline btn--lg" href="#corrige">Le corrigé</a>
+</div>
+<div data-tjd-pdf-offert="exercice" data-id="loyaute-preuve-intro-l1" data-titre="Un autre cas pratique corrigé sur la preuve" data-texte="Je t’envoie par email l’énoncé et la correction d’un cas pratique sur la loyauté de la preuve et le droit à la preuve. Tu peux le traiter sur papier, puis comparer ta copie avec le corrigé." data-bouton="Recevoir le corrigé"></div>
+</div>
+</section>
+<!-- offre du PDF correspondant -->
+<section class="conversion-offer" aria-labelledby="offre-cas-preuve-titre">
+<div class="container container--narrow">
+<div class="conversion-offer__card">
+<div class="conversion-offer__visual">
+<img src="assets/covers/exercices-20260923/cas-pratique-intro-droit-l1.webp" alt="Couverture des cas pratiques corrigés d’introduction au droit L1, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+</div>
+<div>
+<p class="conversion-offer__eyebrow">Les cas pratiques corrigés du semestre 1</p>
+<h2 class="conversion-offer__title" id="offre-cas-preuve-titre">Introduction au droit L1 S1, onze cas pratiques et trois partiels corrigés en 167 pages</h2>
+<p class="conversion-offer__summary">Chaque cas pratique commence par son énoncé. La correction pose ensuite la règle de droit, qui est la majeure, puis l’applique aux faits dans la mineure et conclut. Elle répète ces étapes pour chaque question. Le cas 2 porte sur la différence entre actes et faits juridiques et sur les preuves que le juge admet. Le cas 3 porte sur la loyauté de la preuve et le droit à la preuve. Les neuf autres cas suivent le programme du premier semestre, de la loi dans le temps jusqu’au droit de propriété. De plus, trois sujets de partiel complets terminent le PDF. Toutefois, le cas de cette page n’est pas dans le PDF. Il s’ajoute aux onze cas.</p>
+<button type="button" class="apercu-link" data-apercu='["assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p001.webp","assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p002.webp","assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p003.webp","assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p005.webp"]' data-apercu-title="Cas pratiques corrigés Introduction au droit L1 S1" data-apercu-price="19,99 €" data-apercu-cta="cas-pratique-intro-droit-l1" data-apercu-sub="Le sommaire, puis le début du premier cas pratique corrigé, avec son énoncé."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu des cas pratiques corrigés</button>
+<div class="conversion-offer__choices">
+<button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="cas-pratique-intro-droit-l1">Cas pratiques corrigés · 19,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="fiche-intro-droit-l1">Fiche complète · 19,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="pack-l1-revision">Les 8 fiches de L1 · 87 €</button>
+</div>
+<p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation. Si tu hésites entre les deux PDF, prends les cas pratiques pour t’entraîner à rédiger, et la fiche complète pour revoir le cours d’<a href="introduction-au-droit-l1.html">introduction au droit L1</a>.</p>
+<div data-tjd-avis data-matiere="intro-droit-l1"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="methode">
+<div class="container container--narrow">
+<div class="prose">
+<figure style="margin:0 0 32px"><img src="assets/blog/cas-pratique-corrige-preuve-droit-civil.webp" srcset="assets/blog/cas-pratique-corrige-preuve-droit-civil-640.webp 640w, assets/blog/cas-pratique-corrige-preuve-droit-civil.webp 1200w" sizes="(max-width:700px) 100vw, 800px" alt="Sur une table de bibliothèque en bois clair, une feuille quadrillée à spirale couverte d’une écriture manuscrite illisible, un smartphone couché face contre la table, une feuille de papier blanc et un stylo bille bleu, devant des rayonnages de livres éclairés par la lumière d’une fenêtre." width="1200" height="675" decoding="async"></figure>
+<h2>Comment résoudre un cas pratique sur la preuve ?</h2>
+<p>Un cas pratique sur la preuve demande de dire si une personne peut établir devant le juge un fait ou un accord que son adversaire conteste. La charge de la preuve est l’obligation d’apporter cette preuve, et elle revient à l’une des deux parties. Ainsi, si le juge reste dans le doute, la partie qui avait cette charge perd sur le point contesté. Tu commences donc chaque cas pratique par la question de savoir qui doit prouver. Voici ensuite la méthode que je donne à mes élèves de L1, avec quatre questions à poser dans cet ordre.</p>
+<ol>
+<li><strong>Qui doit prouver ?</strong> D’après l’article 1353 du Code civil, celui qui réclame l’exécution d’une obligation doit la prouver. Une obligation est ce qu’une personne doit à une autre, par exemple payer une somme ou accomplir une prestation. Par ailleurs, celui qui se prétend libéré doit justifier le paiement ou le fait qui a mis fin à son obligation. L’article 9 du Code de procédure civile ajoute que chaque partie doit prouver les faits dont elle a besoin pour gagner son procès. Un prêteur qui réclame son argent doit donc prouver le prêt, et un emprunteur qui affirme avoir remboursé doit prouver le remboursement.</li>
+<li><strong>S’agit-il d’un acte juridique ou d’un fait juridique ?</strong> Un acte juridique est une manifestation de volonté faite pour produire un effet de droit, comme un contrat de prêt. Un fait juridique est un événement qui produit des effets de droit sans que personne les ait voulus, comme un accident. Si ton énoncé raconte un accident, tu traites un fait juridique, et s’il raconte un contrat, tu traites un acte juridique. La preuve se fait en principe par tout moyen (article 1358), par exemple par un témoignage ou par une photographie. Cette liberté a toutefois une exception pour les actes juridiques de plus de 1 500 euros.</li>
+<li><strong>Faut-il un écrit, et existe-t-il une exception ?</strong> L’article 1359 exige un écrit pour prouver un acte juridique de plus de 1 500 euros. Cet écrit peut être un acte sous signature privée, signé par celui qui s’engage. Il peut aussi être un acte authentique, reçu par un officier public comme un notaire (article 1369). La loi prévoit toutefois des exceptions. L’article 1360 écarte l’exigence d’écrit dans trois cas, que le corrigé détaille. De plus, selon l’article 1361, un commencement de preuve par écrit remplace l’écrit quand un autre moyen de preuve le confirme. Un commencement de preuve par écrit est un écrit qui vient de l’adversaire et rend le fait vraisemblable, c’est-à-dire probable. L’article 1361 admet aussi l’aveu judiciaire, déclaration faite devant le juge par laquelle une partie reconnaît un fait qui lui est défavorable. Il admet enfin le serment décisoire, que l’adversaire demande à une partie de prêter devant le juge. Si l’écrit est irrégulier ou s’il s’agit d’un SMS, tu vérifies aussi les articles 1376 et 1366.</li>
+<li><strong>La preuve a-t-elle été obtenue loyalement ?</strong> Une preuve déloyale est recueillie à l’insu de la personne visée ou par un stratagème, comme l’enregistrement secret d’une conversation. Autrefois, la Cour de cassation, la plus haute juridiction judiciaire, l’écartait en principe. Un arrêt de son assemblée plénière, sa formation la plus solennelle, a changé cette règle le 22 décembre 2023. Depuis cette date, le juge civil examine d’abord si cette preuve est indispensable et si l’atteinte aux droits de l’adversaire reste strictement proportionnée. Il peut donc l’admettre. Le juge peut aussi écarter une pièce loyale que l’adversaire n’a pas pu discuter, par exemple une pièce déposée la veille de l’audience (articles 15 et 16 du Code de procédure civile).</li>
+</ol>
+<p>Le guide sur <a href="les-modes-de-preuve-en-droit-civil.html">les modes de preuve en droit civil</a> détaille chaque mode de preuve, et la page sur la <a href="methode-cas-pratique.html">méthode du cas pratique</a> explique le raisonnement en syllogisme.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="enonce">
+<div class="container container--narrow">
+<div class="prose">
+<h2>L’énoncé du cas pratique</h2>
+<p>Capucine Lenoir, 22 ans, étudiante en deuxième année de licence de droit, prête 2 400 euros à son ami Aurélien Fournel le 12 mars 2025. Aurélien doit régler avant la fin du mois les frais d’inscription de son école de commerce. Capucine lui verse la somme par virement bancaire le jour même, et les deux amis ne signent aucun contrat écrit.</p>
+<p>Le même jour, Aurélien lui remet une feuille qu’il a écrite à la main. On y lit « Reçu de Capucine 2400 € à rendre en septembre », puis la signature d’Aurélien. La somme est écrite en chiffres seulement.</p>
+<p>En septembre, Aurélien ne rembourse rien. Le 2 octobre 2025, il envoie à Capucine ce SMS : « Désolé pour le retard, je te rends tout dès que ma paie tombe. » Aucun remboursement n’arrive dans les semaines suivantes. En décembre, Capucine l’appelle pour réclamer son argent et enregistre la conversation avec son téléphone, sans le prévenir. Aurélien lui répond : « Oui, je sais que je te dois 2 400 euros. Laisse-moi encore un peu de temps. »</p>
+<p>En janvier 2026, Capucine saisit le tribunal judiciaire pour obtenir le remboursement de 2 400 euros. Aurélien soutient alors qu’elle lui a donné cet argent et qu’il ne lui doit rien. Toutefois, Capucine possède le relevé de son compte bancaire et la feuille manuscrite. Elle conserve en outre le SMS ainsi que l’enregistrement de l’appel.</p>
+<p>Capucine vous demande si elle peut prouver le prêt de 2 400 euros, et si elle peut produire l’enregistrement de l’appel de décembre.</p>
+</div>
+</div>
+</section>
+<section class="section" id="corrige">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Le corrigé du cas pratique en deux parties</h2>
+<p>Le corrigé rédige chaque réponse en cinq temps. Les faits qualifiés indiquent à quelle notion du droit correspond chaque fait, par exemple un prêt. Le problème de droit pose la question à trancher. La majeure donne la règle et la mineure l’applique aux faits. La conclusion répond à la question posée. Le corrigé examine d’abord la preuve du prêt (I), puis la production de l’enregistrement (II). La partie I contient deux problèmes de droit, la charge de la preuve et l’écrit exigé (A), puis la valeur des pièces que Capucine possède (B). Dans ta copie, tu répètes donc les cinq temps pour chacun des trois problèmes de droit (A, B et II).</p>
+<h3>I. La preuve du prêt de 2 400 euros</h3>
+<h4>A. Qui doit prouver le prêt, et par quel moyen ?</h4>
+<p><strong>Les faits qualifiés.</strong> Capucine a remis 2 400 euros à Aurélien, qui devait, selon elle, les lui rendre en septembre. Si elle dit vrai, il s’agit donc d’un prêt d’argent. Ce prêt est un acte juridique, car les deux amis ont voulu un effet de droit, l’obligation pour Aurélien de rendre la somme. Or Aurélien soutient aujourd’hui que cet argent était un cadeau.</p>
+<p><strong>Le problème de droit.</strong> Une personne qui réclame le remboursement d’un prêt de 2 400 euros conclu sans contrat écrit peut-elle prouver ce prêt avec le seul virement qu’elle a effectué ?</p>
+<p><strong>La majeure.</strong> D’après l’article 1353 du Code civil, celui qui réclame l’exécution d’une obligation doit la prouver. Le prêteur qui réclame son argent doit donc prouver l’obligation de rendre la somme, autrement dit l’existence du prêt. La remise de l’argent ne suffit pas à l’établir, parce qu’une somme se remet pour plusieurs raisons, par exemple pour en faire cadeau. La première chambre civile de la Cour de cassation juge ainsi, dans un arrêt du 18 mars 2020, que la preuve de la remise de fonds ne suffit pas à justifier l’obligation de les restituer. Cet arrêt, inédit, applique l’ancien article 1315, devenu l’article 1353. Il censure une cour d’appel qui avait condamné la bénéficiaire des fonds à rembourser, parce qu’elle ne démontrait pas que ces versements avaient été faits dans une intention libérale, autrement dit à titre de cadeau. Les juges avaient inversé la charge de la preuve, qui revient à celui qui réclame le remboursement.</p>
+<p>Ensuite, le prêt est un acte juridique. L’article 1358 prévoit que la preuve se fait par tout moyen, sauf disposition contraire de la loi. Or l’article 1359 en contient une pour l’acte juridique qui porte sur une somme supérieure à un montant fixé par décret. Le décret du 15 juillet 1980 fixe ce montant à 1 500 euros. Cet acte doit donc se prouver par écrit, sous signature privée ou authentique. Sans écrit, et sauf exception, le prêteur ne peut pas prouver le prêt par témoignage. Ce prêt existe tout de même, car l’article 1359 fixe seulement la manière de le prouver.</p>
+<p>Enfin, la loi prévoit des exceptions à cette exigence d’écrit. L’article 1360 les admet dans trois cas.</p>
+<ul>
+<li>L’impossibilité matérielle ou morale de se procurer un écrit.</li>
+<li>L’usage de ne pas établir d’écrit.</li>
+<li>La perte de l’écrit par force majeure, c’est-à-dire par un événement extérieur, imprévisible et irrésistible.</li>
+</ul>
+<p>L’article 1361 permet aussi de remplacer l’écrit par un commencement de preuve par écrit corroboré, autrement dit confirmé, par un autre moyen de preuve.</p>
+<p><strong>La mineure.</strong> D’abord, Capucine réclame la restitution d’une somme, si bien qu’elle doit prouver le prêt. Le virement du 12 mars établit que 2 400 euros sont passés du compte de Capucine à celui d’Aurélien. Il est compatible avec deux explications, un prêt ou un cadeau, et Aurélien soutient justement la seconde. Aurélien n’a pas à prouver que cet argent était un cadeau, car c’est à Capucine de prouver le prêt. Le virement seul ne suffit donc pas à prouver le prêt.</p>
+<p>Ensuite, le prêt porte sur 2 400 euros, soit plus que 1 500 euros. Il doit donc se prouver par écrit. Les deux amis n’ont signé aucun contrat écrit, de sorte que Capucine ne peut pas se contenter de témoignages.</p>
+<p>Enfin, aucune exception ne s’applique clairement ici. Il y a impossibilité morale quand le lien entre deux personnes rend gênant de réclamer un papier, par exemple entre un parent et son enfant ou entre un salarié et son employeur. Pour en bénéficier, Capucine devrait établir qu’elle ne pouvait pas, en pratique, demander d’écrit à Aurélien. Les juges du fond (le tribunal et la cour d’appel) apprécient ce point souverainement. Autrement dit, la Cour de cassation ne contrôle pas, en principe, leur appréciation. L’issue reste donc incertaine pour un prêt entre amis. Aurélien lui a d’ailleurs remis une feuille le jour du prêt, ce qui montre qu’il était possible d’obtenir un écrit.</p>
+<p><strong>La conclusion.</strong> Le virement seul ne prouve pas le prêt, et un prêt de 2 400 euros se prouve en principe par écrit. Capucine doit donc chercher dans ses autres pièces un écrit qui remplisse les conditions de la loi, ou une exception à l’exigence d’écrit.</p>
+<h4>B. La feuille manuscrite, le SMS et le virement suffisent-ils à établir le prêt ?</h4>
+<p><strong>Les faits qualifiés.</strong> Le 12 mars 2025, Aurélien a écrit à la main et signé une feuille qui indique « Reçu de Capucine 2400 € à rendre en septembre ». Cette feuille est un écrit sous signature privée. Le 2 octobre 2025, il a envoyé à Capucine un SMS, qui est un écrit électronique, dans lequel il annonce qu’il va « tout » rendre dès que sa paie arrive. Ces deux écrits viennent d’Aurélien, qui conteste pourtant aujourd’hui avoir emprunté. De plus, Capucine détient le relevé bancaire qui montre le virement.</p>
+<p><strong>Le problème de droit.</strong> Une feuille manuscrite et signée qui indique la somme en chiffres seulement prouve-t-elle un prêt, et sinon, avec quels autres éléments la partie qui l’invoque peut-elle compléter sa preuve ?</p>
+<p><strong>La majeure.</strong> L’article 1376 du Code civil fixe les conditions d’un écrit sous signature privée par lequel une seule personne s’engage à payer une somme d’argent. Cet écrit fait preuve à deux conditions. D’abord, il porte la signature de celui qui s’engage. Ensuite, il contient la mention de la somme en toutes lettres et en chiffres, que celui qui s’engage écrit lui-même. Un écrit qui ne respecte pas ces conditions ne prouve donc pas l’engagement à lui seul.</p>
+<p>Un tel écrit peut pourtant servir de commencement de preuve par écrit. Selon l’article 1362, un commencement de preuve par écrit est un écrit qui vient de celui qui conteste l’acte et qui rend vraisemblable ce que l’autre partie affirme. Ensuite, selon l’article 1361, ce commencement de preuve remplace l’écrit quand un autre moyen de preuve le corrobore. Ce moyen peut être un témoignage ou un document, et le juge apprécie sa valeur.</p>
+<p>Enfin, un SMS est un écrit électronique. Selon l’article 1366, il a la même force probante, c’est-à-dire la même valeur de preuve, qu’un écrit sur papier à deux conditions. On doit pouvoir identifier la personne qui l’a envoyé, et le message doit avoir été établi et conservé dans des conditions qui garantissent qu’il n’a pas été modifié.</p>
+<p><strong>La mineure.</strong> D’abord, la feuille ne remplit pas les conditions de l’article 1376. Aurélien l’a écrite à la main et signée, mais la somme y figure en chiffres seulement. Elle ne prouve donc pas le prêt à elle seule.</p>
+<p>Ensuite, la feuille constitue un commencement de preuve par écrit. Elle émane d’Aurélien, qui conteste le prêt, et elle rend le prêt vraisemblable, puisqu’elle indique que Capucine lui a remis 2 400 euros « à rendre en septembre ». Ces mots contredisent d’ailleurs la défense d’Aurélien, selon laquelle l’argent était un cadeau.</p>
+<p>De plus, d’autres moyens de preuve corroborent ce commencement de preuve. Le relevé bancaire établit que Capucine a viré 2 400 euros à Aurélien le jour même, ce qui correspond au montant et à la date de la feuille. Le SMS du 2 octobre confirme à son tour qu’Aurélien devait quelque chose, puisqu’il annonce qu’il va « tout » rendre. Le numéro d’Aurélien permet de l’identifier comme auteur du message, et Capucine doit pouvoir montrer ce message tel qu’elle l’a reçu, sans modification, pour garantir son intégrité.</p>
+<p><strong>La conclusion.</strong> Capucine peut prouver le prêt, parce que la feuille manuscrite forme un commencement de preuve par écrit que le virement et le SMS corroborent. Le juge reste cependant libre d’apprécier la valeur de ces éléments. Si le prêt est prouvé, Aurélien doit rembourser 2 400 euros, à moins de prouver qu’il l’a déjà fait, car l’article 1353 lui en impose la charge.</p>
+<h3>II. La production de l’enregistrement de l’appel de décembre</h3>
+<p><strong>Les faits qualifiés.</strong> Capucine a enregistré avec son téléphone l’appel de décembre, sans en informer Aurélien. Aurélien y reconnaît qu’il lui doit 2 400 euros. Cette reconnaissance est un aveu (article 1383). Elle forme un aveu extrajudiciaire, car elle est faite en dehors du procès. Mais la conversation était privée et Aurélien ignorait qu’on l’enregistrait. Capucine a donc obtenu cette preuve à l’insu de la personne visée, ce qui la rend déloyale.</p>
+<p><strong>Le problème de droit.</strong> Une partie à un procès civil peut-elle produire l’enregistrement d’une conversation téléphonique privée, réalisé à l’insu de son interlocuteur, et cet enregistrement prouverait-il le prêt à lui seul ?</p>
+<p><strong>La majeure.</strong> Une preuve doit être obtenue loyalement, car la justice doit être rendue loyalement, sans s’appuyer sur des procédés malhonnêtes qui nuiraient à sa dignité et à sa crédibilité. Ce principe de loyauté de la preuve vient de la jurisprudence, c’est-à-dire des décisions des juges, qui s’appuient sur l’article 9 du Code de procédure civile et sur l’article 6 de la Convention européenne des droits de l’homme. Une preuve est déloyale quand elle est obtenue à l’insu de la personne visée ou par un stratagème.</p>
+<p>Pendant longtemps, la Cour de cassation a écarté en principe toute preuve recueillie à l’insu de la personne visée. Dans un arrêt du 7 octobre 2004, la deuxième chambre civile déclare irrecevable, comme « procédé déloyal », l’enregistrement d’une conversation téléphonique. Irrecevable veut dire que le juge refuse d’examiner cette preuve. Un homme avait remis une somme d’argent à une femme, puis enregistré à son insu sa conversation téléphonique avec elle. Cet homme était décédé, et ses héritières voulaient prouver que la somme avait été prêtée. La chambre sociale, qui juge les litiges du travail, traite pourtant les SMS autrement, car leur auteur ne peut pas ignorer que le téléphone du destinataire les enregistre. Elle juge ainsi le 23 mai 2007 que le destinataire peut utiliser les SMS qu’il a reçus.</p>
+<p>Depuis le 22 décembre 2023, une preuve obtenue de façon déloyale n’est plus écartée automatiquement dans un procès civil. L’assemblée plénière de la Cour de cassation l’a jugé ce jour-là. Le juge doit, quand une partie le lui demande, rechercher si cette preuve porte atteinte au caractère équitable de la procédure dans son ensemble.</p>
+<p>Le droit à la preuve est le droit, pour chaque partie, d’apporter au juge les éléments dont elle a besoin pour défendre sa cause. Comme ce droit n’est pas absolu, le juge le compare aux droits de l’adversaire, par exemple le respect de sa vie privée (article 9 du Code civil). Le droit à la preuve peut ainsi justifier la production d’une preuve déloyale à deux conditions. D’abord, cette production doit être indispensable à l’exercice de ce droit, c’est-à-dire que les autres éléments dont la partie dispose ne suffisent pas à soutenir sa demande. Ensuite, l’atteinte aux droits de l’adversaire doit rester strictement proportionnée au but poursuivi.</p>
+<p>La chambre sociale a appliqué cette méthode dans un arrêt du 17 janvier 2024. Un salarié produisait l’enregistrement clandestin de membres d’un comité chargé de la sécurité au travail pour prouver un harcèlement moral. La Cour de cassation approuve la cour d’appel qui l’a écarté, car les autres éléments de preuve produits par le salarié laissaient déjà supposer le harcèlement moral. L’enregistrement n’était donc pas indispensable à ses demandes.</p>
+<p>Le droit à la preuve règle seulement l’admission de l’enregistrement. La valeur de l’aveu qu’il contient dépend d’une autre règle. Selon l’article 1383-1, un aveu fait en dehors du procès et seulement à l’oral n’est reçu que dans les cas où la loi permet de prouver par tout moyen.</p>
+<p><strong>La mineure.</strong> D’abord, l’enregistrement de Capucine est une preuve déloyale, car Aurélien ignorait qu’on l’enregistrait pendant une conversation privée. Avant 2023, les juges l’auraient écarté, comme ils l’ont fait en 2004 pour un enregistrement qui concernait déjà un prêt contesté. Le SMS du 2 octobre se traite autrement, d’après l’arrêt du 23 mai 2007. Aurélien ne pouvait pas ignorer que le téléphone de Capucine conserverait son message, si bien que Capucine peut produire ce SMS loyalement.</p>
+<p>Ensuite, depuis l’arrêt du 22 décembre 2023, le juge ne l’écarte plus automatiquement. Il examine d’abord si la production de l’enregistrement est indispensable. Or Capucine n’a pas besoin de l’enregistrement pour prouver le prêt. Les pièces de la partie I l’établissent déjà.</p>
+<p>Enfin, les deux conditions doivent être réunies. Comme l’enregistrement n’est pas indispensable, le juge n’a pas à vérifier si l’atteinte à la vie privée d’Aurélien est proportionnée. Il peut donc l’écarter, comme la chambre sociale l’a validé le 17 janvier 2024.</p>
+<p>De plus, même admis, l’enregistrement ne prouverait pas le prêt à lui seul. Aurélien y fait un aveu oral et extrajudiciaire, alors qu’un prêt de 2 400 euros se prouve en principe par écrit. L’enregistrement pourrait au mieux conforter la feuille manuscrite.</p>
+<p><strong>La conclusion.</strong> Capucine peut produire l’enregistrement, puisque la déloyauté ne conduit plus à son rejet automatique. Le juge peut toutefois l’écarter, parce que Capucine dispose déjà d’autres preuves. Même admis, l’enregistrement ne prouverait pas le prêt à lui seul.</p>
+<p>En définitive, Capucine peut demander au juge de condamner Aurélien à lui rendre 2 400 euros. Elle prouve le prêt par la feuille manuscrite, que le virement et le SMS corroborent, et elle n’a pas besoin de l’enregistrement.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="erreurs">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles erreurs font perdre des points sur un cas pratique de preuve ?</h2>
+<h3>Écrire que le virement prouve le prêt</h3>
+<p>Un virement établit que l’argent a changé de compte. La raison de ce transfert reste à prouver, car l’emprunteur peut répondre qu’on lui a fait un cadeau. La Cour de cassation juge d’ailleurs que la remise de fonds ne suffit pas à justifier l’obligation de rendre. Si ton énoncé mentionne un virement, tu cherches donc l’élément qui montre cette obligation, ici les mots « à rendre » écrits par Aurélien.</p>
+<h3>Appliquer le seuil de 1 500 euros à un fait juridique</h3>
+<p>Le seuil de 1 500 euros concerne les actes juridiques. Un accident ou un dommage causé à quelqu’un est un fait juridique, et il se prouve par tout moyen, quel que soit son montant (article 1358).</p>
+<h3>Réduire sa demande pour passer sous le seuil</h3>
+<p>Réclamer moins de 1 500 euros ne dispense pas de l’écrit, parce que le seuil se calcule sur le montant total du prêt. Si Capucine réduisait sa demande à 500 euros, par exemple parce qu’Aurélien a déjà remboursé une partie du prêt, elle devrait encore prouver par écrit le prêt de 2 400 euros (article 1359).</p>
+<h3>Écarter une feuille mal rédigée sans l’examiner</h3>
+<p>Si tu trouves dans ton énoncé une feuille irrégulière, tu l’examines avant de l’écarter. Une feuille qui ne respecte pas l’article 1376 garde pourtant une valeur de preuve. Si elle vient de l’adversaire et rend le prêt vraisemblable, elle sert de commencement de preuve par écrit, sans suffire à elle seule. Une note que Capucine aurait rédigée elle-même ne compte pas comme preuve, parce que nul ne peut se constituer de titre à soi-même, autrement dit fabriquer sa propre preuve (article 1363). Cette interdiction porte surtout sur la preuve des actes juridiques.</p>
+<h3>Écrire qu’une preuve déloyale est toujours écartée</h3>
+<p>Avant 2023, la Cour de cassation écartait en principe une preuve déloyale. L’assemblée plénière a ainsi jugé le 7 janvier 2011 qu’un enregistrement fait à l’insu de l’auteur des propos est un procédé déloyal, qui rend sa production irrecevable. Depuis le 22 décembre 2023, en revanche, le juge civil vérifie si la preuve est indispensable et si l’atteinte reste strictement proportionnée. Si tu écris qu’une preuve déloyale est toujours écartée, tu donnes la règle d’avant 2023, et ta réponse est dépassée.</p>
+</div>
+</div>
+</section>
+<section class="section" id="adapter">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Comment adapter cette méthode à un autre énoncé de preuve ?</h2>
+<p>Tu peux réutiliser les quatre questions pour un autre énoncé. Seules les réponses changent, selon le montant en jeu et la nature du litige.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Sept variantes d’un énoncé de preuve et la réponse qui change" style="overflow-x:auto">
+<table style="width:100%;min-width:640px;border-collapse:collapse">
+<thead><tr><th scope="col">Si l’énoncé indique</th><th scope="col">La réponse change ainsi</th><th scope="col">Texte à citer</th></tr></thead>
+<tbody>
+<tr><th scope="row">Un prêt de 1 200 euros entre les mêmes amis</th><td>Le montant ne dépasse pas 1 500 euros. La preuve est donc libre. Capucine peut utiliser des messages et des témoignages, mais le virement seul ne prouve toujours pas l’obligation de rendre.</td><td>Articles 1358 et 1359</td></tr>
+<tr><th scope="row">Un prêt de 2 400 euros entre une mère et son fils, sans aucun papier</th><td>L’impossibilité morale de se procurer un écrit peut s’appliquer. Le juge examine le lien entre les personnes et la situation, puis admet tous les moyens de preuve s’il retient cette impossibilité. Le prêteur doit alors encore prouver l’obligation de rendre. La première chambre civile l’a jugé le 19 juin 2019 dans un arrêt inédit qui concernait une relation sentimentale. La cour d’appel avait admis l’impossibilité morale mais jugé le prêt non prouvé, et la Cour de cassation a rejeté le recours de celle qui soutenait avoir prêté.</td><td>Article 1360</td></tr>
+<tr><th scope="row">Deux commerçants qui concluent un acte de commerce</th><td>Les actes de commerce se prouvent par tous moyens à l’égard des commerçants. L’écrit n’est donc pas exigé. Si l’acte est mixte, c’est-à-dire conclu entre un commerçant et une personne qui ne l’est pas, la preuve libre s’applique seulement contre le commerçant.</td><td>Article L. 110-3 du Code de commerce</td></tr>
+<tr><th scope="row">Un accident ou un dommage causé à quelqu’un</th><td>Il s’agit d’un fait juridique. La victime peut le prouver par tout moyen, par exemple par photographies ou par témoignage, quel que soit le montant.</td><td>Article 1358</td></tr>
+<tr><th scope="row">Un emprunteur qui affirme avoir déjà remboursé</th><td>Une fois le prêt prouvé, l’emprunteur qui se prétend libéré doit prouver le paiement, et il peut le faire par tout moyen.</td><td>Articles 1353 et 1342-8</td></tr>
+<tr><th scope="row">Un contrat signé existe déjà et une partie veut le contredire ou le compléter</th><td>Pour contredire un écrit ou y ajouter un élément, il faut en principe un autre écrit, même sous 1 500 euros, sauf exception.</td><td>Articles 1359 et 1360</td></tr>
+<tr><th scope="row">Une photo du contrat signé, prise avec un téléphone</th><td>La copie fiable a la même force probante, c’est-à-dire la même valeur de preuve, que l’original. Une photo prise avec un téléphone n’est pas automatiquement considérée comme fiable, et le juge apprécie sa fiabilité.</td><td>Article 1379</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Pour aller plus loin</h3>
+<ul>
+<li>Le <a href="cas-pratique-corrige-droit-civil-l1.html">cas pratique corrigé sur la loi dans le temps</a> applique le même syllogisme à un autre thème de première année.</li>
+<li>La page des <a href="cas-pratiques-corriges.html">cas pratiques corrigés par matière</a> classe les exemples gratuits par niveau.</li>
+<li>Les <a href="exercices-corriges-introduction-au-droit-l1.html">exercices corrigés d’introduction au droit L1</a> ajoutent trois exercices gratuits.</li>
+<li>La page sur <a href="les-modes-de-preuve-en-droit-civil.html">les modes de preuve en droit civil</a> explique ce que chaque mode de preuve apporte au juge, de l’écrit jusqu’au serment.</li>
+</ul>
+<div class="author-box">
+<img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+<div>
+<p class="author-box__name">Julien</p>
+<p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+<p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">166 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention. Pour cela, je leur apprends une méthode qu'ils réutilisent ensuite seuls, à chaque copie. Sur TrajectoireDroit, j'ai donc réuni mes fiches complètes et mes majeures préparées. Une majeure préparée donne la règle de droit déjà rédigée, prête pour le cas pratique.</p>
+<p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="faq">
+<div class="container container--narrow"><h2 class="h2">Questions fréquentes sur le cas pratique de preuve</h2>
+<div class="accordion">
+<details class="accordion__item"><summary class="accordion__trigger">À partir de quel montant faut-il un écrit pour prouver un contrat ?</summary><div class="accordion__body"><p>Au-delà de 1 500 euros, en matière civile et sauf exception. En effet, l’article 1359 du Code civil exige un écrit pour prouver un acte juridique qui porte sur une somme supérieure à un montant fixé par décret. Le décret du 15 juillet 1980 fixe ce montant à 1 500 euros, si bien qu’un acte de 1 500 euros exactement reste prouvable par tout moyen. L’écrit est un document signé par celui qui s’engage ou un acte authentique, reçu par un officier public comme un notaire. Un accident ou un autre fait juridique se prouve en revanche par tout moyen, quel que soit son montant.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Un virement bancaire prouve-t-il un prêt ?</summary><div class="accordion__body"><p>Un virement prouve que l’argent a été envoyé. Il ne prouve pas que le destinataire doit le rendre, car la somme peut être un cadeau. Pour un prêt de plus de 1 500 euros, le prêteur doit en principe prouver l’obligation de rendre avec un écrit, par exemple une reconnaissance de dette. Un commencement de preuve par écrit, confirmé par d’autres éléments, peut le remplacer. En dessous de ce montant, tout moyen de preuve est admis, mais le virement seul reste insuffisant.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Un SMS ou un message WhatsApp peut-il servir de preuve ?</summary><div class="accordion__body"><p>Oui, comme écrit électronique, car l’article 1366 du Code civil lui donne la même force probante, c’est-à-dire la même valeur de preuve, qu’un écrit sur papier si l’on peut identifier son auteur et si le message est conservé sans modification. Sans signature électronique fiable, un SMS ne remplace pas l’écrit signé que la loi exige au-delà de 1 500 euros. Un message qui émane de l’adversaire et rend le fait vraisemblable peut toutefois servir de commencement de preuve par écrit.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Peut-on utiliser un enregistrement fait à l’insu de quelqu’un ?</summary><div class="accordion__body"><p>Le juge civil peut l’accepter, mais sous conditions. Depuis l’assemblée plénière du 22 décembre 2023, une preuve déloyale n’est plus écartée automatiquement. Le juge vérifie en effet que sa production est indispensable à l’exercice du droit à la preuve et que l’atteinte à la vie privée reste strictement proportionnée. Quand les autres preuves de la partie suffisent à soutenir sa demande, il peut donc l’écarter.</p></div></details>
+</div>
+</div>
+</section>
+<!-- fin-article:pack-ultra -->
+<section class="article-pack-ligne"><div class="container container--narrow"><p class="article-pack-ligne__texte">Le Pack Ultra L1 S1 réunit les 31 ressources de ton premier semestre de L1 pour 199 €. On y trouve les cas pratiques corrigés d’introduction au droit L1. <a href="pack-ultra.html#pack-ultra-l1-s1">Voir le contenu du pack →</a></p></div></section>
+</main>
+
+
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Introduction au droit L1, cas pratique sur la preuve">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Introduction au droit L1, cas pratique sur la preuve">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Introduction au droit L1 S1</strong>
+      <small>Onze cas pratiques corrigés</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="cas-pratique-intro-droit-l1" aria-label="Acheter les cas pratiques corrigés · 19,99 €">Acheter · 19,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=81a894f1" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=909718f7" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=7aba7f6e';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
+</body>
+</html>
