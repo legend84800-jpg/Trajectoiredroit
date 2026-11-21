@@ -88,6 +88,7 @@ function construireLiensTelechargement(
   // le lien doit rester valide le temps de tout un visionnage, jamais seulement 15 minutes,
   // faute de quoi le lecteur perd l'accès en pleine lecture dès qu'il cherche à avancer/reculer.
   const DUREE_MIN_VIDEO_SECONDES = 6 * 60 * 60;
+  const coursParNomDeLecon = new Map();
   return produit.blobs.map((blobUrl, i) => {
     const estVideo = /\.mp4$/i.test(blobUrl);
     const estAudio = /\.m4a$/i.test(blobUrl);
@@ -116,6 +117,15 @@ function construireLiensTelechargement(
       if (matiere) {
         const format = match[2] === "qcm" ? "le QCM corrigé" : suffixes[match[2]];
         nom = `${format} · ${matiere.nom.replace(/^Flashcards \+ QCM /, "")}`;
+      }
+    }
+    if ((estVideo || estAudio) && composant?.nom?.startsWith("Podcasts et vidéos ")) {
+      const premierCours = coursParNomDeLecon.get(nom);
+      if (premierCours && premierCours !== composant.nom) {
+        const matiere = composant.nom.replace(/^Podcasts et vidéos /, "");
+        nom = `${matiere} · ${nom}`;
+      } else {
+        coursParNomDeLecon.set(nom, composant.nom);
       }
     }
     const type = estVideo ? "video" : estAudio ? "audio" : "pdf";

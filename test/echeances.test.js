@@ -1,5 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const { fixerHorlogePaiement } = require("../test-support/horloge-paiement");
 const PRODUITS = require("../api/_produits");
 const {
   montantEcheance,
@@ -76,7 +77,8 @@ test("seuls les Packs Ultra en vente acceptent 2 ou 3 échéances", () => {
   assert.equal(nombreEcheancesValide("pack-ultra-l3-s2-revision", { prix: 19900, venteSuspendue: true }, 3), null);
 });
 
-test("le paiement en 3 fois ouvre un abonnement mensuel sans relance ni code promo", async () => {
+test("le paiement en 3 fois ouvre un abonnement mensuel sans relance ni code promo", async (t) => {
+  fixerHorlogePaiement(t);
   const { res, appels } = await creerCheckout({ produitId: "pack-ultra-l1-s1-revision", echeances: 3 });
   assert.equal(res.statusCode, 200);
   const { params, options } = appels[0];
@@ -100,7 +102,8 @@ test("le paiement en 3 fois ouvre un abonnement mensuel sans relance ni code pro
   assert.equal(options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012-x3");
 });
 
-test("un Pack Ultra payé comptant garde les libellés et les paramètres du paiement unique", async () => {
+test("un Pack Ultra payé comptant garde les libellés et les paramètres du paiement unique", async (t) => {
+  fixerHorlogePaiement(t);
   const produitId = "pack-ultra-l1-s1-revision";
   const { res, appels } = await creerCheckout({ produitId });
   assert.equal(res.statusCode, 200);

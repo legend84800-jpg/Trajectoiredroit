@@ -7,6 +7,7 @@ async function avecStageOuvert(operation) {
 }
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const { fixerHorlogePaiement } = require("../test-support/horloge-paiement");
 const fs = require("node:fs");
 const path = require("node:path");
 
@@ -54,7 +55,8 @@ function operationsFactices(surcharges = {}) {
   };
 }
 
-test("la création Checkout conserve le garde-fou Stripe et l'idempotence", async () => {
+test("la création Checkout conserve le garde-fou Stripe et l'idempotence", async (t) => {
+  fixerHorlogePaiement(t);
   const stripeModule = require("../api/_stripe");
   const creerOriginal = stripeModule.creerClientStripe;
   const appels = [];
@@ -122,7 +124,8 @@ test("la création Checkout conserve le garde-fou Stripe et l'idempotence", asyn
   assert.equal(appel.options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012");
 });
 
-test("le panier réunit plusieurs produits dans une seule session, dédoublonnés et sans le stage", async () => avecStageOuvert(async () => {
+test("le panier réunit plusieurs produits dans une seule session, dédoublonnés et sans le stage", async (t) => avecStageOuvert(async () => {
+  fixerHorlogePaiement(t);
   const stripeModule = require("../api/_stripe");
   const creerOriginal = stripeModule.creerClientStripe;
   let paramsCrees;
@@ -320,10 +323,19 @@ test("les fichiers d'un pack portent des noms distincts dans l'email et Mon comp
     "Cas pratiques corrigés Introduction au droit L1 S1",
   ]);
   assert.deepEqual(liensPour("fiche-arret-penal").map((lien) => lien.nom), [
-    "les fiches d'arrêt", "le plan L1 S2", "le plan L2 S1",
+    "les fiches d'arrêt", "le plan de droit pénal général L2", "le plan L2 S1",
   ]);
   assert.deepEqual(liensPour("fiche-arret-administratif").map((lien) => lien.nom), [
     "les fiches d'arrêt", "le plan L2 S1", "le plan L2 S2", "les textes des arrêts",
+  ]);
+
+  const coursPenal = liensPour("pack-ultra-l2-s1-revision")
+    .filter(({ nom }) => nom.startsWith("Droit pénal général L2 · Leçon "));
+  assert.deepEqual(coursPenal.map(({ nom, type }) => [nom, type]), [
+    ["Droit pénal général L2 · Leçon 5, Les corollaires du principe de légalité · podcast", "audio"],
+    ["Droit pénal général L2 · Leçon 5, Les corollaires du principe de légalité · vidéo", "video"],
+    ["Droit pénal général L2 · Leçon 13, La complicité · podcast", "audio"],
+    ["Droit pénal général L2 · Leçon 13, La complicité · vidéo", "video"],
   ]);
 
   const produitsIndividuels = Object.entries(produits)
@@ -358,6 +370,13 @@ test("chaque fichier vendu passe par la route de stockage privé", async () => {
   process.env.DOWNLOAD_SECRET = "secret_test";
   const expiration = Math.floor(Date.now() / 1000) + 900;
   const sessionId = "cs_test_route_personnalisee";
+  const nomsTelecharges = {
+    "fiche-arret-penal-plan-l1s2.pdf": "fiche-arret-penal-plan-general-l2.pdf",
+  };
+  for (const nomStockage of Object.values(produits).flatMap(({ blobs }) => blobs)) {
+    const nom = decodeURIComponent(new URL(nomStockage).pathname.split("/").pop());
+    if (nom.includes("penal-general-l1")) nomsTelecharges[nom] = nom.replace("penal-general-l1", "penal-general-l2");
+  }
 
   try {
     for (const [produitId, produit] of Object.entries(produits)) {
@@ -391,9 +410,11 @@ test("chaque fichier vendu passe par la route de stockage privé", async () => {
         assert.match(destination, /^\/api\/personnaliser-pdf\?/);
         assert.equal(reponse.headers["Cache-Control"], "private, no-store");
         const url = new URL(destination, "https://trajectoiredroit.com");
-        const nomFichier = decodeURIComponent(new URL(sourceUrl).pathname.split("/").pop());
+        const nomStockage = decodeURIComponent(new URL(sourceUrl).pathname.split("/").pop());
+        const nomFichier = nomsTelecharges[nomStockage] ?? nomStockage;
         assert.equal(url.searchParams.get("sid"), sessionId);
         assert.equal(url.searchParams.get("src"), sourceUrl);
+        assert.equal(url.searchParams.get("fichier"), nomFichier);
         assert.equal(url.searchParams.get("nom"), produit.nom);
         assert.equal(
           url.searchParams.get("psig"),
@@ -878,7 +899,8 @@ async function creerCheckoutAvecStripeFactice(corps, { promos = [], refuserRemis
 
 const PROMO_POSTA = { id: "promo_test_posta", code: "POSTA-1A2B3C4D" };
 
-test("sans code ni achat passé, le champ code promo disparaît mais reste sur le lien de récupération", async () => {
+test("sans code ni achat passé, le champ code promo disparaît mais reste sur le lien de récupération", async (t) => {
+  fixerHorlogePaiement(t);
   const { res, appels, params, options } = await creerCheckoutAvecStripeFactice({ produitId: "fiche-da-l2-s1" });
   assert.equal(res.statusCode, 200);
   assert.equal(appels.list.length, 0);
@@ -888,7 +910,8 @@ test("sans code ni achat passé, le champ code promo disparaît mais reste sur l
   assert.equal(options.idempotencyKey, "checkout-code-1234567890123456");
 });
 
-test("un code actif venu du lien est appliqué d'office, sans champ ni conflit avec la récupération", async () => {
+test("un code actif venu du lien est appliqué d'office, sans champ ni conflit avec la récupération", async (t) => {
+  fixerHorlogePaiement(t);
   const { appels, params, options } = await creerCheckoutAvecStripeFactice(
     { produitId: "fiche-da-l2-s1", code: "posta-1a2b3c4d" },
     { promos: [PROMO_POSTA] }
@@ -901,27 +924,31 @@ test("un code actif venu du lien est appliqué d'office, sans champ ni conflit a
   assert.equal(options.idempotencyKey, "checkout-code-1234567890123456-remise");
 });
 
-test("un code introuvable fait revenir le champ code promo", async () => {
+test("un code introuvable fait revenir le champ code promo", async (t) => {
+  fixerHorlogePaiement(t);
   const { appels, params } = await creerCheckoutAvecStripeFactice({ produitId: "fiche-da-l2-s1", code: "BIDON-2026" });
   assert.equal(appels.list.length, 1);
   assert.equal(params.discounts, undefined);
   assert.equal(params.allow_promotion_codes, true);
 });
 
-test("un code mal formé est ignoré sans appel à Stripe", async () => {
+test("un code mal formé est ignoré sans appel à Stripe", async (t) => {
+  fixerHorlogePaiement(t);
   const { appels, params } = await creerCheckoutAvecStripeFactice({ produitId: "fiche-da-l2-s1", code: "<script>" });
   assert.equal(appels.list.length, 0);
   assert.equal(params.allow_promotion_codes, false);
 });
 
-test("un visiteur qui a déjà acheté garde le champ code promo", async () => {
+test("un visiteur qui a déjà acheté garde le champ code promo", async (t) => {
+  fixerHorlogePaiement(t);
   const { params } = await creerCheckoutAvecStripeFactice({ produitId: "fiche-da-l2-s1", dejaAcheteur: true });
   assert.equal(params.allow_promotion_codes, true);
   const { params: chaineNonBooleenne } = await creerCheckoutAvecStripeFactice({ produitId: "fiche-da-l2-s1", dejaAcheteur: "1" });
   assert.equal(chaineNonBooleenne.allow_promotion_codes, false);
 });
 
-test("une remise refusée par Stripe repart sans remise, avec le champ affiché", async () => {
+test("une remise refusée par Stripe repart sans remise, avec le champ affiché", async (t) => {
+  fixerHorlogePaiement(t);
   const { appels, params, options, res } = await creerCheckoutAvecStripeFactice(
     { produitId: "fiche-da-l2-s1", code: "POSTA-1A2B3C4D" },
     { promos: [PROMO_POSTA], refuserRemise: true }
@@ -935,7 +962,8 @@ test("une remise refusée par Stripe repart sans remise, avec le champ affiché"
   assert.equal(options.idempotencyKey, "checkout-code-1234567890123456-repli");
 });
 
-test("le panier suit la même logique de code promo", async () => {
+test("le panier suit la même logique de code promo", async (t) => {
+  fixerHorlogePaiement(t);
   const sansCode = await creerCheckoutAvecStripeFactice({ produitIds: ["fiche-da-l2-s1", "maj-penal-l2-s1"] });
   assert.equal(sansCode.params.allow_promotion_codes, false);
   assert.equal(sansCode.options.idempotencyKey, "checkout-panier-code-1234567890123456");
@@ -968,7 +996,8 @@ test("le stage ignore tout code et garde son propre texte, sans garantie", async
   assert.equal(resultat.params.custom_text, undefined);
 }));
 
-test("le paiement en plusieurs fois n'accepte aucun code mais affiche la garantie", async () => {
+test("le paiement en plusieurs fois n'accepte aucun code mais affiche la garantie", async (t) => {
+  fixerHorlogePaiement(t);
   const { appels, params } = await creerCheckoutAvecStripeFactice(
     { produitId: "pack-ultra-l1-s1-revision", echeances: 2, code: "POSTA-1A2B3C4D" },
     { promos: [PROMO_POSTA] }

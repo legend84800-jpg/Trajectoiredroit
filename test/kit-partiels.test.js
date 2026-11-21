@@ -1,5 +1,6 @@
 const assert = require("node:assert/strict");
 const { test } = require("node:test");
+const { fixerHorlogePaiement } = require("../test-support/horloge-paiement");
 const PRODUITS = require("../api/_produits");
 const { donneesPage } = require("../api/_kits-partiels");
 const { bornerAbonnement } = require("../api/_echeances");
@@ -67,7 +68,8 @@ test("les trios autorisés livrent les fichiers de chacun des supports", () => {
   }
 });
 
-test("le paiement unique et les deux échéances portent sur le kit des deux semestres", async () => {
+test("le paiement unique et les deux échéances portent sur le kit des deux semestres", async (t) => {
+  fixerHorlogePaiement(t);
   const debut = checkoutParams.length;
   assert.equal((await ouvrir({ produitId: kitId })).statusCode, 200);
   assert.equal((await ouvrir({ produitId: kitId, echeances: 2 })).statusCode, 200);
@@ -107,7 +109,8 @@ test("le paiement refuse les kits avec un code répété, une année non valide 
   assert.equal(checkoutParams.length, debut);
 });
 
-test("la confirmation de commande livre les fichiers des deux semestres et de la troisième matière", async () => {
+test("la confirmation de commande livre les fichiers des deux semestres et de la troisième matière", async (t) => {
+  fixerHorlogePaiement(t);
   assert.equal((await ouvrir({ produitId: kitId })).statusCode, 200);
   const { metadata, mode } = checkoutParams.at(-1);
   const secret = "verification-des-liens-en-local";

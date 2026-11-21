@@ -1,5 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const { fixerHorlogePaiement } = require("../test-support/horloge-paiement");
 const fs = require("node:fs");
 const path = require("node:path");
 const PRODUITS = require("../api/_produits");
@@ -124,7 +125,8 @@ test("le panier et l'ajout d'un second produit gardent une image par article", a
   });
 });
 
-test("les Packs Ultra conservent leur couverture en cadeau et en deux ou trois fois", async () => {
+test("les Packs Ultra conservent leur couverture en cadeau et en deux ou trois fois", async (t) => {
+  fixerHorlogePaiement(t);
   await capturerCheckout(async (envoyer) => {
     for (const [id, p] of VENDUS.filter(([id]) => id.startsWith("pack-ultra-"))) {
       for (const echeances of [1, 2, 3]) {

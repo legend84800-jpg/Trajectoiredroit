@@ -240,25 +240,50 @@ window.tjdDialogues = (function () {
     viewer.innerHTML =
       '<button type="button" class="apercu-zoom__close" aria-label="Fermer l’agrandissement"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
       '<button type="button" class="apercu-zoom__toggle" aria-controls="apercuZoomPage">Agrandir</button>' +
-      '<div class="apercu-zoom__scroll" id="apercuZoomPage"><img alt=""></div>' +
-      '<p class="apercu-zoom__hint">Fais défiler l’image pour lire toute la page.</p>';
+      '<div class="apercu-zoom__scroll" id="apercuZoomPage" tabindex="0" role="region" aria-label="Page affichée"><img alt=""></div>' +
+      '<p class="apercu-zoom__hint">Fais défiler l’image pour lire toute la page.</p>' +
+      '<div class="apercu-zoom__navigation" hidden>' +
+        '<button type="button" class="apercu-zoom__precedente" aria-label="Page précédente" aria-controls="apercuZoomPage"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>Précédente</button>' +
+        '<span class="apercu-zoom__compteur" role="status"></span>' +
+        '<button type="button" class="apercu-zoom__suivante" aria-label="Page suivante" aria-controls="apercuZoomPage">Suivante<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>' +
+      '</div>';
     document.body.appendChild(viewer);
     var viewerImg = viewer.querySelector('img');
     var viewerScroll = viewer.querySelector('.apercu-zoom__scroll');
     var viewerToggle = viewer.querySelector('.apercu-zoom__toggle');
     var viewerClose = viewer.querySelector('.apercu-zoom__close');
+    var viewerNav = viewer.querySelector('.apercu-zoom__navigation');
+    var viewerPrevious = viewer.querySelector('.apercu-zoom__precedente');
+    var viewerNext = viewer.querySelector('.apercu-zoom__suivante');
+    var viewerStatus = viewer.querySelector('.apercu-zoom__compteur');
+    var imgsBox = document.getElementById('apercuImgs');
+    var pagesViewer = [];
+    var positionViewer = 0;
+
     function reglerZoom(agrandi) {
       viewer.classList.toggle('apercu-zoom--agrandi', agrandi);
       viewerToggle.textContent = agrandi ? 'Voir la page entière' : 'Agrandir';
     }
-    function openViewer(im, bouton) {
+    function afficherPage(position) {
+      var im = pagesViewer[position];
+      if (!im) return;
+      positionViewer = position;
       viewerImg.src = im.src;
       viewerImg.alt = im.alt;
       viewer.classList.toggle('apercu-zoom--detail', im.getAttribute('data-detail') === '1');
-      reglerZoom(false);
-      window.tjdDialogues.ouvrir(viewer, viewerClose, bouton);
       viewerScroll.scrollTop = 0;
       viewerScroll.scrollLeft = 0;
+      viewerPrevious.setAttribute('aria-disabled', position === 0);
+      viewerNext.setAttribute('aria-disabled', position === pagesViewer.length - 1);
+      viewerStatus.textContent = viewerNav.hidden ? '' : 'Page ' + (position + 1) + ' sur ' + pagesViewer.length;
+    }
+    function openViewer(im, bouton) {
+      pagesViewer = Array.from(imgsBox.querySelectorAll('.apercu-page img'));
+      viewerNav.hidden = pagesViewer.length < 2;
+      viewer.classList.toggle('apercu-zoom--plusieurs', !viewerNav.hidden);
+      reglerZoom(false);
+      window.tjdDialogues.ouvrir(viewer, viewerClose, bouton);
+      afficherPage(pagesViewer.indexOf(im));
       try { if (window.gtag) gtag('event', 'apercu_zoom', { image: im.src.split('/').pop() }); } catch (_) {}
     }
     function closeViewer() { window.tjdDialogues.fermer(viewer); }
@@ -269,8 +294,16 @@ window.tjdDialogues = (function () {
       viewerScroll.scrollLeft = 0;
       viewerScroll.scrollTop = position * viewerImg.offsetWidth;
     });
+    viewerPrevious.addEventListener('click', function () { afficherPage(positionViewer - 1); });
+    viewerNext.addEventListener('click', function () { afficherPage(positionViewer + 1); });
+    viewer.addEventListener('keydown', function (e) {
+      if (viewerNav.hidden || e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      if (e.target === viewerScroll && viewerScroll.scrollWidth > viewerScroll.clientWidth) return;
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      afficherPage(positionViewer + (e.key === 'ArrowLeft' ? -1 : 1));
+    });
 
-    var imgsBox = document.getElementById('apercuImgs');
     imgsBox.addEventListener('click', function (e) {
       var bouton = e.target.closest('.apercu-page');
       if (bouton) openViewer(bouton.querySelector('img'), bouton);

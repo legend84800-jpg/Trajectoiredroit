@@ -30,6 +30,17 @@
     .partiels-carte h2, .partiels-carte h3 { margin: 3px 0 10px; }
     .partiels-carte p { color: var(--body); }
     .partiels-carte .btn { align-self: flex-start; margin-top: auto; }
+    .partiels-grille:has(.partiels-supports[open]) { align-items: start; }
+    .partiels-supports { margin: 0 0 16px; border-block: 1px solid var(--border); }
+    .partiels-supports summary { min-height: 44px; padding: 10px 0; color: var(--blue-600); font-weight: 700; cursor: pointer; }
+    .partiels-supports summary:focus-visible, .partiels-extrait:focus-visible { outline: 2px solid var(--blue-600); outline-offset: 3px; }
+    .partiels-supports__contenu { padding: 2px 0 14px; }
+    .partiels-supports__total { margin: 0 0 12px; font-size: .9rem; }
+    .partiels-supports__matiere + .partiels-supports__matiere { margin-top: 13px; padding-top: 13px; border-top: 1px solid var(--border); }
+    .partiels-carte .partiels-supports__titre { margin: 0 0 5px; font: inherit; font-weight: 700; }
+    .partiels-supports ul { margin: 0; padding-inline-start: 1.15em; font-size: .92rem; line-height: 1.5; }
+    .partiels-supports li + li { margin-top: 3px; }
+    .partiels-extrait { display: inline-block; max-width: 100%; padding: 10px 0; font-size: .92rem; text-decoration: underline; text-underline-offset: 3px; }
     .partiels-niveau { margin-top: 38px; }
     .partiels-niveau h2 { margin-bottom: 6px; }
     .partiels-pied { border-top: 1px solid var(--border); padding-block: 24px; }
@@ -64,6 +75,33 @@
           <p class="partiels-licence">Licence 1</p>
           <h2 class="h3" id="titre-partiel-l1">Droit constitutionnel et introduction au droit</h2>
           <p>Dissertations corrigées en droit constitutionnel. Cas pratiques corrigés et majeures préparées en introduction au droit.</p>
+          <details class="partiels-supports">
+            <summary>Voir les supports inclus</summary>
+            <div class="partiels-supports__contenu">
+              <p class="partiels-supports__total">14 PDF et 2 fichiers Anki</p>
+              <div class="partiels-supports__matiere">
+                <h3 class="partiels-supports__titre" id="pack-partiel-l1-s1-constit-supports">Droit constitutionnel</h3>
+                <ul>
+                  <li>Fiche complète avec son plan et ses cartes mentales</li>
+                  <li>Dissertations corrigées</li>
+                  <li>Flashcards et QCM en PDF</li>
+                  <li>Flashcards pour Anki</li>
+                </ul>
+                <a class="partiels-extrait" href="assets/apercus/finition-20261114/fiche-constit-l1-s1/1f5d92d565b8-p056.webp" target="_blank" rel="noopener" aria-describedby="pack-partiel-l1-s1-constit-supports">Voir un extrait de la fiche complète<span class="sr-only"> (nouvel onglet)</span></a>
+              </div>
+              <div class="partiels-supports__matiere">
+                <h3 class="partiels-supports__titre" id="pack-partiel-l1-s1-intro-supports">Introduction au droit</h3>
+                <ul>
+                  <li>Fiche complète avec son plan et ses cartes mentales</li>
+                  <li>Cas pratiques corrigés</li>
+                  <li>Majeures préparées avec leur plan</li>
+                  <li>Flashcards et QCM en PDF</li>
+                  <li>Flashcards pour Anki</li>
+                </ul>
+                <a class="partiels-extrait" href="assets/apercus/finition-20261114/fiche-intro-droit-l1/c81b715fba74-p036.webp" target="_blank" rel="noopener" aria-describedby="pack-partiel-l1-s1-intro-supports">Voir un extrait de la fiche complète<span class="sr-only"> (nouvel onglet)</span></a>
+              </div>
+            </div>
+          </details>
           <button type="button" class="btn btn--primary" data-tjd-produit="pack-partiel-l1-s1">Acheter le pack · 69,90 €</button>
         </article>
         <article class="partiels-carte" id="pack-partiel-l2-s1" aria-labelledby="titre-partiel-l2">
@@ -71,6 +109,34 @@
           <p class="partiels-licence">Licence 2</p>
           <h2 class="h3" id="titre-partiel-l2">Droit des contrats et droit administratif</h2>
           <p>Cas pratiques corrigés et majeures préparées pour les deux matières.</p>
+          <details class="partiels-supports">
+            <summary>Voir les supports inclus</summary>
+            <div class="partiels-supports__contenu">
+              <p class="partiels-supports__total">16 PDF et 2 fichiers Anki</p>
+              <div class="partiels-supports__matiere">
+                <h3 class="partiels-supports__titre" id="pack-partiel-l2-s1-contrats-supports">Droit des contrats</h3>
+                <ul>
+                  <li>Fiche complète avec son plan et ses cartes mentales</li>
+                  <li>Cas pratiques corrigés</li>
+                  <li>Majeures préparées avec leur plan</li>
+                  <li>Flashcards et QCM en PDF</li>
+                  <li>Flashcards pour Anki</li>
+                </ul>
+                <a class="partiels-extrait" href="assets/apercus/finition-20261114/fiche-contrats-l2-s1/a94eea5853a4-p049.webp" target="_blank" rel="noopener" aria-describedby="pack-partiel-l2-s1-contrats-supports">Voir un extrait de la fiche complète<span class="sr-only"> (nouvel onglet)</span></a>
+              </div>
+              <div class="partiels-supports__matiere">
+                <h3 class="partiels-supports__titre" id="pack-partiel-l2-s1-admin-supports">Droit administratif</h3>
+                <ul>
+                  <li>Fiche complète avec son plan et ses cartes mentales</li>
+                  <li>Cas pratiques corrigés</li>
+                  <li>Majeures préparées avec leur plan</li>
+                  <li>Flashcards et QCM en PDF</li>
+                  <li>Flashcards pour Anki</li>
+                </ul>
+                <a class="partiels-extrait" href="assets/apercus/finition-20261114/fiche-da-l2-s1/507acea54720-p089.webp" target="_blank" rel="noopener" aria-describedby="pack-partiel-l2-s1-admin-supports">Voir un extrait de la fiche complète<span class="sr-only"> (nouvel onglet)</span></a>
+              </div>
+            </div>
+          </details>
           <button type="button" class="btn btn--primary" data-tjd-produit="pack-partiel-l2-s1">Acheter le pack · 69,90 €</button>
         </article>
       </div>
@@ -82,16 +148,100 @@
           <article class="partiels-carte" id="pack-partiel-l3-travail-societes">
             <img src="assets/covers/pack-partiel-l3-travail-societes.webp" width="960" height="540" alt="" loading="lazy">
             <h3>Droit du travail et droit des sociétés</h3>
+            <details class="partiels-supports">
+              <summary>Voir les supports inclus</summary>
+              <div class="partiels-supports__contenu">
+                <p class="partiels-supports__total">16 PDF et 2 fichiers Anki</p>
+                <div class="partiels-supports__matiere">
+                  <h4 class="partiels-supports__titre" id="pack-partiel-l3-travail-societes-travail-supports">Droit du travail</h4>
+                  <ul>
+                    <li>Fiche complète avec son plan et ses cartes mentales</li>
+                    <li>Cas pratiques corrigés</li>
+                    <li>Majeures préparées avec leur plan</li>
+                    <li>Flashcards et QCM en PDF</li>
+                    <li>Flashcards pour Anki</li>
+                  </ul>
+                  <a class="partiels-extrait" href="assets/apercus/finition-20261114/fiche-travail-l3-s1/9fe365dced2b-p026.webp" target="_blank" rel="noopener" aria-describedby="pack-partiel-l3-travail-societes-travail-supports">Voir un extrait de la fiche complète<span class="sr-only"> (nouvel onglet)</span></a>
+                </div>
+                <div class="partiels-supports__matiere">
+                  <h4 class="partiels-supports__titre" id="pack-partiel-l3-travail-societes-societes-supports">Droit des sociétés</h4>
+                  <ul>
+                    <li>Fiche complète avec son plan et ses cartes mentales</li>
+                    <li>Cas pratiques corrigés</li>
+                    <li>Majeures préparées avec leur plan</li>
+                    <li>Flashcards et QCM en PDF</li>
+                    <li>Flashcards pour Anki</li>
+                  </ul>
+                  <a class="partiels-extrait" href="assets/apercus/finition-20261114/fiche-societes-l3-s1/633b43e2c1e8-p068.webp" target="_blank" rel="noopener" aria-describedby="pack-partiel-l3-travail-societes-societes-supports">Voir un extrait de la fiche complète<span class="sr-only"> (nouvel onglet)</span></a>
+                </div>
+              </div>
+            </details>
             <button type="button" class="btn btn--primary" data-tjd-produit="pack-partiel-l3-travail-societes">Acheter le pack · 69,90 €</button>
           </article>
           <article class="partiels-carte" id="pack-partiel-l3-travail-contrats-speciaux">
             <img src="assets/covers/pack-partiel-l3-travail-contrats-speciaux.webp" width="960" height="540" alt="" loading="lazy">
             <h3>Droit du travail et contrats spéciaux</h3>
+            <details class="partiels-supports">
+              <summary>Voir les supports inclus</summary>
+              <div class="partiels-supports__contenu">
+                <p class="partiels-supports__total">16 PDF et 2 fichiers Anki</p>
+                <div class="partiels-supports__matiere">
+                  <h4 class="partiels-supports__titre" id="pack-partiel-l3-travail-contrats-speciaux-travail-supports">Droit du travail</h4>
+                  <ul>
+                    <li>Fiche complète avec son plan et ses cartes mentales</li>
+                    <li>Cas pratiques corrigés</li>
+                    <li>Majeures préparées avec leur plan</li>
+                    <li>Flashcards et QCM en PDF</li>
+                    <li>Flashcards pour Anki</li>
+                  </ul>
+                  <a class="partiels-extrait" href="assets/apercus/finition-20261114/fiche-travail-l3-s1/9fe365dced2b-p026.webp" target="_blank" rel="noopener" aria-describedby="pack-partiel-l3-travail-contrats-speciaux-travail-supports">Voir un extrait de la fiche complète<span class="sr-only"> (nouvel onglet)</span></a>
+                </div>
+                <div class="partiels-supports__matiere">
+                  <h4 class="partiels-supports__titre" id="pack-partiel-l3-travail-contrats-speciaux-contrats-speciaux-supports">Contrats spéciaux</h4>
+                  <ul>
+                    <li>Fiche complète avec son plan et ses cartes mentales</li>
+                    <li>Cas pratiques corrigés</li>
+                    <li>Majeures préparées avec leur plan</li>
+                    <li>Flashcards et QCM en PDF</li>
+                    <li>Flashcards pour Anki</li>
+                  </ul>
+                  <a class="partiels-extrait" href="assets/apercus/finition-20261114/fiche-contrats-speciaux-l3/ec80d1cb07b7-p102.webp" target="_blank" rel="noopener" aria-describedby="pack-partiel-l3-travail-contrats-speciaux-contrats-speciaux-supports">Voir un extrait de la fiche complète<span class="sr-only"> (nouvel onglet)</span></a>
+                </div>
+              </div>
+            </details>
             <button type="button" class="btn btn--primary" data-tjd-produit="pack-partiel-l3-travail-contrats-speciaux">Acheter le pack · 69,90 €</button>
           </article>
           <article class="partiels-carte" id="pack-partiel-l3-societes-contrats-speciaux">
             <img src="assets/covers/pack-partiel-l3-societes-contrats-speciaux.webp" width="960" height="540" alt="" loading="lazy">
             <h3>Droit des sociétés et contrats spéciaux</h3>
+            <details class="partiels-supports">
+              <summary>Voir les supports inclus</summary>
+              <div class="partiels-supports__contenu">
+                <p class="partiels-supports__total">16 PDF et 2 fichiers Anki</p>
+                <div class="partiels-supports__matiere">
+                  <h4 class="partiels-supports__titre" id="pack-partiel-l3-societes-contrats-speciaux-societes-supports">Droit des sociétés</h4>
+                  <ul>
+                    <li>Fiche complète avec son plan et ses cartes mentales</li>
+                    <li>Cas pratiques corrigés</li>
+                    <li>Majeures préparées avec leur plan</li>
+                    <li>Flashcards et QCM en PDF</li>
+                    <li>Flashcards pour Anki</li>
+                  </ul>
+                  <a class="partiels-extrait" href="assets/apercus/finition-20261114/fiche-societes-l3-s1/633b43e2c1e8-p068.webp" target="_blank" rel="noopener" aria-describedby="pack-partiel-l3-societes-contrats-speciaux-societes-supports">Voir un extrait de la fiche complète<span class="sr-only"> (nouvel onglet)</span></a>
+                </div>
+                <div class="partiels-supports__matiere">
+                  <h4 class="partiels-supports__titre" id="pack-partiel-l3-societes-contrats-speciaux-contrats-speciaux-supports">Contrats spéciaux</h4>
+                  <ul>
+                    <li>Fiche complète avec son plan et ses cartes mentales</li>
+                    <li>Cas pratiques corrigés</li>
+                    <li>Majeures préparées avec leur plan</li>
+                    <li>Flashcards et QCM en PDF</li>
+                    <li>Flashcards pour Anki</li>
+                  </ul>
+                  <a class="partiels-extrait" href="assets/apercus/finition-20261114/fiche-contrats-speciaux-l3/ec80d1cb07b7-p102.webp" target="_blank" rel="noopener" aria-describedby="pack-partiel-l3-societes-contrats-speciaux-contrats-speciaux-supports">Voir un extrait de la fiche complète<span class="sr-only"> (nouvel onglet)</span></a>
+                </div>
+              </div>
+            </details>
             <button type="button" class="btn btn--primary" data-tjd-produit="pack-partiel-l3-societes-contrats-speciaux">Acheter le pack · 69,90 €</button>
           </article>
         </div>

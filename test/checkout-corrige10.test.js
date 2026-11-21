@@ -3,6 +3,9 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+const { DATE_HORS_OFFRE, fixerHorlogePaiement } = require('../test-support/horloge-paiement');
+
+test.beforeEach(fixerHorlogePaiement);
 
 const PROMO = {
   id: 'promo_corrige_test', code: 'CORRIGE10', active: true,
@@ -77,7 +80,7 @@ test('le code CORRIGE10 conservé après un lien ouvre une majeure sans lui acco
       innerWidth: 390, innerHeight: 844, crypto: { randomUUID: () => 'test-corrige10-lien' }
     };
     vm.runInNewContext(source, {
-      window, URLSearchParams,
+      window, URLSearchParams, Date,
       document: {
         readyState: 'loading', cookie: '', addEventListener() {},
         documentElement: { clientWidth: 390, clientHeight: 844 }, querySelectorAll: () => [bouton]
@@ -177,7 +180,7 @@ test('CORRIGE10 réduit les majeures de contrats seules et dans un panier mixte'
 const PROMOS_INUTILISABLES = [
   ['absente', null],
   ['inactive', { ...PROMO, active: false }],
-  ['expirée', { ...PROMO, expires_at: Math.floor(Date.now() / 1000) - 1 }],
+  ['expirée', { ...PROMO, expires_at: Math.floor(DATE_HORS_OFFRE / 1000) - 1 }],
   ['épuisée', { ...PROMO, max_redemptions: 1, times_redeemed: 1 }],
   ['coupon invalide', { ...PROMO, promotion: { coupon: { ...PROMO.promotion.coupon, valid: false } } }],
   ['coupon différent de 10 %', { ...PROMO, promotion: { coupon: { ...PROMO.promotion.coupon, percent_off: 20 } } }],

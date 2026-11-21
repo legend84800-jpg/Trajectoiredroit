@@ -2,6 +2,7 @@
 // Stripe avec les champs cadeau, livraison à l'étudiant et confirmation au parent.
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const { fixerHorlogePaiement } = require("../test-support/horloge-paiement");
 const fs = require("node:fs");
 const path = require("node:path");
 const PRODUITS = require("../api/_produits");
@@ -141,7 +142,8 @@ test("le formulaire cadeau valide l'email et limite le prénom et le message", (
   assert.ok(!/\u0007/.test(cadeau.message));
 });
 
-test("la session Stripe d'un cadeau porte l'étudiant en metadata et parle au parent", async () => {
+test("la session Stripe d'un cadeau porte l'étudiant en metadata et parle au parent", async (t) => {
+  fixerHorlogePaiement(t);
   const { res, appels } = await creerCheckout({
     produitId: "pack-ultra-l1-s1-revision",
     cadeauEmail: "Lea.Martin@example.com",
@@ -166,7 +168,8 @@ test("la session Stripe d'un cadeau porte l'étudiant en metadata et parle au pa
   assert.match(options.idempotencyKey, /-cadeau$/);
 });
 
-test("un cadeau payé en 3 fois reste un abonnement borné et garde le cadeau", async () => {
+test("un cadeau payé en 3 fois reste un abonnement borné et garde le cadeau", async (t) => {
+  fixerHorlogePaiement(t);
   const { appels } = await creerCheckout({
     produitId: "pack-ultra-l3-s1-revision",
     echeances: 3,
@@ -197,7 +200,8 @@ test("un cadeau refuse un email invalide ou un produit autre qu'un Pack Ultra", 
   assert.equal(fiche.appels.length, 0);
 });
 
-test("un Pack Ultra acheté pour soi en 2 fois indique l’accès dans Mon compte", async () => {
+test("un Pack Ultra acheté pour soi en 2 fois indique l’accès dans Mon compte", async (t) => {
+  fixerHorlogePaiement(t);
   const { res, appels } = await creerCheckout({ produitId: "pack-ultra-l1-s1-revision", echeances: 2 });
   assert.equal(res.statusCode, 200);
   assert.equal(appels.length, 1);
