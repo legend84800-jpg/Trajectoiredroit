@@ -50,7 +50,8 @@ function preparerPublication(racine = path.resolve(__dirname, '..')) {
   if (!fichiers.includes('index.html')) throw new Error('La page d’accueil index.html est absente.');
   const versionsRessources = new Map([
     'assets/style.css', 'assets/js/cookie-consent.js', 'assets/js/main.js', 'assets/js/achat.js',
-    'assets/js/portalis.js', 'assets/js/recueil-selectionne.js', 'assets/js/prix-promotion.js', 'assets/prix-promotion.css',
+    'assets/js/catalogue.js', 'assets/js/portalis.js', 'assets/js/recueil-selectionne.js',
+    'assets/js/prix-promotion.js', 'assets/prix-promotion.css',
   ]
     .filter((ressource) => fichiers.includes(ressource))
     .map((ressource) => [ressource, createHash('sha256').update(fs.readFileSync(path.join(racine, ressource))).digest('hex').slice(0, 8)]));

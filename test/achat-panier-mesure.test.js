@@ -79,12 +79,20 @@ for (const panne of ['ga4', 'matomo']) {
   });
 }
 
-async function executerAchatDirect(panne) {
+async function executerAchatDirect(panne, complementBarreCoche) {
   const appels = [];
   const bouton = {
     textContent: 'Acheter · 19,99 €', disabled: false,
     getAttribute: () => null,
   };
+  const produitId = complementBarreCoche === undefined ? 'fiche-da-l2-s1' : 'fiche-contrats-l2-s1';
+  const caseComplement = { checked: complementBarreCoche };
+  if (complementBarreCoche !== undefined) {
+    bouton.tjdOffreAvecComplement = { getAttribute: (nom) => ({
+      'data-tjd-bump': 'fiche-obligations-l2-s2',
+      'data-tjd-bump-checkbox': 'bump-contrats-s1',
+    }[nom] || null) };
+  }
   const gtag = (_type, evenement) => {
     appels.push(evenement);
     if (panne === 'ga4' && evenement === 'checkout_session_created') throw new Error('GA4 indisponible');
@@ -113,6 +121,7 @@ async function executerAchatDirect(panne) {
     addEventListener: () => {},
     documentElement: { clientWidth: 390, clientHeight: 800 },
     querySelectorAll: () => [bouton],
+    getElementById: (id) => id === 'bump-contrats-s1' ? caseComplement : null,
   };
   const localStorage = {
     getItem: (cle) => cle === 'tjd_email_achat' ? JSON.stringify({ email: 'etudiant@example.invalid', accord: false }) : null,
@@ -127,7 +136,7 @@ async function executerAchatDirect(panne) {
     window, document, localStorage, sessionStorage: { getItem: () => null },
     fetch, gtag, URLSearchParams, alert: () => appels.push('alerte'),
   });
-  window.tjdAcheter('fiche-da-l2-s1', bouton);
+  window.tjdAcheter(produitId, bouton);
   await new Promise(setImmediate);
   return { appels, bouton };
 }
@@ -139,6 +148,16 @@ test('l’achat direct ouvre Stripe sans les 500 ms d’attente précédents', a
   assert.ok(!appels.includes('attente'));
   assert.equal(appels.at(-1), 'redirige:https://checkout.stripe.com/test');
   assert.equal(bouton.textContent, 'Chargement…');
+});
+
+test('la barre transmet le complément seulement quand la case de l’offre principale est cochée', async () => {
+  for (const coche of [false, true]) {
+    const { appels } = await executerAchatDirect(undefined, coche);
+    const corps = JSON.parse(appels.find((appel) => appel.startsWith('corps:')).slice(6));
+    assert.equal(corps.produitId, 'fiche-contrats-l2-s1');
+    assert.equal(corps.bumpId, coche ? 'fiche-obligations-l2-s2' : undefined);
+    assert.equal(appels.at(-1), 'redirige:https://checkout.stripe.com/test');
+  }
 });
 
 for (const panne of ['ga4', 'matomo', 'ga4-clic', 'matomo-clic']) {

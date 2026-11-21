@@ -176,6 +176,45 @@ test('le catalogue de fiches reste cherchable sans accents et avec des mots dans
   assert.equal(e.cartes.length, 24);
 });
 
+test('une année tapée sélectionne le niveau de la fiche, même après un choix mémorisé', () => {
+  const memoire = new Map([['tjd_catalogue_niveau', 'L3']]);
+  const e = environnement({
+    cartesReelles: cartesPage('formations.html'),
+    memoire,
+    url: 'https://trajectoiredroit.com/formations.html?utm_source=cours#cours-l3'
+  });
+  assert.equal(e.niveaux[3].getAttribute('aria-pressed'), 'true');
+  e.chercher('droit administratif L2 S2');
+  assert.deepEqual(e.visibles(), ['fiche-da-l2-s2']);
+  assert.equal(e.niveaux[2].getAttribute('aria-pressed'), 'true');
+  assert.equal(e.niveaux[2].classList.contains('active'), true);
+  assert.equal(e.niveaux[3].getAttribute('aria-pressed'), 'false');
+  assert.equal(e.vide.hidden, true);
+  assert.equal(e.window.location.searchParams.get('niveau'), 'l2');
+  assert.equal(e.window.location.searchParams.get('utm_source'), 'cours');
+  assert.equal(e.window.location.hash, '#cours-l2');
+  assert.equal(e.memoire.get('tjd_catalogue_niveau'), 'L2');
+});
+
+test('une recherche ambiguë ou effacée conserve le niveau affiché et le filtre reste manuel', () => {
+  const e = environnement();
+  e.niveau('L3');
+  e.chercher('L1 L3');
+  assert.deepEqual(e.visibles(), ['contrats']);
+  assert.equal(e.niveaux[3].getAttribute('aria-pressed'), 'true');
+
+  e.chercher('Licence 2 L2');
+  assert.deepEqual(e.visibles(), ['administratif', 'penal']);
+  e.chercher('');
+  assert.deepEqual(e.visibles(), ['administratif', 'penal']);
+  assert.equal(e.niveaux[2].getAttribute('aria-pressed'), 'true');
+
+  e.niveau('L1');
+  e.chercher('personnes');
+  assert.deepEqual(e.visibles(), ['personnes']);
+  assert.equal(e.window.location.searchParams.get('niveau'), 'l1');
+});
+
 test('le semestre recherché correspond à la fiche et exclut les offres d’ajout', () => {
   const e = environnement({ cartesReelles: cartesPage('formations.html') });
   e.niveau('L2');

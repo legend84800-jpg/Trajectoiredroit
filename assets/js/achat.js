@@ -84,7 +84,8 @@
     BOUTONS_PAIEMENT.forEach(function (entree) {
       entree.bouton.tjdPaiementEnCours = false;
       entree.bouton.disabled = false;
-      entree.bouton.textContent = entree.texte;
+      if (entree.bouton.tjdActualiserAchatBarre) entree.bouton.tjdActualiserAchatBarre();
+      else entree.bouton.textContent = entree.texte;
     });
     BOUTONS_PAIEMENT = [];
   });
@@ -389,7 +390,7 @@
     TEXTES_ORIGINAUX[idx] = TEXTES_ORIGINAUX[idx] || texteSansAffichageRemise(btnEl).trim();
 
     // Order bump : si le bouton référence une checkbox cochée, on ajoute ce produit à la même session.
-    var complement = complementPour(btnEl, produitId);
+    var complement = complementPour(btnEl.tjdOffreAvecComplement || btnEl, produitId);
     var bumpActif = complement && complement.caseComplement.checked;
 
     // Identifiants Meta transmis uniquement si le visiteur a accepté les cookies,
@@ -476,7 +477,8 @@
           });
           messagePaiement(btnEl, erreur);
           btnEl.disabled = false;
-          btnEl.textContent = TEXTES_ORIGINAUX[idx] || 'Acheter';
+          if (btnEl.tjdActualiserAchatBarre) btnEl.tjdActualiserAchatBarre();
+          else btnEl.textContent = TEXTES_ORIGINAUX[idx] || 'Acheter';
         });
     }
   }
@@ -1199,5 +1201,65 @@
     document.addEventListener('DOMContentLoaded', initPanier);
   } else {
     initPanier();
+  }
+
+  function initAchatsBarresAvecComplement() {
+    var offres = Array.from(document.querySelectorAll('main [data-tjd-produit][data-tjd-bump-checkbox]'));
+    if (!offres.length) return;
+    document.querySelectorAll('.sticky-cta-bar [data-tjd-produit], .sticky-cta [data-tjd-produit]').forEach(function (bouton) {
+      var produitId = bouton.getAttribute('data-tjd-produit');
+      var correspondances = offres.filter(function (offre) {
+        return offre.getAttribute('data-tjd-produit') === produitId;
+      });
+      if (correspondances.length !== 1 || bouton.hasAttribute('data-tjd-bump-checkbox')) return;
+      var offre = correspondances[0];
+      var complement = complementPour(offre, produitId);
+      if (!complement) return;
+      var label = complement.caseComplement.closest('label');
+      var titreComplement = label && label.querySelector('strong');
+      var texteInitial = texteSansAffichageRemise(bouton);
+      var prixFiche = euroVersCentimes(texteInitial);
+      var texteComplement = label && texteSansAffichageRemise(label);
+      var prixComplement = euroVersCentimes(texteComplement);
+      if (!titreComplement || prixFiche == null || prixComplement == null) return;
+
+      var nomComplement = titreComplement.textContent.trim().replace(/^Semestre ([12]).*$/i, 'S$1');
+      var nomAccessible = texteComplement.trim().replace(/^Ajouter aussi\s+/i, '').split(/\s*\(\+/)[0];
+      var semestre = produitId.match(/-s([12])$/);
+      var deuxSemestres = semestre && /^S[12]$/.test(nomComplement) && nomComplement !== 'S' + semestre[1];
+      var libelleAvecComplement = deuxSemestres ? 'S1 + S2' : 'Fiche et ' + nomComplement;
+      var etiquetteAvecComplement = deuxSemestres
+        ? 'Acheter les fiches S1 et S2'
+        : 'Acheter la fiche complète et ' + nomAccessible;
+      var etiquetteInitiale = bouton.getAttribute('aria-label');
+      var barre = bouton.closest('.sticky-cta-bar, .sticky-cta');
+      var titre = barre.querySelector('.sticky-cta-bar__text strong');
+      if (titre) {
+        titre.textContent = texteSansAffichageRemise(titre).replace(/\s*·\s*[\d]+[,.]?\d{0,2}\s*€\s*$/, '');
+      }
+
+      // Le paiement direct reprend la case du bouton principal. Les liens panier gardent leur choix existant.
+      bouton.tjdOffreAvecComplement = offre;
+      bouton.tjdActualiserAchatBarre = function () {
+        if (bouton.tjdPaiementEnCours) return;
+        var avecComplement = complement.caseComplement.checked;
+        var prix = centimesVersEuro(prixFiche + prixComplement).replace(' ', '\u00a0');
+        bouton.textContent = avecComplement ? libelleAvecComplement + ' · ' + prix : texteInitial;
+        if (avecComplement) bouton.setAttribute('aria-label', etiquetteAvecComplement + ' · ' + prix);
+        else if (etiquetteInitiale) bouton.setAttribute('aria-label', etiquetteInitiale);
+        else bouton.removeAttribute('aria-label');
+      };
+      complement.caseComplement.addEventListener('change', function () {
+        var message = bouton.parentNode.querySelector('.tjd-checkout-message');
+        if (message) message.remove();
+        bouton.tjdActualiserAchatBarre();
+      });
+      bouton.tjdActualiserAchatBarre();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAchatsBarresAvecComplement);
+  } else {
+    initAchatsBarresAvecComplement();
   }
 })();

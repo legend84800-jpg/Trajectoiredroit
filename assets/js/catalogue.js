@@ -80,7 +80,7 @@
       memoriserNiveau(etat.niveau);
       actualiserLiens();
     }
-    function appliquerFiltres() {
+    function appliquerFiltres(depuisRecherche) {
       var semestres = [], niveauxRecherches = [];
       var texte = normaliser(recherche.value)
         .replace(/\bl([123])s([12])\b/g, 'l$1 s$2')
@@ -92,6 +92,13 @@
           semestres.push(semestre);
           return ' ';
         });
+      var niveauSaisi = niveauxRecherches[0];
+      if (depuisRecherche && racine.getAttribute('data-catalogue-format') === 'fiches'
+          && niveauSaisi && niveauSaisi !== etat.niveau
+          && niveauxRecherches.every(function (niveau) { return niveau === niveauSaisi; })) {
+        etat.niveau = niveauSaisi;
+        actualiserAdresse(false);
+      }
       var mots = texte.match(/[\p{L}\p{N}]+/gu) || [];
       var nombre = 0;
       cartes.forEach(function (carte) {
@@ -132,7 +139,7 @@
         appliquerFiltres();
       });
     });
-    recherche.addEventListener('input', appliquerFiltres);
+    recherche.addEventListener('input', function () { appliquerFiltres(true); });
     if (reset) reset.addEventListener('click', function () {
       etat.niveau = 'tous'; etat.matiere = 'tous'; recherche.value = '';
       appliquerFiltres(); actualiserAdresse(false); recherche.focus();

@@ -117,8 +117,9 @@
       const id = element.dataset.tjdProduit;
       const prix = catalogue?.[id];
       if (!prix) return affiche;
-      const ajout = element.dataset.tjdBumpCheckbox;
-      const supplement = ajout && document.getElementById(ajout)?.checked ? catalogue[element.dataset.tjdBump] : 0;
+      const offre = element.tjdOffreAvecComplement || element;
+      const ajout = offre.dataset.tjdBumpCheckbox;
+      const supplement = ajout && document.getElementById(ajout)?.checked ? catalogue[offre.dataset.tjdBump] : 0;
       const nombre = Number(element.dataset.tjdEcheances);
       return nombre > 1 ? Math.floor(prix / nombre) : prix + (supplement || 0);
     }
