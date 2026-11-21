@@ -695,6 +695,10 @@ window.tjdDialogues = (function () {
 
       var banner = el('div', offrePartiels ? 'urgency-banner urgency-banner--partiels' : 'urgency-banner');
       banner.id = 'urgencyBanner';
+      if (offrePartiels && nomPage === 'formations' && document.getElementById('a-l-unite')) {
+        banner.classList.add('urgency-banner--sur-catalogue');
+        lien = '#a-l-unite';
+      }
       var a = el('a', 'urgency-banner__link');
       a.href = lien;
       suivreClic(a, 'clic-bandeau', idPeriode);

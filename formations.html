@@ -59,6 +59,11 @@
   <link rel="stylesheet" href="assets/comparatif-fiche-cours.css?v=20261002">
   <style>.card--product .product__edition{margin:0;color:var(--navy);font-size:.82rem;font-weight:700}
     #a-l-unite .card--product[id] { scroll-margin-top:96px }
+    #recherche-formations-mobile:empty { display:none }
+    #recherche-formations-mobile .filtre-recherche { margin:18px auto 16px }
+    @media (max-width:768px) {
+      .catalogue-toolbar > .filters:first-child { border-top:0; margin-top:0; padding-top:0 }
+    }
   </style>
   <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
@@ -482,6 +487,7 @@
       <div class="container container--narrow text-center">
         <span class="eyebrow">Les fiches complètes que ta fac ne t'a pas données.</span>
         <h1 class="h1" style="margin-top:12px">Fiches complètes · Toute ta licence de droit, matière par matière.</h1>
+        <div id="recherche-formations-mobile"></div>
         <p class="lead">Chaque fiche complète réunit toute la matière d'un semestre dans un seul PDF. Les couleurs et les schémas aident à repérer la structure du cours, et chaque notion a son exemple. J'ai voulu une fiche agréable à lire et facile à retenir. Les conditions et les exceptions sont donc numérotées une par une, et les mots importants sont en gras.</p>
         <img src="assets/formats/photo-fiche-complete-contrats-l2s1.webp?v=bleu-charte" alt="Fiche complète de Droit des contrats L2 S1 imprimée et posée sur un bureau, la couverture devant et l'introduction au droit des contrats derrière" width="1254" height="836" fetchpriority="high" decoding="async" style="display:block; width:100%; max-width:640px; height:auto; margin:24px auto 8px; border-radius:var(--r-xl); box-shadow:var(--sh-3); border:1px solid var(--border)">
         <div class="trust-row">
@@ -1294,6 +1300,33 @@
 
   <script src="assets/js/main.js?v=909718f7" defer></script>
   <script src="assets/js/catalogue.js?v=ad7d2713" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var catalogue = document.getElementById('a-l-unite');
+      var barre = catalogue.querySelector('.catalogue-toolbar');
+      var recherche = barre.querySelector('.filtre-recherche');
+      var champ = recherche.querySelector('[data-catalogue-recherche]');
+      if (champ.disabled) return;
+
+      var emplacement = document.getElementById('recherche-formations-mobile');
+      var mobile = window.matchMedia('(max-width: 768px)');
+      function placerRecherche() {
+        if (mobile.matches) emplacement.appendChild(recherche);
+        else barre.prepend(recherche);
+      }
+      placerRecherche();
+      mobile.addEventListener('change', placerRecherche);
+
+      var compteur = catalogue.querySelector('[data-catalogue-compteur]');
+      champ.setAttribute('enterkeyhint', 'search');
+      champ.addEventListener('keydown', function (evenement) {
+        if (!mobile.matches || evenement.key !== 'Enter' || evenement.isComposing || !champ.value.trim()) return;
+        compteur.setAttribute('tabindex', '-1');
+        compteur.focus({ preventScroll: true });
+        catalogue.scrollIntoView({ block: 'start' });
+      });
+    });
+  </script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */

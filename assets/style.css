@@ -670,14 +670,15 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
 .card--pricing .pricing__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px }
 .card--pricing .pricing__list li { display: flex; gap: 10px; align-items: flex-start; color: var(--body); font-size: .95rem }
 .card--pricing .pricing__list li::before { content: "✓"; color: var(--success); font-weight: 700; flex-shrink: 0 }
-.card--featured { border-color: var(--blue-600); border-width: 2px; box-shadow: var(--sh-3); transform: translateY(-8px) }
-/* Carte produit mise en avant : sans vignette, on laisse le badge "LE PLUS POPULAIRE" dépasser (sinon overflow:hidden le coupe) */
+.card--featured { position: relative; isolation: isolate; border-color: var(--blue-600); border-width: 2px; box-shadow: var(--sh-3); transform: translateY(-8px) }
+/* Laisser le badge de la carte dépasser de son bord supérieur. */
 .card--product.card--featured { overflow: visible }
+.card--product.card--featured .product__thumb .badge--format { top: 22px }
 .card--featured::before {
   content: "LE PLUS POPULAIRE";
-  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%); z-index: 3;
   background: var(--blue-600); color: var(--white);
-  font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+  font-size: .72rem; font-weight: 700; letter-spacing: .08em; white-space: nowrap;
   padding: 5px 14px; border-radius: var(--r-pill);
 }
 
@@ -1906,8 +1907,14 @@ html .urgency-banner.urgency-banner--partiels {
   .urgency-banner--partiels .urgency-banner__link { gap: 7px 9px; max-width: none; }
 }
 @media (max-width: 460px) {
+  .urgency-banner--partiels .urgency-banner__label { flex: 1 0 calc(100% - 100px); }
   .urgency-banner--partiels .urgency-banner__countdown-group { font-size: .75rem; }
   .urgency-banner--partiels .urgency-banner__close { top: 24px; }
+  .urgency-banner--partiels .urgency-banner__countdown-label {
+    position: absolute; width: 1px; height: 1px; padding: 0; border: 0;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  .urgency-banner--sur-catalogue .urgency-banner__cta { display: none; }
 }
 
 /* ===== 10. HERO ===== */
