@@ -48,10 +48,12 @@ function preparerPublication(racine = path.resolve(__dirname, '..')) {
     if (nom.endsWith('.html') || FICHIERS_PUBLICS.includes(nom) || DOSSIERS_PUBLICS.includes(nom)) examiner(path.join(racine, nom));
   }
   if (!fichiers.includes('index.html')) throw new Error('La page d’accueil index.html est absente.');
+  const pdfParents = 'assets/downloads/presentation-parents-trajectoire-droit.pdf';
   const versionsRessources = new Map([
     'assets/style.css', 'assets/js/cookie-consent.js', 'assets/js/main.js', 'assets/js/achat.js',
     'assets/js/catalogue.js', 'assets/js/portalis.js', 'assets/js/recueil-selectionne.js',
     'assets/js/prix-promotion.js', 'assets/prix-promotion.css',
+    pdfParents,
   ]
     .filter((ressource) => fichiers.includes(ressource))
     .map((ressource) => [ressource, createHash('sha256').update(fs.readFileSync(path.join(racine, ressource))).digest('hex').slice(0, 8)]));
@@ -68,6 +70,9 @@ function preparerPublication(racine = path.resolve(__dirname, '..')) {
       const htmlVersionne = html.replace(/(assets\/style\.css|assets\/js\/[a-z0-9-]+\.js)\?v=[a-f0-9]+/g, (reference, ressource) => {
         const version = versionsRessources.get(ressource);
         return version ? `${ressource}?v=${version}` : reference;
+      }).replaceAll(`href="${pdfParents}"`, (reference) => {
+        const version = versionsRessources.get(pdfParents);
+        return version ? `href="${pdfParents}?v=${version}"` : reference;
       });
       const avecAchat = /assets\/js\/(?:main|achat|portalis)\.js\b/.test(htmlVersionne);
       const balisesPromotion = scriptPromotion && stylePromotion && avecAchat
