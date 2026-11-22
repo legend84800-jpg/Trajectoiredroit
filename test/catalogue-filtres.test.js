@@ -38,6 +38,7 @@ function environnement({ url = 'https://trajectoiredroit.com/formations.html', m
   });
   cartes[0].style.display = 'flex';
   const recherche = element(), compteur = element(), vide = element(), reset = element();
+  const suggestion = format === 'fiches' ? element() : null;
   const niveaux = ['tous', 'L1', 'L2', 'L3'].map((n) => element({ 'data-catalogue-niveau': n }));
   const matieres = format === 'fiches' ? ['tous', 'civil', 'public', 'penal'].map((m) => element({ 'data-catalogue-matiere': m })) : [];
   const liens = [
@@ -49,7 +50,7 @@ function environnement({ url = 'https://trajectoiredroit.com/formations.html', m
   ];
   const grille = { querySelectorAll: () => cartes };
   const racine = element({ 'data-catalogue-format': format });
-  const controles = { '[data-catalogue-grille]': grille, '[data-catalogue-recherche]': recherche, '[data-catalogue-compteur]': compteur, '[data-catalogue-vide]': vide, '[data-catalogue-reset]': reset };
+  const controles = { '[data-catalogue-grille]': grille, '[data-catalogue-recherche]': recherche, '[data-catalogue-compteur]': compteur, '[data-catalogue-vide]': vide, '[data-catalogue-reset]': reset, '[data-catalogue-suggestion]': suggestion };
   racine.querySelector = (s) => controles[s];
   racine.querySelectorAll = (s) => s === '[data-catalogue-niveau]' ? niveaux : s === '[data-catalogue-matiere]' ? matieres : [];
   const ecouteurs = {};
@@ -66,7 +67,7 @@ function environnement({ url = 'https://trajectoiredroit.com/formations.html', m
   } });
   vm.runInNewContext(source, contexte);
   return {
-    window, cartes, compteur, vide, recherche, reset, niveaux, matieres, liens, memoire, racine,
+    window, cartes, compteur, vide, recherche, reset, niveaux, matieres, liens, memoire, racine, suggestion,
     niveau(nom) { niveaux.find((b) => b.getAttribute('data-catalogue-niveau') === nom).declencher('click'); },
     matiere(nom) { matieres.find((b) => b.getAttribute('data-catalogue-matiere') === nom).declencher('click'); },
     chercher(texte) { recherche.value = texte; recherche.declencher('input'); },
@@ -174,6 +175,62 @@ test('le catalogue de fiches reste cherchable sans accents et avec des mots dans
   e.niveau('L2'); e.chercher('L2 administratif');
   assert.equal(e.visibles().length, 2, nom);
   assert.equal(e.cartes.length, 24);
+});
+
+test('une recherche que le niveau mémorisé masque propose les résultats dans le bon niveau', () => {
+  const e = environnement({
+    cartesReelles: cartesPage('formations.html'),
+    memoire: new Map([['tjd_catalogue_niveau', 'L3']])
+  });
+  e.matiere('public'); e.chercher('droit administratif');
+  assert.deepEqual(e.visibles(), []);
+  assert.equal(e.vide.hidden, true);
+  assert.equal(e.suggestion.hidden, false);
+  assert.equal(e.suggestion.textContent, 'Voir les 2 résultats en L2');
+  assert.equal(e.memoire.get('tjd_catalogue_niveau'), 'L3');
+
+  e.suggestion.declencher('click');
+  assert.deepEqual(e.visibles(), ['fiche-da-l2-s1', 'fiche-da-l2-s2']);
+  assert.equal(e.recherche.value, 'droit administratif');
+  assert.equal(e.matieres[2].getAttribute('aria-pressed'), 'true');
+  assert.equal(e.niveaux[2].getAttribute('aria-pressed'), 'true');
+  assert.equal(e.memoire.get('tjd_catalogue_niveau'), 'L2');
+  assert.equal(e.window.location.searchParams.get('niveau'), 'l2');
+  assert.equal(e.suggestion.hidden, true);
+  assert.equal(e.actif().id, 'fiche-da-l2-s1');
+});
+
+test('la suggestion respecte le semestre et disparaît si la recherche suivante est sans résultat', () => {
+  const e = environnement({ cartesReelles: cartesPage('formations.html') });
+  e.niveau('L3'); e.chercher('droit administratif S2');
+  assert.equal(e.suggestion.textContent, 'Voir le résultat en L2');
+  e.chercher('droit administratif S2 extraterrestre');
+  assert.equal(e.suggestion.hidden, true);
+  assert.equal(e.suggestion.textContent, '');
+  assert.equal(e.vide.hidden, false);
+  e.suggestion.declencher('click');
+  assert.equal(e.niveaux[3].getAttribute('aria-pressed'), 'true');
+});
+
+test('des résultats dans plusieurs années ouvrent Tous sans modifier la matière recherchée', () => {
+  const e = environnement();
+  e.niveau('L2'); e.matiere('civil'); e.chercher('L1 L3');
+  assert.equal(e.suggestion.textContent, 'Voir les 2 résultats dans toutes les années');
+  e.suggestion.declencher('click');
+  assert.deepEqual(e.visibles(), ['personnes', 'contrats']);
+  assert.equal(e.recherche.value, 'L1 L3');
+  assert.equal(e.matieres[1].getAttribute('aria-pressed'), 'true');
+  assert.equal(e.niveaux[0].getAttribute('aria-pressed'), 'true');
+  assert.equal(e.memoire.has('tjd_catalogue_niveau'), false);
+});
+
+test('un autre filtre que le niveau ne déclenche pas la suggestion', () => {
+  const e = environnement();
+  e.niveau('L3'); e.matiere('public');
+  assert.equal(e.suggestion.hidden, true);
+  e.chercher('droit des personnes');
+  assert.equal(e.suggestion.hidden, true);
+  assert.equal(e.vide.hidden, false);
 });
 
 test('une année tapée sélectionne le niveau de la fiche, même après un choix mémorisé', () => {

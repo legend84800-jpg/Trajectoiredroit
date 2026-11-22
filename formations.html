@@ -566,7 +566,10 @@
     <!-- GRID CATALOGUE -->
     <section class="section">
       <div class="container">
-        <p class="text-muted" data-catalogue-vide hidden>Aucun support ne correspond à cette recherche.</p>
+        <div aria-live="polite">
+          <p class="text-muted" data-catalogue-vide hidden>Aucun support ne correspond à cette recherche.</p>
+          <button type="button" class="btn btn--outline" data-catalogue-suggestion style="display:none" hidden></button>
+        </div>
         <div class="grid-3" data-catalogue-grille>
 
           <article id="fiche-da-l2-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L2" data-matiere="public">
@@ -1325,7 +1328,7 @@
   </div>
 
   <script src="assets/js/main.js?v=909718f7" defer></script>
-  <script src="assets/js/catalogue.js?v=ad7d2713" defer></script>
+  <script src="assets/js/catalogue.js?v=d5848ef4" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var catalogue = document.getElementById('a-l-unite');

@@ -424,7 +424,7 @@
 <h2><span class="num">03</span>Ce que votre enfant y gagne</h2>
   <div class="gains">
     <div class="gain"><b>Il retrouve le programme dans les fiches complètes.</b><p>Les fiches complètes reprennent tout le programme de chaque matière, sur une centaine de pages en moyenne. Votre enfant s'en sert donc pendant tout le semestre, en parallèle de ses cours de faculté, pour apprendre ce que ses notes d'amphithéâtre laissent de côté. Chaque condition y est séparée des autres et les mots importants sont en gras. On y trouve aussi des schémas et des récapitulatifs, car cette présentation aide à mémoriser et donne envie de travailler la matière.</p></div>
-    <div class="gain"><b>Il a enfin un modèle de copie pour chaque exercice.</b><p>Le pack contient des cas pratiques, des commentaires d'arrêt et des dissertations entièrement corrigés par un professeur, sur des sujets de ses propres matières. Votre enfant voit donc la méthode appliquée du premier mot au dernier, et il dispose de la correction écrite qu'il n'a presque jamais en TD.</p></div>
+    <div class="gain"><b>Il voit comment rédiger ses exercices.</b><p>Chaque pack comprend des cas pratiques et des commentaires d’arrêt entièrement corrigés. Les dissertations corrigées sont aussi incluses dans les deux semestres de L1 et au second semestre de L2. Votre enfant peut ainsi lire une réponse rédigée en entier sur un sujet de ses matières.</p></div>
     <div class="gain"><b>Les règles de droit sont déjà prêtes pour le cas pratique.</b><p>Dans un cas pratique, la majeure est le passage où l'étudiant écrit la règle de droit, avant de l'appliquer aux faits de l'énoncé. Les majeures préparées lui donnent ces règles déjà rédigées et découpées condition par condition, avec leurs articles et leurs arrêts. Le jour de l'examen, votre enfant doit alors seulement reconnaître la règle qui correspond aux faits, puis vérifier si chacune de ses conditions est remplie. Elles l'aident aussi en commentaire d'arrêt, car il connaît déjà les étapes du raisonnement que le juge a suivies.</p></div>
     <div class="gain"><b>Il vérifie lui-même où il en est, chaque semaine.</b><p>Les flashcards et les QCM lui permettent de tester ses connaissances au fil du semestre. Il repère ainsi ce qu'il a oublié plusieurs semaines avant les partiels, au moment où il a encore le temps de le reprendre.</p></div>
   </div>
@@ -438,9 +438,9 @@
     <li><b>Les fiches complètes</b>, pour apprendre chaque matière pendant tout le semestre, en parallèle des cours de la faculté.</li>
     <li><b>Les majeures préparées</b>, qui donnent la règle de droit prête à appliquer dans un cas pratique.</li>
     <li><b>Les fiches d'arrêt et les fiches de citations</b>, pour apprendre les arrêts du cours et trouver l'accroche d'un commentaire ou d'une dissertation.</li>
-    <li><b>Les cas pratiques, commentaires d'arrêt et dissertations corrigés par un professeur</b>, qui servent de modèle pour chaque exercice.</li>
+    <li><b>Les exercices corrigés</b>, pour lire une copie entièrement rédigée sur un sujet du semestre.</li>
     <li><b>Les flashcards et les QCM</b>, pour s'entraîner et mesurer ses progrès.</li>
-    <li><b>Un podcast et une vidéo pour chaque leçon du cours</b>, que votre enfant écoute ou regarde depuis son espace personnel sur le site, par exemple dans les transports.</li>
+    <li><b>Les leçons en podcast et en vidéo</b>, pour les matières disponibles dans ces formats.</li>
   </ul>
   <p>Votre enfant reçoit tous les documents PDF par email dès le paiement, et il retrouve les podcasts et les vidéos dans son espace personnel sur le site. Les documents comme les podcasts s'ouvrent aussi bien sur ordinateur que sur téléphone, et votre enfant les garde à vie. En outre, les mises à jour qui suivent une réforme ou un nouvel arrêt important sont incluses sans supplément.</p>
 <h2><span class="num">05</span>Ce qu'en disent les parents et les étudiants</h2>
@@ -461,7 +461,7 @@
   <p class="question">Vous hésitez avec des cours particuliers.</p>
   <p>Une heure de cours particulier avec moi coûte 104 €. Le Pack Ultra de L1 semestre 1 coûte 199 €, soit à peu près le prix de deux heures de cours. Pour ce prix, il couvre toutes les matières publiées de ce semestre. Les cours particuliers restent utiles quand un étudiant a besoin qu'on reprenne ses copies avec lui, et j'en donne toujours. Vous pouvez donc commencer par le pack, puis ajouter quelques heures de cours si votre enfant bloque sur une matière.</p>
 <h2><span class="num">07</span>Le prix et le paiement</h2>
-  <p>Le prix dépend du semestre. Vous payez le pack une seule fois, et rien ne se renouvelle ensuite.</p>
+  <p>Le tableau compare le prix de chaque Pack Ultra au prix des mêmes ressources achetées séparément.</p>
   <table>
     <thead><tr><th>Pack Ultra</th><th>Ressources</th><th>Prix</th><th>En 3 fois sans frais</th><th>Prix à l'unité</th></tr></thead>
     <tbody>
@@ -487,6 +487,7 @@
         <option value="pack-ultra-l2-s2-revision" data-prix="19900">L2, semestre 2 (199 €)</option>
         <option value="pack-ultra-l3-s1-revision" data-prix="22900">L3, semestre 1 (229 €)</option>
       </select>
+      <a class="form__hint" id="offrirContenu" href="pack-ultra.html#pack-ultra-detail-l1-s1">Voir les ressources du semestre choisi</a>
     </div>
     <fieldset class="offrir__echeances">
       <legend class="form__label">Le paiement</legend>
@@ -606,6 +607,7 @@
     var form = document.getElementById('offrirForm');
     if (!form) return;
     var pack = document.getElementById('offrirPack');
+    var contenu = document.getElementById('offrirContenu');
     var email = document.getElementById('offrirEmail');
     var confirmation = document.getElementById('offrirEmailConfirmation');
     var prenom = document.getElementById('offrirPrenom');
@@ -622,6 +624,8 @@
     }
     function majEcheances() {
       var prix = parseInt(pack.options[pack.selectedIndex].getAttribute('data-prix'), 10);
+      var semestre = pack.value.replace(/^pack-ultra-|-revision(?:-2)?$/g, '');
+      contenu.href = 'pack-ultra.html#pack-ultra-detail-' + semestre;
       form.querySelector('[data-echeances-libelle="1"]').textContent = 'En une fois, ' + euros(prix);
       [2, 3].forEach(function (n) {
         form.querySelector('[data-echeances-libelle="' + n + '"]').textContent =

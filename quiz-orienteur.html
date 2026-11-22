@@ -494,7 +494,7 @@
   <script src="assets/js/main.js?v=909718f7" defer></script>
   <script src="assets/js/achat.js?v=81a894f1"></script>
   <script>
-    // Références de la fiche et des flashcards, ou questions du guide si les flashcards sont indisponibles.
+    // Supports disponibles pour chaque matière et chaque semestre.
     var MATIERES = {
       L1: [
         {nom:"Introduction au droit", sem:"S1", fiche:"fiche-intro-droit-l1", fc:"flashcards-qcm-intro-droit-l1"},
@@ -518,6 +518,7 @@
       L3: [
         {nom:"Droit commercial", sem:"S1", fiche:"fiche-commercial-l3-s1", fc:"flashcards-qcm-commercial-l3-s1"},
         {nom:"Droit des sociétés", sem:"S1", fiche:"fiche-societes-l3-s1", fc:"flashcards-qcm-societes-l3-s1"},
+        {nom:"Droit des sociétés", sem:"S2", fiche:"fiche-societes-l3-s2", casPratiques:{id:"cas-pratique-societes-l3-s2", nombre:12, partiels:4}, arretsDansFiche:true},
         {nom:"Droit du travail", sem:"S1", fiche:"fiche-travail-l3-s1", fc:"flashcards-qcm-travail-l3-s1"},
         {nom:"Contrats spéciaux", sem:"", fiche:"fiche-contrats-speciaux-l3", fc:"flashcards-qcm-contrats-speciaux-l3"},
         {nom:"Procédure pénale", sem:"", fiche:"fiche-procedure-penale-l3", guide:"procedure-penale-l3.html#teste-toi"}
@@ -605,6 +606,8 @@
       var m = reponses.matiere;
       var obj = reponses.objectif;
       var ech = reponses.echeance;
+      var casPratiques = m.casPratiques;
+      var lienCasPratiques = casPratiques && 'cas-pratiques-corriges.html?matiere=' + casPratiques.id + '#recueils-cas-pratiques';
       var eyebrow = document.getElementById('resultEyebrow');
       var title = document.getElementById('resultTitle');
       var lead = document.getElementById('resultLead');
@@ -620,13 +623,23 @@
         ctaMain.innerHTML = boutonAchat(m.fiche, 'Acheter la fiche', '19,99 €');
         if (ech === 'proche' && m.fc) {
           ctaSecondary.innerHTML = "Ton échéance est proche. En complément, les <a href=\"flashcards-qcm.html#" + m.fc + "\">flashcards + QCM</a> de " + m.nom + " te permettent de réviser plus vite juste avant l'examen.";
+        } else if (ech === 'proche' && lienCasPratiques) {
+          ctaSecondary.innerHTML = 'Pour préparer ton partiel, tu peux ensuite traiter <a href="' + lienCasPratiques + '">les cas pratiques corrigés du ' + m.sem + '</a>.';
         } else if (ech === 'debut') {
           ctaSecondary.innerHTML = "Tu commences tout juste le semestre. Le <a href=\"formations.html#pack-" + reponses.niveau.toLowerCase() + "\">pack de l'année</a> couvre toutes les matières de ta " + reponses.niveau + " pour moins cher qu'à l'unité.";
         }
+      } else if (lienCasPratiques && (obj === 'mention' || obj === 'reviser')) {
+        title.textContent = 'Les cas pratiques corrigés du ' + m.sem;
+        lead.textContent = 'Les ' + casPratiques.nombre + ' cas pratiques et les ' + casPratiques.partiels + ' sujets de partiel sont tous corrigés. Traite d’abord un énoncé. Ensuite, compare ton raisonnement avec le corrigé.';
+        ctaMain.innerHTML = boutonLien(lienCasPratiques, 'Voir les cas pratiques corrigés');
       } else if (obj === 'mention') {
         title.textContent = 'Une majeure préparée en ' + m.nom;
         lead.textContent = "La majeure est la règle de droit que tu exposes avant de l'appliquer aux faits. Ici, elle est déjà rédigée condition par condition, avec ses articles et sa jurisprudence. Ce format te fait gagner les points de méthode en cas pratique comme en commentaire.";
         ctaMain.innerHTML = boutonLien('majeures-preparees.html', 'Voir les majeures préparées');
+      } else if (obj === 'arrets' && m.arretsDansFiche) {
+        title.textContent = 'Les arrêts dans la fiche du ' + m.sem;
+        lead.textContent = 'La fiche présente les décisions avec les règles du cours qu’elles illustrent.';
+        ctaMain.innerHTML = boutonLien('formations.html#' + m.fiche, 'Voir la fiche du ' + m.sem);
       } else if (obj === 'arrets') {
         title.textContent = 'Les fiches d\'arrêt de ' + m.nom;
         lead.textContent = "Chaque fiche reprend un grand arrêt de la matière. Elle en donne les faits et la procédure, puis elle explique la solution et ce qu'elle a changé au droit. Tu peux ainsi connaître ces arrêts par cœur avant l'examen.";

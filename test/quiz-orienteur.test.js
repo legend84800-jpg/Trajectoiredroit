@@ -42,6 +42,7 @@ function quiz() {
       }
       return {
         titre: getElementById("resultTitle").textContent,
+        conseil: getElementById("resultLead").textContent,
         cta: getElementById("ctaMain").innerHTML,
         complement: getElementById("ctaSecondary").innerHTML,
       };
@@ -49,7 +50,7 @@ function quiz() {
   };
 }
 
-test("chaque matière du quiz renvoie aux flashcards disponibles ou aux questions du guide", () => {
+test("chaque matière du quiz renvoie à des supports disponibles", () => {
   for (const matiere of Object.values(quiz().matieres).flat()) {
     const fiche = produits[matiere.fiche];
     assert.ok(fiche && !fiche.venteSuspendue, matiere.fiche);
@@ -62,6 +63,16 @@ test("chaque matière du quiz renvoie aux flashcards disponibles ou aux question
     }
 
     assert.equal(matiere.fc, undefined, matiere.nom);
+    if (matiere.casPratiques) {
+      const id = matiere.casPratiques.id;
+      const casCorriges = produits[id];
+      assert.ok(casCorriges && !casCorriges.venteSuspendue, id);
+      const page = fs.readFileSync(path.join(racine, "cas-pratiques-corriges.html"), "utf8");
+      assert.equal(page.split('id="recueils-cas-pratiques"').length, 2);
+      assert.ok(page.includes(`<option value="${id}"`), id);
+      continue;
+    }
+
     const [page, ancre] = matiere.guide.split("#");
     assert.equal(ancre, "teste-toi");
     const guide = fs.readFileSync(path.join(racine, page), "utf8");
@@ -97,6 +108,44 @@ test("une matière qui a des flashcards garde le bouton d’achat et le conseil 
   const comprendre = quiz().repondre("L2", matiere, "Comprendre et apprendre tout le cours");
   assert.match(comprendre.cta, /data-tjd-produit="fiche-da-l2-s2"/);
   assert.ok(comprendre.complement.includes('href="flashcards-qcm.html#flashcards-qcm-da-l2-s2"'));
+});
+
+const societesS2 = "Droit des sociétés (S2)";
+const lienCasSocietesS2 = "cas-pratiques-corriges.html?matiere=cas-pratique-societes-l3-s2#recueils-cas-pratiques";
+
+test("le quiz distingue les fiches de droit des sociétés des deux semestres", () => {
+  const objectif = "Comprendre et apprendre tout le cours";
+  const s2 = quiz().repondre("L3", societesS2, objectif);
+  assert.match(s2.cta, /data-tjd-produit="fiche-societes-l3-s2"/);
+  assert.equal(s2.complement, `Pour préparer ton partiel, tu peux ensuite traiter <a href="${lienCasSocietesS2}">les cas pratiques corrigés du S2</a>.`);
+
+  const s1 = quiz().repondre("L3", "Droit des sociétés (S1)", objectif);
+  assert.match(s1.cta, /data-tjd-produit="fiche-societes-l3-s1"/);
+  assert.ok(s1.complement.includes('href="flashcards-qcm.html#flashcards-qcm-societes-l3-s1"'));
+});
+
+test("le quiz propose les cas pratiques corrigés du S2 pour réviser ou s’entraîner", () => {
+  for (const objectif of [
+    "Réviser vite en testant ce que je retiens",
+    "Avoir plus de 15/20 en cas pratique et en commentaire",
+  ]) {
+    const resultat = quiz().repondre("L3", societesS2, objectif);
+    assert.equal(resultat.titre, "Les cas pratiques corrigés du S2");
+    assert.equal(resultat.conseil, "Les 12 cas pratiques et les 4 sujets de partiel sont tous corrigés. Traite d’abord un énoncé. Ensuite, compare ton raisonnement avec le corrigé.");
+    assert.ok(resultat.cta.includes(`href="${lienCasSocietesS2}"`));
+    assert.match(resultat.cta, /Voir les cas pratiques corrigés/);
+    assert.doesNotMatch(resultat.cta, /data-tjd-produit|Acheter/);
+  }
+});
+
+test("pour les arrêts de droit des sociétés du S2, le quiz renvoie à la fiche du semestre", () => {
+  const resultat = quiz().repondre("L3", societesS2, "Connaître les arrêts par cœur");
+  const formations = fs.readFileSync(path.join(racine, "formations.html"), "utf8");
+  assert.equal(formations.split('id="fiche-societes-l3-s2"').length, 2);
+  assert.equal(resultat.titre, "Les arrêts dans la fiche du S2");
+  assert.equal(resultat.conseil, "La fiche présente les décisions avec les règles du cours qu’elles illustrent.");
+  assert.match(resultat.cta, /href="formations\.html#fiche-societes-l3-s2"/);
+  assert.match(resultat.cta, /Voir la fiche du S2/);
 });
 
 test("les conseils du quiz ouvrent une offre précise qui existe sur le site", () => {

@@ -83,6 +83,7 @@ p { max-width: 64ch; }
 .matter-option input:disabled ~ span { color: var(--muted); }
 .matter-option input:disabled { cursor: default; }
 .matter-option:has(input:disabled) { cursor: default; background: transparent; }
+.kit-modifier { display: none; margin-top: 8px; min-height: 44px; font-size: 14px; }
 .kit-remplacement { margin: 8px 0 0; color: var(--body); font-size: 14px; line-height: 1.4; }
 .matter-name { color: var(--ink); font-size: 15px; font-weight: 650; line-height: 1.28; }
 .matter-name .format-etiquette { display: table; font-size: 12px; margin-top: 4px; }
@@ -180,6 +181,9 @@ p { max-width: 64ch; }
   .nav > a:not(.button) { display: none; }
   .nav .button { min-height: 36px; padding-inline: 9px; }
   .hero-grid, .config-grid, .faq { grid-template-columns: 1fr; }
+  #matieres[data-kit-compact="true"] .matter-option:has(input:not(:checked)),
+  #matieres[data-kit-compact="true"] ~ .kit-remplacement { display: none; }
+  #matieres[data-kit-compact="true"] + .kit-modifier { display: inline-flex; }
   .hero-grid { gap: 27px; }
   .hero-copy { gap: 16px; }
   .desk { height: min(76vw, 345px); min-height: 242px; border-radius: 17px; }

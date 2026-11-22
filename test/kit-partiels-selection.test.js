@@ -8,7 +8,7 @@ const cleSelection = "tjd_kit_partiels_selection";
 const catalogue = readFileSync(join(__dirname, "../assets/kit-partiels/catalogue.js"), "utf8");
 const composer = readFileSync(join(__dirname, "../assets/kit-partiels/composer.js"), "utf8");
 
-function ouvrirKit(sessionStorage, recherche = "") {
+function ouvrirKit(sessionStorage, recherche = "", ancienHTML = false) {
   let champActif;
   const element = () => ({
     children: [],
@@ -48,6 +48,7 @@ function ouvrirKit(sessionStorage, recherche = "") {
     querySelector(selecteur) {
       if (selecteur === 'input[name="niveau"]:checked') return radios[radios.actif];
       if (selecteur === 'input[name="paiement"]:checked') return paiements[paiements.actif];
+      if (ancienHTML && selecteur === "#kit-modifier") return null;
       if (!champs.has(selecteur)) champs.set(selecteur, element());
       return champs.get(selecteur);
     },
@@ -81,6 +82,7 @@ function ouvrirKit(sessionStorage, recherche = "") {
     get url() { return new URL(location.href); },
     get niveau() { return radios.actif; },
     get matieres() { return listeMatieres.querySelectorAll().filter((input) => input.checked).map((input) => input.value); },
+    get listeRepliee() { return listeMatieres.dataset.kitCompact === "true"; },
     get compteur() { return champs.get("#compteur").textContent; },
     get paiement() { return paiements.actif; },
     get remplacement() { return !champs.get("#kit-remplacement").hidden; },
@@ -103,9 +105,11 @@ function ouvrirKit(sessionStorage, recherche = "") {
     choisirMatiere(code, etat = true) {
       const input = listeMatieres.querySelectorAll().find((item) => item.value === code);
       assert.ok(input && !input.disabled);
+      input.focus();
       input.checked = etat;
       traiterChangement({ target: input });
     },
+    modifierChoix() { champs.get("#kit-modifier").clic(); },
     matiereBloquee(code) {
       return listeMatieres.querySelectorAll().find((input) => input.value === code).disabled;
     },
@@ -255,6 +259,42 @@ test("compte chaque semestre comme un choix et transmet le bon kit même quand l
   assert.deepEqual(ouvrirKit(session).matieres, ["contrats", "administratif-s1"]);
   assert.equal(retour.matiereBloquee("penal"), false);
   assert.equal(retour.commander, false);
+});
+
+test("replie les autres matières à trois choix et permet de modifier la sélection au clavier", () => {
+  const session = stockage();
+  const kit = ouvrirKit(session);
+  const matieres = ["contrats", "administratif-s1", "administratif-s2"];
+  matieres.slice(0, 2).forEach((code) => kit.choisirMatiere(code));
+  assert.equal(kit.listeRepliee, false);
+  assert.equal(kit.pack, "packs-partiels.html#pack-partiel-l2-s1");
+
+  kit.choisirMatiere("administratif-s2");
+  assert.equal(kit.listeRepliee, true);
+  assert.equal(kit.champActif, "administratif-s2");
+  const selectionSauvegardee = session.getItem(cleSelection);
+
+  kit.modifierChoix();
+  assert.equal(kit.listeRepliee, false);
+  assert.equal(kit.champActif, "contrats");
+  assert.equal(kit.matiereBloquee("penal"), true);
+  assert.deepEqual(kit.matieres, matieres);
+  assert.equal(kit.commander, true);
+  assert.equal(session.getItem(cleSelection), selectionSauvegardee);
+
+  kit.choisirMatiere("administratif-s2", false);
+  assert.equal(kit.matiereBloquee("penal"), false);
+  assert.equal(kit.commander, false);
+  kit.choisirMatiere("penal");
+  assert.equal(kit.listeRepliee, true);
+  assert.equal(ouvrirKit(session).listeRepliee, true);
+});
+
+test("garde la liste complète lorsqu’une ancienne page charge le nouveau script", () => {
+  const kit = ouvrirKit(stockage(), "", true);
+  ["contrats", "administratif-s1", "administratif-s2"].forEach((code) => kit.choisirMatiere(code));
+  assert.equal(kit.listeRepliee, false);
+  assert.equal(kit.commander, true);
 });
 
 test("ouvre une sélection vide en L2 lorsque le stockage est invalide ou indisponible", () => {

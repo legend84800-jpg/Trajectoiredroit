@@ -50,8 +50,10 @@
     var matieres = Array.prototype.slice.call(racine.querySelectorAll('[data-catalogue-matiere]'));
     var compteur = racine.querySelector('[data-catalogue-compteur]');
     var vide = racine.querySelector('[data-catalogue-vide]');
+    var suggestion = racine.querySelector('[data-catalogue-suggestion]');
     var reset = racine.querySelector('[data-catalogue-reset]');
     var etat = { niveau: niveauAdresse() || niveauEnregistre() || 'tous', matiere: 'tous' };
+    var niveauSuggere = null;
 
     function actualiserLiens() {
       document.querySelectorAll('a[href]').forEach(function (lien) {
@@ -80,6 +82,20 @@
       memoriserNiveau(etat.niveau);
       actualiserLiens();
     }
+    function proposerNiveau(cartesCorrespondantes) {
+      if (!suggestion) return;
+      var niveauxTrouves = NIVEAUX.slice(1).filter(function (niveau) {
+        return cartesCorrespondantes.some(function (carte) { return carte.niveaux.includes(niveau); });
+      });
+      niveauSuggere = niveauxTrouves[0] || null;
+      if (niveauxTrouves.length > 1) niveauSuggere = 'tous';
+      var nombre = cartesCorrespondantes.length;
+      var resultat = nombre === 1 ? 'le résultat' : 'les ' + nombre + ' résultats';
+      var niveau = niveauSuggere === 'tous' ? ' dans toutes les années' : ' en ' + niveauSuggere;
+      suggestion.textContent = niveauSuggere ? 'Voir ' + resultat + niveau : '';
+      suggestion.hidden = !niveauSuggere;
+      suggestion.style.display = niveauSuggere ? '' : 'none';
+    }
     function appliquerFiltres(depuisRecherche) {
       var semestres = [], niveauxRecherches = [];
       var texte = normaliser(recherche.value)
@@ -100,13 +116,15 @@
         actualiserAdresse(false);
       }
       var mots = texte.match(/[\p{L}\p{N}]+/gu) || [];
+      var cartesCorrespondantes = [];
       var nombre = 0;
       cartes.forEach(function (carte) {
-        var visible = (etat.niveau === 'tous' || carte.niveaux.indexOf(etat.niveau) !== -1)
-          && (etat.matiere === 'tous' || carte.matieres.indexOf(etat.matiere) !== -1)
+        var correspond = (etat.matiere === 'tous' || carte.matieres.indexOf(etat.matiere) !== -1)
           && (!niveauxRecherches.length || niveauxRecherches.some(function (niveau) { return carte.niveaux.indexOf(niveau) !== -1; }))
           && (!semestres.length || semestres.some(function (semestre) { return carte.semestres.includes(semestre); }))
           && mots.every(function (mot) { return carte.texte.indexOf(mot) !== -1; });
+        if (correspond) cartesCorrespondantes.push(carte);
+        var visible = correspond && (etat.niveau === 'tous' || carte.niveaux.includes(etat.niveau));
         carte.element.hidden = !visible;
         carte.element.style.display = visible ? carte.display : 'none';
         if (visible) nombre++;
@@ -122,11 +140,20 @@
         bouton.setAttribute('aria-pressed', String(actif));
       });
       if (compteur) compteur.textContent = nombre + (nombre > 1 ? ' supports affichés sur ' : ' support affiché sur ') + cartes.length;
+      var rechercheRenseignee = mots.length || niveauxRecherches.length || semestres.length;
+      proposerNiveau(nombre === 0 && rechercheRenseignee ? cartesCorrespondantes : []);
       if (vide) {
-        vide.hidden = nombre !== 0;
-        vide.style.display = nombre === 0 ? '' : 'none';
+        vide.hidden = nombre !== 0 || !!niveauSuggere;
+        vide.style.display = vide.hidden ? 'none' : '';
       }
     }
+    if (suggestion) suggestion.addEventListener('click', function () {
+      if (!niveauSuggere) return;
+      etat.niveau = niveauSuggere;
+      appliquerFiltres(); actualiserAdresse(false);
+      var premiereCarte = cartes.find(function (carte) { return !carte.element.hidden; });
+      if (premiereCarte) premiereCarte.element.focus();
+    });
     niveaux.forEach(function (bouton) {
       bouton.addEventListener('click', function () {
         etat.niveau = niveauValide(bouton.getAttribute('data-catalogue-niveau')) || 'tous';
