@@ -16,8 +16,11 @@
       .replace(/\b(?:semestre|s)[\s.-]*([12])\b/g, 's$1');
     var variantes = { qcms: 'qcm', flashcard: 'flashcards', fiches: 'fiche', completes: 'complete' };
     var motsCarte = (requeteCarte.match(/[\p{L}\p{N}]+/gu) || []).map(function (mot) { return Object.hasOwn(variantes, mot) ? variantes[mot] : mot; });
+    var casPratiques = /\bcas\s+pratiques\b/.test(requete) || (/\bcas\s+pratique\b/.test(requete) && /\bs[12]\b/.test(requeteCarte));
     var formatCherche = /\b(?:flashcards?|qcms?)\b/.test(requete) ? 'Flashcards + QCM'
-      : /\bfiches?\b/.test(requete) && !/\bfiches?\s+(?:d\s+)?arrets?\b/.test(requete) ? 'Fiche complète' : '';
+      : /\bfiches?\b/.test(requete) && !/\bfiches?\s+(?:d\s+)?arrets?\b/.test(requete) ? 'Fiche complète'
+      : /\bmajeures?\b/.test(requete) ? 'Majeures préparées'
+      : casPratiques ? 'Cas pratiques corrigés' : '';
     return pages.map(function (item) {
       var carte = item.u.indexOf('#') !== -1;
       var motsCherches = carte ? motsCarte : mots;
@@ -30,7 +33,8 @@
       var score = motsCherches.reduce(function (total, mot) { return total + (titre.indexOf(mot) !== -1 ? 10 : 1); }, 0);
       if (titre.indexOf(carte ? motsCarte.join(' ') : requete) !== -1) score += 20;
       // Une demande de format précis favorise sa carte. Les guides passent d'abord pour une matière seule.
-      var priorite = carte ? (item.c === formatCherche ? -1 : 1) : 0;
+      var nouveauSupport = item.c === 'Majeures préparées' || item.c === 'Cas pratiques corrigés';
+      var priorite = !carte ? 0 : item.c === formatCherche ? -1 : nouveauSupport ? 2 : 1;
       return { item: item, score: score, priorite: priorite };
     }).filter(Boolean).sort(function (a, b) { return a.priorite - b.priorite || b.score - a.score || a.item.t.localeCompare(b.item.t, 'fr'); })
       .map(function (resultat) { return resultat.item; });
@@ -47,7 +51,9 @@
           if (!item || typeof item.t !== 'string' || typeof item.u !== 'string') return false;
           return /^\/(?:[a-z0-9][a-z0-9_-]*\.html)?$/.test(item.u)
             || /^\/flashcards-qcm\.html#flashcards-qcm-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.u)
-            || /^\/formations\.html#(?:cours-)?fiche-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.u);
+            || /^\/formations\.html#(?:cours-)?fiche-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.u)
+            || /^\/majeures-preparees\.html\?niveau=l[123]#maj-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.u)
+            || /^\/cas-pratiques-corriges\.html\?matiere=cas-pratique-[a-z0-9]+(?:-[a-z0-9]+)*#recueils-cas-pratiques$/.test(item.u);
         });
         chargement = null;
         return index;
@@ -110,11 +116,28 @@
       var lien = e.target.closest('a.search-result');
       if (!lien || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
       close();
+      if (lien.origin !== window.location.origin || lien.pathname !== window.location.pathname || !lien.hash) return;
       // Une fiche masquée par un filtre doit redevenir visible même si son ancre est déjà active.
-      if (lien.pathname === '/formations.html' && lien.origin === window.location.origin
-        && lien.pathname === window.location.pathname && lien.hash && lien.hash === window.location.hash) {
+      if (lien.pathname === '/formations.html' && lien.hash === window.location.hash) {
         e.preventDefault();
         window.dispatchEvent(new Event('hashchange'));
+      }
+      if (lien.search !== window.location.search) return;
+      if (lien.pathname === '/cas-pratiques-corriges.html') {
+        var matiere = new URLSearchParams(lien.search).get('matiere');
+        var choix = document.getElementById('choixRecueil');
+        if (choix && choix.value !== matiere && Array.prototype.some.call(choix.options, function (option) { return option.value === matiere; })) {
+          choix.value = matiere;
+          choix.dispatchEvent(new Event('change'));
+        }
+      }
+      if (lien.pathname === '/majeures-preparees.html') {
+        var cible = document.getElementById(lien.hash.slice(1));
+        var filtre = document.querySelector('#grille-majeures input[type="search"]');
+        if (cible && cible.hidden && filtre) {
+          filtre.value = '';
+          filtre.dispatchEvent(new Event('input'));
+        }
       }
     });
     overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });

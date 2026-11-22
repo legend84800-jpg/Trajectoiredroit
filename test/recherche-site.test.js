@@ -35,16 +35,31 @@ test('l’index exclut les pages privées ou techniques et les fichiers absents'
   assert.equal(new Set(index.map((p) => p.u)).size, index.length);
   for (const page of index) {
     assert.doesNotMatch(page.u, /^\/(merci|mon-compte|produit-template|bientot|complements|donner-mon-avis|google)/);
-    const [chemin, ancre] = page.u.split('#');
+    const destination = new URL(page.u, 'https://trajectoiredroit.com');
+    const chemin = destination.pathname, ancre = destination.hash.slice(1);
     const fichier = path.join(racine, chemin === '/' ? 'index.html' : chemin.slice(1));
+    assert.equal(destination.origin, 'https://trajectoiredroit.com', page.u);
     assert.ok(fs.existsSync(fichier), page.u);
     if (ancre) {
       const html = fs.readFileSync(fichier, 'utf8');
+      if (chemin === '/cas-pratiques-corriges.html') {
+        const produit = destination.searchParams.get('matiere');
+        const selecteur = html.match(/<select\b[^>]* id="choixRecueil"[^>]*>([\s\S]*?)<\/select>/)?.[1];
+        assert.equal(ancre, 'recueils-cas-pratiques');
+        assert.ok(html.includes(`id="${ancre}"`), page.u);
+        assert.ok(selecteur?.includes(`value="${produit}"`), page.u);
+        assert.ok(PRODUITS[produit] && !PRODUITS[produit].venteSuspendue, page.u);
+        continue;
+      }
       const carte = Array.from(html.matchAll(/<article\b[^>]*>[\s\S]*?<\/article>/gi), (m) => m[0])
         .filter((article) => article.split('>')[0].includes(` id="${ancre}"`));
       assert.equal(carte.length, 1, page.u);
       assert.ok(carte[0].includes(`data-tjd-produit="${ancre}"`), page.u);
       assert.ok(PRODUITS[ancre] && !PRODUITS[ancre].venteSuspendue, page.u);
+      if (chemin === '/majeures-preparees.html') {
+        assert.ok(carte[0].split('>')[0].includes(`data-niveau="${destination.searchParams.get('niveau').toUpperCase()}"`), page.u);
+        assert.ok(carte[0].split('>')[0].includes('tabindex="-1"'), page.u);
+      }
     }
   }
 });
@@ -103,6 +118,40 @@ test('la recherche QCM reconnaît aussi les années et semestres séparés par u
   for (const repere of ['L1S2', 'L1-S2', 'L1 S2', 'L1 S.2', 'Licence 1 semestre 2']) {
     assert.equal(rechercher(index, 'QCM droit constitutionnel ' + repere)[0].u, '/flashcards-qcm.html#flashcards-qcm-constit-l1-s2');
   }
+});
+
+test('les majeures de droit administratif ouvrent la carte du semestre demandé', () => {
+  assert.equal(index.filter((entree) => entree.c === 'Majeures préparées').length, 18);
+  for (const [semestre, requetes] of [
+    ['s1', ['majeures droit administratif S1', 'Droit administratif S1 majeures préparées']],
+    ['s2', ['majeure préparée en droit administratif L2-S2', 'majeures droit administratif licence 2 semestre 2']],
+  ]) {
+    for (const requete of requetes) {
+      const resultats = Array.from(rechercher(index, requete));
+      assert.equal(resultats.length, 1, requete);
+      assert.equal(resultats[0].u, `/majeures-preparees.html?niveau=l2#maj-da-l2-${semestre}`, requete);
+      assert.equal(resultats[0].t, `Droit administratif · L2 ${semestre.toUpperCase()}`, requete);
+    }
+  }
+  assert.equal(rechercher(index, 'majeures droit des personnes S2').length, 0);
+});
+
+test('les cas pratiques ouvrent le sélecteur public avec le bon semestre', () => {
+  assert.equal(index.filter((entree) => entree.c === 'Cas pratiques corrigés').length, 17);
+  for (const [semestre, requetes] of [
+    ['s1', ['cas pratiques droit administratif S1', 'cas pratiques corrigés droit administratif L2S1']],
+    ['s2', ['cas pratique corrigé droit administratif S2', 'droit administratif cas pratiques corrigés semestre 2']],
+  ]) {
+    for (const requete of requetes) {
+      const resultats = Array.from(rechercher(index, requete));
+      assert.equal(resultats.length, 1, requete);
+      assert.equal(resultats[0].u, `/cas-pratiques-corriges.html?matiere=cas-pratique-da-l2-${semestre}#recueils-cas-pratiques`, requete);
+      assert.equal(resultats[0].t, `Droit administratif · L2 ${semestre.toUpperCase()}`, requete);
+    }
+  }
+  assert.equal(rechercher(index, 'cas pratiques droit des personnes S2').length, 0);
+  assert.equal(rechercher(index, 'cas pratique droit administratif')[0].u, '/exemple-cas-pratique-corrige-droit-administratif.html');
+  assert.deepEqual(Array.from(rechercher(index, 'droit administratif L2 S2').slice(0, 2), (entree) => entree.c), ['Flashcards + QCM', 'Fiche complète']);
 });
 
 test('les recherches de guides ou d’arrêts conservent le classement des pages', () => {

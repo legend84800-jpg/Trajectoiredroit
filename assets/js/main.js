@@ -121,7 +121,8 @@ window.tjdDialogues = (function () {
         else voisin.noeud.setAttribute('aria-hidden', voisin.cache);
       });
       document.body.style.overflow = etat.overflow;
-      if (etat.retour && etat.retour.isConnected) etat.retour.focus();
+      var retour = typeof etat.retour === 'function' ? etat.retour() : etat.retour;
+      if (retour && retour.isConnected) retour.focus();
     }
     document.dispatchEvent(new CustomEvent('tjd:dialogue'));
   }
@@ -168,7 +169,7 @@ window.tjdDialogues = (function () {
       if (chargement) return;
       trigger.setAttribute('aria-busy', 'true');
       chargement = document.createElement('script');
-      chargement.src = '/assets/js/recherche.js?v=99b9d15c';
+      chargement.src = '/assets/js/recherche.js?v=889287e0';
       chargement.onload = function () {
         trigger.removeAttribute('aria-busy');
         var erreur = document.querySelector('.search-load-error'); if (erreur) erreur.remove();
@@ -270,12 +271,11 @@ window.tjdDialogues = (function () {
     function afficherPage(position) {
       var im = pagesViewer[position];
       if (!im) return;
+      positionViewer = position;
       if (im.hidden) {
         closeViewer();
-        im.parentElement.focus();
         return;
       }
-      positionViewer = position;
       viewerImg.src = im.src;
       viewerImg.alt = im.alt;
       viewer.classList.toggle('apercu-zoom--detail', im.getAttribute('data-detail') === '1');
@@ -287,11 +287,14 @@ window.tjdDialogues = (function () {
     }
     function openViewer(im, bouton, src) {
       pagesViewer = Array.from(imgsBox.querySelectorAll('.apercu-page img'));
+      positionViewer = pagesViewer.indexOf(im);
       viewerNav.hidden = pagesViewer.length < 2;
       viewer.classList.toggle('apercu-zoom--plusieurs', !viewerNav.hidden);
       reglerZoom(false);
-      window.tjdDialogues.ouvrir(viewer, viewerClose, bouton);
-      afficherPage(pagesViewer.indexOf(im));
+      window.tjdDialogues.ouvrir(viewer, viewerClose, function () {
+        return pagesViewer[positionViewer]?.parentElement || bouton;
+      });
+      afficherPage(positionViewer);
       try { if (window.gtag) gtag('event', 'apercu_zoom', { image: src.split('/').pop() }); } catch (_) {}
     }
     function closeViewer() { window.tjdDialogues.fermer(viewer); }
