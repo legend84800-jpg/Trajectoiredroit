@@ -131,10 +131,12 @@
       var noms = [];
       var semestres = [];
       var sansSemestre = false;
+      var nombreRessources = 0;
       achatsCourants.forEach(function(achat){
         (achat.produits || []).forEach(function(produit){
           if (produit.nom && noms.indexOf(produit.nom) === -1) noms.push(produit.nom);
           var fichiers = produit.fichiers && produit.fichiers.length ? produit.fichiers : [null];
+          nombreRessources += fichiers.length;
           fichiers.forEach(function(fichier){
             if (fichier && fichier.groupe && noms.indexOf(fichier.groupe) === -1) noms.push(fichier.groupe);
             var explicites = semestresExplicites(produit, fichier);
@@ -150,12 +152,13 @@
       if (achatsSemestre) achatsSemestre.innerHTML = '<option value="">Tous les semestres</option>' + semestres.sort().map(function(semestre){
         return '<option value="' + semestre + '">Semestre ' + semestre + '</option>';
       }).join("") + (sansSemestre ? '<option value="non-precise">Sans semestre indiqué</option>' : "");
-      achatsOutils.hidden = !achatsCourants.length;
+      achatsOutils.hidden = nombreRessources < 2;
     }
     function afficherAchatsFiltres(){
-      var mots = texteRecherche(achatsRecherche && achatsRecherche.value).trim().split(/\s+/).filter(Boolean);
-      var choixProduit = achatsProduit && achatsProduit.value || "";
-      var choixSemestre = achatsSemestre && achatsSemestre.value || "";
+      var outilsMasques = achatsOutils && achatsOutils.hidden;
+      var mots = texteRecherche(!outilsMasques && achatsRecherche && achatsRecherche.value).trim().split(/\s+/).filter(Boolean);
+      var choixProduit = !outilsMasques && achatsProduit && achatsProduit.value || "";
+      var choixSemestre = !outilsMasques && achatsSemestre && achatsSemestre.value || "";
       var nombreFichiers = 0;
       var achats = achatsCourants.reduce(function(resultat, achat){
         var produits = (achat.produits || []).reduce(function(liste, produit){
@@ -177,10 +180,10 @@
         if (produits.length) resultat.push(Object.assign({}, achat, { produits: produits }));
         return resultat;
       }, []);
-      if (achatsResultat) achatsResultat.textContent = achatsCourants.length
+      if (achatsResultat) achatsResultat.textContent = !outilsMasques && achatsCourants.length
         ? achats.length + (achats.length === 1 ? " achat affiché sur " : " achats affichés sur ") + achatsCourants.length
         : "";
-      afficherAchats(achats, mots.length > 0 && nombreFichiers === 1);
+      afficherAchats(achats, nombreFichiers === 1 && (outilsMasques || mots.length > 0));
     }
     [achatsRecherche, achatsProduit, achatsSemestre].forEach(function(champ){
       if (champ) champ.addEventListener(champ === achatsRecherche ? "input" : "change", afficherAchatsFiltres);

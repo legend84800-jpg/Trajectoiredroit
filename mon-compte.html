@@ -85,7 +85,6 @@
     .compte-achats-etat button[hidden]{display:none}
     .compte-achats-etat button:disabled{opacity:.55;cursor:wait}
     .compte-achats-outils{display:grid;gap:12px;margin:20px 0}
-    .compte-achats-outils[hidden]{display:none}
     .compte-achats-outils label{display:flex;flex-direction:column;gap:6px;font-size:.9rem;font-weight:600;color:var(--navy)}
     .compte-achats-filtres{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
     .compte-achats-outils input,.compte-achats-outils select{width:100%;min-width:0;min-height:44px;border:1px solid #64748B;border-radius:8px;padding:10px;background:#fff;color:#0F172A;font:inherit;font-weight:400}
@@ -448,22 +447,24 @@
 
             <div class="compte-box">
               <h2>Mes documents</h2>
-              <p>Tu peux rechercher une matière ou le nom d'un document. Pour un Pack Ultra, le filtre reprend les matières de ton pack.</p>
-              <div class="compte-achats-outils" id="achatsOutils" hidden>
-                <label for="achatsRecherche">Rechercher dans mes achats
-                  <input type="search" id="achatsRecherche" placeholder="Une matière ou un document" autocomplete="off" aria-controls="achatsListe">
-                </label>
-                <div class="compte-achats-filtres">
-                  <label for="achatsProduit">Produit ou matière
-                    <select id="achatsProduit" aria-controls="achatsListe"><option value="">Tous les produits et matières</option></select>
+              <div id="achatsOutils" hidden>
+                <p>Tu peux rechercher une matière ou le nom d'un document. Pour un Pack Ultra, le filtre reprend les matières de ton pack.</p>
+                <div class="compte-achats-outils">
+                  <label for="achatsRecherche">Rechercher dans mes achats
+                    <input type="search" id="achatsRecherche" placeholder="Une matière ou un document" autocomplete="off" aria-controls="achatsListe">
                   </label>
-                  <label for="achatsSemestre">Semestre
-                    <select id="achatsSemestre" aria-controls="achatsListe"><option value="">Tous les semestres</option></select>
-                  </label>
-                </div>
-                <div class="compte-achats-actions">
-                  <p class="compte-achats-resultat" id="achatsResultat" role="status" aria-live="polite" aria-atomic="true"></p>
-                  <button type="button" class="btn btn--ghost btn--sm" id="achatsReinitialiser">Effacer les filtres</button>
+                  <div class="compte-achats-filtres">
+                    <label for="achatsProduit">Produit ou matière
+                      <select id="achatsProduit" aria-controls="achatsListe"><option value="">Tous les produits et matières</option></select>
+                    </label>
+                    <label for="achatsSemestre">Semestre
+                      <select id="achatsSemestre" aria-controls="achatsListe"><option value="">Tous les semestres</option></select>
+                    </label>
+                  </div>
+                  <div class="compte-achats-actions">
+                    <p class="compte-achats-resultat" id="achatsResultat" role="status" aria-live="polite" aria-atomic="true"></p>
+                    <button type="button" class="btn btn--ghost btn--sm" id="achatsReinitialiser">Effacer les filtres</button>
+                  </div>
                 </div>
               </div>
               <ul class="achats-liste" id="achatsListe"></ul>
@@ -539,7 +540,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="assets/js/main.js?v=909718f7" defer></script>
-  <script src="assets/js/compte.js?v=2f7063fe" defer></script>
+  <script src="assets/js/compte.js?v=db599f04" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
 </body>

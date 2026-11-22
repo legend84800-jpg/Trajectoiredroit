@@ -74,6 +74,24 @@ test('le compte garde les achats datés, les groupes et les lecteurs existants',
   assert.equal(b.elements.achatsOutils.hidden, false);
 });
 
+test('un document unique reste directement accessible sans outils de recherche', async () => {
+  const achats = [historique()[1]];
+  const b = navigateur({ achats }); await b.flush();
+  assert.equal(b.elements.achatsOutils.hidden, true);
+  assert.equal(b.elements.achatsResultat.textContent, '');
+  b.chercher('un autre document');
+  assert.match(b.elements.achatsListe.innerHTML, /href="https:\/\/example\.invalid\/personnes\.pdf"/);
+});
+
+test('plusieurs documents d’une même commande gardent les outils de recherche', async () => {
+  const b = navigateur({ achats: historique().slice(0, 1) }); await b.flush();
+  assert.equal(b.elements.achatsOutils.hidden, false);
+  assert.equal(b.elements.achatsResultat.textContent, '1 achat affiché sur 1');
+  b.chercher('vidéo');
+  assert.match(b.elements.achatsListe.innerHTML, /<details open><summary>Droit des contrats<\/summary>/);
+  assert.equal(b.elements.achatsOutils.hidden, false);
+});
+
 test('la recherche ignore les accents et cherche tous les mots dans un groupe du Pack Ultra', async () => {
   const b = navigateur(); await b.flush(); b.chercher('CONTRATS video');
   const rendu = b.elements.achatsListe.innerHTML;

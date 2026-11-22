@@ -418,6 +418,11 @@ test("Vérifier mon paiement relit la même session et attend la confirmation po
   assert.equal(nav.mesures.length, 3);
 });
 
+test("les téléchargements prêts précèdent le rappel concernant les indésirables", () => {
+  assert.match(page, /id="purchaseConfirmedContent" hidden>\s*<div class="card" id="purchaseDownloads" hidden\b/);
+  assert.ok(page.indexOf('id="purchaseDownloads"') < page.indexOf('id="purchaseSpamReminder"'));
+});
+
 test("les PDF et le consentement s’affichent avant le code de remise, y compris si la remise échoue", async () => {
   for (const remiseOk of [true, false]) {
     let repondreRemise;
