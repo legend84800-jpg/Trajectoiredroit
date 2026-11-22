@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Service public et intérêt général, dissertation corrigée</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Dissertation corrigée sur le service public et l’intérêt général en droit administratif L2, avec le plan détaillé, les arrêts à citer et les variantes d’énoncé.">
+  <link rel="canonical" href="https://trajectoiredroit.com/dissertation-service-public-corrigee.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Service public et intérêt général, dissertation corrigée">
+  <meta property="og:description" content="Dissertation corrigée sur le service public et l’intérêt général en droit administratif L2, avec le plan détaillé, les arrêts à citer et les variantes d’énoncé.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/dissertation-service-public-corrigee.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/dissertation-service-public-corrigee.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Service public et intérêt général, dissertation corrigée">
+  <meta name="twitter:description" content="Dissertation corrigée sur le service public et l’intérêt général en droit administratif L2, avec le plan détaillé, les arrêts à citer et les variantes d’énoncé.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/dissertation-service-public-corrigee.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Service public et intérêt général, dissertation corrigée avec plan détaillé",
+      "description": "Dissertation corrigée sur le service public et l’intérêt général en droit administratif L2, avec le plan détaillé, les arrêts à citer et les variantes d’énoncé.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-11-22",
+      "dateModified": "2026-11-22",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Service public et intérêt général, sujet de dissertation de droit administratif L2, corrigé avec son plan détaillé"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/dissertation-service-public-corrigee.html"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/dissertation-service-public-corrigee.webp"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Service public et intérêt général, dissertation corrigée",
+          "item": "https://trajectoiredroit.com/dissertation-service-public-corrigee.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Une activité d’intérêt général est-elle toujours un service public ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. Une activité peut servir la population et rester privée. Dans l’arrêt APREI du 22 février 2007, l’insertion sociale et professionnelle des personnes handicapées est une mission d’intérêt général, mais le législateur a voulu exclure la qualification de service public pour les organismes privés qui gèrent les centres d’aide par le travail. En outre, une association qui agit de sa propre initiative ne reçoit pas de mission de service public. Son activité peut cependant être reconnue comme un service public si une personne publique, en raison de l’importance qu’elle lui reconnaît, exerce un droit de regard sur son organisation, comme l’a jugé l’arrêt Commune d’Aix-en-Provence du 6 avril 2007."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Une personne privée peut-elle gérer un service public ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Le Conseil d’État l’admet pour des caisses d’assurances sociales en 1938, puis pour des comités d’organisation de l’industrie en 1942. Dans l’arrêt Narcy de 1963, il constate que la loi confie à un centre technique privé une mission d’intérêt général. Elle lui donne aussi des prérogatives de puissance publique, comme des cotisations obligatoires, et l’État contrôle son fonctionnement. Le centre exécute donc un service public. Depuis, l’arrêt Ville de Melun de 1990 admet un service public sans prérogatives de puissance publique pour une association créée, financée et dirigée en partie par la commune, et l’arrêt APREI de 2007 en fait une règle générale, quand l’ensemble des indices montre que l’administration a voulu confier la mission."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qui décide qu’une activité est un service public ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pour un service public national, c’est d’abord le législateur ou l’autorité réglementaire, autrement dit le Gouvernement qui agit par décret. Le Conseil constitutionnel le juge dans sa décision des 25 et 26 juin 1986, sauf pour les services publics nationaux que la Constitution exige. Pour un service public local, la collectivité décide dans les limites de ses pouvoirs, comme le montre l’arrêt Casanova de 1901. Quand la loi est muette, le juge administratif recherche si l’administration a voulu confier la mission à l’organisme, selon l’arrêt APREI."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel PDF choisir pour réviser le service public ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La fiche complète de droit administratif du semestre 2 consacre sa partie I au service public. Elle explique sa notion et la distinction entre service public administratif et industriel et commercial, puis ses lois, soit les principes qui règlent son fonctionnement. Elle traite ensuite les modes de gestion, la création et la suppression d’un service public. En revanche, pour t’entraîner à appliquer l’arrêt Narcy et l’arrêt APREI à des faits, il faut la compilation de cas pratiques corrigés du semestre 1, qui contient un cas sur le service public."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style id="exemples-pedagogiques-page">
+  .biens-hero { padding-top:48px; }
+  .biens-hero .hero__cta { margin-top:24px; }
+  @media (max-width:700px) {
+    .biens-hero { padding-top:24px; }
+    .biens-hero .hero__cta { gap:10px; }
+    .biens-hero .hero__cta .btn {
+      flex:1 1 132px;
+      width:auto;
+      min-height:44px;
+      font-size:.875rem;
+      padding:10px 12px;
+    }
+  }
+  @media (max-width:420px) {
+    .biens-hero { padding-top:12px; }
+    .biens-hero .hero__cta { margin-top:12px; }
+    .biens-hero .tjd-po { margin-top:12px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="kit-partiels.html" role="menuitem">📚 Kit Partiels</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🤖 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards et QCM</a>
+              <a href="podcasts-videos.html" role="menuitem"><span aria-hidden="true">🎬</span> Vidéos et podcasts</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>7 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 199 € au lieu de 439,69 €, 55 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-55 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">439,69 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 17 ressources, 199 € au lieu de 249,83 €, 20 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-20 %</span></span>
+                    <span class="megamenu__pack-tile-meta">17 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">249,83 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 32 ressources, 199 € au lieu de 479,68 €, 59 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-59 %</span></span>
+                    <span class="megamenu__pack-tile-meta">32 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">479,68 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 32 ressources, 199 € au lieu de 479,68 €, 59 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-59 %</span></span>
+                    <span class="megamenu__pack-tile-meta">32 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">479,68 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 38 ressources, 229 € au lieu de 579,62 €, 60 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-60 %</span></span>
+                    <span class="megamenu__pack-tile-meta">38 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">579,62 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>166 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes tes questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="kit-partiels.html"><span class="mobile-nav__format-icon" aria-hidden="true">📚</span><span>Kit Partiels</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🤖</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+        <a class="mobile-nav__format" href="podcasts-videos.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎬</span><span>Vidéos et podcasts</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+    <main>
+<section class="section--sm biens-hero">
+<div class="container container--narrow text-center">
+<h1 class="h1">Service public et intérêt général, dissertation corrigée avec plan détaillé</h1>
+<p class="lead" style="max-width:720px;margin-left:auto;margin-right:auto">Un service public est une activité d’intérêt général que l’administration assume elle-même ou qu’elle confie à une personne privée. L’intérêt général est donc une condition nécessaire du service public. Il reste insuffisant, car une activité utile à la population demeure privée tant qu’une loi ou l’administration ne l’a pas prise en charge. Ce corrigé du sujet « service public et intérêt général », dissertation de droit administratif L2, te donne l’introduction rédigée, le plan et les arrêts à citer.</p>
+<div class="hero__cta flex flex--center">
+<a class="btn btn--primary btn--lg" href="#sujet">Le décorticage du sujet →</a>
+<a class="btn btn--outline btn--lg" href="#plan">Le plan détaillé</a>
+</div>
+<div data-tjd-pdf-offert="matiere" data-id="cas-pratique-da-l2-s1" data-titre="Un cas pratique corrigé en droit administratif L2 S1, en PDF" data-texte="Je t&#x27;envoie par email l&#x27;énoncé et sa correction complète, rédigée comme une copie de partiel. Tu peux ainsi t&#x27;entraîner sur papier, puis comparer ta réponse avec le corrigé." data-bouton="Recevoir le corrigé"></div>
+</div>
+</section>
+<!-- offre du PDF correspondant -->
+<section class="conversion-offer" aria-labelledby="offre-service-public-titre">
+<div class="container container--narrow">
+<div class="conversion-offer__card">
+<div class="conversion-offer__visual"><img src="assets/covers/fiche-da-l2-s2.webp?v=dossier-universitaire-20260915" alt="Couverture de la fiche complète de droit administratif L2 S2, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
+<div>
+<p class="conversion-offer__eyebrow">Droit administratif L2</p>
+<h2 class="conversion-offer__title" id="offre-service-public-titre">Fiche complète et cas pratiques corrigés</h2>
+<p class="conversion-offer__summary">La partie I de la fiche complète du semestre 2 est consacrée au service public. Elle explique d’abord sa notion et ses lois, soit les principes qui règlent son fonctionnement, puis ses modes de gestion. Elle se termine par la création et la suppression d’un service public. Les cas pratiques corrigés du semestre 1 se vendent en revanche séparément. Cette compilation de 158 pages corrige en entier neuf cas pratiques et trois sujets types de partiel, dont le cas n° 8 sur le service public.</p>
+<ul class="conversion-offer__benefits">
+<li>Tu reçois le PDF que tu as choisi dès le paiement</li>
+</ul>
+<button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p019.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p018.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p107.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p082.webp"]' data-apercu-title="Droit administratif · L2 S2 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-da-l2-s2" data-apercu-sub="Le sommaire, puis des pages extraites de la fiche complète."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Voir un aperçu de la fiche complète</button>
+<div class="conversion-offer__choices">
+<button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-da-l2-s2">Acheter la fiche complète · 19,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="cas-pratique-da-l2-s1">Acheter les cas pratiques corrigés · 19,99 €</button>
+</div>
+<p class="conversion-offer__note">Si ton cours aborde le service public au premier semestre, la fiche complète du semestre 1 en présente les critères au chapitre 2, et les cas pratiques corrigés du semestre 1 les appliquent. Tous les supports de la matière sont réunis sur la <a href="droit-administratif-l2.html">page du droit administratif L2</a>.</p>
+<div data-tjd-avis data-matiere="da-l2"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="sujet">
+<div class="container container--narrow">
+<div class="prose">
+<figure style="margin:0 0 32px"><img src="assets/blog/dissertation-service-public-corrigee.webp" srcset="assets/blog/dissertation-service-public-corrigee-640.webp 640w, assets/blog/dissertation-service-public-corrigee.webp 1200w" sizes="(max-width:700px) 100vw, 800px" alt="Une borne-fontaine en fonte verte au bec de laiton terni est adossée à un mur de pierre couvert de mousse sur une place de village. Un seau en zinc est posé sur le pavé mouillé, près d’une grille d’écoulement, devant une mairie en pierre aux volets clos." width="1200" height="675" decoding="async" fetchpriority="high" style="width:100%;height:auto;border-radius:12px;display:block"></figure>
+<h2>Que demande le sujet « Service public et intérêt général » ?</h2>
+<p>Le sujet réunit deux notions et te demande comment elles se relient. Un service public est une activité que l’administration assume pour répondre à un besoin collectif de la population, comme la collecte des déchets ou la distribution de l’eau. L’intérêt général désigne ce besoin collectif. En effet, il dépasse la somme des intérêts de chacun. Les pouvoirs publics ont donc une raison d’agir. Qualifier une activité de service public, c’est constater qu’elle correspond à cette définition du service public.</p>
+<p>La règle normale est que l’intérêt général donne au service public sa raison d’être. Une commune organise la collecte des déchets parce que tous ses habitants en ont besoin. Le Conseil d’État raisonne ainsi dès 1910, dans l’arrêt Thérond. La ville de Montpellier confie par contrat à un entrepreneur la capture des chiens errants et l’enlèvement des bêtes mortes. Le Conseil d’État juge que la ville a agi en vue de l’hygiène et de la sécurité de la population, donc pour assurer un service public.</p>
+<p>L’exception existe pourtant. Une activité peut servir l’intérêt général et rester privée. Par exemple, une association collecte des vêtements pour des personnes sans abri. Son but est d’intérêt général, mais elle agit de sa propre initiative, sans mission confiée par l’administration. Son activité reste donc privée. Elle peut toutefois devenir un service public si une personne publique, en raison de l’importance qu’elle lui reconnaît, exerce un droit de regard sur son organisation, autrement dit un pouvoir de surveiller la façon dont elle est organisée.</p>
+<p>L’arrêt APREI du 22 février 2007 le confirme pour les centres qui font travailler des adultes handicapés. APREI est le nom de l’association du personnel qui a saisi le juge. L’insertion sociale et professionnelle de ces personnes est une mission d’intérêt général. Le Conseil d’État refuse d’y voir un service public, car le législateur, soit le Parlement qui vote les lois, a voulu exclure cette qualification pour les organismes privés qui gèrent ces centres. La différence entre une activité utile à la population et un service public tient donc au lien entre l’activité et l’administration.</p>
+<h3>Les termes du sujet</h3>
+<p>Le service public désigne ici une activité. La mairie et l’hôpital sont des organismes, alors que la collecte des déchets et les soins sont des activités. Un organisme peut donc gérer un service public sans en être un. Une personne publique est une institution qui agit au nom de la collectivité, comme l’État ou une commune. Une personne privée est un particulier, une association ou une société. Les deux peuvent gérer un service public. La difficulté du sujet concerne la personne privée, car son activité d’intérêt général n’est pas toujours un service public.</p>
+<p>L’intérêt général s’oppose aux intérêts privés. Ainsi, une activité qui sert seulement ceux qui la mènent reste privée, alors que l’enseignement ou la collecte des déchets profitent à la population. En outre, l’autorité réglementaire est le Gouvernement, qui agit par décret. Les prérogatives de puissance publique sont des pouvoirs que le droit commun ne reconnaît pas aux particuliers et que la loi peut donner à une personne privée, comme celui d’imposer une cotisation à des personnes sans leur accord.</p>
+<p>Le faisceau d’indices est l’ensemble des éléments que le juge examine ensemble pour savoir si l’administration a voulu confier une mission à une personne privée. L’intérêt général de l’activité ne suffit pas à lui seul.</p>
+<h3>La délimitation</h3>
+<p>La distinction entre le service public administratif et le service public industriel et commercial sort du sujet. En effet, elle sert à savoir quel droit s’applique et quel juge est compétent une fois le service public identifié, alors que le sujet porte sur ce qui permet de l’identifier.</p>
+<p>Les modes de gestion sortent aussi du sujet, car ils viennent après l’identification du service public. La régie est le mode de gestion où la commune gère le service avec ses propres agents. La délégation de service public est le contrat par lequel une personne publique confie la gestion du service à un tiers. Tu peux donc les citer en une phrase, sans les développer. La page sur la <a href="notion-service-public-droit-administratif.html">notion de service public</a> présente ses critères, et celle sur la <a href="la-delegation-de-service-public.html">délégation de service public</a> explique ces contrats.</p>
+<h3>Le piège du plan « I. Les critères du service public, II. Le régime du service public »</h3>
+<p>Ce plan suit l’ordre du cours. Il décrit donc la matière sans répondre à la question. L’intérêt général y occupe un seul sous-point, alors que le sujet en fait le fil conducteur.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="introduction">
+<div class="container container--narrow">
+<div class="prose">
+<h2>L’introduction rédigée en sept étapes</h2>
+<p>Tu écris l’introduction dans cet ordre, et chaque étape ci-dessous tient en quelques phrases. Seule l’accroche te demande de raconter une situation.</p>
+<h3>1. L’accroche</h3>
+<p>Un centre d’aide par le travail fait travailler des adultes handicapés qui ne peuvent pas travailler dans une entreprise ordinaire, et il leur offre un soutien médico-social. Une association du personnel demande à l’association qui gère l’un de ces centres, dans l’Aude, de lui communiquer les états du personnel. En effet, la loi du 17 juillet 1978 rend communicables les documents des organismes, y compris privés, chargés d’un service public. Or l’association gestionnaire est une personne privée. La communication de ces documents dépend donc d’une seule question. L’association gestionnaire gère-t-elle un service public ?</p>
+<p>Dans l’arrêt APREI du 22 février 2007, le Conseil d’État reconnaît que l’insertion sociale et professionnelle de ces adultes est une mission d’intérêt général. Il juge pourtant que l’association qui gère le centre ne gère pas un service public.</p>
+<h3>2. La présentation du sujet et la définition des termes</h3>
+<p>Un service public est une activité d’intérêt général que l’administration assume elle-même ou qu’elle confie à une personne privée. L’intérêt général est le besoin collectif que cette activité satisfait, comme l’enseignement ou la collecte des déchets. Le sujet demande si le second suffit à définir le premier.</p>
+<h3>3. La délimitation du sujet</h3>
+<p>La distinction entre service public administratif et service public industriel et commercial sort du sujet, ainsi que les modes de gestion.</p>
+<h3>4. Le contexte</h3>
+<p>En 1873, l’arrêt Blanco traite des dommages causés par les personnes que l’État emploie dans le service public. Il juge que la responsabilité de l’État obéit alors à des règles spéciales, qui varient suivant les besoins du service. Les manuels en font le point de départ d’un droit propre à l’administration.</p>
+<p>Au début du XXe siècle, Léon Duguit et Gaston Jèze font du service public le critère de ce droit, parce qu’ils voient dans l’administration un ensemble de services rendus à la population. Maurice Hauriou propose au contraire de retenir la puissance publique comme critère, soit les pouvoirs de contrainte de l’administration. L’arrêt Thérond de 1910 applique l’idée de Duguit et de Jèze à un contrat passé par une commune.</p>
+<p>Le critère se complique quand des personnes privées gèrent des services publics. Le Conseil d’État l’admet en 1938 pour des caisses d’assurances sociales, puis en 1942 pour des comités d’organisation de l’industrie. Le service public ne se définit donc plus seulement par la personne qui le gère, ce que les auteurs appellent la définition organique. Il se définit aussi par l’activité elle-même, ce qui correspond à la définition fonctionnelle, mais cette activité doit rester rattachée à l’administration. L’arrêt Narcy de 1963 décrit les caractères d’une gestion privée de service public, que la doctrine résume en trois conditions. L’arrêt APREI de 2007 assouplit ces conditions.</p>
+<h3>5. L’intérêt du sujet</h3>
+<p>Selon qu’une activité est ou non un service public, le juge compétent et le droit applicable ne sont pas les mêmes. En effet, si l’activité est un service public, les décisions de la personne privée qui la gère peuvent être des actes administratifs, que le juge administratif contrôle. Dans le cas contraire, le juge administratif se déclare incompétent. Le Conseil d’État applique cette règle aux comités d’organisation de l’industrie en 1942, puis à La Française des Jeux en 1999.</p>
+<h3>6. La problématique</h3>
+<p>L’intérêt général suffit-il à faire d’une activité un service public ?</p>
+<p>La problématique est la question à laquelle la copie répond. Elle reprend les deux notions du sujet et appelle une réponse nuancée.</p>
+<h3>7. L’annonce du plan</h3>
+<p>L’intérêt général explique pourquoi un service public est créé et comment il fonctionne (I). Il reste pourtant insuffisant pour définir le service public, car le législateur ou le juge doivent aussi constater que l’administration a voulu prendre l’activité en charge (II).</p>
+</div>
+</div>
+</section>
+<section class="section" id="plan">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quel plan détaillé pour cette dissertation ?</h2>
+<p>Le plan défend une thèse en deux temps. L’intérêt général est la raison d’être du service public, mais il ne suffit pas à en faire un. Ainsi, la première partie établit le rôle de l’intérêt général, et la seconde montre ce que l’administration doit ajouter pour qu’une activité devienne un service public.</p>
+<h3>I. Un intérêt général à l’origine du service public</h3>
+<h4>A. La justification de la création du service public</h4>
+<ul>
+<li><strong>1. Le but d’intérêt général de l’activité</strong></li>
+<li><strong>2. Le choix des activités par les pouvoirs publics</strong></li>
+</ul>
+<h4>B. Le fonctionnement du service public au nom de l’intérêt général</h4>
+<ul>
+<li><strong>1. L’égalité des usagers</strong></li>
+<li><strong>2. La marche normale du service</strong></li>
+</ul>
+<h3>II. Un intérêt général insuffisant sans la volonté de l’administration</h3>
+<h4>A. La recherche de la volonté du législateur</h4>
+<ul>
+<li><strong>1. La reconnaissance du service public par la loi</strong></li>
+<li><strong>2. Le refus de la qualification de service public</strong></li>
+</ul>
+<h4>B. Le rattachement de l’activité à l’administration dans le silence de la loi</h4>
+<ul>
+<li><strong>1. Les conditions tirées de l’arrêt Narcy</strong></li>
+<li><strong>2. Le faisceau d’indices du juge</strong></li>
+</ul>
+<h3>Les trois lois du service public (sous-partie I.B)</h3>
+<p>Les manuels résument le fonctionnement du service public en trois principes, appelés lois de Rolland. D’abord, l’égalité impose de traiter de la même façon les usagers placés dans la même situation. Ensuite, la continuité impose au service de fonctionner sans interruption injustifiée, mais elle se concilie avec le droit de grève des agents. Enfin, l’adaptation, appelée aussi mutabilité, permet à l’administration de modifier le service quand l’intérêt du public l’exige. Dans le plan, l’égalité correspond au point I.B.1, et la continuité et l’adaptation forment la marche normale du service, point I.B.2.</p>
+<h3>Les décisions à citer, sous-partie par sous-partie</h3>
+<p>Dans ta copie, tu énonces d’abord la règle que la décision pose, puis tu donnes ses faits et sa solution.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Les décisions à citer dans chaque sous-partie du plan sur le service public et l’intérêt général" style="overflow-x:auto">
+<table style="width:100%;min-width:760px;border-collapse:collapse">
+<thead><tr><th scope="col">Sous-partie</th><th scope="col">Décision</th><th scope="col">Ce qu’elle juge</th></tr></thead>
+<tbody>
+<tr><th scope="row">I.A.1</th><td>Conseil d’État, 4 mars 1910, Thérond, n° 29373</td><td>La ville de Montpellier confie par contrat à un entrepreneur la capture des chiens errants et l’enlèvement des bêtes mortes. L’entrepreneur réclame à la ville 120 000 francs, car elle n’a pas exécuté certaines clauses du cahier des charges. Le Conseil d’État juge que la ville a agi en vue de l’hygiène et de la sécurité de la population, donc pour assurer un service public. Il se déclare compétent pour les difficultés d’exécution du contrat, car ce contrat assure un service public et aucun texte ne les attribue à une autre juridiction.</td></tr>
+<tr><th scope="row">I.A.2</th><td>Conseil constitutionnel, décision n° 86-207 DC des 25 et 26 juin 1986, considérant 53</td><td>Le Conseil constitutionnel contrôle la loi qui autorise le Gouvernement à privatiser des entreprises. Il juge que la nécessité de certains services publics nationaux découle de principes ou de règles de valeur constitutionnelle. En revanche, pour les autres activités, le législateur ou l’autorité réglementaire apprécie, selon les cas, s’il faut les ériger en service public national. Une activité que la loi érige en service public, sans que la Constitution l’exige, peut donc être transférée au secteur privé.</td></tr>
+<tr><th scope="row">I.A.2</th><td>Conseil d’État, 29 mars 1901, Casanova, n° 94580</td><td>Le conseil municipal d’Olmeto vote 2 000 francs pour payer un médecin qui soignera gratuitement tous les habitants, pauvres et riches. Des contribuables de la commune attaquent la délibération, et le Conseil d’État l’annule. Une commune peut procurer des soins médicaux aux habitants qui en sont privés dans des circonstances exceptionnelles. Olmeto comptait pourtant deux médecins. Le conseil municipal a donc agi en dehors de ses pouvoirs. Une commune choisit ainsi ses activités dans des limites que le juge contrôle.</td></tr>
+<tr><th scope="row">I.B.1</th><td>Conseil d’État, Section, 9 mars 1951, Société des concerts du Conservatoire, n° 92004</td><td>Le comité de direction de la Société des concerts du Conservatoire sanctionne deux musiciens qui ont joué à un concert de la radiodiffusion malgré la défense qui leur en avait été faite. L’administration de la radiodiffusion suspend alors toute retransmission des concerts de la société, sans aucun motif tiré de l’intérêt général. Le Conseil d’État juge donc qu’elle méconnaît le principe d’égalité, qui régit le fonctionnement des services publics, car elle a usé de ses pouvoirs pour un autre but, et il condamne l’État à verser 50 000 francs.</td></tr>
+<tr><th scope="row">I.B.2</th><td>Conseil d’État, Assemblée, 7 juillet 1950, Dehaene, n° 01645</td><td>Un chef de bureau de préfecture fait grève en juillet 1948 malgré l’interdiction du gouvernement et reçoit un blâme. Le Conseil d’État rappelle que la grève doit se concilier avec la sauvegarde de l’intérêt général. Il juge que le gouvernement, responsable du bon fonctionnement des services publics, a pu l’interdire, car une grève qui compromettrait la fonction préfectorale porterait une atteinte grave à l’ordre public. Le mot « continuité » ne figure pas dans la décision, mais les manuels la citent pour ce principe.</td></tr>
+<tr><th scope="row">I.B.2</th><td>Conseil d’État, 11 mars 1910, Compagnie générale française des tramways, n° 16178</td><td>Le préfet des Bouches-du-Rhône fixe l’horaire d’été d’un service de tramways dont l’État a confié l’exploitation à une compagnie par un contrat de concession. La compagnie répond que cet horaire impose un service différent de celui du contrat. Le Conseil d’État juge pourtant que l’administration peut prescrire les modifications nécessaires pour assurer, dans l’intérêt du public, la marche normale du service, ce que les manuels rattachent au principe d’adaptation. La compagnie peut donc seulement demander une indemnité si ces modifications aggravent ses charges.</td></tr>
+<tr><th scope="row">II.A.1</th><td>Conseil d’État, Assemblée, 13 mai 1938, Caisse primaire Aide et Protection, n° 57302</td><td>Un décret de 1936 applique aux agents des organismes chargés d’un service public la suppression de certains cumuls d’emplois, soit la possibilité d’occuper plusieurs emplois à la fois. Une caisse primaire d’assurances sociales, organisme privé, demande l’annulation du décret en tant qu’il vise les caisses primaires. Le Conseil d’État juge que le service des assurances sociales est un service public, que gèrent notamment des caisses primaires, et que leurs agents sont donc concernés, y compris quand ces caisses sont des organismes privés. Il rejette la requête.</td></tr>
+<tr><th scope="row">II.A.1</th><td>Conseil d’État, Assemblée, 31 juillet 1942, Monpeurt, n° 71398</td><td>Un propriétaire de verreries conteste la décision d’un comité d’organisation de l’industrie du verre, qui impose à des usines de livrer du verre à une autre usine. La loi du 16 août 1940 organisait en effet la production industrielle. Le Conseil d’État juge que le législateur a entendu instituer un service public. Les comités qui le gèrent participent donc à ce service public, bien que la loi n’en ait pas fait des établissements publics, et leurs décisions sont des actes administratifs.</td></tr>
+<tr><th scope="row">II.A.2</th><td>Conseil d’État, Section, 22 février 2007, APREI, n° 264541</td><td>Une association du personnel demande à l’association gestionnaire d’un centre d’aide par le travail de lui communiquer les états du personnel. Le Conseil d’État reconnaît que l’insertion sociale et professionnelle des personnes handicapées est une mission d’intérêt général. Il lit pourtant la loi du 30 juin 1975 avec ses travaux préparatoires, soit les rapports et les débats qui l’ont préparée, et en déduit que le législateur a voulu exclure le service public pour les organismes privés qui gèrent ces centres. Il rejette donc la requête de l’association du personnel, car la loi de 1978 ne vise, parmi les organismes privés, que ceux chargés de la gestion d’un service public.</td></tr>
+<tr><th scope="row">II.A.2</th><td>Conseil d’État, Section, 27 octobre 1999, Rolin, n° 171169, 171170 et 172384</td><td>Un justiciable attaque des règlements de jeux fixés par le président de La Française des Jeux, société privée à laquelle un décret de 1978 a confié l’exploitation d’une loterie. Une loi de 1933 affectait le produit de cette loterie à une caisse de solidarité contre les calamités agricoles. Le Conseil d’État juge que l’exploitation de cette loterie n’est pas un service public, car ni les textes ni les caractères généraux des jeux de hasard ne lui donnent ce caractère. Les décisions du président ne sont donc pas des actes administratifs, et les requêtes sont rejetées comme portées devant une juridiction incompétente.</td></tr>
+<tr><th scope="row">II.B.1</th><td>Conseil d’État, Section, 28 juin 1963, Narcy, n° 43834</td><td>Un officier général de réserve travaille pour le Centre technique des industries de la fonderie. Il conteste que la réglementation sur les cumuls de rémunérations s’applique à sa solde, soit sa rémunération de militaire de réserve. Cette réglementation vise les organismes privés qui gèrent un service public. Pour le Conseil d’État, la loi de 1948 confie en effet au centre une mission d’intérêt général. Elle lui donne des prérogatives de puissance publique, car il existe un seul centre par branche et les cotisations sont obligatoires. Enfin, elle le soumet au contrôle de l’État. Les ministres nomment les administrateurs et contrôlent l’activité du centre par l’intermédiaire d’un commissaire du gouvernement, qui peut bloquer provisoirement une décision grâce à son droit de veto suspensif. Le législateur a donc voulu lui confier un véritable service public, tout en le laissant organisme privé. La requête de l’officier est rejetée.</td></tr>
+<tr><th scope="row">II.B.1</th><td>Conseil d’État, 20 juillet 1990, Ville de Melun et Association Melun-Culture-Loisirs, n° 69867 et 72160</td><td>La ville de Melun a créé une association qui gère les centres de loisirs et diverses activités culturelles de la commune. Des particuliers lui demandent communication de ses comptes des années 1972 à 1983. Le Conseil d’État juge qu’elle gère, sous le contrôle de la commune, un service public communal, alors même que l’exercice de ses missions ne comporterait pas la mise en œuvre de prérogatives de puissance publique. En effet, la ville lui verse plus de la moitié de ses recettes. Le maire en a été le président jusqu’en 1983, et son conseil d’administration compte une majorité de conseillers municipaux.</td></tr>
+<tr><th scope="row">II.B.2</th><td>Conseil d’État, Section, 22 février 2007, APREI (la formule générale)</td><td>En dehors des cas où la loi reconnaît ou exclut elle-même le service public, une personne privée qui assure une mission d’intérêt général sous le contrôle de l’administration, avec des prérogatives de puissance publique, exécute un service public. Sans ces prérogatives, elle peut toutefois en exécuter un, si l’ensemble des indices montre que l’administration a voulu lui confier la mission. Le juge examine alors l’intérêt général de l’activité, les conditions de création, d’organisation et de fonctionnement de l’organisme, les obligations qui lui sont imposées et les mesures prises pour vérifier que ses objectifs sont atteints.</td></tr>
+<tr><th scope="row">II.B.2</th><td>Conseil d’État, Section, 6 avril 2007, Commune d’Aix-en-Provence, n° 284736</td><td>Le Conseil d’État pose d’abord qu’une personne privée qui exerce sous sa responsabilité, sans qu’une personne publique en détermine le contenu, une activité dont elle a pris l’initiative ne reçoit pas de mission de service public. Son activité peut pourtant se voir reconnaître un caractère de service public, sans contrat de délégation, si une personne publique, en raison de l’intérêt général de l’activité et de l’importance qu’elle lui reconnaît, exerce un droit de regard sur son organisation et, le cas échéant, lui accorde des financements. Dans l’affaire, une association créée par l’État, la région, le département et la commune organise le festival d’art lyrique et reçoit des subventions de la commune. Le Conseil d’État juge que ces collectivités ont décidé de faire du festival un service public culturel, dont elles ont confié la gestion à l’association, et que la commune pouvait donc lui verser des subventions sans contrat de délégation.</td></tr>
+<tr><th scope="row">II.B.2</th><td>Conseil d’État, 7 juin 2019, Antin Résidences, n° 422569</td><td>Un particulier demande à une société anonyme d’HLM la communication d’un rapport sur l’amiante d’un immeuble de logements sociaux à Vincennes. Le Conseil d’État juge qu’une société anonyme d’HLM est un organisme de droit privé qui remplit une mission de service public, y compris s’il n’a pas été doté de prérogatives de puissance publique. Il s’appuie en effet sur les mêmes indices que dans l’arrêt APREI, dont l’intérêt général du logement des personnes de ressources modestes.</td></tr>
+<tr><th scope="row">II.B.2</th><td>Conseil d’État, 6 juin 2023, GPSE, n° 462748</td><td>Une association demande des documents au Groupe permanent pour la sécurité électrique en milieu agricole, association créée par des personnes publiques et privées chargées d’un service public. Le Conseil d’État reconnaît à ce groupe une activité d’intérêt général. Il relève pourtant que le groupe n’a pas de prérogatives de puissance publique, que ses statuts l’ouvrent à de nouveaux membres sans garantir le contrôle de ses fondateurs, que ni l’État ni les fondateurs ne lui ont fixé d’objectifs dont ils contrôleraient l’atteinte, et que ses membres le financent pour l’essentiel. L’administration n’a donc pas voulu lui confier une mission de service public, et le litige ne relève pas du juge administratif.</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Un autre plan possible, fondé sur l’évolution de l’intérêt général</h3>
+<p>Les activités que les pouvoirs publics prennent en charge au nom de l’intérêt général dépendent de leurs choix. Les décisions Casanova de 1901 et 86-207 DC de 1986, présentes dans le tableau, montrent que ce choix leur appartient, dans des limites fixées par le juge ou par la Constitution. Si l’énoncé porte sur l’évolution du service public, tu peux opposer un service public justifié par l’intérêt général (I) à un service public qui change selon les besoins que les pouvoirs publics prennent en charge (II).</p>
+<h3>La réponse à la problématique</h3>
+<p>Le service public trouve sa raison d’être dans l’intérêt général, qui explique sa création et son fonctionnement. L’intérêt général reste pourtant insuffisant pour le définir. En effet, le législateur peut écarter la qualification, et, dans le silence de la loi, le juge cherche un lien entre l’activité et l’administration. L’intérêt général est donc une condition nécessaire du service public, et la volonté de l’administration, exprimée par la loi ou révélée par des indices, complète la définition.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="variantes">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Que faire si l’énoncé est « Service public et personne privée », « Service public et personne publique » ou « La notion de service public » ?</h2>
+<p>Ces énoncés reprennent les mêmes décisions sous un autre angle. Tu gardes donc la méthode de ce corrigé, et tu changes la problématique et le fil du plan.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Plans possibles pour les variantes d’énoncé sur le service public" style="overflow-x:auto">
+<table style="width:100%;min-width:760px;border-collapse:collapse">
+<thead><tr><th scope="col">Énoncé</th><th scope="col">Problématique</th><th scope="col">Plan en deux parties</th></tr></thead>
+<tbody>
+<tr><th scope="row">Service public et personne privée</th><td>Dans quelles conditions une personne privée gère-t-elle un service public ?</td><td>I. Une gestion privée admise par la loi puis par le juge (Aide et Protection, Monpeurt, Narcy, Melun). II. Une gestion privée soumise à la volonté de l’administration (APREI, Aix-en-Provence).</td></tr>
+<tr><th scope="row">Service public et personne publique</th><td>La personne publique est-elle indispensable au service public ?</td><td>I. Une personne publique qui crée le service et en reste responsable (Thérond, décision de 1986). Elle peut le gérer elle-même ou le confier à un tiers par contrat (Aix-en-Provence). II. Un service public que des personnes privées gèrent (Narcy, Melun, APREI).</td></tr>
+<tr><th scope="row">La notion de service public</th><td>Qu’est-ce qui fait d’une activité un service public ?</td><td>I. Une activité d’intérêt général (Thérond, décision de 1986). II. Une activité rattachée à l’administration (Narcy, Melun, APREI, Aix-en-Provence).</td></tr>
+</tbody>
+</table>
+</div>
+<p>La <a href="notion-service-public-droit-administratif.html">page sur la notion de service public</a> développe les critères pour le dernier énoncé, et l’<a href="arret-narcy-1963-explique.html">arrêt Narcy expliqué</a> détaille les trois conditions que la doctrine tire de l’arrêt de 1963.</p>
+</div>
+</div>
+</section>
+<section class="section" id="copie">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Deux passages de la copie rédigée</h2>
+<p>Dans chaque paragraphe de ta copie, tu commences par une phrase qui annonce l’idée. Tu donnes ensuite la règle, puis la décision qui la pose, et tu termines en disant ce que cette décision montre pour le sujet. Les deux passages suivants rédigent les sous-parties II.A.2 et II.B.2.</p>
+<h3>Sous-partie II.A.2, le refus de la qualification de service public</h3>
+<p>Le législateur peut écarter la qualification de service public y compris quand l’activité sert l’intérêt général. Par exemple, les centres d’aide par le travail offrent aux adultes handicapés une activité professionnelle et un soutien médico-social. Dans l’arrêt APREI du 22 février 2007, le Conseil d’État reconnaît d’ailleurs que l’insertion sociale et professionnelle des personnes handicapées est une mission d’intérêt général.</p>
+<p>Il juge pourtant que l’association qui gère un centre dans l’Aude ne gère pas un service public. En effet, il lit la loi du 30 juin 1975 avec ses travaux préparatoires, autrement dit les rapports et les débats qui l’ont préparée, et il en déduit que le législateur a voulu exclure cette qualification pour les organismes privés qui gèrent ces centres. La volonté du législateur l’emporte donc sur l’intérêt général de l’activité.</p>
+<h3>Sous-partie II.B.2, le faisceau d’indices du juge</h3>
+<p>Ensuite, dans le silence de la loi, le juge additionne les éléments qui montrent la volonté de l’administration. L’arrêt APREI pose deux hypothèses. Une personne privée qui assure une mission d’intérêt général sous le contrôle de l’administration et qui dispose de prérogatives de puissance publique exécute un service public, comme dans l’arrêt Narcy. Sans ces prérogatives, elle peut toutefois en exécuter un lorsque l’ensemble des indices montre que l’administration a voulu lui confier la mission.</p>
+<p>Le juge examine alors l’intérêt général de l’activité, les conditions de création, d’organisation et de fonctionnement de la personne privée, les obligations qui lui sont imposées et les mesures prises pour vérifier qu’elle atteint ses objectifs. Le juge additionne ces éléments, et leur ensemble s’appelle le faisceau d’indices. En effet, l’intérêt général de l’activité ne suffit pas à lui seul. Cet ensemble montre donc si l’administration a voulu prendre l’activité en charge.</p>
+<p>L’arrêt Commune d’Aix-en-Provence du 6 avril 2007 énonce deux règles sur l’initiative privée. Une personne privée qui exerce une activité de sa propre initiative, sous sa responsabilité et sans qu’une personne publique en détermine le contenu ne reçoit pas de mission de service public. Son activité peut pourtant être reconnue comme un service public si une personne publique, en raison de l’intérêt général de l’activité et de l’importance qu’elle lui reconnaît, exerce un droit de regard sur son organisation et, le cas échéant, lui accorde des financements.</p>
+<p>Dans l’affaire, l’État, la région, le département et la commune ont créé l’association du festival d’art lyrique, désignent onze de ses quinze administrateurs et financent environ la moitié de ses ressources. Le Conseil d’État juge qu’ils ont décidé de faire du festival un service public culturel, dont ils ont confié la gestion à l’association, y compris sans contrat de délégation. L’intérêt général se combine donc avec la volonté de la personne publique, que montrent son droit de regard et, le cas échéant, ses financements.</p>
+<p>Le Conseil d’État applique aujourd’hui la même formule avec des résultats opposés. En 2019, il juge qu’une société anonyme d’HLM, organisme de droit privé, remplit une mission de service public y compris sans prérogatives de puissance publique, en s’appuyant sur le faisceau d’indices et sur l’intérêt général du logement des personnes de ressources modestes. En 2023, il refuse la qualification au Groupe permanent pour la sécurité électrique en milieu agricole. Son activité est d’intérêt général, mais l’État et ses fondateurs ne le contrôlent pas et ne lui ont fixé aucun objectif dont ils contrôleraient l’atteinte. Le faisceau d’indices permet donc de distinguer deux activités d’intérêt général, selon que l’administration a voulu ou non les prendre en charge.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="erreurs">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles erreurs font perdre des points sur ce sujet ?</h2>
+<h3>Faire de l’intérêt général le seul critère du service public</h3>
+<p>Une copie qui écrit « toute activité d’intérêt général est un service public » contredit l’arrêt APREI. Dans cet arrêt, l’insertion sociale et professionnelle des personnes handicapées est une mission d’intérêt général, et le Conseil d’État refuse la qualification de service public. L’arrêt est connu pour son assouplissement des conditions de Narcy, mais il faut le citer pour sa formule générale et pour son résultat, qui est un refus. Tu écris que l’intérêt général est nécessaire, puis tu cherches ce que le législateur ou l’administration a voulu.</p>
+<h3>Appliquer Narcy sans chercher d’abord la volonté du législateur</h3>
+<p>Dans un cas pratique comme dans une dissertation, tu cherches d’abord si la loi reconnaît ou exclut le service public. Les conditions tirées de l’arrêt Narcy viennent ensuite, quand la loi est muette. L’arrêt APREI le dit dans sa première formule, qui s’applique en dehors des cas où le législateur a lui-même reconnu ou exclu le service public.</p>
+<h3>Citer l’arrêt Terrier pour définir le service public</h3>
+<p>Dans le texte de l’arrêt Terrier du 6 février 1903, le Conseil d’État juge qu’il peut statuer sur la demande d’un particulier qui réclame au département des primes pour la destruction de vipères. Les mots « service public » n’y figurent pas, alors qu’ils figurent dans l’arrêt Thérond de 1910. Pour montrer le lien entre un but d’intérêt général et un service public, tu cites Thérond.</p>
+<h3>Confondre service public et établissement public</h3>
+<p>Un service public est une activité, alors qu’un établissement public est une personne publique, c’est-à-dire une institution créée pour gérer un service. Dans l’arrêt Monpeurt de 1942, les comités d’organisation de l’industrie participent à un service public bien que la loi n’en ait pas fait des établissements publics. Une copie qui écrit « cet organisme est un service public » mélange les deux notions.</p>
+</div>
+</div>
+</section>
+<section class="section" id="autres">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles autres pages de droit administratif lire ensuite ?</h2>
+<p>Tu peux lire ensuite la <a href="dissertations-corrigees-droit-administratif-l2.html">dissertation sur le juge administratif et celle sur la police administrative</a>, puis la <a href="dissertation-conseil-etat-et-la-loi-corrigee.html">dissertation sur le Conseil d’État et la loi</a>. Pour t’entraîner sur des faits, le <a href="exemple-cas-pratique-corrige-droit-administratif.html">cas pratique corrigé sur la police administrative</a> montre la méthode. La page <a href="droit-administratif-l2.html">du droit administratif L2</a> présente tous les supports de la matière.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="faq">
+<div class="container container--narrow"><h2 class="h2">Questions fréquentes sur le service public et l’intérêt général</h2>
+<div class="accordion">
+<details class="accordion__item"><summary class="accordion__trigger">Une activité d’intérêt général est-elle toujours un service public ?</summary><div class="accordion__body"><p>Non. Une activité peut servir la population et rester privée. Dans l’arrêt APREI du 22 février 2007, l’insertion sociale et professionnelle des personnes handicapées est une mission d’intérêt général, mais le législateur a voulu exclure la qualification de service public pour les organismes privés qui gèrent les centres d’aide par le travail. En outre, une association qui agit de sa propre initiative ne reçoit pas de mission de service public. Son activité peut cependant être reconnue comme un service public si une personne publique, en raison de l’importance qu’elle lui reconnaît, exerce un droit de regard sur son organisation, comme l’a jugé l’arrêt Commune d’Aix-en-Provence du 6 avril 2007.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Une personne privée peut-elle gérer un service public ?</summary><div class="accordion__body"><p>Oui. Le Conseil d’État l’admet pour des caisses d’assurances sociales en 1938, puis pour des comités d’organisation de l’industrie en 1942. Dans l’arrêt Narcy de 1963, il constate que la loi confie à un centre technique privé une mission d’intérêt général. Elle lui donne aussi des prérogatives de puissance publique, comme des cotisations obligatoires, et l’État contrôle son fonctionnement. Le centre exécute donc un service public. Depuis, l’arrêt Ville de Melun de 1990 admet un service public sans prérogatives de puissance publique pour une association créée, financée et dirigée en partie par la commune, et l’arrêt APREI de 2007 en fait une règle générale, quand l’ensemble des indices montre que l’administration a voulu confier la mission.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Qui décide qu’une activité est un service public ?</summary><div class="accordion__body"><p>Pour un service public national, c’est d’abord le législateur ou l’autorité réglementaire, autrement dit le Gouvernement qui agit par décret. Le Conseil constitutionnel le juge dans sa décision des 25 et 26 juin 1986, sauf pour les services publics nationaux que la Constitution exige. Pour un service public local, la collectivité décide dans les limites de ses pouvoirs, comme le montre l’arrêt Casanova de 1901. Quand la loi est muette, le juge administratif recherche si l’administration a voulu confier la mission à l’organisme, selon l’arrêt APREI.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Quel PDF choisir pour réviser le service public ?</summary><div class="accordion__body"><p>La fiche complète de droit administratif du semestre 2 consacre sa partie I au service public. Elle explique sa notion et la distinction entre service public administratif et industriel et commercial, puis ses lois, soit les principes qui règlent son fonctionnement. Elle traite ensuite les modes de gestion, la création et la suppression d’un service public. En revanche, pour t’entraîner à appliquer l’arrêt Narcy et l’arrêt APREI à des faits, il faut la compilation de cas pratiques corrigés du semestre 1, qui contient un cas sur le service public.</p></div></details>
+</div>
+</div>
+</section>
+<!-- fin-article:pack-ultra -->
+<section class="article-pack-ligne"><div class="container container--narrow"><p class="article-pack-ligne__texte">Le Pack Ultra L2 S2 réunit les 32 ressources de ton second semestre de L2 pour 199 €. La fiche de droit administratif L2 en fait partie. <a href="pack-ultra.html#pack-ultra-l2-s2">Voir le contenu du pack →</a></p></div></section>
+</main>
+
+
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Droit administratif L2, dissertation sur le service public et l’intérêt général">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Droit administratif L2, dissertation sur le service public et l’intérêt général">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit administratif L2 S2 · 19,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-da-l2-s2" aria-label="Acheter la fiche complète · 19,99 €">Acheter · 19,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=81a894f1" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=909718f7" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=7aba7f6e';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
+</body>
+</html>
