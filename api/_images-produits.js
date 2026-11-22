@@ -11,7 +11,7 @@ const VISUELS = {
   "cas-pratique-intro-droit-l1": "assets/covers/exercices-20260923/cas-pratique-intro-droit-l1.webp",
   "cas-pratique-obligations-l2-s2": "assets/covers/exercices-20260923/cas-pratique-obligations-l2-s2.webp",
   "cas-pratique-penal-general-l1": "assets/covers/exercices-20260923/cas-pratique-penal-general-l1.webp?v=62bc76d1",
-  "cas-pratique-penal-l2-s1": "assets/covers/exercices-20260923/cas-pratique-penal-l2-s1.webp",
+  "cas-pratique-penal-l2-s1": "assets/covers/exercices-20260923/cas-pratique-penal-general-l2-s1.webp",
   "cas-pratique-personnes-l1": "assets/covers/exercices-20260923/cas-pratique-personnes-l1.webp",
   "cas-pratique-procedure-penale-l3": "assets/covers/exercices-20260923/cas-pratique-procedure-penale-l3.webp",
   "cas-pratique-societes-l3": "assets/covers/exercices-20260923/cas-pratique-societes-l3.webp",
