@@ -477,7 +477,7 @@ section + section:not(.section--alt):not(.section--blue):not(.section--dark):not
   min-width: 0;
   max-width: 100%;
   white-space: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   text-align: center;
 }
 .btn--primary { background: var(--blue-600); color: var(--white); box-shadow: var(--sh-1) }
