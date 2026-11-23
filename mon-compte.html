@@ -489,7 +489,13 @@
               <h2>Ton parrainage</h2>
               <p>Envoie ton lien à tes amis. En passant par ce lien, ils obtiennent 15 % de réduction sur les supports qu’ils règlent en une seule fois.</p>
               <p>Pour chaque commande payée avec ton code, un bon de 10 € apparaît ici. Tu peux en utiliser un par commande.</p>
-              <p>Ton lien à partager <a id="parrainageLien"></a></p>
+              <p><button type="button" class="btn btn--outline" id="parrainageCopier">Copier mon lien</button></p>
+              <span class="sr-only" id="parrainageStatut" role="status"></span>
+              <div class="compte-form" id="parrainageCopieManuelle" hidden>
+                <label class="form__label" for="parrainageLien">Mon lien de parrainage</label>
+                <input class="form__input" type="text" id="parrainageLien" readonly aria-describedby="parrainageInstruction">
+                <p class="compte-aide" id="parrainageInstruction">Sélectionne le lien, puis copie-le.</p>
+              </div>
               <p id="parrainageSolde"></p>
               <ul class="achats-liste" id="parrainageBons"></ul>
             </div>
@@ -540,7 +546,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="assets/js/main.js?v=909718f7" defer></script>
-  <script src="assets/js/compte.js?v=e0ec6c5f" defer></script>
+  <script src="assets/js/compte.js?v=d39f1a0c" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
 </body>

@@ -99,6 +99,19 @@ for (const [niveau, matiere, guide] of cas) {
   });
 }
 
+test("en histoire des institutions, le quiz recommande les dates et les textes du cours", () => {
+  const resultat = quiz().repondre("L1", "Histoire des institutions (S2)", "Retenir les dates et les textes clés");
+  assert.equal(resultat.titre, "Les dates et les textes clés du S2");
+  assert.match(resultat.cta, /href="histoire-des-institutions-l1\.html#reperes"/);
+  assert.match(resultat.cta, /Voir les textes et dates à retenir/);
+
+  const guide = fs.readFileSync(path.join(racine, "histoire-des-institutions-l1.html"), "utf8");
+  assert.equal(guide.split('id="reperes"').length, 2);
+
+  const arrets = quiz().repondre("L2", "Droit administratif (S2)", "Connaître les arrêts par cœur");
+  assert.match(arrets.cta, /href="revisions\.html"/);
+});
+
 test("une matière qui a des flashcards garde le bouton d’achat et le conseil avant l’examen", () => {
   const matiere = "Droit administratif (S2)";
   const revision = quiz().repondre("L2", matiere, "Réviser vite en testant ce que je retiens");

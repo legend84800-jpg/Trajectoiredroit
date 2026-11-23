@@ -229,18 +229,45 @@
       boite.hidden = false;
     }
 
+    var parrainageBouton = document.getElementById("parrainageCopier");
+    var parrainageLien = document.getElementById("parrainageLien");
+    var parrainageStatut = document.getElementById("parrainageStatut");
+    var parrainageCopieManuelle = document.getElementById("parrainageCopieManuelle");
+    var libelleCopieParrainage = parrainageBouton && parrainageBouton.textContent;
+
+    if (parrainageBouton) parrainageBouton.addEventListener("click", async function(){
+      var lien = parrainageLien.value;
+      if (!lien) return;
+      var generation = generationSession;
+      var copie = false;
+      try {
+        if (window.navigator.clipboard) {
+          await window.navigator.clipboard.writeText(lien);
+          copie = true;
+        }
+      } catch (_) {}
+      if (generation !== generationSession || parrainageLien.value !== lien) return;
+      parrainageCopieManuelle.hidden = copie;
+      parrainageBouton.textContent = copie ? "Lien copié" : libelleCopieParrainage;
+      parrainageStatut.textContent = copie ? "Lien copié" : "";
+      if (!copie) {
+        parrainageLien.focus();
+        parrainageLien.select();
+      }
+    });
+
     function afficherParrainage(parrainage){
       var boite = document.getElementById("parrainageBox");
-      if (!boite) return;
-      var lien = document.getElementById("parrainageLien");
+      if (!boite || !parrainageBouton) return;
       var liste = document.getElementById("parrainageBons");
       boite.hidden = true;
-      lien.removeAttribute("href");
-      lien.textContent = "";
+      parrainageLien.value = "";
+      parrainageCopieManuelle.hidden = true;
+      parrainageBouton.textContent = libelleCopieParrainage;
+      parrainageStatut.textContent = "";
       liste.replaceChildren();
       if (!parrainage || !/^PARRAIN[A-Z0-9]{3,32}$/.test(parrainage.code)) return;
-      lien.href = "/?code=" + encodeURIComponent(parrainage.code);
-      lien.textContent = parrainage.code;
+      parrainageLien.value = "https://trajectoiredroit.com/?code=" + encodeURIComponent(parrainage.code);
       var bons = Array.isArray(parrainage.bons) ? parrainage.bons : [];
       bons.filter(function(code){ return /^BON[A-F0-9]{20}$/.test(code); }).forEach(function(code){
         var element = document.createElement("li");

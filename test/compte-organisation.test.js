@@ -27,15 +27,24 @@ function historique() {
 }
 function navigateur(options = {}) {
   const ids = ['etatChargement', 'etatConnexion', 'etatConnecte', 'connexionForm', 'connexionEmail', 'connexionSubmit', 'connexionError', 'connexionSuccess', 'compteEmail', 'deconnexionBtn', 'achatsListe', 'achatsVide', 'achatsReessayer', 'resterConnecte', 'codeForm', 'connexionCode', 'codeSubmit', 'codeDestinataire', 'renvoyerCode', 'changerEmail', 'achatsOutils', 'achatsRecherche', 'achatsProduit', 'achatsSemestre', 'achatsReinitialiser', 'achatsResultat'];
+  if (options.parrainage) ids.push('parrainageBox', 'parrainageCopier', 'parrainageLien', 'parrainageStatut', 'parrainageCopieManuelle', 'parrainageBons', 'parrainageSolde');
+  function nouveauElement() {
+    const classes = new Set();
+    return { style: {}, textContent: '', innerHTML: '', value: '', hidden: true, listeners: {}, children: [],
+      classList: { add: x => classes.add(x), remove: x => classes.delete(x), contains: x => classes.has(x) },
+      addEventListener(event, fn) { this.listeners[event] = fn; },
+      focus() { this.focused = true; },
+      select() { this.selected = true; },
+      replaceChildren() { this.children = []; },
+      appendChild(el) { this.children.push(el); },
+    };
+  }
   const elements = {};
   for (const id of ids) {
     if (options.ancienHtml && id === 'achatsReessayer') continue;
-    const classes = new Set();
-    elements[id] = { style: {}, textContent: '', innerHTML: '', value: '', hidden: true, listeners: {},
-      classList: { add: x => classes.add(x), remove: x => classes.delete(x), contains: x => classes.has(x) },
-      addEventListener(event, fn) { this.listeners[event] = fn; }, focus() {},
-    };
+    elements[id] = nouveauElement();
   }
+  if (options.parrainage) elements.parrainageCopier.textContent = 'Copier mon lien';
   const timers = [];
   const demandes = [];
   let callback;
@@ -48,8 +57,9 @@ function navigateur(options = {}) {
   };
   const achats = options.achats || historique();
   const window = { supabase: { createClient: () => ({ auth }) }, localStorage: stockage(), sessionStorage: stockage(), setTimeout: fn => { timers.push(fn); }, location: { search: '' } };
-  vm.runInNewContext(source, { window, document: { getElementById: id => elements[id] || null }, Date, URLSearchParams,
-    fetch: async (url, req) => { demandes.push({ url, req }); return options.fetch ? options.fetch(url, req) : { ok: true, status: 200, json: async () => ({ achats }) }; },
+  window.navigator = { clipboard: options.clipboard };
+  vm.runInNewContext(source, { window, document: { getElementById: id => elements[id] || null, createElement: nouveauElement }, Date, URLSearchParams,
+    fetch: async (url, req) => { demandes.push({ url, req }); return options.fetch ? options.fetch(url, req) : { ok: true, status: 200, json: async () => ({ achats, parrainage: options.parrainage }) }; },
   });
   return {
     elements, demandes,
@@ -72,6 +82,61 @@ test('le compte garde les achats datés, les groupes et les lecteurs existants',
   assert.equal((rendu.match(/<audio /g) || []).length, 1);
   assert.equal(b.elements.achatsResultat.textContent, '3 achats affichés sur 3');
   assert.equal(b.elements.achatsOutils.hidden, false);
+});
+
+test('la copie du lien de parrainage confirme après écriture et conserve les bons', async () => {
+  const attente = differe();
+  const liensCopies = [];
+  const bon = 'BONABCDEF0123456789ABCD';
+  const b = navigateur({
+    parrainage: { code: 'PARRAINTEST', bons: [bon] },
+    clipboard: { writeText: lien => { liensCopies.push(lien); return attente.promise; } },
+  });
+  await b.flush();
+  const { parrainageBox, parrainageCopier, parrainageStatut, parrainageCopieManuelle, parrainageBons } = b.elements;
+  assert.equal(parrainageBox.hidden, false);
+  const copie = parrainageCopier.listeners.click();
+  assert.equal(parrainageCopier.textContent, 'Copier mon lien');
+  assert.equal(parrainageStatut.textContent, '');
+  attente.resolve();
+  await copie;
+  assert.deepEqual(liensCopies, ['https://trajectoiredroit.com/?code=PARRAINTEST']);
+  assert.equal(parrainageCopier.textContent, 'Lien copié');
+  assert.equal(parrainageStatut.textContent, 'Lien copié');
+  assert.equal(parrainageCopieManuelle.hidden, true);
+  assert.equal(parrainageBons.children[0].children[0].href, '/formations.html?code=' + bon);
+});
+
+test('le lien complet est sélectionnable si la copie automatique est indisponible', async () => {
+  for (const clipboard of [undefined, { writeText: async () => { throw new Error('Copie bloquée'); } }]) {
+    const b = navigateur({ parrainage: { code: 'PARRAINTEST' }, clipboard });
+    await b.flush();
+    const { parrainageCopier, parrainageLien, parrainageCopieManuelle, parrainageStatut } = b.elements;
+    await parrainageCopier.listeners.click();
+    assert.equal(parrainageCopieManuelle.hidden, false);
+    assert.equal(parrainageLien.value, 'https://trajectoiredroit.com/?code=PARRAINTEST');
+    assert.equal(parrainageLien.focused, true);
+    assert.equal(parrainageLien.selected, true);
+    assert.equal(parrainageStatut.textContent, '');
+  }
+});
+
+test('la déconnexion efface le lien et écarte la confirmation d’une copie en cours', async () => {
+  const attente = differe();
+  const b = navigateur({
+    parrainage: { code: 'PARRAINTEST' },
+    clipboard: { writeText: () => attente.promise },
+  });
+  await b.flush();
+  const copie = b.elements.parrainageCopier.listeners.click();
+  b.evenement('SIGNED_OUT', null);
+  await b.flush();
+  attente.resolve();
+  await copie;
+  assert.equal(b.elements.parrainageBox.hidden, true);
+  assert.equal(b.elements.parrainageLien.value, '');
+  assert.equal(b.elements.parrainageCopieManuelle.hidden, true);
+  assert.equal(b.elements.parrainageStatut.textContent, '');
 });
 
 test('un document unique reste directement accessible sans outils de recherche', async () => {

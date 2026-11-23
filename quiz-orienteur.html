@@ -501,7 +501,7 @@
         {nom:"Histoire du droit", sem:"S1", fiche:"fiche-hist-droit-l1", fc:"flashcards-qcm-hist-droit-l1"},
         {nom:"Droit constitutionnel", sem:"S1", fiche:"fiche-constit-l1-s1", fc:"flashcards-qcm-constit-l1-s1"},
         {nom:"Droit constitutionnel", sem:"S2", fiche:"fiche-constit-l1-s2", fc:"flashcards-qcm-constit-l1-s2"},
-        {nom:"Histoire des institutions", sem:"S2", fiche:"fiche-hist-institutions-l1", guide:"histoire-des-institutions-l1.html#teste-toi"},
+        {nom:"Histoire des institutions", sem:"S2", fiche:"fiche-hist-institutions-l1", guide:"histoire-des-institutions-l1.html#teste-toi", reperes:"histoire-des-institutions-l1.html#reperes"},
         {nom:"Droit de la famille", sem:"S2", fiche:"fiche-famille-l1-s2", fc:"flashcards-qcm-famille-l1-s2"},
         {nom:"Droit des personnes", sem:"", fiche:"fiche-personnes-l1", fc:"flashcards-qcm-personnes-l1"},
         {nom:"Relations internationales", sem:"", fiche:"fiche-relations-internationales-l1", fc:"flashcards-qcm-relations-internationales-l1"}
@@ -555,7 +555,9 @@
       if (i === 0) return [{v:"L1",t:"L1"},{v:"L2",t:"L2"},{v:"L3",t:"L3"}];
       if (i === 1) return MATIERES[reponses.niveau].map(function(m, mi){ return {v:String(mi), t: m.nom + (m.sem ? " (" + m.sem + ")" : "")}; });
       if (i === 2) return ECHEANCES.map(function(e){ return {v:e.v, t:e.t}; });
-      return OBJECTIFS.map(function(o){ return {v:o.v, t:o.t}; });
+      return OBJECTIFS.map(function(o){
+        return o.v === 'arrets' && reponses.matiere.reperes ? {v:o.v, t:"Retenir les dates et les textes clés"} : o;
+      });
     }
 
     function questionPourEtape(i){
@@ -636,6 +638,10 @@
         title.textContent = 'Une majeure préparée en ' + m.nom;
         lead.textContent = "La majeure est la règle de droit que tu exposes avant de l'appliquer aux faits. Ici, elle est déjà rédigée condition par condition, avec ses articles et sa jurisprudence. Ce format te fait gagner les points de méthode en cas pratique comme en commentaire.";
         ctaMain.innerHTML = boutonLien('majeures-preparees.html', 'Voir les majeures préparées');
+      } else if (obj === 'arrets' && m.reperes) {
+        title.textContent = 'Les dates et les textes clés du S2';
+        lead.textContent = 'Pour chaque texte, il faut retenir sa date, puis s’entraîner à expliquer ce qu’il a changé dans l’organisation du pouvoir.';
+        ctaMain.innerHTML = boutonLien(m.reperes, 'Voir les textes et dates à retenir');
       } else if (obj === 'arrets' && m.arretsDansFiche) {
         title.textContent = 'Les arrêts dans la fiche du ' + m.sem;
         lead.textContent = 'La fiche présente les décisions avec les règles du cours qu’elles illustrent.';
