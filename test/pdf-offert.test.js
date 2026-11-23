@@ -1,5 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const { offreDocument, cheminProduit } = require('../api/_offre-pdf');
 const fs = require('node:fs');
 const path = require('node:path');
 const lead = require('../api/lead');
@@ -26,8 +27,11 @@ test('chaque fiche d’arrêt offerte renvoie vers sa page, son PDF et un produi
     }
     const url = new URL(a.FICHE_URL);
     if (!a.OFFRE_ARRET_FORMAT) {
-      assert.equal(url.pathname, '/' + fiche.page);
-      assert.equal(url.hash, '#offre-matiere');
+      // Lien direct vers la page du produit de la même matière, comme la dernière page du PDF (C40).
+      const offre = new URL(offreDocument('fiche-arret', slug, 'pdf').url);
+      assert.equal(url.pathname + url.hash, offre.pathname + offre.hash, slug);
+      const cible = fs.readFileSync(path.join(racine, url.pathname.slice(1)), 'utf8');
+      if (url.hash) assert.ok(cible.includes('id="' + url.hash.slice(1) + '"'), url.href);
     }
     const page = fs.readFileSync(path.join(racine, fiche.page), 'utf8');
     assert.ok(page.includes('id="offre-matiere"'), fiche.page + ' sans ancre #offre-matiere');
@@ -64,8 +68,11 @@ test('les plans offerts et les fiches d’arrêt renvoient vers les supports de 
       const aPlan = lead.attributsPlan(slug);
       const verifierEmail = (attributs, url, email, pdf) => {
         const offre = new URL(url);
-        assert.equal(offre.pathname, destination.pathname);
-        assert.equal(offre.hash, destination.hash);
+        // Fiche d'arrêt dont le produit recommandé est une fiche complète : carte produit (C40).
+        const attendu = attributs.SOURCE === 'fiche-arret' && produit.startsWith('fiche-')
+          ? new URL(cheminProduit(produit), 'https://trajectoiredroit.com/') : destination;
+        assert.equal(offre.pathname, attendu.pathname);
+        assert.equal(offre.hash, attendu.hash);
         assert.equal(offre.searchParams.get('utm_campaign'), attributs.SOURCE);
         assert.equal(offre.searchParams.get('utm_content'), attributs.PLAN_SLUG || attributs.FICHE_SLUG);
         assert.ok(email.texte.includes(pdf) && email.texte.includes(url), page);

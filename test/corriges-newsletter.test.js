@@ -6,7 +6,7 @@ test('chaque page livre son exercice et propose un recueil vérifié',()=>{
  for(const [id,x] of Object.entries(EXERCICES)){
   const a=attributsExercice(id),mail=emailExercice(id);
   assert.equal(a.CORRIGE_PDF,x.pdf);assert.equal(a.MATIERE,x.produit);
-  assert.match(mail.texte,/CORRIGE10/);assert.match(mail.html,/10 %/);
+  assert.doesNotMatch(mail.texte,/CORRIGE10|10 %/);assert.match(mail.texte,/corriges\.html\?produit=/);
   assert(!a.CORRIGE_PDF.includes('/compilations/'));
  }
  assert.equal(attributsExercice('inconnu'),null);

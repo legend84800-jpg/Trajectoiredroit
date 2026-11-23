@@ -12,6 +12,8 @@ const PRODUITS = require("./_produits");
 const ESSAI = require("./_essai-majeures");
 const { attributsExercice, suggestionEmail, emailDepuisAttributs, COMPTES } = require('./_corriges-exercices');
 const { SUJETS, sujetDe } = require('./_offres-matieres');
+// Produit de la même matière présenté à la dernière page du PDF offert (C40, 23/11/2026).
+const { offreDocument } = require('./_offre-pdf');
 // Plan du commentaire offert sur les pages d'arrêts les plus vues (test du 20/10/2026).
 // Liste blanche écrite par livrables/automatisation/test-arrets-conversion-2026-10-20/generer_liste_plans.py.
 const PLANS = require('./_plans-commentaires.json');
@@ -36,14 +38,15 @@ function urlRecueil(matiere) {
 }
 
 // Liste blanche des matières, avec le contenu de chaque recueil compté dans le PDF
-// vendu le 10/10/2026 (signets « Cas pratique n » et « Partiel n »).
+// vendu le 10/10/2026 (signets « Cas pratique n » et « Partiel n »), droit administratif S1 et S2
+// alignés le 23/11/2026 sur les fiches produit du site (9 et 11 cas pratiques).
 const CORRIGES_OFFERTS = {
   "cas-pratique-intro-droit-l1": { cas: 11, partiels: 3 },
   "cas-pratique-personnes-l1": { cas: 10, partiels: 3 },
   "cas-pratique-famille-l1-s2": { cas: 21, partiels: 3 },
   "cas-pratique-penal-general-l1": { cas: 10, partiels: 3 },
-  "cas-pratique-da-l2-s1": { cas: 10, partiels: 3 },
-  "cas-pratique-da-l2-s2": { cas: 10, partiels: 3 },
+  "cas-pratique-da-l2-s1": { cas: 9, partiels: 3 },
+  "cas-pratique-da-l2-s2": { cas: 11, partiels: 3 },
   "cas-pratique-contrats-l2-s1": { cas: 10, partiels: 3 },
   "cas-pratique-obligations-l2-s2": { cas: 10, partiels: 3 },
   "cas-pratique-penal-l2-s1": { cas: 10, partiels: 3 },
@@ -445,10 +448,9 @@ function matiereDansPhrase(m) {
   const [matiere, niveau] = m.split(" · ");
   return minusculeInitiale(matiere) + (niveau ? " en " + niveau : "");
 }
+// Même produit et même page que la dernière page du PDF de la fiche (C40, 23/11/2026).
 function urlOffreFiche(fiche) {
-  const params = new URLSearchParams({ utm_source: 'brevo', utm_medium: 'email',
-    utm_campaign: 'fiche-arret', utm_content: fiche });
-  return 'https://trajectoiredroit.com/' + FICHES[fiche].page + '?' + params.toString() + '#offre-matiere';
+  return offreDocument('fiche-arret', fiche, 'email').url;
 }
 // Attributs lus par le premier email de la séquence de bienvenue Brevo (branche
 // SOURCE == "fiche-arret" du modèle 1) et par l'email transactionnel ci-dessous.
@@ -468,7 +470,8 @@ function attributsFiche(fiche) {
     FICHE_PRODUIT: p.phrase,
     FICHE_BOUTON: p.bouton,
     FICHE_PRIX: euros(produit.prix),
-    FICHE_URL: recommandation?.url ?? urlOffreFiche(fiche),
+    FICHE_URL: urlOffreFiche(fiche),
+    FICHE_OFFRE_PRIX: euros(offreDocument('fiche-arret', fiche, 'email').prix),
     ...attributsRecommandationArret(recommandation),
   };
 }
@@ -476,9 +479,10 @@ function attributsFiche(fiche) {
 // verificateur_anti_ia.py, verificateur_style_positif.py) le 03/11/2026.
 function construireEmailFiche(a) {
   const recommandation = a.OFFRE_ARRET_FORMAT
-    ? blocRecommandationArret(a, a.FICHE_URL)
+    ? [`${a.OFFRE_ARRET_TEXTE} Ce PDF coûte ${a.FICHE_OFFRE_PRIX}, et je te le présente aussi à la dernière page de ta fiche.`,
+      { lien: a.FICHE_URL, texte: a.OFFRE_ARRET_BOUTON, format: a.OFFRE_ARRET_FORMAT }]
     : [
-      `${a.FICHE_TITRE} fait partie du programme de ${a.FICHE_MATIERE}. Pour réviser toute la matière avant tes partiels, je te conseille donc ${a.FICHE_PRODUIT}, à ${a.FICHE_PRIX}.`,
+      `${a.FICHE_TITRE} fait partie du programme de ${a.FICHE_MATIERE}. Pour réviser toute la matière avant tes partiels, je te conseille donc ${a.FICHE_PRODUIT}, à ${a.FICHE_PRIX}. Je te la présente aussi à la dernière page du PDF.`,
       { lien: a.FICHE_URL, texte: a.FICHE_BOUTON },
     ];
   const paragraphes = [

@@ -4,6 +4,7 @@ const { creerClientStripe } = require("./_stripe");
 const { COUPON_REMISE_POST_ACHAT } = require("./_remise-post-achat");
 
 const LISTE_BIENVENUE = 3;
+const SOURCES_SANS_CODE = new Set(["corrige-offert", "corrige-exercice", "fiche-arret"]);
 const FORMAT_FIN = new Intl.DateTimeFormat("fr-FR", {
   dateStyle: "long",
   timeStyle: "short",
@@ -72,6 +73,15 @@ module.exports = async function remiseBienvenue(req, res) {
   try {
     const contact = await brevo(identifiant);
     if (!contact?.id || contact.emailBlacklisted || !contact.listIds?.includes(LISTE_BIENVENUE)) {
+      return res.status(204).end();
+    }
+    // Contacts arrivés par un document offert : pas de code BIENVENUE (C40, 23/11/2026).
+    // Leurs 112 codes envoyés n'ont jamais servi. Le PDF, le mail J+0 et la relance J+3
+    // leur donnent à la place le lien direct vers le produit de la même matière.
+    if (SOURCES_SANS_CODE.has(contact.attributes?.SOURCE)) {
+      if (contact.attributes?.BIENVENUE_CODE) {
+        await brevo(contact.id, { method: "PUT", body: JSON.stringify({ attributes: { BIENVENUE_CODE: "", BIENVENUE_FIN: "" } }) });
+      }
       return res.status(204).end();
     }
     const stripe = creerClientStripe(process.env.STRIPE_SECRET_KEY);

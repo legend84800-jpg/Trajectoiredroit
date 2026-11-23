@@ -7,10 +7,11 @@
 //   1. lit les contacts Brevo inscrits il y a 72 à 124 heures avec SOURCE=corrige-offert ;
 //   2. écarte ceux qui sont désinscrits, déjà relancés (attribut RELANCE_RECUEIL), ou qui ont déjà
 //      acheté ce recueil (ou n'importe quel produit ces 7 derniers jours) d'après Stripe ;
-//   3. crée pour chacun un code Stripe à usage unique de -15 % valable 48 heures, sur le coupon
-//      « remise-post-achat-15 », exactement comme les codes ESSAI des majeures ;
-//   4. envoie l'email du recueil de sa matière, dont le bouton porte ?code= (le site applique le
-//      code tout seul au paiement), puis note RELANCE_RECUEIL sur le contact.
+//   3. envoie l'email du recueil de sa matière, avec un lien direct vers sa page, puis note
+//      RELANCE_RECUEIL sur le contact.
+// Depuis le 23/11/2026 (proposition C40), la relance ne crée plus de code de réduction : sur
+// 52 codes COMPILATION de -15 % envoyés, aucun n'a servi. Le mail mène au même produit que la
+// dernière page du PDF offert et que le mail de livraison (api/_offre-pdf.js).
 // Le mail 1 de la séquence de bienvenue part à J0 et le mail « Relire ton cours » à J+2, d'où J+3.
 // Tant que le compte Brevo est sur le plan gratuit (300 envois par jour), rien ne part le lundi,
 // pour laisser la place à la newsletter des trois astuces. Depuis le passage à Starter (16/11/2026,
@@ -23,9 +24,6 @@ const PRODUITS = require("./_produits");
 const { COMPTES, recueils } = require("./_corriges-exercices");
 const { SUJETS, sujetDe, attributsMatiere } = require("./_offres-matieres");
 
-const COUPON = "remise-post-achat-15";
-const POURCENTAGE = 15;
-const DUREE_CODE_S = 48 * 3600;
 const FENETRE_H = [72, 124];
 const LISTE_LEADS = 3;
 const RESERVE_CREDITS = 100;
@@ -37,13 +35,6 @@ const esc = x => String(x).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;"
 const minInitiale = t => t.charAt(0).toLowerCase() + t.slice(1);
 // « Droit des biens L2 » donne « de droit des biens L2 », « Introduction au droit L1 » donne « d'introduction au droit L1 ».
 const deNom = nom => (/^[aeiouhéèêàâîôûAEIOUHÉ]/.test(nom) ? "d'" : "de ") + minInitiale(nom);
-
-function dateFin(ts) {
-  const d = new Date(ts * 1000);
-  const jour = new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", timeZone: "Europe/Paris" }).format(d);
-  const heure = new Intl.DateTimeFormat("fr-FR", { hour: "numeric", hour12: false, timeZone: "Europe/Paris" }).format(d).replace(/\D/g, "");
-  return `${jour} à ${heure} h`;
-}
 
 function estLundiParis(maintenant) {
   return new Intl.DateTimeFormat("en-US", { weekday: "short", timeZone: "Europe/Paris" }).format(new Date(maintenant)) === "Mon";
@@ -82,14 +73,13 @@ function recueilValide(id) {
   return typeof id === "string" && COMPTES[id] !== undefined && Boolean(PRODUITS[id]) && !PRODUITS[id].venteSuspendue && Boolean(typeDe(id));
 }
 
-function urlRecueil(id, code) {
+function urlRecueil(id) {
   const p = new URLSearchParams({ produit: id, utm_source: "brevo", utm_medium: "email", utm_campaign: "relance-recueil", utm_content: id });
-  if (code) p.set("code", code);
   return `${SITE}/corriges.html?${p.toString()}#recueil-selectionne`;
 }
 
-// Données de l'email, à partir de la matière du contact et du code créé pour lui.
-function donneesRelance(contact, remise) {
+// Données de l'email, à partir de la matière du contact.
+function donneesRelance(contact) {
   const id = contact.attributes.MATIERE;
   const produit = PRODUITS[id];
   const t = typeDe(id);
@@ -117,12 +107,10 @@ function donneesRelance(contact, remise) {
     MATIERE_NIVEAU: niveau ? `${themes} (${niveau})` : themes,
     NOMBRE: String(info ? info.nombre : COMPTES[id]),
     TYPE: t.pluriel,
-    OBJET_FORMAT: `les ${t.pluriel} ${t.corriges} ${cle ? matiere : "de " + minInitiale(produit.nom)}`,
+    OBJET_FORMAT: `Les ${t.pluriel} ${t.corriges} ${cle ? matiere : "de " + minInitiale(produit.nom)}`,
+    BOUTON: `Voir les ${t.pluriel} ${t.corriges} ${cle ? matiere : "de " + minInitiale(produit.nom)}`,
     PRIX: euros(prix),
-    PRIX_REMISE: euros(prix - Math.round(prix * POURCENTAGE / 100)),
-    CODE: remise.code,
-    FIN: dateFin(remise.expire),
-    URL: urlRecueil(id, remise.code),
+    URL: urlRecueil(id),
   };
 }
 
@@ -143,10 +131,10 @@ function construireEmailRelance(d, lienStop) {
       gras: ["ultra complète et pédagogique", nombreExercices, d.MATIERE_NIVEAU],
     },
     {
-      texte: `Elle coûte normalement ${d.PRIX}, mais je te propose un code de -15 % valable 48 heures. Ton code est ${d.CODE}, donc la compilation passe à ${d.PRIX_REMISE}. Le bouton ci-dessous applique d'ailleurs le code tout seul au paiement, jusqu'au ${d.FIN}.`,
-      gras: ["-15 % valable 48 heures", d.CODE],
+      texte: `La compilation coûte ${d.PRIX}. Le bouton ci-dessous t’amène directement sur sa page, et tu reçois le PDF par email dès que le paiement est validé.`,
+      gras: [d.PRIX],
     },
-    { lien: d.URL, texte: "Voir la compilation de corrigés avec -15 %" },
+    { lien: d.URL, texte: d.BOUTON },
     { texte: "Si tu as une question sur le corrigé, n'hésite pas à m'envoyer un message en répondant à ce mail." },
     { texte: "Respectueusement,\nJulien\nTrajectoire Droit" },
   ];
@@ -164,14 +152,14 @@ function construireEmailRelance(d, lienStop) {
   }).join("");
   const html = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>'
     + '<body style="margin:0;font:16px Arial,sans-serif;line-height:1.6;color:#1F1F1F">'
-    + '<div style="display:none;visibility:hidden;mso-hide:all;max-height:0;overflow:hidden">Ton code personnel est valable 48 heures.</div>'
+    + '<div style="display:none;visibility:hidden;mso-hide:all;max-height:0;overflow:hidden">Les autres sujets de ta matière, corrigés étape par étape.</div>'
     + '<div style="box-sizing:border-box;max-width:600px;margin:0 auto;padding:18px">' + corps
     + '<p style="font-size:11px;color:#6B7280;margin:32px 0 0">' + esc(pied)
     + (lienStop ? '<br><a href="' + esc(lienStop) + '" style="color:#6B7280;text-decoration:none">' + desinscription + "</a>" : "") + "</p>"
     + "</div></body></html>";
   const texte = paragraphes.map(p => p.lien ? p.texte + "\n" + p.lien : p.texte).join("\n\n")
     + "\n\n" + pied + (lienStop ? "\n" + desinscription + "\n" + lienStop : "");
-  return { sujet: `-15 % sur ${d.OBJET_FORMAT}`, html, texte };
+  return { sujet: d.OBJET_FORMAT, html, texte };
 }
 
 // ---------- Accès Brevo et Stripe ----------
@@ -229,17 +217,6 @@ async function dejaAcheteur(stripe, email, produitId, maintenant) {
   });
 }
 
-async function creerCode(stripe, produitId, email, jour) {
-  const code = "COMPILATION-" + crypto.randomBytes(4).toString("hex").toUpperCase();
-  const expire = Math.floor(Date.now() / 1000) + DUREE_CODE_S;
-  const promo = await stripe.promotionCodes.create({
-    code, active: true, expires_at: expire, max_redemptions: 1,
-    promotion: { type: "coupon", coupon: COUPON },
-    metadata: { campaign: "relance-recueil", produit: produitId },
-  }, { idempotencyKey: "relance-recueil-" + crypto.createHash("sha256").update(email + jour).digest("hex").slice(0, 24) });
-  return { code: promo.code, expire: promo.expires_at || expire };
-}
-
 function eligible(contact, maintenant) {
   const a = contact.attributes || {};
   const age = (maintenant - new Date(contact.createdAt).getTime()) / 3600000;
@@ -293,9 +270,8 @@ async function passer(options = {}) {
       if (credits <= RESERVE_CREDITS) { ecarter("credits-brevo"); continue; }
       if (bilan.envoyes >= MAX_ENVOIS) { ecarter("plafond-du-jour"); continue; }
       if (essai) { bilan.envoyes++; continue; }
-      const remise = await creerCode(stripe, produitId, email, jour);
       const lienStop = secret ? `${SITE}/api/relance-recueil?stop=${jetonStop(email, secret)}` : "";
-      const contenu = construireEmailRelance(donneesRelance(c, remise), lienStop);
+      const contenu = construireEmailRelance(donneesRelance(c), lienStop);
       await api.envoyer({
         sender: { name: "Trajectoire Droit", email: "contact@trajectoiredroit.com" },
         to: [{ email }],
@@ -306,7 +282,7 @@ async function passer(options = {}) {
       });
       credits--;
       bilan.envoyes++;
-      await api.majContact(email, { RELANCE_RECUEIL: `${jour} ${remise.code}` })
+      await api.majContact(email, { RELANCE_RECUEIL: `${jour} lien-direct` })
         .catch(e => bilan.erreurs.push("marque: " + e.message));
     } catch (e) {
       bilan.erreurs.push(e.message ? e.message.slice(0, 200) : "erreur inconnue");
