@@ -7,6 +7,7 @@ const produits = require("../api/_produits");
 
 const racine = path.resolve(__dirname, "..");
 const html = fs.readFileSync(path.join(racine, "quiz-orienteur.html"), "utf8");
+const catalogue = fs.readFileSync(path.join(racine, "formations.html"), "utf8");
 const script = Array.from(html.matchAll(/<script>([\s\S]*?)<\/script>/g), match => match[1])
   .find(source => source.includes("var MATIERES"));
 
@@ -31,15 +32,25 @@ function quiz() {
   const contexte = { document, window: { scrollTo() {} } };
   vm.runInNewContext(script, contexte);
 
+  function choisir(reponse) {
+    const option = getElementById("optionsBox").enfants.find(bouton => bouton.textContent === reponse);
+    assert.ok(option, reponse);
+    option.listeners.click();
+  }
+  function allerAuxObjectifs(niveau, matiere, echeance) {
+    getElementById("startBtn").listeners.click();
+    for (const reponse of [niveau, matiere, echeance]) choisir(reponse);
+  }
+
   return {
     matieres: contexte.MATIERES,
+    objectifs(niveau, matiere) {
+      allerAuxObjectifs(niveau, matiere, "Moins de 2 semaines");
+      return getElementById("optionsBox").enfants.map(bouton => bouton.textContent);
+    },
     repondre(niveau, matiere, objectif, echeance = "Moins de 2 semaines") {
-      getElementById("startBtn").listeners.click();
-      for (const reponse of [niveau, matiere, echeance, objectif]) {
-        const option = getElementById("optionsBox").enfants.find(bouton => bouton.textContent === reponse);
-        assert.ok(option, reponse);
-        option.listeners.click();
-      }
+      allerAuxObjectifs(niveau, matiere, echeance);
+      choisir(objectif);
       return {
         titre: getElementById("resultTitle").textContent,
         conseil: getElementById("resultLead").textContent,
@@ -55,10 +66,20 @@ test("chaque matière du quiz renvoie à des supports disponibles", () => {
     const fiche = produits[matiere.fiche];
     assert.ok(fiche && !fiche.venteSuspendue, matiere.fiche);
 
-    const idFlashcards = matiere.fiche.replace(/^fiche-/, "flashcards-qcm-");
-    const flashcards = produits[idFlashcards];
+    const suffixe = matiere.fiche.match(/^fiche-(.+)$/);
+    const idFlashcards = suffixe && "flashcards-qcm-" + suffixe[1];
+    const flashcards = idFlashcards && produits[idFlashcards];
     if (flashcards && !flashcards.venteSuspendue) {
       assert.equal(matiere.fc, idFlashcards, matiere.nom);
+      continue;
+    }
+
+    if (matiere.ficheCatalogue) {
+      const carte = catalogue.match(new RegExp('<article id="' + matiere.fiche + '"[^>]*>([\\s\\S]*?)</article>'));
+      assert.ok(carte, matiere.fiche);
+      assert.equal(matiere.ficheCatalogue.titre, fiche.nom);
+      assert.ok(carte[1].includes('<h3 class="product__title">' + matiere.nom + '</h3>'), matiere.nom);
+      assert.ok(carte[1].includes('<p class="product__desc">' + matiere.ficheCatalogue.description + '</p>'), matiere.nom);
       continue;
     }
 
@@ -81,6 +102,35 @@ test("chaque matière du quiz renvoie à des supports disponibles", () => {
     assert.equal((questions[1].match(/<details\b/g) || []).length, 4, matiere.guide);
   }
 });
+
+test("le nombre affiché correspond aux matières distinctes du quiz", () => {
+  const distinctes = new Set(Object.values(quiz().matieres).flat().map(matiere => matiere.nom));
+  assert.match(html, new RegExp('>' + distinctes.size + '</div><div[^>]+>matières couvertes'));
+});
+
+for (const [nom, ancre] of [
+  ["Finances publiques", "cours-fiche-finances-publiques-l2-s1"],
+  ["Philosophie du droit", "cours-fiche-philo-droit-l2-s1"],
+]) {
+  const matiere = nom + " (S1)";
+  const comprendre = "Comprendre et apprendre tout le cours";
+  const methode = "Revoir la méthode des exercices plutôt que le contenu";
+  const aide = "Je bloque sur un point précis, j'ai besoin d'aide individuelle";
+  test(nom + " propose seulement la fiche, les méthodes et l’aide individuelle", () => {
+    assert.deepEqual(quiz().objectifs("L2", matiere), [comprendre, methode, aide]);
+    assert.ok(quiz().repondre("L2", matiere, methode).cta.includes('href="methodologie-juridique.html"'));
+    assert.ok(quiz().repondre("L2", matiere, aide).cta.includes('href="cours-particuliers.html#reserver"'));
+
+    for (const echeance of ["Moins de 2 semaines", "Je commence tout juste le semestre"]) {
+      const resultat = quiz().repondre("L2", matiere, comprendre, echeance);
+      assert.equal(resultat.titre, produits[ancre].nom);
+      assert.ok(resultat.cta.includes('href="formations.html#' + ancre + '"'));
+      assert.match(resultat.cta, /Voir la fiche du S1/);
+      assert.doesNotMatch(resultat.cta, /data-tjd-produit|Acheter|€/);
+      assert.equal(resultat.complement, "");
+    }
+  });
+}
 
 const cas = [
   ["L1", "Histoire des institutions (S2)", "histoire-des-institutions-l1.html#teste-toi"],

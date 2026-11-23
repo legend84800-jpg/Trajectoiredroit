@@ -378,13 +378,13 @@
           <div class="text-center" style="margin-bottom:28px">
             <span class="eyebrow eyebrow--gold">🎯 Quiz gratuit · 1 minute · sans inscription</span>
             <h1 class="h1 text-balance" style="margin-top:14px">Quelle fiche prendre ?</h1>
-            <p class="lead" style="max-width:600px;margin:16px auto 0">Le catalogue compte plusieurs formats et 18 matières. Le quiz pose 4 questions, d'abord sur l'année d'études et sur la matière qui pose problème. Il demande ensuite la date de la prochaine échéance, comme un partiel, et ce que tu cherches en priorité. Tu repars ensuite avec la fiche adaptée à ta situation.</p>
+            <p class="lead" style="max-width:600px;margin:16px auto 0">Le quiz pose 4 questions, d'abord sur l'année d'études et sur la matière qui pose problème. Il demande ensuite la date de la prochaine échéance, comme un partiel, et ce que tu cherches en priorité. Tu repars ensuite avec la fiche adaptée à ta situation.</p>
           </div>
           <div class="quiz-card text-center">
             <div class="grid-3" style="gap:16px;margin-bottom:24px;text-align:left">
               <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">4</div><div style="font-size:.88rem;color:var(--body)">questions courtes</div></div>
               <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">1 min</div><div style="font-size:.88rem;color:var(--body)">pour avoir ta réponse</div></div>
-              <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">18</div><div style="font-size:.88rem;color:var(--body)">matières couvertes, L1 à L3</div></div>
+              <div><div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy)">20</div><div style="font-size:.88rem;color:var(--body)">matières couvertes, L1 à L3</div></div>
             </div>
             <button class="btn btn--primary btn--lg" id="startBtn">Commencer le quiz →</button>
             <p style="font-size:.84rem;color:var(--muted);margin:14px 0 0">Construit par Julien, à partir des vraies erreurs vues dans les copies de ses élèves.</p>
@@ -510,6 +510,14 @@
         {nom:"Droit administratif", sem:"S1", fiche:"fiche-da-l2-s1", fc:"flashcards-qcm-da-l2-s1"},
         {nom:"Droit des contrats", sem:"S1", fiche:"fiche-contrats-l2-s1", fc:"flashcards-qcm-contrats-l2-s1"},
         {nom:"Droit pénal", sem:"S1", fiche:"fiche-penal-l2-s1", fc:"flashcards-qcm-penal-l2-s1"},
+        {nom:"Finances publiques", sem:"S1", fiche:"cours-fiche-finances-publiques-l2-s1", ficheCatalogue:{
+          titre:"Fiche complète Finances publiques L2 S1",
+          description:"La fiche explique comment l'État construit son budget, entre recettes et dépenses publiques. Elle montre ensuite qui contrôle la façon dont cet argent est dépensé."
+        }},
+        {nom:"Philosophie du droit", sem:"S1", fiche:"cours-fiche-philo-droit-l2-s1", ficheCatalogue:{
+          titre:"Fiche complète Philosophie du droit L2 S1",
+          description:"La fiche cherche sur quoi repose le droit, en opposant le droit naturel et le positivisme. Elle traite aussi de la justice et de ce qui rend un pouvoir légitime."
+        }},
         {nom:"Droit pénal général", sem:"S1 ou S2", fiche:"fiche-penal-general-l1", fc:"flashcards-qcm-penal-general-l1"},
         {nom:"Droit administratif", sem:"S2", fiche:"fiche-da-l2-s2", fc:"flashcards-qcm-da-l2-s2"},
         {nom:"Droit des obligations", sem:"S2", fiche:"fiche-obligations-l2-s2", fc:"flashcards-qcm-obligations-l2-s2"},
@@ -555,6 +563,9 @@
       if (i === 0) return [{v:"L1",t:"L1"},{v:"L2",t:"L2"},{v:"L3",t:"L3"}];
       if (i === 1) return MATIERES[reponses.niveau].map(function(m, mi){ return {v:String(mi), t: m.nom + (m.sem ? " (" + m.sem + ")" : "")}; });
       if (i === 2) return ECHEANCES.map(function(e){ return {v:e.v, t:e.t}; });
+      if (reponses.matiere.ficheCatalogue) {
+        return OBJECTIFS.filter(function(o){ return ["comprendre", "methode", "bloque"].includes(o.v); });
+      }
       return OBJECTIFS.map(function(o){
         return o.v === 'arrets' && reponses.matiere.reperes ? {v:o.v, t:"Retenir les dates et les textes clés"} : o;
       });
@@ -619,7 +630,11 @@
       eyebrow.textContent = reponses.niveau + ' · ' + m.nom + (m.sem ? ' (' + m.sem + ')' : '');
       ctaSecondary.textContent = '';
 
-      if (obj === 'comprendre') {
+      if (obj === 'comprendre' && m.ficheCatalogue) {
+        title.textContent = m.ficheCatalogue.titre;
+        lead.textContent = m.ficheCatalogue.description;
+        ctaMain.innerHTML = boutonLien('formations.html#' + m.fiche, 'Voir la fiche du ' + m.sem);
+      } else if (obj === 'comprendre') {
         title.textContent = 'La fiche complète de ' + m.nom;
         lead.textContent = "Elle réunit tout le semestre en un seul PDF, avec les définitions et les articles, mais aussi des exemples qui t'aident à comprendre chaque notion.";
         ctaMain.innerHTML = boutonAchat(m.fiche, 'Acheter la fiche', '19,99 €');

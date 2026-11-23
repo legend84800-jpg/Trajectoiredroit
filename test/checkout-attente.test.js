@@ -9,9 +9,10 @@ const flush = () => new Promise(setImmediate);
 function environnement({ panier = null } = {}) {
   const demandes = [], redirections = [], messages = [], timers = new Map(), evenements = {};
   let sequence = 0, comportement = 'suspendu';
-  const bouton = { textContent: panier ? 'Passer au paiement' : 'Acheter · 14,99 €', disabled: false, getAttribute: () => null };
+  const bouton = { id: panier ? 'tjdPanierCta' : '', textContent: panier ? 'Passer au paiement' : 'Acheter · 14,99 €', disabled: false, getAttribute: () => null };
   const stockage = { getItem: (cle) => cle === 'tjd_panier' && panier ? JSON.stringify(panier) : null, setItem() {}, removeItem() {} };
-  const elements = { tjdPanierCta: bouton, tjdPanierListe: { innerHTML: '', querySelectorAll: () => [] }, tjdPanierTotal: {}, tjdPanierTotalMontant: {}, tjdPanierTemporaire: {} };
+  const retraits = (panier || []).map(() => ({ disabled: false, addEventListener() {} }));
+  const elements = { tjdPanierCta: bouton, tjdPanierListe: { innerHTML: '', querySelectorAll: () => retraits }, tjdPanierTotal: {}, tjdPanierTotalMontant: {}, tjdPanierTemporaire: {} };
   const window = {
     location: { search: '', hostname: 'localhost', pathname: '/formations.html', hash: '', protocol: 'http:', assign: url => redirections.push(url) },
     crypto: { randomUUID: () => 'tentative-attente-' + (++sequence) },
@@ -35,7 +36,7 @@ function environnement({ panier = null } = {}) {
     setTimeout: (fn, delai) => { const id = ++sequence; timers.set(id, { fn, delai }); return id; },
     clearTimeout: id => timers.delete(id)
   });
-  return { window, bouton, demandes, redirections, messages, evenements, timers,
+  return { window, bouton, retraits, demandes, redirections, messages, evenements, timers,
     repondre(mode) { comportement = mode; },
     remplacerPanier(produits) { panier = produits; },
     expirer() { for (const [id, t] of [...timers]) { timers.delete(id); t.fn(); } }
@@ -120,6 +121,46 @@ test('le délai du panier ignore une réponse tardive et le réessai conserve sa
   e.evenements.pageshow({ persisted: true });
   assert.equal(e.bouton.disabled, false);
   assert.equal(e.bouton.textContent, 'Passer au paiement');
+});
+
+test('le retour du paiement rétablit toutes les croix du panier conservé par le navigateur', async () => {
+  const panier = [...panierInitial, { id: 'fiche-da-l2-s2', nom: 'Fiche S2', prixCentimes: 1999 }];
+  const e = environnement({ panier });
+  e.repondre('succes');
+  e.window.__payerPanier();
+  await flush();
+  assert.equal(e.demandes.length, 1);
+  assert.deepEqual(e.redirections, ['https://checkout.stripe.com/paiement']);
+  assert.equal(e.bouton.disabled, true);
+  assert.deepEqual(e.retraits.map(bouton => bouton.disabled), [true, true]);
+
+  e.evenements.pageshow({ persisted: false });
+  assert.deepEqual(e.retraits.map(bouton => bouton.disabled), [true, true]);
+
+  e.evenements.pageshow({ persisted: true });
+  assert.equal(e.bouton.disabled, false);
+  assert.equal(e.bouton.textContent, 'Passer au paiement');
+  assert.deepEqual(e.retraits.map(bouton => bouton.disabled), [false, false]);
+  assert.equal(e.demandes.length, 1);
+});
+
+test('le panier attend la fin de la demande si le navigateur restaure la page pendant le chargement', async () => {
+  const e = environnement({ panier: panierInitial });
+  e.window.__payerPanier();
+  await flush();
+  e.evenements.pageshow({ persisted: true });
+  assert.equal(e.bouton.disabled, true);
+  assert.equal(e.retraits[0].disabled, true);
+  e.window.__payerPanier();
+  await flush();
+  assert.equal(e.demandes.length, 1);
+
+  e.demandes[0].resoudre({ ok: true, json: async () => ({ url: 'https://checkout.stripe.com/paiement' }) });
+  await flush();
+  assert.deepEqual(e.redirections, ['https://checkout.stripe.com/paiement']);
+  e.evenements.pageshow({ persisted: true });
+  assert.equal(e.bouton.disabled, false);
+  assert.equal(e.retraits[0].disabled, false);
 });
 
 test('un panier modifié après le délai reçoit une nouvelle référence de paiement', async () => {

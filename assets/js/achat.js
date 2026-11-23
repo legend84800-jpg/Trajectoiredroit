@@ -81,13 +81,16 @@
 
   if (window.addEventListener) window.addEventListener('pageshow', function (evenement) {
     if (!evenement.persisted) return;
-    BOUTONS_PAIEMENT.forEach(function (entree) {
+    BOUTONS_PAIEMENT = BOUTONS_PAIEMENT.filter(function (entree) {
+      var panier = entree.bouton.id === 'tjdPanierCta';
+      if (panier && entree.bouton.tjdPaiementEnCours) return true;
       entree.bouton.tjdPaiementEnCours = false;
       entree.bouton.disabled = false;
       if (entree.bouton.tjdActualiserAchatBarre) entree.bouton.tjdActualiserAchatBarre();
       else entree.bouton.textContent = entree.texte;
+      if (panier) panierDesactiverRetraits(false);
+      return false;
     });
-    BOUTONS_PAIEMENT = [];
   });
   // Le stockage du navigateur peut être refusé ou plein. Les données utiles au
   // paiement restent alors en mémoire dans cette page, sans inventer de consentement.
@@ -1117,13 +1120,20 @@
     panierLancerPaiement(liste);
   }
 
+  function panierDesactiverRetraits(desactiver) {
+    var liste = document.getElementById('tjdPanierListe');
+    if (!liste || !liste.querySelectorAll) return;
+    liste.querySelectorAll('[data-tjd-panier-retirer]').forEach(function (bouton) {
+      bouton.disabled = desactiver;
+    });
+  }
+
   function panierLancerPaiement(liste) {
     var cta = document.getElementById('tjdPanierCta');
     var texteOriginal = cta.textContent;
     cta.disabled = true;
     cta.textContent = 'Chargement…';
-    var lignes = document.getElementById('tjdPanierListe');
-    if (lignes && lignes.querySelectorAll) lignes.querySelectorAll('[data-tjd-panier-retirer]').forEach(function (btn) { btn.disabled = true; });
+    panierDesactiverRetraits(true);
 
     var corps = { produitIds: liste.map(function (a) { return a.id; }) };
     corps.attemptId = creerAttemptId();
@@ -1186,7 +1196,7 @@
         messagePaiement(cta, erreur);
         cta.disabled = false;
         cta.textContent = texteOriginal;
-        if (lignes && lignes.querySelectorAll) lignes.querySelectorAll('[data-tjd-panier-retirer]').forEach(function (btn) { btn.disabled = false; });
+        panierDesactiverRetraits(false);
       });
   }
 

@@ -77,7 +77,40 @@ function choixCasPratiques(html) {
   return resultats;
 }
 
+const SECTIONS_GUIDES = {
+  'contrats-speciaux-l3.html': 'programme',
+  'ressources-gratuites.html': 'guides-gratuits',
+};
+
+function sectionAvecAncre(html, ancre) {
+  return html.match(new RegExp(`<section\\b[^>]*\\sid=["']${ancre}["'][^>]*>([\\s\\S]*?)</section>`, 'i'))?.[1] || '';
+}
+
+function pagesGuides(racine) {
+  const nom = 'ressources-gratuites.html';
+  const fichier = path.join(racine, nom);
+  if (!fs.existsSync(fichier)) return new Map();
+  const section = sectionAvecAncre(fs.readFileSync(fichier, 'utf8'), SECTIONS_GUIDES[nom]);
+  const liens = section.matchAll(/<li\b[^>]*>\s*<a\b[^>]*\shref=["']([a-z0-9][a-z0-9_-]*\.html)["'][^>]*>([\s\S]*?)<\/a>/gi);
+  const guides = new Map();
+  for (const [, destination, libelle] of liens) {
+    const matiere = texteHtml(libelle);
+    if (matiere) guides.set(destination, matiere);
+  }
+  return guides;
+}
+
+function guideIndexe(html, nom) {
+  const ancre = SECTIONS_GUIDES[nom];
+  if (!ancre) return null;
+  const section = sectionAvecAncre(html, ancre);
+  const titre = texteHtml(section.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1]);
+  if (!titre) return null;
+  return { t: titre, u: `/${nom}#${ancre}`, c: categorie(nom), k: 'guide gratuit', g: true };
+}
+
 function construireIndex(racine) {
+  const guides = pagesGuides(racine);
   const adresses = fs.readdirSync(racine).filter((nom) => nom.endsWith('.html'))
     .map((nom) => 'https://trajectoiredroit.com/' + (nom === 'index.html' ? '' : nom));
   const dejaVus = new Set();
@@ -100,7 +133,15 @@ function construireIndex(racine) {
     const h1 = texteHtml((html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i) || [])[1]);
     if (!titre || !h1) continue;
     dejaVus.add(nom);
-    index.push({ t: titre, u: nom === 'index.html' ? '/' : '/' + nom, c: categorie(nom), k: h1 + ' ' + nom.replace(/\.html$/, '').replace(/-/g, ' ') });
+    index.push({
+      t: titre,
+      u: nom === 'index.html' ? '/' : '/' + nom,
+      c: categorie(nom),
+      k: h1 + ' ' + nom.replace(/\.html$/, '').replace(/-/g, ' '),
+      ...(guides.has(nom) ? { g: guides.get(nom) } : {}),
+    });
+    const guide = guideIndexe(html, nom);
+    if (guide) index.push(guide);
     if (FORMATS_CARTES[nom]) index.push(...cartesCatalogue(html, nom, FORMATS_CARTES[nom]));
     if (nom === 'cas-pratiques-corriges.html') index.push(...choixCasPratiques(html));
   }

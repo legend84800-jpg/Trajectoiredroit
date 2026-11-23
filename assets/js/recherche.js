@@ -10,10 +10,19 @@
     var requete = normalize(query).trim();
     if (!requete) return [];
     var mots = requete.split(/\s+/);
+    var referenceArret = requete.match(/^fiches?\s+(?:(?:d|de l)\s+)?arrets?\s+(.+)$/);
+    var motsArret = referenceArret ? referenceArret[1].replace(/^sur\s+/, '').match(/[\p{L}\p{N}]+/gu) : null;
+    var demandeGuide = /\bguides?\b/.test(requete);
     var requeteCarte = requete
       .replace(/\bl([123])s([12])\b/g, 'l$1 s$2')
       .replace(/\b(?:licence|l)[\s.-]*([123])\b/g, 'l$1')
       .replace(/\b(?:semestre|s)[\s.-]*([12])\b/g, 's$1');
+    var motsGuide = demandeGuide ? (requeteCarte.match(/[\p{L}\p{N}]+/gu) || []).filter(function (mot) {
+      return !/^(?:d|de|du|des|l|le|la|les|en)$/.test(mot);
+    }) : [];
+    var matiereGuide = motsGuide.filter(function (mot) {
+      return !/^(?:guides?|gratuits?)$/.test(mot);
+    });
     var variantes = { qcms: 'qcm', flashcard: 'flashcards', fiches: 'fiche', completes: 'complete' };
     var motsCarte = (requeteCarte.match(/[\p{L}\p{N}]+/gu) || []).map(function (mot) { return Object.hasOwn(variantes, mot) ? variantes[mot] : mot; });
     var casPratiques = /\bcas\s+pratiques\b/.test(requete) || (/\bcas\s+pratique\b/.test(requete) && /\bs[12]\b/.test(requeteCarte));
@@ -22,9 +31,16 @@
       : /\bmajeures?\b/.test(requete) ? 'Majeures préparées'
       : casPratiques ? 'Cas pratiques corrigés' : '';
     return pages.map(function (item) {
-      var carte = item.u.indexOf('#') !== -1;
-      var motsCherches = carte ? motsCarte : mots;
+      var avecAncre = item.u.indexOf('#') !== -1;
+      var sectionGuide = item.g === true && avecAncre;
+      var guide = demandeGuide && (sectionGuide || (matiereGuide.length && typeof item.g === 'string'));
+      if (sectionGuide && !guide) return null;
+      var arret = motsArret && item.c === 'Arrêt expliqué';
+      var carte = avecAncre && !sectionGuide;
+      var motsCherches = guide ? motsGuide : arret ? motsArret : carte ? motsCarte : mots;
       var titre = normalize(item.t), contenu = titre + ' ' + normalize(item.k) + ' ' + normalize(item.c);
+      var intituleGuide = guide && !sectionGuide ? normalize(item.g) : '';
+      if (intituleGuide) contenu += ' guide gratuit guides gratuits ' + intituleGuide;
       var reperes = carte ? titre.match(/\b(?:l[123]|s[12])\b/g) || [] : [];
       if (!motsCherches.length || !motsCherches.every(function (mot) {
         if (carte && /^(?:l[123]|s[12])$/.test(mot)) return reperes.indexOf(mot) !== -1;
@@ -32,9 +48,10 @@
       })) return null;
       var score = motsCherches.reduce(function (total, mot) { return total + (titre.indexOf(mot) !== -1 ? 10 : 1); }, 0);
       if (titre.indexOf(carte ? motsCarte.join(' ') : requete) !== -1) score += 20;
+      if (intituleGuide && matiereGuide.every(function (mot) { return intituleGuide.indexOf(mot) !== -1; })) score += 20;
       // Une demande de format précis favorise sa carte. Les guides passent d'abord pour une matière seule.
       var nouveauSupport = item.c === 'Majeures préparées' || item.c === 'Cas pratiques corrigés';
-      var priorite = !carte ? 0 : item.c === formatCherche ? -1 : nouveauSupport ? 2 : 1;
+      var priorite = sectionGuide ? -2 : guide || arret ? -1 : !carte ? 0 : item.c === formatCherche ? -1 : nouveauSupport ? 2 : 1;
       return { item: item, score: score, priorite: priorite };
     }).filter(Boolean).sort(function (a, b) { return a.priorite - b.priorite || b.score - a.score || a.item.t.localeCompare(b.item.t, 'fr'); })
       .map(function (resultat) { return resultat.item; });
@@ -50,6 +67,8 @@
         index = pages.filter(function (item) {
           if (!item || typeof item.t !== 'string' || typeof item.u !== 'string') return false;
           return /^\/(?:[a-z0-9][a-z0-9_-]*\.html)?$/.test(item.u)
+            || (item.g === true && (item.u === '/contrats-speciaux-l3.html#programme'
+              || item.u === '/ressources-gratuites.html#guides-gratuits'))
             || /^\/flashcards-qcm\.html#flashcards-qcm-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.u)
             || /^\/formations\.html#(?:cours-)?fiche-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.u)
             || /^\/majeures-preparees\.html\?niveau=l[123]#maj-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.u)

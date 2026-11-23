@@ -42,6 +42,11 @@ test('l’index exclut les pages privées ou techniques et les fichiers absents'
     assert.ok(fs.existsSync(fichier), page.u);
     if (ancre) {
       const html = fs.readFileSync(fichier, 'utf8');
+      if (page.g) {
+        assert.ok(['/contrats-speciaux-l3.html#programme', '/ressources-gratuites.html#guides-gratuits'].includes(page.u));
+        assert.ok(html.includes(`id="${ancre}"`), page.u);
+        continue;
+      }
       if (chemin === '/cas-pratiques-corriges.html') {
         const produit = destination.searchParams.get('matiere');
         const selecteur = html.match(/<select\b[^>]* id="choixRecueil"[^>]*>([\s\S]*?)<\/select>/)?.[1];
@@ -160,6 +165,46 @@ test('les recherches de guides ou d’arrêts conservent le classement des pages
     const ordre = Array.from(rechercher(pages, requete), (p) => p.u);
     assert.deepEqual(Array.from(rechercher(index, requete), (p) => p.u).slice(0, ordre.length), ordre, requete);
   }
+});
+
+test('la recherche d’une fiche d’arrêt retrouve la décision demandée', () => {
+  for (const requete of ['fiche d’arrêt Blanco', 'FICHE D\'ARRET BLANCO', 'fiche de l’arrêt Blanco', 'fiche d’arrêt sur Blanco', 'fiche arrêt Blanco 1873']) {
+    assert.equal(rechercher(index, requete)[0].u, '/arret-blanco-explique.html', requete);
+  }
+  assert.equal(rechercher(index, 'fiches d’arrêt KPMG')[0].u, '/arret-kpmg-2006-explique.html');
+  assert.equal(rechercher(index, 'fiche d’arrêt inconnuqz').length, 0);
+});
+
+test('la recherche explicite d’un guide ouvre la section publique correspondante', () => {
+  for (const requete of ['guide contrats spéciaux', 'guide de contrats spéciaux', 'contrats speciaux guide gratuit Licence 3']) {
+    assert.equal(rechercher(index, requete)[0].u, '/contrats-speciaux-l3.html#programme', requete);
+  }
+  for (const requete of ['guides gratuits', 'guide gratuit']) {
+    assert.equal(rechercher(index, requete)[0].u, '/ressources-gratuites.html#guides-gratuits', requete);
+  }
+  assert.equal(rechercher(index, 'ressources gratuites')[0].u, '/ressources-gratuites.html');
+  assert.equal(rechercher(index, 'contrats spéciaux')[0].u, '/contrats-speciaux-l3.html');
+  assert.equal(rechercher(index, 'fiche complète contrats spéciaux L3')[0].u, '/formations.html#fiche-contrats-speciaux-l3');
+});
+
+test('les guides de matière reprennent les destinations de la liste des ressources gratuites', () => {
+  const portail = fs.readFileSync(path.join(racine, 'ressources-gratuites.html'), 'utf8');
+  const section = portail.match(/<section\b[^>]* id="guides-gratuits"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(section);
+  const liens = Array.from(section.matchAll(/<li><a href="([^"]+)">([^<]+)<\/a><\/li>/g), ([, href, libelle]) => ['/' + href, libelle]);
+  assert.deepEqual(index.filter((page) => typeof page.g === 'string').map((page) => [page.u, page.g]).sort(), liens.filter(([href]) => !href.includes('#')).sort());
+  for (const [destination, libelle] of liens) {
+    assert.equal(rechercher(index, 'guide ' + libelle)[0].u, destination, libelle);
+  }
+  for (const [requete, destination] of [
+    ['guide droit administratif', '/droit-administratif-l2.html'],
+    ['Guide du droit administratif Licence 2', '/droit-administratif-l2.html'],
+    ['guide de droit de la famille', '/droit-de-la-famille-l1.html'],
+    ['guide de procédure pénale', '/procedure-penale-l3.html'],
+  ]) {
+    assert.equal(rechercher(index, requete)[0].u, destination, requete);
+  }
+  assert.deepEqual(Array.from(rechercher(index, 'guide contrats spéciaux'), (page) => page.u), ['/contrats-speciaux-l3.html#programme']);
 });
 
 test('une carte sans ancre utilisable est ignorée et sa page reste dans l’index', (t) => {
