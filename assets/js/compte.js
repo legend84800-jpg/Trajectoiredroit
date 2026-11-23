@@ -91,7 +91,7 @@
       if (achatsProduit) { achatsProduit.innerHTML = ""; achatsProduit.value = ""; }
       if (achatsSemestre) { achatsSemestre.innerHTML = ""; achatsSemestre.value = ""; }
       if (achatsResultat) achatsResultat.textContent = "";
-      achatsVide.textContent = "Aucun achat pour l'instant.";
+      achatsVide.textContent = "";
       achatsVide.style.display = "none";
       relancerAchats = null;
       if (achatsReessayer) {
@@ -314,7 +314,7 @@
     function afficherAchats(achats, ouvrirVolet){
       achatsVide.textContent = achatsCourants.length
         ? "Aucun achat ne correspond à ces filtres. Tu peux les effacer pour tout retrouver."
-        : "Aucun achat pour l'instant.";
+        : "Aucun achat associé à cette adresse. Pour retrouver une commande, il faut se reconnecter avec l’adresse indiquée sur le reçu.";
       if (!achats.length){
         achatsVide.style.display = "block";
         achatsListe.innerHTML = "";
