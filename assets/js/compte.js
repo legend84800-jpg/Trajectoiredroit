@@ -83,11 +83,21 @@
     var achatsResultat     = document.getElementById("achatsResultat");
     var achatsCourants = [];
     var relancerAchats = null;
+    var jetonAchats = null;
+    var pdfAffiches = [];
+    var pdfEnCours = null;
+    var relancerPdf = null;
+    var messageChargementAchats = "Chargement des documents…";
+    var messageErreurAchats = "Le chargement de tes documents a échoué.";
 
     function effacerAchats(){
       compteEmail.textContent = "";
       achatsListe.innerHTML = "";
       achatsCourants = [];
+      jetonAchats = null;
+      pdfAffiches = [];
+      pdfEnCours = null;
+      relancerPdf = null;
       if (achatsOutils) achatsOutils.hidden = true;
       if (achatsRecherche) achatsRecherche.value = "";
       if (achatsProduit) { achatsProduit.innerHTML = ""; achatsProduit.value = ""; }
@@ -285,34 +295,40 @@
 
     // Accès à vie en self-service : régénère des liens de téléchargement signés
     // à la demande (15 min) plutôt que de dépendre du lien 48h envoyé par email.
+    async function demanderAchats(accessToken, generation){
+      var rep = await fetch("/api/mes-telechargements", {
+        method: "POST",
+        cache: "no-store",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ accessToken: accessToken })
+      });
+      if (generation !== generationSession) return null;
+      if (rep.status === 401){
+        actualiserSession(null);
+        connexionError.textContent = "Ta session a expiré. Tu peux demander un nouveau code de connexion.";
+        connexionError.style.display = "block";
+        return null;
+      }
+      if (!rep.ok) throw new Error("Achats indisponibles");
+      var data = await rep.json();
+      if (generation !== generationSession) return null;
+      if (!Array.isArray(data?.achats)) throw new Error("Réponse des achats invalide");
+      return data;
+    }
+
     async function chargerAchats(accessToken, generation){
       if (generation !== generationSession) return;
       relancerAchats = null;
       if (achatsReessayer) achatsReessayer.disabled = true;
-      achatsVide.textContent = "Chargement des documents…";
+      achatsVide.textContent = messageChargementAchats;
       achatsVide.style.display = "block";
       var data;
       try {
-        var rep = await fetch("/api/mes-telechargements", {
-          method: "POST",
-          cache: "no-store",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ accessToken: accessToken })
-        });
-        if (generation !== generationSession) return;
-        if (rep.status === 401){
-          actualiserSession(null);
-          connexionError.textContent = "Ta session a expiré. Tu peux demander un nouveau code de connexion.";
-          connexionError.style.display = "block";
-          return;
-        }
-        if (!rep.ok) throw new Error("Achats indisponibles");
-        data = await rep.json();
-        if (generation !== generationSession) return;
-        if (!Array.isArray(data?.achats)) throw new Error("Réponse des achats invalide");
+        data = await demanderAchats(accessToken, generation);
+        if (!data || generation !== generationSession) return;
       } catch (e){
         if (generation !== generationSession) return;
-        achatsVide.textContent = "Le chargement de tes documents a échoué.";
+        achatsVide.textContent = messageErreurAchats;
         achatsListe.innerHTML = "";
         achatsCourants = [];
         if (achatsOutils) achatsOutils.hidden = true;
@@ -329,6 +345,7 @@
         achatsReessayer.hidden = true;
         achatsReessayer.disabled = false;
       }
+      jetonAchats = accessToken;
       achatsCourants = data.achats;
       afficherComplements(data && data.suggestions, data && data.remise);
       afficherParrainage(data && data.parrainage);
@@ -337,25 +354,115 @@
     }
 
     achatsReessayer?.addEventListener("click", function(){
+      if (relancerPdf) return relancerPdf();
       if (relancerAchats) return relancerAchats();
     });
 
+    function referencePdf(commande, produit, fichier){
+      if (fichier.type !== "pdf" || fichier.format || !produit.id) return null;
+      var url;
+      try {
+        url = new URL(fichier.url);
+      } catch (_) {
+        return null;
+      }
+      if (url.origin !== "https://trajectoiredroit.com" || url.pathname !== "/api/telecharger"
+          || url.username || url.password || url.hash) return null;
+      var parametres = url.searchParams;
+      var index = parametres.get("b");
+      var expiration = parametres.get("exp");
+      if (parametres.get("id") !== produit.id
+          || (parametres.get("sid") || "") !== (commande.sessionId || "")
+          || !/^\d+$/.test(index) || !/^\d{1,12}$/.test(expiration)
+          || !/^[a-f0-9]{64}$/.test(parametres.get("sig"))) return null;
+      return {
+        // Le même libellé peut apparaître pour plusieurs commandes, produits ou fichiers.
+        identite: JSON.stringify([commande.sessionId || "", commande.date, produit.id, index, fichier.groupe, fichier.nom]),
+        fichier: fichier,
+        expiration: Number(expiration)
+      };
+    }
+
+    function afficherEtatDesAchats(listeVide){
+      achatsVide.textContent = pdfEnCours ? messageChargementAchats
+        : relancerPdf ? messageErreurAchats
+        : achatsCourants.length
+          ? "Aucun achat ne correspond à ces filtres. Tu peux les effacer pour tout retrouver."
+          : "Aucun achat associé à cette adresse. Pour retrouver une commande, il faut se reconnecter avec l’adresse indiquée sur le reçu.";
+      achatsVide.style.display = listeVide || pdfEnCours || relancerPdf ? "block" : "none";
+    }
+
+    async function renouvelerPdf(demande, generation){
+      if (generation !== generationSession || !jetonAchats || pdfEnCours) return;
+      pdfEnCours = demande;
+      if (achatsReessayer) achatsReessayer.disabled = true;
+      afficherEtatDesAchats(!achatsListe.innerHTML);
+      try {
+        var data = await demanderAchats(jetonAchats, generation);
+        if (!data || generation !== generationSession) return;
+        var correspondances = new Map();
+        data.achats.forEach(function(commande){
+          commande.produits.forEach(function(produit){
+            (produit.fichiers || []).forEach(function(fichier){
+              var reference = referencePdf(commande, produit, fichier);
+              if (reference && reference.identite === demande.identite
+                  && reference.expiration > demande.expiration && reference.expiration > Date.now() / 1000) {
+                correspondances.set(fichier.url, reference.expiration);
+              }
+            });
+          });
+        });
+        if (correspondances.size !== 1) throw new Error("Réponse du téléchargement invalide");
+        var [nouveauLien, expiration] = correspondances.entries().next().value;
+        window.location.assign(nouveauLien);
+        demande.fichier.url = nouveauLien;
+        pdfAffiches.forEach(function(reference, index){
+          if (reference.identite !== demande.identite) return;
+          reference.fichier.url = nouveauLien;
+          reference.expiration = expiration;
+          var lien = achatsListe.querySelector('a[data-pdf-compte="' + index + '"]');
+          if (lien) lien.href = nouveauLien;
+        });
+        relancerPdf = null;
+      } catch (_) {
+        if (generation !== generationSession) return;
+        relancerPdf = function(){ return renouvelerPdf(demande, generation); };
+      } finally {
+        if (generation === generationSession) {
+          pdfEnCours = null;
+          if (achatsReessayer) {
+            achatsReessayer.hidden = !relancerPdf;
+            achatsReessayer.disabled = false;
+          }
+          afficherEtatDesAchats(!achatsListe.innerHTML);
+        }
+      }
+    }
+
+    achatsListe.addEventListener("click", function(evenement){
+      var lien = evenement.target.closest?.("a[data-pdf-compte]");
+      if (!lien || !achatsListe.contains(lien) || evenement.defaultPrevented
+          || evenement.ctrlKey || evenement.metaKey || evenement.shiftKey || evenement.altKey) return;
+      var demande = pdfAffiches[Number(lien.dataset.pdfCompte)];
+      if (demande && jetonAchats && !pdfEnCours
+          && demande.expiration > Date.now() / 1000 + 15) return;
+      evenement.preventDefault();
+      if (demande) return renouvelerPdf(demande, generationSession);
+    });
+
     function afficherAchats(achats, ouvrirVolet){
-      achatsVide.textContent = achatsCourants.length
-        ? "Aucun achat ne correspond à ces filtres. Tu peux les effacer pour tout retrouver."
-        : "Aucun achat associé à cette adresse. Pour retrouver une commande, il faut se reconnecter avec l’adresse indiquée sur le reçu.";
+      pdfAffiches = [];
+      afficherEtatDesAchats(!achats.length);
       if (!achats.length){
-        achatsVide.style.display = "block";
         achatsListe.innerHTML = "";
         return;
       }
-      achatsVide.style.display = "none";
       function echapperCompte(valeur){
         return String(valeur).replace(/[&<>"']/g, function(c){
           return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
         });
       }
-      function rendreFichier(f){
+      function rendreFichier(f, commande, produit){
         if (f.type === "video") {
           var rectification = "";
           var parametresReplay = new URLSearchParams(String(f.url).split("?")[1] || "");
@@ -385,14 +492,18 @@
             "</audio>" +
           "</div>";
         }
-        var telechargement = "<a class=\"btn btn--outline btn--sm\" href=\"" + f.url + "\" style=\"margin:4px 6px 0 0\">Télécharger " + echapperCompte(f.nom) + "</a>";
+        var reference = referencePdf(commande, produit, f);
+        var marquePdf = reference ? ' data-pdf-compte="' + (pdfAffiches.push(reference) - 1) + '"' : "";
+        var telechargement = "<a class=\"btn btn--outline btn--sm\" href=\"" + echapperCompte(f.url) + "\"" + marquePdf + " style=\"margin:4px 6px 0 0\">Télécharger " + echapperCompte(f.nom) + "</a>";
         if (f.format !== "apkg") return telechargement;
         return "<span style=\"display:inline-flex; flex-wrap:wrap; align-items:center\">" +
           telechargement +
           "<a class=\"btn btn--ghost btn--sm\" href=\"flashcards-qcm.html#importer-anki\" style=\"margin:4px 6px 0 0\">Importer les cartes dans Anki</a>" +
         "</span>";
       }
-      function rendreFichiers(fichiers){
+      function rendreFichiers(commande, produit){
+        var fichiers = produit?.fichiers || [];
+        function rendre(f){ return rendreFichier(f, commande, produit); }
         var groupes = [];
         var indexGroupes = Object.create(null);
         fichiers.forEach(function(f){
@@ -404,9 +515,9 @@
           groupes[indexGroupes[f.groupe]].fichiers.push(f);
         });
         var liens = groupes.map(function(g){
-          if (g.fichier) return rendreFichier(g.fichier);
+          if (g.fichier) return rendre(g.fichier);
           return (ouvrirVolet ? "<details open>" : "<details>") + "<summary>" + echapperCompte(g.nom) + "</summary><div class=\"pack-ultra-downloads__files\">" +
-            g.fichiers.map(rendreFichier).join("") + "</div></details>";
+            g.fichiers.map(rendre).join("") + "</div></details>";
         }).join("");
         if (fichiers.some(function(f){ return !!f.groupe; })){
           liens = "<div class=\"pack-ultra-downloads\">" + liens + "</div>";
@@ -418,7 +529,7 @@
         var debutCommande = "<li style=\"flex-direction:column; align-items:flex-start; gap:8px\">";
         if (a.produits.length > 1){
           var supports = a.produits.map(function(produit){
-            var liens = rendreFichiers(produit.fichiers || []);
+            var liens = rendreFichiers(a, produit);
             return "<div class=\"achat-produit\"><h3 class=\"achat-produit__titre\">" + echapperCompte(produit.nom) + "</h3>" +
               (liens ? "<div>" + liens + "</div>" : "") + "</div>";
           }).join("");
@@ -430,7 +541,7 @@
         var nom = produit ? echapperCompte(produit.nom) : "";
         return debutCommande +
           "<div class=\"compte-row\" style=\"width:100%\"><span>" + nom + "</span><span class=\"achat-date\">" + date + "</span></div>" +
-          "<div>" + rendreFichiers(produit && produit.fichiers || []) + "</div></li>";
+          "<div>" + rendreFichiers(a, produit) + "</div></li>";
       }).join("");
     }
 

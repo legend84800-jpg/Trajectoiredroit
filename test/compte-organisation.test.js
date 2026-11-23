@@ -37,6 +37,17 @@ function navigateur(options = {}) {
       select() { this.selected = true; },
       replaceChildren() { this.children = []; },
       appendChild(el) { this.children.push(el); },
+      contains(el) { return this.innerHTML.includes('data-pdf-compte="' + el.dataset.pdfCompte + '"'); },
+      querySelector(selector) {
+        const [, index] = selector.match(/^a\[data-pdf-compte="(\d+)"\]$/);
+        const lien = new RegExp('href="[^"]+" data-pdf-compte="' + index + '"');
+        const liste = this;
+        return lien.test(liste.innerHTML) ? {
+          set href(url) {
+            liste.innerHTML = liste.innerHTML.replace(lien, 'href="' + url.replaceAll('&', '&amp;') + '" data-pdf-compte="' + index + '"');
+          }
+        } : null;
+      },
     };
   }
   const elements = {};
@@ -47,6 +58,11 @@ function navigateur(options = {}) {
   if (options.parrainage) elements.parrainageCopier.textContent = 'Copier mon lien';
   const timers = [];
   const demandes = [];
+  const destinations = [];
+  let horloge = options.maintenant ?? Date.now();
+  class DateSimulee extends Date {
+    static now() { return horloge; }
+  }
   let callback;
   const stockage = () => ({ getItem: () => null, setItem() {}, removeItem() {} });
   const auth = {
@@ -56,18 +72,28 @@ function navigateur(options = {}) {
     signOut: async () => { callback('SIGNED_OUT', null); return {}; },
   };
   const achats = options.achats || historique();
-  const window = { supabase: { createClient: () => ({ auth }) }, localStorage: stockage(), sessionStorage: stockage(), setTimeout: fn => { timers.push(fn); }, location: { search: '' } };
+  const window = { supabase: { createClient: () => ({ auth }) }, localStorage: stockage(), sessionStorage: stockage(), setTimeout: fn => { timers.push(fn); }, location: { search: '', assign: url => destinations.push(url) } };
   window.navigator = { clipboard: options.clipboard };
-  vm.runInNewContext(source, { window, document: { getElementById: id => elements[id] || null, createElement: nouveauElement }, Date, URLSearchParams,
+  vm.runInNewContext(source, { window, document: { getElementById: id => elements[id] || null, createElement: nouveauElement }, Date: DateSimulee, URL, URLSearchParams,
     fetch: async (url, req) => { demandes.push({ url, req }); return options.fetch ? options.fetch(url, req) : { ok: true, status: 200, json: async () => ({ achats, parrainage: options.parrainage }) }; },
   });
   return {
-    elements, demandes,
+    elements, demandes, destinations,
     async flush() { await tick(); for (const fn of timers.splice(0)) fn(); await tick(); },
     evenement: (type, session) => callback(type, session),
     chercher(value) { elements.achatsRecherche.value = value; elements.achatsRecherche.listeners.input(); },
     filtrer(id, value) { elements[id].value = value; elements[id].listeners.change(); },
     effacer() { elements.achatsReinitialiser.listeners.click(); },
+    avancerTemps(ms) { horloge += ms; },
+    cliquerPdf(index) {
+      const evenement = {
+        target: { closest: () => ({ dataset: { pdfCompte: String(index) } }) },
+        defaultPrevented: false,
+        preventDefault() { this.defaultPrevented = true; },
+      };
+      const fin = elements.achatsListe.listeners.click(evenement);
+      return { renouvellement: evenement.defaultPrevented, fin };
+    },
   };
 }
 
@@ -191,6 +217,131 @@ test('le volet reste replié si plusieurs fichiers correspondent dans des achats
 
 const panneServeur = { ok: false, status: 500 };
 const reponseAchats = (achats = historique()) => ({ ok: true, status: 200, json: async () => ({ achats }) });
+
+function historiquePdf(expiration, sessions = ['cs_test_commande_a', 'cs_test_commande_b']) {
+  return sessions.map((sessionId, commande) => ({
+    sessionId, date: commande ? '2026-11-19' : '2026-11-20',
+    produits: ['fiche-da-l2-s1', 'fiche-da-l2-s2'].map(id => ({
+      id, nom: produits[id].nom,
+      fichiers: [0, 1].map(index => ({
+        nom: 'la fiche complète', type: 'pdf', groupe: 'Droit administratif',
+        url: 'https://trajectoiredroit.com/api/telecharger?' + new URLSearchParams({
+          id, b: String(index), exp: String(expiration),
+          sig: genererToken(id, index, expiration, 'secret-de-test', sessionId),
+          ...(sessionId ? { sid: sessionId } : {}),
+        }),
+      })),
+    })),
+  }));
+}
+
+test('le clic garde les liens valides immédiats et renouvelle uniquement le PDF choisi après expiration', async () => {
+  const maintenant = 1_800_000_000;
+  const avant = historiquePdf(maintenant + 900);
+  const initial = avant[1].produits[1].fichiers[1].url;
+  const apres = historiquePdf(maintenant + 1801);
+  const attendu = apres[1].produits[1].fichiers[1].url;
+  apres[1].produits[1].fichiers.push(apres[1].produits[1].fichiers[1]);
+  apres.reverse();
+  const attente = differe();
+  let nombre = 0;
+  const b = navigateur({ maintenant: maintenant * 1000, fetch: () => ++nombre === 1 ? reponseAchats(avant) : attente.promise });
+  await b.flush();
+  b.chercher('fiche');
+  b.filtrer('achatsProduit', 'Droit administratif');
+  b.filtrer('achatsSemestre', '2');
+  const listeFiltree = b.elements.achatsListe.innerHTML;
+  assert.equal(b.cliquerPdf(3).renouvellement, false);
+  assert.equal(b.demandes.length, 1);
+
+  b.avancerTemps(901_000);
+  const clic = b.cliquerPdf(3);
+  assert.equal(clic.renouvellement, true);
+  assert.equal(b.cliquerPdf(3).renouvellement, true);
+  assert.equal(b.elements.achatsVide.textContent, 'Chargement des documents…');
+  assert.equal(b.demandes.length, 2);
+  assert.equal(b.demandes[1].url, '/api/mes-telechargements');
+  assert.equal(b.demandes[1].req.cache, 'no-store');
+  assert.deepEqual(JSON.parse(b.demandes[1].req.body), { accessToken: 'jeton-factice' });
+  attente.resolve(reponseAchats(apres));
+  await clic.fin;
+  assert.deepEqual(b.destinations, [attendu]);
+  assert.equal(b.elements.achatsListe.innerHTML,
+    listeFiltree.replace(initial.replaceAll('&', '&amp;'), attendu.replaceAll('&', '&amp;')));
+  assert.equal(b.elements.achatsRecherche.value, 'fiche');
+  assert.equal(b.elements.achatsProduit.value, 'Droit administratif');
+  assert.equal(b.elements.achatsSemestre.value, '2');
+  assert.equal(b.elements.achatsVide.style.display, 'none');
+  assert.equal(b.cliquerPdf(3).renouvellement, false);
+  assert.equal(b.demandes.length, 2);
+});
+
+test('un renouvellement interrompu se réessaie sans partir sur un ancien lien ni un autre PDF', async () => {
+  const maintenant = 1_800_000_000;
+  const avant = historiquePdf(maintenant - 1);
+  const sansFichier = historiquePdf(maintenant + 900);
+  const apres = historiquePdf(maintenant + 900);
+  const attendu = apres[0].produits[0].fichiers[0].url;
+  sansFichier[0].produits[0].fichiers.shift();
+  let nombre = 0;
+  const b = navigateur({ maintenant: maintenant * 1000, fetch: async () => {
+    ++nombre;
+    if (nombre === 1) return reponseAchats(avant);
+    if (nombre === 2) throw new Error('Réseau indisponible');
+    return reponseAchats(nombre === 3 ? sansFichier : apres);
+  } });
+  await b.flush();
+  await b.cliquerPdf(0).fin;
+  assert.equal(b.elements.achatsReessayer.hidden, false);
+  assert.deepEqual(b.destinations, []);
+  await b.elements.achatsReessayer.listeners.click();
+  assert.equal(b.elements.achatsReessayer.hidden, false);
+  assert.deepEqual(b.destinations, []);
+  await b.elements.achatsReessayer.listeners.click();
+  assert.deepEqual(b.destinations, [attendu]);
+  assert.equal(b.elements.achatsReessayer.hidden, true);
+});
+
+test('un PDF renouvelé pour une session précédente ne se télécharge pas après une déconnexion ou un changement de compte', async () => {
+  const maintenant = 1_800_000_000;
+  for (const [evenement, session] of [
+    ['SIGNED_OUT', null],
+    ['SIGNED_IN', { access_token: 'autre-jeton-factice' }],
+    ['TOKEN_REFRESHED', { access_token: 'jeton-rafraichi-factice' }],
+  ]) {
+    const attente = differe();
+    let nombre = 0;
+    const b = navigateur({ maintenant: maintenant * 1000, fetch: () => {
+      ++nombre;
+      if (nombre === 1) return reponseAchats(historiquePdf(maintenant - 1));
+      if (nombre === 2) return attente.promise;
+      return reponseAchats([]);
+    } });
+    await b.flush();
+    const clic = b.cliquerPdf(0);
+    b.evenement(evenement, session);
+    await b.flush();
+    attente.resolve(reponseAchats(historiquePdf(maintenant + 900)));
+    await clic.fin;
+    assert.deepEqual(b.destinations, []);
+    assert.equal(b.elements.achatsReessayer.hidden, true);
+    assert.doesNotMatch(b.elements.achatsListe.innerHTML, /data-pdf-compte/);
+  }
+});
+
+test('une ancienne commande sans identifiant Stripe renouvelle son propre PDF', async () => {
+  const maintenant = 1_800_000_000;
+  const avant = historiquePdf(maintenant - 1, [null, null]);
+  const apres = historiquePdf(maintenant + 900, [null, null]);
+  let nombre = 0;
+  const b = navigateur({
+    maintenant: maintenant * 1000,
+    fetch: () => reponseAchats(++nombre === 1 ? avant : apres),
+  });
+  await b.flush();
+  await b.cliquerPdf(4).fin;
+  assert.deepEqual(b.destinations, [apres[1].produits[0].fichiers[0].url]);
+});
 
 test('après un échec, la relance de Mes documents réutilise la session et bloque un deuxième clic', async () => {
   const attente = differe();
@@ -501,7 +652,7 @@ test('Mon compte montre le guide Anki près des seuls téléchargements .apkg', 
   const rendu = b.elements.achatsListe.innerHTML;
   const paquets = produitsAchetes.flatMap(p => p.fichiers.filter(fichier => fichier.format === 'apkg'));
   assert.equal(paquets.length, 16);
-  const liensAnki = Array.from(rendu.matchAll(/href="([^"]+)"[^>]*>Télécharger [^<>]+<\/a><a [^>]*href="flashcards-qcm\.html#importer-anki"[^>]*>Importer les cartes dans Anki<\/a>/g), m => m[1]);
+  const liensAnki = Array.from(rendu.matchAll(/href="([^"]+)"[^>]*>Télécharger [^<>]+<\/a><a [^>]*href="flashcards-qcm\.html#importer-anki"[^>]*>Importer les cartes dans Anki<\/a>/g), m => m[1].replaceAll('&amp;', '&'));
   assert.deepEqual(liensAnki, paquets.map(fichier => fichier.url));
   assert.match(rendu, /<audio controls/);
   assert.match(rendu, /<video controls/);
