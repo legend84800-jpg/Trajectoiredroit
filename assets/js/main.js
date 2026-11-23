@@ -1286,4 +1286,44 @@ window.tjdDialogues = (function () {
 
 })();
 
-// Empreinte renouvelée le 15/11/2026.
+// Mesure des clics vers une page de produits (C48, 23/11/2026).
+// Les boutons Acheter sont déjà mesurés par achat.js. Ce bloc mesure le pas d'avant,
+// le lien d'une page de contenu vers une page qui vend, pour savoir quelle page
+// envoie des visiteurs vers les produits. Matomo reste sans cookie, donc sans bandeau.
+(function () {
+  'use strict';
+  var PAGES_PRODUITS = /^(formations|corriges|revisions|majeures-preparees|fiche-arrets|commentaires-arret-corriges|cas-pratiques-corriges|flashcards-qcm|kit-partiels|packs-partiels|top-ventes|podcasts-videos|portalis|droit-des-contrats-en-images|pack-[a-z0-9-]+|(?:introduction-au-droit|droit-constitutionnel|droit-de-la-famille|droit-des-personnes|histoire-des-institutions|histoire-du-droit|relations-internationales|droit-administratif|droit-des-biens|droit-des-contrats|droit-des-obligations|droit-penal-general|droit-penal|responsabilite-civile|contrats-speciaux|droit-commercial|droit-des-societes|droit-du-travail|procedure-penale)-l[123])$/;
+  function nomPage(chemin) {
+    return (chemin || '').split('/').pop().replace(/\.html$/, '') || 'accueil';
+  }
+  function emplacement(lien) {
+    var porteur = lien.closest('[data-emplacement]');
+    if (porteur) return porteur.getAttribute('data-emplacement');
+    if (lien.closest('header, .megamenu, .mobile-nav, nav')) return 'menu';
+    if (lien.closest('footer')) return 'pied';
+    var zone = lien.closest('main') || document.body;
+    var rz = zone.getBoundingClientRect();
+    var rl = lien.getBoundingClientRect();
+    var ratio = (rl.top - rz.top) / Math.max(rz.height, 1);
+    return ratio < 0.25 ? 'haut' : (ratio < 0.75 ? 'milieu' : 'bas');
+  }
+  document.addEventListener('click', function (e) {
+    try {
+      if (window.tjdTestInterne) return;
+      var lien = e.target.closest && e.target.closest('a[href]');
+      if (!lien || lien.hasAttribute('data-tjd-produit')) return;
+      var adresse = new URL(lien.getAttribute('href'), window.location.href);
+      if (adresse.origin !== window.location.origin) return;
+      var cible = nomPage(adresse.pathname);
+      var source = nomPage(window.location.pathname);
+      if (!PAGES_PRODUITS.test(cible) || cible === source) return;
+      var ou = emplacement(lien);
+      if (window._paq) window._paq.push(['trackEvent', 'Produit', 'ClicVersProduit', source + ' > ' + cible + ' | ' + ou]);
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'clic_vers_produit', { page_source: source, page_cible: cible, emplacement: ou, transport_type: 'beacon' });
+      }
+    } catch (_) {}
+  }, true);
+})();
+
+// Empreinte renouvelée le 23/11/2026.
