@@ -40,7 +40,16 @@
         }
       }
     } catch (e) {}
-    window.location.replace(base + contenu);
+    // Garde le drapeau des tests internes (tjd_test) : sans lui, un essai du parcours
+    // depuis ce lien est compté comme un vrai visiteur LinkedIn et une vraie session Stripe.
+    var suffixeTest = '';
+    try {
+      var test = new URLSearchParams(window.location.search).get('tjd_test');
+      if (test === '1') localStorage.setItem('tjd_internal_test', '1');
+      if (test === '0') localStorage.removeItem('tjd_internal_test');
+      if (test === '1' || test === '0') suffixeTest = '&tjd_test=' + test;
+    } catch (e) {}
+    window.location.replace(base + contenu + suffixeTest);
   })();
   </script>
 </head>
