@@ -1,6 +1,8 @@
 (function(){
   'use strict';
   function delaiRequete(body){return body?.action==='generer'?775000:115000;}
+  const DUREE_PDF=60*60*1000;
+  const MESSAGE_PDF_EXPIRE='Il faut remplacer ou retirer les PDF expirés avant de lancer la réponse.';
   function volumeDemande({mode='rediger',texte='',copie='',question='',documents=[],arrets=[]}){
     const corriger=mode==='corriger',docs=documents.filter(d=>corriger||d.role!=='copie');
     const sujet=texte.trim().length+docs.filter(d=>d.role!=='copie').reduce((n,d)=>n+d.caracteres,0);
@@ -116,6 +118,8 @@
   const sb=window.supabase.createClient('https://ksqkhktcdgwrmzfcfjoe.supabase.co','sb_publishable_Ahl2DDtcburQJZl1h2NHZQ_5eKh-isk',
     {auth:{storage:adapter,persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
   let session=null,userId=null,epoch=0,config=null,state=null,selected=null,documents=[],answer='',working=false,importing=false,compteurEnAttente=false;
+  let pdfARemplacer=null,alerteExpiration;
+  const retraitsEnCours=new Set();
   const modeCourant=()=>$('modeCorriger').checked?'corriger':'rediger';
   const arretsCourants=()=>$('exercice').value==='commentaire-compare'&&$('arretsNoms').checked?[$('arret1').value.trim(),$('arret2').value.trim()]:[];
   const controllers=new Set();
@@ -184,23 +188,56 @@
     if(scroll)$('choix').scrollIntoView({block:'center',behavior:'smooth'});
   }
   function volume(){
-    const {chars,pages,complet}=volumeDemande({mode:modeCourant(),texte:$('texte').value,copie:$('copie').value,question:$('question').value,documents,arrets:arretsCourants()});
+    const mode=modeCourant(),maintenant=Date.now();
+    const {chars,pages,complet}=volumeDemande({mode,texte:$('texte').value,copie:$('copie').value,question:$('question').value,documents,arrets:arretsCourants()});
+    const expire=documents.some(doc=>doc.expireLe<=maintenant&&(mode==='corriger'||doc.role!=='copie'));
     $('volume').textContent=`${new Intl.NumberFormat('fr-FR').format(chars)} / 30 000 caractères · ${pages} / 15 pages`;
-    $('generer').disabled=chars>30000||pages>15||!complet||working||importing||!state?.actif;
-    return {chars,pages,complet};
+    $('generer').disabled=chars>30000||pages>15||!complet||expire||working||importing||!state?.actif;
+    return {chars,pages,complet,expire};
   }
   function renderDocuments(){
+    clearTimeout(alerteExpiration);
+    const maintenant=Date.now();
+    const prochaine=Math.min(...documents.map(doc=>doc.expireLe).filter(expireLe=>expireLe>maintenant));
+    if(Number.isFinite(prochaine))alerteExpiration=setTimeout(()=>{renderDocuments();volume();},prochaine-maintenant);
     $('documents').replaceChildren();$('documentsCopie').replaceChildren();
     documents.forEach(doc=>{
       const li=document.createElement('li'),label=document.createElement('span'),button=document.createElement('button');
-      label.textContent=`${doc.nom} · ${doc.pages} page${doc.pages>1?'s':''}`;
+      const expire=doc.expireLe<=maintenant;
+      const indisponible=working||importing||retraitsEnCours.has(doc.id);
+      let remplacer;
+      label.textContent=expire?doc.nom:`${doc.nom} · ${doc.pages} page${doc.pages>1?'s':''}`;
+      li.append(label);
+      if(expire){
+        li.className='document-a-remplacer';
+        const etat=document.createElement('span');
+        etat.className='document-expire';
+        etat.textContent='PDF expiré';
+        label.append(etat);
+        remplacer=document.createElement('button');
+        remplacer.type='button';
+        remplacer.textContent='Remplacer le PDF';
+        remplacer.setAttribute('aria-label',`Remplacer le PDF ${doc.nom}`);
+        remplacer.disabled=indisponible;
+        remplacer.addEventListener('click',()=>{
+          pdfARemplacer=doc;
+          const input=$('pdfRemplacement');
+          input.value='';
+          input.click();
+        });
+        li.append(remplacer);
+      }
       button.type='button';button.textContent='Retirer';button.setAttribute('aria-label',`Retirer ${doc.nom}`);
-      button.disabled=working||importing;
+      button.disabled=indisponible;
       button.addEventListener('click',async()=>{
-        const current=epoch;button.disabled=true;
-        try{await api('/api/generer',{action:'retirer',documentId:doc.id});if(current!==epoch)return;documents=documents.filter(d=>d.id!==doc.id);renderDocuments();volume();}
-        catch(error){if(current===epoch){button.disabled=false;message('travailMessage',error.message,true);}}
-      });li.append(label,button);$(doc.role==='copie'?'documentsCopie':'documents').append(li);
+        const current=epoch;
+        retraitsEnCours.add(doc.id);
+        button.disabled=true;
+        if(remplacer)remplacer.disabled=true;
+        try{await api('/api/generer',{action:'retirer',documentId:doc.id});if(current!==epoch)return;documents=documents.filter(d=>d.id!==doc.id);}
+        catch(error){if(current===epoch)message('travailMessage',error.message,true);}
+        finally{if(current===epoch){retraitsEnCours.delete(doc.id);renderDocuments();volume();}}
+      });li.append(button);$(doc.role==='copie'?'documentsCopie':'documents').append(li);
     });
   }
   function renderAnswer(text){
@@ -228,7 +265,7 @@
     if(next?.user?.id===userId&&userId){session=next;return;}
     const current=++epoch;
     controllers.forEach(c=>c.abort());controllers.clear();
-    session=next;userId=next?.user?.id||null;state=null;documents=[];answer='';working=false;importing=false;compteurEnAttente=false;
+    session=next;userId=next?.user?.id||null;state=null;documents=[];pdfARemplacer=null;retraitsEnCours.clear();answer='';working=false;importing=false;compteurEnAttente=false;
     $('texte').value='';$('copie').value='';$('question').value='';$('arret1').value='';$('arret2').value='';$('resultat').hidden=true;$('reponse').replaceChildren();renderDocuments();renderState();volume();message('travailMessage','');
     if(selected)choose(selected,false);
     if(!session)return;
@@ -295,24 +332,35 @@
   document.querySelectorAll('input[name="saisieArrets"]').forEach(input=>input.addEventListener('change',actualiserExercice));
   $('arret1').addEventListener('input',volume);$('arret2').addEventListener('input',volume);
   $('texte').addEventListener('input',volume);$('copie').addEventListener('input',volume);$('question').addEventListener('input',volume);
-  async function importerPDF(input,role){
-    const file=input.files[0];if(!file)return;
+  async function importerPDF(input,role,remplacement){
+    const file=input.files[0];if(!file||working||importing||!state?.actif)return;
     const current=epoch;
     if(file.size>20971520||!file.name.toLowerCase().endsWith('.pdf')){message('travailMessage','Choisis un PDF de 20 Mo maximum.',true);input.value='';return;}
+    const expireLe=Date.now()+DUREE_PDF;
     importing=true;renderState();renderDocuments();message('travailMessage','Import et lecture du PDF…');
     try{
       const upload=await api('/api/generer',{action:'upload',nom:file.name,taille:file.size});if(current!==epoch)return;
       const result=await sb.storage.from('portalis-documents').uploadToSignedUrl(upload.chemin,upload.token,file,{contentType:'application/pdf',upsert:false});
       if(result.error)throw new Error('L’import a échoué. Tu peux réessayer.');if(current!==epoch)return;
       const doc=await api('/api/generer',{action:'importer',documentId:upload.id});if(current!==epoch)return;
-      documents.push({...doc,nom:file.name,role});message('travailMessage','Le PDF est prêt. Vérifie le volume total avant de lancer la réponse.');
+      const importe={...doc,nom:file.name,role,expireLe};
+      if(remplacement)documents=documents.map(d=>d.id===remplacement.id?importe:d);
+      else documents.push(importe);
+      message('travailMessage','Le PDF est prêt. Vérifie le volume total avant de lancer la réponse.');
     }catch(error){if(current===epoch)message('travailMessage',error.message,true);}
     finally{if(current===epoch){importing=false;input.value='';renderDocuments();renderState();volume();}}
   }
   $('pdf').addEventListener('change',()=>importerPDF($('pdf'),'sujet'));
   $('pdfCopie').addEventListener('change',()=>importerPDF($('pdfCopie'),'copie'));
+  $('pdfRemplacement').addEventListener('change',()=>{
+    const doc=pdfARemplacer;
+    pdfARemplacer=null;
+    if(doc&&!retraitsEnCours.has(doc.id)&&documents.some(d=>d.id===doc.id))return importerPDF($('pdfRemplacement'),doc.role,doc);
+  });
   $('exerciceForm').addEventListener('submit',async event=>{
-    event.preventDefault();const v=volume();if(!state?.actif||working||importing||!v.complet||v.chars>30000||v.pages>15)return;
+    event.preventDefault();const v=volume();if(!state?.actif||working||importing)return;
+    if(v.expire){renderDocuments();message('travailMessage',MESSAGE_PDF_EXPIRE,true);return;}
+    if(!v.complet||v.chars>30000||v.pages>15)return;
     const current=epoch,id=crypto.randomUUID();working=true;savePending(id);renderState();renderDocuments();
     $('resultat').hidden=true;message('travailMessage',modeCourant()==='corriger'?
       'Portalis IA examine ta copie et prépare les explications de sa correction. Le rapport et la note sont ensuite relus. Garde cette page ouverte pendant la préparation.':$('exercice').value==='commentaire-compare'?
@@ -324,7 +372,7 @@
     }catch(error){
       if(current!==epoch)return;
       if(!error.code){message('travailMessage','La connexion a été interrompue. Recherche de ta réponse…');await recover(id,current);}
-      else{clearPending();message('travailMessage',error.message,true);}
+      else{clearPending();message('travailMessage',error.code==='document_expire'&&volume().expire?MESSAGE_PDF_EXPIRE:error.message,true);}
     }finally{if(current===epoch){working=false;renderState();renderDocuments();volume();}}
   });
   $('copier').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(answer);$('copier').textContent='Réponse copiée';setTimeout(()=>{$('copier').textContent='Copier la réponse';},2000);}catch(_){message('travailMessage','Sélectionne le texte de la réponse pour le copier.',true);}});

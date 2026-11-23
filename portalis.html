@@ -12,9 +12,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/portalis.css?v=ee948fb3">
+  <link rel="stylesheet" href="assets/portalis.css?v=ea129633">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-  <script src="assets/js/portalis.js?v=b4afb92f" defer></script>
+  <script src="assets/js/portalis.js?v=2d0df663" defer></script>
 </head>
 <body>
   <a class="skip" href="#contenu">Aller au contenu</a>
@@ -103,6 +103,7 @@
               <ul id="documentsCopie" class="documents" aria-label="Documents de ta copie"></ul>
             </div>
           </div>
+          <input type="file" id="pdfRemplacement" accept="application/pdf,.pdf" hidden>
           <div class="documents-help"><p id="copieAide" class="correction-only">Colle ta copie ou ajoute son PDF. Place le sujet dans « Le sujet et les documents à étudier ». Tu peux aussi y joindre le barème et la méthode de ton enseignant.</p><p id="volume" class="editor-volume" aria-live="polite">0 / 30 000 caractères · 0 / 15 pages</p></div>
           <div class="instructions"><label for="question">Ta consigne <span class="optional">facultatif, 2 000 caractères maximum</span></label><textarea id="question" rows="2" maxlength="2000" placeholder="Précise les points que tu veux travailler ou ajoute la consigne de ton chargé de TD."></textarea></div>
           <div class="submit-row"><p class="editor-note">Une réponse terminée utilise un crédit, y compris pour une nouvelle question sur le même document. Les pages du texte collé sont estimées à partir de sa longueur.</p><button id="generer" type="submit" class="button">Travailler mon exercice</button></div>
@@ -119,7 +120,7 @@
       <details><summary>Quand mes réponses se renouvellent-elles ?</summary><p>Elles se renouvellent au début de chaque nouvelle période mensuelle payée. Les réponses mensuelles inutilisées ne sont pas reportées. Les recharges restent séparées et sont utilisées après les réponses incluses.</p></details>
       <details><summary>Comment passer à Classique ou à Pro ?</summary><p>Une fois connecté, tu peux choisir une formule plus chère sur cette page. Tu paies la différence de prix pour la période en cours. Par exemple, tu paies 10 € pour passer de Portalis IA à Pro. Tes réponses restantes et ta date de renouvellement sont conservées. Ensuite, ton abonnement se renouvelle au prix de la nouvelle formule.</p></details>
       <details><summary>Que se passe-t-il si une réponse échoue ?</summary><p>Le crédit réservé est restitué si la réponse ne se termine pas. Si ta connexion coupe après la génération, ton espace peut récupérer la réponse pendant 24 heures.</p></details>
-      <details><summary>Puis-je importer plusieurs documents ?</summary><p>Oui, dans la limite de 15 pages et 30 000 caractères pour l’ensemble de la demande. Chaque PDF peut peser jusqu’à 20 Mo et doit contenir du texte lisible, sans mot de passe, car Portalis IA lit le texte du fichier.</p><p>Le texte importé expire après une heure. Tu dois alors importer le document à nouveau pour préparer une autre réponse.</p></details>
+      <details><summary>Puis-je importer plusieurs documents ?</summary><p>Oui, dans la limite de 15 pages et 30 000 caractères pour l’ensemble de la demande. Chaque PDF peut peser jusqu’à 20 Mo et doit contenir du texte lisible, sans mot de passe, car Portalis IA lit le texte du fichier.</p><p>Le texte importé expire après une heure. Pour joindre à nouveau ce PDF, il faut cliquer sur « Remplacer le PDF » à côté du fichier, puis sélectionner le fichier.</p></details>
       <details><summary>Comment résilier ?</summary><p>Le bouton « Gérer mon abonnement » ouvre ton espace de facturation. Tu peux y résilier le renouvellement et conserver l’accès jusqu’à la fin de la période déjà payée.</p></details>
     </section>
   </main>

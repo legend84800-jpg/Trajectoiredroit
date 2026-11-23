@@ -678,8 +678,11 @@
     }
 
     function finish(){
-      var score = 0;
-      answers.forEach(function(a, i){ if (a !== null) score += QUESTIONS[i].opts[a].p; });
+      var resultats = QUESTIONS.map(function(question, index){
+        var reponse = answers[index];
+        return { points: reponse === null ? 0 : question.opts[reponse].p, conseil: question.tip };
+      });
+      var score = resultats.reduce(function(total, resultat){ return total + resultat.points; }, 0);
       var prof = score <= 14 ? PROFILS.low : (score <= 23 ? PROFILS.mid : PROFILS.high);
       document.getElementById('scoreNum').textContent = score;
       var tagEl = document.getElementById('scoreTag');
@@ -717,18 +720,17 @@
       document.getElementById('hiddenScore').value = score + '/30';
       document.getElementById('hiddenProfil').value = prof.profil;
       document.getElementById('hiddenMatiere').value = matiereNom || 'non précisé';
-      // points à récupérer : les questions où la réponse n'est pas la meilleure (3 pts)
+      var priorites = resultats
+        .filter(function(resultat){ return resultat.points < 3; })
+        .sort(function(a, b){ return a.points - b.points; })
+        .slice(0, 4);
       var todo = document.getElementById('todoList'); todo.innerHTML = '';
-      var count = 0;
-      answers.forEach(function(a, i){
-        if (count >= 4) return;
-        if (a === null || QUESTIONS[i].opts[a].p < 3){
-          var li = document.createElement('li');
-          li.textContent = QUESTIONS[i].tip;
-          todo.appendChild(li); count++;
-        }
+      priorites.forEach(function(resultat){
+        var li = document.createElement('li');
+        li.textContent = resultat.conseil;
+        todo.appendChild(li);
       });
-      document.getElementById('todoBox').style.display = count ? '' : 'none';
+      document.getElementById('todoBox').style.display = priorites.length ? '' : 'none';
       document.getElementById('progressBar').style.width = '100%';
       if (window.gtag) gtag('event', 'quiz_complete', { score: score, profil: prof.profil, matiere: matiereKey || 'non_precise' });
       show(elResult);

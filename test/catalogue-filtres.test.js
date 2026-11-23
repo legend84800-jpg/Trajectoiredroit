@@ -291,12 +291,36 @@ test('le semestre recherché correspond à la fiche et exclut les offres d’ajo
     ['droit pénal L2-S2', ['fiche-penal-general-l1']],
     ['droit pénal général L2 S1', ['fiche-penal-general-l1']],
     ['responsabilité civile S2', ['fiche-obligations-l2-s2']],
-    ['droit des biens', ['fiche-biens-l2']],
-    ['droit des biens S1', []]
+    ['droit des biens', ['fiche-biens-l2']]
   ]) {
     e.chercher(recherche);
     assert.deepEqual(e.visibles(), produits, recherche);
   }
+});
+
+test('une matière nommée reste trouvable si sa fiche couvre l’année entière', () => {
+  const e = environnement({ cartesReelles: cartesPage('formations.html') });
+  e.chercher('droit des biens S2');
+  assert.deepEqual(e.visibles(), ['fiche-biens-l2']);
+  e.chercher('Droit des biens, semestre 1');
+  assert.deepEqual(e.visibles(), ['fiche-biens-l2']);
+  e.chercher('contrats spéciaux S2');
+  assert.deepEqual(e.visibles(), ['fiche-contrats-speciaux-l3']);
+  e.chercher('contrats spéciaux L2 S2');
+  assert.deepEqual(e.visibles(), ['fiche-obligations-l2-s2']);
+  e.chercher('contrats spéciaux S2');
+  assert.deepEqual(e.visibles(), []);
+  assert.equal(e.suggestion.textContent, 'Voir le résultat en L3');
+  e.suggestion.declencher('click');
+  assert.deepEqual(e.visibles(), ['fiche-contrats-speciaux-l3']);
+  e.chercher('spéciaux contrats L3 S2');
+  assert.deepEqual(e.visibles(), ['fiche-contrats-speciaux-l3']);
+  e.chercher('contrats S1');
+  assert.ok(!e.visibles().includes('fiche-contrats-speciaux-l3'));
+  e.chercher('S2');
+  assert.ok(!e.visibles().includes('fiche-contrats-speciaux-l3'));
+  e.chercher('contrats spéciaux S2 privé');
+  assert.deepEqual(e.visibles(), []);
 });
 
 test('une ancre de fiche rend sa carte visible malgré les filtres et place le focus à son début', () => {

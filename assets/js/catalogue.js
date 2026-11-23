@@ -7,6 +7,9 @@
   function normaliser(texte) {
     return String(texte || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   }
+  function extraireMots(texte) {
+    return texte.match(/[\p{L}\p{N}]+/gu) || [];
+  }
   function niveauValide(valeur) {
     var niveau = String(valeur || '').toUpperCase();
     return niveau === 'TOUS' ? 'tous' : NIVEAUX.indexOf(niveau) !== -1 ? niveau : null;
@@ -30,17 +33,21 @@
     var recherche = racine.querySelector('[data-catalogue-recherche]');
     if (!grille || !recherche) return;
     racine.tjdCataloguePret = true;
+    var catalogueFiches = racine.getAttribute('data-catalogue-format') === 'fiches';
     var cartes = Array.prototype.slice.call(grille.querySelectorAll('article[data-niveau]')).map(function (carte) {
       var meta = carte.querySelector('.product__meta');
       var texteMeta = normaliser(meta && meta.textContent);
       var semestresCarte = Array.from(texteMeta.matchAll(/\b(?:semestre\s+|s)([12])\b/g), function (match) {
         return match[1];
       });
+      var titreAnnuel = catalogueFiches && /(?:^|·)\s*annee\s*(?:·|$)/.test(texteMeta)
+        ? carte.querySelector('.product__title') : null;
       var champs = carte.querySelectorAll('.badge--format, .product__title, .product__meta, .product__edition, .product__desc, .product__sommaire-list');
       return {
         element: carte,
         display: carte.style.display,
         semestres: semestresCarte,
+        sujetAnnuel: titreAnnuel ? extraireMots(normaliser(titreAnnuel.textContent)).sort().join(' ') : null,
         texte: normaliser(Array.prototype.map.call(champs, function (champ) { return champ.textContent; }).join(' ')),
         niveaux: (carte.getAttribute('data-niveau') || '').split(',').map(function (niveau) { return niveau.trim(); }),
         matieres: (carte.getAttribute('data-matiere') || '').split(',').map(function (matiere) { return matiere.trim(); })
@@ -109,22 +116,30 @@
           return ' ';
         });
       var niveauSaisi = niveauxRecherches[0];
-      if (depuisRecherche && racine.getAttribute('data-catalogue-format') === 'fiches'
+      if (depuisRecherche && catalogueFiches
           && niveauSaisi && niveauSaisi !== etat.niveau
           && niveauxRecherches.every(function (niveau) { return niveau === niveauSaisi; })) {
         etat.niveau = niveauSaisi;
         actualiserAdresse(false);
       }
-      var mots = texte.match(/[\p{L}\p{N}]+/gu) || [];
-      var cartesCorrespondantes = [];
+      var mots = extraireMots(texte);
+      var sujetRecherche = mots.slice().sort().join(' ');
+      var cartesCorrespondantes = cartes.filter(function (carte) {
+        return (etat.matiere === 'tous' || carte.matieres.indexOf(etat.matiere) !== -1)
+          && (!niveauxRecherches.length || niveauxRecherches.some(function (niveau) { return carte.niveaux.indexOf(niveau) !== -1; }))
+          && (!semestres.length
+            || semestres.some(function (semestre) { return carte.semestres.includes(semestre); })
+            || (sujetRecherche && carte.sujetAnnuel === sujetRecherche))
+          && mots.every(function (mot) { return carte.texte.indexOf(mot) !== -1; });
+      });
+      if (semestres.length && sujetRecherche) {
+        var fichesAnnuelles = cartesCorrespondantes.filter(function (carte) { return carte.sujetAnnuel === sujetRecherche; });
+        if (fichesAnnuelles.length) cartesCorrespondantes = fichesAnnuelles;
+      }
+      var cartesRetenues = new Set(cartesCorrespondantes);
       var nombre = 0;
       cartes.forEach(function (carte) {
-        var correspond = (etat.matiere === 'tous' || carte.matieres.indexOf(etat.matiere) !== -1)
-          && (!niveauxRecherches.length || niveauxRecherches.some(function (niveau) { return carte.niveaux.indexOf(niveau) !== -1; }))
-          && (!semestres.length || semestres.some(function (semestre) { return carte.semestres.includes(semestre); }))
-          && mots.every(function (mot) { return carte.texte.indexOf(mot) !== -1; });
-        if (correspond) cartesCorrespondantes.push(carte);
-        var visible = correspond && (etat.niveau === 'tous' || carte.niveaux.includes(etat.niveau));
+        var visible = cartesRetenues.has(carte) && (etat.niveau === 'tous' || carte.niveaux.includes(etat.niveau));
         carte.element.hidden = !visible;
         carte.element.style.display = visible ? carte.display : 'none';
         if (visible) nombre++;

@@ -250,12 +250,12 @@
               <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
             </a>
             <div class="dropdown__divider"></div>
-            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem" data-formule-cours="formule-cours-10">
               <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
               <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
             </a>
             <div class="dropdown__divider"></div>
-            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver" data-formule-cours="formule-cours-1">Réserver une séance →</a>
           </div>
         </div>
 
@@ -392,7 +392,7 @@
         <h1 class="h1 text-balance">Des cours particuliers adaptés à ton niveau et à tes objectifs.</h1>
         <p class="lead">Avant chaque séance, je regarde ton niveau et les points qui te posent problème dans chaque matière. Ensuite, pendant la séance, on travaille la méthode et on corrige les exercices ensemble. De plus, je montre, sur la copie, ce qui fait perdre des points. Entre deux séances, je reste joignable par message ou par mail pour répondre aux questions.</p>
         <div class="hero__cta flex flex--center" style="margin-top:24px">
-          <a class="btn btn--primary btn--lg" href="#reserver">Réserver une séance →</a>
+          <a class="btn btn--primary btn--lg" href="#reserver" data-formule-cours="formule-cours-1">Réserver une séance →</a>
           <a class="btn btn--outline btn--lg" href="#tarifs">Voir les tarifs</a>
         </div>
         <div class="hero__trust" style="justify-content:center; margin-top:24px">
@@ -549,7 +549,7 @@
               <li>Messagerie 1 semaine</li>
 
             </ul>
-            <a class="btn btn--outline btn--full" href="#reserver">Réserver</a>
+            <a class="btn btn--outline btn--full" href="#reserver" data-formule-cours="formule-cours-1">Réserver</a>
           </article>
 
           <article class="card card--pricing card--featured fade-in fade-in--delay-1">
@@ -569,7 +569,7 @@
               <li>Suivi des progrès chiffré</li>
               <li>Disponible jusqu'à 6 mois</li>
             </ul>
-            <a class="btn btn--primary btn--full" href="#reserver">Réserver le pack →</a>
+            <a class="btn btn--primary btn--full" href="#reserver" data-formule-cours="formule-cours-5">Réserver le pack →</a>
           </article>
 
           <article class="card card--pricing fade-in fade-in--delay-2">
@@ -589,7 +589,7 @@
               <li>Bilan final et plan de travail pour la suite</li>
               <li>Disponible jusqu'à 12 mois</li>
             </ul>
-            <a class="btn btn--outline btn--full" href="#reserver">Réserver le pack</a>
+            <a class="btn btn--outline btn--full" href="#reserver" data-formule-cours="formule-cours-10">Réserver le pack</a>
           </article>
 
         </div>
@@ -682,10 +682,10 @@
             <div class="form__row">
               <label class="form__label" for="formule">Formule envisagée</label>
               <select class="form__select" id="formule" name="formule">
-                <option>1 séance d'essai (104 €)</option>
-                <option>Pack 5 séances (480 €)</option>
-                <option>Pack 10 séances (920 €)</option>
-                <option>Je ne sais pas encore</option>
+                <option id="formule-cours-1">1 séance d'essai (104 €)</option>
+                <option id="formule-cours-5">Pack 5 séances (480 €)</option>
+                <option id="formule-cours-10">Pack 10 séances (920 €)</option>
+                <option selected>Je ne sais pas encore</option>
               </select>
             </div>
           </div>
@@ -809,6 +809,13 @@
 
   <script src="assets/js/main.js?v=909718f7" defer></script>
   <script>
+    document.querySelectorAll('a[data-formule-cours]').forEach(function(lien) {
+      lien.addEventListener('click', function() {
+        var option = document.getElementById(lien.dataset.formuleCours);
+        if (option) option.selected = true;
+      });
+    });
+
     var f = document.getElementById('contactForm');
     if (f) f.addEventListener('submit', function(e) {
       e.preventDefault();
