@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Police administrative et police judiciaire, dissertation</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Dissertation corrigée sur la police administrative et la police judiciaire (droit administratif L2), avec son introduction rédigée et son plan détaillé.">
+  <link rel="canonical" href="https://trajectoiredroit.com/dissertation-police-administrative-police-judiciaire-corrigee.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Police administrative et police judiciaire, dissertation">
+  <meta property="og:description" content="Dissertation corrigée sur la police administrative et la police judiciaire (droit administratif L2), avec son introduction rédigée et son plan détaillé.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/dissertation-police-administrative-police-judiciaire-corrigee.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/dissertation-police-administrative-police-judiciaire-corrigee.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Police administrative et police judiciaire, dissertation">
+  <meta name="twitter:description" content="Dissertation corrigée sur la police administrative et la police judiciaire (droit administratif L2), avec son introduction rédigée et son plan détaillé.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/dissertation-police-administrative-police-judiciaire-corrigee.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Police administrative et police judiciaire, dissertation corrigée avec plan détaillé",
+      "description": "Dissertation corrigée sur la police administrative et la police judiciaire (droit administratif L2), avec son introduction rédigée et son plan détaillé.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-11-23",
+      "dateModified": "2026-11-23",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Police administrative et police judiciaire, sujet de dissertation de droit administratif L2, corrigé avec son plan détaillé"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/dissertation-police-administrative-police-judiciaire-corrigee.html"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/dissertation-police-administrative-police-judiciaire-corrigee.webp"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Police administrative et police judiciaire, dissertation corrigée",
+          "item": "https://trajectoiredroit.com/dissertation-police-administrative-police-judiciaire-corrigee.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quelle est la différence entre police administrative et police judiciaire ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La police administrative prévient les atteintes à l’ordre public, comme l’interdiction d’un spectacle qui risque de provoquer des bagarres. La police judiciaire, en revanche, constate les infractions, en rassemble les preuves et en recherche les auteurs, selon l’article 14 du Code de procédure pénale. Le juge distingue donc les deux d’après le but de l’opération, comme le Conseil d’État l’a jugé en 1960 pour les saisies de journaux du préfet d’Alger."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel juge est compétent pour une opération de police ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le juge administratif est compétent pour les litiges de police administrative, et le juge judiciaire pour ceux de police judiciaire. Le Tribunal des conflits applique ce critère d’après le but de l’opération, par exemple dans la décision Société Le Profil de 1978. La loi prévoit toutefois des exceptions. L’article L. 229-6 du Code de la sécurité intérieure confie aux juridictions judiciaires les litiges sur la réparation des dommages causés par les mesures de visite et de saisie prises pour prévenir le terrorisme."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Un maire fait-il de la police administrative ou de la police judiciaire ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Il fait les deux, selon l’acte qu’il accomplit. Le maire est en effet une autorité de police administrative et un officier de police judiciaire. L’article L. 2212-1 du Code général des collectivités territoriales le charge de la police municipale, qui relève de la police administrative, sous le contrôle administratif du préfet. L’article 16 du Code de procédure pénale range en outre les maires et leurs adjoints parmi les officiers de police judiciaire. Le but de chaque acte indique donc la police exercée."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel PDF choisir pour réviser la police administrative ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La fiche complète de droit administratif du semestre 2 consacre sa partie II à la police administrative, de la page 28 à la page 45. Elle explique sa notion et sa distinction avec la police judiciaire, puis l’ordre public. Elle présente ensuite les autorités de police et le contrôle de leurs mesures. En revanche, pour t’entraîner à qualifier une opération de police à partir de faits, il faut la compilation de cas pratiques corrigés du semestre 1, dont le cas n° 7 porte sur la police administrative."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style id="exemples-pedagogiques-page">
+  .biens-hero { padding-top:48px; }
+  .biens-hero .hero__cta { margin-top:24px; }
+  @media (max-width:700px) {
+    .biens-hero { padding-top:24px; }
+    .biens-hero .hero__cta { gap:10px; }
+    .biens-hero .hero__cta .btn {
+      flex:1 1 132px;
+      width:auto;
+      min-height:44px;
+      font-size:.875rem;
+      padding:10px 12px;
+    }
+  }
+  @media (max-width:420px) {
+    .biens-hero { padding-top:12px; }
+    .biens-hero .hero__cta { margin-top:12px; }
+    .biens-hero .tjd-po { margin-top:12px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="kit-partiels.html" role="menuitem">📚 Kit Partiels</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🤖 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards et QCM</a>
+              <a href="podcasts-videos.html" role="menuitem"><span aria-hidden="true">🎬</span> Vidéos et podcasts</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>7 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 199 € au lieu de 439,69 €, 55 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-55 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">439,69 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 17 ressources, 199 € au lieu de 249,83 €, 20 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-20 %</span></span>
+                    <span class="megamenu__pack-tile-meta">17 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">249,83 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 32 ressources, 199 € au lieu de 479,68 €, 59 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-59 %</span></span>
+                    <span class="megamenu__pack-tile-meta">32 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">479,68 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 32 ressources, 199 € au lieu de 479,68 €, 59 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-59 %</span></span>
+                    <span class="megamenu__pack-tile-meta">32 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">479,68 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 38 ressources, 229 € au lieu de 579,62 €, 60 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-60 %</span></span>
+                    <span class="megamenu__pack-tile-meta">38 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">579,62 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>166 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes tes questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="kit-partiels.html"><span class="mobile-nav__format-icon" aria-hidden="true">📚</span><span>Kit Partiels</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🤖</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+        <a class="mobile-nav__format" href="podcasts-videos.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎬</span><span>Vidéos et podcasts</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+    </div>
+  </nav>
+
+    <main>
+<section class="section--sm biens-hero">
+<div class="container container--narrow text-center">
+<h1 class="h1">Police administrative et police judiciaire, dissertation corrigée avec plan détaillé</h1>
+<p class="lead" style="max-width:720px;margin-left:auto;margin-right:auto">La police administrative prévient les troubles à l’ordre public, alors que la police judiciaire recherche les auteurs d’infractions. Le juge distingue les deux d’après le but réel de chaque opération, et ce but indique quel juge doit trancher le litige. La loi place pourtant certaines mesures préventives sous le contrôle du juge judiciaire. Ce corrigé traite le sujet « police administrative et police judiciaire », dissertation de droit administratif L2. Il donne l’introduction rédigée et le plan détaillé.</p>
+<div class="hero__cta flex flex--center">
+<a class="btn btn--primary btn--lg" href="#sujet">Le décorticage du sujet →</a>
+<a class="btn btn--outline btn--lg" href="#plan">Le plan détaillé</a>
+</div>
+<div data-tjd-pdf-offert="matiere" data-id="cas-pratique-da-l2-s1" data-titre="Un cas pratique corrigé en droit administratif L2 S1, en PDF" data-texte="Je t&#x27;envoie par email l&#x27;énoncé et sa correction complète, rédigée comme une copie de partiel. Tu peux ainsi t&#x27;entraîner sur papier, puis comparer ta réponse avec le corrigé." data-bouton="Recevoir le corrigé"></div>
+</div>
+</section>
+<!-- offre du PDF correspondant -->
+<section class="conversion-offer" aria-labelledby="offre-police-administrative-titre">
+<div class="container container--narrow">
+<div class="conversion-offer__card">
+<div class="conversion-offer__visual"><img src="assets/covers/fiche-da-l2-s2.webp?v=dossier-universitaire-20260915" alt="Couverture de la fiche complète de droit administratif L2 S2, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
+<div>
+<p class="conversion-offer__eyebrow">Droit administratif L2</p>
+<h2 class="conversion-offer__title" id="offre-police-administrative-titre">Fiche complète et cas pratiques corrigés</h2>
+<p class="conversion-offer__summary">La partie II de la fiche complète du semestre 2 est consacrée à la police administrative, de la page 28 à la page 45. Elle explique d’abord sa notion et sa distinction avec la police judiciaire, puis l’ordre public, soit le but que la police administrative poursuit. Elle présente ensuite les autorités de police et le contrôle de leurs mesures par le juge. Les cas pratiques corrigés du semestre 1 se vendent en revanche séparément. Cette compilation de 158 pages corrige en entier neuf cas pratiques et trois sujets types de partiel, dont le cas n° 7 sur la police administrative.</p>
+<ul class="conversion-offer__benefits">
+<li>Tu reçois le PDF que tu as choisi dès le paiement</li>
+</ul>
+<button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p019.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p018.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p107.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p082.webp"]' data-apercu-title="Droit administratif · L2 S2 · Fiche complète" data-apercu-price="19,99 €" data-apercu-cta="fiche-da-l2-s2" data-apercu-sub="Le sommaire, puis des pages extraites de la fiche complète."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Voir un aperçu de la fiche complète</button>
+<div class="conversion-offer__choices">
+<button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="fiche-da-l2-s2">Acheter la fiche complète · 19,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="cas-pratique-da-l2-s1">Acheter les cas pratiques corrigés · 19,99 €</button>
+</div>
+<p class="conversion-offer__note">Si ton cours aborde la police administrative au premier semestre, les cas pratiques corrigés du semestre 1 l’appliquent au cas n° 7. Tous les supports de la matière sont réunis sur la <a href="droit-administratif-l2.html">page du droit administratif L2</a>.</p>
+<div data-tjd-avis data-matiere="da-l2"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="sujet">
+<div class="container container--narrow">
+<div class="prose">
+<figure style="margin:0 0 32px"><img src="assets/blog/dissertation-police-administrative-police-judiciaire-corrigee.webp" srcset="assets/blog/dissertation-police-administrative-police-judiciaire-corrigee-640.webp 640w, assets/blog/dissertation-police-administrative-police-judiciaire-corrigee.webp 1200w" sizes="(max-width:700px) 100vw, 800px" alt="Une barrière métallique grise de maintien de l’ordre, rouillée aux soudures, est adossée au mur de pierre d’une mairie de village. Un ruban de balisage rouge et blanc, taché de boue, est noué sur son montant, devant une porte en bois fermée, sur des pavés mouillés." width="1200" height="675" decoding="async" fetchpriority="high" style="width:100%;height:auto;border-radius:12px;display:block"></figure>
+<h2>Que demande le sujet « Police administrative et police judiciaire » ?</h2>
+<p>Le sujet réunit deux notions et te demande ce qui les sépare, mais aussi ce qui les relie. La police administrative est l’activité par laquelle une autorité de l’administration prévient les atteintes à l’ordre public. L’ordre public désigne ce que la police municipale doit assurer d’après l’article L. 2212-2 du Code général des collectivités territoriales. Cet article en donne quatre éléments.</p>
+<ul>
+<li>le bon ordre</li>
+<li>la sûreté publique</li>
+<li>la sécurité publique</li>
+<li>la salubrité publique</li>
+</ul>
+<p>Un maire qui interdit un spectacle susceptible de provoquer des bagarres fait donc de la police administrative.</p>
+<p>L’article 14 du Code de procédure pénale charge la police judiciaire « de constater les infractions à la loi pénale, d’en rassembler les preuves et d’en rechercher les auteurs ». Des gendarmes qui enquêtent sur un cambriolage font ainsi de la police judiciaire. Selon l’article 16 du même code, les officiers de police judiciaire sont les maires et leurs adjoints, ainsi que certains officiers et gradés de la gendarmerie et certains fonctionnaires de la police nationale. L’article 12 place en outre cette activité sous la direction du procureur de la République.</p>
+<p>La règle normale est que le but de l’opération sépare les deux polices, ce que l’on appelle le critère finaliste. En effet, le juge regarde le but que l’autorité poursuivait quand elle a agi, quels que soient l’uniforme de l’agent et le texte que l’autorité a visé. Ainsi, une opération qui cherche à empêcher un trouble relève de la police administrative, alors qu’une opération qui cherche l’auteur d’une infraction déterminée relève de la police judiciaire. Le Conseil d’État l’a jugé en 1960 dans l’arrêt Société Frampar. Un préfet avait fait saisir des numéros du journal France-Soir en visant des textes pénaux, alors qu’il voulait empêcher leur diffusion dans le département.</p>
+<p>L’exception tient aux zones où les deux polices se mêlent. Un même policier exerce l’une ou l’autre selon l’opération, et une opération peut changer de but en cours de route. De plus, la loi elle-même confie des mesures préventives à des officiers de police judiciaire, comme le contrôle d’identité qui prévient une atteinte à l’ordre public. Dans ces zones, la loi prévoit, dans le cadre que fixe l’article 66 de la Constitution, quel juge, administratif ou judiciaire, contrôle chaque mesure. Le but de la mesure ne suffit donc pas pour savoir quel juge la contrôle.</p>
+<h3>Les termes du sujet et des décisions citées</h3>
+<p>Les mots « police administrative » et « police judiciaire » désignent des activités. En effet, la police nationale et la gendarmerie sont des services, et un même policier peut exercer l’une ou l’autre activité dans la même journée. Le Tribunal des conflits est la juridiction qui désigne le juge compétent quand on ne sait pas si un litige relève du juge administratif ou du juge judiciaire. Il rend d’ailleurs plusieurs des décisions de ce corrigé. Qualifier une opération consiste à vérifier si son but correspond à la définition de la police administrative ou à celle de la police judiciaire. La loi SILT est la loi du 30 octobre 2017 renforçant la sécurité intérieure et la lutte contre le terrorisme.</p>
+<h3>La délimitation</h3>
+<p>Les polices spéciales, comme la police des étrangers ou celle de la chasse, sortent du sujet. Le contrôle de proportionnalité des mesures de police administrative sort aussi du sujet, car il porte sur la légalité d’une mesure déjà qualifiée. Ces deux questions relèvent donc d’autres chapitres du cours. Le sujet s’arrête au moment où le juge qualifie l’opération et désigne le juge compétent.</p>
+<h3>Le piège du plan « I. La police administrative, II. La police judiciaire »</h3>
+<p>Ce plan décrit chaque police l’une après l’autre. Il ne répond donc pas à la question de la distinction, qui demande de les comparer. Le plan « I. La distinction, II. Le rapprochement » reste possible, à condition d’expliquer dès la première partie pourquoi le but de l’opération sert de critère.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="introduction">
+<div class="container container--narrow">
+<div class="prose">
+<h2>L’introduction rédigée en sept étapes</h2>
+<p>Tu écris l’introduction dans cet ordre, et chaque étape ci-dessous tient en quelques phrases. Seule l’accroche te demande de raconter une situation.</p>
+<h3>1. L’accroche</h3>
+<p>Le 12 août 1972, des policiers installent un barrage pour prévenir des actes de banditisme. Un automobiliste le force pour échapper à toute vérification, commet plusieurs infractions, puis dirige sa voiture vers un agent qui tentait de l’arrêter. Un officier de police le poursuit et tire sur le véhicule, ce qui blesse la passagère.</p>
+<p>Dans l’arrêt Demoiselle Motsch du 5 décembre 1977, le Tribunal des conflits juge que ce tir est un acte de police judiciaire, car l’officier voulait appréhender un individu qui venait de commettre plusieurs infractions. Le litige relève donc des tribunaux judiciaires, alors que l’opération avait commencé comme un contrôle destiné à prévenir le banditisme.</p>
+<h3>2. La présentation du sujet et la définition des termes</h3>
+<p>La police administrative est l’activité par laquelle l’administration prévient les atteintes à l’ordre public. La police judiciaire est l’activité qui constate les infractions et en recherche les auteurs. Le sujet demande ce qui sépare ces deux activités, et si cette séparation reste nette quand les mêmes agents exercent l’une et l’autre.</p>
+<h3>3. La délimitation du sujet</h3>
+<p>Les polices spéciales et le contrôle de proportionnalité des mesures de police administrative sortent du sujet.</p>
+<h3>4. Le contexte</h3>
+<p>La loi municipale du 5 avril 1884 charge le maire de maintenir l’ordre dans sa commune, et l’arrêt Benjamin de 1933 en cite l’article 97. Les articles 12 et 14 du Code de procédure pénale, issus de la loi du 31 décembre 1957, confient de leur côté la police judiciaire à des officiers. Ces officiers agissent sous la direction du procureur de la République. Le juge a ensuite précisé comment distinguer les deux polices, avec les décisions Baud et Noualek de 1951 puis l’arrêt Frampar de 1960.</p>
+<p>Le Conseil constitutionnel intervient à son tour en 1977, quand il censure la loi autorisant la visite des véhicules « en vue de la recherche et de la prévention des infractions pénales ». Il contrôle ensuite d’autres mesures préventives de ce type, comme le contrôle d’identité en 1993.</p>
+<h3>5. L’intérêt du sujet</h3>
+<p>Selon la qualification d’une opération, le juge compétent n’est pas le même, et les garanties qui entourent la mesure diffèrent selon la police concernée. Les arrêts Baud, Noualek, Motsch et Le Profil portent sur des dommages survenus au cours d’opérations de police. La victime demande alors réparation au juge administratif ou au juge judiciaire, d’après la qualification de l’opération. Les officiers de police judiciaire agissent sous la direction du procureur de la République (article 12 du Code de procédure pénale). La police judiciaire est placée sous la surveillance du procureur général et sous le contrôle de la chambre de l’instruction (article 13). L’article 66 de la Constitution fait en outre de l’autorité judiciaire la gardienne de la liberté individuelle, et le Conseil constitutionnel en tire que la police judiciaire doit être placée sous sa direction et son contrôle (décision du 20 mai 2021). Il faut donc savoir quelles mesures de police le juge judiciaire contrôle et lesquelles relèvent du juge administratif.</p>
+<h3>6. La problématique</h3>
+<p>Le but poursuivi suffit-il à distinguer la police administrative de la police judiciaire ?</p>
+<p>La problématique est la question à laquelle la copie répond. Elle reprend les deux notions du sujet et appelle une réponse nuancée.</p>
+<h3>7. L’annonce du plan</h3>
+<p>Le juge qualifie chaque opération d’après son but, et cette qualification indique le juge compétent (I). Cette règle laisse pourtant subsister des zones où les deux polices se mêlent, et la loi y prévoit quel juge contrôle chaque mesure (II).</p>
+</div>
+</div>
+</section>
+<section class="section" id="plan">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quel plan détaillé pour cette dissertation ?</h2>
+<p>Le plan défend en deux temps la thèse annoncée en introduction. La première partie établit le critère à partir des décisions que le Conseil d’État et le Tribunal des conflits rendent de 1951 à 1978. La seconde en montre les limites à partir des décisions du Conseil constitutionnel, de 1977 à 2021, et des textes qui prévoient quel juge contrôle chaque mesure.</p>
+<h3>I. Le but poursuivi comme critère de qualification</h3>
+<h4>A. La recherche du but réel de l’opération</h4>
+<ul>
+<li><strong>1. Les définitions légales des deux polices</strong></li>
+<li><strong>2. Le but réel face au texte visé</strong></li>
+</ul>
+<h4>B. La désignation du juge compétent</h4>
+<ul>
+<li><strong>1. La qualification de l’opération</strong></li>
+<li><strong>2. Le changement de but en cours d’opération</strong></li>
+</ul>
+<h3>II. Des zones mixtes à la désignation légale du juge</h3>
+<h4>A. Les mêmes agents pour deux polices</h4>
+<ul>
+<li><strong>1. Le double rôle des acteurs municipaux</strong></li>
+<li><strong>2. Des visites de véhicules au contrôle d’identité</strong></li>
+</ul>
+<h4>B. Deux juges pour des mesures préventives semblables</h4>
+<ul>
+<li><strong>1. Les perquisitions administratives de l’état d’urgence</strong></li>
+<li><strong>2. Les visites de la loi SILT</strong></li>
+</ul>
+<h3>Les décisions à citer, sous-partie par sous-partie</h3>
+<p>Dans ta copie, tu énonces d’abord la règle que la décision pose, puis tu donnes ses faits et sa solution.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Les décisions et les textes à citer dans chaque sous-partie du plan sur la police administrative et la police judiciaire" style="overflow-x:auto">
+<table style="width:100%;min-width:760px;border-collapse:collapse">
+<thead><tr><th scope="col">Sous-partie</th><th scope="col">Décision ou texte</th><th scope="col">Ce qu’il juge ou ce qu’il prévoit</th></tr></thead>
+<tbody>
+<tr><th scope="row">I.A.1</th><td>Article L. 2212-2 du Code général des collectivités territoriales et article 14 du Code de procédure pénale</td><td>L’article L. 2212-2 donne à la police municipale pour objet d’assurer l’ordre public, qu’il décompose en quatre éléments présentés plus haut. L’article 14, en revanche, charge la police judiciaire de constater les infractions, d’en rassembler les preuves et d’en rechercher les auteurs. Le 2° de l’article L. 2212-2 emploie toutefois le verbe « réprimer » pour les atteintes à la tranquillité publique. Le vocabulaire ne suffit donc pas à qualifier une opération.</td></tr>
+<tr><th scope="row">I.A.2</th><td>Conseil d’État, Assemblée, 24 juin 1960, Société Frampar, n° 42289</td><td>Le préfet d’Alger fait saisir deux numéros du journal France-Soir en visant l’article 10 du Code d’instruction criminelle et l’article 80 du Code pénal. Le Conseil d’État constate qu’il voulait empêcher la diffusion de ces écrits dans le département. Il qualifie donc les saisies de mesures administratives. Il annule ensuite les arrêtés pour excès de pouvoir. Le préfet a en effet utilisé l’article 10 du Code d’instruction criminelle, dont le champ est limité aux actes nécessaires pour constater les crimes et délits contre la sûreté intérieure ou extérieure de l’État et en livrer les auteurs aux tribunaux. Il aurait pu, s’il s’y était cru fondé, utiliser les pouvoirs du décret du 17 mars 1956 sur les mesures exceptionnelles de rétablissement de l’ordre.</td></tr>
+<tr><th scope="row">I.B.1</th><td>Conseil d’État, Section, 11 mai 1951, Consorts Baud, n° 2542, et Tribunal des conflits, 7 juin 1951, Dame Noualek, n° 1316</td><td>Dans l’affaire Baud, un homme est mortellement blessé à Lyon au cours d’une opération que des inspecteurs de police accomplissaient pour appréhender des individus signalés comme membres d’une bande de malfaiteurs. Le Conseil d’État y voit une opération de police judiciaire, donc de la compétence des tribunaux judiciaires. Dans l’affaire Noualek, en revanche, un garde blesse une femme pendant une visite domiciliaire menée, sur instructions de l’intendant de police, par des inspecteurs de police judiciaire. Le Tribunal des conflits relève que cette opération a eu lieu dans une période anormale, où tous les services de police étaient placés sous l’autorité des préfets. Il constate que l’instruction n’établit pas qu’elle visait un délit ou un crime déterminé, et qu’elle se déroulait en dehors de tout ordre ou intervention de l’autorité judiciaire. Il la qualifie donc d’opération de police administrative, malgré le titre des inspecteurs.</td></tr>
+<tr><th scope="row">I.B.1 et I.B.2</th><td>Tribunal des conflits, 12 juin 1978, Société Le Profil, n° 02082</td><td>Le 8 décembre 1972 à Melun, des malfaiteurs volent plus de 274 000 francs que le préposé d’une société venait de retirer d’une banque, malgré une protection policière. Le Tribunal des conflits juge que ce dommage trouve essentiellement son origine dans la manière dont la mission de protection a été organisée. Cette mission relève de la police administrative, donc le juge administratif est compétent.</td></tr>
+<tr><th scope="row">I.B.2</th><td>Tribunal des conflits, 5 décembre 1977, Demoiselle Motsch, n° 02060</td><td>Un automobiliste force un barrage de contrôle destiné à prévenir le banditisme et commet plusieurs infractions. Un officier de police tire alors sur sa voiture dans l’intention de l’appréhender et blesse la passagère. Le Tribunal des conflits juge pourtant que ce tir relève de la police judiciaire. Les tribunaux judiciaires sont donc compétents. On en déduit que l’opération, destinée à prévenir le banditisme, a changé de but en cours de route.</td></tr>
+<tr><th scope="row">II.A.1</th><td>Article L. 2212-1 du Code général des collectivités territoriales et article 16 du Code de procédure pénale, et Conseil constitutionnel, décision n° 2021-817 DC du 20 mai 2021</td><td>L’article L. 2212-1 charge le maire de la police municipale, sous le contrôle administratif du préfet. L’article 16 range aussi les maires et leurs adjoints parmi les officiers de police judiciaire. La même personne exerce donc les deux polices, selon le but de chaque acte. En 2021, le Conseil constitutionnel rappelle que la police judiciaire doit être placée sous la direction et le contrôle de l’autorité judiciaire. Il censure l’article 1er de la loi, qui permettait à titre expérimental à des agents de police municipale et à des gardes champêtres d’exercer des attributions de police judiciaire en matière délictuelle. Il juge en effet que le législateur a méconnu l’article 66 de la Constitution en confiant des pouvoirs aussi étendus à ces agents, sans les mettre à la disposition d’officiers de police judiciaire ou de personnes présentant des garanties équivalentes.</td></tr>
+<tr><th scope="row">II.A.2</th><td>Conseil constitutionnel, décisions n° 76-75 DC du 12 janvier 1977 et n° 93-323 DC du 5 août 1993</td><td>En 1977, le Conseil censure la loi qui permettait aux officiers de police judiciaire de visiter tout véhicule sur une voie ouverte à la circulation publique. En effet, ce pouvoir très étendu pouvait s’exercer y compris sans infraction et sans que la loi exige une menace d’atteinte à l’ordre public, ce qui portait atteinte aux principes essentiels sur lesquels repose la protection de la liberté individuelle. En 1993, il juge pourtant conforme, sous une réserve d’interprétation, le contrôle d’identité préventif de l’article 78-2 du Code de procédure pénale, à condition que l’autorité justifie, dans tous les cas, de circonstances particulières établissant le risque d’atteinte à l’ordre public. Il ajoute enfin qu’il revient à l’autorité judiciaire, gardienne de la liberté individuelle, de contrôler les raisons qui ont motivé le contrôle d’identité.</td></tr>
+<tr><th scope="row">II.B.1</th><td>Conseil constitutionnel, décision n° 2016-536 QPC du 19 février 2016, et Conseil d’État, Assemblée, avis du 6 juillet 2016, n° 398234</td><td>Quand l’état d’urgence est déclaré et que le décret ou la loi de prorogation l’a expressément prévu, l’autorité administrative peut ordonner des perquisitions, y compris dans un domicile. Le Conseil constitutionnel juge que ces mesures relèvent de la seule police administrative, qu’elles n’affectent pas la liberté individuelle au sens de l’article 66 et qu’elles n’ont donc pas à être placées sous la direction et le contrôle de l’autorité judiciaire. Le Conseil d’État indique ensuite qu’elles sont placées sous le contrôle du juge administratif.</td></tr>
+<tr><th scope="row">II.B.2</th><td>Articles L. 229-1 et L. 229-6 du Code de la sécurité intérieure, et Conseil constitutionnel, décision n° 2017-695 QPC du 29 mars 2018</td><td>Pour prévenir des actes de terrorisme, le préfet peut demander au juge des libertés et de la détention du tribunal judiciaire de Paris, qui est un juge judiciaire, d’autoriser la visite d’un lieu et la saisie de documents. L’article L. 229-6 confie en outre aux juridictions judiciaires les litiges sur la réparation des dommages causés par ces mesures. Le Conseil constitutionnel juge ce régime conforme à la Constitution. Il censure cependant la saisie des documents et des objets que prévoyait le texte de 2017, faute de règles encadrant leur sort après la saisie, de leur exploitation à leur restitution. L’article L. 229-1 en vigueur vise la saisie des « documents et données ».</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Un autre plan possible, fondé sur les garanties de la liberté individuelle</h3>
+<p>Les garanties qui entourent chaque police peuvent aussi servir de fil conducteur. La première partie présente celles de la police judiciaire. En effet, le procureur de la République la dirige, le procureur général la surveille et la chambre de l’instruction la contrôle (articles 12 et 13 du Code de procédure pénale). De plus, l’article 66 de la Constitution confie à l’autorité judiciaire le rôle de gardienne de la liberté individuelle.</p>
+<p>La seconde partie présente celles de la police administrative. Le juge administratif vérifie qu’une mesure reste proportionnée au trouble, comme l’arrêt Benjamin de 1933 l’exige d’un maire qui interdit une conférence, et il contrôle qu’une perquisition d’état d’urgence est adaptée, nécessaire et proportionnée. Ce plan convient donc si l’énoncé parle de « libertés » ou de « garanties », mais il traite moins bien la question du juge compétent.</p>
+<h3>La réponse à la problématique</h3>
+<p>Le but poursuivi suffit à qualifier une opération et à désigner le juge compétent. Une opération qui cherche à empêcher un trouble relève de la police administrative, y compris quand le préfet vise un texte pénal (Frampar). Une opération qui cherche l’auteur d’une infraction relève de la police judiciaire, y compris quand elle a commencé comme un contrôle préventif (Motsch).</p>
+<p>Le but ne permet pourtant pas de savoir quel juge contrôle les mesures que la loi situe entre les deux polices. Les perquisitions de l’état d’urgence et les visites de la loi SILT visent toutes deux à prévenir des atteintes à l’ordre public. Elles dépendent cependant de juges différents. Pour les visites, la loi a prévu l’autorisation d’un juge judiciaire. Les perquisitions de l’état d’urgence relèvent en revanche de la seule police administrative, donc du contrôle du juge administratif. Le but poursuivi demeure donc le point de départ de la distinction, que la loi complète par un contrôle judiciaire quand elle le décide.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="variantes">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quel plan adopter si l’énoncé reformule le sujet ?</h2>
+<p>Ces énoncés reprennent les mêmes décisions sous un autre angle. Tu gardes donc la méthode de ce corrigé, et tu changes la problématique et le fil du plan.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Plans possibles pour les variantes d’énoncé sur la police administrative et la police judiciaire" style="overflow-x:auto">
+<table style="width:100%;min-width:760px;border-collapse:collapse">
+<thead><tr><th scope="col">Énoncé</th><th scope="col">Problématique</th><th scope="col">Plan en deux parties</th></tr></thead>
+<tbody>
+<tr><th scope="row">La distinction de la police administrative et de la police judiciaire</th><td>La distinction repose-t-elle sur un critère unique ?</td><td>I. Un critère unique, le but poursuivi (Frampar, Le Profil, Motsch). II. Une distinction qui se complique à la frontière des deux polices (article 78-2 et décision de 1993, puis perquisitions et visites).</td></tr>
+<tr><th scope="row">Police administrative et police judiciaire, une distinction dépassée ?</th><td>La distinction garde-t-elle un intérêt quand les mêmes agents exercent les deux polices ?</td><td>I. Une distinction qui garde son utilité pour désigner le juge et les garanties (Motsch, Le Profil, article L. 229-6). II. Une distinction pourtant relativisée, car les mêmes agents exercent les deux polices et la loi crée des mesures mixtes (maire, article 78-2, loi SILT).</td></tr>
+<tr><th scope="row">Les rapports entre la police administrative et la police judiciaire</th><td>Les deux polices se complètent-elles ?</td><td>I. Deux polices distinctes par leur but (Frampar, Motsch). II. Deux polices qui coopèrent (le maire, qui exerce les deux polices, et l’officier de police judiciaire présent aux visites de l’article L. 229-1).</td></tr>
+<tr><th scope="row">La notion de police administrative</th><td>Qu’est-ce qui définit la police administrative ?</td><td>I. Une activité de prévention des atteintes à l’ordre public (article L. 2212-2, Benjamin). II. Une activité distincte de la police judiciaire (Frampar, Le Profil, Motsch).</td></tr>
+</tbody>
+</table>
+</div>
+<p>Pour l’énoncé « Les limites de la police administrative », la <a href="dissertations-corrigees-droit-administratif-l2.html">dissertation sur la police administrative entre liberté et ordre public</a> propose un autre plan, car cet énoncé porte sur le contrôle du juge. L’<a href="arret-benjamin-explique.html">arrêt Benjamin expliqué</a> détaille la décision de 1933 que ce plan utilise.</p>
+</div>
+</div>
+</section>
+<section class="section" id="copie">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Deux passages de la copie rédigée</h2>
+<p>Dans chaque paragraphe de ta copie, tu commences par une phrase qui annonce l’idée. Tu donnes ensuite la règle, puis la décision qui la pose, et tu termines en disant ce que cette décision montre pour le sujet. Les deux passages suivants rédigent les sous-parties I.B.2 et II.B.2.</p>
+<h3>Sous-partie I.B.2, le changement de but en cours d’opération</h3>
+<p>Une opération de police peut changer de nature en cours de route, parce que son but change. L’arrêt Demoiselle Motsch du Tribunal des conflits, rendu le 5 décembre 1977, le montre. Des policiers contrôlent les automobilistes à un barrage pour prévenir des actes de banditisme, ce qui poursuit un but de police administrative. Ensuite, un conducteur force le barrage et commet plusieurs infractions. Il dirige sa voiture vers un agent. Un officier de police le poursuit alors et tire sur le véhicule, ce qui blesse la passagère.</p>
+<p>Le Tribunal des conflits juge qu’en utilisant son arme dans l’intention d’appréhender un individu qui venait de commettre plusieurs infractions, l’officier a fait un acte de police judiciaire. Les litiges relatifs aux dommages de cet acte relèvent donc des tribunaux judiciaires. Le juge compétent se détermine en effet d’après le but de l’acte qui a causé le dommage. Ici, cet acte est la poursuite d’un auteur d’infractions, alors que le barrage avait pour but de prévenir le banditisme.</p>
+<p>La décision Société Le Profil du 12 juin 1978 applique le même raisonnement à une mission de protection, pendant laquelle un vol est commis. Des malfaiteurs volent en effet une somme que le préposé d’une société venait de retirer d’une banque, malgré la protection de la police. Le Tribunal des conflits juge pourtant que le dommage trouve essentiellement son origine dans l’organisation de la mission de protection, qui relève de la police administrative. Le juge cherche donc, dans chaque cas, le but de l’acte ou de la mission à l’origine du dommage.</p>
+<h3>Sous-partie II.B.2, les visites de la loi SILT</h3>
+<p>Le législateur peut placer une mesure de police administrative sous le contrôle d’un juge judiciaire. La loi SILT du 30 octobre 2017 en donne un exemple. Pour prévenir des actes de terrorisme, le préfet saisit en effet le juge des libertés et de la détention du tribunal judiciaire de Paris. Ce juge peut alors autoriser la visite d’un lieu et la saisie de documents et de données (article L. 229-1 du Code de la sécurité intérieure).</p>
+<p>Cette mesure poursuit le but de la police administrative, puisqu’elle prévient des actes de terrorisme. C’est pourtant un juge judiciaire qui l’autorise. De plus, les recours contre son ordonnance vont devant le premier président de la cour d’appel de Paris (article L. 229-3), et les litiges sur la réparation des dommages causés par ces visites relèvent des juridictions judiciaires (article L. 229-6).</p>
+<p>Pour les perquisitions de l’état d’urgence, le contrôle appartient à un autre juge. En 2016, le Conseil constitutionnel juge que ces perquisitions relèvent de la seule police administrative et qu’elles n’ont pas à être placées sous la direction et le contrôle de l’autorité judiciaire. Le Conseil d’État indique la même année que ces perquisitions sont placées sous le contrôle du juge administratif. Les deux mesures ont cependant le même but, la prévention des atteintes à l’ordre public. Le but de la mesure ne suffit donc pas, à lui seul, pour savoir quel juge la contrôle. Le législateur a ici confié l’autorisation des visites à un juge judiciaire, et la décision du 29 mars 2018 juge ce régime conforme à la Constitution, sauf pour la saisie des documents et des objets que prévoyait le texte de 2017.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="erreurs">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles erreurs font perdre des points sur ce sujet ?</h2>
+<h3>Distinguer les deux polices par le moment de l’intervention</h3>
+<p>Une copie qui écrit « la police administrative agit avant l’infraction et la police judiciaire après » est trop simple. En effet, dans l’arrêt Frampar, la saisie du journal vise à empêcher une diffusion, et le Conseil d’État la qualifie de mesure administrative malgré les textes pénaux invoqués. De même, dans l’arrêt Société Le Profil, un vol se produit pendant une mission de protection, et le Tribunal des conflits rattache pourtant le dommage à la police administrative. De plus, l’article L. 2212-2 du Code général des collectivités territoriales emploie lui-même le verbe « réprimer » pour des atteintes à la tranquillité publique. Il faut donc écrire que le but de l’opération qualifie la police, et le chercher dans les faits.</p>
+<h3>Qualifier une opération d’après le texte que l’autorité invoque</h3>
+<p>Dans l’affaire Frampar, le préfet visait des articles pénaux, et le Conseil d’État les écarte. Une copie qui qualifie l’opération d’après les textes cités en tête de l’arrêté, ses visas, se trompe, car le juge vérifie le but réel. Dans un cas pratique, tu cherches ce que l’autorité voulait obtenir, puis tu cites la décision.</p>
+<h3>Écrire que chaque police relève toujours de son juge</h3>
+<p>« La police administrative relève du juge administratif et la police judiciaire du juge judiciaire » est la règle normale, que la copie doit nuancer. L’article L. 229-6 du Code de la sécurité intérieure confie à des juridictions judiciaires les litiges sur la réparation des dommages causés par des mesures préventives, alors que les perquisitions de l’état d’urgence relèvent du juge administratif. Dans une dissertation, tu poses cette règle, puis tu la nuances avec ces deux exemples.</p>
+<h3>Oublier que le maire exerce aussi la police judiciaire</h3>
+<p>Le maire fait de la police administrative quand il règlemente la circulation ou interdit un spectacle. L’article 16 du Code de procédure pénale lui donne aussi la qualité d’officier de police judiciaire. Une copie qui attribue au maire la seule police administrative ignore cet article et perd l’exemple le plus simple d’un agent qui exerce les deux polices.</p>
+</div>
+</div>
+</section>
+<section class="section" id="autres">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles autres pages de droit administratif lire ensuite ?</h2>
+<p>Tu peux lire ensuite l’<a href="arret-fouille-des-vehicules-1977-explique.html">arrêt Fouille des véhicules expliqué</a>, qui détaille la décision du Conseil constitutionnel de 1977, puis la page sur le <a href="le-controle-d-identite-en-procedure-penale.html">contrôle d’identité en procédure pénale</a>. Pour t’entraîner sur des faits, le <a href="exemple-cas-pratique-corrige-droit-administratif.html">cas pratique corrigé sur la police administrative</a> montre la méthode, et la <a href="dissertation-service-public-corrigee.html">dissertation sur le service public et l’intérêt général</a> traite l’autre grande notion du semestre. La page <a href="droit-administratif-l2.html">du droit administratif L2</a> présente tous les supports de la matière.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="faq">
+<div class="container container--narrow"><h2 class="h2">Questions fréquentes sur la police administrative et la police judiciaire</h2>
+<div class="accordion">
+<details class="accordion__item"><summary class="accordion__trigger">Quelle est la différence entre police administrative et police judiciaire ?</summary><div class="accordion__body"><p>La police administrative prévient les atteintes à l’ordre public, comme l’interdiction d’un spectacle qui risque de provoquer des bagarres. La police judiciaire, en revanche, constate les infractions, en rassemble les preuves et en recherche les auteurs, selon l’article 14 du Code de procédure pénale. Le juge distingue donc les deux d’après le but de l’opération, comme le Conseil d’État l’a jugé en 1960 pour les saisies de journaux du préfet d’Alger.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Quel juge est compétent pour une opération de police ?</summary><div class="accordion__body"><p>Le juge administratif est compétent pour les litiges de police administrative, et le juge judiciaire pour ceux de police judiciaire. Le Tribunal des conflits applique ce critère d’après le but de l’opération, par exemple dans la décision Société Le Profil de 1978. La loi prévoit toutefois des exceptions. L’article L. 229-6 du Code de la sécurité intérieure confie aux juridictions judiciaires les litiges sur la réparation des dommages causés par les mesures de visite et de saisie prises pour prévenir le terrorisme.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Un maire fait-il de la police administrative ou de la police judiciaire ?</summary><div class="accordion__body"><p>Il fait les deux, selon l’acte qu’il accomplit. Le maire est en effet une autorité de police administrative et un officier de police judiciaire. L’article L. 2212-1 du Code général des collectivités territoriales le charge de la police municipale, qui relève de la police administrative, sous le contrôle administratif du préfet. L’article 16 du Code de procédure pénale range en outre les maires et leurs adjoints parmi les officiers de police judiciaire. Le but de chaque acte indique donc la police exercée.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Quel PDF choisir pour réviser la police administrative ?</summary><div class="accordion__body"><p>La fiche complète de droit administratif du semestre 2 consacre sa partie II à la police administrative, de la page 28 à la page 45. Elle explique sa notion et sa distinction avec la police judiciaire, puis l’ordre public. Elle présente ensuite les autorités de police et le contrôle de leurs mesures. En revanche, pour t’entraîner à qualifier une opération de police à partir de faits, il faut la compilation de cas pratiques corrigés du semestre 1, dont le cas n° 7 porte sur la police administrative.</p></div></details>
+</div>
+</div>
+</section>
+<!-- fin-article:pack-ultra -->
+<section class="article-pack-ligne"><div class="container container--narrow"><p class="article-pack-ligne__texte">Le Pack Ultra L2 S2 réunit les 32 ressources de ton second semestre de L2 pour 199 €. La fiche de droit administratif L2 en fait partie. <a href="pack-ultra.html#pack-ultra-l2-s2">Voir le contenu du pack →</a></p></div></section>
+</main>
+
+
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. Éprouvés par <a href="temoignages.html">620+ étudiants</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Droit administratif L2, dissertation sur la police administrative et la police judiciaire">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Droit administratif L2, dissertation sur la police administrative et la police judiciaire">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit administratif L2 S2 · 19,99 €</strong>
+      <small>Fiche complète · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="fiche-da-l2-s2" aria-label="Acheter la fiche complète · 19,99 €">Acheter · 19,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=81a894f1" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=909718f7" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=7aba7f6e';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
+</body>
+</html>
