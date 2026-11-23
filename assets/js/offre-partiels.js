@@ -11,6 +11,13 @@
     var onglets = Array.prototype.slice.call(encart.querySelectorAll('.offre-partiels__annee'));
     var panneaux = Array.prototype.slice.call(encart.querySelectorAll('.offre-partiels__panneau'));
 
+    panneaux.forEach(function (panneau) {
+      var annee = panneau.getAttribute('data-annee');
+      if (!/^l[123]$/.test(annee)) return;
+      var lien = panneau.querySelector('.offre-partiels__kit a[href="kit-partiels.html#composer"]');
+      if (lien) lien.setAttribute('href', 'kit-partiels.html?niveau=' + annee + '#composer');
+    });
+
     function choisirAnnee(annee, parClic) {
       onglets.forEach(function (onglet) {
         var actif = onglet.getAttribute('data-annee') === annee;

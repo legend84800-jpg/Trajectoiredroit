@@ -312,6 +312,78 @@ test("ouvre une sélection vide en L2 lorsque le stockage est invalide ou indisp
   assert.deepEqual(kit.matieres, ["contrats"]);
 });
 
+test("les liens du Kit gardent l’année de chaque panneau de l’encart Partiels", () => {
+  const script = readFileSync(join(__dirname, "../assets/js/offre-partiels.js"), "utf8");
+  const panneaux = ["l1", "l2", "l3", "l4", "l2"].map((annee, index) => {
+    const lien = {
+      href: index === 4 ? "kit-partiels.html?matiere=administratif-s2#composer" : "kit-partiels.html#composer",
+      setAttribute(nom, valeur) { this[nom] = valeur; },
+    };
+    return {
+      lien,
+      getAttribute: () => annee,
+      querySelector(selecteur) {
+        return selecteur === '.offre-partiels__kit a[href="kit-partiels.html#composer"]'
+          && lien.href === "kit-partiels.html#composer" ? lien : null;
+      },
+    };
+  });
+  const encart = {
+    getAttribute: () => "l2",
+    querySelectorAll: (selecteur) => selecteur === ".offre-partiels__panneau" ? panneaux : [],
+  };
+  const document = { readyState: "complete", querySelectorAll: () => [encart] };
+  vm.runInNewContext(script, { document, window: {} });
+  assert.deepEqual(panneaux.map((panneau) => panneau.lien.href), [
+    "kit-partiels.html?niveau=l1#composer", "kit-partiels.html?niveau=l2#composer",
+    "kit-partiels.html?niveau=l3#composer", "kit-partiels.html#composer",
+    "kit-partiels.html?matiere=administratif-s2#composer",
+  ]);
+});
+
+test("ouvre un nouveau Kit sans matière dans l’année du lien de l’encart", () => {
+  for (const niveau of ["l1", "l2", "l3"]) {
+    const session = stockage();
+    const kit = ouvrirKit(session, `?source=encart&niveau=${niveau}`);
+    assert.equal(kit.niveau, niveau);
+    assert.deepEqual(kit.matieres, []);
+    assert.equal(kit.paiement, "1");
+    assert.equal(kit.url.searchParams.get("source"), "encart");
+    assert.equal(kit.url.hash, "#composer");
+    assert.equal(ouvrirKit(session, kit.url.search).niveau, niveau);
+  }
+  const session = stockage();
+  session.setItem(cleSelection, "{");
+  assert.equal(ouvrirKit(session, "?niveau=l3").niveau, "l3");
+  assert.equal(ouvrirKit(session, "?niveau=l4").niveau, "l2");
+});
+
+test("l’année de l’encart laisse intacts les matières, le niveau et le paiement du Kit commencé", () => {
+  const session = stockage();
+  const brouillon = JSON.stringify({
+    niveau: "l2", choixParNiveau: { l1: ["constitutionnel-s1"], l2: ["administratif-s2"], l3: ["travail"] }, paiement: "2",
+  });
+  session.setItem(cleSelection, brouillon);
+  const kit = ouvrirKit(session, "?niveau=l3");
+  assert.equal(kit.niveau, "l2");
+  assert.deepEqual(kit.matieres, ["administratif-s2"]);
+  assert.equal(kit.paiement, "2");
+  assert.equal(session.getItem(cleSelection), brouillon);
+  kit.choisirNiveau("l1");
+  assert.deepEqual(kit.matieres, ["constitutionnel-s1"]);
+  kit.choisirNiveau("l3");
+  assert.deepEqual(kit.matieres, ["travail"]);
+});
+
+test("un lien explicite de droit administratif conserve le semestre demandé", () => {
+  for (const code of ["administratif-s1", "administratif-s2"]) {
+    const kit = ouvrirKit(stockage(), `?niveau=l3&matiere=${code}`);
+    assert.equal(kit.niveau, "l2");
+    assert.deepEqual(kit.matieres, [code]);
+    assert.equal(kit.url.searchParams.has("matiere"), false);
+  }
+});
+
 test("présélectionne la matière du guide et conserve le retrait après rechargement", () => {
   const session = stockage();
   const kit = ouvrirKit(session, "?source=guide&matiere=administratif-s1");

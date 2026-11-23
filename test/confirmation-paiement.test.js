@@ -324,7 +324,9 @@ test("confirmation et remise exigent la même session Stripe confirmée et compa
   }
 });
 
-function navigateur(responses, { id = sessionId, stockageAutorise = true } = {}) {
+const panierInitial = [{ id: fiche, nom: "Droit administratif S1", prixCentimes: 1999 }];
+
+function navigateur(responses, { id = sessionId, stockageAutorise = true, panier = JSON.stringify(panierInitial) } = {}) {
   const elems = new Map();
   const creerElement = (tag) => ({
     tag, hidden: true, style: {}, evenements: {}, children: [], attributs: {},
@@ -340,7 +342,7 @@ function navigateur(responses, { id = sessionId, stockageAutorise = true } = {})
   const requetes = [];
   const rappels = [];
   const mesures = [];
-  const stockage = new Map([["tjd_panier", "panier"], ["tjd_code_promo", "code"]]);
+  const stockage = new Map([["tjd_panier", panier], ["tjd_code_promo", "code"]]);
   const gtag = (...args) => mesures.push(["ga4", args]);
   const fbq = (...args) => mesures.push(["meta", args]);
   const context = {
@@ -359,6 +361,7 @@ function navigateur(responses, { id = sessionId, stockageAutorise = true } = {})
       setItem() { if (!stockageAutorise) throw new Error("Stockage bloqué"); },
     },
     localStorage: {
+      getItem(cle) { return stockage.get(cle) ?? null; },
       setItem: (cle, valeur) => stockage.set(cle, valeur),
       removeItem: (cle) => stockage.delete(cle),
     },
@@ -393,7 +396,7 @@ test("Vérifier mon paiement relit la même session et attend la confirmation po
   assert.equal(nav.element("purchaseConfirmedContent").hidden, true);
   assert.equal(nav.element("purchaseDownloads").hidden, true);
   assert.equal(nav.element("purchasePackUltra").hidden, true);
-  assert.equal(nav.stockage.get("tjd_panier"), "panier");
+  assert.equal(nav.stockage.get("tjd_panier"), JSON.stringify(panierInitial));
   assert.equal(nav.stockage.get("tjd_code_promo"), "code");
   assert.equal(nav.mesures.length, 0);
 
@@ -416,6 +419,27 @@ test("Vérifier mon paiement relit la même session et attend la confirmation po
   assert.equal(nav.stockage.has("tjd_panier"), false);
   assert.equal(nav.stockage.has("tjd_code_promo"), false);
   assert.equal(nav.mesures.length, 3);
+});
+
+test("un achat direct retire du panier les produits de la commande et conserve les autres", async () => {
+  const encoreDansLePanier = { id: ficheS2, nom: "Droit administratif S2", prixCentimes: 1999 };
+  const panier = [panierInitial[0], encoreDansLePanier];
+  for (const produitsConfirmes of [[fiche], [packMatiere], [], undefined]) {
+    const commande = { montant: 19.99, produitIds: produitsConfirmes, liens: [], emailsAcceptes: true };
+    const nav = navigateur([[200, commande]], { panier: JSON.stringify(panier) });
+    await laisserRepondre();
+    assert.equal(nav.element("purchaseConfirmedContent").hidden, false);
+    const attendu = produitsConfirmes?.includes(fiche) ? [encoreDansLePanier] : panier;
+    assert.deepEqual(JSON.parse(nav.stockage.get("tjd_panier")), attendu);
+  }
+});
+
+test("une confirmation supporte un panier ancien illisible", async () => {
+  const nav = navigateur([[200, { montant: 19.99, produitIds: [fiche], liens: [], emailsAcceptes: true }]],
+    { panier: "panier-illisible" });
+  await laisserRepondre();
+  assert.equal(nav.element("purchaseConfirmedContent").hidden, false);
+  assert.equal(nav.stockage.get("tjd_panier"), "panier-illisible");
 });
 
 test("les téléchargements prêts précèdent le rappel concernant les indésirables", () => {
@@ -467,7 +491,7 @@ test("les états non confirmés donnent une action adaptée et gardent le panier
     assert.equal(nav.element("purchaseStatusRetry").hidden, !revoir);
     assert.equal(nav.element("purchaseStatusLink").hidden, revoir);
     assert.equal(nav.element("purchaseConfirmedContent").hidden, true);
-    assert.equal(nav.stockage.get("tjd_panier"), "panier");
+    assert.equal(nav.stockage.get("tjd_panier"), JSON.stringify(panierInitial));
     assert.equal(nav.mesures.length, 0);
   }
   const absente = navigateur([], { id: "" });

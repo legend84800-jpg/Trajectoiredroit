@@ -76,9 +76,9 @@
     try {
       selection = JSON.parse(window.sessionStorage.getItem(cleSelection));
     } catch (_) {
-      return;
+      return false;
     }
-    if (!selection || !choixParNiveau.has(selection.niveau)) return;
+    if (!selection || !choixParNiveau.has(selection.niveau)) return false;
 
     const brouillons = selection.choixParNiveau;
     if (brouillons && typeof brouillons === "object" && !Array.isArray(brouillons)) {
@@ -88,7 +88,7 @@
     } else if (Array.isArray(selection.codes)) {
       importerCodes(selection.niveau, selection.codes);
     } else {
-      return;
+      return false;
     }
     activerNiveau(selection.niveau);
 
@@ -96,6 +96,7 @@
       const option = form.querySelector(`input[name="paiement"][value="${selection.paiement}"]`);
       if (option) option.checked = true;
     }
+    return true;
   }
 
   function enregistrerSelection() {
@@ -237,8 +238,7 @@
     window.tjdAcheter(id, cta);
   });
 
-  function ajouterDepuisLeGuide() {
-    const url = new URL(window.location.href);
+  function ajouterDepuisLeGuide(url) {
     const code = url.searchParams.get("matiere");
     if (code === null) return;
     const niveauGuide = Object.keys(catalogue.niveaux).find((niveau) =>
@@ -259,8 +259,11 @@
     window.history.replaceState(window.history.state, "", url);
   }
 
-  restaurerSelection();
-  ajouterDepuisLeGuide();
+  const selectionRestauree = restaurerSelection();
+  const url = new URL(window.location.href);
+  const niveauLien = url.searchParams.get("niveau");
+  if (!selectionRestauree && choixParNiveau.has(niveauLien)) activerNiveau(niveauLien);
+  ajouterDepuisLeGuide(url);
   afficherMatieres();
   rafraichir();
 })();
