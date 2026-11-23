@@ -104,7 +104,11 @@ test("la page dédiée montre seulement les cinq packs en vente et leurs ressour
       assert.ok(carte.includes(`class="ultra-card__comparison">Total à l’unité : <span class="ultra-card__unit-total">${totalAffiche}</span></span>`), id);
       assert.ok(carte.includes(`class="ultra-card__saving">${pourcentage} % d’économie</span>`), id);
       assert.ok(carte.includes(`class="ultra-card__price">${prixAffiche}</span>`), id);
-      assert.ok(carte.includes(`ou 3 × ${euros(montantEcheance(pack.prix, 3))} sans frais`), id);
+      const echeances = [...carte.matchAll(/<button\b[^>]*class="ultra-card__split-btn" data-tjd-produit="([^"]+)" data-tjd-echeances="([23])">([^<]+)<\/button>/g)];
+      assert.deepEqual(echeances.map(([, reference, nombre, label]) => [reference, nombre, label]), [2, 3].map((nombre) => [
+        referenceVente(id), String(nombre), `${nombre} × ${euros(montantEcheance(pack.prix, nombre))}`,
+      ]), id);
+      assert.ok(!carte.includes('class="ultra-card__payment"'), id);
       const lienPrix = bloc.indexOf(`href="#${id}">Voir le prix et les options de paiement</a>`);
       assert.ok(lienPrix > bloc.indexOf("</summary>") && lienPrix < bloc.indexOf("<ul"), id);
     }
@@ -134,7 +138,7 @@ test("le sommaire par matière classe toutes les ressources des cinq semestres",
 
 test("l'accueil oriente vers la page dédiée et garde les anciens liens utilisables", () => {
   const accueil = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8");
-  assert.match(accueil, /href="pack-ultra\.html#pack-ultra">Voir les cinq packs/);
+  assert.match(accueil, /href="pack-ultra\.html#pack-ultra-ressources">Voir le contenu par semestre<\/a>/);
   assert.match(accueil, /src="assets\/covers\/pack-ultra-l1-s2\.webp" alt="Exemple de couverture du Pack Ultra L1 semestre 2"/);
   assert.match(accueil, /<span class="ultra-home-card__cover-label">5 packs au choix<\/span>/);
   assert.equal((accueil.match(/<article class="ultra-card"/g) || []).length, 0);

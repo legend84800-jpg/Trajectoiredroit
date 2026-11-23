@@ -72,7 +72,12 @@ for (const [label,user] of [
 function deferred() { let resolve;const promise=new Promise(r=>resolve=r);return {promise,resolve}; }
 const tick=()=>new Promise(r=>setImmediate(r));
 function browser(options={}) {
-  const elements={};const timers=[];let callback;let clientOptions;const requests=[];
+  const elements={};const timers=new Map();let callback;let clientOptions;const requests=[];
+  let horloge = Date.now();
+  let prochainMinuteur = 0;
+  class DateSimulee extends Date {
+    static now() { return horloge; }
+  }
   function storage(initial={}) {const values={...initial}; return {
     values,getItem:key=>values[key]||null,setItem:(key,value)=>{values[key]=value;},removeItem:key=>{delete values[key];}
   };}
@@ -83,6 +88,7 @@ function browser(options={}) {
       classList:{add:x=>classes.add(x),remove:x=>classes.delete(x),contains:x=>classes.has(x)},
       addEventListener(event,fn){this.listeners[event]=fn;},reset(){this.resetCalled=true;} };
   }
+  elements.renvoyerCode.textContent = 'Recevoir un nouveau code';
   const auth={
     getSession:async()=>({data:{session:options.storageSession ? JSON.parse(clientOptions.auth.storage.getItem(clientOptions.auth.storageKey)||'null') : options.session||null}}),
     getUser:async token=> options.getUser ? options.getUser(token) : ({data:{user:verified}}),
@@ -96,13 +102,34 @@ function browser(options={}) {
     signOut:async input=>{requests.push({logout:input,stored:clientOptions.auth.storage.getItem(clientOptions.auth.storageKey)});clientOptions.auth.storage.removeItem(clientOptions.auth.storageKey);callback('SIGNED_OUT',null);return {error:null};},
     onAuthStateChange(fn){callback=fn;},
   };
-  const window={supabase:{createClient:(_url,_key,opts)=>{clientOptions=opts;return {auth};}},localStorage:local,sessionStorage:temporary,setTimeout:fn=>{timers.push(fn);},location:{href:'https://trajectoiredroit.com/mon-compte.html?injection=1#injection'}};
+  const window={
+    supabase:{createClient:(_url,_key,opts)=>{clientOptions=opts;return {auth};}},
+    localStorage:local,
+    sessionStorage:temporary,
+    setTimeout(fn, delai = 0) {
+      const id = ++prochainMinuteur;
+      timers.set(id, { fn, date: horloge + delai });
+      return id;
+    },
+    clearTimeout(id) { timers.delete(id); },
+    location:{href:'https://trajectoiredroit.com/mon-compte.html?injection=1#injection'}
+  };
   vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../assets/js/compte.js'),'utf8'),{
-    window,document:{getElementById:id=>elements[id]},Date,URLSearchParams,
+    window,document:{getElementById:id=>elements[id]},Date:DateSimulee,URLSearchParams,
     fetch:async(url,req)=>{requests.push({url,req});return options.fetch ? options.fetch(url,req) : {ok:true,status:200,json:async()=>({achats:[]})};},
   });
-  return {elements,requests,auth,local,temporary,clientOptions,event:(event,session)=>callback(event,session),
-    async flush(){await tick();for(const fn of timers.splice(0))fn();await tick();},
+  async function flush(){
+    await tick();
+    for (const [id, minuteur] of timers) {
+      if (minuteur.date <= horloge) {
+        timers.delete(id);
+        minuteur.fn();
+      }
+    }
+    await tick();
+  }
+  return {elements,requests,auth,local,temporary,clientOptions,event:(event,session)=>callback(event,session),flush,
+    async avancerTemps(ms){horloge += ms;await flush();},
     state:id=>elements[id].classList.contains('is-active')};
 }
 function session(email='falsifie@example.invalid',token='session-factice') {return {access_token:token,user:{id:'identite-locale',email}};}
@@ -250,12 +277,56 @@ test('un échec d’envoi laisse le formulaire utilisable sans ouvrir le compte'
   const b=browser({signInWithOtp:async()=>({error:{message:'Send failed'}})});await demanderCode(b);
   assert.ok(b.state('etatConnexion'));assert.equal(b.elements.codeForm.hidden,true);assert.equal(b.elements.connexionSubmit.disabled,false);assert.equal(b.requests.filter(r=>r.url).length,0);
 });
-test('un renvoi immédiat est limité sans répéter la demande au serveur',async()=>{
-  const b=browser();await demanderCode(b);await b.elements.renvoyerCode.listeners.click();
-  assert.equal(b.requests.filter(r=>r.login).length,1);assert.equal(b.elements.connexionError.style.display,'block');
+test('le renvoi affiche la minute restante et redevient possible à l’échéance', async () => {
+  const b = browser();
+  await demanderCode(b);
+  const bouton = b.elements.renvoyerCode;
+  assert.equal(bouton.textContent, 'Nouveau code dans 60 s');
+  assert.equal(bouton.disabled, true);
+  assert.equal(b.elements.codeSubmit.disabled, false);
+  await bouton.listeners.click();
+  assert.equal(b.requests.filter(r => r.login).length, 1);
+  assert.equal(b.elements.connexionError.style.display, 'none');
+
+  await b.avancerTemps(15000);
+  assert.equal(bouton.textContent, 'Nouveau code dans 45 s');
+  await b.avancerTemps(44999);
+  assert.equal(bouton.textContent, 'Nouveau code dans 1 s');
+  assert.equal(bouton.disabled, true);
+  await b.avancerTemps(1);
+  assert.equal(bouton.textContent, 'Recevoir un nouveau code');
+  assert.equal(bouton.disabled, false);
+
+  await bouton.listeners.click();
+  assert.equal(b.requests.filter(r => r.login).length, 2);
+  assert.equal(bouton.textContent, 'Nouveau code dans 60 s');
+  assert.equal(bouton.disabled, true);
+});
+
+test('le renvoi attend aussi la fin de la vérification du code', async () => {
+  const verification = deferred();
+  const b = browser({ verifyOtp: () => verification.promise });
+  await demanderCode(b);
+  b.elements.connexionCode.value = '12345678';
+  const connexion = b.elements.codeForm.listeners.submit({ preventDefault() {} });
+  await b.avancerTemps(60000);
+  assert.equal(b.elements.renvoyerCode.textContent, 'Recevoir un nouveau code');
+  assert.equal(b.elements.renvoyerCode.disabled, true);
+  verification.resolve({ error: { message: 'Code incorrect' } });
+  await connexion;
+  assert.equal(b.elements.renvoyerCode.disabled, false);
 });
 test('un changement d’adresse utilise le nouveau destinataire pour vérifier le code',async()=>{
   const b=browser();await demanderCode(b,false,'premier@example.invalid');
-  b.elements.changerEmail.listeners.click();await demanderCode(b,false,'second@example.invalid');await saisirCode(b);
+  await b.avancerTemps(15000);
+  b.elements.changerEmail.listeners.click();
+  assert.equal(b.elements.renvoyerCode.textContent, 'Recevoir un nouveau code');
+  await demanderCode(b,false,'second@example.invalid');
+  assert.equal(b.elements.renvoyerCode.textContent, 'Nouveau code dans 60 s');
+  await b.avancerTemps(45000);
+  assert.equal(b.elements.renvoyerCode.textContent, 'Nouveau code dans 15 s');
+  assert.equal(b.elements.renvoyerCode.disabled, true);
+  await saisirCode(b);
+  assert.equal(b.elements.renvoyerCode.textContent, 'Recevoir un nouveau code');
   assert.equal(b.requests.find(r=>r.verification).verification.email,'second@example.invalid');
 });

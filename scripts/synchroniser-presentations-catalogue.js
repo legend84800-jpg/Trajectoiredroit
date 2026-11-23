@@ -2,6 +2,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const PRODUITS = require("../api/_produits");
+const { montantEcheance, nombreEcheancesValide } = require("../api/_echeances");
 const { SUJETS, sujetDe } = require("../api/_offres-matieres");
 const { FORMULES } = require("../api/_portalis-config");
 const { BESOINS, APERCUS, COMPARAISON_DOL } = require("./catalogue-presentations");
@@ -189,7 +190,14 @@ function verifierPrix(contenu, fichier) {
     const montant = match[2].replace(/<[^>]+>/g, " ").match(/(\d+(?:[\u00a0\u202f ]\d{3})*(?:,\d{2})?)\s*€/);
     if (!id || !montant) continue;
     const prix = Math.round(Number(montant[1].replace(/[\u00a0\u202f ]/g, "").replace(",", ".")) * 100);
-    if (!PRODUITS[id] || PRODUITS[id].prix !== prix) erreurs.push(`${fichier}, bouton ${id}, prix ${prix}`);
+    const produit = PRODUITS[id];
+    const echeances = match[1].match(/\bdata-tjd-echeances="([^"]*)"/)?.[1];
+    let prixAttendu = produit?.prix;
+    if (echeances !== undefined) {
+      const nombre = nombreEcheancesValide(id, produit, echeances);
+      prixAttendu = nombre ? montantEcheance(produit.prix, nombre) : null;
+    }
+    if (prixAttendu !== prix) erreurs.push(`${fichier}, bouton ${id}, prix ${prix}`);
   }
   return erreurs;
 }

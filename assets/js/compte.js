@@ -60,6 +60,8 @@
     var codeDestinataire = document.getElementById("codeDestinataire");
     var renvoyerCode     = document.getElementById("renvoyerCode");
     var changerEmail     = document.getElementById("changerEmail");
+    var libelleRenvoi = renvoyerCode.textContent;
+    var minuteurRenvoi = null;
     var emailEnAttente = "";
     var conserverEnAttente = false;
     var prochainEnvoi = 0;
@@ -456,11 +458,7 @@
             return;
           }
           compteEmail.textContent = utilisateur.email;
-          ++generationConnexion;
-          emailEnAttente = "";
-          connexionCode.value = "";
-          codeForm.hidden = true;
-          connexionForm.hidden = false;
+          fermerFormulaireCode();
           connexionError.style.display = "none";
           connexionSuccess.style.display = "none";
           afficherEtat("etatConnecte");
@@ -497,12 +495,38 @@
       connexionError.textContent = message;
       connexionError.style.display = "block";
     }
+    function actualiserRenvoi(){
+      if (minuteurRenvoi !== null) window.clearTimeout(minuteurRenvoi);
+      minuteurRenvoi = null;
+      var restant = codeForm.hidden ? 0 : Math.max(0, prochainEnvoi - Date.now());
+      var secondes = Math.ceil(restant / 1000);
+      renvoyerCode.disabled = codeForm.hidden || connexionSubmit.disabled || codeSubmit.disabled || secondes > 0;
+      renvoyerCode.textContent = secondes ? "Nouveau code dans " + secondes + " s" : libelleRenvoi;
+      if (secondes > 0) {
+        minuteurRenvoi = window.setTimeout(actualiserRenvoi, restant - (secondes - 1) * 1000);
+      }
+    }
+
+    function fermerFormulaireCode(){
+      ++generationConnexion;
+      emailEnAttente = "";
+      prochainEnvoi = 0;
+      connexionCode.value = "";
+      codeForm.hidden = true;
+      connexionForm.hidden = false;
+      connexionSubmit.disabled = false;
+      codeSubmit.disabled = false;
+      changerEmail.disabled = false;
+      actualiserRenvoi();
+    }
+
     async function envoyerCode(email, conserver){
+      if (connexionSubmit.disabled || codeSubmit.disabled) return;
       var generation = ++generationConnexion;
       connexionError.style.display = "none";
       connexionSuccess.style.display = "none";
       connexionSubmit.disabled = true;
-      renvoyerCode.disabled = true;
+      actualiserRenvoi();
       try {
         var res = await sb.auth.signInWithOtp({
           email: email,
@@ -523,8 +547,10 @@
         if (generation !== generationConnexion) return;
         afficherErreur("L'envoi du code a échoué. Tu peux réessayer dans une minute.");
       } finally {
-        connexionSubmit.disabled = false;
-        renvoyerCode.disabled = false;
+        if (generation === generationConnexion) {
+          connexionSubmit.disabled = false;
+          actualiserRenvoi();
+        }
       }
     }
 
@@ -541,6 +567,7 @@
 
     codeForm.addEventListener("submit", async function(e){
       e.preventDefault();
+      if (codeSubmit.disabled) return;
       connexionError.style.display = "none";
       connexionSuccess.style.display = "none";
       var code = normaliserCode();
@@ -551,7 +578,7 @@
       var generation = generationConnexion;
       codeSubmit.disabled = true;
       changerEmail.disabled = true;
-      renvoyerCode.disabled = true;
+      actualiserRenvoi();
       choisirPersistence(conserverEnAttente);
       try {
         var res = await sb.auth.verifyOtp({ email: emailEnAttente, token: code, type: "email" });
@@ -563,26 +590,21 @@
         choisirPersistence(false);
         afficherErreur("Le code est incorrect ou a expiré. Tu peux le vérifier dans ton email ou demander un nouveau code.");
       } finally {
-        codeSubmit.disabled = false;
-        changerEmail.disabled = false;
-        renvoyerCode.disabled = false;
+        if (generation === generationConnexion) {
+          codeSubmit.disabled = false;
+          changerEmail.disabled = false;
+          actualiserRenvoi();
+        }
       }
     });
 
     renvoyerCode.addEventListener("click", function(){
-      if (Date.now() < prochainEnvoi){
-        afficherErreur("Tu peux demander un nouveau code une minute après le précédent envoi.");
-        return;
-      }
+      if (!emailEnAttente || renvoyerCode.disabled || Date.now() < prochainEnvoi) return;
       return envoyerCode(emailEnAttente, conserverEnAttente);
     });
 
     changerEmail.addEventListener("click", function(){
-      ++generationConnexion;
-      emailEnAttente = "";
-      connexionCode.value = "";
-      codeForm.hidden = true;
-      connexionForm.hidden = false;
+      fermerFormulaireCode();
       connexionError.style.display = "none";
       connexionSuccess.style.display = "none";
       connexionEmail.focus();
@@ -591,12 +613,8 @@
     deconnexionBtn.addEventListener("click", async function(){
       deconnexionEnCours = true;
       actualiserSession(null);
-      ++generationConnexion;
-      emailEnAttente = "";
-      connexionCode.value = "";
+      fermerFormulaireCode();
       resterConnecte.checked = false;
-      codeForm.hidden = true;
-      connexionForm.hidden = false;
       connexionSuccess.style.display = "none";
       try {
         var res = await sb.auth.signOut({ scope: "local" });

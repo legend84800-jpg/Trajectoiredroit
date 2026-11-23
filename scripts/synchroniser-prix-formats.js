@@ -76,7 +76,8 @@ function synchroniserPrixFormats(contenu, fichier) {
       .replace(/(<p class="ultra-card__bonus">Les podcasts et les vidéos des )\d+( matières)/, `$1${p.nbMedias}$2`)
       .replace(/(<span class="ultra-card__unit-total">)[^<]+(?=<\/span>)/, `$1${euro(p.total)}`)
       .replace(/(<span class="ultra-card__price">)[^<]+(?=<\/span>)/, `$1${prixUltra(p.prix)}`)
-      .replace(/(<span class="ultra-card__payment">ou 3 × )[^€]+€/, `$1${euro(montantEcheance(p.prix, 3))}`)
+      .replace(/(<button\b[^>]*class="ultra-card__split-btn"[^>]*data-tjd-echeances="([23])"[^>]*>)[^<]+(?=<\/button>)/g,
+        (_, ouverture, nombre) => `${ouverture}${nombre} × ${euro(montantEcheance(p.prix, Number(nombre)))}`)
       .replace(/(<p class="ultra-card__bonus">[^<]*ils coûtent )[^€]+€/, `$1${euro(p.totalMedias)}`);
   });
   sortie = sortie.replace(/<p class="article-pack-ligne__texte">[\s\S]*?<\/p>/g, (bloc) => {

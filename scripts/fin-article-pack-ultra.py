@@ -42,7 +42,6 @@ for card in re.findall(r'<article class="ultra-card" id="pack-ultra-([^"]+)">(.*
         desc=g(r'ultra-card__description">([^<]*)<'),
         old=g(r'ultra-card__unit-total">([^<]*)<'),
         prix=g(r'ultra-card__price">([^<]*)<'),
-        paiement=g(r'ultra-card__payment">([^<]*)<'),
         economie=g(r'ultra-card__saving">([^<]*)<'),
         # Nombre affiché sur la carte (« 36 ressources »), qui fait foi. Le détail ne liste que les
         # types principaux et sous-compte (31 au lieu de 36 en L1 S1, point l du 15/11/2026).

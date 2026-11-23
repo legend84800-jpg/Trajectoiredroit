@@ -745,7 +745,8 @@
   function initPanierBoutons() {
     document.querySelectorAll('[data-tjd-produit]').forEach(function (bouton) {
       var produitId = bouton.getAttribute('data-tjd-produit');
-      if (!produitId || PRODUIT_EXCLU_PANIER[produitId]) return;
+      var echeances = bouton.getAttribute('data-tjd-echeances');
+      if (!produitId || PRODUIT_EXCLU_PANIER[produitId] || echeances === '2' || echeances === '3') return;
       var parent = bouton.parentElement;
       if (!parent) return;
       var existant = parent.querySelector('[data-tjd-panier-lien="' + produitId + '"]');

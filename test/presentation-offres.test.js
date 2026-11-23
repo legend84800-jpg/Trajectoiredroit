@@ -111,6 +111,17 @@ test("le contrôle signale un montant de bouton différent du prix réellement e
   assert.equal(verifierPrix(html, "exemple.html").length, 1);
 });
 
+test("le contrôle lit le montant de chaque échéance et conserve le plein prix pour un achat comptant", () => {
+  const html = fs.readFileSync(path.join(ROOT, "pack-ultra.html"), "utf8");
+  assert.deepEqual(verifierPrix(html, "pack-ultra.html"), []);
+  const id = "pack-ultra-l1-s1-revision";
+  const erreurs = (libelle, attribut = "") => verifierPrix(`<button data-tjd-produit="${id}" ${attribut}>${libelle}</button>`, "pack-ultra.html");
+  assert.deepEqual(erreurs("Acheter · 199 €"), []);
+  assert.equal(erreurs("Acheter · 99,50 €").length, 1);
+  assert.equal(erreurs("3 × 66,34 €", 'data-tjd-echeances="3"').length, 1);
+  assert.equal(erreurs("199 €", 'data-tjd-echeances="4"').length, 1);
+});
+
 test("le pack annuel retiré garde les cours et annexes des achats passés", () => {
   const pack = PRODUITS["pack-cours-complets-l2"];
   assert.equal(pack.venteSuspendue, true);
