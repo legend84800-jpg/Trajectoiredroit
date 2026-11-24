@@ -11,7 +11,7 @@ function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formation
   const storage = new Map();
   if (stored) storage.set('tjd_consent_v2', JSON.stringify(stored));
   if (legacy) storage.set('tjd_consent', legacy);
-  const events = [], scripts = [], ga = [], meta = [], windowHandlers = new Map();
+  const events = [], scripts = [], ga = [], meta = [], stylesheetLinks = [], windowHandlers = new Map();
   const roots = [], timers = [];
   const activeElement = { focus() {} };
 
@@ -43,6 +43,11 @@ function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formation
     }
     setAttribute(key, value) { this.attributes.set(key, String(value)); }
     getAttribute(key) { return this.attributes.get(key) ?? null; }
+    hasAttribute(key) { return this.attributes.has(key); }
+    toggleAttribute(key, enabled) {
+      if (enabled) this.attributes.set(key, "");
+      else this.attributes.delete(key);
+    }
     addEventListener(name, handler) {
       if (!this.handlers.has(name)) this.handlers.set(name, []);
       this.handlers.get(name).push(handler);
@@ -50,7 +55,8 @@ function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formation
     fire(name, detail = {}) { for (const handler of this.handlers.get(name) || []) handler({ target: this, ...detail }); }
     click() { this.fire('click'); }
     focus() {}
-    showModal() { this.open = true; }
+    show() { this.open = true; this.modal = false; }
+    showModal() { this.open = true; this.modal = true; }
     close() { this.open = false; this.fire('close'); }
     remove() { const index = roots.indexOf(this); if (index >= 0) roots.splice(index, 1); }
     insertAdjacentElement() {}
@@ -59,7 +65,10 @@ function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formation
   const document = {
     activeElement,
     createElement: (tagName) => new Element(tagName),
-    head: { appendChild(element) { scripts.push(element); } },
+    head: { appendChild(element) {
+      if (element.tagName === "link") stylesheetLinks.push(element);
+      else scripts.push(element);
+    } },
     body: { appendChild(element) { roots.push(element); } },
     querySelector(selector) {
       if (selector.startsWith('footer a')) return new Element('a');
@@ -125,17 +134,20 @@ function browser({ stored, legacy, url = 'https://trajectoiredroit.com/formation
     return preferencesDialog;
   };
   const runTimers = () => { for (const handler of timers.splice(0)) handler(); };
-  return { window, storage, events, scripts, ga, meta, load, banner, dialog, choose, preferences, customize, runTimers };
+  return { window, storage, events, scripts, ga, meta, stylesheetLinks, load, banner, dialog, choose, preferences, customize, runTimers };
 }
 
-test('aucun choix ne charge le traceur et le bandeau explique la relecture avant acceptation', () => {
+test('le bandeau présente la mesure d’audience et les réglages décrivent la relecture', () => {
   const b = browser();
   b.load();
   assert.equal(b.preferences(), null);
   assert.equal(b.scripts.length, 0);
-  assert.match(b.banner().html, /revoir ta visite et la lier à un achat/i);
-  const boutons = Array.from(b.banner().html.matchAll(/<button\b[^>]*>([^<]+)<\/button>/g), ([, texte]) => texte);
-  assert.deepEqual(boutons, ['Accepter', 'Essentiels seuls', 'Choisir']);
+  assert.match(b.banner().html, /Ces cookies mesurent les visites et les clics/);
+  const boutons = Array.from(b.banner().html.matchAll(/<button\b[^>]*>([\s\S]*?)<\/button>/g),
+    ([, texte]) => texte.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim());
+  assert.deepEqual(boutons, ['J’accepte', 'Je choisis Nécessaires seuls']);
+  assert.equal(b.stylesheetLinks.length, 1);
+  assert.match(b.stylesheetLinks[0].href, /^\/assets\/css\/cookie-compact\.css\?v=[a-f0-9]{8}$/);
   assert.match(b.banner().html, /href="\/confidentialite\.html#cookies"/);
   b.window.tjdCookieConsent.openPreferences();
   const dialog = b.dialog();
@@ -176,17 +188,31 @@ test('les anciens choix Analytics et Meta gardent leur effet et refusent la nouv
   }
 });
 
-test('le bouton Essentiels seuls enregistre le refus des cookies facultatifs', () => {
+test('Je choisis enregistre les seuls cookies nécessaires avant d’ouvrir les réglages', () => {
   const b = browser();
-  b.load(); b.choose('essential');
+  b.load(); b.choose('preferences');
+  assert.equal(b.dialog().open, true);
+  assert.equal(b.dialog().modal, false);
+  assert.equal(b.dialog().querySelector('[data-cookie-confirmation]').hidden, false);
   assert.deepEqual(b.preferences(), { analytics: false, advertising: false, behavior: false });
   assert.equal(b.storage.get('tjd_consent'), 'denied');
   assert.equal(b.scripts.length, 0);
 });
 
-test('une acceptation charge une seule IIFE et ne démarre qu’après son téléchargement', () => {
+test('J’accepte active uniquement la mesure annoncée', () => {
   const b = browser();
-  b.load(); b.choose('accept'); b.choose('accept');
+  b.load(); b.choose('accept');
+  assert.deepEqual(b.preferences(), { analytics: true, advertising: false, behavior: false });
+  assert.equal(b.storage.get('tjd_consent'), 'denied');
+  assert.equal(b.scripts.length, 0);
+  assert.equal(b.ga.at(-1)[2].analytics_storage, 'granted');
+  assert.equal(b.ga.at(-1)[2].ad_storage, 'denied');
+});
+
+test('une autorisation de relecture charge une seule IIFE', () => {
+  const b = browser();
+  b.load(); b.customize({ analytics: true, advertising: true, behavior: true });
+  b.customize({ behavior: true });
   assert.equal(b.scripts.length, 1);
   assert.equal(b.scripts[0].src, '/comportement/tracker.js');
   assert.equal(b.scripts[0].referrerPolicy, 'no-referrer');
@@ -202,7 +228,7 @@ test('une acceptation charge une seule IIFE et ne démarre qu’après son tél�
 
 test('un retrait pendant le téléchargement empêche tout démarrage différé', () => {
   const b = browser();
-  b.load(); b.choose('accept'); b.choose('essential', { fromPreferences: true });
+  b.load(); b.customize({ behavior: true }); b.choose('essential', { fromPreferences: true });
   let starts = 0, stops = 0;
   b.window.AtelierComportement = { start() { starts++; }, stop() { stops++; } };
   b.scripts[0].onload();
@@ -288,7 +314,7 @@ test('le drapeau interne global et la préférence interne persistante bloquent 
   const b = browser({ internal: true, stored: { version: 2, analytics: true, advertising: true, behavior: true } });
   assert.equal(b.scripts.length, 0);
   const c = browser(); c.storage.set('tjd_internal_test', '1');
-  c.load(); c.choose('accept');
+  c.load(); c.customize({ behavior: true });
   assert.equal(c.scripts.length, 0);
 });
 
@@ -298,7 +324,7 @@ test('la sortie explicite du mode interne autorise le domaine www', () => {
 });
 
 test('une indisponibilité du traceur garde le choix et permet de retenter depuis les préférences', () => {
-  const b = browser(); b.load(); b.choose('accept');
+  const b = browser(); b.load(); b.customize({ behavior: true });
   b.scripts[0].onerror();
   assert.equal(b.preferences().behavior, true);
   b.customize({ behavior: true });
@@ -306,7 +332,7 @@ test('une indisponibilité du traceur garde le choix et permet de retenter depui
 });
 
 test('un script reçu sans API reste désactivé et peut être retenté', () => {
-  const b = browser(); b.load(); b.choose('accept');
+  const b = browser(); b.load(); b.customize({ behavior: true });
   b.scripts[0].onload();
   assert.equal(b.preferences().behavior, true);
   b.customize({ behavior: true });
@@ -314,7 +340,7 @@ test('un script reçu sans API reste désactivé et peut être retenté', () => 
 });
 
 test('un stockage indisponible conserve le choix en mémoire pour cette visite', () => {
-  const b = browser({ blocked: true }); b.load(); b.choose('accept');
+  const b = browser({ blocked: true }); b.load(); b.customize({ behavior: true });
   assert.equal(b.preferences().behavior, true);
   assert.equal(b.scripts.length, 1);
   b.choose('essential', { fromPreferences: true });

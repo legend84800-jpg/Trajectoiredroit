@@ -219,6 +219,7 @@
           '<button type="button" class="cookie-preferences__close" data-cookie-close aria-label="Fermer les préférences">&times;</button>' +
         '</div>' +
         '<p class="cookie-preferences__intro">Tu peux choisir les services autorisés sur ce navigateur. Les cookies essentiels restent actifs pour assurer le fonctionnement du site.</p>' +
+        '<p class="cookie-preferences__intro" role="status" data-cookie-confirmation hidden>Ton choix est enregistré.</p>' +
         '<div class="cookie-preferences__list">' +
           '<div class="cookie-preference">' +
             '<div class="cookie-preference__copy">' +
@@ -229,10 +230,10 @@
           '</div>' +
           '<div class="cookie-preference">' +
             '<div class="cookie-preference__copy">' +
-              '<h3>Mesure d’audience</h3>' +
+              '<h3>Mesure des visites et des clics</h3>' +
               '<p>Google Analytics nous aide à comprendre les pages consultées et la manière dont le site est utilisé.</p>' +
             '</div>' +
-            '<button type="button" class="cookie-switch" role="switch" aria-checked="false" data-cookie-switch="analytics" aria-label="Autoriser Google Analytics"><span aria-hidden="true"></span></button>' +
+            '<button type="button" class="cookie-switch" role="switch" aria-checked="false" data-cookie-switch="analytics" aria-label="Autoriser la mesure des visites et des clics"><span aria-hidden="true"></span></button>' +
           '</div>' +
           '<div class="cookie-preference">' +
             '<div class="cookie-preference__copy">' +
@@ -286,6 +287,10 @@
       if (event.target === dialog) dialog.close();
     });
 
+    dialog.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && dialog.hasAttribute("data-cookie-compact")) dialog.close();
+    });
+
     dialog.addEventListener("close", function () {
       if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
         lastFocusedElement.focus();
@@ -296,8 +301,11 @@
     return dialog;
   }
 
-  function openPreferences(trigger) {
+  function openPreferences(trigger, compact) {
     var dialog = createPreferencesDialog();
+    if (dialog.open) return;
+    dialog.toggleAttribute("data-cookie-compact", compact === true);
+    dialog.querySelector("[data-cookie-confirmation]").hidden = compact !== true;
     var preferences = activePreferences || readPreferences() || {
       analytics: false,
       advertising: false,
@@ -307,9 +315,11 @@
     setSwitchState(dialog.querySelector('[data-cookie-switch="analytics"]'), preferences.analytics);
     setSwitchState(dialog.querySelector('[data-cookie-switch="advertising"]'), preferences.advertising);
     setSwitchState(dialog.querySelector('[data-cookie-switch="behavior"]'), preferences.behavior);
-    lastFocusedElement = trigger || document.activeElement;
+    lastFocusedElement = compact ? null : trigger || document.activeElement;
 
-    if (typeof dialog.showModal === "function") {
+    if (compact && typeof dialog.show === "function") {
+      dialog.show();
+    } else if (!compact && typeof dialog.showModal === "function") {
       dialog.showModal();
     } else {
       dialog.setAttribute("open", "");
@@ -324,7 +334,7 @@
 
     var manageLink = document.createElement("a");
     manageLink.href = "#gestion-cookies";
-    manageLink.textContent = "Gérer mes cookies";
+    manageLink.textContent = "Je choisis mes cookies";
     manageLink.setAttribute("data-cookie-manage", "");
     manageLink.addEventListener("click", function (event) {
       event.preventDefault();
@@ -337,30 +347,27 @@
     var banner = document.createElement("section");
     banner.className = "cookie-banner";
     banner.setAttribute("role", "dialog");
-    banner.setAttribute("aria-label", "Cookies facultatifs");
+    banner.setAttribute("aria-label", "Cookies de mesure d’audience");
     banner.setAttribute("aria-describedby", "cookieBannerDescription");
     banner.innerHTML =
-      '<p class="cookie-banner__text" id="cookieBannerDescription"><a href="/confidentialite.html#cookies">Cookies</a> d’audience et de publicité. On peut revoir ta visite et la lier à un achat.</p>' +
+      '<p class="cookie-banner__text cookie-banner__heading"><strong>Cookies de mesure d’audience</strong><a href="/confidentialite.html#cookies">Détails</a></p>' +
+      '<p class="cookie-banner__text" id="cookieBannerDescription">Ces cookies mesurent les visites et les clics.</p>' +
       '<div class="cookie-banner__actions">' +
-        '<button type="button" class="btn cookie-choice" data-cookie-accept aria-label="Accepter les cookies facultatifs">Accepter</button>' +
-        '<button type="button" class="btn cookie-choice" data-cookie-essential>Essentiels seuls</button>' +
-        '<button type="button" class="btn cookie-choice cookie-choice--preferences" data-cookie-preferences aria-label="Choisir les cookies facultatifs">Choisir</button>' +
+        '<button type="button" class="btn cookie-choice" data-cookie-accept>J’accepte</button>' +
+        '<button type="button" class="btn cookie-choice" data-cookie-preferences><span>Je choisis<small class="cookie-choice__detail">Nécessaires seuls</small></span></button>' +
       '</div>';
 
     document.body.appendChild(banner);
 
     banner.querySelector("[data-cookie-accept]").addEventListener("click", function () {
-      savePreferences({ analytics: true, advertising: true, behavior: true });
-      closeBanner();
-    });
-
-    banner.querySelector("[data-cookie-essential]").addEventListener("click", function () {
-      savePreferences({ analytics: false, advertising: false, behavior: false });
+      savePreferences({ analytics: true, advertising: false, behavior: false });
       closeBanner();
     });
 
     banner.querySelector("[data-cookie-preferences]").addEventListener("click", function () {
-      openPreferences(banner.querySelector("[data-cookie-preferences]"));
+      savePreferences({ analytics: false, advertising: false, behavior: false });
+      closeBanner();
+      openPreferences(null, true);
     });
 
     setTimeout(function () {
@@ -409,6 +416,10 @@
   });
 
   document.addEventListener("DOMContentLoaded", function () {
+    var compactStyles = document.createElement("link");
+    compactStyles.rel = "stylesheet";
+    compactStyles.href = "/assets/css/cookie-compact.css?v=8f37a0c7";
+    document.head.appendChild(compactStyles);
     addManageLink();
     if (storedPreferences) return;
     try {
