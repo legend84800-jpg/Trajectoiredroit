@@ -47,6 +47,7 @@
       var champs = carte.querySelectorAll('.badge--format, .product__title, .product__meta, .product__edition, .product__desc, .product__sommaire-list');
       return {
         element: carte,
+        sommaire: carte.querySelector('.product__sommaire > summary[id]'),
         display: carte.style.display,
         semestres: semestresCarte,
         sujetAnnuel: titreAnnuel ? extraireMots(normaliser(titreAnnuel.textContent)).sort().join(' ') : null,
@@ -69,7 +70,7 @@
         try {
           var url = new URL(lien.getAttribute('href'), window.location.href);
           if (url.origin !== window.location.origin || !/\/formations\.html$/.test(url.pathname)) return;
-          if (url.hash && cartes.some(function (carte) { return carte.element.id === url.hash.slice(1); })) return;
+          if (carteAncree(url.hash)) return;
           if (etat.niveau === 'tous') url.searchParams.delete('niveau');
           else url.searchParams.set('niveau', etat.niveau.toLowerCase());
           lien.setAttribute('href', url.pathname + url.search + url.hash);
@@ -216,7 +217,11 @@
       appliquerFiltres(); actualiserAdresse(false); recherche.focus();
     });
     function carteAncree(hash) {
-      return hash && cartes.find(function (carte) { return carte.element.id === hash.slice(1); });
+      if (!hash) return;
+      var identifiant = hash.slice(1);
+      return cartes.find(function (carte) {
+        return carte.element.id === identifiant || carte.sommaire?.id === identifiant;
+      });
     }
     function ancreCatalogue(ancre) {
       return ancre === '#a-l-unite' || Object.hasOwn(HASH_NIVEAU, ancre);
@@ -279,8 +284,11 @@
         etat.matiere = 'tous';
         recherche.value = '';
         appliquerFiltres(); actualiserAdresse(true);
-        cible.element.focus({ preventScroll: true });
-        cible.element.scrollIntoView({ behavior: 'auto', block: 'start' });
+        var sommaire = cible.sommaire && '#' + cible.sommaire.id === hash ? cible.sommaire : null;
+        if (sommaire) sommaire.parentElement.open = true;
+        var focus = sommaire || cible.element;
+        focus.focus({ preventScroll: true });
+        focus.scrollIntoView({ behavior: 'auto', block: 'start' });
         return true;
       }
       var niveau = HASH_NIVEAU[hash];

@@ -30,11 +30,12 @@ const FORMATS_CARTES = {
 
 function cartesCatalogue(html, page, formatAttendu) {
   const cartes = [];
+  const citation = formatAttendu === 'Citations';
   for (const match of html.matchAll(/<article\b([^>]*)>([\s\S]*?)<\/article>/gi)) {
     const [, attributs, corps] = match;
     const niveau = attributs.match(/\bdata-niveau=["'](L[123])["']/)?.[1];
     const produit = corps.match(/\bdata-tjd-produit=["']([a-z0-9]+(?:-[a-z0-9]+)*)["']/)?.[1];
-    if (!niveau || !produit || !Object.hasOwn(PRODUITS, produit) || PRODUITS[produit].venteSuspendue || /\shidden(?:\s|=|$)/i.test(attributs)) continue;
+    if ((!niveau && !citation) || !produit || !Object.hasOwn(PRODUITS, produit) || PRODUITS[produit].venteSuspendue || /\shidden(?:\s|=|$)/i.test(attributs)) continue;
 
     const ancre = attributs.match(/\sid=["']([^"']+)["']/)?.[1];
     const titre = texteHtml(corps.match(/<h3\b[^>]*class=["']product__title["'][^>]*>([\s\S]*?)<\/h3>/i)?.[1]);
@@ -43,15 +44,16 @@ function cartesCatalogue(html, page, formatAttendu) {
     const majeure = formatAttendu === 'Majeure préparée';
     const niveauMeta = (majeure ? meta.match(/\b(L[123])\b/) : meta.match(/^(L[123])(?: ·|$)/))?.[1];
     if (ancre !== produit || format !== formatAttendu || !titre || niveauMeta !== niveau) continue;
+    if (citation && (!produit.startsWith('citations-') || (!niveau && !/^Complément(?: ·|$)/.test(meta)))) continue;
 
     const semestres = Array.from(meta.matchAll(/\b(?:Semestre\s+|S)([12])\b/gi), (match) => match[1]);
     const sujet = semestres.length === 1 ? titre.replace(new RegExp(` \\(S${semestres[0]}\\)$`), '') : titre;
-    const repere = [niveau, semestres.map((semestre) => 'S' + semestre).join(' ou ')].filter(Boolean).join(' ');
-    const licence = ['Licence ' + niveau.slice(1), ...semestres.map((semestre) => 'semestre ' + semestre)].join(' ');
-    const categorieCarte = majeure ? 'Majeures préparées' : format;
+    const repere = [niveau || 'Complément', semestres.map((semestre) => 'S' + semestre).join(' ou ')].filter(Boolean).join(' ');
+    const licence = [niveau && 'Licence ' + niveau.slice(1), ...semestres.map((semestre) => 'semestre ' + semestre)].filter(Boolean).join(' ');
+    const categorieCarte = majeure ? 'Majeures préparées' : citation ? 'Fiches de citations' : format;
     const motsFormat = format === 'Fiche complète' ? 'Fiche complète fiche de révision PDF' : categorieCarte.replace(' + ', ' et ');
     const adresse = '/' + page + (majeure ? '?niveau=' + niveau.toLowerCase() : '') + '#' + ancre;
-    cartes.push({ t: sujet + ' · ' + repere, u: adresse, c: categorieCarte, k: motsFormat + ' de ' + sujet + ' ' + licence });
+    cartes.push({ t: sujet + ' · ' + repere, u: adresse, c: categorieCarte, k: [motsFormat + ' de ' + sujet, licence].filter(Boolean).join(' ') });
   }
   return cartes;
 }
@@ -143,6 +145,14 @@ function construireIndex(racine) {
     const guide = guideIndexe(html, nom);
     if (guide) index.push(guide);
     if (FORMATS_CARTES[nom]) index.push(...cartesCatalogue(html, nom, FORMATS_CARTES[nom]));
+    if (nom === 'revisions.html') {
+      const section = sectionAvecAncre(html, 'citations');
+      const titreCitations = texteHtml(section.match(/<span\b[^>]*class=["']eyebrow["'][^>]*>([\s\S]*?)<\/span>/i)?.[1]);
+      if (titreCitations) {
+        index.push({ t: titreCitations, u: '/revisions.html#citations', c: 'Cours et fiches', k: titreCitations });
+        index.push(...cartesCatalogue(section, nom, 'Citations'));
+      }
+    }
     if (nom === 'cas-pratiques-corriges.html') index.push(...choixCasPratiques(html));
   }
   return index.sort((a, b) => a.u.localeCompare(b.u));

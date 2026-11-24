@@ -42,6 +42,10 @@ test('l’index exclut les pages privées ou techniques et les fichiers absents'
     assert.ok(fs.existsSync(fichier), page.u);
     if (ancre) {
       const html = fs.readFileSync(fichier, 'utf8');
+      if (page.u === '/revisions.html#citations') {
+        assert.match(html, /<section\b[^>]*\sid="citations"/);
+        continue;
+      }
       if (page.g) {
         assert.ok(['/contrats-speciaux-l3.html#programme', '/ressources-gratuites.html#guides-gratuits'].includes(page.u));
         assert.ok(html.includes(`id="${ancre}"`), page.u);
@@ -205,6 +209,45 @@ test('les guides de matière reprennent les destinations de la liste des ressour
     assert.equal(rechercher(index, requete)[0].u, destination, requete);
   }
   assert.deepEqual(Array.from(rechercher(index, 'guide contrats spéciaux'), (page) => page.u), ['/contrats-speciaux-l3.html#programme']);
+});
+
+test('la recherche générique de citations ouvre la section existante', () => {
+  for (const requete of ['citations', 'fiche de citations', 'Fiches de citation PDF']) {
+    assert.equal(rechercher(index, requete)[0].u, '/revisions.html#citations', requete);
+  }
+  const niveau = Array.from(rechercher(index, 'citations L2'));
+  assert.equal(niveau.length, 7);
+  assert.ok(niveau.every((resultat) => resultat.c === 'Fiches de citations' && /· L2\b/.test(resultat.t)));
+});
+
+test('les recherches de citations mènent aux cartes de la matière et du semestre demandés', () => {
+  assert.deepEqual(Array.from(rechercher(index, 'citations droit administratif'), (page) => page.u), [
+    '/revisions.html#citations-da-l2-s1', '/revisions.html#citations-da-l2-s2',
+  ]);
+  for (const [requete, identifiant] of [
+    ['citations du droit administratif semestre 2', 'citations-da-l2-s2'],
+    ['fiche de citations sur le droit administratif L2S2', 'citations-da-l2-s2'],
+    ['citations de droit constitutionnel L1-S2', 'citations-constit-l1-s2'],
+    ['citations de droit des contrats semestre 2', 'citations-obligations-l2-s2'],
+    ['fiche de citations procédure pénale', 'citations-procedure-penale-l3'],
+    ['citation libertés fondamentales', 'citations-libertes-fondamentales'],
+  ]) {
+    assert.deepEqual(Array.from(rechercher(index, requete), (page) => page.u), ['/revisions.html#' + identifiant], requete);
+  }
+  assert.equal(rechercher(index, 'citations droit des personnes semestre 2').length, 0);
+  assert.equal(rechercher(index, 'citations inexistanteqz').length, 0);
+  assert.equal(rechercher(index, 'droit administratif L2 S2').some((page) => page.c === 'Fiches de citations'), false);
+});
+
+test('seules les cartes individuelles publiques et ancrées de citations sont indexées', () => {
+  const html = fs.readFileSync(path.join(racine, 'revisions.html'), 'utf8');
+  const section = html.match(/<section\b[^>]*\sid="citations"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(section);
+  const attendus = Array.from(section.matchAll(/data-tjd-produit="(citations-[^"]+)"/g), ([, produit]) => produit).sort();
+  const cartes = index.filter((page) => page.c === 'Fiches de citations');
+  assert.equal(cartes.length, 19);
+  assert.deepEqual(cartes.map((page) => page.u.split('#')[1]).sort(), attendus);
+  assert.ok(cartes.every((page) => page.u.startsWith('/revisions.html#citations-')));
 });
 
 test('une carte sans ancre utilisable est ignorée et sa page reste dans l’index', (t) => {

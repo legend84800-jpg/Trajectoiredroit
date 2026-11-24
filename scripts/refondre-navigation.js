@@ -321,7 +321,7 @@ function menuMobile(fichier) {
       </div>
     </details>
     <div class="mobile-nav__cta">
-      <a class="btn btn--primary btn--full" href="formations.html#comparatif">Comparer les formats</a>
+      ${lienMobile('mon-compte.html', 'Mon compte', fichier, 'btn btn--primary btn--full')}
     </div>
   </nav>`;
 }

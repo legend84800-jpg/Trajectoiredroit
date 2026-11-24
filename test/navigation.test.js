@@ -104,7 +104,11 @@ test('le menu mobile reprend les quatre familles avec divulgation progressive', 
     assert.equal(groupes.length, 3, `${nom} doit regrouper Fiches, Ressources et À propos`);
     assert.match(navMobile, /<details class="mobile-nav__group[^>]*" open>/, `${nom} doit montrer les formats dès l'ouverture du menu`);
     assert.match(navMobile, />Choisir un format</, `${nom} doit nommer clairement le premier groupe`);
-    assert.match(navMobile, /href="formations\.html#comparatif"[^>]*>Comparer tous les formats</, `${nom} doit donner un accès direct au comparatif`);
+    assert.match(formats, /href="formations\.html#comparatif"[^>]*>Comparer tous les formats</, `${nom} doit proposer le comparatif dans Choisir un format`);
+    assert.equal((navMobile.match(/href="formations\.html#comparatif"/g) || []).length, 1, `${nom} propose une seule fois le comparatif`);
+    const pied = extraire(navMobile, '<div class="mobile-nav__cta">', '</div>');
+    assert.match(pied, /href="mon-compte\.html"[^>]*>Mon compte<\/a>/, `${nom} doit proposer Mon compte en bas du menu`);
+    assert.equal(pied.includes('aria-current="page"'), nom === 'mon-compte.html', nom);
     assert.equal((navMobile.match(/mobile-nav__format-icon/g) || []).length, 10, `${nom} doit illustrer les formats, les kits et le Pack Ultra`);
     assert.match(navMobile, /mobile-nav__format" href="kit-partiels\.html"/, `${nom} doit proposer le Kit Partiels sur mobile`);
     assert.match(navMobile, /mobile-nav__format--featured[^>]*href="pack-ultra\.html#pack-ultra"/, `${nom} doit mettre le Pack Ultra en avant`);
