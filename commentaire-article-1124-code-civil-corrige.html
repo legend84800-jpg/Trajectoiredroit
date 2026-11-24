@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Commentaire de l’article 1124 du Code civil, corrigé (L2)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Commentaire corrigé de l’article 1124 du Code civil sur la promesse unilatérale de vente, avec l’introduction rédigée, le plan et les décisions à citer.">
+  <link rel="canonical" href="https://trajectoiredroit.com/commentaire-article-1124-code-civil-corrige.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Commentaire de l’article 1124 du Code civil, corrigé (L2)">
+  <meta property="og:description" content="Commentaire corrigé de l’article 1124 du Code civil sur la promesse unilatérale de vente, avec l’introduction rédigée, le plan et les décisions à citer.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/commentaire-article-1124-code-civil-corrige.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/commentaire-article-1124-code-civil-corrige.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Commentaire de l’article 1124 du Code civil, corrigé (L2)">
+  <meta name="twitter:description" content="Commentaire corrigé de l’article 1124 du Code civil sur la promesse unilatérale de vente, avec l’introduction rédigée, le plan et les décisions à citer.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/commentaire-article-1124-code-civil-corrige.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Commentaire de l’article 1124 du Code civil, exemple corrigé avec plan",
+      "description": "Commentaire corrigé de l’article 1124 du Code civil sur la promesse unilatérale de vente, avec l’introduction rédigée, le plan et les décisions à citer.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-11-24",
+      "dateModified": "2026-11-24",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Commentaire de l’article 1124 du Code civil, sujet de droit des contrats L2, corrigé avec son plan détaillé"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/commentaire-article-1124-code-civil-corrige.html"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/commentaire-article-1124-code-civil-corrige.webp"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Commentaire de l’article 1124 du Code civil, corrigé",
+          "item": "https://trajectoiredroit.com/commentaire-article-1124-code-civil-corrige.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Comment faire un commentaire d’article du Code civil ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tu commences par une introduction en six étapes, avec une accroche, la présentation du texte, son contexte, son intérêt, une problématique et l’annonce du plan. Ton plan en deux parties regroupe ensuite les idées du texte, sans suivre les alinéas un par un. Les décisions de justice servent à montrer comment les juges ont compris le texte ou comment il les a corrigés."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que change l’article 1124 pour le promettant ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le promettant ne peut plus empêcher la vente en retirant sa promesse. Selon l’alinéa 2, la révocation pendant le temps laissé au bénéficiaire pour opter n’empêche pas la formation du contrat promis. Avant 2016, la levée d’option après la rétractation ne formait pas la vente, et le bénéficiaire obtenait seulement des dommages-intérêts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "L’article 1124 s’applique-t-il aux promesses signées avant 2016 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le texte s’applique aux contrats conclus depuis le 1er octobre 2016. Pour les promesses plus anciennes, la troisième chambre civile a pourtant adopté la même solution le 23 juin 2021. Le promettant s’oblige définitivement à vendre dès la promesse, sauf stipulation contraire."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel PDF choisir pour s’entraîner sur la promesse unilatérale ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pour t’entraîner à rédiger un commentaire, les commentaires d’arrêt corrigés de droit des contrats L2 S1 corrigent trois décisions sur la promesse unilatérale. Pour t’entraîner à appliquer l’article 1124 à des faits, le cas pratique n° 3 des cas pratiques corrigés porte sur ce sujet. Pour revoir tout le cours, la fiche complète traite la promesse unilatérale au chapitre 10."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style id="exemples-pedagogiques-page">
+  .biens-hero { padding-top:48px; }
+  .biens-hero .hero__cta { margin-top:24px; }
+  @media (max-width:700px) {
+    .biens-hero { padding-top:24px; }
+    .biens-hero .hero__cta { gap:10px; }
+    .biens-hero .hero__cta .btn {
+      flex:1 1 132px;
+      width:auto;
+      min-height:44px;
+      font-size:.875rem;
+      padding:10px 12px;
+    }
+  }
+  @media (max-width:420px) {
+    .biens-hero { padding-top:12px; }
+    .biens-hero .hero__cta { margin-top:12px; }
+    .biens-hero .tjd-po { margin-top:12px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="kit-partiels.html" role="menuitem">📚 Kit Partiels</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🤖 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards et QCM</a>
+              <a href="podcasts-videos.html" role="menuitem"><span aria-hidden="true">🎬</span> Vidéos et podcasts</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>7 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 199 € au lieu de 439,69 €, 55 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-55 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">439,69 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 17 ressources, 199 € au lieu de 249,83 €, 20 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-20 %</span></span>
+                    <span class="megamenu__pack-tile-meta">17 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">249,83 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 31 ressources, 199 € au lieu de 459,69 €, 57 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-57 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">459,69 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 32 ressources, 199 € au lieu de 479,68 €, 59 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-59 %</span></span>
+                    <span class="megamenu__pack-tile-meta">32 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">479,68 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 38 ressources, 229 € au lieu de 579,62 €, 60 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-60 %</span></span>
+                    <span class="megamenu__pack-tile-meta">38 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">579,62 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>167 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes tes questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="kit-partiels.html"><span class="mobile-nav__format-icon" aria-hidden="true">📚</span><span>Kit Partiels</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🤖</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+        <a class="mobile-nav__format" href="podcasts-videos.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎬</span><span>Vidéos et podcasts</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="mon-compte.html">Mon compte</a>
+    </div>
+  </nav>
+
+    <main>
+<section class="section--sm biens-hero">
+<div class="container container--narrow text-center">
+<h1 class="h1">Commentaire de l’article 1124 du Code civil, exemple corrigé avec plan</h1>
+<p class="lead" style="max-width:720px;margin-left:auto;margin-right:auto">Le promettant est celui qui promet de vendre, le bénéficiaire celui à qui il le promet. Le commentaire de l’article 1124 du Code civil explique pourquoi le promettant ne peut plus empêcher la vente en se rétractant. Si le bénéficiaire répond oui dans le délai, la vente est conclue malgré le changement d’avis. Selon l’alinéa 3, le contrat conclu avec un tiers qui connaissait la promesse est nul. Ce corrigé donne l’introduction, le plan et deux passages de la copie.</p>
+<div class="hero__cta flex flex--center">
+<a class="btn btn--primary btn--lg" href="#texte">Le texte à commenter →</a>
+<a class="btn btn--outline btn--lg" href="#plan">Le plan détaillé</a>
+</div>
+<div data-tjd-pdf-offert="matiere" data-id="cas-pratique-contrats-l2-s1" data-titre="Un cas pratique corrigé en droit des contrats L2 S1, en PDF" data-texte="Je t&#x27;envoie par email l&#x27;énoncé et sa correction complète, rédigée comme une copie de partiel. Tu peux ainsi t&#x27;entraîner sur papier, puis comparer ta réponse avec le corrigé." data-bouton="Recevoir le corrigé"></div>
+</div>
+</section>
+<!-- offre du PDF correspondant -->
+<section class="conversion-offer" aria-labelledby="offre-commentaire-1124-titre">
+<div class="container container--narrow">
+<div class="conversion-offer__card">
+<div class="conversion-offer__visual"><img src="assets/covers/exercices-20260923/commentaire-arret-contrats-l2-s1.webp" alt="Couverture des commentaires d’arrêt corrigés de droit des contrats L2 S1, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async"></div>
+<div>
+<p class="conversion-offer__eyebrow">Droit des contrats L2, semestre 1</p>
+<h2 class="conversion-offer__title" id="offre-commentaire-1124-titre">Commentaires d’arrêt corrigés et fiche complète</h2>
+<p class="conversion-offer__summary">Les commentaires d’arrêt corrigés du semestre 1 forment un PDF de 127 pages. Trois d’entre eux, ceux des arrêts du 6 décembre 2018, du 15 mars 2023 et du 21 novembre 2024, suivent l’histoire de l’article 1124 avant et après le changement de jurisprudence de 2021. Chaque commentaire donne l’introduction, le plan et la copie rédigés en entier. La fiche complète, vendue séparément, explique la promesse unilatérale au chapitre 10.</p>
+<ul class="conversion-offer__benefits">
+<li>Tu reçois le PDF dès le paiement</li>
+</ul>
+<button type="button" class="apercu-link" data-apercu='["assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p001.webp","assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p008.webp","assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p009.webp","assets/apercus/recueils-20261115/commentaire-arret-contrats-l2-s1/733b7c815bbe-p010.webp"]' data-apercu-title="Commentaires d&#x27;arrêt Droit des contrats L2 S1" data-apercu-price="19,99 €" data-apercu-cta="commentaire-arret-contrats-l2-s1" data-apercu-sub="Le sommaire, puis l&#x27;introduction et le début du premier commentaire d&#x27;arrêt corrigé."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu des commentaires d’arrêt corrigés</button>
+<div class="conversion-offer__choices">
+<button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="commentaire-arret-contrats-l2-s1">Acheter les commentaires d’arrêt corrigés · 19,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="fiche-contrats-l2-s1">Acheter la fiche complète · 19,99 €</button>
+</div>
+<p class="conversion-offer__note">Si tu hésites entre les deux PDF, les commentaires d’arrêt corrigés servent à t’entraîner à rédiger un commentaire en partant d’une décision. La fiche complète sert à revoir toutes les règles du cours. La <a href="droit-des-contrats-l2.html">page du droit des contrats L2</a> présente tous les supports.</p>
+<div data-tjd-avis data-matiere="contrats-l2"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="exercice">
+<div class="container container--narrow">
+<div class="prose">
+<figure style="margin:0 0 32px"><img src="assets/blog/commentaire-article-1124-code-civil-corrige.webp" srcset="assets/blog/commentaire-article-1124-code-civil-corrige-640.webp 640w, assets/blog/commentaire-article-1124-code-civil-corrige.webp 1200w" sizes="(max-width:700px) 100vw, 800px" alt="Un vieux portail de garage en bois, à la peinture grise écaillée, entrouvert sur une pénombre de pierre, avec une enveloppe blanche glissée dans sa poignée de fer, sous la bruine." width="1200" height="675" decoding="async" fetchpriority="high" style="width:100%;height:auto;border-radius:12px;display:block"></figure>
+<h2>Que demande un commentaire d’article ?</h2>
+<p>Un commentaire d’article demande d’expliquer un texte de loi. Il montre pourquoi le texte existe et ce qu’il change dans le droit. Tu pars d’une question que pose le texte, et ton plan en deux parties y répond.</p>
+<p>La différence avec le commentaire d’arrêt tient à l’objet commenté. Dans un commentaire d’arrêt, tu analyses une décision de justice. Ici, tu analyses le texte lui-même, et les décisions servent à montrer comment les juges l’ont compris ou comment le texte les a corrigés.</p>
+<p>L’introduction suit six étapes, comme dans la <a href="methode-du-commentaire-de-texte-juridique.html">méthode du commentaire de texte</a>.</p>
+<ol>
+<li>L’accroche est une phrase d’ouverture qui place le sujet, par exemple un fait réel tiré d’une décision.</li>
+<li>La présentation du texte donne sa nature (un article du Code civil), sa date et son auteur.</li>
+<li>Le contexte rappelle ce que le droit prévoyait avant le texte.</li>
+<li>L’intérêt répond à la question « pourquoi ce texte et pas un autre ? ».</li>
+<li>La problématique est une question qui met deux idées en tension.</li>
+<li>L’annonce du plan donne les deux parties en une ou deux phrases courtes.</li>
+</ol>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="texte">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Que dit l’article 1124 du Code civil ?</h2>
+<p>L’ordonnance du 10 février 2016 a introduit ce texte dans le Code civil. Il s’applique depuis le 1er octobre 2016.</p>
+<blockquote>
+<p><strong>Alinéa 1.</strong> La promesse unilatérale est le contrat par lequel une partie, le promettant, accorde à l’autre, le bénéficiaire, le droit d’opter pour la conclusion d’un contrat dont les éléments essentiels sont déterminés, et pour la formation duquel ne manque que le consentement du bénéficiaire.</p>
+<p><strong>Alinéa 2.</strong> La révocation de la promesse pendant le temps laissé au bénéficiaire pour opter n’empêche pas la formation du contrat promis.</p>
+<p><strong>Alinéa 3.</strong> Le contrat conclu en violation de la promesse unilatérale avec un tiers qui en connaissait l’existence est nul.</p>
+</blockquote>
+<p>Ce texte n’a pas changé depuis. Une loi de ratification est la loi par laquelle le Parlement approuve une ordonnance. Dans son arrêt du 15 mars 2023, la chambre commerciale de la Cour de cassation relève que la loi de ratification du 20 avril 2018 ne l’a pas modifié.</p>
+<p>L’article 1124 figure dans la sous-section « Le pacte de préférence et la promesse unilatérale », juste après l’article 1123, parmi les règles sur la formation du contrat. Il a fait de la promesse unilatérale un contrat nommé. Un contrat nommé est un contrat que la loi désigne et réglemente.</p>
+<h3>Les mots du texte</h3>
+<p>Prenons M. Perrin, qui possède un garage. Il promet à sa voisine, Mme Hubert, de le lui vendre 25 000 euros, et elle a jusqu’au 31 mars pour répondre. M. Perrin est le promettant, parce qu’il promet. Mme Hubert est la bénéficiaire, parce qu’elle profite de la promesse.</p>
+<p>Le droit d’option est le droit de dire oui. Tant que Mme Hubert n’a pas répondu, la vente n’existe pas, car Mme Hubert n’a pas encore donné son consentement. Quand elle dit oui avant le 31 mars, on dit qu’elle lève l’option, et le garage est vendu.</p>
+<p>Les éléments essentiels sont les points sans lesquels une vente ne peut pas exister, à savoir la chose vendue et son prix. Ici, le garage et les 25 000 euros sont déjà fixés. Il ne manque donc que le oui de Mme Hubert.</p>
+<p>Pour un immeuble comme ce garage, la promesse unilatérale est nulle sans acte écrit (article 1589-2). Cet acte est authentique, donc reçu par un notaire, ou sous seing privé, donc signé sans notaire. Dans ce second cas, il est enregistré dans les dix jours qui suivent le moment où le bénéficiaire accepte la promesse, avant même de lever l’option. Dans l’exemple, cette formalité est respectée.</p>
+<p>La révocation est la décision du promettant de retirer sa promesse, ce qu’on appelle aussi une rétractation. M. Perrin révoque sa promesse, par exemple, quand il écrit le 10 mars qu’il ne veut plus vendre. Un tiers est une personne étrangère à la promesse, comme l’acheteur à qui M. Perrin proposerait le garage pour 30 000 euros.</p>
+<p>Dans ta copie, tu emploies ces mots tels quels, parce que l’article 1124 les emploie lui-même. Écrire « le vendeur » à la place de « le promettant » change le vocabulaire du texte que tu commentes.</p>
+</div>
+</div>
+</section>
+<section class="section" id="contexte">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Que prévoyait le droit avant 2016 ?</h2>
+<p>Avant 2016, le promettant qui changeait d’avis pendant que le bénéficiaire réfléchissait pouvait empêcher la vente. Il devait seulement payer des dommages-intérêts. La troisième chambre civile de la Cour de cassation l’a jugé le 15 décembre 1993, dans l’arrêt connu sous le nom de Consorts Cruz.</p>
+<p>Avant 2016, le Code civil ne définissait pas la promesse unilatérale. L’article 1589 traitait seulement de la promesse de vente où les deux parties consentent, et l’article 1589-2 imposait déjà une forme à certaines promesses unilatérales, sans les définir.</p>
+<p>La solution de 1993 reposait sur la nature de l’engagement du promettant. Une obligation de faire est l’engagement d’accomplir un acte, ici de signer la vente. L’ancien article 1142 du Code civil prévoyait que toute obligation de faire ou de ne pas faire se résout en dommages et intérêts, en cas d’inexécution de la part du débiteur. La Cour de cassation décrit elle-même la solution de 1993 de cette façon dans son arrêt du 23 juin 2021, et elle vise l’ancien article 1142 dans son arrêt du 21 novembre 2024.</p>
+<p>Pour la Cour, tant que le bénéficiaire n’avait pas déclaré acquérir, le promettant restait tenu d’une simple obligation de faire. Quand le promettant se rétractait avant la réponse du bénéficiaire, la levée d’option arrivait trop tard, car les deux volontés ne se rencontraient plus. La vente n’était pas formée, et le bénéficiaire pouvait seulement demander des dommages-intérêts.</p>
+<p>Dans l’arrêt de 1993, une propriétaire promet le 22 mai 1987 de vendre un immeuble, et la promesse est valable jusqu’au 1er septembre 1987. Le 26 mai, elle prévient les bénéficiaires qu’elle ne vendra plus. Ils lèvent pourtant l’option le 10 juin et demandent en justice l’exécution forcée de la vente, autrement dit que le juge impose la vente à la promettante. La cour d’appel de Paris les déboute. La Cour de cassation rejette leur pourvoi (leur recours devant elle), car la levée d’option postérieure à la rétractation de la promettante « excluait toute rencontre des volontés réciproques de vendre et d’acquérir ».</p>
+<p>L’ordonnance du 10 février 2016 a introduit l’article 1124 dans le Code civil pour changer cette sanction. Le rapport au Président de la République est le texte par lequel le Gouvernement explique son ordonnance au chef de l’État. Il confirme ce choix et dit que cette solution « met fin à une jurisprudence très critiquée » et qu’elle « tend à renforcer la sécurité et l’efficacité de la promesse unilatérale ». Le texte de 2016 adopte donc la solution contraire à celle de l’arrêt de 1993. La chambre commerciale ajoute, dans l’arrêt du 15 mars 2023, qu’une très grande majorité de la doctrine souhaitait cette solution bien avant 2016.</p>
+<p>Dans ton introduction, tu places ce contexte avant la problématique, parce que la question se comprend seulement après ce rappel.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="introduction">
+<div class="container container--narrow">
+<div class="prose">
+<h2>L’introduction rédigée</h2>
+<p>L’introduction suivante figurerait telle quelle sur la copie, en cinq paragraphes sans intitulé.</p>
+<blockquote>
+<p>Le 22 mai 1987, une propriétaire promet de vendre son immeuble jusqu’au 1er septembre. Quatre jours plus tard, elle écrit aux bénéficiaires qu’elle ne vend plus. Ils lèvent pourtant l’option le 10 juin et demandent la vente en justice. En 1993, la Cour de cassation leur répond que la vente n’existe pas, car la rétractation est arrivée avant leur accord.</p>
+<p>L’article 1124 du Code civil donne la solution contraire. Il est issu de l’ordonnance que le Gouvernement a prise le 10 février 2016 pour réformer le droit des contrats, et il s’applique depuis le 1er octobre 2016. Son premier alinéa définit la promesse unilatérale. Le deuxième dit que la révocation de la promesse pendant le temps laissé au bénéficiaire pour opter n’empêche pas la formation du contrat promis. Le troisième prévoit la nullité du contrat conclu avec un tiers qui connaissait la promesse.</p>
+<p>Avant ce texte, le promettant qui se rétractait devait seulement payer des dommages-intérêts. Le bénéficiaire ne pouvait donc pas obtenir le bien lorsque le promettant changeait d’avis. Le promettant peut-il changer d’avis après avoir promis, ou reste-t-il lié dès sa signature ? Toute vente précédée d’une promesse unilatérale est concernée, notamment celles que prépare un notaire.</p>
+<p>Jusqu’où l’article 1124 protège-t-il le bénéficiaire d’une promesse unilatérale de vente, face au promettant qui change d’avis et face au tiers qui achète le bien ?</p>
+<p>L’article 1124 engage d’abord le promettant dès la promesse (I). La Cour de cassation a ensuite étendu cette protection, mais elle reste bornée à l’égard des tiers (II).</p>
+</blockquote>
+<p>Le premier paragraphe est l’accroche, un fait réel que le lecteur peut se représenter. La présentation du texte vient dans le deuxième, qui relie d’abord l’accroche à l’article, puis donne sa date et son auteur, et présente ses trois alinéas. Le contexte et l’intérêt remplissent le troisième, et l’intérêt est la question que se pose tout vendeur après une promesse. La problématique forme à elle seule le quatrième, car elle oppose la liberté du promettant à la protection du bénéficiaire. Pour un autre article, tu gardes la même construction et tu changes l’accroche et la problématique.</p>
+</div>
+</div>
+</section>
+<section class="section" id="plan">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quel plan détaillé pour ce commentaire ?</h2>
+<p>Chaque partie regroupe plusieurs alinéas autour d’une idée. Les alinéas 1 et 2 forment ainsi la première partie, puisque le deuxième tire la conséquence du premier. Au brouillon, tu écris d’abord la problématique, puis tu cherches les deux idées qui y répondent.</p>
+<ol>
+<li><strong>I. L’engagement du promettant dès la promesse</strong>
+<ol type="A">
+<li>La promesse définie comme un contrat</li>
+<li>La révocation privée d’effet</li>
+</ol>
+</li>
+<li><strong>II. Une protection étendue par le juge mais bornée à l’égard des tiers</strong>
+<ol type="A">
+<li>L’extension jurisprudentielle aux promesses antérieures à 2016</li>
+<li>Les limites tenant aux tiers</li>
+</ol>
+</li>
+</ol>
+<h3>I.A. La promesse définie comme un contrat</h3>
+<p>Le promettant a déjà donné son accord à la vente. L’alinéa 1 le dit, puisqu’il ne manque que le consentement du bénéficiaire. L’alinéa 1 parle du contrat en général. La promesse peut donc préparer une vente, y compris une cession d’actions comme dans l’arrêt du 15 mars 2023. La comparaison avec l’offre le montre, car l’offre contient aussi les éléments essentiels du contrat (article 1114) mais reste la volonté d’une seule personne. L’offre peut être retirée librement tant qu’elle n’est pas parvenue à son destinataire (article 1115). Une fois reçue, elle doit être maintenue pendant un délai, et sa rétractation fautive empêche la conclusion du contrat (article 1116).</p>
+<p>Le rapport au Président de la République parle d’une gradation des sanctions en fonction de l’intensité de l’engagement, avec des dommages-intérêts pour l’offre et la conclusion « forcée » du contrat pour la promesse. Le promettant est lié par un contrat, et les contrats légalement formés tiennent lieu de loi à ceux qui les ont faits (article 1103). Une promesse synallagmatique de vente est une promesse où chacun s’engage, l’un à vendre, l’autre à acheter. La vente y est formée dès que les deux consentements se rencontrent sur la chose et sur le prix (article 1589). Dans la promesse unilatérale, le consentement du bénéficiaire manque encore. Le 23 juin 2021, la troisième chambre civile distingue la promesse de la simple offre de vente, car elle la qualifie d’avant-contrat. Un avant-contrat est un contrat qui prépare le contrat définitif. La promesse unilatérale contient déjà le consentement du vendeur et les éléments essentiels de la vente.</p>
+<h3>I.B. La révocation privée d’effet</h3>
+<p>Le promettant ne peut plus empêcher la vente en retirant sa promesse. L’alinéa 2 adopte la solution contraire à celle de l’arrêt du 15 décembre 1993. Le bénéficiaire qui lève l’option forme le contrat et peut demander l’exécution forcée en nature (article 1217). D’après l’article 1221, il met d’abord le promettant en demeure, autrement dit lui demande formellement d’exécuter. L’exécution reste exclue si elle est impossible ou manifestement disproportionnée. Une question prioritaire de constitutionnalité est une demande, faite pendant un procès, pour que le Conseil constitutionnel vérifie qu’une loi respecte les droits et libertés que la Constitution garantit. Le 17 octobre 2019, la troisième chambre civile refuse de transmettre au Conseil constitutionnel une telle question contre l’alinéa 2. Elle estime que la formation du contrat malgré la révocation ne porte pas atteinte à la liberté contractuelle et ne constitue pas une privation du droit de propriété.</p>
+<h3>II.A. L’extension jurisprudentielle aux promesses antérieures à 2016</h3>
+<p>Le juge a donné la même solution aux promesses que le texte ne vise pas. L’ordonnance ne s’applique qu’aux contrats conclus depuis le 1er octobre 2016, ce que la troisième chambre civile rappelle le 11 septembre 2025. Cette chambre maintient d’abord la solution de 1993 le 6 décembre 2018. Elle l’abandonne le 23 juin 2021, puis confirme cet abandon le 20 octobre 2021. Ce changement de jurisprudence s’appelle un revirement. Le promettant d’une promesse antérieure à 2016 ne peut donc pas non plus empêcher la vente en se rétractant. La chambre commerciale suit cette solution le 15 mars 2023 et précise que le promettant ne peut pas se rétracter, même avant l’ouverture du délai d’option. Les arrêts de 2021 et de 2023 ajoutent toutefois une réserve que l’alinéa 2 ne mentionne pas, sauf stipulation contraire. Le promettant peut donc se rétracter si le contrat le prévoit. Le 21 novembre 2024, la solution nouvelle s’applique à une promesse de 1971.</p>
+<h3>II.B. Les limites tenant aux tiers</h3>
+<p>Le bénéficiaire peut faire annuler le contrat du tiers seulement si ce tiers connaissait la promesse. L’alinéa 3 prévoit en effet la nullité du contrat conclu avec un tiers qui connaissait la promesse, alors qu’un tiers qui l’ignorait garde son contrat. Le rapport au Président de la République précise que ce texte codifie la solution que la jurisprudence appliquait déjà. Un pacte de préférence est un contrat par lequel une personne s’engage à proposer en priorité au bénéficiaire du pacte de traiter avec lui, si elle décide un jour de contracter, par exemple de vendre son bien (article 1123). Le bénéficiaire du pacte obtient la nullité de la vente faite à un tiers seulement si ce tiers connaissait le pacte et l’intention du bénéficiaire de s’en prévaloir. Pour une promesse unilatérale, le tiers doit seulement avoir connu la promesse.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="copie">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Deux passages de la copie rédigée</h2>
+<p>Tu rédiges chaque sous-partie dans le même ordre, avec l’idée d’abord, puis la décision qui la prouve. La sous-partie I.B s’écrit ainsi, en entier.</p>
+<blockquote>
+<p><em>Le promettant ne peut plus empêcher la vente en retirant sa promesse. Selon l’alinéa 2 de l’article 1124, la révocation de la promesse pendant le temps laissé au bénéficiaire pour opter n’empêche pas la formation du contrat promis. Quand le bénéficiaire lève l’option, la vente se forme donc malgré la lettre par laquelle le promettant disait ne plus vouloir vendre. Cette règle est contraire à l’arrêt du 15 décembre 1993. Dans cet arrêt, la troisième chambre civile de la Cour de cassation jugeait que la levée d’option postérieure à la rétractation excluait toute rencontre des volontés de vendre et d’acquérir.</em></p>
+<p><em>Désormais, le contrat existe dès la levée d’option. Le bénéficiaire peut donc demander l’exécution forcée en nature, autrement dit obtenir en justice que la vente soit exécutée (articles 1217 et 1221). Les dommages-intérêts ne sont plus sa seule ressource. Cette solution respecte la liberté du promettant, car celui-ci a déjà consenti. Le 17 octobre 2019, la troisième chambre civile a d’ailleurs refusé de transmettre au Conseil constitutionnel la question prioritaire de constitutionnalité qui contestait l’alinéa 2 au nom de la liberté contractuelle et du droit de propriété. Elle a retenu que, selon l’alinéa 1, le promettant donne son consentement à un contrat dont les éléments essentiels sont déterminés.</em></p>
+</blockquote>
+<p>La sous-partie se poursuit avec la limite que le texte pose lui-même. Le bénéficiaire doit lever l’option pendant le temps qui lui est laissé, faute de quoi la promesse prend fin. La sous-partie II.B vient ensuite.</p>
+<blockquote>
+<p><em>Le bénéficiaire peut faire annuler le contrat du tiers seulement si ce tiers connaissait la promesse. L’alinéa 3 prévoit la nullité du contrat conclu en violation de la promesse avec un tiers qui en connaissait l’existence, ce que le rapport au Président de la République présente comme la reprise d’une solution jurisprudentielle. Le bénéficiaire qui obtient cette nullité peut acquérir le bien. Il doit lever l’option avant la fin du délai, même si le procès contre le tiers n’est pas terminé. En revanche, le tiers qui ignorait la promesse garde son contrat, car aucune nullité n’est prévue à son égard. Le bénéficiaire peut alors seulement demander au promettant réparation du préjudice que lui cause l’inexécution de sa promesse (article 1231-1).</em></p>
+<p><em>Cette solution se comprend par comparaison avec le pacte de préférence. Un pacte de préférence est un contrat par lequel une personne s’engage à proposer en priorité au bénéficiaire du pacte de traiter avec lui, si elle décide un jour de contracter, par exemple de vendre son bien. La substitution est la prise de place du tiers par le bénéficiaire dans le contrat. L’article 1123 permet à ce bénéficiaire d’agir en nullité ou de demander sa substitution, à condition que le tiers ait connu l’existence du pacte et l’intention du bénéficiaire de s’en prévaloir. Cette double exigence reprend celle de la chambre mixte du 26 mai 2006. Pour la promesse unilatérale, l’alinéa 3 se contente de la connaissance de la promesse. Le bénéficiaire d’une promesse obtient donc plus facilement la nullité que celui d’un pacte de préférence. En revanche, il ne peut pas demander sa substitution au tiers, que l’article 1123 ouvre au bénéficiaire d’un pacte.</em></p>
+</blockquote>
+</div>
+</div>
+</section>
+<section class="section" id="decisions">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles décisions citer dans ce commentaire ?</h2>
+<p>Chaque décision du tableau trouve sa place dans une sous-partie du plan. Dans ta copie, tu la cites par sa juridiction et sa date. Le numéro du pourvoi permet de retrouver la décision.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Les décisions de la Cour de cassation à citer dans le commentaire de l’article 1124" style="overflow-x:auto">
+<table style="width:100%;min-width:760px;border-collapse:collapse">
+<thead><tr><th scope="col">Décision</th><th scope="col">Ce qu’elle juge</th><th scope="col">Où la placer</th></tr></thead>
+<tbody>
+<tr><th scope="row">Troisième chambre civile, 15 décembre 1993, pourvoi n° 91-10.199 (Consorts Cruz)</th><td>Une propriétaire se rétracte quatre jours après sa promesse, puis les bénéficiaires lèvent l’option. La Cour juge que la levée d’option postérieure à la rétractation exclut toute rencontre des volontés, donc la vente ne peut pas être imposée.</td><td>Le contexte de l’introduction, puis la sous-partie I.B, pour montrer ce que l’alinéa 2 renverse.</td></tr>
+<tr><th scope="row">Troisième chambre civile, 6 décembre 2018, pourvois n° 17-21.170 et 17-21.171</th><td>Pour une promesse de 1999, la Cour casse l’arrêt de la cour d’appel de Grenoble qui avait jugé la vente formée malgré la rétractation de la promettante. Elle maintient ainsi la solution de 1993.</td><td>La sous-partie II.A, première étape.</td></tr>
+<tr><th scope="row">Troisième chambre civile, 17 octobre 2019, pourvoi n° 19-40.028 (question prioritaire de constitutionnalité)</th><td>La Cour refuse de transmettre au Conseil constitutionnel une question sur l’alinéa 2. Selon elle, la formation du contrat malgré la révocation ne porte pas atteinte à la liberté contractuelle et ne constitue pas une privation du droit de propriété.</td><td>La sous-partie I.B.</td></tr>
+<tr><th scope="row">Troisième chambre civile, 23 juin 2021, pourvoi n° 20-17.554</th><td>Dans la même affaire que l’arrêt de 2018, renvoyée devant la cour d’appel de Lyon, la Cour abandonne la solution de 1993. Le promettant s’oblige définitivement à vendre dès la promesse, sans possibilité de rétractation, sauf stipulation contraire.</td><td>La sous-partie II.A, pour le revirement.</td></tr>
+<tr><th scope="row">Troisième chambre civile, 20 octobre 2021, pourvoi n° 20-18.514</th><td>La Cour confirme ce revirement et casse l’arrêt de la cour d’appel d’Agen qui avait refusé d’ordonner l’exécution forcée de la revente de parcelles promise au bénéficiaire.</td><td>La sous-partie II.A.</td></tr>
+<tr><th scope="row">Chambre commerciale, 15 mars 2023, pourvoi n° 21-20.399</th><td>Pour une promesse de cession de 13 % des actions d’une société, la chambre commerciale rejoint la troisième chambre civile. Le promettant ne peut pas se rétracter, même avant l’ouverture du délai d’option, sauf stipulation contraire.</td><td>La sous-partie II.A.</td></tr>
+<tr><th scope="row">Troisième chambre civile, 21 novembre 2024, pourvoi n° 21-12.661</th><td>Un promettant avait déclaré caduque (devenue sans effet) en 2011 une promesse de vente de 1971, et le bénéficiaire a levé l’option en 2016. La Cour casse l’arrêt de la cour d’appel d’Aix-en-Provence qui avait refusé l’exécution forcée de la vente en suivant l’ancienne jurisprudence.</td><td>La sous-partie II.A, pour montrer que le revirement s’applique à une promesse très ancienne.</td></tr>
+<tr><th scope="row">Troisième chambre civile, 11 septembre 2025, pourvoi n° 24-13.774</th><td>Une promesse conclue le 21 novembre 2016 relève de l’article 1124, alinéa 2. La Cour casse l’arrêt qui avait appliqué l’ancien article 1134 et jugé la promesse caduque. Selon la cour d’appel, la levée d’option suivait la renonciation des promettants.</td><td>Le début de la sous-partie II.A, pour rappeler que l’alinéa 2 s’applique aux promesses conclues depuis le 1er octobre 2016.</td></tr>
+<tr><th scope="row">Chambre mixte, 26 mai 2006, pourvoi n° 03-19.376</th><td>Le bénéficiaire d’un pacte de préférence obtient la nullité du contrat conclu avec un tiers, et sa substitution à celui-ci, seulement si le tiers connaissait le pacte et l’intention du bénéficiaire de s’en prévaloir.</td><td>La sous-partie II.B, pour comparer la promesse et le pacte.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="article-produit-inline" data-emplacement="copie-commentaire">
+<img class="article-produit-inline__thumb" src="assets/covers/exercices-20260923/commentaire-arret-contrats-l2-s1.webp" width="60" height="80" alt="Couverture des commentaires d’arrêt corrigés de droit des contrats L2 S1" loading="lazy">
+<div class="article-produit-inline__body">
+<p class="article-produit-inline__label">Commentaires d’arrêt corrigés</p>
+<p class="article-produit-inline__title">Droit des contrats L2 S1, 127 pages</p>
+<p class="article-produit-inline__meta">Les commentaires des arrêts du 6 décembre 2018, du 15 mars 2023 et du 21 novembre 2024 suivent le sort de la rétractation du promettant avant puis après le changement de jurisprudence de 2021. Chacun donne l’introduction, le plan et la copie rédigés en entier · <strong>19,99 €</strong></p>
+</div>
+<div class="article-produit-inline__actions">
+<button type="button" class="btn btn--primary" data-tjd-produit="commentaire-arret-contrats-l2-s1">Acheter les commentaires d’arrêt corrigés · 19,99 €</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="erreurs">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles erreurs font perdre des points sur ce commentaire ?</h2>
+<h3>Confondre l’offre et la promesse unilatérale</h3>
+<p>L’offre est la volonté d’une seule personne, alors que la promesse est un contrat entre le promettant et le bénéficiaire. En cours, je le résume ainsi : « je fais une offre, on se promet ». Cette différence explique les sanctions, car la rétractation d’une offre pendant son délai de maintien empêche la conclusion du contrat (article 1116), alors que la révocation d’une promesse ne l’empêche pas (article 1124).</p>
+<h3>Appliquer l’alinéa 2 sans vérifier la date de la promesse</h3>
+<p>L’ordonnance s’applique aux contrats conclus depuis le 1er octobre 2016. Pour une promesse plus ancienne, tu cites l’ancien article 1134 du Code civil, que la troisième chambre civile interprète depuis sa décision du 23 juin 2021 comme excluant la rétractation du promettant. Le résultat est le même aujourd’hui. Le fondement change pourtant, puisque la solution repose sur l’article 1124 pour une promesse récente et sur l’ancien article 1134, interprété depuis 2021, pour une promesse ancienne.</p>
+<h3>Annuler le contrat du tiers sans vérifier ce qu’il savait</h3>
+<p>L’alinéa 3 prévoit la nullité du contrat conclu avec un tiers qui connaissait l’existence de la promesse. Un tiers qui ignorait la promesse garde son contrat. Dans un commentaire comme dans un cas pratique, tu cherches donc dans les faits ce que le tiers savait au moment de contracter.</p>
+<h3>Suivre les alinéas l’un après l’autre</h3>
+<p>Un plan « I. L’alinéa 1, II. L’alinéa 2 » suit l’ordre du texte, alors que le commentaire répond à la question posée dans l’introduction. Ici, les alinéas 1 et 2 forment une seule idée, puisque le deuxième tire la conséquence du premier. Le plan retient donc l’engagement du promettant en première partie, puis l’extension de cette protection par le juge et ses limites à l’égard des tiers en seconde partie.</p>
+<div class="article-produit-inline" data-emplacement="copie-cas-pratique">
+<img class="article-produit-inline__thumb" src="assets/covers/exercices-20260923/cas-pratique-contrats-l2-s1.webp" width="60" height="80" alt="Couverture des cas pratiques corrigés de droit des contrats L2 S1" loading="lazy">
+<div class="article-produit-inline__body">
+<p class="article-produit-inline__label">Cas pratiques corrigés</p>
+<p class="article-produit-inline__title">Droit des contrats L2 S1, 125 pages</p>
+<p class="article-produit-inline__meta">Le cas pratique n° 3 applique l’article 1124 à un propriétaire qui se rétracte pendant le délai d’option, puis conclut un avant-contrat avec un tiers informé de la promesse · <strong>19,99 €</strong></p>
+</div>
+<div class="article-produit-inline__actions">
+<button type="button" class="btn btn--primary" data-tjd-produit="cas-pratique-contrats-l2-s1">Acheter les cas pratiques corrigés · 19,99 €</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="autres">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles pages lire ensuite sur la promesse unilatérale ?</h2>
+<p>La page sur <a href="promesse-unilaterale-de-vente-article-1124.html">la promesse unilatérale de vente et l’article 1124</a> explique tout le régime, y compris l’indemnité d’immobilisation et l’enregistrement des promesses d’immeuble, et montre comment l’utiliser dans un cas pratique. Pour t’entraîner sur les avant-contrats, tu peux lire le <a href="exemple-cas-pratique-corrige-contrats.html">cas pratique corrigé sur l’offre et l’acceptation</a> et la <a href="dissertation-formation-du-contrat-corrigee.html">dissertation corrigée sur la formation du contrat</a>.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="faq">
+<div class="container container--narrow"><h2 class="h2">Questions fréquentes sur le commentaire de l’article 1124</h2>
+<div class="accordion">
+<details class="accordion__item"><summary class="accordion__trigger">Comment faire un commentaire d’article du Code civil ?</summary><div class="accordion__body"><p>Tu commences par une introduction en six étapes, avec une accroche, la présentation du texte, son contexte, son intérêt, une problématique et l’annonce du plan. Ton plan en deux parties regroupe ensuite les idées du texte, sans suivre les alinéas un par un. Les décisions de justice servent à montrer comment les juges ont compris le texte ou comment il les a corrigés.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Que change l’article 1124 pour le promettant ?</summary><div class="accordion__body"><p>Le promettant ne peut plus empêcher la vente en retirant sa promesse. Selon l’alinéa 2, la révocation pendant le temps laissé au bénéficiaire pour opter n’empêche pas la formation du contrat promis. Avant 2016, la levée d’option après la rétractation ne formait pas la vente, et le bénéficiaire obtenait seulement des dommages-intérêts.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">L’article 1124 s’applique-t-il aux promesses signées avant 2016 ?</summary><div class="accordion__body"><p>Le texte s’applique aux contrats conclus depuis le 1er octobre 2016. Pour les promesses plus anciennes, la troisième chambre civile a pourtant adopté la même solution le 23 juin 2021. Le promettant s’oblige définitivement à vendre dès la promesse, sauf stipulation contraire.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Quel PDF choisir pour s’entraîner sur la promesse unilatérale ?</summary><div class="accordion__body"><p>Pour t’entraîner à rédiger un commentaire, les commentaires d’arrêt corrigés de droit des contrats L2 S1 corrigent trois décisions sur la promesse unilatérale. Pour t’entraîner à appliquer l’article 1124 à des faits, le cas pratique n° 3 des cas pratiques corrigés porte sur ce sujet. Pour revoir tout le cours, la fiche complète traite la promesse unilatérale au chapitre 10.</p></div></details>
+</div>
+</div>
+</section>
+<!-- fin-article:pack-ultra -->
+<section class="article-pack-ligne"><div class="container container--narrow"><p class="article-pack-ligne__texte">Le Pack Ultra L2 S1 réunit les 31 ressources de ton premier semestre de L2 pour 199 €. La fiche de droit des contrats L2 en fait partie. <a href="pack-ultra.html#pack-ultra-l2-s1">Voir les supports inclus →</a></p></div></section>
+</main>
+
+
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. <a href="temoignages.html">4 500+ élèves utilisent nos fiches</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Droit des contrats L2, commentaire de l’article 1124 du Code civil">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Droit des contrats L2, commentaire de l’article 1124 du Code civil">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit des contrats L2 S1 · 19,99 €</strong>
+      <small>Commentaires d’arrêt corrigés · accès à vie</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="commentaire-arret-contrats-l2-s1" aria-label="Acheter les commentaires d’arrêt corrigés · 19,99 €">Acheter · 19,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=81a894f1" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=909718f7" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=7aba7f6e';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
+</body>
+</html>
