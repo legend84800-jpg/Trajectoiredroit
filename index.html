@@ -63,22 +63,30 @@
   <link rel="stylesheet" href="assets/portalis-accueil.css?v=853a780f">
   <link rel="stylesheet" href="assets/pack-ultra-accueil.css?v=4e6466ed">
   <style>
-    #formules .home-offer-price {
+    #formules .home-offer-price,
+    #formules .ultra-home-card__amount {
       display: grid;
       gap: .25rem;
-      margin-top: 8px;
     }
-    #formules .home-offer-price .pricing__price {
+    #formules .home-offer-price { margin-top: 8px; }
+    #formules .pricing__price {
       display: flex;
       align-items: baseline;
-      gap: .35rem;
-      font-size: clamp(1.95rem, 3.2vw, 2.5rem);
+      gap: .4rem;
+      font-size: clamp(1.75rem, 2.55vw, 2.125rem);
     }
     #formules .home-offer-price__value { min-width: 0; }
     #formules .home-offer-price__from { font: 700 .95rem/1.2 var(--font-body); }
+    #formules .pricing__price .tjd-prix-remise {
+      column-gap: clamp(.55rem, 1.2vw, .95rem);
+    }
     #formules .pricing__price .tjd-prix-remise > strong {
+      order: -1;
       font-family: var(--font-body);
       font-weight: 400;
+    }
+    #formules .pricing__price .tjd-prix-remise > del {
+      font-size: .625em;
     }
   </style>
   <link rel="stylesheet" href="assets/classement-chatgpt.css?v=1afd641d">
@@ -631,7 +639,7 @@
               <h3 class="pricing__name ultra-home-card__title">Le Pack Ultra</h3>
               <p class="ultra-home-card__intro">Chaque pack réunit les ressources déjà disponibles pour un semestre de L1, L2 ou L3.</p>
               <div class="ultra-home-card__amount">
-                <span class="pricing__price pricing__price--blue">dès 199 €</span>
+                <span class="pricing__price pricing__price--blue"><small class="home-offer-price__from">dès</small> <span class="home-offer-price__value">199&nbsp;€</span></span>
                 <span class="pricing__period">Payable en 2 ou 3 fois sans frais</span>
               </div>
             </div>
