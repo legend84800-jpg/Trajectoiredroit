@@ -354,7 +354,7 @@
       '<p class="cookie-banner__text" id="cookieBannerDescription">Ces cookies mesurent les visites et les clics.</p>' +
       '<div class="cookie-banner__actions">' +
         '<button type="button" class="btn cookie-choice" data-cookie-accept>J’accepte</button>' +
-        '<button type="button" class="btn cookie-choice" data-cookie-preferences><span>Je choisis<small class="cookie-choice__detail">Nécessaires seuls</small></span></button>' +
+        '<button type="button" class="btn cookie-choice" data-cookie-preferences>Je choisis</button>' +
       '</div>';
 
     document.body.appendChild(banner);
@@ -418,7 +418,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     var compactStyles = document.createElement("link");
     compactStyles.rel = "stylesheet";
-    compactStyles.href = "/assets/css/cookie-compact.css?v=8f37a0c7";
+    compactStyles.href = "/assets/css/cookie-compact.css?v=dfbd90e1";
     document.head.appendChild(compactStyles);
     addManageLink();
     if (storedPreferences) return;

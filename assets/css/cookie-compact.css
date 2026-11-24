@@ -8,6 +8,7 @@
 .cookie-banner__actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
 }
 
 .cookie-banner .cookie-choice {
@@ -16,10 +17,15 @@
   text-align: center;
 }
 
-.cookie-choice__detail {
-  display: block;
-  font-size: .6875rem;
-  font-weight: 600;
+.cookie-banner .cookie-choice:first-child {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+.cookie-banner .cookie-choice + .cookie-choice {
+  border-inline-start: 0;
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
 }
 
 @media (pointer: coarse) {

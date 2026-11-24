@@ -145,7 +145,7 @@ test('le bandeau présente la mesure d’audience et les réglages décrivent la
   assert.match(b.banner().html, /Ces cookies mesurent les visites et les clics/);
   const boutons = Array.from(b.banner().html.matchAll(/<button\b[^>]*>([\s\S]*?)<\/button>/g),
     ([, texte]) => texte.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim());
-  assert.deepEqual(boutons, ['J’accepte', 'Je choisis Nécessaires seuls']);
+  assert.deepEqual(boutons, ['J’accepte', 'Je choisis']);
   assert.equal(b.stylesheetLinks.length, 1);
   assert.match(b.stylesheetLinks[0].href, /^\/assets\/css\/cookie-compact\.css\?v=[a-f0-9]{8}$/);
   assert.match(b.banner().html, /href="\/confidentialite\.html#cookies"/);
