@@ -181,7 +181,8 @@
     }
     function afficherAchatsFiltres(){
       var outilsMasques = achatsOutils && achatsOutils.hidden;
-      var mots = texteRecherche(!outilsMasques && achatsRecherche && achatsRecherche.value).trim().split(/\s+/).filter(Boolean);
+      var mots = texteRecherche(!outilsMasques && achatsRecherche && achatsRecherche.value)
+        .replace(/\bs(?:emestre)?[ _-]*([12])\b/g, "s$1").trim().split(/\s+/).filter(Boolean);
       var choixProduit = !outilsMasques && achatsProduit && achatsProduit.value || "";
       var choixSemestre = !outilsMasques && achatsSemestre && achatsSemestre.value || "";
       var nombreFichiers = 0;
@@ -193,7 +194,9 @@
             if (choixSemestre === "non-precise" && semestres.length) return false;
             if (choixSemestre && choixSemestre !== "non-precise" && semestres.indexOf(choixSemestre) === -1) return false;
             var texte = texteRecherche([produit.id, produit.nom, fichier && fichier.nom, fichier && fichier.groupe].join(" "));
-            return mots.every(function(mot){ return texte.indexOf(mot) !== -1; });
+            return mots.every(function(mot){
+              return /^s[12]$/.test(mot) ? semestres.indexOf(mot.slice(1)) !== -1 : texte.indexOf(mot) !== -1;
+            });
           }
           var fichiers = (produit.fichiers || []).filter(correspond);
           nombreFichiers += fichiers.length;

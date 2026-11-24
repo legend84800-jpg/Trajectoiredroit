@@ -54,7 +54,13 @@
       signal: controle ? controle.signal : undefined
     }); }).then(function (r) {
       return r.json().catch(function () { return {}; }).then(function (d) {
-        if (!r.ok) throw creerErreurCheckout(d.erreur || 'Création du paiement impossible', d.code || 'http', r.status);
+        if (!r.ok) {
+          var erreur = creerErreurCheckout(d.erreur || 'Création du paiement impossible', d.code || 'http', r.status);
+          if (erreur.tjdType === 'produit_indisponible' && Array.isArray(d.produitIdsIndisponibles)) {
+            erreur.tjdIndisponibles = d.produitIdsIndisponibles;
+          }
+          throw erreur;
+        }
         if (!d.url) throw creerErreurCheckout('URL Stripe absente', 'reponse_incomplete', 200);
         return d;
       });
@@ -85,7 +91,7 @@
       var panier = entree.bouton.id === 'tjdPanierCta';
       if (panier && entree.bouton.tjdPaiementEnCours) return true;
       entree.bouton.tjdPaiementEnCours = false;
-      entree.bouton.disabled = false;
+      entree.bouton.disabled = panier && panierPaiementBloque(panierLire());
       if (entree.bouton.tjdActualiserAchatBarre) entree.bouton.tjdActualiserAchatBarre();
       else entree.bouton.textContent = entree.texte;
       if (panier) panierDesactiverRetraits(false);
@@ -652,6 +658,19 @@
   var panierSansConservation = false;
   var inclusionsPanier = null;
   var chargementInclusionsPanier = null;
+  var generationPanier = 0;
+  var indisponiblesPanier = new Set();
+
+  if (window.addEventListener) window.addEventListener('storage', function (evenement) {
+    if (evenement.key !== CLE_PANIER && evenement.key !== null) return;
+    generationPanier++;
+    indisponiblesPanier.clear();
+    panierRafraichir();
+  });
+
+  function panierPaiementBloque(liste) {
+    return !liste.length || liste.some(function (article) { return indisponiblesPanier.has(article.id); });
+  }
 
   function panierValeurCatalogue(champ, id) {
     var donnees = inclusionsPanier && inclusionsPanier[champ];
@@ -678,6 +697,10 @@
   }
 
   function panierEcrire(liste) {
+    generationPanier++;
+    indisponiblesPanier = new Set(liste.filter(function (article) {
+      return indisponiblesPanier.has(article.id);
+    }).map(function (article) { return article.id; }));
     panierSansConservation = !ecrireStockage('localStorage', CLE_PANIER, JSON.stringify(liste));
     panierRafraichir();
   }
@@ -699,6 +722,8 @@
   }
 
   window.tjdPanierVider = function () {
+    generationPanier++;
+    indisponiblesPanier.clear();
     try { retirerStockage('localStorage', CLE_PANIER); } catch (_) {}
     panierRafraichir();
   };
@@ -874,6 +899,7 @@
       'border:1px solid var(--border-strong,#CBD5E1);border-radius:8px;color:var(--ink,#0F172A)}' +
       '.tjd-panier-inclusion p{margin:0 0 4px}' +
       '.tjd-panier-inclusion .btn{min-height:44px}' +
+      '.tjd-panier-indisponible{font-size:.85rem;margin:6px 0 10px;color:var(--ink,#0F172A)}' +
       '.tjd-panier-vide{color:var(--muted,#5B6B84);font-size:.92rem;text-align:center;padding:24px 0}' +
       '.tjd-panier-total{display:flex;justify-content:space-between;align-items:center;' +
       'font-family:var(--font-display,serif);font-size:1.15rem;color:var(--navy,#1A2851);' +
@@ -997,12 +1023,22 @@
       btn.addEventListener('click', function () {
         if (btn.disabled || cta.tjdPaiementEnCours) return;
         var dansAvertissement = btn.hasAttribute('data-tjd-panier-retrait-inclus');
+        var indisponible = btn.hasAttribute('data-tjd-panier-retrait-indisponible');
         panierRetirer(btn.getAttribute('data-tjd-panier-retirer'));
         panierRendreListe();
         initPanierBoutons(); // réactive le lien d’ajout du produit retiré s’il est visible
         if (dansAvertissement && !cta.disabled) cta.focus();
+        if (indisponible) panierFocusApresIndisponibilite(cta);
       });
     });
+  }
+
+  function panierFocusApresIndisponibilite(cta) {
+    var panneau = document.getElementById('tjdPanierBackdrop');
+    if (!panneau?.classList?.contains('open')) return;
+    var retirer = panneau.querySelector('[data-tjd-panier-retrait-indisponible]');
+    var cible = retirer || (!cta.disabled ? cta : panneau.querySelector('[data-tjd-panier-fermer]'));
+    if (cible) cible.focus();
   }
 
   function panierRendreInclusions(liste) {
@@ -1087,17 +1123,21 @@
       cta.disabled = true;
       return;
     }
-    conteneur.innerHTML = liste.map(function (a) {
+    conteneur.innerHTML = liste.map(function (a, index) {
       var id = panierEchapperHTML(a.id);
       var nom = panierEchapperHTML(a.nom || a.id);
+      var indisponible = indisponiblesPanier.has(a.id);
+      var refAlerte = 'tjdPanierIndisponible' + index;
+      var description = indisponible ? ' data-tjd-panier-retrait-indisponible aria-describedby="' + refAlerte + '"' : '';
       return '<div><div class="tjd-panier-item"><span class="tjd-panier-item__nom">' + nom + '</span>' +
         '<span class="tjd-panier-item__prix" data-tjd-prix-ligne="' + id + '">' + centimesVersEuro(a.prixCentimes) + '</span>' +
-        '<button type="button" class="tjd-panier-item__retirer" data-tjd-panier-retirer="' + id + '" aria-label="Retirer du panier ' + nom + '">✕</button></div>' +
+        '<button type="button" class="tjd-panier-item__retirer" data-tjd-panier-retirer="' + id + '" aria-label="Retirer du panier ' + nom + '"' + description + '>✕</button></div>' +
+        (indisponible ? '<p class="tjd-panier-indisponible" id="' + refAlerte + '">Cet article est indisponible. Il faut le retirer pour passer au paiement.</p>' : '') +
         '<div class="tjd-panier-inclusion" data-tjd-panier-inclusion="' + id + '" aria-live="polite"></div></div>';
     }).join('');
     document.getElementById('tjdPanierTotalMontant').textContent = centimesVersEuro(panierTotalCentimes(liste));
     totalBloc.hidden = false;
-    cta.disabled = !!cta.tjdPaiementEnCours;
+    cta.disabled = !!cta.tjdPaiementEnCours || panierPaiementBloque(liste);
     panierActiverRetraits(conteneur, cta);
     panierRendreInclusions(liste);
     panierChargerInclusions();
@@ -1125,7 +1165,7 @@
     var bouton = document.getElementById('tjdPanierCta');
     if (bouton.disabled || bouton.tjdPaiementEnCours) return;
     var liste = panierLire();
-    if (!liste.length) return;
+    if (panierPaiementBloque(liste)) return;
     panierLancerPaiement(liste);
   }
 
@@ -1140,6 +1180,7 @@
   function panierLancerPaiement(liste) {
     var cta = document.getElementById('tjdPanierCta');
     var texteOriginal = cta.textContent;
+    var generation = generationPanier;
     cta.disabled = true;
     cta.textContent = 'Chargement…';
     panierDesactiverRetraits(true);
@@ -1185,8 +1226,18 @@
 
     ajouterRecuComportement(corps);
     corps = preparerTentative(corps, 'panier');
+    function panierToujoursCourant() {
+      var courant = panierLire();
+      return generation === generationPanier && courant.length === corps.produitIds.length
+        && courant.every(function (article, index) { return article.id === corps.produitIds[index]; });
+    }
+    function restaurerPanier() {
+      cta.textContent = texteOriginal;
+      panierRendreListe();
+    }
     demanderPaiement(corps, cta, texteOriginal)
       .then(function (d) {
+        if (!panierToujoursCourant()) { restaurerPanier(); return; }
         if (!d.url) throw creerErreurCheckout('URL Stripe absente', 'reponse_incomplete', 200);
         try {
           if (!estTestInterne() && lireStockage('localStorage', 'tjd_consent') === 'granted' && typeof window.fbq === 'function') {
@@ -1198,10 +1249,21 @@
         ouvrirPaiement(d.url, corps.pageActuelle);
       })
       .catch(function (erreur) {
+        if (!panierToujoursCourant()) { restaurerPanier(); return; }
         mesurerCheckout('CheckoutErreur', 'panier', {
           type: erreur && erreur.tjdType ? erreur.tjdType : 'reseau',
           statut: erreur && Number.isInteger(erreur.tjdStatut) ? erreur.tjdStatut : 0
         });
+        if (erreur && erreur.tjdIndisponibles) {
+          indisponiblesPanier = new Set(erreur.tjdIndisponibles.filter(function (id) {
+            return corps.produitIds.includes(id);
+          }));
+          if (indisponiblesPanier.size) {
+            restaurerPanier();
+            panierFocusApresIndisponibilite(cta);
+            return;
+          }
+        }
         messagePaiement(cta, erreur);
         cta.disabled = false;
         cta.textContent = texteOriginal;

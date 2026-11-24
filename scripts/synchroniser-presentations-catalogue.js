@@ -143,6 +143,11 @@ function renderSommaire(item) {
 
 function synchroniser(contenu, fichier) {
   let sortie = contenu.replace(/<!-- catalogue:comparateur:start -->[\s\S]*?<!-- catalogue:comparateur:end -->/g, renderComparateur());
+  if (fichier === "index.html") {
+    const [l1, l2, l3] = ["pack-l1", "pack-l2", "pack-l3"].map((id) => presentationPack(id).nombre);
+    sortie = sortie.replace(/(<li data-nombre-fiches-packs-annuels>)[^<]*(<\/li>)/,
+      (_, debut, fin) => `${debut}${l1} fiches en L1, ${l2} en L2 et ${l3} en L3${fin}`);
+  }
   if (fichier === "podcasts-videos.html") {
     const bloc = /<!-- catalogue:audio-video:start -->[\s\S]*?<!-- catalogue:audio-video:end -->/;
     if (!bloc.test(sortie)) throw new Error("Liste des matières absente, podcasts-videos.html");

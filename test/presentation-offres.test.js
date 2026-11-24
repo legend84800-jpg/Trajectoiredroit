@@ -84,6 +84,28 @@ test("les présentations générées restent à jour avec le catalogue de livrai
   assert.equal(l2.economie, 56);
 });
 
+test("le nombre de fiches des packs annuels se régénère sur l’accueil", () => {
+  const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+  const marque = /(<li data-nombre-fiches-packs-annuels>)[^<]+(<\/li>)/;
+  assert.match(html, marque);
+  const ancienneValeur = html.replace(marque, (_, debut, fin) => `${debut}99 fiches en L1, 99 en L2 et 99 en L3${fin}`);
+  assert.notEqual(ancienneValeur, html);
+  assert.equal(synchroniser(ancienneValeur, "index.html"), html);
+});
+
+test("les guides par matière de l’accueil ouvrent une section de lecture existante", () => {
+  const accueil = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+  const bloc = accueil.match(/<div class="flex guides-matieres"[^>]*>([\s\S]*?)<\/div>/)?.[1] || "";
+  const liens = [...bloc.matchAll(/href="([^"#]+)(?:#([^"]+))?"/g)];
+  assert.ok(liens.length > 2);
+  for (const [, fichier, ancre] of liens) {
+    if (["fiche-arrets.html", "quiz-methode.html"].includes(fichier)) continue;
+    assert.ok(ancre === "programme" || ancre === "conditions", fichier);
+    const html = fs.readFileSync(path.join(ROOT, fichier), "utf8");
+    assert.match(html, new RegExp(`<section\\b[^>]*\\bid="${ancre}"[^>]*>`), fichier);
+  }
+});
+
 test("le comparatif et la rubrique Vidéos et podcasts mènent à chaque matière avec un extrait et une offre active", () => {
   const accueil = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
   const choix = accueil.match(/<details class="compare-podcasts">[\s\S]*?<\/details>/)?.[0] || "";

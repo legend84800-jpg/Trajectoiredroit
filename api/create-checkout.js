@@ -349,8 +349,9 @@ async function handler(req, res) {
       .filter((v) => typeof v === "string" && v.trim())
       .map((v) => v.trim());
     const idsUniques = [...new Set(idsBrut)];
-    if (idsUniques.some((id) => PRODUITS[id]?.venteSuspendue)) {
-      res.status(400).json({ erreur: "Produit indisponible", code: "produit_indisponible" });
+    const produitIdsIndisponibles = idsUniques.filter((id) => PRODUITS[id]?.venteSuspendue);
+    if (produitIdsIndisponibles.length) {
+      res.status(400).json({ erreur: "Produit indisponible", code: "produit_indisponible", produitIdsIndisponibles });
       return;
     }
     // Le stage de méthode reste hors panier : places limitées et datées, formulaire

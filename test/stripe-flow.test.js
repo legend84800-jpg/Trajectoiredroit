@@ -1053,6 +1053,17 @@ test("le stage en réserve refuse les ventes seules, en panier et en complément
   }
 });
 
+test("un panier avec un ancien pack indique uniquement la référence suspendue", async () => {
+  const reference = "pack-flashcards-qcm-l1";
+  const { res, appels } = await creerCheckoutAvecStripeFactice({
+    produitIds: [reference, "fiche-da-l2-s1", reference],
+  });
+  assert.equal(res.statusCode, 400);
+  assert.equal(res.payload.code, "produit_indisponible");
+  assert.deepEqual(res.payload.produitIdsIndisponibles, [reference]);
+  assert.equal(appels.create.length, 0);
+});
+
 test("les cours complets et packs retirés refusent la création de paiement Stripe", async () => {
   const catalogue = require("../api/_produits");
   const offres = Object.entries(catalogue)

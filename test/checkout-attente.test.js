@@ -24,6 +24,7 @@ function environnement({ panier = null } = {}) {
     querySelectorAll: () => [bouton], getElementById: (id) => elements[id] || bouton
   };
   const fetch = (url, options) => {
+    if (url === '/assets/panier-inclusions.json') return Promise.resolve({ ok: false });
     demandes.push(JSON.parse(options.body));
     if (comportement === 'erreur') throw new Error('Connexion refusée');
     if (comportement === 'succes') return Promise.resolve({ ok: true, json: async () => ({ url: 'https://checkout.stripe.com/paiement' }) });
@@ -36,7 +37,7 @@ function environnement({ panier = null } = {}) {
     setTimeout: (fn, delai) => { const id = ++sequence; timers.set(id, { fn, delai }); return id; },
     clearTimeout: id => timers.delete(id)
   });
-  return { window, bouton, retraits, demandes, redirections, messages, evenements, timers,
+  return { window, bouton, retraits, demandes, redirections, messages, evenements, timers, elements,
     repondre(mode) { comportement = mode; },
     remplacerPanier(produits) { panier = produits; },
     expirer() { for (const [id, t] of [...timers]) { timers.delete(id); t.fn(); } }
@@ -174,6 +175,59 @@ test('un panier modifié après le délai reçoit une nouvelle référence de pa
   assert.notEqual(e.demandes[1].attemptId, reference);
   assert.deepEqual(e.demandes[1].produitIds, ['maj-da-l2-s1']);
   assert.deepEqual(e.redirections, ['https://checkout.stripe.com/paiement']);
+});
+
+const ancienPackFlashcards = { id: 'pack-flashcards-qcm-l1', nom: 'Ancien pack Flashcards L1', prixCentimes: 6000 };
+const refusIndisponible = {
+  ok: false, status: 400, json: async () => ({
+    erreur: 'Produit indisponible', code: 'produit_indisponible',
+    produitIdsIndisponibles: [ancienPackFlashcards.id, 'reference-hors-panier'],
+  }),
+};
+
+test('un article indisponible est signalé sur sa ligne et garde les autres articles affichés', async () => {
+  const e = environnement({ panier: [ancienPackFlashcards, ...panierInitial] });
+  e.window.__payerPanier();
+  await flush();
+  e.demandes[0].resoudre(refusIndisponible);
+  await flush();
+  const html = e.elements.tjdPanierListe.innerHTML;
+  assert.match(html, /data-tjd-panier-retirer="pack-flashcards-qcm-l1"[^>]*aria-describedby="tjdPanierIndisponible0"/);
+  assert.match(html, /id="tjdPanierIndisponible0">Cet article est indisponible/);
+  assert.match(html, /data-tjd-panier-retirer="fiche-da-l2-s1"/);
+  assert.equal((html.match(/Cet article est indisponible/g) || []).length, 1);
+  assert.equal(e.bouton.disabled, true);
+  assert.equal(e.messages.length, 0);
+  e.window.__payerPanier();
+  await flush();
+  assert.equal(e.demandes.length, 1);
+
+  e.remplacerPanier(panierInitial);
+  e.window.__rendrePanier();
+  assert.equal(e.bouton.disabled, false);
+  assert.doesNotMatch(e.elements.tjdPanierListe.innerHTML, /indisponible/);
+  e.repondre('succes');
+  e.window.__payerPanier();
+  await flush();
+  assert.deepEqual(e.demandes[1].produitIds, ['fiche-da-l2-s1']);
+  assert.notEqual(e.demandes[1].attemptId, e.demandes[0].attemptId);
+  assert.deepEqual(e.redirections, ['https://checkout.stripe.com/paiement']);
+});
+
+test('une réponse tardive ne signale rien ni ne redirige si le panier a changé entre-temps', async () => {
+  for (const reponse of [refusIndisponible, { ok: true, json: async () => ({ url: 'https://checkout.stripe.com/paiement' }) }]) {
+    const e = environnement({ panier: [ancienPackFlashcards] });
+    e.window.__payerPanier();
+    await flush();
+    e.remplacerPanier(panierInitial);
+    e.demandes[0].resoudre(reponse);
+    await flush();
+    assert.equal(e.bouton.disabled, false);
+    assert.match(e.elements.tjdPanierListe.innerHTML, /fiche-da-l2-s1/);
+    assert.doesNotMatch(e.elements.tjdPanierListe.innerHTML, /pack-flashcards-qcm-l1|indisponible/);
+    assert.deepEqual(e.messages, []);
+    assert.deepEqual(e.redirections, []);
+  }
 });
 
 for (const [mode, articles] of [['achat direct', null], ['panier', panierInitial]]) {

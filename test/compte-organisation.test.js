@@ -651,6 +651,26 @@ test('le semestre provient du nom ou de l’identifiant, et distingue les fichie
   assert.doesNotMatch(b.elements.achatsListe.innerHTML, /annuel-s1.pdf|annuel-s2.pdf|contrats.pdf/);
 });
 
+test('rechercher s1 ou semestre 1, s2 ou semestre 2, retrouve le semestre demandé', async () => {
+  const b = navigateur({
+    achats: [{ date: '2026-11-23', produits: fichesAdministratif() }]
+  });
+  await b.flush();
+  for (const semestre of [1, 2]) {
+    const opposé = semestre === 1 ? 2 : 1;
+    for (const variante of ['S' + semestre, 'semestre ' + semestre]) {
+      b.chercher('droit administratif ' + variante);
+      assert.match(b.elements.achatsListe.innerHTML, new RegExp('Droit administratif L2 S' + semestre));
+      assert.doesNotMatch(b.elements.achatsListe.innerHTML, new RegExp('Droit administratif L2 S' + opposé));
+    }
+  }
+  b.chercher('semestre 1 droit des biens');
+  assert.equal(b.elements.achatsListe.innerHTML, '');
+  b.chercher('semestre 12');
+  assert.equal(b.elements.achatsListe.innerHTML, '');
+  assert.equal(b.demandes.length, 1);
+});
+
 test('les filtres se combinent et leur remise à zéro restaure l’historique intact', async () => {
   const achats = historique(); const copie = JSON.stringify(achats);
   const b = navigateur({ achats }); await b.flush(); const initial = b.elements.achatsListe.innerHTML;
