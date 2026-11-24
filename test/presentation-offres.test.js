@@ -106,6 +106,18 @@ test("les guides par matière de l’accueil ouvrent une section de lecture exis
   }
 });
 
+test("les cartes de guides du catalogue ouvrent directement le programme", () => {
+  const catalogue = fs.readFileSync(path.join(ROOT, "formations.html"), "utf8");
+  const guides = catalogue.match(/<section\b[^>]*\bid="guides"[^>]*>([\s\S]*?)<\/section>/)?.[1] || "";
+  const cartes = [...guides.matchAll(/<a\b[^>]*href="([^"#]+)(?:#([^"]+))?"[^>]*>[\s\S]*?Lire le guide[\s\S]*?<\/a>/g)];
+  assert.ok(cartes.length > 2);
+  for (const [, fichier, ancre] of cartes) {
+    assert.equal(ancre, "programme", fichier);
+    const html = fs.readFileSync(path.join(ROOT, fichier), "utf8");
+    assert.match(html, /<section\b[^>]*\bid="programme"[^>]*>/, fichier);
+  }
+});
+
 test("le comparatif et la rubrique Vidéos et podcasts mènent à chaque matière avec un extrait et une offre active", () => {
   const accueil = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
   const choix = accueil.match(/<details class="compare-podcasts">[\s\S]*?<\/details>/)?.[0] || "";
