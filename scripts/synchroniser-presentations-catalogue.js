@@ -86,7 +86,7 @@ function renderComparateur() {
 ${lignes}
           </tbody>
         </table>
-        <p class="compare-needs__note">Les PDF s’achètent en une fois. Les podcasts s’écoutent et les vidéos se regardent dans Mon compte. Portalis fonctionne par abonnement mensuel.</p>
+        <p class="compare-needs__note">Les fiches à l’unité se paient en une fois. Les podcasts s’écoutent et les vidéos se regardent dans Mon compte. Portalis fonctionne par abonnement mensuel.</p>
         <!-- catalogue:comparateur:end -->`;
 }
 
