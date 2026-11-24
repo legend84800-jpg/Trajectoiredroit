@@ -10,7 +10,7 @@ const { avecImagesProduits } = require("./_images-produits");
 const { selectionner } = require("./_supabase");
 const { creerClientStripe, INTEGRATION_IDS } = require("./_stripe");
 const { nombreEcheancesValide, versCheckoutEcheances, montantEcheance } = require("./_echeances");
-const { offrePartielsActive, prixOffrePartiels, bornerSessionOffrePartiels, avecCouponOffrePartiels } = require("./_offre-partiels");
+const { offrePartielsActive, prixOffrePartiels, bornerSessionOffrePartiels, avecPrixOffrePartiels } = require("./_offre-partiels");
 const { lireCadeauFormulaire, appliquerCadeauCheckout } = require("./_cadeau");
 const { codeCadeauEleve, lireCadeauEleve, avecProduitCadeauEleve } = require("./_cadeau-eleve");
 
@@ -216,10 +216,14 @@ async function appliquerCodePromoAuxProduits(params, { stripe, ids, codeDemande,
 // Crée la session. Si Stripe refuse la remise (code expiré ou épuisé entre la
 // recherche et la création), la session repart sans remise, avec le champ affiché.
 async function creerSessionAvecRepli(stripe, params, cle, offre) {
-  const creerAvecOffre = (parametres = params) => stripe.checkout.sessions.create(
-    avecImagesProduits(avecCouponOffrePartiels(parametres, offre)),
-    { idempotencyKey: `${cle}-${offre.id}`, timeout: 12000, maxNetworkRetries: 0 }
-  );
+  const creerAvecOffre = (parametres = params) => {
+    const parametresOffre = avecPrixOffrePartiels(parametres, offre);
+    const variante = parametresOffre.discounts ? "" : "-prix-ronds";
+    return stripe.checkout.sessions.create(
+      avecImagesProduits(parametresOffre),
+      { idempotencyKey: `${cle}-${offre.id}${variante}`, timeout: 12000, maxNetworkRetries: 0 }
+    );
+  };
   if (!params.discounts) {
     if (offre) return creerAvecOffre();
     return stripe.checkout.sessions.create(avecImagesProduits(params), { idempotencyKey: cle, timeout: 12000, maxNetworkRetries: 0 });
@@ -688,7 +692,8 @@ async function handler(req, res) {
     : paramsEcheances;
   const cleBase = nombreEcheances ? `checkout-${attemptId}-x${nombreEcheances}` : `checkout-${attemptId}`;
   const cleDestinataire = cadeau ? `${cleBase}-cadeau` : cleBase;
-  const cleIdempotence = offreEcheances ? `${cleDestinataire}-${offreEcheances.id}` : cleDestinataire;
+  const varianteOffre = offreEcheances?.prix_ronds_centimes?.[produit.prix] != null ? "-prix-ronds" : "";
+  const cleIdempotence = offreEcheances ? `${cleDestinataire}-${offreEcheances.id}${varianteOffre}` : cleDestinataire;
 
   // Le paiement en plusieurs fois garde son champ fermé (un code ne réduirait que la
   // première échéance) et le stage n'accepte aucun code. Le cadeau d'un parent

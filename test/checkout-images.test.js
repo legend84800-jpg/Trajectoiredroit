@@ -93,7 +93,8 @@ test("les deux fiches aux anciens identifiants et les majeures ont la bonne couv
   }
 });
 
-test("chaque offre en vente transmet son propre visuel avec le prix et le nom du catalogue", async () => {
+test("chaque offre en vente transmet son propre visuel avec le prix et le nom du catalogue", async (t) => {
+  fixerHorlogePaiement(t);
   await capturerCheckout(async (envoyer) => {
     for (const [id, p] of VENDUS) {
       const params = await envoyer({ produitId: id });

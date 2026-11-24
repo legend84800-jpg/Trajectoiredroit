@@ -14,7 +14,7 @@ const KIT = "pack-kit-partiels-l2--administratif-s1--administratif-s2--contrats"
 const PACK_ULTRA = "pack-ultra-l1-s1-revision";
 const CADEAU = { cadeauEmail: "etudiant@example.com" };
 
-async function avecCheckoutFactice(t, maintenant, controler) {
+async function avecCheckoutFactice(t, maintenant, controler, offre = OFFRE) {
   fixerHorlogePaiement(t, maintenant);
   const stripe = require("../api/_stripe");
   const appels = [];
@@ -36,7 +36,7 @@ async function avecCheckoutFactice(t, maintenant, controler) {
   const ancienneCle = process.env.STRIPE_SECRET_KEY;
 
   try {
-    require.cache[cheminSaison].exports = { ...saison, offre_partiels: OFFRE };
+    require.cache[cheminSaison].exports = { ...saison, offre_partiels: offre };
     delete require.cache[cheminOffre];
     delete require.cache[cheminCheckout];
     process.env.STRIPE_SECRET_KEY = "sk_test_factice";
@@ -162,4 +162,48 @@ test("une session promo ouverte à la dernière minute laisse le temps de payer 
       assert.equal(params.after_expiration, undefined);
     }
   });
+});
+
+
+test("prix ronds de la campagne en achat direct, panier et échéances", async (t) => {
+  const offre = { ...OFFRE, prix_ronds_centimes: { 5800: 4900, 19900: 16900 } };
+  await avecCheckoutFactice(t, Date.parse(offre.debut), async (ouvrir) => {
+    const forfaits = [
+      [{ produitId: "pack-l3" }, [4900]],
+      [{ produitId: PACK_ULTRA, ...CADEAU }, [16900]],
+      [{ produitIds: ["pack-l3", PACK_ULTRA, FICHE] }, [4900, 16900, 1699]],
+      [{ produitId: FICHE, bumpId: "pack-l3" }, [1699, 4900]],
+    ];
+    for (const [corps, montants] of forfaits) {
+      const { params, options } = await ouvrir(corps);
+      assert.deepEqual(params.line_items.map((ligne) => ligne.price_data.unit_amount), montants);
+      assert.equal(params.discounts, undefined);
+      assert.equal(params.allow_promotion_codes, undefined);
+      assert.equal(params.after_expiration, undefined);
+      assert.equal(params.metadata.offrePartiels, OFFRE.id);
+      assert.ok(options.idempotencyKey.endsWith("-" + OFFRE.id + "-prix-ronds"));
+    }
+    const { params: fiche } = await ouvrir({ produitId: FICHE });
+    assert.deepEqual(fiche.discounts, [{ coupon: OFFRE.id }]);
+    assert.equal(fiche.line_items[0].price_data.unit_amount, 1999);
+    const { params: ultraL3 } = await ouvrir({ produitId: "pack-ultra-l3-s1-revision" });
+    assert.deepEqual(ultraL3.discounts, [{ coupon: OFFRE.id }]);
+    assert.equal(ultraL3.line_items[0].price_data.unit_amount, 22900);
+
+    for (const [nombre, montant, total] of [[2, 8450, 16900], [3, 5633, 16899]]) {
+      const { params, options } = await ouvrir({ produitId: PACK_ULTRA, echeances: nombre, ...CADEAU });
+      assert.equal(params.mode, "subscription");
+      assert.equal(params.line_items[0].price_data.unit_amount, montant);
+      assert.equal(params.metadata.montantTotal, String(total));
+      assert.equal(params.metadata.cadeauEmail, CADEAU.cadeauEmail);
+      assert.ok(options.idempotencyKey.endsWith("-" + OFFRE.id + "-prix-ronds"));
+    }
+  }, offre);
+  await avecCheckoutFactice(t, Date.parse(offre.fin), async (ouvrir) => {
+    for (const [produitId, prix] of [["pack-l3", 5800], [PACK_ULTRA, 19900]]) {
+      const { params } = await ouvrir({ produitId });
+      assert.equal(params.line_items[0].price_data.unit_amount, prix);
+      assert.equal(params.metadata.offrePartiels, undefined);
+    }
+  }, offre);
 });

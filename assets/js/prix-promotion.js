@@ -71,7 +71,12 @@
   function demarrer(offre, catalogue) {
     const fin = Date.parse(offre.fin);
     const textesAccessibles = new Map();
-    const reduire = (base) => base - Math.round(base * offre.taux / 100);
+    const prixRonds = offre.prix_ronds_centimes || {};
+    const remiseOrdinaire = (base) => base - Math.round(base * offre.taux / 100);
+    const reduire = (base) => prixRonds[base] ?? remiseOrdinaire(base);
+    const reduireEnsemble = (prix) => prix.some((base) => prixRonds[base] != null)
+      ? prix.reduce((total, base) => total + reduire(base), 0)
+      : remiseOrdinaire(prix.reduce((total, base) => total + base, 0));
     const trouve = (element) => {
       const prix = element && texteAvantRemise(element).match(montant);
       return prix?.length ? centimes(prix[0]) : null;
@@ -113,15 +118,13 @@
       return reduire(base);
     }
 
-    function prixAchat(element, affiche) {
-      const id = element.dataset.tjdProduit;
-      const prix = catalogue?.[id];
-      if (!prix) return affiche;
+    function prixAchat(element) {
+      const prix = catalogue?.[element.dataset.tjdProduit];
+      if (!prix) return null;
       const offre = element.tjdOffreAvecComplement || element;
       const ajout = offre.dataset.tjdBumpCheckbox;
       const supplement = ajout && document.getElementById(ajout)?.checked ? catalogue[offre.dataset.tjdBump] : 0;
-      const nombre = Number(element.dataset.tjdEcheances);
-      return nombre > 1 ? Math.floor(prix / nombre) : prix + (supplement || 0);
+      return { prix, supplement: supplement || 0 };
     }
 
     function retirer(element) {
@@ -163,11 +166,14 @@
         let curseur = 0;
         const fragments = [];
         for (const prix of texte.matchAll(montant)) {
-          const nominal = prixAchat(element, centimes(prix[0]));
-          if (nominal <= 0) continue;
+          const achat = prixAchat(element);
           const n = Number(element.dataset.tjdEcheances);
-          const prixFinal = n > 1 && catalogue?.[id] ? Math.floor(reduire(catalogue[id]) / n) :
-            montantsEcheance(element, nominal);
+          const nominal = achat ? (n > 1 ? Math.floor(achat.prix / n) : achat.prix + achat.supplement) : centimes(prix[0]);
+          if (nominal <= 0) continue;
+          let prixFinal;
+          if (achat && n > 1) prixFinal = Math.floor(reduire(achat.prix) / n);
+          else if (achat?.supplement) prixFinal = reduireEnsemble([achat.prix, achat.supplement]);
+          else prixFinal = montantsEcheance(element, nominal);
           const debut = prix.index;
           const finMontant = debut + prix[0].length;
           const suffixe = mensuel ? texte.slice(finMontant).match(uniteMensuelle)?.[0] || "" : "";
@@ -189,7 +195,7 @@
         const principal = catalogue?.[bouton.dataset.tjdProduit];
         const complement = catalogue?.[bouton.dataset.tjdBump];
         if (!(principal > 0 && complement > 0)) continue;
-        const montantAjoute = reduire(principal + complement) - reduire(principal);
+        const montantAjoute = reduireEnsemble([principal, complement]) - reduire(principal);
         const caseComplement = document.getElementById(bouton.dataset.tjdBumpCheckbox);
         for (const label of caseComplement?.labels || []) {
           if (label.querySelector(exemple)) continue;
@@ -223,7 +229,7 @@
       const valeurs = lignes.map((ligne) => catalogue?.[ligne.dataset.tjdPrixLigne] ?? trouve(ligne));
       if (valeurs.some((valeur) => !valeur)) return;
       const base = valeurs.reduce((somme, valeur) => somme + valeur, 0);
-      const apres = reduire(base);
+      const apres = reduireEnsemble(valeurs);
       const prixIndividuels = valeurs.map(reduire);
       // Stripe arrondit sur le total et peut répartir un centime différemment.
       // Dans ce cas, le total porte seul le détail de la remise.

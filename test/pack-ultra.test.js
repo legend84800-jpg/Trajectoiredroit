@@ -1,5 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const { fixerHorlogePaiement } = require("../test-support/horloge-paiement");
 const fs = require("node:fs");
 const path = require("node:path");
 const { createHash } = require("node:crypto");
@@ -155,7 +156,8 @@ test("l'accueil oriente vers la page dédiée et garde les anciens liens utilisa
   assert.match(accueil, /window\.location\.replace\('pack-ultra\.html'/);
 });
 
-test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async () => {
+test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async (t) => {
+  fixerHorlogePaiement(t);
   const stripeModule = require("../api/_stripe");
   const original = stripeModule.creerClientStripe;
   const ancienneCle = process.env.STRIPE_SECRET_KEY;

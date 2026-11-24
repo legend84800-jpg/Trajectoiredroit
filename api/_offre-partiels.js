@@ -6,7 +6,7 @@ function offrePartielsActive(maintenant = Date.now()) {
 }
 
 function prixOffrePartiels(centimes, offreActive) {
-  return centimes - Math.round(centimes * offreActive.taux / 100);
+  return offreActive.prix_ronds_centimes?.[centimes] ?? (centimes - Math.round(centimes * offreActive.taux / 100));
 }
 
 function bornerSessionOffrePartiels(params, offreActive, maintenant = Date.now()) {
@@ -30,4 +30,24 @@ function avecCouponOffrePartiels(params, offreActive) {
   return suite;
 }
 
-module.exports = { offrePartielsActive, prixOffrePartiels, bornerSessionOffrePartiels, avecCouponOffrePartiels };
+function avecPrixOffrePartiels(params, offreActive) {
+  const prixRonds = offreActive.prix_ronds_centimes;
+  const prixFixes = prixRonds && params.line_items.some((ligne) => prixRonds[ligne.price_data?.unit_amount] != null);
+  if (!prixFixes) return avecCouponOffrePartiels(params, offreActive);
+
+  const suite = bornerSessionOffrePartiels(params, offreActive);
+  delete suite.allow_promotion_codes;
+  delete suite.discounts;
+  suite.line_items = params.line_items.map((ligne) => ({
+    ...ligne,
+    price_data: {
+      ...ligne.price_data,
+      unit_amount: prixOffrePartiels(ligne.price_data.unit_amount, offreActive),
+    },
+  }));
+  return suite;
+}
+
+module.exports = {
+  offrePartielsActive, prixOffrePartiels, bornerSessionOffrePartiels, avecCouponOffrePartiels, avecPrixOffrePartiels,
+};

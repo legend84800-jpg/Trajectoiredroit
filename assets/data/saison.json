@@ -79,6 +79,7 @@
     "debut": "2026-11-24T17:05:00Z",
     "fin": "2026-11-27T17:05:00Z",
     "taux": 15,
+    "prix_ronds_centimes": { "5800": 4900, "19900": 16900 },
     "bandeau": {
       "etiquette_forte": "Offre partiels du semestre 1",
       "etiquette": "Sur toute la boutique",
