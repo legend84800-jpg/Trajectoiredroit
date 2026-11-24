@@ -1,6 +1,8 @@
 /* Filtres des fiches et des cours. Les autres catalogues conservent leur moteur. */
 (function () {
   var CLE_NIVEAU = 'tjd_catalogue_niveau';
+  var CLE_RETOUR_PAIEMENT = 'tjd_catalogue_retour_paiement';
+  var ANCRE_RETOUR_PAIEMENT = '#retour-paiement';
   var NIVEAUX = ['tous', 'L1', 'L2', 'L3'];
   var HASH_NIVEAU = { '#cours-l1': 'L1', '#cours-l2': 'L2', '#cours-l3': 'L3' };
 
@@ -74,7 +76,7 @@
         } catch (_) { /* Une autre destination conserve son adresse. */ }
       });
     }
-    function actualiserAdresse(depuisHash) {
+    function actualiserAdresse(depuisHash, ancreReprise) {
       try {
         var url = new URL(window.location.href);
         if (etat.niveau === 'tous') url.searchParams.delete('niveau');
@@ -84,6 +86,7 @@
             ? 'a-l-unite'
             : 'cours-' + etat.niveau.toLowerCase();
         }
+        if (ancreReprise) url.hash = ancreReprise;
         if (window.history && window.history.replaceState) window.history.replaceState(window.history.state, '', url.pathname + url.search + url.hash);
       } catch (_) { /* Les filtres restent utilisables lorsque l'adresse est protégée. */ }
       memoriserNiveau(etat.niveau);
@@ -212,9 +215,65 @@
       etat.niveau = 'tous'; etat.matiere = 'tous'; recherche.value = '';
       appliquerFiltres(); actualiserAdresse(false); recherche.focus();
     });
+    function carteAncree(hash) {
+      return hash && cartes.find(function (carte) { return carte.element.id === hash.slice(1); });
+    }
+    function ancreCatalogue(ancre) {
+      return ancre === '#a-l-unite' || Object.hasOwn(HASH_NIVEAU, ancre);
+    }
+    if (catalogueFiches && window.location.pathname === '/formations.html') {
+      var adresseReprise = 'formations.html' + ANCRE_RETOUR_PAIEMENT;
+      window.tjdRetourCatalogue = {
+        adresse: function () {
+          if (carteAncree(window.location.hash) || recherche.value.length > 500) return null;
+          if (!recherche.value.trim() && etat.niveau === 'tous' && etat.matiere === 'tous') return null;
+          try {
+            sessionStorage.getItem(CLE_RETOUR_PAIEMENT);
+            return adresseReprise;
+          } catch (_) { return null; }
+        },
+        memoriser: function (adresse) {
+          if (adresse !== adresseReprise) return;
+          var ancre = window.location.hash;
+          try {
+            if (recherche.value.length > 500) {
+              sessionStorage.removeItem(CLE_RETOUR_PAIEMENT);
+              return;
+            }
+            sessionStorage.setItem(CLE_RETOUR_PAIEMENT, JSON.stringify({
+              recherche: recherche.value, niveau: etat.niveau, matiere: etat.matiere,
+              ancre: ancreCatalogue(ancre) ? ancre : '#a-l-unite'
+            }));
+          } catch (_) { /* Le lien de retour reste utilisable sans stockage. */ }
+        }
+      };
+    }
+    function reprendreRetourPaiement() {
+      var reprise = null;
+      try {
+        var donnees = sessionStorage.getItem(CLE_RETOUR_PAIEMENT);
+        sessionStorage.removeItem(CLE_RETOUR_PAIEMENT);
+        reprise = JSON.parse(donnees);
+      } catch (_) { /* Les filtres habituels restent utilisables. */ }
+      var valide = reprise && typeof reprise.recherche === 'string' && reprise.recherche.length <= 500
+        && NIVEAUX.includes(reprise.niveau) && ancreCatalogue(reprise.ancre)
+        && matieres.some(function (bouton) { return bouton.getAttribute('data-catalogue-matiere') === reprise.matiere; });
+      if (valide) {
+        recherche.value = reprise.recherche;
+        etat.niveau = reprise.niveau;
+        etat.matiere = reprise.matiere;
+      }
+      appliquerFiltres();
+      actualiserAdresse(true, valide ? reprise.ancre : '#a-l-unite');
+      racine.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }
     function appliquerHash() {
       var hash = window.location.hash;
-      var cible = hash && cartes.find(function (carte) { return carte.element.id === hash.slice(1); });
+      if (catalogueFiches && hash === ANCRE_RETOUR_PAIEMENT) {
+        reprendreRetourPaiement();
+        return true;
+      }
+      var cible = carteAncree(hash);
       if (cible && cible.niveaux.length) {
         etat.niveau = niveauValide(cible.niveaux[0]) || 'tous';
         etat.matiere = 'tous';

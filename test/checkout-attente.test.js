@@ -175,3 +175,44 @@ test('un panier modifié après le délai reçoit une nouvelle référence de pa
   assert.deepEqual(e.demandes[1].produitIds, ['maj-da-l2-s1']);
   assert.deepEqual(e.redirections, ['https://checkout.stripe.com/paiement']);
 });
+
+for (const [mode, articles] of [['achat direct', null], ['panier', panierInitial]]) {
+  test(`le retour du catalogue en ${mode} réserve la reprise locale à une redirection réussie`, async () => {
+    const e = environnement({ panier: articles });
+    const appels = [];
+    e.window.location.search = '?niveau=l2&recherche=confidentiel-factice';
+    e.window.location.hash = '#a-l-unite';
+    e.window.tjdRetourCatalogue = {
+      adresse() { return 'formations.html#retour-paiement'; },
+      memoriser(adresse) { appels.push(['memoire', adresse]); }
+    };
+    e.window.location.assign = url => appels.push(['redirection', url]);
+    function lancer() {
+      if (articles) e.window.__payerPanier();
+      else e.window.tjdAcheter('fiche-da-l2-s1', e.bouton);
+    }
+    e.repondre('erreur'); lancer(); await flush();
+    assert.deepEqual(appels, []);
+    e.repondre('succes'); lancer(); await flush();
+    assert.equal(e.demandes.length, 2);
+    for (const demande of e.demandes) {
+      assert.equal(demande.pageActuelle, 'formations.html#retour-paiement');
+      assert.doesNotMatch(JSON.stringify(demande), /confidentiel-factice|niveau=l2/);
+    }
+    assert.deepEqual(appels, [
+      ['memoire', 'formations.html#retour-paiement'],
+      ['redirection', 'https://checkout.stripe.com/paiement'],
+    ]);
+  });
+}
+
+test('le retour depuis une autre page reste celui de la page et de son ancre', async () => {
+  const e = environnement();
+  e.window.location.pathname = '/contrats-speciaux-l3.html';
+  e.window.location.hash = '#programme';
+  e.repondre('succes');
+  e.window.tjdAcheter('fiche-contrats-speciaux-l3', e.bouton);
+  await flush();
+  assert.equal(e.demandes[0].pageActuelle, 'contrats-speciaux-l3.html#programme');
+  assert.deepEqual(e.redirections, ['https://checkout.stripe.com/paiement']);
+});

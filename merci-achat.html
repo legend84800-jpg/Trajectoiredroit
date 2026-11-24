@@ -613,7 +613,9 @@
       },
       introuvable: {
         titre: 'Session de paiement introuvable',
-        message: 'Si le paiement a déjà été effectué, l’email de confirmation permet de retrouver la commande.'
+        message: 'Si le paiement a déjà été effectué, l’email de confirmation permet de retrouver la commande.',
+        href: 'mon-compte.html',
+        libelle: 'Retrouver mes documents'
       },
       indisponible: {
         titre: 'Vérification indisponible',
@@ -754,6 +756,8 @@
       statusMessage.textContent = message.message;
       confirmedContent.hidden = true;
       statusRetry.hidden = !message.verifier;
+      statusLink.href = message.href || 'formations.html';
+      statusLink.textContent = message.libelle || 'Revenir aux formations';
       statusLink.hidden = message.verifier === true;
       statusActions.hidden = false;
     }

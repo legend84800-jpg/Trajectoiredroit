@@ -74,6 +74,7 @@
     var achatsListe        = document.getElementById("achatsListe");
     var achatsVide         = document.getElementById("achatsVide");
     var achatsReessayer    = document.getElementById("achatsReessayer");
+    var achatsAide         = document.getElementById("achatsAide");
     var generationSession = 0;
     var achatsOutils       = document.getElementById("achatsOutils");
     var achatsRecherche    = document.getElementById("achatsRecherche");
@@ -116,6 +117,7 @@
       if (achatsResultat) achatsResultat.textContent = "";
       achatsVide.textContent = "";
       achatsVide.style.display = "none";
+      if (achatsAide) achatsAide.hidden = true;
       relancerAchats = null;
       if (achatsReessayer) {
         achatsReessayer.hidden = true;
@@ -330,6 +332,7 @@
     async function chargerAchats(accessToken, generation, reprise){
       if (generation !== generationSession) return;
       relancerAchats = null;
+      if (achatsAide) achatsAide.hidden = true;
       if (achatsReessayer) achatsReessayer.disabled = true;
       achatsVide.textContent = messageChargementAchats;
       achatsVide.style.display = "block";
@@ -478,6 +481,7 @@
           ? "Aucun achat ne correspond à ces filtres. Tu peux les effacer pour tout retrouver."
           : "Aucun achat associé à cette adresse. Pour retrouver une commande, il faut se reconnecter avec l’adresse indiquée sur le reçu.";
       achatsVide.style.display = listeVide || pdfEnCours || relancerPdf ? "block" : "none";
+      if (achatsAide) achatsAide.hidden = !listeVide || !jetonAchats || achatsCourants.length > 0 || !!pdfEnCours || !!relancerPdf;
     }
 
     async function renouvelerPdf(demande, generation){
@@ -658,6 +662,7 @@
         return;
       }
       afficherEtat("etatChargement");
+      if (achatsAide) achatsAide.hidden = true;
       // Les appels Auth sont exécutés après le callback onAuthStateChange.
       window.setTimeout(async function(){
         if (generation !== generationSession) return;

@@ -490,6 +490,9 @@ test("les états non confirmés donnent une action adaptée et gardent le panier
     assert.equal(nav.element("purchaseStatusTitle").textContent, titre);
     assert.equal(nav.element("purchaseStatusRetry").hidden, !revoir);
     assert.equal(nav.element("purchaseStatusLink").hidden, revoir);
+    const introuvable = reponse[0] === 404;
+    assert.equal(nav.element("purchaseStatusLink").href, introuvable ? "mon-compte.html" : "formations.html");
+    assert.equal(nav.element("purchaseStatusLink").textContent, introuvable ? "Retrouver mes documents" : "Revenir aux formations");
     assert.equal(nav.element("purchaseConfirmedContent").hidden, true);
     assert.equal(nav.stockage.get("tjd_panier"), JSON.stringify(panierInitial));
     assert.equal(nav.mesures.length, 0);
@@ -497,6 +500,15 @@ test("les états non confirmés donnent une action adaptée et gardent le panier
   const absente = navigateur([], { id: "" });
   assert.equal(absente.requetes.length, 0);
   assert.equal(absente.element("purchaseStatusTitle").textContent, "Session de paiement introuvable");
+});
+
+test("une page de confirmation sans référence propose Mon compte sans interroger le paiement", () => {
+  const nav = navigateur([], { id: "" });
+  assert.equal(nav.element("purchaseStatusTitle").textContent, "Session de paiement introuvable");
+  assert.equal(nav.element("purchaseStatusLink").hidden, false);
+  assert.equal(nav.element("purchaseStatusLink").href, "mon-compte.html");
+  assert.equal(nav.element("purchaseStatusLink").textContent, "Retrouver mes documents");
+  assert.equal(nav.requetes.length, 0);
 });
 
 test("une panne temporaire propose de revérifier après une seule relance automatique", async () => {

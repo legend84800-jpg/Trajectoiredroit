@@ -385,6 +385,15 @@
     return id && id !== produitId && caseComplement ? { id: id, caseComplement: caseComplement } : null;
   }
 
+  function adresseRetourPaiement() {
+    return window.tjdRetourCatalogue?.adresse() || window.location.pathname.replace(/^\//, '') + window.location.hash;
+  }
+
+  function ouvrirPaiement(url, adresseRetour) {
+    window.tjdRetourCatalogue?.memoriser(adresseRetour);
+    window.location.assign(url);
+  }
+
   function tjdAcheter(produitId, btnEl) {
     if (!btnEl) btnEl = document.querySelector('[data-tjd-produit="' + produitId + '"]');
     if (!btnEl) return;
@@ -418,7 +427,7 @@
     // Page réellement en cours au moment du clic (peut différer de la landing page
     // si le visiteur a navigué avant d'acheter) : sert de cancel_url pour ne pas
     // renvoyer tout le monde vers formations.html en cas d'abandon du paiement.
-    corps.pageActuelle = window.location.pathname.replace(/^\//, '') + window.location.hash;
+    corps.pageActuelle = adresseRetourPaiement();
     corps.deviceType = typeAppareil();
     corps.emplacement = emplacementClic(btnEl);
     corps.viewport = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
@@ -467,7 +476,7 @@
             } catch (_) {}
             mesurerCheckout('CheckoutCree', produitId);
             delete TENTATIVES_PAIEMENT[idx];
-            window.location.assign(d.url);
+            ouvrirPaiement(d.url, corps.pageActuelle);
           }
           else {
             throw creerErreurCheckout('URL Stripe absente', 'reponse_incomplete', 200);
@@ -1146,7 +1155,7 @@
       corps.consentMarketing = true;
     }
     corps.landingPage = lireStockage('sessionStorage', 'tjd_landing_page') || window.location.pathname.replace(/^\//, '');
-    corps.pageActuelle = window.location.pathname.replace(/^\//, '') + window.location.hash;
+    corps.pageActuelle = adresseRetourPaiement();
     corps.deviceType = typeAppareil();
     corps.viewport = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
       + 'x' + Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
@@ -1186,7 +1195,7 @@
         } catch (_) {}
         mesurerCheckout('CheckoutCree', 'panier');
         delete TENTATIVES_PAIEMENT.panier;
-        window.location.assign(d.url);
+        ouvrirPaiement(d.url, corps.pageActuelle);
       })
       .catch(function (erreur) {
         mesurerCheckout('CheckoutErreur', 'panier', {

@@ -376,3 +376,62 @@ test('une ancre de fiche rend sa carte visible malgré les filtres et place le f
   assert.equal(depuisCatalogue.actif().id, ancre);
   assert.equal(depuisCatalogue.window.location.searchParams.get('niveau'), 'l2');
 });
+
+const cleRetourPaiement = 'tjd_catalogue_retour_paiement';
+const adresseRetourPaiement = 'formations.html#retour-paiement';
+
+test('le retour explicite de paiement restaure les trois filtres du même onglet une seule fois', () => {
+  const e = environnement();
+  assert.equal(e.window.tjdRetourCatalogue.adresse(), null);
+  e.niveau('L2'); e.matiere('public'); e.chercher('administratif');
+  assert.equal(e.window.tjdRetourCatalogue.adresse(), adresseRetourPaiement);
+  assert.equal(e.memoire.has(cleRetourPaiement), false);
+  e.window.tjdRetourCatalogue.memoriser(adresseRetourPaiement);
+
+  const ordinaire = environnement({ memoire: e.memoire });
+  assert.equal(ordinaire.recherche.value, '');
+  assert.equal(ordinaire.matieres[0].getAttribute('aria-pressed'), 'true');
+  assert.equal(e.memoire.has(cleRetourPaiement), true);
+
+  const e2 = environnement({ memoire: e.memoire, url: 'https://trajectoiredroit.com/' + adresseRetourPaiement });
+  assert.equal(e2.recherche.value, 'administratif');
+  assert.equal(e2.niveaux[2].getAttribute('aria-pressed'), 'true');
+  assert.equal(e2.matieres[2].getAttribute('aria-pressed'), 'true');
+  assert.deepEqual(e2.visibles(), ['administratif']);
+  assert.equal(e2.window.location.hash, '#a-l-unite');
+  assert.equal(e2.window.location.search, '?niveau=l2');
+  assert.equal(e2.racine.defilements, 1);
+  assert.equal(e.memoire.has(cleRetourPaiement), false);
+
+  const recharge = environnement({ memoire: e.memoire, url: e2.window.location.href });
+  assert.equal(recharge.recherche.value, '');
+  assert.equal(recharge.matieres[0].getAttribute('aria-pressed'), 'true');
+});
+
+test('les liens explicites aux cartes du catalogue priment sur un retour mémorisé', () => {
+  const e = environnement();
+  e.niveau('L3'); e.matiere('civil'); e.chercher('contrats');
+  e.window.tjdRetourCatalogue.memoriser(adresseRetourPaiement);
+  const carte = environnement({ memoire: e.memoire, url: 'https://trajectoiredroit.com/formations.html#administratif' });
+  assert.equal(carte.recherche.value, '');
+  assert.equal(carte.actif().id, 'administratif');
+  assert.equal(carte.window.tjdRetourCatalogue.adresse(), null);
+  assert.equal(e.memoire.has(cleRetourPaiement), true);
+});
+
+test('le retour au catalogue écarte un état corrompu et fonctionne sans stockage', () => {
+  for (const sauvegarde of ['{', JSON.stringify({ recherche: 'introuvable', niveau: 'L2', matiere: 'ancien_code', ancre: '#a-l-unite' }),
+    JSON.stringify({ recherche: 'introuvable', niveau: 'L2', matiere: 'civil', ancre: '#contrats' })]) {
+    const e = environnement({
+      memoire: new Map([[cleRetourPaiement, sauvegarde]]),
+      url: 'https://trajectoiredroit.com/' + adresseRetourPaiement
+    });
+    assert.equal(e.recherche.value, '');
+    assert.equal(e.window.location.hash, '#a-l-unite');
+    assert.equal(e.memoire.has(cleRetourPaiement), false);
+  }
+  const e = environnement({ stockageRefuse: true, url: 'https://trajectoiredroit.com/' + adresseRetourPaiement });
+  assert.equal(e.window.location.hash, '#a-l-unite');
+  e.chercher('administratif');
+  assert.equal(e.window.tjdRetourCatalogue.adresse(), null);
+});

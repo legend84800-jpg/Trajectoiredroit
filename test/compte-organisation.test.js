@@ -26,7 +26,7 @@ function historique() {
   ];
 }
 function navigateur(options = {}) {
-  const ids = ['etatChargement', 'etatConnexion', 'etatConnecte', 'connexionForm', 'connexionEmail', 'connexionSubmit', 'connexionError', 'connexionSuccess', 'compteEmail', 'deconnexionBtn', 'achatsListe', 'achatsVide', 'achatsReessayer', 'resterConnecte', 'codeForm', 'connexionCode', 'codeSubmit', 'codeDestinataire', 'renvoyerCode', 'changerEmail', 'achatsOutils', 'achatsRecherche', 'achatsProduit', 'achatsSemestre', 'achatsReinitialiser', 'achatsResultat'];
+  const ids = ['etatChargement', 'etatConnexion', 'etatConnecte', 'connexionForm', 'connexionEmail', 'connexionSubmit', 'connexionError', 'connexionSuccess', 'compteEmail', 'deconnexionBtn', 'achatsListe', 'achatsVide', 'achatsReessayer', 'achatsAide', 'resterConnecte', 'codeForm', 'connexionCode', 'codeSubmit', 'codeDestinataire', 'renvoyerCode', 'changerEmail', 'achatsOutils', 'achatsRecherche', 'achatsProduit', 'achatsSemestre', 'achatsReinitialiser', 'achatsResultat'];
   if (options.parrainage) ids.push('parrainageBox', 'parrainageCopier', 'parrainageLien', 'parrainageStatut', 'parrainageCopieManuelle', 'parrainageBons', 'parrainageSolde');
   function nouveauElement() {
     const classes = new Set();
@@ -55,7 +55,7 @@ function navigateur(options = {}) {
   }
   const elements = {};
   for (const id of ids) {
-    if (options.ancienHtml && id === 'achatsReessayer') continue;
+    if (options.ancienHtml && ['achatsReessayer', 'achatsAide'].includes(id)) continue;
     elements[id] = nouveauElement();
   }
   if (options.parrainage) elements.parrainageCopier.textContent = 'Copier mon lien';
@@ -223,6 +223,29 @@ test('le volet reste replié si plusieurs fichiers correspondent dans des achats
 
 const panneServeur = { ok: false, status: 500 };
 const reponseAchats = (achats = historique()) => ({ ok: true, status: 200, json: async () => ({ achats }) });
+
+test('l’aide apparaît après un historique vide confirmé et disparaît dès le changement de session', async () => {
+  const premier = differe();
+  const second = differe();
+  let nombre = 0;
+  const b = navigateur({ fetch: () => ++nombre === 1 ? premier.promise : second.promise });
+  await b.flush();
+  assert.equal(b.elements.achatsAide.hidden, true);
+  premier.resolve(reponseAchats([]));
+  await b.flush();
+  assert.equal(b.elements.achatsAide.hidden, false);
+
+  b.evenement('SIGNED_IN', { access_token: 'autre-session' });
+  assert.equal(b.elements.achatsAide.hidden, true);
+  await b.flush();
+  assert.equal(b.elements.achatsAide.hidden, true);
+  second.resolve({ ok: false, status: 503 });
+  await b.flush();
+  assert.equal(b.elements.achatsAide.hidden, true);
+  assert.equal(b.elements.achatsReessayer.hidden, false);
+  await b.elements.deconnexionBtn.listeners.click();
+  assert.equal(b.elements.achatsAide.hidden, true);
+});
 
 function historiquePdf(expiration, sessions = ['cs_test_commande_a', 'cs_test_commande_b']) {
   return sessions.map((sessionId, commande) => ({
@@ -644,6 +667,7 @@ test('une recherche vide de résultats affiche une aide sans confondre absence d
   const b = navigateur(); await b.flush(); b.chercher('matiere-inexistante');
   assert.equal(b.elements.achatsListe.innerHTML, '');
   assert.match(b.elements.achatsVide.textContent, /correspond à ces filtres/);
+  assert.equal(b.elements.achatsAide.hidden, true);
   assert.equal(b.elements.achatsResultat.textContent, '0 achats affichés sur 3');
   b.effacer(); assert.equal(b.elements.achatsVide.style.display, 'none');
 });
