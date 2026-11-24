@@ -54,7 +54,7 @@ Stocke les fichiers payants en privé. Les acheteurs reçoivent leurs liens d’
 
 - Les clés et les jetons. Ils vivent dans le `.env` local et dans les variables d'environnement Vercel, jamais en clair dans une page ni dans un commit.
 - La devise. Le prix vu par le client est en euros, fixé en dur par `currency: "eur"` dans `api/create-checkout.js` et `api/stripe-webhook.js`.
-- Les statistiques affichées sur les pages. Elles doivent rester les vrais chiffres vérifiables (620+ étudiants, 4 500 h de cours, 166 avis 5/5 Superprof). Aucun chiffre inventé, sous peine de pratique commerciale trompeuse au sens de l'article L121-2 du Code de la consommation.
+- Les statistiques affichées sur les pages. Elles doivent rester les vrais chiffres vérifiables (620+ étudiants accompagnés, 4 500 h de cours, 4 500 élèves qui utilisent nos fiches, 177 avis 5/5 sur Superprof). Aucun chiffre inventé, sous peine de pratique commerciale trompeuse au sens de l'article L121-2 du Code de la consommation.
 - Superprof n'est jamais cité dans un document officiel ou financier.
 
 ## Structure
