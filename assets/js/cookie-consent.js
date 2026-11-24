@@ -418,7 +418,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     var compactStyles = document.createElement("link");
     compactStyles.rel = "stylesheet";
-    compactStyles.href = "/assets/css/cookie-compact.css?v=dfbd90e1";
+    compactStyles.href = "/assets/css/cookie-compact.css?v=9fb8151f";
     document.head.appendChild(compactStyles);
     addManageLink();
     if (storedPreferences) return;

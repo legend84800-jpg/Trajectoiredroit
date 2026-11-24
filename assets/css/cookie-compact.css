@@ -1,3 +1,11 @@
+.cookie-banner {
+  padding: .3rem 0 0;
+}
+
+.cookie-banner__text {
+  padding-inline: .45rem;
+}
+
 .cookie-banner__heading {
   display: flex;
   align-items: baseline;
@@ -8,24 +16,36 @@
 .cookie-banner__actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  inline-size: 100%;
   gap: 0;
+  border-block-start: 1px solid var(--border);
 }
 
 .cookie-banner .cookie-choice {
-  min-width: 0;
-  min-block-size: 2.25rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 100%;
+  min-inline-size: 0;
+  min-height: 2.25rem;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
   text-align: center;
 }
 
 .cookie-banner .cookie-choice:first-child {
-  border-start-end-radius: 0;
-  border-end-end-radius: 0;
+  border-end-start-radius: 7px;
 }
 
 .cookie-banner .cookie-choice + .cookie-choice {
-  border-inline-start: 0;
-  border-start-start-radius: 0;
-  border-end-start-radius: 0;
+  border-inline-start: 1px solid var(--border);
+  border-end-end-radius: 7px;
+}
+
+.cookie-banner .cookie-choice:focus-visible {
+  outline-offset: -2px;
 }
 
 @media (pointer: coarse) {
