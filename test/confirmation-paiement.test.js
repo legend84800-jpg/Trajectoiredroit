@@ -622,6 +622,55 @@ test("la page sépare les deux semestres et conserve les boutons simples avec un
   }
 });
 
+test("les fiches d’un pack annuel sont rangées par matière avec leurs liens d’origine", async () => {
+  for (const [produitId, nbMatieres, nbFichiers] of [
+    ["pack-l2-revision", 8, 22],
+    ["pack-l2", 9, 25],
+    ["pack-l1-revision", 8, 24],
+    ["pack-l3", 6, 17],
+    ["pack-complet-revision", 22, 63],
+  ]) {
+    const { donnees } = await apiFactice(donneesStripe({
+      payment_status: "paid", amount_total: 7900, metadata: { produitIds: produitId },
+    })).appeler("GET", sessionId, "confirmation");
+    assert.equal(donnees.liens.length, nbFichiers);
+    assert.equal(donnees.nomsProduits, undefined);
+    const nav = navigateur([[200, donnees]]);
+    await laisserRepondre();
+    const groupes = nav.element("purchaseDownloadsList").children;
+    assert.equal(groupes.length, nbMatieres);
+    const boutons = groupes.flatMap((bloc) => {
+      const [titre, rangee] = bloc.children;
+      assert.equal(bloc.attributs["aria-labelledby"], titre.id);
+      assert.equal(rangee.className, "telechargements-matiere-liens");
+      assert.equal(rangee.children[0].textContent, "Fiche complète");
+      for (const bouton of rangee.children) {
+        assert.equal(bouton.attributs["aria-label"], bouton.textContent + " · " + titre.textContent);
+        assert.equal(bouton.rel, "nofollow noreferrer");
+      }
+      return rangee.children;
+    });
+    assert.deepEqual(boutons.map((bouton) => bouton.href), donnees.liens.map((lien) => lien.url));
+    if (produitId === "pack-l2-revision") {
+      const [titre, rangee] = groupes[0].children;
+      assert.equal(titre.textContent, "Droit administratif L2 S1");
+      assert.deepEqual(rangee.children.map((bouton) => bouton.textContent), ["Fiche complète", "Plan", "Carte mentale"]);
+    }
+  }
+});
+
+test("les fichiers d’un pack mêlant plusieurs formats gardent leurs boutons actuels", async () => {
+  const { donnees } = await apiFactice(donneesStripe({
+    payment_status: "paid", metadata: { produitIds: "pack-matiere-penal-l2-revision" },
+  })).appeler("GET", sessionId, "confirmation");
+  const nav = navigateur([[200, donnees]]);
+  await laisserRepondre();
+  const boutons = nav.element("purchaseDownloadsList").children;
+  assert.ok(boutons.every(bouton => bouton.tag === "a" && bouton.className === "btn btn--primary"));
+  assert.deepEqual(boutons.map(bouton => bouton.href), donnees.liens.map(lien => lien.url));
+  assert.equal(nav.element("purchaseAnkiHelp").hidden, false);
+});
+
 test("le stockage bloqué laisse le navigateur vérifier une commande gratuite", async () => {
   const nav = navigateur([[200, { montant: 0, produitIds: [fiche], emailsAcceptes: true }]], { stockageAutorise: false });
   await laisserRepondre();

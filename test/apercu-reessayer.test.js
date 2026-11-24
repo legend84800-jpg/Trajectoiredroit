@@ -9,7 +9,7 @@ const dialogues = source.slice(source.indexOf('window.tjdDialogues ='), source.i
 const controleur = source.slice(source.indexOf('/* ----- APERÇU PDF'), source.indexOf('/* Sur téléphone, la barre basse'));
 
 function environnement() {
-  let focus;
+  let focus, optionsRetour;
   function element() {
     const attributs = new Map(), classes = new Set(), ecouteurs = new Map(), controles = new Map();
     return {
@@ -34,7 +34,7 @@ function environnement() {
         ecouteurs.get(nom)?.(evenement);
         return evenement;
       },
-      focus() { focus = this; },
+      focus(options) { focus = this; optionsRetour = options; },
       contains(noeud) { return this === noeud || this.children.some(enfant => enfant.contains(noeud)); },
       appendChild(enfant) { this.children.push(enfant); enfant.parentElement = this; },
       set innerHTML(html) {
@@ -55,15 +55,24 @@ function environnement() {
   declencheur.setAttribute('data-apercu', JSON.stringify(images));
   declencheur.setAttribute('data-apercu-price', '19,99 €');
   declencheur.setAttribute('data-apercu-cta', 'fiche-da-l2-s1');
+  const lien = element();
+  lien.href = 'https://example.test/assets/apercus/extrait-public.webp';
+  lien.pathname = new URL(lien.href).pathname;
+  lien.setAttribute('aria-describedby', 'matiere');
   const noeuds = Object.fromEntries(['Title', 'Sub', 'Imgs', 'Etat', 'Price', 'Cta'].map(id => ['apercu' + id, element()]));
+  noeuds.matiere = { textContent: 'Droit administratif' };
   const document = Object.assign(element(), {
     baseURI: 'https://example.test/fiche.html', body: element(), createElement: element,
-    querySelectorAll: () => [declencheur], getElementById: id => noeuds[id] || null,
+    querySelectorAll: selecteur => selecteur === '[data-apercu]' ? [declencheur] : [lien],
+    getElementById: id => noeuds[id] || null,
     dispatchEvent() {}
   });
   runInNewContext(dialogues + controleur, { document, window: {}, URL, CustomEvent: Event });
   declencheur.emettre('click');
-  return { declencheur, document, images, noeuds, modal: document.body.children[0], visionneuse: document.body.children[1], focus: () => focus };
+  return {
+    declencheur, lien, document, images, noeuds, modal: document.body.children[0],
+    visionneuse: document.body.children[1], focus: () => focus, optionsRetour: () => optionsRetour
+  };
 }
 
 test('réessayer conserve le même extrait, le focus et les autres images après échec répété', () => {
@@ -155,4 +164,21 @@ test('la fermeture du zoom rend le focus à la page affichée après navigation'
   document.emettre('keydown', { key: 'Escape' });
   assert.equal(focus(), declencheur);
   assert.equal(modal.classList.contains('open'), false);
+});
+
+test('un lien vers un extrait public ouvre directement le zoom et conserve le défilement au retour', () => {
+  const { document, lien, modal, visionneuse, focus, optionsRetour } = environnement();
+  document.emettre('keydown', { key: 'Escape' });
+  assert.equal(lien.getAttribute('aria-haspopup'), 'dialog');
+  assert.equal(lien.emettre('click', { metaKey: true }).defaultPrevented, undefined);
+  assert.equal(visionneuse.classList.contains('open'), false);
+  assert.equal(lien.emettre('click').defaultPrevented, true);
+  assert.equal(visionneuse.classList.contains('open'), true);
+  assert.equal(modal.classList.contains('open'), false);
+  assert.equal(visionneuse.querySelector('img').src, lien.href);
+  assert.equal(visionneuse.querySelector('img').alt, 'Extrait de la fiche complète · Droit administratif');
+  assert.equal(visionneuse.querySelector('.apercu-zoom__navigation').hidden, true);
+  document.emettre('keydown', { key: 'Escape' });
+  assert.equal(focus(), lien);
+  assert.equal(optionsRetour().preventScroll, true);
 });

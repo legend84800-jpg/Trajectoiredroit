@@ -582,7 +582,7 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js?v=909718f7" defer></script>
+  <script src="assets/js/main.js?v=00564c99" defer></script>
   <script>
   (function(){
     var loaded = false;
@@ -623,9 +623,12 @@
       var texte = (centimes / 100).toFixed(2).replace('.', ',');
       return (/,00$/.test(texte) ? texte.slice(0, -3) : texte) + ' €';
     }
+    function identifiantSemestre(produit) {
+      return produit.replace(/-revision(?:-\d+)?$/, '');
+    }
     function majEcheances() {
       var prix = parseInt(pack.options[pack.selectedIndex].getAttribute('data-prix'), 10);
-      var semestre = pack.value.replace(/^pack-ultra-|-revision(?:-2)?$/g, '');
+      var semestre = identifiantSemestre(pack.value).replace(/^pack-ultra-/, '');
       contenu.href = 'pack-ultra.html#pack-ultra-detail-' + semestre;
       form.querySelector('[data-echeances-libelle="1"]').textContent = 'En une fois, ' + euros(prix);
       [2, 3].forEach(function (n) {
@@ -649,7 +652,13 @@
 
     try {
       var packDemande = new URLSearchParams(window.location.search).get('pack');
-      if (packDemande && pack.querySelector('option[value="' + packDemande.replace(/[^a-z0-9-]/g, '') + '"]')) pack.value = packDemande;
+      if (packDemande) {
+        var semestreDemande = identifiantSemestre(packDemande);
+        var option = Array.from(pack.options).find(function (option) {
+          return identifiantSemestre(option.value) === semestreDemande;
+        });
+        if (option) pack.value = option.value;
+      }
     } catch (_) {}
     majEcheances();
     pack.addEventListener('change', majEcheances);

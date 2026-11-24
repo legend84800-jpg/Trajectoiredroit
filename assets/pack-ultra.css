@@ -93,9 +93,9 @@
 .ultra-card__split-btn:hover, .ultra-card__split-btn:focus-visible { color: #7a1f2b; }
 .ultra-card__split-btn:disabled { cursor: progress; opacity: .7; }
 html[data-theme="dark"] .ultra-card__split { color: #c5cbd8; }
-/* Lien vers la présentation aux parents : une seule fois sous la grille, discret, dans le bleu du site */
-.ultra-parents { margin: 22px 0 0; text-align: center; font-size: .92rem; color: #4f5a70; }
-.ultra-parents a { color: #1a2851; font-weight: 600; text-decoration: underline; text-decoration-color: #8EAADD; text-underline-offset: 4px; }
+/* Présentation pour les parents sous les options de chaque carte */
+.ultra-parents { margin: 8px 0 0; text-align: center; font-size: .92rem; color: #4f5a70; }
+.ultra-parents a { display: inline-flex; align-items: center; min-height: 32px; padding-inline: 4px; color: #1a2851; font-weight: 600; text-decoration: underline; text-decoration-color: #8EAADD; text-underline-offset: 4px; }
 .ultra-parents a:hover { text-decoration-color: currentColor; }
 html[data-theme="dark"] .ultra-parents a { color: #D4E0F6; }
 .ultra-explainer {

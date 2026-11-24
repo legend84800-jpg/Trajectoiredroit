@@ -90,9 +90,9 @@ window.tjdDialogues = (function () {
       return !el.disabled && el.getAttribute('tabindex') !== '-1' && !el.hidden && el.getClientRects().length > 0;
     });
   }
-  function ouvrir(noeud, premier, declencheur) {
+  function ouvrir(noeud, premier, declencheur, optionsRetour) {
     if (pile.some(function (etat) { return etat.noeud === noeud; })) return;
-    var etat = { noeud: noeud, retour: declencheur || document.activeElement, overflow: document.body.style.overflow, inert: noeud.inert, cache: noeud.getAttribute('aria-hidden'), voisins: [] };
+    var etat = { noeud: noeud, retour: declencheur || document.activeElement, overflow: document.body.style.overflow, inert: noeud.inert, cache: noeud.getAttribute('aria-hidden'), voisins: [], optionsRetour: optionsRetour };
     noeud.inert = false; noeud.removeAttribute('aria-hidden');
     Array.prototype.forEach.call(document.body.children, function (voisin) {
       if (voisin === noeud || voisin.contains(noeud)) return;
@@ -122,7 +122,7 @@ window.tjdDialogues = (function () {
       });
       document.body.style.overflow = etat.overflow;
       var retour = typeof etat.retour === 'function' ? etat.retour() : etat.retour;
-      if (retour && retour.isConnected) retour.focus();
+      if (retour && retour.isConnected) retour.focus(etat.optionsRetour);
     }
     document.dispatchEvent(new CustomEvent('tjd:dialogue'));
   }
@@ -200,13 +200,14 @@ window.tjdDialogues = (function () {
 })();
 
 /* ----- APERÇU PDF (modale) -----
-   Injecté une seule fois par page si au moins un déclencheur [data-apercu] existe
-   (catalogue formations.html et pages matière individuelles). Le CTA de la modale
+   Injecté une seule fois pour la galerie [data-apercu] ou un lien [data-apercu-direct].
+   Le CTA de la modale
    porte data-tjd-produit : achat.js gère déjà le clic globalement, pas besoin de le refaire ici. */
 (function () {
   function init() {
     var triggers = document.querySelectorAll('[data-apercu]');
-    if (!triggers.length) return;
+    var liensDirects = document.querySelectorAll('a[data-apercu-direct]');
+    if (!triggers.length && !liensDirects.length) return;
     if (document.getElementById('apercuModal')) return;
 
     var modal = document.createElement('div');
@@ -268,6 +269,13 @@ window.tjdDialogues = (function () {
       viewer.classList.toggle('apercu-zoom--agrandi', agrandi);
       viewerToggle.textContent = agrandi ? 'Voir la page entière' : 'Agrandir';
     }
+    function afficherImage(src, alt, detail) {
+      viewerImg.src = src;
+      viewerImg.alt = alt;
+      viewer.classList.toggle('apercu-zoom--detail', detail);
+      viewerScroll.scrollTop = 0;
+      viewerScroll.scrollLeft = 0;
+    }
     function afficherPage(position) {
       var im = pagesViewer[position];
       if (!im) return;
@@ -276,11 +284,7 @@ window.tjdDialogues = (function () {
         closeViewer();
         return;
       }
-      viewerImg.src = im.src;
-      viewerImg.alt = im.alt;
-      viewer.classList.toggle('apercu-zoom--detail', im.getAttribute('data-detail') === '1');
-      viewerScroll.scrollTop = 0;
-      viewerScroll.scrollLeft = 0;
+      afficherImage(im.src, im.alt, im.getAttribute('data-detail') === '1');
       viewerPrevious.setAttribute('aria-disabled', position === 0);
       viewerNext.setAttribute('aria-disabled', position === pagesViewer.length - 1);
       viewerStatus.textContent = viewerNav.hidden ? '' : 'Page ' + (position + 1) + ' sur ' + pagesViewer.length;
@@ -296,6 +300,17 @@ window.tjdDialogues = (function () {
       });
       afficherPage(positionViewer);
       try { if (window.gtag) gtag('event', 'apercu_zoom', { image: src.split('/').pop() }); } catch (_) {}
+    }
+    function ouvrirApercuDirect(lien) {
+      pagesViewer = [];
+      viewerNav.hidden = true;
+      viewer.classList.remove('apercu-zoom--plusieurs');
+      reglerZoom(false);
+      var matiere = document.getElementById(lien.getAttribute('aria-describedby'));
+      var alt = lien.querySelector('img')?.alt || 'Extrait de la fiche complète' + (matiere ? ' · ' + matiere.textContent.trim() : '');
+      window.tjdDialogues.ouvrir(viewer, viewerClose, lien, { preventScroll: true });
+      afficherImage(lien.href, alt, false);
+      try { if (window.gtag) gtag('event', 'apercu_zoom', { image: lien.pathname.split('/').pop() }); } catch (_) {}
     }
     function closeViewer() { window.tjdDialogues.fermer(viewer); }
     viewerClose.addEventListener('click', closeViewer);
@@ -407,6 +422,14 @@ window.tjdDialogues = (function () {
     }
     function close() { window.tjdDialogues.fermer(modal); }
     triggers.forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
+    liensDirects.forEach(function (lien) {
+      lien.setAttribute('aria-haspopup', 'dialog');
+      lien.addEventListener('click', function (e) {
+        if (e.defaultPrevented || e.button || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+        e.preventDefault();
+        ouvrirApercuDirect(lien);
+      });
+    });
     modal.addEventListener('click', function (e) {
       if (e.target === modal || e.target.closest('[data-apercu-close]')) close();
     });

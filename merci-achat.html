@@ -81,6 +81,16 @@
       text-align: left;
       white-space: normal;
     }
+    #purchaseDownloads .telechargements-matiere-liens {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    #purchaseDownloads .telechargements-matiere-liens a {
+      margin: 0;
+      padding: 8px;
+      font-size: .875rem;
+    }
     @media (max-width: 480px) {
       #purchaseDownloads.card.telechargements-groupes { padding: 20px 16px !important; }
     }
@@ -557,7 +567,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=909718f7" defer></script>
+  <script src="assets/js/main.js?v=00564c99" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
   (function(){
@@ -625,12 +635,12 @@
       }
     };
 
-    function boutonTelechargement(lien, classe) {
+    function boutonTelechargement(lien, classe, libelle) {
       var bouton = document.createElement('a');
       bouton.className = 'btn ' + classe;
       bouton.href = lien.url;
       bouton.rel = 'nofollow noreferrer';
-      bouton.textContent = 'Télécharger ' + lien.nom;
+      bouton.textContent = libelle || 'Télécharger ' + lien.nom;
       return bouton;
     }
 
@@ -647,22 +657,64 @@
       return groupes;
     }
 
+    function grouperFichesParMatiere(liens) {
+      var groupes = new Map();
+      var libelles = new Map([
+        [undefined, 'Fiche complète'],
+        ['le plan', 'Plan'],
+        ['la carte mentale', 'Carte mentale']
+      ]);
+      for (var lien of liens) {
+        var details = /^Fiche complète ([^·]+?)(?: · ([^·]+))?$/.exec(lien.nom);
+        if (!details || lien.type !== 'pdf' || lien.format || !libelles.has(details[2])) return new Map();
+        var matiere = details[1].trim();
+        if (!matiere) return new Map();
+        if (!groupes.has(matiere)) groupes.set(matiere, new Map());
+        var fichiers = groupes.get(matiere);
+        var libelle = libelles.get(details[2]);
+        if (fichiers.has(libelle)) return new Map();
+        fichiers.set(libelle, lien);
+      }
+      return Array.from(groupes.values()).every(function (fichiers) { return fichiers.has('Fiche complète'); })
+        ? groupes : new Map();
+    }
+
+    function blocTelechargements(nom, identifiant) {
+      var bloc = document.createElement('section');
+      bloc.className = 'telechargements-produit';
+      var titre = document.createElement('h3');
+      titre.textContent = nom;
+      titre.id = 'purchaseDownloads-title-' + identifiant;
+      bloc.setAttribute('aria-labelledby', titre.id);
+      bloc.appendChild(titre);
+      return bloc;
+    }
+
     function afficherTelechargements(liens, nomsProduits) {
       var carte = document.getElementById('purchaseDownloads');
       var liste = document.getElementById('purchaseDownloadsList');
       var groupes = grouperTelechargements(liens, nomsProduits);
+      var matieres = groupes.size > 1 ? new Map() : grouperFichesParMatiere(liens);
       liste.textContent = '';
-      carte.classList.toggle('telechargements-groupes', groupes.size > 1);
+      carte.classList.toggle('telechargements-groupes', groupes.size > 1 || matieres.size > 1);
       if (groupes.size > 1) {
         groupes.forEach(function (groupe, produitId) {
-          var bloc = document.createElement('section');
-          bloc.className = 'telechargements-produit';
-          var titre = document.createElement('h3');
-          titre.textContent = groupe.nom.replace(/^Fiche complète /, '');
-          titre.id = 'purchaseDownloads-title-' + produitId;
-          bloc.setAttribute('aria-labelledby', titre.id);
-          bloc.appendChild(titre);
+          var bloc = blocTelechargements(groupe.nom.replace(/^Fiche complète /, ''), produitId);
           groupe.liens.forEach(function (lien) { bloc.appendChild(boutonTelechargement(lien, 'btn--outline')); });
+          liste.appendChild(bloc);
+        });
+      } else if (matieres.size > 1) {
+        var numero = 0;
+        matieres.forEach(function (fichiers, matiere) {
+          var bloc = blocTelechargements(matiere, 'matiere-' + (++numero));
+          var rangee = document.createElement('div');
+          rangee.className = 'telechargements-matiere-liens';
+          fichiers.forEach(function (lien, libelle) {
+            var bouton = boutonTelechargement(lien, 'btn--outline', libelle);
+            bouton.setAttribute('aria-label', libelle + ' · ' + matiere);
+            rangee.appendChild(bouton);
+          });
+          bloc.appendChild(rangee);
           liste.appendChild(bloc);
         });
       } else {
