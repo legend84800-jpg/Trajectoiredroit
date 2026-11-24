@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "python3 -m venv /tmp/tjd-r2-check && /tmp/tjd-r2-check/bin/python -m pip install --quiet --disable-pip-version-check boto3==1.40.16 && /tmp/tjd-r2-check/bin/python -B scripts/controle-r2-avant-publication.py && npm run build",
   "outputDirectory": "build/site-public",
   "crons": [
     {
@@ -94,6 +94,15 @@
       ]
     },
     {
+      "source": "/assets/js/cookie-consent.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=0, must-revalidate"
+        }
+      ]
+    },
+    {
       "source": "/assets/panier-inclusions.json",
       "headers": [
         {
@@ -126,18 +135,66 @@
     }
   ],
   "redirects": [
-    {"source":"/cours-fiches.html","destination":"/formations.html","permanent":true},
-    {"source":"/cours-fiches","destination":"/formations.html","permanent":true},
-    {"source":"/fiches-ultra-completes.html","destination":"/formations.html","permanent":true},
-    {"source":"/fiches-ultra-completes","destination":"/formations.html","permanent":true},
-    {"source": "/droit-penal-general-l1", "destination": "/droit-penal-general-l2.html", "permanent": true},
-    {"source": "/droit-penal-general-l1.html", "destination": "/droit-penal-general-l2.html", "permanent": true},
-    {"source": "/fiche-revision-droit-penal-general-l1", "destination": "/fiche-revision-droit-penal-general-l2.html", "permanent": true},
-    {"source": "/fiche-revision-droit-penal-general-l1.html", "destination": "/fiche-revision-droit-penal-general-l2.html", "permanent": true},
-    {"source": "/sujets-droit-penal-general-l1", "destination": "/sujets-droit-penal-general-l2.html", "permanent": true},
-    {"source": "/sujets-droit-penal-general-l1.html", "destination": "/sujets-droit-penal-general-l2.html", "permanent": true},
-    {"source": "/droit-penal-general-L1", "destination": "/droit-penal-general-l2.html", "permanent": true},
-    {"source": "/droit-penal-general-L1.html", "destination": "/droit-penal-general-l2.html", "permanent": true},
+    {
+      "source": "/cours-fiches.html",
+      "destination": "/formations.html",
+      "permanent": true
+    },
+    {
+      "source": "/cours-fiches",
+      "destination": "/formations.html",
+      "permanent": true
+    },
+    {
+      "source": "/fiches-ultra-completes.html",
+      "destination": "/formations.html",
+      "permanent": true
+    },
+    {
+      "source": "/fiches-ultra-completes",
+      "destination": "/formations.html",
+      "permanent": true
+    },
+    {
+      "source": "/droit-penal-general-l1",
+      "destination": "/droit-penal-general-l2.html",
+      "permanent": true
+    },
+    {
+      "source": "/droit-penal-general-l1.html",
+      "destination": "/droit-penal-general-l2.html",
+      "permanent": true
+    },
+    {
+      "source": "/fiche-revision-droit-penal-general-l1",
+      "destination": "/fiche-revision-droit-penal-general-l2.html",
+      "permanent": true
+    },
+    {
+      "source": "/fiche-revision-droit-penal-general-l1.html",
+      "destination": "/fiche-revision-droit-penal-general-l2.html",
+      "permanent": true
+    },
+    {
+      "source": "/sujets-droit-penal-general-l1",
+      "destination": "/sujets-droit-penal-general-l2.html",
+      "permanent": true
+    },
+    {
+      "source": "/sujets-droit-penal-general-l1.html",
+      "destination": "/sujets-droit-penal-general-l2.html",
+      "permanent": true
+    },
+    {
+      "source": "/droit-penal-general-L1",
+      "destination": "/droit-penal-general-l2.html",
+      "permanent": true
+    },
+    {
+      "source": "/droit-penal-general-L1.html",
+      "destination": "/droit-penal-general-l2.html",
+      "permanent": true
+    },
     {
       "source": "/images",
       "destination": "/droit-des-contrats-en-images.html?utm_source=video&utm_medium=voix&utm_campaign=cours-images-contrats",
