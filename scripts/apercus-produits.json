@@ -1975,25 +1975,23 @@
       }
     },
     "fiche-commercial-l3-s1": {
-      "sha256": "73b52c335478a462a94806b898942684bc76c91beb3101a7290c46bcf82b4331",
-      "pages_pdf": 127,
+      "sha256": "07771f01f17dfc70efed8c340cc338debd9f17e780f24101e559470b79ac0cbd",
+      "pages_pdf": 122,
       "famille": "fiches",
       "fichier_pdf": "fiche-commercial-l3-s1.pdf",
       "images": [
-        "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p057.webp",
-        "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p058.webp",
-        "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p046.webp",
-        "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p047.webp",
-        "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p048.webp",
-        "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p085.webp"
+        "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p016.webp",
+        "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p025.webp",
+        "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p042.webp",
+        "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p076.webp",
+        "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p097.webp"
       ],
       "pages_images": [
-        57,
-        58,
-        46,
-        47,
-        48,
-        85
+        16,
+        25,
+        42,
+        76,
+        97
       ],
       "variantes": [
         {
@@ -2003,20 +2001,18 @@
             "assets/apercus/commercial-l3-s1-2.webp"
           ],
           "pages": [
-            57,
-            58,
-            46,
-            47,
-            48,
-            85
+            16,
+            25,
+            42,
+            76,
+            97
           ],
           "images": [
-            "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p057.webp",
-            "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p058.webp",
-            "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p046.webp",
-            "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p047.webp",
-            "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p048.webp",
-            "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p085.webp"
+            "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p016.webp",
+            "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p025.webp",
+            "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p042.webp",
+            "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p076.webp",
+            "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p097.webp"
           ],
           "versions_precedentes": [
             [
@@ -2068,66 +2064,66 @@
               "assets/apercus/typographie-20261113/fiche-commercial-l3-s1/0ed91e3d38c2-p047.webp",
               "assets/apercus/typographie-20261113/fiche-commercial-l3-s1/0ed91e3d38c2-p048.webp",
               "assets/apercus/typographie-20261113/fiche-commercial-l3-s1/0ed91e3d38c2-p086.webp"
+            ],
+            [
+              "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p057.webp",
+              "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p058.webp",
+              "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p046.webp",
+              "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p047.webp",
+              "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p048.webp",
+              "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p085.webp"
             ]
           ]
         }
       ],
       "vignette": {
-        "image": "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-vignette-p057.webp",
-        "page_pdf": 57
+        "image": "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-vignette-p016.webp",
+        "page_pdf": 16
       },
       "preuves_images": {
-        "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p057.webp": {
-          "page_pdf": 57,
-          "sha256_image": "a26ff60b6bba1d4643b8d4fcbcd5c0d806e59064f3fdb86dab8833cf342f96b1",
+        "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p016.webp": {
+          "page_pdf": 16,
+          "sha256_image": "5ed89acf1fe0a7802d40a5241c68bacc2c002319dce04238de4e292cb1aa6f08",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p058.webp": {
-          "page_pdf": 58,
-          "sha256_image": "71ab9a0067179bf0f974cdc94316436c5a34f69c9f46e417d0b1040fc12529db",
+        "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p025.webp": {
+          "page_pdf": 25,
+          "sha256_image": "057c25db668dda659ab133141374c78babcb606e1f6eddb7edb58eb2dd45498c",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p046.webp": {
-          "page_pdf": 46,
-          "sha256_image": "903f73e5f199f3f41ffd701cbc085125cb2f9bf9c21f2da8944ceccef1bcb765",
+        "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p042.webp": {
+          "page_pdf": 42,
+          "sha256_image": "9bd7e3a2d6955d27efcf583fd063cd39d639fc20d53e7fde37892c033fb04a0f",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p047.webp": {
-          "page_pdf": 47,
-          "sha256_image": "6069fcf842ad35ddffe98b5b50ab5204babfddebba05376b1c5b4c5a68943908",
+        "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p076.webp": {
+          "page_pdf": 76,
+          "sha256_image": "cc3d9bea43015bbe8521b6f1cb6431263fe29209393b96b11029ab8069a37774",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p048.webp": {
-          "page_pdf": 48,
-          "sha256_image": "36521c5431ea36c96d683191cfc816423a756641047d028f063cb868e8cec438",
+        "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-p097.webp": {
+          "page_pdf": 97,
+          "sha256_image": "1ddaede7df8e0395c3616cdbcecf40bc83558476d744a8a2f6958c20056922bc",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-p085.webp": {
-          "page_pdf": 85,
-          "sha256_image": "ca830156db53a7e6c4e6d842d8c82d2330ef28f5fefd28b5a4663b3042649a40",
-          "dimensions": [
-            1429,
-            2021
-          ]
-        },
-        "assets/apercus/finition-20261114/fiche-commercial-l3-s1/73b52c335478-vignette-p057.webp": {
-          "page_pdf": 57,
-          "sha256_image": "92a41d0ea753e832a0a3340c4a95b288b64799b36f44914ebd648b7f71f51b8f",
+        "assets/apercus/commercial-20261124/fiche-commercial-l3-s1/07771f01f17d-vignette-p016.webp": {
+          "page_pdf": 16,
+          "sha256_image": "2678ee5e706279ec9e969f162f6f470d2667f7c23463e10a0538fe31395a75b5",
           "dimensions": [
             358,
             506
@@ -5088,14 +5084,14 @@
       }
     },
     "maj-commercial-l3-s1": {
-      "sha256": "e9a9b747063ff9eee53d7c3c9da5fa5fb390c899dfeb10a918c073cc00437e49",
-      "pages_pdf": 105,
+      "sha256": "6529144d590bdedfbee509ed72c79605bcb64ca63913c5a140d07754440125d9",
+      "pages_pdf": 101,
       "famille": "majeures",
       "fichier_pdf": "maj-commercial-l3-s1.pdf",
       "images": [
-        "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p004.webp",
-        "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p002.webp",
-        "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p003.webp"
+        "assets/apercus/commercial-20261124/maj-commercial-l3-s1/6529144d590b-p004.webp",
+        "assets/apercus/commercial-20261124/maj-commercial-l3-s1/6529144d590b-p002.webp",
+        "assets/apercus/commercial-20261124/maj-commercial-l3-s1/6529144d590b-p003.webp"
       ],
       "pages_images": [
         4,
@@ -5115,9 +5111,9 @@
             3
           ],
           "images": [
-            "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p004.webp",
-            "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p002.webp",
-            "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p003.webp"
+            "assets/apercus/commercial-20261124/maj-commercial-l3-s1/6529144d590b-p004.webp",
+            "assets/apercus/commercial-20261124/maj-commercial-l3-s1/6529144d590b-p002.webp",
+            "assets/apercus/commercial-20261124/maj-commercial-l3-s1/6529144d590b-p003.webp"
           ],
           "versions_precedentes": [
             [
@@ -5164,31 +5160,36 @@
               "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p004.webp",
               "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p002.webp",
               "assets/apercus/typographie-20261113/maj-commercial-l3-s1/2fbd6e425b9f-p003.webp"
+            ],
+            [
+              "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p004.webp",
+              "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p002.webp",
+              "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p003.webp"
             ]
           ]
         }
       ],
       "majeures": 41,
       "preuves_images": {
-        "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p004.webp": {
+        "assets/apercus/commercial-20261124/maj-commercial-l3-s1/6529144d590b-p004.webp": {
           "page_pdf": 4,
-          "sha256_image": "90f46b831d3af220c9a2c590e7b89f875a769b38e34a55f9dbd1e138682513bb",
+          "sha256_image": "e07c8141f34d7bf050dc7863bdc75a1b2148bb4245e4a5dd4ccbc7021aebf6ec",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p002.webp": {
+        "assets/apercus/commercial-20261124/maj-commercial-l3-s1/6529144d590b-p002.webp": {
           "page_pdf": 2,
-          "sha256_image": "ad5ca209d64e527e673bf9129594a5de2cceac7e1179cee366b85130a3a7e939",
+          "sha256_image": "db37dd7e3b3ad6cd1453ff1e2917233c81aaa54260221a050399961224485fcd",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p003.webp": {
+        "assets/apercus/commercial-20261124/maj-commercial-l3-s1/6529144d590b-p003.webp": {
           "page_pdf": 3,
-          "sha256_image": "d108352e4058891d3ba477f330f06ab6d1ecb165a84d18c1bca088b6f9f112c5",
+          "sha256_image": "3f7be2a6f36fe68848cadbbdb79dc4d4714f40935ae773579fedcafa52b6c2a7",
           "dimensions": [
             1429,
             2021
@@ -7670,15 +7671,15 @@
       }
     },
     "cas-pratique-commercial-l3-s1": {
-      "sha256": "0d9b793f3dc1d9d19070275510d72d725dec67f90418827bf44e4b8ad6ea4a75",
-      "pages_pdf": 110,
+      "sha256": "3caa1a2eb26911d4fb1a46b1a7edeba3869d1bb5e9dcbc942e8b14bb50085c80",
+      "pages_pdf": 119,
       "famille": "recueils",
       "fichier_pdf": "cas-pratique-commercial-l3-s1.pdf",
       "images": [
-        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p001.webp",
-        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p002.webp",
-        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p003.webp",
-        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p005.webp"
+        "assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p001.webp",
+        "assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p002.webp",
+        "assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p003.webp",
+        "assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p005.webp"
       ],
       "pages_images": [
         1,
@@ -7701,41 +7702,49 @@
             5
           ],
           "images": [
-            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p001.webp",
-            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p002.webp",
-            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p003.webp",
-            "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p005.webp"
+            "assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p001.webp",
+            "assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p002.webp",
+            "assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p003.webp",
+            "assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p005.webp"
+          ],
+          "versions_precedentes": [
+            [
+              "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p001.webp",
+              "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p002.webp",
+              "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p003.webp",
+              "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p005.webp"
+            ]
           ]
         }
       ],
       "preuves_images": {
-        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p001.webp": {
+        "assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p001.webp": {
           "page_pdf": 1,
-          "sha256_image": "cffb07eef230e119ec6b7f9fd6d9529ddbc83036150ed50adf24a074a13cced1",
+          "sha256_image": "051cbcda76422edda400fe59a504871698c2f0b27f8c05489463214da8f21045",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p002.webp": {
+        "assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p002.webp": {
           "page_pdf": 2,
-          "sha256_image": "c3dd7e1d1f17bc75dd391598c74220252600fe9bcc008bf6025299a6f9242616",
+          "sha256_image": "6174b33f363f9c46e7f0bf36887a212e342875a087802c9c75490c1d5ed8ea45",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p003.webp": {
+        "assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p003.webp": {
           "page_pdf": 3,
-          "sha256_image": "0de93af7556371026b99bd04da069d4c1f6fdb1a76da76b7cc7dcb281328eed2",
+          "sha256_image": "358f3f5309a8cabc2b190603b6a49ae9f8dfd78dd65fd41cdd33c8aae1ce948a",
           "dimensions": [
             1429,
             2021
           ]
         },
-        "assets/apercus/recueils-20261115/cas-pratique-commercial-l3-s1/0d9b793f3dc1-p005.webp": {
+        "assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p005.webp": {
           "page_pdf": 5,
-          "sha256_image": "9f6e6b094116421495cd58832ae9f8960a3014103723096aafc6ee04f89ec4c8",
+          "sha256_image": "ceef38fe9226a5eb213c183323e95cd5e363133be287987ee23f634a4fbb2b5c",
           "dimensions": [
             1429,
             2021

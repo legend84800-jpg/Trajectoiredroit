@@ -66,7 +66,8 @@ test('l’index exclut les pages privées ou techniques et les fichiers absents'
       assert.ok(carte[0].includes(`data-tjd-produit="${ancre}"`), page.u);
       assert.ok(PRODUITS[ancre] && !PRODUITS[ancre].venteSuspendue, page.u);
       if (chemin === '/majeures-preparees.html') {
-        assert.ok(carte[0].split('>')[0].includes(`data-niveau="${destination.searchParams.get('niveau').toUpperCase()}"`), page.u);
+        const niveaux = carte[0].split('>')[0].match(/\bdata-niveau="([^"]+)"/)?.[1].split(',');
+        assert.ok(niveaux?.includes(destination.searchParams.get('niveau').toUpperCase()), page.u);
         assert.ok(carte[0].split('>')[0].includes('tabindex="-1"'), page.u);
       }
     }
@@ -262,4 +263,19 @@ test('une carte sans ancre utilisable est ignorée et sa page reste dans l’ind
   assert.ok(entrees.some((entree) => entree.u === '/' + page));
   assert.equal(rechercher(entrees, 'QCM droit administratif').length, 0);
   assert.equal(rechercher(entrees, 'QCM droit constitutionnel').length, 2);
+});
+
+
+test('les mêmes supports de droit commercial se trouvent en L2 et en L3', () => {
+  assert.ok(rechercher(index, 'droit commercial L2').some((entree) => entree.u === '/droit-commercial-l2.html'));
+  for (const [format, destination] of [
+    ['fiche complète', '/formations.html#fiche-commercial-l3-s1'],
+    ['majeures préparées', '/majeures-preparees.html?niveau=l3#maj-commercial-l3-s1'],
+    ['cas pratiques corrigés', '/cas-pratiques-corriges.html?matiere=cas-pratique-commercial-l3-s1#recueils-cas-pratiques'],
+  ]) {
+    for (const niveau of ['L2', 'L3']) {
+      const resultats = Array.from(rechercher(index, format + ' droit commercial ' + niveau + ' S1'));
+      assert.equal(resultats.filter((entree) => entree.u === destination).length, 1, format + ' ' + niveau);
+    }
+  }
 });

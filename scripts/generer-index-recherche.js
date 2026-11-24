@@ -33,26 +33,28 @@ function cartesCatalogue(html, page, formatAttendu) {
   const citation = formatAttendu === 'Citations';
   for (const match of html.matchAll(/<article\b([^>]*)>([\s\S]*?)<\/article>/gi)) {
     const [, attributs, corps] = match;
-    const niveau = attributs.match(/\bdata-niveau=["'](L[123])["']/)?.[1];
+    const niveaux = (attributs.match(/\bdata-niveau=["'](L[123](?:,L[123])*)["']/)?.[1] || '').split(',').filter(Boolean);
     const produit = corps.match(/\bdata-tjd-produit=["']([a-z0-9]+(?:-[a-z0-9]+)*)["']/)?.[1];
-    if ((!niveau && !citation) || !produit || !Object.hasOwn(PRODUITS, produit) || PRODUITS[produit].venteSuspendue || /\shidden(?:\s|=|$)/i.test(attributs)) continue;
+    if ((!niveaux.length && !citation) || !produit || !Object.hasOwn(PRODUITS, produit) || PRODUITS[produit].venteSuspendue || /\shidden(?:\s|=|$)/i.test(attributs)) continue;
 
     const ancre = attributs.match(/\sid=["']([^"']+)["']/)?.[1];
     const titre = texteHtml(corps.match(/<h3\b[^>]*class=["']product__title["'][^>]*>([\s\S]*?)<\/h3>/i)?.[1]);
     const format = texteHtml(corps.match(/<span\b[^>]*class=["'][^"']*\bbadge--format\b[^"']*["'][^>]*>([\s\S]*?)<\/span>/i)?.[1]);
     const meta = texteHtml(corps.match(/<div\b[^>]*class=["']product__meta["'][^>]*>([\s\S]*?)<\/div>/i)?.[1]);
     const majeure = formatAttendu === 'Majeure préparée';
-    const niveauMeta = (majeure ? meta.match(/\b(L[123])\b/) : meta.match(/^(L[123])(?: ·|$)/))?.[1];
-    if (ancre !== produit || format !== formatAttendu || !titre || niveauMeta !== niveau) continue;
-    if (citation && (!produit.startsWith('citations-') || (!niveau && !/^Complément(?: ·|$)/.test(meta)))) continue;
+    const libelleNiveaux = (majeure ? meta.match(/\b(L[123](?: et L[123])*)\b/) : meta.match(/^(L[123](?: et L[123])*)(?: ·|$)/))?.[1];
+    const niveauxMeta = libelleNiveaux?.split(' et ') || [];
+    if (ancre !== produit || format !== formatAttendu || !titre) continue;
+    if (niveauxMeta.length !== niveaux.length || niveauxMeta.some((niveau) => !niveaux.includes(niveau))) continue;
+    if (citation && (!produit.startsWith('citations-') || (!niveaux.length && !/^Complément(?: ·|$)/.test(meta)))) continue;
 
     const semestres = Array.from(meta.matchAll(/\b(?:Semestre\s+|S)([12])\b/gi), (match) => match[1]);
     const sujet = semestres.length === 1 ? titre.replace(new RegExp(` \\(S${semestres[0]}\\)$`), '') : titre;
-    const repere = [niveau || 'Complément', semestres.map((semestre) => 'S' + semestre).join(' ou ')].filter(Boolean).join(' ');
-    const licence = [niveau && 'Licence ' + niveau.slice(1), ...semestres.map((semestre) => 'semestre ' + semestre)].filter(Boolean).join(' ');
+    const repere = [libelleNiveaux || 'Complément', semestres.map((semestre) => 'S' + semestre).join(' ou ')].filter(Boolean).join(' ');
+    const licence = [...niveauxMeta.map((niveau) => 'Licence ' + niveau.slice(1)), ...semestres.map((semestre) => 'semestre ' + semestre)].filter(Boolean).join(' ');
     const categorieCarte = majeure ? 'Majeures préparées' : citation ? 'Fiches de citations' : format;
     const motsFormat = format === 'Fiche complète' ? 'Fiche complète fiche de révision PDF' : categorieCarte.replace(' + ', ' et ');
-    const adresse = '/' + page + (majeure ? '?niveau=' + niveau.toLowerCase() : '') + '#' + ancre;
+    const adresse = '/' + page + (majeure ? '?niveau=' + niveaux[0].toLowerCase() : '') + '#' + ancre;
     cartes.push({ t: sujet + ' · ' + repere, u: adresse, c: categorieCarte, k: [motsFormat + ' de ' + sujet, licence].filter(Boolean).join(' ') });
   }
   return cartes;
@@ -62,21 +64,22 @@ function choixCasPratiques(html) {
   const ancre = 'recueils-cas-pratiques';
   if (!html.includes(`id="${ancre}"`)) return [];
   const options = html.match(/<select\b[^>]*\bid=["']choixRecueil["'][^>]*>([\s\S]*?)<\/select>/i)?.[1] || '';
-  const resultats = [];
+  const recueils = new Map();
   for (const [, attributs, contenu] of options.matchAll(/<option\b([^>]*)>([\s\S]*?)<\/option>/gi)) {
     const produit = attributs.match(/\bvalue=["'](cas-pratique-[a-z0-9]+(?:-[a-z0-9]+)*)["']/)?.[1];
     const libelle = texteHtml(contenu).match(/^(.+?) (L[123])(?: (S[12]))?(?: · |$)/);
     if (!produit || !Object.hasOwn(PRODUITS, produit) || PRODUITS[produit].venteSuspendue || !libelle || /\s(?:disabled|hidden)(?:\s|=|$)/i.test(attributs)) continue;
     const [, sujet, niveau, semestre] = libelle;
-    const categorieCarte = 'Cas pratiques corrigés';
-    resultats.push({
-      t: sujet + ' · ' + niveau + (semestre ? ' ' + semestre : ''),
-      u: '/cas-pratiques-corriges.html?matiere=' + produit + '#' + ancre,
-      c: categorieCarte,
-      k: categorieCarte + ' de ' + sujet + ' Licence ' + niveau.slice(1) + (semestre ? ' semestre ' + semestre.slice(1) : ''),
-    });
+    if (!recueils.has(produit)) recueils.set(produit, { sujet, niveaux: new Set(), semestre });
+    recueils.get(produit).niveaux.add(niveau);
   }
-  return resultats;
+  const categorieCarte = 'Cas pratiques corrigés';
+  return Array.from(recueils, ([produit, { sujet, niveaux, semestre }]) => ({
+    t: sujet + ' · ' + Array.from(niveaux).join(' et ') + (semestre ? ' ' + semestre : ''),
+    u: '/cas-pratiques-corriges.html?matiere=' + produit + '#' + ancre,
+    c: categorieCarte,
+    k: [categorieCarte + ' de ' + sujet, ...Array.from(niveaux, (niveau) => 'Licence ' + niveau.slice(1)), semestre && 'semestre ' + semestre.slice(1)].filter(Boolean).join(' '),
+  }));
 }
 
 const SECTIONS_GUIDES = {

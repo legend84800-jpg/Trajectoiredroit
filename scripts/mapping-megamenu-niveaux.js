@@ -26,6 +26,8 @@ const NIVEAUX = {
       { nom: "Droit pénal", href: "droit-penal-l2.html" },
       { nom: "Droit pénal général", href: "droit-penal-general-l2.html" },
       { nom: "Droit des biens", href: "droit-des-biens-l2.html" },
+      { nom: "Responsabilité civile", href: "responsabilite-civile-l2.html" },
+      { nom: "Droit commercial", href: "droit-commercial-l2.html" },
     ],
   },
   L3: {

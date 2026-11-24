@@ -188,7 +188,7 @@
               <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
             </div>
             <div class="megamenu__niveau-col">
-              <div class="megamenu__niveau-head"><strong>L2</strong><span>7 matières</span></div>
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>8 matières</span></div>
               <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
               <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
               <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
@@ -196,6 +196,7 @@
               <a href="droit-penal-general-l2.html" role="menuitem">Droit pénal général</a>
               <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
               <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a href="droit-commercial-l2.html" role="menuitem">Droit commercial</a>
               <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
             </div>
             <div class="megamenu__niveau-col">
@@ -414,7 +415,7 @@
           <div class="niveaux__onglets">
             <button type="button" class="niveau-onglet" data-niveau-onglet="TOUT" aria-pressed="true">Toutes<small>18 matières</small></button>
             <button type="button" class="niveau-onglet" data-niveau-onglet="L1" aria-pressed="false">L1<small>3 matières</small></button>
-            <button type="button" class="niveau-onglet" data-niveau-onglet="L2" aria-pressed="false">L2<small>7 matières</small></button>
+            <button type="button" class="niveau-onglet" data-niveau-onglet="L2" aria-pressed="false">L2<small>8 recueils</small></button>
             <button type="button" class="niveau-onglet" data-niveau-onglet="L3" aria-pressed="false">L3<small>8 matières</small></button>
           </div>
         </div>
@@ -613,15 +614,15 @@
             </div>
           </article>
 
-          <article id="maj-commercial-l3-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L3">
+          <article id="maj-commercial-l3-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L3,L2">
             <div class="product__thumb has-cover"><span class="badge badge--format">Majeure préparée</span><img src="assets/majeures/commercial-l3s1-couleur.webp" alt="Droit commercial, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit commercial</h3>
-              <div class="product__meta"><span>101 pages</span><span>·</span><span>41 majeures</span><span>·</span><span>L3</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · Cas pratique</span></div>
+              <div class="product__meta"><span>101 pages</span><span>·</span><span>41 majeures</span><span>·</span><span>L2 et L3</span><span>·</span><span>Semestre 1</span><span>·</span><span>PDF · Cas pratique</span></div>
               <p class="product__desc">Le PDF de majeures préparées explique ce qui rend un acte commercial et ce que contient un fonds de commerce. Il traite aussi du bail commercial, puis des règles de concurrence entre entreprises.</p>
-              <button type="button" class="apercu-link" data-apercu='["assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p004.webp","assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p002.webp","assets/apercus/holtz13-20261115/maj-commercial-l3-s1/e9a9b747063f-p003.webp"]' data-apercu-title="Droit commercial · L3 S1 · Majeures préparées" data-apercu-sub="Extraits réels des majeures préparées" data-apercu-price="19,99 €" data-apercu-cta="maj-commercial-l3-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
+              <button type="button" class="apercu-link" data-apercu='["assets/apercus/commercial-20261124/maj-commercial-l3-s1/6529144d590b-p004.webp","assets/apercus/commercial-20261124/maj-commercial-l3-s1/6529144d590b-p002.webp","assets/apercus/commercial-20261124/maj-commercial-l3-s1/6529144d590b-p003.webp"]' data-apercu-title="Droit commercial · L3 S1 · Majeures préparées" data-apercu-sub="Extraits réels des majeures préparées" data-apercu-price="19,99 €" data-apercu-cta="maj-commercial-l3-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu des majeures préparées</button>
               <div><span class="product__price">19,99 €</span></div>
-              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="maj-commercial-l3-s1">Acheter · 19,99 €</button>
+              <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="maj-commercial-l3-s1">Acheter les majeures préparées · 19,99 €</button>
             </div>
           </article>
 
@@ -897,17 +898,20 @@
       if (vignette) vignette.remove();
       choisie.appendChild(copie);
       titreBarre.textContent = carte.querySelector('.product__title').textContent.trim();
-      sousTitreBarre.textContent = 'Majeures préparées · ' + carte.getAttribute('data-niveau');
+      sousTitreBarre.textContent = 'Majeures préparées · ' + niveauxCarte(carte).sort().join(' et ');
       achatBarre.setAttribute('data-tjd-produit', bouton.getAttribute('data-tjd-produit'));
       achatBarre.textContent = bouton.textContent.trim();
       lienBarre.replaceWith(achatBarre);
       var lienPanier = carte.querySelector('[data-tjd-panier-lien]');
       if (lienPanier) achatBarre.after(lienPanier.cloneNode(true));
     }
+    function niveauxCarte(carte){
+      return (carte.getAttribute('data-niveau') || '').split(',');
+    }
     function appliquer(niveau){
       niveauCourant = niveau;
       onglets.forEach(function(o){ o.setAttribute('aria-pressed', o.getAttribute('data-niveau-onglet') === niveau ? 'true' : 'false'); });
-      cartes.forEach(function(c){ c.classList.toggle('hors-niveau', niveau !== 'TOUT' && c.getAttribute('data-niveau') !== niveau); });
+      cartes.forEach(function(c){ c.classList.toggle('hors-niveau', niveau !== 'TOUT' && !niveauxCarte(c).includes(niveau)); });
       if (grillePacks) grillePacks.classList.toggle('un-seul', niveau !== 'TOUT');
       var niveauExtrait = extraits[niveau] ? niveau : 'L2';
       var cheminPdf = entiers[niveauExtrait];
@@ -963,7 +967,8 @@
       var produit = params.get('produit');
       var bouton = achatsMatiere.find(function(achat){ return achat.getAttribute('data-tjd-produit') === produit; }) || null;
       var demande = (params.get('niveau') || '').toUpperCase();
-      var niveau = bouton ? bouton.closest('.card--product').getAttribute('data-niveau') : demande;
+      var niveauxProduit = bouton ? niveauxCarte(bouton.closest('.card--product')) : [];
+      var niveau = niveauxProduit.includes(demande) ? demande : (niveauxProduit[0] || demande);
       if (!extraits[niveau]) niveau = 'TOUT';
       if (achatChoisi !== bouton || niveauCourant !== niveau) {
         choisirMatiere(bouton);
@@ -976,7 +981,7 @@
         var niveau = o.getAttribute('data-niveau-onglet');
         var url = new URL(window.location.href);
         var carte = achatChoisi && achatChoisi.closest('.card--product');
-        if (!carte || carte.getAttribute('data-niveau') !== niveau) url.searchParams.delete('produit');
+        if (!carte || !niveauxCarte(carte).includes(niveau)) url.searchParams.delete('produit');
         if (niveau === 'TOUT') url.searchParams.delete('niveau'); else url.searchParams.set('niveau', niveau.toLowerCase());
         url.hash = '';
         history.replaceState(history.state, '', url);
