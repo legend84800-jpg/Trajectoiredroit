@@ -914,7 +914,7 @@
         '<div class="tjd-panier-liste" id="tjdPanierListe"></div>' +
         '<div class="tjd-panier-total" id="tjdPanierTotal" hidden><span>Total</span><span id="tjdPanierTotalMontant"></span></div>' +
         '<button type="button" class="tjd-panier-cta" id="tjdPanierCta">Passer au paiement</button>' +
-        '<p class="tjd-panier-note">Un seul paiement Stripe pour tout le panier · PDF reçus par email juste après</p>' +
+        '<p class="tjd-panier-note">Les liens d’accès arrivent par email après le paiement.</p>' +
         '<p class="tjd-panier-note" id="tjdPanierTemporaire" hidden>Ce panier reste disponible tant que tu gardes cette page ouverte.</p>' +
       '</div>';
     document.body.appendChild(backdrop);
