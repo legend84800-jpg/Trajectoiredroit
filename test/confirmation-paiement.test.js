@@ -447,6 +447,28 @@ test("les téléchargements prêts précèdent le rappel concernant les indésir
   assert.ok(page.indexOf('id="purchaseDownloads"') < page.indexOf('id="purchaseSpamReminder"'));
 });
 
+test("la confirmation réduit les rappels par email quand les fichiers suffisent", async () => {
+  const lien = { type: "pdf", url: "https://example.test/fiche.pdf", nom: "la fiche" };
+  for (const [produitIds, liens, cadeau, confirmationSimple, etapesVisibles] of [
+    [[fiche], [lien], false, true, false],
+    [[fiche], [], false, false, true],
+    [[media, fiche], [lien], false, false, true],
+    [[packUltra, fiche], [lien], false, false, true],
+    [[packUltra], [], false, false, false],
+    [[packUltra], [], true, false, false],
+    [["stage-methode", fiche], [lien], false, false, true],
+  ]) {
+    const nav = navigateur([[200, { montant: 19.99, produitIds, liens, cadeau, emailsAcceptes: true }]]);
+    await laisserRepondre();
+    for (const id of ["purchaseStatusMessage", "purchaseSpamReminder", "purchaseEmailSupport", "purchaseSurveyEmail"]) {
+      assert.equal(nav.element(id).hidden, confirmationSimple, id + " · " + produitIds.join(","));
+    }
+    assert.equal(nav.element("purchaseSteps").hidden, !etapesVisibles);
+    assert.equal(nav.element("purchaseGiftSteps").hidden, !cadeau);
+  }
+  assert.match(page, /Les liens de cette page restent valables 2 heures\. Tes fichiers restent accessibles à tout moment dans <a href="mon-compte\.html">Mon compte<\/a>/);
+});
+
 test("les PDF et le consentement s’affichent avant le code de remise, y compris si la remise échoue", async () => {
   for (const remiseOk of [true, false]) {
     let repondreRemise;

@@ -45,7 +45,9 @@
   <style>
     .achat-retour[hidden] { display: none !important; }
     #purchaseSteps[hidden], #purchaseGiftSteps[hidden], #purchaseStatusEyebrow[hidden],
+    #purchaseStatusMessage[hidden], #purchaseSpamReminder[hidden], #purchaseEmailSupport[hidden],
     #purchaseStatusActions [hidden] { display: none !important; }
+    #purchaseDownloadsHelp a { text-decoration: underline; text-underline-offset: .15em; }
     .achat-retour__question { border: 0; padding: 0; margin: 20px 0 0; min-width: 0; }
     .achat-retour__question legend { font-weight: 700; color: var(--ink); line-height: 1.4; }
     .achat-retour__choix { display: grid; gap: 8px; margin-top: 12px; }
@@ -403,7 +405,7 @@
             <p id="purchaseDownloadsPdfIntro" style="margin:8px 0 0; color:var(--body)">Chaque bouton ouvre ton PDF à ton nom, prêt à être enregistré sur ton ordinateur ou ton téléphone.</p>
             <div id="purchaseDownloadsList" style="display:flex; flex-direction:column; gap:12px; margin-top:20px"></div>
             <p id="purchaseAnkiHelp" hidden style="margin:16px 0 0"><a href="flashcards-qcm.html#importer-anki">Importer les cartes dans Anki</a></p>
-            <p style="margin:16px 0 0; font-size:.9rem; color:var(--body)">Ces boutons restent valables 2 heures. Ensuite, tu retrouves tes fichiers dans ton espace <a href="mon-compte.html">Mon compte</a>, avec l'adresse email utilisée pour cet achat.</p>
+            <p id="purchaseDownloadsHelp" style="margin:16px 0 0; font-size:.9rem; color:var(--body)">Les liens de cette page restent valables 2 heures. Tes fichiers restent accessibles à tout moment dans <a href="mon-compte.html">Mon compte</a> avec l’adresse email utilisée lors de l’achat.</p>
           </div>
 
           <div class="card" id="purchaseSpamReminder" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; padding:24px; border-left:4px solid #315CA6">
@@ -429,7 +431,7 @@
             </ol>
           </div>
 
-          <div class="card" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center">
+          <div class="card" id="purchaseEmailSupport" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center">
             <p style="margin:0; font-size:1rem">Tu n'as pas reçu l'email au bout de 5 minutes ?</p>
             <a class="btn btn--outline" href="mailto:julien.prof1@gmail.com?subject=Lien%20de%20t%C3%A9l%C3%A9chargement%20non%20re%C3%A7u" style="margin-top:14px; display:inline-block">
               Contacter le support →
@@ -438,7 +440,7 @@
 
           <div class="card achat-retour" id="achatRetour" hidden style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; padding:28px 32px">
             <h2 class="h4" style="margin:0">Ton achat et tes révisions</h2>
-            <p style="margin:8px 0 0; color:var(--body)">Tu peux répondre aux questions que tu veux. Tes réponses m'aident à améliorer les supports et à comprendre comment les étudiants me découvrent. Tes documents arrivent par email dans tous les cas.</p>
+            <p style="margin:8px 0 0; color:var(--body)">Tu peux répondre aux questions que tu veux. Tes réponses m'aident à améliorer les supports et à comprendre comment les étudiants me découvrent.<span id="purchaseSurveyEmail"> Tes documents arrivent par email dans tous les cas.</span></p>
             <form id="achatRetourForm">
               <fieldset class="achat-retour__question">
                 <legend>Comment as-tu connu Trajectoire Droit ?</legend>
@@ -762,13 +764,21 @@
       // Depuis le 02/11/2026, les fichiers se téléchargent aussi depuis cette page,
       // pour qu'un email classé en indésirables ou refusé ne bloque plus l'acheteur.
       var liens = (d && Array.isArray(d.liens)) ? d.liens.filter(function (l) { return l && l.url && l.type !== 'video' && l.type !== 'audio'; }) : [];
-      if (liens.length && !(d && d.cadeau)) {
-        afficherTelechargements(liens, d.nomsProduits);
-        statusTitle.textContent = 'Tes fichiers sont prêts';
-        statusMessage.textContent = 'Paiement reçu. Tu peux télécharger tes fichiers juste en dessous, et tu reçois aussi un email avec les mêmes liens.';
-      }
+      var cadeau = !!(d && d.cadeau);
+      var fichiersVisibles = liens.length > 0 && !cadeau;
       var contientPackUltra = ids.some(function (id) { return id.indexOf('pack-ultra-') === 0; });
       var contientMedia = ids.some(function (id) { return id.indexOf('audio-video-') === 0; });
+      var confirmationSimple = fichiersVisibles && !contientPackUltra && !contientMedia && !ids.includes('stage-methode');
+      statusMessage.hidden = confirmationSimple;
+      document.getElementById('purchaseSteps').hidden = confirmationSimple || cadeau || (contientPackUltra && !fichiersVisibles);
+      document.getElementById('purchaseSpamReminder').hidden = confirmationSimple;
+      document.getElementById('purchaseEmailSupport').hidden = confirmationSimple;
+      document.getElementById('purchaseSurveyEmail').hidden = confirmationSimple;
+      if (fichiersVisibles) {
+        afficherTelechargements(liens, d.nomsProduits);
+        statusTitle.textContent = 'Tes fichiers sont prêts';
+        statusMessage.textContent = confirmationSimple ? '' : 'Les fichiers à télécharger sont juste en dessous.';
+      }
       // Podcasts et vidéos seuls : rien ne se télécharge, tout se lance depuis Mon compte.
       if (ids.length && ids.every(function (id) { return id.indexOf('audio-video-') === 0; })) {
         statusTitle.textContent = 'Tes podcasts et tes vidéos sont prêts';
@@ -778,22 +788,20 @@
           '<li>Tu te connectes à ton espace <a href="mon-compte.html">Mon compte</a> avec l\'adresse email utilisée pour cet achat.</li>' +
           '<li>Chaque leçon y apparaît avec son podcast et sa vidéo, que tu lances directement sur ton téléphone ou sur ton ordinateur.</li>';
       }
-      if (!d.cadeau && contientPackUltra) {
+      if (!cadeau && contientPackUltra) {
         statusEyebrow.textContent = 'Paiement confirmé';
         statusTitle.textContent = 'Le Pack Ultra est dans Mon compte';
         statusMessage.textContent = 'Il faut se connecter avec l’adresse email saisie au moment du paiement.';
         document.getElementById('purchasePackUltra').hidden = false;
-        if (!liens.length) document.getElementById('purchaseSteps').hidden = true;
       }
-      if (!d.cadeau && contientMedia && !contientPackUltra) document.getElementById('purchaseMedia').hidden = false;
+      if (!cadeau && contientMedia && !contientPackUltra) document.getElementById('purchaseMedia').hidden = false;
       // Pack offert depuis parents.html : la page s'adresse au parent, qui a payé,
       // et le pack est parti chez l'étudiant.
-      if (d && d.cadeau) {
+      if (cadeau) {
         document.title = 'Cadeau confirmé · TrajectoireDroit';
         statusEyebrow.textContent = 'Cadeau confirmé';
         statusTitle.textContent = 'Votre cadeau est parti';
         statusMessage.textContent = "Paiement reçu. Le pack part par email chez votre enfant dans quelques secondes, et vous recevez aussi une confirmation d'achat. Si elle n'apparaît pas dans votre boîte de réception, regardez dans les courriers indésirables.";
-        document.getElementById('purchaseSteps').hidden = true;
         document.getElementById('purchaseGiftSteps').hidden = false;
       }
       confirmedContent.hidden = false;

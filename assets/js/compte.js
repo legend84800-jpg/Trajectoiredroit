@@ -75,6 +75,7 @@
     var achatsVide         = document.getElementById("achatsVide");
     var achatsReessayer    = document.getElementById("achatsReessayer");
     var achatsAide         = document.getElementById("achatsAide");
+    var achatsChangerAdresse = document.getElementById("achatsChangerAdresse");
     var generationSession = 0;
     var achatsOutils       = document.getElementById("achatsOutils");
     var achatsRecherche    = document.getElementById("achatsRecherche");
@@ -482,7 +483,7 @@
         : relancerPdf ? messageErreurAchats
         : achatsCourants.length
           ? "Aucun achat ne correspond à ces filtres. Tu peux les effacer pour tout retrouver."
-          : "Aucun achat associé à cette adresse. Pour retrouver une commande, il faut se reconnecter avec l’adresse indiquée sur le reçu.";
+          : "Aucun achat associé à cette adresse. Pour retrouver un achat, il faut utiliser l’adresse indiquée sur le reçu. Si c’est un cadeau, connecte-toi avec l’adresse à laquelle il a été envoyé.";
       achatsVide.style.display = listeVide || pdfEnCours || relancerPdf ? "block" : "none";
       if (achatsAide) achatsAide.hidden = !listeVide || !jetonAchats || achatsCourants.length > 0 || !!pdfEnCours || !!relancerPdf;
     }
@@ -838,12 +839,19 @@
       connexionEmail.focus();
     });
 
-    deconnexionBtn.addEventListener("click", async function(){
+    async function seDeconnecter(changerAdresse){
+      if (deconnexionEnCours) return;
       deconnexionEnCours = true;
       actualiserSession(null);
       fermerFormulaireCode();
       resterConnecte.checked = false;
+      connexionError.style.display = "none";
       connexionSuccess.style.display = "none";
+      if (changerAdresse) {
+        connexionEmail.value = "";
+        codeDestinataire.textContent = "";
+        connexionSubmit.disabled = true;
+      }
       try {
         var res = await sb.auth.signOut({ scope: "local" });
         if (res.error) throw res.error;
@@ -854,7 +862,16 @@
         stockageCompte.removeItem(cleSession);
         choisirPersistence(false);
         deconnexionEnCours = false;
+        if (changerAdresse) {
+          connexionSubmit.disabled = false;
+          connexionEmail.focus();
+        }
       }
+    }
+
+    deconnexionBtn.addEventListener("click", function(){ return seDeconnecter(false); });
+    achatsChangerAdresse?.addEventListener("click", function(){
+      if (achatsAide && !achatsAide.hidden) return seDeconnecter(true);
     });
 
     sb.auth.onAuthStateChange(function(evenement, session){

@@ -46,8 +46,15 @@ function environnement({ url = 'https://trajectoiredroit.com/formations.html', m
     element({ href: 'formations.html#a-l-unite' }),
     element({ href: 'formations.html#cours-l1' }),
     element({ href: 'https://exemple.com/formations.html' }),
-    element({ href: 'majeures-preparees.html' })
+    element({ href: 'majeures-preparees.html' }),
+    element({ href: '#packs-annee', 'data-catalogue-pack-annee': '' }),
+    element({ href: '#packs-annee' })
   ];
+  const packs = Object.fromEntries(['packs-annee', 'pack-l1', 'pack-l2', 'pack-l3'].map((id) => {
+    const pack = element();
+    pack.id = id;
+    return [id, pack];
+  }));
   const grille = { querySelectorAll: () => cartes };
   const racine = element({ 'data-catalogue-format': format });
   const controles = { '[data-catalogue-grille]': grille, '[data-catalogue-recherche]': recherche, '[data-catalogue-compteur]': compteur, '[data-catalogue-vide]': vide, '[data-catalogue-reset]': reset, '[data-catalogue-suggestion]': suggestion };
@@ -59,7 +66,11 @@ function environnement({ url = 'https://trajectoiredroit.com/formations.html', m
     history: { state: null, replaceState(_etat, _titre, adresse) { window.location.href = new URL(adresse, window.location.href).href; } },
     addEventListener(nom, fn) { (ecouteurs[nom] ||= []).push(fn); }
   };
-  const document = { readyState: 'complete', querySelectorAll: (s) => s === '[data-tjd-catalogue]' ? [racine] : s === 'a[href]' ? liens : [] };
+  const document = {
+    readyState: 'complete',
+    getElementById: (id) => packs[id] || null,
+    querySelectorAll: (s) => s === '[data-tjd-catalogue]' ? [racine] : s === 'a[href]' ? liens : []
+  };
   const contexte = { window, document, URL };
   Object.defineProperty(contexte, 'sessionStorage', { get() {
     if (stockageRefuse) throw new DOMException('Stockage refusé', 'SecurityError');
@@ -67,7 +78,7 @@ function environnement({ url = 'https://trajectoiredroit.com/formations.html', m
   } });
   vm.runInNewContext(source, contexte);
   return {
-    window, cartes, compteur, vide, recherche, reset, niveaux, matieres, liens, memoire, racine, suggestion,
+    window, cartes, compteur, vide, recherche, reset, niveaux, matieres, liens, memoire, racine, suggestion, packs,
     niveau(nom) { niveaux.find((b) => b.getAttribute('data-catalogue-niveau') === nom).declencher('click'); },
     matiere(nom) { matieres.find((b) => b.getAttribute('data-catalogue-matiere') === nom).declencher('click'); },
     chercher(texte) { recherche.value = texte; recherche.declencher('input'); },
@@ -333,6 +344,43 @@ test('le semestre recherché correspond à la fiche et exclut les offres d’ajo
   }
 });
 
+test('les semestres numérotés sur la licence trouvent les mêmes fiches que S1 et S2', () => {
+  const e = environnement({
+    cartesReelles: cartesPage('formations.html'),
+    memoire: new Map([['tjd_catalogue_niveau', 'L1']])
+  });
+  for (const [recherche, niveau, produit] of [
+    ['droit administratif S3', 'l2', 'fiche-da-l2-s1'],
+    ['droit administratif semestre 4', 'l2', 'fiche-da-l2-s2'],
+    ['droit administratif L2S3', 'l2', 'fiche-da-l2-s1'],
+    ['droit des biens S.4', 'l2', 'fiche-biens-l2'],
+    ['droit des sociétés semestre 5', 'l3', 'fiche-societes-l3-s1'],
+    ['droit des sociétés S6', 'l3', 'fiche-societes-l3-s2']
+  ]) {
+    e.chercher(recherche);
+    assert.deepEqual(e.visibles(), [produit], recherche);
+    assert.equal(e.window.location.searchParams.get('niveau'), niveau);
+    assert.equal(e.recherche.value, recherche);
+  }
+});
+
+test('le semestre garde son année et respecte le niveau explicitement tapé', () => {
+  const e = environnement({ cartesReelles: cartesPage('formations.html') });
+  e.chercher('droit administratif L3 S3');
+  assert.deepEqual(e.visibles(), []);
+  assert.equal(e.window.location.searchParams.get('niveau'), 'l3');
+  assert.equal(e.vide.hidden, false);
+  assert.equal(e.suggestion.hidden, true);
+
+  e.niveau('tous');
+  e.chercher('S3 S6');
+  const visibles = e.visibles();
+  assert.ok(visibles.includes('fiche-da-l2-s1'));
+  assert.ok(visibles.includes('fiche-societes-l3-s2'));
+  assert.ok(!visibles.includes('fiche-da-l2-s2'));
+  assert.ok(!visibles.includes('fiche-societes-l3-s1'));
+});
+
 test('une matière nommée reste trouvable si sa fiche couvre l’année entière', () => {
   const e = environnement({ cartesReelles: cartesPage('formations.html') });
   e.chercher('droit des biens S2');
@@ -406,6 +454,34 @@ test('le retour explicite de paiement restaure les trois filtres du même onglet
   const recharge = environnement({ memoire: e.memoire, url: e2.window.location.href });
   assert.equal(recharge.recherche.value, '');
   assert.equal(recharge.matieres[0].getAttribute('aria-pressed'), 'true');
+});
+
+test('Choisir mon année mène au pack du niveau sélectionné, avec un lien générique en Tous', () => {
+  const e = environnement({ url: 'https://trajectoiredroit.com/formations.html?niveau=l3' });
+  const lien = e.liens[5];
+  assert.equal(lien.getAttribute('href'), '/formations.html?niveau=l3#pack-l3');
+  for (const [niveau, adresse] of [
+    ['L1', '/formations.html?niveau=l1#pack-l1'],
+    ['L2', '/formations.html?niveau=l2#pack-l2'],
+    ['tous', '/formations.html#packs-annee']
+  ]) {
+    e.niveau(niveau);
+    assert.equal(lien.getAttribute('href'), adresse);
+    assert.ok(e.liens[6].getAttribute('href').endsWith('#packs-annee'));
+  }
+});
+
+test('le retour après annulation retrouve l’ancre du pack annuel et le niveau porté par le lien', () => {
+  const e = environnement({ url: 'https://trajectoiredroit.com/formations.html?niveau=l3#pack-l3' });
+  const adresse = e.window.tjdRetourCatalogue.adresse();
+  assert.equal(adresse, adresseRetourPaiement);
+  e.window.tjdRetourCatalogue.memoriser(adresse);
+  const retour = environnement({ memoire: e.memoire, url: 'https://trajectoiredroit.com/' + adresse });
+  assert.equal(retour.window.location.search, '?niveau=l3');
+  assert.equal(retour.window.location.hash, '#pack-l3');
+  assert.equal(retour.actif(), retour.packs['pack-l3']);
+  assert.equal(retour.packs['pack-l3'].defilements, 1);
+  assert.equal(retour.memoire.has(cleRetourPaiement), false);
 });
 
 test('les liens explicites aux cartes du catalogue priment sur un retour mémorisé', () => {

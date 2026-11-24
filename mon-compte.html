@@ -84,8 +84,9 @@
     .compte-achats-etat button{min-height:44px}
     .compte-achats-etat button[hidden]{display:none}
     .compte-achats-etat button:disabled{opacity:.55;cursor:wait}
-    .compte-achats-etat:has(#achatsAide:not([hidden])) .achats-vide{margin-bottom:0;padding-bottom:4px}
-    #achatsAide:not([hidden]){display:inline-flex;align-items:center;min-height:44px;text-decoration:underline}
+    .compte-achats-etat:has(#achatsAide:not([hidden])) .achats-vide{margin-bottom:0;padding-bottom:12px}
+    #achatsAide:not([hidden]){display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0 16px}
+    #achatsAide a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline}
     .compte-achats-outils{display:grid;gap:12px;margin:20px 0}
     .compte-achats-outils label{display:flex;flex-direction:column;gap:6px;font-size:.9rem;font-weight:600;color:var(--navy)}
     .compte-achats-filtres{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
@@ -476,7 +477,10 @@
                   <p class="achats-vide" id="achatsVide" style="display:none"></p>
                 </div>
                 <button type="button" class="btn btn--outline" id="achatsReessayer" aria-describedby="achatsVide" hidden>Réessayer</button>
-                <a id="achatsAide" href="faq.html#pdf-manquant" hidden>Mon achat n’apparaît pas</a>
+                <div id="achatsAide" hidden>
+                  <button type="button" class="btn btn--outline btn--sm" id="achatsChangerAdresse">Utiliser une autre adresse</button>
+                  <a href="mailto:julien.prof1@gmail.com">Demander de l’aide</a>
+                </div>
               </div>
             </div>
 
@@ -550,7 +554,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="assets/js/main.js?v=00564c99" defer></script>
-  <script src="assets/js/compte.js?v=61066560" defer></script>
+  <script src="assets/js/compte.js?v=87602792" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
 </body>

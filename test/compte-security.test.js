@@ -82,7 +82,7 @@ function browser(options={}) {
     values,getItem:key=>values[key]||null,setItem:(key,value)=>{values[key]=value;},removeItem:key=>{delete values[key];}
   };}
   const local=storage(options.localStorage);const temporary=storage(options.sessionStorage);
-  for(const id of ['etatChargement','etatConnexion','etatConnecte','connexionForm','connexionEmail','connexionSubmit','connexionError','connexionSuccess','compteEmail','deconnexionBtn','achatsListe','achatsVide','achatsReessayer','resterConnecte','codeForm','connexionCode','codeSubmit','codeDestinataire','renvoyerCode','changerEmail']) {
+  for(const id of ['etatChargement','etatConnexion','etatConnecte','connexionForm','connexionEmail','connexionSubmit','connexionError','connexionSuccess','compteEmail','deconnexionBtn','achatsListe','achatsVide','achatsReessayer','achatsAide','achatsChangerAdresse','resterConnecte','codeForm','connexionCode','codeSubmit','codeDestinataire','renvoyerCode','changerEmail']) {
     const classes=new Set();
     elements[id]={style:{},textContent:'',innerHTML:'',value:'',disabled:false,checked:false,hidden:id==='codeForm',listeners:{},focus(){this.focused=true;},
       classList:{add:x=>classes.add(x),remove:x=>classes.delete(x),contains:x=>classes.has(x)},
@@ -272,6 +272,36 @@ test('la déconnexion utilise encore la session puis efface sa conservation',asy
   assert.ok(b.requests.find(r=>r.logout).stored);assert.equal(b.local.getItem(authKey),null);assert.equal(b.temporary.getItem(authKey),null);
   assert.equal(b.local.getItem(rememberKey),null);assert.ok(b.state('etatConnexion'));
   const reload=browser({storageSession:true,localStorage:b.local.values,sessionStorage:b.temporary.values});await reload.flush();assert.ok(reload.state('etatConnexion'));
+});
+test('changer d’adresse depuis un compte sans achat efface la session sans envoyer de code', async () => {
+  const b = browser();
+  await demanderCode(b, true);
+  await saisirCode(b);
+  const { achatsAide, achatsChangerAdresse, connexionEmail, connexionCode, connexionSubmit, codeDestinataire, codeForm } = b.elements;
+  assert.equal(achatsAide.hidden, false);
+  await achatsChangerAdresse.listeners.click();
+  await b.flush();
+
+  const deconnexions = b.requests.filter(request => request.logout);
+  assert.equal(deconnexions.length, 1);
+  assert.equal(deconnexions[0].logout.scope, 'local');
+  assert.ok(deconnexions[0].stored);
+  assert.equal(b.local.getItem(authKey), null);
+  assert.equal(b.temporary.getItem(authKey), null);
+  assert.equal(b.local.getItem(rememberKey), null);
+  assert.equal(b.requests.filter(request => request.login).length, 1);
+  assert.ok(b.state('etatConnexion'));
+  assert.equal(achatsAide.hidden, true);
+  assert.equal(codeForm.hidden, true);
+  assert.equal(connexionEmail.value, '');
+  assert.equal(connexionCode.value, '');
+  assert.equal(codeDestinataire.textContent, '');
+  assert.equal(connexionSubmit.disabled, false);
+  assert.equal(connexionEmail.focused, true);
+
+  const reload = browser({ storageSession: true, localStorage: b.local.values, sessionStorage: b.temporary.values });
+  await reload.flush();
+  assert.ok(reload.state('etatConnexion'));
 });
 test('un échec d’envoi laisse le formulaire utilisable sans ouvrir le compte',async()=>{
   const b=browser({signInWithOtp:async()=>({error:{message:'Send failed'}})});await demanderCode(b);

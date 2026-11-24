@@ -579,7 +579,7 @@ test('une panne persistante rend le bouton disponible pour une nouvelle tentativ
   await b.elements.achatsReessayer.listeners.click();
   assert.equal(b.demandes.length, 3);
   assert.equal(b.elements.achatsReessayer.hidden, true);
-  assert.equal(b.elements.achatsVide.textContent, 'Aucun achat associé à cette adresse. Pour retrouver une commande, il faut se reconnecter avec l’adresse indiquée sur le reçu.');
+  assert.equal(b.elements.achatsVide.textContent, 'Aucun achat associé à cette adresse. Pour retrouver un achat, il faut utiliser l’adresse indiquée sur le reçu. Si c’est un cadeau, connecte-toi avec l’adresse à laquelle il a été envoyé.');
   assert.equal(b.elements.achatsVide.style.display, 'block');
 });
 

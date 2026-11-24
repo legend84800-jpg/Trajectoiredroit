@@ -5,6 +5,7 @@
   var ANCRE_RETOUR_PAIEMENT = '#retour-paiement';
   var NIVEAUX = ['tous', 'L1', 'L2', 'L3'];
   var HASH_NIVEAU = { '#cours-l1': 'L1', '#cours-l2': 'L2', '#cours-l3': 'L3' };
+  var ANCRES_PACKS_ANNUELS = ['#packs-annee', '#pack-l1', '#pack-l2', '#pack-l3'];
 
   function normaliser(texte) {
     return String(texte || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
@@ -71,6 +72,9 @@
           var url = new URL(lien.getAttribute('href'), window.location.href);
           if (url.origin !== window.location.origin || !/\/formations\.html$/.test(url.pathname)) return;
           if (carteAncree(url.hash)) return;
+          if (catalogueFiches && lien.getAttribute('data-catalogue-pack-annee') !== null) {
+            url.hash = etat.niveau === 'tous' ? 'packs-annee' : 'pack-' + etat.niveau.toLowerCase();
+          }
           if (etat.niveau === 'tous') url.searchParams.delete('niveau');
           else url.searchParams.set('niveau', etat.niveau.toLowerCase());
           lien.setAttribute('href', url.pathname + url.search + url.hash);
@@ -130,34 +134,49 @@
       suggestion.style.display = filtreSuggere ? '' : 'none';
     }
     function appliquerFiltres(depuisRecherche) {
-      var semestres = [], niveauxRecherches = [];
+      var semestres = [], semestresLicence = [], niveauxRecherches = [];
       var texte = normaliser(recherche.value)
-        .replace(/\bl([123])s([12])\b/g, 'l$1 s$2')
+        .replace(/\bl([123])s([1-6])\b/g, 'l$1 s$2')
         .replace(/\b(?:licence|l)[\s.-]*([123])\b/g, function (_, niveau) {
           niveauxRecherches.push('L' + niveau);
           return ' ';
         })
-        .replace(/\b(?:semestre|s)[\s.-]*([12])\b/g, function (_, semestre) {
-          semestres.push(semestre);
+        .replace(/\b(?:semestre|s)[\s.-]*([1-6])\b/g, function (_, semestre) {
+          var numero = Number(semestre);
+          if (numero <= 2) semestres.push(semestre);
+          else semestresLicence.push({
+            niveau: 'L' + Math.ceil(numero / 2),
+            semestre: String(1 + (numero - 1) % 2)
+          });
           return ' ';
         });
-      var niveauSaisi = niveauxRecherches[0];
+      var niveauxSaisis = niveauxRecherches.length ? niveauxRecherches : semestresLicence.map(function (periode) {
+        return periode.niveau;
+      });
+      var niveauSaisi = niveauxSaisis[0];
       if (depuisRecherche && catalogueFiches
           && niveauSaisi && niveauSaisi !== etat.niveau
-          && niveauxRecherches.every(function (niveau) { return niveau === niveauSaisi; })) {
+          && niveauxSaisis.every(function (niveau) { return niveau === niveauSaisi; })) {
         etat.niveau = niveauSaisi;
         actualiserAdresse(false);
       }
       var mots = extraireMots(texte);
-      var sujetRecherche = mots.slice().sort().join(' ');
+      var filtreSemestre = semestres.length || semestresLicence.length;
+      var sujetAnnuel = filtreSemestre ? mots.slice().sort().join(' ') : null;
+      function ficheDuSemestre(carte, semestre) {
+        return carte.semestres.includes(semestre) || (sujetAnnuel && carte.sujetAnnuel === sujetAnnuel);
+      }
       var cartesRecherchees = cartes.filter(function (carte) {
-        return (!niveauxRecherches.length || niveauxRecherches.some(function (niveau) { return carte.niveaux.indexOf(niveau) !== -1; }))
-          && (!semestres.length
-            || semestres.some(function (semestre) { return carte.semestres.includes(semestre); })
-            || (sujetRecherche && carte.sujetAnnuel === sujetRecherche))
+        return (!niveauxRecherches.length || niveauxRecherches.some(function (niveau) { return carte.niveaux.includes(niveau); }))
+          && (!filtreSemestre
+            || semestres.some(function (semestre) { return ficheDuSemestre(carte, semestre); })
+            || semestresLicence.some(function (periode) {
+              return (!niveauxRecherches.length || niveauxRecherches.includes(periode.niveau))
+                && carte.niveaux.includes(periode.niveau)
+                && ficheDuSemestre(carte, periode.semestre);
+            }))
           && mots.every(function (mot) { return carte.texte.indexOf(mot) !== -1; });
       });
-      var sujetAnnuel = semestres.length ? sujetRecherche : null;
       var cartesCorrespondantes = cartesDansMatiere(cartesRecherchees, etat.matiere, sujetAnnuel);
       var cartesRetenues = new Set(cartesCorrespondantes);
       var nombre = 0;
@@ -178,7 +197,7 @@
         bouton.setAttribute('aria-pressed', String(actif));
       });
       if (compteur) compteur.textContent = nombre + (nombre > 1 ? ' supports affichés sur ' : ' support affiché sur ') + cartes.length;
-      var chercherSuggestion = nombre === 0 && (mots.length || niveauxRecherches.length || semestres.length);
+      var chercherSuggestion = nombre === 0 && (mots.length || niveauxSaisis.length || filtreSemestre);
       var autresMatieres = chercherSuggestion && etat.matiere !== 'tous'
         ? cartesDansMatiere(cartesRecherchees, 'tous', sujetAnnuel).filter(carteDansNiveau) : [];
       proposerFiltre(chercherSuggestion ? cartesCorrespondantes : [], autresMatieres);
@@ -227,7 +246,7 @@
       });
     }
     function ancreCatalogue(ancre) {
-      return ancre === '#a-l-unite' || Object.hasOwn(HASH_NIVEAU, ancre);
+      return ancre === '#a-l-unite' || Object.hasOwn(HASH_NIVEAU, ancre) || ANCRES_PACKS_ANNUELS.includes(ancre);
     }
     if (catalogueFiches && window.location.pathname === '/formations.html') {
       var adresseReprise = 'formations.html' + ANCRE_RETOUR_PAIEMENT;
@@ -272,8 +291,11 @@
         etat.matiere = reprise.matiere;
       }
       appliquerFiltres();
-      actualiserAdresse(true, valide ? reprise.ancre : '#a-l-unite');
-      racine.scrollIntoView({ behavior: 'auto', block: 'start' });
+      var ancre = valide ? reprise.ancre : '#a-l-unite';
+      actualiserAdresse(true, ancre);
+      var pack = ANCRES_PACKS_ANNUELS.includes(ancre) ? document.getElementById(ancre.slice(1)) : null;
+      if (pack && ancre !== '#packs-annee') pack.focus({ preventScroll: true });
+      (pack || racine).scrollIntoView({ behavior: 'auto', block: 'start' });
     }
     function appliquerHash() {
       var hash = window.location.hash;
