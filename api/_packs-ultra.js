@@ -57,7 +57,7 @@ function referencesPour(packId, catalogue) {
 }
 
 function referenceVente(id) {
-  return id === "pack-ultra-l1-s2" ? id + "-revision-2" : id + "-revision";
+  return id === "pack-ultra-l1-s2" || id === "pack-ultra-l2-s1" ? id + "-revision-2" : id + "-revision";
 }
 
 function composer(definition, inclus, catalogue) {
@@ -90,12 +90,17 @@ function construireProduits(catalogue) {
     if (definition.venteSuspendue) continue;
 
     // La nouvelle référence permet de livrer la composition d'origine aux anciens acheteurs.
-    let inclusEnVente = inclus.filter((reference) => !catalogue[reference].venteSuspendue);
+    let inclusEnVente = inclus.filter((reference) => !catalogue[reference].venteSuspendue
+      || (id === "pack-ultra-l2-s1" && reference === "fiche-penal-l2-s1"));
     if (id === "pack-ultra-l1-s2") {
       packs[id + "-revision"] = { ...composer(definition, inclusEnVente, catalogue), venteSuspendue: true };
       inclusEnVente = inclusEnVente.filter((reference) => !PENAL_GENERAL.has(reference));
     } else if (id === "pack-ultra-l2-s1" || id === "pack-ultra-l2-s2") {
       inclusEnVente = [...new Set([...inclusEnVente, ...[...PENAL_GENERAL].filter((reference) => !catalogue[reference].venteSuspendue)])];
+    }
+    if (id === "pack-ultra-l2-s1") {
+      packs[id + "-revision"] = { ...composer(definition, inclusEnVente, catalogue), venteSuspendue: true };
+      inclusEnVente = inclusEnVente.filter((reference) => reference !== "fiche-penal-l2-s1");
     }
     packs[referenceVente(id)] = composer(definition, inclusEnVente, catalogue);
   }

@@ -62,7 +62,9 @@ function synchroniserPrixFormats(contenu, fichier) {
     const id = bloc.match(/href="pack-ultra\.html#([^"]+)"/)?.[1];
     const p = packs[id];
     if (!p) return bloc;
-    return bloc.replace(/(ressources, )[^€]+€( au lieu de )[^€]+€(, )\d+( % d’économie)/,
+    return bloc.replace(/\d+(?= ressources, )/, String(p.ressources))
+      .replace(/(<span class="megamenu__pack-tile-meta">)\d+(?= ressources<)/, (_, debut) => debut + p.ressources)
+      .replace(/(ressources, )[^€]+€( au lieu de )[^€]+€(, )\d+( % d’économie)/,
       (_, debut, comparaison, separateur, unite) => debut + prixUltra(p.prix) + comparaison + euro(p.total) + separateur + p.economie + unite)
       .replace(/(<span class="badge badge--success">)-\d+( %<\/span>)/, `$1-${p.economie}$2`)
       .replace(/(<span class="megamenu__pack-tile-price-old">)[^<]+(?=<\/span>)/, `$1${euro(p.total)}`)

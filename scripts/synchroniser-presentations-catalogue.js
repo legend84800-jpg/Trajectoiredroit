@@ -99,7 +99,7 @@ function fichesIncluses(id) {
 }
 
 function presentationPack(id) {
-  const reference = id === "pack-l1" ? "pack-l1-revision" : id;
+  const reference = PRODUITS[id + "-revision"] ? id + "-revision" : id;
   const produit = PRODUITS[reference];
   const fiches = fichesIncluses(reference);
   const totalUnite = fiches.reduce((somme, [, p]) => somme + p.prix, 0);

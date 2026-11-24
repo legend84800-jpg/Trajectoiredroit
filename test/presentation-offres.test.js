@@ -71,17 +71,17 @@ test("les présentations générées restent à jour avec le catalogue de livrai
     assert.deepEqual(verifierPrix(html, fichier), [], fichier);
   }
   const licence = presentationPack("pack-complet");
-  assert.equal(licence.nombre, 23);
-  assert.equal(licence.totalPdf, 66);
-  assert.equal(licence.totalUnite, 45977);
-  assert.equal(licence.economie, 61);
-  assert.match(licence.description, /cartes mentales de 20 fiches/);
+  assert.equal(licence.nombre, 22);
+  assert.equal(licence.totalPdf, 63);
+  assert.equal(licence.totalUnite, 43978);
+  assert.equal(licence.economie, 59);
+  assert.match(licence.description, /cartes mentales de 19 fiches/);
   const l2 = presentationPack("pack-l2");
-  assert.equal(l2.nombre, 9);
-  assert.equal(l2.totalPdf, 25);
-  assert.equal(l2.cartes, 7);
-  assert.equal(l2.totalUnite, 17991);
-  assert.equal(l2.economie, 56);
+  assert.equal(l2.nombre, 8);
+  assert.equal(l2.totalPdf, 22);
+  assert.equal(l2.cartes, 6);
+  assert.equal(l2.totalUnite, 15992);
+  assert.equal(l2.economie, 51);
 });
 
 test("le nombre de fiches des packs annuels se régénère sur l’accueil", () => {

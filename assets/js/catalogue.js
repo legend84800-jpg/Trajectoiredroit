@@ -216,11 +216,14 @@
       etat.niveau = 'tous'; etat.matiere = 'tous'; recherche.value = '';
       appliquerFiltres(); actualiserAdresse(false); recherche.focus();
     });
+    function correspondAncre(element, identifiant) {
+      return element && (element.id === identifiant || element.dataset?.catalogueAlias === identifiant);
+    }
     function carteAncree(hash) {
       if (!hash) return;
       var identifiant = hash.slice(1);
       return cartes.find(function (carte) {
-        return carte.element.id === identifiant || carte.sommaire?.id === identifiant;
+        return correspondAncre(carte.element, identifiant) || correspondAncre(carte.sommaire, identifiant);
       });
     }
     function ancreCatalogue(ancre) {
@@ -284,7 +287,7 @@
         etat.matiere = 'tous';
         recherche.value = '';
         appliquerFiltres(); actualiserAdresse(true);
-        var sommaire = cible.sommaire && '#' + cible.sommaire.id === hash ? cible.sommaire : null;
+        var sommaire = correspondAncre(cible.sommaire, hash.slice(1)) ? cible.sommaire : null;
         if (sommaire) sommaire.parentElement.open = true;
         var focus = sommaire || cible.element;
         focus.focus({ preventScroll: true });

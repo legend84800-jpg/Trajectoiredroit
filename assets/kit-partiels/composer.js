@@ -57,11 +57,18 @@
     radio.checked = true;
   }
 
+  function codeActuel(code) {
+    if (code === "penal") return "penal-unifie-s1";
+    if (code === "penal-general-s2") return "penal-unifie-s2";
+    return code;
+  }
+
   function importerCodes(niveau, valeurs) {
     if (!Array.isArray(valeurs)) return;
     const choixSauvegardes = choixParNiveau.get(niveau);
     const codesValides = new Set(catalogue.niveaux[niveau].map((matiere) => matiere.code));
-    for (const code of valeurs) {
+    for (const valeur of valeurs) {
+      const code = codeActuel(valeur);
       if (codesValides.has(code)) choixSauvegardes.add(code);
       if (choixSauvegardes.size === nombre) break;
     }
@@ -239,7 +246,7 @@
   });
 
   function ajouterDepuisLeGuide(url) {
-    const code = url.searchParams.get("matiere");
+    const code = codeActuel(url.searchParams.get("matiere"));
     if (code === null) return;
     const niveauGuide = Object.keys(catalogue.niveaux).find((niveau) =>
       catalogue.niveaux[niveau].some((matiere) => matiere.code === code));

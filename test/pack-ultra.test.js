@@ -49,6 +49,15 @@ test("chaque Pack Ultra contient exactement les références de son semestre", (
     } else if (id === "pack-ultra-l2-s1" || id === "pack-ultra-l2-s2") {
       actives = [...new Set([...actives, ...PENAL_GENERAL])];
     }
+    if (id === "pack-ultra-l2-s1") {
+      const ancien = PRODUITS[id + "-revision"];
+      assert.equal(ancien.venteSuspendue, true);
+      assert.equal(ancien.prix, definition.prix);
+      assert.equal(ancien.inclus.filter(reference => reference === "fiche-penal-l2-s1").length, 1);
+      assert.deepEqual(ancien.inclus.filter(reference => reference !== "fiche-penal-l2-s1"), actives);
+      assert.deepEqual(ancien.blobs, ancien.inclus.flatMap(reference => PRODUITS[reference].blobs));
+      assert.equal(referenceVente(id), id + "-revision-2");
+    }
     assert.deepEqual(revision.inclus, actives, id);
     assert.deepEqual(revision.blobs, actives.flatMap(reference => PRODUITS[reference].blobs), id);
     assert.equal(revision.prix, definition.prix);
@@ -177,6 +186,8 @@ test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async
     refus.push([res.statusCode, res.data.code]);
     await handler({ method: "POST", body: { produitId: "pack-ultra-l1-s1-revision", bumpId: "pack-ultra-l3-s2" } }, res);
     refus.push([res.statusCode, res.data.code]);
+    await handler({ method: "POST", body: { produitId: "pack-ultra-l2-s1-revision" } }, res);
+    refus.push([res.statusCode, res.data.code]);
   } finally {
     stripeModule.creerClientStripe = original;
     delete require.cache[chemin];
@@ -184,6 +195,7 @@ test("Checkout facture le prix du Pack Ultra et conserve son identifiant", async
     else process.env.STRIPE_SECRET_KEY = ancienneCle;
   }
   assert.deepEqual(refus, [
+    [400, "produit_indisponible"],
     [400, "produit_indisponible"],
     [400, "produit_indisponible"],
     [400, "produit_indisponible"],

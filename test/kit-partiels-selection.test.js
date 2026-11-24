@@ -135,7 +135,7 @@ function stockage() {
 test("retrouve le niveau et les matières après rechargement dans le même onglet", () => {
   for (const [niveau, matieres] of [
     ["l1", ["constitutionnel-s1", "intro-droit", "histoire-du-droit"]],
-    ["l2", ["contrats", "administratif-s1", "penal"]],
+    ["l2", ["contrats", "administratif-s1", "penal-unifie-s1"]],
     ["l3", ["travail", "societes", "contrats-speciaux"]],
   ]) {
     const session = stockage();
@@ -192,16 +192,16 @@ test("retrouve le duo à comparer et conserve le retrait d’une matière", () =
 test("retire une matière depuis le récapitulatif et place le focus dans les choix", () => {
   const session = stockage();
   const kit = ouvrirKit(session);
-  ["contrats", "administratif-s1", "penal"].forEach((code) => kit.choisirMatiere(code));
+  ["contrats", "administratif-s1", "penal-unifie-s1"].forEach((code) => kit.choisirMatiere(code));
   kit.choisirPaiement("2");
 
-  const retirer = kit.boutonsRetirer.find((bouton) => bouton.attributs["aria-label"] === "Retirer Droit pénal (S1)");
+  const retirer = kit.boutonsRetirer.find((bouton) => bouton.attributs["aria-label"] === "Retirer Droit pénal général (S1)");
   assert.ok(retirer);
   assert.equal(retirer.type, "button");
   assert.equal(retirer.textContent, "Retirer");
   retirer.clic();
 
-  assert.equal(kit.champActif, "penal");
+  assert.equal(kit.champActif, "penal-unifie-s1");
   assert.equal(kit.compteur, "2 sur 3");
   assert.equal(kit.commander, false);
   assert.equal(kit.paiement, "2");
@@ -245,7 +245,7 @@ test("compte chaque semestre comme un choix et transmet le bon kit même quand l
   kit.choisirMatiere("contrats");
   assert.equal(kit.compteur, "3 sur 3");
   assert.equal(kit.commander, true);
-  assert.equal(kit.matiereBloquee("penal"), true);
+  assert.equal(kit.matiereBloquee("penal-unifie-s1"), true);
   const id = "pack-kit-partiels-l2--administratif-s1--administratif-s2--contrats";
   assert.deepEqual(kit.soumettre(), { id, echeances: undefined });
   kit.choisirPaiement("2");
@@ -257,7 +257,7 @@ test("compte chaque semestre comme un choix et transmet le bon kit même quand l
   assert.ok(retirerS2);
   retirerS2.clic();
   assert.deepEqual(ouvrirKit(session).matieres, ["contrats", "administratif-s1"]);
-  assert.equal(retour.matiereBloquee("penal"), false);
+  assert.equal(retour.matiereBloquee("penal-unifie-s1"), false);
   assert.equal(retour.commander, false);
 });
 
@@ -277,15 +277,15 @@ test("replie les autres matières à trois choix et permet de modifier la sélec
   kit.modifierChoix();
   assert.equal(kit.listeRepliee, false);
   assert.equal(kit.champActif, "contrats");
-  assert.equal(kit.matiereBloquee("penal"), true);
+  assert.equal(kit.matiereBloquee("penal-unifie-s1"), true);
   assert.deepEqual(kit.matieres, matieres);
   assert.equal(kit.commander, true);
   assert.equal(session.getItem(cleSelection), selectionSauvegardee);
 
   kit.choisirMatiere("administratif-s2", false);
-  assert.equal(kit.matiereBloquee("penal"), false);
+  assert.equal(kit.matiereBloquee("penal-unifie-s1"), false);
   assert.equal(kit.commander, false);
-  kit.choisirMatiere("penal");
+  kit.choisirMatiere("penal-unifie-s1");
   assert.equal(kit.listeRepliee, true);
   assert.equal(ouvrirKit(session).listeRepliee, true);
 });
@@ -412,7 +412,7 @@ test("présélectionne le S1 depuis le guide quand le S2 est déjà coché", () 
 test("conserve les matières cochées quand la matière du guide est incompatible", () => {
   for (const [niveau, codes] of [
     ["l1", ["constitutionnel-s1"]],
-    ["l2", ["contrats", "penal", "biens"]],
+    ["l2", ["contrats", "penal-unifie-s1", "biens"]],
   ]) {
     const session = stockage();
     session.setItem(cleSelection, JSON.stringify({ niveau, codes }));
@@ -477,7 +477,7 @@ test("nettoie les brouillons périmés sans mélanger leurs années ni rejouer u
 
 test("le lien du guide ouvre le brouillon cible déjà rempli et demande de modifier les choix", () => {
   const session = stockage();
-  const codes = ["contrats", "penal", "biens"];
+  const codes = ["contrats", "penal-unifie-s1", "biens"];
   session.setItem(cleSelection, JSON.stringify({
     niveau: "l1", choixParNiveau: { l1: [], l2: codes }, paiement: "2",
   }));
@@ -489,9 +489,21 @@ test("le lien du guide ouvre le brouillon cible déjà rempli et demande de modi
   assert.deepEqual(ouvrirKit(session).matieres, codes);
 });
 
+test("un ancien brouillon et un ancien lien de pénal reprennent les deux semestres avec la fiche actuelle", () => {
+  const session = stockage();
+  session.setItem(cleSelection, JSON.stringify({
+    niveau: "l2", choixParNiveau: { l2: ["contrats", "penal"] }, paiement: "2",
+  }));
+  const kit = ouvrirKit(session, "?matiere=penal-general-s2");
+  assert.deepEqual(kit.matieres, ["contrats", "penal-unifie-s1", "penal-unifie-s2"]);
+  assert.deepEqual(kit.soumettre(), {
+    id: "pack-kit-partiels-l2--contrats--penal-unifie-s1--penal-unifie-s2", echeances: "2",
+  });
+});
+
 test("retirer le dernier choix donne le focus à sa propre case", () => {
   const kit = ouvrirKit(stockage());
-  ["contrats", "penal", "biens"].forEach((code) => kit.choisirMatiere(code));
+  ["contrats", "penal-unifie-s1", "biens"].forEach((code) => kit.choisirMatiere(code));
   assert.equal(kit.remplacement, true);
   const retirer = kit.boutonsRetirer.find((bouton) => bouton.attributs["aria-label"].startsWith("Retirer Droit des biens"));
   assert.ok(retirer);

@@ -5,13 +5,18 @@ const path = require("node:path");
 const PRODUITS = require("../api/_produits");
 const { MATIERES } = require("../scripts/mapping-matieres");
 
+const enVente = Object.keys(PRODUITS).filter((id) => id.startsWith("pack-matiere-") && !PRODUITS[id].venteSuspendue);
+const ancienPackPenal = "pack-matiere-penal-l2";
+
 test("les quatorze packs matière affichent et facturent 29,98 €", () => {
-  const ids = Object.keys(PRODUITS).filter((id) => id.startsWith("pack-matiere-"));
-  assert.equal(ids.length, 14);
-  for (const id of ids) assert.equal(PRODUITS[id].prix, 2998, id);
+  assert.equal(enVente.length, 14);
+  for (const id of enVente) assert.equal(PRODUITS[id].prix, 2998, id);
+  assert.equal(PRODUITS[ancienPackPenal].prix, 2998);
+  assert.equal(PRODUITS[ancienPackPenal].venteSuspendue, true);
 
   const pages = Object.entries(MATIERES).filter(([, matiere]) => matiere.packMatiere);
   assert.equal(pages.length, 14);
+  assert.deepEqual(new Set(pages.map(([, matiere]) => matiere.packMatiere.id)), new Set(enVente));
   for (const [slug, matiere] of pages) {
     assert.equal(PRODUITS[matiere.packMatiere.id].prix, 2998, slug);
     assert.equal(matiere.packMatiere.prix, "29,98 €", slug);
@@ -37,7 +42,8 @@ test("Stripe Checkout reçoit 2998 centimes pour chaque pack matière", async ()
   const handler = require("../api/create-checkout");
 
   try {
-    for (const id of Object.keys(PRODUITS).filter((cle) => cle.startsWith("pack-matiere-"))) {
+    for (const id of [...enVente, ancienPackPenal]) {
+      const debut = appels.length;
       const res = {
         statusCode: 200,
         setHeader() {},
@@ -49,8 +55,16 @@ test("Stripe Checkout reçoit 2998 centimes pour chaque pack matière", async ()
         attemptId: `test-${id}`,
         pageActuelle: "formations.html",
       } }, res);
+      if (id === ancienPackPenal) {
+        assert.equal(res.statusCode, 400, id);
+        assert.equal(res.payload.code, "produit_indisponible");
+        assert.equal(appels.length, debut);
+        continue;
+      }
       assert.equal(res.statusCode, 200, id);
+      assert.equal(appels.length, debut + 1);
       assert.equal(appels.at(-1).line_items[0].price_data.unit_amount, 2998, id);
+      assert.equal(appels.at(-1).metadata.produitIds, id);
     }
   } finally {
     stripeModule.creerClientStripe = creerOriginal;

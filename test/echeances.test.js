@@ -102,6 +102,26 @@ test("le paiement en 3 fois ouvre un abonnement mensuel sans relance ni code pro
   assert.equal(options.idempotencyKey, "checkout-12345678-1234-1234-1234-123456789012-x3");
 });
 
+test("le Pack Ultra L2 S1 révisé est facturé sur sa nouvelle référence en deux ou trois fois", async (t) => {
+  fixerHorlogePaiement(t);
+  const produitId = "pack-ultra-l2-s1-revision-2";
+  for (const [echeances, mensualite, total] of [[2, 9950, "19900"], [3, 6633, "19899"]]) {
+    const { res, appels } = await creerCheckout({ produitId, echeances });
+    assert.equal(res.statusCode, 200);
+    assert.equal(appels.length, 1);
+    const { params } = appels[0];
+    assert.equal(params.mode, "subscription");
+    assert.equal(params.line_items[0].price_data.unit_amount, mensualite);
+    assert.equal(params.metadata.produitIds, produitId);
+    assert.equal(params.metadata.montantTotal, total);
+    assert.equal(params.subscription_data.metadata.echeances, String(echeances));
+  }
+  const refus = await creerCheckout({ produitId: "pack-ultra-l2-s1-revision", echeances: 2 });
+  assert.equal(refus.res.statusCode, 400);
+  assert.equal(refus.res.payload.code, "produit_indisponible");
+  assert.equal(refus.appels.length, 0);
+});
+
 test("un Pack Ultra payé comptant garde les libellés et les paramètres du paiement unique", async (t) => {
   fixerHorlogePaiement(t);
   const produitId = "pack-ultra-l1-s1-revision";

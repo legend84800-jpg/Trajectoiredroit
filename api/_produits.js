@@ -41,7 +41,7 @@ const PRODUITS = {
   "fiche-penal-general-l1": { nom: "Fiche complète Droit pénal général L2", prix: 1999, blobs: ["r2://tjd/fiche-penal-general-l1.pdf",
       "r2://tjd/fiche-penal-general-l1-plan.pdf",
       "r2://tjd/fiche-penal-general-l1-cartesmentales.pdf"] },
-  "fiche-penal-l2-s1": { nom: "Fiche complète Droit pénal L2 S1", prix: 1999, blobs: ["r2://tjd/fiche-penal-l2-s1.pdf",
+  "fiche-penal-l2-s1": { venteSuspendue: true, nom: "Fiche complète Droit pénal L2 S1", prix: 1999, blobs: ["r2://tjd/fiche-penal-l2-s1.pdf",
       "r2://tjd/fiche-penal-l2-s1-plan.pdf",
       "r2://tjd/fiche-penal-l2-s1-cartesmentales.pdf"] },
   "fiche-biens-l2": { nom: "Fiche complète Droit des biens L2", prix: 1999, blobs: ["r2://tjd/fiche-biens-l2.pdf",
@@ -994,6 +994,20 @@ for (const [packId, penalId] of [
   ["pack-cas-pratiques-l2", "cas-pratique-penal-general-l1"],
 ]) {
   PRODUITS[packId].blobs.push(...PRODUITS[penalId].blobs);
+}
+
+const fichiersPenalS1 = new Set(PRODUITS["fiche-penal-l2-s1"].blobs);
+for (const [id, nom] of [
+  ["pack-l2", "Pack Fiches L2 (8 fiches)"],
+  ["pack-complet", "Pack Licence complète (22 fiches)"],
+  ["pack-matiere-penal-l2", PRODUITS["pack-matiere-penal-l2"].nom],
+]) {
+  const pack = PRODUITS[id];
+  const blobs = id === "pack-matiere-penal-l2"
+    ? [...PRODUITS["fiche-penal-general-l1"].blobs, ...pack.blobs.filter((fichier) => !fichiersPenalS1.has(fichier))]
+    : pack.blobs.filter((fichier) => !fichiersPenalS1.has(fichier));
+  PRODUITS[id + "-revision"] = { ...pack, nom, blobs };
+  pack.venteSuspendue = true;
 }
 
 Object.assign(PRODUITS, require("./_audio-video").construireProduits(PRODUITS));

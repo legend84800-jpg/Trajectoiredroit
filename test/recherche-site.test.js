@@ -113,7 +113,7 @@ test('les fiches complètes actives mènent toutes à une carte au bon niveau da
   for (const requete of ['fiche responsabilité civile L2S2', 'fiches complètes responsabilité civile L2-S2', 'fiche de révision obligations Licence 2 semestre 2']) {
     assert.equal(rechercher(index, requete)[0].u, prefixe + 'fiche-obligations-l2-s2', requete);
   }
-  assert.equal(rechercher(index, 'fiche droit pénal L2 S1')[0].u, prefixe + 'fiche-penal-l2-s1');
+  assert.equal(rechercher(index, 'fiche droit pénal L2 S1')[0].u, prefixe + 'fiche-penal-general-l1');
   assert.equal(rechercher(index, 'fiche droit pénal L2 S2')[0].u, prefixe + 'fiche-penal-general-l1');
   for (const semestre of ['S1', 'S2']) {
     const [fiche] = rechercher(index, 'fiche droit pénal général L2 ' + semestre);

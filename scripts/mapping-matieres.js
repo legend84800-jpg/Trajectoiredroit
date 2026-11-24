@@ -102,7 +102,7 @@ const MATIERES = {
   "droit-penal-general-l2": {
     nom: "Droit pénal général L2",
     semestres: [
-      { label: null, id: "fiche-penal-general-l1", prix: "19,99 €", apercus: ["assets/apercus/penal-general-l1-zoom.webp", "assets/apercus/penal-general-l1-1.webp", "assets/apercus/penal-general-l1-2.webp"] },
+      { label: null, id: "fiche-penal-general-l1", prix: "19,99 €", apercus: ["assets/apercus/penal-general-l2-unique/298d3726cc46-p002.webp", "assets/apercus/penal-general-l2-unique/298d3726cc46-p051.webp", "assets/apercus/penal-general-l2-unique/298d3726cc46-p096.webp"] },
     ],
     majeures: [],
     packMatiere: { id: "pack-matiere-penal-general-l1", prix: "29,98 €" },
@@ -110,7 +110,7 @@ const MATIERES = {
   "droit-penal-l2": {
     nom: "Droit pénal L2",
     semestres: [
-      { label: null, id: "fiche-penal-l2-s1", prix: "19,99 €", apercus: ["assets/apercus/penal-l2-s1-zoom.webp", "assets/apercus/penal-l2-s1-1.webp", "assets/apercus/penal-l2-s1-2.webp"] },
+      { label: null, id: "fiche-penal-general-l1", prix: "19,99 €", apercus: ["assets/apercus/penal-general-l2-unique/298d3726cc46-p002.webp", "assets/apercus/penal-general-l2-unique/298d3726cc46-p051.webp", "assets/apercus/penal-general-l2-unique/298d3726cc46-p096.webp"] },
     ],
     // Le S2 manquait alors que le produit maj-penal-l2-s2 existe déjà en
     // vente, corrigé le 12/09/2026 (audit qualité, proposition 7.7).
@@ -118,7 +118,7 @@ const MATIERES = {
       { label: "Semestre 1", id: "maj-penal-l2-s1", prix: "19,99 €" },
       { label: "Semestre 2", id: "maj-penal-l2-s2", prix: "19,99 €" },
     ],
-    packMatiere: { id: "pack-matiere-penal-l2", prix: "29,98 €" },
+    packMatiere: { id: "pack-matiere-penal-l2-revision", prix: "29,98 €" },
   },
   "histoire-des-institutions-l1": {
     nom: "Histoire des institutions L1",

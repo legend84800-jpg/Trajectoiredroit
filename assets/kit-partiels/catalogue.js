@@ -78,9 +78,9 @@ window.catalogueKit = {
         "prixSepare": 4997
       },
       {
-        "code": "penal",
+        "code": "penal-unifie-s1",
         "discipline": "penal",
-        "nom": "Droit pénal",
+        "nom": "Droit pénal général",
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
@@ -105,10 +105,10 @@ window.catalogueKit = {
         "prixSepare": 4997
       },
       {
-        "code": "penal-general-s2",
+        "code": "penal-unifie-s2",
         "discipline": "penal",
-        "nom": "Droit pénal général avec les peines",
-        "semestre": "S1 ou S2",
+        "nom": "Droit pénal général",
+        "semestre": "S2",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
         "prixSepare": 4997

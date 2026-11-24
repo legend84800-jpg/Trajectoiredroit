@@ -166,7 +166,7 @@ test('le refus du stockage conserve les filtres et le niveau porté par le lien 
 test('le catalogue de fiches reste cherchable sans accents et avec des mots dans un autre ordre', () => {
   const nom = 'formations.html';
   const cartes = cartesPage(nom);
-  assert.equal(cartes.length, 24, nom);
+  assert.equal(cartes.length, 23, nom);
   const e = environnement({ cartesReelles: cartes, format: 'fiches' });
   e.chercher('penal L2'); const sansAccents = e.visibles();
   assert.ok(sansAccents.length > 0, nom);
@@ -174,7 +174,7 @@ test('le catalogue de fiches reste cherchable sans accents et avec des mots dans
   assert.deepEqual(e.visibles(), sansAccents);
   e.niveau('L2'); e.chercher('L2 administratif');
   assert.equal(e.visibles().length, 2, nom);
-  assert.equal(e.cartes.length, 24);
+  assert.equal(e.cartes.length, 23);
 });
 
 test('une recherche que le niveau mémorisé masque propose les résultats dans le bon niveau', () => {
@@ -322,7 +322,7 @@ test('le semestre recherché correspond à la fiche et exclut les offres d’ajo
     ['contrats L2S1', ['cours-images-contrats-l2-s1', 'fiche-contrats-l2-s1']],
     ['contrats L2-S1', ['cours-images-contrats-l2-s1', 'fiche-contrats-l2-s1']],
     ['contrats L2 S1', ['cours-images-contrats-l2-s1', 'fiche-contrats-l2-s1']],
-    ['droit pénal L2 S1', ['fiche-penal-general-l1', 'fiche-penal-l2-s1']],
+    ['droit pénal L2 S1', ['fiche-penal-general-l1']],
     ['droit pénal L2-S2', ['fiche-penal-general-l1']],
     ['droit pénal général L2 S1', ['fiche-penal-general-l1']],
     ['responsabilité civile S2', ['fiche-obligations-l2-s2']],

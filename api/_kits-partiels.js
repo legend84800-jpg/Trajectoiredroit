@@ -27,6 +27,17 @@ const programmes = {
   ],
 };
 
+const anciensCodesPenal = new Set(["penal", "penal-general-s2"]);
+const programmesActuels = {
+  ...programmes,
+  l2: programmes.l2.map((entree) => {
+    const [code, discipline, , , , application, qcm] = entree;
+    if (!anciensCodesPenal.has(code)) return entree;
+    const semestre = code === "penal" ? "S1" : "S2";
+    return [`penal-unifie-${semestre.toLowerCase()}`, discipline, "Droit pénal général", semestre, "fiche-penal-general-l1", application, qcm];
+  }),
+};
+
 function lireMatiere(entree, produits) {
   const [code, discipline, nom, semestre, fiche, application, qcm] = entree;
   const supports = [fiche, application, qcm].map((reference) => produits[reference]);
@@ -50,9 +61,9 @@ function codeKit(niveau, matieres) {
   return `pack-kit-partiels-${niveau}--${codes}`;
 }
 
-function construireProduits(produits) {
+function construireKits(produits, choix) {
   const kits = {};
-  for (const [niveau, programme] of Object.entries(programmes)) {
+  for (const [niveau, programme] of Object.entries(choix)) {
     const matieres = programme.map((entree) => lireMatiere(entree, produits)).filter(Boolean);
     for (let i = 0; i < matieres.length - 2; i++) {
       for (let j = i + 1; j < matieres.length - 1; j++) {
@@ -74,8 +85,17 @@ function construireProduits(produits) {
   return kits;
 }
 
+function construireProduits(produits) {
+  const anciensKits = construireKits(produits, { l2: programmes.l2 });
+  const kits = construireKits(produits, programmesActuels);
+  for (const [id, kit] of Object.entries(anciensKits)) {
+    if (!Object.hasOwn(kits, id)) kits[id] = { ...kit, venteSuspendue: true };
+  }
+  return kits;
+}
+
 function donneesPage(produits) {
-  const niveaux = Object.fromEntries(Object.entries(programmes).map(([niveau, entrees]) => [
+  const niveaux = Object.fromEntries(Object.entries(programmesActuels).map(([niveau, entrees]) => [
     niveau,
     entrees
       .map((entree) => lireMatiere(entree, produits))

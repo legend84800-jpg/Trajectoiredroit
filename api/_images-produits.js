@@ -280,6 +280,11 @@ const VISUELS = {
   "stage-methode": "assets/julien.jpg",
 };
 
+for (const id of ["pack-l2", "pack-complet", "pack-matiere-penal-l2"]) {
+  VISUELS[id + "-revision"] = VISUELS[id];
+}
+VISUELS["pack-ultra-l2-s1-revision"] = VISUELS["pack-ultra-l2-s1"];
+
 const { DEFINITIONS, referenceVente } = require("./_packs-ultra");
 for (const [id, definition] of Object.entries(DEFINITIONS)) {
   if (!definition.venteSuspendue) VISUELS[referenceVente(id)] = VISUELS[id];

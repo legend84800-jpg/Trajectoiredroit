@@ -47,7 +47,7 @@ test("les trios autorisés livrent les fichiers de chacun des supports", () => {
   for (const m of Object.values(catalogue.niveaux).flat()) assert.equal(m.prixSepare, 4997);
   const references = Object.entries(PRODUITS).filter(([cle]) => cle.startsWith("pack-kit-partiels-"));
   assert.deepEqual(["l1", "l2", "l3"].map((niveau) =>
-    references.filter(([id]) => id.startsWith(`pack-kit-partiels-${niveau}--`)).length
+    references.filter(([id, produit]) => id.startsWith(`pack-kit-partiels-${niveau}--`) && !produit.venteSuspendue).length
   ), [20, 35, 4]);
   for (const [id, produit] of references) {
     assert.equal(produit.prix, 6900, id);
@@ -61,15 +61,39 @@ test("les trios autorisés livrent les fichiers de chacun des supports", () => {
   const droitConstitutionnel = PRODUITS["pack-kit-partiels-l1--constitutionnel-s1--constitutionnel-s2--intro-droit"];
   assert.match(droitConstitutionnel.nom, /Droit constitutionnel \(S1\)/);
   assert.match(droitConstitutionnel.nom, /Droit constitutionnel \(S2\)/);
-  const penalGeneral = PRODUITS["pack-kit-partiels-l2--administratif-s2--contrats--penal-general-s2"];
-  assert.match(penalGeneral.nom, /Droit pénal général avec les peines \(S1 ou S2\)/);
-  for (const id of ["fiche-penal-general-l1", "maj-penal-l2-s2", "flashcards-qcm-penal-general-l1"]) {
-    assert.ok(PRODUITS[id].blobs.every((fichier) => penalGeneral.blobs.includes(fichier)), id);
+  const penalS1 = ["fiche-penal-general-l1", "maj-penal-l2-s1", "flashcards-qcm-penal-l2-s1"];
+  const penalS2 = ["fiche-penal-general-l1", "maj-penal-l2-s2", "flashcards-qcm-penal-general-l1"];
+  for (const [semestre, supports] of [[1, penalS1], [2, penalS2]]) {
+    const kit = PRODUITS["pack-kit-partiels-l2--administratif-s2--contrats--penal-unifie-s" + semestre];
+    assert.match(kit.nom, new RegExp(`Droit pénal général \\(S${semestre}\\)`));
+    for (const id of supports) assert.ok(PRODUITS[id].blobs.every((fichier) => kit.blobs.includes(fichier)), id);
+  }
+  const deuxSemestres = PRODUITS["pack-kit-partiels-l2--contrats--penal-unifie-s1--penal-unifie-s2"];
+  for (const id of new Set([...penalS1, ...penalS2])) {
+    assert.ok(PRODUITS[id].blobs.every((fichier) => deuxSemestres.blobs.filter((blob) => blob === fichier).length === 1), id);
   }
 });
 
-test("le paiement unique et les deux échéances portent sur le kit des deux semestres", async (t) => {
+test("les anciens kits de pénal sont conservés pour les acheteurs et refusés en nouvelle commande", async () => {
+  const debut = checkoutParams.length;
+  const anciens = {
+    penal: "fiche-penal-l2-s1",
+    "penal-general-s2": "fiche-penal-general-l1",
+  };
+  for (const [ancienCode, fiche] of Object.entries(anciens)) {
+    const id = "pack-kit-partiels-l2--administratif-s2--contrats--" + ancienCode;
+    assert.equal(PRODUITS[id].venteSuspendue, true, id);
+    assert.ok(PRODUITS[fiche].blobs.every((fichier) => PRODUITS[id].blobs.includes(fichier)), id);
+    const refus = await ouvrir({ produitId: id });
+    assert.equal(refus.statusCode, 400, id);
+    assert.equal(refus.content.code, "produit_indisponible", id);
+  }
+  assert.equal(checkoutParams.length, debut);
+});
+
+test("le paiement unique et les deux échéances portent sur le kit révisé de pénal", async (t) => {
   fixerHorlogePaiement(t);
+  const kitId = "pack-kit-partiels-l2--contrats--penal-unifie-s1--penal-unifie-s2";
   const debut = checkoutParams.length;
   assert.equal((await ouvrir({ produitId: kitId })).statusCode, 200);
   assert.equal((await ouvrir({ produitId: kitId, echeances: 2 })).statusCode, 200);

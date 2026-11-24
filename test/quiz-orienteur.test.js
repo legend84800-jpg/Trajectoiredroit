@@ -66,6 +66,12 @@ test("chaque matière du quiz renvoie à des supports disponibles", () => {
     const fiche = produits[matiere.fiche];
     assert.ok(fiche && !fiche.venteSuspendue, matiere.fiche);
 
+    if (matiere.fiche === "fiche-penal-general-l1" && matiere.sem === "S1") {
+      assert.equal(matiere.fc, "flashcards-qcm-penal-l2-s1");
+      assert.ok(produits[matiere.fc] && !produits[matiere.fc].venteSuspendue);
+      continue;
+    }
+
     const suffixe = matiere.fiche.match(/^fiche-(.+)$/);
     const idFlashcards = suffixe && "flashcards-qcm-" + suffixe[1];
     const flashcards = idFlashcards && produits[idFlashcards];

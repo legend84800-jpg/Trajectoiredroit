@@ -22,17 +22,17 @@ for (const [id, attendu] of Object.entries(attentes)) test(id + ' conserve ses f
 });
 
 test('la licence contient les fiches des trois packs sans fichier en double', () => {
-  const union = new Set(['pack-l1-revision','pack-l2','pack-l3'].flatMap(id => produits[id].blobs));
-  assert.deepEqual(new Set(produits['pack-complet'].blobs), union);
-  assert.equal(produits['pack-complet'].prix, 17900);
-  assert.equal(produits['pack-complet'].blobs.length, 66);
-  assert.equal(produits['pack-l2'].blobs.length, 25);
-  assert.equal(produits['pack-l2'].prix, 7900);
+  const union = new Set(['pack-l1-revision', 'pack-l2-revision', 'pack-l3'].flatMap(id => produits[id].blobs));
+  assert.deepEqual(new Set(produits['pack-complet-revision'].blobs), union);
+  assert.equal(produits['pack-complet-revision'].prix, 17900);
+  assert.equal(produits['pack-complet-revision'].blobs.length, 63);
+  assert.equal(produits['pack-l2-revision'].blobs.length, 22);
+  assert.equal(produits['pack-l2-revision'].prix, 7900);
 });
 
 test('le pénal général reste dans les anciens packs L1 et se vend dans les packs L2', () => {
   for (const [l1, l2, support] of [
-    ['pack-l1', 'pack-l2', 'fiche-penal-general-l1'],
+    ['pack-l1', 'pack-l2-revision', 'fiche-penal-general-l1'],
     ['pack-cas-pratiques-l1', 'pack-cas-pratiques-l2', 'cas-pratique-penal-general-l1'],
     ['pack-flashcards-qcm-l1', 'pack-flashcards-qcm-l2', 'flashcards-qcm-penal-general-l1'],
   ]) {
@@ -45,6 +45,24 @@ test('le pénal général reste dans les anciens packs L1 et se vend dans les pa
     assert.ok(fichiers.every(fichier => ancien.blobs.includes(fichier)));
     assert.ok(fichiers.every(fichier => produits[l2].blobs.includes(fichier)));
     assert.deepEqual(nouveau.blobs, ancien.blobs.filter(fichier => !fichiers.includes(fichier)));
+  }
+});
+
+test('la fiche de pénal retirée reste attachée aux anciens achats seulement', () => {
+  const ancienneFiche = produits['fiche-penal-l2-s1'];
+  const ficheUnique = produits['fiche-penal-general-l1'];
+  assert.equal(ancienneFiche.venteSuspendue, true);
+  assert.ok(!ficheUnique.venteSuspendue);
+  for (const id of ['pack-l2', 'pack-complet', 'pack-matiere-penal-l2']) {
+    assert.equal(produits[id].venteSuspendue, true, id);
+    assert.ok(ancienneFiche.blobs.every(fichier => produits[id].blobs.includes(fichier)), id);
+    const revision = produits[id + '-revision'];
+    assert.ok(!revision.venteSuspendue, id);
+    assert.equal(revision.prix, produits[id].prix, id);
+    assert.ok(ficheUnique.blobs.every(fichier => revision.blobs.includes(fichier)), id);
+  }
+  for (const [id, produit] of Object.entries(produits)) {
+    if (!produit.venteSuspendue) assert.ok(!produit.blobs?.some(fichier => ancienneFiche.blobs.includes(fichier)), id);
   }
 });
 
@@ -63,7 +81,7 @@ test('les deux fiches et leurs plans sont ajoutés après tous les anciens indic
     assert.equal(empreinte, avant.empreinte, id);
     assert.deepEqual(blobs.slice(avant.taille), ajouts, id);
     assert.equal(new Set(blobs).size, blobs.length, id);
-    for (const fiche of deuxFichesL2) assert.ok(panier.inclusions[id].includes(fiche), fiche);
+    for (const fiche of deuxFichesL2) assert.ok(panier.inclusions[id + '-revision'].includes(fiche), fiche);
   }
 });
 
