@@ -83,6 +83,8 @@
     var achatsResultat     = document.getElementById("achatsResultat");
     var achatsCourants = [];
     var relancerAchats = null;
+    var titulaireVerifie = null;
+    var lecteursSuspendus = null;
     var jetonAchats = null;
     var pdfAffiches = [];
     var pdfEnCours = null;
@@ -90,10 +92,19 @@
     var messageChargementAchats = "Chargement des documents…";
     var messageErreurAchats = "Le chargement de tes documents a échoué.";
 
+    function lecteursAchats(){
+      return Array.from(achatsListe.querySelectorAll?.("audio, video") || []);
+    }
+
     function effacerAchats(){
-      compteEmail.textContent = "";
+      lecteursAchats().forEach(function(lecteur){
+        lecteur.pause();
+        lecteur.replaceChildren();
+        lecteur.load();
+      });
       achatsListe.innerHTML = "";
       achatsCourants = [];
+      lecteursSuspendus = null;
       jetonAchats = null;
       pdfAffiches = [];
       pdfEnCours = null;
@@ -316,7 +327,7 @@
       return data;
     }
 
-    async function chargerAchats(accessToken, generation){
+    async function chargerAchats(accessToken, generation, reprise){
       if (generation !== generationSession) return;
       relancerAchats = null;
       if (achatsReessayer) achatsReessayer.disabled = true;
@@ -328,12 +339,10 @@
         if (!data || generation !== generationSession) return;
       } catch (e){
         if (generation !== generationSession) return;
+        effacerAchats();
+        afficherEtat("etatConnecte");
         achatsVide.textContent = messageErreurAchats;
-        achatsListe.innerHTML = "";
-        achatsCourants = [];
-        if (achatsOutils) achatsOutils.hidden = true;
-        if (achatsResultat) achatsResultat.textContent = "";
-        afficherParrainage(null);
+        achatsVide.style.display = "block";
         if (achatsReessayer) {
           relancerAchats = function(){ return chargerAchats(accessToken, generation); };
           achatsReessayer.hidden = false;
@@ -341,16 +350,29 @@
         }
         return;
       }
+      var achatsConserves = reprise && actualiserLiensAchats(data.achats);
+      if (reprise && !achatsConserves) effacerAchats();
+      lecteursSuspendus = null;
       if (achatsReessayer) {
         achatsReessayer.hidden = true;
         achatsReessayer.disabled = false;
       }
       jetonAchats = accessToken;
-      achatsCourants = data.achats;
       afficherComplements(data && data.suggestions, data && data.remise);
       afficherParrainage(data && data.parrainage);
-      preparerFiltresAchats();
-      afficherAchatsFiltres();
+      if (achatsConserves) {
+        afficherEtatDesAchats(!achatsListe.innerHTML);
+      } else {
+        achatsCourants = data.achats;
+        preparerFiltresAchats();
+        afficherAchatsFiltres();
+      }
+      afficherEtat("etatConnecte");
+      if (achatsConserves) {
+        lecteursAchats().forEach(function(lecteur){
+          restaurerLecteur(lecteur, reprise.indexOf(lecteur) !== -1, generation);
+        });
+      }
     }
 
     achatsReessayer?.addEventListener("click", function(){
@@ -358,8 +380,8 @@
       if (relancerAchats) return relancerAchats();
     });
 
-    function referencePdf(commande, produit, fichier){
-      if (fichier.type !== "pdf" || fichier.format || !produit.id) return null;
+    function referenceDocument(commande, produit, fichier){
+      if (!produit.id) return null;
       var url;
       try {
         url = new URL(fichier.url);
@@ -377,10 +399,76 @@
           || !/^[a-f0-9]{64}$/.test(parametres.get("sig"))) return null;
       return {
         // Le même libellé peut apparaître pour plusieurs commandes, produits ou fichiers.
-        identite: JSON.stringify([commande.sessionId || "", commande.date, produit.id, index, fichier.groupe, fichier.nom]),
+        identite: JSON.stringify([commande.sessionId || "", commande.date, produit.id, index, fichier.groupe, fichier.nom, fichier.type, fichier.format]),
         fichier: fichier,
         expiration: Number(expiration)
       };
+    }
+
+    function referencePdf(commande, produit, fichier){
+      return fichier.type === "pdf" && !fichier.format ? referenceDocument(commande, produit, fichier) : null;
+    }
+
+    function decrireAchats(achats, documents){
+      return JSON.stringify(achats.map(function(commande){
+        var produits = commande.produits.map(function(produit){
+          var fichiers = produit.fichiers.map(function(fichier){
+            var document = referenceDocument(commande, produit, fichier);
+            if (!document) throw new Error("Document non reconnu");
+            documents.push(document);
+            return document.identite;
+          });
+          return [produit.id, produit.nom, fichiers];
+        });
+        return [commande.sessionId, commande.date, produits];
+      }));
+    }
+
+    function actualiserLiensAchats(nouveauxAchats){
+      var precedents = [];
+      var nouveaux = [];
+      try {
+        if (decrireAchats(achatsCourants, precedents) !== decrireAchats(nouveauxAchats, nouveaux)) return false;
+      } catch (_) {
+        return false;
+      }
+      var nouveauxLiens = new Map(precedents.map(function(reference, index){
+        return [reference.fichier.url, nouveaux[index]];
+      }));
+      achatsListe.querySelectorAll?.("a[href], source[src]").forEach(function(element){
+        var attribut = element.tagName === "SOURCE" ? "src" : "href";
+        var nouveau = nouveauxLiens.get(element.getAttribute(attribut));
+        if (nouveau) element.setAttribute(attribut, nouveau.fichier.url);
+      });
+      pdfAffiches.forEach(function(reference){
+        reference.expiration = nouveauxLiens.get(reference.fichier.url).expiration;
+      });
+      precedents.forEach(function(reference, index){
+        reference.fichier.url = nouveaux[index].fichier.url;
+      });
+      return true;
+    }
+
+    function restaurerLecteur(lecteur, reprendre, generation){
+      function reprendreLecture(){
+        // Un navigateur peut demander un nouveau geste. La position reste en place.
+        if (reprendre && lecteur.isConnected) lecteur.play().catch(function(){});
+      }
+      var expiration = new URLSearchParams(lecteur.currentSrc?.split("?")[1]).get("exp");
+      var source = expiration && lecteur.querySelector("source[src]");
+      if (source && source.src !== lecteur.currentSrc && Number(expiration) <= Date.now() / 1000) {
+        var position = lecteur.currentTime;
+        var vitesse = lecteur.playbackRate;
+        lecteur.addEventListener("loadedmetadata", function(){
+          if (generation !== generationSession || !lecteur.isConnected) return;
+          lecteur.currentTime = Number.isFinite(lecteur.duration) ? Math.min(position, lecteur.duration) : position;
+          lecteur.playbackRate = vitesse;
+          reprendreLecture();
+        }, { once: true });
+        lecteur.load();
+      } else {
+        reprendreLecture();
+      }
     }
 
     function afficherEtatDesAchats(listeVide){
@@ -545,10 +633,26 @@
       }).join("");
     }
 
-    function actualiserSession(session){
+    function actualiserSession(session, evenement){
       if (deconnexionEnCours) session = null;
       var generation = ++generationSession;
-      effacerAchats();
+      var ancienTitulaire = titulaireVerifie;
+      var reprise = evenement === "TOKEN_REFRESHED" && session?.access_token && ancienTitulaire
+        && (jetonAchats || lecteursSuspendus);
+      if (reprise) {
+        if (!lecteursSuspendus) {
+          lecteursSuspendus = lecteursAchats().filter(function(lecteur){ return !lecteur.paused && !lecteur.ended; });
+          lecteursSuspendus.forEach(function(lecteur){ lecteur.pause(); });
+        }
+        reprise = lecteursSuspendus;
+        jetonAchats = null;
+        pdfEnCours = null;
+        relancerPdf = null;
+      } else {
+        titulaireVerifie = null;
+        compteEmail.textContent = "";
+        effacerAchats();
+      }
       if (!session || !session.access_token){
         afficherEtat("etatConnexion");
         return;
@@ -568,11 +672,16 @@
             connexionError.style.display = "block";
             return;
           }
+          if (reprise && (utilisateur.id !== ancienTitulaire.id || utilisateur.email !== ancienTitulaire.email)) {
+            effacerAchats();
+            reprise = null;
+          }
+          titulaireVerifie = utilisateur.id ? { id: utilisateur.id, email: utilisateur.email } : null;
           compteEmail.textContent = utilisateur.email;
           fermerFormulaireCode();
           connexionError.style.display = "none";
           connexionSuccess.style.display = "none";
-          afficherEtat("etatConnecte");
+          if (!reprise) afficherEtat("etatConnecte");
           var retour = new URLSearchParams(window.location.search);
           if (retour.get("retour") === "portalis") {
             var formule = retour.get("formule");
@@ -581,7 +690,7 @@
             window.location.assign("portalis.html" + choix + "#espace");
             return;
           }
-          await chargerAchats(session.access_token, generation);
+          await chargerAchats(session.access_token, generation, reprise);
         } catch (e){
           if (generation !== generationSession) return;
           actualiserSession(null);
@@ -740,8 +849,8 @@
       }
     });
 
-    sb.auth.onAuthStateChange(function(_event, session){
-      actualiserSession(session);
+    sb.auth.onAuthStateChange(function(evenement, session){
+      actualiserSession(session, evenement);
     });
 
     verifierSession();

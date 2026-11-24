@@ -18,6 +18,7 @@
     if (!racine || !donnees || !donnees.length) return;
     var choix = racine.querySelector('#qcm-essai-matiere');
     var zone = racine.querySelector('#qcm-essai-questions');
+    var formulaires = new Map();
 
     donnees.forEach(function (m, i) {
       var o = el('option', { value: String(i) });
@@ -27,7 +28,11 @@
 
     function afficher(index) {
       var m = donnees[index];
-      zone.innerHTML = '';
+      if (!m) return;
+      if (formulaires.has(index)) {
+        zone.replaceChildren(formulaires.get(index));
+        return;
+      }
       var form = el('form', { novalidate: 'novalidate' });
       m.questions.forEach(function (q, iq) {
         var plusieurs = q.c.length > 1;
@@ -88,11 +93,16 @@
           actions.appendChild(offre);
         }
         var encore = el('button', { type: 'button', class: 'btn btn--outline' }, 'Recommencer');
-        encore.addEventListener('click', function () { afficher(index); zone.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+        encore.addEventListener('click', function () {
+          formulaires.delete(index);
+          afficher(index);
+          zone.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
         actions.appendChild(encore);
         bilan.appendChild(actions);
       });
-      zone.appendChild(form);
+      formulaires.set(index, form);
+      zone.replaceChildren(form);
     }
 
     choix.addEventListener('change', function () { afficher(Number(choix.value)); });

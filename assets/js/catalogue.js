@@ -60,7 +60,7 @@
     var suggestion = racine.querySelector('[data-catalogue-suggestion]');
     var reset = racine.querySelector('[data-catalogue-reset]');
     var etat = { niveau: niveauAdresse() || niveauEnregistre() || 'tous', matiere: 'tous' };
-    var niveauSuggere = null;
+    var filtreSuggere = null;
 
     function actualiserLiens() {
       document.querySelectorAll('a[href]').forEach(function (lien) {
@@ -89,19 +89,41 @@
       memoriserNiveau(etat.niveau);
       actualiserLiens();
     }
-    function proposerNiveau(cartesCorrespondantes) {
-      if (!suggestion) return;
-      var niveauxTrouves = NIVEAUX.slice(1).filter(function (niveau) {
-        return cartesCorrespondantes.some(function (carte) { return carte.niveaux.includes(niveau); });
+    function cartesDansMatiere(cartesRecherchees, matiere, sujetAnnuel) {
+      var correspondances = matiere === 'tous' ? cartesRecherchees : cartesRecherchees.filter(function (carte) {
+        return carte.matieres.includes(matiere);
       });
-      niveauSuggere = niveauxTrouves[0] || null;
-      if (niveauxTrouves.length > 1) niveauSuggere = 'tous';
-      var nombre = cartesCorrespondantes.length;
-      var resultat = nombre === 1 ? 'le résultat' : 'les ' + nombre + ' résultats';
-      var niveau = niveauSuggere === 'tous' ? ' dans toutes les années' : ' en ' + niveauSuggere;
-      suggestion.textContent = niveauSuggere ? 'Voir ' + resultat + niveau : '';
-      suggestion.hidden = !niveauSuggere;
-      suggestion.style.display = niveauSuggere ? '' : 'none';
+      if (!sujetAnnuel) return correspondances;
+      var fichesAnnuelles = correspondances.filter(function (carte) { return carte.sujetAnnuel === sujetAnnuel; });
+      return fichesAnnuelles.length ? fichesAnnuelles : correspondances;
+    }
+    function carteDansNiveau(carte) {
+      return etat.niveau === 'tous' || carte.niveaux.includes(etat.niveau);
+    }
+    function proposerFiltre(cartesCorrespondantes, cartesAutresMatieres) {
+      if (!suggestion) return;
+      filtreSuggere = null;
+      var texte = '';
+      if (cartesAutresMatieres.length) {
+        filtreSuggere = { matiere: 'tous' };
+        texte = cartesAutresMatieres.length === 1
+          ? 'Voir le résultat dans toutes les matières'
+          : 'Voir les résultats dans toutes les matières';
+      } else if (cartesCorrespondantes.length) {
+        var niveauxTrouves = NIVEAUX.slice(1).filter(function (niveau) {
+          return cartesCorrespondantes.some(function (carte) { return carte.niveaux.includes(niveau); });
+        });
+        var niveau = niveauxTrouves.length > 1 ? 'tous' : niveauxTrouves[0];
+        if (niveau) {
+          filtreSuggere = { niveau: niveau };
+          var nombre = cartesCorrespondantes.length;
+          var resultat = nombre === 1 ? 'le résultat' : 'les ' + nombre + ' résultats';
+          texte = 'Voir ' + resultat + (niveau === 'tous' ? ' dans toutes les années' : ' en ' + niveau);
+        }
+      }
+      suggestion.textContent = texte;
+      suggestion.hidden = !filtreSuggere;
+      suggestion.style.display = filtreSuggere ? '' : 'none';
     }
     function appliquerFiltres(depuisRecherche) {
       var semestres = [], niveauxRecherches = [];
@@ -124,22 +146,19 @@
       }
       var mots = extraireMots(texte);
       var sujetRecherche = mots.slice().sort().join(' ');
-      var cartesCorrespondantes = cartes.filter(function (carte) {
-        return (etat.matiere === 'tous' || carte.matieres.indexOf(etat.matiere) !== -1)
-          && (!niveauxRecherches.length || niveauxRecherches.some(function (niveau) { return carte.niveaux.indexOf(niveau) !== -1; }))
+      var cartesRecherchees = cartes.filter(function (carte) {
+        return (!niveauxRecherches.length || niveauxRecherches.some(function (niveau) { return carte.niveaux.indexOf(niveau) !== -1; }))
           && (!semestres.length
             || semestres.some(function (semestre) { return carte.semestres.includes(semestre); })
             || (sujetRecherche && carte.sujetAnnuel === sujetRecherche))
           && mots.every(function (mot) { return carte.texte.indexOf(mot) !== -1; });
       });
-      if (semestres.length && sujetRecherche) {
-        var fichesAnnuelles = cartesCorrespondantes.filter(function (carte) { return carte.sujetAnnuel === sujetRecherche; });
-        if (fichesAnnuelles.length) cartesCorrespondantes = fichesAnnuelles;
-      }
+      var sujetAnnuel = semestres.length ? sujetRecherche : null;
+      var cartesCorrespondantes = cartesDansMatiere(cartesRecherchees, etat.matiere, sujetAnnuel);
       var cartesRetenues = new Set(cartesCorrespondantes);
       var nombre = 0;
       cartes.forEach(function (carte) {
-        var visible = cartesRetenues.has(carte) && (etat.niveau === 'tous' || carte.niveaux.includes(etat.niveau));
+        var visible = cartesRetenues.has(carte) && carteDansNiveau(carte);
         carte.element.hidden = !visible;
         carte.element.style.display = visible ? carte.display : 'none';
         if (visible) nombre++;
@@ -155,19 +174,26 @@
         bouton.setAttribute('aria-pressed', String(actif));
       });
       if (compteur) compteur.textContent = nombre + (nombre > 1 ? ' supports affichés sur ' : ' support affiché sur ') + cartes.length;
-      var rechercheRenseignee = mots.length || niveauxRecherches.length || semestres.length;
-      proposerNiveau(nombre === 0 && rechercheRenseignee ? cartesCorrespondantes : []);
+      var chercherSuggestion = nombre === 0 && (mots.length || niveauxRecherches.length || semestres.length);
+      var autresMatieres = chercherSuggestion && etat.matiere !== 'tous'
+        ? cartesDansMatiere(cartesRecherchees, 'tous', sujetAnnuel).filter(carteDansNiveau) : [];
+      proposerFiltre(chercherSuggestion ? cartesCorrespondantes : [], autresMatieres);
       if (vide) {
-        vide.hidden = nombre !== 0 || !!niveauSuggere;
+        vide.hidden = nombre !== 0 || !!filtreSuggere;
         vide.style.display = vide.hidden ? 'none' : '';
       }
     }
     if (suggestion) suggestion.addEventListener('click', function () {
-      if (!niveauSuggere) return;
-      etat.niveau = niveauSuggere;
-      appliquerFiltres(); actualiserAdresse(false);
+      if (!filtreSuggere) return;
+      var niveauModifie = !!filtreSuggere.niveau;
+      Object.assign(etat, filtreSuggere);
+      appliquerFiltres();
+      if (niveauModifie) actualiserAdresse(false);
       var premiereCarte = cartes.find(function (carte) { return !carte.element.hidden; });
-      if (premiereCarte) premiereCarte.element.focus();
+      if (premiereCarte) {
+        if (premiereCarte.element.getAttribute('tabindex') === null) premiereCarte.element.setAttribute('tabindex', '-1');
+        premiereCarte.element.focus();
+      }
     });
     niveaux.forEach(function (bouton) {
       bouton.addEventListener('click', function () {

@@ -38,6 +38,9 @@ function navigateur(options = {}) {
       replaceChildren() { this.children = []; },
       appendChild(el) { this.children.push(el); },
       contains(el) { return this.innerHTML.includes('data-pdf-compte="' + el.dataset.pdfCompte + '"'); },
+      querySelectorAll(selecteur) {
+        return selecteur === "audio, video" ? this.lecteurs || [] : this.liens || [];
+      },
       querySelector(selector) {
         const [, index] = selector.match(/^a\[data-pdf-compte="(\d+)"\]$/);
         const lien = new RegExp('href="[^"]+" data-pdf-compte="' + index + '"');
@@ -67,7 +70,10 @@ function navigateur(options = {}) {
   const stockage = () => ({ getItem: () => null, setItem() {}, removeItem() {} });
   const auth = {
     getSession: async () => ({ data: { session: { access_token: 'jeton-factice' } } }),
-    getUser: async () => ({ data: { user: { email: 'apercu@example.invalid', email_confirmed_at: '2026-10-01', is_anonymous: false } } }),
+    getUser: async (jeton) => ({ data: { user: {
+      id: options.identite ? options.identite(jeton) : 'titulaire-factice',
+      email: 'apercu@example.invalid', email_confirmed_at: '2026-10-01', is_anonymous: false
+    } } }),
     onAuthStateChange(fn) { callback = fn; },
     signOut: async () => { callback('SIGNED_OUT', null); return {}; },
   };
@@ -234,6 +240,170 @@ function historiquePdf(expiration, sessions = ['cs_test_commande_a', 'cs_test_co
     })),
   }));
 }
+
+function commandesAvecPodcast(expiration) {
+  const commandes = historiquePdf(expiration);
+  const commande = commandes[0];
+  const produit = commande.produits[0];
+  const url = 'https://trajectoiredroit.com/api/telecharger?' + new URLSearchParams({
+    id: produit.id, b: '2', exp: String(expiration), sid: commande.sessionId,
+    sig: genererToken(produit.id, 2, expiration, 'secret-de-test', commande.sessionId),
+  });
+  produit.fichiers.push({ nom: 'Le podcast', type: 'audio', groupe: 'Droit administratif', url });
+  return commandes;
+}
+
+function selectionnerDocuments(b) {
+  b.chercher('droit administratif');
+  b.filtrer('achatsProduit', 'Droit administratif');
+  b.filtrer('achatsSemestre', '1');
+}
+
+function lecteurEnCours(b) {
+  const lecteur = {
+    paused: false, ended: false, isConnected: true, currentTime: 18,
+    lectures: 0, arrets: 0,
+    pause() { this.paused = true; },
+    replaceChildren() { this.arrets++; },
+    load() { this.currentTime = 0; },
+    play() { this.lectures++; return Promise.reject(new Error('Le navigateur demande un geste')); }
+  };
+  b.elements.achatsListe.lecteurs = [lecteur];
+  return lecteur;
+}
+
+test('la même identité et les mêmes droits gardent les filtres et le lecteur après contrôle', async () => {
+  const maintenant = 1_800_000_000;
+  const avant = commandesAvecPodcast(maintenant - 1);
+  const apres = commandesAvecPodcast(maintenant + 900);
+  const apresDeuxiemeClic = commandesAvecPodcast(maintenant + 1801);
+  const attente = differe();
+  let nombre = 0;
+  const b = navigateur({ maintenant: maintenant * 1000, fetch: () => {
+    if (++nombre === 1) return reponseAchats(avant);
+    if (nombre === 2) return attente.promise;
+    return reponseAchats(apresDeuxiemeClic);
+  } });
+  await b.flush();
+  selectionnerDocuments(b);
+  const lecteur = lecteurEnCours(b);
+  const liste = b.elements.achatsListe.innerHTML;
+  b.evenement('TOKEN_REFRESHED', { access_token: 'jeton-renouvele' });
+  await b.flush();
+  assert.ok(b.elements.etatChargement.classList.contains('is-active'));
+  assert.equal(lecteur.paused, true);
+  assert.equal(lecteur.lectures, 0);
+  attente.resolve(reponseAchats(apres));
+  await b.flush();
+  assert.ok(b.elements.etatConnecte.classList.contains('is-active'));
+  assert.equal(b.elements.achatsListe.innerHTML, liste);
+  assert.equal(b.elements.achatsRecherche.value, 'droit administratif');
+  assert.equal(b.elements.achatsProduit.value, 'Droit administratif');
+  assert.equal(b.elements.achatsSemestre.value, '1');
+  assert.equal(lecteur.lectures, 1);
+  assert.equal(lecteur.currentTime, 18);
+  assert.equal(lecteur.arrets, 0);
+  assert.equal(b.cliquerPdf(0).renouvellement, false);
+  b.avancerTemps(901_000);
+  await b.cliquerPdf(0).fin;
+  assert.deepEqual(b.destinations, [apresDeuxiemeClic[0].produits[0].fichiers[0].url]);
+  assert.deepEqual(JSON.parse(b.demandes[2].req.body), { accessToken: 'jeton-renouvele' });
+});
+
+test('une identité différente ou un podcast retiré efface la lecture et les filtres précédents', async () => {
+  const maintenant = 1_800_000_000;
+  for (const autreTitulaire of [false, true]) {
+    const avant = commandesAvecPodcast(maintenant + 900);
+    const apres = commandesAvecPodcast(maintenant + 1800);
+    if (!autreTitulaire) apres[0].produits[0].fichiers.pop();
+    let nombre = 0;
+    const b = navigateur({ maintenant: maintenant * 1000,
+      identite: jeton => autreTitulaire ? jeton : 'meme-titulaire',
+      fetch: () => reponseAchats(++nombre === 1 ? avant : apres)
+    });
+    await b.flush();
+    selectionnerDocuments(b);
+    const lecteur = lecteurEnCours(b);
+    b.evenement('TOKEN_REFRESHED', { access_token: 'jeton-renouvele' });
+    await b.flush();
+    assert.equal(b.elements.achatsRecherche.value, '');
+    assert.equal(b.elements.achatsProduit.value, '');
+    assert.equal(b.elements.achatsSemestre.value, '');
+    assert.equal(lecteur.arrets, 1);
+    assert.equal(lecteur.lectures, 0);
+    assert.equal(b.elements.achatsListe.innerHTML.includes('Le podcast'), autreTitulaire);
+  }
+});
+
+test('les réponses de deux renouvellements rapprochés ne rouvrent pas le compte après déconnexion', async () => {
+  const maintenant = 1_800_000_000;
+  const commandes = commandesAvecPodcast(maintenant + 900);
+  const attentes = [differe(), differe()];
+  let nombre = 0;
+  const b = navigateur({ maintenant: maintenant * 1000,
+    fetch: () => nombre++ === 0 ? reponseAchats(commandes) : attentes[nombre - 2].promise
+  });
+  await b.flush();
+  selectionnerDocuments(b);
+  const lecteur = lecteurEnCours(b);
+  for (const jeton of ['renouvellement-1', 'renouvellement-2']) {
+    b.evenement('TOKEN_REFRESHED', { access_token: jeton });
+    await b.flush();
+  }
+  assert.equal(b.demandes.length, 3);
+  await b.elements.deconnexionBtn.listeners.click();
+  attentes[1].resolve(reponseAchats(commandes));
+  attentes[0].resolve(reponseAchats(commandes));
+  await b.flush();
+  assert.ok(b.elements.etatConnexion.classList.contains('is-active'));
+  assert.equal(b.elements.achatsListe.innerHTML, '');
+  assert.equal(b.elements.achatsRecherche.value, '');
+  assert.equal(lecteur.lectures, 0);
+  assert.ok(lecteur.arrets > 0);
+});
+
+test('une panne pendant le renouvellement efface les anciens accès et le réessai utilise la nouvelle session', async () => {
+  const maintenant = 1_800_000_000;
+  const commandes = commandesAvecPodcast(maintenant + 900);
+  let nombre = 0;
+  const b = navigateur({ maintenant: maintenant * 1000, fetch: () => {
+    return ++nombre === 2 ? { ok: false, status: 503 } : reponseAchats(commandes);
+  } });
+  await b.flush();
+  selectionnerDocuments(b);
+  const lecteur = lecteurEnCours(b);
+  b.evenement('TOKEN_REFRESHED', { access_token: 'jeton-renouvele' });
+  await b.flush();
+  assert.equal(b.elements.achatsListe.innerHTML, '');
+  assert.equal(b.elements.achatsReessayer.hidden, false);
+  assert.equal(lecteur.lectures, 0);
+  assert.equal(lecteur.arrets, 1);
+  await b.elements.achatsReessayer.listeners.click();
+  assert.deepEqual(JSON.parse(b.demandes[2].req.body), { accessToken: 'jeton-renouvele' });
+  assert.match(b.elements.achatsListe.innerHTML, /Le podcast/);
+  assert.equal(b.elements.achatsReessayer.hidden, true);
+});
+
+test('un téléchargement engagé avant le renouvellement est ignoré même si la même session garde ses achats', async () => {
+  const maintenant = 1_800_000_000;
+  const attente = differe();
+  let nombre = 0;
+  const b = navigateur({ maintenant: maintenant * 1000, fetch: () => {
+    if (++nombre === 1) return reponseAchats(commandesAvecPodcast(maintenant - 1));
+    if (nombre === 2) return attente.promise;
+    return reponseAchats(commandesAvecPodcast(maintenant + 900));
+  } });
+  await b.flush();
+  selectionnerDocuments(b);
+  const ancienClic = b.cliquerPdf(0);
+  b.evenement('TOKEN_REFRESHED', { access_token: 'jeton-renouvele' });
+  await b.flush();
+  attente.resolve(reponseAchats(commandesAvecPodcast(maintenant + 900)));
+  await ancienClic.fin;
+  assert.deepEqual(b.destinations, []);
+  assert.equal(b.elements.achatsRecherche.value, 'droit administratif');
+  assert.equal(b.cliquerPdf(0).renouvellement, false);
+});
 
 test('le clic garde les liens valides immédiats et renouvelle uniquement le PDF choisi après expiration', async () => {
   const maintenant = 1_800_000_000;

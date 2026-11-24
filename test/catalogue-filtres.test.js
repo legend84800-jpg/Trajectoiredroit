@@ -224,7 +224,42 @@ test('des résultats dans plusieurs années ouvrent Tous sans modifier la matiè
   assert.equal(e.memoire.has('tjd_catalogue_niveau'), false);
 });
 
-test('un autre filtre que le niveau ne déclenche pas la suggestion', () => {
+test('élargir la matière retrouve les fiches dans l’année choisie sans effacer la recherche', () => {
+  const e = environnement({ cartesReelles: cartesPage('formations.html') });
+  e.niveau('L2'); e.matiere('public'); e.chercher('droit des contrats L2 S1');
+  assert.deepEqual(e.visibles(), []);
+  assert.equal(e.suggestion.hidden, false);
+  assert.equal(e.suggestion.textContent, 'Voir les résultats dans toutes les matières');
+  assert.equal(e.vide.hidden, true);
+  const adresse = e.window.location.href;
+
+  e.suggestion.declencher('click');
+  assert.ok(e.visibles().includes('fiche-contrats-l2-s1'));
+  assert.equal(e.niveaux[2].getAttribute('aria-pressed'), 'true');
+  assert.equal(e.matieres[0].getAttribute('aria-pressed'), 'true');
+  assert.equal(e.matieres[2].getAttribute('aria-pressed'), 'false');
+  assert.equal(e.memoire.get('tjd_catalogue_niveau'), 'L2');
+  assert.equal(e.window.location.href, adresse);
+  assert.equal(e.recherche.value, 'droit des contrats L2 S1');
+  assert.equal(e.suggestion.hidden, true);
+  const premiere = e.cartes.find(carte => !carte.hidden);
+  assert.equal(e.actif(), premiere);
+  assert.equal(premiere.getAttribute('tabindex'), '-1');
+});
+
+test('la suggestion au singulier disparaît quand aucune fiche ne correspond', () => {
+  const e = environnement();
+  e.niveau('L2'); e.matiere('public'); e.chercher('droit pénal');
+  assert.equal(e.suggestion.textContent, 'Voir le résultat dans toutes les matières');
+  e.suggestion.declencher('click');
+  assert.deepEqual(e.visibles(), ['penal']);
+  e.chercher('introuvableqz');
+  assert.equal(e.suggestion.hidden, true);
+  assert.equal(e.suggestion.textContent, '');
+  assert.equal(e.vide.hidden, false);
+});
+
+test('aucune suggestion ne change les deux filtres à la fois', () => {
   const e = environnement();
   e.niveau('L3'); e.matiere('public');
   assert.equal(e.suggestion.hidden, true);
