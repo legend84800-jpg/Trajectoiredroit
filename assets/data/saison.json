@@ -75,9 +75,9 @@
     }
   ],
   "offre_partiels": {
-    "id": "offre-partiels-s1-2026-15-jusquau23",
-    "debut": "2026-11-20T04:49:00Z",
-    "fin": "2026-11-23T23:00:00Z",
+    "id": "offre-partiels-s1-2026-15-24nov",
+    "debut": "2026-11-24T17:05:00Z",
+    "fin": "2026-11-27T17:05:00Z",
     "taux": 15,
     "bandeau": {
       "etiquette_forte": "Offre partiels du semestre 1",
