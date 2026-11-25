@@ -82,8 +82,10 @@
     var achatsProduit      = document.getElementById("achatsProduit");
     var achatsSemestre     = document.getElementById("achatsSemestre");
     var achatsReinitialiser = document.getElementById("achatsReinitialiser");
+    var achatsElargir      = document.getElementById("achatsElargir");
     var achatsResultat     = document.getElementById("achatsResultat");
     var achatsCourants = [];
+    var filtresSuggeres = null;
     var relancerAchats = null;
     var titulaireVerifie = null;
     var lecteursSuspendus = null;
@@ -106,6 +108,7 @@
       });
       achatsListe.innerHTML = "";
       achatsCourants = [];
+      filtresSuggeres = null;
       lecteursSuspendus = null;
       jetonAchats = null;
       pdfAffiches = [];
@@ -119,6 +122,7 @@
       achatsVide.textContent = "";
       achatsVide.style.display = "none";
       if (achatsAide) achatsAide.hidden = true;
+      if (achatsElargir) achatsElargir.hidden = true;
       relancerAchats = null;
       if (achatsReessayer) {
         achatsReessayer.hidden = true;
@@ -186,18 +190,28 @@
         .replace(/\bs(?:emestre)?[ _-]*([12])\b/g, "s$1").trim().split(/\s+/).filter(Boolean);
       var choixProduit = !outilsMasques && achatsProduit && achatsProduit.value || "";
       var choixSemestre = !outilsMasques && achatsSemestre && achatsSemestre.value || "";
+      var chercherAutresFiltres = achatsElargir && mots.length && (choixProduit || choixSemestre);
+      var autreSemestre = false, autreProduit = false, autresProduitEtSemestre = false;
       var nombreFichiers = 0;
       var achats = achatsCourants.reduce(function(resultat, achat){
         var produits = (achat.produits || []).reduce(function(liste, produit){
           function correspond(fichier){
-            if (choixProduit && choixProduit !== produit.nom && (!fichier || choixProduit !== fichier.groupe)) return false;
+            var bonProduit = !choixProduit || choixProduit === produit.nom || !!fichier && choixProduit === fichier.groupe;
+            if (!bonProduit && !chercherAutresFiltres) return false;
             var semestres = semestresExplicites(produit, fichier);
-            if (choixSemestre === "non-precise" && semestres.length) return false;
-            if (choixSemestre && choixSemestre !== "non-precise" && semestres.indexOf(choixSemestre) === -1) return false;
+            var bonSemestre = !choixSemestre || (choixSemestre === "non-precise"
+              ? !semestres.length : semestres.indexOf(choixSemestre) !== -1);
+            if (!bonSemestre && !chercherAutresFiltres) return false;
             var texte = texteRecherche([produit.id, produit.nom, fichier && fichier.nom, fichier && fichier.groupe].join(" "));
-            return mots.every(function(mot){
+            var bonsMots = mots.every(function(mot){
               return /^s[12]$/.test(mot) ? semestres.indexOf(mot.slice(1)) !== -1 : texte.indexOf(mot) !== -1;
             });
+            if (!bonsMots) return false;
+            if (bonProduit && bonSemestre) return true;
+            if (bonProduit) autreSemestre = true;
+            else if (bonSemestre) autreProduit = true;
+            else autresProduitEtSemestre = true;
+            return false;
           }
           var fichiers = (produit.fichiers || []).filter(correspond);
           nombreFichiers += fichiers.length;
@@ -209,6 +223,16 @@
         if (produits.length) resultat.push(Object.assign({}, achat, { produits: produits }));
         return resultat;
       }, []);
+      filtresSuggeres = null;
+      if (!achats.length && chercherAutresFiltres) {
+        if (autreSemestre) {
+          filtresSuggeres = { semestre: true, libelle: "Voir les résultats dans tous les semestres" };
+        } else if (autreProduit) {
+          filtresSuggeres = { produit: true, libelle: "Voir les résultats dans toutes les matières" };
+        } else if (autresProduitEtSemestre) {
+          filtresSuggeres = { produit: true, semestre: true, libelle: "Voir les résultats dans tous mes achats" };
+        }
+      }
       if (achatsResultat) achatsResultat.textContent = !outilsMasques && achatsCourants.length
         ? achats.length + (achats.length === 1 ? " achat affiché sur " : " achats affichés sur ") + achatsCourants.length
         : "";
@@ -222,6 +246,13 @@
       if (achatsProduit) achatsProduit.value = "";
       if (achatsSemestre) achatsSemestre.value = "";
       afficherAchatsFiltres();
+    });
+    achatsElargir?.addEventListener("click", function(){
+      if (achatsElargir.hidden || !filtresSuggeres || !jetonAchats) return;
+      if (filtresSuggeres.produit && achatsProduit) achatsProduit.value = "";
+      if (filtresSuggeres.semestre && achatsSemestre) achatsSemestre.value = "";
+      afficherAchatsFiltres();
+      achatsListe.focus();
     });
 
     // Compléments et code de 15 % (14/10/2026) : le code est aussi mémorisé dans ce
@@ -337,6 +368,7 @@
       if (generation !== generationSession) return;
       relancerAchats = null;
       if (achatsAide) achatsAide.hidden = true;
+      if (achatsElargir) achatsElargir.hidden = true;
       if (achatsReessayer) achatsReessayer.disabled = true;
       achatsVide.textContent = messageChargementAchats;
       achatsVide.style.display = "block";
@@ -479,8 +511,14 @@
     }
 
     function afficherEtatDesAchats(listeVide){
+      var proposerFiltres = listeVide && jetonAchats && filtresSuggeres && !pdfEnCours && !relancerPdf;
+      if (achatsElargir) {
+        achatsElargir.hidden = !proposerFiltres;
+        achatsElargir.textContent = proposerFiltres ? filtresSuggeres.libelle : "";
+      }
       achatsVide.textContent = pdfEnCours ? messageChargementAchats
         : relancerPdf ? messageErreurAchats
+        : proposerFiltres ? "Aucun achat ne correspond à ces filtres."
         : achatsCourants.length
           ? "Aucun achat ne correspond à ces filtres. Tu peux les effacer pour tout retrouver."
           : "Aucun achat associé à cette adresse. Pour retrouver un achat, il faut utiliser l’adresse indiquée sur le reçu. Si c’est un cadeau, connecte-toi avec l’adresse à laquelle il a été envoyé.";

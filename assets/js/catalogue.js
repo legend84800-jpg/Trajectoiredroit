@@ -108,7 +108,7 @@
     function carteDansNiveau(carte) {
       return etat.niveau === 'tous' || carte.niveaux.includes(etat.niveau);
     }
-    function proposerFiltre(cartesCorrespondantes, cartesAutresMatieres) {
+    function proposerFiltre(cartesCorrespondantes, cartesAutresMatieres, cartesSansFiltres) {
       if (!suggestion) return;
       filtreSuggere = null;
       var texte = '';
@@ -117,15 +117,25 @@
         texte = cartesAutresMatieres.length === 1
           ? 'Voir le résultat dans toutes les matières'
           : 'Voir les résultats dans toutes les matières';
-      } else if (cartesCorrespondantes.length) {
+      } else if (cartesCorrespondantes.length || cartesSansFiltres.length) {
+        var corrigerMatiere = !cartesCorrespondantes.length;
+        var resultats = corrigerMatiere ? cartesSansFiltres : cartesCorrespondantes;
         var niveauxTrouves = NIVEAUX.slice(1).filter(function (niveau) {
-          return cartesCorrespondantes.some(function (carte) { return carte.niveaux.includes(niveau); });
+          return resultats.some(function (carte) { return carte.niveaux.includes(niveau); });
         });
         var niveau = niveauxTrouves.length > 1 ? 'tous' : niveauxTrouves[0];
         if (niveau) {
           filtreSuggere = { niveau: niveau };
-          var nombre = cartesCorrespondantes.length;
-          var resultat = nombre === 1 ? 'le résultat' : 'les ' + nombre + ' résultats';
+          if (corrigerMatiere) {
+            var matieresCommunes = matieres.map(function (bouton) {
+              return bouton.getAttribute('data-catalogue-matiere');
+            }).filter(function (matiere) {
+              return matiere !== 'tous' && resultats.every(function (carte) { return carte.matieres.includes(matiere); });
+            });
+            filtreSuggere.matiere = matieresCommunes.length === 1 ? matieresCommunes[0] : 'tous';
+          }
+          var nombre = resultats.length;
+          var resultat = nombre === 1 ? (corrigerMatiere && catalogueFiches ? 'la fiche' : 'le résultat') : 'les ' + nombre + ' résultats';
           texte = 'Voir ' + resultat + (niveau === 'tous' ? ' dans toutes les années' : ' en ' + niveau);
         }
       }
@@ -198,9 +208,9 @@
       });
       if (compteur) compteur.textContent = nombre + (nombre > 1 ? ' supports affichés sur ' : ' support affiché sur ') + cartes.length;
       var chercherSuggestion = nombre === 0 && (mots.length || niveauxSaisis.length || filtreSemestre);
-      var autresMatieres = chercherSuggestion && etat.matiere !== 'tous'
-        ? cartesDansMatiere(cartesRecherchees, 'tous', sujetAnnuel).filter(carteDansNiveau) : [];
-      proposerFiltre(chercherSuggestion ? cartesCorrespondantes : [], autresMatieres);
+      var cartesSansFiltres = chercherSuggestion ? cartesDansMatiere(cartesRecherchees, 'tous', sujetAnnuel) : [];
+      var autresMatieres = etat.matiere !== 'tous' ? cartesSansFiltres.filter(carteDansNiveau) : [];
+      proposerFiltre(chercherSuggestion ? cartesCorrespondantes : [], autresMatieres, cartesSansFiltres);
       if (vide) {
         vide.hidden = nombre !== 0 || !!filtreSuggere;
         vide.style.display = vide.hidden ? 'none' : '';

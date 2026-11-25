@@ -270,13 +270,39 @@ test('la suggestion au singulier disparaît quand aucune fiche ne correspond', (
   assert.equal(e.vide.hidden, false);
 });
 
-test('aucune suggestion ne change les deux filtres à la fois', () => {
-  const e = environnement();
-  e.niveau('L3'); e.matiere('public');
+test('une fiche masquée par les deux filtres se retrouve en un clic sans ressaisir la recherche', () => {
+  const e = environnement({ cartesReelles: cartesPage('formations.html') });
+  e.niveau('L1'); e.matiere('civil');
   assert.equal(e.suggestion.hidden, true);
-  e.chercher('droit des personnes');
+  e.chercher('procédure pénale');
+  assert.deepEqual(e.visibles(), []);
+  assert.equal(e.suggestion.textContent, 'Voir la fiche en L3');
+  assert.equal(e.vide.hidden, true);
+  assert.equal(e.niveaux[1].getAttribute('aria-pressed'), 'true');
+  assert.equal(e.matieres[1].getAttribute('aria-pressed'), 'true');
+
+  e.suggestion.declencher('click');
+  assert.deepEqual(e.visibles(), ['fiche-procedure-penale-l3']);
+  assert.equal(e.recherche.value, 'procédure pénale');
+  assert.equal(e.niveaux[3].getAttribute('aria-pressed'), 'true');
+  assert.equal(e.matieres[3].getAttribute('aria-pressed'), 'true');
+  assert.equal(e.window.location.searchParams.get('niveau'), 'l3');
+  assert.equal(e.actif().id, 'fiche-procedure-penale-l3');
   assert.equal(e.suggestion.hidden, true);
-  assert.equal(e.vide.hidden, false);
+});
+
+test('la suggestion peut retrouver des fiches de plusieurs années et matières', () => {
+  const e = environnement({ cartesReelles: [
+    { niveau: 'L1', matiere: 'civil', texte: 'Premier thème', id: 'premier' },
+    { niveau: 'L2', matiere: 'public', texte: 'Second thème', id: 'second' }
+  ] });
+  e.niveau('L3'); e.matiere('penal'); e.chercher('thème');
+  assert.equal(e.suggestion.textContent, 'Voir les 2 résultats dans toutes les années');
+  e.suggestion.declencher('click');
+  assert.deepEqual(e.visibles(), ['premier', 'second']);
+  assert.equal(e.recherche.value, 'thème');
+  assert.equal(e.matieres[0].getAttribute('aria-pressed'), 'true');
+  assert.equal(e.niveaux[0].getAttribute('aria-pressed'), 'true');
 });
 
 test('une année tapée sélectionne le niveau de la fiche, même après un choix mémorisé', () => {

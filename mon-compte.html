@@ -471,11 +471,12 @@
                   </div>
                 </div>
               </div>
-              <ul class="achats-liste" id="achatsListe"></ul>
+              <ul class="achats-liste" id="achatsListe" tabindex="-1"></ul>
               <div class="compte-achats-etat">
                 <div role="status" aria-live="polite" aria-atomic="true">
                   <p class="achats-vide" id="achatsVide" style="display:none"></p>
                 </div>
+                <button type="button" class="btn btn--outline btn--sm" id="achatsElargir" aria-controls="achatsListe" hidden></button>
                 <button type="button" class="btn btn--outline" id="achatsReessayer" aria-describedby="achatsVide" hidden>Réessayer</button>
                 <div id="achatsAide" hidden>
                   <button type="button" class="btn btn--outline btn--sm" id="achatsChangerAdresse">Utiliser une autre adresse</button>
@@ -554,7 +555,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="assets/js/main.js?v=00564c99" defer></script>
-  <script src="assets/js/compte.js?v=87602792" defer></script>
+  <script src="assets/js/compte.js?v=267ac974" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
 </body>

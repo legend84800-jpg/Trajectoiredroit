@@ -26,7 +26,7 @@ function historique() {
   ];
 }
 function navigateur(options = {}) {
-  const ids = ['etatChargement', 'etatConnexion', 'etatConnecte', 'connexionForm', 'connexionEmail', 'connexionSubmit', 'connexionError', 'connexionSuccess', 'compteEmail', 'deconnexionBtn', 'achatsListe', 'achatsVide', 'achatsReessayer', 'achatsAide', 'resterConnecte', 'codeForm', 'connexionCode', 'codeSubmit', 'codeDestinataire', 'renvoyerCode', 'changerEmail', 'achatsOutils', 'achatsRecherche', 'achatsProduit', 'achatsSemestre', 'achatsReinitialiser', 'achatsResultat'];
+  const ids = ['etatChargement', 'etatConnexion', 'etatConnecte', 'connexionForm', 'connexionEmail', 'connexionSubmit', 'connexionError', 'connexionSuccess', 'compteEmail', 'deconnexionBtn', 'achatsListe', 'achatsVide', 'achatsReessayer', 'achatsAide', 'resterConnecte', 'codeForm', 'connexionCode', 'codeSubmit', 'codeDestinataire', 'renvoyerCode', 'changerEmail', 'achatsOutils', 'achatsRecherche', 'achatsProduit', 'achatsSemestre', 'achatsReinitialiser', 'achatsElargir', 'achatsResultat'];
   if (options.parrainage) ids.push('parrainageBox', 'parrainageCopier', 'parrainageLien', 'parrainageStatut', 'parrainageCopieManuelle', 'parrainageBons', 'parrainageSolde');
   function nouveauElement() {
     const classes = new Set();
@@ -55,7 +55,7 @@ function navigateur(options = {}) {
   }
   const elements = {};
   for (const id of ids) {
-    if (options.ancienHtml && ['achatsReessayer', 'achatsAide'].includes(id)) continue;
+    if (options.ancienHtml && ['achatsReessayer', 'achatsAide', 'achatsElargir'].includes(id)) continue;
     elements[id] = nouveauElement();
   }
   if (options.parrainage) elements.parrainageCopier.textContent = 'Copier mon lien';
@@ -690,6 +690,95 @@ test('une recherche vide de résultats affiche une aide sans confondre absence d
   assert.equal(b.elements.achatsAide.hidden, true);
   assert.equal(b.elements.achatsResultat.textContent, '0 achats affichés sur 3');
   b.effacer(); assert.equal(b.elements.achatsVide.style.display, 'none');
+});
+
+test('une recherche masquée par les deux filtres retrouve le document du compte en gardant les mots', async () => {
+  const b = navigateur(); await b.flush();
+  const e = b.elements;
+  b.filtrer('achatsProduit', 'Droit des contrats');
+  b.filtrer('achatsSemestre', '1');
+  b.chercher('personnalité juridique');
+  assert.equal(e.achatsListe.innerHTML, '');
+  assert.equal(e.achatsVide.textContent, 'Aucun achat ne correspond à ces filtres.');
+  assert.equal(e.achatsElargir.hidden, false);
+  assert.equal(e.achatsElargir.textContent, 'Voir les résultats dans tous mes achats');
+  assert.equal(e.achatsAide.hidden, true);
+  assert.equal(e.achatsProduit.value, 'Droit des contrats');
+  assert.equal(e.achatsSemestre.value, '1');
+
+  e.achatsElargir.listeners.click();
+
+  assert.equal(e.achatsRecherche.value, 'personnalité juridique');
+  assert.equal(e.achatsProduit.value, '');
+  assert.equal(e.achatsSemestre.value, '');
+  assert.match(e.achatsListe.innerHTML, /personnes\.pdf/);
+  assert.doesNotMatch(e.achatsListe.innerHTML, /contrats\.pdf|annuel-s2\.pdf/);
+  assert.equal(e.achatsListe.focused, true);
+  assert.equal(e.achatsElargir.hidden, true);
+  assert.equal(b.demandes.length, 1);
+});
+
+test('une recherche masquée par un seul filtre conserve l’autre filtre', async () => {
+  const b = navigateur(); await b.flush();
+  const e = b.elements;
+  b.filtrer('achatsProduit', 'Droit des contrats');
+  b.filtrer('achatsSemestre', '2');
+  b.chercher('formation');
+  assert.equal(e.achatsElargir.textContent, 'Voir les résultats dans tous les semestres');
+  e.achatsElargir.listeners.click();
+  assert.equal(e.achatsProduit.value, 'Droit des contrats');
+  assert.equal(e.achatsSemestre.value, '');
+  assert.equal(e.achatsRecherche.value, 'formation');
+  assert.match(e.achatsListe.innerHTML, /contrats\.pdf/);
+
+  b.filtrer('achatsSemestre', '1');
+  b.chercher('règle de droit');
+  assert.equal(e.achatsElargir.textContent, 'Voir les résultats dans toutes les matières');
+  e.achatsElargir.listeners.click();
+  assert.equal(e.achatsProduit.value, '');
+  assert.equal(e.achatsSemestre.value, '1');
+  assert.equal(e.achatsRecherche.value, 'règle de droit');
+  assert.match(e.achatsListe.innerHTML, /admin\.m4a/);
+  assert.equal(b.demandes.length, 1);
+});
+
+test('la suggestion reste masquée sans mots, sans correspondance et sans achats', async () => {
+  const b = navigateur(); await b.flush();
+  b.filtrer('achatsProduit', 'Droit des personnes');
+  b.filtrer('achatsSemestre', '1');
+  assert.equal(b.elements.achatsListe.innerHTML, '');
+  assert.equal(b.elements.achatsElargir.hidden, true);
+  b.chercher('mot-introuvable');
+  assert.equal(b.elements.achatsElargir.hidden, true);
+  assert.match(b.elements.achatsVide.textContent, /Tu peux les effacer/);
+  const vide = navigateur({ achats: [] }); await vide.flush();
+  assert.equal(vide.elements.achatsElargir.hidden, true);
+  assert.equal(vide.elements.achatsAide.hidden, false);
+});
+
+test('une suggestion devient inutilisable après déconnexion pendant le renouvellement de la session', async () => {
+  const attente = differe();
+  let nombre = 0;
+  const b = navigateur({ fetch: () => ++nombre === 1 ? reponseAchats(historique()) : attente.promise });
+  await b.flush();
+  const e = b.elements;
+  b.filtrer('achatsProduit', 'Droit des contrats');
+  b.filtrer('achatsSemestre', '1');
+  b.chercher('personnalité juridique');
+  assert.equal(e.achatsElargir.hidden, false);
+
+  b.evenement('TOKEN_REFRESHED', { access_token: 'jeton-renouvele' });
+  await b.flush();
+  assert.equal(b.demandes.length, 2);
+  assert.equal(e.achatsElargir.hidden, true);
+  await e.deconnexionBtn.listeners.click();
+  attente.resolve(reponseAchats(historique()));
+  await b.flush();
+  e.achatsElargir.listeners.click();
+  assert.equal(e.achatsListe.innerHTML, '');
+  assert.equal(e.achatsRecherche.value, '');
+  assert.equal(e.achatsElargir.hidden, true);
+  assert.equal(b.demandes.length, 2);
 });
 
 test('la déconnexion efface aussi les filtres et les achats conservés pour la recherche', async () => {

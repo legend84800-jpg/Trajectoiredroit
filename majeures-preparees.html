@@ -820,7 +820,7 @@
   </div>
 
   <script src="assets/js/main.js?v=00564c99" defer></script>
-  <script src="assets/js/filtre-recherche.js" defer></script>
+  <script src="assets/js/filtre-recherche.js?v=127152b8" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script>
   /* Onglets L1, L2, L3 : filtrent les packs et la grille, et se partagent par ?niveau=l2 */
@@ -930,6 +930,7 @@
       lienSupport.hidden = !!extraitChoisi;
       lienSupport.href = '#' + cheminPdf.split('/')[0];
       bandeauPack(niveau);
+      if (recherche) recherche.dispatchEvent(new Event('input'));
     }
     /* Au-dessus de la grille filtrée, le pack de l'année reste à portée de clic */
     function bandeauPack(niveau){
