@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Cas pratique corrigé sur le bail commercial (L3, 2026)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Cas pratique corrigé de bail commercial en droit commercial L3. Une fleuriste reçoit un congé, puis la correction dit si le bailleur doit l’indemnité d’éviction.">
+  <link rel="canonical" href="https://trajectoiredroit.com/cas-pratique-bail-commercial-corrige.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Cas pratique corrigé sur le bail commercial (L3, 2026)">
+  <meta property="og:description" content="Cas pratique corrigé de bail commercial en droit commercial L3. Une fleuriste reçoit un congé, puis la correction dit si le bailleur doit l’indemnité d’éviction.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/cas-pratique-bail-commercial-corrige.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/cas-pratique-bail-commercial-corrige.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cas pratique corrigé sur le bail commercial (L3, 2026)">
+  <meta name="twitter:description" content="Cas pratique corrigé de bail commercial en droit commercial L3. Une fleuriste reçoit un congé, puis la correction dit si le bailleur doit l’indemnité d’éviction.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/cas-pratique-bail-commercial-corrige.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Cas pratique corrigé sur le bail commercial, du congé à l’indemnité d’éviction",
+      "description": "Cas pratique corrigé de bail commercial en droit commercial L3. Une fleuriste reçoit un congé, puis la correction dit si le bailleur doit l’indemnité d’éviction.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-11-25",
+      "dateModified": "2026-11-25",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Cas pratique corrigé de droit commercial L3 sur le refus de renouvellement du bail commercial et l’indemnité d’éviction, avec la méthode en quatre questions"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/cas-pratique-bail-commercial-corrige.html"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/cas-pratique-bail-commercial-corrige.webp"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Cas pratique de bail commercial, exemple corrigé",
+          "item": "https://trajectoiredroit.com/cas-pratique-bail-commercial-corrige.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Un bailleur peut-il refuser de renouveler un bail commercial sans payer d’indemnité ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, mais seulement dans les cas que la loi énumère. L’article L. 145-17 du Code de commerce dispense le bailleur de l’indemnité d’éviction s’il justifie d’un motif grave et légitime contre le locataire. La loi l’en dispense aussi s’il établit que l’immeuble doit être démoli parce que l’autorité administrative a reconnu son insalubrité, ou qu’il ne peut plus être occupé sans danger. Quand le motif est un manquement du locataire à une obligation du bail, le bailleur doit en principe d’abord le mettre en demeure par acte extrajudiciaire, et le manquement doit s’être poursuivi ou renouvelé plus d’un mois après cette mise en demeure. Dans les autres cas, il doit l’indemnité (article L. 145-14), sauf s’il refuse le renouvellement pour construire ou reconstruire l’immeuble et offre au locataire évincé un local de remplacement, qui correspond à ses besoins et possibilités, à un emplacement équivalent (article L. 145-18)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien de temps le locataire a-t-il pour contester le congé ou réclamer l’indemnité d’éviction ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Deux ans à compter de la date pour laquelle le congé a été donné. En effet, l’article L. 145-9 impose au bailleur de rappeler ce délai dans le congé, à peine de nullité. L’article L. 145-60 soumet toutes les actions du statut des baux commerciaux à une prescription de deux ans, soit un délai après lequel l’action n’est plus possible. En outre, une assignation délivrée dans ce délai interrompt la prescription de l’action en paiement de l’indemnité d’éviction, si bien que l’action n’est pas prescrite (troisième chambre civile de la Cour de cassation, 22 juin 2022)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Le locataire peut-il rester dans les lieux après la fin du bail ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, s’il peut prétendre à une indemnité d’éviction. En principe, l’article L. 145-28 interdit au bailleur d’obliger le locataire à partir avant qu’il ait reçu cette indemnité, et lui donne droit au maintien dans les lieux aux conditions du bail expiré. Le locataire doit en contrepartie une indemnité d’occupation, fixée d’après la valeur locative sans plafonnement du loyer (troisième chambre civile de la Cour de cassation, 17 juin 2021)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Le bailleur peut-il renoncer à son refus de renouvellement ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, grâce au droit de repentir de l’article L. 145-58. Le bailleur peut consentir au renouvellement pour échapper à l’indemnité jusqu’à quinze jours après le moment où la décision est passée en force de chose jugée. Il faut en outre que le locataire soit encore dans les lieux et qu’il n’ait ni loué ni acheté un autre immeuble pour se réinstaller. Enfin, une fois exercé, le repentir est irrévocable (article L. 145-59)."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style id="exemples-pedagogiques-page">
+  .biens-hero { padding-top:48px; }
+  .biens-hero .hero__cta { margin-top:24px; }
+  @media (max-width:700px) {
+    .biens-hero { padding-top:24px; }
+    .biens-hero .hero__cta { gap:10px; }
+    .biens-hero .hero__cta .btn {
+      flex:1 1 132px;
+      width:auto;
+      min-height:44px;
+      font-size:.875rem;
+      padding:10px 12px;
+    }
+  }
+  @media (max-width:420px) {
+    .biens-hero { padding-top:12px; }
+    .biens-hero .hero__cta { margin-top:12px; }
+    .biens-hero .tjd-po { margin-top:12px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="kit-partiels.html" role="menuitem">📚 Kit Partiels</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🤖 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards et QCM</a>
+              <a href="podcasts-videos.html" role="menuitem"><span aria-hidden="true">🎬</span> Vidéos et podcasts</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>7 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a href="droit-commercial-l2.html" role="menuitem">Droit commercial</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 199 € au lieu de 439,69 €, 55 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-55 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">439,69 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 17 ressources, 199 € au lieu de 249,83 €, 20 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-20 %</span></span>
+                    <span class="megamenu__pack-tile-meta">17 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">249,83 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 31 ressources, 199 € au lieu de 459,69 €, 57 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-57 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">459,69 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 32 ressources, 199 € au lieu de 479,68 €, 59 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-59 %</span></span>
+                    <span class="megamenu__pack-tile-meta">32 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">479,68 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 38 ressources, 229 € au lieu de 579,62 €, 60 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-60 %</span></span>
+                    <span class="megamenu__pack-tile-meta">38 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">579,62 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Cours de droit</strong><small>Particuliers · L1 → M2</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#tarifs" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em>· -11,5 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>167 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes tes questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="kit-partiels.html"><span class="mobile-nav__format-icon" aria-hidden="true">📚</span><span>Kit Partiels</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🤖</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+        <a class="mobile-nav__format" href="podcasts-videos.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎬</span><span>Vidéos et podcasts</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="mon-compte.html">Mon compte</a>
+    </div>
+  </nav>
+
+    <main>
+<section class="section--sm biens-hero">
+<div class="container container--narrow text-center">
+<h1 class="h1">Cas pratique corrigé sur le bail commercial, du congé à l’indemnité d’éviction</h1>
+<p class="lead" style="max-width:720px;margin-left:auto;margin-right:auto">Un bailleur qui refuse de renouveler un bail commercial doit payer une indemnité d’éviction au locataire, sauf s’il justifie d’un motif grave et légitime. Quand ce motif est un manquement du locataire, le bailleur doit en principe l’avoir mis en demeure par acte extrajudiciaire, soit remis par un commissaire de justice, puis le manquement doit s’être poursuivi ou renouvelé plus d’un mois après cette mise en demeure. Ce cas pratique corrigé sur le bail commercial suit une fleuriste.</p>
+<div class="hero__cta flex flex--center">
+<a class="btn btn--primary btn--lg" href="#enonce">Lire l’énoncé →</a>
+<a class="btn btn--outline btn--lg" href="#corrige">Le corrigé</a>
+</div>
+<div data-tjd-pdf-offert="matiere" data-id="cas-pratique-commercial-l3-s1" data-titre="Un cas pratique corrigé en droit commercial L3, en PDF" data-texte="Je t’envoie par email l’énoncé et sa correction complète, rédigée comme une copie de partiel. Tu peux ainsi t’entraîner sur papier, puis comparer ta réponse avec le corrigé." data-bouton="Recevoir le corrigé"></div>
+</div>
+</section>
+<!-- offre du PDF correspondant -->
+<section class="conversion-offer" aria-labelledby="offre-cas-bail-titre">
+<div class="container container--narrow">
+<div class="conversion-offer__card">
+<div class="conversion-offer__visual">
+<img src="assets/covers/exercices-20260923/cas-pratique-commercial-l3-s1.webp" alt="Couverture des cas pratiques corrigés de droit commercial L3 S1, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+</div>
+<div>
+<p class="conversion-offer__eyebrow">Les cas pratiques corrigés du semestre 1</p>
+<h2 class="conversion-offer__title" id="offre-cas-bail-titre">Droit commercial L3 S1, dix cas pratiques et trois partiels corrigés en 122 pages</h2>
+<p class="conversion-offer__summary">Chaque correction pose la règle de droit, qui est la majeure, puis l’applique aux faits dans la mineure et conclut. Les dix cas couvrent le programme du premier semestre, dont deux sur le bail commercial. Le cas 4 examine si un professionnel libéral peut invoquer le statut des baux commerciaux, et si un bailleur peut mettre fin à un bail professionnel par une lettre simple. Le cas 10 traite de la clause d’échelle mobile et du plafonnement du loyer. Le cas de cette page n’y figure pas, car aucun cas du PDF ne traite du motif grave et légitime de l’article L. 145-17.</p>
+<button type="button" class="apercu-link" data-apercu='["assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p001.webp","assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p002.webp","assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p003.webp","assets/apercus/commercial-20261124/cas-pratique-commercial-l3-s1/3caa1a2eb269-p005.webp"]' data-apercu-title="Cas pratiques corrigés Droit commercial L3 S1" data-apercu-price="19,99 €" data-apercu-cta="cas-pratique-commercial-l3-s1" data-apercu-sub="Le sommaire, puis le début du premier cas pratique corrigé, avec son énoncé."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu des cas pratiques corrigés</button>
+<div class="conversion-offer__choices">
+<button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="cas-pratique-commercial-l3-s1">Cas pratiques corrigés · 19,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="fiche-commercial-l3-s1">Fiche complète · 19,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="pack-matiere-commercial-l3">Pack droit commercial L3 · 29,98 €</button>
+</div>
+<p class="conversion-offer__note">Paiement sécurisé. Tes fichiers sont envoyés par email dès la confirmation. Si tu hésites entre les deux PDF, prends les cas pratiques pour t’entraîner à rédiger, et la fiche complète pour revoir le cours de <a href="droit-commercial-l3.html">droit commercial L3</a>.</p>
+<div data-tjd-avis data-matiere="commercial-l3"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="methode">
+<div class="container container--narrow">
+<nav class="toc" aria-label="Sommaire">
+<p class="toc__title">Dans cet article</p>
+<ol>
+<li><a href="#methode-titre">Comment résoudre ce cas pratique</a></li>
+<li><a href="#enonce">L’énoncé du cas pratique</a></li>
+<li><a href="#corrige">Le corrigé en trois parties</a></li>
+<li><a href="#erreurs">Les erreurs qui font perdre des points</a></li>
+<li><a href="#adapter">Adapter la méthode à un autre énoncé</a></li>
+<li><a href="#faq">Questions fréquentes</a></li>
+</ol>
+</nav>
+<div class="prose">
+<figure style="margin:0 0 32px"><img src="assets/blog/cas-pratique-bail-commercial-corrige.webp" srcset="assets/blog/cas-pratique-bail-commercial-corrige-640.webp 640w, assets/blog/cas-pratique-bail-commercial-corrige.webp 1200w" sizes="(max-width:700px) 100vw, 800px" alt="Sur un comptoir en bois très usé, une clé ancienne en laiton repose sur une enveloppe kraft fermée et vierge, entre un sécateur aux manches patinés et un rouleau de raphia, devant des seaux en zinc fleuris." width="1200" height="675" decoding="async"></figure>
+<h2 id="methode-titre">Comment résoudre un cas pratique sur le refus de renouvellement d’un bail commercial ?</h2>
+<p>Un bailleur ne veut plus poursuivre le bail avec son locataire, et le locataire demande une indemnité parce qu’il perd son local. La loi protège ce locataire, car sa clientèle dépend de l’emplacement du local. Une fleuriste qui change de rue perd une grande partie de ses clients, alors que le local appartient au bailleur. Elle possède en revanche son fonds de commerce, soit sa clientèle et les biens qui servent à l’attirer. La loi lui accorde donc un droit au renouvellement du bail, que la pratique appelle la propriété commerciale.</p>
+<p>Le bailleur peut refuser le renouvellement, mais il doit payer au locataire évincé une indemnité d’éviction égale au préjudice que ce refus lui cause (article L. 145-14 du Code de commerce). Il ne doit rien dans quelques cas que la loi énumère, dont le motif grave et légitime (article L. 145-17). Pour résoudre un cas, tu te poses quatre questions, dans cet ordre.</p>
+<ol>
+<li><strong>Le locataire a-t-il droit au renouvellement ?</strong> Le statut des baux commerciaux protège le propriétaire d’un fonds exploité dans le local loué, s’il l’a exploité effectivement pendant les trois années précédant l’expiration du bail ou de sa prolongation, sauf motif légitime, et s’il est immatriculé (articles L. 145-1 et L. 145-8).</li>
+<li><strong>Le congé est-il régulier ?</strong> Le congé est l’acte par lequel le bailleur met fin au bail. La loi exige d’abord un acte extrajudiciaire, au moins six mois à l’avance. Un acte extrajudiciaire est un acte remis en dehors de tout procès par un commissaire de justice. Cette profession a remplacé les huissiers de justice. En outre, le congé indique ses motifs et le délai de deux ans dont le locataire dispose pour saisir le tribunal, à peine de nullité, soit sous peine d’être annulé (article L. 145-9).</li>
+<li><strong>Le bailleur doit-il l’indemnité ?</strong> Quand il invoque un motif grave et légitime tiré de l’inexécution d’une obligation du bail ou de la cessation de l’exploitation sans raison sérieuse et légitime, la loi impose en principe deux étapes. Le bailleur envoie d’abord une mise en demeure par acte extrajudiciaire, c’est-à-dire une demande formelle de faire cesser ce comportement. Ce comportement doit ensuite s’être poursuivi ou renouvelé plus d’un mois après cette mise en demeure (article L. 145-17).</li>
+<li><strong>Que se passe-t-il ensuite ?</strong> Le locataire qui peut prétendre à une indemnité d’éviction a en principe le droit de rester dans les lieux jusqu’au paiement de cette indemnité (article L. 145-28), et le juge fixe cette indemnité d’après le préjudice que ce refus cause au locataire. Le bailleur garde enfin un droit de repentir, c’est-à-dire la possibilité de renoncer à son refus et de renouveler le bail (article L. 145-58 du Code de commerce). Il peut l’exercer jusqu’à quinze jours après le moment où la décision du juge est passée en force de chose jugée, soit quand aucun recours ne peut plus suspendre son exécution (article 500 du Code de procédure civile).</li>
+</ol>
+<p>La page sur la <a href="methode-cas-pratique.html">méthode du cas pratique</a> détaille ce raisonnement étape par étape, de la règle (la majeure) à la réponse (la conclusion).</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="enonce">
+<div class="container container--narrow">
+<div class="prose">
+<h2>L’énoncé du cas pratique</h2>
+<p>Gaëlle Marcelin est fleuriste à Cahors. Le 1er avril 2015, elle a pris à bail, pour neuf ans, un local situé au rez-de-chaussée d’un immeuble qui appartient à Jocelyn Brémond, et elle y exploite sa boutique depuis la signature du bail. Elle est immatriculée au registre du commerce et des sociétés, et ses clients sont surtout des habitants du quartier, qui viennent à pied.</p>
+<p>Le bail interdit la sous-location sans l’accord écrit du bailleur. Il est arrivé à son terme le 31 mars 2024. À cette date, ni Jocelyn ni Gaëlle n’ont donné congé ou demandé le renouvellement, si bien que Gaëlle est restée dans les lieux aux mêmes conditions.</p>
+<p>En octobre 2025, Gaëlle sous-loue la moitié de la boutique à un photographe, qui y installe un studio, sans demander l’accord de Jocelyn. Elle paie par ailleurs le 2 janvier 2026, avec trois mois de retard, le loyer du dernier trimestre de 2025. Jocelyn découvre ensuite la sous-location et lui envoie le 12 janvier 2026 une lettre recommandée qui lui demande seulement d’y mettre fin et ne cite aucun texte de loi. Le photographe quitte les lieux le 28 février 2026. En revanche, Jocelyn n’a jamais écrit à Gaëlle au sujet du retard de loyer.</p>
+<p>Le 19 mars 2026, Jocelyn fait délivrer à Gaëlle, par un commissaire de justice, un congé pour le 30 septembre 2026. L’acte indique que Jocelyn refuse de renouveler le bail et qu’il ne paiera aucune indemnité, car il juge graves la sous-location et le retard de loyer. Il précise aussi que Gaëlle dispose de deux ans pour saisir le tribunal. Le 1er octobre 2026, Jocelyn réclame les clés, mais Gaëlle refuse de quitter la boutique tant qu’elle n’est pas indemnisée, et elle n’a ni loué ni acheté d’autre local.</p>
+<p>Gaëlle vous demande si Jocelyn peut refuser de renouveler son bail sans lui verser d’indemnité, si elle peut rester dans la boutique en attendant le paiement de l’indemnité, et ce qu’elle peut réclamer. Jocelyn demande s’il peut renoncer à son refus.</p>
+</div>
+</div>
+</section>
+<section class="section" id="corrige">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Le corrigé du cas pratique en trois parties</h2>
+<p>Chaque réponse suit cinq temps, comme dans une copie de partiel. D’abord, les faits qualifiés disent à quelle notion du droit correspond chaque fait. Ensuite, le problème de droit pose la question à trancher. La majeure donne alors la règle, la mineure l’applique aux faits, et la conclusion répond à la question.</p>
+<h3>I. Jocelyn peut-il refuser le renouvellement du bail ?</h3>
+<h4>A. Gaëlle a-t-elle droit au renouvellement ?</h4>
+<p><strong>Les faits qualifiés.</strong> Le bail de Gaëlle est un bail commercial, car il porte sur un local où elle exploite son fonds de commerce. Il est arrivé à son terme le 31 mars 2024 sans congé ni demande de renouvellement. Or un bail commercial ne cesse que par un congé ou par une demande de renouvellement (article L. 145-9). Il s’est donc prolongé tacitement, sans démarche de personne, aux mêmes conditions. Jocelyn a ensuite donné congé pour le 30 septembre 2026.</p>
+<p><strong>Le problème de droit.</strong> Une locataire qui exploite son fonds de commerce depuis plus de dix ans dans le local loué et qui est immatriculée peut-elle invoquer le droit au renouvellement du bail après sa tacite prolongation ?</p>
+<p><strong>La majeure.</strong> Le droit au renouvellement repose sur trois conditions. D’après l’article L. 145-8 du Code de commerce, il appartient d’abord au propriétaire du fonds exploité dans les lieux, car le statut protège la clientèle que le locataire a créée. Ensuite, le fonds doit, sauf motifs légitimes, avoir été exploité effectivement pendant les trois années qui précèdent l’expiration du bail ou de sa prolongation. Cette expiration a lieu à la date pour laquelle le congé a été donné, ou le premier jour du trimestre civil qui suit la demande de renouvellement. Enfin, d’après l’article L. 145-1, le locataire doit en principe être immatriculé au registre du commerce et des sociétés, ou au registre national des entreprises s’il est artisan.</p>
+<p><strong>La mineure.</strong> D’abord, Gaëlle est propriétaire de son fonds. Elle a créé sa clientèle et personne d’autre n’exploite sa fleuristerie. La sous-location de la moitié du local à un photographe ne change rien, car le photographe exploite son propre studio et la fleuristerie reste à Gaëlle. Ensuite, elle a exploité son fonds pendant les trois années qui précèdent le 30 septembre 2026, puisqu’elle y vend des fleurs depuis 2015. Enfin, elle est immatriculée au registre du commerce et des sociétés. Les conditions sont donc réunies.</p>
+<p><strong>La conclusion.</strong> Gaëlle peut invoquer le droit au renouvellement. Jocelyn ne peut donc pas mettre fin au bail sans lui payer une indemnité d’éviction, sauf si la loi l’en dispense.</p>
+<h4>B. Le congé du 19 mars 2026 est-il régulier ?</h4>
+<p><strong>Les faits qualifiés.</strong> L’acte que Jocelyn a fait délivrer par un commissaire de justice met fin au bail pour le 30 septembre 2026 et refuse le renouvellement. Il s’agit donc d’un congé avec refus de renouvellement. Cet acte précise ensuite les motifs invoqués et rappelle que Gaëlle dispose de deux ans pour saisir le tribunal.</p>
+<p><strong>Le problème de droit.</strong> Le congé du 19 mars 2026, délivré par un commissaire de justice pour le 30 septembre 2026 pendant la tacite prolongation du bail, respecte-t-il les exigences de l’article L. 145-9 ?</p>
+<p><strong>La majeure.</strong> D’après l’article L. 145-9 du Code de commerce, le congé doit remplir trois exigences. Il doit d’abord être donné par acte extrajudiciaire. Pendant la tacite prolongation du bail, il doit ensuite être donné au moins six mois à l’avance et pour le dernier jour d’un trimestre civil, soit le 31 mars, le 30 juin, le 30 septembre ou le 31 décembre. À peine de nullité, il doit enfin préciser les motifs pour lesquels il est donné et indiquer que le locataire qui veut contester le congé, ou demander une indemnité d’éviction, doit saisir le tribunal avant l’expiration d’un délai de deux ans. Ce délai court à compter de la date pour laquelle le congé a été donné.</p>
+<p><strong>La mineure.</strong> D’abord, l’acte vient d’un commissaire de justice, donc il s’agit bien d’un acte extrajudiciaire. Ensuite, Jocelyn l’a fait délivrer le 19 mars 2026 pour le 30 septembre 2026. Il laisse ainsi six mois et onze jours à Gaëlle, et le 30 septembre est le dernier jour du troisième trimestre civil. Enfin, l’acte précise les motifs invoqués et mentionne le délai de deux ans. Le congé est donc régulier.</p>
+<p><strong>La conclusion.</strong> Le congé respecte donc l’article L. 145-9, et le bail prend fin le 30 septembre 2026. En outre, Gaëlle peut saisir le tribunal jusqu’au 30 septembre 2028 pour contester le congé ou demander le paiement d’une indemnité d’éviction (articles L. 145-9 et L. 145-60). Jocelyn doit encore justifier son refus de payer l’indemnité.</p>
+<h3>II. Jocelyn peut-il refuser de payer l’indemnité d’éviction ?</h3>
+<p><strong>Les faits qualifiés.</strong> Jocelyn invoque deux manquements de Gaëlle. Elle a d’abord sous-loué la moitié de la boutique à un photographe d’octobre 2025 au 28 février 2026, sans l’accord écrit que le bail exige. Ce fait viole une clause du bail et l’article L. 145-31 du Code de commerce, selon lequel toute sous-location, même partielle, est interdite sauf stipulation contraire du bail ou accord du bailleur. Elle a ensuite payé son loyer du dernier trimestre de 2025 avec trois mois de retard, ce qui constitue un manquement à son obligation de payer à la date prévue. Jocelyn lui a seulement envoyé, le 12 janvier 2026, une lettre recommandée au sujet de la sous-location.</p>
+<p><strong>Le problème de droit.</strong> Un bailleur qui invoque une sous-location irrégulière et un retard de paiement, après avoir envoyé seulement une lettre recommandée au sujet de la sous-location, peut-il refuser le renouvellement sans payer l’indemnité d’éviction ?</p>
+<p><strong>La majeure.</strong> Le bailleur doit en principe l’indemnité d’éviction (article L. 145-14). L’article L. 145-17, I, 1°, le dispense de la payer s’il justifie d’un motif grave et légitime contre le locataire sortant. Mais quand il s’agit de l’inexécution d’une obligation ou de la cessation de l’exploitation sans raison sérieuse et légitime, le bailleur ne peut invoquer ce motif que si le manquement du locataire s’est poursuivi ou renouvelé plus d’un mois après une mise en demeure. À peine de nullité, cette mise en demeure doit d’abord être faite par acte extrajudiciaire. Elle doit ensuite préciser le motif invoqué, puis reproduire le texte de l’alinéa de l’article L. 145-17 qui la prévoit.</p>
+<p>Cette règle connaît pourtant une exception. Dans un arrêt du 9 juillet 2003 (pourvoi n° 02-11.621), la troisième chambre civile juge qu’une mise en demeure préalable au congé portant refus de renouvellement sans indemnité d’éviction n’est pas nécessaire quand le locataire a omis d’appeler le bailleur à participer à l’acte d’une sous-location autorisée. L’article L. 145-31 exige cette participation. La Cour retient cette solution parce que cette omission ne peut plus être réparée.</p>
+<p>Le locataire doit ensuite soulever la nullité de la mise en demeure à temps. En effet, d’après l’article 112 du Code de procédure civile, la nullité d’un acte de procédure est couverte si la partie discute le fond du litige, ou oppose une fin de non-recevoir, sans l’avoir soulevée. Une nullité couverte ne peut plus être invoquée. Une fin de non-recevoir est un argument qui empêche le juge d’examiner la demande. En outre, selon l’article 114, celui qui invoque la nullité doit prouver son grief, soit le préjudice que l’irrégularité lui cause.</p>
+<p>Dans un arrêt du 2 juin 2010 (pourvoi n° 09-14.194), la troisième chambre civile de la Cour de cassation juge que la nullité d’un acte d’huissier de justice suit les règles de la nullité des actes de procédure. Cette règle s’applique à la mise en demeure que le bailleur avait fait délivrer par huissier de justice avant le congé. Dans cette affaire, une locataire avait demandé au tribunal de constater que le congé ne reposait sur aucun motif légitime, sans avoir d’abord soulevé la nullité de cette mise en demeure. La Cour approuve donc la cour d’appel d’avoir refusé d’examiner la nullité du congé que la locataire tirait de celle de la mise en demeure, par application de l’article 112.</p>
+<p>Enfin, il reste à savoir ce que devient le refus quand le bailleur ne peut pas invoquer son motif. La troisième chambre civile juge que le refus reste valable et que le locataire a donc droit à l’indemnité. Elle l’a jugé le 28 octobre 2009 (pourvoi n° 07-18.520) pour un congé avec refus de renouvellement sans indemnité dont la motivation manque ou ne suffit pas. Elle l’a jugé aussi le 19 décembre 2012 (pourvoi n° 11-24.251), pour un refus opposé à une demande de renouvellement, sans mise en demeure régulière.</p>
+<p><strong>La mineure.</strong> D’abord, la sous-location sans accord écrit manque à une obligation du bail, si bien que Jocelyn devait envoyer une mise en demeure conforme à l’article L. 145-17. Or il a envoyé une lettre recommandée, alors que la loi exige un acte extrajudiciaire. Cette lettre ne reproduit pas non plus le texte de l’alinéa, selon lequel le manquement ne peut être invoqué que s’il s’est poursuivi ou renouvelé plus d’un mois après la mise en demeure. Sa lettre est donc une mise en demeure nulle.</p>
+<p>Jocelyn pourrait soutenir que le manquement ne pouvait plus être réparé. Mais l’arrêt de 2003 concerne une sous-location autorisée par le bail, dont le locataire a seulement omis d’appeler le bailleur à l’acte, et cette omission ne pouvait plus être réparée. La sous-location de Gaëlle n’était pas autorisée et pouvait cesser, et le photographe est parti le 28 février 2026. Le raisonnement de cet arrêt ne s’applique donc pas directement à son manquement.</p>
+<p>Ensuite, Gaëlle doit soulever la nullité de la mise en demeure avant de discuter le fond et avant toute fin de non-recevoir. Elle peut saisir le tribunal en assignant Jocelyn pour obtenir son indemnité, ou répondre à l’assignation de Jocelyn en expulsion. Dans les deux cas, elle soulève cette nullité dans son premier acte de procédure, soit l’assignation ou ses premières conclusions, avant de discuter le caractère grave et légitime du motif, car elle risque sinon que le juge refuse d’examiner cette nullité.</p>
+<p>Dans l’arrêt du 2 juin 2010, la locataire avait elle-même saisi le tribunal et la mise en demeure était un acte d’huissier de justice, alors que celle de Jocelyn est une simple lettre recommandée. L’article 112 vise toutefois toute personne qui invoque la nullité, y compris la partie assignée, et Gaëlle soulève donc la nullité par prudence, sans attendre. Elle doit aussi prouver son grief (article 114), et elle peut soutenir que la lettre ne lui a pas appris qu’un manquement prolongé plus d’un mois la priverait de son indemnité.</p>
+<p>De plus, Jocelyn ne peut pas invoquer le retard de loyer. En effet, ce retard est lui aussi un manquement à une obligation du bail, et la loi exige pour un tel manquement une mise en demeure par acte extrajudiciaire. Jocelyn n’en a envoyé aucune, et Gaëlle avait déjà payé le loyer le 2 janvier 2026, avant le congé.</p>
+<p><strong>La conclusion.</strong> Jocelyn ne peut pas refuser de payer l’indemnité d’éviction, à condition que Gaëlle soulève la nullité de la mise en demeure avant de discuter le fond et avant toute fin de non-recevoir, et qu’elle prouve son grief. En effet, sa lettre du 12 janvier 2026 ne remplit pas les conditions de la loi, et il n’a rien envoyé au sujet du loyer. Le refus reste donc valable et Gaëlle a droit à l’indemnité, dans la logique des arrêts du 28 octobre 2009 et du 19 décembre 2012. Toutefois, avec une mise en demeure régulière le 12 janvier, la sous-location aurait continué plus d’un mois, jusqu’au 28 février, et les conditions de l’article L. 145-17 auraient été remplies. Jocelyn devrait encore convaincre le juge que ce manquement est grave et légitime.</p>
+<h3>III. Quelles sont les suites du refus de renouvellement ?</h3>
+<h4>A. Gaëlle peut-elle rester dans la boutique ?</h4>
+<p><strong>Les faits qualifiés.</strong> Le bail a pris fin le 30 septembre 2026 (partie I.B), mais Gaëlle refuse de rendre les clés tant qu’elle n’a pas reçu d’indemnité. Comme la partie II l’a montré, elle peut prétendre à une indemnité d’éviction, à condition d’avoir soulevé à temps la nullité de la mise en demeure et d’avoir prouvé son grief. Enfin, elle n’a pas encore été payée.</p>
+<p><strong>Le problème de droit.</strong> Un locataire commercial dont le bail a pris fin, et qui peut prétendre à une indemnité d’éviction qu’il n’a pas reçue, peut-il rester dans les lieux, et à quel prix ?</p>
+<p><strong>La majeure.</strong> Selon l’article L. 145-28 du Code de commerce, le locataire qui peut prétendre à une indemnité d’éviction a en principe droit au maintien dans les lieux, aux conditions et clauses du bail expiré, jusqu’au paiement de cette indemnité. Ainsi, une fois l’indemnité versée, le locataire doit remettre les lieux à l’expiration d’un délai de trois mois suivant le versement, ou la notification du versement à un séquestre, soit un tiers qui garde la somme (article L. 145-29). En contrepartie du maintien dans les lieux, il doit une indemnité d’occupation, que le juge fixe d’après la valeur locative, qui correspond au loyer que le marché fixerait pour ce local. Le 17 juin 2021 (pourvoi n° 20-15.296), la troisième chambre civile juge en outre que la règle du plafonnement, qui limite la hausse du loyer au renouvellement, ne s’applique pas à cette indemnité.</p>
+<p><strong>La mineure.</strong> D’abord, Gaëlle peut prétendre à l’indemnité d’éviction, puisque Jocelyn ne prouve aucun motif qui l’en dispense, et elle ne l’a pas reçue. Elle peut donc rester dans la boutique, aux clauses de l’ancien bail. Ensuite, elle doit une indemnité d’occupation depuis le 1er octobre. Le juge la calcule d’après la valeur locative du local, sans plafonnement, et son montant peut donc dépasser l’ancien loyer. Enfin, elle devra remettre les lieux trois mois après le versement de l’indemnité d’éviction.</p>
+<p><strong>La conclusion.</strong> Gaëlle a le droit de rester dans la boutique jusqu’au paiement de l’indemnité d’éviction, et elle dispose ensuite de trois mois pour remettre les lieux. Elle paie en attendant une indemnité d’occupation fixée d’après la valeur locative.</p>
+<h4>B. Que peut réclamer Gaëlle ?</h4>
+<p><strong>Les faits qualifiés.</strong> Gaëlle perd son emplacement, et sa clientèle est surtout une clientèle de quartier, composée d’habitants qui viennent à pied. Il faut mesurer le préjudice qui en résulte.</p>
+<p><strong>Le problème de droit.</strong> Quel préjudice l’indemnité d’éviction répare-t-elle quand la clientèle du commerce est une clientèle de quartier ?</p>
+<p><strong>La majeure.</strong> D’après l’article L. 145-14 du Code de commerce, l’indemnité est égale au préjudice causé par le défaut de renouvellement. Elle comprend notamment la valeur marchande du fonds de commerce, déterminée suivant les usages de la profession, augmentée éventuellement des frais normaux de déménagement et de réinstallation, ainsi que des frais et droits de mutation (taxes et frais d’un achat) à payer pour un fonds de même valeur. Le bailleur peut toutefois prouver que le préjudice est moindre.</p>
+<p>Le droit au bail, soit le droit du locataire d’occuper le local en vertu de son bail, est un élément du fonds de commerce. La pratique distingue ensuite deux cas. D’abord, quand le fonds disparaît avec l’emplacement, parce que la clientèle ne suivra pas, l’indemnité principale, qui répare la perte du fonds, couvre la valeur du fonds entier, et on parle d’indemnité de remplacement. En revanche, quand le locataire peut se réinstaller ailleurs sans perdre sa clientèle, l’indemnité principale repose surtout sur la valeur du droit au bail perdu, et on parle d’indemnité de transfert.</p>
+<p>Ainsi, le 13 octobre 2021 (pourvoi n° 20-19.340), la troisième chambre civile juge que l’indemnité d’éviction doit tenir compte de la valeur du droit au bail des locaux dont le locataire est évincé. Elle casse donc (annule), sur ce point, l’arrêt de la cour d’appel qui avait retenu une valeur nulle en se fondant sur la seule absence de différentiel positif entre le loyer des locaux où le locataire s’était réinstallé, moins élevé, et celui des locaux dont il avait été évincé.</p>
+<p><strong>La mineure.</strong> D’abord, Gaëlle a une clientèle de quartier. Elle tient à l’emplacement, et une boutique ouverte dans une autre rue ne la suivrait probablement pas. Le fonds risque donc de disparaître avec l’éviction, et l’indemnité principale correspond alors à la valeur marchande du fonds. Ensuite, des indemnités accessoires s’ajoutent éventuellement à l’indemnité principale, comme les frais normaux de déménagement et de réinstallation, ainsi que les frais et droits de mutation pour acquérir un fonds de même valeur. Enfin, Jocelyn peut prouver que le préjudice est moindre, par exemple que Gaëlle pourrait rouvrir à proximité en gardant l’essentiel de ses clients.</p>
+<p><strong>La conclusion.</strong> Gaëlle peut réclamer une indemnité de remplacement, qui couvre la valeur de son fonds, augmentée éventuellement des frais que prévoit l’article L. 145-14. Jocelyn peut réduire cette somme en prouvant que le préjudice est moindre.</p>
+<h4>C. Jocelyn peut-il renoncer à son refus ?</h4>
+<p><strong>Les faits qualifiés.</strong> Jocelyn voudrait renouveler le bail pour ne pas payer l’indemnité. Gaëlle est toujours dans la boutique et n’a ni loué ni acheté d’autre local.</p>
+<p><strong>Le problème de droit.</strong> Un bailleur qui a refusé le renouvellement d’un bail commercial peut-il y renoncer pour échapper à l’indemnité d’éviction, et jusqu’à quand ?</p>
+<p><strong>La majeure.</strong> Selon l’article L. 145-58 du Code de commerce, le bailleur peut échapper au paiement de l’indemnité en acceptant de renouveler le bail. Il peut le faire jusqu’à l’expiration d’un délai de quinze jours à compter de la date à laquelle la décision du juge est passée en force de chose jugée, soit quand aucun recours ne peut plus en suspendre l’exécution (article 500 du Code de procédure civile). Il doit alors supporter les frais de l’instance, soit du procès, et consentir au renouvellement. Ce droit de repentir ne s’exerce toutefois que si le locataire est encore dans les lieux et n’a pas déjà loué ou acheté un autre immeuble pour se réinstaller. L’article L. 145-59 précise en outre que la décision du bailleur d’échapper au paiement de l’indemnité est irrévocable.</p>
+<p><strong>La mineure.</strong> D’abord, Gaëlle est encore dans les lieux et n’a ni loué ni acheté d’autre immeuble pour se réinstaller. Jocelyn remplit donc la condition qui tient à la situation du locataire. Ensuite, selon l’article L. 145-58, il peut se repentir jusqu’à quinze jours après le moment où la décision est passée en force de chose jugée. Ce texte fixe cette limite sans dire à partir de quand le repentir est possible.</p>
+<p><strong>La conclusion.</strong> Jocelyn peut échapper au paiement de l’indemnité en acceptant de renouveler le bail. Il le peut jusqu’à quinze jours après la date à laquelle la décision est passée en force de chose jugée, tant que Gaëlle est encore dans les lieux et n’a ni loué ni acheté d’autre immeuble. Le texte ne dit pas s’il peut le faire avant toute décision. Son repentir est irrévocable (article L. 145-59), et il paie alors les frais de l’instance. En revanche, si Gaëlle quittait la boutique ou signait un bail pour une autre boutique, ce droit disparaîtrait.</p>
+</div>
+</div>
+</section>
+<section class="section" style="padding-top:0">
+<div class="container container--narrow">
+<div class="article-produit-inline" data-emplacement="milieu-majeures">
+<img class="article-produit-inline__thumb" src="assets/majeures/commercial-l3s1-couleur.webp" width="60" height="80" alt="Couverture des majeures préparées de droit commercial L3 S1" loading="lazy">
+<div class="article-produit-inline__body">
+<p class="article-produit-inline__label">Majeures préparées</p>
+<p class="article-produit-inline__title">Droit commercial L3 S1, 103 pages</p>
+<p class="article-produit-inline__meta">Une majeure préparée donne la règle de droit déjà rédigée, condition par condition. La majeure 27 traite le droit au renouvellement, et la majeure 28 le refus, l’indemnité d’éviction, le droit de repentir et le maintien dans les lieux. Chaque condition est numérotée, avec ses exceptions et les décisions qui l’appliquent · <strong>19,99 €</strong></p>
+</div>
+<div class="article-produit-inline__actions">
+<button type="button" class="btn btn--primary" data-tjd-produit="maj-commercial-l3-s1">Acheter les majeures préparées · 19,99 €</button>
+</div>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="erreurs">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles erreurs font perdre des points sur un cas pratique de bail commercial ?</h2>
+<h3>Dispenser le bailleur de l’indemnité parce que le locataire a commis un manquement</h3>
+<p>Quand le motif du bailleur est un manquement à une obligation du bail, une mise en demeure par acte extrajudiciaire est en principe nécessaire, et le manquement doit s’être poursuivi ou renouvelé plus d’un mois après cette mise en demeure. Quand ton énoncé décrit un manquement du locataire, tu cherches donc la mise en demeure que le bailleur a envoyée et tu vérifies qu’elle respecte la loi. Enfin, si le locataire a omis d’appeler le bailleur à l’acte d’une sous-location autorisée, tu penses à l’arrêt du 9 juillet 2003 avant de conclure.</p>
+<h3>Confondre une lettre recommandée et un acte extrajudiciaire</h3>
+<p>Le congé du bailleur et la mise en demeure de l’article L. 145-17 doivent être faits par acte de commissaire de justice. La demande de renouvellement du locataire peut au contraire se faire par lettre recommandée (article L. 145-10), à condition de reproduire, à peine de nullité, le texte de l’alinéa qui oblige le bailleur à répondre dans les trois mois. Quand le bailleur envoie un congé ou une mise en demeure par lettre recommandée, tu relèves donc l’irrégularité.</p>
+<h3>Soulever la nullité trop tard</h3>
+<p>Une copie qui discute d’abord la gravité du manquement sans avoir soulevé la nullité de la mise en demeure risque de ne plus pouvoir invoquer cette nullité (article 112 du Code de procédure civile et arrêt du 2 juin 2010).</p>
+</div>
+</div>
+</section>
+<section class="section" id="adapter">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Comment adapter cette méthode à un autre énoncé de bail commercial ?</h2>
+<p>Avec un autre énoncé, tu poses les mêmes quatre questions, et seules les réponses changent, selon la forme du congé et le motif du bailleur.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Quatre variantes d’un énoncé de bail commercial et la réponse qui change" style="overflow-x:auto">
+<table style="width:100%;min-width:640px;border-collapse:collapse">
+<thead><tr><th scope="col">Si l’énoncé indique</th><th scope="col">La réponse change ainsi</th><th scope="col">Texte ou décision à citer</th></tr></thead>
+<tbody>
+<tr><th scope="row">Le bailleur donne congé en offrant de renouveler le bail, mais à des clauses différentes de celles du bail expiré</th><td>Ce congé équivaut à un refus de renouvellement. Le locataire a droit à l’indemnité d’éviction, car le bail renouvelé reprend les clauses du bail expiré, sauf accord des parties et sauf pour le prix, soit le loyer, que le juge peut fixer.</td><td>Troisième chambre civile, 11 janvier 2024, pourvoi n° 22-20.872</td></tr>
+<tr><th scope="row">Le bailleur donne congé par lettre recommandée</th><td>L’acte est irrégulier. Le bailleur ne peut pas invoquer la nullité de l’acte qu’il a lui-même délivré. Le locataire qui quitte les lieux à réception de ce congé irrégulier, sans demander cette nullité, a droit à l’indemnité si aucune faute grave au sens de l’article L. 145-17 ne lui est reprochée.</td><td>Article L. 145-9 et troisième chambre civile, 15 septembre 2010, pourvoi n° 09-15.192</td></tr>
+<tr><th scope="row">Le locataire demande le renouvellement et le bailleur reste silencieux trois mois</th><td>Le bailleur est réputé avoir accepté le principe du renouvellement du bail précédent. Pour refuser, il devait répondre dans les trois mois de la demande, par acte extrajudiciaire, en indiquant ses motifs. Quand il refuse à temps, le délai de deux ans court à compter de la signification de ce refus.</td><td>Article L. 145-10</td></tr>
+<tr><th scope="row">Le fonds n’a pas été exploité pendant les trois années qui précèdent l’expiration du bail ou de sa prolongation</th><td>La condition d’exploitation effective n’est pas remplie, et le locataire ne peut donc pas invoquer le droit au renouvellement, sauf motifs légitimes. Si le bailleur invoque la cessation de l’exploitation comme motif grave et légitime, la mise en demeure de l’article L. 145-17 reste en principe nécessaire.</td><td>Articles L. 145-8 et L. 145-17, I, 1°</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Pour aller plus loin</h3>
+<ul>
+<li>Le <a href="droit-commercial-l3.html">cours de droit commercial L3</a> couvre le fonds de commerce, le bail commercial et la concurrence déloyale.</li>
+<li>La <a href="fiche-revision-droit-commercial-l3.html">fiche de révision de droit commercial L3</a> reprend les thèmes du programme avec les décisions à connaître.</li>
+<li>La page des <a href="cas-pratiques-corriges.html">cas pratiques corrigés par matière</a> classe les exemples gratuits par niveau.</li>
+</ul>
+<div class="author-box">
+<img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+<div>
+<p class="author-box__name">Julien</p>
+<p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+<p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">167 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention. Pour cela, je leur apprends une méthode qu'ils réutilisent ensuite seuls, à chaque copie. Sur TrajectoireDroit, j'ai donc réuni mes fiches complètes et mes majeures préparées. Une majeure préparée donne la règle de droit déjà rédigée, prête pour le cas pratique.</p>
+<p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="faq">
+<div class="container container--narrow"><h2 class="h2">Questions fréquentes sur le cas pratique de bail commercial</h2>
+<div class="accordion">
+<details class="accordion__item"><summary class="accordion__trigger">Un bailleur peut-il refuser de renouveler un bail commercial sans payer d’indemnité ?</summary><div class="accordion__body"><p>Oui, mais seulement dans les cas que la loi énumère. L’article L. 145-17 du Code de commerce dispense le bailleur de l’indemnité d’éviction s’il justifie d’un motif grave et légitime contre le locataire. La loi l’en dispense aussi s’il établit que l’immeuble doit être démoli parce que l’autorité administrative a reconnu son insalubrité, ou qu’il ne peut plus être occupé sans danger. Quand le motif est un manquement du locataire à une obligation du bail, le bailleur doit en principe d’abord le mettre en demeure par acte extrajudiciaire, et le manquement doit s’être poursuivi ou renouvelé plus d’un mois après cette mise en demeure. Dans les autres cas, il doit l’indemnité (article L. 145-14), sauf s’il refuse le renouvellement pour construire ou reconstruire l’immeuble et offre au locataire évincé un local de remplacement, qui correspond à ses besoins et possibilités, à un emplacement équivalent (article L. 145-18).</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Combien de temps le locataire a-t-il pour contester le congé ou réclamer l’indemnité d’éviction ?</summary><div class="accordion__body"><p>Deux ans à compter de la date pour laquelle le congé a été donné. En effet, l’article L. 145-9 impose au bailleur de rappeler ce délai dans le congé, à peine de nullité. L’article L. 145-60 soumet toutes les actions du statut des baux commerciaux à une prescription de deux ans, soit un délai après lequel l’action n’est plus possible. En outre, une assignation délivrée dans ce délai interrompt la prescription de l’action en paiement de l’indemnité d’éviction, si bien que l’action n’est pas prescrite (troisième chambre civile de la Cour de cassation, 22 juin 2022).</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Le locataire peut-il rester dans les lieux après la fin du bail ?</summary><div class="accordion__body"><p>Oui, s’il peut prétendre à une indemnité d’éviction. En principe, l’article L. 145-28 interdit au bailleur d’obliger le locataire à partir avant qu’il ait reçu cette indemnité, et lui donne droit au maintien dans les lieux aux conditions du bail expiré. Le locataire doit en contrepartie une indemnité d’occupation, fixée d’après la valeur locative sans plafonnement du loyer (troisième chambre civile de la Cour de cassation, 17 juin 2021).</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Le bailleur peut-il renoncer à son refus de renouvellement ?</summary><div class="accordion__body"><p>Oui, grâce au droit de repentir de l’article L. 145-58. Le bailleur peut consentir au renouvellement pour échapper à l’indemnité jusqu’à quinze jours après le moment où la décision est passée en force de chose jugée. Il faut en outre que le locataire soit encore dans les lieux et qu’il n’ait ni loué ni acheté un autre immeuble pour se réinstaller. Enfin, une fois exercé, le repentir est irrévocable (article L. 145-59).</p></div></details>
+</div>
+</div>
+</section>
+<!-- fin-article:pack-ultra -->
+<section class="article-pack-ligne"><div class="container container--narrow"><p class="article-pack-ligne__texte">Le Pack Ultra L3 semestre 1 réunit 38 ressources pour 229 €. Les cas pratiques corrigés de droit commercial en font partie. <a href="pack-ultra.html#pack-ultra-l3-s1">Voir les supports inclus →</a></p></div></section>
+</main>
+
+
+
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. <a href="temoignages.html">4 500+ élèves utilisent nos fiches</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Droit commercial L3, cas pratique sur le bail commercial">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Droit commercial L3, cas pratique sur le bail commercial">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit commercial L3 S1</strong>
+      <small>Dix cas pratiques corrigés · 122 pages</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="cas-pratique-commercial-l3-s1" aria-label="Acheter les cas pratiques corrigés · 19,99 €">Acheter · 19,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=81a894f1" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=00564c99" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=7aba7f6e';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
+</body>
+</html>
