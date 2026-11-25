@@ -1409,6 +1409,106 @@ html[data-theme="dark"] .megamenu__niveau-col--formats .megamenu__niveau-head st
 html[data-theme="dark"] .megamenu__niveau-head { border-bottom-color: rgba(255,255,255,.1); }
 html[data-theme="dark"] .megamenu__niveau-col a:not(.megamenu__niveau-cta):hover { background: rgba(255,255,255,.05); }
 
+.megamenu--fiches .megamenu__niveau-col:not(.megamenu__niveau-col--formats) {
+  min-width: 0;
+  padding: 9px 10px 10px;
+  border: 1px solid var(--annee-bordure, var(--border));
+  border-radius: var(--r-md);
+  background: var(--annee-fond, var(--surface-2));
+}
+.megamenu--fiches .megamenu__niveau-col:has(> .megamenu__niveau-cta[href$="reussir-sa-l1.html"]) {
+  --annee-encre: #264775;
+  --annee-fond: #f7faff;
+  --annee-bordure: #cfdbef;
+  --annee-survol: #e8effa;
+  --annee-fond-sombre: #233650;
+  --annee-encre-sombre: #b8d0f4;
+}
+.megamenu--fiches .megamenu__niveau-col:has(> .megamenu__niveau-cta[href$="reussir-sa-l2.html"]) {
+  --annee-encre: #185b43;
+  --annee-fond: #f4faf6;
+  --annee-bordure: #c9e2d6;
+  --annee-survol: #e7f3ed;
+  --annee-fond-sombre: #203c37;
+  --annee-encre-sombre: #a9dbc2;
+}
+.megamenu--fiches .megamenu__niveau-col:has(> .megamenu__niveau-cta[href$="reussir-sa-l3.html"]) {
+  --annee-encre: #77531f;
+  --annee-fond: #fcfaf5;
+  --annee-bordure: #e8d9be;
+  --annee-survol: #f5eddf;
+  --annee-fond-sombre: #3b3427;
+  --annee-encre-sombre: #f1d29d;
+}
+html[data-theme="dark"] .megamenu--fiches .megamenu__niveau-col:not(.megamenu__niveau-col--formats) {
+  --annee-encre: var(--annee-encre-sombre, #B8CCE8);
+  --annee-fond: var(--annee-fond-sombre, var(--surface-2));
+  --annee-bordure: rgba(255,255,255,.16);
+  --annee-survol: rgba(255,255,255,.07);
+}
+.megamenu--fiches .megamenu__niveau-col:not(.megamenu__niveau-col--formats) > .megamenu__niveau-head {
+  padding: 0 4px 4px;
+  margin-bottom: 5px;
+  border-bottom: 0;
+}
+.megamenu--fiches .megamenu__niveau-col:not(.megamenu__niveau-col--formats) > .megamenu__niveau-head strong,
+.megamenu--fiches .megamenu__niveau-col:not(.megamenu__niveau-col--formats) > .megamenu__niveau-cta {
+  color: var(--annee-encre, var(--navy));
+}
+.megamenu--fiches .megamenu__niveau-col:not(.megamenu__niveau-col--formats) > a[role="menuitem"] {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  overflow-wrap: anywhere;
+}
+.megamenu--fiches .megamenu__niveau-col:not(.megamenu__niveau-col--formats) > a[role="menuitem"]:is(:hover, :focus-visible, [aria-current="page"]) {
+  color: var(--annee-encre, var(--navy));
+  background: var(--annee-survol, var(--blue-50));
+}
+.megamenu--fiches .megamenu__niveau-col:not(.megamenu__niveau-col--formats) > a[role="menuitem"]::before {
+  content: "";
+  flex: 0 0 14px;
+  height: 14px;
+  align-self: flex-start;
+  margin-top: .11em;
+  background: var(--muted);
+  --picto-document: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 2h6.5L13 5.5V14H3zm6.5 0v3.5H13M5.5 8.5h5m-5 3h5'/%3E%3C/svg%3E");
+  -webkit-mask: var(--matiere-picto, var(--picto-document)) center / contain no-repeat;
+  mask: var(--matiere-picto, var(--picto-document)) center / contain no-repeat;
+}
+.megamenu--fiches .megamenu__niveau-col:not(.megamenu__niveau-col--formats) > .megamenu__niveau-cta {
+  margin-top: auto;
+  padding: 7px 4px 0;
+  border-top: 1px solid var(--annee-bordure, var(--border));
+}
+.megamenu--fiches [href$="introduction-au-droit-l1.html"] {
+  --matiere-picto: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 4 5 2.5H1V13h4L8 14.5 11 13h4V2.5h-4L8 4v10'/%3E%3C/svg%3E");
+}
+.megamenu--fiches :is([href$="droit-constitutionnel-l1.html"], [href$="histoire-des-institutions-l1.html"], [href$="droit-administratif-l2.html"]) {
+  --matiere-picto: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 6h14L8 2ZM2 14h12M4 7v5m4-5v5m4-5v5'/%3E%3C/svg%3E");
+}
+.megamenu--fiches [href$="histoire-du-droit-l1.html"] {
+  --matiere-picto: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='M8 4.5v4l2.5 1.5'/%3E%3C/svg%3E");
+}
+.megamenu--fiches [href$="relations-internationales-l1.html"] {
+  --matiere-picto: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cellipse cx='8' cy='8' rx='3' ry='6'/%3E%3Cpath d='M2 8h12'/%3E%3C/svg%3E");
+}
+.megamenu--fiches [href$="droit-des-personnes-l1.html"] {
+  --matiere-picto: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='8' cy='5' r='2.5'/%3E%3Cpath d='M2.5 14c.5-5.5 10.5-5.5 11 0'/%3E%3C/svg%3E");
+}
+.megamenu--fiches [href$="droit-de-la-famille-l1.html"] {
+  --matiere-picto: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='5.5' cy='5' r='2.1'/%3E%3Ccircle cx='11.6' cy='5.4' r='1.7'/%3E%3Cpath d='M1.4 14c.4-5 7.8-5 8.4 0m.4-4c2.7-.7 4.9 1.1 4.9 4'/%3E%3C/svg%3E");
+}
+.megamenu--fiches :is([href$="droit-penal-l2.html"], [href$="droit-penal-general-l2.html"], [href$="procedure-penale-l3.html"]) {
+  --matiere-picto: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4.2 5.3 4-3.8 3 3-4 3.9-3-3.1Zm5.3 1 4.9 4.9M2.3 14h8.2'/%3E%3C/svg%3E");
+}
+.megamenu--fiches [href$="droit-des-biens-l2.html"] {
+  --matiere-picto: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='5.3' cy='5.5' r='3.2'/%3E%3Cpath d='m7.7 7.8 6.2 6.2 1.1-1.1m-3.9-1.3 1.1-1.1'/%3E%3C/svg%3E");
+}
+.megamenu--fiches :is([href$="droit-commercial-l2.html"], [href$="droit-commercial-l3.html"], [href$="droit-des-societes-l3.html"], [href$="droit-du-travail-l3.html"]) {
+  --matiere-picto: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='1.2' y='5.4' width='13.6' height='8.8' rx='1.1'/%3E%3Cpath d='M5.7 5.5V3.1h4.6v2.4M1.5 9.3l5.5 1.3h2l5.5-1.3'/%3E%3C/svg%3E");
+}
+
 /* Vague 5.1 : Fiches complètes redevient le format prioritaire (déjà le cas avant
    la vague 4.6, tuile foncée megamenu__tile--featured perdue dans la refonte). */
 .megamenu__niveau-col a.megamenu__format--featured {
