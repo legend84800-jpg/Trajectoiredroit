@@ -122,6 +122,24 @@ test('les contrôles attendent que le catalogue soit prêt', () => {
   assert.ok(actives.every((controle) => controle.disabled === false));
 });
 
+test('les fiches administratives séparent leur achat du lien vers le pack des deux semestres', () => {
+  const html = fs.readFileSync(path.join(__dirname, '../formations.html'), 'utf8');
+  const pageOffre = fs.readFileSync(path.join(__dirname, '../droit-administratif-l2.html'), 'utf8');
+  const produits = require('../api/_produits');
+  const prix = (id) => `${(produits[id].prix / 100).toFixed(2).replace('.', ',')} €`;
+  const pack = 'pack-matiere-da-l2';
+  const offre = pageOffre.split('id="offre"')[1].split('</section>')[0];
+
+  assert.ok(offre.includes(`data-tjd-produit="${pack}">Acheter le pack · ${prix(pack)}`));
+  for (const id of ['fiche-da-l2-s1', 'fiche-da-l2-s2']) {
+    const carte = html.split(`id="${id}"`)[1].split('</article>')[0];
+    assert.doesNotMatch(carte, /data-tjd-bump|type="checkbox"/);
+    assert.deepEqual([...carte.matchAll(/data-tjd-produit="([^"]+)"/g)].map((m) => m[1]), [id]);
+    assert.ok(carte.includes(`Acheter la fiche complète · ${prix(id)}</button>`));
+    assert.ok(carte.includes(`href="/droit-administratif-l2.html#offre">Voir le pack S1 + S2 · ${prix(pack)}</a>`));
+  }
+});
+
 test('une recherche vide affiche le message prévu puis Réinitialiser rétablit tout', () => {
   const e = environnement({ url: 'https://trajectoiredroit.com/formations.html#cours-l2' });
   e.matiere('public'); e.chercher('texte absent');

@@ -48,6 +48,35 @@
     #purchaseStatusMessage[hidden], #purchaseSpamReminder[hidden], #purchaseEmailSupport[hidden],
     #purchaseStatusActions [hidden] { display: none !important; }
     #purchaseDownloadsHelp a { text-decoration: underline; text-underline-offset: .15em; }
+    .achat-retour__volet > summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 54px;
+      padding: 14px 18px;
+      font-size: .95rem;
+      line-height: 1.35;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--ink);
+      border-radius: 12px;
+      list-style: none;
+    }
+    .achat-retour__volet > summary::-webkit-details-marker { display: none; }
+    .achat-retour__volet > summary::after {
+      content: '';
+      flex: none;
+      width: .45em;
+      height: .45em;
+      border: solid currentColor;
+      border-width: 0 2px 2px 0;
+      transform: translateY(-2px) rotate(45deg);
+    }
+    .achat-retour__volet[open] > summary::after { transform: translateY(2px) rotate(225deg); }
+    .achat-retour__volet > summary:focus-visible { outline: 2px solid var(--blue-600); outline-offset: -3px; }
+    .achat-retour__corps { padding: 6px 18px 24px; }
+    .achat-retour__facultatif { color: var(--body); font-weight: 400; }
     .achat-retour__question { border: 0; padding: 0; margin: 20px 0 0; min-width: 0; }
     .achat-retour__question legend { font-weight: 700; color: var(--ink); line-height: 1.4; }
     .achat-retour__choix { display: grid; gap: 8px; margin-top: 12px; }
@@ -438,60 +467,65 @@
             </a>
           </div>
 
-          <div class="card achat-retour" id="achatRetour" hidden style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; padding:28px 32px">
-            <h2 class="h4" style="margin:0">Ton achat et tes révisions</h2>
-            <p style="margin:8px 0 0; color:var(--body)">Tu peux répondre aux questions que tu veux. Tes réponses m'aident à améliorer les supports et à comprendre comment les étudiants me découvrent.<span id="purchaseSurveyEmail"> Tes documents arrivent par email dans tous les cas.</span></p>
-            <form id="achatRetourForm">
-              <fieldset class="achat-retour__question">
-                <legend>Comment as-tu connu Trajectoire Droit ?</legend>
-                <label class="sr-only" for="achatOrigine">Choisir une réponse</label>
-                <select class="form__input" id="achatOrigine" name="origine">
-                  <option value="">Choisir une réponse (facultatif)</option>
-                  <option value="recherche">Une recherche sur Google ou un autre moteur</option>
-                  <option value="youtube">Une vidéo YouTube</option>
-                  <option value="instagram">Instagram</option>
-                  <option value="facebook">Facebook</option>
-                  <option value="linkedin">LinkedIn</option>
-                  <option value="reddit">Reddit</option>
-                  <option value="email">Un email de Trajectoire Droit</option>
-                  <option value="recommandation">Une recommandation d'un proche ou d'un étudiant</option>
-                  <option value="autre">Autre</option>
-                  <option value="souvenir_inconnu">Je ne sais plus</option>
-                </select>
-              </fieldset>
-              <fieldset class="achat-retour__question">
-                <legend>Qu'est-ce qui t'a décidé à acheter aujourd'hui ?</legend>
-                <div class="achat-retour__choix">
-                  <label><input type="radio" name="declencheur" value="td"> Un TD m'a posé problème</label>
-                  <label><input type="radio" name="declencheur" value="note"> J'ai reçu une note qui m'a déçu</label>
-                  <label><input type="radio" name="declencheur" value="partiel"> Un partiel approche</label>
-                  <label><input type="radio" name="declencheur" value="nouvelle_matiere"> Je commence une nouvelle matière</label>
-                  <label><input type="radio" name="declencheur" value="autre"> Autre chose</label>
-                </div>
-                <div id="achatRetourAutre" hidden style="margin-top:10px">
-                  <label class="form__label" for="achatRetourAutreTexte">Tu peux préciser en quelques mots</label>
-                  <input class="form__input" id="achatRetourAutreTexte" name="declencheur_autre" maxlength="160" autocomplete="off">
-                </div>
-              </fieldset>
-              <fieldset class="achat-retour__question">
-                <legend>Qu'aimerais-tu surtout faire grâce à cet achat ?</legend>
-                <div class="achat-retour__choix">
-                  <label><input type="radio" name="resultat" value="comprendre"> Comprendre mon cours</label>
-                  <label><input type="radio" name="resultat" value="exercice"> Réussir un exercice juridique</label>
-                  <label><input type="radio" name="resultat" value="partiel"> Réviser pour mon partiel</label>
-                  <label><input type="radio" name="resultat" value="temps"> Gagner du temps dans mes révisions</label>
-                  <label><input type="radio" name="resultat" value="autre"> Autre chose</label>
-                </div>
-                <label class="form__label" for="achatRetourPrecision" style="display:block; margin-top:12px">Si tu veux, précise ton objectif avec tes mots</label>
-                <input class="form__input" id="achatRetourPrecision" name="resultat_precision" maxlength="160" autocomplete="off">
-              </fieldset>
-              <div class="achat-retour__actions">
-                <button class="btn btn--primary" type="submit" id="achatRetourEnvoyer">Envoyer mes réponses</button>
-                <button class="btn btn--outline" type="button" id="achatRetourPasser">Passer</button>
+          <div class="card achat-retour" id="achatRetour" hidden style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; padding:0">
+            <details class="achat-retour__volet">
+              <summary><span>Répondre à 3 questions <span class="achat-retour__facultatif">(facultatif)</span></span></summary>
+              <div class="achat-retour__corps">
+                <h2 class="h4" style="margin:0">Ton achat et tes révisions</h2>
+                <p style="margin:8px 0 0; color:var(--body)">Tu peux répondre aux questions que tu veux. Tes réponses m'aident à améliorer les supports et à comprendre comment les étudiants me découvrent.<span id="purchaseSurveyEmail"> Tes documents arrivent par email dans tous les cas.</span></p>
+                <form id="achatRetourForm">
+                  <fieldset class="achat-retour__question">
+                    <legend>Comment as-tu connu Trajectoire Droit ?</legend>
+                    <label class="sr-only" for="achatOrigine">Choisir une réponse</label>
+                    <select class="form__input" id="achatOrigine" name="origine">
+                      <option value="">Choisir une réponse (facultatif)</option>
+                      <option value="recherche">Une recherche sur Google ou un autre moteur</option>
+                      <option value="youtube">Une vidéo YouTube</option>
+                      <option value="instagram">Instagram</option>
+                      <option value="facebook">Facebook</option>
+                      <option value="linkedin">LinkedIn</option>
+                      <option value="reddit">Reddit</option>
+                      <option value="email">Un email de Trajectoire Droit</option>
+                      <option value="recommandation">Une recommandation d'un proche ou d'un étudiant</option>
+                      <option value="autre">Autre</option>
+                      <option value="souvenir_inconnu">Je ne sais plus</option>
+                    </select>
+                  </fieldset>
+                  <fieldset class="achat-retour__question">
+                    <legend>Qu'est-ce qui t'a décidé à acheter aujourd'hui ?</legend>
+                    <div class="achat-retour__choix">
+                      <label><input type="radio" name="declencheur" value="td"> Un TD m'a posé problème</label>
+                      <label><input type="radio" name="declencheur" value="note"> J'ai reçu une note qui m'a déçu</label>
+                      <label><input type="radio" name="declencheur" value="partiel"> Un partiel approche</label>
+                      <label><input type="radio" name="declencheur" value="nouvelle_matiere"> Je commence une nouvelle matière</label>
+                      <label><input type="radio" name="declencheur" value="autre"> Autre chose</label>
+                    </div>
+                    <div id="achatRetourAutre" hidden style="margin-top:10px">
+                      <label class="form__label" for="achatRetourAutreTexte">Tu peux préciser en quelques mots</label>
+                      <input class="form__input" id="achatRetourAutreTexte" name="declencheur_autre" maxlength="160" autocomplete="off">
+                    </div>
+                  </fieldset>
+                  <fieldset class="achat-retour__question">
+                    <legend>Qu'aimerais-tu surtout faire grâce à cet achat ?</legend>
+                    <div class="achat-retour__choix">
+                      <label><input type="radio" name="resultat" value="comprendre"> Comprendre mon cours</label>
+                      <label><input type="radio" name="resultat" value="exercice"> Réussir un exercice juridique</label>
+                      <label><input type="radio" name="resultat" value="partiel"> Réviser pour mon partiel</label>
+                      <label><input type="radio" name="resultat" value="temps"> Gagner du temps dans mes révisions</label>
+                      <label><input type="radio" name="resultat" value="autre"> Autre chose</label>
+                    </div>
+                    <label class="form__label" for="achatRetourPrecision" style="display:block; margin-top:12px">Si tu veux, précise ton objectif avec tes mots</label>
+                    <input class="form__input" id="achatRetourPrecision" name="resultat_precision" maxlength="160" autocomplete="off">
+                  </fieldset>
+                  <div class="achat-retour__actions">
+                    <button class="btn btn--primary" type="submit" id="achatRetourEnvoyer">Envoyer mes réponses</button>
+                    <button class="btn btn--outline" type="button" id="achatRetourPasser">Passer</button>
+                  </div>
+                </form>
+                <p id="achatRetourStatut" role="status" aria-live="polite" style="margin:12px 0 0; color:var(--body)"></p>
+                <p style="margin:14px 0 0; font-size:.82rem; color:var(--muted)">Évite d'indiquer ton nom ou tes coordonnées dans les champs libres. Tes réponses ne sont pas ajoutées à ton compte. <a href="confidentialite.html">Comment elles sont utilisées</a>.</p>
               </div>
-            </form>
-            <p id="achatRetourStatut" role="status" aria-live="polite" style="margin:12px 0 0; color:var(--body)"></p>
-            <p style="margin:14px 0 0; font-size:.82rem; color:var(--muted)">Évite d'indiquer ton nom ou tes coordonnées dans les champs libres. Tes réponses ne sont pas ajoutées à ton compte. <a href="confidentialite.html">Comment elles sont utilisées</a>.</p>
+            </details>
           </div>
 
           <div class="card" id="remiseCard" style="margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center; border:2px solid var(--gold, #8EAADD)" hidden>
