@@ -165,7 +165,7 @@ test("en histoire des institutions, le quiz recommande les dates et les textes d
   assert.equal(guide.split('id="reperes"').length, 2);
 
   const arrets = quiz().repondre("L2", "Droit administratif (S2)", "Connaître les arrêts par cœur");
-  assert.match(arrets.cta, /href="revisions\.html"/);
+  assert.match(arrets.cta, /href="revisions\.html#fiche-arret-administratif"/);
 });
 
 test("une matière qui a des flashcards garde le bouton d’achat et le conseil avant l’examen", () => {
@@ -238,5 +238,76 @@ test("les conseils du quiz ouvrent une offre précise qui existe sur le site", (
     const pack = `pack-${niveau.toLowerCase()}`;
     assert.ok(complement.includes(`href="formations.html#${pack}"`), niveau);
     assert.equal(formations.split(`id="${pack}"`).length, 2, niveau);
+  }
+});
+
+function verifierCarte(page, id, niveau) {
+  const html = fs.readFileSync(path.join(racine, page), "utf8");
+  const carte = html.match(new RegExp(`<article id="${id}"([^>]*)>([\\s\\S]*?)</article>`));
+  assert.ok(carte, `${page}#${id}`);
+  assert.ok(carte[1].match(/data-niveau="([^"]+)"/)?.[1].split(",").includes(niveau), id);
+  assert.ok(carte[2].includes(`data-tjd-produit="${id}"`), id);
+  assert.ok(produits[id] && !produits[id].venteSuspendue, id);
+}
+
+test("les fiches d’arrêt recommandées ouvrent leur carte dans le catalogue", () => {
+  for (const [niveau, matieres] of Object.entries(quiz().matieres)) {
+    for (const matiere of matieres) {
+      if (!matiere.arret) continue;
+      const nom = matiere.nom + (matiere.sem ? ` (${matiere.sem})` : "");
+      const { cta } = quiz().repondre(niveau, nom, "Connaître les arrêts par cœur");
+      assert.ok(cta.includes(`href="revisions.html#${matiere.arret}"`), nom);
+      verifierCarte("revisions.html", matiere.arret, niveau);
+    }
+  }
+
+  for (const semestre of ["S1", "S2"]) {
+    const constitutionnel = quiz().repondre("L1", `Droit constitutionnel (${semestre})`, "Connaître les arrêts par cœur");
+    assert.ok(constitutionnel.cta.includes(`#fiche-arret-constit-l1-${semestre.toLowerCase()}`));
+  }
+  const histoire = quiz().repondre("L1", "Histoire du droit (S1)", "Retenir les dates et les textes clés");
+  assert.equal(histoire.titre, "Les dates et les textes clés du S1");
+  assert.match(histoire.cta, /href="histoire-du-droit-l1\.html#reperes"/);
+});
+
+test("les majeures recommandées ouvrent la carte et le niveau voulus", () => {
+  const objectif = "Avoir plus de 15/20 en cas pratique et en commentaire";
+  for (const [niveau, matieres] of Object.entries(quiz().matieres)) {
+    for (const matiere of matieres) {
+      if (!matiere.majeure) continue;
+      const nom = matiere.nom + (matiere.sem ? ` (${matiere.sem})` : "");
+      const conseil = quiz().repondre(niveau, nom, objectif);
+      const destination = `majeures-preparees.html?niveau=${niveau.toLowerCase()}#`;
+      assert.ok(conseil.cta.includes(`href="${destination}${matiere.majeure}"`), nom);
+      verifierCarte("majeures-preparees.html", matiere.majeure, niveau);
+      if (matiere.majeureS2) {
+        assert.ok(conseil.complement.includes(`href="${destination}${matiere.majeureS2}"`), nom);
+        verifierCarte("majeures-preparees.html", matiere.majeureS2, niveau);
+      }
+    }
+  }
+  for (const semestre of ["S1", "S2"]) {
+    const administratif = quiz().repondre("L2", `Droit administratif (${semestre})`, objectif);
+    assert.ok(administratif.cta.includes(`#maj-da-l2-${semestre.toLowerCase()}`));
+  }
+});
+
+test("les matières sans majeures en vente proposent un corrigé de la matière", () => {
+  const objectif = "Avoir plus de 15/20 en cas pratique et en commentaire";
+  const corriges = [
+    ["Histoire du droit (S1)", "dissertation-heritage-droit-romain-corrigee.html"],
+    ["Droit constitutionnel (S1)", "sujets-droit-constitutionnel-l1.html#dissertation"],
+    ["Droit constitutionnel (S2)", "td-droit-constitutionnel-l1-corrige.html#dissertation"],
+    ["Histoire des institutions (S2)", "sujets-histoire-des-institutions-l1.html#commentaire"],
+    ["Relations internationales", "dissertation-realisme-liberalisme-relations-internationales-corrigee.html"]
+  ];
+  for (const [matiere, lien] of corriges) {
+    const { titre, cta } = quiz().repondre("L1", matiere, objectif);
+    assert.equal(titre, "Un sujet corrigé pour t’entraîner");
+    assert.ok(cta.includes(`href="${lien}"`), matiere);
+    const [page, ancre] = lien.split("#");
+    const contenu = fs.readFileSync(path.join(racine, page), "utf8");
+    if (ancre) assert.ok(contenu.includes(`id="${ancre}"`), lien);
+    assert.doesNotMatch(cta, /data-tjd-produit|Acheter/);
   }
 });
