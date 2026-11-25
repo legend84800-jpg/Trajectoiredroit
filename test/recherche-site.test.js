@@ -180,6 +180,29 @@ test('la recherche d’une fiche d’arrêt retrouve la décision demandée', ()
   assert.equal(rechercher(index, 'fiche d’arrêt inconnuqz').length, 0);
 });
 
+test('la recherche retrouve les fiches d’arrêt de la matière et du semestre demandés', () => {
+  const offres = (requete) => Array.from(rechercher(index, requete), ({ t, c, u }) => ({ t, c, u }));
+  assert.deepEqual(offres('fiches d’arrêt de droit administratif'), [
+    { t: 'Droit administratif · L2', c: 'Fiches d’arrêt', u: '/revisions.html#fiche-arret-administratif' },
+  ]);
+  for (const requete of ['fiche arret droit constitutionnel S2', 'fiches d’arrêt de droit constitutionnel L1S2', 'fiche arrêt droit constitutionnel semestre 2']) {
+    assert.deepEqual(offres(requete), [
+      { t: 'Droit constitutionnel · L1 S2', c: 'Fiches d’arrêt', u: '/revisions.html#fiche-arret-constit-l1-s2' },
+    ], requete);
+  }
+  assert.equal(offres('droit administratif fiches d’arrêt')[0].u, '/revisions.html#fiche-arret-administratif');
+  assert.equal(offres('fiches d’arrêt droit des contrats S1')[0].u, '/revisions.html#fiche-arret-contrats');
+  assert.equal(offres('fiches d’arrêt procédure civile L3')[0].u, '/revisions.html#fiche-arret-procedure-civile-l3-s1');
+  assert.equal(offres('fiches d’arrêt droit administratif S2').length, 0);
+  assert.ok(offres('fiche complète droit administratif').every((offre) => offre.c !== 'Fiches d’arrêt'));
+});
+
+test('les fiches d’arrêt vendues à l’unité ouvrent chacune leur carte publique', () => {
+  const fichesArret = index.filter((page) => page.c === 'Fiches d’arrêt');
+  const produitsActifs = Object.keys(PRODUITS).filter((produit) => produit.startsWith('fiche-arret-') && !PRODUITS[produit].venteSuspendue);
+  assert.deepEqual(fichesArret.map((page) => page.u).sort(), produitsActifs.map((produit) => '/revisions.html#' + produit).sort());
+});
+
 test('la recherche explicite d’un guide ouvre la section publique correspondante', () => {
   for (const requete of ['guide contrats spéciaux', 'guide de contrats spéciaux', 'contrats speciaux guide gratuit Licence 3']) {
     assert.equal(rechercher(index, requete)[0].u, '/contrats-speciaux-l3.html#programme', requete);

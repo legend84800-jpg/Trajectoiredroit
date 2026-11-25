@@ -25,6 +25,11 @@
     });
     var variantes = { qcms: 'qcm', flashcard: 'flashcards', fiches: 'fiche', completes: 'complete' };
     var motsCarte = (requeteCarte.match(/[\p{L}\p{N}]+/gu) || []).map(function (mot) { return Object.hasOwn(variantes, mot) ? variantes[mot] : mot; });
+    var formatFichesArret = /\bfiches?\s+(?:(?:d|de l)\s+)?arrets?\b/;
+    var demandeFichesArret = formatFichesArret.test(requete);
+    var motsFichesArret = demandeFichesArret ? (requeteCarte.replace(formatFichesArret, ' ').match(/[\p{L}\p{N}]+/gu) || []).filter(function (mot) {
+      return !/^(?:d|de|du|des|l|le|la|les|en|pour|sur|pdf)$/.test(mot);
+    }) : [];
     var demandeCitations = /\bcitations?\b/.test(requete);
     var ancreCitations = '/revisions.html#citations';
     var motsCitations = demandeCitations ? motsCarte.filter(function (mot) {
@@ -34,7 +39,8 @@
     var casPratiques = /\bcas\s+pratiques\b/.test(requete) || (/\bcas\s+pratique\b/.test(requete) && /\bs[12]\b/.test(requeteCarte));
     var formatCherche = demandeCitations ? 'Fiches de citations'
       : /\b(?:flashcards?|qcms?)\b/.test(requete) ? 'Flashcards + QCM'
-      : /\bfiches?\b/.test(requete) && !/\bfiches?\s+(?:d\s+)?arrets?\b/.test(requete) ? 'Fiche complète'
+      : demandeFichesArret ? 'Fiches d’arrêt'
+      : /\bfiches?\b/.test(requete) ? 'Fiche complète'
       : /\bmajeures?\b/.test(requete) ? 'Majeures préparées'
       : casPratiques ? 'Cas pratiques corrigés' : '';
     return pages.map(function (item) {
@@ -44,13 +50,15 @@
       if (sectionCitationsIndexee && item.u === '/revisions.html') return null;
       var citation = item.c === 'Fiches de citations';
       if (citation && (!demandeCitations || !motsCitations.length)) return null;
+      var ficheArret = item.c === 'Fiches d’arrêt';
+      if (ficheArret && (!demandeFichesArret || !motsFichesArret.length)) return null;
       var avecAncre = item.u.indexOf('#') !== -1;
       var sectionGuide = item.g === true && avecAncre;
       var guide = demandeGuide && (sectionGuide || (matiereGuide.length && typeof item.g === 'string'));
       if (sectionGuide && !guide) return null;
       var arret = motsArret && item.c === 'Arrêt expliqué';
       var carte = avecAncre && !sectionGuide;
-      var motsCherches = citation ? motsCitations : guide ? motsGuide : arret ? motsArret : carte ? motsCarte : mots;
+      var motsCherches = citation ? motsCitations : ficheArret ? motsFichesArret : guide ? motsGuide : arret ? motsArret : carte ? motsCarte : mots;
       var titre = normalize(item.t), contenu = titre + ' ' + normalize(item.k) + ' ' + normalize(item.c);
       var intituleGuide = guide && !sectionGuide ? normalize(item.g) : '';
       if (intituleGuide) contenu += ' guide gratuit guides gratuits ' + intituleGuide;
@@ -82,7 +90,7 @@
           return /^\/(?:[a-z0-9][a-z0-9_-]*\.html)?$/.test(item.u)
             || (item.g === true && (item.u === '/contrats-speciaux-l3.html#programme'
               || item.u === '/ressources-gratuites.html#guides-gratuits'))
-            || /^\/revisions\.html#citations(?:-[a-z0-9]+)*$/.test(item.u)
+            || /^\/revisions\.html#(?:citations(?:-[a-z0-9]+)*|fiche-arret-[a-z0-9]+(?:-[a-z0-9]+)*)$/.test(item.u)
             || /^\/flashcards-qcm\.html#flashcards-qcm-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.u)
             || /^\/formations\.html#(?:cours-)?fiche-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.u)
             || /^\/majeures-preparees\.html\?niveau=l[123]#maj-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.u)

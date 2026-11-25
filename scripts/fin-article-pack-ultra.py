@@ -150,16 +150,16 @@ def id_produit(cle, sid):
     return ID_PRODUIT.get(cle)
 
 
-def actions(cle, sid, classe_btn="btn btn--primary"):
+def actions(cle, sid, classe_btn="btn btn--primary", libelle="Acheter"):
     """Bouton d'achat direct de la fiche, ou lien quand le produit n'a pas d'achat direct (pack L1)."""
     label, titre, lien, img, meta, prix, bouton = produit(cle)
     pid = id_produit(cle, sid)
     if not pid:
         return f'<a class="{classe_btn}" href="{lien}">{bouton}</a>'
-    return f'<button type="button" class="{classe_btn}" data-tjd-produit="{pid}">Acheter · {prix}</button>'
+    return f'<button type="button" class="{classe_btn}" data-tjd-produit="{pid}">{libelle} · {prix}</button>'
 
 
-def produit(cle):
+def produit(cle, sid=None):
     """(label, titre, lien, image, meta, prix, bouton)"""
     if cle in AUTRES:
         infos = list(AUTRES[cle])
@@ -167,26 +167,37 @@ def produit(cle):
         if apercu and apercu.get('majeures'):
             infos[4] = re.sub(r'\b\d+(?= majeures\b)', str(apercu['majeures']), infos[4])
         return tuple(infos)
+    if cle == "admin" and sid == "l2-s2":
+        pages = APERCUS_VERIFIES["fiche-da-l2-s2"]["pages_pdf"]
+        return (
+            "Fiche complète", "Droit administratif L2 · S2", "formations.html#fiche-da-l2-s2",
+            "assets/apercus/vignettes/da-l2-s2.webp", f"{pages} pages · PDF", "19,99 €", "Voir la fiche du S2 →",
+        )
     t, lien, img, meta = FICHES[cle]
     return ("Fiche complète", t, lien, img, meta, "19,99 €", "Voir la fiche →")
 
 
 def encart_milieu(cle, sid):
-    label, titre, lien, img, meta, prix, bouton = produit(cle)
-    apercu = APERCUS_VERIFIES.get(id_produit(cle, sid))
-    if apercu:
+    label, titre, lien, img, meta, prix, bouton = produit(cle, sid)
+    pid = id_produit(cle, sid)
+    admin_s2 = pid == "fiche-da-l2-s2"
+    apercu = APERCUS_VERIFIES.get(pid)
+    if apercu and not admin_s2:
         img = apercu.get("vignette", {}).get("image") or apercu["variantes"][0]["images"][0]
-    lien_detail = f'\n    <a class="article-produit-inline__more" href="{lien}">{bouton}</a>' if id_produit(cle, sid) else ""
+    alt = "Aperçu de la fiche complète de droit administratif L2 S2" if admin_s2 else titre
+    dimensions = ' width="60" height="80"' if admin_s2 else ""
+    libelle_achat = "Acheter la fiche complète" if admin_s2 else "Acheter"
+    lien_detail = f'\n    <a class="article-produit-inline__more" href="{lien}">{bouton}</a>' if pid else ""
     return f'''<!-- fin-article:encart-milieu -->
 <div class="article-produit-inline">
-  <img class="article-produit-inline__thumb" src="{img}" alt="{titre}" loading="lazy">
+  <img class="article-produit-inline__thumb" src="{img}"{dimensions} alt="{alt}" loading="lazy">
   <div class="article-produit-inline__body">
     <p class="article-produit-inline__label">{label}</p>
     <p class="article-produit-inline__title">{titre}</p>
     <p class="article-produit-inline__meta">{meta} · <strong>{prix}</strong></p>
   </div>
   <div class="article-produit-inline__actions">
-    {actions(cle, sid)}{lien_detail}
+    {actions(cle, sid, libelle=libelle_achat)}{lien_detail}
   </div>
 </div>
 '''
@@ -229,11 +240,12 @@ def carte_pack(cle, sid):
 
 
 def barre(cle, sid):
-    label, titre, lien, img, meta, prix, bouton = produit(cle)
+    label, titre, lien, img, meta, prix, bouton = produit(cle, sid)
+    titre_barre = titre if id_produit(cle, sid) == "fiche-da-l2-s2" else f"{titre} · {prix}"
     return f'''  <!-- fin-article:sticky -->
   <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
     <div class="sticky-cta-bar__text">
-      <strong>{titre} · {prix}</strong>
+      <strong>{titre_barre}</strong>
       <small>{label} · accès à vie</small>
     </div>
     {actions(cle, sid)}
@@ -271,6 +283,10 @@ def traiter(f, cle, sid):
         pos = h2[1]
         debut_ligne = a.rfind("\n", 0, pos) + 1
         a = a[:debut_ligne] + encart_milieu(cle, sid) + "\n" + a[debut_ligne:]
+    elif "<!-- fin-article:encart-milieu -->" in a and id_produit(cle, sid) == "fiche-da-l2-s2":
+        motif_encart = (r'<!-- fin-article:encart-milieu -->\n<div class="article-produit-inline">.*?'
+                        r'<div class="article-produit-inline__actions">.*?\n  </div>\n</div>\n')
+        a = re.sub(motif_encart, lambda m: encart_milieu(cle, sid), a, count=1, flags=re.S)
     elif "<!-- fin-article:encart-milieu -->" in a:
         # Encart déjà posé : on ne remplace que les boutons, pour garder la vignette et le texte réécrits depuis.
         label, titre, lien, img, meta, prix, bouton = produit(cle)

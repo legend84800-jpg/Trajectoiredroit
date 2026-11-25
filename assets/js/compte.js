@@ -75,6 +75,7 @@
     var achatsVide         = document.getElementById("achatsVide");
     var achatsReessayer    = document.getElementById("achatsReessayer");
     var achatsAide         = document.getElementById("achatsAide");
+    var achatsManquant     = document.getElementById("achatsManquant");
     var achatsChangerAdresse = document.getElementById("achatsChangerAdresse");
     var generationSession = 0;
     var achatsOutils       = document.getElementById("achatsOutils");
@@ -100,6 +101,14 @@
       return Array.from(achatsListe.querySelectorAll?.("audio, video") || []);
     }
 
+    function masquerAidesAchats(){
+      if (achatsAide) achatsAide.hidden = true;
+      if (achatsManquant) {
+        achatsManquant.hidden = true;
+        achatsManquant.open = false;
+      }
+    }
+
     function effacerAchats(){
       lecteursAchats().forEach(function(lecteur){
         lecteur.pause();
@@ -121,7 +130,7 @@
       if (achatsResultat) achatsResultat.textContent = "";
       achatsVide.textContent = "";
       achatsVide.style.display = "none";
-      if (achatsAide) achatsAide.hidden = true;
+      masquerAidesAchats();
       if (achatsElargir) achatsElargir.hidden = true;
       relancerAchats = null;
       if (achatsReessayer) {
@@ -367,7 +376,7 @@
     async function chargerAchats(accessToken, generation, reprise){
       if (generation !== generationSession) return;
       relancerAchats = null;
-      if (achatsAide) achatsAide.hidden = true;
+      masquerAidesAchats();
       if (achatsElargir) achatsElargir.hidden = true;
       if (achatsReessayer) achatsReessayer.disabled = true;
       achatsVide.textContent = messageChargementAchats;
@@ -511,7 +520,8 @@
     }
 
     function afficherEtatDesAchats(listeVide){
-      var proposerFiltres = listeVide && jetonAchats && filtresSuggeres && !pdfEnCours && !relancerPdf;
+      var aideDisponible = listeVide && jetonAchats && !pdfEnCours && !relancerPdf;
+      var proposerFiltres = aideDisponible && filtresSuggeres;
       if (achatsElargir) {
         achatsElargir.hidden = !proposerFiltres;
         achatsElargir.textContent = proposerFiltres ? filtresSuggeres.libelle : "";
@@ -523,7 +533,12 @@
           ? "Aucun achat ne correspond à ces filtres. Tu peux les effacer pour tout retrouver."
           : "Aucun achat associé à cette adresse. Pour retrouver un achat, il faut utiliser l’adresse indiquée sur le reçu. Si c’est un cadeau, connecte-toi avec l’adresse à laquelle il a été envoyé.";
       achatsVide.style.display = listeVide || pdfEnCours || relancerPdf ? "block" : "none";
-      if (achatsAide) achatsAide.hidden = !listeVide || !jetonAchats || achatsCourants.length > 0 || !!pdfEnCours || !!relancerPdf;
+      if (achatsAide) achatsAide.hidden = !aideDisponible || achatsCourants.length > 0;
+      if (achatsManquant) {
+        achatsManquant.hidden = !aideDisponible || !achatsCourants.length || !!proposerFiltres
+          || !texteRecherche(achatsRecherche?.value).trim();
+        if (achatsManquant.hidden) achatsManquant.open = false;
+      }
     }
 
     async function renouvelerPdf(demande, generation){
@@ -704,7 +719,7 @@
         return;
       }
       afficherEtat("etatChargement");
-      if (achatsAide) achatsAide.hidden = true;
+      masquerAidesAchats();
       // Les appels Auth sont exécutés après le callback onAuthStateChange.
       window.setTimeout(async function(){
         if (generation !== generationSession) return;

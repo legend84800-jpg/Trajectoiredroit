@@ -26,7 +26,7 @@ function historique() {
   ];
 }
 function navigateur(options = {}) {
-  const ids = ['etatChargement', 'etatConnexion', 'etatConnecte', 'connexionForm', 'connexionEmail', 'connexionSubmit', 'connexionError', 'connexionSuccess', 'compteEmail', 'deconnexionBtn', 'achatsListe', 'achatsVide', 'achatsReessayer', 'achatsAide', 'resterConnecte', 'codeForm', 'connexionCode', 'codeSubmit', 'codeDestinataire', 'renvoyerCode', 'changerEmail', 'achatsOutils', 'achatsRecherche', 'achatsProduit', 'achatsSemestre', 'achatsReinitialiser', 'achatsElargir', 'achatsResultat'];
+  const ids = ['etatChargement', 'etatConnexion', 'etatConnecte', 'connexionForm', 'connexionEmail', 'connexionSubmit', 'connexionError', 'connexionSuccess', 'compteEmail', 'deconnexionBtn', 'achatsListe', 'achatsVide', 'achatsReessayer', 'achatsAide', 'achatsManquant', 'resterConnecte', 'codeForm', 'connexionCode', 'codeSubmit', 'codeDestinataire', 'renvoyerCode', 'changerEmail', 'achatsOutils', 'achatsRecherche', 'achatsProduit', 'achatsSemestre', 'achatsReinitialiser', 'achatsElargir', 'achatsResultat'];
   if (options.parrainage) ids.push('parrainageBox', 'parrainageCopier', 'parrainageLien', 'parrainageStatut', 'parrainageCopieManuelle', 'parrainageBons', 'parrainageSolde');
   function nouveauElement() {
     const classes = new Set();
@@ -55,7 +55,7 @@ function navigateur(options = {}) {
   }
   const elements = {};
   for (const id of ids) {
-    if (options.ancienHtml && ['achatsReessayer', 'achatsAide', 'achatsElargir'].includes(id)) continue;
+    if (options.ancienHtml && ['achatsReessayer', 'achatsAide', 'achatsManquant', 'achatsElargir'].includes(id)) continue;
     elements[id] = nouveauElement();
   }
   if (options.parrainage) elements.parrainageCopier.textContent = 'Copier mon lien';
@@ -234,6 +234,7 @@ test('l’aide apparaît après un historique vide confirmé et disparaît dès 
   premier.resolve(reponseAchats([]));
   await b.flush();
   assert.equal(b.elements.achatsAide.hidden, false);
+  assert.equal(b.elements.achatsManquant.hidden, true);
 
   b.evenement('SIGNED_IN', { access_token: 'autre-session' });
   assert.equal(b.elements.achatsAide.hidden, true);
@@ -684,12 +685,22 @@ test('les filtres se combinent et leur remise à zéro restaure l’historique i
 });
 
 test('une recherche vide de résultats affiche une aide sans confondre absence d’achat et filtre', async () => {
-  const b = navigateur(); await b.flush(); b.chercher('matiere-inexistante');
+  const b = navigateur(); await b.flush();
+  assert.equal(b.elements.achatsManquant.hidden, true);
+  b.chercher('matiere-inexistante');
   assert.equal(b.elements.achatsListe.innerHTML, '');
   assert.match(b.elements.achatsVide.textContent, /correspond à ces filtres/);
   assert.equal(b.elements.achatsAide.hidden, true);
+  assert.equal(b.elements.achatsManquant.hidden, false);
   assert.equal(b.elements.achatsResultat.textContent, '0 achats affichés sur 3');
-  b.effacer(); assert.equal(b.elements.achatsVide.style.display, 'none');
+  b.elements.achatsManquant.open = true;
+  b.effacer();
+  assert.equal(b.elements.achatsVide.style.display, 'none');
+  assert.equal(b.elements.achatsManquant.hidden, true);
+  assert.equal(b.elements.achatsManquant.open, false);
+  b.chercher('matiere-inexistante');
+  b.evenement('SIGNED_IN', { access_token: 'autre-session' });
+  assert.equal(b.elements.achatsManquant.hidden, true);
 });
 
 test('une recherche masquée par les deux filtres retrouve le document du compte en gardant les mots', async () => {
@@ -703,6 +714,7 @@ test('une recherche masquée par les deux filtres retrouve le document du compte
   assert.equal(e.achatsElargir.hidden, false);
   assert.equal(e.achatsElargir.textContent, 'Voir les résultats dans tous mes achats');
   assert.equal(e.achatsAide.hidden, true);
+  assert.equal(e.achatsManquant.hidden, true);
   assert.equal(e.achatsProduit.value, 'Droit des contrats');
   assert.equal(e.achatsSemestre.value, '1');
 
@@ -748,6 +760,7 @@ test('la suggestion reste masquée sans mots, sans correspondance et sans achats
   b.filtrer('achatsSemestre', '1');
   assert.equal(b.elements.achatsListe.innerHTML, '');
   assert.equal(b.elements.achatsElargir.hidden, true);
+  assert.equal(b.elements.achatsManquant.hidden, true);
   b.chercher('mot-introuvable');
   assert.equal(b.elements.achatsElargir.hidden, true);
   assert.match(b.elements.achatsVide.textContent, /Tu peux les effacer/);

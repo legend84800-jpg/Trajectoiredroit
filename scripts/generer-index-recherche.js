@@ -31,6 +31,7 @@ const FORMATS_CARTES = {
 function cartesCatalogue(html, page, formatAttendu) {
   const cartes = [];
   const citation = formatAttendu === 'Citations';
+  const ficheArret = formatAttendu === "Fiche d'arrêt";
   for (const match of html.matchAll(/<article\b([^>]*)>([\s\S]*?)<\/article>/gi)) {
     const [, attributs, corps] = match;
     const niveaux = (attributs.match(/\bdata-niveau=["'](L[123](?:,L[123])*)["']/)?.[1] || '').split(',').filter(Boolean);
@@ -49,10 +50,12 @@ function cartesCatalogue(html, page, formatAttendu) {
     if (citation && (!produit.startsWith('citations-') || (!niveaux.length && !/^Complément(?: ·|$)/.test(meta)))) continue;
 
     const semestres = Array.from(meta.matchAll(/\b(?:Semestre\s+|S)([12])\b/gi), (match) => match[1]);
+    const semestreTitre = ficheArret && titre.match(/ \(S([12])\)$/i)?.[1];
+    if (!semestres.length && semestreTitre) semestres.push(semestreTitre);
     const sujet = semestres.length === 1 ? titre.replace(new RegExp(` \\(S${semestres[0]}\\)$`), '') : titre;
     const repere = [libelleNiveaux || 'Complément', semestres.map((semestre) => 'S' + semestre).join(' ou ')].filter(Boolean).join(' ');
     const licence = [...niveauxMeta.map((niveau) => 'Licence ' + niveau.slice(1)), ...semestres.map((semestre) => 'semestre ' + semestre)].filter(Boolean).join(' ');
-    const categorieCarte = majeure ? 'Majeures préparées' : citation ? 'Fiches de citations' : format;
+    const categorieCarte = majeure ? 'Majeures préparées' : citation ? 'Fiches de citations' : ficheArret ? 'Fiches d’arrêt' : format;
     const motsFormat = format === 'Fiche complète' ? 'Fiche complète fiche de révision PDF' : categorieCarte.replace(' + ', ' et ');
     const adresse = '/' + page + (majeure ? '?niveau=' + niveaux[0].toLowerCase() : '') + '#' + ancre;
     cartes.push({ t: sujet + ' · ' + repere, u: adresse, c: categorieCarte, k: [motsFormat + ' de ' + sujet, licence].filter(Boolean).join(' ') });
@@ -149,6 +152,8 @@ function construireIndex(racine) {
     if (guide) index.push(guide);
     if (FORMATS_CARTES[nom]) index.push(...cartesCatalogue(html, nom, FORMATS_CARTES[nom]));
     if (nom === 'revisions.html') {
+      const fichesArret = sectionAvecAncre(html, 'fiches-arret');
+      index.push(...cartesCatalogue(fichesArret, nom, "Fiche d'arrêt"));
       const section = sectionAvecAncre(html, 'citations');
       if (section) {
         const titreCitations = 'Fiches de citations';
