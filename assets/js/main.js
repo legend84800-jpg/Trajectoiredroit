@@ -90,9 +90,9 @@ window.tjdDialogues = (function () {
       return !el.disabled && el.getAttribute('tabindex') !== '-1' && !el.hidden && el.getClientRects().length > 0;
     });
   }
-  function ouvrir(noeud, premier, declencheur, optionsRetour) {
+  function ouvrir(noeud, premier, declencheur, optionsRetour, fermerSurEchap) {
     if (pile.some(function (etat) { return etat.noeud === noeud; })) return;
-    var etat = { noeud: noeud, retour: declencheur || document.activeElement, overflow: document.body.style.overflow, inert: noeud.inert, cache: noeud.getAttribute('aria-hidden'), voisins: [], optionsRetour: optionsRetour };
+    var etat = { noeud: noeud, retour: declencheur || document.activeElement, overflow: document.body.style.overflow, inert: noeud.inert, cache: noeud.getAttribute('aria-hidden'), voisins: [], optionsRetour: optionsRetour, fermerSurEchap: fermerSurEchap };
     noeud.inert = false; noeud.removeAttribute('aria-hidden');
     Array.prototype.forEach.call(document.body.children, function (voisin) {
       if (voisin === noeud || voisin.contains(noeud)) return;
@@ -132,7 +132,8 @@ window.tjdDialogues = (function () {
     if (e.key === 'Escape') {
       e.preventDefault();
       e.stopImmediatePropagation();
-      fermer(etat.noeud);
+      if (etat.fermerSurEchap) etat.fermerSurEchap();
+      else fermer(etat.noeud);
     } else if (e.key === 'Tab') {
       var liste = controles(etat.noeud);
       var premier = liste[0], dernier = liste[liste.length - 1];
@@ -264,6 +265,21 @@ window.tjdDialogues = (function () {
     var pagesViewer = [];
     var positionViewer = 0;
     var tentativesApercu = 0;
+    var retourEnCours = false;
+
+    function etatHistorique() { return window.history.state?.tjdApercu; }
+    function ajouterHistorique(etat) {
+      try { window.history.pushState({ ...window.history.state, tjdApercu: etat }, ''); } catch (_) {}
+    }
+    function demanderRetour(noeud, type) {
+      if (retourEnCours) return;
+      if (etatHistorique()?.type !== type) {
+        window.tjdDialogues.fermer(noeud);
+        return;
+      }
+      retourEnCours = true;
+      window.history.back();
+    }
 
     function reglerZoom(agrandi) {
       viewer.classList.toggle('apercu-zoom--agrandi', agrandi);
@@ -288,8 +304,14 @@ window.tjdDialogues = (function () {
       viewerPrevious.setAttribute('aria-disabled', position === 0);
       viewerNext.setAttribute('aria-disabled', position === pagesViewer.length - 1);
       viewerStatus.textContent = viewerNav.hidden ? '' : 'Page ' + (position + 1) + ' sur ' + pagesViewer.length;
+      var etat = etatHistorique();
+      if (etat?.type === 'zoom' && etat.page !== position) {
+        try {
+          window.history.replaceState({ ...window.history.state, tjdApercu: { ...etat, page: position } }, '');
+        } catch (_) {}
+      }
     }
-    function openViewer(im, bouton, src) {
+    function openViewer(im, bouton) {
       pagesViewer = Array.from(imgsBox.querySelectorAll('.apercu-page img'));
       positionViewer = pagesViewer.indexOf(im);
       viewerNav.hidden = pagesViewer.length < 2;
@@ -297,9 +319,8 @@ window.tjdDialogues = (function () {
       reglerZoom(false);
       window.tjdDialogues.ouvrir(viewer, viewerClose, function () {
         return pagesViewer[positionViewer]?.parentElement || bouton;
-      });
+      }, undefined, closeViewer);
       afficherPage(positionViewer);
-      try { if (window.gtag) gtag('event', 'apercu_zoom', { image: src.split('/').pop() }); } catch (_) {}
     }
     function ouvrirApercuDirect(lien) {
       pagesViewer = [];
@@ -308,11 +329,12 @@ window.tjdDialogues = (function () {
       reglerZoom(false);
       var matiere = document.getElementById(lien.getAttribute('aria-describedby'));
       var alt = lien.querySelector('img')?.alt || 'Extrait de la fiche complète' + (matiere ? ' · ' + matiere.textContent.trim() : '');
-      window.tjdDialogues.ouvrir(viewer, viewerClose, lien, { preventScroll: true });
+      window.tjdDialogues.ouvrir(viewer, viewerClose, lien, { preventScroll: true }, closeViewer);
       afficherImage(lien.href, alt, false);
-      try { if (window.gtag) gtag('event', 'apercu_zoom', { image: lien.pathname.split('/').pop() }); } catch (_) {}
     }
-    function closeViewer() { window.tjdDialogues.fermer(viewer); }
+    function closeViewer() {
+      demanderRetour(viewer, modal.classList.contains('open') ? 'zoom' : 'direct');
+    }
     viewerClose.addEventListener('click', closeViewer);
     viewerToggle.addEventListener('click', function () {
       var position = viewerScroll.scrollTop / viewerImg.offsetWidth;
@@ -397,8 +419,12 @@ window.tjdDialogues = (function () {
           etatApercu.textContent = 'L’extrait ' + numero + ' est chargé.';
         });
         bouton.addEventListener('click', function (e) {
+          if (retourEnCours) return;
           if (!im.hidden) {
-            openViewer(im, bouton, src);
+            var etat = etatHistorique();
+            if (etat?.type === 'apercu') ajouterHistorique({ type: 'zoom', index: etat.index, page: position });
+            openViewer(im, bouton);
+            try { if (window.gtag) gtag('event', 'apercu_zoom', { image: src.split('/').pop() }); } catch (_) {}
             return;
           }
           e.stopPropagation();
@@ -417,23 +443,55 @@ window.tjdDialogues = (function () {
         im.src = src;
       });
       imgsBox.scrollTop = 0;
-      window.tjdDialogues.ouvrir(modal, modal.querySelector('.apercu-close'), btn);
-      try { if (window.gtag) gtag('event', 'apercu_open', { matiere: btn.getAttribute('data-apercu-title') || '' }); } catch (_) {}
+      window.tjdDialogues.ouvrir(modal, modal.querySelector('.apercu-close'), btn, { preventScroll: true }, close);
     }
-    function close() { window.tjdDialogues.fermer(modal); }
-    triggers.forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
-    liensDirects.forEach(function (lien) {
+    function close() { demanderRetour(modal, 'apercu'); }
+    function afficherHistorique() {
+      retourEnCours = false;
+      var etat = etatHistorique();
+      var typeZoom = modal.classList.contains('open') ? 'zoom' : 'direct';
+      if (etat?.type !== typeZoom) window.tjdDialogues.fermer(viewer);
+
+      var bouton = etat?.type === 'apercu' || etat?.type === 'zoom' ? triggers[etat.index] : null;
+      if (!bouton) window.tjdDialogues.fermer(modal);
+      else if (!modal.classList.contains('open')) open(bouton);
+
+      if (viewer.classList.contains('open')) return;
+      if (etat?.type === 'zoom') {
+        var image = imgsBox.querySelectorAll('.apercu-page img')[etat.page];
+        if (image) openViewer(image, image.parentElement);
+        else demanderRetour(viewer, 'zoom');
+      } else if (etat?.type === 'direct' && liensDirects[etat.index]) {
+        ouvrirApercuDirect(liensDirects[etat.index]);
+      }
+    }
+    triggers.forEach(function (bouton, index) {
+      bouton.addEventListener('click', function () {
+        if (retourEnCours || modal.classList.contains('open')) return;
+        ajouterHistorique({ type: 'apercu', index: index });
+        open(bouton);
+        try { if (window.gtag) gtag('event', 'apercu_open', { matiere: bouton.getAttribute('data-apercu-title') || '' }); } catch (_) {}
+      });
+    });
+    liensDirects.forEach(function (lien, index) {
       lien.setAttribute('aria-haspopup', 'dialog');
       lien.addEventListener('click', function (e) {
         if (e.defaultPrevented || e.button || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
         e.preventDefault();
+        if (retourEnCours || viewer.classList.contains('open')) return;
+        ajouterHistorique({ type: 'direct', index: index });
         ouvrirApercuDirect(lien);
+        try { if (window.gtag) gtag('event', 'apercu_zoom', { image: lien.pathname.split('/').pop() }); } catch (_) {}
       });
     });
     modal.addEventListener('click', function (e) {
       if (e.target === modal || e.target.closest('[data-apercu-close]')) close();
     });
-
+    window.addEventListener('popstate', function () {
+      // Le navigateur restaure d’abord le défilement de l’entrée.
+      window.setTimeout(afficherHistorique, 0);
+    });
+    afficherHistorique();
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

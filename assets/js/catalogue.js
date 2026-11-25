@@ -40,11 +40,13 @@
     var cartes = Array.prototype.slice.call(grille.querySelectorAll('article[data-niveau]')).map(function (carte) {
       var meta = carte.querySelector('.product__meta');
       var texteMeta = normaliser(meta && meta.textContent);
+      var titre = carte.querySelector('.product__title');
       var semestresCarte = Array.from(texteMeta.matchAll(/\b(?:semestre\s+|s)([12])\b/g), function (match) {
         return match[1];
       });
-      var titreAnnuel = catalogueFiches && /(?:^|·)\s*annee\s*(?:·|$)/.test(texteMeta)
-        ? carte.querySelector('.product__title') : null;
+      var semestreTitre = titre && normaliser(titre.textContent).match(/\((?:semestre\s+|s)([12])\)$/);
+      if (!semestresCarte.length && semestreTitre) semestresCarte.push(semestreTitre[1]);
+      var titreAnnuel = catalogueFiches && /(?:^|·)\s*annee\s*(?:·|$)/.test(texteMeta) ? titre : null;
       var champs = carte.querySelectorAll('.badge--format, .product__title, .product__meta, .product__edition, .product__desc, .product__sommaire-list');
       return {
         element: carte,

@@ -50,9 +50,9 @@ function cartesCatalogue(html, page, formatAttendu) {
     if (citation && (!produit.startsWith('citations-') || (!niveaux.length && !/^Complément(?: ·|$)/.test(meta)))) continue;
 
     const semestres = Array.from(meta.matchAll(/\b(?:Semestre\s+|S)([12])\b/gi), (match) => match[1]);
-    const semestreTitre = ficheArret && titre.match(/ \(S([12])\)$/i)?.[1];
+    const semestreTitre = titre.match(/ \((?:Semestre\s+|S)([12])\)$/i)?.[1];
     if (!semestres.length && semestreTitre) semestres.push(semestreTitre);
-    const sujet = semestres.length === 1 ? titre.replace(new RegExp(` \\(S${semestres[0]}\\)$`), '') : titre;
+    const sujet = semestres.length === 1 && semestreTitre === semestres[0] ? titre.replace(/ \([^()]+\)$/, '') : titre;
     const repere = [libelleNiveaux || 'Complément', semestres.map((semestre) => 'S' + semestre).join(' ou ')].filter(Boolean).join(' ');
     const licence = [...niveauxMeta.map((niveau) => 'Licence ' + niveau.slice(1)), ...semestres.map((semestre) => 'semestre ' + semestre)].filter(Boolean).join(' ');
     const categorieCarte = majeure ? 'Majeures préparées' : citation ? 'Fiches de citations' : ficheArret ? 'Fiches d’arrêt' : format;
@@ -99,11 +99,11 @@ function pagesGuides(racine) {
   const fichier = path.join(racine, nom);
   if (!fs.existsSync(fichier)) return new Map();
   const section = sectionAvecAncre(fs.readFileSync(fichier, 'utf8'), SECTIONS_GUIDES[nom]);
-  const liens = section.matchAll(/<li\b[^>]*>\s*<a\b[^>]*\shref=["']([a-z0-9][a-z0-9_-]*\.html)["'][^>]*>([\s\S]*?)<\/a>/gi);
+  const liens = section.matchAll(/<li\b[^>]*>\s*<a\b[^>]*\shref=["']([a-z0-9][a-z0-9_-]*\.html)(?:#[a-z0-9-]+)?["'][^>]*>([\s\S]*?)<\/a>/gi);
   const guides = new Map();
   for (const [, destination, libelle] of liens) {
     const matiere = texteHtml(libelle);
-    if (matiere) guides.set(destination, matiere);
+    if (matiere && !Object.hasOwn(SECTIONS_GUIDES, destination)) guides.set(destination, matiere);
   }
   return guides;
 }

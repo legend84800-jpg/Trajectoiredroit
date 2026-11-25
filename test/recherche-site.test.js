@@ -219,7 +219,11 @@ test('les guides de matière reprennent les destinations de la liste des ressour
   const portail = fs.readFileSync(path.join(racine, 'ressources-gratuites.html'), 'utf8');
   const section = portail.match(/<section\b[^>]* id="guides-gratuits"[^>]*>([\s\S]*?)<\/section>/)?.[1];
   assert.ok(section);
-  const liens = Array.from(section.matchAll(/<li><a href="([^"]+)">([^<]+)<\/a><\/li>/g), ([, href, libelle]) => ['/' + href, libelle]);
+  const liens = Array.from(section.matchAll(/<li><a href="([^"]+)">([^<]+)<\/a><\/li>/g), ([, href, libelle]) => {
+    const [page, ancre] = href.split('#');
+    assert.ok(ancre && fs.readFileSync(path.join(racine, page), 'utf8').includes(`id="${ancre}"`), href);
+    return [page === 'contrats-speciaux-l3.html' ? '/' + href : '/' + page, libelle];
+  });
   assert.deepEqual(index.filter((page) => typeof page.g === 'string').map((page) => [page.u, page.g]).sort(), liens.filter(([href]) => !href.includes('#')).sort());
   for (const [destination, libelle] of liens) {
     assert.equal(rechercher(index, 'guide ' + libelle)[0].u, destination, libelle);

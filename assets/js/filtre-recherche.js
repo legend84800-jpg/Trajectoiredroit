@@ -3,7 +3,8 @@
    sur leur texte complet (titre, niveau, description), insensible aux accents et à la casse. */
 (function () {
   function normaliser(texte) {
-    return texte.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    return texte.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/\bsemestre\s+([12])\b/g, 's$1');
   }
 
   document.querySelectorAll('[data-filtre-recherche]').forEach(function (input) {

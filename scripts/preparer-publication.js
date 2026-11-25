@@ -51,7 +51,7 @@ function preparerPublication(racine = path.resolve(__dirname, '..')) {
   const pdfParents = 'assets/downloads/presentation-parents-trajectoire-droit.pdf';
   const versionsRessources = new Map([
     'assets/style.css', 'assets/js/cookie-consent.js', 'assets/js/main.js', 'assets/js/achat.js',
-    'assets/js/catalogue.js', 'assets/js/portalis.js', 'assets/js/recueil-selectionne.js',
+    'assets/js/catalogue.js', 'assets/js/filtre-recherche.js', 'assets/js/portalis.js', 'assets/js/recueil-selectionne.js',
     'assets/js/offre-partiels.js',
     'assets/js/prix-promotion.js', 'assets/prix-promotion.css',
     pdfParents,

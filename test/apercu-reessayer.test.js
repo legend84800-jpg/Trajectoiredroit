@@ -67,11 +67,33 @@ function environnement() {
     getElementById: id => noeuds[id] || null,
     dispatchEvent() {}
   });
-  runInNewContext(dialogues + controleur, { document, window: {}, URL, CustomEvent: Event });
+  const entrees = [{ filtre: 'L2' }];
+  let position = 0, retoursDemandes = 0, attendreRetour = false;
+  const fenetre = element();
+  fenetre.setTimeout = fn => fn();
+  function parcourir(sens) {
+    if (position + sens < 0 || position + sens >= entrees.length) return;
+    position += sens;
+    fenetre.emettre('popstate', { state: entrees[position] });
+  }
+  fenetre.history = {
+    get state() { return entrees[position]; },
+    get length() { return entrees.length; },
+    pushState(etat) { entrees.splice(++position, entrees.length, etat); },
+    replaceState(etat) { entrees[position] = etat; },
+    back() {
+      retoursDemandes++;
+      if (!attendreRetour) parcourir(-1);
+    }
+  };
+  runInNewContext(dialogues + controleur, { document, window: fenetre, URL, CustomEvent: Event });
   declencheur.emettre('click');
   return {
     declencheur, lien, document, images, noeuds, modal: document.body.children[0],
-    visionneuse: document.body.children[1], focus: () => focus, optionsRetour: () => optionsRetour
+    visionneuse: document.body.children[1], focus: () => focus, optionsRetour: () => optionsRetour,
+    historique: fenetre.history, parcourir,
+    differerRetour: () => { attendreRetour = true; },
+    retoursDemandes: () => retoursDemandes
   };
 }
 
@@ -181,4 +203,56 @@ test('un lien vers un extrait public ouvre directement le zoom et conserve le d�
   document.emettre('keydown', { key: 'Escape' });
   assert.equal(focus(), lien);
   assert.equal(optionsRetour().preventScroll, true);
+});
+
+test('les retours et avances du navigateur suivent chaque niveau de l’aperçu', () => {
+  const { declencheur, lien, noeuds, modal, visionneuse, focus, historique, parcourir } = environnement();
+  noeuds.apercuImgs.children[0].emettre('click');
+  visionneuse.querySelector('.apercu-zoom__suivante').emettre('click');
+  assert.equal(historique.length, 3);
+  assert.equal(historique.state.filtre, 'L2');
+
+  parcourir(-1);
+  assert.equal(visionneuse.classList.contains('open'), false);
+  assert.equal(modal.classList.contains('open'), true);
+  assert.equal(focus(), noeuds.apercuImgs.children[1]);
+  parcourir(-1);
+  assert.equal(modal.classList.contains('open'), false);
+  assert.equal(focus(), declencheur);
+
+  parcourir(1);
+  assert.equal(modal.classList.contains('open'), true);
+  parcourir(1);
+  assert.equal(visionneuse.classList.contains('open'), true);
+  assert.equal(visionneuse.querySelector('.apercu-zoom__compteur').textContent, 'Page 2 sur 2');
+
+  parcourir(-2);
+  lien.emettre('click');
+  assert.equal(historique.length, 2);
+  assert.equal(visionneuse.classList.contains('open'), true);
+  parcourir(-1);
+  assert.equal(visionneuse.classList.contains('open'), false);
+  assert.equal(modal.classList.contains('open'), false);
+  assert.equal(focus(), lien);
+  parcourir(1);
+  assert.equal(visionneuse.querySelector('img').src, lien.href);
+  assert.equal(visionneuse.classList.contains('open'), true);
+});
+
+test('des demandes de fermeture rapprochées ne consomment qu’une entrée', () => {
+  const { document, noeuds, modal, visionneuse, parcourir, differerRetour, retoursDemandes } = environnement();
+  noeuds.apercuImgs.children[0].emettre('click');
+  const fermer = visionneuse.querySelector('.apercu-zoom__close');
+  differerRetour();
+  fermer.emettre('click');
+  fermer.emettre('click');
+  document.emettre('keydown', { key: 'Escape' });
+  assert.equal(retoursDemandes(), 1);
+  parcourir(-1);
+  assert.equal(visionneuse.classList.contains('open'), false);
+  assert.equal(modal.classList.contains('open'), true);
+  document.emettre('keydown', { key: 'Escape' });
+  assert.equal(retoursDemandes(), 2);
+  parcourir(-1);
+  assert.equal(modal.classList.contains('open'), false);
 });
