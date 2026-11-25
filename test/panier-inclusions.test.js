@@ -19,11 +19,11 @@ const donnees = construireInclusionsPanier(PRODUITS);
 const erreurReseau = () => { throw new Error('Réseau indisponible'); };
 const viderMicrotaches = () => new Promise(setImmediate);
 
-function bouton(id, inclus = false) {
+function bouton(id) {
   return {
     disabled: false,
     getAttribute(nom) { return nom === 'data-tjd-panier-retirer' ? id : null; },
-    hasAttribute(nom) { return inclus && nom === 'data-tjd-panier-retrait-inclus'; },
+    hasAttribute() { return false; },
     setAttribute(nom, valeur) { this[nom] = valeur; },
     addEventListener(nom, action) { if (nom === 'click') this.action = action; },
   };
@@ -55,20 +55,6 @@ function navigateur(reponse = () => ({ ok: true, json: async () => donnees })) {
         const articles = [...lignes.values()];
         return selecteur === '[data-tjd-panier-produit]' ? articles : articles.map(({ retrait }) => retrait);
       },
-    },
-    tjdPanierInclusions: {
-      html: '',
-      retraits: new Map(),
-      set innerHTML(html) {
-        this.html = html;
-        this.retraits.clear();
-        for (const resultat of html.matchAll(/data-tjd-panier-retirer="([^"]+)"/g)) {
-          const id = resultat[1];
-          this.retraits.set(id, bouton(id, true));
-        }
-      },
-      querySelector: () => null,
-      querySelectorAll() { return [...this.retraits.values()]; },
     },
     tjdPanierCta: { disabled: false, getAttribute: () => null, focus() { this.aLeFocus = true; } },
     tjdPanierTotal: { hidden: true },
@@ -133,7 +119,8 @@ test('le catalogue publie les inclusions strictes, les intitulés et les prix pu
   assert.equal(donnees.inclusions[pack].includes(autreFiche), false);
 });
 
-test('le panier avertit près du total dans les deux ordres d’ajout et retire la fiche au clic', async () => {
+test('le panier garde la fiche et le pack dans les deux ordres d’ajout et permet le retrait habituel', async () => {
+  assert.doesNotMatch(source, /tjdPanierInclusions|data-tjd-panier-retrait-inclus|Retirer la fiche seule/);
   for (const ordre of [[pack, fiche], [fiche, pack]]) {
     const b = navigateur();
     ordre.forEach((id) => b.ajouter(id));
@@ -145,49 +132,26 @@ test('le panier avertit près du total dans les deux ordres d’ajout et retire 
 
     const ligne = b.lignes.get(fiche);
     assert.equal(ligne.titre.textContent, PRODUITS[fiche].nom);
-    const avertissement = b.elements.tjdPanierInclusions;
-    assert.match(avertissement.html, /Pack Droit administratif L2 complet.* contient déjà « <strong>Fiche complète Droit administratif L2 S1<\/strong> »\./);
-    assert.match(avertissement.html, /aria-describedby="tjdPanierInclusion[01]">Retirer la fiche seule<\/button>/);
-    assert.doesNotMatch(b.elements.tjdPanierListe.html, /contient déjà/);
-    assert.deepEqual([...avertissement.retraits.keys()], [fiche]);
     assert.equal(b.requetes.length, 1);
     assert.equal(b.requetes[0].options.credentials, 'omit');
 
-    avertissement.retraits.get(fiche).action();
+    ligne.retrait.action();
     assert.deepEqual(b.ids(), [pack]);
     assert.equal(b.lignes.has(fiche), false);
-    assert.equal(avertissement.html, '');
-    assert.equal(b.elements.tjdPanierCta.aLeFocus, true);
     assert.match(b.elements.tjdPanierTotalMontant.textContent, /29,98/);
     assert.equal(b.elements.tjdPanierCta.disabled, false);
     assert.equal(b.requetes.length, 1);
   }
 });
 
-test('les autres articles inclus sont repliés et leur retrait garde les autres articles', async () => {
-  const b = navigateur();
-  const cas = 'cas-pratique-da-l2-s1';
-  [pack, fiche, cas].forEach((id) => b.ajouter(id));
-  b.panier.rendre();
-  await viderMicrotaches();
-
-  const avertissement = b.elements.tjdPanierInclusions;
-  assert.match(avertissement.html, /Retirer la fiche seule<\/button><\/div><details>/);
-  assert.match(avertissement.html, /Voir les autres articles déjà inclus<\/summary>.*Retirer cet article/);
-  avertissement.retraits.get(cas).action();
-  assert.deepEqual(b.ids(), [pack, fiche]);
-  assert.doesNotMatch(avertissement.html, /<details/);
-  assert.deepEqual([...avertissement.retraits.keys()], [fiche]);
-});
-
-test('le paiement peut conserver les deux offres malgré l’avertissement', async () => {
+test('le paiement conserve les deux offres choisies', async () => {
   const b = navigateur();
   b.ajouter(pack);
   b.ajouter(fiche);
   b.panier.rendre();
   await viderMicrotaches();
   b.panier.payer();
-  assert.equal(b.elements.tjdPanierInclusions.retraits.get(fiche).disabled, true);
+  assert.equal(b.lignes.get(fiche).retrait.disabled, true);
   await viderMicrotaches();
   const achat = b.requetes.find(({ url }) => url === '/api/create-checkout');
   assert.deepEqual(JSON.parse(achat.options.body).produitIds, [pack, fiche]);
@@ -206,7 +170,6 @@ test('des offres distinctes et un fichier public indisponible laissent le panier
     b.panier.rendre();
     await viderMicrotaches();
     assert.deepEqual(b.ids(), ids);
-    assert.equal(b.elements.tjdPanierInclusions.html, '');
     assert.match(b.elements.tjdPanierTotalMontant.textContent, /49,97/);
     assert.equal(b.elements.tjdPanierCta.disabled, false);
   }

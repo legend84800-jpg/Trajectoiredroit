@@ -895,19 +895,6 @@
       '@media(max-width:420px){.tjd-panier-panel{padding:20px}.tjd-panier-item{grid-template-columns:minmax(0,1fr) 44px;gap:3px 8px}' +
       '.tjd-panier-item__nom{grid-area:1/1}.tjd-panier-item__prix{grid-area:2/1}' +
       '.tjd-panier-item__retirer{grid-area:1/2/span 2}}' +
-      '.tjd-panier-inclusions:empty{margin-bottom:0;border:0}' +
-      '.tjd-panier-inclusions{flex-shrink:0;max-height:min(36vh,12rem);overflow:auto;margin-bottom:12px;' +
-      'background:var(--surface-2,#F5F7FA);border:1px solid var(--border-strong,#CBD5E1);border-radius:8px;' +
-      'font-size:.85rem;line-height:1.4;color:var(--ink,#0F172A)}' +
-      '.tjd-panier-inclusion{padding:10px 12px 0}' +
-      '.tjd-panier-inclusion p{margin:0;overflow-wrap:anywhere}' +
-      '.tjd-panier-inclusion button,.tjd-panier-inclusions summary{min-height:44px;' +
-      'color:var(--navy,#1A2851);font-weight:600;cursor:pointer}' +
-      '.tjd-panier-inclusion button{background:none;border:0;font:inherit;font-weight:600;' +
-      'padding:0;text-decoration:underline;text-align:left}' +
-      '.tjd-panier-inclusion button:disabled{opacity:.6;cursor:default}' +
-      '.tjd-panier-inclusions summary{padding:12px;border-top:1px solid var(--border,#E2E8F0)}' +
-      '.tjd-panier-inclusions :is(button,summary):focus-visible{outline:2px solid currentColor;outline-offset:-2px}' +
       '.tjd-panier-indisponible{font-size:.85rem;margin:6px 0 10px;color:var(--ink,#0F172A)}' +
       '.tjd-panier-vide{color:var(--muted,#5B6B84);font-size:.92rem;text-align:center;padding:24px 0}' +
       '.tjd-panier-total{display:flex;justify-content:space-between;align-items:center;' +
@@ -956,7 +943,6 @@
         '<button type="button" class="tjd-panier-panel__close" data-tjd-panier-fermer aria-label="Fermer le panier">✕</button>' +
         '<h2 class="tjd-panier-panel__titre" id="tjdPanierTitre">Ton panier</h2>' +
         '<div class="tjd-panier-liste" id="tjdPanierListe"></div>' +
-        '<div class="tjd-panier-inclusions" id="tjdPanierInclusions" aria-live="polite"></div>' +
         '<div class="tjd-panier-total" id="tjdPanierTotal" hidden><span>Total</span><span id="tjdPanierTotalMontant"></span></div>' +
         '<button type="button" class="tjd-panier-cta" id="tjdPanierCta">Passer au paiement</button>' +
         '<p class="tjd-panier-note">Les liens d’accès arrivent par email après le paiement.</p>' +
@@ -1032,12 +1018,10 @@
       btn.disabled = !!cta.tjdPaiementEnCours;
       btn.addEventListener('click', function () {
         if (btn.disabled || cta.tjdPaiementEnCours) return;
-        var dansAvertissement = btn.hasAttribute('data-tjd-panier-retrait-inclus');
         var indisponible = btn.hasAttribute('data-tjd-panier-retrait-indisponible');
         panierRetirer(btn.getAttribute('data-tjd-panier-retirer'));
         panierRendreListe();
         initPanierBoutons(); // réactive le lien d’ajout du produit retiré s’il est visible
-        if (dansAvertissement && !cta.disabled) cta.focus();
         if (indisponible) panierFocusApresIndisponibilite(cta);
       });
     });
@@ -1049,38 +1033,6 @@
     var retirer = panneau.querySelector('[data-tjd-panier-retrait-indisponible]');
     var cible = retirer || (!cta.disabled ? cta : panneau.querySelector('[data-tjd-panier-fermer]'));
     if (cible) cible.focus();
-  }
-
-  function panierRendreInclusions(liste) {
-    if (!inclusionsPanier) return;
-    var conteneur = document.getElementById('tjdPanierInclusions');
-    var cta = document.getElementById('tjdPanierCta');
-    if (!conteneur || !cta) return;
-
-    var avertissements = liste.flatMap(function (article, index) {
-      var nom = panierValeurCatalogue('noms', article.id);
-      if (typeof nom !== 'string' || !nom) return [];
-      var pack = liste.find(function (contenant) {
-        if (indisponiblesPanier.has(contenant.id)) return false;
-        var inclus = panierValeurCatalogue('inclusions', contenant.id);
-        return Array.isArray(inclus) && inclus.includes(article.id);
-      });
-      if (!pack) return [];
-      var nomPack = panierValeurCatalogue('noms', pack.id);
-      if (typeof nomPack !== 'string' || !nomPack) return [];
-
-      var refAlerte = 'tjdPanierInclusion' + index;
-      var libelleRetrait = article.id.startsWith('fiche-') ? 'Retirer la fiche seule' : 'Retirer cet article';
-      return '<div class="tjd-panier-inclusion"><p id="' + refAlerte + '"><strong>' + panierEchapperHTML(nomPack) +
-        '</strong> contient déjà « <strong>' + panierEchapperHTML(nom) + '</strong> ».</p>' +
-        '<button type="button" data-tjd-panier-retrait-inclus data-tjd-panier-retirer="' + panierEchapperHTML(article.id) +
-        '" aria-describedby="' + refAlerte + '">' + libelleRetrait + '</button></div>';
-    });
-    var ouvert = conteneur.querySelector('details[open]') ? ' open' : '';
-    conteneur.innerHTML = (avertissements[0] || '') + (avertissements.length < 2 ? '' :
-      '<details' + ouvert + '><summary tabindex="0">Voir les autres articles déjà inclus</summary>' +
-      avertissements.slice(1).join('') + '</details>');
-    panierActiverRetraits(conteneur, cta);
   }
 
   function panierActualiserCatalogue(liste) {
@@ -1118,7 +1070,6 @@
       inclusionsPanier = donnees;
       var liste = panierLire();
       panierActualiserCatalogue(liste);
-      panierRendreInclusions(liste);
     }).catch(function () {
       // Le panier et le paiement restent disponibles si les inclusions ne chargent pas.
     }).finally(function () {
@@ -1139,7 +1090,6 @@
       conteneur.innerHTML = '<p class="tjd-panier-vide">Ton panier est vide. Ajoute une fiche, une majeure ou un pack depuis n’importe quelle page du site.</p>';
       totalBloc.hidden = true;
       cta.disabled = true;
-      panierRendreInclusions(liste);
       return;
     }
     conteneur.innerHTML = liste.map(function (a, index) {
@@ -1159,7 +1109,6 @@
     totalBloc.hidden = false;
     cta.disabled = !!cta.tjdPaiementEnCours || panierPaiementBloque(liste);
     panierActiverRetraits(conteneur, cta);
-    panierRendreInclusions(liste);
     panierChargerInclusions();
   }
 
@@ -1190,12 +1139,10 @@
   }
 
   function panierDesactiverRetraits(desactiver) {
-    ['tjdPanierListe', 'tjdPanierInclusions'].forEach(function (id) {
-      var conteneur = document.getElementById(id);
-      if (!conteneur || !conteneur.querySelectorAll) return;
-      conteneur.querySelectorAll('[data-tjd-panier-retirer]').forEach(function (bouton) {
-        bouton.disabled = desactiver;
-      });
+    var conteneur = document.getElementById('tjdPanierListe');
+    if (!conteneur || !conteneur.querySelectorAll) return;
+    conteneur.querySelectorAll('[data-tjd-panier-retirer]').forEach(function (bouton) {
+      bouton.disabled = desactiver;
     });
   }
 

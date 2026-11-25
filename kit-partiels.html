@@ -13,12 +13,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
-  <link rel="stylesheet" href="assets/kit-partiels/styles.css?v=7ae498ad">
+  <link rel="stylesheet" href="assets/kit-partiels/styles.css?v=f8a03f75">
   <script src="assets/js/main.js?v=00564c99" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
   <script src="assets/kit-partiels/catalogue.js?v=f36e663c" defer></script>
-  <script src="assets/kit-partiels/composer.js?v=2e4e6d87" defer></script>
+  <script src="assets/kit-partiels/composer.js?v=5b4c3642" defer></script>
 </head>
 <body id="haut">
   <header class="header">
@@ -79,7 +79,8 @@
     </fieldset>
     <fieldset>
       <legend class="control-name matter-legend">Tes trois choix <span class="counter" id="compteur" aria-live="polite">0 sur 3</span></legend>
-      <div id="matieres" data-kit-complet="false"></div>
+      <div id="matieres"></div>
+      <button class="button button--outline kit-modifier" id="kit-modifier" type="button" aria-controls="matieres">Modifier mes choix</button>
       <p id="kit-remplacement" class="kit-remplacement" role="status" hidden>Pour changer un choix, décoche d’abord une case.</p>
     </fieldset>
     <section class="duo-partiels" id="duo-partiels" aria-labelledby="duo-partiels-titre" hidden>
