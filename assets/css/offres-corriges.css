@@ -17,3 +17,7 @@
 .recueil-choix__cta { max-width: 100%; white-space: normal; }
 .recueil-choix__packs { margin: 14px 0 0; font-size: .9rem; color: var(--body); }
 html[data-theme="dark"] .recueil-choix__label { color: #E2ECF8; }
+
+@media (max-width: 760px) {
+  .recueil-choix .conversion-offer__visual { order: 1; }
+}

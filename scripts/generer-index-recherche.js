@@ -150,8 +150,8 @@ function construireIndex(racine) {
     if (FORMATS_CARTES[nom]) index.push(...cartesCatalogue(html, nom, FORMATS_CARTES[nom]));
     if (nom === 'revisions.html') {
       const section = sectionAvecAncre(html, 'citations');
-      const titreCitations = texteHtml(section.match(/<span\b[^>]*class=["']eyebrow["'][^>]*>([\s\S]*?)<\/span>/i)?.[1]);
-      if (titreCitations) {
+      if (section) {
+        const titreCitations = 'Fiches de citations';
         index.push({ t: titreCitations, u: '/revisions.html#citations', c: 'Cours et fiches', k: titreCitations });
         index.push(...cartesCatalogue(section, nom, 'Citations'));
       }

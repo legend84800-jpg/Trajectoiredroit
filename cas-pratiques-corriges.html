@@ -95,7 +95,7 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
   <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
-  <link rel="stylesheet" href="assets/css/offres-corriges.css?v=d7bc5f81">
+  <link rel="stylesheet" href="assets/css/offres-corriges.css?v=21c31296">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
@@ -378,17 +378,85 @@
   </nav>
 
   <main>
-    <section class="section--sm" style="padding-top:48px">
+    <section class="section--sm" style="padding-top:24px;padding-bottom:0">
       <div class="container container--narrow text-center">
-        <p style="margin-bottom:10px"><a href="methodologie-juridique.html" style="color:var(--muted); font-size:.85rem">← Retour à la méthodologie juridique</a></p>
-        <h1 class="h1">Cas pratiques corrigés en droit, classés par matière</h1>
-        <p class="lead">Un cas pratique corrigé montre le raisonnement complet, du rappel des faits à la conclusion. La majeure pose la règle de droit. La mineure l'applique aux faits. Les deux y sont entièrement rédigées. De plus, mes corrigés sont classés par matière, du droit civil au droit administratif, en passant par le droit des contrats et le droit pénal. Tu vois ainsi la méthode appliquée sur une vraie situation avant de t'entraîner seul.</p>
-        <div class="hero__cta flex flex--center" style="margin-top:24px">
-          <a class="btn btn--primary btn--lg" href="#recueils-cas-pratiques">Choisir ma matière →</a>
-          <a class="btn btn--outline btn--lg" href="methode-cas-pratique.html">Revoir la méthode d'abord</a>
-        </div>
-        <div data-tjd-pdf-offert="matiere" data-titre="Un cas pratique corrigé offert, en PDF" data-texte="Tu choisis ta matière, et je t&#x27;envoie par email un cas pratique avec son énoncé et sa correction complète, rédigée comme une copie de partiel." data-bouton="Recevoir le corrigé"></div>
+        <h1 class="h1" id="titre-recueils">Cas pratiques corrigés par matière</h1>
+        <p class="lead">Chaque corrigé montre comment poser la règle de droit, puis l’appliquer aux faits.</p>
       </div>
+    </section>
+
+    <!-- lot-b-2026-10-10:recueils -->
+    <section class="section--sm" id="recueils-cas-pratiques" aria-labelledby="titre-recueils">
+      <div class="container container--narrow">
+        <div class="conversion-offer__card recueil-choix">
+          <div class="conversion-offer__visual">
+            <img id="recueilCouverture" src="assets/covers/exercices-20260923/cas-pratique-intro-droit-l1.webp" alt="Couverture du PDF Cas pratiques corrigés Introduction au droit L1 S1" loading="lazy" width="1200" height="675" decoding="async">
+          </div>
+          <div>
+            <p class="conversion-offer__summary">Chaque PDF réunit de 9 à 21 cas pratiques et de 3 à 6 sujets de partiel, tous corrigés en entier.</p>
+            <label class="recueil-choix__label" for="choixRecueil">Matière</label>
+            <select class="form__select recueil-choix__select" id="choixRecueil">
+              <optgroup label="L1">
+                <option value="cas-pratique-intro-droit-l1" data-nom="Cas pratiques corrigés Introduction au droit L1 S1" data-prix="19,99 €" data-detail="11 cas pratiques et 3 sujets de partiel corrigés en entier" selected>Introduction au droit L1 S1 · 19,99 €</option>
+                <option value="cas-pratique-personnes-l1" data-nom="Cas pratiques corrigés Droit des personnes L1" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit des personnes L1 · 19,99 €</option>
+                <option value="cas-pratique-famille-l1-s2" data-nom="Cas pratiques corrigés Droit de la famille L1 S2" data-prix="19,99 €" data-detail="21 cas pratiques et 3 sujets de partiel corrigés en entier">Droit de la famille L1 S2 · 19,99 €</option>
+              </optgroup>
+              <optgroup label="L2">
+                <option value="cas-pratique-commercial-l3-s1" data-nom="Cas pratiques corrigés de droit commercial · L2 et L3" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit commercial L2 S1 · 19,99 €</option>
+                <option value="cas-pratique-da-l2-s1" data-nom="Cas pratiques corrigés Droit administratif L2 S1" data-prix="19,99 €" data-detail="9 cas pratiques et 3 sujets de partiel corrigés en entier">Droit administratif L2 S1 · 19,99 €</option>
+                <option value="cas-pratique-da-l2-s2" data-nom="Cas pratiques corrigés Droit administratif L2 S2" data-prix="19,99 €" data-detail="11 cas pratiques et 3 sujets de partiel corrigés en entier">Droit administratif L2 S2 · 19,99 €</option>
+                <option value="cas-pratique-contrats-l2-s1" data-nom="Cas pratiques corrigés Droit des contrats L2 S1" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit des contrats L2 S1 · 19,99 €</option>
+                <option value="cas-pratique-obligations-l2-s2" data-nom="Cas pratiques corrigés Droit des obligations L2 S2" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit des obligations L2 S2 · 19,99 €</option>
+                <option value="cas-pratique-penal-l2-s1" data-nom="Cas pratiques corrigés Droit pénal L2 S1" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit pénal L2 S1 · 19,99 €</option>
+                <option value="cas-pratique-penal-general-l1" data-nom="Cas pratiques corrigés Droit pénal général L2" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit pénal général L2 · 19,99 €</option>
+                <option value="cas-pratique-biens-l2" data-nom="Cas pratiques corrigés Droit des biens L2" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit des biens L2 · 19,99 €</option>
+              </optgroup>
+              <optgroup label="L3">
+                <option value="cas-pratique-commercial-l3-s1" data-nom="Cas pratiques corrigés de droit commercial · L2 et L3" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit commercial L3 S1 · 19,99 €</option>
+                <option value="cas-pratique-commercial-l3-s2" data-nom="Cas pratiques corrigés Droit commercial L3 S2" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit commercial L3 S2 · 19,99 €</option>
+                <option value="cas-pratique-contrats-speciaux-l3" data-nom="Cas pratiques corrigés Contrats spéciaux L3" data-prix="19,99 €" data-detail="15 cas pratiques et 6 sujets de partiel corrigés en entier">Contrats spéciaux L3 · 19,99 €</option>
+                <option value="cas-pratique-societes-l3" data-nom="Cas pratiques corrigés Droit des sociétés L3 S1" data-prix="19,99 €" data-detail="12 cas pratiques et 4 sujets de partiel corrigés en entier">Droit des sociétés L3 S1 · 19,99 €</option>
+                <option value="cas-pratique-societes-l3-s2" data-nom="Cas pratiques corrigés Droit des sociétés L3 S2" data-prix="19,99 €" data-detail="12 cas pratiques et 4 sujets de partiel corrigés en entier">Droit des sociétés L3 S2 · 19,99 €</option>
+                <option value="cas-pratique-travail-l3" data-nom="Cas pratiques corrigés Droit du travail L3" data-prix="19,99 €" data-detail="12 cas pratiques et 3 sujets de partiel corrigés en entier">Droit du travail L3 · 19,99 €</option>
+                <option value="cas-pratique-procedure-penale-l3" data-nom="Cas pratiques corrigés Procédure pénale L3" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Procédure pénale L3 · 19,99 €</option>
+              </optgroup>
+            </select>
+            <p class="recueil-choix__detail" id="detailRecueil">11 cas pratiques et 3 sujets de partiel corrigés en entier</p>
+            <button type="button" class="apercu-link" id="apercuRecueil" data-apercu='["assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p001.webp","assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p002.webp","assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p003.webp","assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p005.webp"]' data-apercu-title="Cas pratiques corrigés Introduction au droit L1 S1" data-apercu-price="19,99 €" data-apercu-cta="cas-pratique-intro-droit-l1" data-apercu-sub="Le sommaire, puis le début du premier cas pratique corrigé, avec son énoncé."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu des cas pratiques corrigés</button>
+            <div class="conversion-offer__choices">
+              <button type="button" class="btn btn--primary btn--lg recueil-choix__cta" id="boutonRecueil" data-tjd-produit="cas-pratique-intro-droit-l1">Acheter les cas pratiques corrigés · 19,99 €</button>
+            </div>
+            <p class="conversion-offer__note">Paiement Stripe · accès à vie · mises à jour incluses · garantie satisfait ou remboursé sous 7 jours</p>
+            <p id="extraitRecueil" class="recueil-choix__extrait"></p>
+            <p class="recueil-choix__packs"><a href="#packs-cas-pratiques">Les packs</a> réunissent les PDF de cas pratiques corrigés de ton année pour un prix inférieur à l’achat séparé des recueils.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exemple repris du corrigé existant d'introduction au droit L1 -->
+    <section aria-labelledby="titre-exemple-loyaute" class="section--sm" id="exemple-loyaute-preuve">
+<div class="container container--narrow">
+<span class="badge" style="font-size:.8rem">Introduction au droit · L1</span>
+<h2 class="h2" id="titre-exemple-loyaute" style="margin:12px 0 16px">La loyauté de la preuve dans un cas pratique corrigé</h2>
+<p data-demonstration-intro="" style="line-height:1.8;margin-bottom:24px">Voici un extrait de mon cas pratique corrigé d'introduction au droit L1. Un employeur a filmé en cachette l'écran d'une salariée pour prouver qu'elle envoyait des fichiers clients à l'extérieur. Or le juge accepte une preuve obtenue en cachette seulement si elle est indispensable pour prouver les faits. Ici, l'historique des courriels suffisait déjà à prouver ces envois. La mineure, c'est l'étape où l'on applique la règle aux faits. Dans la mineure, je m'appuie sur ce détail de l'énoncé pour montrer que la caméra n'était pas indispensable.</p>
+<article aria-label="Extrait du corrigé sur la loyauté de la preuve" style="padding:clamp(18px,4vw,32px);border:1px solid var(--border);border-radius:var(--r-lg);background:var(--white)">
+<h3 style="margin:24px 0 12px">Rappel des faits</h3>
+<p data-corrige-source="faits" style="line-height:1.8;margin-bottom:16px">Bruno a installé une caméra cachée dans le bureau individuel de Lucie, sans l'informer ni consulter les représentants du personnel. La caméra filme son écran d'ordinateur et enregistre Lucie en train d'envoyer des fichiers clients à une adresse extérieure. Le serveur de messagerie de la société conserve l'historique des courriels envoyés depuis chaque poste.</p>
+<h3 style="margin:24px 0 12px">Problématique</h3>
+<p data-corrige-source="problematique" style="line-height:1.8;margin-bottom:16px">Un employeur peut-il produire contre une salariée l'enregistrement d'une caméra cachée qui filmait son écran dans son bureau individuel, installée sans l'informer ni consulter les représentants du personnel ?</p>
+<h3 style="margin:24px 0 12px">Rappel du droit applicable (Majeure, extrait)</h3>
+<p data-corrige-source="majeure" style="line-height:1.8;margin-bottom:16px">➤ <strong>L'application du droit à la preuve à la surveillance.</strong> Depuis l'arrêt d'assemblée plénière de 2023, une preuve issue d'une surveillance illicite n'est plus écartée d'office. Le juge vérifie les deux conditions du droit à la preuve, et l'<strong>indispensabilité</strong> manque dès que l'employeur disposait d'un autre moyen de prouver. Ainsi, dans l'affaire jugée par <strong>la Cour de cassation, chambre sociale, 8 mars 2023, n° 21-17.802</strong>, un salon de prothésie ongulaire reprochait à une salariée des détournements lors des encaissements et produisait les images d'une vidéosurveillance installée sans les formalités requises. Un audit avait déjà mis au jour ces irrégularités. La Cour a approuvé les juges d'avoir écarté les images, car l'employeur <strong>disposait avec l'audit d'un autre moyen de preuve</strong>.</p>
+<h3 style="margin:24px 0 12px">Application aux faits (Mineure, extrait)</h3>
+<p data-corrige-source="mineure-1" style="line-height:1.8;margin-bottom:16px">Il reste à examiner le droit à la preuve. D'abord, le <strong>serveur de messagerie</strong> de la société conserve l'historique des courriels envoyés depuis chaque poste. Bruno pouvait donc établir les envois de fichiers vers une adresse extérieure sans filmer l'écran de Lucie. L'enregistrement <strong>n'est pas indispensable</strong>, et la première condition fait défaut.</p>
+<p data-corrige-source="mineure-2" style="line-height:1.8;margin-bottom:16px">Ensuite, la caméra filme en continu le <strong>bureau individuel</strong> de Lucie et tout ce qui s'affiche sur son écran pendant ses journées de travail. Cette surveillance va au-delà de ce qu'exigeait la preuve des envois. L'atteinte est donc <strong>disproportionnée</strong>, et la seconde condition manque aussi.</p>
+<h3 style="margin:24px 0 12px">Conclusion</h3>
+<p data-corrige-source="conclusion" style="line-height:1.8;margin-bottom:16px"><strong>L'enregistrement de la caméra cachée est irrecevable</strong>, car la surveillance était clandestine et l'historique de la messagerie permettait de prouver les envois sans filmer la salariée.</p>
+</article>
+<div data-exercice="loyaute-preuve-intro-l1" data-titre="La loyauté de la preuve et le droit à la preuve" data-tjd-corrige-offert=""></div></div>
+    <div class="container container--narrow">
+      <div data-tjd-pdf-offert="matiere" data-titre="Un cas pratique corrigé offert, en PDF" data-texte="Tu choisis ta matière, et je t&#x27;envoie par email un cas pratique avec son énoncé et sa correction complète, rédigée comme une copie de partiel." data-bouton="Recevoir le corrigé"></div>
+    </div>
     </section>
 
     <!-- offre-partiels:debut -->
@@ -460,81 +528,10 @@
     </section>
     <!-- offre-partiels:fin -->
 
-    <!-- lot-b-2026-10-10:corrige-offert-haut -->
-    <div class="container container--narrow"></div>
-
-    <!-- lot-b-2026-10-10:recueils -->
-    <section class="section--sm" id="recueils-cas-pratiques" aria-labelledby="titre-recueils">
-      <div class="container container--narrow">
-        <div class="conversion-offer__card recueil-choix">
-          <div class="conversion-offer__visual">
-            <img id="recueilCouverture" src="assets/covers/exercices-20260923/cas-pratique-intro-droit-l1.webp" alt="Couverture du PDF Cas pratiques corrigés Introduction au droit L1 S1" loading="lazy" width="1200" height="675" decoding="async">
-          </div>
-          <div>
-            <p class="conversion-offer__eyebrow">Un PDF par matière ou semestre</p>
-            <h2 class="conversion-offer__title" id="titre-recueils">Les cas pratiques corrigés de ta matière, à 19,99 €</h2>
-            <p class="conversion-offer__summary">Chaque PDF contient de 10 à 21 cas pratiques et de 3 à 6 sujets de partiel. Tous sont corrigés en entier. Dans ces sujets, plusieurs thèmes du programme se mélangent dans le même énoncé. On s'entraîne donc comme le jour de l'examen. Il faut d'abord repérer les thèmes, puis les traiter un par un. La matière se choisit dans la liste.</p>
-            <label class="recueil-choix__label" for="choixRecueil">Ta matière</label>
-            <select class="form__select recueil-choix__select" id="choixRecueil">
-              <optgroup label="L1">
-                <option value="cas-pratique-intro-droit-l1" data-nom="Cas pratiques corrigés Introduction au droit L1 S1" data-prix="19,99 €" data-detail="11 cas pratiques et 3 sujets de partiel corrigés en entier" selected>Introduction au droit L1 S1 · 19,99 €</option>
-                <option value="cas-pratique-personnes-l1" data-nom="Cas pratiques corrigés Droit des personnes L1" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit des personnes L1 · 19,99 €</option>
-                <option value="cas-pratique-famille-l1-s2" data-nom="Cas pratiques corrigés Droit de la famille L1 S2" data-prix="19,99 €" data-detail="21 cas pratiques et 3 sujets de partiel corrigés en entier">Droit de la famille L1 S2 · 19,99 €</option>
-              </optgroup>
-              <optgroup label="L2">
-                <option value="cas-pratique-commercial-l3-s1" data-nom="Cas pratiques corrigés de droit commercial · L2 et L3" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit commercial L2 S1 · 19,99 €</option>
-                <option value="cas-pratique-da-l2-s1" data-nom="Cas pratiques corrigés Droit administratif L2 S1" data-prix="19,99 €" data-detail="9 cas pratiques et 3 sujets de partiel corrigés en entier">Droit administratif L2 S1 · 19,99 €</option>
-                <option value="cas-pratique-da-l2-s2" data-nom="Cas pratiques corrigés Droit administratif L2 S2" data-prix="19,99 €" data-detail="11 cas pratiques et 3 sujets de partiel corrigés en entier">Droit administratif L2 S2 · 19,99 €</option>
-                <option value="cas-pratique-contrats-l2-s1" data-nom="Cas pratiques corrigés Droit des contrats L2 S1" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit des contrats L2 S1 · 19,99 €</option>
-                <option value="cas-pratique-obligations-l2-s2" data-nom="Cas pratiques corrigés Droit des obligations L2 S2" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit des obligations L2 S2 · 19,99 €</option>
-                <option value="cas-pratique-penal-l2-s1" data-nom="Cas pratiques corrigés Droit pénal L2 S1" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit pénal L2 S1 · 19,99 €</option>
-                <option value="cas-pratique-penal-general-l1" data-nom="Cas pratiques corrigés Droit pénal général L2" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit pénal général L2 · 19,99 €</option>
-                <option value="cas-pratique-biens-l2" data-nom="Cas pratiques corrigés Droit des biens L2" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit des biens L2 · 19,99 €</option>
-              </optgroup>
-              <optgroup label="L3">
-                <option value="cas-pratique-commercial-l3-s1" data-nom="Cas pratiques corrigés de droit commercial · L2 et L3" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit commercial L3 S1 · 19,99 €</option>
-                <option value="cas-pratique-commercial-l3-s2" data-nom="Cas pratiques corrigés Droit commercial L3 S2" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Droit commercial L3 S2 · 19,99 €</option>
-                <option value="cas-pratique-contrats-speciaux-l3" data-nom="Cas pratiques corrigés Contrats spéciaux L3" data-prix="19,99 €" data-detail="15 cas pratiques et 6 sujets de partiel corrigés en entier">Contrats spéciaux L3 · 19,99 €</option>
-                <option value="cas-pratique-societes-l3" data-nom="Cas pratiques corrigés Droit des sociétés L3 S1" data-prix="19,99 €" data-detail="12 cas pratiques et 4 sujets de partiel corrigés en entier">Droit des sociétés L3 S1 · 19,99 €</option>
-                <option value="cas-pratique-societes-l3-s2" data-nom="Cas pratiques corrigés Droit des sociétés L3 S2" data-prix="19,99 €" data-detail="12 cas pratiques et 4 sujets de partiel corrigés en entier">Droit des sociétés L3 S2 · 19,99 €</option>
-                <option value="cas-pratique-travail-l3" data-nom="Cas pratiques corrigés Droit du travail L3" data-prix="19,99 €" data-detail="12 cas pratiques et 3 sujets de partiel corrigés en entier">Droit du travail L3 · 19,99 €</option>
-                <option value="cas-pratique-procedure-penale-l3" data-nom="Cas pratiques corrigés Procédure pénale L3" data-prix="19,99 €" data-detail="10 cas pratiques et 3 sujets de partiel corrigés en entier">Procédure pénale L3 · 19,99 €</option>
-              </optgroup>
-            </select>
-            <p id="extraitRecueil" class="recueil-choix__extrait"></p>
-            <p class="recueil-choix__detail" id="detailRecueil">11 cas pratiques et 3 sujets de partiel corrigés en entier</p>
-            <button type="button" class="apercu-link" id="apercuRecueil" data-apercu='["assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p001.webp","assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p002.webp","assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p003.webp","assets/apercus/recueils-20261115/cas-pratique-intro-droit-l1/7a210d8fb49b-p005.webp"]' data-apercu-title="Cas pratiques corrigés Introduction au droit L1 S1" data-apercu-price="19,99 €" data-apercu-cta="cas-pratique-intro-droit-l1" data-apercu-sub="Le sommaire, puis le début du premier cas pratique corrigé, avec son énoncé."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu des cas pratiques corrigés</button>
-            <div class="conversion-offer__choices">
-              <button type="button" class="btn btn--primary btn--lg recueil-choix__cta" id="boutonRecueil" data-tjd-produit="cas-pratique-intro-droit-l1">Acheter les cas pratiques corrigés · 19,99 €</button>
-            </div>
-            <p class="conversion-offer__note">Paiement Stripe · accès à vie · mises à jour incluses · garantie satisfait ou remboursé sous 7 jours</p>
-            <p class="recueil-choix__packs"><a href="#packs-cas-pratiques">Les packs</a> réunissent les PDF de cas pratiques corrigés de ton année pour un prix inférieur à l’achat séparé des recueils.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Exemple repris du corrigé existant d'introduction au droit L1 -->
-    <section aria-labelledby="titre-exemple-loyaute" class="section--sm" id="exemple-loyaute-preuve">
-<div class="container container--narrow">
-<span class="badge" style="font-size:.8rem">Introduction au droit · L1</span>
-<h2 class="h2" id="titre-exemple-loyaute" style="margin:12px 0 16px">La loyauté de la preuve dans un cas pratique corrigé</h2>
-<p data-demonstration-intro="" style="line-height:1.8;margin-bottom:24px">Voici un extrait de mon cas pratique corrigé d'introduction au droit L1. Un employeur a filmé en cachette l'écran d'une salariée pour prouver qu'elle envoyait des fichiers clients à l'extérieur. Or le juge accepte une preuve obtenue en cachette seulement si elle est indispensable pour prouver les faits. Ici, l'historique des courriels suffisait déjà à prouver ces envois. La mineure, c'est l'étape où l'on applique la règle aux faits. Dans la mineure, je m'appuie sur ce détail de l'énoncé pour montrer que la caméra n'était pas indispensable.</p>
-<article aria-label="Extrait du corrigé sur la loyauté de la preuve" style="padding:clamp(18px,4vw,32px);border:1px solid var(--border);border-radius:var(--r-lg);background:var(--white)">
-<h3 style="margin:24px 0 12px">Rappel des faits</h3>
-<p data-corrige-source="faits" style="line-height:1.8;margin-bottom:16px">Bruno a installé une caméra cachée dans le bureau individuel de Lucie, sans l'informer ni consulter les représentants du personnel. La caméra filme son écran d'ordinateur et enregistre Lucie en train d'envoyer des fichiers clients à une adresse extérieure. Le serveur de messagerie de la société conserve l'historique des courriels envoyés depuis chaque poste.</p>
-<h3 style="margin:24px 0 12px">Problématique</h3>
-<p data-corrige-source="problematique" style="line-height:1.8;margin-bottom:16px">Un employeur peut-il produire contre une salariée l'enregistrement d'une caméra cachée qui filmait son écran dans son bureau individuel, installée sans l'informer ni consulter les représentants du personnel ?</p>
-<h3 style="margin:24px 0 12px">Rappel du droit applicable (Majeure, extrait)</h3>
-<p data-corrige-source="majeure" style="line-height:1.8;margin-bottom:16px">➤ <strong>L'application du droit à la preuve à la surveillance.</strong> Depuis l'arrêt d'assemblée plénière de 2023, une preuve issue d'une surveillance illicite n'est plus écartée d'office. Le juge vérifie les deux conditions du droit à la preuve, et l'<strong>indispensabilité</strong> manque dès que l'employeur disposait d'un autre moyen de prouver. Ainsi, dans l'affaire jugée par <strong>la Cour de cassation, chambre sociale, 8 mars 2023, n° 21-17.802</strong>, un salon de prothésie ongulaire reprochait à une salariée des détournements lors des encaissements et produisait les images d'une vidéosurveillance installée sans les formalités requises. Un audit avait déjà mis au jour ces irrégularités. La Cour a approuvé les juges d'avoir écarté les images, car l'employeur <strong>disposait avec l'audit d'un autre moyen de preuve</strong>.</p>
-<h3 style="margin:24px 0 12px">Application aux faits (Mineure, extrait)</h3>
-<p data-corrige-source="mineure-1" style="line-height:1.8;margin-bottom:16px">Il reste à examiner le droit à la preuve. D'abord, le <strong>serveur de messagerie</strong> de la société conserve l'historique des courriels envoyés depuis chaque poste. Bruno pouvait donc établir les envois de fichiers vers une adresse extérieure sans filmer l'écran de Lucie. L'enregistrement <strong>n'est pas indispensable</strong>, et la première condition fait défaut.</p>
-<p data-corrige-source="mineure-2" style="line-height:1.8;margin-bottom:16px">Ensuite, la caméra filme en continu le <strong>bureau individuel</strong> de Lucie et tout ce qui s'affiche sur son écran pendant ses journées de travail. Cette surveillance va au-delà de ce qu'exigeait la preuve des envois. L'atteinte est donc <strong>disproportionnée</strong>, et la seconde condition manque aussi.</p>
-<h3 style="margin:24px 0 12px">Conclusion</h3>
-<p data-corrige-source="conclusion" style="line-height:1.8;margin-bottom:16px"><strong>L'enregistrement de la caméra cachée est irrecevable</strong>, car la surveillance était clandestine et l'historique de la messagerie permettait de prouver les envois sans filmer la salariée.</p>
-</article>
-<div data-exercice="loyaute-preuve-intro-l1" data-titre="La loyauté de la preuve et le droit à la preuve" data-tjd-corrige-offert=""></div></div>
-</section>
+    <div class="container container--narrow text-center" style="margin-block:24px">
+      <p style="margin-bottom:10px"><a href="methodologie-juridique.html" style="color:var(--muted); font-size:.85rem">← Retour à la méthodologie juridique</a></p>
+      <a class="btn btn--outline btn--lg" href="methode-cas-pratique.html">Revoir la méthode du cas pratique</a>
+    </div>
 
     <section class="section--sm" id="essai-majeures" style="padding-top:8px">
       <div class="container container--narrow"><div data-tjd-essai></div></div>

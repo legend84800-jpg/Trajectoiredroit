@@ -41,6 +41,7 @@ function environnement({ url = 'https://trajectoiredroit.com/formations.html', m
   const suggestion = format === 'fiches' ? element() : null;
   const niveaux = ['tous', 'L1', 'L2', 'L3'].map((n) => element({ 'data-catalogue-niveau': n }));
   const matieres = format === 'fiches' ? ['tous', 'civil', 'public', 'penal'].map((m) => element({ 'data-catalogue-matiere': m })) : [];
+  const selectMatiere = format === 'fiches' ? element() : null;
   const liens = [
     element({ href: 'formations.html?utm_source=comparatif#a-l-unite' }),
     element({ href: 'formations.html#a-l-unite' }),
@@ -57,7 +58,7 @@ function environnement({ url = 'https://trajectoiredroit.com/formations.html', m
   }));
   const grille = { querySelectorAll: () => cartes };
   const racine = element({ 'data-catalogue-format': format });
-  const controles = { '[data-catalogue-grille]': grille, '[data-catalogue-recherche]': recherche, '[data-catalogue-compteur]': compteur, '[data-catalogue-vide]': vide, '[data-catalogue-reset]': reset, '[data-catalogue-suggestion]': suggestion };
+  const controles = { '[data-catalogue-grille]': grille, '[data-catalogue-recherche]': recherche, '[data-catalogue-compteur]': compteur, '[data-catalogue-vide]': vide, '[data-catalogue-reset]': reset, '[data-catalogue-suggestion]': suggestion, '[data-catalogue-matiere-select]': selectMatiere };
   racine.querySelector = (s) => controles[s];
   racine.querySelectorAll = (s) => s === '[data-catalogue-niveau]' ? niveaux : s === '[data-catalogue-matiere]' ? matieres : [];
   const ecouteurs = {};
@@ -78,7 +79,7 @@ function environnement({ url = 'https://trajectoiredroit.com/formations.html', m
   } });
   vm.runInNewContext(source, contexte);
   return {
-    window, cartes, compteur, vide, recherche, reset, niveaux, matieres, liens, memoire, racine, suggestion, packs,
+    window, cartes, compteur, vide, recherche, reset, niveaux, matieres, selectMatiere, liens, memoire, racine, suggestion, packs,
     niveau(nom) { niveaux.find((b) => b.getAttribute('data-catalogue-niveau') === nom).declencher('click'); },
     matiere(nom) { matieres.find((b) => b.getAttribute('data-catalogue-matiere') === nom).declencher('click'); },
     chercher(texte) { recherche.value = texte; recherche.declencher('input'); },
@@ -113,13 +114,41 @@ test('niveau, matière et mots recherchés se combinent sans retirer les cartes 
 
 test('les contrôles attendent que le catalogue soit prêt', () => {
   const html = fs.readFileSync(path.join(__dirname, '../formations.html'), 'utf8');
-  const controles = html.match(/<(?:button|input)\b[^>]*\bdata-catalogue-(?:niveau|matiere|recherche|reset)\b[^>]*>/g);
+  const controles = html.match(/<(?:button|input|select)\b[^>]*\bdata-catalogue-(?:niveau|matiere(?:-select)?|recherche|reset)(?:=|\s)[^>]*>/g);
   assert.ok(controles.length > 0);
+  assert.ok(controles.some((controle) => controle.startsWith('<select')));
   assert.ok(controles.every((controle) => /\sdisabled(?:\s|>)/.test(controle)));
 
   const e = environnement();
-  const actives = [...e.niveaux, ...e.matieres, e.recherche, e.reset];
+  const actives = [...e.niveaux, ...e.matieres, e.selectMatiere, e.recherche, e.reset];
   assert.ok(actives.every((controle) => controle.disabled === false));
+});
+
+test('le menu mobile suit les mêmes filtres que les boutons de matière', () => {
+  const html = fs.readFileSync(path.join(__dirname, '../formations.html'), 'utf8');
+  const menu = html.match(/<select\b[^>]*\bdata-catalogue-matiere-select\b[^>]*>[\s\S]*?<\/select>/)[0];
+  const options = [...menu.matchAll(/<option value="([^"]+)"/g)].map((m) => m[1]);
+  const boutons = [...html.matchAll(/data-catalogue-matiere="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(options, boutons);
+
+  const e = environnement({ url: 'https://trajectoiredroit.com/formations.html?niveau=l2' });
+  assert.equal(e.selectMatiere.value, 'tous');
+  e.selectMatiere.value = 'public';
+  e.selectMatiere.declencher('change');
+  assert.deepEqual(e.visibles(), ['administratif']);
+  assert.equal(e.matieres[2].getAttribute('aria-pressed'), 'true');
+  assert.equal(e.selectMatiere.classList.contains('active'), true);
+  assert.equal(e.window.location.search, '?niveau=l2');
+
+  e.matiere('civil');
+  assert.equal(e.selectMatiere.value, 'civil');
+  e.chercher('administratif');
+  assert.equal(e.suggestion.hidden, false);
+  e.suggestion.declencher('click');
+  assert.deepEqual(e.visibles(), ['administratif']);
+  assert.equal(e.selectMatiere.value, 'tous');
+  assert.equal(e.selectMatiere.classList.contains('active'), false);
+  assert.equal(e.recherche.value, 'administratif');
 });
 
 test('les fiches administratives séparent leur achat du lien vers le pack des deux semestres', () => {
@@ -489,6 +518,7 @@ test('le retour explicite de paiement restaure les trois filtres du même onglet
   assert.equal(e2.recherche.value, 'administratif');
   assert.equal(e2.niveaux[2].getAttribute('aria-pressed'), 'true');
   assert.equal(e2.matieres[2].getAttribute('aria-pressed'), 'true');
+  assert.equal(e2.selectMatiere.value, 'public');
   assert.deepEqual(e2.visibles(), ['administratif']);
   assert.equal(e2.window.location.hash, '#a-l-unite');
   assert.equal(e2.window.location.search, '?niveau=l2');
@@ -498,6 +528,7 @@ test('le retour explicite de paiement restaure les trois filtres du même onglet
   const recharge = environnement({ memoire: e.memoire, url: e2.window.location.href });
   assert.equal(recharge.recherche.value, '');
   assert.equal(recharge.matieres[0].getAttribute('aria-pressed'), 'true');
+  assert.equal(recharge.selectMatiere.value, 'tous');
 });
 
 test('Choisir mon année mène au pack du niveau sélectionné, avec un lien générique en Tous', () => {

@@ -64,6 +64,8 @@
     .formations-intro { max-width:52ch; margin:12px auto 0; color:var(--body) }
     .formations-intro p { margin:0 }
     .formations-intro p + p { margin-top:4px }
+    .catalogue-toolbar .filters__row > strong { margin-right:8px; font-size:.9rem }
+    .catalogue-toolbar .mobile-matiere-select { display:none }
     .formations-raccourcis {
       display:flex;
       flex-wrap:wrap;
@@ -98,11 +100,67 @@
       text-underline-offset:.17em;
     }
     @media (max-width:768px) {
+      .formations-intro p { text-wrap:balance }
+      #a-l-unite .catalogue-toolbar { padding:12px 14px 6px }
       .catalogue-toolbar > .filters:first-child { border-top:0; margin-top:0; padding-top:0 }
+      .catalogue-toolbar .filters__row { gap:6px; flex-wrap:nowrap }
+      .catalogue-toolbar .filters__row > strong {
+        margin-right:2px;
+        color:var(--ink);
+        white-space:nowrap;
+      }
+      .catalogue-toolbar [data-catalogue-niveau] {
+        flex:1;
+        padding:0 7px;
+        min-width:44px;
+        min-height:44px;
+        white-space:nowrap;
+      }
+      .catalogue-toolbar .mobile-matiere-row > [data-catalogue-matiere] { display:none }
+      .catalogue-toolbar .mobile-matiere-select {
+        display:block;
+        flex:1;
+        min-width:0;
+        box-sizing:border-box;
+        height:44px;
+        padding:0 8px 0 11px;
+        border:1.5px solid var(--border-strong);
+        border-radius:var(--r-md);
+        background-color:var(--white);
+        color:var(--body);
+        font:inherit;
+        font-weight:600;
+      }
+      .catalogue-toolbar .mobile-matiere-select.active {
+        background-color:var(--blue-50);
+        border-color:var(--blue-600);
+        color:var(--blue-700);
+      }
+      #a-l-unite .catalogue-toolbar > .catalogue-toolbar__footer { padding-top:2px; margin-top:10px }
+      .catalogue-toolbar [data-catalogue-compteur] {
+        margin-right:auto;
+        font-size:.875rem;
+        white-space:nowrap;
+      }
+      .catalogue-toolbar [data-catalogue-reset] {
+        min-height:44px;
+        padding-inline:4px;
+        font-size:.875rem;
+        line-height:1.25;
+        white-space:nowrap;
+      }
     }
     @media (max-width:600px) {
       .formations-grille { grid-template-columns:minmax(0, 1fr) }
       .formations-grille .product__meta span { white-space:normal }
+    }
+    @media (max-width:319px) {
+      .catalogue-toolbar .filters__niveau {
+        display:grid;
+        grid-template-columns:repeat(4, minmax(44px, 1fr));
+      }
+      .catalogue-toolbar .filters__niveau > strong { grid-column:1 / -1 }
+      .catalogue-toolbar [data-catalogue-compteur] { white-space:normal }
     }
   </style>
   <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
@@ -529,8 +587,8 @@
         <h1 class="h1">Fiches complètes</h1>
         <div id="recherche-formations-mobile"></div>
         <div class="formations-intro">
-          <p><strong>Un PDF par matière</strong>, pour le semestre ou l’année.</p>
-          <p>Les exemples expliquent les règles de droit. <strong>Les conditions et les exceptions</strong> sont numérotées une par une.</p>
+          <p><strong>Une matière par PDF.</strong></p>
+          <p>Les fiches les plus claires, complètes et agréables à lire de France.</p>
         </div>
       </div>
     </section>
@@ -544,24 +602,37 @@
           <input type="search" data-catalogue-recherche placeholder="Rechercher une matière" aria-label="Rechercher une matière" disabled>
         </div>
         <div class="filters" role="group" aria-label="Filtres des fiches">
-          <div class="filters__row">
-            <strong style="margin-right:8px; font-size:.9rem">Niveau :</strong>
+          <div class="filters__row filters__niveau">
+            <strong>Niveau :</strong>
             <button type="button" aria-pressed="true" class="filter-chip active" data-catalogue-niveau="tous" disabled>Tous</button>
             <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-niveau="L1" disabled>L1</button>
             <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-niveau="L2" disabled>L2</button>
             <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-niveau="L3" disabled>L3</button>
           </div>
-          <div class="filters__row" style="margin-top:10px">
-            <strong style="margin-right:8px; font-size:.9rem">Matière :</strong>
+          <div class="filters__row mobile-matiere-row" style="margin-top:10px">
+            <strong id="catalogue-matiere-label">Matière<span aria-hidden="true"> :</span></strong>
             <button type="button" aria-pressed="true" class="filter-chip active" data-catalogue-matiere="tous" disabled>Toutes</button>
             <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="civil" disabled>Droit civil</button>
             <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="penal" disabled>Droit pénal</button>
             <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="public" disabled>Droit public</button>
             <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="affaires" disabled>Droit des affaires</button>
             <button type="button" aria-pressed="false" class="filter-chip" data-catalogue-matiere="histoire" disabled>Histoire &amp; introduction</button>
+            <select class="mobile-matiere-select" data-catalogue-matiere-select aria-labelledby="catalogue-matiere-label" disabled>
+              <option value="tous">Toutes les matières</option>
+              <option value="civil">Droit civil</option>
+              <option value="penal">Droit pénal</option>
+              <option value="public">Droit public</option>
+              <option value="affaires">Droit des affaires</option>
+              <option value="histoire">Histoire &amp; introduction</option>
+            </select>
           </div>
         </div>
-              <div class="filters"><div class="filters__row"><span class="text-muted" data-catalogue-compteur role="status" aria-live="polite">23 supports affichés sur 23</span><button type="button" class="btn btn--ghost btn--sm" data-catalogue-reset disabled>Réinitialiser</button></div></div>
+        <div class="filters catalogue-toolbar__footer">
+          <div class="filters__row">
+            <span class="text-muted" data-catalogue-compteur role="status" aria-live="polite">23 supports affichés sur 23</span>
+            <button type="button" class="btn btn--ghost btn--sm" data-catalogue-reset disabled>Réinitialiser</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1331,7 +1402,7 @@
   </div>
 
   <script src="assets/js/main.js?v=00564c99" defer></script>
-  <script src="assets/js/catalogue.js?v=dcb3814f" defer></script>
+  <script src="assets/js/catalogue.js?v=fc69e693" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var catalogue = document.getElementById('a-l-unite');

@@ -59,6 +59,10 @@
     });
     var niveaux = Array.prototype.slice.call(racine.querySelectorAll('[data-catalogue-niveau]'));
     var matieres = Array.prototype.slice.call(racine.querySelectorAll('[data-catalogue-matiere]'));
+    var valeursMatieres = matieres.map(function (bouton) {
+      return bouton.getAttribute('data-catalogue-matiere');
+    });
+    var selectMatiere = racine.querySelector('[data-catalogue-matiere-select]');
     var compteur = racine.querySelector('[data-catalogue-compteur]');
     var vide = racine.querySelector('[data-catalogue-vide]');
     var suggestion = racine.querySelector('[data-catalogue-suggestion]');
@@ -127,9 +131,7 @@
         if (niveau) {
           filtreSuggere = { niveau: niveau };
           if (corrigerMatiere) {
-            var matieresCommunes = matieres.map(function (bouton) {
-              return bouton.getAttribute('data-catalogue-matiere');
-            }).filter(function (matiere) {
+            var matieresCommunes = valeursMatieres.filter(function (matiere) {
               return matiere !== 'tous' && resultats.every(function (carte) { return carte.matieres.includes(matiere); });
             });
             filtreSuggere.matiere = matieresCommunes.length === 1 ? matieresCommunes[0] : 'tous';
@@ -206,6 +208,10 @@
         bouton.classList.toggle('active', actif);
         bouton.setAttribute('aria-pressed', String(actif));
       });
+      if (selectMatiere) {
+        selectMatiere.value = etat.matiere;
+        selectMatiere.classList.toggle('active', etat.matiere !== 'tous');
+      }
       if (compteur) compteur.textContent = nombre + (nombre > 1 ? ' supports affichés sur ' : ' support affiché sur ') + cartes.length;
       var chercherSuggestion = nombre === 0 && (mots.length || niveauxSaisis.length || filtreSemestre);
       var cartesSansFiltres = chercherSuggestion ? cartesDansMatiere(cartesRecherchees, 'tous', sujetAnnuel) : [];
@@ -239,6 +245,10 @@
         etat.matiere = bouton.getAttribute('data-catalogue-matiere') || 'tous';
         appliquerFiltres();
       });
+    });
+    if (selectMatiere) selectMatiere.addEventListener('change', function () {
+      etat.matiere = valeursMatieres.includes(selectMatiere.value) ? selectMatiere.value : 'tous';
+      appliquerFiltres();
     });
     recherche.addEventListener('input', function () { appliquerFiltres(true); });
     if (reset) reset.addEventListener('click', function () {
@@ -294,7 +304,7 @@
       } catch (_) { /* Les filtres habituels restent utilisables. */ }
       var valide = reprise && typeof reprise.recherche === 'string' && reprise.recherche.length <= 500
         && NIVEAUX.includes(reprise.niveau) && ancreCatalogue(reprise.ancre)
-        && matieres.some(function (bouton) { return bouton.getAttribute('data-catalogue-matiere') === reprise.matiere; });
+        && valeursMatieres.includes(reprise.matiere);
       if (valide) {
         recherche.value = reprise.recherche;
         etat.niveau = reprise.niveau;
@@ -335,7 +345,7 @@
     }
     window.addEventListener('hashchange', appliquerHash);
     if (!appliquerHash()) { appliquerFiltres(); actualiserAdresse(true); }
-    niveaux.concat(matieres, recherche, reset || []).forEach(function (controle) {
+    niveaux.concat(matieres, selectMatiere || [], recherche, reset || []).forEach(function (controle) {
       controle.disabled = false;
     });
   }
