@@ -88,6 +88,32 @@
     #formules .pricing__price .tjd-prix-remise > del {
       font-size: .625em;
     }
+
+    #portalis-accueil .ph-right {
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: 12px;
+    }
+    #portalis-accueil .ph-amount {
+      font: 400 clamp(1.75rem, 3.2vw, 2.5rem)/1.12 var(--font-body);
+      letter-spacing: normal;
+      white-space: normal;
+    }
+    #portalis-accueil .ph-amount .tjd-prix-remise {
+      display: flex;
+      gap: .35rem .625rem;
+    }
+    #portalis-accueil .ph-amount .tjd-prix-remise > strong {
+      order: -1;
+      font-weight: 400;
+    }
+    #portalis-accueil .ph-amount .tjd-prix-remise > del {
+      font-size: .55em;
+    }
+    #portalis-accueil .ph-amount .tjd-prix-mensuel {
+      min-width: 0;
+      font-size: .9375rem;
+      line-height: 1.35;
+    }
   </style>
   <link rel="stylesheet" href="assets/classement-chatgpt.css?v=1afd641d">
   <script src="assets/js/classements-accueil.js?v=c915ce41" defer></script>
