@@ -66,7 +66,7 @@ p { max-width: 64ch; }
 .support p { color: var(--body); font-size: 15px; }
 .config-zone { background: var(--paper); border-top: 1px solid var(--line); }
 .config { scroll-margin-top: 24px; }
-.config-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .85fr); align-items: start; gap: clamp(22px, 4.5vw, 54px); }
+.config-grid { --config-gap: clamp(22px, 4.5vw, 54px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .85fr); align-items: start; gap: var(--config-gap); }
 .picker { padding: clamp(18px, 3vw, 30px); border: 1px solid var(--line); border-radius: 15px; background: var(--white); }
 .control-name { font-weight: 740; font-size: 16px; padding-bottom: 11px; color: var(--navy); }
 .niveaux { display: flex; gap: 8px; padding-bottom: 20px; }
@@ -83,7 +83,7 @@ p { max-width: 64ch; }
 .matter-option input:disabled ~ span { color: var(--muted); }
 .matter-option input:disabled { cursor: default; }
 .matter-option:has(input:disabled) { cursor: default; background: transparent; }
-.kit-modifier { display: none; margin-top: 8px; min-height: 44px; font-size: 14px; }
+.kit-modifier { display: none; }
 .kit-remplacement { margin: 8px 0 0; color: var(--body); font-size: 14px; line-height: 1.4; }
 .matter-name { color: var(--ink); font-size: 15px; font-weight: 650; line-height: 1.28; }
 .matter-name .format-etiquette { display: table; font-size: 12px; margin-top: 4px; }
@@ -181,9 +181,21 @@ p { max-width: 64ch; }
   .nav > a:not(.button) { display: none; }
   .nav .button { min-height: 36px; padding-inline: 9px; }
   .hero-grid, .config-grid, .faq { grid-template-columns: 1fr; }
-  #matieres[data-kit-compact="true"] .matter-option:has(input:not(:checked)),
-  #matieres[data-kit-compact="true"] ~ .kit-remplacement { display: none; }
-  #matieres[data-kit-compact="true"] + .kit-modifier { display: inline-flex; }
+  #matieres[data-kit-complet="true"],
+  #matieres[data-kit-complet="true"] ~ .kit-remplacement { display: none; }
+  .picker:has(#matieres[data-kit-complet="true"]) {
+    border-bottom: 0;
+    border-radius: 15px 15px 0 0;
+    padding-bottom: 0;
+  }
+  .picker:has(#matieres[data-kit-complet="true"]) + .summary {
+    margin-top: calc(-1 * var(--config-gap));
+    padding-top: 0;
+    padding-inline: clamp(18px, 3vw, 30px);
+    border-top: 0;
+    border-radius: 0 0 15px 15px;
+  }
+  .picker:has(#matieres[data-kit-complet="true"]) + .summary .summary-head { display: none; }
   .hero-grid { gap: 27px; }
   .hero-copy { gap: 16px; }
   .desk { height: min(76vw, 345px); min-height: 242px; border-radius: 17px; }

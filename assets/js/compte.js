@@ -453,8 +453,9 @@
       };
     }
 
-    function referencePdf(commande, produit, fichier){
-      return fichier.type === "pdf" && !fichier.format ? referenceDocument(commande, produit, fichier) : null;
+    function referenceTelechargement(commande, produit, fichier){
+      if (fichier.type !== "pdf" || (fichier.format && fichier.format !== "apkg")) return null;
+      return referenceDocument(commande, produit, fichier);
     }
 
     function decrireAchats(achats, documents){
@@ -553,7 +554,7 @@
         data.achats.forEach(function(commande){
           commande.produits.forEach(function(produit){
             (produit.fichiers || []).forEach(function(fichier){
-              var reference = referencePdf(commande, produit, fichier);
+              var reference = referenceTelechargement(commande, produit, fichier);
               if (reference && reference.identite === demande.identite
                   && reference.expiration > demande.expiration && reference.expiration > Date.now() / 1000) {
                 correspondances.set(fichier.url, reference.expiration);
@@ -641,7 +642,7 @@
             "</audio>" +
           "</div>";
         }
-        var reference = referencePdf(commande, produit, f);
+        var reference = referenceTelechargement(commande, produit, f);
         var marquePdf = reference ? ' data-pdf-compte="' + (pdfAffiches.push(reference) - 1) + '"' : "";
         var telechargement = "<a class=\"btn btn--outline btn--sm\" href=\"" + echapperCompte(f.url) + "\"" + marquePdf + " style=\"margin:4px 6px 0 0\">Télécharger " + echapperCompte(f.nom) + "</a>";
         if (f.format !== "apkg") return telechargement;

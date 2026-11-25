@@ -470,6 +470,44 @@ test('le clic garde les liens valides immédiats et renouvelle uniquement le PDF
   assert.equal(b.demandes.length, 2);
 });
 
+test('un lien Anki expiré recharge uniquement le paquet choisi, même si plusieurs paquets ont le même nom', async () => {
+  const maintenant = 1_800_000_000;
+  const avant = historiquePdf(maintenant + 900);
+  const apres = historiquePdf(maintenant + 1801);
+  for (const commandes of [avant, apres]) {
+    for (const commande of commandes) {
+      for (const fichier of commande.produits[0].fichiers) {
+        fichier.nom = 'le paquet Anki';
+        fichier.format = 'apkg';
+      }
+    }
+  }
+  const initial = avant[1].produits[0].fichiers[1].url;
+  const attendu = apres[1].produits[0].fichiers[1].url;
+  apres.reverse();
+  const attente = differe();
+  let nombre = 0;
+  const b = navigateur({ maintenant: maintenant * 1000, fetch: () => ++nombre === 1 ? reponseAchats(avant) : attente.promise });
+  await b.flush();
+  const liste = b.elements.achatsListe.innerHTML;
+  assert.match(liste, /data-pdf-compte="5"[^>]*>Télécharger le paquet Anki/);
+  assert.equal(b.cliquerPdf(5).renouvellement, false);
+  assert.equal(b.demandes.length, 1);
+
+  b.avancerTemps(901_000);
+  const clic = b.cliquerPdf(5);
+  assert.equal(clic.renouvellement, true);
+  assert.equal(b.cliquerPdf(5).renouvellement, true);
+  assert.equal(b.demandes.length, 2);
+  attente.resolve(reponseAchats(apres));
+  await clic.fin;
+  assert.deepEqual(b.destinations, [attendu]);
+  assert.equal(b.elements.achatsListe.innerHTML,
+    liste.replace(initial.replaceAll('&', '&amp;'), attendu.replaceAll('&', '&amp;')));
+  assert.equal(b.cliquerPdf(5).renouvellement, false);
+  assert.equal(b.demandes.length, 2);
+});
+
 test('un renouvellement interrompu se réessaie sans partir sur un ancien lien ni un autre PDF', async () => {
   const maintenant = 1_800_000_000;
   const avant = historiquePdf(maintenant - 1);

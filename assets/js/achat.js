@@ -895,11 +895,19 @@
       '@media(max-width:420px){.tjd-panier-panel{padding:20px}.tjd-panier-item{grid-template-columns:minmax(0,1fr) 44px;gap:3px 8px}' +
       '.tjd-panier-item__nom{grid-area:1/1}.tjd-panier-item__prix{grid-area:2/1}' +
       '.tjd-panier-item__retirer{grid-area:1/2/span 2}}' +
-      '.tjd-panier-inclusion:empty{padding:0;margin:0;border:0}' +
-      '.tjd-panier-inclusion{font-size:.85rem;padding:10px 12px;margin:8px 0;' +
-      'border:1px solid var(--border-strong,#CBD5E1);border-radius:8px;color:var(--ink,#0F172A)}' +
-      '.tjd-panier-inclusion p{margin:0 0 4px}' +
-      '.tjd-panier-inclusion .btn{min-height:44px}' +
+      '.tjd-panier-inclusions:empty{margin-bottom:0;border:0}' +
+      '.tjd-panier-inclusions{flex-shrink:0;max-height:min(36vh,12rem);overflow:auto;margin-bottom:12px;' +
+      'background:var(--surface-2,#F5F7FA);border:1px solid var(--border-strong,#CBD5E1);border-radius:8px;' +
+      'font-size:.85rem;line-height:1.4;color:var(--ink,#0F172A)}' +
+      '.tjd-panier-inclusion{padding:10px 12px 0}' +
+      '.tjd-panier-inclusion p{margin:0;overflow-wrap:anywhere}' +
+      '.tjd-panier-inclusion button,.tjd-panier-inclusions summary{min-height:44px;' +
+      'color:var(--navy,#1A2851);font-weight:600;cursor:pointer}' +
+      '.tjd-panier-inclusion button{background:none;border:0;font:inherit;font-weight:600;' +
+      'padding:0;text-decoration:underline;text-align:left}' +
+      '.tjd-panier-inclusion button:disabled{opacity:.6;cursor:default}' +
+      '.tjd-panier-inclusions summary{padding:12px;border-top:1px solid var(--border,#E2E8F0)}' +
+      '.tjd-panier-inclusions :is(button,summary):focus-visible{outline:2px solid currentColor;outline-offset:-2px}' +
       '.tjd-panier-indisponible{font-size:.85rem;margin:6px 0 10px;color:var(--ink,#0F172A)}' +
       '.tjd-panier-vide{color:var(--muted,#5B6B84);font-size:.92rem;text-align:center;padding:24px 0}' +
       '.tjd-panier-total{display:flex;justify-content:space-between;align-items:center;' +
@@ -948,6 +956,7 @@
         '<button type="button" class="tjd-panier-panel__close" data-tjd-panier-fermer aria-label="Fermer le panier">✕</button>' +
         '<h2 class="tjd-panier-panel__titre" id="tjdPanierTitre">Ton panier</h2>' +
         '<div class="tjd-panier-liste" id="tjdPanierListe"></div>' +
+        '<div class="tjd-panier-inclusions" id="tjdPanierInclusions" aria-live="polite"></div>' +
         '<div class="tjd-panier-total" id="tjdPanierTotal" hidden><span>Total</span><span id="tjdPanierTotalMontant"></span></div>' +
         '<button type="button" class="tjd-panier-cta" id="tjdPanierCta">Passer au paiement</button>' +
         '<p class="tjd-panier-note">Les liens d’accès arrivent par email après le paiement.</p>' +
@@ -1044,36 +1053,44 @@
 
   function panierRendreInclusions(liste) {
     if (!inclusionsPanier) return;
-    var conteneur = document.getElementById('tjdPanierListe');
+    var conteneur = document.getElementById('tjdPanierInclusions');
     var cta = document.getElementById('tjdPanierCta');
     if (!conteneur || !cta) return;
 
-    conteneur.querySelectorAll('[data-tjd-panier-inclusion]').forEach(function (bloc) {
-      var id = bloc.getAttribute('data-tjd-panier-inclusion');
-      var inclusDansUnPack = liste.some(function (article) {
-        var inclus = Object.prototype.hasOwnProperty.call(inclusionsPanier.inclusions, article.id) && inclusionsPanier.inclusions[article.id];
-        return Array.isArray(inclus) && inclus.includes(id);
+    var avertissements = liste.flatMap(function (article, index) {
+      var nom = panierValeurCatalogue('noms', article.id);
+      if (typeof nom !== 'string' || !nom) return [];
+      var pack = liste.find(function (contenant) {
+        if (indisponiblesPanier.has(contenant.id)) return false;
+        var inclus = panierValeurCatalogue('inclusions', contenant.id);
+        return Array.isArray(inclus) && inclus.includes(article.id);
       });
-      var nom = Object.prototype.hasOwnProperty.call(inclusionsPanier.noms, id) && inclusionsPanier.noms[id];
-      if (!inclusDansUnPack || typeof nom !== 'string' || !nom) return;
+      if (!pack) return [];
+      var nomPack = panierValeurCatalogue('noms', pack.id);
+      if (typeof nomPack !== 'string' || !nomPack) return [];
 
-      bloc.innerHTML = '<p>Ce support est déjà compris dans un pack du panier.</p>' +
-        '<button type="button" class="btn btn--outline btn--sm" data-tjd-panier-retrait-inclus ' +
-        'data-tjd-panier-retirer="' + panierEchapperHTML(id) + '" aria-label="Retirer du panier ' +
-        panierEchapperHTML(nom) + '">Retirer du panier</button>';
-      panierActiverRetraits(bloc, cta);
+      var refAlerte = 'tjdPanierInclusion' + index;
+      var libelleRetrait = article.id.startsWith('fiche-') ? 'Retirer la fiche seule' : 'Retirer cet article';
+      return '<div class="tjd-panier-inclusion"><p id="' + refAlerte + '"><strong>' + panierEchapperHTML(nomPack) +
+        '</strong> contient déjà « <strong>' + panierEchapperHTML(nom) + '</strong> ».</p>' +
+        '<button type="button" data-tjd-panier-retrait-inclus data-tjd-panier-retirer="' + panierEchapperHTML(article.id) +
+        '" aria-describedby="' + refAlerte + '">' + libelleRetrait + '</button></div>';
     });
+    var ouvert = conteneur.querySelector('details[open]') ? ' open' : '';
+    conteneur.innerHTML = (avertissements[0] || '') + (avertissements.length < 2 ? '' :
+      '<details' + ouvert + '><summary tabindex="0">Voir les autres articles déjà inclus</summary>' +
+      avertissements.slice(1).join('') + '</details>');
+    panierActiverRetraits(conteneur, cta);
   }
 
   function panierActualiserCatalogue(liste) {
     var conteneur = document.getElementById('tjdPanierListe');
     if (!conteneur) return;
     var articles = new Map(liste.map(function (article) { return [article.id, article]; }));
-    var blocs = conteneur.querySelectorAll('[data-tjd-panier-inclusion]');
-    blocs.forEach(function (bloc) {
-      var article = articles.get(bloc.getAttribute('data-tjd-panier-inclusion'));
+    var lignes = conteneur.querySelectorAll('[data-tjd-panier-produit]');
+    lignes.forEach(function (ligne) {
+      var article = articles.get(ligne.getAttribute('data-tjd-panier-produit'));
       if (!article) return;
-      var ligne = bloc.parentElement;
       var titre = ligne.querySelector('.tjd-panier-item__nom');
       var retirer = ligne.querySelector('.tjd-panier-item__retirer');
       var prix = ligne.querySelector('.tjd-panier-item__prix');
@@ -1085,7 +1102,7 @@
     });
     var total = document.getElementById('tjdPanierTotalMontant');
     var montantTotal = centimesVersEuro(panierTotalCentimes(liste));
-    if (blocs.length && total && texteSansAffichageRemise(total) !== montantTotal) total.textContent = montantTotal;
+    if (lignes.length && total && texteSansAffichageRemise(total) !== montantTotal) total.textContent = montantTotal;
   }
 
   function panierChargerInclusions() {
@@ -1122,6 +1139,7 @@
       conteneur.innerHTML = '<p class="tjd-panier-vide">Ton panier est vide. Ajoute une fiche, une majeure ou un pack depuis n’importe quelle page du site.</p>';
       totalBloc.hidden = true;
       cta.disabled = true;
+      panierRendreInclusions(liste);
       return;
     }
     conteneur.innerHTML = liste.map(function (a, index) {
@@ -1130,11 +1148,12 @@
       var indisponible = indisponiblesPanier.has(a.id);
       var refAlerte = 'tjdPanierIndisponible' + index;
       var description = indisponible ? ' data-tjd-panier-retrait-indisponible aria-describedby="' + refAlerte + '"' : '';
-      return '<div><div class="tjd-panier-item"><span class="tjd-panier-item__nom">' + nom + '</span>' +
+      return '<div><div class="tjd-panier-item" data-tjd-panier-produit="' + id +
+        '"><span class="tjd-panier-item__nom">' + nom + '</span>' +
         '<span class="tjd-panier-item__prix" data-tjd-prix-ligne="' + id + '">' + centimesVersEuro(a.prixCentimes) + '</span>' +
         '<button type="button" class="tjd-panier-item__retirer" data-tjd-panier-retirer="' + id + '" aria-label="Retirer du panier ' + nom + '"' + description + '>✕</button></div>' +
         (indisponible ? '<p class="tjd-panier-indisponible" id="' + refAlerte + '">Cet article est indisponible. Il faut le retirer pour passer au paiement.</p>' : '') +
-        '<div class="tjd-panier-inclusion" data-tjd-panier-inclusion="' + id + '" aria-live="polite"></div></div>';
+        '</div>';
     }).join('');
     document.getElementById('tjdPanierTotalMontant').textContent = centimesVersEuro(panierTotalCentimes(liste));
     totalBloc.hidden = false;
@@ -1171,10 +1190,12 @@
   }
 
   function panierDesactiverRetraits(desactiver) {
-    var liste = document.getElementById('tjdPanierListe');
-    if (!liste || !liste.querySelectorAll) return;
-    liste.querySelectorAll('[data-tjd-panier-retirer]').forEach(function (bouton) {
-      bouton.disabled = desactiver;
+    ['tjdPanierListe', 'tjdPanierInclusions'].forEach(function (id) {
+      var conteneur = document.getElementById(id);
+      if (!conteneur || !conteneur.querySelectorAll) return;
+      conteneur.querySelectorAll('[data-tjd-panier-retirer]').forEach(function (bouton) {
+        bouton.disabled = desactiver;
+      });
     });
   }
 

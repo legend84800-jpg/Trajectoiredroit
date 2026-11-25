@@ -4971,6 +4971,7 @@ html[data-theme="dark"] .tag-high  { color: #34D399; }
   .apercu-head { padding: 14px 16px }
   .apercu-imgs { padding: 12px; max-height: 66vh }
   .apercu-foot { padding: 14px 16px }
+  .apercu-foot .price { display: none }
 }
 @media (max-width: 924px) {
   /* Fige aussi le viewport mobile si la page derrière l’aperçu déborde. */

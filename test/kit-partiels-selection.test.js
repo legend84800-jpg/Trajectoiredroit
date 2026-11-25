@@ -48,7 +48,6 @@ function ouvrirKit(sessionStorage, recherche = "", ancienHTML = false) {
     querySelector(selecteur) {
       if (selecteur === 'input[name="niveau"]:checked') return radios[radios.actif];
       if (selecteur === 'input[name="paiement"]:checked') return paiements[paiements.actif];
-      if (ancienHTML && selecteur === "#kit-modifier") return null;
       if (!champs.has(selecteur)) champs.set(selecteur, element());
       return champs.get(selecteur);
     },
@@ -59,8 +58,16 @@ function ouvrirKit(sessionStorage, recherche = "", ancienHTML = false) {
   };
   form.querySelector("#kit-matiere-info").hidden = true;
   const listeMatieres = form.querySelector("#matieres");
+  if (!ancienHTML) listeMatieres.dataset.kitComplet = "false";
   listeMatieres.querySelectorAll = () => listeMatieres.children.map((label) => label.children[0]);
+  Object.defineProperty(listeMatieres, "offsetParent", {
+    get: () => listeMatieres.dataset.kitComplet === "true" ? null : form,
+  });
+  const resume = form.querySelector("#selection");
+  resume.querySelector = (selecteur) => selecteur === ".selection-retirer"
+    ? resume.children[0]?.children?.[0]?.children[1] : null;
   const document = {
+    get activeElement() { return champActif; },
     querySelector: () => form,
     querySelectorAll: (selecteur) => [form.querySelector(selecteur)],
     createElement: element,
@@ -82,7 +89,7 @@ function ouvrirKit(sessionStorage, recherche = "", ancienHTML = false) {
     get url() { return new URL(location.href); },
     get niveau() { return radios.actif; },
     get matieres() { return listeMatieres.querySelectorAll().filter((input) => input.checked).map((input) => input.value); },
-    get listeRepliee() { return listeMatieres.dataset.kitCompact === "true"; },
+    get listeRepliee() { return listeMatieres.dataset.kitComplet === "true"; },
     get compteur() { return champs.get("#compteur").textContent; },
     get paiement() { return paiements.actif; },
     get remplacement() { return !champs.get("#kit-remplacement").hidden; },
@@ -94,7 +101,7 @@ function ouvrirKit(sessionStorage, recherche = "", ancienHTML = false) {
     get pack() { return champs.get("#duo-partiels").hidden ? null : champs.get("#duo-partiels-lien").href; },
     get avertissement() { return !champs.get("#kit-matiere-info").hidden; },
     get commander() { return !champs.get("#commander").disabled; },
-    get champActif() { return champActif?.value; },
+    get champActif() { return champActif?.value ?? champActif?.attributs["aria-label"]; },
     get boutonsRetirer() {
       return (champs.get("#selection").children[0]?.children || []).map((li) => li.children[1]);
     },
@@ -109,7 +116,6 @@ function ouvrirKit(sessionStorage, recherche = "", ancienHTML = false) {
       input.checked = etat;
       traiterChangement({ target: input });
     },
-    modifierChoix() { champs.get("#kit-modifier").clic(); },
     matiereBloquee(code) {
       return listeMatieres.querySelectorAll().find((input) => input.value === code).disabled;
     },
@@ -261,7 +267,7 @@ test("compte chaque semestre comme un choix et transmet le bon kit même quand l
   assert.equal(retour.commander, false);
 });
 
-test("replie les autres matières à trois choix et permet de modifier la sélection au clavier", () => {
+test("présente une seule liste à trois choix sur mobile et place le focus sur le récapitulatif", () => {
   const session = stockage();
   const kit = ouvrirKit(session);
   const matieres = ["contrats", "administratif-s1", "administratif-s2"];
@@ -271,18 +277,14 @@ test("replie les autres matières à trois choix et permet de modifier la sélec
 
   kit.choisirMatiere("administratif-s2");
   assert.equal(kit.listeRepliee, true);
-  assert.equal(kit.champActif, "administratif-s2");
-  const selectionSauvegardee = session.getItem(cleSelection);
-
-  kit.modifierChoix();
-  assert.equal(kit.listeRepliee, false);
-  assert.equal(kit.champActif, "contrats");
+  assert.equal(kit.champActif, "Retirer Droit des contrats (S1)");
   assert.equal(kit.matiereBloquee("penal-unifie-s1"), true);
   assert.deepEqual(kit.matieres, matieres);
   assert.equal(kit.commander, true);
-  assert.equal(session.getItem(cleSelection), selectionSauvegardee);
 
-  kit.choisirMatiere("administratif-s2", false);
+  kit.boutonsRetirer.find((bouton) => bouton.attributs["aria-label"] === "Retirer Droit administratif (S2)").clic();
+  assert.equal(kit.listeRepliee, false);
+  assert.equal(kit.champActif, "administratif-s2");
   assert.equal(kit.matiereBloquee("penal-unifie-s1"), false);
   assert.equal(kit.commander, false);
   kit.choisirMatiere("penal-unifie-s1");

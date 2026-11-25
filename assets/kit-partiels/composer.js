@@ -14,9 +14,9 @@
   const nombre = catalogue.nombreMatieres;
 
   const choix = form.querySelector("#matieres");
+  const recapitulatifMobile = Object.hasOwn(choix.dataset, "kitComplet");
   const resume = form.querySelector("#selection");
   const compteur = form.querySelector("#compteur");
-  const modifier = form.querySelector("#kit-modifier");
   const remplacement = form.querySelector("#kit-remplacement");
   const detail = form.querySelector("#detail-paiement");
   const cta = form.querySelector("#commander");
@@ -45,7 +45,6 @@
   let niveau = form.querySelector('input[name="niveau"]:checked').value;
   const choixParNiveau = new Map(Object.keys(catalogue.niveaux).map((niveau) => [niveau, new Set()]));
   let codes = choixParNiveau.get(niveau);
-  let modificationOuverte = false;
   const cleSelection = "tjd_kit_partiels_selection";
 
   function activerNiveau(nouveauNiveau) {
@@ -53,7 +52,6 @@
     if (!radio || !choixParNiveau.has(nouveauNiveau)) return;
     niveau = nouveauNiveau;
     codes = choixParNiveau.get(niveau);
-    modificationOuverte = false;
     radio.checked = true;
   }
 
@@ -182,13 +180,12 @@
     const matieres = matieresChoisies();
     const pret = matieres.length === nombre;
     const deuxFois = paiementChoisi() === "2";
-    if (!pret) modificationOuverte = false;
 
     for (const input of choix.querySelectorAll("input")) {
       input.checked = codes.has(input.value);
       input.disabled = !input.checked && pret;
     }
-    choix.dataset.kitCompact = String(Boolean(modifier) && pret && !modificationOuverte);
+    if (recapitulatifMobile) choix.dataset.kitComplet = String(pret);
 
     compteur.textContent = `${matieres.length} sur ${nombre}`;
     if (remplacement) remplacement.hidden = !pret;
@@ -211,14 +208,9 @@
     cta.textContent = pret ? "Passer au paiement" : "Coche trois cases";
   }
 
-  modifier?.addEventListener("click", () => {
-    modificationOuverte = true;
-    rafraichir();
-    [...choix.querySelectorAll("input")].find((input) => input.checked)?.focus();
-  });
-
   form.addEventListener("change", (event) => {
     const champ = event.target;
+    const focusSurUneMatiere = champ.name === "matiere" && document.activeElement === champ;
     if (champ.name === "niveau") {
       activerNiveau(champ.value);
       afficherMatieres();
@@ -231,6 +223,9 @@
     }
     enregistrerSelection();
     rafraichir();
+    if (focusSurUneMatiere && choix.offsetParent === null) {
+      resume.querySelector(".selection-retirer")?.focus();
+    }
   });
 
   form.addEventListener("submit", (event) => {
