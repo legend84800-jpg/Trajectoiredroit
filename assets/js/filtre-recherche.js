@@ -7,6 +7,16 @@
       .replace(/\bsemestre\s+([12])\b/g, 's$1');
   }
 
+  function semestresCarte(carte) {
+    var meta = normaliser(carte.querySelector('.product__meta')?.textContent || '');
+    var titre = normaliser(carte.querySelector('.product__title')?.textContent || '');
+    return meta.match(/\bs[12]\b/g) || titre.match(/\bs[12]\b/g) || [];
+  }
+
+  function niveauxCarte(carte) {
+    return (carte.getAttribute('data-niveau') || '').split(',');
+  }
+
   document.querySelectorAll('[data-filtre-recherche]').forEach(function (input) {
     var grille = document.querySelector(input.getAttribute('data-filtre-recherche'));
     if (!grille) return;
@@ -30,21 +40,36 @@
 
     function appliquerRecherche() {
       var terme = normaliser(input.value.trim());
+      var niveauxDemandes = [];
       // Si la grille a aussi des chips de filtre (niveau/matière), main.js expose une fonction
       // qui combine recherche + chips dans un seul état, pour ne pas se marcher dessus sur `hidden`.
       if (typeof window.tjdAppliquerFiltreRecherche === 'function') {
         window.tjdAppliquerFiltreRecherche(terme);
       } else {
+        var semestresDemandes = [];
+        var mots = terme.replace(/\bl([123])s([12])\b/g, 'l$1 s$2')
+          .replace(/\b(?:licence|l)[\s.-]*([123])\b/g, function (_, niveau) {
+            niveauxDemandes.push('L' + niveau);
+            return ' ';
+          }).replace(/\b(?:semestre|s)[\s.-]*([12])\b/g, function (_, semestre) {
+            semestresDemandes.push('s' + semestre);
+            return ' ';
+          }).match(/[\p{L}\p{N}]+/gu) || [];
         cards.forEach(function (card) {
-          card.hidden = !(!terme || normaliser(card.textContent).indexOf(terme) !== -1);
+          var contenu = normaliser(card.textContent);
+          var semestres = semestresCarte(card);
+          card.hidden = !(mots.every(function (mot) { return contenu.includes(mot); })
+            && (!semestresDemandes.length || semestresDemandes.some(function (semestre) { return semestres.includes(semestre); }))
+            && (!niveauxDemandes.length || niveauxDemandes.some(function (niveau) { return niveauxCarte(card).includes(niveau); })));
         });
       }
       var visible = cards.some(carteVisible);
       var correspondances = visible || !terme ? [] : cards.filter(function (carte) { return !carte.hidden; });
       var niveauxTrouves = onglets.filter(function (onglet) {
         var niveau = onglet.getAttribute('data-niveau-onglet');
+        if (niveauxDemandes.length && !niveauxDemandes.includes(niveau)) return false;
         return correspondances.some(function (carte) {
-          return (carte.getAttribute('data-niveau') || '').split(',').includes(niveau);
+          return niveauxCarte(carte).includes(niveau);
         });
       });
       ongletSuggere = niveauxTrouves.length === 1 ? niveauxTrouves[0] : niveauxTrouves.length > 1

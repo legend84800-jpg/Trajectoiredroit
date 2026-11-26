@@ -382,9 +382,9 @@
       </div>
     </section>
 
-    <section class="section" id="l1" style="padding-top:16px">
+    <section class="section" id="l1" tabindex="-1" aria-labelledby="flashcards-l1-titre" style="padding-top:16px">
       <div class="container">
-        <h2 class="h2" style="margin-bottom:6px">Flashcards + QCM · Licence 1</h2>
+        <h2 class="h2" id="flashcards-l1-titre" style="margin-bottom:6px">Flashcards + QCM · Licence 1</h2>
         <p class="lead" style="margin-bottom:24px">Sept séries couvrent six matières de L1, avec une série pour chacun des deux semestres de droit constitutionnel.</p>
         <div class="grid-3">
 
@@ -469,9 +469,9 @@
       </div>
     </section>
 
-    <section class="section section--alt" id="l2" style="padding-top:16px">
+    <section class="section section--alt" id="l2" tabindex="-1" aria-labelledby="flashcards-l2-titre" style="padding-top:16px">
       <div class="container">
-        <h2 class="h2" style="margin-bottom:6px">Flashcards + QCM · Licence 2</h2>
+        <h2 class="h2" id="flashcards-l2-titre" style="margin-bottom:6px">Flashcards + QCM · Licence 2</h2>
         <p class="lead" style="margin-bottom:24px">Tout le programme de L2 est couvert, du droit des contrats au droit pénal, en passant par les obligations, les biens et le droit administratif.</p>
         <div class="grid-3">
 
@@ -556,9 +556,9 @@
       </div>
     </section>
 
-    <section class="section section--alt" id="l3" style="padding-top:16px">
+    <section class="section section--alt" id="l3" tabindex="-1" aria-labelledby="flashcards-l3-titre" style="padding-top:16px">
       <div class="container">
-        <h2 class="h2" style="margin-bottom:6px">Flashcards + QCM · Licence 3</h2>
+        <h2 class="h2" id="flashcards-l3-titre" style="margin-bottom:6px">Flashcards + QCM · Licence 3</h2>
         <p class="lead" style="margin-bottom:24px">Les quatre matières de spécialité de L3 sont couvertes. Tu y trouves le droit commercial et le droit des sociétés, ainsi que le droit du travail et les contrats spéciaux.</p>
         <div class="grid-3">
 
@@ -660,7 +660,11 @@
         <p data-demo-accompagnement="pdf" style="margin-top:24px;line-height:1.8">Dans le PDF de flashcards, les questions sont regroupées avant leurs réponses. On peut donc répondre à plusieurs questions de mémoire avant de lire les explications. Chaque série de QCM se termine aussi par un corrigé complet. Après une erreur, il faut relire l’explication du corrigé. Ensuite, on répond à nouveau à la question de mémoire, pour vérifier que la règle est bien retenue.</p>
         <div class="flex flex--center" style="margin-top:20px">
           <button type="button" class="btn btn--primary" data-tjd-produit="flashcards-qcm-intro-droit-l1" style="max-width:100%;white-space:normal;text-align:center"><span>Acheter les flashcards + QCM d’introduction au droit <span style="white-space:nowrap">· 9,99 €</span></span></button>
-          <a class="btn btn--outline" href="#l1">Voir les matières</a>
+          <div class="flex flex--center" role="group" aria-label="Matières par année" style="flex-wrap:nowrap;gap:8px">
+            <a class="btn btn--outline" href="#l1" aria-label="Voir les matières de L1">L1</a>
+            <a class="btn btn--outline" href="#l2" aria-label="Voir les matières de L2">L2</a>
+            <a class="btn btn--outline" href="#l3" aria-label="Voir les matières de L3">L3</a>
+          </div>
         </div>
       </div>
     </section>
