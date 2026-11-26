@@ -27,7 +27,7 @@ for (const page of pages) {
       assert.ok(html.includes(`${extrait.total} pages au total, extrait p. ${extrait.pagePDF} du PDF`));
     }
     const prixComparateur = [...html.matchAll(/format-comparison__price">([^<]+)/g)].map(m => m[1]);
-    assert.deepEqual(prixComparateur, ["19,99 €"]);
+    assert.deepEqual(prixComparateur, ["14,99 €"]);
     assert.doesNotMatch(html, /\bcours complet|cours-fiches\.html/i);
   });
 }

@@ -73,19 +73,5 @@
         "lien": "pack-ultra.html"
       }
     }
-  ],
-  "offre_partiels": {
-    "id": "offre-partiels-s1-2026-15-24nov",
-    "debut": "2026-11-24T17:05:00Z",
-    "fin": "2026-11-27T17:05:00Z",
-    "taux": 15,
-    "prix_ronds_centimes": { "5800": 4900, "19900": 16900 },
-    "bandeau": {
-      "etiquette_forte": "Offre partiels du semestre 1",
-      "etiquette": "Sur toute la boutique",
-      "compte_a_rebours_libelle": "L’offre se termine dans",
-      "bouton": "Voir la boutique",
-      "lien": "/formations.html"
-    }
-  }
+  ]
 }

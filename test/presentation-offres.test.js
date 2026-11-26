@@ -73,15 +73,15 @@ test("les présentations générées restent à jour avec le catalogue de livrai
   const licence = presentationPack("pack-complet");
   assert.equal(licence.nombre, 22);
   assert.equal(licence.totalPdf, 63);
-  assert.equal(licence.totalUnite, 43978);
-  assert.equal(licence.economie, 59);
+  assert.equal(licence.totalUnite, 32978);
+  assert.equal(licence.economie, 46);
   assert.match(licence.description, /cartes mentales de 19 fiches/);
   const l2 = presentationPack("pack-l2");
   assert.equal(l2.nombre, 8);
   assert.equal(l2.totalPdf, 22);
   assert.equal(l2.cartes, 6);
-  assert.equal(l2.totalUnite, 15992);
-  assert.equal(l2.economie, 51);
+  assert.equal(l2.totalUnite, 11992);
+  assert.equal(l2.economie, 34);
 });
 
 test("le nombre de fiches des packs annuels se régénère sur l’accueil", () => {
@@ -185,8 +185,8 @@ test("les libellés d'achat et d'aperçu nomment le type de PDF", () => {
     assert.doesNotMatch(html, /(?:>|\b)Acheter le recueil\b|Voir un aperçu du recueil|>Acheter la fiche(?=\s*[·<])|>Recueil\s*·/i, fichier);
   }
   const societes = fs.readFileSync(path.join(ROOT, "sujets-droit-des-societes-l3.html"), "utf8");
-  assert.match(societes, /data-tjd-produit="cas-pratique-societes-l3">Acheter les cas pratiques corrigés · 19,99 €</);
-  assert.match(societes, /data-tjd-produit="fiche-societes-l3-s1">Acheter la fiche complète · 19,99 €</);
+  assert.match(societes, /data-tjd-produit="cas-pratique-societes-l3">Acheter les cas pratiques corrigés · 14,99 €</);
+  assert.match(societes, /data-tjd-produit="fiche-societes-l3-s1">Acheter la fiche complète · 14,99 €</);
 });
 
 test("l'usage en TD vient du retour de Julien sans délai de résolution promis", () => {

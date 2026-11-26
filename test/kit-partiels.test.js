@@ -44,7 +44,7 @@ async function ouvrir(payload) {
 test("les trios autorisés livrent les fichiers de chacun des supports", () => {
   const catalogue = donneesPage(PRODUITS);
   assert.deepEqual(Object.values(catalogue.niveaux).map((liste) => liste.length), [6, 7, 4]);
-  for (const m of Object.values(catalogue.niveaux).flat()) assert.equal(m.prixSepare, 4997);
+  for (const m of Object.values(catalogue.niveaux).flat()) assert.equal(m.prixSepare, 3997);
   const references = Object.entries(PRODUITS).filter(([cle]) => cle.startsWith("pack-kit-partiels-"));
   assert.deepEqual(["l1", "l2", "l3"].map((niveau) =>
     references.filter(([id, produit]) => id.startsWith(`pack-kit-partiels-${niveau}--`) && !produit.venteSuspendue).length

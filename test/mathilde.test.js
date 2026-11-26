@@ -61,7 +61,7 @@ test("l'achat gratuit garde le produit réel pour la livraison et utilise le seu
     assert.equal(params.line_items.length, 1);
     assert.equal(params.line_items[0].price_data.product, PRODUIT_STRIPE_MATHILDE);
     assert.equal(params.line_items[0].price_data.product_data, undefined);
-    assert.equal(params.line_items[0].price_data.unit_amount, 1999);
+    assert.equal(params.line_items[0].price_data.unit_amount, 1499);
     assert.deepEqual(params.discounts, [{ promotion_code: PROMO.id }]);
     assert.equal(params.allow_promotion_codes, undefined);
     assert.equal(params.after_expiration.recovery.allow_promotion_codes, undefined);

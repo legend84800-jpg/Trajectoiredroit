@@ -119,7 +119,7 @@ function presentationPack(id) {
   const economie = Math.round((1 - produit.prix / totalUnite) * 100);
   const titreHtml = id === "pack-l2" ? `<a href="pack-fiches-droit-l2.html">${titre}</a>` : titre;
   const prixUnite = id === "pack-l2" || id === "pack-complet"
-    ? `<span class="product__price-old" style="text-decoration:none"><del>${euro(totalUnite)}</del> <small>à l’unité hors promotion</small></span> `
+    ? `<span class="product__price-old" style="text-decoration:none"><del>${euro(totalUnite)}</del> <small>à l’unité</small></span> `
     : `<span class="product__price-old">${euro(totalUnite)}</span>`;
   return { nombre, totalPdf, cartes, totalUnite, economie, titre, description: descriptions[id], html: `<div class="product__body" data-catalogue-pack="${id}">
               <h3 class="product__title">${titreHtml}</h3>

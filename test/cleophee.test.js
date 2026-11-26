@@ -58,7 +58,7 @@ test("le code de Cléophée applique son propre coupon et garde le vrai produit 
     for (const params of creations) {
       assert.equal(params.line_items.length, 1);
       assert.equal(params.line_items[0].price_data.product, PRODUITS_STRIPE_CADEAUX.CLEOPHEE);
-      assert.equal(params.line_items[0].price_data.unit_amount, 1999);
+      assert.equal(params.line_items[0].price_data.unit_amount, 1499);
       assert.deepEqual(params.discounts, [{ promotion_code: PROMO.id }]);
       assert.equal(params.metadata.produitIds, "fiche-da-l2-s1");
       assert.equal(params.metadata.codePromoLien, "CLEOPHEE");

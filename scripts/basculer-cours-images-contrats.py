@@ -99,7 +99,7 @@ def offre_fin(n, phrase, indent):
       <div class="conversion-offer__choices">
         <button type="button" class="btn btn--primary" data-tjd-produit="{ID}">Acheter · 19,99 €</button>
         <button type="button" class="apercu-link" data-apercu='{apercu(n)}' data-apercu-title="Le droit des contrats en images · L2 S1" data-apercu-sub="Pages réelles du cours en images" data-apercu-price="19,99 €" data-apercu-cta="{ID}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir des pages</button>
-        <button type="button" class="btn btn--outline btn--sm" data-tjd-produit="fiche-contrats-l2-s1">Fiche complète · 19,99 €</button>
+        <button type="button" class="btn btn--outline btn--sm" data-tjd-produit="fiche-contrats-l2-s1">Fiche complète · 14,99 €</button>
       </div>
       <p class="conversion-offer__note">Paiement Stripe · garantie satisfait ou remboursé sous 7 jours</p>
     </div>

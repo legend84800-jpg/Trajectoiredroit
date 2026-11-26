@@ -10,7 +10,7 @@ window.catalogueKit = {
         "semestre": "S1",
         "formatApplication": "Dissertations corrigées",
         "tonFormat": "dissertations",
-        "prixSepare": 4997
+        "prixSepare": 3997
       },
       {
         "code": "intro-droit",
@@ -19,7 +19,7 @@ window.catalogueKit = {
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
-        "prixSepare": 4997
+        "prixSepare": 3997
       },
       {
         "code": "histoire-du-droit",
@@ -28,7 +28,7 @@ window.catalogueKit = {
         "semestre": "S1",
         "formatApplication": "Dissertations corrigées",
         "tonFormat": "dissertations",
-        "prixSepare": 4997
+        "prixSepare": 3997
       },
       {
         "code": "personnes",
@@ -37,7 +37,7 @@ window.catalogueKit = {
         "semestre": "",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
-        "prixSepare": 4997
+        "prixSepare": 3997
       },
       {
         "code": "constitutionnel-s2",
@@ -46,7 +46,7 @@ window.catalogueKit = {
         "semestre": "S2",
         "formatApplication": "Dissertations corrigées",
         "tonFormat": "dissertations",
-        "prixSepare": 4997
+        "prixSepare": 3997
       },
       {
         "code": "famille",
@@ -55,7 +55,7 @@ window.catalogueKit = {
         "semestre": "S2",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
-        "prixSepare": 4997
+        "prixSepare": 3997
       }
     ],
     "l2": [
@@ -66,7 +66,7 @@ window.catalogueKit = {
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
-        "prixSepare": 4997
+        "prixSepare": 3997
       },
       {
         "code": "administratif-s1",
@@ -75,7 +75,7 @@ window.catalogueKit = {
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
-        "prixSepare": 4997
+        "prixSepare": 3997
       },
       {
         "code": "penal-unifie-s1",
@@ -84,7 +84,7 @@ window.catalogueKit = {
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
-        "prixSepare": 4997
+        "prixSepare": 3997
       },
       {
         "code": "responsabilite",
@@ -93,7 +93,7 @@ window.catalogueKit = {
         "semestre": "S2",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
-        "prixSepare": 4997
+        "prixSepare": 3997
       },
       {
         "code": "administratif-s2",
@@ -102,7 +102,7 @@ window.catalogueKit = {
         "semestre": "S2",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
-        "prixSepare": 4997
+        "prixSepare": 3997
       },
       {
         "code": "penal-unifie-s2",
@@ -111,7 +111,7 @@ window.catalogueKit = {
         "semestre": "S2",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
-        "prixSepare": 4997
+        "prixSepare": 3997
       },
       {
         "code": "biens",
@@ -120,7 +120,7 @@ window.catalogueKit = {
         "semestre": "",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
-        "prixSepare": 4997
+        "prixSepare": 3997
       }
     ],
     "l3": [
@@ -131,7 +131,7 @@ window.catalogueKit = {
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
-        "prixSepare": 4997
+        "prixSepare": 3997
       },
       {
         "code": "societes",
@@ -140,7 +140,7 @@ window.catalogueKit = {
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
-        "prixSepare": 4997
+        "prixSepare": 3997
       },
       {
         "code": "contrats-speciaux",
@@ -149,7 +149,7 @@ window.catalogueKit = {
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
-        "prixSepare": 4997
+        "prixSepare": 3997
       },
       {
         "code": "commercial",
@@ -158,7 +158,7 @@ window.catalogueKit = {
         "semestre": "S1",
         "formatApplication": "Majeures préparées",
         "tonFormat": "majeures",
-        "prixSepare": 4997
+        "prixSepare": 3997
       }
     ]
   },

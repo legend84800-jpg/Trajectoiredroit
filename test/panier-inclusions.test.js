@@ -127,7 +127,7 @@ test('le panier garde la fiche et le pack dans les deux ordres d’ajout et perm
     b.panier.rendre();
     await viderMicrotaches();
     assert.deepEqual(b.ids(), ordre);
-    assert.match(b.elements.tjdPanierTotalMontant.textContent, /49,97/);
+    assert.match(b.elements.tjdPanierTotalMontant.textContent, /44,97/);
     assert.equal(b.elements.tjdPanierCta.disabled, false);
 
     const ligne = b.lignes.get(fiche);
@@ -170,7 +170,7 @@ test('des offres distinctes et un fichier public indisponible laissent le panier
     b.panier.rendre();
     await viderMicrotaches();
     assert.deepEqual(b.ids(), ids);
-    assert.match(b.elements.tjdPanierTotalMontant.textContent, /49,97/);
+    assert.match(b.elements.tjdPanierTotalMontant.textContent, /44,97/);
     assert.equal(b.elements.tjdPanierCta.disabled, false);
   }
 });
@@ -192,8 +192,8 @@ test('une seule ligne héritée reçoit son nom et son prix catalogue à l’arr
   assert.equal(ligne.retrait.aLeFocus, true);
   assert.equal(ligne.titre.textContent, PRODUITS['fiche-intro-droit-l1'].nom);
   assert.equal(ligne.retrait['aria-label'], 'Retirer du panier ' + PRODUITS['fiche-intro-droit-l1'].nom);
-  assert.equal(b.elements.tjdPanierTotalMontant.textContent, '19,99 €');
-  assert.equal(b.panier.lire()[0].prixCentimes, 1999);
+  assert.equal(b.elements.tjdPanierTotalMontant.textContent, '14,99 €');
+  assert.equal(b.panier.lire()[0].prixCentimes, 1499);
 });
 
 test('une case cochée complète le panier sans dupliquer la fiche, la quantité ou le prix', async () => {
@@ -222,7 +222,7 @@ test('une case cochée complète le panier sans dupliquer la fiche, la quantité
   assert.deepEqual(b.ids(), [fiche, cas]);
   assert.equal(b.panier.lire()[1].prixCentimes, PRODUITS[cas].prix);
   b.panier.rendre();
-  assert.equal(b.elements.tjdPanierTotalMontant.textContent, '39,98 €');
+  assert.equal(b.elements.tjdPanierTotalMontant.textContent, '29,98 €');
 
   b.panier.payer();
   await viderMicrotaches();

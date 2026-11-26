@@ -72,9 +72,9 @@ async function avecCheckoutFactice(t, maintenant, controler, offre = OFFRE) {
 }
 
 const PAIEMENTS_COMPTANTS = [
-  { corps: { produitId: FICHE }, lignes: [1999], total: 1999, totalPromo: 1699 },
-  { corps: { produitIds: [FICHE, MAJEURES], code: "MAJEURES10" }, lignes: [1999, 1799], total: 3798, totalPromo: 3398 },
-  { corps: { produitId: FICHE, bumpId: MAJEURES }, lignes: [1999, 1999], total: 3998, totalPromo: 3398 },
+  { corps: { produitId: FICHE }, lignes: [1499], total: 1499, totalPromo: 1274 },
+  { corps: { produitIds: [FICHE, MAJEURES], code: "MAJEURES10" }, lignes: [1499, 1349], total: 2848, totalPromo: 2548 },
+  { corps: { produitId: FICHE, bumpId: MAJEURES }, lignes: [1499, 1499], total: 2998, totalPromo: 2548 },
   { corps: { produitId: KIT }, lignes: [6900], total: 6900, totalPromo: 5865 },
   { corps: { produitId: PACK_ULTRA, ...CADEAU }, lignes: [19900], total: 19900, totalPromo: 16915 },
 ];
@@ -101,7 +101,7 @@ for (const [description, date, enPromo] of [
         });
         const ids = scenario.corps.produitIds ?? [scenario.corps.produitId, scenario.corps.bumpId].filter(Boolean);
         assert.equal(params.metadata.produitIds, ids.join(","));
-        assert.deepEqual(lignes, enPromo && scenario.corps.code ? [1999, 1999] : scenario.lignes);
+        assert.deepEqual(lignes, enPromo && scenario.corps.code ? [1499, 1499] : scenario.lignes);
         const somme = lignes.reduce((total, prix) => total + prix, 0);
         if (enPromo) {
           assert.deepEqual(params.discounts, [{ coupon: OFFRE.id }]);
@@ -152,6 +152,20 @@ for (const [description, date, enPromo] of [
   });
 }
 
+test("la configuration publiée le 26 novembre facture 14,99 euros sans remise Partiels", async (t) => {
+  const { offre_partiels: offrePubliee } = require("../assets/data/saison.json");
+  await avecCheckoutFactice(t, Date.parse("2026-11-26T18:00:00Z"), async (ouvrir) => {
+    const achatDirect = await ouvrir({ produitId: FICHE });
+    const panier = await ouvrir({ produitIds: [FICHE, MAJEURES] });
+    assert.deepEqual(achatDirect.params.line_items.map(({ price_data }) => price_data.unit_amount), [1499]);
+    assert.deepEqual(panier.params.line_items.map(({ price_data }) => price_data.unit_amount), [1499, 1499]);
+    for (const { params } of [achatDirect, panier]) {
+      assert.equal(params.discounts, undefined);
+      assert.equal(params.metadata.offrePartiels, undefined);
+    }
+  }, offrePubliee ?? null);
+});
+
 test("une session promo ouverte à la dernière minute laisse le temps de payer sans lien de récupération", async (t) => {
   const fin = Date.parse(OFFRE.fin);
   await avecCheckoutFactice(t, fin - 60_000, async (ouvrir) => {
@@ -171,8 +185,8 @@ test("prix ronds de la campagne en achat direct, panier et échéances", async (
     const forfaits = [
       [{ produitId: "pack-l3" }, [4900]],
       [{ produitId: PACK_ULTRA, ...CADEAU }, [16900]],
-      [{ produitIds: ["pack-l3", PACK_ULTRA, FICHE] }, [4900, 16900, 1699]],
-      [{ produitId: FICHE, bumpId: "pack-l3" }, [1699, 4900]],
+      [{ produitIds: ["pack-l3", PACK_ULTRA, FICHE] }, [4900, 16900, 1274]],
+      [{ produitId: FICHE, bumpId: "pack-l3" }, [1274, 4900]],
     ];
     for (const [corps, montants] of forfaits) {
       const { params, options } = await ouvrir(corps);
@@ -185,7 +199,7 @@ test("prix ronds de la campagne en achat direct, panier et échéances", async (
     }
     const { params: fiche } = await ouvrir({ produitId: FICHE });
     assert.deepEqual(fiche.discounts, [{ coupon: OFFRE.id }]);
-    assert.equal(fiche.line_items[0].price_data.unit_amount, 1999);
+    assert.equal(fiche.line_items[0].price_data.unit_amount, 1499);
     const { params: ultraL3 } = await ouvrir({ produitId: "pack-ultra-l3-s1-revision" });
     assert.deepEqual(ultraL3.discounts, [{ coupon: OFFRE.id }]);
     assert.equal(ultraL3.line_items[0].price_data.unit_amount, 22900);
