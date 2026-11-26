@@ -52,7 +52,7 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
   <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
-  <link rel="stylesheet" href="assets/pack-ultra.css?v=cc445abb">
+  <link rel="stylesheet" href="assets/pack-ultra.css?v=b29d53e7">
   <!-- Plausible Analytics : décommente après création du compte -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
 
@@ -406,6 +406,13 @@
             <span class="ultra-inclusions__title-name"><span>Les Packs Ultra</span></span>
           </h2>
           <p>Choisis ton semestre, puis une matière pour voir les supports inclus dans ton pack.</p>
+          <template data-ultra-choix-matiere>
+            <label class="ultra-inclusions__choix-matiere">
+              <span>Matière</span>
+              <select id="ultra-inclusions-choisir-matiere" aria-controls="ultra-inclusions-matiere"></select>
+            </label>
+          </template>
+
           <details class="ultra-inclusions__item" id="pack-ultra-detail-l1-s1">
             <summary><span>L1 semestre 1</span><span>31 ressources</span></summary>
             <div class="ultra-inclusions__action"><a class="btn btn--primary" href="#pack-ultra-l1-s1">Voir le prix et les options de paiement</a></div>
@@ -1069,7 +1076,7 @@
 
   <script src="assets/js/main.js?v=00564c99" defer></script>
   <script src="assets/js/achat.js?v=81a894f1"></script>
-  <script src="assets/js/pack-ultra-inclusions.js?v=06448ce4" defer></script>
+  <script src="assets/js/pack-ultra-inclusions.js?v=f6be448b" defer></script>
   <script>
   (function(){
     function ouvrirContenu(){

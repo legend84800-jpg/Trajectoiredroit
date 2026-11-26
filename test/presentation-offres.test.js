@@ -17,7 +17,11 @@ test("un même produit garde le même titre précis dans tous les aperçus", () 
       const attendu = libelleApercu(id);
       if (!attendu) continue;
       assert.equal(tag.match(/data-apercu-title="([^"]+)"/)[1], attendu, `${fichier}, ${id}`);
-      assert.match(attendu, / · L[123](?: S[12])? · (Fiche complète|Cours complet|Majeures préparées)$/);
+      if (id === "fiche-commercial-l3-s1" || id === "maj-commercial-l3-s1") {
+        assert.match(attendu, / · L2 et\/ou L3 · (Fiche complète|Majeures préparées)$/);
+      } else {
+        assert.match(attendu, / · L[123](?: S[12])? · (Fiche complète|Cours complet|Majeures préparées)$/);
+      }
       controles++;
     }
   }

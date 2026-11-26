@@ -950,19 +950,23 @@
       '</div>';
     document.body.appendChild(backdrop);
 
-    var dialogueCommun = null, retourFocus = null, overflowAvant = '', voisins = [];
+    var dialogueCommun = null, overflowAvant = '', voisins = [];
+    var retourEnCours = false, pageAvantPanier;
     var fermerBouton = backdrop.querySelector('[data-tjd-panier-fermer]');
     function controles() {
       return Array.prototype.filter.call(backdrop.querySelectorAll('button, a[href], [tabindex]'), function (element) {
         return !element.disabled && element.getAttribute('tabindex') !== '-1' && element.getClientRects().length > 0;
       });
     }
-    function ouvrir() {
+    function ouvrirPanneau() {
       if (backdrop.classList.contains('open')) return;
+      pageAvantPanier = { url: window.location.href, x: window.scrollX, y: window.scrollY };
       panierRendreListe();
-      retourFocus = document.activeElement || fab;
       dialogueCommun = window.tjdDialogues && typeof window.tjdDialogues.ouvrir === 'function' && typeof window.tjdDialogues.fermer === 'function' ? window.tjdDialogues : null;
-      if (dialogueCommun) { dialogueCommun.ouvrir(backdrop, fermerBouton, retourFocus); return; }
+      if (dialogueCommun) {
+        dialogueCommun.ouvrir(backdrop, fermerBouton, fab, { preventScroll: true }, fermer);
+        return;
+      }
       overflowAvant = document.body.style.overflow;
       voisins = [];
       Array.prototype.forEach.call(document.body.children, function (element) {
@@ -974,7 +978,7 @@
       document.body.style.overflow = 'hidden';
       (fermerBouton || backdrop).focus();
     }
-    function fermer() {
+    function fermerPanneau() {
       if (!backdrop.classList.contains('open')) return;
       if (dialogueCommun) { dialogueCommun.fermer(backdrop); return; }
       backdrop.classList.remove('open');
@@ -985,8 +989,45 @@
       });
       voisins = [];
       document.body.style.overflow = overflowAvant;
-      if (retourFocus && retourFocus.isConnected) retourFocus.focus();
+      if (fab.isConnected) fab.focus({ preventScroll: true });
     }
+    function panierDansHistorique() {
+      return window.history?.state?.tjdPanier === true;
+    }
+    function ouvrir() {
+      if (retourEnCours || backdrop.classList.contains('open')) return;
+      if (!panierDansHistorique()) {
+        try { window.history?.pushState({ ...window.history.state, tjdPanier: true }, ''); } catch (_) {}
+      }
+      ouvrirPanneau();
+    }
+    function fermer() {
+      if (retourEnCours || !backdrop.classList.contains('open')) return;
+      if (panierDansHistorique()) {
+        retourEnCours = true;
+        window.history.back();
+      } else {
+        fermerPanneau();
+      }
+    }
+    window.addEventListener('popstate', function () {
+      retourEnCours = false;
+      if (panierDansHistorique()) {
+        ouvrirPanneau();
+      } else if (backdrop.classList.contains('open')) {
+        var page = pageAvantPanier;
+        fermerPanneau();
+        // Le navigateur peut remonter jusqu'à l'ancre après l'événement popstate.
+        window.setTimeout(function () {
+          if (page === pageAvantPanier && window.location.href === page.url) {
+            window.scrollTo({ left: page.x, top: page.y, behavior: 'instant' });
+            if (fab.isConnected) fab.focus({ preventScroll: true });
+          }
+        }, 0);
+      }
+    });
+    if (panierDansHistorique()) ouvrirPanneau();
+
     fab.addEventListener('click', ouvrir);
     backdrop.addEventListener('click', function (e) {
       if (e.target === backdrop || e.target.closest('[data-tjd-panier-fermer]')) fermer();

@@ -1,5 +1,7 @@
 const PRODUITS = require("../api/_produits");
 
+const APERCUS_L2_ET_L3 = new Set(["fiche-commercial-l3-s1", "maj-commercial-l3-s1"]);
+
 // Libellés de présentation uniquement, sans modifier les identifiants ni les achats.
 function libelleApercu(id) {
   const nom = PRODUITS[id]?.nom;
@@ -7,7 +9,10 @@ function libelleApercu(id) {
   if (!format) return null;
   const contenu = nom.slice(format.length + 1).match(/^(.*?) (L[123])(?: (S[12]))?$/);
   if (!contenu) return null;
-  return `${contenu[1]} · ${contenu[2]}${contenu[3] ? ` ${contenu[3]}` : ""} · ${format}`;
+  const niveau = APERCUS_L2_ET_L3.has(id)
+    ? "L2 et/ou L3"
+    : [contenu[2], contenu[3]].filter(Boolean).join(" ");
+  return `${contenu[1]} · ${niveau} · ${format}`;
 }
 
 function presentationPackMatiere(matiere) {

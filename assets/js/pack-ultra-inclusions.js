@@ -85,7 +85,8 @@
     const racine = document.querySelector('.ultra-inclusions');
     if (!racine || racine.classList.contains('ultra-inclusions--enhanced')) return;
     const sources = Array.from(racine.querySelectorAll(':scope > details.ultra-inclusions__item'));
-    if (!sources.length) return;
+    const modeleMatiere = racine.querySelector('template[data-ultra-choix-matiere]');
+    if (!sources.length || !modeleMatiere) return;
 
     const packs = sources.map(source => {
       const id = source.id;
@@ -126,12 +127,15 @@
     matieres.setAttribute('role', 'tablist');
     matieres.setAttribute('aria-label', 'Matières du semestre');
     const achat = element('a', 'btn btn--primary ultra-inclusions__achat', 'Voir le prix et les options de paiement');
-    sommaire.append(titreSemestre, metaSemestre, achat, matieres);
+    const choixMatiere = modeleMatiere.content.cloneNode(true);
+    const selectMatiere = choixMatiere.querySelector('select');
+    const mediaMatiere = window.matchMedia('(max-width: 768px)');
+    sommaire.append(titreSemestre, metaSemestre, achat, matieres, choixMatiere);
     const contenu = element('div', 'ultra-inclusions__contenu');
     contenu.id = 'ultra-inclusions-matiere';
-    contenu.setAttribute('role', 'tabpanel');
     contenu.tabIndex = 0;
     const titreMatiere = element('h5', 'ultra-inclusions__matiere-titre');
+    titreMatiere.id = 'ultra-inclusions-titre-matiere';
     const metaMatiere = element('p', 'ultra-inclusions__matiere-meta');
     const liste = element('ul', 'ultra-inclusions__ressources');
     const pied = element('div', 'ultra-inclusions__pied');
@@ -145,6 +149,13 @@
     let semestreActif = 0;
     const matiereActive = {};
 
+    function associerPanneauMatiere() {
+      const mobile = mediaMatiere.matches;
+      const titre = mobile ? titreMatiere : matieres.querySelector('[aria-selected="true"]');
+      contenu.setAttribute('role', mobile ? 'region' : 'tabpanel');
+      contenu.setAttribute('aria-labelledby', titre.id);
+    }
+
     function afficherMatiere(indice) {
       const pack = packs[semestreActif];
       matiereActive[pack.semestre] = indice;
@@ -154,8 +165,9 @@
         bouton.setAttribute('aria-selected', position === indice ? 'true' : 'false');
         bouton.tabIndex = position === indice ? 0 : -1;
       });
-      contenu.setAttribute('aria-labelledby', boutons[indice].id);
+      selectMatiere.value = String(indice);
       titreMatiere.textContent = matiere.nom;
+      associerPanneauMatiere();
       metaMatiere.textContent = nombreRessources(matiere.ressources.length) + ' comprise' + (matiere.ressources.length > 1 ? 's' : '') + ' dans le Pack Ultra ' + pack.libelle;
       const medias = matiere.ressources.filter(li => li.classList.contains('ultra-resource--media'));
       const documents = matiere.ressources.filter(li => !li.classList.contains('ultra-resource--media'));
@@ -174,7 +186,11 @@
       titreSemestre.textContent = pack.libelle;
       metaSemestre.textContent = pack.matieres.length + ' matières  ·  ' + pack.nombre;
       matieres.replaceChildren();
+      selectMatiere.replaceChildren();
       pack.matieres.forEach((matiere, position) => {
+        const option = element('option', '', matiere.nom);
+        option.value = String(position);
+        selectMatiere.append(option);
         const bouton = element('button', 'ultra-inclusions__matiere', '');
         bouton.type = 'button';
         bouton.id = 'ultra-matiere-' + pack.semestre + '-' + position;
@@ -206,6 +222,9 @@
 
     navigationClavier(semestres);
     navigationClavier(matieres);
+    selectMatiere.addEventListener('change', () => afficherMatiere(Number(selectMatiere.value)));
+    if (mediaMatiere.addEventListener) mediaMatiere.addEventListener('change', associerPanneauMatiere);
+    else mediaMatiere.addListener(associerPanneauMatiere);
     racine.classList.add('ultra-inclusions--enhanced');
     const hash = window.location.hash.slice(1);
     const cible = packs.findIndex(pack => pack.id === hash);

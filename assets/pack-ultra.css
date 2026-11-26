@@ -309,6 +309,7 @@ html[data-theme="dark"] .ultra-card__split-btn { color: #D4E0F6; }
   font-size: .89rem;
 }
 .ultra-inclusions__matieres { display: grid; gap: 9px; }
+.ultra-inclusions__choix-matiere { display: none; }
 .ultra-inclusions__matiere {
   position: relative;
   display: flex;
@@ -438,6 +439,8 @@ html[data-theme="dark"] .ultra-card__split-btn { color: #D4E0F6; }
 .ultra-inclusions__achat { width: 100%; margin-bottom: 14px; }
 .ultra-inclusions__experience [role="tab"]:focus-visible,
 .ultra-inclusions__experience [role="tabpanel"]:focus-visible,
+.ultra-inclusions__contenu:focus-visible,
+.ultra-inclusions__choix-matiere select:focus-visible,
 .ultra-inclusions__achat:focus-visible { outline: 3px solid #315CA6; outline-offset: 3px; }
 .ultra-section__note {
   max-width: 780px;
@@ -458,8 +461,31 @@ html[data-theme="dark"] .ultra-card__split-btn { color: #D4E0F6; }
   .ultra-inclusions__layout { display: block; }
   .ultra-inclusions__sommaire { margin-bottom: 14px; padding: 17px; }
   .ultra-inclusions__semestre-meta { margin-bottom: 12px; padding-bottom: 12px; }
-  .ultra-inclusions__matieres { display: flex; gap: 9px; overflow-x: auto; padding: 2px 2px 8px; scroll-snap-type: x proximity; }
-  .ultra-inclusions__matiere { flex: 0 0 210px; scroll-snap-align: start; }
+}
+@media (max-width: 768px) {
+  .ultra-inclusions__matieres { display: none; }
+  .ultra-inclusions__choix-matiere {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    color: #1a2851;
+    font-size: .94rem;
+    font-weight: 700;
+  }
+  .ultra-inclusions__choix-matiere select {
+    min-width: 0;
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid #7a89a5;
+    border-radius: 10px;
+    padding: 0 8px 0 11px;
+    background: #fff;
+    color: inherit;
+    font: inherit;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
 }
 @media (max-width: 620px) {
   .ultra-grid { gap: 18px; }
@@ -523,6 +549,12 @@ html[data-theme="dark"] .ultra-inclusions__semestre,
 html[data-theme="dark"] .ultra-inclusions__matiere,
 html[data-theme="dark"] .ultra-inclusions__contenu { background: #1b2945; border-color: #415371; color: #f6f3ea; }
 html[data-theme="dark"] .ultra-inclusions__sommaire { background: #17243e; border-color: #415371; }
+html[data-theme="dark"] .ultra-inclusions__choix-matiere { color: #f6f3ea; }
+html[data-theme="dark"] .ultra-inclusions__choix-matiere select {
+  color-scheme: dark;
+  background: #1b2945;
+  border-color: #7e90b3;
+}
 html[data-theme="dark"] .ultra-inclusions__semestre[aria-selected="true"],
 html[data-theme="dark"] .ultra-inclusions__matiere[aria-selected="true"] { background: #334d85; border-color: #9cb4e2; }
 html[data-theme="dark"] .ultra-inclusions__semestre-nom,
