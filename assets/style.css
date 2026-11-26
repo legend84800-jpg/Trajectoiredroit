@@ -5720,12 +5720,16 @@ html[data-theme="dark"] [style*="background: white"] { background: var(--white) 
 .section--dark .hero__cta-secondary:hover { color: #fff; }
 
 
-/* Couleurs de repérage des deux formats, communes au catalogue et au kit. */
+/* Couleurs de repérage des formats dans le catalogue et les blocs de méthode. */
 :root {
   --majeures-fond: #f5eaf4;
   --majeures-encre: #603054;
   --majeures-bouton: #713c65;
   --majeures-survol: #5a2c50;
+  --commentaires-arret-fond: var(--violet-bg);
+  --commentaires-arret-encre: var(--violet);
+  --cas-pratiques-fond: var(--amber-bg);
+  --cas-pratiques-encre: var(--amber);
   --dissertations-fond: #e5f2ed;
   --dissertations-encre: #23574a;
   --dissertations-bouton: #286351;
@@ -5734,6 +5738,9 @@ html[data-theme="dark"] [style*="background: white"] { background: var(--white) 
 html[data-theme="dark"] {
   --majeures-fond: #3b293e;
   --majeures-encre: #f2d9ed;
+  --commentaires-arret-fond: #452635;
+  --commentaires-arret-encre: #ffd9e5;
+  --cas-pratiques-fond: #223956;
   --dissertations-fond: #203b34;
   --dissertations-encre: #cfefe2;
 }
@@ -5752,6 +5759,20 @@ html[data-theme="dark"] {
   --format-survol: var(--majeures-survol);
 }
 :is(
+  [data-ton-format="commentaires-arret"],
+  .card--product:has([data-tjd-produit^="commentaire-arret-"], [data-tjd-produit^="pack-commentaires-arret-"])
+) {
+  --format-fond: var(--commentaires-arret-fond);
+  --format-encre: var(--commentaires-arret-encre);
+}
+:is(
+  [data-ton-format="cas-pratiques"],
+  .card--product:has([data-tjd-produit^="cas-pratique-"], [data-tjd-produit^="pack-cas-pratiques-"])
+) {
+  --format-fond: var(--cas-pratiques-fond);
+  --format-encre: var(--cas-pratiques-encre);
+}
+:is(
   [data-ton-format="dissertations"],
   [data-tjd-produit^="dissertation-"],
   .apercu-link[data-apercu-cta^="dissertation-"],
@@ -5761,6 +5782,22 @@ html[data-theme="dark"] {
   --format-encre: var(--dissertations-encre);
   --format-bouton: var(--dissertations-bouton);
   --format-survol: var(--dissertations-survol);
+}
+.corriges-formats .btn.btn--outline[data-ton-format] {
+  background: var(--format-fond);
+  color: var(--format-encre);
+  border-color: color-mix(in srgb, var(--format-encre) 72%, var(--format-fond));
+}
+.corriges-formats .btn.btn--outline[data-ton-format]:is(:hover, :focus-visible) {
+  background: color-mix(in srgb, var(--format-encre) 10%, var(--format-fond));
+  border-color: var(--format-encre);
+}
+.card[data-ton-format]:not(.card--product) {
+  background: var(--format-fond);
+  border-inline-start: 3px solid var(--format-encre);
+}
+.card[data-ton-format]:not(.card--product) h3 {
+  color: var(--format-encre);
 }
 .format-etiquette {
   display: inline-block;
