@@ -139,6 +139,44 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
   <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
+  <style>
+    .dissertations-liste { display: none }
+    @media (max-width: 640px) {
+      .dissertations-liste { display: block }
+      .dissertations-liste + .dissertations-table { display: none }
+      .dissertations-table table { table-layout: fixed; overflow-wrap: anywhere }
+      .dissertations-table :is(th, td) { padding-inline: 6px !important }
+      .dissertations-liste h3 {
+        margin: 20px 0 0;
+        padding: 8px 12px;
+        background: var(--surface-2);
+        border-radius: var(--r-sm);
+        font-size: 1.1rem;
+      }
+      .dissertations-liste ul { margin: 0; padding: 0; list-style: none }
+      .dissertations-liste li { padding: 12px 4px 4px; border-bottom: 1px solid var(--border) }
+      .dissertations-liste a { text-decoration: underline; text-underline-offset: 3px }
+      .dissertations-liste li > p { margin: 3px 0 0; font-size: .95rem; line-height: 1.45 }
+      .dissertations-liste summary {
+        box-sizing: border-box;
+        min-height: 44px;
+        padding-block: 10px;
+        cursor: pointer;
+        font-size: .95rem;
+        font-weight: 600;
+      }
+      .dissertations-liste dl {
+        margin: 0 0 10px;
+        padding: 10px 12px;
+        border-left: 2px solid var(--border-strong);
+        color: var(--body);
+        font-size: .95rem;
+      }
+      .dissertations-liste dt { font-weight: 700 }
+      .dissertations-liste dd { margin: 0 }
+      .dissertations-liste dd + dt { margin-top: 6px }
+    }
+  </style>
   <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
   <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
   <!-- Google Analytics (GA4) -->
@@ -474,6 +512,8 @@
     <section class="section" id="liste">
       <div class="container container--narrow">
         <h2 class="h2" style="margin-bottom:8px">Quelles dissertations corrigées gratuites trouves-tu sur le site ?</h2>
+        <template id="dissertations-volet"><details><summary>Voir le plan</summary><dl></dl></details></template>
+        <div class="dissertations-table">
         <p class="lead" style="margin-bottom:20px">Le tableau classe les 23 sujets par matière, de la L1 à la L2.</p>
         <p style="color:var(--body); line-height:1.75">La colonne « Forme » indique si le sujet est une notion seule, une question ou deux notions associées. La dernière colonne précise ce que la page rédige, car certaines dissertations vont jusqu'au bout du plan et d'autres s'arrêtent plus tôt.</p>
         <div style="overflow-x:auto; margin-bottom:18px">
@@ -516,9 +556,48 @@
             </tbody>
           </table>
         </div>
+        </div>
         <p style="color:var(--body); line-height:1.75">Pour cinq sujets (la jurisprudence, la séparation des pouvoirs, le référendum législatif, la force obligatoire du contrat et les fonctions de la responsabilité civile), la page ne publie pas le titre de la partie II. Ce titre reprend alors l'annonce du plan donnée dans l'introduction.</p>
       </div>
     </section>
+    <script>
+      (function () {
+        const tableau = document.querySelector('#liste .dissertations-table');
+        const table = tableau.querySelector('table');
+        const modele = document.getElementById('dissertations-volet');
+        const liste = document.createElement('div');
+        liste.className = 'dissertations-liste';
+        let groupe;
+        for (const ligne of table.tBodies[0].rows) {
+          if (ligne.cells.length === 1) {
+            const matiere = document.createElement('h3');
+            matiere.textContent = ligne.cells[0].textContent;
+            groupe = document.createElement('ul');
+            groupe.setAttribute('role', 'list');
+            liste.append(matiere, groupe);
+            continue;
+          }
+
+          const [sujet, forme, plan, redaction] = ligne.cells;
+          const item = document.createElement('li');
+          const lien = sujet.querySelector('a').cloneNode(true);
+          const indication = document.createElement('p');
+          indication.textContent = redaction.textContent;
+          const volet = modele.content.cloneNode(true);
+          const contenu = volet.querySelector('dl');
+          for (const [colonne, cellule] of [[1, forme], [2, plan]]) {
+            const nom = document.createElement('dt');
+            nom.textContent = table.tHead.rows[0].cells[colonne].textContent;
+            const texte = document.createElement('dd');
+            for (const noeud of cellule.childNodes) texte.append(noeud.cloneNode(true));
+            contenu.append(nom, texte);
+          }
+          item.append(lien, indication, volet);
+          groupe.append(item);
+        }
+        tableau.before(liste);
+      })();
+    </script>
 
     <!-- FORMES DE SUJET -->
     <section class="section section--alt" id="formes">

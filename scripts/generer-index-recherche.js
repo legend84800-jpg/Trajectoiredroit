@@ -99,11 +99,11 @@ function pagesGuides(racine) {
   const fichier = path.join(racine, nom);
   if (!fs.existsSync(fichier)) return new Map();
   const section = sectionAvecAncre(fs.readFileSync(fichier, 'utf8'), SECTIONS_GUIDES[nom]);
-  const liens = section.matchAll(/<li\b[^>]*>\s*<a\b[^>]*\shref=["']([a-z0-9][a-z0-9_-]*\.html)(?:#[a-z0-9-]+)?["'][^>]*>([\s\S]*?)<\/a>/gi);
+  const liens = section.matchAll(/<li\b[^>]*>\s*<a\b[^>]*\shref=["']([a-z0-9][a-z0-9_-]*\.html)["'][^>]*>([\s\S]*?)<\/a>/gi);
   const guides = new Map();
   for (const [, destination, libelle] of liens) {
     const matiere = texteHtml(libelle);
-    if (matiere && !Object.hasOwn(SECTIONS_GUIDES, destination)) guides.set(destination, matiere);
+    if (matiere) guides.set(destination, matiere);
   }
   return guides;
 }

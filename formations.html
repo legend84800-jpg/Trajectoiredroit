@@ -60,6 +60,7 @@
   <style>.card--product .product__edition{margin:0;color:var(--navy);font-size:.82rem;font-weight:700}
     #a-l-unite .card--product[id], #packs-annee .card--product[id] { scroll-margin-top:96px }
     #recherche-formations-mobile:empty { display:none }
+    #recherche-formations-mobile { scroll-margin-top:calc(var(--header-h) + 16px) }
     #recherche-formations-mobile .filtre-recherche { margin:18px auto 16px }
     .formations-intro { max-width:52ch; margin:12px auto 0; color:var(--body) }
     .formations-intro p { margin:0 }
@@ -1411,10 +1412,12 @@
       if (champ.disabled) return;
 
       var emplacement = document.getElementById('recherche-formations-mobile');
+      var lienFixe = document.querySelector('#stickyCta a');
       var mobile = window.matchMedia('(max-width: 768px)');
       function placerRecherche() {
         if (mobile.matches) emplacement.appendChild(recherche);
         else barre.prepend(recherche);
+        lienFixe.hash = mobile.matches ? '#recherche-formations-mobile' : '#a-l-unite';
       }
       placerRecherche();
       mobile.addEventListener('change', placerRecherche);
