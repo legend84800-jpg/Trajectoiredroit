@@ -468,13 +468,12 @@ html[data-theme="dark"] .ultra-card__split-btn { color: #D4E0F6; }
   .ultra-inclusions__item ul { columns: 1; }
   .ultra-inclusions__action { flex-wrap: wrap; }
   .ultra-inclusions__semestres {
-    display: flex;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px;
-    overflow-x: auto;
-    padding: 2px 2px 9px;
-    scroll-snap-type: x proximity;
   }
-  .ultra-inclusions__semestre { flex: 0 0 170px; scroll-snap-align: start; }
+  .ultra-inclusions__semestre { padding: 9px 5px; text-align: center; }
+  .ultra-inclusions__semestre-nom { font-size: .875rem; line-height: 1.25; text-wrap: balance; }
+  .ultra-inclusions__semestre-nombre { margin-top: 3px; font-size: .75rem; line-height: 1.25; }
   .ultra-inclusions__contenu { padding: 19px 16px; }
   .ultra-inclusions__ressources { grid-template-columns: minmax(0, 1fr); gap: 9px; }
   .ultra-media { grid-template-columns: minmax(0, 1fr); }
