@@ -42,6 +42,10 @@ function environnement({ url = 'https://trajectoiredroit.com/formations.html', m
   const niveaux = ['tous', 'L1', 'L2', 'L3'].map((n) => element({ 'data-catalogue-niveau': n }));
   const matieres = format === 'fiches' ? ['tous', 'civil', 'public', 'penal'].map((m) => element({ 'data-catalogue-matiere': m })) : [];
   const selectMatiere = format === 'fiches' ? element() : null;
+  if (selectMatiere) {
+    selectMatiere.options = matieres.map((bouton) => ({ value: bouton.getAttribute('data-catalogue-matiere') }));
+    selectMatiere.replaceChildren = (...options) => { selectMatiere.options = options; };
+  }
   const liens = [
     element({ href: 'formations.html?utm_source=comparatif#a-l-unite' }),
     element({ href: 'formations.html#a-l-unite' }),
@@ -140,6 +144,7 @@ test('le menu mobile suit les mêmes filtres que les boutons de matière', () =>
   assert.equal(e.selectMatiere.classList.contains('active'), true);
   assert.equal(e.window.location.search, '?niveau=l2');
 
+  e.niveau('tous');
   e.matiere('civil');
   assert.equal(e.selectMatiere.value, 'civil');
   e.chercher('administratif');
@@ -240,7 +245,8 @@ test('une recherche que le niveau mémorisé masque propose les résultats dans 
     cartesReelles: cartesPage('formations.html'),
     memoire: new Map([['tjd_catalogue_niveau', 'L3']])
   });
-  e.matiere('public'); e.chercher('droit administratif');
+  assert.equal(e.matieres[2].hidden, true);
+  e.chercher('droit administratif');
   assert.deepEqual(e.visibles(), []);
   assert.equal(e.vide.hidden, true);
   assert.equal(e.suggestion.hidden, false);
@@ -250,7 +256,7 @@ test('une recherche que le niveau mémorisé masque propose les résultats dans 
   e.suggestion.declencher('click');
   assert.deepEqual(e.visibles(), ['fiche-da-l2-s1', 'fiche-da-l2-s2']);
   assert.equal(e.recherche.value, 'droit administratif');
-  assert.equal(e.matieres[2].getAttribute('aria-pressed'), 'true');
+  assert.equal(e.matieres[0].getAttribute('aria-pressed'), 'true');
   assert.equal(e.niveaux[2].getAttribute('aria-pressed'), 'true');
   assert.equal(e.memoire.get('tjd_catalogue_niveau'), 'L2');
   assert.equal(e.window.location.searchParams.get('niveau'), 'l2');
@@ -270,8 +276,27 @@ test('la suggestion respecte le semestre et disparaît si la recherche suivante 
   assert.equal(e.niveaux[3].getAttribute('aria-pressed'), 'true');
 });
 
-test('des résultats dans plusieurs années ouvrent Tous sans modifier la matière recherchée', () => {
+test('le niveau limite les matières disponibles et réinitialise une matière absente', () => {
   const e = environnement();
+  e.niveau('L2');
+  assert.deepEqual(e.selectMatiere.options.map((option) => option.value), ['tous', 'public', 'penal']);
+  assert.equal(e.matieres[1].hidden, true);
+  e.matiere('penal');
+  e.niveau('L1');
+  assert.deepEqual(e.selectMatiere.options.map((option) => option.value), ['tous', 'civil']);
+  assert.equal(e.selectMatiere.value, 'tous');
+  assert.equal(e.matieres[3].hidden, true);
+  assert.deepEqual(e.visibles(), ['personnes']);
+  e.niveau('tous');
+  assert.deepEqual(e.selectMatiere.options.map((option) => option.value), ['tous', 'civil', 'public', 'penal']);
+});
+
+test('des résultats dans plusieurs années ouvrent Tous sans modifier la matière recherchée', () => {
+  const e = environnement({ cartesReelles: [
+    { niveau: 'L1', matiere: 'civil', texte: 'Droit des personnes L1', id: 'personnes' },
+    { niveau: 'L2', matiere: 'civil', texte: 'Droit des contrats L2', id: 'contrats-l2' },
+    { niveau: 'L3', matiere: 'civil', texte: 'Contrats spéciaux L3', id: 'contrats' }
+  ] });
   e.niveau('L2'); e.matiere('civil'); e.chercher('L1 L3');
   assert.equal(e.suggestion.textContent, 'Voir les 2 résultats dans toutes les années');
   e.suggestion.declencher('click');

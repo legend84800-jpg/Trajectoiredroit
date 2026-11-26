@@ -252,16 +252,15 @@
       catalogue.niveaux[niveau].some((matiere) => matiere.code === code));
     if (!niveauGuide) return;
     const matiere = catalogue.niveaux[niveauGuide].find((matiere) => matiere.code === code);
-    const peutOuvrir = !codes.size || niveau === niveauGuide;
-    if (peutOuvrir) activerNiveau(niveauGuide);
-    if (peutOuvrir && (codes.size < nombre || codes.has(code))) {
+    activerNiveau(niveauGuide);
+    if (codes.size < nombre || codes.has(code)) {
       codes.add(code);
     } else {
       const info = form.querySelector("#kit-matiere-info");
       info.textContent = `Pour ajouter la matière « ${nomComplet(matiere)} », il faut d’abord modifier les choix déjà cochés.`;
       info.hidden = false;
     }
-    if (peutOuvrir) enregistrerSelection();
+    enregistrerSelection();
     url.searchParams.delete("matiere");
     window.history.replaceState(window.history.state, "", url);
   }

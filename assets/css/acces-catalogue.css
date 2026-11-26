@@ -1,0 +1,69 @@
+.catalogue-acces {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 auto 12px;
+}
+
+.catalogue-acces .btn {
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.catalogue-acces .btn.catalogue-acces__packs {
+  color: #63400e;
+  background: #fbe0a3;
+  border-color: #b98525;
+}
+
+.catalogue-acces .btn.catalogue-acces__packs:hover {
+  color: #63400e;
+  background: #f6d38b;
+  border-color: #a46d16;
+}
+
+.catalogue-acces .btn:focus-visible,
+.catalogue-liens-lecture a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.catalogue-acces .catalogue-acces__mobile {
+  display: none;
+}
+
+.catalogue-liens-lecture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  margin: 4px 0 0;
+}
+
+.catalogue-liens-lecture a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--accent-soft);
+  font-size: .9rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+#choixRecueil {
+  scroll-margin-top: 104px;
+}
+
+@media (max-width: 768px) {
+  .catalogue-acces .catalogue-acces__desktop {
+    display: none;
+  }
+
+  .catalogue-acces .catalogue-acces__mobile {
+    display: inline-flex;
+  }
+}

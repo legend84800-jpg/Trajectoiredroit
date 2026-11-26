@@ -95,6 +95,7 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
   <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
+  <link rel="stylesheet" href="assets/css/acces-catalogue.css?v=4530186e">
   <link rel="stylesheet" href="assets/css/offres-corriges.css?v=21c31296">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
@@ -381,6 +382,10 @@
     <section class="section--sm" style="padding-top:24px;padding-bottom:0">
       <div class="container container--narrow text-center">
         <h1 class="h1" id="titre-recueils">Cas pratiques corrigés par matière</h1>
+        <div class="catalogue-acces">
+          <a class="btn btn--primary btn--sm" href="#choixRecueil">Choisir ma matière</a>
+          <a class="btn btn--outline btn--sm catalogue-acces__packs" href="#packs-cas-pratiques">Voir les packs</a>
+        </div>
         <p class="lead">Chaque corrigé montre comment poser la règle de droit, puis l’appliquer aux faits.</p>
       </div>
     </section>
@@ -428,7 +433,6 @@
             </div>
             <p class="conversion-offer__note">Paiement Stripe · accès à vie · mises à jour incluses · garantie satisfait ou remboursé sous 7 jours</p>
             <p id="extraitRecueil" class="recueil-choix__extrait"></p>
-            <p class="recueil-choix__packs"><a href="#packs-cas-pratiques">Les packs</a> réunissent les PDF de cas pratiques corrigés de ton année.</p>
           </div>
         </div>
       </div>

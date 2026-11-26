@@ -54,6 +54,7 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
   <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
+  <link rel="stylesheet" href="assets/css/acces-catalogue.css?v=4530186e">
   <link rel="stylesheet" href="assets/compare-podcasts.css?v=266ecdde">
   <link rel="stylesheet" href="assets/comparateur-besoins.css?v=ddad462c">
   <link rel="stylesheet" href="assets/comparatif-fiche-cours.css?v=20261002">
@@ -586,6 +587,11 @@
     <section class="section--sm" style="padding-top:20px; padding-bottom:8px">
       <div class="container container--narrow text-center">
         <h1 class="h1">Fiches complètes</h1>
+        <div class="catalogue-acces">
+          <a class="btn btn--primary btn--sm catalogue-acces__desktop" href="#a-l-unite">Fiches à l’unité</a>
+          <a class="btn btn--primary btn--sm catalogue-acces__mobile" href="#recherche-formations-mobile">Fiches à l’unité</a>
+          <a class="btn btn--outline btn--sm catalogue-acces__packs" href="#packs-annee" data-catalogue-pack-annee>Voir les packs</a>
+        </div>
         <div id="recherche-formations-mobile"></div>
         <div class="formations-intro">
           <p><strong>Une matière par PDF.</strong></p>
@@ -1402,7 +1408,7 @@
   </div>
 
   <script src="assets/js/main.js?v=00564c99" defer></script>
-  <script src="assets/js/catalogue.js?v=fc69e693" defer></script>
+  <script src="assets/js/catalogue.js?v=713d8723" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var catalogue = document.getElementById('a-l-unite');

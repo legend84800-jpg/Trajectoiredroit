@@ -409,21 +409,50 @@ test("présélectionne le S1 depuis le guide quand le S2 est déjà coché", () 
   assert.deepEqual(ouvrirKit(session).matieres, ["administratif-s1", "administratif-s2"]);
 });
 
-test("conserve les matières cochées quand la matière du guide est incompatible", () => {
-  for (const [niveau, codes] of [
-    ["l1", ["constitutionnel-s1"]],
-    ["l2", ["contrats", "penal-unifie-s1", "biens"]],
-  ]) {
+test("un lien du guide ouvre le brouillon de la bonne année sans modifier les autres", () => {
+  for (const code of ["administratif-s1", "administratif-s2"]) {
     const session = stockage();
-    session.setItem(cleSelection, JSON.stringify({ niveau, codes }));
+    session.setItem(cleSelection, JSON.stringify({
+      niveau: "l1", choixParNiveau: { l1: ["constitutionnel-s1"], l2: ["contrats"], l3: ["travail"] }, paiement: "2",
+    }));
 
-    const kit = ouvrirKit(session, "?matiere=administratif-s1");
+    const kit = ouvrirKit(session, `?source=guide&matiere=${code}`);
 
-    assert.equal(kit.niveau, niveau);
-    assert.deepEqual(kit.matieres, codes);
-    assert.equal(kit.avertissement, true);
-    assert.equal(kit.url.search, "");
+    assert.equal(kit.niveau, "l2");
+    assert.deepEqual(kit.matieres, ["contrats", code]);
+    assert.equal(kit.avertissement, false);
+    assert.equal(kit.url.search, "?source=guide");
+    assert.equal(kit.url.hash, "#composer");
+    assert.equal(kit.paiement, "2");
+    const retour = ouvrirKit(session);
+    assert.equal(retour.niveau, "l2");
+    assert.deepEqual(retour.matieres, ["contrats", code]);
+    retour.choisirNiveau("l1");
+    assert.deepEqual(retour.matieres, ["constitutionnel-s1"]);
+    retour.choisirNiveau("l3");
+    assert.deepEqual(retour.matieres, ["travail"]);
   }
+});
+
+test("un lien du guide ouvre le brouillon complet de la bonne année sans remplacer un choix", () => {
+  const session = stockage();
+  const l2 = ["contrats", "administratif-s2", "biens"];
+  session.setItem(cleSelection, JSON.stringify({
+    niveau: "l1", choixParNiveau: { l1: ["constitutionnel-s1"], l2 },
+  }));
+
+  const kit = ouvrirKit(session, "?matiere=administratif-s1");
+
+  assert.equal(kit.niveau, "l2");
+  assert.deepEqual(kit.matieres, l2);
+  assert.equal(kit.compteur, "3 sur 3");
+  assert.equal(kit.avertissement, true);
+  assert.equal(kit.url.search, "");
+  const retour = ouvrirKit(session, "?matiere=administratif-s2");
+  assert.deepEqual(retour.matieres, l2);
+  assert.equal(retour.avertissement, false);
+  retour.choisirNiveau("l1");
+  assert.deepEqual(retour.matieres, ["constitutionnel-s1"]);
 });
 
 test("garde des choix indépendants pour chaque année et le paiement pendant les allers-retours", () => {

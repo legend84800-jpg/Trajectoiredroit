@@ -65,6 +65,9 @@
       return bouton.getAttribute('data-catalogue-matiere');
     });
     var selectMatiere = racine.querySelector('[data-catalogue-matiere-select]');
+    var optionsMatiere = selectMatiere ? Array.from(selectMatiere.options) : [];
+    var niveauDesMatieres = null;
+    var matieresDisponibles = new Set();
     var compteur = racine.querySelector('[data-catalogue-compteur]');
     var vide = racine.querySelector('[data-catalogue-vide]');
     var suggestion = racine.querySelector('[data-catalogue-suggestion]');
@@ -147,6 +150,27 @@
       suggestion.hidden = !filtreSuggere;
       suggestion.style.display = filtreSuggere ? '' : 'none';
     }
+    function actualiserMatieresDisponibles() {
+      if (niveauDesMatieres !== etat.niveau) {
+        niveauDesMatieres = etat.niveau;
+        matieresDisponibles = new Set(cartes.filter(carteDansNiveau).flatMap(function (carte) {
+          return carte.matieres;
+        }));
+        matieresDisponibles.add('tous');
+        matieres.forEach(function (bouton) {
+          var disponible = matieresDisponibles.has(bouton.getAttribute('data-catalogue-matiere'));
+          bouton.hidden = !disponible;
+          bouton.style.display = disponible ? '' : 'none';
+        });
+        if (selectMatiere) {
+          selectMatiere.replaceChildren(...optionsMatiere.filter(function (option) {
+            return matieresDisponibles.has(option.value);
+          }));
+        }
+      }
+      if (!matieresDisponibles.has(etat.matiere)) etat.matiere = 'tous';
+    }
+
     function appliquerFiltres(depuisRecherche) {
       var semestres = [], semestresLicence = [], niveauxRecherches = [];
       var texte = normaliser(recherche.value)
@@ -174,6 +198,7 @@
         etat.niveau = niveauSaisi;
         actualiserAdresse(false);
       }
+      actualiserMatieresDisponibles();
       var mots = extraireMots(texte);
       var filtreSemestre = semestres.length || semestresLicence.length;
       var sujetAnnuel = filtreSemestre ? mots.slice().sort().join(' ') : null;
