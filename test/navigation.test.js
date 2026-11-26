@@ -29,6 +29,23 @@ function verifierFinFormats(formats, nom) {
   assert.equal(liens.filter((lien) => lien === 'droit-des-contrats-en-images.html').length, 1, nom);
 }
 
+test('le titre des articles ouvre la même page que la couverture sans lien générique sous la carte', () => {
+  const blog = fs.readFileSync(path.join(racine, 'blog.html'), 'utf8');
+  const cartes = [...blog.matchAll(/<article class="post-card([^"]*)">([\s\S]*?)<\/article>/g)];
+  assert.ok(cartes.length);
+  for (const [, classes, carte] of cartes) {
+    if (classes.includes('post-card--soon')) {
+      assert.doesNotMatch(carte, /<a\b/);
+      continue;
+    }
+    const couverture = carte.match(/<a\b(?=[^>]*\bclass="post-card__media\b)[^>]*\bhref="([^"]+)"/)?.[1];
+    const titre = carte.match(/<h3 class="post-card__title"><a href="([^"]+)">([\s\S]+?)<\/a><\/h3>/);
+    assert.ok(couverture && titre, carte.slice(0, 150));
+    assert.equal(titre[1], couverture, titre[2]);
+    assert.doesNotMatch(carte, /Lire l['’]article/, titre[2]);
+  }
+});
+
 test('les pages françaises partagent quatre familles de navigation avec Portalis dans Par format', () => {
   assert.ok(pages.length >= 247, `Le contrôle doit couvrir au moins 247 pages, ${pages.length} trouvées`);
 

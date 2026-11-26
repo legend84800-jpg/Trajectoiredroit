@@ -368,7 +368,7 @@ test("la page parents affiche les cinq packs en vente au bon prix", () => {
   assert.match(html, /cadeauEmail: adresse/);
 });
 
-test("chaque carte Pack Ultra ouvre le formulaire Parents avec son semestre", () => {
+test("chaque carte Pack Ultra ouvre la présentation Parents et transmet son semestre", () => {
   const packs = fs.readFileSync(path.join(RACINE, "pack-ultra.html"), "utf8");
   const parents = fs.readFileSync(path.join(RACINE, "parents.html"), "utf8");
   const cartes = [...packs.matchAll(/<article class="ultra-card" id="([^"]+)">([\s\S]*?)<\/article>/g)];
@@ -380,7 +380,7 @@ test("chaque carte Pack Ultra ouvre le formulaire Parents avec son semestre", ()
     const url = new URL(lien, "https://trajectoiredroit.com/");
     assert.equal(url.pathname, "/parents.html");
     assert.equal(url.searchParams.get("pack"), semestre);
-    assert.equal(url.hash, "#offrir");
+    assert.equal(url.hash, "");
     assert.equal(produit.replace(/-revision(?:-\d+)?$/, ""), semestre);
     assert.ok(parents.includes(`<option value="${produit}"`), produit);
   }

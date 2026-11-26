@@ -507,8 +507,8 @@ html[data-theme="dark"] #fiche-da-choix-2:checked ~ .fiche-semestre__choix [for=
                 <p class="offre-matiere__label">La fiche d’un seul semestre</p>
                 <fieldset class="fiche-semestre">
                   <legend class="sr-only">Choisir le semestre</legend>
-                  <input class="sr-only" type="radio" name="fiche-da-semestre" id="fiche-da-choix-1" checked>
-                  <input class="sr-only" type="radio" name="fiche-da-semestre" id="fiche-da-choix-2">
+                  <input class="sr-only" type="radio" name="fiche-da-semestre" id="fiche-da-choix-1" value="1" checked>
+                  <input class="sr-only" type="radio" name="fiche-da-semestre" id="fiche-da-choix-2" value="2">
                   <div class="fiche-semestre__choix">
                     <label for="fiche-da-choix-1">Semestre 1</label>
                     <label for="fiche-da-choix-2">Semestre 2</label>
@@ -1098,6 +1098,7 @@ html[data-theme="dark"] #fiche-da-choix-2:checked ~ .fiche-semestre__choix [for=
   </div>
 
   <script src="assets/js/main.js?v=00564c99" defer></script>
+  <script src="assets/js/fiche-semestre.js?v=46b54f61" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
   <script src="assets/js/lead-sample.js?v=2fb15f79" defer></script>
@@ -1143,11 +1144,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (chapitre && chapitre.matches('a.apercu-link')) chapitre.textContent = 'Premier chapitre';
   });
   card.addEventListener('change', actualiserLienKit);
-  window.addEventListener('pageshow', actualiserLienKit);
+  card.addEventListener('tjd:semestre-restaure', actualiserLienKit);
   actualiserLienKit();
   document.querySelector('[data-fiche-da-s1]').addEventListener('click', function () {
     choixS1.checked = true;
-    actualiserLienKit();
+    choixS1.dispatchEvent(new Event('change', { bubbles: true }));
   });
 });
 </script>

@@ -128,7 +128,7 @@
   <!-- End Matomo Code -->
   <link rel="stylesheet" href="assets/css/offre-partiels.css?v=63ac2e7c">
 <style>
-#offre #fiche-seule-societes-l3{align-self:start}
+#offre #fiche-seule-societes-l3{align-self:start;scroll-margin-top:100px}
 #fiche-seule-societes-l3 .fiche-semestre{border:0;padding:0;min-width:0;margin:2px 0 0}
 #fiche-seule-societes-l3 .fiche-semestre__choix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;padding:4px;border:1px solid var(--border);border-radius:10px;background:var(--surface-2)}
 #fiche-seule-societes-l3 .fiche-semestre__choix label{display:grid;place-items:center;min-height:44px;padding:5px 9px;border:1px solid transparent;border-radius:7px;color:var(--body);font-weight:650;font-size:.88rem;text-align:center;cursor:pointer}
@@ -505,8 +505,8 @@ html[data-theme="dark"] #fiche-societes-l3-choix-2:checked ~ .fiche-semestre__ch
                 <p class="offre-matiere__label">La fiche d’un seul semestre</p>
                 <fieldset class="fiche-semestre">
                   <legend class="sr-only">Choisir le semestre</legend>
-                  <input class="sr-only" type="radio" name="fiche-societes-l3-semestre" id="fiche-societes-l3-choix-1" aria-label="S1, semestre 1" checked>
-                  <input class="sr-only" type="radio" name="fiche-societes-l3-semestre" id="fiche-societes-l3-choix-2" aria-label="S2, semestre 2">
+                  <input class="sr-only" type="radio" name="fiche-societes-l3-semestre" id="fiche-societes-l3-choix-1" value="1" aria-label="S1, semestre 1" checked>
+                  <input class="sr-only" type="radio" name="fiche-societes-l3-semestre" id="fiche-societes-l3-choix-2" value="2" aria-label="S2, semestre 2">
                   <div class="fiche-semestre__choix">
                     <label for="fiche-societes-l3-choix-1">S1</label>
                     <label for="fiche-societes-l3-choix-2">S2</label>
@@ -947,6 +947,7 @@ html[data-theme="dark"] #fiche-societes-l3-choix-2:checked ~ .fiche-semestre__ch
   </div>
 
   <script src="assets/js/main.js?v=00564c99" defer></script>
+  <script src="assets/js/fiche-semestre.js?v=46b54f61" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
   <script>
