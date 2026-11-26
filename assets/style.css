@@ -412,6 +412,10 @@ h2, .h2 { font-size: clamp(1.6rem, 3.2vw, 2.5rem) }
 h3, .h3 { font-size: clamp(1.25rem, 2vw, 1.6rem) }
 h4, .h4 { font-size: 1.1rem }
 p { margin: 0 0 var(--sp-4); color: var(--body) }
+/* Renforce le contraste des paragraphes sur les fonds clairs du contenu. */
+:where(html:not([data-theme="dark"]) :is(main, [role="main"]) p:not(.section--dark *, .accordion--dark *)) {
+  --body: #000;
+}
 p:last-child { margin-bottom: 0 }
 .lead { font-size: clamp(1.05rem, 1.5vw, 1.25rem); color: var(--body); line-height: 1.6 }
 .intro-pourquoi p { font-size: 1.1rem; line-height: 1.65 }
@@ -5826,3 +5830,83 @@ html[data-theme="dark"] {
 }
 #video-des-formats { scroll-margin-top: 88px; }
 #video-des-formats a.fiche-preview__caption-sub { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 600px) {
+  :is(.table-arrets, .table-regimes, .table-fiche-mobile, .table-sujets-mobile) {
+    display: block;
+    border-radius: var(--r-md);
+    background: var(--white);
+    box-shadow: none !important;
+  }
+  :is(.table-regimes, .table-fiche-mobile, .table-sujets-mobile) { min-width: 0 !important; }
+  :is(.table-arrets, .table-fiche-mobile, .table-sujets-mobile) > thead,
+  .table-regimes > thead > tr > th:first-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  :is(.table-arrets, .table-regimes, .table-fiche-mobile, .table-sujets-mobile) > tbody { display: block; }
+  :is(.table-arrets, .table-regimes, .table-fiche-mobile, .table-sujets-mobile) > tbody > tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+    padding: 14px 15px 15px;
+  }
+  :is(.table-arrets, .table-regimes, .table-fiche-mobile, .table-sujets-mobile) > tbody > tr > :is(th, td),
+  .table-regimes > thead > tr > th {
+    display: block;
+    padding: 0 !important;
+    border: 0 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+  }
+  :is(.table-arrets, .table-regimes, .table-fiche-mobile, .table-sujets-mobile) > tbody > tr > [role="rowheader"] {
+    grid-row: 1;
+    font-size: 1rem;
+    line-height: 1.35;
+    color: var(--text);
+  }
+  .table-arrets--dates-separees > tbody > tr > td:first-child {
+    grid-row: 2;
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  .table-arrets > tbody > tr > td:last-child {
+    margin-top: 5px;
+    line-height: 1.55;
+  }
+  .table-arrets > tbody > tr:has(> th[scope="colgroup"]) {
+    background: var(--surface-2);
+  }
+  .table-arrets > tbody > tr > th[scope="colgroup"] {
+    background: transparent !important;
+  }
+  .table-regimes > thead {
+    display: block;
+    background: var(--surface-2);
+  }
+  .table-regimes > :is(thead, tbody) > tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px 12px;
+  }
+  .table-regimes > thead > tr { padding: 11px 15px; }
+  .table-regimes > tbody > tr > [role="rowheader"] { grid-column: 1 / -1; }
+  .table-fiche-mobile > tbody > tr:not(:last-child) { border-bottom: 1px solid var(--border); }
+  .table-fiche-mobile > tbody > tr > td { margin-top: 6px; }
+  .table-fiche-mobile td[data-colonne]:not(:first-of-type:last-child)::before {
+    content: attr(data-colonne);
+    content: attr(data-colonne) / "";
+    display: block;
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .table-sujets-mobile > tbody > tr { gap: 4px; border-bottom: 0 !important; }
+  .table-sujets-mobile > tbody > tr + tr { border-top: 1px solid var(--border); }
+  .table-sujets-mobile > tbody > tr > [role="rowheader"] { color: var(--ink); font-weight: 650; line-height: 1.45; }
+  .table-sujets-mobile > tbody > tr > td:nth-child(2) { color: var(--muted); font-size: .84rem; line-height: 1.4; }
+}

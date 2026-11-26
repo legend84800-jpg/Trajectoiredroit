@@ -42,7 +42,11 @@ function element() {
       add(nom) { classes.add(nom); },
       remove(nom) { classes.delete(nom); },
       contains(nom) { return classes.has(nom); },
-      toggle(nom) { if (classes.has(nom)) { classes.delete(nom); return false; } classes.add(nom); return true; }
+      toggle(nom, force = !classes.has(nom)) {
+        if (force) classes.add(nom);
+        else classes.delete(nom);
+        return force;
+      }
     },
     setAttribute(nom, valeur) { attributs[nom] = valeur; },
     getAttribute(nom) { return attributs[nom] || null; },
@@ -82,7 +86,7 @@ function environnement({ gettersRefuses = false, ecritureRefusee = false, dejaVu
   const fenetre = {
     location: { search: '', pathname: '/majeures-preparees.html', hash: '' },
     scrollY: 300, innerHeight: 844,
-    matchMedia: () => ({ matches: false }),
+    matchMedia: (requete) => ({ matches: requete === '(max-width: 1080px)' }),
     addEventListener(nom, action) { (ecouteursFenetre[nom] ||= []).push(action); }
   };
   const contenu = {

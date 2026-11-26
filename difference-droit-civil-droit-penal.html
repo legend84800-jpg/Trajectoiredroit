@@ -458,52 +458,52 @@
   </div>
 </div>
 
-        <h2 class="h2" style="margin-bottom:8px">Le tableau récapitulatif</h2>
+        <h2 id="comparaison-titre" class="h2" style="margin-bottom:8px">Le tableau récapitulatif</h2>
         <p class="lead" style="margin-bottom:24px">Le tableau compare les deux matières point par point, sur les éléments qui reviennent au partiel d'introduction au droit.</p>
         <div style="overflow-x:auto">
-        <table style="width:100%; border-collapse:collapse; font-size:.96rem; background:var(--white); border-radius:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.08)">
-          <thead>
-            <tr style="background:#1A2851; color:#fff; text-align:left">
-              <th style="padding:13px 14px"></th>
-              <th style="padding:13px 14px">Droit civil</th>
-              <th style="padding:13px 14px">Droit pénal</th>
+        <table class="table-regimes" role="table" aria-labelledby="comparaison-titre" style="width:100%; border-collapse:collapse; font-size:.96rem; background:var(--white); border-radius:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.08)">
+          <thead role="rowgroup">
+            <tr role="row" style="background:#1A2851; color:#fff; text-align:left">
+              <th scope="col" role="columnheader" style="padding:13px 14px"></th>
+              <th scope="col" role="columnheader" style="padding:13px 14px">Droit civil</th>
+              <th scope="col" role="columnheader" style="padding:13px 14px">Droit pénal</th>
             </tr>
           </thead>
-          <tbody style="color:var(--body)">
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 14px; font-weight:700">Finalité</td>
-              <td style="padding:12px 14px">Réparer un dommage causé à une victime</td>
-              <td style="padding:12px 14px">Punir un comportement interdit par la loi, protéger l'ordre public</td>
+          <tbody role="rowgroup" style="color:var(--body)">
+            <tr role="row" style="border-top:1px solid var(--border)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Finalité</td>
+              <td role="cell" style="padding:12px 14px">Réparer un dommage causé à une victime</td>
+              <td role="cell" style="padding:12px 14px">Punir un comportement interdit par la loi, protéger l'ordre public</td>
             </tr>
-            <tr style="border-top:1px solid var(--border); background:var(--slate-100)">
-              <td style="padding:12px 14px; font-weight:700">Qui déclenche l'action</td>
-              <td style="padding:12px 14px">La victime elle-même, en assignant l'autre partie</td>
-              <td style="padding:12px 14px">Le ministère public, au nom de la société</td>
+            <tr role="row" style="border-top:1px solid var(--border); background:var(--slate-100)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Qui déclenche l'action</td>
+              <td role="cell" style="padding:12px 14px">La victime elle-même, en assignant l'autre partie</td>
+              <td role="cell" style="padding:12px 14px">Le ministère public, au nom de la société</td>
             </tr>
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 14px; font-weight:700">Parties au procès</td>
-              <td style="padding:12px 14px">Deux particuliers, à égalité (demandeur et défendeur)</td>
-              <td style="padding:12px 14px">L'accusé face à l'État, représenté par le procureur</td>
+            <tr role="row" style="border-top:1px solid var(--border)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Parties au procès</td>
+              <td role="cell" style="padding:12px 14px">Deux particuliers, à égalité (demandeur et défendeur)</td>
+              <td role="cell" style="padding:12px 14px">L'accusé face à l'État, représenté par le procureur</td>
             </tr>
-            <tr style="border-top:1px solid var(--border); background:var(--slate-100)">
-              <td style="padding:12px 14px; font-weight:700">Sanction</td>
-              <td style="padding:12px 14px">Dommages-intérêts, versés à la victime et calculés sur le préjudice</td>
-              <td style="padding:12px 14px">Amende versée à l'État, ou peine d'emprisonnement</td>
+            <tr role="row" style="border-top:1px solid var(--border); background:var(--slate-100)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Sanction</td>
+              <td role="cell" style="padding:12px 14px">Dommages-intérêts, versés à la victime et calculés sur le préjudice</td>
+              <td role="cell" style="padding:12px 14px">Amende versée à l'État, ou peine d'emprisonnement</td>
             </tr>
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 14px; font-weight:700">Charge de la preuve</td>
-              <td style="padding:12px 14px">À celui qui réclame (article 1353 du Code civil)</td>
-              <td style="padding:12px 14px">À l'accusation, la présomption d'innocence protège l'accusé</td>
+            <tr role="row" style="border-top:1px solid var(--border)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Charge de la preuve</td>
+              <td role="cell" style="padding:12px 14px">À celui qui réclame (article 1353 du Code civil)</td>
+              <td role="cell" style="padding:12px 14px">À l'accusation, la présomption d'innocence protège l'accusé</td>
             </tr>
-            <tr style="border-top:1px solid var(--border); background:var(--slate-100)">
-              <td style="padding:12px 14px; font-weight:700">Juridiction</td>
-              <td style="padding:12px 14px">Tribunal judiciaire</td>
-              <td style="padding:12px 14px">Tribunal de police, correctionnel ou cour d'assises selon la gravité</td>
+            <tr role="row" style="border-top:1px solid var(--border); background:var(--slate-100)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Juridiction</td>
+              <td role="cell" style="padding:12px 14px">Tribunal judiciaire</td>
+              <td role="cell" style="padding:12px 14px">Tribunal de police, correctionnel ou cour d'assises selon la gravité</td>
             </tr>
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 14px; font-weight:700">Prescription de droit commun</td>
-              <td style="padding:12px 14px">5 ans (article 2224 du Code civil)</td>
-              <td style="padding:12px 14px">1, 6 ou 20 ans selon contravention, délit ou crime</td>
+            <tr role="row" style="border-top:1px solid var(--border)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Prescription de droit commun</td>
+              <td role="cell" style="padding:12px 14px">5 ans (article 2224 du Code civil)</td>
+              <td role="cell" style="padding:12px 14px">1, 6 ou 20 ans selon contravention, délit ou crime</td>
             </tr>
           </tbody>
         </table>

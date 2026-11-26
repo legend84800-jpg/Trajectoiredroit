@@ -192,7 +192,10 @@ window.tjdDialogues = (function () {
       var actif = document.activeElement;
       var tag = actif && actif.tagName;
       if ((e.key === '/' || (e.key === 'k' && (e.metaKey || e.ctrlKey))) && !window.tjdDialogues.estOuvert() && tag !== 'INPUT' && tag !== 'TEXTAREA' && !(actif && actif.isContentEditable)) {
-        e.preventDefault(); ouvrir();
+        e.preventDefault();
+        var rechercheMobile = document.querySelector('#mobileNav.open [data-mobile-search]');
+        if (rechercheMobile) rechercheMobile.click();
+        else ouvrir();
       }
     });
   }
@@ -706,28 +709,62 @@ window.tjdDialogues = (function () {
   var BURGER_ICON = '<svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-menu"/></svg>';
   var CLOSE_ICON = '<svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg#icon-close"/></svg>';
   if (burger && mobileNav) {
-    burger.addEventListener('click', function () {
-      var open = mobileNav.classList.toggle('open');
-      mobileNav.hidden = !open;
-      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      burger.innerHTML = open ? CLOSE_ICON : BURGER_ICON;
-      document.body.style.overflow = open ? 'hidden' : '';
-      // Le bandeau d'urgence pousse le header sous y=0 tant qu'on n'a pas scrollé :
-      // on recale le panneau sur le vrai bas du header plutôt que sur --header-h fixe.
-      if (open) {
+    var mediaMenuMobile = window.matchMedia('(max-width: 1080px)');
+    var libelleOuvrirMenu = burger.getAttribute('aria-label') || 'Ouvrir le menu';
+    var defilementAvantMenu = '';
+    function reglerMenuMobile(ouvert) {
+      if (mobileNav.classList.contains('open') === ouvert) return;
+      mobileNav.classList.toggle('open', ouvert);
+      mobileNav.hidden = !ouvert;
+      burger.setAttribute('aria-expanded', String(ouvert));
+      burger.setAttribute('aria-label', ouvert ? 'Fermer le menu' : libelleOuvrirMenu);
+      burger.innerHTML = ouvert ? CLOSE_ICON : BURGER_ICON;
+      if (ouvert) {
+        defilementAvantMenu = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        // Le bandeau d'urgence peut décaler l'en-tête quand la page est en haut.
         var headerEl = document.querySelector('.site-header');
         if (headerEl) mobileNav.style.top = headerEl.getBoundingClientRect().bottom + 'px';
+      } else {
+        document.body.style.overflow = defilementAvantMenu;
+      }
+    }
+    burger.addEventListener('click', function () {
+      if (mediaMenuMobile.matches && !window.tjdDialogues.estOuvert()) {
+        reglerMenuMobile(!mobileNav.classList.contains('open'));
       }
     });
-    // Fermer en cliquant sur un lien
-    mobileNav.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        mobileNav.classList.remove('open');
-        mobileNav.hidden = true;
-        burger.setAttribute('aria-expanded', 'false');
-        burger.innerHTML = BURGER_ICON;
-        document.body.style.overflow = '';
-      });
+    mobileNav.addEventListener('click', function (evenement) {
+      if (evenement.target.closest('a[href]')) reglerMenuMobile(false);
+    });
+    function fermerMenuSurOrdinateur() {
+      if (!mediaMenuMobile.matches) reglerMenuMobile(false);
+    }
+    if (typeof mediaMenuMobile.addEventListener === 'function') {
+      mediaMenuMobile.addEventListener('change', fermerMenuSurOrdinateur);
+    } else if (typeof mediaMenuMobile.addListener === 'function') {
+      mediaMenuMobile.addListener(fermerMenuSurOrdinateur);
+    }
+    document.addEventListener('keydown', function (evenement) {
+      if (evenement.defaultPrevented || !mobileNav.classList.contains('open') || window.tjdDialogues.estOuvert()) return;
+      if (evenement.key === 'Escape') {
+        evenement.preventDefault();
+        reglerMenuMobile(false);
+        burger.focus({ preventScroll: true });
+      } else if (evenement.key === 'Tab') {
+        var controles = [burger].concat(Array.prototype.filter.call(
+          mobileNav.querySelectorAll('a[href], button, summary, input, select, textarea, [tabindex]'),
+          function (element) {
+            return !element.disabled && element.tabIndex >= 0 && element.getClientRects().length > 0
+              && getComputedStyle(element).visibility === 'visible';
+          }
+        ));
+        var position = controles.indexOf(document.activeElement);
+        if (position < 0 && evenement.shiftKey) position = 0;
+        var pas = evenement.shiftKey ? -1 : 1;
+        evenement.preventDefault();
+        controles[(position + pas + controles.length) % controles.length].focus();
+      }
     });
     // Recherche + thème masqués du header sous 1080px faute de place (voir style.css) :
     // les 2 actions rapides du menu mobile relaient les boutons desktop existants,
@@ -735,13 +772,10 @@ window.tjdDialogues = (function () {
     var mobileSearchBtn = mobileNav.querySelector('[data-mobile-search]');
     if (mobileSearchBtn) {
       mobileSearchBtn.addEventListener('click', function () {
-        mobileNav.classList.remove('open');
-        mobileNav.hidden = true;
-        burger.setAttribute('aria-expanded', 'false');
-        burger.innerHTML = BURGER_ICON;
-        document.body.style.overflow = '';
+        reglerMenuMobile(false);
+        burger.focus({ preventScroll: true });
         var trigger = document.querySelector('.search-trigger');
-        if (trigger) setTimeout(function () { trigger.click(); }, 60);
+        if (trigger) trigger.click();
       });
     }
     var mobileThemeBtn = mobileNav.querySelector('[data-mobile-theme]');

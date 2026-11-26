@@ -508,52 +508,52 @@
     <!-- TABLEAU -->
     <section class="section" id="tableau">
       <div class="container container--narrow">
-        <h2 class="h2" style="margin-bottom:8px">Le tableau récapitulatif</h2>
+        <h2 id="comparaison-titre" class="h2" style="margin-bottom:8px">Le tableau récapitulatif</h2>
         <p class="lead" style="margin-bottom:24px">Le tableau compare les deux notions sur les points qui reviennent le plus souvent en cas pratique.</p>
         <div style="overflow-x:auto">
-        <table style="width:100%; border-collapse:collapse; font-size:.96rem; background:var(--white); border-radius:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.08)">
-          <thead>
-            <tr style="background:#1A2851; color:#fff; text-align:left">
-              <th style="padding:13px 14px"></th>
-              <th style="padding:13px 14px">Acte administratif unilatéral</th>
-              <th style="padding:13px 14px">Contrat administratif</th>
+        <table class="table-regimes" role="table" aria-labelledby="comparaison-titre" style="width:100%; border-collapse:collapse; font-size:.96rem; background:var(--white); border-radius:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.08)">
+          <thead role="rowgroup">
+            <tr role="row" style="background:#1A2851; color:#fff; text-align:left">
+              <th scope="col" role="columnheader" style="padding:13px 14px"></th>
+              <th scope="col" role="columnheader" style="padding:13px 14px">Acte administratif unilatéral</th>
+              <th scope="col" role="columnheader" style="padding:13px 14px">Contrat administratif</th>
             </tr>
           </thead>
-          <tbody style="color:var(--body)">
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 14px; font-weight:700">Comment il naît</td>
-              <td style="padding:12px 14px">Décision de l'administration seule</td>
-              <td style="padding:12px 14px">Accord entre l'administration et son cocontractant</td>
+          <tbody role="rowgroup" style="color:var(--body)">
+            <tr role="row" style="border-top:1px solid var(--border)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Comment il naît</td>
+              <td role="cell" style="padding:12px 14px">Décision de l'administration seule</td>
+              <td role="cell" style="padding:12px 14px">Accord entre l'administration et son cocontractant</td>
             </tr>
-            <tr style="border-top:1px solid var(--border); background:var(--slate-100)">
-              <td style="padding:12px 14px; font-weight:700">Consentement du destinataire</td>
-              <td style="padding:12px 14px">Pas nécessaire, l'acte s'impose de toute façon</td>
-              <td style="padding:12px 14px">Nécessaire, le contrat est librement négocié et signé</td>
+            <tr role="row" style="border-top:1px solid var(--border); background:var(--slate-100)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Consentement du destinataire</td>
+              <td role="cell" style="padding:12px 14px">Pas nécessaire, l'acte s'impose de toute façon</td>
+              <td role="cell" style="padding:12px 14px">Nécessaire, le contrat est librement négocié et signé</td>
             </tr>
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 14px; font-weight:700">Critère de qualification</td>
-              <td style="padding:12px 14px">Manifestation unilatérale de volonté et caractère décisoire</td>
-              <td style="padding:12px 14px">Critère organique (personne publique) puis critère matériel (clause exorbitante ou service public)</td>
+            <tr role="row" style="border-top:1px solid var(--border)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Critère de qualification</td>
+              <td role="cell" style="padding:12px 14px">Manifestation unilatérale de volonté et caractère décisoire</td>
+              <td role="cell" style="padding:12px 14px">Critère organique (personne publique) puis critère matériel (clause exorbitante ou service public)</td>
             </tr>
-            <tr style="border-top:1px solid var(--border); background:var(--slate-100)">
-              <td style="padding:12px 14px; font-weight:700">Recours possible</td>
-              <td style="padding:12px 14px">Recours pour excès de pouvoir devant le juge administratif, 2 mois</td>
-              <td style="padding:12px 14px">Recours de plein contentieux devant le juge du contrat, ouvert aux tiers depuis Tarn-et-Garonne (2014)</td>
+            <tr role="row" style="border-top:1px solid var(--border); background:var(--slate-100)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Recours possible</td>
+              <td role="cell" style="padding:12px 14px">Recours pour excès de pouvoir devant le juge administratif, 2 mois</td>
+              <td role="cell" style="padding:12px 14px">Recours de plein contentieux devant le juge du contrat, ouvert aux tiers depuis Tarn-et-Garonne (2014)</td>
             </tr>
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 14px; font-weight:700">Pouvoirs de l'administration en cours d'exécution</td>
-              <td style="padding:12px 14px">Retrait ou abrogation, selon les règles propres à l'acte</td>
-              <td style="padding:12px 14px">Modification et résiliation unilatérales pour motif d'intérêt général, en contrepartie de l'équilibre financier du cocontractant</td>
+            <tr role="row" style="border-top:1px solid var(--border)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Pouvoirs de l'administration en cours d'exécution</td>
+              <td role="cell" style="padding:12px 14px">Retrait ou abrogation, selon les règles propres à l'acte</td>
+              <td role="cell" style="padding:12px 14px">Modification et résiliation unilatérales pour motif d'intérêt général, en contrepartie de l'équilibre financier du cocontractant</td>
             </tr>
-            <tr style="border-top:1px solid var(--border); background:var(--slate-100)">
-              <td style="padding:12px 14px; font-weight:700">Force exécutoire</td>
-              <td style="padding:12px 14px">Immédiate, privilège du préalable, exécution forcée strictement encadrée</td>
-              <td style="padding:12px 14px">S'exécute selon les clauses signées, sous le contrôle du juge en cas de litige</td>
+            <tr role="row" style="border-top:1px solid var(--border); background:var(--slate-100)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Force exécutoire</td>
+              <td role="cell" style="padding:12px 14px">Immédiate, privilège du préalable, exécution forcée strictement encadrée</td>
+              <td role="cell" style="padding:12px 14px">S'exécute selon les clauses signées, sous le contrôle du juge en cas de litige</td>
             </tr>
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 14px; font-weight:700">Exemple concret</td>
-              <td style="padding:12px 14px">Refus de permis de construire, arrêté municipal, sanction disciplinaire</td>
-              <td style="padding:12px 14px">Marché de travaux publics, <a href="la-delegation-de-service-public.html">concession de service public</a>, contrat de recrutement d'un agent contractuel</td>
+            <tr role="row" style="border-top:1px solid var(--border)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Exemple concret</td>
+              <td role="cell" style="padding:12px 14px">Refus de permis de construire, arrêté municipal, sanction disciplinaire</td>
+              <td role="cell" style="padding:12px 14px">Marché de travaux publics, <a href="la-delegation-de-service-public.html">concession de service public</a>, contrat de recrutement d'un agent contractuel</td>
             </tr>
           </tbody>
         </table>

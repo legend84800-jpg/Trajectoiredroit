@@ -505,52 +505,52 @@
     <!-- TABLEAU -->
     <section class="section" id="tableau">
       <div class="container container--narrow">
-        <h2 class="h2" style="margin-bottom:8px">Le tableau récapitulatif</h2>
+        <h2 id="comparaison-titre" class="h2" style="margin-bottom:8px">Le tableau récapitulatif</h2>
         <p class="lead" style="margin-bottom:24px">Le tableau compare les deux actions sur les points qui reviennent le plus souvent en cas pratique.</p>
         <div style="overflow-x:auto">
-        <table style="width:100%; border-collapse:collapse; font-size:.96rem; background:var(--white); border-radius:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.08)">
-          <thead>
-            <tr style="background:#1A2851; color:#fff; text-align:left">
-              <th style="padding:13px 14px"></th>
-              <th style="padding:13px 14px">Action publique</th>
-              <th style="padding:13px 14px">Action civile</th>
+        <table class="table-regimes" role="table" aria-labelledby="comparaison-titre" style="width:100%; border-collapse:collapse; font-size:.96rem; background:var(--white); border-radius:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.08)">
+          <thead role="rowgroup">
+            <tr role="row" style="background:#1A2851; color:#fff; text-align:left">
+              <th scope="col" role="columnheader" style="padding:13px 14px"></th>
+              <th scope="col" role="columnheader" style="padding:13px 14px">Action publique</th>
+              <th scope="col" role="columnheader" style="padding:13px 14px">Action civile</th>
             </tr>
           </thead>
-          <tbody style="color:var(--body)">
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 14px; font-weight:700">Titulaire</td>
-              <td style="padding:12px 14px">Le ministère public, et la victime en cas d'inaction du parquet</td>
-              <td style="padding:12px 14px">La victime qui a personnellement souffert du dommage</td>
+          <tbody role="rowgroup" style="color:var(--body)">
+            <tr role="row" style="border-top:1px solid var(--border)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Titulaire</td>
+              <td role="cell" style="padding:12px 14px">Le ministère public, et la victime en cas d'inaction du parquet</td>
+              <td role="cell" style="padding:12px 14px">La victime qui a personnellement souffert du dommage</td>
             </tr>
-            <tr style="border-top:1px solid var(--border); background:var(--slate-100)">
-              <td style="padding:12px 14px; font-weight:700">Fondement légal</td>
-              <td style="padding:12px 14px">Article 1er du code de procédure pénale</td>
-              <td style="padding:12px 14px">Article 2 du code de procédure pénale</td>
+            <tr role="row" style="border-top:1px solid var(--border); background:var(--slate-100)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Fondement légal</td>
+              <td role="cell" style="padding:12px 14px">Article 1er du code de procédure pénale</td>
+              <td role="cell" style="padding:12px 14px">Article 2 du code de procédure pénale</td>
             </tr>
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 14px; font-weight:700">Ce qu'elle réclame</td>
-              <td style="padding:12px 14px">Une peine contre l'auteur de l'infraction</td>
-              <td style="padding:12px 14px">Des dommages et intérêts</td>
+            <tr role="row" style="border-top:1px solid var(--border)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Ce qu'elle réclame</td>
+              <td role="cell" style="padding:12px 14px">Une peine contre l'auteur de l'infraction</td>
+              <td role="cell" style="padding:12px 14px">Des dommages et intérêts</td>
             </tr>
-            <tr style="border-top:1px solid var(--border); background:var(--slate-100)">
-              <td style="padding:12px 14px; font-weight:700">Bénéficiaire</td>
-              <td style="padding:12px 14px">L'intérêt général, la société</td>
-              <td style="padding:12px 14px">L'intérêt privé de la victime</td>
+            <tr role="row" style="border-top:1px solid var(--border); background:var(--slate-100)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Bénéficiaire</td>
+              <td role="cell" style="padding:12px 14px">L'intérêt général, la société</td>
+              <td role="cell" style="padding:12px 14px">L'intérêt privé de la victime</td>
             </tr>
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 14px; font-weight:700">Comment elle se déclenche</td>
-              <td style="padding:12px 14px">Réquisitoire introductif, citation directe, convocation en justice</td>
-              <td style="padding:12px 14px">Constitution de partie civile, par voie d'action ou par voie d'intervention</td>
+            <tr role="row" style="border-top:1px solid var(--border)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Comment elle se déclenche</td>
+              <td role="cell" style="padding:12px 14px">Réquisitoire introductif, citation directe, convocation en justice</td>
+              <td role="cell" style="padding:12px 14px">Constitution de partie civile, par voie d'action ou par voie d'intervention</td>
             </tr>
-            <tr style="border-top:1px solid var(--border); background:var(--slate-100)">
-              <td style="padding:12px 14px; font-weight:700">Comment elle s'éteint</td>
-              <td style="padding:12px 14px">Décès du prévenu, amnistie, chose jugée, prescription (1, 6 ou 20 ans)</td>
-              <td style="padding:12px 14px">Renonciation de la victime, ou extinction de l'action publique dont elle dépend au pénal</td>
+            <tr role="row" style="border-top:1px solid var(--border); background:var(--slate-100)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Comment elle s'éteint</td>
+              <td role="cell" style="padding:12px 14px">Décès du prévenu, amnistie, chose jugée, prescription (1, 6 ou 20 ans)</td>
+              <td role="cell" style="padding:12px 14px">Renonciation de la victime, ou extinction de l'action publique dont elle dépend au pénal</td>
             </tr>
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 14px; font-weight:700">Juge compétent</td>
-              <td style="padding:12px 14px">Les seules juridictions répressives</td>
-              <td style="padding:12px 14px">Juridiction pénale (en option) ou juridiction civile</td>
+            <tr role="row" style="border-top:1px solid var(--border)">
+              <td role="rowheader" style="padding:12px 14px; font-weight:700">Juge compétent</td>
+              <td role="cell" style="padding:12px 14px">Les seules juridictions répressives</td>
+              <td role="cell" style="padding:12px 14px">Juridiction pénale (en option) ou juridiction civile</td>
             </tr>
           </tbody>
         </table>
