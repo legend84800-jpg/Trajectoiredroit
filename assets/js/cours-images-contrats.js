@@ -12,7 +12,8 @@
     if (!event.target || typeof event.target.closest !== 'function') return;
     var bouton = event.target.closest('[data-apercu]');
     var modal = document.getElementById('apercuModal');
-    if (bouton && modal && modal.classList.contains('open')) {
+    var groupeOuvert = bouton && bouton.hasAttribute('data-apercu-groupe') && document.querySelector('.apercu-zoom.open');
+    if (bouton && (modal?.classList.contains('open') || groupeOuvert)) {
       mesurer('ApercuCoursOuvert');
     } else if (event.target.closest('#apercuModal .apercu-page')) {
       mesurer('PageApercuAgrandie');

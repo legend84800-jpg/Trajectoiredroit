@@ -5021,7 +5021,13 @@ html[data-theme="dark"] .tag-high  { color: #34D399; }
 @media (max-width: 924px) {
   /* Fige aussi le viewport mobile si la page derrière l’aperçu déborde. */
   html:has(.apercu-backdrop.open) { overflow: hidden }
+  .apercu-close {
+    flex: 0 0 44px;
+    min-height: 44px;
+    justify-content: center;
+  }
   .apercu-zoom { width: 100vw }
+  .apercu-zoom__close { width: 44px; height: 44px }
   .apercu-zoom__toggle {
     display: inline-flex; align-items: center; position: absolute; top: 10px; left: 12px; z-index: 2;
     min-height: 44px; padding: 0 14px; border: none; border-radius: 22px; box-shadow: var(--sh-2);
@@ -5949,25 +5955,25 @@ html[data-theme="dark"] {
 }
 
 @media (max-width: 600px) {
-  .comparatif-franchise {
+  :is(.comparatif-franchise, .comparatif-criteres-fixes):not(.table-wrap) {
     border-radius: 10px;
   }
-  .comparatif-franchise > table {
+  :is(.comparatif-franchise, .comparatif-criteres-fixes) > table {
     overflow: visible !important;
   }
-  .comparatif-franchise tr > :first-child {
+  :is(.comparatif-franchise, .comparatif-criteres-fixes) > table > :is(thead, tbody) > tr > :first-child {
     position: sticky;
     inset-inline-start: 0;
     z-index: 1;
     box-shadow: 1px 0 var(--border);
   }
-  .comparatif-franchise thead th:first-child {
+  :is(.comparatif-franchise, .comparatif-criteres-fixes):not(.table-wrap) > table:not(.compare-table) > thead > tr > th:first-child {
     background: inherit;
   }
-  .comparatif-franchise tbody td:first-child {
+  :is(.comparatif-franchise, .comparatif-criteres-fixes) > table > tbody > tr > td:first-child {
     background: var(--white);
   }
-  .comparatif-franchise tbody tr:nth-child(even) td:first-child {
+  :is(.comparatif-franchise, .comparatif-criteres-fixes--alternance) > table > tbody > tr:nth-child(even) > td:first-child {
     background: var(--slate-100);
   }
 }

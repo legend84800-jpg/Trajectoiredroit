@@ -30,6 +30,25 @@
     #apercuPrice { font-size: 1.2rem; font-weight: 700; white-space: nowrap; }
     a:focus-visible, button:focus-visible { outline: 2px solid #2878c2; outline-offset: 3px; }
     #pages img { display: block; width: 100%; height: auto; margin-bottom: 16px; border: 1px solid #d9e3ed; background: #fff; }
+    .product-carousel__controls { display: none; }
+    @media (max-width: 640px) {
+      [data-carousel-ready] .product-carousel__controls {
+        display: flex; align-items: center; justify-content: center; gap: 16px; margin: 0 0 10px;
+      }
+      [data-carousel-ready] #pages {
+        display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+        margin-bottom: 16px;
+      }
+      [data-carousel-ready] #pages::-webkit-scrollbar { display: none; }
+      [data-carousel-ready] #pages img { flex: 0 0 100%; scroll-snap-align: start; margin-bottom: 0; }
+      .product-carousel__controls button {
+        display: grid; place-items: center; width: 44px; height: 44px; padding: 0;
+        border: 1px solid #9aabbd; border-radius: 50%; color: #0e2a47; background: #fff; cursor: pointer;
+      }
+      .product-carousel__controls button[aria-disabled="true"] { opacity: .55; cursor: default; }
+      .product-carousel__controls span { min-width: 6ch; text-align: center; font: 600 .875rem Arial, Helvetica, sans-serif; font-variant-numeric: tabular-nums; }
+      #pages:focus-visible { outline: 2px solid #2878c2; outline-offset: 3px; }
+    }
   </style>
 </head>
 <body>
@@ -46,7 +65,18 @@
       <span id="apercuPrice" hidden></span>
       <button type="button" id="acheter"></button>
     </div>
-    <div id="pages"></div>
+    <div id="lecteur-apercu">
+      <div class="product-carousel__controls">
+        <button type="button" data-carousel-prev aria-label="Page précédente" aria-controls="pages" aria-disabled="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg>
+        </button>
+        <span data-carousel-position role="status"></span>
+        <button type="button" data-carousel-next aria-label="Page suivante" aria-controls="pages">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg>
+        </button>
+      </div>
+      <div id="pages" class="product-carousel__viewport" role="region" aria-labelledby="titre" data-carousel-focus></div>
+    </div>
   </main>
   <main id="catalogue">
     <h1>Choisis ton support de droit</h1>
@@ -144,6 +174,7 @@
       const images = document.getElementById('pages');
       for (let page = 1; page <= pages; page += 1) {
         const image = document.createElement('img');
+        image.className = 'product-carousel__slide';
         image.src = produit + '/page-' + page + '.webp';
         image.alt = titre + ', page ' + page + ' sur ' + pages;
         image.width = largeur;
@@ -152,10 +183,12 @@
         image.decoding = 'async';
         images.append(image);
       }
+      if (pages > 1) document.getElementById('lecteur-apercu').setAttribute('data-product-carousel', '');
       document.getElementById('catalogue').hidden = true;
       document.getElementById('apercu').hidden = false;
     })();
   </script>
+  <script src="/assets/js/apercu-pages.js?v=6c30d9a5" defer></script>
   <script src="/assets/js/achat.js?v=81a894f1" defer></script>
 </body>
 </html>

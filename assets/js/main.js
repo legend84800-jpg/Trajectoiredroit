@@ -267,6 +267,15 @@ window.tjdDialogues = (function () {
     var etatApercu = document.getElementById('apercuEtat');
     var pagesViewer = [];
     var positionViewer = 0;
+    var typeVisionneuse = 'direct';
+    var groupes = new Map();
+    triggers.forEach(function (bouton) {
+      var nom = bouton.getAttribute('data-apercu-groupe');
+      var vignette = nom && bouton.querySelector('img');
+      if (!vignette) return;
+      if (!groupes.has(nom)) groupes.set(nom, []);
+      groupes.get(nom).push(vignette);
+    });
     var tentativesApercu = 0;
     var retourEnCours = false;
 
@@ -308,24 +317,30 @@ window.tjdDialogues = (function () {
       viewerNext.setAttribute('aria-disabled', position === pagesViewer.length - 1);
       viewerStatus.textContent = viewerNav.hidden ? '' : 'Page ' + (position + 1) + ' sur ' + pagesViewer.length;
       var etat = etatHistorique();
-      if (etat?.type === 'zoom' && etat.page !== position) {
+      if ((etat?.type === 'zoom' || etat?.type === 'groupe') && etat.page !== position) {
         try {
           window.history.replaceState({ ...window.history.state, tjdApercu: { ...etat, page: position } }, '');
         } catch (_) {}
       }
     }
-    function openViewer(im, bouton) {
-      pagesViewer = Array.from(imgsBox.querySelectorAll('.apercu-page img'));
-      positionViewer = pagesViewer.indexOf(im);
+    function ouvrirVisionneuse(pages, position, retourFocus, type) {
+      if (!pages[position]) return;
+      pagesViewer = pages;
+      typeVisionneuse = type;
       viewerNav.hidden = pagesViewer.length < 2;
       viewer.classList.toggle('apercu-zoom--plusieurs', !viewerNav.hidden);
       reglerZoom(false);
-      window.tjdDialogues.ouvrir(viewer, viewerClose, function () {
+      window.tjdDialogues.ouvrir(viewer, viewerClose, retourFocus, undefined, closeViewer);
+      afficherPage(position);
+    }
+    function openViewer(im, bouton) {
+      var pages = Array.from(imgsBox.querySelectorAll('.apercu-page img'));
+      ouvrirVisionneuse(pages, pages.indexOf(im), function () {
         return pagesViewer[positionViewer]?.parentElement || bouton;
-      }, undefined, closeViewer);
-      afficherPage(positionViewer);
+      }, 'zoom');
     }
     function ouvrirApercuDirect(lien) {
+      typeVisionneuse = 'direct';
       pagesViewer = [];
       viewerNav.hidden = true;
       viewer.classList.remove('apercu-zoom--plusieurs');
@@ -336,7 +351,7 @@ window.tjdDialogues = (function () {
       afficherImage(lien.href, alt, false);
     }
     function closeViewer() {
-      demanderRetour(viewer, modal.classList.contains('open') ? 'zoom' : 'direct');
+      demanderRetour(viewer, typeVisionneuse);
     }
     viewerClose.addEventListener('click', closeViewer);
     viewerToggle.addEventListener('click', function () {
@@ -452,8 +467,7 @@ window.tjdDialogues = (function () {
     function afficherHistorique() {
       retourEnCours = false;
       var etat = etatHistorique();
-      var typeZoom = modal.classList.contains('open') ? 'zoom' : 'direct';
-      if (etat?.type !== typeZoom) window.tjdDialogues.fermer(viewer);
+      if (etat?.type !== typeVisionneuse) window.tjdDialogues.fermer(viewer);
 
       var bouton = etat?.type === 'apercu' || etat?.type === 'zoom' ? triggers[etat.index] : null;
       if (!bouton) window.tjdDialogues.fermer(modal);
@@ -466,13 +480,24 @@ window.tjdDialogues = (function () {
         else demanderRetour(viewer, 'zoom');
       } else if (etat?.type === 'direct' && liensDirects[etat.index]) {
         ouvrirApercuDirect(liensDirects[etat.index]);
+      } else if (etat?.type === 'groupe' && triggers[etat.index]) {
+        var declencheur = triggers[etat.index];
+        var groupe = groupes.get(declencheur.getAttribute('data-apercu-groupe'));
+        if (groupe) ouvrirVisionneuse(groupe, etat.page, declencheur, 'groupe');
       }
     }
     triggers.forEach(function (bouton, index) {
       bouton.addEventListener('click', function () {
-        if (retourEnCours || modal.classList.contains('open')) return;
-        ajouterHistorique({ type: 'apercu', index: index });
-        open(bouton);
+        if (retourEnCours || modal.classList.contains('open') || viewer.classList.contains('open')) return;
+        var groupe = groupes.get(bouton.getAttribute('data-apercu-groupe'));
+        var page = groupe ? groupe.indexOf(bouton.querySelector('img')) : -1;
+        if (page >= 0) {
+          ajouterHistorique({ type: 'groupe', index: index, page: page });
+          ouvrirVisionneuse(groupe, page, bouton, 'groupe');
+        } else {
+          ajouterHistorique({ type: 'apercu', index: index });
+          open(bouton);
+        }
         try { if (window.gtag) gtag('event', 'apercu_open', { matiere: bouton.getAttribute('data-apercu-title') || '' }); } catch (_) {}
       });
     });
@@ -567,91 +592,6 @@ window.tjdDialogues = (function () {
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialiser);
   else initialiser();
-})();
-
-/* ----- CARROUSEL D'APERÇU PRODUIT (page d'accueil) -----
-   Le swipe tactile est natif (scroll-snap CSS) : ce script gère seulement
-   les boutons, les points et la position de la page visible. */
-(function () {
-  function initCarousel(root) {
-    var track = root.querySelector('.product-carousel__viewport');
-    var slides = Array.prototype.slice.call(root.querySelectorAll('.product-carousel__slide'));
-    var dots = Array.prototype.slice.call(root.querySelectorAll('.product-carousel__dot'));
-    if (!track || !slides.length) return;
-
-    var prevBtn = root.querySelector('[data-carousel-prev]');
-    var nextBtn = root.querySelector('[data-carousel-next]');
-    var position = root.querySelector('[data-carousel-position]');
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    var current = -1;
-    var last = slides.length - 1;
-
-    function isRtl() {
-      return getComputedStyle(track).direction === 'rtl';
-    }
-
-    function goTo(index) {
-      if (index < 0 || index > last || index === current) return;
-      var slideWidth = slides[0].getBoundingClientRect().width;
-      track.scrollTo({
-        left: index * slideWidth * (isRtl() ? -1 : 1),
-        behavior: reduceMotion.matches ? 'instant' : 'smooth'
-      });
-    }
-
-    function updateActivePage() {
-      var slideWidth = slides[0].getBoundingClientRect().width;
-      if (!slideWidth) return;
-      var index = Math.min(last, Math.round(Math.abs(track.scrollLeft) / slideWidth));
-      if (index === current) return;
-      current = index;
-
-      dots.forEach(function (dot, dotIndex) {
-        var active = dotIndex === current;
-        dot.classList.toggle('is-active', active);
-        if (active) dot.setAttribute('aria-current', 'true');
-        else dot.removeAttribute('aria-current');
-      });
-      if (prevBtn) prevBtn.setAttribute('aria-disabled', String(current === 0));
-      if (nextBtn) nextBtn.setAttribute('aria-disabled', String(current === last));
-      if (position) {
-        var label = (current + 1) + ' sur ' + slides.length;
-        if (position.textContent !== label) position.textContent = label;
-      }
-    }
-
-    function turnPage(step) {
-      updateActivePage();
-      goTo(current + step);
-    }
-
-    if (prevBtn) prevBtn.addEventListener('click', function () { turnPage(-1); });
-    if (nextBtn) nextBtn.addEventListener('click', function () { turnPage(1); });
-    dots.forEach(function (dot, index) { dot.addEventListener('click', function () { goTo(index); }); });
-    track.addEventListener('scroll', updateActivePage, { passive: true });
-    track.addEventListener('keydown', function (event) {
-      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
-      var index;
-      if (event.key === 'Home') index = 0;
-      else if (event.key === 'End') index = last;
-      else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-        updateActivePage();
-        var step = event.key === 'ArrowRight' ? 1 : -1;
-        index = current + (isRtl() ? -step : step);
-      } else return;
-      event.preventDefault();
-      goTo(index);
-    });
-    updateActivePage();
-  }
-  function init() {
-    document.querySelectorAll('[data-product-carousel]').forEach(initCarousel);
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
 })();
 
 /* ----- DARK MODE -----
