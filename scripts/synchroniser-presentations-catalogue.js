@@ -136,8 +136,9 @@ function renderApercu(item) {
   return `<button type="button" class="apercu-link" data-apercu='${JSON.stringify(images)}' data-apercu-title="${escape(item.titre)}" data-apercu-sub="" data-apercu-price="${euro(PRODUITS[item.id].prix)}" data-apercu-cta="${item.id}">Voir un aperçu</button>`;
 }
 
-function renderSommaire(item) {
-  return `<details class="product__sommaire" data-catalogue-sommaire="${item.id}"><summary>Voir le sommaire (${item.sommaire.length} chapitres)</summary><ul class="product__sommaire-list">${item.sommaire.map((titre) => `<li>${escape(titre)}</li>`).join("")}</ul></details>`;
+function renderSommaire(item, fichier) {
+  const ancre = fichier === "formations.html" ? ` id="${item.id}-sommaire" style="scroll-margin-top:96px"` : "";
+  return `<details class="product__sommaire" data-catalogue-sommaire="${item.id}"><summary${ancre}>Voir le sommaire (${item.sommaire.length} chapitres)</summary><ul class="product__sommaire-list">${item.sommaire.map((titre) => `<li>${escape(titre)}</li>`).join("")}</ul></details>`;
 }
 
 function synchroniser(contenu, fichier) {
@@ -167,8 +168,9 @@ function synchroniser(contenu, fichier) {
   for (const item of APERCUS) {
     const bouton = new RegExp(`<button\\b(?=[^>]*data-apercu-cta="${item.id}")[^>]*>[\\s\\S]*?</button>`, "g");
     const marqueur = `data-catalogue-sommaire="${item.id}"`;
-    sortie = sortie.replace(bouton, renderApercu(item) + (sortie.includes(marqueur) ? "" : `\n              ${renderSommaire(item)}`));
-    sortie = sortie.replace(new RegExp(`<details\\b[^>]*${marqueur}[^>]*>[\\s\\S]*?</details>`, "g"), renderSommaire(item));
+    const sommaire = renderSommaire(item, fichier);
+    sortie = sortie.replace(bouton, renderApercu(item) + (sortie.includes(marqueur) ? "" : `\n              ${sommaire}`));
+    sortie = sortie.replace(new RegExp(`<details\\b[^>]*${marqueur}[^>]*>[\\s\\S]*?</details>`, "g"), sommaire);
   }
   if (fichier === "formations.html") {
     for (const id of ["pack-complet", "pack-l1", "pack-l2", "pack-l3"]) {

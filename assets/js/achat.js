@@ -885,7 +885,8 @@
       'font-size:1.4rem;color:var(--muted,#5B6B84);cursor:pointer;padding:6px 10px}' +
       '.tjd-panier-panel__titre{font-family:var(--font-display,serif);font-size:1.4rem;color:var(--navy,#1A2851);' +
       'margin:0 0 16px}' +
-      '.tjd-panier-liste{overflow-y:auto;flex:1;margin-bottom:16px}' +
+      '.tjd-panier-liste-cadre{position:relative;display:flex;flex-direction:column;flex:1;min-height:0;margin-bottom:16px}' +
+      '.tjd-panier-liste{overflow-y:auto;flex:1;min-height:0}' +
       '.tjd-panier-item{display:grid;grid-template-columns:minmax(0,1fr) auto 44px;align-items:center;gap:8px;' +
       'padding:10px 0;border-bottom:1px solid var(--border,#E2E8F0)}' +
       '.tjd-panier-item__nom{min-width:0;overflow-wrap:anywhere;font-size:.92rem;color:var(--ink,#0F172A)}' +
@@ -904,7 +905,17 @@
       '.tjd-panier-cta{width:100%;padding:14px;border-radius:var(--r-md,12px);border:none;' +
       'background:var(--navy,#1A2851);color:#fff;font-weight:700;font-size:1rem;cursor:pointer}' +
       '.tjd-panier-cta:disabled{opacity:.6;cursor:default}' +
-      '.tjd-panier-note{font-size:.78rem;color:var(--muted,#5B6B84);text-align:center;margin-top:10px}';
+      '.tjd-panier-note{font-size:.78rem;color:var(--muted,#5B6B84);text-align:center;margin-top:10px}' +
+      '.tjd-panier-liste-cadre.a-suivre::after{content:"";position:absolute;inset:auto 0 0;height:14px;' +
+      'background:linear-gradient(transparent,var(--border-strong,#CBD5E1));pointer-events:none}' +
+      '@media(max-width:420px) and (max-height:700px){' +
+      '.tjd-panier-panel{padding:16px;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px)}' +
+      '.tjd-panier-panel__titre{line-height:1.25;margin-bottom:10px;padding-right:38px}' +
+      '.tjd-panier-panel__close{top:8px;right:8px}' +
+      '.tjd-panier-liste-cadre{margin-bottom:10px}' +
+      '.tjd-panier-item{padding:5px 0;gap:2px 8px;line-height:1.3}' +
+      '.tjd-panier-total{padding-top:9px;margin-bottom:10px}' +
+      '.tjd-panier-note{line-height:1.35;margin:8px 0 0}}';
     document.head.appendChild(style);
   }
 
@@ -942,7 +953,7 @@
       '<div class="tjd-panier-panel">' +
         '<button type="button" class="tjd-panier-panel__close" data-tjd-panier-fermer aria-label="Fermer le panier">✕</button>' +
         '<h2 class="tjd-panier-panel__titre" id="tjdPanierTitre">Ton panier</h2>' +
-        '<div class="tjd-panier-liste" id="tjdPanierListe"></div>' +
+        '<div class="tjd-panier-liste-cadre"><div class="tjd-panier-liste" id="tjdPanierListe"></div></div>' +
         '<div class="tjd-panier-total" id="tjdPanierTotal" hidden><span>Total</span><span id="tjdPanierTotalMontant"></span></div>' +
         '<button type="button" class="tjd-panier-cta" id="tjdPanierCta">Passer au paiement</button>' +
         '<button type="button" class="tjd-panier-cta" id="tjdPanierContinuer" aria-describedby="tjdPanierEtatVide" data-tjd-panier-fermer hidden>Continuer mes achats</button>' +
@@ -955,6 +966,12 @@
     var retourEnCours = false, pageAvantPanier;
     var fermerBouton = backdrop.querySelector('[data-tjd-panier-fermer]');
     var continuerBouton = document.getElementById('tjdPanierContinuer');
+    var listePanier = document.getElementById('tjdPanierListe');
+    if (listePanier) {
+      var verifierDefilement = function () { panierIndiquerSuite(listePanier); };
+      listePanier.addEventListener('scroll', verifierDefilement, { passive: true });
+      if (typeof ResizeObserver === 'function') new ResizeObserver(verifierDefilement).observe(listePanier);
+    }
 
     function cibleRetourPanier() {
       if (fab.tabIndex !== -1) return fab;
@@ -984,6 +1001,7 @@
       var premier = continuerBouton.hidden ? fermerBouton : continuerBouton;
       if (dialogueCommun) {
         dialogueCommun.ouvrir(backdrop, premier, cibleRetourPanier, { preventScroll: true }, fermer);
+        panierIndiquerSuite(listePanier);
         return;
       }
       overflowAvant = document.body.style.overflow;
@@ -996,6 +1014,7 @@
       backdrop.classList.add('open');
       document.body.style.overflow = 'hidden';
       (premier || backdrop).focus();
+      panierIndiquerSuite(listePanier);
     }
     function fermerPanneau() {
       if (!backdrop.classList.contains('open')) return;
@@ -1097,6 +1116,12 @@
     if (cible) cible.focus();
   }
 
+  function panierIndiquerSuite(conteneur) {
+    if (!conteneur?.parentElement) return;
+    var reste = conteneur.scrollHeight - conteneur.clientHeight - conteneur.scrollTop;
+    conteneur.parentElement.classList.toggle('a-suivre', conteneur.clientHeight > 0 && reste > 2);
+  }
+
   function panierActualiserCatalogue(liste) {
     var conteneur = document.getElementById('tjdPanierListe');
     if (!conteneur) return;
@@ -1117,6 +1142,7 @@
     var total = document.getElementById('tjdPanierTotalMontant');
     var montantTotal = centimesVersEuro(panierTotalCentimes(liste));
     if (lignes.length && total && texteSansAffichageRemise(total) !== montantTotal) total.textContent = montantTotal;
+    panierIndiquerSuite(conteneur);
   }
 
   function panierChargerInclusions() {
@@ -1150,7 +1176,13 @@
     var continuerBouton = document.getElementById('tjdPanierContinuer');
     var noteEnvoi = document.getElementById('tjdPanierEnvoi');
     if (!conteneur) return;
-    var vide = liste.length === 0;
+    var nombre = liste.length;
+    var vide = nombre === 0;
+    var titrePanier = document.getElementById('tjdPanierTitre');
+    if (titrePanier) {
+      var titre = vide ? 'Ton panier' : 'Panier · ' + nombre + (nombre === 1 ? ' support' : ' supports');
+      if (titrePanier.textContent !== titre) titrePanier.textContent = titre;
+    }
     if (continuerBouton) continuerBouton.hidden = !vide;
     if (noteEnvoi) noteEnvoi.hidden = vide;
     cta.hidden = vide;
@@ -1158,6 +1190,7 @@
       conteneur.innerHTML = '<p class="tjd-panier-vide" id="tjdPanierEtatVide">Ton panier est vide.</p>';
       totalBloc.hidden = true;
       cta.disabled = true;
+      panierIndiquerSuite(conteneur);
       return;
     }
     conteneur.innerHTML = liste.map(function (a, index) {
@@ -1177,6 +1210,7 @@
     totalBloc.hidden = false;
     cta.disabled = !!cta.tjdPaiementEnCours || panierPaiementBloque(liste);
     panierActiverRetraits(conteneur, cta);
+    panierIndiquerSuite(conteneur);
     panierChargerInclusions();
   }
 
