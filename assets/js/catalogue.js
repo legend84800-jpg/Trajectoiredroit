@@ -240,6 +240,10 @@
         selectMatiere.classList.toggle('active', etat.matiere !== 'tous');
       }
       if (compteur) compteur.textContent = nombre + (nombre > 1 ? ' supports affichés sur ' : ' support affiché sur ') + cartes.length;
+      if (reset) {
+        var filtreActif = etat.niveau !== 'tous' || etat.matiere !== 'tous' || recherche.value.trim() !== '';
+        reset.hidden = !filtreActif;
+      }
       var chercherSuggestion = nombre === 0 && (mots.length || niveauxSaisis.length || filtreSemestre);
       var cartesSansFiltres = chercherSuggestion ? cartesDansMatiere(cartesRecherchees, 'tous', sujetAnnuel) : [];
       var autresMatieres = etat.matiere !== 'tous' ? cartesSansFiltres.filter(carteDansNiveau) : [];

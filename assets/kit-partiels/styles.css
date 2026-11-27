@@ -177,9 +177,7 @@ p { max-width: 64ch; }
   .header-inner { min-height: 62px; gap: 12px; }
   .brand { font-size: 17px; }
   .brand img { width: 29px; height: 29px; }
-  .nav { gap: 8px; font-size: 12px; }
-  .nav > a:not(.button) { display: none; }
-  .nav .button { min-height: 36px; padding-inline: 9px; }
+  .header .nav { display: none; }
   .hero-grid, .config-grid, .faq { grid-template-columns: 1fr; }
   #matieres[data-kit-compact="true"] .matter-option:has(input:not(:checked)),
   #matieres[data-kit-compact="true"] ~ .kit-remplacement { display: none; }

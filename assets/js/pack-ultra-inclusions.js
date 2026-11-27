@@ -138,10 +138,7 @@
     titreMatiere.id = 'ultra-inclusions-titre-matiere';
     const metaMatiere = element('p', 'ultra-inclusions__matiere-meta');
     const liste = element('ul', 'ultra-inclusions__ressources');
-    const pied = element('div', 'ultra-inclusions__pied');
-    const note = element('p', 'ultra-inclusions__autres');
-    pied.append(note);
-    contenu.append(titreMatiere, metaMatiere, liste, pied);
+    contenu.append(titreMatiere, metaMatiere, liste);
     disposition.append(sommaire, contenu);
     experience.append(semestres, disposition);
     racine.insertBefore(experience, sources[0]);
@@ -172,7 +169,6 @@
       const medias = matiere.ressources.filter(li => li.classList.contains('ultra-resource--media'));
       const documents = matiere.ressources.filter(li => !li.classList.contains('ultra-resource--media'));
       liste.replaceChildren(...medias.concat(documents).map(li => li.cloneNode(true)));
-      note.textContent = 'Le pack comprend aussi les ' + (pack.matieres.length - 1) + ' autres matières.';
     }
 
     function afficherSemestre(indice, modifierAdresse) {

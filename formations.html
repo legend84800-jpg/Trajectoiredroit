@@ -62,6 +62,7 @@
     #a-l-unite .card--product[id], #packs-annee .card--product[id] { scroll-margin-top:96px }
     #recherche-formations-mobile:empty { display:none }
     #recherche-formations-mobile { scroll-margin-top:calc(var(--header-h) + 16px) }
+    .catalogue-toolbar [data-catalogue-reset][hidden] { display:none }
     #recherche-formations-mobile .filtre-recherche { margin:18px auto 16px }
     .formations-intro { max-width:52ch; margin:12px auto 0; color:var(--body) }
     .formations-intro p { margin:0 }
@@ -637,7 +638,7 @@
         <div class="filters catalogue-toolbar__footer">
           <div class="filters__row">
             <span class="text-muted" data-catalogue-compteur role="status" aria-live="polite">23 supports affichés sur 23</span>
-            <button type="button" class="btn btn--ghost btn--sm" data-catalogue-reset disabled>Réinitialiser</button>
+            <button type="button" class="btn btn--ghost btn--sm" data-catalogue-reset disabled hidden>Réinitialiser</button>
           </div>
         </div>
       </div>
@@ -658,7 +659,7 @@
               <h3 class="product__title">Droit administratif (S1)</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>PDF · 122 p.</span></div>
               <p class="product__edition">Édition : septembre 2026</p>
-              <p class="product__desc">Tout le premier semestre est expliqué. La fiche montre qui juge l'administration et quelles règles elle doit respecter, puis comment l'État et les collectivités sont organisés.</p>
+              <p class="product__desc">La fiche montre qui juge l'administration et quelles règles elle doit respecter, puis comment l'État et les collectivités sont organisés.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-da-l2-s1/507acea54720-p089.webp","assets/apercus/finition-20261114/fiche-da-l2-s1/507acea54720-p119.webp"]' data-apercu-title="Droit administratif · L2 S1 · Fiche complète" data-apercu-price="14,99 €" data-apercu-cta="fiche-da-l2-s1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
               <details class="product__sommaire"><summary>Voir le sommaire (6 thèmes)</summary><ul class="product__sommaire-list"><li>L'identité du droit administratif</li><li>Le dualisme juridictionnel et le juge</li><li>Le principe de légalité</li><li>Les sources de la légalité</li><li>L'organisation administrative</li><li>Grands arrêts et notions clés</li></ul></details>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-da-l2-s1">Acheter la fiche complète · 14,99 €</button>
@@ -672,7 +673,7 @@
               <h3 class="product__title">Droit administratif (S2)</h3>
               <div class="product__meta"><span>L2</span><span>·</span><span>PDF · 110 p.</span></div>
               <p class="product__edition">Édition : septembre 2026</p>
-              <p class="product__desc">Tout le second semestre est couvert. La fiche part des deux missions de l'administration, le service public et la police. Elle étudie ensuite ses décisions et ses contrats, puis sa responsabilité et les recours devant le juge administratif.</p>
+              <p class="product__desc">La fiche part des deux missions de l'administration, le service public et la police. Elle étudie ensuite ses décisions et ses contrats, puis sa responsabilité et les recours devant le juge administratif.</p>
               <button type="button" class="apercu-link" data-apercu='["assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p019.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p018.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p107.webp","assets/apercus/finition-20261114/fiche-da-l2-s2/30a7717a7e57-p082.webp"]' data-apercu-title="Droit administratif · L2 S2 · Fiche complète" data-apercu-price="14,99 €" data-apercu-cta="fiche-da-l2-s2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Voir un aperçu</button>
               <details class="product__sommaire"><summary>Voir le sommaire (7 thèmes)</summary><ul class="product__sommaire-list"><li>Le service public</li><li>La police administrative</li><li>L'acte administratif unilatéral</li><li>Le contrat administratif</li><li>La responsabilité administrative</li><li>Le contentieux administratif</li><li>Bilan et synthèse du semestre 2</li></ul></details>
               <button type="button" class="btn btn--primary btn--full product__cta" data-tjd-produit="fiche-da-l2-s2">Acheter la fiche complète · 14,99 €</button>
@@ -1408,7 +1409,7 @@
   </div>
 
   <script src="assets/js/main.js?v=00564c99" defer></script>
-  <script src="assets/js/catalogue.js?v=713d8723" defer></script>
+  <script src="assets/js/catalogue.js?v=bebaec4d" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var catalogue = document.getElementById('a-l-unite');

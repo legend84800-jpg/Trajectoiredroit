@@ -276,6 +276,30 @@ test('la suggestion respecte le semestre et disparaît si la recherche suivante 
   assert.equal(e.niveaux[3].getAttribute('aria-pressed'), 'true');
 });
 
+test('Réinitialiser s’affiche seulement si une recherche ou un filtre est actif', () => {
+  const catalogue = environnement();
+  assert.equal(catalogue.reset.hidden, true);
+  catalogue.chercher('   ');
+  assert.equal(catalogue.reset.hidden, true);
+  catalogue.chercher('droit');
+  assert.equal(catalogue.reset.hidden, false);
+  catalogue.chercher('');
+  assert.equal(catalogue.reset.hidden, true);
+
+  catalogue.niveau('L1');
+  assert.equal(catalogue.reset.hidden, false);
+  catalogue.niveau('tous');
+  assert.equal(catalogue.reset.hidden, true);
+  catalogue.matiere('civil');
+  assert.equal(catalogue.reset.hidden, false);
+  catalogue.reset.declencher('click');
+  assert.equal(catalogue.reset.hidden, true);
+  assert.equal(catalogue.actif(), catalogue.recherche);
+
+  const reprise = environnement({ url: 'https://trajectoiredroit.com/formations.html?niveau=l2' });
+  assert.equal(reprise.reset.hidden, false);
+});
+
 test('le niveau limite les matières disponibles et réinitialise une matière absente', () => {
   const e = environnement();
   e.niveau('L2');
