@@ -1,9 +1,5 @@
 const METHODE=require('./_portalis-correction-methode');
-const {CONSIGNES_CONTROLE}=require('./_portalis-relecture');
-const debutCompare=CONSIGNES_CONTROLE.indexOf('Un visa indique'),finCompare=CONSIGNES_CONTROLE.indexOf("Les citations de l'introduction");
-const debutExemples=CONSIGNES_CONTROLE.indexOf('Les exemples suivants montrent'),finExemples=CONSIGNES_CONTROLE.indexOf('</exemples_corrections>');
-if(debutCompare<0||finCompare<debutCompare||debutExemples<0||finExemples<debutExemples)throw Error('consignes_compare_absentes');
-const COHERENCE_COMPAREE=CONSIGNES_CONTROLE.slice(debutCompare,finCompare)+'\n\n'+CONSIGNES_CONTROLE.slice(debutExemples,finExemples+'</exemples_corrections>'.length);
+const {COHERENCE_COMPAREE}=require('./_portalis-relecture');
 const chaine={type:'string'},nombre={type:'number'};
 const objet=properties=>({type:'object',properties,required:Object.keys(properties),additionalProperties:false});
 const tableau=items=>({type:'array',items});

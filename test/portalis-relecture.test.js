@@ -27,6 +27,15 @@ test('la qualification suit le groupe entier d’un nom d’action composé',()=
     assert.throws(()=>verifierTitres('I. La '+action+' de la règle'),{message:'relecture_incomplete',raison:'titre_non_qualifie_1'});
   }
 });
+test('chaque intitulé commence par un déterminant et garde la qualification de l’action',()=>{
+  assert.doesNotThrow(()=>verifierTitres('I. Une reconnaissance limitée de la règle'));
+  assert.throws(()=>verifierTitres('I. Une reconnaissance de la règle'),{message:'relecture_incomplete',raison:'titre_non_qualifie_1'});
+  for(const [index,titre] of titresQualifies.entries()){
+    const titres=[...titresQualifies];
+    titres[index]=titre.replace(/(\. )(?:L'|La |Le )/,'$1');
+    assert.throws(()=>verifierTitres(titres.join('\n\n')),{message:'relecture_incomplete',raison:'titre_sans_determinant_'+(index+1)});
+  }
+});
 test('les corrections suivent leurs passages exacts et conservent le développement',()=>{
   const texte='Premier paragraphe à conserver.\n\nUn passage à reprendre.\n\nDernier paragraphe à conserver.';
   const resultat=appliquerCorrections(texte,{corrections:[{avant:'Un passage à reprendre.',apres:'Le passage corrigé explique le raisonnement.'}],blocages:[]});
@@ -131,7 +140,7 @@ test('un titre encore sans qualification déclenche une reprise de tous les titr
   assert.equal(r.reponse,titresQualifies.join('\n\n'));
   assert.equal(requetes.length,2);
   assert.match(requetes[1].messages[0].content,/titre_non_qualifie_2/);
-  assert.match(requetes[1].system,/vérifie les six titres/);
-  assert.match(requetes[1].system,/Les reprises dans l’annonce du plan et les chapeaux/);
+  assert.match(requetes[1].system,/vérifie les six intitulés\. Chaque titre commence par un déterminant/);
+  assert.match(requetes[1].system,/L’annonce du plan et les chapeaux reprennent les titres corrigés/);
   assert.deepEqual(r.usage,{input_tokens:1000,output_tokens:1000});
 });
