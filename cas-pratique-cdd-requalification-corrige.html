@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Cas pratique CDD corrigé : requalification en CDI (L3, 2026)</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Cas pratique corrigé sur le CDD en droit du travail L3. Une préparatrice de commandes enchaîne deux contrats, puis la correction dit si elle obtient un CDI.">
+  <link rel="canonical" href="https://trajectoiredroit.com/cas-pratique-cdd-requalification-corrige.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Cas pratique CDD corrigé : requalification en CDI (L3, 2026)">
+  <meta property="og:description" content="Cas pratique corrigé sur le CDD en droit du travail L3. Une préparatrice de commandes enchaîne deux contrats, puis la correction dit si elle obtient un CDI.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/cas-pratique-cdd-requalification-corrige.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/cas-pratique-cdd-requalification-corrige.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cas pratique CDD corrigé : requalification en CDI (L3, 2026)">
+  <meta name="twitter:description" content="Cas pratique corrigé sur le CDD en droit du travail L3. Une préparatrice de commandes enchaîne deux contrats, puis la correction dit si elle obtient un CDI.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/cas-pratique-cdd-requalification-corrige.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Cas pratique CDD corrigé, de la requalification en CDI aux indemnités",
+      "description": "Cas pratique corrigé sur le CDD en droit du travail L3. Une préparatrice de commandes enchaîne deux contrats, puis la correction dit si elle obtient un CDI.",
+      "inLanguage": "fr-FR",
+      "datePublished": "2026-11-27",
+      "dateModified": "2026-11-27",
+      "author": {
+        "@type": "Person",
+        "name": "Julien",
+        "jobTitle": "Professeur de droit",
+        "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+        "url": "https://trajectoiredroit.com/a-propos.html",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "TrajectoireDroit"
+        }
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "TrajectoireDroit",
+        "url": "https://trajectoiredroit.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+        }
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Cas pratique corrigé de droit du travail L3 sur le contrat à durée déterminée, avec la méthode en quatre questions sur le motif, la forme, la durée, les indemnités de la requalification en CDI et le délai pour agir"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://trajectoiredroit.com/cas-pratique-cdd-requalification-corrige.html"
+      },
+      "image": "https://trajectoiredroit.com/assets/blog/cas-pratique-cdd-requalification-corrige.webp"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://trajectoiredroit.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Cas pratique de CDD, exemple corrigé",
+          "item": "https://trajectoiredroit.com/cas-pratique-cdd-requalification-corrige.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Un CDD remis en retard est-il requalifié en CDI ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non, le retard seul ne requalifie pas le contrat. L’article L. 1242-13 impose à l’employeur de transmettre le CDD dans les deux jours ouvrables suivant l’embauche, mais l’article L. 1245-1, alinéa 2, écarte la requalification pour ce seul retard et accorde au salarié une indemnité qui ne peut pas dépasser un mois de salaire. L’absence d’écrit, ou l’absence de signature de l’employeur, requalifie le contrat (chambre sociale, 14 novembre 2018)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "L’indemnité de fin de contrat reste-t-elle due quand le CDD est requalifié ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non, l’indemnité de fin de contrat n’est plus due après une requalification, car la chambre sociale a jugé le 7 juillet 2015 qu’elle n’est pas due quand la relation se poursuit en CDI (article L. 1243-8). Le salarié qui l’a déjà reçue la garde pourtant, car l’employeur ne peut pas en demander la restitution (arrêt du 24 septembre 2025, non publié au bulletin)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dans quel délai le salarié doit-il demander la requalification d’un CDD ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le salarié dispose de deux ans, selon l’article L. 1471-1, alinéa 1er. Ce délai part du terme du dernier contrat quand la demande se fonde sur le motif inscrit au contrat (chambre sociale, 29 janvier 2020). Les demandes d’indemnité de licenciement et de dommages et intérêts qui suivent la requalification portent sur la rupture, donc le salarié doit les présenter dans les douze mois (chambre sociale, 12 février 2025)."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style id="exemples-pedagogiques-page">
+  .biens-hero { padding-top:48px; }
+  .biens-hero .hero__cta { margin-top:24px; }
+  @media (max-width:700px) {
+    .biens-hero { padding-top:24px; }
+    .biens-hero .hero__cta { gap:10px; }
+    .biens-hero .hero__cta .btn {
+      flex:1 1 132px;
+      width:auto;
+      min-height:44px;
+      font-size:.875rem;
+      padding:10px 12px;
+    }
+  }
+  @media (max-width:420px) {
+    .biens-hero { padding-top:12px; }
+    .biens-hero .hero__cta { margin-top:12px; }
+    .biens-hero .tjd-po { margin-top:12px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="kit-partiels.html" role="menuitem">📚 Kit Partiels</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🤖 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards et QCM</a>
+              <a href="podcasts-videos.html" role="menuitem"><span aria-hidden="true">🎬</span> Vidéos et podcasts</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>7 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a href="droit-commercial-l2.html" role="menuitem">Droit commercial</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 199 € au lieu de 374,69 €, 47 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-47 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">374,69 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 17 ressources, 199 € au lieu de 209,83 €, 5 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-5 %</span></span>
+                    <span class="megamenu__pack-tile-meta">17 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">209,83 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 31 ressources, 199 € au lieu de 384,69 €, 48 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-48 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">384,69 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 32 ressources, 199 € au lieu de 399,68 €, 50 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-50 %</span></span>
+                    <span class="megamenu__pack-tile-meta">32 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,68 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 38 ressources, 229 € au lieu de 479,62 €, 52 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-52 %</span></span>
+                    <span class="megamenu__pack-tile-meta">38 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">479,62 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#pack-5-seances" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Pack 5 séances <em style="color:var(--success)">· −8 %</em></strong><small>480 € · 96 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#pack-10-seances" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em style="color:var(--success)">· −12 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>167 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes tes questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="kit-partiels.html"><span class="mobile-nav__format-icon" aria-hidden="true">📚</span><span>Kit Partiels</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🤖</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+        <a class="mobile-nav__format" href="podcasts-videos.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎬</span><span>Vidéos et podcasts</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="mon-compte.html">Mon compte</a>
+    </div>
+  </nav>
+
+    <main>
+<section class="section--sm biens-hero">
+<div class="container container--narrow text-center">
+<h1 class="h1">Cas pratique CDD corrigé, de la requalification en CDI aux indemnités</h1>
+<p class="lead" style="max-width:720px;margin-left:auto;margin-right:auto">Un CDD répond à un besoin temporaire de l’entreprise. L’employeur ne peut donc pas l’utiliser pour occuper durablement un poste permanent, sinon le salarié peut demander au juge de le transformer en CDI. Le juge vérifie notamment que le motif écrit dans le contrat correspond à la réalité et que l’employeur a respecté le délai de carence, l’attente que la loi impose entre deux CDD sur le même poste. Ce cas pratique CDD corrigé suit une préparatrice de commandes, question par question.</p>
+<div class="hero__cta flex flex--center">
+<a class="btn btn--primary btn--lg" href="#enonce">Lire l’énoncé →</a>
+<a class="btn btn--outline btn--lg" href="#corrige">Le corrigé</a>
+</div>
+<div data-tjd-pdf-offert="matiere" data-id="cas-pratique-travail-l3" data-titre="Un autre cas corrigé de droit du travail, offert en PDF" data-texte="Je t’envoie par email un autre cas que celui de cette page. Il porte sur la naissance du contrat de travail, avec un énoncé de L3 et sa correction complète." data-bouton="Recevoir le cas pratique"></div>
+</div>
+</section>
+<!-- offre du PDF correspondant -->
+<section class="conversion-offer" aria-labelledby="offre-cas-cdd-titre">
+<div class="container container--narrow">
+<div class="conversion-offer__card">
+<div class="conversion-offer__visual">
+<img src="assets/covers/exercices-20260923/cas-pratique-travail-l3.webp" alt="Couverture des cas pratiques corrigés de droit du travail L3, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+</div>
+<div>
+<h2 class="conversion-offer__title" id="offre-cas-cdd-titre">Droit du travail L3, douze cas pratiques et trois partiels corrigés en 150 pages</h2>
+<p class="conversion-offer__summary">Chaque correction pose la règle de droit, la majeure, puis l’applique aux faits dans la mineure et conclut. Les douze cas couvrent la naissance, la vie et la rupture du contrat de travail, puis les conditions de travail. Trois partiels types complètent la compilation. Le PDF traite d’autres cas que celui de cette page, avec la même méthode.</p>
+<button type="button" class="apercu-link" data-apercu='["assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p001.webp","assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p002.webp","assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p003.webp","assets/apercus/recueils-20261115/cas-pratique-travail-l3/f3a7cab5b137-p005.webp"]' data-apercu-title="Cas pratiques corrigés Droit du travail L3" data-apercu-price="14,99 €" data-apercu-cta="cas-pratique-travail-l3" data-apercu-sub="Le sommaire, puis le début du premier cas pratique corrigé, avec son énoncé."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Voir un aperçu des cas pratiques corrigés</button>
+<div class="conversion-offer__choices">
+<button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="cas-pratique-travail-l3">Cas pratiques corrigés · 14,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="fiche-travail-l3-s1">Fiche complète · 14,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="pack-matiere-travail-l3">Pack complet droit du travail L3 · 29,98 €</button>
+</div>
+<p class="conversion-offer__note">Paiement sécurisé. Les cas pratiques corrigés servent à s’entraîner à rédiger à partir d’un énoncé. La fiche complète sert à revoir le cours de <a href="droit-du-travail-l3.html">droit du travail L3</a>, dont le chapitre 6 sur le CDD. Le pack complet réunit ces deux PDF, les flashcards et le QCM, et les fiches d’arrêt.</p>
+<div data-tjd-avis data-matiere="travail-l3"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="methode">
+<div class="container container--narrow">
+<nav class="toc" aria-label="Sommaire">
+<p class="toc__title">Dans cet article</p>
+<ol>
+<li><a href="#methode-titre">Comment résoudre ce cas pratique</a></li>
+<li><a href="#enonce">L’énoncé du cas pratique</a></li>
+<li><a href="#corrige">Le corrigé en quatre questions</a></li>
+<li><a href="#erreurs">L’erreur qui fait perdre des points</a></li>
+<li><a href="#adapter">Adapter la méthode à un autre énoncé</a></li>
+<li><a href="#faq">Questions fréquentes</a></li>
+</ol>
+</nav>
+<div class="prose">
+<figure style="margin:0 0 32px"><img src="assets/blog/cas-pratique-cdd-requalification-corrige.webp" srcset="assets/blog/cas-pratique-cdd-requalification-corrige-640.webp 640w, assets/blog/cas-pratique-cdd-requalification-corrige.webp 1200w" sizes="(max-width:700px) 100vw, 800px" alt="Colis kraft empilés sur un établi, préparation de commandes d’une vente en ligne." width="1200" height="675" decoding="async"></figure>
+<h2 id="methode-titre">Comment résoudre un cas pratique sur le CDD ?</h2>
+<p>Le contrat à durée déterminée (CDD) est une exception. La règle normale est le contrat à durée indéterminée (CDI), car la loi veut qu’un salarié occupe un poste permanent avec un contrat sans date de fin. L’employeur ne peut donc recourir à un CDD que pour un besoin temporaire, dans les cas que la loi énumère, appelés cas de recours. Sinon, le salarié demande au juge la requalification, c’est-à-dire la transformation de son CDD irrégulier en CDI, avec effet depuis le premier contrat irrégulier. Le Code du travail dit que ce contrat est « réputé à durée indéterminée », soit traité comme un CDI.</p>
+<p>Dans un cas pratique, il faut repérer ce que l’employeur a fait d’irrégulier, puis chercher la sanction prévue, car toutes les irrégularités ne requalifient pas le contrat. Quatre questions, posées dans cet ordre, guident cette vérification.</p>
+<ol>
+<li><strong>Le CDD avait-il un motif autorisé ?</strong> On vérifie qu’il correspond à un cas de recours de l’article L. 1242-2 du Code du travail et qu’il ne sert pas à occuper durablement un emploi permanent de l’entreprise (article L. 1242-1).</li>
+<li><strong>Le contrat respecte-t-il les règles de forme ?</strong> Le CDD doit être écrit et définir précisément son motif (article L. 1242-12). En outre, il doit être transmis au salarié dans les deux jours ouvrables suivant l’embauche (article L. 1242-13). Les jours ouvrables sont tous les jours sauf le dimanche et les jours fériés, donc le samedi compte.</li>
+<li><strong>Les limites de durée et de succession sont-elles respectées ?</strong> Un accord de branche est un accord conclu pour tout un secteur d’activité. À défaut d’un tel accord, un CDD dure alors dix-huit mois au maximum, renouvellements compris, et se renouvelle deux fois au maximum (articles L. 1242-8-1 et L. 1243-13-1). Un délai de carence sépare ensuite deux contrats sur le même poste (article L. 1244-3).</li>
+<li><strong>Que peut demander le salarié, et dans quel délai ?</strong> Le CDI commence au premier contrat irrégulier. Le juge accorde ensuite au moins un mois de salaire pour la requalification (article L. 1245-2), puis traite la fin du dernier contrat comme un licenciement, le plus souvent sans cause réelle et sérieuse. Enfin, le salarié doit agir avant la fin du délai de prescription (article L. 1471-1), car passé ce délai le juge refuse d’examiner sa demande.</li>
+</ol>
+<p>Traite chaque question, y compris quand la première suffit déjà à requalifier le contrat. Le juge peut rejeter un argument, et chaque irrégularité relève d’un article différent, avec une sanction parfois différente. Le tableau suivant les compare.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Les irrégularités du CDD qui requalifient le contrat et celle qui donne seulement une indemnité" style="overflow-x:auto">
+<table style="width:100%;min-width:640px;border-collapse:collapse">
+<thead><tr><th scope="col">Irrégularité du CDD</th><th scope="col">Sanction</th><th scope="col">Texte</th></tr></thead>
+<tbody>
+<tr><th scope="row">Aucun écrit, contrat non signé par l’employeur, ou motif non défini précisément dans le contrat</th><td>Le contrat est réputé conclu pour une durée indéterminée.</td><td>Article L. 1242-12, alinéa 1er, et article L. 1245-1</td></tr>
+<tr><th scope="row">Cas de recours non autorisé, ou emploi lié à l’activité normale et permanente de l’entreprise</th><td>Le contrat est réputé à durée indéterminée.</td><td>Articles L. 1242-1, L. 1242-2 et L. 1245-1</td></tr>
+<tr><th scope="row">Durée totale de plus de dix-huit mois, ou plus de deux renouvellements, sans accord de branche</th><td>Le contrat est réputé à durée indéterminée.</td><td>Articles L. 1242-8-1, L. 1243-13-1 et L. 1245-1</td></tr>
+<tr><th scope="row">Nouveau contrat sur le même poste avant la fin du délai de carence</th><td>Le contrat est réputé à durée indéterminée, sauf si une exception de l’article L. 1244-4-1 s’applique.</td><td>Articles L. 1244-3-1, L. 1244-4-1 et L. 1245-1</td></tr>
+<tr><th scope="row">Contrat transmis après le délai de deux jours ouvrables</th><td>La requalification est écartée si ce retard est seul en cause. Le salarié reçoit une indemnité qui ne dépasse pas un mois de salaire.</td><td>Article L. 1242-13 et article L. 1245-1, alinéa 2</td></tr>
+</tbody>
+</table>
+</div>
+<p>La page sur la <a href="methode-cas-pratique.html">méthode du cas pratique</a> détaille ce raisonnement étape par étape, de la règle (la majeure) à la réponse (la conclusion). Le <a href="le-contrat-a-duree-determinee-les-cas-de-recours.html">cours sur le CDD</a> explique, avec des exemples, chaque situation où la loi autorise ou interdit un CDD.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="enonce">
+<div class="container container--narrow">
+<div class="prose">
+<h2>L’énoncé du cas pratique</h2>
+<p>Clémence Brunel, 26 ans, travaille dans le dépôt de Terralia, une jardinerie d’Albi qui emploie 38 salariés et qui est ouverte du mardi au samedi. Terralia a lancé la vente en ligne de ses plantes et de ses outils de jardin en février 2025. Auparavant, aucun salarié ne préparait de colis, puisque la jardinerie vendait seulement en magasin. Par ailleurs, aucun accord de branche applicable à la jardinerie ne fixe de règle particulière sur le CDD.</p>
+<p>Le 4 mars 2025, Clémence et Terralia signent un CDD de six mois, jusqu’au 31 août 2025, pour un poste de préparatrice de commandes. Son salaire brut est de 2 000 € par mois. Le contrat indique comme motif « accroissement temporaire d’activité lié au lancement de la vente en ligne ». Terralia n’en remet un exemplaire signé à Clémence que le 10 mars 2025. De plus, le contrat ne mentionne ni la convention collective ni la caisse de retraite complémentaire. Entre mars 2025 et février 2026, la vente en ligne augmente, puisque Terralia passe d’environ 150 commandes à plus de 400 commandes par mois.</p>
+<p>Le 25 août 2025, Clémence signe un avenant qui renouvelle son contrat du 1er septembre 2025 au 28 février 2026. À la fin de ce contrat, Terralia lui verse une indemnité de fin de contrat de 2 400 € bruts, soit 10 % de ses 24 000 € de salaire brut.</p>
+<p>Le 17 mars 2026, Terralia lui fait signer un nouveau CDD de trois mois, jusqu’au 15 juin 2026, pour le même poste de préparatrice de commandes. Le contrat indique comme motif « accroissement temporaire d’activité lié aux commandes du printemps ». Il prend ensuite fin à son terme, le 15 juin 2026, sans lettre de rupture. Enfin, Terralia n’a engagé aucun salarié en CDI pour préparer les commandes.</p>
+<p>En novembre 2026, Clémence vous demande si elle peut obtenir un CDI et à partir de quelle date, quelles sommes elle peut réclamer à Terralia, et dans quel délai elle doit agir.</p>
+</div>
+</div>
+</section>
+<section class="section" id="corrige">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Le corrigé du cas pratique en quatre questions</h2>
+<p>Tu rédiges chaque réponse en cinq temps, comme dans une copie de partiel. Les faits qualifiés disent d’abord à quelle notion du droit correspond chaque fait. Le problème de droit pose ensuite la question à trancher. La majeure donne alors la règle, la mineure l’applique aux faits, et la conclusion répond à la question.</p>
+<h3>I. Terralia pouvait-elle employer Clémence en CDD pour préparer les commandes de la vente en ligne ?</h3>
+<p><strong>Les faits qualifiés.</strong> Le contrat du 4 mars 2025 est un CDD qui invoque un accroissement temporaire d’activité, l’un des cas de recours que l’article L. 1242-2 du Code du travail autorise. En effet, ses commandes passent d’environ 150 en mars 2025 à plus de 400 en février 2026. De plus, Terralia n’a engagé aucun salarié en CDI pour cette tâche.</p>
+<p><strong>Le problème de droit.</strong> Un employeur peut-il employer une salariée en CDD pour préparer les commandes d’une activité nouvelle qui se poursuit et grandit depuis son lancement ?</p>
+<p><strong>La majeure.</strong> Le CDD est une exception, et l’article L. 1242-1 du Code du travail en fixe la limite. Quel que soit son motif, un CDD ne peut avoir ni pour objet ni pour effet de pourvoir durablement un emploi lié à l’activité normale et permanente de l’entreprise. Pour l’accroissement temporaire d’activité, le juge vérifie donc que l’activité a réellement augmenté, par exemple grâce à des commandes supplémentaires, et que ce besoin ne dure pas. </p>
+<p>Dans l’arrêt du 1er février 2012, la chambre sociale de la Cour de cassation a approuvé une cour d’appel. Cette cour avait requalifié en CDI le contrat d’une ouvrière recrutée pour quatre semaines et quatre jours, puis prolongé de soixante-quatorze semaines. Elle avait relevé que l’ouvrière traitait les commandes habituelles de l’entreprise, sans commande supplémentaire qui justifie un accroissement d’activité, et que son contrat servait donc l’activité normale et permanente de l’entreprise.</p>
+<p><strong>La mineure.</strong> D’abord, l’accroissement d’activité invoqué par Terralia n’est pas temporaire. La vente en ligne est une activité nouvelle que la jardinerie poursuit depuis février 2025, et les commandes y passent d’environ 150 à plus de 400 par mois. Un besoin qui augmente pendant près d’un an est un besoin durable. Un pic temporaire retomberait ensuite, alors que les commandes ont presque triplé. </p>
+<p>Ensuite, Clémence occupe un poste lié à l’activité ordinaire de Terralia, car la préparation des colis fait désormais partie de la vente en ligne. Enfin, Terralia a confié le même poste à Clémence dans un second CDD en mars 2026 et n’a engagé aucun salarié en CDI pour cette tâche. Elle comble donc ce besoin par des CDD successifs, ce qui montre qu’il est permanent.</p>
+<p><strong>La conclusion.</strong> Le motif invoqué ne correspond pas à la réalité, car le CDD de Clémence pourvoit durablement un emploi lié à l’activité normale et permanente de Terralia. Selon l’article L. 1245-1, un contrat conclu en violation de l’article L. 1242-1 est réputé à durée indéterminée. Clémence peut donc demander la requalification de son CDD du 4 mars 2025 en CDI, même si elle a signé le contrat et l’avenant, car la loi sanctionne tout contrat conclu en violation de ces règles.</p>
+<h3>II. Le contrat de Clémence respecte-t-il les règles de forme ?</h3>
+<p><strong>Les faits qualifiés.</strong> Le CDD du 4 mars 2025 est écrit et signé, et il définit son motif par le lancement de la vente en ligne. En revanche, Terralia en a remis un exemplaire à Clémence le 10 mars 2025, soit cinq jours ouvrables après l’embauche. De plus, le contrat ne mentionne ni la convention collective ni la caisse de retraite complémentaire.</p>
+<p><strong>Le problème de droit.</strong> Un CDD transmis après le délai de deux jours ouvrables, et dont certaines mentions manquent, doit-il être requalifié en CDI pour ces seuls défauts ?</p>
+<p><strong>La majeure.</strong> Selon l’article L. 1242-12, le CDD est établi par écrit et comporte la définition précise de son motif. Sans écrit ni motif précis, il est donc réputé conclu pour une durée indéterminée, y compris quand l’employeur n’a pas signé le contrat (arrêt de la chambre sociale du 14 novembre 2018). Le même article cite en outre d’autres mentions, dont la convention collective applicable et la caisse de retraite complémentaire.</p>
+<p>Ensuite, l’article L. 1242-13 impose à l’employeur de transmettre le contrat au salarié au plus tard dans les deux jours ouvrables suivant l’embauche. Depuis l’ordonnance du 20 décembre 2017, l’article L. 1245-1 précise que le retard de transmission ne peut pas, à lui seul, entraîner la requalification. En revanche, ce retard ouvre droit à une indemnité pour le salarié, qui ne peut pas dépasser un mois de salaire. Par ailleurs, l’article L. 1245-1 cite, parmi les causes de requalification, le seul premier alinéa de l’article L. 1242-12, soit l’écrit et la définition précise du motif.</p>
+<p><strong>La mineure.</strong> D’abord, l’écrit existe, puisque Clémence et Terralia ont signé le contrat. Ensuite, le motif est défini précisément, car le contrat relie l’accroissement d’activité au lancement de la vente en ligne. De plus, la transmission est tardive, puisque Terralia a remis le contrat cinq jours ouvrables après l’embauche. Ce retard seul ne requalifie pas le contrat. Enfin, l’absence de mention de la convention collective et de la caisse de retraite complémentaire relève de l’alinéa 2 de l’article L. 1242-12, que l’article L. 1245-1 ne cite pas parmi les causes de requalification.</p>
+<p><strong>La conclusion.</strong> Les règles de forme ne justifient pas à elles seules la requalification, car la loi écarte cette sanction pour un simple retard. Clémence peut seulement demander une indemnité pour la transmission tardive, qui ne peut pas dépasser 2 000 €, soit un mois de salaire. Sa demande de CDI repose donc sur la première et sur la troisième question.</p>
+<h3>III. Le renouvellement et le second contrat respectent-ils les limites du CDD ?</h3>
+<h4>A. Le renouvellement de septembre 2025 était-il régulier ?</h4>
+<p><strong>Les faits qualifiés.</strong> Le 25 août 2025, six jours avant le terme du 31 août, Terralia et Clémence signent un avenant qui prolonge le premier contrat jusqu’au 28 février 2026. La durée totale atteint ainsi presque douze mois, et aucun accord de branche ne fixe d’autres limites.</p>
+<p><strong>Le problème de droit.</strong> Un CDD de six mois, renouvelé une fois pour six mois par un avenant signé avant son terme, respecte-t-il les limites de durée et de renouvellement ?</p>
+<p><strong>La majeure.</strong> À défaut d’accord de branche, l’article L. 1242-8-1 du Code du travail limite la durée totale du CDD à dix-huit mois, renouvellements compris. L’article L. 1243-13-1 permet en outre deux renouvellements au maximum. Leurs conditions figurent dans le contrat ou dans un avenant soumis au salarié avant le terme initial. Un avenant est un écrit signé qui complète un contrat déjà conclu. Enfin, selon l’article L. 1245-1, le contrat qui ne respecte pas ces deux textes est réputé à durée indéterminée.</p>
+<p><strong>La mineure.</strong> D’abord, la durée totale, presque douze mois, reste inférieure à dix-huit mois. Ensuite, le contrat est renouvelé une seule fois, alors que la loi en permet deux. Enfin, l’avenant est signé le 25 août 2025, avant le terme du 31 août 2025.</p>
+<p><strong>La conclusion.</strong> Le renouvellement respecte la durée maximale et le nombre de renouvellements autorisés, et l’avenant a été signé avant le terme. Il ne donne donc à Clémence aucun argument pour demander la requalification.</p>
+<h4>B. Terralia pouvait-elle conclure un nouveau CDD le 17 mars 2026 ?</h4>
+<p><strong>Les faits qualifiés.</strong> Le premier contrat, renouvellement compris, a duré presque douze mois et s’est terminé le 28 février 2026. Terralia a ensuite conclu le 17 mars 2026 un nouveau CDD pour le même poste de préparatrice de commandes. La jardinerie est ouverte du mardi au samedi. Entre les deux contrats, elle a donc ouvert dix jours, du 3 au 7 mars et du 10 au 14 mars 2026.</p>
+<p><strong>Le problème de droit.</strong> Un employeur peut-il conclure un nouveau CDD pour le même poste dix jours d’ouverture après la fin du précédent ?</p>
+<p><strong>La majeure.</strong> À l’expiration d’un CDD, l’article L. 1244-3 du Code du travail interdit à l’employeur de pourvoir le même poste par un nouveau CDD ou par un contrat de travail temporaire avant la fin d’un délai de carence. À défaut d’accord de branche, l’article L. 1244-3-1 fixe alors ce délai au tiers de la durée du contrat, renouvellements compris, quand cette durée atteint quatorze jours, et à la moitié quand la durée du contrat est inférieure à quatorze jours. Le délai de carence se compte en outre en jours d’ouverture de l’entreprise.</p>
+<p>Toutefois, l’article L. 1244-4-1 écarte le délai dans plusieurs cas, par exemple le remplacement d’un salarié qui s’absente de nouveau, le refus du renouvellement ou la rupture du contrat par le salarié. Dans l’arrêt du 10 octobre 2018, la chambre sociale a jugé que l’employeur peut enchaîner deux CDD sans délai de carence, pour le même salarié et le même poste, dans les seuls cas où la loi écarte ce délai. Elle a statué d’après les textes alors en vigueur, et l’accroissement temporaire d’activité ne figure pas parmi ces cas. Selon l’article L. 1245-1, le contrat conclu sans respecter ce délai est réputé à durée indéterminée.</p>
+<p><strong>La mineure.</strong> D’abord, le délai de carence se calcule sur la durée du premier contrat, renouvellement compris, soit presque douze mois. Cette durée dépasse quatorze jours, si bien que le délai est du tiers de cette durée, soit près de quatre mois, ce qui représente plus de quatre-vingts jours d’ouverture à cinq jours par semaine. Terralia n’a attendu que dix jours d’ouverture. Ensuite, aucune exception de l’article L. 1244-4-1 ne s’applique. Le second contrat invoque un accroissement d’activité, qui ne figure pas parmi ces exceptions. De plus, Clémence a exécuté le premier contrat jusqu’à son terme et accepté son renouvellement, ce qui écarte la rupture par le salarié et le refus de renouvellement.</p>
+<p><strong>La conclusion.</strong> Terralia devait attendre au moins quatre-vingts jours d’ouverture avant de conclure un nouveau CDD pour ce poste. Le second contrat est donc réputé à durée indéterminée, ce qui donne à Clémence un second fondement pour demander un CDI.</p>
+<h3>IV. Que peut obtenir Clémence, et dans quel délai doit-elle agir ?</h3>
+<h4>A. À partir de quelle date Clémence est-elle en CDI ?</h4>
+<p><strong>Les faits qualifiés.</strong> Le contrat du 4 mars 2025 est irrégulier par son motif, et celui du 17 mars 2026 l’est par le délai de carence. Terralia n’a envoyé aucune lettre de rupture, car le dernier contrat a pris fin à son terme, le 15 juin 2026.</p>
+<p><strong>Le problème de droit.</strong> À quelle date commence le CDI qui résulte de la requalification de plusieurs CDD successifs ?</p>
+<p><strong>La majeure.</strong> Par l’effet de la requalification, le salarié est réputé avoir occupé un emploi à durée indéterminée depuis le jour de son engagement par un CDD irrégulier. Il peut donc invoquer une ancienneté qui remonte au premier contrat irrégulier. La chambre sociale de la Cour de cassation l’a en effet jugé le 29 janvier 2020.</p>
+<p><strong>La mineure.</strong> D’abord, le contrat du 4 mars 2025 est le premier contrat irrégulier, car son motif ne correspond pas à la réalité. Le CDI commence donc à cette date. Ensuite, le contrat du 17 mars 2026 est irrégulier lui aussi, mais il ne change pas la date de départ, puisqu’une irrégularité plus ancienne existe déjà. Clémence compte ainsi une ancienneté d’un an et trois mois à la fin de son dernier contrat.</p>
+<p><strong>La conclusion.</strong> Clémence est réputée en CDI depuis le 4 mars 2025.</p>
+<h4>B. Quelles sommes Clémence peut-elle demander ?</h4>
+<p><strong>Les faits qualifiés.</strong> Clémence gagne 2 000 € bruts par mois et compte un an et trois mois d’ancienneté dans une entreprise de 38 salariés. Son dernier contrat a pris fin à son terme, sans lettre de rupture, et elle a déjà reçu 2 400 € d’indemnité de fin de contrat.</p>
+<p><strong>Le problème de droit.</strong> Quelles indemnités le juge peut-il accorder à une salariée dont le CDD est requalifié en CDI, alors que son dernier contrat s’est terminé sans lettre de rupture ?</p>
+<p><strong>La majeure.</strong> L’article L. 1245-2 du Code du travail oblige le juge qui requalifie à accorder une indemnité d’au moins un mois de salaire. D’après l’arrêt de la chambre sociale du 8 février 2023, ce minimum se calcule sur la moyenne du salaire mensuel dû selon les dernières conditions de travail, avant que le salarié demande au juge de trancher. En outre, cette indemnité se cumule avec l’indemnité pour transmission tardive du contrat, car elles ne réparent pas le même préjudice (arrêt du 25 mars 2026).</p>
+<p>Ensuite, comme un CDI dure sans date de fin, l’employeur qui laisse le dernier contrat arriver à son terme rompt un CDI, et cette rupture est traitée comme un licenciement. L’article L. 1232-6 exige donc une lettre qui énonce les motifs du licenciement, et le juge recherche si la lettre de rupture remplace la lettre de licenciement et si ses motifs sont des reproches que l’on peut vérifier (arrêt du 20 octobre 2015).</p>
+<p>Sauf faute grave du salarié, autrement dit une faute qui rend impossible son maintien dans l’entreprise, le licenciement ouvre droit à une indemnité de préavis, qui remplace le salaire de la période entre l’annonce du licenciement et le départ du salarié (article L. 1234-1). Il ouvre aussi droit, dès huit mois d’ancienneté, à l’indemnité légale de licenciement (articles L. 1234-9, R. 1234-1 et R. 1234-2). Le préavis est d’un mois pour une ancienneté comprise entre six mois et deux ans. L’indemnité légale est d’un quart de mois de salaire par année d’ancienneté, et chaque mois en plus compte pour un douzième d’année.</p>
+<p>Quand le licenciement est sans cause réelle et sérieuse, il ouvre en outre droit à des dommages et intérêts, une somme qui répare le préjudice du salarié. Le barème de l’article L. 1235-3 en fixe le minimum et le maximum selon l’ancienneté, de un à deux mois de salaire pour une année complète dans une entreprise d’au moins onze salariés. </p>
+<p>Enfin, l’indemnité de fin de contrat n’est pas due quand la relation se poursuit en CDI, notamment après une requalification (arrêt du 7 juillet 2015). Quand le salarié l’a déjà perçue à l’issue du contrat, il la garde pourtant, et l’employeur ne peut pas en demander la restitution (arrêt du 24 septembre 2025, non publié au bulletin).</p>
+<p><strong>La mineure.</strong> D’abord, Clémence obtient au minimum un mois de salaire au titre de la requalification, soit 2 000 €. Ensuite, comme Terralia lui a remis son contrat avec retard, elle peut ajouter l’indemnité pour transmission tardive, jusqu’à 2 000 €.</p>
+<p>De plus, aucune lettre de rupture n’énonce de motif, et la rupture n’a donc pas de cause réelle et sérieuse. Terralia ne reproche aucune faute grave à Clémence, qui a quinze mois d’ancienneté. Elle reçoit un préavis d’un mois, soit 2 000 €, plus les congés payés. Cette ancienneté dépasse aussi huit mois, si bien que l’indemnité légale de 500 € par année, soit un quart de mois de salaire, fait 625 € pour quinze mois. </p>
+<p>Enfin, l’entreprise compte 38 salariés et Clémence a une année complète d’ancienneté, ce qui donne de 2 000 € à 4 000 € de dommages et intérêts. Elle garde en outre les 2 400 € d’indemnité de fin de contrat, car Terralia ne peut pas lui en demander la restitution.</p>
+<p><strong>La conclusion.</strong> Clémence peut donc réclamer au moins 6 625 €, soit 2 000 € d’indemnité de requalification, 2 000 € de préavis, 625 € d’indemnité de licenciement et 2 000 € de dommages et intérêts. Elle peut y ajouter les congés payés sur le préavis et jusqu’à 2 000 € pour la transmission tardive du contrat. Elle garde par ailleurs les 2 400 € d’indemnité de fin de contrat déjà reçus.</p>
+<p>Pour réclamer ces sommes, Clémence saisit le bureau de jugement du conseil de prud’hommes, le tribunal qui juge les litiges entre salariés et employeurs. L’article L. 1245-2 impose à ce bureau de statuer dans le mois qui suit sa saisine.</p>
+<h4>C. Dans quel délai Clémence doit-elle agir ?</h4>
+<p><strong>Les faits qualifiés.</strong> Le dernier contrat a pris fin à son terme, le 15 juin 2026, sans lettre de rupture envoyée par Terralia. Clémence demande la requalification de ses contrats, ainsi que les sommes liées à la rupture.</p>
+<p><strong>Le problème de droit.</strong> Dans quel délai Clémence doit-elle saisir le conseil de prud’hommes pour chacune de ses demandes ?</p>
+<p><strong>La majeure.</strong> L’article L. 1471-1 du Code du travail fixe deux délais de prescription, c’est-à-dire deux durées au-delà desquelles le juge refuse d’examiner une action en justice. Une action portant sur l’exécution du contrat se prescrit par deux ans, et une action portant sur la rupture se prescrit par douze mois à compter de la notification de la rupture.</p>
+<p>Selon l’arrêt du 12 février 2025, l’indemnité de requalification se prescrit par deux ans. Par analogie, il en va en principe de même de l’indemnité pour transmission tardive du contrat. Les demandes d’indemnité de licenciement et de dommages et intérêts pour licenciement sans cause réelle et sérieuse se prescrivent par douze mois, parce qu’elles portent sur la rupture, y compris quand elles suivent une requalification. L’indemnité de préavis se prescrit en revanche par trois ans, car elle remplace le salaire que le salarié aurait gagné pendant le préavis, et les salaires dus se réclament pendant trois ans (article L. 3245-1).</p>
+<p>Enfin, le point de départ du délai de deux ans dépend du fondement de la requalification. Il part du terme du dernier contrat pour le motif du recours inscrit au contrat (arrêts du 29 janvier 2020, du 15 mars 2023 et du 12 février 2025). Il part du premier jour d’exécution du second contrat pour le non-respect du délai de carence (arrêt du 5 mai 2021, rendu d’après les textes alors en vigueur).</p>
+<p><strong>La mineure.</strong> D’abord, la demande de requalification de Clémence se fonde sur le motif du premier contrat. Le délai de deux ans part donc du terme du dernier contrat, le 15 juin 2026, et expire le 15 juin 2028. De même, pour la demande fondée sur le délai de carence, le délai de deux ans part du premier jour du second contrat, le 17 mars 2026, et expire le 17 mars 2028. </p>
+<p>Ensuite, ses demandes d’indemnité de licenciement et de dommages et intérêts portent sur la rupture. Comme Terralia n’envoie aucune lettre de rupture, il est prudent de compter les douze mois depuis le terme du dernier contrat, comme l’avait fait la cour d’appel dans l’affaire jugée par l’arrêt du 12 février 2025. Ce délai expire le 15 juin 2027. </p>
+<p>Enfin, le préavis se prescrit par trois ans. L’indemnité pour transmission tardive porte sur l’exécution du contrat et se prescrit en principe par deux ans. Le plus prudent est de les compter à partir du 6 mars 2025, jour où le délai de transmission a expiré.</p>
+<p><strong>La conclusion.</strong> Clémence agit dans les délais en novembre 2026, mais elle a intérêt à saisir le conseil de prud’hommes avant le 5 mars 2027, car sa demande d’indemnité pour transmission tardive se prescrit en principe le 6 mars 2027, un samedi. Ses autres demandes expirent plus tard, la plus proche le 15 juin 2027.</p>
+
+</div>
+</div>
+</section>
+<section class="section" style="padding-top:0">
+<div class="container container--narrow">
+<div class="article-produit-inline" data-emplacement="milieu-majeures">
+<img class="article-produit-inline__thumb" src="assets/majeures/travail-l3s1-couleur.webp" width="60" height="80" alt="Couverture des majeures préparées de droit du travail L3 S1" loading="lazy">
+<div class="article-produit-inline__body">
+<p class="article-produit-inline__label">Majeures préparées</p>
+<p class="article-produit-inline__title">Droit du travail L3 S1, 159 pages</p>
+<p class="article-produit-inline__meta">Une majeure préparée donne la règle de droit déjà rédigée, condition par condition. La majeure 10 traite le CDD en quatre pages, avec les cas de recours, le motif unique, la durée et les renouvellements, la rupture anticipée, le délai de carence, l’indemnité de fin de contrat et la requalification. Chaque condition est numérotée, avec ses exceptions et les décisions qui l’appliquent · <strong>14,99 €</strong></p>
+</div>
+<div class="article-produit-inline__actions">
+<button type="button" class="btn btn--primary" data-tjd-produit="maj-travail-l3-s1">Acheter les majeures préparées · 14,99 €</button>
+</div>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="erreurs">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelle erreur fait perdre des points sur un cas pratique de CDD ?</h2>
+<h3>S’arrêter à la première irrégularité</h3>
+<p>La date de départ du CDI dépend du premier contrat irrégulier, car selon l’arrêt du 29 janvier 2020 le salarié est réputé en CDI depuis le jour de son engagement par un CDD irrégulier. Pour Clémence, le motif du premier contrat ne correspond pas à la réalité, donc son ancienneté court depuis le 4 mars 2025. En revanche, si le juge écartait cette irrégularité, le CDI commencerait seulement le 17 mars 2026, soit trois mois avant la fin de la relation, et cette date changerait le calcul de son ancienneté et de ses indemnités. Traite donc les deux irrégularités, car le juge peut écarter la première.</p>
+</div>
+</div>
+</section>
+<section class="section" id="adapter">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Comment adapter cette méthode à un autre énoncé de CDD ?</h2>
+<p>Avec un autre énoncé, tu poses les mêmes quatre questions. Seules les réponses changent, selon le motif et la fin du contrat. Le tableau des motifs sert à la première question.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Les cas de recours au CDD et les faits à vérifier pour chacun" style="overflow-x:auto">
+<table style="width:100%;min-width:640px;border-collapse:collapse">
+<thead><tr><th scope="col">Motif ou situation du CDD</th><th scope="col">Faits à vérifier</th><th scope="col">Texte</th></tr></thead>
+<tbody>
+<tr><th scope="row">Remplacement d’un salarié absent</th><td>Le contrat nomme le salarié remplacé et sa qualification, et ce salarié est réellement absent. Des CDD de remplacement répétés ne prouvent pas à eux seuls que l’employeur pourvoit durablement un emploi permanent, et le juge examine la nature des emplois et la structure des effectifs.</td><td>Articles L. 1242-2, 1°, et L. 1242-12, et chambre sociale de la Cour de cassation, 14 février 2018, n° 16-17.966</td></tr>
+<tr><th scope="row">Attente de l’entrée en service d’un salarié déjà recruté en CDI</th><td>Le salarié en CDI est déjà recruté, et la durée totale du CDD ne dépasse pas neuf mois.</td><td>Articles L. 1242-2, 1°, e), et L. 1242-8-1</td></tr>
+<tr><th scope="row">Accroissement temporaire de l’activité</th><td>La hausse de l’activité est réelle sur la période du contrat, et cette hausse ne dure pas. Le CDD est interdit pour ce motif dans les six mois suivant un licenciement économique, sur les mêmes postes de l’établissement, sauf notamment un contrat de trois mois au maximum sans renouvellement.</td><td>Articles L. 1242-2, 2°, et L. 1242-5</td></tr>
+<tr><th scope="row">Emploi saisonnier ou emploi d’usage</th><td>Les tâches reviennent chaque année à peu près aux mêmes dates, ou le secteur d’activité a pour usage constant de ne pas recourir au CDI parce que l’emploi est par nature temporaire. Ce secteur figure dans un décret ou dans une convention collective étendue, rendue obligatoire pour tout le secteur.</td><td>Article L. 1242-2, 3°</td></tr>
+</tbody>
+</table>
+</div>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Variantes d’un énoncé de CDD et réponse qui change" style="overflow-x:auto">
+<table style="width:100%;min-width:640px;border-collapse:collapse">
+<thead><tr><th scope="col">Si l’énoncé indique</th><th scope="col">La réponse change ainsi</th><th scope="col">Texte ou décision à citer</th></tr></thead>
+<tbody>
+<tr><th scope="row">Un seul contrat d’un an prévoit six mois de remplacement d’une salariée en congé de maternité, puis six mois de surcroît d’activité</th><td>Un CDD ne peut comporter qu’un seul motif. Le contrat est donc requalifié en CDI.</td><td>Chambre sociale de la Cour de cassation, 23 janvier 2008, n° 06-41.536</td></tr>
+<tr><th scope="row">L’employeur met fin au CDD avant son terme, sans l’accord du salarié et sans faute grave, force majeure ni inaptitude constatée par le médecin du travail</th><td>Le salarié obtient des dommages et intérêts au moins égaux aux rémunérations qu’il aurait perçues jusqu’au terme, en plus de l’indemnité de fin de contrat. Si le contrat est requalifié en CDI, le régime de rupture du CDI s’applique à la place.</td><td>Articles L. 1243-1 et L. 1243-4, et chambre sociale de la Cour de cassation, 12 avril 2023, n° 21-16.750, non publié, où le salarié avait rompu lui-même le contrat en reprochant des fautes à l’employeur</td></tr>
+<tr><th scope="row">Le salarié continue de travailler après la date de fin de son CDD</th><td>Le CDD devient un CDI, et le salarié garde l’ancienneté acquise pendant le CDD. Quand cette poursuite est la seule irrégularité, le salarié ne reçoit pas d’indemnité de requalification.</td><td>Article L. 1243-11, et chambre sociale de la Cour de cassation, 2 septembre 2026, n° 25-14.628, non publié</td></tr>
+<tr><th scope="row">Le salarié demande la requalification en invoquant l’absence d’écrit, une mention obligatoire absente, le délai de carence ou le motif du recours</th><td>Le délai de deux ans change de point de départ selon le fondement. Pour l’absence d’écrit, il part de la fin des deux jours ouvrables de transmission. Pour une mention obligatoire absente qui requalifie, comme pour le motif précis, il part de la conclusion du contrat. Ensuite, pour la carence, il part du premier jour du second contrat. Enfin, pour le motif du recours énoncé au contrat, il part du terme du dernier contrat.</td><td>Chambre sociale de la Cour de cassation, 15 mars 2023, n° 20-21.774, et 5 mai 2021, n° 19-14.295</td></tr>
+
+</tbody>
+</table>
+</div>
+<h3>Pour aller plus loin</h3>
+<p>La <a href="fiche-revision-droit-du-travail-l3.html">fiche de révision de droit du travail L3</a> reprend le programme avec les décisions à connaître.</p>
+<div class="author-box">
+<img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+<div>
+<p class="author-box__name">Julien</p>
+<p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+<p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">167 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention. Pour cela, je leur apprends une méthode qu'ils réutilisent ensuite seuls, à chaque copie. Sur TrajectoireDroit, j'ai donc réuni mes fiches complètes et mes majeures préparées. Une majeure préparée donne la règle de droit déjà rédigée, prête pour le cas pratique.</p>
+<p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="faq">
+<div class="container container--narrow"><h2 class="h2">Questions fréquentes sur le cas pratique de CDD</h2>
+<div class="accordion">
+<details class="accordion__item"><summary class="accordion__trigger">Un CDD remis en retard est-il requalifié en CDI ?</summary><div class="accordion__body"><p>Non, le retard seul ne requalifie pas le contrat. L’article L. 1242-13 impose à l’employeur de transmettre le CDD dans les deux jours ouvrables suivant l’embauche, mais l’article L. 1245-1, alinéa 2, écarte la requalification pour ce seul retard et accorde au salarié une indemnité qui ne peut pas dépasser un mois de salaire. L’absence d’écrit, ou l’absence de signature de l’employeur, requalifie le contrat (chambre sociale, 14 novembre 2018).</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">L’indemnité de fin de contrat reste-t-elle due quand le CDD est requalifié ?</summary><div class="accordion__body"><p>Non, l’indemnité de fin de contrat n’est plus due après une requalification, car la chambre sociale a jugé le 7 juillet 2015 qu’elle n’est pas due quand la relation se poursuit en CDI (article L. 1243-8). Le salarié qui l’a déjà reçue la garde pourtant, car l’employeur ne peut pas en demander la restitution (arrêt du 24 septembre 2025, non publié au bulletin).</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Dans quel délai le salarié doit-il demander la requalification d’un CDD ?</summary><div class="accordion__body"><p>Le salarié dispose de deux ans, selon l’article L. 1471-1, alinéa 1er. Ce délai part du terme du dernier contrat quand la demande se fonde sur le motif inscrit au contrat (chambre sociale, 29 janvier 2020). Les demandes d’indemnité de licenciement et de dommages et intérêts qui suivent la requalification portent sur la rupture, donc le salarié doit les présenter dans les douze mois (chambre sociale, 12 février 2025).</p></div></details>
+</div>
+</div>
+</section>
+<!-- fin-article:pack-ultra -->
+<section class="article-pack-ligne"><div class="container container--narrow"><p class="article-pack-ligne__texte">Le Pack Ultra L3 semestre 1 réunit 38 ressources pour 229 €. <a href="pack-ultra.html#pack-ultra-l3-s1">Voir les supports inclus →</a></p></div></section>
+</main>
+
+
+
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. <a href="temoignages.html">4 500+ élèves utilisent nos fiches</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Droit du travail L3, cas pratique sur le CDD">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Droit du travail L3, cas pratique sur le CDD">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit du travail L3</strong>
+      <small>Douze cas pratiques corrigés · 150 pages</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="cas-pratique-travail-l3" aria-label="Acheter les cas pratiques corrigés · 14,99 €">Acheter les cas pratiques · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=81a894f1" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=00564c99" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=7aba7f6e';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
+</body>
+</html>
