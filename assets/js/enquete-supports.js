@@ -4,6 +4,7 @@
   const support = document.getElementById("enquete-support");
   const usage = document.getElementById("enquete-usage");
   const details = document.getElementById("enquete-usage-detail");
+  const sansUsage = document.getElementById("enquete-sans-usage");
   const send = document.getElementById("enquete-envoyer");
   const status = document.getElementById("enquete-statut");
   const result = document.getElementById("enquete-resultat");
@@ -13,8 +14,6 @@
   const use = document.getElementById("enquete-utiliser");
   const copy = document.getElementById("enquete-copier");
   const copyStatus = document.getElementById("enquete-copie-statut");
-  const radioAide = Array.from(form.querySelectorAll('[name="aide"]'));
-  const utile = document.getElementById("enquete-utile");
   const ids = new Map();
   const patternCode = /^ENQUETE-[A-F0-9]{18}$/;
 
@@ -37,10 +36,9 @@
   }
 
   function afficherDetails() {
-    const visible = usage.value !== "pas_encore";
-    details.hidden = !visible;
-    radioAide.forEach((radio) => { radio.disabled = !visible; });
-    utile.disabled = !visible;
+    const pasEncore = usage.value === "pas_encore";
+    details.disabled = details.hidden = !usage.value || pasEncore;
+    sansUsage.disabled = sansUsage.hidden = !pasEncore;
   }
 
   function afficherCode(donnees) {
@@ -80,6 +78,7 @@
     if (send.disabled) return;
     const reponse = Object.fromEntries(new FormData(form));
     reponse.id = identifiant(reponse.support);
+    reponse.version = 2;
     send.disabled = true;
     status.textContent = "Envoi de tes réponses…";
     try {

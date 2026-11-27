@@ -34,6 +34,44 @@ test("une suite de réponses incomplète ne permet pas d'obtenir un code", () =>
   assert.equal(premierUsage.utile, null);
 });
 
+test("le questionnaire détaillé conserve la clarté et la partie utilisée", () => {
+  const reponse = { ...corps, version: 2, partie_utilisee: "regles", clarte: "relecture", hesitation: "format" };
+  assert.deepEqual(lireReponse(reponse), {
+    ...lireReponse(corps),
+    version_questionnaire: 2,
+    partie_utilisee: "regles",
+    clarte: "relecture",
+    frein: null,
+    hesitation: "format",
+  });
+  assert.equal(lireReponse({ ...reponse, clarte: "" }), null);
+  assert.equal(lireReponse({ ...reponse, partie_utilisee: "" }), null);
+  assert.equal(lireReponse({ ...reponse, hesitation: "inconnue" }), null);
+  assert.equal(lireReponse({ ...reponse, version: 3 }), null);
+});
+
+test("le parcours avant la première utilisation demande un motif et ignore les réponses de lecture", () => {
+  const reponse = {
+    id: corps.id, support: corps.support, version: 2, usage: "pas_encore", frein: "acces",
+    aide: "oui", utile: "Réponse masquée", partie_utilisee: "plan", clarte: "relecture",
+  };
+  assert.deepEqual(lireReponse(reponse), {
+    id: corps.id,
+    support: corps.support,
+    usage: "pas_encore",
+    aide: null,
+    priorite: "pas_assez",
+    utile: null,
+    remarque: null,
+    version_questionnaire: 2,
+    partie_utilisee: null,
+    clarte: null,
+    frein: "acces",
+    hesitation: null,
+  });
+  assert.equal(lireReponse({ ...reponse, frein: "" }), null);
+});
+
 test("une nouvelle tentative reprend la réponse déjà enregistrée et le même code", async () => {
   let reponse;
   const db = {

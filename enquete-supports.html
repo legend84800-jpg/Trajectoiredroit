@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,follow">
   <title>Enquête sur les supports · Trajectoire Droit</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
   <link rel="stylesheet" href="assets/css/enquete-supports.css?v=1">
-  <script src="assets/js/enquete-supports.js?v=1" defer></script>
+  <script src="assets/js/enquete-supports.js?v=2" defer></script>
 </head>
 <body class="enquete">
   <header class="enquete__entete">
@@ -17,6 +17,7 @@
   <main class="enquete__page" aria-labelledby="enquete-titre">
     <div class="enquete__intro">
       <h1 id="enquete-titre">Enquête sur les supports de Trajectoire Droit</h1>
+      <p>Ton retour m’aide à choisir quels passages reprendre et quels exemples ajouter.</p>
       <p>Le questionnaire prend environ 5 minutes. Une fois tes réponses envoyées, tu obtiens un code de réduction de 10 % sur ton prochain achat sur le site.</p>
       <p class="enquete__note">Le code s’utilise une seule fois. Pour les produits, la réduction s’applique au paiement en une fois. Pour un abonnement, elle s’applique au premier paiement.</p>
     </div>
@@ -31,7 +32,7 @@
         </div>
 
         <div class="enquete__champ">
-          <label for="enquete-usage">Comment as-tu utilisé ce support ?</label>
+          <label for="enquete-usage">Pour quel travail as-tu utilisé ce support la dernière fois ?</label>
           <select id="enquete-usage" name="usage" class="form__input" required>
             <option value="">Choisir une réponse</option>
             <option value="cours">Pour comprendre ou revoir une partie du cours</option>
@@ -42,7 +43,7 @@
           </select>
         </div>
 
-        <div id="enquete-usage-detail">
+        <fieldset id="enquete-usage-detail" aria-label="Ton utilisation du support" hidden disabled>
           <fieldset class="enquete__champ">
             <legend>Le support t’a-t-il aidé à faire ce que tu voulais ?</legend>
             <label class="enquete__option"><input type="radio" name="aide" value="oui" required> Oui</label>
@@ -51,30 +52,91 @@
           </fieldset>
 
           <div class="enquete__champ">
-            <label for="enquete-utile">Qu’est-ce qui t’a le plus aidé dans le support ? <span class="enquete__note">(facultatif)</span></label>
-            <textarea id="enquete-utile" name="utile" class="form__input" rows="3" maxlength="600"></textarea>
+            <label for="enquete-partie">Quelle partie du support as-tu le plus utilisée ?</label>
+            <select id="enquete-partie" name="partie_utilisee" class="form__input" required>
+              <option value="">Choisir une réponse</option>
+              <option value="regles">Les règles et leurs conditions d’application</option>
+              <option value="explications">Les explications du cours</option>
+              <option value="exemples">Les exemples et les exercices corrigés</option>
+              <option value="references">Les références aux articles de loi ou aux décisions de justice</option>
+              <option value="plan">Le plan ou le sommaire</option>
+              <option value="autre">Une autre partie</option>
+              <option value="aucune">Aucune partie en particulier</option>
+            </select>
           </div>
-        </div>
+
+          <div class="enquete__champ">
+            <label for="enquete-clarte">As-tu compris les passages que tu as lus ?</label>
+            <select id="enquete-clarte" name="clarte" class="form__input" required>
+              <option value="">Choisir une réponse</option>
+              <option value="premiere_lecture">Oui, dès la première lecture</option>
+              <option value="relecture">Oui, après avoir relu certains passages</option>
+              <option value="difficile">Non, certains passages restent difficiles à comprendre</option>
+              <option value="pas_assez">Je n’ai pas assez lu pour répondre</option>
+            </select>
+          </div>
+
+          <div class="enquete__champ">
+            <label for="enquete-priorite">Quelle amélioration te serait la plus utile ?</label>
+            <select id="enquete-priorite" name="priorite" class="form__input" required>
+              <option value="">Choisir une réponse</option>
+              <option value="explication">Développer une explication</option>
+              <option value="exemple">Ajouter un exemple d’application</option>
+              <option value="programme">Traiter un point du programme qui manque</option>
+              <option value="erreur">Corriger une erreur</option>
+              <option value="navigation">Faciliter la recherche d’un passage</option>
+              <option value="autre">Une autre amélioration</option>
+              <option value="aucune">Rien à changer pour le moment</option>
+              <option value="pas_assez">Je ne l’ai pas assez utilisé pour répondre</option>
+            </select>
+          </div>
+
+          <div class="enquete__champ">
+            <label for="enquete-remarque">Que faudrait-il modifier ou ajouter ? <span class="enquete__note">(facultatif)</span></label>
+            <p id="enquete-remarque-aide" class="enquete__note">Précise ce qui t’a bloqué ou ce que tu aurais aimé trouver. Si tu parles d’un passage, indique sa page ou son titre.</p>
+            <textarea id="enquete-remarque" name="remarque" class="form__input" rows="3" maxlength="600" aria-describedby="enquete-remarque-aide"></textarea>
+          </div>
+
+          <div class="enquete__champ">
+            <label for="enquete-utile">Si un passage t’a particulièrement aidé, précise lequel et comment. <span class="enquete__note">(facultatif)</span></label>
+            <textarea id="enquete-utile" name="utile" class="form__input" rows="2" maxlength="600"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset id="enquete-sans-usage" aria-label="Avant la première utilisation" hidden disabled>
+          <div class="enquete__champ">
+            <label for="enquete-frein">Pourquoi ne l’as-tu pas encore utilisé ?</label>
+            <select id="enquete-frein" name="frein" class="form__input" required>
+              <option value="">Choisir une réponse</option>
+              <option value="plus_tard">J’en aurai besoin plus tard</option>
+              <option value="temps">J’ai manqué de temps</option>
+              <option value="acces">J’ai eu un problème d’accès ou de téléchargement</option>
+              <option value="debut">Je cherche encore par où commencer</option>
+              <option value="programme">Je doute que le support corresponde à mon programme</option>
+              <option value="autre_ressource">Une autre ressource me suffit pour le moment</option>
+              <option value="autre">Une autre raison</option>
+            </select>
+          </div>
+
+          <div class="enquete__champ">
+            <label for="enquete-premier-usage">Qu’est-ce qui pourrait t’aider à commencer ? <span class="enquete__note">(facultatif)</span></label>
+            <textarea id="enquete-premier-usage" name="remarque" class="form__input" rows="2" maxlength="600"></textarea>
+          </div>
+        </fieldset>
 
         <div class="enquete__champ">
-          <label for="enquete-priorite">Quelle amélioration faudrait-il faire en premier ?</label>
-          <select id="enquete-priorite" name="priorite" class="form__input" required>
+          <label for="enquete-hesitation">Avant de payer, qu’est-ce qui t’a fait le plus hésiter ? <span class="enquete__note">(facultatif)</span></label>
+          <select id="enquete-hesitation" name="hesitation" class="form__input">
             <option value="">Choisir une réponse</option>
-            <option value="explication">Développer une explication</option>
-            <option value="exemple">Ajouter un exemple</option>
-            <option value="programme">Traiter un point du programme</option>
-            <option value="erreur">Corriger une erreur</option>
-            <option value="navigation">Faciliter la recherche d’un passage</option>
-            <option value="autre">Une autre amélioration</option>
-            <option value="aucune">Rien à changer pour le moment</option>
-            <option value="pas_assez">Je ne l’ai pas assez utilisé pour répondre</option>
+            <option value="programme">Je voulais vérifier que le support correspondait à mon programme</option>
+            <option value="format">J’hésitais entre plusieurs formats, comme une fiche et un cours</option>
+            <option value="prix">Le prix m’a fait hésiter</option>
+            <option value="autre_ressource">J’envisageais d’utiliser une autre ressource</option>
+            <option value="usage">Je cherchais à savoir comment ce support m’aiderait dans mon travail</option>
+            <option value="autre">Une autre raison</option>
+            <option value="aucune">J’ai choisi sans hésiter</option>
+            <option value="pas_achete">Je n’ai pas acheté ce support</option>
           </select>
-        </div>
-
-        <div class="enquete__champ">
-          <label for="enquete-remarque">Une remarque à ajouter ? <span class="enquete__note">(facultatif)</span></label>
-          <p id="enquete-remarque-aide" class="enquete__note">Si ta remarque porte sur un passage, indique la page pour que je puisse le retrouver.</p>
-          <textarea id="enquete-remarque" name="remarque" class="form__input" rows="4" maxlength="600" aria-describedby="enquete-remarque-aide"></textarea>
         </div>
 
         <p class="enquete__note">Tes réponses servent à améliorer les supports. Évite d’indiquer ton nom ou tes coordonnées. <a href="confidentialite.html">Confidentialité</a></p>

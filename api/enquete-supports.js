@@ -9,6 +9,10 @@ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{1
 const USAGES = new Set(["cours", "td", "partiel", "autre", "pas_encore"]);
 const AIDE = new Set(["oui", "en_partie", "non"]);
 const PRIORITES = new Set(["explication", "exemple", "programme", "erreur", "navigation", "autre", "aucune", "pas_assez"]);
+const PARTIES = new Set(["regles", "explications", "exemples", "references", "plan", "autre", "aucune"]);
+const CLARTE = new Set(["premiere_lecture", "relecture", "difficile", "pas_assez"]);
+const FREINS = new Set(["plus_tard", "temps", "acces", "debut", "programme", "autre_ressource", "autre"]);
+const HESITATIONS = new Set(["programme", "format", "prix", "autre_ressource", "usage", "autre", "aucune", "pas_achete"]);
 const SUPPORTS = Object.fromEntries(Object.entries(PRODUITS)
   .filter(([id, p]) => !p.venteSuspendue && (id.startsWith("maj-") || p.nom.startsWith("Fiche complète ")))
   .map(([id, p]) => [id, p.nom]));
@@ -21,16 +25,33 @@ function texte(valeur) {
 
 function lireReponse(corps) {
   if (!corps || typeof corps !== "object") return null;
-  const { id, support, usage, aide, priorite } = corps;
+  const { id, support, usage, aide, version = 1 } = corps;
+  if (version !== 1 && version !== 2) return null;
+  const utilise = usage !== "pas_encore";
+  const priorite = version === 2 && !utilise ? "pas_assez" : corps.priorite;
   if (typeof id !== "string" || !UUID.test(id)
       || typeof support !== "string" || !Object.hasOwn(SUPPORTS, support)
       || !USAGES.has(usage) || !PRIORITES.has(priorite)) return null;
-  const utilise = usage !== "pas_encore";
   if (utilise && !AIDE.has(aide)) return null;
   const utile = utilise ? texte(corps.utile) : null;
   const remarque = texte(corps.remarque);
   if (utile === undefined || remarque === undefined) return null;
-  return { id: id.toLowerCase(), support, usage, aide: utilise ? aide : null, priorite, utile, remarque };
+  const reponse = { id: id.toLowerCase(), support, usage, aide: utilise ? aide : null, priorite, utile, remarque };
+  if (version === 1) return reponse;
+
+  const { partie_utilisee, clarte, frein } = corps;
+  const hesitation = corps.hesitation === "" || corps.hesitation == null ? null : corps.hesitation;
+  if (utilise && (!PARTIES.has(partie_utilisee) || !CLARTE.has(clarte))) return null;
+  if (!utilise && !FREINS.has(frein)) return null;
+  if (hesitation !== null && !HESITATIONS.has(hesitation)) return null;
+  return {
+    ...reponse,
+    version_questionnaire: 2,
+    partie_utilisee: utilise ? partie_utilisee : null,
+    clarte: utilise ? clarte : null,
+    frein: utilise ? null : frein,
+    hesitation,
+  };
 }
 
 async function enregistrerReponse(reponse, db = supabase) {
@@ -45,7 +66,7 @@ async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
   if (req.method === "GET") {
     const supports = Object.entries(SUPPORTS).sort((a, b) => a[1].localeCompare(b[1], "fr"));
-    return res.status(200).json({ supports });
+    return res.status(200).json({ supports, version: 2 });
   }
   if (req.method !== "POST") return res.status(405).end();
   const origine = req.headers?.origin;
