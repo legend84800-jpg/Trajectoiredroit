@@ -374,7 +374,9 @@ window.tjdDialogues = (function () {
       var imgs;
       try { imgs = JSON.parse(btn.getAttribute('data-apercu') || '[]'); } catch (e) { imgs = []; }
       document.getElementById('apercuTitle').textContent = btn.getAttribute('data-apercu-title') || 'Aperçu';
-      document.getElementById('apercuSub').textContent = btn.getAttribute('data-apercu-sub') || 'Pages du PDF';
+      var sousTitre = document.getElementById('apercuSub');
+      sousTitre.textContent = btn.getAttribute('data-apercu-sub') ?? 'Pages du PDF';
+      sousTitre.hidden = !sousTitre.textContent;
       var price = btn.getAttribute('data-apercu-price') || '';
       document.getElementById('apercuPrice').textContent = price;
       var cta = document.getElementById('apercuCta');

@@ -133,7 +133,7 @@ function presentationPack(id) {
 
 function renderApercu(item) {
   const images = item.images || item.pages.map((page) => `assets/apercus/catalogue-20261029/${item.id}-p${String(page).padStart(3, "0")}.webp`);
-  return `<button type="button" class="apercu-link" data-apercu='${JSON.stringify(images)}' data-apercu-title="${escape(item.titre)}" data-apercu-sub="Extraits du PDF vendu, pages ${item.pages.join(", ")}" data-apercu-price="${euro(PRODUITS[item.id].prix)}" data-apercu-cta="${item.id}">Voir un aperçu</button>`;
+  return `<button type="button" class="apercu-link" data-apercu='${JSON.stringify(images)}' data-apercu-title="${escape(item.titre)}" data-apercu-sub="" data-apercu-price="${euro(PRODUITS[item.id].prix)}" data-apercu-cta="${item.id}">Voir un aperçu</button>`;
 }
 
 function renderSommaire(item) {

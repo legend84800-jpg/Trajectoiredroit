@@ -8,8 +8,8 @@ const debut = source.indexOf('  function panierInjecterMarkup() {');
 const fin = source.indexOf('  function panierRendreListe()', debut);
 
 function environnement(avecGestionCommune = false, avecHistorique = false) {
-  const ids = {}, ecouteurs = {}, appels = [], ecouteursFenetre = {};
-  const document = { addEventListener(nom, fn) { ecouteurs[nom] = fn; }, querySelector: () => null, getElementById: (id) => ids[id] };
+  const ids = {}, ecouteurs = {}, appels = [], ecouteursFenetre = {}, ajouts = [];
+  const document = { addEventListener(nom, fn) { ecouteurs[nom] = fn; }, querySelector: () => null, querySelectorAll: () => [...ajouts], getElementById: (id) => ids[id] };
   function element() {
     const attrs = {}, classes = new Set(), handlers = {};
     const el = {
@@ -20,7 +20,7 @@ function environnement(avecGestionCommune = false, avecHistorique = false) {
       removeAttribute: (nom) => { delete attrs[nom]; },
       appendChild(enfant) { el.children.push(enfant); },
       addEventListener(nom, fn) { handlers[nom] = fn; },
-      getClientRects: () => [1], focus(options) { document.activeElement = el; el.optionsFocus = options; },
+      getClientRects: () => el.hidden ? [] : [1], focus(options) { document.activeElement = el; el.optionsFocus = options; },
       contains(cible) { return cible === el || el.children.some((enfant) => enfant.contains(cible)); },
       querySelectorAll() { return el.children.filter((enfant) => enfant.tagName === 'BUTTON' || enfant.tagName === 'A' || enfant.getAttribute('tabindex') !== null); },
       querySelector(selecteur) { return el.children.find((enfant) => selecteur.includes('data-tjd-panier-fermer') && enfant.getAttribute('data-tjd-panier-fermer') !== null); }
@@ -34,6 +34,8 @@ function environnement(avecGestionCommune = false, avecHistorique = false) {
         const enfant = element(); enfant.tagName = balise[1].toUpperCase();
         for (const attribut of attributs.matchAll(/([\w-]+)(?:="([^"]*)")?/g)) enfant.setAttribute(attribut[1], attribut[2] || '');
         const id = attributs.match(/id="([^"]+)"/); if (id) enfant.id = id[1];
+        enfant.hidden = enfant.getAttribute('hidden') !== null;
+        enfant.closest = (selecteur) => selecteur === '[data-tjd-panier-fermer]' && enfant.getAttribute('data-tjd-panier-fermer') !== null ? enfant : null;
         el.children.push(enfant);
       }
     } });
@@ -57,7 +59,7 @@ function environnement(avecGestionCommune = false, avecHistorique = false) {
   const defilements = [];
   const window = {
     location: { get href() { return entrees[position].url; } },
-    scrollX: 0, scrollY: 742,
+    scrollX: 0, scrollY: 742, innerHeight: 844,
     scrollTo(position) { defilements.push(position); },
     setTimeout(fn) { fn(); },
     addEventListener(nom, fn) { ecouteursFenetre[nom] = fn; }
@@ -82,13 +84,20 @@ function environnement(avecGestionCommune = false, avecHistorique = false) {
     fermer(noeud) {
       appels.push(['fermer', noeud]);
       noeud.classList.remove('open');
-      retourDialogue.focus(optionsRetourDialogue);
+      const retour = typeof retourDialogue === 'function' ? retourDialogue() : retourDialogue;
+      retour?.focus(optionsRetourDialogue);
     }
   };
   vm.runInNewContext(source.slice(debut, fin) + '\npanierInjecterMarkup();', { document, window, panierRendreListe() {}, panierCheckout() {} });
   const fab = ids.tjdPanierFab, panneau = ids.tjdPanierBackdrop, fermer = panneau.querySelector('[data-tjd-panier-fermer]');
   return {
-    document, ecouteurs, appels, fond, fab, panneau, fermer, cta: ids.tjdPanierCta,
+    document, ecouteurs, appels, fond, fab, panneau, fermer, cta: ids.tjdPanierCta, continuer: ids.tjdPanierContinuer,
+    ajouterBoutonEnVue() {
+      const bouton = element();
+      bouton.getBoundingClientRect = () => ({ top: 100, bottom: 140, height: 40 });
+      ajouts.push(bouton);
+      return bouton;
+    },
     historique: window.history, pageCatalogue, etatCatalogue, avancer, defilements,
     fermerSurEchap: () => fermerSurEchap(),
     differerRetour() { retourDiffere = true; },
@@ -175,4 +184,24 @@ test('le navigateur peut rouvrir le panier en avançant dans l’historique', ()
   e.avancer(1);
   assert.equal(e.panneau.classList.contains('open'), true);
   assert.equal(e.document.activeElement, e.fermer);
+});
+
+
+test('l’action du panier vide ferme le panneau et rend le clavier à une action visible', () => {
+  const e = environnement(true, true);
+  const ajout = e.ajouterBoutonEnVue();
+  e.fab.handlers.click();
+
+  e.fab.tabIndex = -1;
+  assert.equal(e.continuer.getAttribute('aria-describedby'), 'tjdPanierEtatVide');
+  e.continuer.hidden = false;
+  e.continuer.focus();
+  e.panneau.handlers.click({ target: e.continuer });
+
+  assert.equal(e.panneau.classList.contains('open'), false);
+  assert.equal(e.historique.state, e.etatCatalogue);
+  assert.equal(e.historique.url, e.pageCatalogue);
+  assert.equal(e.document.activeElement, ajout);
+  assert.equal(ajout.optionsFocus.preventScroll, true);
+  assert.equal(e.defilements.at(-1).top, 742);
 });

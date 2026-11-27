@@ -101,13 +101,12 @@ def actualiser(texte, fichier, catalogue):
         v = candidats[0]
         tag = champ(tag, 'data-apercu', json.dumps(v['images'], ensure_ascii=False, separators=(',', ':')))
         sous = attrs.get('data-apercu-sub', '')
-        if re.search(r'pages? \d+', sous):
-            if 'Blanco, page ' in sous:
-                sous = re.sub(r'page \d+', f"page {v['pages'][0]}", sous)
-            elif sous.startswith('Extraits du PDF vendu, pages '):
-                sous = re.sub(r'pages [\d, ]+', 'pages ' + ', '.join(map(str, v['pages'])), sous)
-            if sous != attrs.get('data-apercu-sub'):
-                tag = champ(tag, 'data-apercu-sub', sous)
+        if re.fullmatch(r'Extraits du PDF vendu, pages \d+(?:, \d+)*', sous):
+            tag = champ(tag, 'data-apercu-sub', '')
+        elif 'Blanco, page ' in sous:
+            sous_actualise = re.sub(r'page \d+', f"page {v['pages'][0]}", sous)
+            if sous_actualise != sous:
+                tag = champ(tag, 'data-apercu-sub', sous_actualise)
         comptes[produit] = comptes.get(produit, 0) + 1
         return tag
     texte = TAG.sub(bouton, texte)

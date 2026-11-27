@@ -57,6 +57,8 @@ function navigateur(reponse = () => ({ ok: true, json: async () => donnees })) {
       },
     },
     tjdPanierCta: { disabled: false, getAttribute: () => null, focus() { this.aLeFocus = true; } },
+    tjdPanierContinuer: { hidden: true, focus() { this.aLeFocus = true; } },
+    tjdPanierEnvoi: { hidden: false },
     tjdPanierTotal: { hidden: true },
     tjdPanierTotalMontant: { textContent: '' },
   };
@@ -241,4 +243,31 @@ test('sans catalogue réseau, un complément au montant connu reste ajouté avec
   await viderMicrotaches();
   assert.deepEqual(b.ids(), [fiche, 'fiche-da-l2-s2']);
   assert.equal(b.elements.tjdPanierTotalMontant.textContent, '39,98 €');
+});
+
+
+test('le panier vide affiche une sortie et retrouve les commandes de paiement dès l’ajout', () => {
+  const b = navigateur();
+  const { tjdPanierListe: liste, tjdPanierTotal: total, tjdPanierCta: paiement, tjdPanierContinuer: continuer, tjdPanierEnvoi: envoi } = b.elements;
+  b.panier.rendre();
+  assert.equal(liste.html, '<p class="tjd-panier-vide" id="tjdPanierEtatVide">Ton panier est vide.</p>');
+  assert.equal(continuer.hidden, false);
+  assert.equal(total.hidden, true);
+  assert.equal(envoi.hidden, true);
+  assert.equal(paiement.hidden, true);
+  assert.equal(paiement.disabled, true);
+
+  b.ajouter(fiche);
+  b.panier.rendre();
+  assert.equal(continuer.hidden, true);
+  assert.equal(total.hidden, false);
+  assert.equal(envoi.hidden, false);
+  assert.equal(paiement.hidden, false);
+  assert.equal(paiement.disabled, false);
+
+  b.lignes.get(fiche).retrait.action();
+  assert.equal(paiement.hidden, true);
+  assert.equal(continuer.hidden, false);
+  assert.equal(continuer.aLeFocus, true);
+  assert.deepEqual(b.ids(), []);
 });

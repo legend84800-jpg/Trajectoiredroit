@@ -945,7 +945,8 @@
         '<div class="tjd-panier-liste" id="tjdPanierListe"></div>' +
         '<div class="tjd-panier-total" id="tjdPanierTotal" hidden><span>Total</span><span id="tjdPanierTotalMontant"></span></div>' +
         '<button type="button" class="tjd-panier-cta" id="tjdPanierCta">Passer au paiement</button>' +
-        '<p class="tjd-panier-note">Les liens d’accès arrivent par email après le paiement.</p>' +
+        '<button type="button" class="tjd-panier-cta" id="tjdPanierContinuer" aria-describedby="tjdPanierEtatVide" data-tjd-panier-fermer hidden>Continuer mes achats</button>' +
+        '<p class="tjd-panier-note" id="tjdPanierEnvoi">Les liens d’accès arrivent par email après le paiement.</p>' +
         '<p class="tjd-panier-note" id="tjdPanierTemporaire" hidden>Ce panier reste disponible tant que tu gardes cette page ouverte.</p>' +
       '</div>';
     document.body.appendChild(backdrop);
@@ -953,6 +954,23 @@
     var dialogueCommun = null, overflowAvant = '', voisins = [];
     var retourEnCours = false, pageAvantPanier;
     var fermerBouton = backdrop.querySelector('[data-tjd-panier-fermer]');
+    var continuerBouton = document.getElementById('tjdPanierContinuer');
+
+    function cibleRetourPanier() {
+      if (fab.tabIndex !== -1) return fab;
+      var ajoutVisible = Array.prototype.find.call(document.querySelectorAll('[data-tjd-panier-lien]:not(:disabled)'), function (bouton) {
+        var rect = bouton.getBoundingClientRect();
+        return rect.height > 0 && rect.bottom > 0 && rect.top < window.innerHeight;
+      });
+      if (ajoutVisible) return ajoutVisible;
+      var contenu = document.querySelector('main, [role="main"]');
+      if (contenu && !contenu.hasAttribute('tabindex')) contenu.tabIndex = -1;
+      return contenu;
+    }
+    function restaurerFocusPanier() {
+      var cible = cibleRetourPanier();
+      if (cible && cible.isConnected) cible.focus({ preventScroll: true });
+    }
     function controles() {
       return Array.prototype.filter.call(backdrop.querySelectorAll('button, a[href], [tabindex]'), function (element) {
         return !element.disabled && element.getAttribute('tabindex') !== '-1' && element.getClientRects().length > 0;
@@ -963,8 +981,9 @@
       pageAvantPanier = { url: window.location.href, x: window.scrollX, y: window.scrollY };
       panierRendreListe();
       dialogueCommun = window.tjdDialogues && typeof window.tjdDialogues.ouvrir === 'function' && typeof window.tjdDialogues.fermer === 'function' ? window.tjdDialogues : null;
+      var premier = continuerBouton.hidden ? fermerBouton : continuerBouton;
       if (dialogueCommun) {
-        dialogueCommun.ouvrir(backdrop, fermerBouton, fab, { preventScroll: true }, fermer);
+        dialogueCommun.ouvrir(backdrop, premier, cibleRetourPanier, { preventScroll: true }, fermer);
         return;
       }
       overflowAvant = document.body.style.overflow;
@@ -976,7 +995,7 @@
       });
       backdrop.classList.add('open');
       document.body.style.overflow = 'hidden';
-      (fermerBouton || backdrop).focus();
+      (premier || backdrop).focus();
     }
     function fermerPanneau() {
       if (!backdrop.classList.contains('open')) return;
@@ -989,7 +1008,7 @@
       });
       voisins = [];
       document.body.style.overflow = overflowAvant;
-      if (fab.isConnected) fab.focus({ preventScroll: true });
+      restaurerFocusPanier();
     }
     function panierDansHistorique() {
       return window.history?.state?.tjdPanier === true;
@@ -1021,7 +1040,7 @@
         window.setTimeout(function () {
           if (page === pageAvantPanier && window.location.href === page.url) {
             window.scrollTo({ left: page.x, top: page.y, behavior: 'instant' });
-            if (fab.isConnected) fab.focus({ preventScroll: true });
+            restaurerFocusPanier();
           }
         }, 0);
       }
@@ -1063,7 +1082,9 @@
         panierRetirer(btn.getAttribute('data-tjd-panier-retirer'));
         panierRendreListe();
         initPanierBoutons(); // réactive le lien d’ajout du produit retiré s’il est visible
-        if (indisponible) panierFocusApresIndisponibilite(cta);
+        var continuerBouton = document.getElementById('tjdPanierContinuer');
+        if (continuerBouton && !continuerBouton.hidden) continuerBouton.focus({ preventScroll: true });
+        else if (indisponible) panierFocusApresIndisponibilite(cta);
       });
     });
   }
@@ -1126,9 +1147,15 @@
     var conteneur = document.getElementById('tjdPanierListe');
     var totalBloc = document.getElementById('tjdPanierTotal');
     var cta = document.getElementById('tjdPanierCta');
+    var continuerBouton = document.getElementById('tjdPanierContinuer');
+    var noteEnvoi = document.getElementById('tjdPanierEnvoi');
     if (!conteneur) return;
-    if (!liste.length) {
-      conteneur.innerHTML = '<p class="tjd-panier-vide">Ton panier est vide. Ajoute une fiche, une majeure ou un pack depuis n’importe quelle page du site.</p>';
+    var vide = liste.length === 0;
+    if (continuerBouton) continuerBouton.hidden = !vide;
+    if (noteEnvoi) noteEnvoi.hidden = vide;
+    cta.hidden = vide;
+    if (vide) {
+      conteneur.innerHTML = '<p class="tjd-panier-vide" id="tjdPanierEtatVide">Ton panier est vide.</p>';
       totalBloc.hidden = true;
       cta.disabled = true;
       return;
@@ -1159,6 +1186,7 @@
     if (!badge || !fab) return;
     var n = panierLire().length;
     badge.textContent = String(n);
+    fab.tabIndex = n > 0 ? 0 : -1;
     fab.classList.toggle('tjd-panier-fab--visible', n > 0);
     if (document.getElementById('tjdPanierBackdrop').classList.contains('open')) panierRendreListe();
   }
