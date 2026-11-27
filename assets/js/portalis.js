@@ -282,10 +282,17 @@
       if(pending){working=true;renderState();message('travailMessage','Récupération de ta dernière demande…');await recover(pending,current);if(current===epoch){working=false;renderState();volume();}}
     }catch(error){if(current===epoch)message('travailMessage',error.message,true);}
   }
+  function codeEnqueteActif() {
+    try {
+      const code = JSON.parse(localStorage.getItem("tjd_code_promo") || "null");
+      return code?.expire > Date.now() && /^ENQUETE-[A-F0-9]{18}$/i.test(code.code) ? code.code : undefined;
+    } catch { return undefined; }
+  }
+
   async function payment(body,button){
     const current=epoch;button.disabled=true;message('paiementMessage','Ouverture du paiement…');
     try{
-      const result=await api('/api/create-checkout',{...body,attemptId:crypto.randomUUID()});
+      const result=await api('/api/create-checkout',{...body,code:codeEnqueteActif(),attemptId:crypto.randomUUID()});
       if(current!==epoch)return;
       if(result.termine){
         state=result.etat;renderState();volume();

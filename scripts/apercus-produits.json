@@ -1423,9 +1423,11 @@
         }
       ],
       "comparaison_dol": {
-        "page_pdf": 89,
-        "image": "assets/apercus/finition-20261114/fiche-contrats-l2-s1/a94eea5853a4-p089.webp",
-        "avant": "assets/apercus/comparatif-dol-fiche-20261106-hierarchie.png"
+        "page_pdf": 81,
+        "image": "assets/apercus/finition-20261127/fiche-contrats-l2-s1/9ead53d18be7-p081.webp",
+        "avant": "assets/apercus/comparatif-dol-fiche-20261106-hierarchie.png",
+        "pages_total": 183,
+        "sha256_pdf": "9ead53d18be7d4cb7757d1a3c3696fc471c0e4202336d79e9528e84df2bbf538"
       },
       "preuves_images": {
         "assets/apercus/finition-20261114/fiche-contrats-l2-s1/a94eea5853a4-p002.webp": {
@@ -1459,6 +1461,10 @@
             1429,
             2021
           ]
+        },
+        "assets/apercus/finition-20261127/fiche-contrats-l2-s1/9ead53d18be7-p081.webp": {
+          "page_pdf": 81,
+          "sha256_image": "2181dfdbd713903963f5c1ab18b8123930d193367a4c30fac91c7c8b459ee3e6"
         }
       }
     },

@@ -48,9 +48,9 @@ test('les styles du comparatif sont isolés et gardent les couleurs du PDF', () 
 
 test('les métadonnées reprennent la fiche livrée et republiée en novembre', () => {
   assert.deepEqual(COMPARAISON_DOL.map((e) => [e.produit, e.total, e.pagePDF]), [
-    ['fiche-contrats-l2-s1', 205, 89],
+    ['fiche-contrats-l2-s1', 183, 81],
   ]);
-  assert.equal(COMPARAISON_DOL[0].sha256PDF, 'a94eea5853a456fadfa4b76c1b5dbb090a4eb83c1f92c232b8afa162caff5105');
+  assert.equal(COMPARAISON_DOL[0].sha256PDF, '9ead53d18be7d4cb7757d1a3c3696fc471c0e4202336d79e9528e84df2bbf538');
 });
 
 test('le lien catalogue ouvre les fiches vendues', () => {

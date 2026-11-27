@@ -203,6 +203,7 @@ async function lireParrainage(email, stripe, db = supabase) {
 }
 
 module.exports = {
+  assurerPromotion,
   assurerCodeParrainage, crediterVenteParrainee, annulerBonParrainage,
   lireParrainage, lienParrainage, achatBoutique, COUPON_PARRAIN, COUPON_BON,
 };

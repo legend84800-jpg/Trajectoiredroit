@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <title>Enquête sur les supports · Trajectoire Droit</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/enquete-supports.css?v=1">
+  <script src="assets/js/enquete-supports.js?v=1" defer></script>
+</head>
+<body class="enquete">
+  <header class="enquete__entete">
+    <a href="index.html" aria-label="Accueil Trajectoire Droit">Trajectoire Droit</a>
+  </header>
+
+  <main class="enquete__page" aria-labelledby="enquete-titre">
+    <div class="enquete__intro">
+      <h1 id="enquete-titre">Enquête sur les supports de Trajectoire Droit</h1>
+      <p>Le questionnaire prend environ 5 minutes. Une fois tes réponses envoyées, tu obtiens un code de réduction de 10 % sur ton prochain achat sur le site.</p>
+      <p class="enquete__note">Le code s’utilise une seule fois. Pour les produits, la réduction s’applique au paiement en une fois. Pour un abonnement, elle s’applique au premier paiement.</p>
+    </div>
+
+    <form id="enquete-form" class="enquete__carte">
+      <fieldset id="enquete-champs" disabled>
+        <div class="enquete__champ">
+          <label for="enquete-support">Sur quel support veux-tu donner ton avis ?</label>
+          <select id="enquete-support" name="support" class="form__input" required>
+            <option value="">Choisir un support</option>
+          </select>
+        </div>
+
+        <div class="enquete__champ">
+          <label for="enquete-usage">Comment as-tu utilisé ce support ?</label>
+          <select id="enquete-usage" name="usage" class="form__input" required>
+            <option value="">Choisir une réponse</option>
+            <option value="cours">Pour comprendre ou revoir une partie du cours</option>
+            <option value="td">Pour préparer un TD ou rédiger un exercice</option>
+            <option value="partiel">Pour réviser un partiel</option>
+            <option value="autre">Pour un autre usage</option>
+            <option value="pas_encore">Je ne l’ai pas encore utilisé</option>
+          </select>
+        </div>
+
+        <div id="enquete-usage-detail">
+          <fieldset class="enquete__champ">
+            <legend>Le support t’a-t-il aidé à faire ce que tu voulais ?</legend>
+            <label class="enquete__option"><input type="radio" name="aide" value="oui" required> Oui</label>
+            <label class="enquete__option"><input type="radio" name="aide" value="en_partie"> En partie</label>
+            <label class="enquete__option"><input type="radio" name="aide" value="non"> Non</label>
+          </fieldset>
+
+          <div class="enquete__champ">
+            <label for="enquete-utile">Qu’est-ce qui t’a le plus aidé dans le support ? <span class="enquete__note">(facultatif)</span></label>
+            <textarea id="enquete-utile" name="utile" class="form__input" rows="3" maxlength="600"></textarea>
+          </div>
+        </div>
+
+        <div class="enquete__champ">
+          <label for="enquete-priorite">Quelle amélioration faudrait-il faire en premier ?</label>
+          <select id="enquete-priorite" name="priorite" class="form__input" required>
+            <option value="">Choisir une réponse</option>
+            <option value="explication">Développer une explication</option>
+            <option value="exemple">Ajouter un exemple</option>
+            <option value="programme">Traiter un point du programme</option>
+            <option value="erreur">Corriger une erreur</option>
+            <option value="navigation">Faciliter la recherche d’un passage</option>
+            <option value="autre">Une autre amélioration</option>
+            <option value="aucune">Rien à changer pour le moment</option>
+            <option value="pas_assez">Je ne l’ai pas assez utilisé pour répondre</option>
+          </select>
+        </div>
+
+        <div class="enquete__champ">
+          <label for="enquete-remarque">Une remarque à ajouter ? <span class="enquete__note">(facultatif)</span></label>
+          <p id="enquete-remarque-aide" class="enquete__note">Si ta remarque porte sur un passage, indique la page pour que je puisse le retrouver.</p>
+          <textarea id="enquete-remarque" name="remarque" class="form__input" rows="4" maxlength="600" aria-describedby="enquete-remarque-aide"></textarea>
+        </div>
+
+        <p class="enquete__note">Tes réponses servent à améliorer les supports. Évite d’indiquer ton nom ou tes coordonnées. <a href="confidentialite.html">Confidentialité</a></p>
+        <button id="enquete-envoyer" type="submit" class="btn btn--primary">Envoyer mes réponses et obtenir mes 10 %</button>
+      </fieldset>
+      <p id="enquete-statut" role="status" aria-live="polite">Chargement de la liste des supports…</p>
+      <noscript>Active JavaScript pour envoyer tes réponses et obtenir ton code.</noscript>
+    </form>
+
+    <section id="enquete-resultat" class="enquete__carte" hidden aria-labelledby="enquete-code-titre">
+      <h2 id="enquete-code-titre" tabindex="-1">Ton code de réduction de 10 %</h2>
+      <p id="enquete-code-note">Utilise ce code pour ton prochain achat sur Trajectoire Droit.</p>
+      <output id="enquete-code" class="enquete__code"></output>
+      <div id="enquete-actions" class="enquete__actions">
+        <a id="enquete-utiliser" class="btn btn--primary" href="formations.html">Utiliser mon code</a>
+        <button id="enquete-copier" type="button" class="btn btn--outline">Copier le code</button>
+      </div>
+      <p id="enquete-copie-statut" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+</body>
+</html>

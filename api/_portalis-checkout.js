@@ -72,6 +72,8 @@ async function changerFormule(stripe,current,user,formule,montantAttendu) {
   if(invoice?.hosted_invoice_url) return {url:invoice.hosted_invoice_url};
   throw new ErreurPortalis('paiement_en_cours','Le changement attend la confirmation du paiement. Actualise ton espace dans un instant.',409);
 }
+const { estCodeEnquete, lirePromotionEnquete } = require("./_remise-enquete");
+
 async function checkout(req,res,body) {
   try {
     const user=await authentifier(req);
@@ -124,13 +126,15 @@ async function checkout(req,res,body) {
       success_url:`${ORIGIN}/portalis.html?session_id={CHECKOUT_SESSION_ID}#espace`,
       cancel_url:`${ORIGIN}/portalis.html#formules`,expires_at:Math.floor(Date.now()/1000)+3600,
       custom_text:{submit:{message:recharge?'Cette recharge est un achat ponctuel. Elle reste disponible avec la même formule active.':'60 réponses par période mensuelle. Résiliation depuis ton espace, avec accès jusqu’à la fin de la période payée.'}}};
-    if (offre && !recharge) {
+    const promo = estCodeEnquete(body.code) && (!offre || offre.taux < 10)
+      ? await lirePromotionEnquete(stripe, body.code) : null;
+    if (offre && !promo && !recharge) {
       params.custom_text.submit.message += ` Les ${offre.taux} % de remise s’appliquent au premier mois. Les mois suivants sont au tarif habituel.`;
     }
-    const session = await stripe.checkout.sessions.create(
-      offre ? avecCouponOffrePartiels(params, offre) : params,
-      { idempotencyKey: offre ? `portalis-${key}-${offre.id}` : `portalis-${key}` }
-    );
+    const parametresPaiement = promo ? { ...params, discounts: [{ promotion_code: promo.id }] }
+      : offre ? avecCouponOffrePartiels(params, offre) : params;
+    const clePaiement = ["portalis", key, promo?.id || offre?.id].filter(Boolean).join("-");
+    const session = await stripe.checkout.sessions.create(parametresPaiement, { idempotencyKey: clePaiement });
     res.status(200).json({url:session.url});
   } catch(error) {
     if(!(error instanceof ErreurPortalis)) console.error('Portalis checkout',{code:error.code||error.type||error.message});

@@ -86,9 +86,9 @@ for (const extrait of COMPARAISON_DOL) {
   const apercu = apercusVerifies[extrait.produit];
   const choix = apercu?.comparaison_dol;
   if (!choix) continue;
-  extrait.total = apercu.pages_pdf;
+  extrait.total = choix.pages_total ?? apercu.pages_pdf;
   extrait.pagePDF = choix.page_pdf;
-  extrait.sha256PDF = apercu.sha256;
+  extrait.sha256PDF = choix.sha256_pdf ?? apercu.sha256;
   extrait.image = choix.image;
   extrait.sha256Image = apercu.preuves_images[choix.image].sha256_image;
   extrait.alt = extrait.alt.replace(/page \d+ du PDF/, `page ${choix.page_pdf} du PDF`);
