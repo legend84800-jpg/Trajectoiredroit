@@ -4338,14 +4338,14 @@
       }
     },
     "maj-da-l2-s2": {
-      "sha256": "82e476c376aac3006ff7d033fd345ba510816639e6b472768f8e9329de3d25b6",
-      "pages_pdf": 64,
+      "sha256": "a8f6b4354e00eecc895d2c30158afd8045b95709b4de7a125597c99f611de45d",
+      "pages_pdf": 58,
       "famille": "majeures",
       "fichier_pdf": "maj-da-l2-s2.pdf",
       "images": [
-        "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p002.webp",
-        "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p003.webp",
-        "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p004.webp"
+        "assets/apercus/finition-20261127/maj-da-l2-s2/a8f6b4354e00-p002.webp",
+        "assets/apercus/finition-20261127/maj-da-l2-s2/a8f6b4354e00-p003.webp",
+        "assets/apercus/finition-20261127/maj-da-l2-s2/a8f6b4354e00-p004.webp"
       ],
       "pages_images": [
         2,
@@ -4365,9 +4365,9 @@
             4
           ],
           "images": [
-            "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p002.webp",
-            "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p003.webp",
-            "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p004.webp"
+            "assets/apercus/finition-20261127/maj-da-l2-s2/a8f6b4354e00-p002.webp",
+            "assets/apercus/finition-20261127/maj-da-l2-s2/a8f6b4354e00-p003.webp",
+            "assets/apercus/finition-20261127/maj-da-l2-s2/a8f6b4354e00-p004.webp"
           ],
           "versions_precedentes": [
             [
@@ -4414,6 +4414,11 @@
               "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p002.webp",
               "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p003.webp",
               "assets/apercus/typographie-20261113/maj-da-l2-s2/cf776f23927f-p004.webp"
+            ],
+            [
+              "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p002.webp",
+              "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p003.webp",
+              "assets/apercus/finition-20261114/maj-da-l2-s2/82e476c376aa-p004.webp"
             ]
           ]
         }
