@@ -224,7 +224,7 @@ window.tjdDialogues = (function () {
     modal.innerHTML =
       '<div class="apercu-panel">' +
       '<div class="apercu-head">' +
-      '<div><h3 id="apercuTitle"></h3><p id="apercuSub">Pages du PDF</p></div>' +
+      '<div><h3 id="apercuTitle"></h3><p id="apercuSub" hidden></p></div>' +
       '<button class="apercu-close" data-apercu-close aria-label="Fermer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5L19 19"/><path d="M19 5L5 19"/></svg></button>' +
       '</div>' +
       '<div class="apercu-imgs" id="apercuImgs"></div>' +
@@ -375,7 +375,7 @@ window.tjdDialogues = (function () {
       try { imgs = JSON.parse(btn.getAttribute('data-apercu') || '[]'); } catch (e) { imgs = []; }
       document.getElementById('apercuTitle').textContent = btn.getAttribute('data-apercu-title') || 'Aperçu';
       var sousTitre = document.getElementById('apercuSub');
-      sousTitre.textContent = btn.getAttribute('data-apercu-sub') ?? 'Pages du PDF';
+      sousTitre.textContent = btn.getAttribute('data-apercu-sub')?.trim() || '';
       sousTitre.hidden = !sousTitre.textContent;
       var price = btn.getAttribute('data-apercu-price') || '';
       document.getElementById('apercuPrice').textContent = price;

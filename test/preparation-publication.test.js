@@ -49,20 +49,24 @@ test('la sortie actualise les versions des ressources partagées sans modifier l
   const principal = 'window.nouvelleVersion = true;';
   const style = 'body{color:blue}';
   const achat = 'window.achat = true;';
+  const chapitre = 'window.premierChapitre = true;';
   const avant = '<script src="/assets/js/cookie-consent.js?v=00000000"></script>'
     + '<script src="assets/js/main.js?v=11111111"></script>'
     + '<script src="assets/js/autre.js?v=22222222"></script>'
     + '<script src="assets/js/achat.js?v=44444444"></script>'
+    + '<script src="/assets/js/premier-chapitre.js?v=55555555"></script>'
     + '<link rel="stylesheet" href="/assets/style.css?v=33333333">';
   p.ecrire('assets/js/cookie-consent.js', consentement);
   p.ecrire('assets/js/main.js', principal);
   p.ecrire('assets/js/achat.js', achat);
+  p.ecrire('assets/js/premier-chapitre.js', chapitre);
   p.ecrire('assets/style.css', style);
   p.ecrire('cours.html', avant);
   const { sortie } = preparerPublication(p.racine);
   const coursPublie = fs.readFileSync(path.join(sortie, 'cours.html'), 'utf8');
   assert.equal(coursPublie, avant.replace('00000000', versionScript(consentement))
-    .replace('11111111', versionScript(principal)).replace('33333333', versionScript(style)).replace('44444444', versionScript(achat)));
+    .replace('11111111', versionScript(principal)).replace('33333333', versionScript(style))
+    .replace('44444444', versionScript(achat)).replace('55555555', versionScript(chapitre)));
   assert.equal(fs.readFileSync(path.join(p.racine, 'cours.html'), 'utf8'), avant);
   const accueil = fs.readFileSync(path.join(p.racine, 'index.html'), 'utf8');
   assert.equal(fs.readFileSync(path.join(sortie, 'index.html'), 'utf8'),

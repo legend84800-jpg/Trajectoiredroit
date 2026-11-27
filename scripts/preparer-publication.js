@@ -52,7 +52,7 @@ function preparerPublication(racine = path.resolve(__dirname, '..')) {
   const versionsRessources = new Map([
     'assets/style.css', 'assets/js/cookie-consent.js', 'assets/js/main.js', 'assets/js/achat.js',
     'assets/js/catalogue.js', 'assets/js/filtre-recherche.js', 'assets/js/portalis.js', 'assets/js/recueil-selectionne.js',
-    'assets/js/offre-partiels.js', 'assets/js/apercu-pages.js',
+    'assets/js/offre-partiels.js', 'assets/js/apercu-pages.js', 'assets/js/premier-chapitre.js',
     'assets/js/prix-promotion.js', 'assets/prix-promotion.css',
     pdfParents,
   ]

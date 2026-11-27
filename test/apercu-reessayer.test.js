@@ -97,6 +97,26 @@ function environnement() {
   };
 }
 
+test('la modale masque le sous-titre vide et retrouve le texte informatif à l’ouverture suivante', () => {
+  const { declencheur, document, noeuds } = environnement();
+  const sousTitre = noeuds.apercuSub;
+  assert.equal(sousTitre.textContent, '');
+  assert.equal(sousTitre.hidden, true);
+
+  document.emettre('keydown', { key: 'Escape' });
+  const informatif = 'Sommaire complet, puis un extrait.';
+  declencheur.setAttribute('data-apercu-sub', informatif);
+  declencheur.emettre('click');
+  assert.equal(sousTitre.textContent, informatif);
+  assert.equal(sousTitre.hidden, false);
+
+  document.emettre('keydown', { key: 'Escape' });
+  declencheur.setAttribute('data-apercu-sub', ' ');
+  declencheur.emettre('click');
+  assert.equal(sousTitre.textContent, '');
+  assert.equal(sousTitre.hidden, true);
+});
+
 test('réessayer conserve le même extrait, le focus et les autres images après échec répété', () => {
   const { images, noeuds, modal, visionneuse, focus } = environnement();
   const [premier, second] = noeuds.apercuImgs.children;
