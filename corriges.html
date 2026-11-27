@@ -54,6 +54,7 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
   <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
+  <link rel="stylesheet" href="assets/css/catalogue-semestres.css?v=b3be758b">
   <style>
     .corriges-formats {
       display: grid;
@@ -422,7 +423,7 @@
       <div class="container">
         <h2 class="h2" style="margin-bottom:6px">Commentaires d'arrêt corrigés</h2>
         <p class="lead" style="margin-bottom:24px">Chaque PDF réunit les commentaires des grands arrêts d’une matière. Les commentaires sont rédigés en entier, comme dans une copie. Tu peux acheter le PDF de ta matière à l’unité.</p>
-        <div class="grid-3">
+        <div class="grid-3" data-tjd-cartes-semestres>
 
           <article class="card card--product fade-in" data-niveau="L1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Commentaire corrigé</span><img src="assets/covers/exercices-20260923/commentaire-arret-personnes-l1.webp" alt="Commentaires d'arrêt Droit des personnes, couverture Trajectoire Droit" loading="lazy"></div>
@@ -448,7 +449,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2">
+          <article class="card card--product fade-in" data-niveau="L2" id="commentaire-arret-da-l2-s1" data-catalogue-paire="commentaire-arret-da-l2" data-catalogue-semestre="1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Commentaire corrigé</span><img src="assets/covers/exercices-20260923/commentaire-arret-da-l2-s1.webp" alt="Commentaires d'arrêt Droit administratif, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif</h3>
@@ -460,7 +461,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2">
+          <article class="card card--product fade-in" data-niveau="L2" id="commentaire-arret-da-l2-s2" data-catalogue-paire="commentaire-arret-da-l2" data-catalogue-semestre="2">
             <div class="product__thumb has-cover"><span class="badge badge--format">Commentaire corrigé</span><img src="assets/covers/exercices-20260923/commentaire-arret-da-l2-s2.webp" alt="Commentaires d'arrêt Droit administratif, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif</h3>
@@ -565,7 +566,7 @@
       <div class="container">
         <h2 class="h2" style="margin-bottom:6px">Cas pratiques corrigés</h2>
         <p class="lead" style="margin-bottom:24px">Chaque corrigé suit le raisonnement attendu en cas pratique. Après le rappel des faits, il pose la règle de droit, qu'on appelle la majeure, puis l'applique aux faits dans la mineure, avant de conclure. Tu t'entraînes ainsi sur des cas classiques et sur des sujets construits comme un partiel.</p>
-        <div class="grid-3">
+        <div class="grid-3" data-tjd-cartes-semestres>
 
           <article class="card card--product fade-in" data-niveau="L1" id="cas-pratique-intro-droit-l1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Cas pratique corrigé</span><img src="assets/covers/exercices-20260923/cas-pratique-intro-droit-l1.webp" alt="Cas pratiques corrigés Introduction au droit, couverture Trajectoire Droit" loading="lazy"></div>
@@ -615,7 +616,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2" id="cas-pratique-da-l2-s1">
+          <article class="card card--product fade-in" data-niveau="L2" id="cas-pratique-da-l2-s1" data-catalogue-paire="cas-pratique-da-l2" data-catalogue-semestre="1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Cas pratique corrigé</span><img src="assets/covers/exercices-20260923/cas-pratique-da-l2-s1.webp" alt="Cas pratiques corrigés Droit administratif, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif</h3>
@@ -651,7 +652,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2" id="cas-pratique-da-l2-s2">
+          <article class="card card--product fade-in" data-niveau="L2" id="cas-pratique-da-l2-s2" data-catalogue-paire="cas-pratique-da-l2" data-catalogue-semestre="2">
             <div class="product__thumb has-cover"><span class="badge badge--format">Cas pratique corrigé</span><img src="assets/covers/exercices-20260923/cas-pratique-da-l2-s2.webp" alt="Cas pratiques corrigés Droit administratif, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif</h3>
@@ -687,7 +688,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2,L3" id="cas-pratique-commercial-l3-s1">
+          <article class="card card--product fade-in" data-niveau="L2,L3" id="cas-pratique-commercial-l3-s1" data-catalogue-paire="cas-pratique-commercial-l3" data-catalogue-semestre="1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Cas pratique corrigé</span><img src="assets/covers/exercices-20260923/cas-pratique-commercial-l3-s1.webp" alt="Cas pratiques corrigés Droit commercial, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit commercial</h3>
@@ -699,7 +700,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L3">
+          <article class="card card--product fade-in" data-niveau="L3" id="cas-pratique-commercial-l3-s2" data-catalogue-paire="cas-pratique-commercial-l3" data-catalogue-semestre="2">
             <div class="product__thumb has-cover"><span class="badge badge--format">Cas pratique corrigé</span><img src="assets/covers/exercices-20260923/cas-pratique-commercial-l3-s2.webp" alt="Cas pratiques corrigés Droit commercial, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit commercial</h3>
@@ -723,7 +724,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L3" id="cas-pratique-societes-l3">
+          <article class="card card--product fade-in" data-niveau="L3" id="cas-pratique-societes-l3" data-catalogue-paire="cas-pratique-societes-l3">
             <div class="product__thumb has-cover"><span class="badge badge--format">Cas pratique corrigé</span><img src="assets/covers/exercices-20260923/cas-pratique-societes-l3.webp" alt="Cas pratiques corrigés Droit des sociétés semestre 1, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des sociétés (S1)</h3>
@@ -735,7 +736,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L3" id="cas-pratique-societes-l3-s2">
+          <article class="card card--product fade-in" data-niveau="L3" id="cas-pratique-societes-l3-s2" data-catalogue-paire="cas-pratique-societes-l3">
             <div class="product__thumb has-cover"><span class="badge badge--format">Cas pratique corrigé</span><img src="assets/covers/exercices-20260923/cas-pratique-societes-l3-s2.webp" alt="Cas pratiques corrigés Droit des sociétés semestre 2, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des sociétés (S2)</h3>
@@ -780,7 +781,7 @@
       <div class="container">
         <h2 class="h2" style="margin-bottom:6px">Dissertations corrigées</h2>
         <p class="lead" style="margin-bottom:24px">Chaque sujet commence par une page où j'analyse le sens de chaque mot. La copie modèle suit, rédigée au propre avec une introduction en 7 étapes et un plan en deux parties.</p>
-        <div class="grid-3">
+        <div class="grid-3" data-tjd-cartes-semestres>
 
           <article class="card card--product fade-in" data-niveau="L1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Dissertation corrigée</span><img src="assets/covers/exercices-20260923/dissertation-intro-droit-l1.webp" alt="Dissertation corrigée Introduction au droit, couverture Trajectoire Droit" loading="lazy"></div>
@@ -806,7 +807,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1" id="dissertation-constit-l1-s1">
+          <article class="card card--product fade-in" data-niveau="L1" id="dissertation-constit-l1-s1" data-catalogue-paire="dissertation-constit-l1" data-catalogue-semestre="1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Dissertation corrigée</span><img src="assets/covers/exercices-20260923/dissertation-constit-l1-s1.webp" alt="Dissertation corrigée Droit constitutionnel, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel</h3>
@@ -818,7 +819,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1" id="dissertation-constit-l1-s2">
+          <article class="card card--product fade-in" data-niveau="L1" id="dissertation-constit-l1-s2" data-catalogue-paire="dissertation-constit-l1" data-catalogue-semestre="2">
             <div class="product__thumb has-cover"><span class="badge badge--format">Dissertation corrigée</span><img src="assets/covers/exercices-20260923/dissertation-constit-l1-s2.webp" alt="Dissertation corrigée Droit constitutionnel, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel</h3>
@@ -973,6 +974,7 @@
   </div>
 
   <script src="assets/js/main.js?v=00564c99" defer></script>
+  <script src="assets/js/catalogue-semestres.js?v=dd068853" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */

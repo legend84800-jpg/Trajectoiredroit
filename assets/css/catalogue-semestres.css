@@ -1,0 +1,73 @@
+.catalogue-semestres {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  scroll-margin-top: calc(var(--header-h, 80px) + 16px);
+}
+
+.catalogue-semestres[hidden],
+.catalogue-semestres > article[hidden] { display: none; }
+
+.catalogue-semestres > .card--product {
+  flex: 1;
+  min-width: 0;
+}
+
+[data-catalogue-format="fiches"] .catalogue-semestres .product__desc,
+[data-tjd-cartes-semestres="fiches"] .catalogue-semestres .product__desc { display: none; }
+
+.catalogue-semestres__choix {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+
+.catalogue-semestres__choix input[type="radio"] {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.catalogue-semestres__choix label {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 5px 9px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  color: var(--body);
+  font-size: .88rem;
+  font-weight: 650;
+  text-align: center;
+  cursor: pointer;
+}
+
+.catalogue-semestres__choix input:checked + label {
+  border-color: var(--blue-600);
+  background: var(--blue-50);
+  color: var(--navy);
+}
+
+.catalogue-semestres__choix input:focus-visible + label {
+  outline: 2px solid var(--blue-600);
+  outline-offset: 2px;
+}
+
+.catalogue-semestres__choix input:disabled + label {
+  opacity: .5;
+  cursor: default;
+}
+
+html[data-theme="dark"] .catalogue-semestres__choix input:checked + label {
+  border-color: #91b4ed;
+  background: #233d64;
+  color: #fff;
+}

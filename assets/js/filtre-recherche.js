@@ -21,6 +21,22 @@
     var grille = document.querySelector(input.getAttribute('data-filtre-recherche'));
     if (!grille) return;
     var cards = Array.from(grille.querySelectorAll('.card--product'));
+    var donneesSemestres = new Map();
+    var groupes = new Map();
+    var dernierProduit;
+    if (typeof window.tjdAppliquerFiltreRecherche !== 'function' && typeof window.tjdCartesSemestres === 'function') {
+      cards.forEach(function (carte) {
+        if (!carte.getAttribute('data-catalogue-paire')) return;
+        donneesSemestres.set(carte, { contenu: normaliser(carte.textContent), semestres: semestresCarte(carte) });
+      });
+      groupes = window.tjdCartesSemestres(grille, function (article) {
+        var ancre = document.getElementById(window.location.hash.slice(1));
+        if (groupes.get(ancre) === groupes.get(article)) {
+          window.history.replaceState(window.history.state, '', '#' + article.id);
+        }
+      });
+    }
+    var groupesUniques = new Set(groupes.values());
     var onglets = Array.from(document.querySelectorAll('[data-niveau-onglet]'));
     var etatRecherche = document.createElement('div');
     etatRecherche.className = 'text-center';
@@ -38,13 +54,15 @@
       return !carte.hidden && !carte.classList.contains('hors-niveau');
     }
 
-    function appliquerRecherche() {
+    function appliquerRecherche(preference) {
       var terme = normaliser(input.value.trim());
       var niveauxDemandes = [];
+      var correspondances;
       // Si la grille a aussi des chips de filtre (niveau/matière), main.js expose une fonction
       // qui combine recherche + chips dans un seul état, pour ne pas se marcher dessus sur `hidden`.
-      if (typeof window.tjdAppliquerFiltreRecherche === 'function') {
+      if (!groupes.size && typeof window.tjdAppliquerFiltreRecherche === 'function') {
         window.tjdAppliquerFiltreRecherche(terme);
+        correspondances = cards.filter(function (carte) { return !carte.hidden; });
       } else {
         var semestresDemandes = [];
         var mots = terme.replace(/\bl([123])s([12])\b/g, 'l$1 s$2')
@@ -55,16 +73,27 @@
             semestresDemandes.push('s' + semestre);
             return ' ';
           }).match(/[\p{L}\p{N}]+/gu) || [];
-        cards.forEach(function (card) {
-          var contenu = normaliser(card.textContent);
-          var semestres = semestresCarte(card);
-          card.hidden = !(mots.every(function (mot) { return contenu.includes(mot); })
+        correspondances = cards.filter(function (card) {
+          var donnees = donneesSemestres.get(card);
+          var contenu = donnees ? donnees.contenu : normaliser(card.textContent);
+          var semestres = donnees ? donnees.semestres : semestresCarte(card);
+          return mots.every(function (mot) { return contenu.includes(mot); })
             && (!semestresDemandes.length || semestresDemandes.some(function (semestre) { return semestres.includes(semestre); }))
-            && (!niveauxDemandes.length || niveauxDemandes.some(function (niveau) { return niveauxCarte(card).includes(niveau); })));
+            && (!niveauxDemandes.length || niveauxDemandes.some(function (niveau) { return niveauxCarte(card).includes(niveau); }));
+        });
+        var resultats = new Set(correspondances);
+        cards.forEach(function (carte) {
+          if (!groupes.has(carte)) carte.hidden = !resultats.has(carte);
+        });
+        groupesUniques.forEach(function (groupe) {
+          var disponibles = groupe.articles.filter(function (carte) {
+            return resultats.has(carte) && !carte.classList.contains('hors-niveau');
+          });
+          groupe.afficher(new Set(disponibles), preference);
         });
       }
       var visible = cards.some(carteVisible);
-      var correspondances = visible || !terme ? [] : cards.filter(function (carte) { return !carte.hidden; });
+      if (visible || !terme) correspondances = [];
       var niveauxTrouves = onglets.filter(function (onglet) {
         var niveau = onglet.getAttribute('data-niveau-onglet');
         if (niveauxDemandes.length && !niveauxDemandes.includes(niveau)) return false;
@@ -87,7 +116,7 @@
       messageVide.hidden = !!ongletSuggere;
     }
 
-    input.addEventListener('input', appliquerRecherche);
+    input.addEventListener('input', function () { appliquerRecherche(); });
     suggestion.addEventListener('click', function () {
       if (!ongletSuggere) return;
       ongletSuggere.click();
@@ -97,6 +126,31 @@
         cible.focus();
       }
     });
+    function suivreLien(produit) {
+      var ancre = document.getElementById(window.location.hash.slice(1));
+      var cible = groupes.has(ancre) ? ancre : document.getElementById(produit || '');
+      var groupe = groupes.get(cible);
+      if (!groupe) return;
+      appliquerRecherche(cible);
+      if (groupe.actif() !== cible && input.value) {
+        input.value = '';
+        appliquerRecherche(cible);
+      }
+      if (cible === ancre) groupe.element.scrollIntoView({ block: 'start' });
+    }
+
+    function suivreProduit() {
+      var produit = new URLSearchParams(window.location.search).get('produit');
+      if (produit === dernierProduit) return;
+      dernierProduit = produit;
+      suivreLien(produit);
+    }
+
     appliquerRecherche();
+    if (groupes.size) {
+      suivreProduit();
+      window.addEventListener('hashchange', function () { suivreLien(); });
+      window.addEventListener('popstate', suivreProduit);
+    }
   });
 })();

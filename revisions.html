@@ -54,6 +54,7 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
   <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
+  <link rel="stylesheet" href="assets/css/catalogue-semestres.css?v=b3be758b">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
@@ -387,7 +388,7 @@
       <div class="container">
         <h2 class="h2" style="margin-bottom:6px">Fiches d'arrêt</h2>
         <p class="lead" style="margin-bottom:24px">Chaque PDF de fiches d’arrêt présente les décisions à connaître dans une matière.</p>
-        <div class="grid-3">
+        <div class="grid-3" data-tjd-cartes-semestres>
 
           <article id="fiche-arret-personnes" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche d'arrêt</span><img src="assets/covers/fiche-arret-personnes.webp?v=collection-graphique-20260921" alt="Fiches d'arrêt Droit des personnes, couverture Trajectoire Droit" loading="lazy"></div>
@@ -510,7 +511,7 @@
             </div>
           </article>
 
-          <article id="fiche-arret-constit-l1-s1" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L1">
+          <article id="fiche-arret-constit-l1-s1" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L1" data-catalogue-paire="fiche-arret-constit-l1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche d'arrêt</span><img src="assets/covers/fiche-arret-constit-l1-s1.webp?v=collection-graphique-20260921" alt="Fiches d'arrêt Droit constitutionnel (S1), couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel (S1)</h3>
@@ -521,7 +522,7 @@
             </div>
           </article>
 
-          <article id="fiche-arret-constit-l1-s2" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L1">
+          <article id="fiche-arret-constit-l1-s2" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L1" data-catalogue-paire="fiche-arret-constit-l1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche d'arrêt</span><img src="assets/covers/fiche-arret-constit-l1-s2.webp?v=collection-graphique-20260921" alt="Fiches d'arrêt Droit constitutionnel (S2), couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel (S2)</h3>
@@ -643,7 +644,7 @@
         </div>
         <h3 class="h2" id="citations-unite" tabindex="-1" style="margin-top:54px; margin-bottom:6px; scroll-margin-top:100px">Les fiches à l'unité</h3>
         <p class="lead" style="margin-bottom:24px">Tu peux acheter chaque fiche séparément si tu as besoin d'une seule matière. Les fiches de droit de l'Union européenne et de libertés fondamentales sont vendues uniquement à l'unité.</p>
-        <div class="grid-3">
+        <div class="grid-3" data-tjd-cartes-semestres>
 
           <article id="citations-intro-droit-l1" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Citations</span><img src="assets/covers/citations-intro-droit-l1.webp?v=collection-graphique-20260921" alt="Citations Introduction au droit, couverture Trajectoire Droit" loading="lazy"></div>
@@ -667,7 +668,7 @@
             </div>
           </article>
 
-          <article id="citations-constit-l1-s1" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L1">
+          <article id="citations-constit-l1-s1" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L1" data-catalogue-paire="citations-constit-l1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Citations</span><img src="assets/covers/citations-constit-l1-s1.webp?v=collection-graphique-20260921" alt="Citations Droit constitutionnel (S1), couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel (S1)</h3>
@@ -678,7 +679,7 @@
             </div>
           </article>
 
-          <article id="citations-constit-l1-s2" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L1">
+          <article id="citations-constit-l1-s2" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L1" data-catalogue-paire="citations-constit-l1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Citations</span><img src="assets/covers/citations-constit-l1-s2.webp?v=collection-graphique-20260921" alt="Citations Droit constitutionnel (S2), couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel (S2)</h3>
@@ -700,7 +701,7 @@
             </div>
           </article>
 
-          <article id="citations-da-l2-s1" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L2">
+          <article id="citations-da-l2-s1" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L2" data-catalogue-paire="citations-da-l2" data-catalogue-semestre="1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Citations</span><img src="assets/covers/citations-da-l2-s1.webp?v=collection-graphique-20260921" alt="Citations Droit administratif (S1), couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif</h3>
@@ -711,7 +712,7 @@
             </div>
           </article>
 
-          <article id="citations-da-l2-s2" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L2">
+          <article id="citations-da-l2-s2" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L2" data-catalogue-paire="citations-da-l2" data-catalogue-semestre="2">
             <div class="product__thumb has-cover"><span class="badge badge--format">Citations</span><img src="assets/covers/citations-da-l2-s2.webp?v=collection-graphique-20260921" alt="Citations Droit administratif (S2), couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif</h3>
@@ -722,7 +723,7 @@
             </div>
           </article>
 
-          <article id="citations-obligations-l2-s1" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L2">
+          <article id="citations-obligations-l2-s1" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L2" data-catalogue-paire="citations-obligations-l2" data-catalogue-semestre="1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Citations</span><img src="assets/covers/citations-obligations-l2-s1.webp?v=collection-graphique-20260921" alt="Citations Droit des obligations (S1), couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des obligations / Droit des contrats</h3>
@@ -733,7 +734,7 @@
             </div>
           </article>
 
-          <article id="citations-obligations-l2-s2" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L2">
+          <article id="citations-obligations-l2-s2" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L2" data-catalogue-paire="citations-obligations-l2" data-catalogue-semestre="2">
             <div class="product__thumb has-cover"><span class="badge badge--format">Citations</span><img src="assets/covers/citations-obligations-l2-s2.webp?v=collection-graphique-20260921" alt="Citations Droit des obligations (S2), couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit des obligations / Droit des contrats</h3>
@@ -744,7 +745,7 @@
             </div>
           </article>
 
-          <article id="citations-penal-l2-s1" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L2">
+          <article id="citations-penal-l2-s1" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L2" data-catalogue-paire="citations-penal-l2" data-catalogue-semestre="1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Citations</span><img src="assets/covers/citations-penal-l2-s1.webp?v=collection-graphique-20260921" alt="Citations Droit pénal (S1), couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit pénal général</h3>
@@ -755,7 +756,7 @@
             </div>
           </article>
 
-          <article id="citations-penal-l2-s2" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L2">
+          <article id="citations-penal-l2-s2" tabindex="-1" style="scroll-margin-top:100px" class="card card--product fade-in" data-niveau="L2" data-catalogue-paire="citations-penal-l2">
             <div class="product__thumb has-cover"><span class="badge badge--format">Citations</span><img src="assets/covers/citations-penal-l2-s2.webp?v=collection-graphique-20260921" alt="Citations Droit pénal (S2), couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit pénal général (S2)</h3>
@@ -865,7 +866,7 @@
         <h2 class="h2" style="margin-bottom:6px">Flashcards + QCM + deck Anki</h2>
         <p class="lead" style="margin-bottom:24px">Chaque matière a son pack de révision active. Le principe consiste à retrouver la réponse de mémoire, plutôt qu'à relire son cours. Le pack contient donc des flashcards à découper et des séries de QCM, dont chaque corrigé explique la bonne réponse. Il contient aussi un deck Anki complet, soit un paquet de cartes pour l'application de révision Anki, avec des cartes classiques et des cartes à trous.</p>
         <p style="margin-bottom:24px"><a href="flashcards-qcm.html#packs-flashcards-qcm">Tu révises plusieurs matières ? Voir les packs annuels Flashcards + QCM, dès 30 € →</a></p>
-        <div class="grid-3">
+        <div class="grid-3" data-tjd-cartes-semestres>
 
           <article class="card card--product fade-in" data-niveau="L1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Flashcards + QCM</span><img src="assets/covers/flashcards-qcm-intro-droit-l1-collection.webp?v=collection-20260922" alt="Flashcards et QCM Introduction au droit, couverture Trajectoire Droit" loading="lazy"></div>
@@ -889,7 +890,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1">
+          <article class="card card--product fade-in" data-niveau="L1" id="flashcards-qcm-constit-l1-s1" data-catalogue-paire="flashcards-qcm-constit-l1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Flashcards + QCM</span><img src="assets/covers/flashcards-qcm-constit-l1-s1-collection.webp?v=collection-20260922" alt="Flashcards et QCM Droit constitutionnel, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel (S1)</h3>
@@ -900,7 +901,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1">
+          <article class="card card--product fade-in" data-niveau="L1" id="flashcards-qcm-constit-l1-s2" data-catalogue-paire="flashcards-qcm-constit-l1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Flashcards + QCM</span><img src="assets/covers/flashcards-qcm-constit-l1-s2-collection.webp?v=collection-20260922" alt="Flashcards et QCM Droit constitutionnel, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel (S2)</h3>
@@ -966,7 +967,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2">
+          <article class="card card--product fade-in" data-niveau="L2" id="flashcards-qcm-da-l2-s1" data-catalogue-paire="flashcards-qcm-da-l2" data-catalogue-semestre="1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Flashcards + QCM</span><img src="assets/covers/flashcards-qcm-da-l2-s1-collection.webp?v=collection-20260922" alt="Flashcards et QCM Droit administratif, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif</h3>
@@ -999,7 +1000,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2">
+          <article class="card card--product fade-in" data-niveau="L2" id="flashcards-qcm-da-l2-s2" data-catalogue-paire="flashcards-qcm-da-l2" data-catalogue-semestre="2">
             <div class="product__thumb has-cover"><span class="badge badge--format">Flashcards + QCM</span><img src="assets/covers/flashcards-qcm-da-l2-s2-collection.webp?v=collection-20260922" alt="Flashcards et QCM Droit administratif, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif</h3>
@@ -1176,6 +1177,7 @@
   </div>
 
   <script src="assets/js/main.js?v=00564c99" defer></script>
+  <script src="assets/js/catalogue-semestres.js?v=dd068853" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */

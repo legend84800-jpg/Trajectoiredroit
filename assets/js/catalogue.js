@@ -59,6 +59,14 @@
         matieres: (carte.getAttribute('data-matiere') || '').split(',').map(function (matiere) { return matiere.trim(); })
       };
     });
+    var groupeParArticle = catalogueFiches && window.tjdCartesSemestres
+      ? window.tjdCartesSemestres(grille, function (article) {
+        var cible = carteAncree(window.location.hash);
+        if (cible && groupeParArticle.get(cible.element) === groupeParArticle.get(article)) {
+          actualiserAdresse(true, '#' + article.id);
+        }
+      }) : new Map();
+    var groupes = new Set(groupeParArticle.values());
     var niveaux = Array.prototype.slice.call(racine.querySelectorAll('[data-catalogue-niveau]'));
     var matieres = Array.prototype.slice.call(racine.querySelectorAll('[data-catalogue-matiere]'));
     var valeursMatieres = matieres.map(function (bouton) {
@@ -171,7 +179,7 @@
       if (!matieresDisponibles.has(etat.matiere)) etat.matiere = 'tous';
     }
 
-    function appliquerFiltres(depuisRecherche) {
+    function appliquerFiltres(depuisRecherche, semestresChoisis) {
       var semestres = [], semestresLicence = [], niveauxRecherches = [];
       var texte = normaliser(recherche.value)
         .replace(/\bl([123])s([1-6])\b/g, 'l$1 s$2')
@@ -218,13 +226,19 @@
       });
       var cartesCorrespondantes = cartesDansMatiere(cartesRecherchees, etat.matiere, sujetAnnuel);
       var cartesRetenues = new Set(cartesCorrespondantes);
-      var nombre = 0;
+      var articlesDisponibles = new Set();
       cartes.forEach(function (carte) {
         var visible = cartesRetenues.has(carte) && carteDansNiveau(carte);
+        if (visible) articlesDisponibles.add(carte.element);
+        if (groupeParArticle.has(carte.element)) return;
         carte.element.hidden = !visible;
         carte.element.style.display = visible ? carte.display : 'none';
-        if (visible) nombre++;
       });
+      groupes.forEach(function (groupe) {
+        var preference = groupe.articles.find(function (article) { return semestresChoisis?.includes(article.id); });
+        groupe.afficher(articlesDisponibles, preference);
+      });
+      var nombre = articlesDisponibles.size;
       niveaux.forEach(function (bouton) {
         var actif = bouton.getAttribute('data-catalogue-niveau') === etat.niveau;
         bouton.classList.toggle('active', actif);
@@ -239,7 +253,11 @@
         selectMatiere.value = etat.matiere;
         selectMatiere.classList.toggle('active', etat.matiere !== 'tous');
       }
-      if (compteur) compteur.textContent = nombre + (nombre > 1 ? ' supports affichés sur ' : ' support affiché sur ') + cartes.length;
+      if (compteur) {
+        var libelle = groupes.size ? (nombre === 1 ? ' support sur ' : ' supports sur ')
+          : (nombre > 1 ? ' supports affichés sur ' : ' support affiché sur ');
+        compteur.textContent = nombre + libelle + cartes.length;
+      }
       if (reset) {
         var filtreActif = etat.niveau !== 'tous' || etat.matiere !== 'tous' || recherche.value.trim() !== '';
         reset.hidden = !filtreActif;
@@ -299,12 +317,17 @@
     function ancreCatalogue(ancre) {
       return ancre === '#a-l-unite' || Object.hasOwn(HASH_NIVEAU, ancre) || ANCRES_PACKS_ANNUELS.includes(ancre);
     }
+    function secondsSemestresChoisis() {
+      return Array.from(groupes).filter(function (groupe) { return groupe.actif() === groupe.articles[1]; })
+        .map(function (groupe) { return groupe.articles[1].id; });
+    }
     if (catalogueFiches && window.location.pathname === '/formations.html') {
       var adresseReprise = 'formations.html' + ANCRE_RETOUR_PAIEMENT;
       window.tjdRetourCatalogue = {
         adresse: function () {
           if (carteAncree(window.location.hash) || recherche.value.length > 500) return null;
-          if (!recherche.value.trim() && etat.niveau === 'tous' && etat.matiere === 'tous') return null;
+          if (!recherche.value.trim() && etat.niveau === 'tous' && etat.matiere === 'tous'
+              && !secondsSemestresChoisis().length) return null;
           try {
             sessionStorage.getItem(CLE_RETOUR_PAIEMENT);
             return adresseReprise;
@@ -318,10 +341,13 @@
               sessionStorage.removeItem(CLE_RETOUR_PAIEMENT);
               return;
             }
-            sessionStorage.setItem(CLE_RETOUR_PAIEMENT, JSON.stringify({
+            var reprise = {
               recherche: recherche.value, niveau: etat.niveau, matiere: etat.matiere,
               ancre: ancreCatalogue(ancre) ? ancre : '#a-l-unite'
-            }));
+            };
+            var semestres = secondsSemestresChoisis();
+            if (semestres.length) reprise.semestres = semestres;
+            sessionStorage.setItem(CLE_RETOUR_PAIEMENT, JSON.stringify(reprise));
           } catch (_) { /* Le lien de retour reste utilisable sans stockage. */ }
         }
       };
@@ -341,7 +367,7 @@
         etat.niveau = reprise.niveau;
         etat.matiere = reprise.matiere;
       }
-      appliquerFiltres();
+      appliquerFiltres(false, valide && Array.isArray(reprise.semestres) ? reprise.semestres : []);
       var ancre = valide ? reprise.ancre : '#a-l-unite';
       actualiserAdresse(true, ancre);
       var pack = ANCRES_PACKS_ANNUELS.includes(ancre) ? document.getElementById(ancre.slice(1)) : null;
@@ -359,12 +385,13 @@
         etat.niveau = niveauValide(cible.niveaux[0]) || 'tous';
         etat.matiere = 'tous';
         recherche.value = '';
-        appliquerFiltres(); actualiserAdresse(true);
+        appliquerFiltres(false, [cible.element.id]); actualiserAdresse(true);
         var sommaire = correspondAncre(cible.sommaire, hash.slice(1)) ? cible.sommaire : null;
         if (sommaire) sommaire.parentElement.open = true;
         var focus = sommaire || cible.element;
         focus.focus({ preventScroll: true });
-        focus.scrollIntoView({ behavior: 'auto', block: 'start' });
+        var groupe = groupeParArticle.get(cible.element);
+        (sommaire || groupe?.element || focus).scrollIntoView({ behavior: 'auto', block: 'start' });
         return true;
       }
       var niveau = HASH_NIVEAU[hash];

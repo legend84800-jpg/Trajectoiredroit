@@ -185,6 +185,7 @@
     }
   </script>
   <!-- End Matomo Code -->
+  <link rel="stylesheet" href="assets/css/catalogue-semestres.css?v=b3be758b">
 </head>
 <body>
 
@@ -608,7 +609,7 @@
       <div class="container">
         <h2 class="h2" style="margin-bottom:6px">Fiches d'arrêt</h2>
         <p class="lead" style="margin-bottom:24px">Chaque PDF de fiches d’arrêt présente les décisions à connaître dans une matière.</p>
-        <div class="grid-3">
+        <div class="grid-3" data-tjd-cartes-semestres>
 
           <article class="card card--product fade-in" data-niveau="L1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche d'arrêt</span><img src="assets/covers/fiche-arret-personnes.webp?v=collection-graphique-20260921" alt="Fiches d'arrêt Droit des personnes, couverture Trajectoire Droit" loading="lazy"></div>
@@ -731,7 +732,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1">
+          <article id="fiche-arret-constit-l1-s1" class="card card--product fade-in" data-niveau="L1" data-catalogue-paire="fiche-arret-constit-l1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche d'arrêt</span><img src="assets/covers/fiche-arret-constit-l1-s1.webp?v=collection-graphique-20260921" alt="Fiches d'arrêt Droit constitutionnel (S1), couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel (S1)</h3>
@@ -742,7 +743,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1">
+          <article id="fiche-arret-constit-l1-s2" class="card card--product fade-in" data-niveau="L1" data-catalogue-paire="fiche-arret-constit-l1">
             <div class="product__thumb has-cover"><span class="badge badge--format">Fiche d'arrêt</span><img src="assets/covers/fiche-arret-constit-l1-s2.webp?v=collection-graphique-20260921" alt="Fiches d'arrêt Droit constitutionnel (S2), couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel (S2)</h3>
@@ -924,5 +925,6 @@
   })();
   </script>
   <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
+  <script src="assets/js/catalogue-semestres.js?v=dd068853" defer></script>
 </body>
 </html>

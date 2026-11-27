@@ -55,6 +55,7 @@
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
   <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
   <link rel="stylesheet" href="assets/css/acces-catalogue.css?v=4530186e">
+  <link rel="stylesheet" href="assets/css/catalogue-semestres.css?v=b3be758b">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
@@ -474,7 +475,7 @@
             </div>
           </article>
 
-          <article id="maj-da-l2-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L2">
+          <article id="maj-da-l2-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L2" data-catalogue-paire="maj-da-l2">
             <div class="product__thumb has-cover"><span class="badge badge--format">Majeure préparée</span><img src="assets/majeures/administratif-l2s1-couleur.webp" alt="Droit administratif, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif (S1)</h3>
@@ -486,7 +487,7 @@
             </div>
           </article>
 
-          <article id="maj-da-l2-s2" tabindex="-1" class="card card--product fade-in" data-niveau="L2">
+          <article id="maj-da-l2-s2" tabindex="-1" class="card card--product fade-in" data-niveau="L2" data-catalogue-paire="maj-da-l2">
             <div class="product__thumb has-cover"><span class="badge badge--format">Majeure préparée</span><img src="assets/majeures/administratif-l2s2-couleur.webp" alt="Droit administratif, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif (S2)</h3>
@@ -522,7 +523,7 @@
             </div>
           </article>
 
-          <article id="maj-penal-l2-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L2">
+          <article id="maj-penal-l2-s1" tabindex="-1" class="card card--product fade-in" data-niveau="L2" data-catalogue-paire="maj-penal-l2">
             <div class="product__thumb has-cover"><span class="badge badge--format">Majeure préparée</span><img src="assets/majeures/penal-l2s1-couleur.webp" alt="Droit penal, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit pénal (S1)</h3>
@@ -534,7 +535,7 @@
             </div>
           </article>
 
-          <article id="maj-penal-l2-s2" tabindex="-1" class="card card--product fade-in" data-niveau="L2">
+          <article id="maj-penal-l2-s2" tabindex="-1" class="card card--product fade-in" data-niveau="L2" data-catalogue-paire="maj-penal-l2">
             <div class="product__thumb has-cover"><span class="badge badge--format">Majeure préparée</span><img src="assets/majeures/penal-l2s2-couleur.webp" alt="Droit penal, majeure preparee, carte Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit pénal (S2)</h3>
@@ -831,13 +832,20 @@
   </div>
 
   <script src="assets/js/main.js?v=00564c99" defer></script>
-  <script src="assets/js/filtre-recherche.js?v=127152b8" defer></script>
+  <script src="assets/js/catalogue-semestres.js?v=dd068853" defer></script>
+  <script src="assets/js/filtre-recherche.js?v=31f7ba67" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script>
   /* Onglets L1, L2, L3 : filtrent les packs et la grille, et se partagent par ?niveau=l2 */
   (function(){
     var onglets = Array.from(document.querySelectorAll('[data-niveau-onglet]'));
     var cartes = Array.from(document.querySelectorAll('#packs-majeures .card--product, #grille-majeures .card--product'));
+    var titresPaires = new Map();
+    cartes.forEach(function(carte){
+      if (carte.getAttribute('data-catalogue-paire')) {
+        titresPaires.set(carte, carte.querySelector('.product__title').textContent.trim());
+      }
+    });
     var grillePacks = document.querySelector('#packs-majeures .grid-3');
     var achatsMatiere = Array.from(document.querySelectorAll('#grille-majeures [data-tjd-produit]'));
     var recherche = document.querySelector('#grille-majeures input[type="search"]');
@@ -900,15 +908,20 @@
         return;
       }
       var carte = bouton.closest('.card--product');
+      var titre = titresPaires.get(carte) || carte.querySelector('.product__title').textContent.trim();
       var copie = carte.cloneNode(true);
       copie.removeAttribute('id');
       copie.removeAttribute('tabindex');
+      copie.removeAttribute('data-catalogue-paire');
       copie.classList.remove('fade-in', 'hors-niveau');
       copie.hidden = false;
+      copie.querySelector('.product__title').textContent = titre;
+      var choix = copie.querySelector('.catalogue-semestres__choix');
+      if (choix) choix.remove();
       var vignette = copie.querySelector('.product__thumb');
       if (vignette) vignette.remove();
       choisie.appendChild(copie);
-      titreBarre.textContent = carte.querySelector('.product__title').textContent.trim();
+      titreBarre.textContent = titre;
       sousTitreBarre.textContent = 'Majeures préparées · ' + niveauxCarte(carte).sort().join(' et ');
       achatBarre.setAttribute('data-tjd-produit', bouton.getAttribute('data-tjd-produit'));
       achatBarre.textContent = bouton.textContent.trim();
@@ -979,7 +992,9 @@
       var produit = params.get('produit');
       var bouton = achatsMatiere.find(function(achat){ return achat.getAttribute('data-tjd-produit') === produit; }) || null;
       var demande = (params.get('niveau') || '').toUpperCase();
-      var niveauxProduit = bouton ? niveauxCarte(bouton.closest('.card--product')) : [];
+      var ancre = document.getElementById(window.location.hash.slice(1));
+      var niveauxProduit = bouton ? niveauxCarte(bouton.closest('.card--product'))
+        : (extraits[demande] && titresPaires.has(ancre) ? niveauxCarte(ancre) : []);
       var niveau = niveauxProduit.includes(demande) ? demande : (niveauxProduit[0] || demande);
       if (!extraits[niveau]) niveau = 'TOUT';
       if (achatChoisi !== bouton || niveauCourant !== niveau) {
@@ -1002,6 +1017,7 @@
       });
     });
     window.addEventListener('popstate', actualiserDepuisUrl);
+    window.addEventListener('hashchange', actualiserDepuisUrl);
     var produit = actualiserDepuisUrl();
     if (produit && window._paq) window._paq.push(['trackEvent', 'Majeures', 'Lien matière', produit]);
   })();

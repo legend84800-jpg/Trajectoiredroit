@@ -54,6 +54,7 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
   <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
+  <link rel="stylesheet" href="assets/css/catalogue-semestres.css?v=b3be758b">
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
   <script>
@@ -368,7 +369,7 @@
       <div class="container">
         <h2 class="h2" style="margin-bottom:6px">Le programme de ta L1</h2>
         <p class="lead" style="margin-bottom:24px">Chaque fiche complète réunit tout le semestre en un seul PDF, matière par matière.</p>
-        <div class="grid-3">
+        <div class="grid-3" data-tjd-cartes-semestres>
 
           <article class="card card--product fade-in" data-niveau="L1">
             <div class="product__body" style="padding-top:20px">
@@ -378,7 +379,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1">
+          <article class="card card--product fade-in" data-niveau="L1" id="fiche-constit-l1-s1" data-catalogue-paire="fiche-constit-l1">
             <div class="product__body" style="padding-top:20px">
               <h3 class="product__title">Droit constitutionnel (S1)</h3>
               <div><span class="product__price">14,99 €</span></div>
@@ -394,7 +395,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1">
+          <article class="card card--product fade-in" data-niveau="L1" id="fiche-constit-l1-s2" data-catalogue-paire="fiche-constit-l1">
             <div class="product__body" style="padding-top:20px">
               <h3 class="product__title">Droit constitutionnel (S2)</h3>
               <div><span class="product__price">14,99 €</span></div>
@@ -568,6 +569,7 @@
   </div>
 
   <script src="assets/js/main.js?v=00564c99" defer></script>
+  <script src="assets/js/catalogue-semestres.js?v=dd068853" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */

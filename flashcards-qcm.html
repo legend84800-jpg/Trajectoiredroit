@@ -54,6 +54,7 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
   <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
+  <link rel="stylesheet" href="assets/css/catalogue-semestres.css?v=b3be758b">
   <link rel="stylesheet" href="assets/css/acces-catalogue.css?v=4530186e">
   <style>
     .card--product[id^="flashcards-qcm-"] { scroll-margin-top: calc(var(--header-h) + 16px); }
@@ -391,7 +392,7 @@
       <div class="container">
         <h2 class="h2" id="flashcards-l1-titre" style="margin-bottom:6px">Flashcards + QCM · Licence 1</h2>
         <p class="lead" style="margin-bottom:24px">Sept séries couvrent six matières de L1, avec une série pour chacun des deux semestres de droit constitutionnel.</p>
-        <div class="grid-3">
+        <div class="grid-3" data-tjd-cartes-semestres>
 
           <article class="card card--product fade-in" data-niveau="L1" id="flashcards-qcm-intro-droit-l1" data-qcm-prix-centimes="999">
             <div class="product__thumb has-cover"><span class="badge badge--format">Flashcards + QCM</span><img src="assets/covers/flashcards-qcm-intro-droit-l1-collection.webp?v=collection-20260922" alt="Flashcards et QCM Introduction au droit, couverture Trajectoire Droit" loading="lazy"></div>
@@ -404,7 +405,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1" id="flashcards-qcm-constit-l1-s1" data-qcm-prix-centimes="999">
+          <article class="card card--product fade-in" data-niveau="L1" id="flashcards-qcm-constit-l1-s1" data-catalogue-paire="flashcards-qcm-constit-l1" data-catalogue-semestre="1" data-qcm-prix-centimes="999">
             <div class="product__thumb has-cover"><span class="badge badge--format">Flashcards + QCM</span><img src="assets/covers/flashcards-qcm-constit-l1-s1-collection.webp?v=collection-20260922" alt="Flashcards et QCM Droit constitutionnel, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel</h3>
@@ -426,7 +427,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L1" id="flashcards-qcm-constit-l1-s2" data-qcm-prix-centimes="999">
+          <article class="card card--product fade-in" data-niveau="L1" id="flashcards-qcm-constit-l1-s2" data-catalogue-paire="flashcards-qcm-constit-l1" data-catalogue-semestre="2" data-qcm-prix-centimes="999">
             <div class="product__thumb has-cover"><span class="badge badge--format">Flashcards + QCM</span><img src="assets/covers/flashcards-qcm-constit-l1-s2-collection.webp?v=collection-20260922" alt="Flashcards et QCM Droit constitutionnel, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit constitutionnel</h3>
@@ -478,9 +479,9 @@
       <div class="container">
         <h2 class="h2" id="flashcards-l2-titre" style="margin-bottom:6px">Flashcards + QCM · Licence 2</h2>
         <p class="lead" style="margin-bottom:24px">Tout le programme de L2 est couvert, du droit des contrats au droit pénal, en passant par les obligations, les biens et le droit administratif.</p>
-        <div class="grid-3">
+        <div class="grid-3" data-tjd-cartes-semestres>
 
-          <article class="card card--product fade-in" data-niveau="L2" id="flashcards-qcm-da-l2-s1" data-qcm-prix-centimes="999">
+          <article class="card card--product fade-in" data-niveau="L2" id="flashcards-qcm-da-l2-s1" data-catalogue-paire="flashcards-qcm-da-l2" data-catalogue-semestre="1" data-qcm-prix-centimes="999">
             <div class="product__thumb has-cover"><span class="badge badge--format">Flashcards + QCM</span><img src="assets/covers/flashcards-qcm-da-l2-s1-collection.webp?v=collection-20260922" alt="Flashcards et QCM Droit administratif, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif</h3>
@@ -524,7 +525,7 @@
             </div>
           </article>
 
-          <article class="card card--product fade-in" data-niveau="L2" id="flashcards-qcm-da-l2-s2" data-qcm-prix-centimes="999">
+          <article class="card card--product fade-in" data-niveau="L2" id="flashcards-qcm-da-l2-s2" data-catalogue-paire="flashcards-qcm-da-l2" data-catalogue-semestre="2" data-qcm-prix-centimes="999">
             <div class="product__thumb has-cover"><span class="badge badge--format">Flashcards + QCM</span><img src="assets/covers/flashcards-qcm-da-l2-s2-collection.webp?v=collection-20260922" alt="Flashcards et QCM Droit administratif, couverture Trajectoire Droit" loading="lazy"></div>
             <div class="product__body">
               <h3 class="product__title">Droit administratif</h3>
@@ -803,6 +804,7 @@
   </div>
 
   <script src="assets/js/main.js?v=00564c99" defer></script>
+  <script src="assets/js/catalogue-semestres.js?v=dd068853" defer></script>
   <script src="assets/js/achat.js?v=81a894f1" defer></script>
   <script>
   /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
