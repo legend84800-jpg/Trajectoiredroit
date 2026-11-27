@@ -39,12 +39,30 @@ html[data-theme="dark"] .notes-page {
   gap: 14px;
 }
 .notes-card {
+  --fac-ink: #563773;
+  --fac-pale: #f4eef9;
   position: relative;
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--surface);
+}
+.notes-card:has([data-notes-reader^="copie-bourgogne-"]) {
+  --fac-ink: #735127;
+  --fac-pale: #fbf2e4;
+}
+.notes-card:has([data-notes-reader^="copie-cergy-"]) {
+  --fac-ink: #27604b;
+  --fac-pale: #eaf5ef;
+}
+.notes-card:has([data-notes-reader^="copie-sorbonne-"]) {
+  --fac-ink: #2b5486;
+  --fac-pale: #ebf2fb;
+}
+.notes-card:has([data-notes-reader^="copie-toulouse-"]) {
+  --fac-ink: #794052;
+  --fac-pale: #faeef2;
 }
 .notes-card:hover,
 .notes-card:focus-within {
@@ -79,6 +97,7 @@ html[data-theme="dark"] .notes-page {
 .notes-card__name {
   margin: 0;
   font-size: 23px;
+  font-weight: 700;
   line-height: 1.1;
 }
 .notes-score {
@@ -94,10 +113,16 @@ html[data-theme="dark"] .notes-page {
   font-size: .48em;
 }
 .notes-card__university {
+  display: table;
+  width: fit-content;
+  max-width: 100%;
   margin: 3px 0 0;
-  color: var(--notes-ink);
-  font-size: 24px;
-  font-weight: 800;
+  padding: 2px 8px 3px;
+  border-radius: 4px;
+  background: var(--fac-pale);
+  color: var(--fac-ink);
+  font-size: 23px;
+  font-weight: 650;
   line-height: 1.16;
   letter-spacing: -.025em;
 }
