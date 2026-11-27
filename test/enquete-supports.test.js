@@ -15,7 +15,17 @@ const corps = {
   remarque: "  Ajouter un exemple à la page 24.  ",
 };
 
-test("le catalogue du questionnaire réunit les fiches complètes et les majeures en vente", () => {
+test("tout PDF distribué par un produit actif peut être présélectionné, y compris une annexe", () => {
+  const produits = require("../api/_produits");
+  const pdf = new Set(Object.values(produits)
+    .filter(p => !p.venteSuspendue)
+    .flatMap(p => p.blobs ?? [])
+    .map(url => /^r2:\/\/tjd\/([a-z0-9-]+)\.pdf$/.exec(url)?.[1])
+    .filter(Boolean));
+  assert.deepEqual(new Set(Object.keys(SUPPORTS)), pdf);
+  assert.match(SUPPORTS["flashcards-qcm-contrats-l2-s1-qcm"], /^QCM /);
+  assert.match(SUPPORTS["fiche-arret-administratif-plan-l2s2"], /^Plan détaillé L2 S2/);
+  assert.equal(SUPPORTS["fiche-arret-penal-plan-l1s2"], "Plan détaillé · Droit pénal général L2");
   assert.ok(SUPPORTS["fiche-contrats-l2-s1"]);
   assert.ok(SUPPORTS["cours-fiche-finances-publiques-l2-s1"]);
   assert.ok(SUPPORTS["maj-obligations-l2-s2"]);

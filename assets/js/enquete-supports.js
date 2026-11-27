@@ -61,8 +61,22 @@
       if (!reponse.ok) throw new Error("liste indisponible");
       return reponse.json();
     })
-    .then(({ supports }) => {
-      for (const [id, nom] of supports) support.add(new Option(nom, id));
+    .then(({ supports, groupes = {} }) => {
+      const listes = new Map();
+      for (const [id, nom] of supports) {
+        const groupe = groupes[id];
+        if (!groupe) {
+          support.add(new Option(nom, id));
+          continue;
+        }
+        if (!listes.has(groupe)) {
+          const liste = document.createElement("optgroup");
+          liste.label = groupe;
+          support.append(liste);
+          listes.set(groupe, liste);
+        }
+        listes.get(groupe).append(new Option(nom, id));
+      }
       const choix = new URLSearchParams(location.search).get("support");
       if (supports.some(([id]) => id === choix)) support.value = choix;
       afficherDetails();

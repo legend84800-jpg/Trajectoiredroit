@@ -13,9 +13,52 @@ const PARTIES = new Set(["regles", "explications", "exemples", "references", "pl
 const CLARTE = new Set(["premiere_lecture", "relecture", "difficile", "pas_assez"]);
 const FREINS = new Set(["plus_tard", "temps", "acces", "debut", "programme", "autre_ressource", "autre"]);
 const HESITATIONS = new Set(["programme", "format", "prix", "autre_ressource", "usage", "autre", "aucune", "pas_achete"]);
-const SUPPORTS = Object.fromEntries(Object.entries(PRODUITS)
-  .filter(([id, p]) => !p.venteSuspendue && (id.startsWith("maj-") || p.nom.startsWith("Fiche complète ")))
-  .map(([id, p]) => [id, p.nom]));
+const FAMILLES = [
+  ["fiche-arret-", "Fiches d’arrêt"],
+  ["fiche-", "Fiches complètes"],
+  ["cours-fiche-", "Fiches complètes"],
+  ["maj-", "Majeures préparées"],
+  ["cas-pratique-", "Cas pratiques corrigés"],
+  ["dissertation-", "Dissertations corrigées"],
+  ["commentaire-arret-", "Recueils de commentaires d’arrêt"],
+  ["coma-", "Commentaires d’arrêt à l’unité"],
+  ["citations-", "Fiches de citations"],
+  ["cours-images-", "Cours en images"],
+];
+const ANNEXES = {
+  plan: ["Plan détaillé", "Plans détaillés"],
+  "plan-l1s2": ["Plan détaillé", "Plans détaillés"],
+  "plan-l2s1": ["Plan détaillé L2 S1", "Plans détaillés"],
+  "plan-l2s2": ["Plan détaillé L2 S2", "Plans détaillés"],
+  cartesmentales: ["Cartes mentales", "Cartes mentales"],
+  "textes-des-arrets": ["Textes des arrêts", "Textes des arrêts"],
+  exercice: ["Exercice d’application", "Exercices d’application"],
+};
+const SUPPORTS = Object.create(null);
+const GROUPES = Object.create(null);
+for (const [id, produit] of Object.entries(PRODUITS)) {
+  if (produit.venteSuspendue || id.startsWith("pack-")) continue;
+  for (const url of produit.blobs ?? []) {
+    const support = /^r2:\/\/tjd\/([a-z0-9-]+)\.pdf$/.exec(url)?.[1];
+    if (!support) continue;
+    const role = support.startsWith(id + "-") ? support.slice(id.length + 1) : "";
+    const annexe = Object.hasOwn(ANNEXES, role) ? ANNEXES[role] : null;
+    if (id.startsWith("flashcards-qcm-") && (role === "qcm" || role === "flashcards")) {
+      const format = role === "qcm" ? "QCM" : "Flashcards";
+      GROUPES[support] = format;
+      SUPPORTS[support] = produit.nom.replace(/^Flashcards \+ QCM/, format);
+    } else if (annexe) {
+      const [titre, groupe] = annexe;
+      GROUPES[support] = groupe;
+      SUPPORTS[support] = support === "fiche-arret-penal-plan-l1s2"
+        ? "Plan détaillé · Droit pénal général L2"
+        : titre + " · " + produit.nom;
+    } else {
+      GROUPES[support] = FAMILLES.find(([prefixe]) => id.startsWith(prefixe))?.[1] || "Autres supports";
+      SUPPORTS[support] = produit.nom;
+    }
+  }
+}
 
 function texte(valeur) {
   if (valeur == null || valeur === "") return null;
@@ -65,8 +108,9 @@ async function enregistrerReponse(reponse, db = supabase) {
 async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
   if (req.method === "GET") {
-    const supports = Object.entries(SUPPORTS).sort((a, b) => a[1].localeCompare(b[1], "fr"));
-    return res.status(200).json({ supports, version: 2 });
+    const supports = Object.entries(SUPPORTS).sort(([a, nomA], [b, nomB]) =>
+      GROUPES[a].localeCompare(GROUPES[b], "fr") || nomA.localeCompare(nomB, "fr"));
+    return res.status(200).json({ supports, groupes: GROUPES, version: 2 });
   }
   if (req.method !== "POST") return res.status(405).end();
   const origine = req.headers?.origin;
