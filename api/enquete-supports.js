@@ -3,6 +3,7 @@ const PRODUITS = require("./_produits");
 const supabase = require("./_supabase");
 const { creerClientStripe } = require("./_stripe");
 const { creerRemiseEnquete } = require("./_remise-enquete");
+const { notifierReponse, reprendreNotifications } = require("./_notification-enquete");
 
 const TABLE = "enquete_supports";
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -107,6 +108,18 @@ async function enregistrerReponse(reponse, db = supabase) {
 
 async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
+  if (req.method === "GET" && req.query?.action === "notifications") {
+    const secret = process.env.CRON_SECRET;
+    if (!secret || req.headers?.authorization !== "Bearer " + secret) {
+      return res.status(401).end();
+    }
+    try {
+      return res.status(200).json(await reprendreNotifications(SUPPORTS));
+    } catch (e) {
+      console.error("enquete-supports reprise", { code: e.code || e.name });
+      return res.status(503).end();
+    }
+  }
   if (req.method === "GET") {
     const supports = Object.entries(SUPPORTS).sort(([a, nomA], [b, nomB]) =>
       GROUPES[a].localeCompare(GROUPES[b], "fr") || nomA.localeCompare(nomB, "fr"));
@@ -131,7 +144,11 @@ async function handler(req, res) {
     const stripe = creerClientStripe(process.env.STRIPE_SECRET_KEY);
     const enregistrement = await enregistrerReponse(reponse);
     if (!enregistrement) return res.status(409).json({ erreur: "support_modifie" });
-    return res.status(200).json(await creerRemiseEnquete(stripe, enregistrement));
+    const [remise] = await Promise.all([
+      creerRemiseEnquete(stripe, enregistrement),
+      notifierReponse(enregistrement.id, SUPPORTS),
+    ]);
+    return res.status(200).json(remise);
   } catch (e) {
     console.error("enquete-supports", { code: e.code || e.name || "inconnu" });
     return res.status(503).json({ erreur: "envoi_indisponible" });

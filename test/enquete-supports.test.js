@@ -148,3 +148,65 @@ test("un questionnaire terminé donne un code de 10 % à usage unique, utilisabl
   assert.equal(await lirePromotionEnquete(stripe, reponse.code), null);
   assert.deepEqual(await creerRemiseEnquete(stripe, reponse), { code: reponse.code, dejaUtilise: true });
 });
+
+const configurationNotification = { destinataire: "julien@example.test", urlTableau: "https://example.test/reponses" };
+
+test("le mail reprend les réponses du formulaire et échappe les remarques", () => {
+  const { construireNotification } = require("../api/_notification-enquete");
+  const utilise = lireReponse({
+    ...corps, version: 2, partie_utilisee: "regles", clarte: "relecture",
+    remarque: "<b>Page 24</b>\nAjouter un exemple.", hesitation: "format",
+  });
+  const mail = construireNotification({ ...utilise, code: "ENQUETE-ABCDEFABCDEFABCDEF" }, SUPPORTS[utilise.support], configurationNotification);
+  assert.match(mail.subject, /Majeures préparées Droit des contrats/);
+  assert.match(mail.htmlContent, /&lt;b&gt;Page 24&lt;\/b&gt;<br>Ajouter un exemple\./);
+  assert.match(mail.htmlContent, /href="https:\/\/example\.test\/reponses"/);
+  assert.equal(mail.to[0].email, configurationNotification.destinataire);
+  assert.match(mail.textContent, /Oui, après avoir relu certains passages/);
+  assert.doesNotMatch(mail.textContent, /ENQUETE-ABCDEFABCDEFABCDEF/);
+
+  const avant = lireReponse({ ...corps, version: 2, usage: "pas_encore", frein: "acces" });
+  const mailAvant = construireNotification(avant, SUPPORTS[avant.support], configurationNotification);
+  assert.match(mailAvant.textContent, /J’ai eu un problème d’accès ou de téléchargement/);
+  assert.doesNotMatch(mailAvant.textContent, /Compréhension à la lecture|Amélioration souhaitée/);
+});
+
+test("une notification en échec peut être reprise et deux traitements concurrents ne l’envoient pas deux fois", async (t) => {
+  const { notifierReponse } = require("../api/_notification-enquete");
+  const reponse = lireReponse(corps);
+  const datePassee = new Date(0).toISOString();
+  let reprise = datePassee;
+  let envoyee = false;
+  const cles = [];
+  const db = {
+    async mettreAJour(table, requete, donnees) {
+      assert.equal(table, "enquete_supports");
+      const filtres = new URLSearchParams(requete);
+      assert.equal(filtres.get("id"), "eq." + reponse.id);
+      if (envoyee) return [];
+      if (donnees.notification_envoyee_le) {
+        assert.equal(filtres.get("notification_a_partir_de"), "eq." + reprise);
+        envoyee = true;
+        return [{ id: reponse.id }];
+      }
+      if (filtres.get("notification_a_partir_de").slice(4) < reprise) return [];
+      reprise = donnees.notification_a_partir_de;
+      return [reponse];
+    },
+  };
+  const fetchImpl = async (_url, options) => {
+    cles.push(JSON.parse(options.body).headers.idempotencyKey);
+    return new Response(null, { status: cles.length === 1 ? 503 : 201 });
+  };
+  t.mock.method(console, "error", () => {});
+  const traiter = () => notifierReponse(reponse.id, SUPPORTS, { db, fetchImpl, apiKey: "test", ...configurationNotification });
+  assert.equal(await traiter(), false);
+  assert.equal(envoyee, false);
+  assert.equal(await traiter(), false);
+  assert.equal(cles.length, 1);
+
+  reprise = datePassee;
+  assert.deepEqual(await Promise.all([traiter(), traiter()]), [true, false]);
+  assert.equal(await traiter(), false);
+  assert.deepEqual(cles, [reponse.id, reponse.id]);
+});

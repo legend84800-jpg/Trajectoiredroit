@@ -26,9 +26,10 @@ async function utilisateurDepuisJWT(jwt) {
   return { id: data.id, email: data.email };
 }
 
-async function selectionner(table, requete) {
+async function selectionner(table, requete, { signal } = {}) {
   const { url, serviceKey } = base();
   const resp = await fetch(`${url}/rest/v1/${table}?${requete}`, {
+    signal,
     headers: { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` },
   });
   if (!resp.ok) throw new Error(`Supabase select ${table}: ${resp.status} ${await resp.text()}`);
@@ -101,10 +102,11 @@ async function upsert(table, donnees, colonneConflit) {
   return resp.json();
 }
 
-async function mettreAJour(table, requete, donnees) {
+async function mettreAJour(table, requete, donnees, { signal } = {}) {
   const { url, serviceKey } = base();
   const resp = await fetch(`${url}/rest/v1/${table}?${requete}`, {
     method: "PATCH",
+    signal,
     headers: {
       apikey: serviceKey,
       Authorization: `Bearer ${serviceKey}`,
