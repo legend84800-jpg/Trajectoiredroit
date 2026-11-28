@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- tjd-consent-default -->
+  <script>
+/* Isole les tests internes des statistiques commerciales du site. */
+(function () {
+  var interne = false;
+  try {
+    var valeur = new URLSearchParams(window.location.search).get('tjd_test');
+    if (valeur === '1') localStorage.setItem('tjd_internal_test', '1');
+    if (valeur === '0') localStorage.removeItem('tjd_internal_test');
+    interne = localStorage.getItem('tjd_internal_test') === '1'
+      || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  } catch (_) {
+    interne = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+      || window.location.protocol === 'file:';
+  }
+  window.tjdTestInterne = interne;
+})();
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="theme-color" content="#2563EB">
+  <title>Cas pratique droit pénal général corrigé L2 : complicité</title>
+  <meta name="author" content="Julien">
+  <meta name="description" content="Cas pratique corrigé de droit pénal général L2 sur la complicité. Quatre personnes autour d’un faux dossier de prêt, et la correction dit qui est complice.">
+  <link rel="canonical" href="https://trajectoiredroit.com/cas-pratique-complicite-droit-penal-corrige.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Cas pratique droit pénal général corrigé L2 : complicité">
+  <meta property="og:description" content="Cas pratique corrigé de droit pénal général L2 sur la complicité. Quatre personnes autour d’un faux dossier de prêt, et la correction dit qui est complice.">
+  <meta property="og:image" content="https://trajectoiredroit.com/assets/blog/cas-pratique-complicite-droit-penal-corrige.webp">
+  <meta property="og:url" content="https://trajectoiredroit.com/cas-pratique-complicite-droit-penal-corrige.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cas pratique droit pénal général corrigé L2 : complicité">
+  <meta name="twitter:description" content="Cas pratique corrigé de droit pénal général L2 sur la complicité. Quatre personnes autour d’un faux dossier de prêt, et la correction dit qui est complice.">
+  <meta name="twitter:image" content="https://trajectoiredroit.com/assets/blog/cas-pratique-complicite-droit-penal-corrige.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "headline": "Cas pratique droit pénal général corrigé L2 : la complicité",
+   "description": "Cas pratique corrigé de droit pénal général L2 sur la complicité. Quatre personnes autour d’un faux dossier de prêt, et la correction dit qui est complice.",
+   "inLanguage": "fr-FR",
+   "datePublished": "2026-11-28",
+   "dateModified": "2026-11-28",
+   "author": {
+    "@type": "Person",
+    "name": "Julien",
+    "jobTitle": "Professeur de droit",
+    "description": "Diplômé d'un Master II de droit à l'Université Panthéon-Assas. Major puis vice-major de promotion. #1 prof de droit sur Superprof.",
+    "url": "https://trajectoiredroit.com/a-propos.html",
+    "worksFor": {
+     "@type": "EducationalOrganization",
+     "name": "TrajectoireDroit"
+    }
+   },
+   "publisher": {
+    "@type": "EducationalOrganization",
+    "name": "TrajectoireDroit",
+    "url": "https://trajectoiredroit.com",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://trajectoiredroit.com/assets/logo-tjd.svg"
+    }
+   },
+   "about": {
+    "@type": "Thing",
+    "name": "Cas pratique corrigé de droit pénal général L2 sur la complicité, avec la méthode en trois conditions (fait principal punissable, acte de complicité, élément moral), le cas d’une escroquerie à un prêt, la complicité par instructions, la présence silencieuse, l’aide après l’infraction et le recel, puis les variantes de l’auteur non puni, de la tentative, de la contravention et des circonstances aggravantes"
+   },
+   "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://trajectoiredroit.com/cas-pratique-complicite-droit-penal-corrige.html"
+   },
+   "image": "https://trajectoiredroit.com/assets/blog/cas-pratique-complicite-droit-penal-corrige.webp"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Accueil",
+     "item": "https://trajectoiredroit.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Cas pratique de complicité, exemple corrigé",
+     "item": "https://trajectoiredroit.com/cas-pratique-complicite-droit-penal-corrige.html"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Qui est complice en droit pénal ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Le complice est la personne qui, sciemment, aide l’auteur d’un crime ou d’un délit à le préparer ou à le commettre (article 121-7, alinéa 1). Il peut également provoquer l’infraction ou donner des instructions pour la commettre (alinéa 2). Il est puni comme l’auteur (article 121-6), mais seulement si trois conditions sont réunies, à savoir un fait principal punissable, un acte de complicité et un élément moral."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Un complice encourt-il la même peine que l’auteur ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Il encourt le même maximum légal, car l’article 121-6 le punit comme l’auteur. Le juge fixe pourtant la peine de chacun selon sa personnalité et les circonstances de l’infraction (article 132-1), si bien que le complice peut recevoir une peine plus légère que l’auteur. Pour une escroquerie, le maximum est de cinq ans d’emprisonnement et de 375 000 euros d’amende, pour l’un comme pour l’autre."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Peut-on être complice sans rien faire ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "En principe, non. La complicité par aide ou assistance exige des actes positifs. La chambre criminelle a jugé le 10 avril 1975 qu’elle ne se déduit pas d’une simple abstention. Elle a pourtant retenu, le 26 février 2020, la complicité d’un père présent chez lui, pour une contravention de tapage nocturne. Il laissait les personnes présentes sous son toit faire du bruit la nuit, alors qu’il lui appartenait d’user de son autorité pour y mettre fin."
+     }
+    }
+   ]
+  }
+ ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script>/* anti-flash dark mode, clair par défaut (vague 4.9) */(function(){var t='light';try{t=localStorage.getItem('tjd-theme')||'light';}catch(_){}if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
+  <link rel="stylesheet" href="assets/style.css?v=cbb0ff00">
+  <!-- Plausible Analytics : décommente la ligne ci-dessous une fois ton compte créé sur plausible.io -->
+  <!-- <script defer data-domain="trajectoiredroit.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGBDDYMHMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGBDDYMHMF', window.tjdTestInterne ? { 'send_page_view': false } : {});
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    if (!window.tjdTestInterne) {
+    _paq.push(['disableCookies']); // cookieless, dispense légitimement du bandeau de consentement
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//stats.trajectoiredroit.com/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    }
+  </script>
+  <!-- End Matomo Code -->
+<style id="exemples-pedagogiques-page">
+  .biens-hero { padding-top:48px; }
+  .biens-hero .hero__cta { margin-top:24px; }
+  @media (max-width:700px) {
+    .biens-hero { padding-top:24px; }
+    .biens-hero .hero__cta { gap:10px; }
+    .biens-hero .hero__cta .btn {
+      flex:1 1 132px;
+      width:auto;
+      min-height:44px;
+      font-size:.875rem;
+      padding:10px 12px;
+    }
+  }
+  @media (max-width:420px) {
+    .biens-hero { padding-top:12px; }
+    .biens-hero .hero__cta { margin-top:12px; }
+    .biens-hero .tjd-po { margin-top:12px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+      <a class="logo" href="/" aria-label="TrajectoireDroit, la nouvelle école du droit">
+        <img class="logo__img" src="assets/logo-tjd.svg" alt="TrajectoireDroit" width="180" height="38">
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <!-- Item : Fiches (méga-menu 3 axes : niveau, format, matière) -->
+        <div class="nav-item has-dropdown has-megamenu">
+          <a href="formations.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg>Fiches
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <!-- vague5.2:megamenu-format-avant -->
+          <div class="megamenu megamenu--fiches" role="menu">
+            <div class="megamenu__niveaux-cols">
+            <div class="megamenu__niveau-col megamenu__niveau-col--formats">
+              <div class="megamenu__niveau-head"><strong>Par format</strong></div>
+              <a href="formations.html" role="menuitem" class="megamenu__format--featured">📄 Fiches complètes</a>
+              <a href="kit-partiels.html" role="menuitem">📚 Kit Partiels</a>
+              <a href="majeures-preparees.html" role="menuitem">⚖️ Majeures préparées</a>
+              <a href="revisions.html" role="menuitem">📜 Fiches d'arrêt et citations</a>
+              <a href="corriges.html" role="menuitem">✍️ Exercices corrigés</a>
+              <a href="portalis.html" role="menuitem">🤖 Portalis IA</a>
+
+              <a href="flashcards-qcm.html" role="menuitem">🗂️ Flashcards et QCM</a>
+              <a href="podcasts-videos.html" role="menuitem"><span aria-hidden="true">🎬</span> Vidéos et podcasts</a>
+              <a href="droit-des-contrats-en-images.html" role="menuitem">🖼️ Cours en images</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L1</strong><span>7 matières</span></div>
+              <a href="introduction-au-droit-l1.html" role="menuitem">Introduction au droit</a>
+              <a href="droit-constitutionnel-l1.html" role="menuitem">Droit constitutionnel</a>
+              <a href="histoire-du-droit-l1.html" role="menuitem">Histoire du droit</a>
+              <a href="histoire-des-institutions-l1.html" role="menuitem">Histoire des institutions</a>
+              <a href="relations-internationales-l1.html" role="menuitem">Relations internationales</a>
+              <a href="droit-des-personnes-l1.html" role="menuitem">Droit des personnes</a>
+              <a href="droit-de-la-famille-l1.html" role="menuitem">Droit de la famille</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l1.html">Réussir sa L1 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L2</strong><span>7 matières</span></div>
+              <a href="droit-administratif-l2.html" role="menuitem">Droit administratif</a>
+              <a href="droit-des-contrats-l2.html" role="menuitem">Droit des contrats (S1)</a>
+              <a href="droit-des-obligations-l2.html" role="menuitem">Droit des obligations (S2)</a>
+              <a href="droit-penal-l2.html" role="menuitem">Droit pénal général (S1 et S2)</a>
+              <a href="droit-des-biens-l2.html" role="menuitem">Droit des biens</a>
+              <a href="responsabilite-civile-l2.html" role="menuitem">Responsabilité civile</a>
+              <a href="droit-commercial-l2.html" role="menuitem">Droit commercial</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l2.html">Réussir sa L2 →</a>
+            </div>
+            <div class="megamenu__niveau-col">
+              <div class="megamenu__niveau-head"><strong>L3</strong><span>5 matières</span></div>
+              <a href="droit-commercial-l3.html" role="menuitem">Droit commercial</a>
+              <a href="droit-des-societes-l3.html" role="menuitem">Droit des sociétés</a>
+              <a href="contrats-speciaux-l3.html" role="menuitem">Contrats spéciaux</a>
+              <a href="droit-du-travail-l3.html" role="menuitem">Droit du travail</a>
+              <a href="procedure-penale-l3.html" role="menuitem">Procédure pénale</a>
+              <a class="megamenu__niveau-cta" href="reussir-sa-l3.html">Réussir sa L3 →</a>
+            </div>
+            </div>
+            <div class="megamenu__packs">
+              <div class="megamenu__packs-head"><strong>Le Pack Ultra</strong><span>Choisis ton semestre</span><small>Payable en 3 fois · accès à vie</small></div>
+              <div class="megamenu__packs-grid">
+                <a href="pack-ultra.html#pack-ultra-l1-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 1, 31 ressources, 199 € au lieu de 374,69 €, 47 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S1</span><span class="badge badge--success">-47 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">374,69 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l1-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L1 semestre 2, 17 ressources, 199 € au lieu de 209,83 €, 5 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l1-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L1 · S2</span><span class="badge badge--success">-5 %</span></span>
+                    <span class="megamenu__pack-tile-meta">17 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">209,83 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 1, 31 ressources, 199 € au lieu de 384,69 €, 48 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S1</span><span class="badge badge--success">-48 %</span></span>
+                    <span class="megamenu__pack-tile-meta">31 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">384,69 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l2-s2" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L2 semestre 2, 32 ressources, 199 € au lieu de 399,68 €, 50 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l2-s2.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L2 · S2</span><span class="badge badge--success">-50 %</span></span>
+                    <span class="megamenu__pack-tile-meta">32 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">399,68 €</span><span class="megamenu__pack-tile-price">199 €</span></span>
+                  </span>
+                </a>
+                <a href="pack-ultra.html#pack-ultra-l3-s1" role="menuitem" class="megamenu__pack-tile" aria-label="Le Pack Ultra L3 semestre 1, 38 ressources, 229 € au lieu de 479,62 €, 52 % d’économie">
+                  <span class="megamenu__pack-tile-cover"><img src="assets/covers/pack-ultra-l3-s1.webp" alt="" width="960" height="540" loading="lazy" decoding="async"></span>
+                  <span class="megamenu__pack-tile-body">
+                    <span class="megamenu__pack-tile-top"><span class="megamenu__pack-tile-title">L3 · S1</span><span class="badge badge--success">-52 %</span></span>
+                    <span class="megamenu__pack-tile-meta">38 ressources</span>
+                    <span class="megamenu__pack-tile-prices"><span class="megamenu__pack-tile-price-old">479,62 €</span><span class="megamenu__pack-tile-price">229 €</span></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="nav-item has-dropdown">
+          <a href="cours-particuliers.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Cours particuliers
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="cours-particuliers.html#pack-5-seances" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+              <span><strong>Pack 5 séances <em style="color:var(--success)">· −8 %</em></strong><small>480 € · 96 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__item dropdown__item--featured" href="cours-particuliers.html#pack-10-seances" role="menuitem">
+              <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span>
+              <span><strong>Pack 10 séances <em style="color:var(--success)">· −12 %</em></strong><small>920 € · 92 €/h</small></span>
+            </a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="cours-particuliers.html#reserver">Réserver une séance →</a>
+          </div>
+        </div>
+
+        <!-- Item : À propos (dropdown simple) -->
+
+        <!-- Item : Ressources (articles + méthodes juridiques) -->
+        <div class="nav-item has-dropdown nav-item--resources">
+          <a href="blog.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg>Ressources
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--resources" role="menu">
+            <div class="resources-menu__articles">
+              <span class="resources-menu__title">Le blog pour apprendre le droit</span>
+              <span class="resources-menu__desc">Grands arrêts, notions et conseils pour progresser.</span>
+              <a class="resources-menu__articles-link" href="blog.html" role="menuitem">Découvrir le blog →</a>
+            </div>
+            <div class="resources-menu__methods">
+              <span class="resources-menu__heading">Méthodes juridiques</span>
+              <div class="resources-menu__grid">
+                <a class="resources-menu__method" href="methode-fiche-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-note"/></svg></span>
+                  <span><strong>Fiche d'arrêt</strong><small>Comprendre une décision</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-commentaire-arret.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg></span>
+                  <span><strong>Commentaire d'arrêt</strong><small>Construire le devoir</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-cas-pratique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-scale"/></svg></span>
+                  <span><strong>Cas pratique</strong><small>Appliquer la règle aux faits</small></span>
+                </a>
+                <a class="resources-menu__method" href="methode-dissertation-juridique.html" role="menuitem">
+                  <span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-ruler"/></svg></span>
+                  <span><strong>Dissertation juridique</strong><small>Trouver la problématique et le plan</small></span>
+                </a>
+              </div>
+              <a class="resources-menu__quiz" href="quiz-methode.html" role="menuitem">
+                <span class="resources-menu__quiz-icon" aria-hidden="true">?</span>
+                <span class="resources-menu__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+                <span class="resources-menu__quiz-time">3 min <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="resources-menu__all-methods" href="methodologie-juridique.html" role="menuitem">Voir toutes les méthodes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="a-propos.html" class="nav-item__link" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg>À propos
+            <svg class="nav-item__chevron" width="10" height="10" viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown dropdown--simple" role="menu">
+            <a class="dropdown__item" href="a-propos.html" role="menuitem"><span class="dropdown__icon dropdown__icon--blue"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg></span><span><strong>Qui suis-je</strong><small>Julien, 1er sur Superprof</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#methode" role="menuitem"><span class="dropdown__icon dropdown__icon--violet"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg></span><span><strong>Notre approche</strong><small>Cours, fiches et majeures</small></span></a>
+            <a class="dropdown__item" href="temoignages.html" role="menuitem"><span class="dropdown__icon dropdown__icon--emerald"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-star"/></svg></span><span><strong>Témoignages</strong><small>167 avis 5/5 vérifiés</small></span></a>
+            <a class="dropdown__item" href="faq.html" role="menuitem"><span class="dropdown__icon dropdown__icon--amber"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-help"/></svg></span><span><strong>FAQ</strong><small>Toutes tes questions</small></span></a>
+            <a class="dropdown__item" href="a-propos.html#mes-reseaux" role="menuitem"><span class="dropdown__icon dropdown__icon--rose"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-youtube"/></svg></span><span><strong>Mes réseaux</strong><small>YouTube, TikTok, LinkedIn</small></span></a>
+            <div class="dropdown__divider"></div>
+            <a class="dropdown__cta" href="mailto:julien.prof1@gmail.com">Me contacter →</a>
+          </div>
+        </div>
+
+      </nav>
+      <div class="site-header__cta">
+        <a class="btn btn--primary btn--sm" href="formations.html">Voir les fiches</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+    <div class="mobile-nav__quick">
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-search><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Rechercher</button>
+      <button type="button" class="mobile-nav__quick-btn" data-mobile-theme><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-mobile-theme-label>Mode sombre</span></button>
+    </div>
+    <details class="mobile-nav__group" open>
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-book"/></svg><span>Choisir un format</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__format mobile-nav__format--featured" href="pack-ultra.html#pack-ultra"><span class="mobile-nav__format-icon" aria-hidden="true">📦</span><span>Le Pack Ultra · par semestre</span></a>
+        <a class="mobile-nav__compare" href="formations.html#comparatif">Comparer tous les formats</a>
+        <a class="mobile-nav__format" href="formations.html"><span class="mobile-nav__format-icon" aria-hidden="true">📄</span><span>Fiches complètes</span></a>
+        <a class="mobile-nav__format" href="kit-partiels.html"><span class="mobile-nav__format-icon" aria-hidden="true">📚</span><span>Kit Partiels</span></a>
+        <a class="mobile-nav__format" href="majeures-preparees.html"><span class="mobile-nav__format-icon" aria-hidden="true">⚖️</span><span>Majeures préparées</span></a>
+        <a class="mobile-nav__format" href="revisions.html"><span class="mobile-nav__format-icon" aria-hidden="true">📜</span><span>Fiches d’arrêt et citations</span></a>
+        <a class="mobile-nav__format" href="corriges.html"><span class="mobile-nav__format-icon" aria-hidden="true">✍️</span><span>Exercices corrigés</span></a>
+        <a class="mobile-nav__format" href="portalis.html"><span class="mobile-nav__format-icon" aria-hidden="true">🤖</span><span>Portalis IA</span></a>
+
+        <a class="mobile-nav__format" href="flashcards-qcm.html"><span class="mobile-nav__format-icon" aria-hidden="true">🗂️</span><span>Flashcards et QCM</span></a>
+        <a class="mobile-nav__format" href="podcasts-videos.html"><span class="mobile-nav__format-icon" aria-hidden="true">🎬</span><span>Vidéos et podcasts</span></a>
+        <a class="mobile-nav__format" href="droit-des-contrats-en-images.html"><span class="mobile-nav__format-icon" aria-hidden="true">🖼️</span><span>Cours en images</span></a>
+      </div>
+    </details>
+    <a class="mobile-nav__top-link" href="cours-particuliers.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg><span>Cours particuliers</span></a>
+
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-pen"/></svg><span>Ressources</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="blog.html"><span class="mobile-nav__item-icon" aria-hidden="true">📰</span><span>Articles de droit</span></a>
+        <a class="mobile-nav__illustrated" href="methodologie-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Toutes les méthodes</span></a>
+        <a class="mobile-nav__illustrated mobile-nav__quiz" href="quiz-methode.html">
+          <span class="mobile-nav__item-icon" aria-hidden="true">?</span>
+          <span class="mobile-nav__quiz-copy"><strong>Teste ta méthode</strong><small>10 questions pour voir où tu perds des points</small></span>
+          <span class="mobile-nav__quiz-time">3 min</span>
+        </a>
+        <a class="mobile-nav__illustrated" href="methode-fiche-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">📄</span><span>Fiche d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-commentaire-arret.html"><span class="mobile-nav__item-icon" aria-hidden="true">✍️</span><span>Commentaire d’arrêt</span></a>
+        <a class="mobile-nav__illustrated" href="methode-cas-pratique.html"><span class="mobile-nav__item-icon" aria-hidden="true">⚖️</span><span>Cas pratique</span></a>
+        <a class="mobile-nav__illustrated" href="methode-dissertation-juridique.html"><span class="mobile-nav__item-icon" aria-hidden="true">📐</span><span>Dissertation juridique</span></a>
+      </div>
+    </details>
+    <details class="mobile-nav__group">
+      <summary><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-compass"/></svg><span>À propos</span></summary>
+      <div class="mobile-nav__subnav">
+        <a class="mobile-nav__illustrated" href="a-propos.html"><span class="mobile-nav__item-icon" aria-hidden="true">🎓</span><span>Qui suis-je</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#methode"><span class="mobile-nav__item-icon" aria-hidden="true">🧭</span><span>Notre approche</span></a>
+        <a class="mobile-nav__illustrated" href="temoignages.html"><span class="mobile-nav__item-icon" aria-hidden="true">⭐</span><span>Témoignages</span></a>
+        <a class="mobile-nav__illustrated" href="faq.html"><span class="mobile-nav__item-icon" aria-hidden="true">❓</span><span>FAQ</span></a>
+        <a class="mobile-nav__illustrated" href="a-propos.html#mes-reseaux"><span class="mobile-nav__item-icon" aria-hidden="true">▶️</span><span>Mes réseaux</span></a>
+        <a class="mobile-nav__illustrated" href="mailto:julien.prof1@gmail.com"><span class="mobile-nav__item-icon" aria-hidden="true">✉️</span><span>Me contacter</span></a>
+      </div>
+    </details>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary btn--full" href="mon-compte.html">Mon compte</a>
+    </div>
+  </nav>
+
+    <main>
+<section class="section--sm biens-hero">
+<div class="container container--narrow text-center">
+<h1 class="h1">Cas pratique droit pénal général corrigé L2 : la complicité</h1>
+<p class="lead" style="max-width:720px;margin-left:auto;margin-right:auto">Une personne devient complice quand elle aide l’auteur d’une infraction, la provoque ou donne des instructions pour la commettre. La loi la punit alors comme l’auteur (article 121-6 du Code pénal), à trois conditions. L’auteur doit avoir commis ou tenté une infraction punissable, et l’acte de complicité doit venir avant ou pendant l’infraction. La personne doit également savoir ce qu’elle facilite. Ce cas pratique corrigé de droit pénal général L2 applique ces conditions à quatre personnes.</p>
+<div class="hero__cta flex flex--center">
+<a class="btn btn--primary btn--lg" href="#enonce">Lire l’énoncé →</a>
+<a class="btn btn--outline btn--lg" href="#corrige">Le corrigé</a>
+</div>
+<div data-tjd-pdf-offert="matiere" data-id="cas-pratique-penal-general-l1" data-titre="Un autre cas pratique corrigé de droit pénal général, offert en PDF" data-texte="Je t’envoie par email un autre cas que celui de cette page. Il porte sur le principe de légalité criminelle, avec un énoncé de L2 et sa correction complète rédigée comme une copie de partiel." data-bouton="Recevoir le cas pratique"></div>
+</div>
+</section>
+<!-- offre du PDF correspondant -->
+<section class="conversion-offer" aria-labelledby="offre-cas-complicite-titre">
+<div class="container container--narrow">
+<div class="conversion-offer__card">
+<div class="conversion-offer__visual">
+<img src="assets/covers/exercices-20260923/cas-pratique-penal-general-l1.webp?v=62bc76d1" alt="Couverture de la compilation de cas pratiques corrigés de droit pénal général L2, Trajectoire Droit" loading="lazy" width="960" height="540" decoding="async">
+</div>
+<div>
+<p class="conversion-offer__eyebrow">Cas pratiques corrigés de droit pénal général L2</p>
+<h2 class="conversion-offer__title" id="offre-cas-complicite-titre">Droit pénal général L2, dix cas pratiques corrigés et trois sujets de partiel en 160 pages</h2>
+<p class="conversion-offer__summary">Le PDF corrige en entier dix cas pratiques, un pour chaque grand thème du cours, puis trois sujets de partiel qui mélangent plusieurs thèmes. Le quatrième cas porte sur la complicité, avec d’autres faits que ceux de cette page. Chaque corrigé part de la question de droit, puis applique les articles du Code pénal aux faits de l’énoncé.</p>
+<ul class="conversion-offer__benefits">
+<li>Accès à vie au PDF</li>
+<li>Les cas pratiques servent à s’entraîner à rédiger sur un énoncé, alors que la fiche complète, vendue à part, sert à revoir le cours</li>
+<li>Le pack à 29,98 € réunit les cas pratiques corrigés et la fiche complète, avec les flashcards et les fiches d’arrêt</li>
+</ul>
+<button type="button" class="apercu-link" data-apercu='["assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p001.webp","assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p002.webp","assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p003.webp","assets/apercus/recueils-20261115/cas-pratique-penal-general-l1/a108134bae12-p007.webp"]' data-apercu-title="Cas pratiques corrigés Droit pénal général L2" data-apercu-price="14,99 €" data-apercu-cta="cas-pratique-penal-general-l1" data-apercu-sub="Le sommaire, puis le début du premier cas pratique corrigé, avec son énoncé."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Voir un aperçu des cas pratiques corrigés</button>
+<div class="conversion-offer__choices">
+<button type="button" class="btn btn--primary btn--recommended" data-tjd-produit="cas-pratique-penal-general-l1">Cas pratiques corrigés · 14,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="fiche-penal-general-l1">Fiche complète · 14,99 €</button>
+<button type="button" class="btn btn--outline" data-tjd-produit="pack-matiere-penal-general-l1">Pack Droit pénal général L2 · 29,98 €</button>
+</div>
+<p class="conversion-offer__note">Paiement sécurisé. Pour revoir le cours avant de t’entraîner, la page de <a href="droit-penal-general-l2.html">droit pénal général L2</a> présente le programme et les notions à connaître.</p>
+<div data-tjd-avis data-matiere="penal-general-l1"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="methode">
+<div class="container container--narrow">
+<nav class="toc" aria-label="Sommaire">
+<p class="toc__title">Dans cet article</p>
+<ol>
+<li><a href="#methode-titre">Comment résoudre un cas pratique de complicité</a></li>
+<li><a href="#enonce">L’énoncé du cas pratique</a></li>
+<li><a href="#corrige">Le corrigé en quatre questions</a></li>
+<li><a href="#erreurs">Les erreurs qui font perdre des points</a></li>
+<li><a href="#adapter">Adapter la méthode à un autre énoncé</a></li>
+<li><a href="#faq">Questions fréquentes</a></li>
+</ol>
+</nav>
+<div class="prose">
+<figure style="margin:0 0 32px"><img src="assets/blog/cas-pratique-complicite-droit-penal-corrige.webp" srcset="assets/blog/cas-pratique-complicite-droit-penal-corrige-640.webp 640w, assets/blog/cas-pratique-complicite-droit-penal-corrige.webp 1200w" sizes="(max-width:700px) 100vw, 800px" alt="Dossier de prêt bleu ouvert sur une table en bois, avec des bulletins de salaire, une calculatrice, un stylo et un trombone." width="1200" height="675" decoding="async"></figure>
+<h2 id="methode-titre">Comment résoudre un cas pratique de complicité en droit pénal ?</h2>
+<p>L’auteur d’une infraction, aussi appelé l’auteur principal, est la personne qui commet elle-même les faits que la loi interdit (article 121-4 du Code pénal). Le complice participe à l’infraction d’un autre. Il aide l’auteur à la commettre, la provoque ou lui donne des instructions pour la commettre. La loi le punit pourtant comme l’auteur (article 121-6). Le complice répond d’une infraction que l’auteur a commise, comme s’il la lui avait empruntée. Cette responsabilité s’appelle la responsabilité d’emprunt, ou emprunt de criminalité, et c’est pourquoi la complicité suppose une infraction commise ou tentée par l’auteur.</p>
+<p>Pour chaque personne de l’énoncé, tu cherches ce qu’elle a fait et à quel moment, puis ce qu’elle savait de l’infraction. Tu qualifies ensuite sa participation en deux étapes. La première consiste à montrer que la complicité est établie. Elle commence par l’élément légal, c’est-à-dire les articles 121-6 et 121-7, puis elle vérifie trois conditions dans cet ordre.</p>
+<ol>
+<li><strong>Un fait principal punissable.</strong> Le fait principal est l’infraction que l’auteur a commise ou tentée, car le complice emprunte sa responsabilité à cette infraction. Cette infraction doit donc rester punissable, même si l’auteur échappe à la peine pour une cause qui lui est personnelle, par exemple un trouble psychique.</li>
+<li><strong>Un acte de complicité prévu par la loi, l’élément matériel.</strong> L’article 121-7 prévoit trois sortes d’actes de complicité. L’aide ou l’assistance (alinéa 1) consiste à fournir un moyen, comme prêter une voiture, ou à faire le guet. La provocation (alinéa 2) pousse l’auteur à agir par un don, une promesse, une menace, un ordre ou un abus d’autorité ou de pouvoir. Les instructions (alinéa 2) sont des renseignements précis qui servent à commettre l’infraction, comme le plan d’un local ou un mode d’emploi. De plus, l’acte précède l’infraction ou l’accompagne. Une aide apportée après l’infraction reste pourtant une complicité si un accord conclu avant l’infraction l’avait prévue, car cet accord a pu faciliter les faits.</li>
+<li><strong>Un élément moral.</strong> Le complice agit sciemment, autrement dit il sait qu’il facilite une infraction et qu’il le veut. Celui qui prête sa voiture sans savoir à quoi elle va servir n’est pas complice.</li>
+</ol>
+<p>La seconde étape porte sur la répression, soit la peine encourue. Le complice encourt le même maximum légal que l’auteur, puisque l’article 121-6 le punit comme l’auteur. Il subit aussi les circonstances aggravantes qui tiennent à la manière dont l’infraction est commise, comme l’usage d’une arme. La chambre criminelle l’a jugé le 21 mai 1996, même quand le complice ignorait ces circonstances. Le juge fixe ensuite la peine de chacun selon sa personnalité et les circonstances de l’infraction (article 132-1).</p>
+<p>Quand l’une des trois conditions manque, il reste à chercher si le comportement constitue une infraction à part entière. Le <a href="le-recel-en-droit-penal.html">recel</a>, par exemple, punit celui qui détient ou transmet une chose en sachant qu’elle provient d’un crime ou d’un délit, ou qui profite du produit d’un crime ou d’un délit en connaissance de cause. La page sur la <a href="methode-cas-pratique.html">méthode du cas pratique</a> détaille les cinq temps de chaque réponse, depuis les faits qualifiés jusqu’à la conclusion.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="enonce">
+<div class="container container--narrow">
+<div class="prose">
+<h2>L’énoncé du cas pratique</h2>
+<p>Hugo Delmas, 29 ans, est peintre en bâtiment intérimaire à Nantes. En septembre 2026, il veut acheter une camionnette d’occasion à 18 000 €. Sa banque ne finance toutefois ce prêt qu’aux clients qui ont un contrat de travail à durée indéterminée (CDI), et Hugo n’en a pas. Il décide donc de lui présenter trois faux bulletins de salaire, au nom d’une entreprise de peinture qui l’emploierait en CDI.</p>
+<p>Le 8 septembre 2026, Hugo explique son projet à son amie Pauline Marchetti, 31 ans, assistante comptable dans un cabinet. Le lendemain, Pauline lui envoie un courriel avec un fichier modèle de bulletin de salaire et une note qui explique comment le remplir. La note indique les mentions à faire figurer et les taux de cotisations à inscrire pour que les chiffres paraissent normaux. Elle donne en outre le numéro d’identification (SIRET) d’une entreprise de peinture qui existe vraiment, car la banque doit pouvoir la retrouver en ligne.</p>
+<p>« Débrouille-toi avec ça, mais ne me mêle pas à cette histoire », ajoute Pauline. Elle ne demande rien en échange. Hugo se sert ensuite du fichier et de la note pour établir ses trois bulletins.</p>
+<p>Le 14 septembre 2026, Hugo se rend à la banque avec son frère Baptiste Delmas, 24 ans, venu l’accompagner. En salle d’attente, Baptiste voit les bulletins dans le dossier de Hugo et comprend qu’ils sont faux, puisqu’il sait que son frère n’a jamais travaillé pour l’entreprise dont le nom y figure. Il reste assis à côté de son frère pendant tout le rendez-vous et ne dit pas un mot. La conseillère accorde alors le prêt, et la banque verse les 18 000 € le 21 septembre 2026.</p>
+<p>Le soir du 21 septembre, Hugo invite son amie Noémie Garnier, 27 ans, au restaurant et lui raconte comment il a obtenu le prêt. Jusque-là, Noémie ignorait tout de cette affaire, car Hugo ne lui avait rien raconté ni promis. Il lui remet ensuite 2 500 € en espèces pour la remercier de son amitié. Noémie accepte et utilise cet argent pour payer son loyer.</p>
+<p>En octobre 2026, la banque découvre que les bulletins sont faux et dépose plainte. Hugo, Pauline, Baptiste et Noémie ont-ils commis une infraction, et laquelle ?</p>
+</div>
+</div>
+</section>
+<section class="section" id="corrige">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Le corrigé du cas pratique en quatre questions</h2>
+<p>Tu rédiges chaque réponse en cinq temps, comme dans une copie de partiel. Les faits qualifiés disent d’abord à quelle notion du droit correspond chaque fait. Le problème de droit pose ensuite la question à trancher. La majeure donne alors la règle. La mineure l’applique aux faits, puis la conclusion répond à la question. Quand l’énoncé décrit plusieurs participants, tu commences par l’auteur, car la complicité suppose une infraction commise ou tentée.</p>
+<h3>I. Hugo est-il l’auteur d’une escroquerie ?</h3>
+<p><strong>Les faits qualifiés.</strong> Hugo présente à sa banque trois faux bulletins de salaire d’une entreprise qui ne l’emploie pas, et la banque lui verse 18 000 €. Les faux bulletins constituent des manœuvres frauduleuses, car ces documents donnent à un mensonge l’apparence d’une preuve. Le versement du prêt est également une remise de fonds.</p>
+<p><strong>Le problème de droit.</strong> Hugo commet-il une escroquerie en obtenant un prêt grâce à de faux bulletins de salaire ?</p>
+<p><strong>La majeure.</strong> Selon l’article 313-1 du Code pénal, l’escroquerie est le fait de tromper une personne par l’usage d’un faux nom ou d’une fausse qualité, l’abus d’une qualité vraie ou l’emploi de manœuvres frauduleuses. La personne trompée remet alors, à son préjudice ou à celui d’un tiers, des fonds, des valeurs ou un bien quelconque. L’escroquerie suppose donc un moyen de tromper, puis une remise de fonds que cette tromperie a déterminée. Il faut aussi l’intention de tromper, car l’article 121-3 exige l’intention pour ce délit.</p>
+<p>La production de faux documents peut constituer une manœuvre frauduleuse. Le 21 novembre 1996, la chambre criminelle de la Cour de cassation a ainsi retenu une escroquerie caractérisée par l’intervention de tiers, des personnes extérieures à l’auteur, et par la production de faux documents. L’escroquerie est punie de cinq ans d’emprisonnement et de 375 000 euros d’amende.</p>
+<p><strong>La mineure.</strong> D’abord, Hugo emploie des manœuvres frauduleuses. Il appuie son mensonge sur trois faux bulletins de salaire d’une entreprise qui existe vraiment. Ensuite, la banque lui remet des fonds, puisqu’elle verse 18 000 € le 21 septembre 2026. De plus, cette remise résulte de la tromperie, car la banque ne finance ce prêt qu’aux clients en CDI et elle croit, grâce aux bulletins, que Hugo remplit cette condition. En outre, cette remise se fait à son préjudice, car la banque prête 18 000 € à un client qui ne remplit pas la condition qu’elle exige. Elle risque donc de ne pas être remboursée. Enfin, Hugo agit intentionnellement, puisqu’il décide de présenter ces faux bulletins pour obtenir le prêt.</p>
+<p><strong>La conclusion.</strong> Hugo est l’auteur d’une escroquerie, un délit puni de cinq ans d’emprisonnement et de 375 000 euros d’amende. Hugo commet en plus un faux, puisqu’il a fabriqué les bulletins, et un usage de faux, puisqu’il les présente à la banque. Ces deux délits sont punis de trois ans d’emprisonnement et de 45 000 euros d’amende (article 441-1).</p>
+<h3>II. Pauline est-elle complice des infractions de Hugo ?</h3>
+<p><strong>Les faits qualifiés.</strong> Pauline envoie à Hugo un fichier modèle de bulletin de salaire et une note qui explique comment le remplir, avec le numéro d’une entreprise réelle. Le fichier est un moyen de fabriquer les faux bulletins, et la note donne des instructions sur la façon de les remplir. Hugo s’en sert ensuite pour établir ses bulletins, car la note lui indique les mentions à inscrire.</p>
+<p><strong>Le problème de droit.</strong> Celui qui explique par écrit à l’auteur comment fabriquer de faux documents, sans participer ensuite à leur remise à la banque, est-il complice de l’escroquerie, du faux et de l’usage de faux ?</p>
+<p><strong>La majeure.</strong> Selon l’article 121-1 du Code pénal, nul n’est responsable pénalement que de son propre fait. L’article 121-7 prévoit pourtant la complicité, et l’article 121-6 punit le complice comme l’auteur. La complicité suppose ainsi trois conditions.</p>
+<ol>
+<li><strong>Un fait principal punissable.</strong> L’auteur doit avoir commis ou tenté un crime ou un délit. Cette infraction doit être punissable, même si l’auteur échappe à la peine pour une cause qui lui est personnelle, par exemple un trouble psychique.</li>
+<li><strong>Un acte de complicité.</strong> Selon l’alinéa 1 de l’article 121-7, l’aide ou l’assistance facilite la préparation de l’infraction ou sa consommation, soit son accomplissement complet. Selon l’alinéa 2, celui qui provoque l’infraction par un don, une promesse, une menace, un ordre ou un abus d’autorité ou de pouvoir, ou qui donne des instructions pour la commettre, est également complice. L’acte précède l’infraction ou l’accompagne. La chambre criminelle a jugé le 22 janvier 1991, sous l’ancien Code pénal, qu’il n’a pas besoin d’avoir été indispensable à l’infraction. Pour les instructions, elle a également approuvé le 5 janvier 2017 une cour d’appel qui avait retenu la complicité d’escroquerie contre des personnes poursuivies. Ces personnes avaient donné des instructions pour établir de fausses feuilles de présence à des formations, et l’auteur obtenait ainsi des fonds d’un organisme qui finance les formations.</li>
+<li><strong>Un élément moral.</strong> Le complice agit sciemment. Il sait donc qu’il facilite une infraction et il veut le faire. Le mobile du complice importe peu, par exemple un gain, et il peut poursuivre un autre but que l’auteur.</li>
+</ol>
+<p><strong>La mineure.</strong> D’abord, le fait principal est établi, puisque Hugo a commis une escroquerie, un faux et un usage de faux, qui sont des délits punissables (question I). Ensuite, Pauline accomplit un acte de complicité. Elle donne à Hugo un fichier modèle, qui est un moyen de fabriquer les faux bulletins. Elle lui donne aussi une note qui indique les mentions et les taux de cotisations à inscrire, et Hugo la reprend dans ses trois bulletins. </p>
+<p>Ainsi, la note constitue des instructions au sens de l’alinéa 2, et le fichier peut aussi relever de l’aide de l’alinéa 1. L’un des deux suffit pour que la condition soit remplie. Que Hugo ait pu fabriquer les bulletins sans l’aide de Pauline importe peu, puisqu’une aide qui facilite l’infraction suffit. Cet acte a lieu le 9 septembre, avant le dépôt des bulletins à la banque, donc avant l’infraction.</p>
+<p>Enfin, Pauline agit sciemment. Hugo lui a raconté son projet de tromper la banque, et elle rédige la note en sachant à quoi elle servira. Sa phrase « ne me mêle pas à cette histoire » montre qu’elle mesure le risque. Qu’elle agisse gratuitement importe peu, car l’article 121-7 s’applique avec ou sans contrepartie.</p>
+<p><strong>La conclusion.</strong> Pauline est complice de l’escroquerie de Hugo. Son fichier et sa note servent aussi à fabriquer les faux bulletins que Hugo présente ensuite à la banque. Pour les mêmes raisons, elle est également complice du faux et de l’usage de faux (article 441-1). L’article 121-6 la punit comme l’auteur, donc elle encourt le même maximum légal pour chaque délit. Pour l’escroquerie, elle encourt jusqu’à cinq ans d’emprisonnement et 375 000 euros d’amende. Le juge fixe ensuite la peine de chacun selon sa personnalité et les circonstances de l’infraction (article 132-1), et Pauline peut donc recevoir une peine plus légère que Hugo, malgré un maximum identique.</p>
+<h3>III. Baptiste est-il complice de l’escroquerie ?</h3>
+<p><strong>Les faits qualifiés.</strong> Baptiste voit les bulletins en salle d’attente et comprend qu’ils sont faux. Il reste ensuite assis près de Hugo, en silence. Sa participation se réduit donc à une présence et à une abstention, soit l’absence de tout acte de complicité.</p>
+<p><strong>Le problème de droit.</strong> Celui qui assiste en silence à la remise de faux documents à la banque, en sachant qu’ils sont faux, est-il complice de l’escroquerie ?</p>
+<p><strong>La majeure.</strong> L’article 121-7 définit la complicité par des actes. Le complice facilite l’infraction « par aide ou assistance » (alinéa 1), ou il la provoque ou donne des instructions (alinéa 2). La complicité par aide ou assistance exige donc un acte de la personne. En effet, le 10 avril 1975, sous l’ancien Code pénal, la chambre criminelle a jugé que cette complicité ne peut pas se déduire d’une simple abstention et qu’elle doit résulter d’actes positifs.</p>
+<p>Dans cette affaire, la chambre criminelle a retenu la complicité d’escroquerie d’un notaire. Ce notaire avait participé personnellement à une campagne de publicité présentant les parts d’une société comme libres de toute garantie. Il avait en outre caché aux acheteurs l’hypothèque, une garantie donnée à un créancier sur l’immeuble de la société. La Cour y a vu des manœuvres frauduleuses, donc des actes positifs.</p>
+<p><strong>La mineure.</strong> D’abord, le fait principal existe, puisque Hugo a commis une escroquerie. Ensuite, Baptiste n’accomplit aucun acte de complicité. Il accompagne Hugo et reste assis à côté de lui, en silence. Il ne fournit donc ni moyen ni instruction. Sa présence ne deviendrait une aide que si elle renforçait volontairement Hugo, ce que rien n’établit, car Baptiste reste silencieux et Hugo avait déjà décidé de présenter les bulletins avant ce rendez-vous. Enfin, l’élément moral reste douteux. Baptiste sait que les bulletins sont faux, mais l’énoncé ne dit pas s’il veut aider Hugo. Ce doute importe peu, car l’article 121-7 exige un acte de complicité et la connaissance de la fraude ne remplace pas cet acte.</p>
+<p><strong>La conclusion.</strong> Baptiste n’est pas complice de l’escroquerie. Sa présence silencieuse n’est pas punie, car la complicité par aide suppose un acte. Il en irait autrement s’il avait accompli un acte qui facilite l’infraction, par exemple conduire Hugo à la banque en sachant pourquoi il y va.</p>
+<h3>IV. Noémie est-elle complice, ou commet-elle une autre infraction ?</h3>
+<p><strong>Les faits qualifiés.</strong> Noémie apprend la fraude le 21 septembre, après le versement des 18 000 €, et Hugo ne lui avait rien promis avant. Elle accepte ensuite 2 500 € qu’elle sait issus du prêt obtenu avec les faux bulletins, puis elle les dépense. Son comportement arrive après l’infraction.</p>
+<p><strong>Le problème de droit.</strong> Celui qui accepte et utilise une somme issue d’une escroquerie, après la fin de cette escroquerie et sans accord antérieur, est-il complice ? À défaut, quelle infraction commet-il ?</p>
+<p><strong>La majeure.</strong> L’article 121-7 vise celui qui a facilité la préparation ou la consommation de l’infraction. L’aide du complice précède donc l’infraction ou l’accompagne. Une aide postérieure à l’infraction ne constitue pas une complicité, sauf si un accord a été conclu avant l’infraction. Ainsi, le 4 mai 2000, la chambre criminelle a écarté la complicité d’évasion d’une personne qui avait aidé un condamné dans sa fuite. Ce condamné n’était pas rentré en prison à la fin d’une permission de sortir, et l’aide était venue après cette date. En effet, ce délit était déjà entièrement consommé quand elle est intervenue, et aucun accord antérieur n’était établi.</p>
+<p>Le comportement postérieur reste pourtant punissable quand il constitue une infraction autonome, c’est-à-dire une infraction qui existe par elle-même, sans emprunter celle de l’auteur. Le recel est une infraction autonome. Selon l’article 321-1, il consiste notamment à détenir ou à transmettre une chose en sachant qu’elle provient d’un crime ou d’un délit. Il consiste également à bénéficier, en connaissance de cause, du produit d’un crime ou d’un délit. Le recel est puni de cinq ans d’emprisonnement et de 375 000 euros d’amende. Dans cette même affaire du 5 janvier 2017, la chambre criminelle a aussi retenu le recel du produit de l’escroquerie. Les personnes poursuivies avaient bénéficié d’un soutien juridique et administratif financé par les fonds escroqués.</p>
+<p><strong>La mineure.</strong> D’abord, le comportement de Noémie arrive après l’infraction. L’escroquerie est consommée le 21 septembre, quand la banque verse les 18 000 €, et Noémie n’apprend la fraude que le soir de ce jour. Elle n’a donc facilité ni la préparation ni la consommation de l’escroquerie. De plus, aucun accord antérieur n’existe, puisque Hugo ne lui avait rien promis. La condition de l’acte de complicité n’est donc pas remplie.</p>
+<p>Ensuite, les éléments du recel sont réunis. Les 2 500 € proviennent du prêt obtenu par une escroquerie, qui est un délit. Noémie reçoit cette somme et l’utilise pour payer son loyer, ce qui revient à bénéficier du produit du délit. Enfin, elle agit en connaissance de cause, puisque Hugo lui a raconté comment il avait obtenu le prêt avant de lui remettre l’argent.</p>
+<p><strong>La conclusion.</strong> Noémie commet un recel, délit puni de cinq ans d’emprisonnement et de 375 000 euros d’amende (article 321-1). Elle échappe à la complicité, car son comportement arrive après l’infraction, sans accord antérieur.</p>
+<p>À l’examen, ta copie conclut ainsi pour chacune des quatre personnes.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Récapitulatif des quatre réponses du cas pratique" style="overflow-x:auto">
+<table style="width:100%;min-width:560px;border-collapse:collapse">
+<thead><tr><th scope="col">Personne</th><th scope="col">Qualification</th><th scope="col">Maximum encouru</th></tr></thead>
+<tbody>
+<tr><th scope="row">Hugo</th><td>Auteur d’une escroquerie (article 313-1), d’un faux et d’un usage de faux (article 441-1)</td><td>Cinq ans d’emprisonnement et 375 000 euros d’amende pour l’escroquerie, trois ans et 45 000 euros pour le faux</td></tr>
+<tr><th scope="row">Pauline</th><td>Complice de l’escroquerie, du faux et de l’usage de faux, par instructions et par aide pour le fichier modèle (articles 121-7 et 121-6)</td><td>Le même maximum que Hugo pour chaque délit</td></tr>
+<tr><th scope="row">Baptiste</th><td>Ni auteur ni complice, car il n’a accompli aucun acte de complicité</td><td>Aucune peine</td></tr>
+<tr><th scope="row">Noémie</th><td>Receleuse (article 321-1)</td><td>Cinq ans d’emprisonnement et 375 000 euros d’amende</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section class="section" style="padding-top:0">
+<div class="container container--narrow">
+<div class="article-produit-inline" data-emplacement="milieu-majeures">
+<img class="article-produit-inline__thumb" src="assets/majeures/penal-l2s1-couleur.webp" width="60" height="80" alt="Couverture des majeures préparées de droit pénal L2 S1" loading="lazy">
+<div class="article-produit-inline__body">
+<p class="article-produit-inline__label">Majeures préparées</p>
+<p class="article-produit-inline__title">Droit pénal L2 S1, 64 pages</p>
+<p class="article-produit-inline__meta">Une majeure préparée donne la règle de droit déjà rédigée, condition par condition. La majeure 9 traite la complicité en deux étapes. La première vérifie le fait principal punissable, l’acte de complicité et l’élément moral. La seconde donne la peine encourue et les circonstances aggravantes que le complice subit ou non. Chaque condition est numérotée, avec ses exceptions et les décisions qui l’appliquent · <strong>14,99 €</strong></p>
+</div>
+<div class="article-produit-inline__actions">
+<button type="button" class="btn btn--primary" data-tjd-produit="maj-penal-l2-s1">Acheter les majeures préparées · 14,99 €</button>
+</div>
+</div>
+</div>
+</section>
+<section class="section section--alt" id="erreurs">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Quelles erreurs font perdre des points sur un cas pratique de complicité ?</h2>
+<h3>Confondre un acte et une abstention</h3>
+<p>Le piège consiste à écrire que Baptiste est complice parce qu’il savait que les bulletins étaient faux. Or sa présence silencieuse reste une abstention, alors que le fichier et la note de Pauline sont des actes positifs, qui relèvent de l’aide ou des instructions de l’article 121-7. L’erreur inverse consiste à écrire « complicité par abstention » pour une personne qui a agi, comme Pauline. La complicité par abstention reste une exception. La chambre criminelle l’a admise pour le tapage nocturne, à propos d’un père présent chez lui. Il laissait les personnes présentes sous son toit faire du bruit la nuit, alors qu’il lui appartenait d’y mettre fin.</p>
+<h3>S’arrêter à « pas complice » pour Noémie</h3>
+<p>Une copie qui écarte la complicité de Noémie et passe à la personne suivante perd les points du recel. L’énoncé demande en effet quelle infraction chacun a commise. Quand la complicité est exclue, tu cherches donc si le même comportement forme une infraction à part entière.</p>
+</div>
+</div>
+</section>
+<section class="section" id="adapter">
+<div class="container container--narrow">
+<div class="prose">
+<h2>Comment adapter cette méthode à un autre énoncé de complicité ?</h2>
+<p>Avec un autre énoncé, tu vérifies les trois mêmes conditions pour chaque personne. Seuls les faits changent. Pour trouver chaque condition dans l’énoncé, tu cherches les faits suivants.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Les trois conditions de la complicité et les faits à chercher dans l’énoncé" style="overflow-x:auto">
+<table style="width:100%;min-width:640px;border-collapse:collapse">
+<thead><tr><th scope="col">Condition</th><th scope="col">Faits à chercher dans l’énoncé</th><th scope="col">Texte</th></tr></thead>
+<tbody>
+<tr><th scope="row">Fait principal punissable</th><td>L’auteur a commis un crime ou un délit, ou l’a tenté. Peu importe qu’il soit en fuite ou non poursuivi, sauf si une cause qui tient à l’acte lui-même, comme la légitime défense, supprime l’infraction.</td><td>Articles 121-4, 121-6 et 121-7</td></tr>
+<tr><th scope="row">Acte de complicité</th><td>Un moyen fourni, comme une voiture ou une arme, un guet ou des renseignements sur la façon de commettre l’infraction. Il peut aussi s’agir d’un don, d’une promesse, d’une menace, d’un ordre ou d’un abus d’autorité ou de pouvoir. L’acte a lieu avant ou pendant l’infraction, et peu importe qu’il ait été indispensable.</td><td>Article 121-7, alinéas 1 et 2, et chambre criminelle, 22 janvier 1991, n° 90-83.362</td></tr>
+<tr><th scope="row">Élément moral</th><td>La date à laquelle la personne apprend le projet, car elle doit le connaître au moment où elle aide. Une confidence ou une demande de l’auteur le montre.</td><td>Article 121-7, mot « sciemment »</td></tr>
+</tbody>
+</table>
+</div>
+<p>La réponse change quand l’énoncé ajoute l’un des faits suivants.</p>
+<div class="article-table-scroll" tabindex="0" role="region" aria-label="Comment la réponse change selon les faits de l’énoncé" style="overflow-x:auto">
+<table style="width:100%;min-width:640px;border-collapse:collapse">
+<thead><tr><th scope="col">Si l’énoncé indique</th><th scope="col">La réponse change ainsi</th><th scope="col">Texte ou décision</th></tr></thead>
+<tbody>
+<tr><th scope="row">L’auteur échappe à la peine pour une raison qui lui est personnelle</th><td>Le fait principal reste punissable, donc la complicité subsiste. Des éleveurs qui ignoraient l’interdiction ont ainsi échappé au procès par un non-lieu, et les vétérinaires qui leur avaient prescrit des produits interdits sont restés complices, car cette ignorance était personnelle aux éleveurs. Le même raisonnement s’applique au trouble psychique qui a aboli le discernement de l’auteur (article 122-1), puisque son irresponsabilité tient à son état.</td><td>Chambre criminelle, 8 avril 2026, n° 25-80.668, et article 122-1 pour le trouble psychique</td></tr>
+<tr><th scope="row">L’auteur agit en légitime défense</th><td>La légitime défense est une cause objective, attachée à l’acte lui-même. Elle supprime le fait principal punissable, donc la complicité disparaît avec lui. Un trouble psychique de l’auteur, cause personnelle, laisse au contraire subsister la complicité.</td><td>Articles 122-5 et 122-1</td></tr>
+<tr><th scope="row">La banque détecte les faux et refuse le prêt</th><td>Hugo a commencé l’escroquerie en présentant les bulletins, mais elle a échoué pour une cause indépendante de sa volonté. Il commet donc une tentative d’escroquerie, punie des mêmes peines. Ce fait principal est punissable, donc Pauline reste complice de la tentative.</td><td>Articles 121-5 et 313-3</td></tr>
+<tr><th scope="row">Une aide a été promise mais jamais fournie, ou une provocation est restée sans effet</th><td>Si l’aide promise n’a jamais été fournie, il manque l’acte de complicité. Si la provocation est restée sans effet, il manque le fait principal. Dans les deux cas, la complicité n’existe pas, car la tentative de complicité n’est pas punissable. Un texte autonome, l’article 221-5-1, punit toutefois celui qui offre un don pour faire commettre un assassinat, lorsque ce crime n’a été ni commis ni tenté. On l’appelle le mandat criminel.</td><td>Chambre criminelle, 23 mars 1978, n° 77-92.792, rendue sous l’ancien Code pénal, et article 221-5-1</td></tr>
+<tr><th scope="row">L’aide arrive après l’infraction</th><td>Une aide apportée après l’infraction n’est pas une complicité, sauf si un accord conclu avant l’infraction l’avait prévue. Tu cherches ensuite si le comportement constitue une infraction autonome, comme le recel de l’article 321-1 quand la personne détient ou profite du produit de l’infraction.</td><td>Chambre criminelle, 4 mai 2000, n° 99-86.563</td></tr>
+<tr><th scope="row">L’infraction principale est une contravention</th><td>Seul l’alinéa 2 de l’article 121-7 s’applique aussi aux contraventions (article R. 610-2). Il vise la provocation et les instructions. L’aide ou l’assistance de l’alinéa 1 vise un crime ou un délit. Un texte spécial peut toutefois punir l’aide à une contravention, comme l’article R. 623-2 pour le tapage. La chambre criminelle a ainsi retenu la complicité d’un père présent chez lui, pour un tapage nocturne. Il avait laissé les personnes présentes sous son toit faire du bruit la nuit, alors qu’il lui appartenait d’user de son autorité pour y mettre fin.</td><td>Articles R. 610-2 et R. 623-2, et chambre criminelle, 26 février 2020, n° 19-80.641</td></tr>
+<tr><th scope="row">La personne aide l’auteur par l’intermédiaire d’un autre complice</th><td>La complicité subsiste, car une aide apportée à l’auteur en connaissance de cause reste une complicité, même quand elle passe par un autre complice. L’<a href="arret-complicite-indirecte-2004-explique.html">arrêt du 15 décembre 2004</a> le juge pour une escroquerie.</td><td>Chambre criminelle, 15 décembre 2004, n° 04-81.684</td></tr>
+<tr><th scope="row">L’auteur commet la même infraction que celle que le complice avait en vue, mais dans une forme plus grave</th><td>Le complice répond des circonstances aggravantes liées à la manière dont l’infraction est commise, même quand il ne les connaissait pas. Un homme qui avait demandé de faire « une grande frayeur » à une personne a ainsi été jugé complice de violences avec arme, commises avec une bombe lacrymogène. En revanche, une circonstance qui tient seulement à la personne de l’auteur, comme sa récidive, reste en principe propre à l’auteur. La qualité de personne chargée d’une mission de service public fait exception pour un faux en écriture publique, et la chambre criminelle l’a appliquée au complice le 7 septembre 2005.</td><td>Chambre criminelle, 21 mai 1996, n° 95-84.252, et 7 septembre 2005, n° 04-84.235</td></tr>
+<tr><th scope="row">L’auteur commet une infraction d’une tout autre nature que celle projetée</th><td>Le complice ne répond pas d’une infraction d’une tout autre nature que celle qu’il avait en vue, car il doit avoir fourni les moyens en sachant qu’ils serviraient à cette infraction. Dans l’arrêt Nicolaï, un prêteur avait remis des pistolets à un homme chargé de faire pression sur un débiteur. Cet homme avait tué un tiers, et la Cour de cassation a cassé l’arrêt qui ordonnait de juger le prêteur pour complicité de meurtre.</td><td>Chambre criminelle, 13 janvier 1955, n° 55-01.694, sous l’ancien Code pénal</td></tr>
+<tr><th scope="row">La personne a donné des instructions puis bénéficié du produit de l’escroquerie</th><td>Elle peut être condamnée pour complicité et pour recel, quand les deux comportements sont distincts et ne constituent pas une action unique avec une seule intention coupable.</td><td>Chambre criminelle, 5 janvier 2017, n° 15-86.362</td></tr>
+</tbody>
+</table>
+</div>
+<aside class="key-callout" data-emplacement="pour-aller-plus-loin">
+<div class="key-callout__label">Pour aller plus loin</div>
+<ul>
+<li><a href="arret-lacour-1962-explique.html">L’arrêt Lacour de 1962</a>, sur la provocation restée sans effet</li>
+<li><a href="exemple-cas-pratique-corrige-droit-penal.html">Un autre cas pratique corrigé de droit pénal</a>, sur la tentative</li>
+<li><a href="cas-pratique-legitime-defense-corrige.html">Un cas pratique corrigé sur la légitime défense</a>, une des causes qui écartent la responsabilité pénale</li>
+</ul>
+</aside>
+<div class="author-box">
+<img class="author-box__avatar" src="assets/julien-md.webp" alt="Julien, professeur de droit">
+<div>
+<p class="author-box__name">Julien</p>
+<p class="author-box__role">Professeur de droit · Master II Panthéon-Assas</p>
+<p class="author-box__bio">Major puis vice-major de promo, #1 prof de droit sur Superprof avec <a href="temoignages.html">167 avis 5/5</a>. J'aide les étudiants en droit à passer de la moyenne à la mention. Pour cela, je leur apprends une méthode qu'ils réutilisent ensuite seuls, à chaque copie. Sur TrajectoireDroit, j'ai donc réuni mes fiches complètes et mes majeures préparées. Une majeure préparée donne la règle de droit déjà rédigée, prête pour le cas pratique.</p>
+<p style="margin-top:8px"><a href="https://www.linkedin.com/in/julien-fl-67984b384" target="_blank" rel="noopener" style="font-size:.85rem; font-weight:600">Voir mon profil LinkedIn &#8594;</a></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="faq">
+<div class="container container--narrow"><h2 class="h2">Questions fréquentes sur le cas pratique de complicité</h2>
+<div class="accordion">
+<details class="accordion__item"><summary class="accordion__trigger">Qui est complice en droit pénal ?</summary><div class="accordion__body"><p>Le complice est la personne qui, sciemment, aide l’auteur d’un crime ou d’un délit à le préparer ou à le commettre (article 121-7, alinéa 1). Il peut également provoquer l’infraction ou donner des instructions pour la commettre (alinéa 2). Il est puni comme l’auteur (article 121-6), mais seulement si trois conditions sont réunies, à savoir un fait principal punissable, un acte de complicité et un élément moral.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Un complice encourt-il la même peine que l’auteur ?</summary><div class="accordion__body"><p>Il encourt le même maximum légal, car l’article 121-6 le punit comme l’auteur. Le juge fixe pourtant la peine de chacun selon sa personnalité et les circonstances de l’infraction (article 132-1), si bien que le complice peut recevoir une peine plus légère que l’auteur. Pour une escroquerie, le maximum est de cinq ans d’emprisonnement et de 375 000 euros d’amende, pour l’un comme pour l’autre.</p></div></details>
+<details class="accordion__item"><summary class="accordion__trigger">Peut-on être complice sans rien faire ?</summary><div class="accordion__body"><p>En principe, non. La complicité par aide ou assistance exige des actes positifs. La chambre criminelle a jugé le 10 avril 1975 qu’elle ne se déduit pas d’une simple abstention. Elle a pourtant retenu, le 26 février 2020, la complicité d’un père présent chez lui, pour une contravention de tapage nocturne. Il laissait les personnes présentes sous son toit faire du bruit la nuit, alors qu’il lui appartenait d’user de son autorité pour y mettre fin.</p></div></details>
+</div>
+</div>
+</section>
+<section class="article-pack-ligne"><div class="container container--narrow"><p class="article-pack-ligne__texte">Le Pack Ultra L2 semestre 1 réunit les ressources du premier semestre de L2 pour 199 €, dont les cas pratiques corrigés et la fiche complète de droit pénal général. <a href="pack-ultra.html#pack-ultra-l2-s1">Voir les supports inclus →</a></p></div></section>
+</main>
+
+
+
+
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="color:#fff"><img class="logo__img" src="assets/logo-tjd-light.svg" alt="TrajectoireDroit" width="180" height="38"></a>
+          <p>La nouvelle école du droit. Fiches complètes, majeures préparées et cours particuliers. <a href="temoignages.html">4 500+ élèves utilisent nos fiches</a>.</p>
+          <p style="margin-top:10px; font-size:.82rem; color:rgba(255,255,255,.55)"><svg class="nav-icon" aria-hidden="true"><use href="assets/nav-icons.svg?v=288f81da#icon-graduate"/></svg>Site personnel de Julien, diplômé d'un Master II de droit pénal à Panthéon-Assas. Major puis vice-major de promo, #1 prof de droit sur Superprof.</p>
+                  <div class="footer-socials" style="margin-top:16px">
+            <a href="https://www.youtube.com/@TrajectoireDroit" aria-label="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12Z"/></svg></a>
+            <a href="https://www.tiktok.com/@trajectoiredroit" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/julien-fl-67984b384" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
+          </div>
+</div>
+        <div><h4>Produits</h4><a href="formations.html">Fiches complètes</a><a href="cours-particuliers.html">Cours particuliers</a><a href="ambassadeurs.html">Programme ambassadeurs</a></div>
+        <div><h4>Ressources</h4><a href="ressources-gratuites.html">Toutes les ressources gratuites</a><a href="methodologie-juridique.html">Méthodologie juridique</a></div>
+        <div class="footer-legal-mini"><h4 style="opacity:.6">Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="cgu.html">CGV / CGU</a><a href="confidentialite.html">Confidentialité</a></div>
+        <div>
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:12px">Le kit de survie avant tes partiels, offert tout de suite.</p>
+          <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+            <input type="email" name="email" required placeholder="ton@email.com" class="form__input" style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:#fff" aria-label="Email">
+            <input type="hidden" name="_subject" value="Droit pénal général L2, cas pratique sur la complicité">
+            <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci-kit-survie.html">
+            <button class="btn btn--primary btn--full" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© <span id="footerYear">2026</span> TrajectoireDroit. Tous droits réservés.</div></div>
+    </div>
+  </footer>
+
+  <!-- ===== EXIT-INTENT MODAL ===== -->
+  <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+    <div class="modal">
+      <button class="modal__close" data-close-modal aria-label="Fermer">✕</button>
+      <h2 id="exitModalTitle" style="margin-top:16px">Avant de partir…</h2>
+      <p class="lead" style="margin-bottom:24px">Reçois mon <strong>guide « Réviser le droit sans s'épuiser »</strong>, <strong>gratuitement</strong>.</p>
+      <form action="https://70e8de88.sibforms.com/serve/MUIFAAzh2VGBFy_yNhMy1bxQ-GlGi60jI4nJWPJsRuL-YSALofNbm6iQW7cM7-Ke4EZJXcOIByqYeJNOy7JDDNtPZsBawO7LQ4yjlzpM0km-EZEQ84ywQ6wAbgBwzeGcXGhuJXbc996n96lqcXcRIxxHPaf3X_00EnoAtxH-zW6OWz9wxIzwK6MNyNxxW7PX9961aEp-qrv-GDYGCA==" method="POST" style="display:flex; gap:8px; flex-direction:column">
+        <input type="email" name="email" required placeholder="ton@email.com" class="form__input" aria-label="Email">
+        <input type="hidden" name="_subject" value="Droit pénal général L2, cas pratique sur la complicité">
+        <input type="hidden" name="_next" value="https://trajectoiredroit.com/merci.html">
+        <button class="btn btn--primary btn--lg btn--full" type="submit">Recevoir mon guide gratuit →</button>
+      </form>
+      <p class="text-muted" style="font-size:.82rem; margin-top:14px">Désinscription en 1 clic · Aucune carte bancaire</p>
+    </div>
+  </div>
+  <!-- fin-article:sticky -->
+  <div class="sticky-cta-bar sticky-cta-bar--always" id="stickyCta">
+    <div class="sticky-cta-bar__text">
+      <strong>Droit pénal général L2</strong>
+      <small>Dix cas pratiques corrigés · 160 pages</small>
+    </div>
+    <button type="button" class="btn btn--primary" data-tjd-produit="cas-pratique-penal-general-l1" aria-label="Acheter les cas pratiques corrigés · 14,99 €">Acheter les cas pratiques · 14,99 €</button>
+  </div>
+
+
+  <script src="assets/js/achat.js?v=81a894f1" defer></script>
+  <script src="assets/js/offre-couverture.js?v=d1e8749e" defer></script>
+  <script src="assets/js/avis.js?v=dab2b9a7" defer></script>
+
+
+  <script src="assets/js/main.js?v=00564c99" defer></script>
+  <script src="/assets/js/pdf-offert.js?v=04fbc7ad" defer></script>
+  <script>
+  /* Chatbot charge au premier signe d'activite (scroll/clic/touche) ou apres 4s, jamais au chargement initial */
+  (function(){
+    var loaded = false;
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    function loadChatbot(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'assets/js/chatbot.js?v=7aba7f6e';
+      s.defer = true;
+      document.body.appendChild(s);
+      events.forEach(function(e){ window.removeEventListener(e, loadChatbot); });
+      clearTimeout(fallback);
+    }
+    events.forEach(function(e){ window.addEventListener(e, loadChatbot, {passive:true, once:true}); });
+    var fallback = setTimeout(loadChatbot, 4000);
+  })();
+  </script>
+  <script src="assets/js/cookie-consent.js?v=aa0b8951" defer></script>
+</body>
+</html>
